@@ -52,7 +52,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     ///   Where all user actions will  be registered
     /// </summary>
     [JsonProperty]
-    private ActionHistory<EditorAction> history;
+    private ActionHistory<MicrobeEditorAction> history;
 
     private Material invalidMaterial;
     private Material validMaterial;
@@ -417,7 +417,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         if (!IsLoadedFromSave)
         {
-            history = new ActionHistory<EditorAction>();
+            history = new ActionHistory<MicrobeEditorAction>();
 
             // Start a new game if no game has been started
             if (CurrentGame == null)
@@ -652,32 +652,10 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             oldEditedMicrobeOrganelles.Add(organelle);
         }
 
-        var action = new EditorAction(this, 0,
-            redo =>
-            {
-                MutationPoints = Constants.BASE_MUTATION_POINTS;
-                Membrane = SimulationParameters.Instance.GetMembrane("single");
-                editedMicrobeOrganelles.Clear();
-                editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
-                    new Hex(0, 0), 0));
-                gui.UpdateMembraneButtons(Membrane.InternalName);
-                gui.UpdateSpeed(CalculateSpeed());
-                gui.UpdateHitpoints(CalculateHitpoints());
-            },
-            undo =>
-            {
-                editedMicrobeOrganelles.Clear();
-                MutationPoints = previousMP;
-                Membrane = oldMembrane;
-                gui.UpdateMembraneButtons(Membrane.InternalName);
-                gui.UpdateSpeed(CalculateSpeed());
-                gui.UpdateHitpoints(CalculateHitpoints());
+        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, previousMP, oldMembrane);
 
-                foreach (var organelle in oldEditedMicrobeOrganelles)
-                {
-                    editedMicrobeOrganelles.Add(organelle);
-                }
-            });
+        var action = new MicrobeEditorAction(this, 0,
+            DoNewMicrobeAction, UndoNewMicrobeAction, data);
 
         EnqueueAction(action);
     }
@@ -734,7 +712,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         if (Membrane.Equals(membrane))
             return;
 
-        var action = new EditorAction(this, membrane.EditorCost, DoMembraneChangeAction, UndoMembraneChangeAction,
+        var action = new MicrobeEditorAction(this, membrane.EditorCost, DoMembraneChangeAction,
+            UndoMembraneChangeAction,
             new MembraneActionData(Membrane, membrane));
 
         EnqueueAction(action);
@@ -768,7 +747,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new EditorAction(this, cost,
+        var action = new MicrobeEditorAction(this, cost,
             redo =>
             {
                 Rigidity = newRigidity;
@@ -954,7 +933,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     }
 
     /// <summary>
-    ///   Changes the number of mutation points left. Should only be called by EditorAction
+    ///   Changes the number of mutation points left. Should only be called by MicrobeEditorAction
     /// </summary>
     internal void ChangeMutationPoints(int change)
     {
@@ -1528,7 +1507,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganellePlaceAction(EditorAction action)
+    private void DoOrganellePlaceAction(MicrobeEditorAction action)
     {
         var data = (PlacementActionData)action.Data;
 
@@ -1562,7 +1541,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganellePlaceAction(EditorAction action)
+    private void UndoOrganellePlaceAction(MicrobeEditorAction action)
     {
         var data = (PlacementActionData)action.Data;
 
@@ -1588,7 +1567,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         organelle.PlacedThisSession = true;
 
-        var action = new EditorAction(this, organelle.Definition.MPCost,
+        var action = new MicrobeEditorAction(this, organelle.Definition.MPCost,
             DoOrganellePlaceAction, UndoOrganellePlaceAction,
             new PlacementActionData(organelle));
 
@@ -1597,14 +1576,14 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleRemoveAction(EditorAction action)
+    private void DoOrganelleRemoveAction(MicrobeEditorAction action)
     {
         var data = (RemoveActionData)action.Data;
         editedMicrobeOrganelles.Remove(data.Organelle);
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleRemoveAction(EditorAction action)
+    private void UndoOrganelleRemoveAction(MicrobeEditorAction action)
     {
         var data = (RemoveActionData)action.Data;
         editedMicrobeOrganelles.Add(data.Organelle);
@@ -1625,11 +1604,51 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             -organelleHere.Definition.MPCost :
             Constants.ORGANELLE_REMOVE_COST;
 
-        var action = new EditorAction(this, cost,
+        var action = new MicrobeEditorAction(this, cost,
             DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
             new RemoveActionData(organelleHere));
 
         EnqueueAction(action);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoNewMicrobeAction(MicrobeEditorAction action)
+    {
+        // TODO: could maybe grab the current organelles and put them in the action here? This could be more safe
+        // against weird situations where it might be possible if the undo / redo system is changed to restore
+        // the wrong organelles
+
+        MutationPoints = Constants.BASE_MUTATION_POINTS;
+        Membrane = SimulationParameters.Instance.GetMembrane("single");
+        editedMicrobeOrganelles.Clear();
+        editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
+            new Hex(0, 0), 0));
+
+        OnPostNewMicrobeChange();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoNewMicrobeAction(MicrobeEditorAction action)
+    {
+        var data = (NewMicrobeActionData)action.Data;
+
+        editedMicrobeOrganelles.Clear();
+        MutationPoints = data.PreviousMP;
+        Membrane = data.OldMembrane;
+
+        foreach (var organelle in data.OldEditedMicrobeOrganelles)
+        {
+            editedMicrobeOrganelles.Add(organelle);
+        }
+
+        OnPostNewMicrobeChange();
+    }
+
+    private void OnPostNewMicrobeChange()
+    {
+        gui.UpdateMembraneButtons(Membrane.InternalName);
+        gui.UpdateSpeed(CalculateSpeed());
+        gui.UpdateHitpoints(CalculateHitpoints());
     }
 
     [DeserializedCallbackAllowed]
@@ -1760,7 +1779,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         organelleModel.Scene = displayScene;
     }
 
-    private void DoMembraneChangeAction(EditorAction action)
+    private void DoMembraneChangeAction(MicrobeEditorAction action)
     {
         var data = (MembraneActionData)action.Data;
         var membrane = data.NewMembrane;
@@ -1773,7 +1792,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
     }
 
-    private void UndoMembraneChangeAction(EditorAction action)
+    private void UndoMembraneChangeAction(MicrobeEditorAction action)
     {
         var data = (MembraneActionData)action.Data;
         Membrane = data.OldMembrane;
@@ -1788,7 +1807,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     /// <summary>
     ///   Perform all actions through this to make undo and redo work
     /// </summary>
-    private void EnqueueAction(EditorAction action)
+    private void EnqueueAction(MicrobeEditorAction action)
     {
         // A sanity check to not let an action proceed if we don't have enough mutation points
         if (MutationPoints < action.Cost)
@@ -1890,91 +1909,5 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     private void SaveGame(string name)
     {
         SaveHelper.Save(name, this);
-    }
-
-    /// <summary>
-    ///   Done actions are stored here to provide undo/redo functionality
-    /// </summary>
-    /// <remarks>
-    ///   TODO: this probably needs to be split into separate classes to make saving work for these
-    /// </remarks>
-    private class EditorAction : ReversableAction
-    {
-        [JsonProperty]
-        public readonly int Cost;
-
-        /// <summary>
-        ///   Action specific data
-        /// </summary>
-        [JsonProperty]
-        public object Data;
-
-        [JsonProperty]
-        private readonly Action<EditorAction> redo;
-
-        [JsonProperty]
-        private readonly Action<EditorAction> undo;
-
-        [JsonProperty]
-        private readonly MicrobeEditor editor;
-
-        public EditorAction(MicrobeEditor editor, int cost,
-            Action<EditorAction> redo,
-            Action<EditorAction> undo, object data = null)
-        {
-            this.editor = editor;
-            Cost = cost;
-            this.redo = redo;
-            this.undo = undo;
-            Data = data;
-        }
-
-        public override void DoAction()
-        {
-            editor.ChangeMutationPoints(-Cost);
-            redo(this);
-        }
-
-        public override void UndoAction()
-        {
-            editor.ChangeMutationPoints(Cost);
-            undo(this);
-        }
-    }
-
-    [JSONAlwaysDynamicType]
-    private class PlacementActionData
-    {
-        public List<OrganelleTemplate> ReplacedCytoplasm;
-        public OrganelleTemplate Organelle;
-
-        public PlacementActionData(OrganelleTemplate organelle)
-        {
-            Organelle = organelle;
-        }
-    }
-
-    [JSONAlwaysDynamicType]
-    private class RemoveActionData
-    {
-        public OrganelleTemplate Organelle;
-
-        public RemoveActionData(OrganelleTemplate organelle)
-        {
-            Organelle = organelle;
-        }
-    }
-
-    [JSONAlwaysDynamicType]
-    private class MembraneActionData
-    {
-        public MembraneType OldMembrane;
-        public MembraneType NewMembrane;
-
-        public MembraneActionData(MembraneType oldMembrane, MembraneType newMembrane)
-        {
-            OldMembrane = oldMembrane;
-            NewMembrane = newMembrane;
-        }
     }
 }
