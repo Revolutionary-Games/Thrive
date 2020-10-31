@@ -16,6 +16,7 @@ public class InputGroupList : VBoxContainer
     internal static PackedScene InputEventItemScene;
     internal static PackedScene InputGroupItemScene;
     internal static PackedScene InputActionItemScene;
+    private static InputDataList defaultControls = GetCurrentlyAppliedControls();
 
     private ConfirmationDialog conflictDialog;
 
@@ -23,32 +24,56 @@ public class InputGroupList : VBoxContainer
     private InputEventItem latestDialogConflict;
     private InputEventWithModifiers latestDialogNewEvent;
 
+    private bool wasListeningForInput;
+    private IEnumerable<InputGroupItem> allGroupItems;
+
     public InputGroupList()
     {
+        Instance?.Dispose();
         Instance = this;
     }
 
-    public delegate void ControlSchemeChangedDelegate(Dictionary<string, List<InputEventWithModifiers>> data);
+    public delegate void ControlsChangedDelegate(InputDataList data);
 
-    public event ControlSchemeChangedDelegate OnControlSchemeChanged;
+    public event ControlsChangedDelegate OnControlsChanged;
 
     public static InputGroupList Instance { get; private set; }
-    public static Dictionary<string, List<InputEventWithModifiers>> DefaultControlScheme { get => CloneScheme(GetCurrentlyAppliedControlScheme()); }
-    public Dictionary<string, List<InputEventWithModifiers>> LoadingData { get; private set; }
-    public IEnumerable<InputGroupItem> AllGroupItems => GetChildren().OfType<InputGroupItem>();
 
-    public static Dictionary<string, List<InputEventWithModifiers>> GetCurrentlyAppliedControlScheme()
+    public InputDataList LoadingData { get; private set; }
+
+    public bool WasListeningForInput
     {
-        return InputMap.GetActions().OfType<string>()
-            .ToDictionary(p => p,
-                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>()
-                    .ToList());
+        get
+        {
+            var res = wasListeningForInput;
+            wasListeningForInput = false;
+            return res;
+        }
+        internal set => wasListeningForInput = value;
     }
 
-    public Dictionary<string, List<InputEventWithModifiers>> GetCurrentlyPendingControlScheme()
+    public IEnumerable<InputGroupItem> AllGroupItems => allGroupItems ??= GetChildren().OfType<InputGroupItem>();
+
+    public static InputDataList GetDefaultControls()
     {
-        return AllGroupItems.SelectMany(p => p.Actions)
-            .ToDictionary(p => p.InputName, p => p.Inputs.Select(x => x.AssociatedEvent).ToList());
+        return CloneControls(defaultControls);
+    }
+
+    public static InputDataList GetCurrentlyAppliedControls()
+    {
+        return new InputDataList(InputMap.GetActions().OfType<string>()
+            .ToDictionary(p => p,
+                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>()
+                    .ToList()));
+    }
+
+    public InputDataList GetCurrentlyPendingControls()
+    {
+        var groups = AllGroupItems.ToList();
+        if (!groups.Any())
+            return GetDefaultControls();
+        return new InputDataList(groups.SelectMany(p => p.Actions)
+            .ToDictionary(p => p.InputName, p => p.Inputs.Select(x => x.AssociatedEvent).ToList()));
     }
 
     public override void _Ready()
@@ -60,7 +85,17 @@ public class InputGroupList : VBoxContainer
         conflictDialog = GetNode<ConfirmationDialog>(ConflictDialogPath);
     }
 
-    public void ShowDialog(InputEventItem caller, InputEventItem conflict, InputEventWithModifiers newEvent)
+    protected override void Dispose(bool disposing)
+    {
+        foreach (var inputGroupItem in AllGroupItems)
+        {
+            inputGroupItem.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict, InputEventWithModifiers newEvent)
     {
         latestDialogCaller = caller;
         latestDialogConflict = conflict;
@@ -92,12 +127,14 @@ public class InputGroupList : VBoxContainer
             .FirstOrDefault(p => Equals(p, item));
     }
 
-    public void InitFromData(Dictionary<string, List<InputEventWithModifiers>> data)
+    public void InitFromData(InputDataList data)
     {
         LoadingData = data;
         foreach (Node child in GetChildren())
         {
             RemoveChild(child);
+
+            child.Free();
         }
 
 
@@ -118,7 +155,7 @@ public class InputGroupList : VBoxContainer
         catch (Exception e)
         {
             GD.PrintErr($"Could not load the input settings: {e}");
-            InitFromData(DefaultControlScheme);
+            InitFromData(Settings.Instance.CurrentControls);
         }
     }
 
@@ -133,16 +170,15 @@ public class InputGroupList : VBoxContainer
         return conflictDialog.Visible;
     }
 
-    internal void ControlSchemeChanged()
+    internal void ControlsChanged()
     {
-        OnControlSchemeChanged?.Invoke(GetCurrentlyPendingControlScheme());
+        OnControlsChanged?.Invoke(GetCurrentlyPendingControls());
     }
 
-    private static Dictionary<string, List<InputEventWithModifiers>> CloneScheme(
-        Dictionary<string, List<InputEventWithModifiers>> data)
+    internal static InputDataList CloneControls(InputDataList data)
     {
         var result = new Dictionary<string, List<InputEventWithModifiers>>();
-        foreach (var keyValuePair in data)
+        foreach (var keyValuePair in data.Data)
         {
             result[keyValuePair.Key] = new List<InputEventWithModifiers>();
             foreach (var inputEventWithModifiers in keyValuePair.Value)
@@ -162,6 +198,6 @@ public class InputGroupList : VBoxContainer
             }
         }
 
-        return result;
+        return new InputDataList(result);
     }
 }

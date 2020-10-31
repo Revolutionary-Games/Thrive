@@ -67,6 +67,17 @@ public class InputActionItem : VBoxContainer
         return InputName != null ? InputName.GetHashCode() : 0;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        AssociatedGroup = null;
+        foreach (var inputEventItem in Inputs)
+        {
+            inputEventItem.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     internal void OnAddEventButtonPressed()
     {
         var newInput = (InputEventItem)InputGroupList.InputEventItemScene.Instance();
