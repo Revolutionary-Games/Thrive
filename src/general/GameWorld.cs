@@ -96,6 +96,36 @@ public class GameWorld
     [JsonIgnore]
     public TimedWorldOperations TimedEffects { get; }
 
+    /// <summary>
+    ///   The current external effects for the current auto-evo run. This is here to allow saving to work for them.
+    ///   Don't add new effects through this, instead go through the run instead
+    /// </summary>
+    public List<ExternalEffect> CurrentExternalEffects
+    {
+        get
+        {
+            if (autoEvo == null)
+                return new List<ExternalEffect>();
+
+            return autoEvo.ExternalEffects;
+        }
+        set
+        {
+            // Make sure there is an existing run, as that isn't saved, so when loading we need to create the run to
+            // store things in it. Creating the run here doesn't interfere with it being started
+            CreateRunIfMissing();
+
+            var effects = autoEvo.ExternalEffects;
+
+            effects.Clear();
+
+            if (value == null)
+                return;
+
+            effects.AddRange(value);
+        }
+    }
+
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
         species.IsBacteria = true;
