@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Defines one specific input.
 ///   Each InputActionItem has <see cref="InputEventItem">InputEventItems</see> associated with it.
 /// </summary>
-[JsonConverter(typeof(InputActionItemConverter))]
 public class InputActionItem : VBoxContainer
 {
     [Export]
@@ -35,7 +33,6 @@ public class InputActionItem : VBoxContainer
     /// <example>
     ///   g_move_left, g_zoom_in
     /// </example>
-    [JsonProperty]
     public string InputName { get; set; }
 
     /// <summary>
@@ -44,13 +41,11 @@ public class InputActionItem : VBoxContainer
     /// <example>
     ///   Move left, Zoom in
     /// </example>
-    [JsonProperty]
     public string DisplayName { get; set; }
 
     /// <summary>
     ///   All the associated inputs executing this action
     /// </summary>
-    [JsonProperty]
     public ObservableCollection<InputEventItem> Inputs { get; set; }
 
     /// <summary>
@@ -110,6 +105,10 @@ public class InputActionItem : VBoxContainer
         {
             inputEventItem.Dispose();
         }
+
+        inputActionHeader?.Dispose();
+        inputEventsContainer?.Dispose();
+        addInputEvent?.Dispose();
 
         base.Dispose(disposing);
     }

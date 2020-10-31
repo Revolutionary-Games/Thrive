@@ -192,8 +192,8 @@ public class Settings
 
     /// <summary>
     ///   The current controls of the game.
-    ///   Key = InputMap name.
-    ///   Value = The events associated with the control.
+    ///   It stores the godot actions like g_move_left and
+    ///   their associated <see cref="ThriveInputEventWithModifiers">ThriveInputEventWithModifiers</see>
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
@@ -320,7 +320,7 @@ public class Settings
                 return false;
             }
 
-            file.StoreString(JsonConvert.SerializeObject(this, new InputEventWithModifiersConverter()));
+            file.StoreString(JsonConvert.SerializeObject(this));
 
             file.Close();
         }
@@ -400,8 +400,7 @@ public class Settings
     /// </summary>
     public void ApplyInputSettings()
     {
-        var data = CurrentControls.Value;
-        foreach (var action in data.Data)
+        foreach (var action in CurrentControls.Value.Data)
         {
             // Clear all old input events
             InputMap.ActionEraseEvents(action.Key);
@@ -409,7 +408,11 @@ public class Settings
             // Add the new input events
             foreach (var inputEvent in action.Value)
             {
-                InputMap.ActionAddEvent(action.Key, inputEvent);
+                // If the game is waiting for an input
+                if (inputEvent == null)
+                    return;
+
+                InputMap.ActionAddEvent(action.Key, inputEvent.ToGodotObject());
             }
         }
     }
@@ -524,7 +527,7 @@ public class Settings
 
             try
             {
-                var result = JsonConvert.DeserializeObject<Settings>(text, new InputEventWithModifiersConverter());
+                var result = JsonConvert.DeserializeObject<Settings>(text);
                 if (result == null)
                     throw new Exception("Could not deserialize settings");
 

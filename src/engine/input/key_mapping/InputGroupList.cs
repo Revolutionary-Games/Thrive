@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -18,7 +18,7 @@ public class InputGroupList : VBoxContainer
     internal static PackedScene InputActionItemScene;
 
     private static IEnumerable<InputGroupItem> allGroupItems;
-    private static InputDataList defaultControls;
+    private static InputDataList defaultControls = GetCurrentlyAppliedControls();
 
     private ConfirmationDialog conflictDialog;
 
@@ -27,16 +27,6 @@ public class InputGroupList : VBoxContainer
     private InputEventWithModifiers latestDialogNewEvent;
 
     private bool wasListeningForInput;
-    private InputDataList loadingData;
-
-    static InputGroupList()
-    {
-        InputEventItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputEventItem.tscn");
-        InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
-        InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
-
-        defaultControls = GetCurrentlyAppliedControls();
-    }
 
     public InputGroupList()
     {
@@ -54,33 +44,6 @@ public class InputGroupList : VBoxContainer
     public static InputGroupList Instance { get; private set; }
 
     /// <summary>
-    ///   The currently loading data.
-    ///   Used by <see cref="InputGroupItemConverter"></see>
-    /// </summary>
-    public InputDataList LoadingData
-    {
-        get => loadingData;
-        private set
-        {
-            loadingData = value;
-
-            // Load json
-            try
-            {
-                using var file = new File();
-                file.Open(Constants.INPUT_OPTIONS, File.ModeFlags.Read);
-                var fileContent = file.GetAsText();
-                allGroupItems = JsonConvert.DeserializeObject<IList<InputGroupItem>>(fileContent);
-                file.Close();
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr($"Could not load the input settings: {e}");
-            }
-        }
-    }
-
-    /// <summary>
     ///   If I was listening for inputs.
     ///   Used by the pause menu to not close whenever escape is pressed if the user was redefining keys
     /// </summary>
@@ -95,7 +58,12 @@ public class InputGroupList : VBoxContainer
         internal set => wasListeningForInput = value;
     }
 
-    public IEnumerable<InputGroupItem> AllGroupItems => allGroupItems ??= GetChildren().OfType<InputGroupItem>();
+    /// <summary>
+    ///   Is any Input currently waiting for input
+    /// </summary>
+    public bool ListeningForInput => AllGroupItems.Any(x => x.Actions.Any(y => y.Inputs.Any(z => z.WaitingForInput)));
+
+    public IEnumerable<InputGroupItem> AllGroupItems => allGroupItems;
 
     /// <summary>
     ///   Returns the default controls which never change, unless there is a new release.
@@ -115,8 +83,29 @@ public class InputGroupList : VBoxContainer
     {
         return new InputDataList(InputMap.GetActions().OfType<string>()
             .ToDictionary(p => p,
-                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>()
-                    .ToList()));
+                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                    x => new ThriveInputEventWithModifiers(x)).ToList()));
+    }
+
+    /// <summary>
+    ///   Loads the input_options and saves it to with the data in the AllGroupItems
+    /// </summary>
+    public void LoadFromData(InputDataList data)
+    {
+        // Load json
+        try
+        {
+            using var file = new File();
+            file.Open(Constants.INPUT_OPTIONS, File.ModeFlags.Read);
+            var fileContent = file.GetAsText();
+            var loadedJson = JsonConvert.DeserializeObject<List<NamedInputGroup>>(fileContent);
+            allGroupItems = loadedJson.Select(p => p.ToGodotObject(data)).ToList();
+            file.Close();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Could not load the input settings: {e}");
+        }
     }
 
     /// <summary>
@@ -128,12 +117,17 @@ public class InputGroupList : VBoxContainer
         var groups = AllGroupItems.ToList();
         if (!groups.Any())
             return GetDefaultControls();
+
         return new InputDataList(groups.SelectMany(p => p.Actions)
             .ToDictionary(p => p.InputName, p => p.Inputs.Select(x => x.AssociatedEvent).ToList()));
     }
 
     public override void _Ready()
     {
+        InputEventItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputEventItem.tscn");
+        InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
+        InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
+
         conflictDialog = GetNode<ConfirmationDialog>(ConflictDialogPath);
     }
 
@@ -143,14 +137,15 @@ public class InputGroupList : VBoxContainer
     /// <param name="caller">The event which wants to be redefined</param>
     /// <param name="conflict">The event which produced the conflict</param>
     /// <param name="newEvent">The new event wanted to be set to the caller</param>
-    public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict, InputEventWithModifiers newEvent)
+    public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict,
+        InputEventWithModifiers newEvent)
     {
         latestDialogCaller = caller;
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
         conflictDialog.DialogText = $"There is a conflict with {conflict.AssociatedAction.DisplayName}.\n" +
-                                    $"Do you want to remove the input from {conflict.AssociatedAction.DisplayName}?";
+            $"Do you want to remove the input from {conflict.AssociatedAction.DisplayName}?";
         conflictDialog.PopupCenteredMinsize();
     }
 
@@ -181,13 +176,14 @@ public class InputGroupList : VBoxContainer
     /// <param name="data">The input data the input tab should be loaded with</param>
     public void InitFromData(InputDataList data)
     {
-        LoadingData = data;
         foreach (Node child in GetChildren())
         {
             RemoveChild(child);
 
             child.Free();
         }
+
+        LoadFromData(data);
 
         foreach (var inputGroup in AllGroupItems)
         {
@@ -217,6 +213,8 @@ public class InputGroupList : VBoxContainer
         {
             inputGroupItem.Dispose();
         }
+
+        conflictDialog?.Dispose();
 
         base.Dispose(disposing);
     }

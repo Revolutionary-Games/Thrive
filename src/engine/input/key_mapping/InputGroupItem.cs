@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   An input group shown in the input tab in the options.
 ///   Has multiple <see cref="InputActionItem">InputActions</see>.
 /// </summary>
-[JsonConverter(typeof(InputGroupItemConverter))]
 public class InputGroupItem : VBoxContainer
 {
     [Export]
@@ -24,21 +22,20 @@ public class InputGroupItem : VBoxContainer
     /// <example>
     ///   Movement
     /// </example>
-    [JsonProperty]
     public string GroupName { get; set; }
+
+    // ReSharper disable once CollectionNeverUpdated.Global (Reason: Loaded from json)
 
     /// <summary>
     ///   The associated actions the group contains
     /// </summary>
-    [JsonProperty]
-    public IList<InputActionItem> Actions { get; set; }
+    public List<InputActionItem> Actions { get; set; }
 
     /// <summary>
     ///   A list of environments the actions of the group are associated with.
     ///   Used by the conflict detection.
     /// </summary>
-    [JsonProperty]
-    public IList<string> EnvironmentId { get; set; }
+    public List<string> EnvironmentId { get; set; }
 
     public override void _Ready()
     {
@@ -47,7 +44,7 @@ public class InputGroupItem : VBoxContainer
 
         inputGroupHeader.Text = GroupName;
 
-        // Add the actions to the DOM
+        // Add the actions to the godot element tree
         foreach (var action in Actions)
         {
             inputActionsContainer.AddChild(action);
@@ -56,7 +53,11 @@ public class InputGroupItem : VBoxContainer
 
     protected override void Dispose(bool disposing)
     {
+        inputGroupHeader?.Dispose();
+        inputActionsContainer?.Dispose();
+
         base.Dispose(disposing);
+
         foreach (var inputActionItem in Actions)
         {
             inputActionItem.Dispose();
