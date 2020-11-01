@@ -1070,18 +1070,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     private void InitEditorSaved()
     {
-        // Need to recreate our organelle layout to make the callbacks work again, but we need to copy the existing
-        // organelles to it
-        // var tempOrganelles = editedMicrobeOrganelles;
-        //
-        // editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
-        //     OnOrganelleAdded, OnOrganelleRemoved);
-        //
-        // foreach (var organelle in tempOrganelles)
-        // {
-        //     editedMicrobeOrganelles.Add(organelle);
-        // }
-
         UpdateGUIAfterLoadingSpecies(editedSpecies);
         OnLoadedEditorReady();
 
@@ -1778,6 +1766,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         organelleModel.Scene = displayScene;
     }
 
+    [DeserializedCallbackAllowed]
     private void DoMembraneChangeAction(MicrobeEditorAction action)
     {
         var data = (MembraneActionData)action.Data;
@@ -1791,6 +1780,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
     }
 
+    [DeserializedCallbackAllowed]
     private void UndoMembraneChangeAction(MicrobeEditorAction action)
     {
         var data = (MembraneActionData)action.Data;
