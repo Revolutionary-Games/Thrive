@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 ///     but now this is just a collection of data regarding the world.
 ///   </para>
 /// </remarks>
+[UseThriveSerializer]
 public class GameWorld
 {
     [JsonProperty]
