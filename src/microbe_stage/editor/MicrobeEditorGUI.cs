@@ -1192,6 +1192,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayButtonPressSound();
 
         selectedSelectionMenuTab = selection;
+        ApplySelectionMenuTab();
     }
 
     private void ApplySelectionMenuTab()
