@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 ///     but now this is just a collection of data regarding the world.
 ///   </para>
 /// </remarks>
+[JsonObject(IsReference = true)]
 [UseThriveSerializer]
 public class GameWorld
 {
@@ -57,28 +58,13 @@ public class GameWorld
     /// </summary>
     public GameWorld()
     {
-        // TODO: save timed effects to json as well
+        // TODO: when loading a save this shouldn't be recreated as otherwise that happens all the time
+        // Note that as the properties are applied from a save after the constructor, the save is correctly loaded
+        // but these extra objects get created and garbage collected
         TimedEffects = new TimedWorldOperations();
 
         // Register glucose reduction
-        TimedEffects.RegisterEffect("reduce_glucose", new WorldEffectLambda((elapsed, total) =>
-        {
-            foreach (var key in Map.Patches.Keys)
-            {
-                var patch = Map.Patches[key];
-
-                foreach (var compound in patch.Biome.Compounds.Keys)
-                {
-                    if (compound.InternalName == "glucose")
-                    {
-                        var data = patch.Biome.Compounds[compound];
-
-                        // TODO: verify that this change is picked up by the patch manager
-                        data.Density *= Constants.GLUCOSE_REDUCTION_RATE;
-                    }
-                }
-            }
-        }));
+        TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
     }
 
     [JsonProperty]
@@ -94,8 +80,8 @@ public class GameWorld
     [JsonProperty]
     public double TotalPassedTime { get; private set; }
 
-    [JsonIgnore]
-    public TimedWorldOperations TimedEffects { get; }
+    [JsonProperty]
+    public TimedWorldOperations TimedEffects { get; private set; }
 
     /// <summary>
     ///   The current external effects for the current auto-evo run. This is here to allow saving to work for them.
