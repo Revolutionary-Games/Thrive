@@ -90,7 +90,7 @@ public class LineChart : VBoxContainer
 
     // ReSharper disable once CollectionNeverUpdated.Global
     /// <summary>
-    ///   Datasets to be plotted on the chart
+    ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
     public Dictionary<string, LineChartData> DataSets { get; set; } = new Dictionary<string, LineChartData>();
 
@@ -132,6 +132,109 @@ public class LineChart : VBoxContainer
         hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
 
         UpdateAxesName();
+
+        // For testing purposes
+        var tempData = new LineChartData
+        {
+            Points = new List<ChartPoint>
+            {
+                new ChartPoint(0, 0),
+                new ChartPoint(20, 50),
+                new ChartPoint(50, 80),
+                new ChartPoint(100, 0),
+                new ChartPoint(200, 50),
+                new ChartPoint(300, 80),
+            },
+            IconTexture = GUICommon.Instance.GetCompoundIcon("Glucose"),
+            DataColor = new Color(1, 1, 1),
+        };
+
+        var lightData = new LineChartData
+        {
+            Points = new List<ChartPoint>
+            {
+                new ChartPoint(15, 0),
+                new ChartPoint(40, 20),
+                new ChartPoint(70, 17),
+                new ChartPoint(180, 65),
+                new ChartPoint(250, 43),
+                new ChartPoint(300, 0, 12, ChartPoint.MarkerIcon.Cross),
+            },
+            IconTexture = GUICommon.Instance.GetCompoundIcon("Ammonia"),
+            DataColor = new Color(0.63f, 0.4f, 0.0f),
+            Draw = false,
+        };
+
+        var nitrogenData = new LineChartData
+        {
+            Points = new List<ChartPoint>
+            {
+                new ChartPoint(23, 20),
+                new ChartPoint(50, 50),
+                new ChartPoint(100, 10),
+                new ChartPoint(160, 5),
+                new ChartPoint(260, 30),
+                new ChartPoint(300, 70),
+            },
+            IconTexture = GUICommon.Instance.GetCompoundIcon("Phosphate"),
+            DataColor = new Color(1, 1, 1),
+        };
+
+        var dataOne = new LineChartData
+        {
+            Points = new List<ChartPoint>
+            {
+                new ChartPoint(0, 80),
+                new ChartPoint(20, 21),
+                new ChartPoint(50, 0),
+                new ChartPoint(100, 80),
+                new ChartPoint(200, 34),
+                new ChartPoint(300, 80),
+            },
+            DataColor = new Color(0.2f, 1.0f, 0.23f),
+        };
+
+        var dataTwo = new LineChartData
+        {
+            Points = new List<ChartPoint>
+            {
+                new ChartPoint(15, 0),
+                new ChartPoint(40, 43),
+                new ChartPoint(70, 65),
+                new ChartPoint(180, 17),
+                new ChartPoint(250, 43),
+                new ChartPoint(300, 0),
+            },
+            DataColor = new Color(0.0f, 0.5f, 0.1f),
+            Draw = false,
+        };
+
+        var dataThree = new LineChartData
+        {
+            Points = new List<ChartPoint>
+            {
+                new ChartPoint(0, 5),
+                new ChartPoint(43, 17),
+                new ChartPoint(75, 32),
+                new ChartPoint(100, 42),
+                new ChartPoint(150, 30),
+                new ChartPoint(300, 15),
+            },
+            DataColor = new Color(0.3f, 1, 1),
+        };
+
+        DataSets["Glucose"] = tempData;
+        DataSets["Ammonia"] = lightData;
+        DataSets["Phosphateeeeeee"] = nitrogenData;
+        DataSets["DataOne"] = dataOne;
+        DataSets["DataTwo"] = dataTwo;
+        DataSets["DataThree"] = dataThree;
+        DataSets["DataFour"] = dataThree;
+        DataSets["DataFive"] = dataThree;
+        DataSets["DataSix"] = dataThree;
+        DataSets["DataSeven"] = dataThree;
+        Plot();
+        CreateLegend("Compounds");
     }
 
     public override void _Draw()
@@ -317,32 +420,38 @@ public class LineChart : VBoxContainer
 
             case LegendDisplayMode.DropDown:
             {
-                var button = new MenuButton
+                var dropDown = new CustomDropDown
                 {
                     Flat = false,
                     Text = title,
                     EnabledFocusMode = FocusModeEnum.None,
+                    IconSize = new Vector2(15, 15),
                 };
 
-                var popupMenu = button.GetPopup();
                 var itemId = 0;
 
-                popupMenu.HideOnCheckableItemSelection = false;
+                dropDown.Popup.HideOnCheckableItemSelection = false;
 
                 foreach (var data in DataSets)
                 {
-                    popupMenu.AddCheckItem(data.Key, itemId);
+                    data.Value.IconTexture = data.Value.IconTexture == null ? defaultIconLegendTexture :
+                        data.Value.IconTexture;
+
+                    var colorToUse = data.Value.IconTexture == defaultIconLegendTexture ? data.Value.DataColor :
+                        new Color(1, 1, 1);
+
+                    dropDown.AddItem(data.Key, itemId, true, colorToUse, data.Value.IconTexture);
 
                     // Set initial item check state
                     if (data.Value.Draw)
-                        popupMenu.SetItemChecked(popupMenu.GetItemIndex(itemId), true);
+                        dropDown.Popup.SetItemChecked(dropDown.Popup.GetItemIndex(itemId), true);
 
                     itemId++;
                 }
 
-                legendContainer.AddChild(button);
+                legendContainer.AddChild(dropDown);
 
-                popupMenu.Connect("index_pressed", this, nameof(DropDownLegendItemSelected), new Array { button });
+                dropDown.Popup.Connect("index_pressed", this, nameof(DropDownLegendItemSelected), new Array { dropDown });
 
                 break;
             }
@@ -359,7 +468,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Redraws the chart. This method is mainly used so the draw area node could connect its "draw()"
+    ///   Redraws the chart. This method is mainly used by the draw area node to connect its "draw()"
     ///   signal to this for requesting a redraw (since it can't be connected directly with "Update()")
     /// </summary>
     private void RenderChart()
@@ -529,10 +638,10 @@ public class LineChart : VBoxContainer
         UpdateDataSetVisibility(name, toggled);
     }
 
-    private void DropDownLegendItemSelected(int index, MenuButton button)
+    private void DropDownLegendItemSelected(int index, CustomDropDown dropDown)
     {
-        var name = button.GetPopup().GetItemText(index);
-        var popupMenu = button.GetPopup();
+        var name = dropDown.GetPopup().GetItemText(index);
+        var popupMenu = dropDown.GetPopup();
 
         if (!popupMenu.IsItemChecked(index) && CheckMaxDataSetShown())
             return;
