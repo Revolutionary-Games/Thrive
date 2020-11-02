@@ -436,9 +436,10 @@ public static class Constants
     public const string FLUID_EFFECT_GROUP = "fluid_effect";
 
     /// <summary>
-    ///   All Nodes tagged with this are handled by the process system
+    ///   All Nodes tagged with this are handled by the process system. Can't be just "process" as that conflicts with
+    ///   godot idle_process and process, at least I think it does.
     /// </summary>
-    public const string PROCESS_GROUP = "process";
+    public const string PROCESS_GROUP = "run_processes";
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the ai system
@@ -471,6 +472,16 @@ public static class Constants
     /// </summary>
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
+    /// <summary>
+    ///   If true diagnostic information about JSON serialization is printed
+    /// </summary>
+    public const bool DEBUG_JSON_SERIALIZE = false;
+
+    /// <summary>
+    ///   If set to false, saving related errors are re-thrown to make debugging easier
+    /// </summary>
+    public const bool CATCH_SAVE_ERRORS = true;
+
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
 
@@ -496,26 +507,30 @@ public static class Constants
 #pragma warning restore CA1823
 
     /// <summary>
-    ///   Game version property
+    ///   This needs to be a separate field to make this only be calculated once needed the first time
     /// </summary>
-    public static string Version
+    private static readonly string GameVersion = FetchVersion();
+
+    /// <summary>
+    ///   Game version
+    /// </summary>
+    public static string Version => GameVersion;
+
+    private static string FetchVersion()
     {
-        get
+        try
         {
-            try
-            {
-                var assembly = Assembly.GetExecutingAssembly();
-                var version = assembly.GetName().Version;
-                var versionSuffix =
-                    (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
-                        typeof(AssemblyInformationalVersionAttribute), false);
-                return $"{version}" + versionSuffix[0].InformationalVersion;
-            }
-            catch (Exception error)
-            {
-                GD.Print("Error getting version: ", error);
-                return "error (" + error.GetType().Name + ")";
-            }
+            var assembly = Assembly.GetExecutingAssembly();
+            var version = assembly.GetName().Version;
+            var versionSuffix =
+                (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
+                    typeof(AssemblyInformationalVersionAttribute), false);
+            return $"{version}" + versionSuffix[0].InformationalVersion;
+        }
+        catch (Exception error)
+        {
+            GD.Print("Error getting version: ", error);
+            return "error (" + error.GetType().Name + ")";
         }
     }
 }
