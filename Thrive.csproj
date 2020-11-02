@@ -37,9 +37,9 @@
     <Compile Include="src\engine\input\key_mapping\InputEventItem.cs" />
     <Compile Include="src\engine\input\key_mapping\InputGroupItem.cs" />
     <Compile Include="src\engine\input\key_mapping\InputGroupList.cs" />
-    <Compile Include="src\engine\input\key_mapping\serialisation\NamedInputAction.cs" />
-    <Compile Include="src\engine\input\key_mapping\serialisation\NamedInputGroup.cs" />
-    <Compile Include="src\engine\input\key_mapping\ThriveInputEventWithModifiers.cs" />
+    <Compile Include="src\engine\input\key_mapping\NamedInputAction.cs" />
+    <Compile Include="src\engine\input\key_mapping\NamedInputGroup.cs" />
+    <Compile Include="src\engine\input\key_mapping\SpecifiedInputKey.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />

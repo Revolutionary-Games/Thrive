@@ -1,13 +1,13 @@
 using System;
 using Godot;
 
-public class ThriveInputEventWithModifiers : ICloneable
+public class SpecifiedInputKey : ICloneable
 {
-    public ThriveInputEventWithModifiers()
+    public SpecifiedInputKey()
     {
     }
 
-    public ThriveInputEventWithModifiers(InputEventWithModifiers @event)
+    public SpecifiedInputKey(InputEventWithModifiers @event)
     {
         Control = @event.Control;
         Alt = @event.Alt;
@@ -40,9 +40,7 @@ public class ThriveInputEventWithModifiers : ICloneable
     /// <summary>
     ///   Creates a string for the button to show.
     /// </summary>
-    /// <returns>
-    ///   A human readable string.
-    /// </returns>
+    /// <returns>A human readable string.</returns>
     public override string ToString()
     {
         var text = string.Empty;
@@ -78,28 +76,30 @@ public class ThriveInputEventWithModifiers : ICloneable
         return text;
     }
 
-    public InputEventWithModifiers ToGodotObject()
+    public InputEventWithModifiers ToInputEvent()
     {
-        InputEventWithModifiers res = Type switch
+        InputEventWithModifiers result = Type switch
         {
             InputType.Key => new InputEventKey { Scancode = Code },
             InputType.MouseButton => new InputEventMouseButton { ButtonIndex = (int)Code },
             _ => throw new NotSupportedException("Unsupported InputType given"),
         };
-        res.Alt = Alt;
-        res.Control = Control;
-        res.Shift = Shift;
-        return res;
+
+        result.Alt = Alt;
+        result.Control = Control;
+        result.Shift = Shift;
+        return result;
     }
 
     public object Clone()
     {
-        return new ThriveInputEventWithModifiers
+        return new SpecifiedInputKey
         {
             Alt = Alt,
             Code = Code,
             Control = Control,
             Shift = Shift,
+            Type = Type,
         };
     }
 
@@ -109,7 +109,7 @@ public class ThriveInputEventWithModifiers : ICloneable
             return false;
         if (ReferenceEquals(this, obj))
             return true;
-        if (!(obj is ThriveInputEventWithModifiers other))
+        if (!(obj is SpecifiedInputKey other))
             return false;
 
         return Control == other.Control &&

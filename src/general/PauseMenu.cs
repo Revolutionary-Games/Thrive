@@ -76,7 +76,7 @@ public class PauseMenu : Control
             if (Visible)
             {
                 // Do not close the window if the user is rebinding the input keys
-                if (InputGroupList.Instance.WasListeningForInput)
+                if (InputGroupList.WasListeningForInput)
                     return;
 
                 SetActiveMenu("primary");

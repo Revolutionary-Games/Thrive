@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -24,8 +25,6 @@ public class InputGroupItem : VBoxContainer
     /// </example>
     public string GroupName { get; set; }
 
-    // ReSharper disable once CollectionNeverUpdated.Global (Reason: Loaded from json)
-
     /// <summary>
     ///   The associated actions the group contains
     /// </summary>
@@ -49,6 +48,16 @@ public class InputGroupItem : VBoxContainer
         {
             inputActionsContainer.AddChild(action);
         }
+    }
+
+    internal static InputGroupItem BuildGUI(InputGroupList caller, NamedInputGroup data, InputDataList inputData)
+    {
+        var result = (InputGroupItem)InputGroupList.InputGroupItemScene.Instance();
+
+        result.EnvironmentId = data.EnvironmentId.ToList();
+        result.GroupName = data.GroupName;
+        result.Actions = data.Actions.Select(x => InputActionItem.BuildGUI(result, x, inputData[x.InputName])).ToList();
+        return result;
     }
 
     protected override void Dispose(bool disposing)

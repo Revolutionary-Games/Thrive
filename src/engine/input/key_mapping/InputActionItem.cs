@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using Godot;
 
 /// <summary>
-///   Defines one specific input.
+///   Defines one input aspect like g_move_forward.
 ///   Each InputActionItem has <see cref="InputEventItem">InputEventItems</see> associated with it.
 /// </summary>
 public class InputActionItem : VBoxContainer
@@ -18,14 +20,14 @@ public class InputActionItem : VBoxContainer
     [Export]
     public NodePath InputEventsContainerPath;
 
-    /// <summary>
-    ///   The group in which this action is defined.
-    /// </summary>
-    internal InputGroupItem AssociatedGroup;
-
     private Label inputActionHeader;
     private HBoxContainer inputEventsContainer;
     private Button addInputEvent;
+
+    /// <summary>
+    ///   The group in which this action is defined.
+    /// </summary>
+    public InputGroupItem AssociatedGroup { get; set; }
 
     /// <summary>
     ///   The godot specific action name
@@ -85,6 +87,18 @@ public class InputActionItem : VBoxContainer
     public override int GetHashCode()
     {
         return InputName != null ? InputName.GetHashCode() : 0;
+    }
+
+    internal static InputActionItem BuildGUI(InputGroupItem caller, NamedInputAction data, IEnumerable<SpecifiedInputKey> inputs)
+    {
+        var inputActionItem = (InputActionItem)InputGroupList.InputActionItemScene.Instance();
+
+        inputActionItem.InputName = data.InputName;
+        inputActionItem.DisplayName = data.Name;
+        inputActionItem.AssociatedGroup = caller;
+        inputActionItem.Inputs = new ObservableCollection<InputEventItem>(inputs.Select(d => InputEventItem.BuildGUI(inputActionItem, d)));
+
+        return inputActionItem;
     }
 
     /// <summary>

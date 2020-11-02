@@ -21,10 +21,10 @@ public class InputEventItem : Node
     public bool WaitingForInput { get; private set; }
 
     /// <summary>
-    ///   The currently assigned godot input event.
+    ///   The currently assigned input event.
     ///   null if this event was just created
     /// </summary>
-    public ThriveInputEventWithModifiers AssociatedEvent { get; set; }
+    public SpecifiedInputKey AssociatedEvent { get; set; }
 
     /// <summary>
     ///   The action this event is associated with
@@ -37,12 +37,12 @@ public class InputEventItem : Node
     internal bool JustAdded { get; set; }
 
     /// <summary>
-    ///   Deleted this event from the associated action and updated the godot InputMap
+    ///   Delete this event from the associated action and updated the godot InputMap
     /// </summary>
     public void Delete()
     {
         AssociatedAction.Inputs.Remove(this);
-        InputGroupList.Instance.ControlsChanged();
+        InputGroupList.ControlsChanged();
     }
 
     public override void _Ready()
@@ -65,7 +65,7 @@ public class InputEventItem : Node
     /// </summary>
     public override void _Input(InputEvent @event)
     {
-        if (InputGroupList.Instance.IsConflictDialogOpen())
+        if (InputGroupList.IsConflictDialogOpen())
             return;
 
         if (!WaitingForInput)
@@ -99,7 +99,7 @@ public class InputEventItem : Node
                         return;
                     }
 
-                    InputGroupList.Instance.WasListeningForInput = true;
+                    InputGroupList.WasListeningForInput = true;
                     WaitingForInput = false;
                     UpdateButtonText();
                     return;
@@ -112,16 +112,16 @@ public class InputEventItem : Node
 
         // The old godot input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;
-        AssociatedEvent = new ThriveInputEventWithModifiers((InputEventWithModifiers)@event);
+        AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
 
         // Get the conflicts with the new input.
-        var conflict = InputGroupList.Instance.Conflicts(this);
+        var conflict = InputGroupList.Conflicts(this);
         if (conflict != null)
         {
             AssociatedEvent = old;
 
             // If there are conflicts detected reset the changes and ask the user.
-            InputGroupList.Instance.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
+            InputGroupList.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
             return;
         }
 
@@ -142,10 +142,10 @@ public class InputEventItem : Node
 
         WaitingForInput = false;
         JustAdded = false;
-        InputGroupList.Instance.WasListeningForInput = false;
+        InputGroupList.WasListeningForInput = false;
 
         // Update the godot InputMap
-        InputGroupList.Instance.ControlsChanged();
+        InputGroupList.ControlsChanged();
 
         // Update the button text
         UpdateButtonText();
@@ -164,6 +164,14 @@ public class InputEventItem : Node
         return AssociatedEvent.GetHashCode();
     }
 
+    internal static InputEventItem BuildGUI(InputActionItem caller, SpecifiedInputKey @event)
+    {
+        var res = (InputEventItem)InputGroupList.InputEventItemScene.Instance();
+        res.AssociatedAction = caller;
+        res.AssociatedEvent = @event;
+        return res;
+    }
+
     protected override void Dispose(bool disposing)
     {
         AssociatedAction = null;
@@ -174,10 +182,10 @@ public class InputEventItem : Node
 
     private void OnButtonPressed(InputEvent @event)
     {
-        if (InputGroupList.Instance.IsConflictDialogOpen())
+        if (InputGroupList.IsConflictDialogOpen())
             return;
 
-        if (InputGroupList.Instance.ListeningForInput)
+        if (InputGroupList.ListeningForInput)
             return;
 
         if (!(@event is InputEventMouseButton inputButton))
