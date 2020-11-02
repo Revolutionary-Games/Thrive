@@ -2,22 +2,24 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Basically a class that inherits MenuButton, but with extra popup menu functionality such as
-///   adjustable icon size and some slide down animation. (Might need to expand this later)
+///   Basically a class that inherits MenuButton, but with extra popup menu functionality
+///   such as adjusted custom icon size with tweakable color and some slide down animation.
+///   (Might need to expand this later)
 /// </summary>
 public class CustomDropDown : MenuButton
 {
-    /// <summary>
-    ///   All item icon sizes will be adjusted according to this
-    /// </summary>
-    public Vector2 IconSize;
-
     /// <summary>
     ///   The MenuButton's popup menu
     /// </summary>
     public PopupMenu Popup;
 
     private Tween tween;
+
+    /// <summary>
+    ///   All item icon sizes will be adjusted according to this. Currently it's automatically
+    ///   set according to the PopupMenu's check icon size (with a bit smaller result)
+    /// </summary>
+    private Vector2 iconSize;
 
     private float cachedPopupHSeparation;
     private float cachedPopupVSeparation;
@@ -35,18 +37,25 @@ public class CustomDropDown : MenuButton
         cachedPopupHSeparation = Popup.GetConstant("hseparation");
         cachedPopupVSeparation = Popup.GetConstant("vseparation");
 
+        var checkSize = Popup.GetIcon("checked").GetSize();
+
+        // Set the custom icon size
+        iconSize = new Vector2(checkSize.x - 2, checkSize.y - 2);
+
+        Popup.RectClipContent = true;
+
         Connect("about_to_show", this, nameof(OnPopupAboutToShow));
         Popup.Connect("draw", this, nameof(RedrawPopup));
     }
 
     /// <summary>
-    ///   Helper for adding item into PopupMenu and also an icon to be custom drawn here
+    ///   Helper for adding item into PopupMenu and also an icon to be custom drawn in this class
     /// </summary>
-    public void AddItem(string name, int id, bool checkable, Color color, Texture icon = null)
+    public void AddItem(string text, int id, bool checkable, Color color, Texture icon = null)
     {
         var item = new Item
         {
-            Text = name,
+            Text = text,
             Icon = icon,
             Color = color,
             Id = id,
@@ -57,11 +66,11 @@ public class CustomDropDown : MenuButton
 
         if (checkable)
         {
-            Popup.AddCheckItem(name, id);
+            Popup.AddCheckItem(item.Text, item.Id);
         }
         else
         {
-            Popup.AddItem(name, id);
+            Popup.AddItem(item.Text, id);
         }
 
         // Waits until next frame, this fixes an incorrect rect size for some reason
@@ -71,7 +80,7 @@ public class CustomDropDown : MenuButton
     private void RedrawPopup()
     {
         // Set popup to minimum length
-        Popup.RectSize = new Vector2(GetContentsMinimumSize().x + IconSize.x + 6, 0);
+        Popup.RectSize = new Vector2(GetContentsMinimumSize().x + iconSize.x + 6, 0);
 
         // Adjust the menu button to have the same length as the popup
         RectMinSize = new Vector2(Popup.RectSize.x, RectMinSize.y);
@@ -90,7 +99,8 @@ public class CustomDropDown : MenuButton
         var contentMinSize = GetContentsMinimumSize();
         var font = Popup.GetFont("font");
 
-        var height = (Popup.RectSize.y - 10) - contentMinSize.y;
+        // Offset from the top
+        var height = Popup.GetStylebox("panel").ContentMarginTop + (font.GetHeight() / 2) - (iconSize.y / 2);
 
         foreach (var item in items)
         {
@@ -98,14 +108,12 @@ public class CustomDropDown : MenuButton
             if (item.Icon == null)
                 continue;
 
-            var rect = new Rect2(new Vector2(contentMinSize.x, height), IconSize);
+            var position = new Vector2(contentMinSize.x, height);
 
-            GetPopup().DrawTextureRect(item.Icon, rect, false, item.Color);
+            Popup.DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
 
-            height += font.GetStringSize(item.Text).y + cachedPopupVSeparation;
+            height += font.GetHeight() + cachedPopupVSeparation;
         }
-
-        // TODO: fix icons drawn outside popup area
     }
 
     /// <summary>
@@ -120,12 +128,11 @@ public class CustomDropDown : MenuButton
 
         foreach (var item in items)
         {
-            var width = IconSize.x + font.GetStringSize(item.Text).x + cachedPopupHSeparation;
+            var width = iconSize.x + font.GetStringSize(item.Text).x + cachedPopupHSeparation;
+            var height = Mathf.Max(iconSize.y, font.GetHeight()) + cachedPopupVSeparation;
 
             if (item.Checkable)
                 width += Popup.GetIcon("checked").GetWidth();
-
-            var height = Mathf.Max(IconSize.y, font.GetStringSize(item.Text).y) + cachedPopupVSeparation;
 
             minWidth = Mathf.Max(minWidth, width);
             minHeight += height;
@@ -139,12 +146,15 @@ public class CustomDropDown : MenuButton
         Popup.AddConstantOverride("vseparation", -14);
 
         // Animate slide down
-        tween.InterpolateProperty(Popup, "custom_constants/vseparation", -14, cachedPopupVSeparation, 0.3f,
+        tween.InterpolateProperty(Popup, "custom_constants/vseparation", -14, cachedPopupVSeparation, 0.1f,
             Tween.TransitionType.Circ, Tween.EaseType.Out);
         tween.Start();
     }
 
-    private struct Item
+    /// <summary>
+    ///   Helper data regarding the item
+    /// </summary>
+    private class Item
     {
         public string Text;
         public Texture Icon;

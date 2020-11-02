@@ -14,8 +14,6 @@ public class ChartPoint : Control
     private Vector2 coordinate;
     private float size;
 
-    private TextureRect icon;
-
     public ChartPoint(float xValue, float yValue, float size = 8f, MarkerIcon shape = MarkerIcon.Circle)
     {
         Value = new Vector2(xValue, yValue);
@@ -74,11 +72,6 @@ public class ChartPoint : Control
         graphMarkerCircle = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
         graphMarkerCross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
 
-        icon = new TextureRect();
-        icon.Expand = true;
-        icon.MouseFilter = MouseFilterEnum.Ignore;
-        AddChild(icon);
-
         Connect("mouse_entered", this, nameof(OnMouseEnter));
         Connect("mouse_exited", this, nameof(OnMouseExit));
 
@@ -87,9 +80,7 @@ public class ChartPoint : Control
 
     public override void _Draw()
     {
-        icon.Modulate = MarkerColor;
-        icon.RectSize = new Vector2(Size, Size);
-        icon.RectPosition = (RectSize / 2) - (icon.RectSize / 2);
+        var vectorSize = new Vector2(Size, Size);
 
         switch (IconType)
         {
@@ -105,12 +96,15 @@ public class ChartPoint : Control
                     DrawCircle(RectSize / 2, Size / 2, new Color(0.0f, 0.13f, 0.14f));
                 }
 
-                icon.Texture = graphMarkerCircle;
+                DrawTextureRect(graphMarkerCircle, new Rect2(
+                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColor);
+
                 break;
             }
 
             case MarkerIcon.Cross:
-                icon.Texture = graphMarkerCross;
+                DrawTextureRect(graphMarkerCross, new Rect2(
+                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColor);
                 break;
             default:
                 throw new Exception("Invalid marker shape");
