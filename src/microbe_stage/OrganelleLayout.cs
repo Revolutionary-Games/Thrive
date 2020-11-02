@@ -237,14 +237,14 @@ public class OrganelleLayout<T> : ICollection<T>
     }
 
     /// <summary>
-    ///   Recursively loops though all hexes and checks if there any without connection to the rest.
+    ///   Loops though all hexes and checks if there any without connection to the rest.
     /// </summary>
     /// <returns>
     ///   Returns a list of hexes that are not connected to the rest
     /// </returns>
     internal List<Hex> GetIslandHexes()
     {
-        // The hex to start the recursion with
+        // The hex to start with
         var initHex = Organelles[0].Position;
 
         // These are the hexes have neighbours and aren't islands
@@ -260,27 +260,23 @@ public class OrganelleLayout<T> : ICollection<T>
     }
 
     /// <summary>
-    ///   A recursive function that adds the neighbours of current hex that contain organelles to the checked list and
-    ///   recurses to them to find more connected organelles
+    ///   Adds the neighbors of the element in checked to checked, as well as their neighbors, and so on
     /// </summary>
     /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
     private void CheckmarkNeighbors(List<Hex> @checked)
     {
-        while (true)
+        var queue = new Queue<Hex>(@checked);
+
+        while (queue.Count > 0)
         {
-            var endHexCount = 0;
-            foreach (var hex in @checked.ToList())
+            var myNeighbors = GetNeighborHexes(queue.Dequeue()).Where(p => !@checked.Contains(p)).ToArray();
+            if (myNeighbors.Length == 0)
+                continue;
+            foreach (var myNeighbor in myNeighbors)
             {
-                var myNeighbors = GetNeighborHexes(hex).Where(p => !@checked.Contains(p)).ToArray();
-                if (myNeighbors.Length == 0)
-                    endHexCount++;
-
-                // Add the new neighbors to the list to not visit them again
-                @checked.AddRange(myNeighbors);
+                queue.Enqueue(myNeighbor);
+                @checked.Add(myNeighbor);
             }
-
-            if (endHexCount == @checked.Count)
-                break;
         }
     }
 
