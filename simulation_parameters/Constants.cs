@@ -507,26 +507,30 @@ public static class Constants
 #pragma warning restore CA1823
 
     /// <summary>
-    ///   Game version property
+    ///   This needs to be a separate field to make this only be calculated once needed the first time
     /// </summary>
-    public static string Version
+    private static readonly string GameVersion = FetchVersion();
+
+    /// <summary>
+    ///   Game version
+    /// </summary>
+    public static string Version => GameVersion;
+
+    private static string FetchVersion()
     {
-        get
+        try
         {
-            try
-            {
-                var assembly = Assembly.GetExecutingAssembly();
-                var version = assembly.GetName().Version;
-                var versionSuffix =
-                    (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
-                        typeof(AssemblyInformationalVersionAttribute), false);
-                return $"{version}" + versionSuffix[0].InformationalVersion;
-            }
-            catch (Exception error)
-            {
-                GD.Print("Error getting version: ", error);
-                return "error (" + error.GetType().Name + ")";
-            }
+            var assembly = Assembly.GetExecutingAssembly();
+            var version = assembly.GetName().Version;
+            var versionSuffix =
+                (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
+                    typeof(AssemblyInformationalVersionAttribute), false);
+            return $"{version}" + versionSuffix[0].InformationalVersion;
+        }
+        catch (Exception error)
+        {
+            GD.Print("Error getting version: ", error);
+            return "error (" + error.GetType().Name + ")";
         }
     }
 }
