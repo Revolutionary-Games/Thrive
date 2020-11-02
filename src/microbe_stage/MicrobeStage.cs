@@ -134,12 +134,22 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
                 var casted = (Spatial)node;
 
-                // TODO: check if this disposed check is still needed
-                // Skip disposed exceptions
+                // Objects that cause disposed exceptions. Seems still pretty important to protect saving against
+                // very rare issues
                 try
                 {
-                    if (casted.Transform.origin == Vector3.Zero)
+                    // Skip objects that will be deleted. This might help with Microbe saving as it might be that
+                    // the contained organelles are already disposed whereas the Microbe is just only queued for
+                    // deletion
+                    if (casted.IsQueuedForDeletion())
                     {
+                        disposed = true;
+                    }
+                    else
+                    {
+                        if (casted.Transform.origin == Vector3.Zero)
+                        {
+                        }
                     }
                 }
                 catch (ObjectDisposedException)
