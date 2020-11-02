@@ -276,6 +276,7 @@ public class OrganelleLayout<T> : ICollection<T>
             var myNeighbors = GetNeighborHexes(queue.Dequeue()).Where(p => !@checked.Contains(p)).ToArray();
             if (myNeighbors.Length == 0)
                 continue;
+
             foreach (var myNeighbor in myNeighbors)
             {
                 queue.Enqueue(myNeighbor);
