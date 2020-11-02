@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -237,5 +238,60 @@ public class OrganelleLayout<T> : ICollection<T>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return Organelles.GetEnumerator();
+    }
+
+    /// <summary>
+    ///   Loops though all hexes and checks if there any without connection to the rest.
+    /// </summary>
+    /// <returns>
+    ///   Returns a list of hexes that are not connected to the rest
+    /// </returns>
+    internal List<Hex> GetIslandHexes()
+    {
+        // The hex to start with
+        var initHex = Organelles[0].Position;
+
+        // These are the hexes have neighbours and aren't islands
+        var hexesWithNeighbours = new List<Hex> { initHex };
+
+        // These are all of the existing hexes, that if there are no islands will all be visited
+        var shouldBeVisited = Organelles.Select(p => p.Position).ToList();
+
+        CheckmarkNeighbors(hexesWithNeighbours);
+
+        // Return the difference of the lists (hexes that were not visited)
+        return shouldBeVisited.Except(hexesWithNeighbours).ToList();
+    }
+
+    /// <summary>
+    ///   Adds the neighbors of the element in checked to checked, as well as their neighbors, and so on
+    /// </summary>
+    /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
+    private void CheckmarkNeighbors(List<Hex> @checked)
+    {
+        var queue = new Queue<Hex>(@checked);
+
+        while (queue.Count > 0)
+        {
+            var myNeighbors = GetNeighborHexes(queue.Dequeue()).Where(p => !@checked.Contains(p)).ToArray();
+            if (myNeighbors.Length == 0)
+                continue;
+
+            foreach (var myNeighbor in myNeighbors)
+            {
+                queue.Enqueue(myNeighbor);
+                @checked.Add(myNeighbor);
+            }
+        }
+    }
+
+    /// <summary>Gets all neighboring hexes where there is an organelle</summary>
+    /// <param name="hex">The hex to get the neighbours for</param>
+    /// <returns>Returns a list of neighbors that are part of an organelle</returns>
+    private IEnumerable<Hex> GetNeighborHexes(Hex hex)
+    {
+        return Hex.HexNeighbourOffset
+            .Select(p => hex + p.Value)
+            .Where(p => GetOrganelleAt(p) != null);
     }
 }
