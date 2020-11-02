@@ -12,6 +12,12 @@ public class BaseNodeConverter : BaseThriveConverter
     {
     }
 
+    /// <summary>
+    ///   Force all Node types to behave properly with referencing, slightly increases the JSON output size but
+    ///   avoids having to place a ton of annotations on classes and also getting them on Godot's classes
+    /// </summary>
+    public override bool ForceReferenceWrite => true;
+
     public static bool IsIgnoredGodotNodeMember(string name)
     {
         switch (name)
@@ -19,8 +25,10 @@ public class BaseNodeConverter : BaseThriveConverter
             // Ignore a bunch of editor-only or data that should really be set from the scene this is loaded from
             case "EditorDescription":
             case "_ImportPath":
+            // TODO: this may cause problems if we ever want to allow objects to dynamically change their pause mode
             case "PauseMode":
             case "Owner":
+            // TODO: or process priority
             case "ProcessPriority":
             case "NativeInstance":
             case "DynamicObject":
@@ -66,6 +74,6 @@ public class BaseNodeConverter : BaseThriveConverter
     protected override bool SkipMember(string name)
     {
         // Skip Godot properties that we don't want in saves
-        return IsIgnoredGodotNodeMember(name);
+        return IsIgnoredGodotNodeMember(name) || base.SkipMember(name);
     }
 }

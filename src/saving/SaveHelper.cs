@@ -9,6 +9,15 @@ using Godot;
 /// </summary>
 public static class SaveHelper
 {
+    /// <summary>
+    ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
+    ///   (unless there exists a version converter)
+    /// </summary>
+    private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
+    {
+        "0.5.3",
+    };
+
     public enum SaveOrder
     {
         /// <summary>
@@ -287,6 +296,50 @@ public static class SaveHelper
         }
 
         return savesDeleted;
+    }
+
+    /// <summary>
+    ///   Returns true if the specified version is known to be incompatible
+    ///   from list in KnownSaveIncompatibilityPoints
+    /// </summary>
+    /// <param name="saveVersion">The save's version to check</param>
+    /// <returns>True if certainly incompatible</returns>
+    public static bool IsKnownIncompatible(string saveVersion)
+    {
+        int currentVersionPlaceInList = -1;
+        int savePlaceInList = -1;
+
+        var current = Constants.Version;
+
+        for (int i = 0; i < KnownSaveIncompatibilityPoints.Count; ++i)
+        {
+            var version = KnownSaveIncompatibilityPoints[i];
+
+            bool anyMatched = false;
+
+            var currentDifference = VersionUtils.Compare(current, version);
+            var saveDifference = VersionUtils.Compare(saveVersion, version);
+
+            if (currentDifference >= 0)
+            {
+                anyMatched = true;
+                currentVersionPlaceInList = i;
+            }
+
+            if (saveDifference >= 0)
+            {
+                anyMatched = true;
+                savePlaceInList = i;
+            }
+
+            if (!anyMatched)
+                break;
+        }
+
+        // If the current version and the save version don't fit in the same place in the save breakage points list
+        // the save is either older or newer than the closes save breakage point to the current version.
+        // Basically if numbers don't match, we know that the save is incompatible.
+        return currentVersionPlaceInList != savePlaceInList;
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,

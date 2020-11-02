@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -7,6 +8,7 @@ using System.Threading;
 using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 /// <summary>
 ///   Main JSON conversion class for Thrive handling all our custom stuff
@@ -44,15 +46,18 @@ public class ThriveJsonConverter : IDisposable
             new SystemVector4ArrayConverter(),
 
             new CompoundCloudPlaneConverter(context),
-            new CompoundBagConverter(context),
 
-            // Converter for all types with the specific attribute for this to be enabled
-            new DefaultThriveJSONConverter(context),
+            new CallbackConverter(),
 
             // Specific Godot Node converter types
 
-            // Fallback Godot Node converter
+            // Fallback Godot Node converter, this is before default serializer to make Node types with scene loaded
+            // attribute work correctly. Unfortunately this means it is not possible to force a Node derived class
+            // to not use this
             new BaseNodeConverter(context),
+
+            // Converter for all types with a specific few attributes for this to be enabled
+            new DefaultThriveJSONConverter(context),
         };
 
         thriveConvertersDynamicDeserialize = new List<JsonConverter> { new DynamicDeserializeObjectConverter(context) };
@@ -96,16 +101,6 @@ public class ThriveJsonConverter : IDisposable
         });
     }
 
-    // /// <summary>
-    // ///   Recursively resolves
-    // /// </summary>
-    // /// <param name="obj">Object to start looking at properties in</param>
-    // /// <param name="context"></param>
-    // public void ResolveLoadables(object obj, ISaveContext context)
-    // {
-    //
-    // }
-
     public void Dispose()
     {
         Dispose(true);
@@ -142,7 +137,22 @@ public class ThriveJsonConverter : IDisposable
             Converters = thriveConverters,
 
             ReferenceResolverProvider = () => referenceResolver,
+
+            TraceWriter = GetTraceWriter(Constants.DEBUG_JSON_SERIALIZE),
         };
+    }
+
+    /// <summary>
+    ///   This method is needed to fool code checking to think that this is runtime configurable
+    /// </summary>
+    private ITraceWriter GetTraceWriter(bool debug)
+    {
+        if (debug)
+        {
+            return new MemoryTraceWriter();
+        }
+
+        return null;
     }
 
     private T PerformWithSettings<T>(Func<JsonSerializerSettings, T> func)
@@ -156,6 +166,8 @@ public class ThriveJsonConverter : IDisposable
             // This is a recursive call
             recursive = true;
             settings = currentJsonSettings.Value;
+
+            settings.TraceWriter?.Trace(TraceLevel.Info, "Entering recursive object", null);
         }
         else
         {
@@ -170,7 +182,21 @@ public class ThriveJsonConverter : IDisposable
         finally
         {
             if (!recursive)
+            {
                 currentJsonSettings.Value = null;
+
+                if (settings.TraceWriter != null)
+                {
+                    GD.Print("JSON serialization trace: ", settings.TraceWriter);
+
+                    // This shouldn't get reused so no point in creating a new instance here
+                    settings.TraceWriter = null;
+                }
+            }
+            else
+            {
+                settings.TraceWriter?.Trace(TraceLevel.Info, "Exited recursive object", null);
+            }
         }
     }
 }
@@ -191,6 +217,8 @@ public abstract class BaseThriveConverter : JsonConverter
     // and https://stackoverflow.com/a/29826959/4371508
     private const string TYPE_PROPERTY = "$type";
 
+    private static readonly List<string> DefaultOnlyChildCopyIgnore = new List<string>();
+
     protected BaseThriveConverter(ISaveContext context)
     {
         Context = context;
@@ -201,6 +229,11 @@ public abstract class BaseThriveConverter : JsonConverter
     ///   have a one-way converter
     /// </summary>
     public override bool CanRead => true;
+
+    /// <summary>
+    ///   If this is true all serialized types are assumed to be marked as using references
+    /// </summary>
+    public virtual bool ForceReferenceWrite => false;
 
     /// <summary>
     ///   Finds the actual key for a thing ignoring different cases
@@ -233,9 +266,15 @@ public abstract class BaseThriveConverter : JsonConverter
                 a.AttributeType != typeof(CompilerGeneratedAttribute)));
 
         // Ignore fields that aren't public unless it has JsonPropertyAttribute
-        return fields.Where(p =>
+        fields = fields.Where(p =>
             (p.IsPublic && !p.IsInitOnly) ||
             p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+
+        // Ignore fields that are marked export without explicit JSON property
+        fields = fields.Where(p =>
+            !ExportWithoutExplicitJson(p.CustomAttributes));
+
+        return fields;
     }
 
     public static IEnumerable<PropertyInfo> PropertiesOf(object value)
@@ -246,8 +285,29 @@ public abstract class BaseThriveConverter : JsonConverter
                 a => a.AttributeType != typeof(JsonIgnoreAttribute)));
 
         // Ignore properties that don't have a public setter unless it has JsonPropertyAttribute
-        return properties.Where(p => p.GetSetMethod() != null ||
+        properties = properties.Where(p => p.GetSetMethod() != null ||
             p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+
+        // Ignore properties that are marked export without explicit JSON property
+        properties = properties.Where(p =>
+            !ExportWithoutExplicitJson(p.CustomAttributes));
+
+        return properties;
+    }
+
+    /// <summary>
+    ///   Fields and properties marked Godot.Export are skipped unless explicitly marked JsonProperty
+    /// </summary>
+    public static bool ExportWithoutExplicitJson(IEnumerable<CustomAttributeData> customAttributes)
+    {
+        var customAttributeData = customAttributes.ToList();
+
+        bool export = customAttributeData.Any(attr => attr.AttributeType == typeof(ExportAttribute));
+
+        if (!export)
+            return false;
+
+        return customAttributeData.All(attr => attr.AttributeType != typeof(JsonPropertyAttribute));
     }
 
     public static bool IsIgnoredGodotMember(string name, Type type)
@@ -264,9 +324,7 @@ public abstract class BaseThriveConverter : JsonConverter
             return customRead.read;
 
         if (reader.TokenType != JsonToken.StartObject)
-        {
             return null;
-        }
 
         if (serializer.ReferenceResolver == null)
             throw new InvalidOperationException("JsonSerializer must have reference resolver");
@@ -303,51 +361,13 @@ public abstract class BaseThriveConverter : JsonConverter
         if (objectType == typeof(DynamicDeserializeObjectConverter))
             throw new JsonException("Dynamic dummy deserialize used object didn't specify type");
 
-        // Find a constructor we can call
-        ConstructorInfo constructor = null;
+        // Detect scene loaded type
+        bool sceneLoad = objectType.CustomAttributes.Any(
+            attr => attr.AttributeType == typeof(SceneLoadedClassAttribute));
 
-        foreach (var candidate in objectType.GetConstructors())
-        {
-            if (candidate.ContainsGenericParameters)
-                continue;
-
-            bool canUseThis = true;
-
-            // Check do we have all the needed parameters
-            foreach (var param in candidate.GetParameters())
-            {
-                if (!item.ContainsKey(DetermineKey(item, param.Name)))
-                {
-                    canUseThis = false;
-                    break;
-                }
-            }
-
-            if (!canUseThis)
-                continue;
-
-            if (constructor == null || constructor.GetParameters().Length < candidate.GetParameters().Length)
-                constructor = candidate;
-        }
-
-        if (constructor == null)
-        {
-            throw new JsonException($"no suitable constructor found for current type: {objectType}");
-        }
-
-        HashSet<string> alreadyConsumedItems = new HashSet<string>();
-
-        foreach (var param in constructor.GetParameters())
-        {
-            alreadyConsumedItems.Add(DetermineKey(item, param.Name));
-        }
-
-        // Load constructor params
-        object[] constructorArgs = constructor.GetParameters()
-            .Select(p => ReadMember(DetermineKey(item, p.Name),
-                p.ParameterType, item, null, reader, serializer)).ToArray();
-
-        var instance = constructor.Invoke(constructorArgs);
+        var instance = !sceneLoad ?
+            CreateDeserializedInstance(reader, objectType, serializer, item, out var alreadyConsumedItems) :
+            CreateDeserializedFromScene(objectType, out alreadyConsumedItems);
 
         // Store the instance before loading properties to not break on recursive references
         if (objId != null)
@@ -355,51 +375,85 @@ public abstract class BaseThriveConverter : JsonConverter
             serializer.ReferenceResolver.AddReference(serializer, objId.Value<string>(), instance);
         }
 
+        RunPrePropertyDeserializeActions(instance);
+
         bool Skip(string name, string key)
         {
             return SkipMember(name) || alreadyConsumedItems.Contains(key);
         }
 
+        bool OnlyChildAssign(IEnumerable<Attribute> customAttributes,
+            out AssignOnlyChildItemsOnDeserializeAttribute data)
+        {
+            data = customAttributes.FirstOrDefault() as AssignOnlyChildItemsOnDeserializeAttribute;
+
+            if (data == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         foreach (var field in FieldsOf(instance))
         {
             var name = DetermineKey(item, field.Name);
+
             if (Skip(field.Name, name))
                 continue;
 
-            field.SetValue(instance, ReadMember(name, field.FieldType, item, instance, reader, serializer));
+            var newData = ReadMember(name, field.FieldType, item, instance, reader, serializer);
+
+            if (!OnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+                out var data))
+            {
+                field.SetValue(instance, newData);
+            }
+            else
+            {
+                ApplyOnlyChildProperties(newData, field.GetValue(instance), serializer, data);
+            }
         }
 
         foreach (var property in PropertiesOf(instance))
         {
             var name = DetermineKey(item, property.Name);
+
             if (Skip(property.Name, name) || !item.ContainsKey(name))
-                continue;
-
-            var set = property.GetSetMethodOnDeclaringType();
-
-            if (set == null)
             {
-                throw new InvalidOperationException(
-                    $"Json property used on a property ({name})that has no (private) setter");
+                continue;
             }
 
-            set.Invoke(instance, new[]
+            if (!OnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+                out var data))
             {
-                ReadMember(name, property.PropertyType, item, instance, reader,
-                    serializer),
-            });
+                var set = property.GetSetMethodOnDeclaringType();
+
+                if (set == null)
+                {
+                    throw new InvalidOperationException(
+                        $"Json property used on a property ({name})that has no (private) setter");
+                }
+
+                set.Invoke(instance, new[]
+                {
+                    ReadMember(name, property.PropertyType, item, instance, reader,
+                        serializer),
+                });
+            }
+            else
+            {
+                ApplyOnlyChildProperties(ReadMember(name, property.PropertyType, item, instance, reader,
+                    serializer), property.GetValue(instance), serializer, data);
+            }
         }
 
         ReadCustomExtraFields(item, instance, reader, objectType, existingValue, serializer);
 
-        // Node types need to be deleted to not leak memory, so any type derived from Node is
-        // registered to be deleted here
-        if (instance is Node converted)
-            TemporaryLoadedNodeDeleter.Instance.Register(converted);
+        // It is now assumed (because loading scenes and keeping references) that all loaded Nodes are deleted by
+        // someone else (other than the ones that have just their properties grabbed in deserialize)
 
-        // TODO: these should be called after loading the whole object tree
-        if (instance is ISaveLoadable loadable)
-            loadable.FinishLoading(Context);
+        RunPostPropertyDeserializeActions(instance);
 
         return instance;
     }
@@ -419,7 +473,8 @@ public abstract class BaseThriveConverter : JsonConverter
 
         var contract = serializer.ContractResolver.ResolveContract(type);
 
-        bool reference = serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
+        bool reference = ForceReferenceWrite ||
+            serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
             (contract.IsReference.HasValue && contract.IsReference.Value);
 
         writer.WriteStartObject();
@@ -448,16 +503,17 @@ public abstract class BaseThriveConverter : JsonConverter
                 // We can at least check that the actual type is a subclass of something allowing dynamic typing
                 bool baseIsDynamic = type.BaseType != null && type.BaseType.CustomAttributes.Any(attr =>
                     attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute));
+
+                // If the current uses scene creation, dynamic type needs to be also in that case output
                 bool currentIsAlwaysDynamic = type.CustomAttributes.Any(attr =>
-                    attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute));
+                    attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
+                    attr.AttributeType == typeof(SceneLoadedClassAttribute));
 
                 if (baseIsDynamic || currentIsAlwaysDynamic)
                 {
                     writer.WritePropertyName(TYPE_PROPERTY);
 
-                    var typeStr = $"{type.FullName}, {type.Assembly.GetName().Name}";
-
-                    writer.WriteValue(typeStr);
+                    writer.WriteValue(type.AssemblyQualifiedNameWithoutVersion());
                 }
             }
 
@@ -548,6 +604,11 @@ public abstract class BaseThriveConverter : JsonConverter
 
     protected virtual bool SkipMember(string name)
     {
+        // By default IsLoadedFromSave is ignored as properties by default don't inherit attributes so this makes
+        // things a bit easier when adding new types
+        if (SaveApplyHelper.IsNameLoadedFromSaveName(name))
+            return true;
+
         return false;
     }
 
@@ -557,6 +618,170 @@ public abstract class BaseThriveConverter : JsonConverter
             return true;
 
         return false;
+    }
+
+    private void RunPrePropertyDeserializeActions(object instance)
+    {
+        // Any loaded object supports knowing if it was loaded from a save
+        if (instance is ISaveLoadedTracked tracked)
+        {
+            tracked.IsLoadedFromSave = true;
+        }
+    }
+
+    private void RunPostPropertyDeserializeActions(object instance)
+    {
+        // TODO: these should be called after loading the whole object tree
+        if (instance is ISaveLoadable loadable)
+            loadable.FinishLoading(Context);
+    }
+
+    /// <summary>
+    ///   Figures out what constructor to call for an object that is to be loaded from JSON
+    /// </summary>
+    /// <returns>The created object</returns>
+    /// <exception cref="JsonException">If can't be created</exception>
+    private object CreateDeserializedInstance(JsonReader reader, Type objectType, JsonSerializer serializer,
+        JObject item, out HashSet<string> alreadyConsumedItems)
+    {
+        // Find a constructor we can call
+        ConstructorInfo constructor = null;
+
+        foreach (var candidate in objectType.GetConstructors())
+        {
+            if (candidate.ContainsGenericParameters)
+                continue;
+
+            bool canUseThis = true;
+
+            // Check do we have all the needed parameters
+            foreach (var param in candidate.GetParameters())
+            {
+                if (!item.ContainsKey(DetermineKey(item, param.Name)))
+                {
+                    canUseThis = false;
+                    break;
+                }
+            }
+
+            if (!canUseThis)
+                continue;
+
+            if (constructor == null || constructor.GetParameters().Length < candidate.GetParameters().Length)
+                constructor = candidate;
+        }
+
+        if (constructor == null)
+        {
+            throw new JsonException($"no suitable constructor found for current type: {objectType}");
+        }
+
+        alreadyConsumedItems = new HashSet<string>();
+
+        foreach (var param in constructor.GetParameters())
+        {
+            alreadyConsumedItems.Add(DetermineKey(item, param.Name));
+        }
+
+        // Load constructor params
+        object[] constructorArgs = constructor.GetParameters()
+            .Select(p => ReadMember(DetermineKey(item, p.Name),
+                p.ParameterType, item, null, reader, serializer)).ToArray();
+
+        var instance = constructor.Invoke(constructorArgs);
+
+        // Early load is also supported for non-scene loaded objects
+        if (instance is IGodotEarlyNodeResolve early)
+        {
+            early.ResolveNodeReferences();
+        }
+
+        return instance;
+    }
+
+    /// <summary>
+    ///   Creates a deserialized object by loading a Godot scene and instantiating it
+    /// </summary>
+    /// <returns>Instance of the scene loaded object</returns>
+    /// <exception cref="JsonException">If couldn't create a new instance</exception>
+    private object CreateDeserializedFromScene(Type objectType, out HashSet<string> alreadyConsumedItems)
+    {
+        alreadyConsumedItems = new HashSet<string>();
+
+        var attrs = objectType.GetCustomAttributes(typeof(SceneLoadedClassAttribute), true);
+
+        var data = (SceneLoadedClassAttribute)attrs[0];
+
+        var scene = GD.Load<PackedScene>(data.ScenePath);
+
+        if (scene == null)
+            throw new JsonException($"Couldn't load scene ({data.ScenePath}) for scene loaded type");
+
+        var node = scene.Instance();
+
+        // Ensure that instance ended up being a good type
+        if (!objectType.IsInstanceOfType(node))
+        {
+            // Clean up godot resources
+            TemporaryLoadedNodeDeleter.Instance.Register(node);
+            throw new JsonException("Scene loaded JSON deserialized type can't be assigned to target type");
+        }
+
+        object instance = node;
+
+        // Perform early Node resolve to make loading child Node properties work
+        if (data.UsesEarlyResolve)
+        {
+            try
+            {
+                ((IGodotEarlyNodeResolve)instance).ResolveNodeReferences();
+            }
+            catch (InvalidCastException e)
+            {
+                throw new JsonException("Scene loaded JSON type cast to IGodotEarlyNodeResolve failed", e);
+            }
+        }
+
+        return instance;
+    }
+
+    /// <summary>
+    ///   Applies child properties to an object that wasn't deserialized, from an object that was deserialized.
+    ///   Used in conjunction with scene loading objects
+    /// </summary>
+    /// <param name="newData">The new object to copy non-ignored fields and properties to target</param>
+    /// <param name="target">The object to apply properties to</param>
+    /// <param name="serializer">Serializer to use for reference handling</param>
+    /// <param name="data">Options for the child assign</param>
+    private void ApplyOnlyChildProperties(object newData, object target, JsonSerializer serializer,
+        AssignOnlyChildItemsOnDeserializeAttribute data)
+    {
+        if (target == null)
+        {
+            throw new JsonSerializationException("Copy only child properties target is null");
+        }
+
+        // Need to register for deletion the orphaned Godot object
+        if (newData is Node node)
+        {
+            TemporaryLoadedNodeDeleter.Instance.Register(node);
+        }
+
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(target, newData,
+            DefaultOnlyChildCopyIgnore);
+
+        // Make sure target gets a chance to run stuff like normally deserialized objects
+        RunPrePropertyDeserializeActions(target);
+        RunPostPropertyDeserializeActions(target);
+
+        if (data.ReplaceReferences && serializer.ReferenceResolver != null)
+        {
+            if (serializer.ReferenceResolver.IsReferenced(serializer, newData))
+            {
+                serializer.ReferenceResolver.AddReference(serializer,
+                    serializer.ReferenceResolver.GetReference(serializer, newData), target);
+            }
+        }
     }
 }
 
@@ -586,6 +811,7 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     {
         // Types with out custom attribute are supported
         return objectType.CustomAttributes.Any(
-            attr => attr.AttributeType == typeof(UseThriveSerializerAttribute));
+            attr => attr.AttributeType == typeof(UseThriveSerializerAttribute) ||
+                attr.AttributeType == typeof(SceneLoadedClassAttribute));
     }
 }

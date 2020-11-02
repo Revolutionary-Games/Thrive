@@ -69,6 +69,7 @@ public class SaveListItem : PanelContainer
     private bool selected;
 
     private bool isBroken;
+    private bool isKnownIncompatible;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -84,6 +85,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnNewSaveLoaded();
+
+    [Signal]
+    public delegate void OnKnownIncompatibleLoaded();
 
     public string SaveName
     {
@@ -183,6 +187,12 @@ public class SaveListItem : PanelContainer
             versionDifference = 0;
         }
 
+        if (versionDifference != 0)
+        {
+            if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+                isKnownIncompatible = true;
+        }
+
         version.Text = save.Info.ThriveVersion;
         versionWarning.Visible = versionDifference != 0;
         type.Text = save.Info.Type.ToString();
@@ -211,6 +221,12 @@ public class SaveListItem : PanelContainer
         if (isBroken)
         {
             EmitSignal(nameof(OnBrokenSaveLoaded));
+            return;
+        }
+
+        if (isKnownIncompatible)
+        {
+            EmitSignal(nameof(OnKnownIncompatibleLoaded));
             return;
         }
 
