@@ -1,4 +1,4 @@
-﻿// This class is borrowed from the guy below, as long as we don't take credit
+// This class is borrowed from the guy below, as long as we don't take credit
 // and modify it, we're allowed to use it. This code is under GPL v3 Copyright
 // 2012 Sol from www.solarianprogrammer.com
 

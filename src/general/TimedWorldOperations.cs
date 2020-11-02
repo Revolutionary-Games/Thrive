@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Handles running IWorldEffect types
 /// </summary>
 public class TimedWorldOperations
 {
+    [JsonProperty]
     private List<IWorldEffect> effects = new List<IWorldEffect>();
 
     /// <summary>

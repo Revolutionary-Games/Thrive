@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A list of positioned organelles. Verifies that they don't overlap
 /// </summary>
+[UseThriveSerializer]
 #pragma warning disable CA1710 // intentional naming
 public class OrganelleLayout<T> : ICollection<T>
     where T : class, IPositionedOrganelle
@@ -16,7 +17,10 @@ public class OrganelleLayout<T> : ICollection<T>
     [JsonProperty]
     public readonly List<T> Organelles = new List<T>();
 
+    [JsonProperty]
     private Action<T> onAdded;
+
+    [JsonProperty]
     private Action<T> onRemoved;
 
     public OrganelleLayout(Action<T> onAdded, Action<T> onRemoved = null)

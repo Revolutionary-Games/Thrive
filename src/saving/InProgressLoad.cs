@@ -17,7 +17,6 @@ public class InProgressLoad
     private State state = State.Initial;
     private Save save;
 
-    private PackedScene loadedScene;
     private ILoadableGameState loadedState;
 
     private Stopwatch stopwatch;
@@ -41,6 +40,12 @@ public class InProgressLoad
         Finished,
     }
 
+    /// <summary>
+    ///   True when a save is currently being loaded
+    ///   Used to stop quick load starting while a load is in progress already
+    /// </summary>
+    public static bool IsLoading { get; private set; }
+
     public void ReportStatus(bool success, string message, string exception = "")
     {
         this.success = success;
@@ -50,6 +55,7 @@ public class InProgressLoad
 
     public void Start()
     {
+        IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
         SceneManager.Instance.GetTree().Paused = true;
 
@@ -78,15 +84,23 @@ public class InProgressLoad
                 {
                     save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
                         LoadingScreen.Instance.Show("Loading Game", "Creating objects from save")));
+
+                    state = State.CreatingScene;
                 }
                 catch (Exception e)
                 {
                     ReportStatus(false, "An exception happened while loading the save data", e.ToString());
                     state = State.Finished;
-                    break;
+
+                    // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+                    if (!Constants.CATCH_SAVE_ERRORS)
+#pragma warning disable 162
+                        throw;
+#pragma warning restore 162
+
+                    // ReSharper restore HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
                 }
 
-                state = State.CreatingScene;
                 break;
             }
 
@@ -94,22 +108,11 @@ public class InProgressLoad
             {
                 try
                 {
-                    loadedScene = SceneManager.Instance.LoadScene(save.GameState);
+                    loadedState = save.TargetScene;
                 }
-                catch (ArgumentException)
+                catch (Exception)
                 {
-                    ReportStatus(false, "Save is invalid", "Save has an unknown game state");
-                    state = State.Finished;
-                    break;
-                }
-
-                try
-                {
-                    loadedState = (ILoadableGameState)loadedScene.Instance();
-                }
-                catch (Exception e)
-                {
-                    ReportStatus(false, "An exception happened while instantiating target scene", e.ToString());
+                    ReportStatus(false, "Save is invalid", "Save has invalid game state scene");
                     state = State.Finished;
                     break;
                 }
@@ -122,12 +125,12 @@ public class InProgressLoad
             {
                 LoadingScreen.Instance.Show("Loading Game", "Processing loaded objects");
 
-                loadedState.IsLoadedFromSave = true;
-
-                SceneManager.Instance.SwitchToScene(loadedState.GameStateRoot);
+                if (loadedState.IsLoadedFromSave != true)
+                    throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
 
                 try
                 {
+                    SceneManager.Instance.SwitchToScene(loadedState.GameStateRoot);
                     loadedState.OnFinishLoading(save);
                 }
                 catch (Exception e)
@@ -155,6 +158,7 @@ public class InProgressLoad
                     LoadingScreen.Instance.Hide();
                     SaveStatusOverlay.Instance.ShowMessage(message);
 
+                    // TODO: does this cause problems if the game was paused when saving?
                     loadedState.GameStateRoot.GetTree().Paused = false;
                 }
                 else
@@ -163,6 +167,7 @@ public class InProgressLoad
                         () => LoadingScreen.Instance.Hide());
                 }
 
+                IsLoading = false;
                 return;
             }
 
