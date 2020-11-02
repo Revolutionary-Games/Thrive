@@ -46,6 +46,19 @@ public class MembraneActionData : IMicrobeEditorActionData
 }
 
 [JSONAlwaysDynamicType]
+public class RigidityChangeActionData : IMicrobeEditorActionData
+{
+    public float NewRigidity;
+    public float PreviousRigidity;
+
+    public RigidityChangeActionData(float newRigidity, float previousRigidity)
+    {
+        NewRigidity = newRigidity;
+        PreviousRigidity = previousRigidity;
+    }
+}
+
+[JSONAlwaysDynamicType]
 public class NewMicrobeActionData : IMicrobeEditorActionData
 {
     public OrganelleLayout<OrganelleTemplate> OldEditedMicrobeOrganelles;

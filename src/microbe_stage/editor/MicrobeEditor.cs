@@ -660,22 +660,9 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         var prevRigidity = Rigidity;
 
         var action = new MicrobeEditorAction(this, cost,
-            redo =>
-            {
-                Rigidity = newRigidity;
-                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
-                    MutationPoints);
-                gui.UpdateSpeed(CalculateSpeed());
-                gui.UpdateHitpoints(CalculateHitpoints());
-            },
-            undo =>
-            {
-                Rigidity = prevRigidity;
-                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
-                    MutationPoints);
-                gui.UpdateSpeed(CalculateSpeed());
-                gui.UpdateHitpoints(CalculateHitpoints());
-            });
+            DoRigidityChangeAction,
+            UndoRigidityChangeAction,
+            new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
     }
@@ -1791,6 +1778,34 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoRigidityChangeAction(MicrobeEditorAction action)
+    {
+        var data = (RigidityChangeActionData)action.Data;
+
+        Rigidity = data.NewRigidity;
+
+        OnRigidityChanged();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoRigidityChangeAction(MicrobeEditorAction action)
+    {
+        var data = (RigidityChangeActionData)action.Data;
+
+        Rigidity = data.PreviousRigidity;
+        OnRigidityChanged();
+    }
+
+    private void OnRigidityChanged()
+    {
+        gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+            MutationPoints);
+
+        gui.UpdateSpeed(CalculateSpeed());
+        gui.UpdateHitpoints(CalculateHitpoints());
     }
 
     /// <summary>
