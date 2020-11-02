@@ -94,7 +94,7 @@ public class LineChart : VBoxContainer
     ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
     public System.Collections.Generic.Dictionary<string, LineChartData> DataSets { get; set; } =
-        new System.Collections.Generic.Dictionary<string, LineChartData>();
+        new Dictionary<string, LineChartData>();
 
     public Vector2 MinValues { get; private set; }
 
