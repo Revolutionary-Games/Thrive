@@ -312,7 +312,7 @@ public class OptionsMenu : Control
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
-        inputGroupList.InitFromData(Settings.Instance.CurrentControls);
+        InitInputGroupList();
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -422,7 +422,7 @@ public class OptionsMenu : Control
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
 
         // Input
-        inputGroupList.OnControlsChanged += OnControlsChanged;
+        InputGroupList.OnControlsChanged += OnControlsChanged;
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -1025,7 +1025,19 @@ public class OptionsMenu : Control
 
     private void InitInputGroupList()
     {
-        InputGroupList.Instance.InitFromData(Settings.Instance.CurrentControls);
+        foreach (Node child in inputGroupList.GetChildren())
+        {
+            inputGroupList.RemoveChild(child);
+
+            child.Free();
+        }
+
+        inputGroupList.InitFromData(Settings.Instance.CurrentControls);
+
+        foreach (var inputGroup in InputGroupList.ActiveInputGroupList)
+        {
+            inputGroupList.AddChild(inputGroup);
+        }
     }
 
     private void OnCustomUsernameEnabledToggled(bool pressed)

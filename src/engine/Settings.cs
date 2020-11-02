@@ -193,7 +193,7 @@ public class Settings
     /// <summary>
     ///   The current controls of the game.
     ///   It stores the godot actions like g_move_left and
-    ///   their associated <see cref="ThriveInputEventWithModifiers">ThriveInputEventWithModifiers</see>
+    ///   their associated <see cref="SpecifiedInputKey">ThriveInputEventWithModifiers</see>
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
@@ -400,21 +400,7 @@ public class Settings
     /// </summary>
     public void ApplyInputSettings()
     {
-        foreach (var action in CurrentControls.Value.Data)
-        {
-            // Clear all old input events
-            InputMap.ActionEraseEvents(action.Key);
-
-            // Add the new input events
-            foreach (var inputEvent in action.Value)
-            {
-                // If the game is waiting for an input
-                if (inputEvent == null)
-                    return;
-
-                InputMap.ActionAddEvent(action.Key, inputEvent.ToGodotObject());
-            }
-        }
+        CurrentControls.Value.ApplyToGodotInputMap();
     }
 
     /// <summary>
