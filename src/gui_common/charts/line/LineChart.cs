@@ -88,12 +88,12 @@ public class LineChart : VBoxContainer
         DropDown,
     }
 
+    // ReSharper disable once CollectionNeverUpdated.Global
     // ReSharper disable once RedundantNameQualifier
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
-    public System.Collections.Generic.Dictionary<string, LineChartData> DataSets { get; set; } =
-        new System.Collections.Generic.Dictionary<string, LineChartData>();
+    public System.Collections.Generic.Dictionary<string, LineChartData> DataSets { get; set; }
 
     public Vector2 MinValues { get; private set; }
 
@@ -132,6 +132,12 @@ public class LineChart : VBoxContainer
         defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
         hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
 
+        // Code inspection and cleanup is being really weird, so DataSets is initiliazed here instead
+        // ReSharper disable RedundantNameQualifier
+        DataSets = new System.Collections.Generic.Dictionary<string, LineChartData>();
+
+        // ReSharper restore RedundantNameQualifier
+
         UpdateAxesName();
     }
 
@@ -152,7 +158,7 @@ public class LineChart : VBoxContainer
     /// </summary>
     public void Plot()
     {
-        if (DataSets.Count <= 0)
+        if (DataSets == null || DataSets.Count <= 0)
         {
             GD.PrintErr("Missing data sets, aborting plotting data");
             return;
