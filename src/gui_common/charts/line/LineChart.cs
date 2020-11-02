@@ -88,13 +88,12 @@ public class LineChart : VBoxContainer
         DropDown,
     }
 
-    // ReSharper disable once CollectionNeverUpdated.Global
     // ReSharper disable once RedundantNameQualifier
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
     public System.Collections.Generic.Dictionary<string, LineChartData> DataSets { get; set; } =
-        new Dictionary<string, LineChartData>();
+        new System.Collections.Generic.Dictionary<string, LineChartData>();
 
     public Vector2 MinValues { get; private set; }
 
