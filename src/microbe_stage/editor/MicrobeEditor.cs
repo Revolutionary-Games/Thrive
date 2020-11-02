@@ -1124,7 +1124,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private void CreateMutatedSpeciesCopy(Species species)
     {
-        Species newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
+        var newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
 
         var random = new Random();
 
@@ -1437,16 +1437,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             placed = true;
         }
-    }
-
-    /// <summary>Gets all neighboring hexes where there is an organelle</summary>
-    /// <param name="hex">The hex to get the neighbours for</param>
-    /// <returns>Returns a list of neighbors that are part of an organelle</returns>
-    private IEnumerable<Hex> GetNeighborHexes(Hex hex)
-    {
-        return Hex.HexNeighbourOffset
-            .Select(p => hex + p.Value)
-            .Where(p => editedMicrobeOrganelles.GetOrganelleAt(p) != null);
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
