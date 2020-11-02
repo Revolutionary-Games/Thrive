@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
 
-public class CompoundCloudPlane : CSGMesh, ISaveApplyable
+[SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
+public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 {
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored
@@ -42,16 +43,26 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        if (IsLoadedFromSave)
-            return;
+        if (!IsLoadedFromSave)
+        {
+            Size = Settings.Instance.CloudSimulationWidth;
+            Resolution = Settings.Instance.CloudResolution;
+            CreateDensityTexture();
 
-        Size = Settings.Instance.CloudSimulationWidth;
-        Resolution = Settings.Instance.CloudResolution;
-        CreateDensityTexture();
+            Density = new Vector4[Size, Size];
+            OldDensity = new Vector4[Size, Size];
+            ClearContents();
+        }
+        else
+        {
+            // Recreate the texture if the size changes
+            // TODO: could resample the density data here to allow changing the cloud resolution or size
+            // without starting a new save
+            CreateDensityTexture();
 
-        Density = new Vector4[Size, Size];
-        OldDensity = new Vector4[Size, Size];
-        ClearContents();
+            OldDensity = new Vector4[Size, Size];
+            SetMaterialUVForPosition();
+        }
     }
 
     public void UpdatePosition(Int2 newPosition)
@@ -520,36 +531,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
                 OldDensity[x, y] = Vector4.Zero;
             }
         }
-    }
-
-    public void ApplyPropertiesFromSave(CompoundCloudPlane cloud)
-    {
-        Density = cloud.Density;
-
-        // Re-init with potentially changed compounds
-        Init(fluidSystem, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2], cloud.Compounds[3]);
-
-        position = cloud.position;
-        Transform = cloud.Transform;
-
-        // Recreate the texture if the size changes
-        // TODO: could resample the density data here to allow changing the cloud resolution or size
-        // without starting a new save
-        if (Size != cloud.Size || Resolution != cloud.Resolution)
-        {
-            Size = cloud.Size;
-            Resolution = cloud.Resolution;
-            CreateDensityTexture();
-        }
-
-        OldDensity = new Vector4[Size, Size];
-        SetMaterialUVForPosition();
-    }
-
-    public void ApplySave(object loaded, ISaveContext context)
-    {
-        ApplyPropertiesFromSave((CompoundCloudPlane)loaded);
-        IsLoadedFromSave = true;
     }
 
     /// <summary>
