@@ -510,6 +510,8 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
     {
         GD.Print("The player has died");
 
+        HUD.HideReproductionDialog();
+
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
         Player = null;
