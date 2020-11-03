@@ -291,6 +291,9 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
+    [JsonIgnore]
+    public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
+
     /// <summary>
     ///   Number of organelles in the microbe
     /// </summary>
@@ -428,17 +431,14 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         // It is easiest to just replace all
         editedSpecies.Organelles.Clear();
 
-        var centerOfMass = editedMicrobeOrganelles.CenterOfMass;
-
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
-
-            // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
-            organelleToAdd.Position -= centerOfMass;
             organelleToAdd.PlacedThisSession = false;
             editedSpecies.Organelles.Add(organelleToAdd);
         }
+
+        editedSpecies.RepositionToOrigin();
 
         // Update bacteria status
         editedSpecies.IsBacteria = !HasNucleus;
@@ -840,34 +840,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             return;
 
         MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
-    }
-
-    /// <summary>
-    ///   Recursively loops though all hexes and checks if there any without connection to the rest.
-    /// </summary>
-    /// <returns>
-    ///   Returns a list of hexes that are not connected to the rest
-    /// </returns>
-    internal List<Hex> GetIslandHexes()
-    {
-        var organelles = editedMicrobeOrganelles.Organelles;
-
-        if (organelles.Count == 0)
-            return new List<Hex>();
-
-        // The hex to start the recursion with
-        var initHex = organelles[0].Position;
-
-        // These are the hexes have neighbours and aren't islands
-        var hexesWithNeighbours = new List<Hex> { initHex };
-
-        // These are all of the existing hexes, that if there are no islands will all be visited
-        var shouldBeVisited = organelles.Select(p => p.Position).ToList();
-
-        CheckmarkNeighbors(hexesWithNeighbours, initHex);
-
-        // Return the difference of the lists (hexes that were not visited)
-        return shouldBeVisited.Except(hexesWithNeighbours).ToList();
     }
 
     /// <summary>
@@ -1434,37 +1406,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    /// <summary>
-    ///   A recursive function that adds the neighbours of current hex that contain organelles to the checked list and
-    ///   recurses to them to find more connected organelles
-    /// </summary>
-    /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
-    /// <param name="currentHex">The hex to visit the neighbours of.</param>
-    private void CheckmarkNeighbors(List<Hex> @checked, Hex currentHex)
-    {
-        // Get all neighbors not already visited
-        var myNeighbors = GetNeighborHexes(currentHex).Where(p => !@checked.Contains(p)).ToArray();
-
-        // Add the new neighbors to the list to not visit them again
-        @checked.AddRange(myNeighbors);
-
-        // Recurse to all neighbours to find more connected hexes
-        foreach (var neighbor in myNeighbors)
-        {
-            CheckmarkNeighbors(@checked, neighbor);
-        }
-    }
-
-    /// <summary>Gets all neighboring hexes where there is an organelle</summary>
-    /// <param name="hex">The hex to get the neighbours for</param>
-    /// <returns>Returns a list of neighbors that are part of an organelle</returns>
-    private IEnumerable<Hex> GetNeighborHexes(Hex hex)
-    {
-        return Hex.HexNeighbourOffset
-            .Select(p => hex + p.Value)
-            .Where(p => editedMicrobeOrganelles.GetOrganelleAt(p) != null);
-    }
-
     private bool IsValidPlacement(OrganelleTemplate organelle)
     {
         bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
@@ -1666,7 +1607,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         int nextFreeHex = 0;
         int nextFreeOrganelle = 0;
 
-        var islands = GetIslandHexes();
+        var islands = editedMicrobeOrganelles.GetIslandHexes();
 
         // Build the entities to show the current microbe
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
