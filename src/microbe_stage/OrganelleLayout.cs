@@ -248,6 +248,9 @@ public class OrganelleLayout<T> : ICollection<T>
     /// </returns>
     internal List<Hex> GetIslandHexes()
     {
+        if (Organelles.Count < 1)
+            return new List<Hex>();
+
         // The hex to start with
         var initHex = Organelles[0].Position;
 
