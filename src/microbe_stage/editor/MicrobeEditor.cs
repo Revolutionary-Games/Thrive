@@ -118,6 +118,12 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     private OrganelleLayout<OrganelleTemplate> editedMicrobeOrganelles;
 
+    /// <summary>
+    ///   When this is true, on next process this will handle added and removed organelles and update stats etc.
+    ///   This is done to make adding a bunch of organelles at once more efficient.
+    /// </summary>
+    private bool organelleDataDirty = true;
+
     // This is the already placed hexes
 
     /// <summary>
@@ -1031,8 +1037,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     {
         UpdateGUIAfterLoadingSpecies(editedSpecies);
         OnLoadedEditorReady();
-
-        OnOrganellesChanged();
     }
 
     private void SetupEditedSpecies(MicrobeSpecies species)
@@ -1107,6 +1111,12 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     private void UpdateEditor(float delta)
     {
         _ = delta;
+
+        if (organelleDataDirty)
+        {
+            OnOrganellesChanged();
+            organelleDataDirty = false;
+        }
 
         // We move all the hexes and the hover hexes to 0,0,0 so that
         // the editor is free to replace them wherever
@@ -1569,31 +1579,27 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(OrganelleTemplate organelle)
     {
-        OnOrganellesChanged();
+        organelleDataDirty = true;
     }
 
     [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(OrganelleTemplate organelle)
     {
-        OnOrganellesChanged();
+        organelleDataDirty = true;
     }
 
     private void OnOrganellesChanged()
     {
         UpdateAlreadyPlacedVisuals();
 
-        // send to gui current status of cell
+        // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
         gui.UpdateGuiButtonStatus(HasNucleus);
 
-        // TODO: if this turns out to be expensive this should only be
-        // called once the cell is fully loaded in and not for each
-        // organelle
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
 
-        // TODO: this might also be expensive
         gui.UpdateSpeed(CalculateSpeed());
     }
 
