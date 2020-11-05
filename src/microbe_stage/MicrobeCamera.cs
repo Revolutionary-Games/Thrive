@@ -147,13 +147,15 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         {
             var newFloorPos = new Vector3(ObjectToFollow.Transform.origin.x, 0, ObjectToFollow.Transform.origin.z);
 
-            var target = currFloorPos.LinearInterpolate(newFloorPos, InterpolateSpeed) + currCamHeight.LinearInterpolate(newCamPos, InterpolateZoomSpeed);
+            var target = currFloorPos.LinearInterpolate(newFloorPos, InterpolateSpeed)
+                + currCamHeight.LinearInterpolate(newCamPos, InterpolateZoomSpeed);
 
             Translation = target;
         }
         else
         {
-            var target = new Vector3(Translation.x, 0, Translation.z) + currCamHeight.LinearInterpolate(newCamPos, InterpolateZoomSpeed);
+            var target = new Vector3(Translation.x, 0, Translation.z)
+                + currCamHeight.LinearInterpolate(newCamPos, InterpolateZoomSpeed);
 
             Translation = target;
         }
