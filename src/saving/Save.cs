@@ -6,7 +6,6 @@ using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Directory = Godot.Directory;
-using Environment = System.Environment;
 using File = Godot.File;
 
 /// <summary>
@@ -55,6 +54,26 @@ public class Save
     public Image Screenshot { get; set; }
 
     /// <summary>
+    ///   The scene object to switch to once this save is loaded
+    /// </summary>
+    [JsonIgnore]
+    public ILoadableGameState TargetScene
+    {
+        get
+        {
+            switch (GameState)
+            {
+                case MainGameState.MicrobeStage:
+                    return MicrobeStage;
+                case MainGameState.MicrobeEditor:
+                    return MicrobeEditor;
+                default:
+                    throw new InvalidOperationException("specified game state has no associated scene");
+            }
+        }
+    }
+
+    /// <summary>
     ///   Loads a save from a file or throws an exception
     /// </summary>
     /// <param name="saveName">The name of the save. This is not the full path.</param>
@@ -78,21 +97,38 @@ public class Save
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (info, _, _) = LoadFromFile(target, true, false, false, null);
+        try
+        {
+            var (info, _, _) = LoadFromFile(target, true, false, false, null);
 
-        return info;
+            return info;
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to load save info from ${saveName}, error: ${e}");
+            return SaveInformation.CreateInvalid();
+        }
     }
 
     public static Save LoadInfoAndScreenshotFromSave(string saveName)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (info, _, screenshot) = LoadFromFile(target, true, false, true, null);
+        var save = new Save { Name = saveName };
 
-        var save = new Save();
-        save.Name = saveName;
-        save.Info = info;
-        save.Screenshot = screenshot;
+        try
+        {
+            var (info, _, screenshot) = LoadFromFile(target, true, false, true, null);
+
+            save.Info = info;
+            save.Screenshot = screenshot;
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to load save info and screenshot from ${saveName}, error: ${e}");
+            save.Info = SaveInformation.CreateInvalid();
+            save.Screenshot = null;
+        }
 
         return save;
     }
@@ -222,7 +258,7 @@ public class Save
                 imageResult.LoadPngFromBuffer(screenshotData);
             }
 
-            // Not a critical error
+            // Not a critical error that screenshot is missing even if it was requested
         }
 
         return (infoResult, saveResult, imageResult);
@@ -258,48 +294,51 @@ public class Save
             if (!reader.IsOpen())
                 throw new ArgumentException("couldn't open the file for reading");
 
-            using (Stream gzoStream = new GZipInputStream(new GodotFileStream(reader)))
+            using (var stream = new GodotFileStream(reader))
             {
-                using (var tar = new TarInputStream(gzoStream))
+                using (Stream gzoStream = new GZipInputStream(stream))
                 {
-                    TarEntry tarEntry;
-                    while ((tarEntry = tar.GetNextEntry()) != null)
+                    using (var tar = new TarInputStream(gzoStream))
                     {
-                        if (tarEntry.IsDirectory)
-                            continue;
-
-                        if (tarEntry.Name == SAVE_INFO_JSON)
+                        TarEntry tarEntry;
+                        while ((tarEntry = tar.GetNextEntry()) != null)
                         {
-                            if (!info)
+                            if (tarEntry.IsDirectory)
                                 continue;
 
-                            infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
-                            --itemsToRead;
-                        }
-                        else if (tarEntry.Name == SAVE_SAVE_JSON)
-                        {
-                            if (!save)
-                                continue;
+                            if (tarEntry.Name == SAVE_INFO_JSON)
+                            {
+                                if (!info)
+                                    continue;
 
-                            saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
-                            --itemsToRead;
-                        }
-                        else if (tarEntry.Name == SAVE_SCREENSHOT)
-                        {
-                            if (!screenshot)
-                                continue;
+                                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                                --itemsToRead;
+                            }
+                            else if (tarEntry.Name == SAVE_SAVE_JSON)
+                            {
+                                if (!save)
+                                    continue;
 
-                            screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
-                            --itemsToRead;
-                        }
-                        else
-                        {
-                            GD.PrintErr("Unknown file in save: ", tarEntry.Name);
-                        }
+                                saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                                --itemsToRead;
+                            }
+                            else if (tarEntry.Name == SAVE_SCREENSHOT)
+                            {
+                                if (!screenshot)
+                                    continue;
 
-                        // Early quit if we already got as many things as we want
-                        if (itemsToRead <= 0)
-                            break;
+                                screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
+                                --itemsToRead;
+                            }
+                            else
+                            {
+                                GD.PrintErr("Unknown file in save: ", tarEntry.Name);
+                            }
+
+                            // Early quit if we already got as many things as we want
+                            if (itemsToRead <= 0)
+                                break;
+                        }
                     }
                 }
             }
@@ -348,51 +387,4 @@ public class Save
 
         return buffer;
     }
-}
-
-/// <summary>
-///   Info embedded in a save file
-/// </summary>
-public class SaveInformation
-{
-    public enum SaveType
-    {
-        /// <summary>
-        ///   Player initiated save
-        /// </summary>
-        Manual,
-
-        /// <summary>
-        ///   Automatic save
-        /// </summary>
-        AutoSave,
-
-        /// <summary>
-        ///   Quick save, separate from manual to make it easier to keep a fixed number of quick saves
-        /// </summary>
-        QuickSave,
-    }
-
-    /// <summary>
-    ///   Version of the game the save was made with, used to detect incompatible versions
-    /// </summary>
-    public string ThriveVersion { get; set; } = Constants.Version;
-
-    public string Platform { get; set; } = FeatureInformation.GetOS();
-
-    public string Creator { get; set; } = Environment.UserName;
-
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    /// <summary>
-    ///   An extended description for this save
-    /// </summary>
-    public string Description { get; set; } = string.Empty;
-
-    /// <summary>
-    ///   Unique ID of this save
-    /// </summary>
-    public Guid ID { get; set; } = Guid.NewGuid();
-
-    public SaveType Type { get; set; } = SaveType.Manual;
 }

@@ -10,6 +10,9 @@ public class SaveStatusOverlay : Control
     public NodePath StatusLabelPath;
 
     [Export]
+    public NodePath AnimationPlayerPath;
+
+    [Export]
     public NodePath ErrorDialogPath;
 
     [Export]
@@ -21,6 +24,7 @@ public class SaveStatusOverlay : Control
     private static SaveStatusOverlay instance;
 
     private Label statusLabel;
+    private AnimationPlayer animationPlayer;
     private Label extraDescriptionLabel;
     private Label exceptionLabel;
 
@@ -47,6 +51,7 @@ public class SaveStatusOverlay : Control
     public override void _Ready()
     {
         statusLabel = GetNode<Label>(StatusLabelPath);
+        animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
         errorDialog = GetNode<WindowDialog>(ErrorDialogPath);
         extraDescriptionLabel = GetNode<Label>(ExtraErrorDescriptionPath);
         exceptionLabel = GetNode<Label>(ExceptionPath);
@@ -62,6 +67,7 @@ public class SaveStatusOverlay : Control
     /// <param name="visibleTime">How long to show the message for</param>
     public void ShowMessage(string message, float visibleTime = 0.7f)
     {
+        statusLabel.Modulate = new Color(1, 1, 1, 1);
         statusLabel.Text = message;
         hideTimer = visibleTime;
         ExternalSetStatus(true);
@@ -106,8 +112,7 @@ public class SaveStatusOverlay : Control
         {
             if (!hidden)
             {
-                // TODO: this could do a nice fade out
-                Visible = false;
+                animationPlayer.Play("SavingStatusFadeOut");
                 hidden = true;
             }
         }

@@ -20,6 +20,7 @@ public class ToolTipCallbackData : Reference
 
     public void OnMouseExit()
     {
+        ToolTipManager.Instance.MainToolTip = null;
         ToolTipManager.Instance.Display = false;
     }
 }
