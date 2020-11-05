@@ -559,7 +559,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     }
 
     [RunOnKey("g_quick_save", RunOnKeyAttribute.InputType.Press)]
-    public void Screenshot()
+    public void Quicksave()
     {
         // Can only save once the editor is ready
         if (ready)
@@ -585,8 +585,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         hoverOrganelles = new List<SceneDisplayer>();
         hoverOverriddenMaterials = new Dictionary<MeshInstance, Material>();
 
-        history = new ActionHistory<MicrobeEditorAction>();
-
         // Create new hover hexes. See the TODO comment in _Process
         // This seems really cluttered, there must be a better way.
         for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
@@ -599,25 +597,27 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             hoverOrganelles.Add(CreateEditorOrganelle());
         }
 
-        // Rest of the setup is only ran when not loading a save, the save finish callback does the equivalent thing
-        if (IsLoadedFromSave)
-            return;
-
-        // Start a new game if no game has been started
-        if (CurrentGame == null)
+        if (!IsLoadedFromSave)
         {
-            if (ReturnToStage != null)
-                throw new Exception("stage to return to should have set our current game");
+            history = new ActionHistory<MicrobeEditorAction>();
 
-            GD.Print("Starting a new game for the microbe editor");
-            CurrentGame = GameProperties.StartNewMicrobeGame();
+            // Start a new game if no game has been started
+            if (CurrentGame == null)
+            {
+                if (ReturnToStage != null)
+                    throw new Exception("stage to return to should have set our current game");
+
+                GD.Print("Starting a new game for the microbe editor");
+                CurrentGame = GameProperties.StartNewMicrobeGame();
+            }
         }
 
         InitEditor();
 
         StartMusic();
 
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
+        if (!IsLoadedFromSave)
+            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
     public void OnFinishLoading(Save save)
