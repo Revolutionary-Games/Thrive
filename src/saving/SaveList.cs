@@ -38,12 +38,16 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadInvalidSaveDialogPath;
 
+    [Export]
+    public NodePath LoadIncompatibleDialogPath;
+
     private Control loadingItem;
     private BoxContainer savesList;
     private ConfirmationDialog deleteConfirmDialog;
     private ConfirmationDialog loadNewerConfirmDialog;
     private ConfirmationDialog loadOlderConfirmDialog;
     private ConfirmationDialog loadInvalidConfirmDialog;
+    private AcceptDialog loadIncompatibleDialog;
 
     private PackedScene listItemScene;
 
@@ -71,6 +75,7 @@ public class SaveList : ScrollContainer
         loadOlderConfirmDialog = GetNode<ConfirmationDialog>(LoadOlderSaveDialogPath);
         loadNewerConfirmDialog = GetNode<ConfirmationDialog>(LoadNewerSaveDialogPath);
         loadInvalidConfirmDialog = GetNode<ConfirmationDialog>(LoadInvalidSaveDialogPath);
+        loadIncompatibleDialog = GetNode<AcceptDialog>(LoadIncompatibleDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -114,6 +119,7 @@ public class SaveList : ScrollContainer
             item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -193,6 +199,29 @@ public class SaveList : ScrollContainer
     {
         saveToBeLoaded = saveName;
         loadInvalidConfirmDialog.PopupCenteredMinsize();
+    }
+
+    private void OnKnownIncompatibleLoaded()
+    {
+        loadIncompatibleDialog.PopupCenteredMinsize();
+    }
+
+    private void OnConfirmLoadOlder()
+    {
+        GD.PrintErr("The user requested to load an older save.");
+        OnConfirmSaveLoad();
+    }
+
+    private void OnConfirmLoadNewer()
+    {
+        GD.PrintErr("The user requested to load a newer save.");
+        OnConfirmSaveLoad();
+    }
+
+    private void OnConfirmLoadInvalid()
+    {
+        GD.PrintErr("The user requested to load an invalid save.");
+        OnConfirmSaveLoad();
     }
 
     private void OnConfirmSaveLoad()

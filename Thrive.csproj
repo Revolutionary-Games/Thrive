@@ -49,6 +49,7 @@
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\general\TypeUtils.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
@@ -81,7 +82,9 @@
     <Compile Include="src\microbe_stage\ChunkConfiguration.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
+    <Compile Include="src\microbe_stage\editor\IMicrobeEditorActionData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
+    <Compile Include="src\microbe_stage\editor\MicrobeEditorAction.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorGUI.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapNode.cs" />
@@ -177,12 +180,14 @@
     <Compile Include="src\microbe_stage\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
+    <Compile Include="src\saving\IGodotEarlyNodeResolve.cs" />
     <Compile Include="src\saving\ILoadableGameState.cs" />
     <Compile Include="src\saving\InProgressLoad.cs" />
     <Compile Include="src\saving\InProgressSave.cs" />
     <Compile Include="src\saving\ISaveApplyable.cs" />
     <Compile Include="src\saving\ISaveContext.cs" />
     <Compile Include="src\saving\ISaveLoadable.cs" />
+    <Compile Include="src\saving\ISaveLoadedTracked.cs" />
     <Compile Include="src\saving\NewSaveMenu.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveApplyHelper.cs" />
@@ -196,9 +201,10 @@
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\SaveManagerGUI.cs" />
     <Compile Include="src\saving\SaveStatusOverlay.cs" />
+    <Compile Include="src\saving\serializers\AssignOnlyChildItemsOnDeserializeAttribute.cs" />
     <Compile Include="src\saving\serializers\Base64BinaryConverter.cs" />
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
-    <Compile Include="src\saving\serializers\CompoundBagConverter.cs" />
+    <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
@@ -210,6 +216,7 @@
     <Compile Include="src\saving\serializers\ReferenceResolver.cs" />
     <Compile Include="src\saving\serializers\RegistryTypeConverter.cs" />
     <Compile Include="src\saving\serializers\RegistryTypeStringConverter.cs" />
+    <Compile Include="src\saving\serializers\SceneLoadedClassAttribute.cs" />
     <Compile Include="src\saving\serializers\SerializationBinder.cs" />
     <Compile Include="src\saving\serializers\SingleTypeConverter.cs" />
     <Compile Include="src\saving\serializers\SystemVector4ArrayConverter.cs" />
@@ -261,6 +268,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="export_presets.cfg" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />

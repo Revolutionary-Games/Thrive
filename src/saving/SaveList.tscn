@@ -19,6 +19,7 @@ DeleteConfirmDialogPath = NodePath("MarginContainer/VBoxContainer/DeleteSaveConf
 LoadNewerSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadNewerSaveDialog")
 LoadOlderSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadOlderSaveDialog")
 LoadInvalidSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadInvalidSaveDialog")
+LoadIncompatibleDialogPath = NodePath("MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1280.0
@@ -93,7 +94,19 @@ window_title = "Load invalid save?"
 dialog_text = "Save information could not be loaded from this file.
 This save is most likely corrupt or newer format not understood by this version of Thrive.
 Do you want to try loading the save anyway?"
+
+[node name="LoadKnownIncompatibleDialog" type="AcceptDialog" parent="MarginContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 1270.0
+margin_bottom = 130.0
+size_flags_horizontal = 4
+size_flags_vertical = 5
+window_title = "Selected save is incompatible"
+resizable = true
+dialog_text = "The selected save to be loaded is known to be incompatible with this version of Thrive.
+As Thrive is still early in development save compatibility is not a high priority, as such there is no in-built save converter to upgrade old saves."
+dialog_autowrap = true
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmSaveLoad"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmSaveLoad"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmSaveLoad"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmLoadInvalid"]

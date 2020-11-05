@@ -9,6 +9,15 @@ using Godot;
 /// </summary>
 public static class SaveHelper
 {
+    /// <summary>
+    ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
+    ///   (unless there exists a version converter)
+    /// </summary>
+    private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
+    {
+        "0.5.3",
+    };
+
     public enum SaveOrder
     {
         /// <summary>
@@ -114,20 +123,37 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Loads the save file with the latest write time
+    ///   Loads the save file with the latest write time.
+    ///   Does not load if there is a version difference.
     /// </summary>
-    public static void QuickLoad()
+    /// <returns>False if the versions do not match</returns>
+    public static bool QuickLoad()
     {
         // TODO: is there a way to to find the latest modified file without checking them all?
         var save = CreateListOfSaves(SaveOrder.LastModifiedFirst).FirstOrDefault();
-
         if (save == null)
         {
             GD.Print("No saves exist, can't quick load");
-            return;
+            return true;
         }
 
+        SaveInformation info;
+        try
+        {
+            info = global::Save.LoadJustInfoFromSave(save);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Cannot load save information for save {save}: {e}");
+            return true;
+        }
+
+        var versionDiff = VersionUtils.Compare(info.ThriveVersion, Constants.Version);
+        if (versionDiff != 0)
+            return false;
+
         LoadSave(save);
+        return true;
     }
 
     /// <summary>
@@ -270,6 +296,50 @@ public static class SaveHelper
         }
 
         return savesDeleted;
+    }
+
+    /// <summary>
+    ///   Returns true if the specified version is known to be incompatible
+    ///   from list in KnownSaveIncompatibilityPoints
+    /// </summary>
+    /// <param name="saveVersion">The save's version to check</param>
+    /// <returns>True if certainly incompatible</returns>
+    public static bool IsKnownIncompatible(string saveVersion)
+    {
+        int currentVersionPlaceInList = -1;
+        int savePlaceInList = -1;
+
+        var current = Constants.Version;
+
+        for (int i = 0; i < KnownSaveIncompatibilityPoints.Count; ++i)
+        {
+            var version = KnownSaveIncompatibilityPoints[i];
+
+            bool anyMatched = false;
+
+            var currentDifference = VersionUtils.Compare(current, version);
+            var saveDifference = VersionUtils.Compare(saveVersion, version);
+
+            if (currentDifference >= 0)
+            {
+                anyMatched = true;
+                currentVersionPlaceInList = i;
+            }
+
+            if (saveDifference >= 0)
+            {
+                anyMatched = true;
+                savePlaceInList = i;
+            }
+
+            if (!anyMatched)
+                break;
+        }
+
+        // If the current version and the save version don't fit in the same place in the save breakage points list
+        // the save is either older or newer than the closes save breakage point to the current version.
+        // Basically if numbers don't match, we know that the save is incompatible.
+        return currentVersionPlaceInList != savePlaceInList;
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,

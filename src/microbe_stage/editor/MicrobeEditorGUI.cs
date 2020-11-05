@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Main class managing the microbe editor GUI
 /// </summary>
-public class MicrobeEditorGUI : Node
+public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 {
     // The labels to update are at really long relative paths, so they are set in the Godot editor
     [Export]
@@ -257,8 +258,14 @@ public class MicrobeEditorGUI : Node
     private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
 
     private EnergyBalanceInfo energyBalanceInfo;
+
+    [JsonProperty]
     private float initialCellSpeed;
+
+    [JsonProperty]
     private int initialCellSize;
+
+    [JsonProperty]
     private float initialCellHp;
 
     private MicrobeEditor editor;
@@ -354,8 +361,12 @@ public class MicrobeEditorGUI : Node
     private TextureButton menuButton;
     private TextureButton helpButton;
 
+    [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
+
+    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
+
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     public enum EditorTab
@@ -371,6 +382,8 @@ public class MicrobeEditorGUI : Node
         Appearance,
         Behaviour,
     }
+
+    public bool IsLoadedFromSave { get; set; }
 
     public override void _Ready()
     {
@@ -470,6 +483,10 @@ public class MicrobeEditorGUI : Node
     public void Init(MicrobeEditor editor)
     {
         this.editor = editor ?? throw new ArgumentNullException(nameof(editor));
+
+        // Set the right tabs if they aren't the defaults
+        ApplyEditorTab();
+        ApplySelectionMenuTab();
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -598,7 +615,10 @@ public class MicrobeEditorGUI : Node
         initialCellSpeed = editor.CalculateSpeed();
         initialCellHp = editor.CalculateHitpoints();
         initialCellSize = editor.MicrobeHexSize;
+    }
 
+    public void ResetStatisticsPanelSize()
+    {
         // Resets the statistics panel size to fit
         statisticsPanel.RectSize = Vector2.Zero;
     }
@@ -888,7 +908,7 @@ public class MicrobeEditorGUI : Node
         }
 
         // Can't exit the editor with disconnected organelles
-        if (editor.GetIslandHexes().Count > 0)
+        if (editor.HasIslands)
         {
             islandPopup.PopupCenteredMinsize();
             return;
@@ -919,21 +939,19 @@ public class MicrobeEditorGUI : Node
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.None)
         {
-            symmetryIcon.Texture = SymmetryIcon2x;
             symmetry = MicrobeEditor.MicrobeSymmetry.XAxisSymmetry;
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.XAxisSymmetry)
         {
-            symmetryIcon.Texture = SymmetryIcon4x;
             symmetry = MicrobeEditor.MicrobeSymmetry.FourWaySymmetry;
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.FourWaySymmetry)
         {
-            symmetryIcon.Texture = SymmetryIcon6x;
             symmetry = MicrobeEditor.MicrobeSymmetry.SixWaySymmetry;
         }
 
         editor.Symmetry = symmetry;
+        UpdateSymmetryIcon();
     }
 
     internal void OnSymmetryHold()
@@ -950,6 +968,14 @@ public class MicrobeEditorGUI : Node
     {
         symmetryIcon.Texture = SymmetryIconDefault;
         symmetry = 0;
+    }
+
+    internal void SetSymmetry(MicrobeEditor.MicrobeSymmetry newSymmetry)
+    {
+        symmetry = newSymmetry;
+        editor.Symmetry = newSymmetry;
+
+        UpdateSymmetryIcon();
     }
 
     internal void HelpButtonPressed()
@@ -1063,6 +1089,25 @@ public class MicrobeEditorGUI : Node
         }
     }
 
+    private void UpdateSymmetryIcon()
+    {
+        switch (symmetry)
+        {
+            case MicrobeEditor.MicrobeSymmetry.None:
+                symmetryIcon.Texture = SymmetryIconDefault;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
+                symmetryIcon.Texture = SymmetryIcon2x;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
+                symmetryIcon.Texture = SymmetryIcon4x;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
+                symmetryIcon.Texture = SymmetryIcon6x;
+                break;
+        }
+    }
+
     private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
@@ -1090,6 +1135,15 @@ public class MicrobeEditorGUI : Node
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        selectedEditorTab = selection;
+
+        ApplyEditorTab();
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
+    }
+
+    private void ApplyEditorTab()
+    {
         // Hide all
         var cellEditor = GetNode<Control>("CellEditor");
         var report = GetNode<Control>("Report");
@@ -1100,7 +1154,7 @@ public class MicrobeEditorGUI : Node
         cellEditor.Hide();
 
         // Show selected
-        switch (selection)
+        switch (selectedEditorTab)
         {
             case EditorTab.Report:
             {
@@ -1126,10 +1180,6 @@ public class MicrobeEditorGUI : Node
             default:
                 throw new Exception("Invalid editor tab");
         }
-
-        selectedEditorTab = selection;
-
-        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void SetSelectionMenuTab(string tab)
@@ -1141,12 +1191,18 @@ public class MicrobeEditorGUI : Node
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        selectedSelectionMenuTab = selection;
+        ApplySelectionMenuTab();
+    }
+
+    private void ApplySelectionMenuTab()
+    {
         // Hide all
         structureTab.Hide();
         appearanceTab.Hide();
 
         // Show selected
-        switch (selection)
+        switch (selectedSelectionMenuTab)
         {
             case SelectionMenuTab.Structure:
             {
@@ -1165,8 +1221,6 @@ public class MicrobeEditorGUI : Node
             default:
                 throw new Exception("Invalid selection menu tab");
         }
-
-        selectedSelectionMenuTab = selection;
     }
 
     private void MenuButtonPressed()

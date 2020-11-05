@@ -9,7 +9,9 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
-public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
+[SceneLoadedClass("res://src/microbe_stage/Microbe.tscn", UsesEarlyResolve = false)]
+[DeserializedCallbackTarget]
+public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
 {
     /// <summary>
     ///   The stored compounds in this microbe
@@ -29,6 +31,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
+    [JsonProperty]
     private CompoundCloudSystem cloudSystem;
 
     // Child components
@@ -127,6 +130,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private MicrobeAI ai;
 
     private PackedScene cellBurstEffectScene;
+
+    [JsonProperty]
     private bool deathParticlesSpawned;
 
     /// <summary>
@@ -169,7 +174,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   The number of agent vacuoles. Determines the time between
     ///   toxin shots.
     /// </summary>
-    [JsonIgnore]
+    [JsonProperty]
     public int AgentVacuoleCount { get; private set; }
 
     [JsonProperty]
@@ -193,7 +198,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public bool EngulfMode
     {
         get => engulfMode;
-        set => engulfMode = value;
+        set
+        {
+            if (!Membrane.Type.CellWall)
+            {
+                engulfMode = value;
+            }
+            else
+            {
+                engulfMode = false;
+            }
+        }
     }
 
     [JsonIgnore]
@@ -292,14 +307,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Called when this Microbe dies
     /// </summary>
-    [JsonIgnore]
+    [JsonProperty]
     public Action<Microbe> OnDeath { get; set; }
 
     /// <summary>
     ///   Called when the reproduction status of this microbe changes
     /// </summary>
-    [JsonIgnore]
+    [JsonProperty]
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
+
+    public bool IsLoadedFromSave { get; set; }
 
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
@@ -309,17 +326,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         this.cloudSystem = cloudSystem;
         CurrentGame = currentGame;
         IsPlayerMicrobe = isPlayer;
-
-        if (IsPlayerMicrobe)
-        {
-            // Creates and activates the audio listener for the player microbe. Positional sound will be
-            // received by it instead of the main camera.
-            listener = new Listener();
-            AddChild(listener);
-            listener.MakeCurrent();
-
-            GD.Print("Player Microbe spawned");
-        }
 
         if (!isPlayer)
             ai = new MicrobeAI(this);
@@ -345,6 +351,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
 
+        if (IsPlayerMicrobe)
+        {
+            // Creates and activates the audio listener for the player microbe. Positional sound will be
+            // received by it instead of the main camera.
+            listener = new Listener();
+            AddChild(listener);
+            listener.MakeCurrent();
+
+            GD.Print("Player Microbe spawned");
+        }
+
         // Setup physics callback stuff
         var engulfDetector = GetNode<Area>("EngulfDetector");
         engulfShape = (SphereShape)engulfDetector.GetNode<CollisionShape>("EngulfShape").Shape;
@@ -357,6 +374,21 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Connect("body_shape_exited", this, "OnContactEnd");
 
         Mass = Constants.MICROBE_BASE_MASS;
+
+        if (IsLoadedFromSave)
+        {
+            // Need to re-attach our organelles
+            foreach (var organelle in organelles)
+                OrganelleParent.AddChild(organelle);
+
+            // And recompute storage
+            RecomputeOrganelleCapacity();
+
+            // Do species setup that we need on load
+            SetScaleFromSpecies();
+            SetMembraneFromSpecies();
+        }
+
         onReadyCalled = true;
     }
 
@@ -370,22 +402,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (Species.Organelles.Count < 1)
             throw new ArgumentException("Species with no organelles is not valid");
 
-        var scale = new Vector3(1.0f, 1.0f, 1.0f);
-
-        // Bacteria are 50% the size of other cells
-        if (Species.IsBacteria)
-            scale = new Vector3(0.5f, 0.5f, 0.5f);
-
-        // Scale only the graphics parts to not have physics affected
-        Membrane.Scale = scale;
-        OrganelleParent.Scale = scale;
+        SetScaleFromSpecies();
 
         ResetOrganelleLayout();
 
-        // Set membrane type on the membrane
-        Membrane.Type = Species.MembraneType;
-        Membrane.Tint = Species.Colour;
-        Membrane.Dirty = true;
+        SetMembraneFromSpecies();
+
+        if (Membrane.Type.CellWall)
+        {
+            // Reset engulf mode if the new membrane doesn't allow it
+            EngulfMode = false;
+        }
 
         SetupMicrobeHitpoints();
     }
@@ -1116,35 +1143,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
-    public void ApplyPropertiesFromSave(Microbe microbe)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, microbe, new List<string>
-        {
-            "organelles",
-        });
-
-        NodeGroupSaveHelper.CopyGroups(this, microbe);
-
-        organelles.Clear();
-
-        while (microbe.organelles.Count > 0)
-        {
-            // Steal the organelles from the other microbe which will be destroyed anyway once the save is fully loaded
-            var organelle = microbe.organelles[0];
-            microbe.organelles.Remove(organelle);
-
-            // Though we don't want them to be actually disposed
-            if (TemporaryLoadedNodeDeleter.Instance.Release(organelle) != organelle)
-                throw new Exception("failed to remove a loaded organelle from being released");
-
-            organelles.Add(organelle);
-        }
-
-        // TODO: fix existing references in the microbe AI
-        // For now we just cause amnesia on the cell's AI
-        ai?.ClearAfterLoadedFromSave(this);
-    }
-
     internal void SuccessfulScavenge()
     {
         GameWorld.AlterSpeciesPopulation(Species,
@@ -1155,6 +1153,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN, "successful kill");
+    }
+
+    private void SetScaleFromSpecies()
+    {
+        var scale = new Vector3(1.0f, 1.0f, 1.0f);
+
+        // Bacteria are 50% the size of other cells
+        if (Species.IsBacteria)
+            scale = new Vector3(0.5f, 0.5f, 0.5f);
+
+        // Scale only the graphics parts to not have physics affected
+        Membrane.Scale = scale;
+        OrganelleParent.Scale = scale;
+    }
+
+    private void SetMembraneFromSpecies()
+    {
+        Membrane.Type = Species.MembraneType;
+        Membrane.Tint = Species.Colour;
+        Membrane.Dirty = true;
     }
 
     private void HandleCompoundAbsorbing(float delta)
@@ -1709,6 +1727,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         return new Transform(new Basis(slerped), transform.origin);
     }
 
+    [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(PlacedOrganelle organelle)
     {
         organelle.OnAddedToMicrobe(this);
@@ -1725,6 +1744,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Compounds.Capacity = organellesCapacity;
     }
 
+    [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
         organellesCapacity -= organelle.StorageCapacity;
@@ -1787,6 +1807,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Membrane.OrganellePositions = organellePositions;
         Membrane.Dirty = true;
         membraneOrganellePositionsAreDirty = false;
+    }
+
+    /// <summary>
+    ///   Recomputes storage from organelles, used after loading a save
+    /// </summary>
+    private void RecomputeOrganelleCapacity()
+    {
+        organellesCapacity = organelles.Sum(o => o.StorageCapacity);
+        Compounds.Capacity = organellesCapacity;
     }
 
     /// <summary>
