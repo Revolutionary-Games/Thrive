@@ -8,6 +8,7 @@ using Godot;
 /// <summary>
 ///   Defines one input aspect like g_move_forward.
 ///   Each InputActionItem has <see cref="InputEventItem">InputEventItems</see> associated with it.
+///   Used by OptionsMenu>Inputs>InputGroupContainer>InputGroupItem>InputActionItem
 /// </summary>
 public class InputActionItem : VBoxContainer
 {
