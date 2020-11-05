@@ -38,7 +38,8 @@ public class SpawnSystem
     ///   Tracks recent movement percentage to set likelihood of clouds spawning
     ///   This prevents a player from merely staying still long enough for clouds to spawn
     /// </summary>
-    private float cloudSpawnFactor = 0.0f;
+    private float cloudSpawnFactor;
+
     private Vector3 lastPlayerPos;
 
     /// <summary>
@@ -229,12 +230,6 @@ public class SpawnSystem
         if (existing >= maxAliveEntities)
             return;
 
-        // If the player is not moving around too much, reduce spawn
-        var positionDelta = lastPlayerPos - playerPosition;
-        cloudSpawnFactor -= Constants.PLAYER_STATIONARY_CLOUD_SPAWN_PENALTY;
-        cloudSpawnFactor += positionDelta.LengthSquared();
-        lastPlayerPos = playerPosition;
-
         int spawned = 0;
 
         foreach (var spawnType in spawnTypes)
@@ -242,7 +237,13 @@ public class SpawnSystem
             // Prevents too many clouds from spawning when stationary
             if (spawnType.Type == "cloud")
             {
-                spawnType.SpawnFrequency -= (int)cloudSpawnFactor;
+                var positionDelta = lastPlayerPos - playerPosition;
+                cloudSpawnFactor -= Constants.PLAYER_STATIONARY_CLOUD_SPAWN_PENALTY;
+                cloudSpawnFactor += positionDelta.LengthSquared();
+                lastPlayerPos = playerPosition;
+
+                if (cloudSpawnFactor >= 0 && cloudSpawnFactor <= Constants.MAX_CLOUD_SPAWN_PENALTY)
+                    spawnType.SetFrequencyFromDensity(cloudSpawnFactor);
             }
 
             /*

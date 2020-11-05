@@ -48,6 +48,7 @@ public abstract class Spawner
 
     public void SetFrequencyFromDensity(float spawnDensity)
     {
+        GD.Print(spawnDensity);
         SpawnFrequency = (int)(spawnDensity * SpawnRadiusSqr * 4);
     }
 }
