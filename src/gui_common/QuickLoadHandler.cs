@@ -6,25 +6,30 @@ using Godot;
 /// </summary>
 public class QuickLoadHandler : Node
 {
-    [RunOnKey("quick_load", RunOnKeyAttribute.InputType.Press)]
-    public static void QuickLoad()
-    {
-        GD.Print("Quick load pressed, attempting to load latest save");
-        SaveHelper.QuickLoad();
-    }
-
     [Export]
     public NodePath DifferentVersionDialogPath;
-
-    private readonly InputGroup inputs;
-
-    private readonly InputTrigger load = new InputTrigger("quick_load");
 
     private AcceptDialog differentVersionDialog;
 
     public QuickLoadHandler()
     {
-        inputs = new InputGroup(new List<IInputReceiver> { load });
+        RunOnInputAttribute.InputClasses.Add(this);
+    }
+
+    [RunOnKey("quick_load", RunOnKeyAttribute.InputType.Press)]
+    public void QuickLoad()
+    {
+        if (!InProgressLoad.IsLoading)
+        {
+            GD.Print("Quick load pressed, attempting to load latest save");
+
+            if (!SaveHelper.QuickLoad())
+                differentVersionDialog.PopupCenteredMinsize();
+        }
+        else
+        {
+            GD.Print("Quick load pressed, cancelled because another is already in progress");
+        }
     }
 
     public override void _Ready()
@@ -33,46 +38,5 @@ public class QuickLoadHandler : Node
 
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
-    }
-
-    public override void _Ready()
-    {
-        // Keep this node running while paused
-        PauseMode = PauseModeEnum.Process;
-
-        if (inputs.CheckInput(@event))
-        {
-            GetTree().SetInputAsHandled();
-        }
-    }
-
-    public override void _Notification(int focus)
-    {
-        // If the window goes out of focus, we don't receive the key released events
-        // We reset our held down keys if the player tabs out while pressing a key
-        if (focus == MainLoop.NotificationWmFocusOut)
-        {
-            inputs.FocusLost();
-        }
-    }
-
-    public override void _Process(float delta)
-    {
-        inputs.OnFrameChanged();
-
-        if (load.ReadTrigger())
-        {
-            if (!InProgressLoad.IsLoading)
-            {
-                GD.Print("Quick load pressed, attempting to load latest save");
-
-                if (!SaveHelper.QuickLoad())
-                    differentVersionDialog.PopupCenteredMinsize();
-            }
-            else
-            {
-                GD.Print("Quick load pressed, cancelled because another is already in progress");
-            }
-        }
     }
 }

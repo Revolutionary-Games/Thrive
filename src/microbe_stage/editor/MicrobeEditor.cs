@@ -583,8 +583,9 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         // Let go of old resources
         hoverHexes = new List<MeshInstance>();
         hoverOrganelles = new List<SceneDisplayer>();
+        hoverOverriddenMaterials = new Dictionary<MeshInstance, Material>();
 
-        history = new ActionHistory<EditorAction>();
+        history = new ActionHistory<MicrobeEditorAction>();
 
         // Create new hover hexes. See the TODO comment in _Process
         // This seems really cluttered, there must be a better way.
