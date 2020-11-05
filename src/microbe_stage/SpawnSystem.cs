@@ -38,8 +38,10 @@ public class SpawnSystem
     ///   Tracks recent movement percentage to set likelihood of clouds spawning
     ///   This prevents a player from merely staying still long enough for clouds to spawn
     /// </summary>
+    [JsonProperty]
     private float cloudSpawnFactor;
 
+    [JsonProperty]
     private Vector3 lastPlayerPos;
 
     /// <summary>
