@@ -5,6 +5,7 @@ using Godot;
 /// <summary>
 ///   An input group shown in the input tab in the options.
 ///   Has multiple <see cref="InputActionItem">InputActions</see>.
+///   Used by OptionsMenu>Inputs>InputGroupContainer>InputGroupItem
 /// </summary>
 public class InputGroupItem : VBoxContainer
 {
