@@ -9,6 +9,7 @@ public class InputManager : Node
     public override void _Ready()
     {
         RecalculateAttributes();
+        PauseMode = PauseModeEnum.Process;
     }
 
     public override void _UnhandledInput(InputEvent @event)
