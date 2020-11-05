@@ -17,23 +17,23 @@ public class InputGroupList : VBoxContainer
     internal static PackedScene InputGroupItemScene;
     internal static PackedScene InputActionItemScene;
 
-    private static IEnumerable<InputGroupItem> activeInputGroupList;
     private static InputDataList defaultControls = GetCurrentlyAppliedControls();
-
     private static bool wasListeningForInput;
 
-    private static InputEventItem latestDialogCaller;
-    private static InputEventItem latestDialogConflict;
-    private static InputEventWithModifiers latestDialogNewEvent;
+    private IEnumerable<InputGroupItem> activeInputGroupList;
 
-    private static ConfirmationDialog conflictDialog;
+    private InputEventItem latestDialogCaller;
+    private InputEventItem latestDialogConflict;
+    private InputEventWithModifiers latestDialogNewEvent;
+
+    private ConfirmationDialog conflictDialog;
 
     public delegate void ControlsChangedDelegate(InputDataList data);
 
     /// <summary>
     ///   Fires whenever some inputs were redefined.
     /// </summary>
-    public static event ControlsChangedDelegate OnControlsChanged;
+    public event ControlsChangedDelegate OnControlsChanged;
 
     /// <summary>
     ///   If I was listening for inputs.
@@ -53,12 +53,12 @@ public class InputGroupList : VBoxContainer
     /// <summary>
     ///   Is any Input currently waiting for input
     /// </summary>
-    public static bool ListeningForInput => ActiveInputGroupList
+    public bool ListeningForInput => ActiveInputGroupList
         .Any(x => x.Actions
             .Any(y => y.Inputs
                 .Any(z => z.WaitingForInput)));
 
-    public static IEnumerable<InputGroupItem> ActiveInputGroupList => activeInputGroupList;
+    public IEnumerable<InputGroupItem> ActiveInputGroupList => activeInputGroupList;
 
     /// <summary>
     ///   Returns the default controls which never change, unless there is a new release.
@@ -86,7 +86,7 @@ public class InputGroupList : VBoxContainer
     ///   Returns not only the applied controls, but the controls the user is currently editing before pressing save.
     /// </summary>
     /// <returns>The not applied controls.</returns>
-    public static InputDataList GetCurrentlyPendingControls()
+    public InputDataList GetCurrentlyPendingControls()
     {
         var groups = ActiveInputGroupList.ToList();
         if (!groups.Any())
@@ -101,20 +101,26 @@ public class InputGroupList : VBoxContainer
     /// </summary>
     /// <param name="item">The event with the new value</param>
     /// <returns>The collision if any</returns>
-    public static InputEventItem Conflicts(InputEventItem item)
+    public InputEventItem Conflicts(InputEventItem item)
     {
+        if (!item.AssociatedAction.TryGetTarget(out var inputActionItem))
+            return default;
+
+        if (!inputActionItem.AssociatedGroup.TryGetTarget(out var inputGroupItem))
+            return default;
+
         // Get all environments the item is associated with.
-        var environments = item.AssociatedAction.AssociatedGroup.EnvironmentId;
+        var environments = inputGroupItem.EnvironmentId;
 
         // Take all InputGroups.
         // Take the ones with any interception of the environments.
         // Take the input actions.
         // Get the first action where the event collides or null if there aren't any.
         return ActiveInputGroupList.Where(p => p.EnvironmentId.Any(x => environments.Contains(x)))
-                                   .SelectMany(p => p.Actions)
-                                   .Where(p => !Equals(item.AssociatedAction, p))
-                                   .SelectMany(p => p.Inputs)
-                                   .FirstOrDefault(p => Equals(p, item));
+            .SelectMany(p => p.Actions)
+            .Where(p => !Equals(inputActionItem, p))
+            .SelectMany(p => p.Inputs)
+            .FirstOrDefault(p => Equals(p, item));
     }
 
     /// <summary>
@@ -123,25 +129,28 @@ public class InputGroupList : VBoxContainer
     /// <param name="caller">The event which wants to be redefined</param>
     /// <param name="conflict">The event which produced the conflict</param>
     /// <param name="newEvent">The new event wanted to be set to the caller</param>
-    public static void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict,
+    public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict,
         InputEventWithModifiers newEvent)
     {
+        if (!conflict.AssociatedAction.TryGetTarget(out var inputActionItem))
+            return;
+
         latestDialogCaller = caller;
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = $"There is a conflict with {conflict.AssociatedAction.DisplayName}.\n" +
-            $"Do you want to remove the input from {conflict.AssociatedAction.DisplayName}?";
+        conflictDialog.DialogText = $"There is a conflict with {inputActionItem.DisplayName}.\n" +
+            $"Do you want to remove the input from {inputActionItem.DisplayName}?";
         conflictDialog.PopupCenteredMinsize();
     }
 
-    public static void OnConflictConfirmed()
+    public void OnConflictConfirmed()
     {
         latestDialogConflict.Delete();
         latestDialogCaller._Input(latestDialogNewEvent);
     }
 
-    public static bool IsConflictDialogOpen()
+    public bool IsConflictDialogOpen()
     {
         return conflictDialog.Visible;
     }
@@ -188,7 +197,7 @@ public class InputGroupList : VBoxContainer
         LoadFromData(data);
     }
 
-    internal static void ControlsChanged()
+    internal void ControlsChanged()
     {
         OnControlsChanged?.Invoke(GetCurrentlyPendingControls());
     }

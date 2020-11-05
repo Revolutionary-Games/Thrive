@@ -422,7 +422,7 @@ public class OptionsMenu : Control
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
 
         // Input
-        InputGroupList.OnControlsChanged += OnControlsChanged;
+        inputGroupList.OnControlsChanged += OnControlsChanged;
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -1034,7 +1034,7 @@ public class OptionsMenu : Control
 
         inputGroupList.InitFromData(Settings.Instance.CurrentControls);
 
-        foreach (var inputGroup in InputGroupList.ActiveInputGroupList)
+        foreach (var inputGroup in inputGroupList.ActiveInputGroupList)
         {
             inputGroupList.AddChild(inputGroup);
         }

@@ -30,7 +30,7 @@ public class InputActionItem : VBoxContainer
     /// <summary>
     ///   The group in which this action is defined.
     /// </summary>
-    public InputGroupItem AssociatedGroup { get; set; }
+    public WeakReference<InputGroupItem> AssociatedGroup { get; set; }
 
     /// <summary>
     ///   The godot specific action name
@@ -66,7 +66,7 @@ public class InputActionItem : VBoxContainer
 
         foreach (var input in Inputs)
         {
-            input.AssociatedAction = this;
+            input.AssociatedAction = new WeakReference<InputActionItem>(this);
             inputEventsContainer.AddChild(input);
         }
 
@@ -92,14 +92,16 @@ public class InputActionItem : VBoxContainer
         return InputName != null ? InputName.GetHashCode() : 0;
     }
 
-    internal static InputActionItem BuildGUI(InputGroupItem caller, NamedInputAction data, IEnumerable<SpecifiedInputKey> inputs)
+    internal static InputActionItem BuildGUI(InputGroupItem caller, NamedInputAction data,
+        IEnumerable<SpecifiedInputKey> inputs)
     {
         var inputActionItem = (InputActionItem)InputGroupList.InputActionItemScene.Instance();
 
         inputActionItem.InputName = data.InputName;
         inputActionItem.DisplayName = data.Name;
-        inputActionItem.AssociatedGroup = caller;
-        inputActionItem.Inputs = new ObservableCollection<InputEventItem>(inputs.Select(d => InputEventItem.BuildGUI(inputActionItem, d)));
+        inputActionItem.AssociatedGroup = new WeakReference<InputGroupItem>(caller);
+        inputActionItem.Inputs =
+            new ObservableCollection<InputEventItem>(inputs.Select(d => InputEventItem.BuildGUI(inputActionItem, d)));
 
         return inputActionItem;
     }
@@ -110,24 +112,9 @@ public class InputActionItem : VBoxContainer
     internal void OnAddEventButtonPressed()
     {
         var newInput = (InputEventItem)InputGroupList.InputEventItemScene.Instance();
-        newInput.AssociatedAction = this;
+        newInput.AssociatedAction = new WeakReference<InputActionItem>(this);
         newInput.JustAdded = true;
         Inputs.Add(newInput);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        AssociatedGroup = null;
-        foreach (var inputEventItem in Inputs)
-        {
-            inputEventItem.Dispose();
-        }
-
-        inputActionHeader?.Dispose();
-        inputEventsContainer?.Dispose();
-        addInputEvent?.Dispose();
-
-        base.Dispose(disposing);
     }
 
     private void OnInputsChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -152,5 +139,25 @@ public class InputActionItem : VBoxContainer
             default:
                 throw new NotSupportedException($"{e.Action} is not supported on {nameof(Inputs)}");
         }
+    }
+
+    private InputGroupItem GetGroup()
+    {
+        if (AssociatedGroup.TryGetTarget(out var associatedGroup) != true)
+            return null;
+
+        return associatedGroup;
+    }
+
+    private InputGroupList GetGroupList()
+    {
+        var group = GetGroup();
+        if (group == null)
+            return null;
+
+        if (group.AssociatedList.TryGetTarget(out var associatedList) != true)
+            return null;
+
+        return associatedList;
     }
 }

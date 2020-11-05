@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -37,6 +38,11 @@ public class InputGroupItem : VBoxContainer
     /// </summary>
     public List<string> EnvironmentId { get; set; }
 
+    /// <summary>
+    ///   The action this event is associated with
+    /// </summary>
+    internal WeakReference<InputGroupList> AssociatedList { get; set; }
+
     public override void _Ready()
     {
         inputGroupHeader = GetNode<Label>(InputGroupHeaderPath);
@@ -55,22 +61,18 @@ public class InputGroupItem : VBoxContainer
     {
         var result = (InputGroupItem)InputGroupList.InputGroupItemScene.Instance();
 
+        result.AssociatedList = new WeakReference<InputGroupList>(caller);
         result.EnvironmentId = data.EnvironmentId.ToList();
         result.GroupName = data.GroupName;
         result.Actions = data.Actions.Select(x => InputActionItem.BuildGUI(result, x, inputData[x.InputName])).ToList();
         return result;
     }
 
-    protected override void Dispose(bool disposing)
+    private InputGroupList GetGroupList()
     {
-        inputGroupHeader?.Dispose();
-        inputActionsContainer?.Dispose();
+        if (AssociatedList.TryGetTarget(out var associatedList) != true)
+            return null;
 
-        base.Dispose(disposing);
-
-        foreach (var inputActionItem in Actions)
-        {
-            inputActionItem.Dispose();
-        }
+        return associatedList;
     }
 }

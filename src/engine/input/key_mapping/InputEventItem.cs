@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 /// <summary>
@@ -31,7 +32,7 @@ public class InputEventItem : Node
     /// <summary>
     ///   The action this event is associated with
     /// </summary>
-    internal InputActionItem AssociatedAction { get; set; }
+    internal WeakReference<InputActionItem> AssociatedAction { get; set; }
 
     /// <summary>
     ///   If the event was just created and has never been assigned with a value
@@ -43,8 +44,8 @@ public class InputEventItem : Node
     /// </summary>
     public void Delete()
     {
-        AssociatedAction.Inputs.Remove(this);
-        InputGroupList.ControlsChanged();
+        GetAction()?.Inputs?.Remove(this);
+        GetGroupList()?.ControlsChanged();
     }
 
     public override void _Ready()
@@ -67,7 +68,11 @@ public class InputEventItem : Node
     /// </summary>
     public override void _Input(InputEvent @event)
     {
-        if (InputGroupList.IsConflictDialogOpen())
+        var groupList = GetGroupList();
+        if (groupList == null)
+            return;
+
+        if (groupList.IsConflictDialogOpen())
             return;
 
         if (!WaitingForInput)
@@ -117,23 +122,26 @@ public class InputEventItem : Node
         AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
 
         // Get the conflicts with the new input.
-        var conflict = InputGroupList.Conflicts(this);
+        var conflict = groupList.Conflicts(this);
         if (conflict != null)
         {
             AssociatedEvent = old;
 
             // If there are conflicts detected reset the changes and ask the user.
-            InputGroupList.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
+            groupList.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
             return;
         }
 
+        if (!AssociatedAction.TryGetTarget(out var associatedAction))
+            return;
+
         // Check if the input is already defined for this action
         // This code works by finding a pair
-        for (var i = 0; i < AssociatedAction.Inputs.Count; i++)
+        for (var i = 0; i < associatedAction.Inputs.Count; i++)
         {
-            for (var x = i + 1; x < AssociatedAction.Inputs.Count; x++)
+            for (var x = i + 1; x < associatedAction.Inputs.Count; x++)
             {
-                if (AssociatedAction.Inputs[i].Equals(AssociatedAction.Inputs[x]))
+                if (associatedAction.Inputs[i].Equals(associatedAction.Inputs[x]))
                 {
                     // Pair found (input already defined)
                     Delete();
@@ -147,7 +155,7 @@ public class InputEventItem : Node
         InputGroupList.WasListeningForInput = false;
 
         // Update the godot InputMap
-        InputGroupList.ControlsChanged();
+        groupList.ControlsChanged();
 
         // Update the button text
         UpdateButtonText();
@@ -169,25 +177,21 @@ public class InputEventItem : Node
     internal static InputEventItem BuildGUI(InputActionItem caller, SpecifiedInputKey @event)
     {
         var res = (InputEventItem)InputGroupList.InputEventItemScene.Instance();
-        res.AssociatedAction = caller;
+        res.AssociatedAction = new WeakReference<InputActionItem>(caller);
         res.AssociatedEvent = @event;
         return res;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        AssociatedAction = null;
-        button?.Dispose();
-        xbutton?.Dispose();
-        base.Dispose(disposing);
-    }
-
     private void OnButtonPressed(InputEvent @event)
     {
-        if (InputGroupList.IsConflictDialogOpen())
+        var groupList = GetGroupList();
+        if (groupList == null)
             return;
 
-        if (InputGroupList.ListeningForInput)
+        if (groupList.IsConflictDialogOpen())
+            return;
+
+        if (!groupList.ListeningForInput)
             return;
 
         if (!(@event is InputEventMouseButton inputButton))
@@ -216,5 +220,37 @@ public class InputEventItem : Node
     {
         button.Text = AssociatedEvent.ToString();
         xbutton.Visible = false;
+    }
+
+    private InputActionItem GetAction()
+    {
+        if (!AssociatedAction.TryGetTarget(out var associatedAction))
+            return null;
+
+        return associatedAction;
+    }
+
+    private InputGroupItem GetGroup()
+    {
+        var action = GetAction();
+        if (action == null)
+            return null;
+
+        if (action.AssociatedGroup.TryGetTarget(out var associatedGroup) != true)
+            return null;
+
+        return associatedGroup;
+    }
+
+    private InputGroupList GetGroupList()
+    {
+        var group = GetGroup();
+        if (group == null)
+            return null;
+
+        if (group.AssociatedList.TryGetTarget(out var associatedList) != true)
+            return null;
+
+        return associatedList;
     }
 }
