@@ -261,6 +261,10 @@ Git
   all you did was merge master into the branch to make the merge show
   up as green on Github.
 
+- Unfortunately, issues are often created quickly with little detail
+  and context. Please do not hesistate to ask questions regarding the
+  issue for clarification and details.
+
 - For maintainers: When manually merging (which is something you
   should avoid) GitHub requires a merge commit to recognize the
   merging of a pull request. A "git merge --squash" does not create a
