@@ -54,7 +54,7 @@ public class InputAxis : IInputReceiver
     public bool CheckInput(InputEvent @event)
     {
         inputs.ForEach(input => input.Input.CheckInput(@event));
-        foreach (var input in inputs.Where(input => input.Input.HasInput()))
+        foreach (var input in inputs.Where(input => input.Input.ShouldTriggerCallbacks()))
         {
             // Was consumed
 
@@ -82,14 +82,14 @@ public class InputAxis : IInputReceiver
         return false;
     }
 
-    public object ReadInput()
+    public object GetValueForCallback()
     {
         var temp = lastInput;
         lastInput = 0;
         return temp;
     }
 
-    public bool HasInput()
+    public bool ShouldTriggerCallbacks()
     {
         return lastInput != 0;
     }

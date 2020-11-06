@@ -33,14 +33,14 @@ public class InputBool : IInputReceiver
         return false;
     }
 
-    public virtual object ReadInput()
+    public virtual object GetValueForCallback()
     {
         return Pressed;
     }
 
-    public virtual bool HasInput()
+    public virtual bool ShouldTriggerCallbacks()
     {
-        return (bool)ReadInput();
+        return (bool)GetValueForCallback();
     }
 
     public virtual void FocusLost()

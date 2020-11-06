@@ -38,12 +38,12 @@ public class InputMultiAxis : IInputReceiver
         return returnValue;
     }
 
-    public object ReadInput()
+    public object GetValueForCallback()
     {
         return CurrentValues;
     }
 
-    public bool HasInput()
+    public bool ShouldTriggerCallbacks()
     {
         return true;
     }

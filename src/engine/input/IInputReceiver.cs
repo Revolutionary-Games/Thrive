@@ -16,13 +16,13 @@ public interface IInputReceiver
     ///   Gets the current input value
     /// </summary>
     /// <returns>The current input value</returns>
-    object ReadInput();
+    object GetValueForCallback();
 
     /// <summary>
     ///   Gets whether the input is not in its non-activated state like a key being pressed
     /// </summary>
     /// <returns>True if the input is triggered</returns>
-    bool HasInput();
+    bool ShouldTriggerCallbacks();
 
     /// <summary>
     ///   Window focus is lost, all held keys should be released

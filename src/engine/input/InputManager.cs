@@ -17,21 +17,27 @@ public class InputManager : Node
         PauseMode = PauseModeEnum.Process;
     }
 
+    /// <summary>
+    ///   Primes all matching inputs with the correct GetValueForCallback() value.
+    /// </summary>
     public override void _UnhandledInput(InputEvent @event)
     {
         RunOnInputAttribute.AttributesWithMethods.ForEach(p => p.Item2.InputReceiver.CheckInput(@event));
     }
 
+    /// <summary>
+    ///   Reads all callback values where callbacks should be called and invokes the associated method.
+    /// </summary>
     public override void _Process(float delta)
     {
         var disposed = new List<object>();
         RunOnInputAttribute.AttributesWithMethods.ForEach(p =>
         {
             var inputReceiver = p.Item2.InputReceiver;
-            if (!inputReceiver.HasInput())
+            if (!inputReceiver.ShouldTriggerCallbacks())
                 return;
 
-            var readValue = inputReceiver.ReadInput();
+            var readValue = inputReceiver.GetValueForCallback();
 
             if (p.Item1.IsStatic)
             {

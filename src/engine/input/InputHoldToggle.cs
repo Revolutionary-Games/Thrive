@@ -30,12 +30,12 @@ public class InputHoldToggle : InputBool
         return true;
     }
 
-    public override object ReadInput()
+    public override object GetValueForCallback()
     {
         return ToggledOn;
     }
 
-    public override bool HasInput()
+    public override bool ShouldTriggerCallbacks()
     {
         return ToggledOn;
     }

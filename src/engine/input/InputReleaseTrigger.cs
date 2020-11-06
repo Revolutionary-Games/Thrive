@@ -11,7 +11,7 @@ public class InputReleaseTrigger : InputBool
     {
     }
 
-    public override object ReadInput()
+    public override object GetValueForCallback()
     {
         return ReadTrigger();
     }
@@ -32,9 +32,9 @@ public class InputReleaseTrigger : InputBool
         return true;
     }
 
-    public override bool HasInput()
+    public override bool ShouldTriggerCallbacks()
     {
-        return (bool)ReadInput();
+        return (bool)GetValueForCallback();
     }
 
     /// <summary>
