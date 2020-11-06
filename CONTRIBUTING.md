@@ -39,13 +39,13 @@ currently it is not possible commit changes to Git LFS if you are not
 a team member, so you need to ask someone from the team for help if
 your PR includes changes to assets.
 
-When creating a pull request, include the "closes" or "fixes" keyword followed
-by the issue number that will be closed when the pull request is
-accepted. Example: `closes #1234`.
-
 Unfortunately, issues are often created quickly with little detail
 and context. Please do not hesistate to ask questions regarding the
 issue for clarification and details.
+
+When creating a pull request, include the "closes" or "fixes" keyword followed
+by the issue number that will be closed when the pull request is
+accepted. Example: `closes #1234`.
 
 If you need to alter code for an issue, don't create a new pull request.
 Existing pull requests can be updated. Simply push furthercommits to
