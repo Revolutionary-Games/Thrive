@@ -205,6 +205,14 @@ Git
   descriptive name for a branch that uses underscores to separate
   words.
 
+- When creating a pull request, include the "closes" keyword followed
+  by the issue number that will be closed when the pull request is
+  accepted. Example: "closes #1234".
+
+- If you need to alter code for an issue, don't create a new pull 
+  request. Existing pull requests can be updated. Simply push further
+  commits to the same branch.
+
 - Commit early and frequently, even if the code doesn't run or even
   compile. It is recommended to use an interactive program for staging
   parts of files. So even if you have unrelated changes within the
