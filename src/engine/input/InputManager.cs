@@ -4,6 +4,11 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 
+/// <summary>
+///   A handler for inputs.
+///   This is an AutoLoad class.
+///   Listens for inputs and invokes the input-attribute marked methods.
+/// </summary>
 public class InputManager : Node
 {
     public override void _Ready()
