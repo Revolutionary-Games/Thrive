@@ -205,14 +205,6 @@ Git
   descriptive name for a branch that uses underscores to separate
   words.
 
-- When creating a pull request, include the "closes" keyword followed
-  by the issue number that will be closed when the pull request is
-  accepted. Example: "closes #1234".
-
-- If you need to alter code for an issue, don't create a new pull 
-  request. Existing pull requests can be updated. Simply push further
-  commits to the same branch.
-
 - Commit early and frequently, even if the code doesn't run or even
   compile. It is recommended to use an interactive program for staging
   parts of files. So even if you have unrelated changes within the
@@ -260,10 +252,6 @@ Git
 - You should not leave the co-authored-by line in a squashed commit if
   all you did was merge master into the branch to make the merge show
   up as green on Github.
-
-- Unfortunately, issues are often created quickly with little detail
-  and context. Please do not hesistate to ask questions regarding the
-  issue for clarification and details.
 
 - For maintainers: When manually merging (which is something you
   should avoid) GitHub requires a merge commit to recognize the
