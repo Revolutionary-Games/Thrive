@@ -21,7 +21,6 @@ public class ScreenShotTaker : Node
     {
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
-        RunOnInputAttribute.InputClasses.Add(this);
     }
 
     [RunOnKey("screenshot", RunOnKeyAttribute.InputType.Press)]

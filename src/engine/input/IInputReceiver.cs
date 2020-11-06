@@ -19,7 +19,7 @@ public interface IInputReceiver
     object ReadInput();
 
     /// <summary>
-    ///   Gets weather the input is not default
+    ///   Gets whether the input is not in its non-activated state like a key being pressed
     /// </summary>
     /// <returns>True if the input is triggered</returns>
     bool HasInput();
