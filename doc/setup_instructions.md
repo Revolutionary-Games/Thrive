@@ -474,8 +474,8 @@ Just like Python, you'll want to download these if you are planning
 to add or edit strings into the game.
 
 You can quickly install these by using the command 
-`pip install Babel PyBabel-json Babel-Thrive` or 
-`pip3 install Babel PyBabel-json Babel-Thrive`
+`pip install Babel Babel-Thrive` or 
+`pip3 install Babel Babel-Thrive`
 if you have Python installed.
 
 ### Poedit (optional)

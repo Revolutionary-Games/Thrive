@@ -622,7 +622,7 @@ public class MicrobeHUD : Node
                 var hBox = new HBoxContainer();
                 var compoundText = new Label();
 
-                var readableName = entry.Key.Name;
+                var readableName = entry.Key.GetName();
                 var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 25, 25);
 
                 var compoundsText = new StringBuilder(readableName, 150);

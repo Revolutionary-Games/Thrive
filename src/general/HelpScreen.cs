@@ -75,7 +75,7 @@ public class HelpScreen : Control
         {
             var messages = SimulationParameters.Instance.EasterEggMessages;
 
-            tipMessageLabel.Text = messages.Messages.Random(random);
+            tipMessageLabel.Text = TranslationServer.Translate(messages.Messages.Random(random));
 
             lineSeparator.Show();
             tipMessageLabel.Show();
@@ -91,8 +91,8 @@ public class HelpScreen : Control
     {
         var texts = SimulationParameters.Instance.GetHelpTexts(category);
 
-        var leftTexts = texts.LeftTexts;
-        var rightTexts = texts.RightTexts;
+        var leftTexts = texts.GetLeftTexts();
+        var rightTexts = texts.GetRightTexts();
 
         // Fill the left column with text boxes
         foreach (var entry in leftTexts)

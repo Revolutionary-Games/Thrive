@@ -73,6 +73,11 @@ public class Biome : IRegistryType
         LoadedIcon = GD.Load<Texture>(Icon);
     }
 
+    public string GetName()
+    {
+        return TranslationServer.Translate(Name);
+    }
+
     public class LightDetails
     {
         /// <summary>
