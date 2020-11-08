@@ -67,6 +67,11 @@ public class Compound : IRegistryType
 
     public override string ToString()
     {
-        return Name;
+        return GetName();
+    }
+
+    public string GetName()
+    {
+        return TranslationServer.Translate(Name);
     }
 }

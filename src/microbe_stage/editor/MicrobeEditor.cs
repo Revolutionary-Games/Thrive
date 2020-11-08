@@ -1364,7 +1364,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             if (organelleHere == null)
                 continue;
 
-            if (organelleHere.Definition.Name != "cytoplasm")
+            if (organelleHere.Definition.GetName() != "cytoplasm")
             {
                 throw new Exception("Can't place organelle on top of something " +
                     "else than cytoplasm");
@@ -1375,7 +1375,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             editedMicrobeOrganelles.Remove(organelleHere);
         }
 
-        GD.Print("Placing organelle '", organelle.Definition.Name, "' at: ",
+        GD.Print("Placing organelle '", organelle.Definition.GetName(), "' at: ",
             organelle.Position);
 
         editedMicrobeOrganelles.Add(organelle);
@@ -1389,7 +1389,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         foreach (var cyto in data.ReplacedCytoplasm)
         {
-            GD.Print("Replacing ", cyto.Definition.Name, " at: ",
+            GD.Print("Replacing ", cyto.Definition.GetName(), " at: ",
                 cyto.Position);
 
             editedMicrobeOrganelles.Add(cyto);
@@ -1400,7 +1400,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
-        if ((organelle.Definition.Name == "nucleus" && HasNucleus) ||
+        if ((organelle.Definition.GetName() == "nucleus" && HasNucleus) ||
             (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
                 && organelle.Definition.ChanceToCreate != 0))
             return;

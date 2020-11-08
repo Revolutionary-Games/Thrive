@@ -325,6 +325,11 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
+    public string GetName()
+    {
+        return TranslationServer.Translate(Name);
+    }
+
     public class OrganelleComponentFactoryInfo
     {
         public NucleusComponentFactory Nucleus;

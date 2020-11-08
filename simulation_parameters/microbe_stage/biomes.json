@@ -1,8 +1,8 @@
 {
     "default": {
-        "name": "Epipelagic",
+        "name": "EPIPELAGIC",
         "background": "ocean",
-        "icon": "res://assets/textures/gui/bevel/epipelagic.png",
+        "icon": "res://assets/textures/gui/bevel/EPIPELAGIC.png",
         "sunlight": {
             "colour": {
                 "r": 1,
@@ -22,7 +22,7 @@
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -39,7 +39,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -70,7 +70,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -138,14 +138,14 @@
         }
     },
     "aavolcanic_vent": {
-        "name": "Volcanic vent",
+        "name": "VOLCANIC_VENT",
         "background": "vent",
         "icon": "res://assets/textures/gui/bevel/vents.png",
         "sunlight": {},
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -162,7 +162,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -193,7 +193,7 @@
                     }
                 },
                 "marineSnow": {
-                    "name": "Marine snow",
+                    "name": "MARINE_SNOW",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn"
@@ -264,7 +264,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -332,7 +332,7 @@
         }
     },
     "tidepool": {
-        "name": "Tidepool",
+        "name": "TIDEPOOL",
         "background": "tidepool",
         "icon": "res://assets/textures/gui/bevel/tidepool.png",
         "sunlight": {},
@@ -343,7 +343,7 @@
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -360,7 +360,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -391,7 +391,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -459,7 +459,7 @@
         }
     },
     "bathypelagic": {
-        "name": "Bathypelagic",
+        "name": "BATHYPELAGIC",
         "background": "bathypelagic",
         "icon": "res://assets/textures/gui/bevel/bathy.png",
         "sunlight": {},
@@ -470,7 +470,7 @@
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -487,7 +487,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -518,7 +518,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -540,7 +540,7 @@
                     }
                 },
                 "marineSnow": {
-                    "name": "Marine snow",
+                    "name": "MARINE_SNOW",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn"
@@ -657,14 +657,14 @@
         }
     },
     "abyssopelagic": {
-        "name": "Abyssopelagic",
+        "name": "ABYSSOPELAGIC",
         "background": "abyssopelagic",
         "icon": "res://assets/textures/gui/bevel/abyss.png",
         "sunlight": {},
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -681,7 +681,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -712,7 +712,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -734,7 +734,7 @@
                     }
                 },
                 "marineSnow": {
-                    "name": "Marine snow",
+                    "name": "MARINE_SNOW",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn"
@@ -851,7 +851,7 @@
         }
     },
     "mesopelagic": {
-        "name": "Mesopelagic",
+        "name": "MESOPELAGIC",
         "background": "mesopelagic",
         "icon": "res://assets/textures/gui/bevel/mesopelagic.png",
         "sunlight": {},
@@ -862,7 +862,7 @@
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -879,7 +879,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -910,7 +910,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -932,7 +932,7 @@
                     }
                 },
                 "marineSnow": {
-                    "name": "Marine snow",
+                    "name": "MARINE_SNOW",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn"
@@ -1049,7 +1049,7 @@
         }
     },
     "coastal": {
-        "name": "Coastal",
+        "name": "COASTAL",
         "background": "coastal",
         "icon": "res://assets/textures/gui/bevel/shallow.png",
         "sunlight": {},
@@ -1060,7 +1060,7 @@
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -1077,7 +1077,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -1108,7 +1108,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -1176,14 +1176,14 @@
         }
     },
     "underwater_cave": {
-        "name": "UnderwaterCave",
+        "name": "UNDERWATERCAVE",
         "background": "cave",
         "icon": "res://assets/textures/gui/bevel/cave.png",
         "sunlight": {},
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -1200,7 +1200,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -1231,7 +1231,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -1299,7 +1299,7 @@
         }
     },
     "ice_shelf": {
-        "name": "IceShelf",
+        "name": "ICESHELF",
         "background": "iceshelf",
         "icon": "res://assets/textures/gui/bevel/iceshelf.png",
         "sunlight": {},
@@ -1310,7 +1310,7 @@
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -1327,7 +1327,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -1358,7 +1358,7 @@
                     }
                 },
                 "iceShard": {
-                    "name": "Ice Shard",
+                    "name": "ICESHARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iceshard1.tscn"
@@ -1375,7 +1375,7 @@
                     "compounds": {}
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -1443,7 +1443,7 @@
         }
     },
     "estuary": {
-        "name": "Estuary",
+        "name": "ESTUARY",
         "background": "estuary",
         "icon": "res://assets/textures/gui/bevel/estuary.png",
         "sunlight": {},
@@ -1454,7 +1454,7 @@
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -1471,7 +1471,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -1502,7 +1502,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -1570,7 +1570,7 @@
         }
     },
     "seafloor": {
-        "name": "Sea Floor",
+        "name": "SEA_FLOOR",
         "background": "seafloor",
         "icon": "res://assets/textures/gui/bevel/bathyFloor.png",
         "sunlight": {},
@@ -1581,7 +1581,7 @@
         "conditions": {
             "chunks": {
                 "floatingToxin": {
-                    "name": "Floating Hazard",
+                    "name": "FLOATING_HAZARD",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -1598,7 +1598,7 @@
                     "compounds": {}
                 },
                 "ironSmallChunk": {
-                    "name": "Small Iron Chunk",
+                    "name": "SMALL_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn"
@@ -1629,7 +1629,7 @@
                     }
                 },
                 "ironBigChunk": {
-                    "name": "Big Iron Chunk",
+                    "name": "BIG_IRON_CHUNK",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn"
@@ -1651,7 +1651,7 @@
                     }
                 },
                 "marineSnow": {
-                    "name": "Marine snow",
+                    "name": "MARINE_SNOW",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn"

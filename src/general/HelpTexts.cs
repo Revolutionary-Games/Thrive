@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -26,8 +28,8 @@ public class HelpTexts : IRegistryType
         {
             var combined = new List<string>();
 
-            combined.AddRange(LeftTexts);
-            combined.AddRange(RightTexts);
+            combined.AddRange(GetLeftTexts());
+            combined.AddRange(GetRightTexts());
 
             return combined;
         }
@@ -42,5 +44,15 @@ public class HelpTexts : IRegistryType
 
         if (RightTexts == null || RightTexts.Count < 1)
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing right text lists");
+    }
+
+    public List<string> GetLeftTexts()
+    {
+        return LeftTexts.Select(TranslationServer.Translate).ToList();
+    }
+
+    public List<string> GetRightTexts()
+    {
+        return RightTexts.Select(TranslationServer.Translate).ToList();
     }
 }

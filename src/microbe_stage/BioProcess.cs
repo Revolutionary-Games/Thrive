@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Definition of a bio process that cells can do in the form of a TweakedProcess.
@@ -50,5 +51,10 @@ public class BioProcess : IRegistryType
                     "Non-positive amount of output compound " + output.Key + " found");
             }
         }
+    }
+
+    public string GetName()
+    {
+        return TranslationServer.Translate(Name);
     }
 }

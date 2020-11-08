@@ -1019,7 +1019,7 @@ public class MicrobeEditorGUI : Node
 
             var processTitle = new Label();
             processTitle.AddColorOverride("font_color", new Color(1.0f, 0.84f, 0.0f));
-            processTitle.Text = process.Process.Name;
+            processTitle.Text = process.Process.GetName();
             processContainer.AddChild(processTitle);
 
             var processBody = new HBoxContainer();
@@ -1045,7 +1045,7 @@ public class MicrobeEditorGUI : Node
                     var amountLabel = new Label();
                     amountLabel.Text = Math.Round(inputCompound.Amount, 3) + " ";
                     processBody.AddChild(amountLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.Name));
+                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.GetName()));
                 }
 
                 // And the arrow
@@ -1082,7 +1082,7 @@ public class MicrobeEditorGUI : Node
                 amountLabel.Text = stringBuilder.ToString();
 
                 processBody.AddChild(amountLabel);
-                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.Name));
+                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.GetName()));
             }
 
             var perSecondLabel = new Label();
@@ -1122,7 +1122,8 @@ public class MicrobeEditorGUI : Node
                     percentageLabel.Text = Math.Round(environmentCompound.AvailableAmount * 100, 1) + "%";
 
                     processBody.AddChild(percentageLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.Name));
+                    processBody.AddChild(
+                        GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.GetName()));
                 }
             }
 
@@ -1304,7 +1305,7 @@ public class MicrobeEditorGUI : Node
         // Biome: {0}
         patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("BIOME_LABEL"),
-            patch.BiomeTemplate.Name);
+            patch.BiomeTemplate.GetName());
 
         // {0}-{1}m below sea level
         patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
