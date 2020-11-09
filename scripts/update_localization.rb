@@ -15,7 +15,9 @@ puts 'Extracting .pot file'
 runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
                 'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'window_title', '-k',
                 'dialog_text', '-k', 'Translate', '-o',
-                File.join(LOCALE_FOLDER, '/messages.pot'), ROOT_FOLDER
+                File.join(LOCALE_FOLDER, '/messages.pot'), File.join(ROOT_FOLDER, 'src'),
+                File.join(ROOT_FOLDER, 'simulation_parameters'),
+                File.join(ROOT_FOLDER, 'assets')
 success 'Done extracting .pot file'
 
 info 'Extracting .po files'
