@@ -80,13 +80,13 @@ the new .po file into `scripts/update_localization.rb`.
 Simply open the ruby script into any text editor, and edit the locale list as such:
 
 ```ruby
-LOCALES = %w[en fr _new-locale_]
+LOCALES = %w[en fr _new-locale_].freeze
 ```
 
 For example:
 
 ```ruby
-LOCALES = %w[en fr jp]
+LOCALES = %w[en fr jp].freeze
 ```
 
 **If you are not confident in doing it, you can always ask for a programmer to do it for you 

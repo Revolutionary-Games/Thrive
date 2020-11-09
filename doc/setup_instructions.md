@@ -483,7 +483,9 @@ to add or edit strings into the game.
 You can quickly install these by using the command 
 `pip install Babel Babel-Thrive` or 
 `pip3 install Babel Babel-Thrive`
-if you have Python installed.
+if you have Python installed. On Linux you need to use the `--user`
+flag to get the `pybabel` command to work, installing with sudo won't
+work.
 
 ### Poedit (optional)
 
