@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -13,8 +13,8 @@ public class Patch
     ///   List of all species and their populations in this patch
     /// </summary>
     [JsonProperty]
-    public readonly Dictionary<Species, int> SpeciesInPatch =
-        new Dictionary<Species, int>();
+    public readonly Dictionary<Species, long> SpeciesInPatch =
+        new Dictionary<Species, long>();
 
     [JsonProperty]
     public readonly int ID;
@@ -74,7 +74,7 @@ public class Patch
     ///   Adds a new species to this patch
     /// </summary>
     /// <returns>True when added. False if the species was already in this patch</returns>
-    public bool AddSpecies(Species species, int population =
+    public bool AddSpecies(Species species, long population =
         Constants.INITIAL_SPECIES_POPULATION)
     {
         if (SpeciesInPatch.ContainsKey(species))
@@ -97,7 +97,7 @@ public class Patch
     ///   Updates a species population in this patch
     /// </summary>
     /// <returns>True on success</returns>
-    public bool UpdateSpeciesPopulation(Species species, int newPopulation)
+    public bool UpdateSpeciesPopulation(Species species, long newPopulation)
     {
         if (!SpeciesInPatch.ContainsKey(species))
             return false;
@@ -106,12 +106,29 @@ public class Patch
         return true;
     }
 
-    public int GetSpeciesPopulation(Species species)
+    public long GetSpeciesPopulation(Species species)
     {
         if (!SpeciesInPatch.ContainsKey(species))
             return 0;
 
         return SpeciesInPatch[species];
+    }
+
+    public float GetTotalChunkCompoundAmount(Compound compound)
+    {
+        var result = 0.0f;
+
+        foreach (var chunkKey in Biome.Chunks.Keys)
+        {
+            var chunk = Biome.Chunks[chunkKey];
+
+            if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
+            {
+                result += chunk.Density * chunk.Compounds[compound].Amount;
+            }
+        }
+
+        return result;
     }
 
     public override string ToString()

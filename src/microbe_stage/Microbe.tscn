@@ -32,7 +32,7 @@ can_sleep = false
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
-linear_damp = 0.961
+linear_damp = 2.46
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": "The collision shape is created in code so the warning on this is not serious"
@@ -46,14 +46,14 @@ MaterialToEdit = SubResource( 1 )
 
 [node name="EngulfAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
-bus = "SFX"
-
-[node name="OtherAudio" type="AudioStreamPlayer3D" parent="."]
+unit_size = 50.0
+max_distance = 100.0
 bus = "SFX"
 
 [node name="MovementAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 7 )
-autoplay = true
+unit_size = 50.0
+max_distance = 100.0
 bus = "SFX"
 
 [node name="EngulfDetector" type="Area" parent="."]

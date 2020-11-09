@@ -13,17 +13,20 @@ public static class SaveApplyHelper
     ///     This doesn't clone cloneable properties, so the source object should not be used anymore after this as
     ///     reference properties can get changed in it after target starts running.
     ///   </para>
+    ///   <para>
+    ///     TODO: make this respect AssignOnlyChildItemsOnDeserializeAttribute to handle nested such objects
+    ///   </para>
     /// </remarks>
     /// <param name="target">Object to set the properties on</param>
     /// <param name="source">Object to copy things from</param>
     /// <param name="ignoreMembers">Member names to skip copying</param>
-    /// <typeparam name="T">The type of object to handle</typeparam>
-    public static void CopyJSONSavedPropertiesAndFields<T>(T target, T source, List<string> ignoreMembers = null)
+    public static void CopyJSONSavedPropertiesAndFields(object target, object source, List<string> ignoreMembers = null)
     {
-        if (ignoreMembers == null)
-            ignoreMembers = new List<string>();
+        ignoreMembers ??= new List<string>();
 
-        var type = typeof(T);
+        var type = target.GetType();
+
+        // TODO: should this verify that source.GetType() == type?
 
         foreach (var field in BaseThriveConverter.FieldsOf(target))
         {

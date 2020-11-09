@@ -1,105 +1,128 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/general/HelpScreen.cs" type="Script" id=4]
 [ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=6]
 
-[sub_resource type="StyleBoxFlat" id=1]
-border_width_top = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 429, 1 )
 
 [sub_resource type="DynamicFont" id=2]
+use_filter = true
 font_data = ExtResource( 3 )
 
 [node name="HelpScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 1 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-LeftColumnPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/LeftColumn")
-RightColumnPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/RightColumn")
-LineSeparatorPath = NodePath("ScrollContainer/VBoxContainer/HSeparator")
-TipMessageLabelPath = NodePath("ScrollContainer/VBoxContainer/TipMessageLabel")
+LeftColumnPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/LeftColumn")
+RightColumnPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/RightColumn")
+TipMessageLabelPath = NodePath("CenterContainer/VBoxContainer/TipMessageLabel")
 HelpBoxScene = ExtResource( 5 )
 TimerPath = NodePath("Timer")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
-
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -378.5
-margin_top = -305.0
-margin_right = 378.5
-margin_bottom = 255.0
-theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 757.0
-margin_bottom = 560.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 240.0
+margin_top = 40.0
+margin_right = 1040.0
+margin_bottom = 679.0
+size_flags_horizontal = 2
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 800.0
+margin_bottom = 554.0
+custom_constants/separation = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+margin_right = 800.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 800, 550 )
 size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
+margin_right = 800.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 790.0
+margin_bottom = 10.0
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_right = 757.0
-custom_constants/separation = 15
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 780.0
 
-[node name="LeftColumn" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
-custom_constants/separation = 15
+[node name="LeftColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 388.0
+size_flags_horizontal = 3
 
-[node name="RightColumn" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 15.0
-margin_right = 15.0
-custom_constants/separation = 15
+[node name="RightColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 392.0
+margin_right = 780.0
+size_flags_horizontal = 3
 
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
-margin_top = 10.0
-margin_right = 757.0
-margin_bottom = 14.0
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+margin_top = 550.0
+margin_right = 800.0
+margin_bottom = 554.0
 custom_styles/separator = SubResource( 1 )
 
-[node name="TipMessageLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 757.0
-margin_bottom = 42.0
+[node name="CloseButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_left = 325.0
+margin_top = 569.0
+margin_right = 475.0
+margin_bottom = 604.0
+rect_min_size = Vector2( 150, 35 )
+size_flags_horizontal = 4
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TipMessageLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 619.0
+margin_right = 800.0
+margin_bottom = 639.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 0, 1 )
 text = "Easter egg message goes here"
+align = 1
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="CloseButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 110.0
-margin_top = 265.0
-margin_right = 360.0
-margin_bottom = 305.0
-theme = ExtResource( 1 )
-text = "CLOSE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
-[connection signal="pressed" from="CloseButton" to="." method="OnCloseButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

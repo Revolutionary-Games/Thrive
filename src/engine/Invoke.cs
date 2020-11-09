@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Runs an actions on the main thread before the next update
+///   Runs actions on the main thread before the next update
 /// </summary>
 public class Invoke : Node
 {

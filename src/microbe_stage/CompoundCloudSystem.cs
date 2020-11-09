@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Manages spawning and processing compound clouds
 /// </summary>
-public class CompoundCloudSystem : Node
+public class CompoundCloudSystem : Node, ISaveLoadedTracked
 {
     [JsonProperty]
     private int neededCloudsAtOnePosition;
@@ -37,6 +37,8 @@ public class CompoundCloudSystem : Node
     [JsonIgnore]
     public int Resolution => clouds[0].Resolution;
 
+    public bool IsLoadedFromSave { get; set; }
+
     public override void _Ready()
     {
         cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
@@ -62,7 +64,10 @@ public class CompoundCloudSystem : Node
     {
         allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 
-        clouds.Clear();
+        if (!IsLoadedFromSave)
+        {
+            clouds.Clear();
+        }
 
         // Count the number of clouds needed at one position from the loaded compound types
         neededCloudsAtOnePosition = (int)Math.Ceiling(allCloudCompounds.Count /
@@ -76,12 +81,30 @@ public class CompoundCloudSystem : Node
             AddChild(createdCloud);
         }
 
+        // TODO: this should be changed to detect which clouds are safe to delete
         while (clouds.Count > neededCloudsAtOnePosition)
         {
-            var cloud = clouds[0];
+            var cloud = clouds[clouds.Count - 1];
             RemoveChild(cloud);
             cloud.Free();
             clouds.Remove(cloud);
+        }
+
+        // TODO: if the compound types have changed since we saved, that needs to be handled
+        if (IsLoadedFromSave)
+        {
+            foreach (var cloud in clouds)
+            {
+                // Re-init with potentially changed compounds
+                // TODO: special handling is needed if the compounds actually changed
+                cloud.Init(fluidSystem, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2],
+                    cloud.Compounds[3]);
+
+                // Re-add the clouds as our children
+                AddChild(cloud);
+            }
+
+            return;
         }
 
         for (int i = 0; i < clouds.Count; ++i)
@@ -231,8 +254,7 @@ public class CompoundCloudSystem : Node
             if (!cloud.ContainsPositionWithRadius(position, radius))
                 continue;
 
-            int cloudRelativeX, cloudRelativeY;
-            cloud.ConvertToCloudLocal(position, out cloudRelativeX, out cloudRelativeY);
+            cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
 
             // Calculate all circle positions and grab from all the valid
             // positions
@@ -276,6 +298,97 @@ public class CompoundCloudSystem : Node
     }
 
     /// <summary>
+    ///   Tries to find specified compound as close to the point as possible.
+    /// </summary>
+    /// <param name="position">Position to search around</param>
+    /// <param name="compound">What compound to search for</param>
+    /// <param name="searchRadius">How wide to search around the point</param>
+    /// <param name="minConcentration">Limits search to only find concentrations higher than this</param>
+    /// <returns>The nearest found point for the compound or null</returns>
+    public Vector3? FindCompoundNearPoint(Vector3 position, Compound compound, float searchRadius = 200,
+        float minConcentration = 120)
+    {
+        if (searchRadius < 1)
+            throw new ArgumentException("searchRadius must be >= 1");
+
+        int resolution = Resolution;
+
+        // This version is used when working with cloud local coordinates
+        float localRadius = searchRadius / resolution;
+
+        float localRadiusSquared = Mathf.Pow(searchRadius / resolution, 2);
+
+        float nearestDistanceSquared = float.MaxValue;
+
+        Vector3? closestPoint = null;
+
+        foreach (var cloud in clouds)
+        {
+            // Skip clouds that don't handle the target compound
+            if (!cloud.HandlesCompound(compound))
+                continue;
+
+            // Skip clouds that are out of range
+            if (!cloud.ContainsPositionWithRadius(position, searchRadius))
+                continue;
+
+            cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
+
+            // For simplicity all points within a bounding box around the
+            // relative origin point is calculated and that is restricted by
+            // checking if the point is within the circle before grabbing
+
+            // And apparently there isn't an algorithm to generate the points with closest ones first? so
+            // this goes through everything and keeps the closest found point
+
+            int xEnd = (int)Mathf.Round(cloudRelativeX + localRadius);
+            int yEnd = (int)Mathf.Round(cloudRelativeY + localRadius);
+
+            for (int x = (int)Mathf.Round(cloudRelativeX - localRadius);
+                x <= xEnd;
+                x += 1)
+            {
+                for (int y = (int)Mathf.Round(cloudRelativeY - localRadius);
+                    y <= yEnd;
+                    y += 1)
+                {
+                    // Negative coordinates are always outside the cloud area
+                    if (x < 0 || y < 0)
+                        continue;
+
+                    // Circle check
+                    if (Mathf.Pow(x - cloudRelativeX, 2) +
+                        Mathf.Pow(y - cloudRelativeY, 2) >
+                        localRadiusSquared)
+                    {
+                        // Not in it
+                        continue;
+                    }
+
+                    // Then just need to check that it is within the cloud simulation array
+                    if (x < cloud.Size && y < cloud.Size)
+                    {
+                        if (cloud.AmountAvailable(compound, x, y) >= minConcentration)
+                        {
+                            // Potential target point
+                            var currentWorldPos = cloud.ConvertToWorld(x, y);
+                            var distance = (position - currentWorldPos).LengthSquared();
+
+                            if (distance < nearestDistanceSquared)
+                            {
+                                closestPoint = currentWorldPos;
+                                nearestDistanceSquared = distance;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return closestPoint;
+    }
+
+    /// <summary>
     ///   Clears the contents of all clouds
     /// </summary>
     public void EmptyAllClouds()
@@ -303,27 +416,9 @@ public class CompoundCloudSystem : Node
         }
     }
 
-    public void ApplyPropertiesFromSave(CompoundCloudSystem compoundCloudSystem)
-    {
-        cloudGridCenter = compoundCloudSystem.cloudGridCenter;
-        elapsed = compoundCloudSystem.elapsed;
-
-        // Copy concentrations (and as well as the other cloud parameters that need to be set)
-        // TODO: allow saves to work if new compounds are added
-        if (clouds.Count != compoundCloudSystem.clouds.Count)
-            throw new Exception("Loading a save that has different compound cloud types doesn't currently work");
-
-        for (int i = 0; i < clouds.Count; ++i)
-        {
-            // TODO: it's not very nice to pass null as the context here
-            clouds[i].ApplySave(compoundCloudSystem.clouds[i], null);
-        }
-    }
-
     [SuppressMessage("ReSharper", "PossibleLossOfFraction",
         Justification = "I'm not sure how I should fix this code I didn't write (hhyyrylainen)")]
-    private static Vector3
-        CalculateGridCenterForPlayerPos(Vector3 pos)
+    private static Vector3 CalculateGridCenterForPlayerPos(Vector3 pos)
     {
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves

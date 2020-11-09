@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -178,7 +178,7 @@ public class PatchMap
     /// </summary>
     public void UpdateGlobalPopulations()
     {
-        var seenPopulations = new Dictionary<Species, int>();
+        var seenPopulations = new Dictionary<Species, long>();
 
         foreach (var entry in Patches)
         {

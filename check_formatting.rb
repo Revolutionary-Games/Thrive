@@ -27,6 +27,9 @@ ONLY_FILE_LIST = 'files_to_check.txt'
 OUTPUT_MUTEX = Mutex.new
 MSBUILD_MUTEX = Mutex.new
 
+# Bom bytes
+BOM = [239, 187, 191].freeze
+
 @options = {
   checks: DEFAULT_CHECKS,
   skip_file_types: [],
@@ -165,6 +168,15 @@ def process_file?(filepath)
   end
 end
 
+def file_begins_with_bom(path)
+  raw_data = File.binread(path, 3)
+
+  # Unpack as raw bytes for comparison
+  potential_bom = raw_data.unpack('CCC')
+
+  potential_bom == BOM
+end
+
 # Different handle functions for file checks
 def handle_gd_file(_path)
   OUTPUT_MUTEX.synchronize do
@@ -175,6 +187,15 @@ end
 
 def handle_cs_file(path)
   errors = false
+
+  # Check for BOM first
+  if file_begins_with_bom path
+    OUTPUT_MUTEX.synchronize do
+      error 'File begins with BOM'
+      errors = true
+    end
+  end
+
   original = File.read(path)
   line_number = 0
 

@@ -1,17 +1,13 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Handles running IWorldEffect types
 /// </summary>
 public class TimedWorldOperations
 {
-    /// <summary>
-    ///   This probably needs to be changed to a huge precision number
-    ///   depending on what timespans we'll end up using.
-    /// </summary>
-    private double totalPassedTime;
-
+    [JsonProperty]
     private List<IWorldEffect> effects = new List<IWorldEffect>();
 
     /// <summary>
@@ -24,16 +20,15 @@ public class TimedWorldOperations
     ///   </para>
     /// </remarks>
     /// <param name="timePassed">Time passed since last call</param>
-    public void OnTimePassed(double timePassed)
+    /// <param name="totalPassed">Total time passed</param>
+    public void OnTimePassed(double timePassed, double totalPassed)
     {
-        totalPassedTime += timePassed;
-
         GD.Print("TimedWorldOperations: running effects. elapsed: ",
-            timePassed, " total passed: ", totalPassedTime);
+            timePassed, " total passed: ", totalPassed);
 
         foreach (var effect in effects)
         {
-            effect.OnTimePassed(timePassed, totalPassedTime);
+            effect.OnTimePassed(timePassed, totalPassed);
         }
     }
 

@@ -1,4 +1,4 @@
-﻿namespace AutoEvo
+namespace AutoEvo
 {
     /// <summary>
     ///   Base helper class for steps trying a fixed number of variant solutions and picking the best
@@ -18,7 +18,7 @@
 
         public interface IAttemptResult
         {
-            int Score { get; }
+            long Score { get; }
         }
 
         public int TotalSteps => (tryCurrentVariant ? 1 : 0) + variantsToTry;

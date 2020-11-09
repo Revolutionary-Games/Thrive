@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Action that can be undone and redone
@@ -8,6 +9,7 @@ public abstract class ReversableAction
     /// <summary>
     ///   True when the action has been performed and can be undone
     /// </summary>
+    [JsonProperty]
     public bool Performed { get; private set; }
 
     /// <summary>

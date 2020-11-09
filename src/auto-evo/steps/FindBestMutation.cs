@@ -1,4 +1,4 @@
-﻿namespace AutoEvo
+namespace AutoEvo
 {
     /// <summary>
     ///   Step that finds the best mutation for a single species
@@ -24,7 +24,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(map, Constants.AUTOEVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             PopulationSimulation.Simulate(config);
 
@@ -38,7 +38,7 @@
             var mutated = (MicrobeSpecies)species.Clone();
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated);
 
-            var config = new SimulationConfiguration(map, Constants.AUTOEVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.ExcludedSpecies.Add(species);
             config.ExtraSpecies.Add(mutated);
@@ -52,14 +52,14 @@
 
         private class AttemptResult : IAttemptResult
         {
-            public AttemptResult(Species mutation, int score)
+            public AttemptResult(Species mutation, long score)
             {
                 Mutation = mutation;
                 Score = score;
             }
 
             public Species Mutation { get; }
-            public int Score { get; }
+            public long Score { get; }
         }
     }
 }

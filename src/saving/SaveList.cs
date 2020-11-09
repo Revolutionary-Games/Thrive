@@ -31,12 +31,24 @@ public class SaveList : ScrollContainer
     public NodePath DeleteConfirmDialogPath;
 
     [Export]
-    public NodePath LoadConfirmDialogPath;
+    public NodePath LoadNewerSaveDialogPath;
+
+    [Export]
+    public NodePath LoadOlderSaveDialogPath;
+
+    [Export]
+    public NodePath LoadInvalidSaveDialogPath;
+
+    [Export]
+    public NodePath LoadIncompatibleDialogPath;
 
     private Control loadingItem;
     private BoxContainer savesList;
     private ConfirmationDialog deleteConfirmDialog;
-    private ConfirmationDialog loadConfirmDialog;
+    private ConfirmationDialog loadNewerConfirmDialog;
+    private ConfirmationDialog loadOlderConfirmDialog;
+    private ConfirmationDialog loadInvalidConfirmDialog;
+    private AcceptDialog loadIncompatibleDialog;
 
     private PackedScene listItemScene;
 
@@ -61,7 +73,10 @@ public class SaveList : ScrollContainer
         loadingItem = GetNode<Control>(LoadingItemPath);
         savesList = GetNode<BoxContainer>(SavesListPath);
         deleteConfirmDialog = GetNode<ConfirmationDialog>(DeleteConfirmDialogPath);
-        loadConfirmDialog = GetNode<ConfirmationDialog>(LoadConfirmDialogPath);
+        loadOlderConfirmDialog = GetNode<ConfirmationDialog>(LoadOlderSaveDialogPath);
+        loadNewerConfirmDialog = GetNode<ConfirmationDialog>(LoadNewerSaveDialogPath);
+        loadInvalidConfirmDialog = GetNode<ConfirmationDialog>(LoadInvalidSaveDialogPath);
+        loadIncompatibleDialog = GetNode<AcceptDialog>(LoadIncompatibleDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -104,6 +119,8 @@ public class SaveList : ScrollContainer
 
             item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -147,6 +164,8 @@ public class SaveList : ScrollContainer
 
     private void OnDeletePressed(string saveName)
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         saveToBeDeleted = saveName;
 
         // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
@@ -158,6 +177,8 @@ public class SaveList : ScrollContainer
 
     private void OnConfirmDelete()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         GD.Print("Deleting save: ", saveToBeDeleted);
         SaveHelper.DeleteSave(saveToBeDeleted);
         saveToBeDeleted = null;
@@ -169,20 +190,53 @@ public class SaveList : ScrollContainer
     private void OnOldSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-
-        loadConfirmDialog.DialogText = TranslationServer.Translate("OLDER_VERSION_LOADING_WARNING");
-        loadConfirmDialog.PopupCenteredMinsize();
+        loadOlderConfirmDialog.PopupCenteredMinsize();
     }
 
     private void OnNewSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
+        loadNewerConfirmDialog.PopupCenteredMinsize();
+    }
 
-        loadConfirmDialog.DialogText = TranslationServer.Translate("NEWER_VERSION_LOADING_WARNING");
-        loadConfirmDialog.PopupCenteredMinsize();
+    private void OnInvalidLoaded(string saveName)
+    {
+        saveToBeLoaded = saveName;
+        loadInvalidConfirmDialog.PopupCenteredMinsize();
+    }
+
+    private void OnKnownIncompatibleLoaded()
+    {
+        loadIncompatibleDialog.PopupCenteredMinsize();
+    }
+
+    private void OnConfirmLoadOlder()
+    {
+        GD.PrintErr("The user requested to load an older save.");
+        OnConfirmSaveLoad();
+    }
+
+    private void OnConfirmLoadNewer()
+    {
+        GD.PrintErr("The user requested to load a newer save.");
+        OnConfirmSaveLoad();
+    }
+
+    private void OnConfirmLoadInvalid()
+    {
+        GD.PrintErr("The user requested to load an invalid save.");
+        OnConfirmSaveLoad();
     }
 
     private void OnConfirmSaveLoad()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+    }
+
+    private void LoadSave()
     {
         SaveHelper.LoadSave(saveToBeLoaded);
     }

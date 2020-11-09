@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -91,6 +91,11 @@ public struct Hex : IEquatable<Hex>
     public static Hex operator -(Hex a, Hex b)
     {
         return new Hex(a.Q - b.Q, a.R - b.R);
+    }
+
+    public static Hex operator *(Hex a, int b)
+    {
+        return new Hex(a.Q * b, a.R * b);
     }
 
     public static bool operator ==(Hex left, Hex right)
