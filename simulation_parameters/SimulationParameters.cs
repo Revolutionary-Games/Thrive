@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Godot;
@@ -58,9 +58,6 @@ public class SimulationParameters : Node
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");
 
-        EasterEggMessages = LoadDirectObject<EasterEggMessages>(
-            "res://simulation_parameters/common/easter_egg_messages.json");
-
         musicCategories = LoadRegistry<MusicCategory>("res://simulation_parameters/common/music_tracks.json");
 
         helpTexts = LoadRegistry<HelpTexts>("res://simulation_parameters/common/help_texts.json");
@@ -76,8 +73,6 @@ public class SimulationParameters : Node
     public static SimulationParameters Instance => instance;
 
     public NameGenerator NameGenerator { get; }
-
-    public EasterEggMessages EasterEggMessages { get; }
 
     public OrganelleDefinition GetOrganelleType(string name)
     {
@@ -230,7 +225,6 @@ public class SimulationParameters : Node
         CheckRegistryType(helpTexts);
 
         NameGenerator.Check(string.Empty);
-        EasterEggMessages.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()

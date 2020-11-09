@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Godot;
@@ -41,7 +41,7 @@ public abstract class Species : ICloneable
     ///     from the per patch populations.
     ///   </para>
     /// </remarks>
-    public int Population = 1;
+    public long Population = 1;
 
     public int Generation = 1;
 
@@ -80,7 +80,12 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
-    public void SetPopulationFromPatches(int population)
+    /// <summary>
+    ///   Repositions the structure of the species according to stage specific rules
+    /// </summary>
+    public abstract void RepositionToOrigin();
+
+    public void SetPopulationFromPatches(long population)
     {
         if (population < 0)
         {
@@ -107,9 +112,9 @@ public abstract class Species : ICloneable
     ///     auto-evo finishes.
     ///   </para>
     /// </remarks>
-    public void ApplyImmediatePopulationChange(int constant, float coefficient)
+    public void ApplyImmediatePopulationChange(long constant, float coefficient)
     {
-        Population = (int)(Population * coefficient);
+        Population = (long)(Population * coefficient);
         Population += constant;
 
         if (Population < 0)

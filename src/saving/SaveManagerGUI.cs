@@ -180,6 +180,20 @@ public class SaveManagerGUI : Control
         Selected[0].LoadThisSave();
     }
 
+    private void LoadFirstSelectedSaveButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        LoadFirstSelectedSave();
+    }
+
+    private void RefreshButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        RefreshList();
+    }
+
     private void OpenSaveDirectoryPressed()
     {
         OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER));
@@ -187,6 +201,8 @@ public class SaveManagerGUI : Control
 
     private void DeleteSelectedButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         deleteSelectedConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
@@ -208,6 +224,8 @@ public class SaveManagerGUI : Control
 
     private void OnConfirmDeleteSelected()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
 
         Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
@@ -233,6 +251,8 @@ public class SaveManagerGUI : Control
 
     private void OnBackButton()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(nameof(OnBackPressed));
     }
 }

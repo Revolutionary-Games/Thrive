@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -81,7 +82,7 @@ public class Mutations
             mutated.IsBacteria = false;
         }
 
-        var colour = mutated.IsBacteria ? RandomProkayroteColour() : RandomColour();
+        var colour = mutated.IsBacteria ? RandomProkaryoteColour() : RandomEukaryoteColour();
 
         if (random.Next(0, 101) <= 20)
         {
@@ -127,6 +128,7 @@ public class Mutations
         mutated.MembraneRigidity = Math.Max(Math.Min(parent.MembraneRigidity +
             random.Next(-25, 26) / 100.0f, 1), -1);
 
+        mutated.RepositionToOrigin();
         mutated.UpdateInitialCompounds();
 
         return mutated;
@@ -142,12 +144,15 @@ public class Mutations
 
         GameWorld.SetInitialSpeciesProperties(temp);
 
-        // TODO: in the old code GenerateNameSection was used to
-        // override the default species name here
+        // Override the default species starting name to have more variability in the names
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+        temp.Epithet = nameGenerator.GenerateNameSection();
+        temp.Genus = nameGenerator.GenerateNameSection();
 
         for (int step = 0; step < steps; ++step)
         {
             CreateMutatedSpecies(temp, mutated);
+
             temp = (MicrobeSpecies)mutated.Clone();
         }
 
@@ -205,103 +210,112 @@ public class Mutations
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
-        organelles.Clear();
-
-        // Delete or replace an organelle randomly
-        for (int i = 0; i < parentOrganelles.Count; i++)
+        for (var iteration = 0; iteration < 10; iteration++)
         {
-            bool copy = true;
+            organelles.Clear();
 
-            var organelle = parentOrganelles[i];
-
-            if (parentOrganelles.Count < 2)
+            // Delete or replace an organelle randomly
+            for (int i = 0; i < parentOrganelles.Count; i++)
             {
-                // Removing last organelle would be silly
-            }
-            else if (organelle.Definition != nucleus)
-            {
-                // Chance to replace or remove if not a nucleus
+                bool copy = true;
 
-                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE)
+                var organelle = parentOrganelles[i];
+
+                if (parentOrganelles.Count < 2)
                 {
-                    copy = false;
+                    // Removing last organelle would be silly
                 }
-                else if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
+                else if (organelle.Definition != nucleus)
                 {
-                    copy = false;
+                    // Chance to replace or remove if not a nucleus
 
-                    var replacer = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
-                        organelle.Position, organelle.Orientation);
+                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE)
+                    {
+                        copy = false;
+                    }
+                    else if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
+                    {
+                        copy = false;
 
-                    // The replacing organelle might not fit at the same position
-                    try
-                    {
-                        organelles.Add(replacer);
+                        var replacer = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
+                            organelle.Position, organelle.Orientation);
+
+                        // The replacing organelle might not fit at the same position
+                        try
+                        {
+                            organelles.Add(replacer);
+                        }
+                        catch (ArgumentException)
+                        {
+                            // Couldn't replace it
+                            copy = true;
+                        }
                     }
-                    catch (ArgumentException)
-                    {
-                        // Couldn't replace it
-                        copy = true;
-                    }
+                }
+
+                if (!copy)
+                    continue;
+
+                // Copy the organelle
+                try
+                {
+                    organelles.Add((OrganelleTemplate)organelle.Clone());
+                }
+                catch (ArgumentException)
+                {
+                    // Add the organelle randomly back to the list to make
+                    // sure we don't throw it away
+                    AddNewOrganelle(organelles, organelle.Definition);
                 }
             }
 
-            if (!copy)
-                continue;
-
-            // Copy the organelle
-            try
-            {
-                organelles.Add((OrganelleTemplate)organelle.Clone());
-            }
-            catch (ArgumentException)
-            {
-                // Add the organelle randomly back to the list to make
-                // sure we don't throw it away
-                AddNewOrganelle(organelles, organelle.Definition);
-            }
-        }
-
-        // Can add up to 6 new organelles (Which should allow AI to catch up to player more
-        // We can insert new organelles at the end of the list
-        if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
-        {
-            AddNewOrganelle(organelles, GetRandomOrganelle(isBacteria));
-        }
-
-        /*
-        Probability of mutation occuring 5 time(s) = 0.15 = 1.0E-5
-        Probability of mutation NOT occuring = (1 - 0.1)5 = 0.59049
-        Probability of mutation occuring = 1 - (1 - 0.1)5 = 0.40951
-        */
-
-        // We can insert new organelles at the end of the list
-        for (int n = 0; n < 5; ++n)
-        {
-            if (random.Next(0.0f, 1.0f) < Constants.MUTATION_EXTRA_CREATION_RATE)
+            // Can add up to 6 new organelles (Which should allow AI to catch up to player more
+            // We can insert new organelles at the end of the list
+            if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
             {
                 AddNewOrganelle(organelles, GetRandomOrganelle(isBacteria));
             }
-        }
 
-        if (isBacteria)
-        {
-            if (random.Next(0.0f, 100.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
+            /*
+            Probability of mutation occuring 5 time(s) = 0.15 = 1.0E-5
+            Probability of mutation NOT occuring = (1 - 0.1)5 = 0.59049
+            Probability of mutation occuring = 1 - (1 - 0.1)5 = 0.40951
+            */
+
+            // We can insert new organelles at the end of the list
+            for (int n = 0; n < 5; ++n)
             {
-                AddNewOrganelle(organelles, nucleus);
+                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_EXTRA_CREATION_RATE)
+                {
+                    AddNewOrganelle(organelles, GetRandomOrganelle(isBacteria));
+                }
             }
-        }
 
-        // Disallow creating empty species as that throws an exception when trying to spawn
-        if (organelles.Count < 1)
-        {
-            // Add the first parent species organelle
-            AddNewOrganelle(organelles, parentOrganelles[0].Definition);
+            if (isBacteria)
+            {
+                if (random.Next(0.0f, 100.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
+                {
+                    AddNewOrganelle(organelles, nucleus);
+                }
+            }
 
-            // If still empty, copy the first organelle of the parent
+            // Disallow creating empty species as that throws an exception when trying to spawn
             if (organelles.Count < 1)
-                organelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
+            {
+                // Add the first parent species organelle
+                AddNewOrganelle(organelles, parentOrganelles[0].Definition);
+
+                // If still empty, copy the first organelle of the parent
+                if (organelles.Count < 1)
+                    organelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
+            }
+
+            // Try again if the mutation has islands
+            if (organelles.GetIslandHexes().Count == 0)
+                return;
         }
+
+        GD.PrintErr("Could not create a valid mutation after 10 retries.");
     }
 
     /// <summary>
@@ -350,19 +364,22 @@ public class Mutations
 
                 for (int side = 1; side <= 6; ++side)
                 {
-                    // Offset by hex offset
-                    result.Position = pos + Hex.HexNeighbourOffset[(Hex.HexSide)side];
-
-                    // TODO: checking one or two extra hexes in the direction would make this succeed more often
-
-                    // Check every possible rotation value.
-                    for (int rotation = 0; rotation <= 5; ++rotation)
+                    for (int radius = 1; radius <= 3; ++radius)
                     {
-                        result.Orientation = rotation;
+                        // Offset by hex offset multiplied by a factor to check for greater range
+                        var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
+                        hexOffset *= radius;
+                        result.Position = pos + hexOffset;
 
-                        if (existingOrganelles.CanPlace(result))
+                        // Check every possible rotation value.
+                        for (int rotation = 0; rotation <= 5; ++rotation)
                         {
-                            return result;
+                            result.Orientation = rotation;
+
+                            if (existingOrganelles.CanPlace(result))
+                            {
+                                return result;
+                            }
                         }
                     }
                 }
@@ -404,26 +421,23 @@ public class Mutations
         return random.Next(Constants.MIN_OPACITY_MUTATION, Constants.MAX_OPACITY_MUTATION);
     }
 
-    /// <summary>
-    ///   TODO: rename to something more sensible and rename RandomColourChannels to this
-    /// </summary>
-    private Color RandomColour(float? opaqueness = null)
+    private Color RandomEukaryoteColour(float? opaqueness = null)
     {
         if (!opaqueness.HasValue)
             opaqueness = RandomOpacity();
 
-        return RandomColourChannels(opaqueness.Value);
+        return RandomColour(opaqueness.Value);
     }
 
-    private Color RandomProkayroteColour(float? opaqueness = null)
+    private Color RandomProkaryoteColour(float? opaqueness = null)
     {
         if (!opaqueness.HasValue)
             opaqueness = RandomOpacityBacteria();
 
-        return RandomColourChannels(opaqueness.Value);
+        return RandomColour(opaqueness.Value);
     }
 
-    private Color RandomColourChannels(float opaqueness)
+    private Color RandomColour(float opaqueness)
     {
         return new Color(RandomColourChannel(), RandomColourChannel(), RandomColourChannel(),
             opaqueness);
@@ -569,23 +583,12 @@ public class Mutations
             return MutateWord(name);
         }
 
-        // TODO: C# probably has better ways to handle case conversions
-
         // Convert to lower case
-        for (int i = 1; i < newName.Length - 1; i++)
-        {
-            if (newName[i] >= 65 && newName[i] <= 92)
-            {
-                newName[i] = (char)(newName[i] + 32);
-            }
-        }
+        string lowercase = newName.ToString().ToLower(CultureInfo.InvariantCulture);
 
         // Convert first letter to upper case
-        if (newName[0] >= 97 && newName[0] <= 122)
-        {
-            newName[0] = (char)(newName[0] - 32);
-        }
+        string result = char.ToUpper(lowercase[0], CultureInfo.InvariantCulture) + lowercase.Substring(1);
 
-        return newName.ToString();
+        return result;
     }
 }

@@ -29,10 +29,15 @@ public class MainMenu : Node
     [Export]
     public NodePath FreebuildButtonPath;
 
+    [Export]
+    public NodePath GLES2PopupPath;
+
     public Array MenuArray;
     public TextureRect Background;
 
     public bool IsReturningToMenu = false;
+
+    private readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
 
     private TextureRect thriveLogo;
     private OptionsMenu options;
@@ -41,6 +46,8 @@ public class MainMenu : Node
 
     private Button newGameButton;
     private Button freebuildButton;
+
+    private AcceptDialog gles2Popup;
 
     public override void _Ready()
     {
@@ -120,6 +127,7 @@ public class MainMenu : Node
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
+        gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
 
         // Load settings
         if (Settings.Instance == null)
@@ -127,6 +135,13 @@ public class MainMenu : Node
 
         // Set initial menu
         SwitchMenu();
+
+        // Easter egg message
+        ToolTipHelper.RegisterToolTipForControl(
+            thriveLogo, toolTipCallbacks, ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"));
+
+        if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
+            gles2Popup.PopupCenteredMinsize();
     }
 
     /// <summary>
@@ -267,7 +282,7 @@ public class MainMenu : Node
         SetCurrentMenu(uint.MaxValue, false);
 
         // Show the options
-        options.Visible = true;
+        options.OpenFromMainMenu();
 
         thriveLogo.Hide();
     }

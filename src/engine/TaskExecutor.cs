@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -172,7 +172,15 @@ public class TaskExecutor
 
                 if (command.CommandType == ThreadCommand.Type.Task)
                 {
-                    command.Task.RunSynchronously();
+                    try
+                    {
+                        command.Task.RunSynchronously();
+                    }
+                    catch (TaskSchedulerException exception)
+                    {
+                        GD.Print("Background task failed due to thread exiting: ", exception.Message);
+                        return;
+                    }
 
                     // Make sure task exceptions aren't ignored.
                     // Could perhaps in the future find some other way to handle this
