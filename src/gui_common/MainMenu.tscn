@@ -61,6 +61,7 @@ ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
 NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/Freebuild Editor")
+GLES2PopupPath = NodePath("GLES2 Popup")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
