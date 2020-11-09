@@ -275,9 +275,11 @@ public class AutoEvoRun
 
         foreach (var entry in combinedExternalEffects)
         {
+            // entry.Value is the amount, Item2 is the reason string
             builder.Append(string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("AUTOEVO_POPULATION_CHANGED"),
                 entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
+            builder.Append("\n");
         }
 
         return builder.ToString();

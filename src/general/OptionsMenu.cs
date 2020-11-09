@@ -650,9 +650,9 @@ public class OptionsMenu : Control
         languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
             .ToList();
 
-        foreach (string local in languages)
+        foreach (var locale in languages)
         {
-            optionButton.AddItem(local);
+            optionButton.AddItem(locale);
         }
     }
 
