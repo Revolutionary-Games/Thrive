@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
-using Array = Godot.Collections.Array;
 using Environment = System.Environment;
 
 /// <summary>
@@ -388,7 +388,7 @@ public class OptionsMenu : Control
         sfxMuted.Pressed = settings.VolumeSFXMuted;
         guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
-        languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
+        UpdateSelectedLanguage(settings);
 
         // Hide or show the reset language button based on the selected language
         resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
@@ -647,13 +647,12 @@ public class OptionsMenu : Control
 
     private void LoadLanguages(OptionButton optionButton)
     {
-        Array locals = TranslationServer.GetLoadedLocales();
-        languages = new List<string>();
+        languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
+            .ToList();
 
-        foreach (string local in locals)
+        foreach (string local in languages)
         {
             optionButton.AddItem(local);
-            languages.Add(local);
         }
     }
 
@@ -1016,11 +1015,24 @@ public class OptionsMenu : Control
 
     private void OnResetLanguagePressed()
     {
-        Settings.Instance.SelectedLanguage.Value = Settings.DefaultLanguage;
+        Settings.Instance.SelectedLanguage.Value = null;
         resetLanguageButton.Visible = false;
 
         Settings.Instance.ApplyLanguageSettings();
-        languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage.Value);
+        UpdateSelectedLanguage(Settings.Instance);
         UpdateResetSaveButtonState();
+    }
+
+    private void UpdateSelectedLanguage(Settings settings)
+    {
+        if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
+        {
+            // English is the default language
+            languageSelection.Selected = languages.IndexOf("en");
+        }
+        else
+        {
+            languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
+        }
     }
 }
