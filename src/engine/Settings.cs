@@ -111,6 +111,8 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
+    public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
+
     // Performance Properties
 
     /// <summary>
@@ -198,11 +200,6 @@ public class Settings
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
-
-    /// <summary>
-    /// Property with backing field used to return the default locale for this computer if nothing has been set
-    /// </summary>
-    public string SelectedLanguage { get; set; } = null;
 
     public static bool operator ==(Settings lhs, Settings rhs)
     {
@@ -378,7 +375,7 @@ public class Settings
     /// </summary>
     public void ApplyLanguageSettings()
     {
-        string language = SelectedLanguage ?? DefaultLanguage;
+        string language = SelectedLanguage.Value ?? DefaultLanguage;
 
         TranslationServer.SetLocale(language);
 

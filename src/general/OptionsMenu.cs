@@ -388,11 +388,11 @@ public class OptionsMenu : Control
         sfxMuted.Pressed = settings.VolumeSFXMuted;
         guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
-        languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage);
+        languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
 
         // Hide or show the reset language button based on the selected language
-        resetLanguageButton.Visible = Settings.Instance.SelectedLanguage != null &&
-            Settings.Instance.SelectedLanguage != Settings.DefaultLanguage;
+        resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
+            settings.SelectedLanguage.Value != Settings.DefaultLanguage;
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
@@ -1007,20 +1007,20 @@ public class OptionsMenu : Control
 
     private void OnLanguageSettingSelected(int item)
     {
-        Settings.Instance.SelectedLanguage = languageSelection.GetItemText(item);
+        Settings.Instance.SelectedLanguage.Value = languageSelection.GetItemText(item);
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnResetLanguagePressed()
     {
-        Settings.Instance.SelectedLanguage = Settings.DefaultLanguage;
+        Settings.Instance.SelectedLanguage.Value = Settings.DefaultLanguage;
         resetLanguageButton.Visible = false;
 
         Settings.Instance.ApplyLanguageSettings();
-        languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage);
-        CompareSettings();
+        languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage.Value);
+        UpdateResetSaveButtonState();
     }
 }

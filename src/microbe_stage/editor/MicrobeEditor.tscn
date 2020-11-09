@@ -1485,7 +1485,7 @@ custom_constants/margin_left = 20
 [node name="MPLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer"]
 margin_left = 20.0
 margin_top = 1.0
-margin_right = 121.0
+margin_right = 151.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 16 )
 text = "MUTATION_POINTS"
@@ -1513,7 +1513,7 @@ text = "100 / 100"
 align = 2
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 
@@ -1645,15 +1645,15 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer"]
-margin_right = 318.0
-margin_bottom = 885.0
+margin_right = 367.0
+margin_bottom = 873.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer"]
-margin_right = 308.0
-margin_bottom = 885.0
+margin_right = 357.0
+margin_bottom = 873.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_constants/separation = 10
@@ -1908,7 +1908,7 @@ custom_constants/margin_left = 5
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip"]
 margin_left = 5.0
 margin_right = 297.0
-margin_bottom = 220.0
+margin_bottom = 234.0
 mouse_filter = 2
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
@@ -1927,7 +1927,7 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/metabolosome"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 107.0
 margin_bottom = 112.0
 custom_constants/separation = 1
 
@@ -1972,7 +1972,7 @@ margin_top = 78.0
 margin_right = 97.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
-text = METABOLOSOMES
+text = "METABOLOSOMES"
 align = 1
 
 [node name="chromatophore" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer" groups=[
@@ -2032,7 +2032,7 @@ margin_top = 78.0
 margin_right = 97.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
-text = THYLAKOID
+text = "THYLAKOID"
 align = 1
 
 [node name="chemoSynthesizingProteins" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer" groups=[
@@ -2050,7 +2050,7 @@ custom_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chemoSynthesizingProteins"]
 margin_top = 5.0
 margin_right = 97.0
-margin_bottom = 112.0
+margin_bottom = 126.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chemoSynthesizingProteins/VBoxContainer"]
@@ -2436,7 +2436,7 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/pilus"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 109.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
@@ -2621,7 +2621,7 @@ custom_constants/margin_left = 5
 
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip"]
 margin_left = 5.0
-margin_right = 297.0
+margin_right = 352.0
 margin_bottom = 335.0
 mouse_filter = 2
 custom_constants/vseparation = 0
@@ -2701,7 +2701,7 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/mitochondrion"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 108.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
@@ -3069,7 +3069,7 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/oxytoxy"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 99.0
 margin_bottom = 111.0
 custom_constants/separation = 1
 
@@ -3131,7 +3131,7 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/bioluminescentVacuole"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 153.0
 margin_bottom = 111.0
 custom_constants/separation = 1
 
@@ -3773,10 +3773,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 204.0
-margin_top = 226.0
-margin_right = 506.0
-margin_bottom = 692.0
+margin_left = 208.0
+margin_top = 230.0
+margin_right = 510.0
+margin_bottom = 696.0
 theme = SubResource( 42 )
 edit_alpha = false
 
