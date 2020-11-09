@@ -1515,8 +1515,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
             speciesLabel.Autowrap = true;
             speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                                    TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
-                                    patch.GetSpeciesPopulation(species)),
+                TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
+                patch.GetSpeciesPopulation(species));
             speciesListBox.AddItem(speciesLabel);
         }
 

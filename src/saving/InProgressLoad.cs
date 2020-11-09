@@ -116,7 +116,7 @@ public class InProgressLoad
                 }
                 catch (Exception)
                 {
-                    ReportStatus(false, TranslationServer.Translate("SAVE_IS_INVALID"), 
+                    ReportStatus(false, TranslationServer.Translate("SAVE_IS_INVALID"),
                         TranslationServer.Translate("SAVE_HAS_INVALID_GAME_STATE"));
                     state = State.Finished;
                     break;
