@@ -2094,7 +2094,7 @@ margin_bottom = 107.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 36 )
 custom_constants/line_spacing = -1
-text = "CHEMOSYNTHESIZING_PROTEINS"
+text = "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 align = 1
 autowrap = true
 
@@ -2804,7 +2804,7 @@ margin_top = 78.0
 margin_right = 97.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
-text = "Chloroplast"
+text = "CHLOROPLAST"
 align = 1
 
 [node name="thermoplast" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer" groups=[
@@ -2989,7 +2989,7 @@ margin_bottom = 106.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 36 )
 custom_constants/line_spacing = -2
-text = "NITROGEN_FIXING_PLASTID"
+text = "PLASTID"
 align = 1
 autowrap = true
 

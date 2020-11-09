@@ -709,7 +709,7 @@ margin_bottom = 199.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 pressed = true
-text = "Run auto-evo during gameplay"
+text = "RUN_AUTO_EVO_DURING_GAMEPLAY"
 
 [node name="Misc" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
@@ -815,7 +815,7 @@ margin_bottom = 192.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 pressed = true
-text = "Show tutorials (in new games)"
+text = "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 
 [node name="TutorialsEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 202.0
@@ -823,7 +823,7 @@ margin_right = 333.0
 margin_bottom = 224.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Show tutorials (in current game)"
+text = "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -851,7 +851,7 @@ margin_bottom = 302.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Use a custom username"
+text = "USE_A_CUSTOM_USERNAME"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 312.0
@@ -862,7 +862,7 @@ margin_bottom = 339.0
 margin_top = 2.0
 margin_right = 185.0
 margin_bottom = 24.0
-text = "Custom Username:"
+text = "CUSTOM_USERNAME"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer3"]
 margin_left = 189.0
