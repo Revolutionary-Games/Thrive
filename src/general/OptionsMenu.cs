@@ -146,7 +146,7 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ResetLanguageButtonPath;
 
-    private const float AUDIO_BAR_SCALE = 6f;
+    [Export]
     public NodePath CustomUsernameEnabledPath;
 
     [Export]
