@@ -3,7 +3,7 @@
 require_relative '../RubySetupSystem/RubyCommon'
 
 puts 'Extracting .pot file'
-runOpen3Checked 'pybabel', 'extract', '-F', '../locale/babelrc', '-k', 'LineEdit', '-k', 'text', '-k', 'window_title', '-k', 'dialog_text', '-k', 'Translate', '-o', '../locale/messages.pot', '../.'
+runOpen3Checked 'pybabel', 'extract', '-F', '../locale/babelrc', '-k', 'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'window_title', '-k', 'dialog_text', '-k', 'Translate', '-o', '../locale/messages.pot', '../.'
 puts 'Done extracting'
 
 puts 'Extracting .po files'
