@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -237,5 +238,96 @@ public class OrganelleLayout<T> : ICollection<T>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return Organelles.GetEnumerator();
+    }
+
+    /// <summary>
+    ///   Loops though all hexes and checks if there any without connection to the rest.
+    /// </summary>
+    /// <returns>
+    ///   Returns a list of hexes that are not connected to the rest
+    /// </returns>
+    internal List<Hex> GetIslandHexes()
+    {
+        if (Organelles.Count < 1)
+            return new List<Hex>();
+
+        // The hex to start with
+        var initHex = Organelles[0].Position;
+
+        // These are the hexes have neighbours and aren't islands
+        var hexesWithNeighbours = new List<Hex> { initHex };
+
+        // These are all of the existing hexes, that if there are no islands will all be visited
+        var shouldBeVisited = Organelles.Select(p => p.Position).ToList();
+
+        CheckmarkNeighbors(hexesWithNeighbours);
+
+        // Return the difference of the lists (hexes that were not visited)
+        return shouldBeVisited.Except(hexesWithNeighbours).ToList();
+    }
+
+    /// <summary>
+    ///   Adds the neighbors of the element in checked to checked, as well as their neighbors, and so on
+    /// </summary>
+    /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
+    private void CheckmarkNeighbors(List<Hex> @checked)
+    {
+        var hexCache = ComputeHexCache();
+
+        var queue = new Queue<Hex>(@checked);
+
+        while (queue.Count > 0)
+        {
+            var neighbors = GetNeighborHexes(queue.Dequeue(), hexCache).Where(p => !@checked.Contains(p));
+
+            foreach (var neighbor in neighbors)
+            {
+                queue.Enqueue(neighbor);
+                @checked.Add(neighbor);
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Computes all the hex positions
+    /// </summary>
+    /// <returns>The set of hex positions</returns>
+    private HashSet<Hex> ComputeHexCache()
+    {
+        var set = new HashSet<Hex>();
+
+        foreach (var hex in Organelles.SelectMany(o =>
+            o.Definition.GetRotatedHexes(o.Orientation).Select(h => h + o.Position)))
+        {
+            set.Add(hex);
+        }
+
+        return set;
+    }
+
+    /// <summary>
+    ///   Gets all neighboring hexes where there is an organelle
+    /// </summary>
+    /// <param name="hex">The hex to get the neighbours for</param>
+    /// <param name="hexCache">The cache of all existing hex locations for fast lookup</param>
+    /// <returns>A list of neighbors that are part of an organelle</returns>
+    private IEnumerable<Hex> GetNeighborHexes(Hex hex, HashSet<Hex> hexCache)
+    {
+        return Hex.HexNeighbourOffset
+            .Select(p => hex + p.Value)
+            .Where(hexCache.Contains);
+    }
+
+    /// <summary>
+    ///   Gets all neighboring hexes where there is an organelle. This doesn't use a cache so for each potential
+    ///   hex this recomputes the positions of all organelles because this uses GetOrganelleAt
+    /// </summary>
+    /// <param name="hex">The hex to get the neighbours for</param>
+    /// <returns>A list of neighbors that are part of an organelle</returns>
+    private IEnumerable<Hex> GetNeighborHexesSlow(Hex hex)
+    {
+        return Hex.HexNeighbourOffset
+            .Select(p => hex + p.Value)
+            .Where(p => GetOrganelleAt(p) != null);
     }
 }

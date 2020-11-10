@@ -118,6 +118,12 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     private OrganelleLayout<OrganelleTemplate> editedMicrobeOrganelles;
 
+    /// <summary>
+    ///   When this is true, on next process this will handle added and removed organelles and update stats etc.
+    ///   This is done to make adding a bunch of organelles at once more efficient.
+    /// </summary>
+    private bool organelleDataDirty = true;
+
     // This is the already placed hexes
 
     /// <summary>
@@ -291,6 +297,9 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
+    [JsonIgnore]
+    public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
+
     /// <summary>
     ///   Number of organelles in the microbe
     /// </summary>
@@ -428,17 +437,14 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         // It is easiest to just replace all
         editedSpecies.Organelles.Clear();
 
-        var centerOfMass = editedMicrobeOrganelles.CenterOfMass;
-
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
-
-            // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
-            organelleToAdd.Position -= centerOfMass;
             organelleToAdd.PlacedThisSession = false;
             editedSpecies.Organelles.Add(organelleToAdd);
         }
+
+        editedSpecies.RepositionToOrigin();
 
         // Update bacteria status
         editedSpecies.IsBacteria = !HasNucleus;
@@ -843,34 +849,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     }
 
     /// <summary>
-    ///   Recursively loops though all hexes and checks if there any without connection to the rest.
-    /// </summary>
-    /// <returns>
-    ///   Returns a list of hexes that are not connected to the rest
-    /// </returns>
-    internal List<Hex> GetIslandHexes()
-    {
-        var organelles = editedMicrobeOrganelles.Organelles;
-
-        if (organelles.Count == 0)
-            return new List<Hex>();
-
-        // The hex to start the recursion with
-        var initHex = organelles[0].Position;
-
-        // These are the hexes have neighbours and aren't islands
-        var hexesWithNeighbours = new List<Hex> { initHex };
-
-        // These are all of the existing hexes, that if there are no islands will all be visited
-        var shouldBeVisited = organelles.Select(p => p.Position).ToList();
-
-        CheckmarkNeighbors(hexesWithNeighbours, initHex);
-
-        // Return the difference of the lists (hexes that were not visited)
-        return shouldBeVisited.Except(hexesWithNeighbours).ToList();
-    }
-
-    /// <summary>
     ///   Sets up the editor when entering
     /// </summary>
     private void OnEnterEditor()
@@ -1059,8 +1037,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     {
         UpdateGUIAfterLoadingSpecies(editedSpecies);
         OnLoadedEditorReady();
-
-        OnOrganellesChanged();
     }
 
     private void SetupEditedSpecies(MicrobeSpecies species)
@@ -1135,6 +1111,12 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     private void UpdateEditor(float delta)
     {
         _ = delta;
+
+        if (organelleDataDirty)
+        {
+            OnOrganellesChanged();
+            organelleDataDirty = false;
+        }
 
         // We move all the hexes and the hover hexes to 0,0,0 so that
         // the editor is free to replace them wherever
@@ -1434,37 +1416,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    /// <summary>
-    ///   A recursive function that adds the neighbours of current hex that contain organelles to the checked list and
-    ///   recurses to them to find more connected organelles
-    /// </summary>
-    /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
-    /// <param name="currentHex">The hex to visit the neighbours of.</param>
-    private void CheckmarkNeighbors(List<Hex> @checked, Hex currentHex)
-    {
-        // Get all neighbors not already visited
-        var myNeighbors = GetNeighborHexes(currentHex).Where(p => !@checked.Contains(p)).ToArray();
-
-        // Add the new neighbors to the list to not visit them again
-        @checked.AddRange(myNeighbors);
-
-        // Recurse to all neighbours to find more connected hexes
-        foreach (var neighbor in myNeighbors)
-        {
-            CheckmarkNeighbors(@checked, neighbor);
-        }
-    }
-
-    /// <summary>Gets all neighboring hexes where there is an organelle</summary>
-    /// <param name="hex">The hex to get the neighbours for</param>
-    /// <returns>Returns a list of neighbors that are part of an organelle</returns>
-    private IEnumerable<Hex> GetNeighborHexes(Hex hex)
-    {
-        return Hex.HexNeighbourOffset
-            .Select(p => hex + p.Value)
-            .Where(p => editedMicrobeOrganelles.GetOrganelleAt(p) != null);
-    }
-
     private bool IsValidPlacement(OrganelleTemplate organelle)
     {
         bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
@@ -1628,31 +1579,27 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(OrganelleTemplate organelle)
     {
-        OnOrganellesChanged();
+        organelleDataDirty = true;
     }
 
     [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(OrganelleTemplate organelle)
     {
-        OnOrganellesChanged();
+        organelleDataDirty = true;
     }
 
     private void OnOrganellesChanged()
     {
         UpdateAlreadyPlacedVisuals();
 
-        // send to gui current status of cell
+        // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
         gui.UpdateGuiButtonStatus(HasNucleus);
 
-        // TODO: if this turns out to be expensive this should only be
-        // called once the cell is fully loaded in and not for each
-        // organelle
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
 
-        // TODO: this might also be expensive
         gui.UpdateSpeed(CalculateSpeed());
     }
 
@@ -1666,7 +1613,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         int nextFreeHex = 0;
         int nextFreeOrganelle = 0;
 
-        var islands = GetIslandHexes();
+        var islands = editedMicrobeOrganelles.GetIslandHexes();
 
         // Build the entities to show the current microbe
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
