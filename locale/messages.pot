@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-09 13:23+0100\n"
+"POT-Creation-Date: 2020-11-10 19:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,1567 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: ../src/auto-evo/AutoEvoRun.cs:119
+msgid "ABORTED"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:122
+msgid "FINISHED"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:125
+msgid "NOT_RUNNING"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:135
+msgid "AUTOEVO_STEPS_DONE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:139
+msgid "STARTING"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:280
+msgid "AUTOEVO_POPULATION_CHANGED"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:218
+msgid "POPULATION"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:232
+msgid "PREVIOUS"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:248
+msgid "RUNRESULT_HAS_A_MUTATION"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:252
+msgid "RUNRESULT_GENE_CODE"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:263
+msgid "RUNRESULT_SPREAD_TO_PATCHES"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:272
+msgid "RUNRESULT_BY_SENDING_POPULATION"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:290
+msgid "RUNRESULT_POP_IN_PATCHES"
+msgstr ""
+
+#: ../src/engine/LoadingScreen.cs:34 ../src/engine/LoadingScreen.tscn:128
+msgid "LOADING"
+msgstr ""
+
+#: ../src/engine/LoadingScreen.cs:36
+msgid "LOADING_TIP"
+msgstr ""
+
+#: ../src/general/HelpScreen.tscn:105
+msgid "CLOSE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:123
+msgid "GRAPHICS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:135
+msgid "SOUND"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:147
+msgid "PERFORMANCE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:159
+msgid "MISC"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:198
+msgid "VSYNC"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:206
+msgid "FULLSCREEN"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:228
+msgid "MULTISAMPLE_ANTI_ALIASING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:235
+msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:265
+msgid "RESOLUTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:278
+msgid "AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:288
+msgid "MAX_FPS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:314
+msgid "COLOURBLIND_CORRECTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:346
+msgid "CHROMATIC_ABERRATION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:387
+msgid "MASTER_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:414 ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:488 ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:554
+msgid "MUTE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:428
+msgid "MUSIC_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:461
+msgid "AMBIANCE_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:494
+msgid "SFX_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:527
+msgid "GUI_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:572
+msgid "LANGUAGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:587 ../src/general/OptionsMenu.tscn:898
+msgid "RESET"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:610
+msgid "COMPOUND_CLOUDS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:625
+msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:632 ../src/general/OptionsMenu.tscn:676
+msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:669
+msgid "CLOUD_RESOLUTION_DIVISOR"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:711
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:734
+msgid "PLAY_INTRO_VIDEO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:743
+msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:752
+msgid "AUTOSAVE_DURING_THE_GAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:763
+msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:791
+msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:817
+msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:825
+msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:841
+msgid "CHEAT_KEYS_ENABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:853
+msgid "USE_A_CUSTOM_USERNAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:864
+msgid "CUSTOM_USERNAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:888 ../src/general/PauseMenu.tscn:132
+#: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:111
+msgid "BACK"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:909 ../src/saving/NewSaveMenu.tscn:72
+msgid "SAVE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:925
+msgid "RESET_SETTINGS_TO_DEFAULTS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:937
+msgid "RESET_TO_DEFAULTS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:938
+msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:947
+msgid "CLOSE_OPTIONS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:971
+msgid "UNSAVED_CHANGE_WARNING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1002
+msgid "SAVE_AND_CONTINUE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1011
+msgid "DISCARD_AND_CONTINUE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1027
+msgid "CANCEL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1038
+msgid "ERROR"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1039
+msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:56
+msgid "RESUME"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:63
+msgid "SAVE_GAME"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:70 ../src/gui_common/MainMenu.tscn:162
+msgid "LOAD_GAME"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:78
+msgid "STATISTICS"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:85
+msgid "HELP"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:92 ../src/gui_common/MainMenu.tscn:174
+msgid "OPTIONS"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:99
+msgid "RETURN_TO_MENU"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:106
+msgid "EXIT"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:147
+msgid "NEW_GAME"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:186
+msgid "TOOLS"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:198
+msgid "EXTRAS"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:210
+msgid "CREDITS"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:222
+msgid "QUIT"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:245
+msgid "MICROBE_FREEBUILD_EDITOR"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:345
+msgid "GLES2_MODE_WARNING"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:346
+msgid "GLES2_MODE_WARNING_TEXT"
+msgstr ""
+
+#: ../src/gui_common/QuickLoadHandler.tscn:17
+msgid "SAVE_HAS_DIFFERENT_VERSION"
+msgstr ""
+
+#: ../src/gui_common/QuickLoadHandler.tscn:18
+msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:168
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:232
+msgid "MEMBRANE_RIGIDITY"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:283
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5233
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5475
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5717
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6021
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6659
+msgid "MOBILITY"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5563
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5808
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6112
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6750
+msgid "HEALTH"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:337
+msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:513
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:358
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:422
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1824
+msgid "CYTOPLASM"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1258
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1896
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4008
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4280
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
+msgid "TURNS"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:51
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:456
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:696
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3172
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3735
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4040
+#: ../src/microbe_stage/MicrobeStage.tscn:1582
+msgid "GLUCOSE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:474
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:714
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1283
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1921
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2196
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4033
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4799
+msgid "INTO"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:3
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:721
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2178
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2465
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3197
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4287
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4781
+msgid "ATP"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:528
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:809
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1097
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1430
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1735
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2297
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3004
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3847
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4119
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4424
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4613
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4916
+msgid "STORAGE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:559
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:840
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1461
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1766
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2041
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2328
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3035
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3310
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3598
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3878
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4150
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4644
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5748
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6052
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6356
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6690
+msgid "OSMOREGULATION_COST"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
+msgid "CYTOPLASM_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:249
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:598
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:662
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1978
+msgid "METABOLOSOMES"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
+msgid "DOT_RATE_SCALES"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
+msgid "WITH_CONCENTRATION_OF"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:762
+msgid "OXYGEN_DOT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:863
+msgid "METABOLOSOMES_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2041
+msgid "THYLAKOID"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:217
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:943
+msgid "THYLAKOIDS"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3728
+msgid "PRODUCES"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:995
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3465
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
+msgid "DOT_RATE_SCALES_WITH"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3478
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3766
+msgid "CONCENTRATION_OF"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:99
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1661
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3773
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
+msgid "CARBON_DIOXIDE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1033
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1684
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4373
+msgid "AND"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1046
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
+msgid "INTENSITY_OF"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1053
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
+#: ../src/microbe_stage/MicrobeStage.tscn:1360
+msgid "LIGHT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1151
+msgid "THYLAKOIDS_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:147
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
+msgid "CHEMOSYNTHESIZING_PROTEINS"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:39
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1265
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4015
+#: ../src/microbe_stage/MicrobeStage.tscn:1744
+msgid "HYDROGEN_SULFIDE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1313
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
+msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
+msgid "CARBON"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1332
+msgid "DIOXIDE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1350
+msgid "ALSO_TURNS"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:52
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1564
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2169
+msgid "RUSTICYANIN"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:75
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
+#: ../src/microbe_stage/MicrobeStage.tscn:1798
+msgid "IRON"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:87
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2253
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4872
+msgid "OXYGEN"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1789
+msgid "RUSTICYANIN_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:85
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1869
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2232
+msgid "NITROGENASE"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:15
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1928
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4312
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+msgid "AMMONIA"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1946
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3215
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4330
+msgid "DOT_RATE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1959
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3228
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4343
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4865
+msgid "SCALES_WITH_CONCENTRATION_OF"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1966
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
+msgid "NITROGEN"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2064
+msgid "NITROGENASE_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:184
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2295
+msgid "OXYTOXISOME"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2203
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4806
+msgid "OXYTOXY"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2221
+msgid "DOT_CAN_RELEASE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
+msgid "TOXINS_BY_PRESSING_E"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2351
+msgid "OXYTOXISOME_DESC"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:351
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2367
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2443
+msgid "FLAGELLUM"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2458
+msgid "USES"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
+msgid "TO_INCREASE_THE_MOVEMENT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2495
+msgid "SPEED_OF_THE_CELL"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2530
+msgid "SPEED"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2615
+msgid "FLAGELLUM_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
+msgid "PREDATORY_PILUS"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2742
+msgid "PREDATORY_PILUS_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2568
+msgid "CILIA"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2869
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5097
+msgid "TO_BE_IMPLEMENTED"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2885
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2949
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2717
+msgid "NUCLEUS"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2969
+msgid "NUCLEUS_SMALL_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
+msgid "NUCLEUS_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:411
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2780
+msgid "MITOCHONDRION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
+msgid "MITOCHONDRION_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3349
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3413
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
+msgid "CHLOROPLAST"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3621
+msgid "CHLOROPLAST_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3701
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2907
+msgid "THERMOPLAST"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3803
+msgid "TEMPERATURE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3901
+msgid "THERMOPLAST_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:321
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3981
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2971
+msgid "CHEMOPLAST"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4173
+msgid "CHEMOPLAST_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:285
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4189
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4253
+msgid "NITROGEN_FIXING_PLASTID"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4478
+msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4494
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4558
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3102
+msgid "VACUOLE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4579
+msgid "INREASE_STORAGE_SPACE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4667
+msgid "VACUOLE_DESCRIPTION"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4683
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3167
+msgid "TOXIN_VACUOLE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4824
+msgid "DOT_CAN"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4837
+msgid "RELEASE_TOXINS_BY_PRESSING"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4844
+msgid "E_DOT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4852
+msgid "RATE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4970
+msgid "TOXIN_VACUOLE_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4986
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5050
+msgid "BIOLUMINESCENT_VACUOLE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5182
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3414
+msgid "NORMAL"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5294
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5778
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6082
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6720
+msgid "RESOURCE_ABSORBTION_SPEED"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5347
+msgid "NORMAL_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5363
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3482
+msgid "DOUBLE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5586
+msgid "DOUBLE_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5666
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
+msgid "CELLULOSE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5838
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6780
+msgid "PHYSICAL_RESISTANCE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5867
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6839
+msgid "CANNOT_ENGULF"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5890
+msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5970
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3618
+msgid "CHITIN"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6142
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6810
+msgid "TOXIN_RESISTANCE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6194
+msgid "CHITIN_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6210
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
+msgid "CALCIUM_CARBONATE"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6528
+msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6608
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3761
+msgid "SILICA"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6862
+msgid "SILICA_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1150
+msgid "SUCCESSFUL_SCAVENGE"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1157
+msgid "SUCCESSFUL_KILL"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1551
+msgid "ESCAPE_ENGULFING"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:444
+msgid "MICROBE_PATCH_LABEL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:615
+msgid "STUFF_AT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:448
+msgid "PLAYER_REPRODUCED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:555
+msgid "PLAYER_DIED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:902
+msgid "NOTHING_HERE"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:926
+msgid "COMPOUNDS_COLON"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:963
+msgid "SPECIES_COLON"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1043
+msgid "ENVIRONMENT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1304
+msgid "TEMPERATURE_SHORT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1415
+msgid "PRESSURE_SHORT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1491
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4814
+msgid "COMPOUNDS"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:27
+#: ../src/microbe_stage/MicrobeStage.tscn:1690
+msgid "PHOSPHATE"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1851
+msgid "AGENTS"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/compounds.json:63
+#: ../src/microbe_stage/MicrobeStage.tscn:1905
+msgid "OXYTOXY_NT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2112
+msgid "POPULATION_CAPITAL"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:16
+msgid "PATCH_PANGONIAN_VENTS"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:24
+msgid "PATCH_PANGONIAN_MESOPELAGIC"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:31
+msgid "PATCH_PANGONIAN_EPIPELAGIC"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:38
+msgid "PATCH_PANGONIAN_TIDEPOOL"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:45
+msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:52
+msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:59
+msgid "PATCH_PANGONIAN_COAST"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:66
+msgid "PATCH_PANGONIAN_ESTUARY"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:73
+msgid "PATCH_CAVE"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:80
+msgid "PATCH_ICE_SHELF"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:87
+msgid "PATCH_PANGONIAN_SEAFLOOR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:542
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:996
+msgid "LOADING_MICROBE_EDITOR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:543
+msgid "WAITING_FOR_AUTO_EVO"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1800
+msgid "AUTO_EVO_FAILED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1801
+msgid "AUTO_EVO_RUN_STATUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1045
+msgid "REPORT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1066
+msgid "PATCH_MAP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1087
+msgid "EDITOR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1134
+msgid "ORGANISM_STATISTICS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1179
+msgid "SPEED_COLON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1209
+msgid "HP_COLON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1239
+msgid "SIZE_COLON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1260
+msgid "GENERATION_COLON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1302
+msgid "ATP_BALANCE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1490
+msgid "MUTATION_POINTS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1577
+msgid "STRUCTURE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1600
+msgid "APPEARANCE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1623
+msgid "BEHAVIOR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1729
+msgid "STRUCTURAL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
+msgid "PROTEINS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2106
+msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
+msgid "EXTERNAL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2628
+msgid "ORGANELLES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
+msgid "PLASTID"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3193
+msgid "N_A_MP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3230
+msgid "BIOLUMESCENT_VACUOLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3323
+msgid "MEMBRANE_TYPES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3784
+msgid "FLUIDITY_RIGIDITY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3821
+msgid "COLOUR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3994
+msgid "CONFIRM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4003
+msgid "NEGATIVE_ATP_BALANCE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4004
+msgid "NEGATIVE_ATP_BALANCE_TEXT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4012
+msgid "DISCONNECTED_ORGANELLES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4013
+msgid "DISCONNECTED_ORGANELLES_TEXT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4079
+msgid "PATCH_NAME"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4112
+msgid "FOOD_CHAIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4126
+msgid "TIMELINE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4179
+msgid "AUTO_EVO_RESULTS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4198
+msgid "EXTERNAL_EFFECTS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4237
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5161
+msgid "NEXT_CAPITAL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4351
+msgid "SELECT_A_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4466
+msgid "PHYSICAL_CONDITIONS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4649
+msgid "ATMOSPHERIC_GASSES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5074
+msgid "SPECIES_PRESENT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5132
+msgid "MOVE_TO_THIS_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
+msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:659
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:664
+msgid "ATP_PRODUCTION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:665
+msgid "ATP_PRODUCTION_TOO_LOW"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1467
+msgid "BIOME_LABEL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1472
+msgid "BELOW_SEA_LEVEL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1512
+msgid "WITH_POPULATION"
+msgstr ""
+
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:57
+msgid "EXTINCTION_CAPITAL"
+msgstr ""
+
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
+msgid "EXTINCTION_BOX_TEXT"
+msgstr ""
+
+#: ../src/microbe_stage/gui/WinBox.tscn:56
+msgid "WIN_BOX_TITLE"
+msgstr ""
+
+#: ../src/microbe_stage/gui/WinBox.tscn:65
+msgid "WIN_TEXT"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:71 ../src/saving/InProgressLoad.cs:87
+#: ../src/saving/InProgressLoad.cs:131
+msgid "LOADING_GAME"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:72
+msgid "READING_SAVE_DATA"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:88
+msgid "CREATING_OBJECTS_FROM_SAVE"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:95
+msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:119
+msgid "SAVE_IS_INVALID"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:120
+msgid "SAVE_HAS_INVALID_GAME_STATE"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:132
+msgid "PROCESSING_LOADED_OBJECTS"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:145
+msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:151
+msgid "LOAD_FINISHED"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:174
+msgid "ERROR_LOADING"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:161
+msgid "SAVING"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:191
+msgid "SAVE_FAILED"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:192
+msgid "ERROR_SAVING"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.cs:61
+msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:28
+msgid "CREATE_NEW_SAVE"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:45
+msgid "NAME"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:65
+msgid "EXTRA_OPTIONS"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:83
+msgid "OVERWRITE_EXISTING_SAVE"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:117
+msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+msgstr ""
+
+#: ../src/saving/SaveHelper.cs:373
+msgid "SAVING_SUCCEEDED"
+msgstr ""
+
+#: ../src/saving/SaveHelper.cs:377
+msgid "SAVING_FAILED"
+msgstr ""
+
+#: ../src/saving/SaveList.cs:173
+msgid "SAVE_DELETE_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:45 ../src/saving/SaveListItem.tscn:120
+msgid "LOADING_DOT"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:295
+msgid "DELETE_THIS_SAVE"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:67 ../src/saving/SaveList.tscn:77
+msgid "LOAD_INCOMPATIBLE_SAVE"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:68
+msgid "NEWER_VERSION_LOADING_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:78
+msgid "OLDER_VERSION_LOADING_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:87
+msgid "LOAD_INVALID_SAVE"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:88
+msgid "LOAD_INVALID_SAVE_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:96
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:98
+msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:147
+msgid "CREATED_AT"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:154 ../src/saving/SaveListItem.tscn:173
+#: ../src/saving/SaveListItem.tscn:192 ../src/saving/SaveListItem.tscn:215
+#: ../src/saving/SaveListItem.tscn:241 ../src/saving/SaveListItem.tscn:260
+msgid "DOT_DOT_DOT"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:166
+msgid "TYPE"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:185
+msgid "DESCRIPTION"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:208
+msgid "VERSION"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:222
+msgid "( ! )"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:234
+msgid "BY"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:253
+msgid "CREATED_ON_PLATFORM"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:285 ../src/saving/SaveManagerGUI.tscn:52
+msgid "LOAD"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:296
+msgid "DELETE_SAVE_CONFIRMATION"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.cs:208
+msgid "DELETE_SELECTED_SAVE_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.cs:220
+msgid "DELETE_ALL_OLD_SAVE_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:64
+msgid "REFRESH"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:72
+msgid "DELETE_SELECTED"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:80
+msgid "CLEAN_UP_OLD_SAVES"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:91
+msgid "OPEN_SAVE_DIRECTORY"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:123
+msgid "TOTAL_SAVES"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:143
+msgid "SAVE_SPACE_USED"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:163
+msgid "SELECTED_COLON"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:180
+msgid "DELETE_SELECTED_SAVES"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:190
+msgid "DELETE_OLD_SAVES"
+msgstr ""
+
+#: ../src/saving/SaveStatusOverlay.tscn:116
+msgid "SAVING_ERROR"
+msgstr ""
+
+#: ../src/saving/SaveStatusOverlay.tscn:176
+msgid "COPY_ERROR_TO_CLIPBOARD"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:39
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:72
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:203
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:234
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
+msgid "TUTORIAL"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:59
+msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:92
+msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:122
+msgid "EDITOR_TUTORIAL_CELL_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
+msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:190
+msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
+msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+msgid "GOT_IT"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
+msgid "MICROBE_STAGE_INITIAL"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:89
+msgid "SHOW_TUTORIALS"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
+msgid "BEGIN_THRIVING"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:138
+msgid "MICROBE_STAGE_CONTROL_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
+msgid "MICROBE_STAGE_COLLECT_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
+msgid "MICROBE_STAGE_HEALTH_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
@@ -331,1625 +1892,11 @@ msgstr ""
 msgid "SEA_FLOOR"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:721
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2178
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2465
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3197
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4781
-msgid "ATP"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:15
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1928
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4312
-#: ../src/microbe_stage/MicrobeStage.tscn:1633
-msgid "AMMONIA"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1687
-msgid "PHOSPHATE"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4015
-#: ../src/microbe_stage/MicrobeStage.tscn:1741
-msgid "HYDROGEN_SULFIDE"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:51
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:456
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:696
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3172
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4040
-#: ../src/microbe_stage/MicrobeStage.tscn:1579
-msgid "GLUCOSE"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1902
-msgid "OXYTOXY_NT"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
-#: ../src/microbe_stage/MicrobeStage.tscn:1795
-msgid "IRON"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2253
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3235
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4380
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4872
-msgid "OXYGEN"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:99
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1661
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3485
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3773
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
-msgid "CARBON_DIOXIDE"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/compounds.json:111
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1966
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
-msgid "NITROGEN"
-msgstr ""
-
 #: ../simulation_parameters/microbe_stage/compounds.json:123
 msgid "SUNLIGHT"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2480
-msgid "PREDATORY_PILUS"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:52
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1564
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
-msgid "RUSTICYANIN"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:85
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1869
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2216
-msgid "NITROGENASE"
-msgstr ""
-
 #: ../simulation_parameters/microbe_stage/organelles.json:117
 msgid "PROTOPLASM"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2276
-msgid "OXYTOXISOME"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:943
-msgid "THYLAKOIDS"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:249
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:598
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:662
-msgid "METABOLOSOMES"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4189
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4253
-msgid "NITROGEN_FIXING_PLASTID"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3917
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3981
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2928
-msgid "CHEMOPLAST"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2367
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2421
-msgid "FLAGELLUM"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4494
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4558
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3053
-msgid "VACUOLE"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:411
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2746
-msgid "MITOCHONDRION"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:444
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4683
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3115
-msgid "TOXIN_VACUOLE"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3349
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3413
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2806
-msgid "CHLOROPLAST"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:513
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:358
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:422
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1823
-msgid "CYTOPLASM"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:578
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2885
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2949
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2686
-msgid "NUCLEUS"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:158
-msgid "ABORTED"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:161
-msgid "FINISHED"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:164
-msgid "NOT_RUNNING"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:175
-msgid "AUTOEVO_STEPS_DONE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:179
-msgid "STARTING"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:352
-msgid "AUTOEVO_POPULATION_CHANGED"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:249
-msgid "POPULATION"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:263
-msgid "PREVIOUS"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:279
-msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:283
-msgid "RUNRESULT_GENE_CODE"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:294
-msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:302
-msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:320
-msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr ""
-
-#: ../src/engine/LoadingScreen.cs:40
-msgid "LOADING"
-msgstr ""
-
-#: ../src/engine/LoadingScreen.cs:42
-msgid "LOADING_TIP"
-msgstr ""
-
-#: ../src/general/HelpScreen.tscn:105
-msgid "CLOSE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:123
-msgid "GRAPHICS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:135
-msgid "SOUND"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:147
-msgid "PERFORMANCE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:159
-msgid "MISC"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:198
-msgid "VSYNC"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:206
-msgid "FULLSCREEN"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:228
-msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:235
-msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:265
-msgid "RESOLUTION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:278
-msgid "AUTO"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:288
-msgid "MAX_FPS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:314
-msgid "COLOURBLIND_CORRECTION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:346
-msgid "CHROMATIC_ABERRATION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:387
-msgid "MASTER_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:414 ../src/general/OptionsMenu.tscn:455
-#: ../src/general/OptionsMenu.tscn:488 ../src/general/OptionsMenu.tscn:521
-#: ../src/general/OptionsMenu.tscn:554
-msgid "MUTE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:428
-msgid "MUSIC_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:461
-msgid "AMBIANCE_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:494
-msgid "SFX_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:527
-msgid "GUI_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:572
-msgid "LANGUAGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:587 ../src/general/OptionsMenu.tscn:898
-msgid "RESET"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:610
-msgid "COMPOUND_CLOUDS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:625
-msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:632 ../src/general/OptionsMenu.tscn:676
-msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:669
-msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:711
-msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:734
-msgid "PLAY_INTRO_VIDEO"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:743
-msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:752
-msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:763
-msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:791
-msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:817
-msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:825
-msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:841
-msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:853
-msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:864
-msgid "CUSTOM_USERNAME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:888 ../src/general/PauseMenu.tscn:132
-#: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:111
-msgid "BACK"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:909 ../src/saving/NewSaveMenu.tscn:72
-msgid "SAVE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:925
-msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:937
-msgid "RESET_TO_DEFAULTS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:938
-msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:947
-msgid "CLOSE_OPTIONS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:971
-msgid "UNSAVED_CHANGE_WARNING"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1002
-msgid "SAVE_AND_CONTINUE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1011
-msgid "DISCARD_AND_CONTINUE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1027
-msgid "CANCEL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1038
-msgid "ERROR"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1039
-msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:56
-msgid "RESUME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:63
-msgid "SAVE_GAME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:70 ../src/gui_common/MainMenu.tscn:162
-msgid "LOAD_GAME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:78
-msgid "STATISTICS"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:85
-msgid "HELP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:92 ../src/gui_common/MainMenu.tscn:174
-msgid "OPTIONS"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:99
-msgid "RETURN_TO_MENU"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:106
-msgid "EXIT"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:147
-msgid "NEW_GAME"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:186
-msgid "TOOLS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:198
-msgid "EXTRAS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:210
-msgid "CREDITS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:222
-msgid "QUIT"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:245
-msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:345
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:346
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-
-#: ../src/gui_common/QuickLoadHandler.tscn:17
-msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
-
-#: ../src/gui_common/QuickLoadHandler.tscn:18
-msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:168
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:232
-msgid "MEMBRANE_RIGIDITY"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:283
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5233
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5475
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5717
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6021
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6325
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6659
-msgid "MOBILITY"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:314
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5563
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5808
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6112
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6416
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6750
-msgid "HEALTH"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:337
-msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:449
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:689
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1896
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2171
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4008
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4280
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
-msgid "TURNS"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:474
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:714
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1283
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1380
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1921
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4033
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4305
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4799
-msgid "INTO"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:528
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:809
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1097
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1430
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2297
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2561
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3004
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3847
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4119
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4424
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4613
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4916
-msgid "STORAGE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:559
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:840
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1128
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1461
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1766
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2041
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2328
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2592
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3035
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3310
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3598
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3878
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4150
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4455
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4644
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4947
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5264
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5505
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5748
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6052
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6356
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6690
-msgid "OSMOREGULATION_COST"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
-msgid "CYTOPLASM_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:742
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
-msgid "DOT_RATE_SCALES"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:755
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
-msgid "WITH_CONCENTRATION_OF"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:762
-msgid "OXYGEN_DOT"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:863
-msgid "METABOLOSOMES_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
-msgid "THYLAKOID"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3728
-msgid "PRODUCES"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:995
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3465
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
-msgid "DOT_RATE_SCALES_WITH"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3478
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3766
-msgid "CONCENTRATION_OF"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1033
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1684
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4373
-msgid "AND"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1046
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-msgid "INTENSITY_OF"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1053
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
-#: ../src/microbe_stage/MicrobeStage.tscn:1357
-msgid "LIGHT"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1151
-msgid "THYLAKOIDS_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1313
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
-msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
-msgid "CARBON"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1332
-msgid "DIOXIDE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1350
-msgid "ALSO_TURNS"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
-msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1789
-msgid "RUSTICYANIN_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1946
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3215
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4330
-msgid "DOT_RATE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1959
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3228
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4343
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4865
-msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2064
-msgid "NITROGENASE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2203
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4806
-msgid "OXYTOXY"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2221
-msgid "DOT_CAN_RELEASE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
-msgid "TOXINS_BY_PRESSING_E"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2351
-msgid "OXYTOXISOME_DESC"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2458
-msgid "USES"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
-msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2495
-msgid "SPEED_OF_THE_CELL"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2530
-msgid "SPEED"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2615
-msgid "FLAGELLUM_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2742
-msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2540
-msgid "CILIA"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2869
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5097
-msgid "TO_BE_IMPLEMENTED"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2969
-msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
-msgid "NUCLEUS_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
-msgid "MITOCHONDRION_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3621
-msgid "CHLOROPLAST_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3701
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2867
-msgid "THERMOPLAST"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3803
-msgid "TEMPERATURE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3901
-msgid "THERMOPLAST_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4173
-msgid "CHEMOPLAST_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4478
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4579
-msgid "INREASE_STORAGE_SPACE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4667
-msgid "VACUOLE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4824
-msgid "DOT_CAN"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4837
-msgid "RELEASE_TOXINS_BY_PRESSING"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4844
-msgid "E_DOT"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4852
-msgid "RATE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4970
-msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4986
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5050
-msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5118
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5182
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3361
-msgid "NORMAL"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5294
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5534
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5778
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6082
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6386
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6720
-msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5347
-msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5363
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3428
-msgid "DOUBLE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5586
-msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5602
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5666
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3495
-msgid "CELLULOSE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5838
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6446
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6780
-msgid "PHYSICAL_RESISTANCE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5867
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6171
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6505
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6839
-msgid "CANNOT_ENGULF"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5890
-msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5970
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3562
-msgid "CHITIN"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6142
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6476
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6810
-msgid "TOXIN_RESISTANCE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6194
-msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6210
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6274
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3634
-msgid "CALCIUM_CARBONATE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6528
-msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6544
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6608
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3703
-msgid "SILICA"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6862
-msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr ""
-
-#: ../src/microbe_stage/Microbe.cs:1392
-msgid "SUCCESSFUL_SCAVENGE"
-msgstr ""
-
-#: ../src/microbe_stage/Microbe.cs:1399
-msgid "SUCCESSFUL_KILL"
-msgstr ""
-
-#: ../src/microbe_stage/Microbe.cs:1879
-msgid "ESCAPE_ENGULFING"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:472
-msgid "MICROBE_PATCH_LABEL"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:657
-msgid "STUFF_AT"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.cs:508
-msgid "PLAYER_REPRODUCED"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.cs:630
-msgid "PLAYER_DIED"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:902
-msgid "NOTHING_HERE"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:926
-msgid "COMPOUNDS_COLON"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:963
-msgid "SPECIES_COLON"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1043
-msgid "ENVIRONMENT"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1130
-msgid "OXYGEN_FORMULA"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1188
-msgid "CARBON_DIOXIDE_FORMULA"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1246
-msgid "DINITROGEN_FORMULA"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1301
-msgid "TEMPERATURE_SHORT"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1412
-msgid "PRESSURE_SHORT"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1488
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4756
-msgid "COMPOUNDS"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1848
-msgid "AGENTS"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:2109
-msgid "POPULATION_CAPITAL"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:21
-msgid "PATCH_PANGONIAN_VENTS"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:29
-msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:36
-msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:43
-msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:50
-msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:57
-msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:64
-msgid "PATCH_PANGONIAN_COAST"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:71
-msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:78
-msgid "PATCH_CAVE"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:85
-msgid "PATCH_ICE_SHELF"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:92
-msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:687
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1187
-msgid "LOADING_MICROBE_EDITOR"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:688
-msgid "WAITING_FOR_AUTO_EVO"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2068
-msgid "AUTO_EVO_FAILED"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2069
-msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1045
-msgid "REPORT"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1066
-msgid "PATCH_MAP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1087
-msgid "EDITOR"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1134
-msgid "ORGANISM_STATISTICS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1179
-msgid "SPEED_COLON"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1209
-msgid "HP_COLON"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1239
-msgid "SIZE_COLON"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1260
-msgid "GENERATION_COLON"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1302
-msgid "ATP_BALANCE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1490
-msgid "MUTATION_POINTS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1577
-msgid "STRUCTURE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1600
-msgid "APPEARANCE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1623
-msgid "BEHAVIOR"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1729
-msgid "STRUCTURAL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1781
-msgid "22_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1886
-msgid "PROTEINS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1937
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2059
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2122
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2711
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2893
-msgid "45_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1999
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2771
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2954
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3017
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3322
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3389
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3456
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3523
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3591
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3664
-msgid "50_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2096
-msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2182
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2242
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2387
-msgid "55_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2336
-msgid "EXTERNAL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2446
-msgid "30_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2831
-msgid "40_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2600
-msgid "ORGANELLES"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2651
-msgid "100_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2991
-msgid "PLASTID"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3079
-msgid "70_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3141
-msgid "N_A_MP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3178
-msgid "BIOLUMESCENT_VACUOLE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3271
-msgid "MEMBRANE_TYPES"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3726
-msgid "FLUIDITY_RIGIDITY"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3763
-msgid "COLOUR"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3936
-msgid "CONFIRM"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3945
-msgid "NEGATIVE_ATP_BALANCE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3946
-msgid "NEGATIVE_ATP_BALANCE_TEXT"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3954
-msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3955
-msgid "DISCONNECTED_ORGANELLES_TEXT"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4021
-msgid "PATCH_NAME"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4054
-msgid "FOOD_CHAIN"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4068
-msgid "TIMELINE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4121
-msgid "AUTO_EVO_RESULTS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4140
-msgid "EXTERNAL_EFFECTS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4179
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5103
-msgid "NEXT_CAPITAL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4293
-msgid "SELECT_A_PATCH"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4408
-msgid "PHYSICAL_CONDITIONS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4591
-msgid "ATMOSPHERIC_GASSES"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5016
-msgid "SPECIES_PRESENT"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5074
-msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:619
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
-msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
-msgid "BIOME_LABEL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
-msgid "BELOW_SEA_LEVEL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1583
-msgid "WITH_POPULATION"
-msgstr ""
-
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:57
-msgid "EXTINCTION_CAPITAL"
-msgstr ""
-
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
-msgid "EXTINCTION_BOX_TEXT"
-msgstr ""
-
-#: ../src/microbe_stage/gui/WinBox.tscn:56
-msgid "WIN_BOX_TITLE"
-msgstr ""
-
-#: ../src/microbe_stage/gui/WinBox.tscn:65
-msgid "WIN_TEXT"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:84 ../src/saving/InProgressLoad.cs:103
-#: ../src/saving/InProgressLoad.cs:149
-msgid "LOADING_GAME"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:85
-msgid "READING_SAVE_DATA"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:104
-msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:111
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:137
-msgid "SAVE_IS_INVALID"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:138
-msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:150
-msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:163
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:169
-msgid "LOAD_FINISHED"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:194
-msgid "ERROR_LOADING"
-msgstr ""
-
-#: ../src/saving/InProgressSave.cs:172
-msgid "SAVING"
-msgstr ""
-
-#: ../src/saving/InProgressSave.cs:202
-msgid "SAVE_FAILED"
-msgstr ""
-
-#: ../src/saving/InProgressSave.cs:203
-msgid "ERROR_SAVING"
-msgstr ""
-
-#: ../src/saving/NewSaveMenu.cs:65
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
-
-#: ../src/saving/NewSaveMenu.tscn:28
-msgid "CREATE_NEW_SAVE"
-msgstr ""
-
-#: ../src/saving/NewSaveMenu.tscn:45
-msgid "NAME"
-msgstr ""
-
-#: ../src/saving/NewSaveMenu.tscn:65
-msgid "EXTRA_OPTIONS"
-msgstr ""
-
-#: ../src/saving/NewSaveMenu.tscn:83
-msgid "OVERWRITE_EXISTING_SAVE"
-msgstr ""
-
-#: ../src/saving/NewSaveMenu.tscn:117
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr ""
-
-#: ../src/saving/SaveHelper.cs:437
-msgid "SAVING_SUCCEEDED"
-msgstr ""
-
-#: ../src/saving/SaveHelper.cs:441
-msgid "SAVING_FAILED"
-msgstr ""
-
-#: ../src/saving/SaveList.cs:177
-msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:45 ../src/saving/SaveListItem.tscn:120
-msgid "LOADING_DOT"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:295
-msgid "DELETE_THIS_SAVE"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:67 ../src/saving/SaveList.tscn:77
-msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:68
-msgid "NEWER_VERSION_LOADING_WARNING"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:78
-msgid "OLDER_VERSION_LOADING_WARNING"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:87
-msgid "LOAD_INVALID_SAVE"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:88
-msgid "LOAD_INVALID_SAVE_WARNING"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:96
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:98
-msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:147
-msgid "CREATED_AT"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:154 ../src/saving/SaveListItem.tscn:173
-#: ../src/saving/SaveListItem.tscn:192 ../src/saving/SaveListItem.tscn:215
-#: ../src/saving/SaveListItem.tscn:241 ../src/saving/SaveListItem.tscn:260
-msgid "DOT_DOT_DOT"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:166
-msgid "TYPE"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:185
-msgid "DESCRIPTION"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:208
-msgid "VERSION"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:222
-msgid "( ! )"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:234
-msgid "BY"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:253
-msgid "CREATED_ON_PLATFORM"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:285 ../src/saving/SaveManagerGUI.tscn:52
-msgid "LOAD"
-msgstr ""
-
-#: ../src/saving/SaveListItem.tscn:296
-msgid "DELETE_SAVE_CONFIRMATION"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.cs:211
-msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.cs:223
-msgid "DELETE_ALL_OLD_SAVE_WARNING"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:64
-msgid "REFRESH"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:72
-msgid "DELETE_SELECTED"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:80
-msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:91
-msgid "OPEN_SAVE_DIRECTORY"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:123
-msgid "TOTAL_SAVES"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:143
-msgid "SAVE_SPACE_USED"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:163
-msgid "SELECTED_COLON"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:180
-msgid "DELETE_SELECTED_SAVES"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:190
-msgid "DELETE_OLD_SAVES"
-msgstr ""
-
-#: ../src/saving/SaveStatusOverlay.tscn:116
-msgid "SAVING_ERROR"
-msgstr ""
-
-#: ../src/saving/SaveStatusOverlay.tscn:176
-msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:39
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:72
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:135
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:203
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:234
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
-msgid "TUTORIAL"
-msgstr ""
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:59
-msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:92
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:122
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:190
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
-msgid "GOT_IT"
-msgstr ""
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
-msgid "MICROBE_STAGE_INITIAL"
-msgstr ""
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:89
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
-msgid "BEGIN_THRIVING"
-msgstr ""
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:138
-msgid "MICROBE_STAGE_CONTROL_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
-msgid "MICROBE_STAGE_COLLECT_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
-msgid "MICROBE_STAGE_HEALTH_TEXT"
-msgstr ""
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 

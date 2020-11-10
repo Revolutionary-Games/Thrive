@@ -261,6 +261,7 @@ namespace AutoEvo
                 {
                     builder.Append(" ");
                     builder.Append(TranslationServer.Translate("RUNRESULT_SPREAD_TO_PATCHES"));
+                    builder.Append("\n");
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
@@ -287,6 +288,7 @@ namespace AutoEvo
 
                 builder.Append(" ");
                 builder.Append(TranslationServer.Translate("RUNRESULT_POP_IN_PATCHES"));
+                builder.Append("\n");
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {
