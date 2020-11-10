@@ -316,6 +316,96 @@ def handle_csproj_file(path)
   errors
 end
 
+def handle_po_file(path)
+  errors = false
+
+  is_english = path.end_with? 'en.po'
+  in_header = true
+  last_msgstr = nil
+  last_msgid = nil
+  seen_message = false
+
+  File.foreach(path).with_index do |line, line_number|
+    matches = line.match(/^msgid "(.*)"$/)
+
+    if matches
+
+      unless in_header
+        if is_english && (!last_msgstr || last_msgstr.strip.empty?)
+          OUTPUT_MUTEX.synchronize do
+            error "Line #{line_number + 1} previous message (#{last_msgid}) is blank"
+            errors = true
+          end
+        end
+
+        # TODO: might need a specific whitelist
+        if last_msgid && last_msgstr && (last_msgid == last_msgstr) &&
+           last_msgstr.include?('_')
+          OUTPUT_MUTEX.synchronize do
+            error "Line #{line_number + 1} previous message (#{last_msgid}) " \
+                  'is the same as the message key'
+            errors = true
+          end
+        end
+      end
+
+      last_msgid = matches[1]
+      last_msgstr = ''
+
+      next if in_header
+
+      unless last_msgid
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has empty msgid"
+          errors = true
+        end
+      end
+
+      if last_msgid.upcase != last_msgid
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has message with non-uppercase characters " \
+                " (#{last_msgid})"
+          errors = true
+        end
+      end
+
+      if last_msgid.include? ' '
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has message with with a space " \
+                " (#{last_msgid})"
+          errors = true
+        end
+      end
+
+      next
+    end
+
+    matches = line.match(/^msgstr "(.*)"$/)
+
+    matches ||= line.match(/^"(.*)"$/)
+
+    if matches
+      seen_message = true if in_header
+
+      last_msgstr += matches[1]
+      next
+    end
+
+    # Blank / comment
+    in_header = false if in_header && seen_message
+  end
+
+  # TODO: solve code duplication with this
+  if is_english && (!last_msgstr || last_msgstr.strip.empty?)
+    OUTPUT_MUTEX.synchronize do
+      error "previous message (last in file) (#{last_msgid}) is blank"
+      errors = true
+    end
+  end
+
+  errors
+end
+
 # Forwards the file handling to a specific handler function if
 # something should be done with the file type
 def handle_file(path)
@@ -333,6 +423,8 @@ def handle_file(path)
     handle_csproj_file path
   elsif path =~ /\.tscn$/
     handle_tscn_file path
+  elsif path =~ /\.po$/
+    handle_po_file path
   else
     false
   end
