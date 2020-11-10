@@ -98,7 +98,7 @@ public class ToolTipManager : CanvasLayer
     {
         tooltip.ToolTipVisible = false;
 
-        var groupNode = GetGroup(group);
+        var groupNode = GetGroup(group, false);
 
         if (groupNode == null)
             groupNode = AddGroup(group);
@@ -112,21 +112,36 @@ public class ToolTipManager : CanvasLayer
         var tooltip = GetToolTip(name, group);
 
         tooltip?.ToolTipNode.QueueFree();
-        tooltips[GetGroup(group)].Remove(tooltip);
+        tooltips[GetGroup(group)]?.Remove(tooltip);
     }
 
-    public void ClearToolTips(string group)
+    /// <summary>
+    ///   Deletes all tooltip from a group
+    /// </summary>
+    /// <param name="deleteGroup">Removes the group node if true</param>
+    public void ClearToolTips(string group, bool deleteGroup = false)
     {
-        var toolips = tooltips[GetGroup(group)];
+        var groupNode = GetGroup(group, false);
 
-        if (tooltips == null || toolips.Count == 0)
+        if (groupNode == null)
             return;
 
-        var intermediateList = new List<ICustomToolTip>(toolips);
+        var tooltipList = tooltips[groupNode];
+
+        if (tooltipList == null || tooltipList.Count <= 0)
+            return;
+
+        var intermediateList = new List<ICustomToolTip>(tooltipList);
 
         foreach (var item in intermediateList)
         {
-            RemoveToolTip(item.ToolTipNode.Name);
+            RemoveToolTip(item.ToolTipNode.Name, group);
+        }
+
+        if (deleteGroup)
+        {
+            groupNode.QueueFree();
+            tooltips.Remove(groupNode);
         }
     }
 
@@ -165,7 +180,7 @@ public class ToolTipManager : CanvasLayer
         return groupNode;
     }
 
-    private Control GetGroup(string name)
+    private Control GetGroup(string name, bool verbose = true)
     {
         foreach (var group in tooltips.Keys)
         {
@@ -173,7 +188,9 @@ public class ToolTipManager : CanvasLayer
                 return group;
         }
 
-        GD.PrintErr("Tooltip group with name '" + name + "' not found");
+        if (verbose)
+            GD.PrintErr("Tooltip group with name '" + name + "' not found");
+
         return null;
     }
 

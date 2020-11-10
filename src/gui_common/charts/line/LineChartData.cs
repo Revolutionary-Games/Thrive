@@ -10,14 +10,14 @@ public class LineChartData
     private bool draw = true;
 
     // ReSharper disable once CollectionNeverUpdated.Global
-    public List<ChartPoint> Points { get; set; } = new List<ChartPoint>();
+    public List<DataPoint> DataPoints { get; set; } = new List<DataPoint>();
 
     /// <summary>
     ///   The icon on the chart legend
     /// </summary>
     public Texture IconTexture { get; set; }
 
-    public float LineWidth { get; set; } = 1.5f;
+    public float LineWidth { get; set; } = 1.3f;
 
     /// <summary>
     ///   Used to differentiate the data set's visual by color
@@ -29,10 +29,10 @@ public class LineChartData
         {
             lineColor = value;
 
-            if (Points.Count <= 0)
+            if (DataPoints.Count <= 0)
                 return;
 
-            foreach (var point in Points)
+            foreach (var point in DataPoints)
                 point.MarkerColor = lineColor;
         }
     }
@@ -47,10 +47,10 @@ public class LineChartData
         {
             draw = value;
 
-            if (Points.Count <= 0)
+            if (DataPoints.Count <= 0)
                 return;
 
-            foreach (var point in Points)
+            foreach (var point in DataPoints)
                 point.Visible = value;
         }
     }

@@ -92,7 +92,7 @@ public class DefaultToolTip : Control, ICustomToolTip
         }
         else
         {
-            descriptionLabel.Text = description;
+            descriptionLabel.Text = Description;
         }
     }
 }

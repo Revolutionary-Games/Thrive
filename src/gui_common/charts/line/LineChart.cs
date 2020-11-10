@@ -6,7 +6,8 @@ using Godot;
 using Array = Godot.Collections.Array;
 
 /// <summary>
-///   Custom widget for plotting data points on a line.
+///   A custom widget for multi-line chart with hoverable data points tooltip. Uses <see cref="LineChartData"/>
+///   as dataset; currently only support numerical datas.
 /// </summary>
 public class LineChart : VBoxContainer
 {
@@ -49,7 +50,7 @@ public class LineChart : VBoxContainer
     public int MaxIconLegend = 10;
 
     /// <summary>
-    ///   Limits how many dataset should be allowed to be shown on the chart.
+    ///   Limits how many dataset lines should be allowed to be shown on the chart.
     /// </summary>
     public int MaxDisplayedDataSet = 3;
 
@@ -59,6 +60,7 @@ public class LineChart : VBoxContainer
     private Texture defaultIconLegendTexture;
 
     private Texture hLineTexture;
+    private Texture vLineTexture;
 
     private Label horizontalLabel;
     private Label verticalLabel;
@@ -89,11 +91,14 @@ public class LineChart : VBoxContainer
     }
 
     // ReSharper disable once CollectionNeverUpdated.Global
-    // ReSharper disable once RedundantNameQualifier
+    // ReSharper disable RedundantNameQualifier
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
-    public System.Collections.Generic.Dictionary<string, LineChartData> DataSets { get; set; }
+    public System.Collections.Generic.Dictionary<string, LineChartData> DataSets { get; set; } =
+        new System.Collections.Generic.Dictionary<string, LineChartData>();
+
+    // ReSharper restore RedundantNameQualifier
 
     public Vector2 MinValues { get; private set; }
 
@@ -131,12 +136,7 @@ public class LineChart : VBoxContainer
         legendContainer = GetNode<HBoxContainer>(LegendsContainerPath);
         defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
         hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
-
-        // Code inspection and cleanup is being really weird, so DataSets is initiliazed here instead
-        // ReSharper disable RedundantNameQualifier
-        DataSets = new System.Collections.Generic.Dictionary<string, LineChartData>();
-
-        // ReSharper restore RedundantNameQualifier
+        vLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/vSeparatorUp.png");
 
         UpdateAxesName();
     }
@@ -156,7 +156,8 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Plots the chart from available datasets
     /// </summary>
-    public void Plot()
+    /// <param name="legendTitle">Title for the chart legend. If null, the legend will not be created</param>
+    public void Plot(string legendTitle = null)
     {
         if (DataSets == null || DataSets.Count <= 0)
         {
@@ -170,21 +171,7 @@ public class LineChart : VBoxContainer
             return;
         }
 
-        ClearPoints();
-
-        ToolTipManager.Instance.ClearToolTips("chartMarkers");
-
-        // Clear abscissas
-        foreach (Node child in horizontalLabelsContainer.GetChildren())
-        {
-            child.QueueFree();
-        }
-
-        // Clear ordinates
-        foreach (Node child in verticalLabelsContainer.GetChildren())
-        {
-            child.QueueFree();
-        }
+        ClearChart();
 
         var dataSetCount = 0;
 
@@ -196,7 +183,7 @@ public class LineChart : VBoxContainer
             if (dataSetCount > MaxDisplayedDataSet)
                 UpdateDataSetVisibility(data.Key, false);
 
-            foreach (var point in data.Value.Points)
+            foreach (var point in data.Value.DataPoints)
             {
                 // Find out value boundaries
                 MaxValues = new Vector2(Mathf.Max(point.Value.x, MaxValues.x), Mathf.Max(point.Value.y, MaxValues.y));
@@ -210,17 +197,18 @@ public class LineChart : VBoxContainer
                 toolTip.DisplayDelay = 0;
 
                 ToolTipHelper.RegisterToolTipForControl(point, toolTipCallbacks, toolTip);
-                ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers");
+                ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + data.Key);
             }
         }
 
         // Populate the rows
-        for (int i = 0; i < XAxisTicks; i++)
+        for (int i = 1; i < XAxisTicks; i++)
         {
-            var label = new Label();
-
-            label.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-            label.Align = Label.AlignEnum.Center;
+            var label = new Label
+            {
+                SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
+                Align = Label.AlignEnum.Right,
+            };
 
             label.Text = Mathf.Round(i * (MaxValues.x - MinValues.x) /
                 (XAxisTicks - 1) + MinValues.x).ToString(CultureInfo.CurrentCulture);
@@ -231,28 +219,77 @@ public class LineChart : VBoxContainer
         // Populate the columns (in reverse order)
         for (int i = YAxisTicks; i-- > 0;)
         {
-            var label = new Label();
+            var label = new Label
+            {
+                SizeFlagsVertical = (int)SizeFlags.ExpandFill,
+                Align = Label.AlignEnum.Center,
+                Valign = Label.VAlign.Bottom,
+            };
 
-            label.SizeFlagsVertical = (int)SizeFlags.ExpandFill;
-            label.Align = Label.AlignEnum.Center;
-            label.Valign = Label.VAlign.Center;
-
-            label.Text = Mathf.Round(i * (MaxValues.y - MinValues.y) /
-                (YAxisTicks - 1) + MinValues.y).ToString(CultureInfo.CurrentCulture);
+            // Don't set the text for the 0 scale label, since there's already one on the x axis.
+            // Add the label nevertheless so the vertical ticks spacings will remain consistent
+            if (i > 0)
+            {
+                label.Text = Mathf.Round(i * (MaxValues.y - MinValues.y) /
+                    (YAxisTicks - 1) + MinValues.y).ToString(CultureInfo.CurrentCulture);
+            }
 
             verticalLabelsContainer.AddChild(label);
         }
 
+        if (!string.IsNullOrEmpty(legendTitle))
+            CreateLegend(legendTitle);
+
         RenderChart();
     }
 
-    public void CreateLegend(string title)
+    public void ClearChart()
     {
-        foreach (Node child in legendContainer.GetChildren())
+        toolTipCallbacks.Clear();
+
+        foreach (var data in DataSets)
+        {
+            ToolTipManager.Instance.ClearToolTips("chartMarkers" + data.Key);
+        }
+
+        foreach (var data in DataSets)
+        {
+            ToolTipManager.Instance.ClearToolTips("chartLegend" + data.Key);
+        }
+
+        // Clear points
+        foreach (Node child in drawArea.GetChildren())
+        {
             child.QueueFree();
+        }
 
-        ToolTipManager.Instance.ClearToolTips("chartLegends");
+        // Clear legend
+        foreach (Node child in legendContainer.GetChildren())
+        {
+            child.QueueFree();
+        }
 
+        // Clear abscissas
+        foreach (Node child in horizontalLabelsContainer.GetChildren())
+        {
+            child.QueueFree();
+        }
+
+        // Clear ordinates
+        foreach (Node child in verticalLabelsContainer.GetChildren())
+        {
+            child.QueueFree();
+        }
+    }
+
+    public void UpdateDataSetVisibility(string name, bool visible)
+    {
+        DataSets[name].Draw = visible;
+        RenderChart();
+    }
+
+    private void CreateLegend(string title)
+    {
         // Switch to dropdown if amount of dataset is more than maximum number of icon legends allowed
         if (DataSets.Count > MaxIconLegend && LegendMode == LegendDisplayMode.Icon)
             LegendMode = LegendDisplayMode.DropDown;
@@ -316,7 +353,7 @@ public class LineChart : VBoxContainer
                     toolTip.Description = data.Key;
 
                     ToolTipHelper.RegisterToolTipForControl(icon, toolTipCallbacks, toolTip);
-                    ToolTipManager.Instance.AddToolTip(toolTip, "chartLegends");
+                    ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + data.Key);
                 }
 
                 break;
@@ -369,12 +406,6 @@ public class LineChart : VBoxContainer
         }
     }
 
-    public void UpdateDataSetVisibility(string name, bool visible)
-    {
-        DataSets[name].Draw = visible;
-        RenderChart();
-    }
-
     /// <summary>
     ///   Redraws the chart. This method is mainly used by the draw area node to connect its "draw()"
     ///   signal to this for requesting a redraw (since it can't be connected directly with "Update()")
@@ -395,30 +426,48 @@ public class LineChart : VBoxContainer
                 (YAxisTicks - 1) + MinValues.y);
 
             DrawTextureRect(hLineTexture, new Rect2(new Vector2(
-                0, ConvertToYCoordinate(value)), RectSize.x, 1), false, new Color(1, 1, 1, 0.5f));
+                0, ConvertToYCoordinate(value)), RectSize.x, 1), false, new Color(1, 1, 1, 0.3f));
         }
     }
 
     /// <summary>
-    ///   Connect the dataset points
+    ///   Connect the dataset points with line segments
     /// </summary>
     private void DrawLineSegments()
     {
         foreach (var data in DataSets)
         {
-            // Assign coordinate of the dataset points
-            data.Value.Points.ForEach(point =>
+            // Setup the points
+            data.Value.DataPoints.ForEach(point =>
             {
                 point.Coordinate = ConvertToCoordinate(point.Value);
 
                 if (!point.IsInsideTree())
                     drawArea.AddChild(point);
+
+                var pointHasZeroValue = point.Value.x <= 0 || point.Value.y <= 0;
+
+                point.Draw = pointHasZeroValue ? false : true;
+
+                // Keep draw if this flag is set to true
+                if (point.DrawAtZeroValue)
+                {
+                    point.Draw = true;
+
+                    // Offset the marker position so it doesn't overlap the axes line
+
+                    if (point.Value.x <= 0)
+                        point.Coordinate += new Vector2(point.Size, 0);
+
+                    if (point.Value.y <= 0)
+                        point.Coordinate -= new Vector2(0, point.Size);
+                }
             });
 
-            var previousPoint = data.Value.Points.First();
+            var previousPoint = data.Value.DataPoints.First();
 
             // Draw the lines
-            foreach (var point in data.Value.Points)
+            foreach (var point in data.Value.DataPoints)
             {
                 if (data.Value.Draw)
                 {
@@ -434,10 +483,6 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Helper method for converting a single point data value into a coordinate.
     /// </summary>
-    /// <para>
-    ///   (for purely aesthetic reasons) find out if the origin could be at 0,0.
-    ///   Currently it's offset a bit from the bottom left
-    /// </para>
     /// <returns>Position of the given value on the chart</returns>
     private Vector2 ConvertToCoordinate(Vector2 value)
     {
@@ -448,11 +493,11 @@ public class LineChart : VBoxContainer
     {
         var lineRectX = drawArea.RectSize.x / XAxisTicks;
 
-        var lineRectWidth = lineRectX * (XAxisTicks - 1);
+        var lineRectWidth = lineRectX * XAxisTicks;
 
         var dx = MaxValues.x - MinValues.x;
 
-        return ((value - MinValues.x) * lineRectWidth / dx) + lineRectX / 2;
+        return (value - MinValues.x) * lineRectWidth / dx;
     }
 
     private float ConvertToYCoordinate(float value)
@@ -463,7 +508,7 @@ public class LineChart : VBoxContainer
 
         var dy = MaxValues.y - MinValues.y;
 
-        return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY / 2;
+        return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY;
     }
 
     /// <summary>
@@ -480,17 +525,6 @@ public class LineChart : VBoxContainer
         }
 
         return count >= MaxDisplayedDataSet;
-    }
-
-    /// <summary>
-    ///   Deletes all point markers
-    /// </summary>
-    private void ClearPoints()
-    {
-        foreach (Node child in drawArea.GetChildren())
-        {
-            child.QueueFree();
-        }
     }
 
     private void UpdateAxesName()

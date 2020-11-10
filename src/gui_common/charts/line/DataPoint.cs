@@ -2,9 +2,9 @@ using System;
 using Godot;
 
 /// <summary>
-///   Point / marker on a line chart containing a single data value
+///   Point / marker on a line chart containing a single data value.
 /// </summary>
-public class ChartPoint : Control
+public class DataPoint : Control
 {
     private Texture graphMarkerCircle;
     private Texture graphMarkerCross;
@@ -14,11 +14,13 @@ public class ChartPoint : Control
     private Vector2 coordinate;
     private float size;
 
-    public ChartPoint(float xValue, float yValue, float size = 8f, MarkerIcon shape = MarkerIcon.Circle)
+    public DataPoint(float xValue, float yValue, float size = 8f, MarkerIcon shape = MarkerIcon.Circle,
+        bool drawAtZeroValue = false)
     {
         Value = new Vector2(xValue, yValue);
         Size = size;
         IconType = shape;
+        DrawAtZeroValue = drawAtZeroValue;
     }
 
     public enum MarkerIcon
@@ -38,7 +40,7 @@ public class ChartPoint : Control
     public Vector2 Value { get; set; }
 
     /// <summary>
-    ///   Position of the point on the chart, this is different from value
+    ///   Position of the point on the chart, this is different from the value
     /// </summary>
     public Vector2 Coordinate
     {
@@ -60,12 +62,20 @@ public class ChartPoint : Control
         {
             size = value;
 
-            // Increased by 10 for more bigger cursor detection area
+            // Increased by 10 for a more bigger cursor detection area
             RectSize = new Vector2(value + 10, value + 10);
         }
     }
 
     public Color MarkerColor { get; set; }
+
+    public bool Draw { get; set; }
+
+    /// <summary>
+    ///   The Draw property is set to false if the point has zero value in the LineChart by default,
+    ///   so this is used to flag the marker visual to keep being drawn.
+    /// </summary>
+    public bool DrawAtZeroValue { get; set; }
 
     public override void _Ready()
     {
@@ -80,6 +90,9 @@ public class ChartPoint : Control
 
     public override void _Draw()
     {
+        if (!Draw)
+            return;
+
         var vectorSize = new Vector2(Size, Size);
 
         switch (IconType)
