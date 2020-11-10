@@ -40,7 +40,7 @@ public class DataPoint : Control
     public Vector2 Value { get; set; }
 
     /// <summary>
-    ///   Position of the point on the chart, this is different from the value
+    ///   Position of the point on the chart, this is different from Value
     /// </summary>
     public Vector2 Coordinate
     {

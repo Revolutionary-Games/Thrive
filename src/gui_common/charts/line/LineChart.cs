@@ -60,6 +60,8 @@ public class LineChart : VBoxContainer
     private Texture defaultIconLegendTexture;
 
     private Texture hLineTexture;
+
+    // ReSharper disable once NotAccessedField.Local
     private Texture vLineTexture;
 
     private Label horizontalLabel;

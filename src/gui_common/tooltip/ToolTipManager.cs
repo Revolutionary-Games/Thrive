@@ -118,6 +118,7 @@ public class ToolTipManager : CanvasLayer
     /// <summary>
     ///   Deletes all tooltip from a group
     /// </summary>
+    /// <param name="group">Name of the group node</param>
     /// <param name="deleteGroup">Removes the group node if true</param>
     public void ClearToolTips(string group, bool deleteGroup = false)
     {
