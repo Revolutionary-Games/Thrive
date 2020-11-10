@@ -17,6 +17,5 @@ public class HelpTexts : IRegistryType
 
     public void ApplyTranslations()
     {
-        TranslationHelper.ApplyTranslations(this);
     }
 }
