@@ -1128,10 +1128,11 @@ margin_right = 38.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "OXYGEN_FORMULA"
+text = "O2"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
@@ -1186,10 +1187,11 @@ margin_right = 46.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "CARBON_DIOXIDE_FORMULA"
+text = "CO2"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
@@ -1244,10 +1246,11 @@ margin_right = 49.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "DINITROGEN_FORMULA"
+text = "N2"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
