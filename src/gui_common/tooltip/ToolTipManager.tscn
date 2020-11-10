@@ -3658,7 +3658,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 450.0
+margin_bottom = 470.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -6995,11 +6995,3 @@ visible = false
 custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
-
-[node name="chartMarkers" type="Control" parent="Holder"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="chartLegends" type="Control" parent="Holder"]
-margin_right = 40.0
-margin_bottom = 40.0
