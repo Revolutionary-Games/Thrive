@@ -240,8 +240,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     [Export]
     public AudioStream UnableToPlaceHexSound;
 
-    private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
-
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
@@ -658,12 +656,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (energyBalance.FinalBalance > 0)
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
+            atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION");
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " " +
+            atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION") + " - " +
                 TranslationServer.Translate("ATP_PRODUCTION_TOO_LOW");
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
@@ -1476,13 +1474,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses
-        patchTemperature.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("VALUE_CELCIUS"),
-            patch.Biome.AverageTemperature);
-        patchPressure.Text = TranslationServer.Translate("20_BAR");
-        patchLight.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("VALUE_LUX"),
-            patch.Biome.Compounds[sunlight].Dissolved * 100);
+        patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
+        patchPressure.Text = "20 bar";
+        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + "% lx";
         patchOxygen.Text = (patch.Biome.Compounds[oxygen].Dissolved * 100) + "%";
         patchNitrogen.Text = (patch.Biome.Compounds[nitrogen].Dissolved * 100) + "%";
         patchCO2.Text = (patch.Biome.Compounds[carbondioxide].Dissolved * 100) + "%";
