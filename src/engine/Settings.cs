@@ -417,6 +417,8 @@ public class Settings
 
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.CurrentUICulture = cultureInfo;
+
+        SimulationParameters.Instance.ApplyTranslations();
     }
 
     /// <summary>

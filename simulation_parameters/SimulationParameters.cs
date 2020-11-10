@@ -170,6 +170,21 @@ public class SimulationParameters : Node
         return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
     }
 
+    /// <summary>
+    ///   Applies translations to all registry loaded types. Called by Settings whenever the locale is changed
+    /// </summary>
+    public void ApplyTranslations()
+    {
+        ApplyRegistryObjectTranslations(membranes);
+        ApplyRegistryObjectTranslations(backgrounds);
+        ApplyRegistryObjectTranslations(biomes);
+        ApplyRegistryObjectTranslations(bioProcesses);
+        ApplyRegistryObjectTranslations(compounds);
+        ApplyRegistryObjectTranslations(organelles);
+        ApplyRegistryObjectTranslations(musicCategories);
+        ApplyRegistryObjectTranslations(helpTexts);
+    }
+
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
         where T : class, IRegistryType
     {
@@ -177,6 +192,15 @@ public class SimulationParameters : Node
         {
             entry.Value.InternalName = entry.Key;
             entry.Value.Check(entry.Key);
+        }
+    }
+
+    private static void ApplyRegistryObjectTranslations<T>(Dictionary<string, T> registry)
+        where T : class, IRegistryType
+    {
+        foreach (var entry in registry)
+        {
+            entry.Value.ApplyTranslations();
         }
     }
 
