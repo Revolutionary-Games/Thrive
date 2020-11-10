@@ -11,22 +11,25 @@ LOCALE_FOLDER = File.join ROOT_FOLDER, 'locale'
 
 puts "Detected Thrive root folder: #{ROOT_FOLDER}"
 
-puts 'Extracting .pot file'
-runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
-                'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'window_title', '-k',
-                'dialog_text', '-k', 'Translate', '-o',
-                File.join(LOCALE_FOLDER, '/messages.pot'), File.join(ROOT_FOLDER, 'src'),
-                File.join(ROOT_FOLDER, 'simulation_parameters'),
-                File.join(ROOT_FOLDER, 'assets')
-success 'Done extracting .pot file'
+Dir.chdir(LOCALE_FOLDER) do
+  puts 'Extracting .pot file'
 
-info 'Extracting .po files'
+  runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
+                  'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'window_title', '-k',
+                  'dialog_text', '-k', 'Translate', '-o',
+                  File.join(LOCALE_FOLDER, 'messages.pot'), '../src',
+                  '../simulation_parameters', '../assets'
 
-LOCALES.each do |locale|
-  puts "Extracting #{locale}.po"
-  runOpen3Checked 'msgmerge', '--update', '--backup=none',
-                  File.join(LOCALE_FOLDER, locale + '.po'),
-                  File.join(LOCALE_FOLDER, 'messages.pot')
+  success 'Done extracting .pot file'
+
+  info 'Extracting .po files'
+
+  LOCALES.each do |locale|
+    puts "Extracting #{locale}.po"
+    runOpen3Checked 'msgmerge', '--update', '--backup=none',
+                    locale + '.po',
+                    'messages.pot'
+  end
 end
 
 success 'Done extracting .po files'
