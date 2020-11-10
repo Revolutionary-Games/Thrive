@@ -1465,7 +1465,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Biome: {0}
         patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("BIOME_LABEL"),
-            patch.BiomeTemplate.GetName());
+            patch.BiomeTemplate.Name);
 
         // {0}-{1}m below sea level
         patchDepth.Text = string.Format(CultureInfo.CurrentCulture,

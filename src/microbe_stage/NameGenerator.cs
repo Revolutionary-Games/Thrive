@@ -139,4 +139,8 @@ public class NameGenerator : IRegistryType
         Suffixes.AddRange(SuffixesC);
         Suffixes.AddRange(SuffixesV);
     }
+
+    public void ApplyTranslations()
+    {
+    }
 }

@@ -54,4 +54,8 @@ public class MembraneType : IRegistryType
         LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
         LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
     }
+
+    public void ApplyTranslations()
+    {
+    }
 }
