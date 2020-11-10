@@ -143,18 +143,6 @@ public class LineChart : VBoxContainer
         UpdateAxesName();
     }
 
-    public override void _Draw()
-    {
-        if (DataSets.Count <= 0)
-            return;
-
-        DrawSetTransform(new Vector2(drawArea.RectPosition.x, (RectSize.y - drawArea.RectSize.y) -
-            verticalLabel.RectSize.y), drawArea.RectRotation, drawArea.RectScale);
-
-        DrawOrdinateLines();
-        DrawLineSegments();
-    }
-
     /// <summary>
     ///   Plots the chart from available datasets
     /// </summary>
@@ -242,7 +230,7 @@ public class LineChart : VBoxContainer
         if (!string.IsNullOrEmpty(legendTitle))
             CreateLegend(legendTitle);
 
-        RenderChart();
+        drawArea.Update();
     }
 
     public void ClearChart()
@@ -287,7 +275,7 @@ public class LineChart : VBoxContainer
     public void UpdateDataSetVisibility(string name, bool visible)
     {
         DataSets[name].Draw = visible;
-        RenderChart();
+        drawArea.Update();
     }
 
     private void CreateLegend(string title)
@@ -409,12 +397,15 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Redraws the chart. This method is mainly used by the draw area node to connect its "draw()"
-    ///   signal to this for requesting a redraw (since it can't be connected directly with "Update()")
+    ///   Draw the chart visuals. Mainly used by the Drawer node to connect its 'draw()' signal here.
     /// </summary>
     private void RenderChart()
     {
-        Update();
+        if (DataSets.Count <= 0)
+            return;
+
+        DrawOrdinateLines();
+        DrawLineSegments();
     }
 
     /// <summary>
@@ -427,7 +418,7 @@ public class LineChart : VBoxContainer
             var value = Mathf.Round(i * (MaxValues.y - MinValues.y) /
                 (YAxisTicks - 1) + MinValues.y);
 
-            DrawTextureRect(hLineTexture, new Rect2(new Vector2(
+            drawArea.DrawTextureRect(hLineTexture, new Rect2(new Vector2(
                 0, ConvertToYCoordinate(value)), RectSize.x, 1), false, new Color(1, 1, 1, 0.3f));
         }
     }
@@ -473,7 +464,7 @@ public class LineChart : VBoxContainer
             {
                 if (data.Value.Draw)
                 {
-                    DrawLine(previousPoint.Coordinate, point.Coordinate, data.Value.DataColor,
+                    drawArea.DrawLine(previousPoint.Coordinate, point.Coordinate, data.Value.DataColor,
                         data.Value.LineWidth, true);
                 }
 

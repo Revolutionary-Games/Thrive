@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/vSeparatorUp.png" type="Texture" id=6]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 14
 use_mipmaps = true
 use_filter = true
@@ -22,11 +22,11 @@ font_data = ExtResource( 2 )
 [sub_resource type="Theme" id=3]
 default_font = SubResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 1, 258 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 258, 1 )
 
@@ -69,7 +69,7 @@ margin_right = 9.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 0, 15 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "y"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -126,7 +126,7 @@ custom_constants/separation = 0
 margin_right = 4.0
 margin_bottom = 686.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 4 )
+custom_styles/separator = SubResource( 5 )
 
 [node name="Drawer" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
 margin_left = 1.0
@@ -159,7 +159,7 @@ custom_constants/separation = 0
 margin_right = 1255.0
 margin_bottom = 4.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 5 )
+custom_styles/separator = SubResource( 6 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer"]
 margin_top = 4.0
@@ -210,6 +210,6 @@ margin_right = 1280.0
 margin_bottom = 701.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "x"
 [connection signal="draw" from="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer" to="." method="RenderChart"]
