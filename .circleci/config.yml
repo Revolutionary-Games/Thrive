@@ -121,7 +121,7 @@ jobs:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
        - checkout
-       - run: ./check_formatting.rb -c files localization
+       - run: ./check_formatting.rb -c files,localization
        - run:
            when: always
            command: |
