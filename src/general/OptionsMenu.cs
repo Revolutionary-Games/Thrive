@@ -1027,8 +1027,21 @@ public class OptionsMenu : Control
     {
         if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
         {
-            // English is the default language
-            languageSelection.Selected = languages.IndexOf("en");
+            int index = languages.IndexOf(Settings.DefaultLanguage);
+
+            // Inexact match to match things like "fi_FI"
+            if (index == -1 && Settings.DefaultLanguage.Contains("_"))
+            {
+                index = languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
+            }
+
+            // English is the default language, if the user's default locale didn't match anything
+            if (index < 0)
+            {
+                index = languages.IndexOf("en");
+            }
+
+            languageSelection.Selected = index;
         }
         else
         {
