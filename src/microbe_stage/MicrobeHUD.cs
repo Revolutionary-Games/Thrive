@@ -790,7 +790,7 @@ public class MicrobeHUD : Node
         }
     }
 
-    private void UpdateHealth()
+    public void UpdateHealth()
     {
         var hp = stage.Player.Hitpoints;
         var maxHP = stage.Player.MaxHitpoints;
