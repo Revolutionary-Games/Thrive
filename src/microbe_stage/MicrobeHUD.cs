@@ -796,7 +796,8 @@ public class MicrobeHUD : Node
         var hp = 0.0f;
         var maxHP = 100.0f;
 
-        if (stage.Player != null) {
+        if (stage.Player != null)
+        {
             hp = stage.Player.Hitpoints;
             maxHP = stage.Player.MaxHitpoints;
         }
