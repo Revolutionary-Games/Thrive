@@ -291,8 +291,9 @@ public class MicrobeHUD : Node
             UpdateCompoundBars();
             UpdateReproductionProgress();
             UpdateATP();
-            UpdateHealth();
         }
+
+        UpdateHealth();
 
         if (stage.Camera != null)
         {
@@ -792,8 +793,14 @@ public class MicrobeHUD : Node
 
     private void UpdateHealth()
     {
-        var hp = stage.Player.Hitpoints;
-        var maxHP = stage.Player.MaxHitpoints;
+        var hp = 0.0f;
+        var maxHP = 100.0f;
+
+        if (stage.Player != null)
+        {
+            hp = stage.Player.Hitpoints;
+            maxHP = stage.Player.MaxHitpoints;
+        }
 
         GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP);
         hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
