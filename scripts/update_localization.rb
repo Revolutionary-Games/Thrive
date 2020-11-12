@@ -38,8 +38,8 @@ Dir.chdir(LOCALE_FOLDER) do
   runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
                   'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'window_title', '-k',
                   'dialog_text', '-k', 'Translate', '-o',
-                  File.join(LOCALE_FOLDER, 'messages' + @options[:pot_suffix]), '../src',
-                  '../simulation_parameters', '../assets'
+                  File.join(LOCALE_FOLDER, 'messages' + @options[:pot_suffix]),
+                  '../simulation_parameters', '../assets', '../src'
 
   success 'Done extracting .pot file'
 
