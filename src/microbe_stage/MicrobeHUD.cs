@@ -553,6 +553,15 @@ public class MicrobeHUD : Node
         // TODO: pressure?
     }
 
+    public void UpdateHealth()
+    {
+        var hp = stage.Player.Hitpoints;
+        var maxHP = stage.Player.MaxHitpoints;
+
+        GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP);
+        hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
+    }
+
     private void HandleEnvironmentResize(int height, int columns, int vseparation, int hseparation)
     {
         panelsTween.InterpolateProperty(
@@ -788,15 +797,6 @@ public class MicrobeHUD : Node
         {
             atpBar.TintProgress = new Color(0.44f, 0.96f, 0.14f);
         }
-    }
-
-    public void UpdateHealth()
-    {
-        var hp = stage.Player.Hitpoints;
-        var maxHP = stage.Player.MaxHitpoints;
-
-        GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP);
-        hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
     }
 
     private void UpdatePopulation()
