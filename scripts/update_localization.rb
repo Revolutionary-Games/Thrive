@@ -46,10 +46,20 @@ Dir.chdir(LOCALE_FOLDER) do
   info 'Extracting .po files'
 
   LOCALES.each do |locale|
-    puts "Extracting #{locale}.po"
-    runOpen3Checked 'msgmerge', '--update', '--backup=none',
-                    locale + @options[:po_suffix],
-                    'messages' + @options[:pot_suffix]
+    target = locale + @options[:po_suffix]
+
+    if File.exist? target
+      puts "Extracting #{locale}.po"
+      runOpen3Checked 'msgmerge', '--update', '--backup=none',
+                      target,
+                      'messages' + @options[:pot_suffix]
+    else
+      puts "Creating new file #{locale}.po"
+
+      runOpen3Checked 'msginit', '-l', locale, '--no-translator',
+                      '-o', target, '-i',
+                      'messages' + @options[:pot_suffix]
+    end
   end
 end
 
