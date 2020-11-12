@@ -249,6 +249,7 @@ namespace AutoEvo
 
                     if (!playerReadable)
                     {
+                        builder.Append(", ");
                         builder.Append(TranslationServer.Translate("RUNRESULT_GENE_CODE"));
                         builder.Append(" ");
                         builder.Append(entry.MutatedProperties.StringCode);

@@ -32,7 +32,7 @@ msgstr "Your cell uses ATP as it's energy source, if it runs out you will die."
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"To unlock the editor and reproduce you need to gatherAmmonia (Orange Cloud) "
+"To unlock the editor and reproduce you need to gather Ammonia (Orange Cloud) "
 "and Phosphate (Purple Cloud)."
 
 #: ../simulation_parameters/common/help_texts.json:7
@@ -45,10 +45,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:8
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulation Now costs ATP, which means the bigger your cell is, the more "
+"Osmoregulation costs ATP, which means the bigger your cell is, the more "
 "Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does "
-"Glycolysis) you need to avoid losing ATP when you are stationary. It works "
-"this way: Osmoregulation costs are ((Hex Amount * 1) per second..."
+"Glycolysis) you need to avoid losing ATP when you are stationary."
 
 #: ../simulation_parameters/common/help_texts.json:9
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
@@ -59,7 +58,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:10
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr ""
-"For this Release if your population (top tab) drops to zero you go extinct."
+"For now if your population drops to zero you go extinct."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -83,15 +82,14 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"To reproduce you need to divide each of your organelles into two and then "
-"duplicate the DNA in your nucleus. Each organelle needs 2 ammonia and 2 "
-"phosphate to split in half."
+"To reproduce you need to divide each of your organelles into two. "
+"Organelles need ammonia and phosphate to split in half."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
 "But if you survive for twenty generations with 300 population, you are "
-"considered to have won, after winning you get a popup and can continue "
+"considered to have won the current game, after winning you get a popup and can continue "
 "playing as you wish."
 
 #: ../simulation_parameters/common/help_texts.json:15
@@ -105,8 +103,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotic Structures\n"
 "\n"
-"Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way "
-"way less efficient, it only takes up 1 Hex\n"
+"Metabolosomes: Produces ATP from glucose\n"
 "\n"
 "Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen "
 "Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex\n"
@@ -114,12 +111,12 @@ msgstr ""
 "Chromatophores: Produces 1/3rd the amount of glucose as a normal "
 "chloroplast, but also performs glycolysis, and takes up 1 Hex.\n"
 "\n"
-"Rusticyanin: Converts iron into ATP, and takes up 1 Hex.\n"
+"Rusticyanin: Converts iron into ATP.\n"
 "\n"
 "Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
 "anaerobically\n"
 "\n"
-"Cytoplasm: Increases the rate of compound absorbtion and has 4 storage space "
+"Cytoplasm: Has storage space "
 "and performs glycolysis (Produces small amounts of ATP)."
 
 #: ../simulation_parameters/common/help_texts.json:21
@@ -151,7 +148,7 @@ msgstr ""
 "\n"
 "Vacuole: Stores 15 collected compounds.\n"
 "\n"
-"Toxin Vacuoles: Produces toxins (called OxyToxyNT)."
+"Toxin Vacuoles: Produces toxins (called OxyToxy NT)."
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -348,7 +345,7 @@ msgstr "Photosynthesis"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "Oxytoxy Synthesis"
+msgstr "OxyToxy Synthesis"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
@@ -447,11 +444,11 @@ msgstr "Coastal"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1167
 msgid "UNDERWATERCAVE"
-msgstr "UnderwaterCave"
+msgstr "Underwater Cave"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1290
 msgid "ICESHELF"
-msgstr "IceShelf"
+msgstr "Ice Shelf"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1349
 msgid "ICESHARD"
@@ -701,7 +698,7 @@ msgstr "has a mutation"
 
 #: ../src/auto-evo/RunResults.cs:252
 msgid "RUNRESULT_GENE_CODE"
-msgstr ", gene code:"
+msgstr "gene code:"
 
 #: ../src/auto-evo/RunResults.cs:263
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
@@ -1255,7 +1252,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2203
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4806
 msgid "OXYTOXY"
-msgstr "oxytoxy"
+msgstr "OxyToxy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2221
 msgid "DOT_CAN_RELEASE"
@@ -1269,7 +1266,7 @@ msgstr "toxins by pressing E. Rate scales with"
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "A modified metabolosome responsible for the production of a primitive form "
-"of the toxic agent Oxytoxy NT."
+"of the toxic agent OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2458
 msgid "USES"
@@ -1868,9 +1865,9 @@ msgstr "EXTINCTION"
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
-"Just like 99% of all species that have ever existed,your species has gone "
-"extinct.  Others will go on to fill in yourniche  and thrive, but that won’t "
-"be you. You will be forgotten,a failed  experiment in evolution."
+"Just like 99% of all species that have ever existed, your species has gone "
+"extinct. Others will go on to fill in yourniche  and thrive, but that won’t "
+"be you. You will be forgotten, a failed experiment in evolution."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
@@ -1879,8 +1876,8 @@ msgstr "YOU HAVE THRIVED!"
 #: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
-"Congratulations you have won this version of Thrive!You may continue playing "
-"after this screen closes if you wish,or start a new game in a new world."
+"Congratulations you have won this version of Thrive! You may continue playing "
+"after this screen closes if you wish, or start a new game in a new world."
 
 #: ../src/saving/InProgressLoad.cs:71 ../src/saving/InProgressLoad.cs:87
 #: ../src/saving/InProgressLoad.cs:131
