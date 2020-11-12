@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-10 20:25+0200\n"
+"POT-Creation-Date: 2020-11-12 10:08+0200\n"
 "PO-Revision-Date: 2020-09-06 15:57+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,6 +18,650 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.1\n"
+
+#: ../simulation_parameters/common/help_texts.json:4
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr ""
+"W,A,S,D and mouse to move. E to shoot OxyToxy NT if you have a toxin "
+"vacuole. G to toggle engulf mode."
+
+#: ../simulation_parameters/common/help_texts.json:5
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr "Your cell uses ATP as it's energy source, if it runs out you will die."
+
+#: ../simulation_parameters/common/help_texts.json:6
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr ""
+"To unlock the editor and reproduce you need to gatherAmmonia (Orange Cloud) "
+"and Phosphate (Purple Cloud)."
+
+#: ../simulation_parameters/common/help_texts.json:7
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr ""
+"You can also engulf cells and bacteria and iron chunks and cell chunks that "
+"are smaller than you by pressing G. This will cost additional ATP and will "
+"slow you down. Don't forget to press G a second time to stop engulfing."
+
+#: ../simulation_parameters/common/help_texts.json:8
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr ""
+"Osmoregulation Now costs ATP, which means the bigger your cell is, the more "
+"Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does "
+"Glycolysis) you need to avoid losing ATP when you are stationary. It works "
+"this way: Osmoregulation costs are ((Hex Amount * 1) per second..."
+
+#: ../simulation_parameters/common/help_texts.json:9
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr ""
+"There are many Organelles in the editor for you to evolve, allowing for a "
+"wide range of different playstyles."
+
+#: ../simulation_parameters/common/help_texts.json:10
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr ""
+"For this Release if your population (top tab) drops to zero you go extinct."
+
+#: ../simulation_parameters/common/help_texts.json:11
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"The various compound clouds are:\n"
+"\n"
+"White – Glucose\n"
+"Yellow – Hydrogen Sulfide\n"
+"Orange - Ammonia\n"
+"Purple - Phosphate\n"
+"Rust Brown - Iron\n"
+"\n"
+"Glucose makes ATP"
+
+#: ../simulation_parameters/common/help_texts.json:12
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr ""
+"Hydrogen Sulfide can be converted into glucose via chemoplasts and "
+"chemosynthesizing proteins. Iron can be converted via rusticyanin into ATP."
+
+#: ../simulation_parameters/common/help_texts.json:13
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr ""
+"To reproduce you need to divide each of your organelles into two and then "
+"duplicate the DNA in your nucleus. Each organelle needs 2 ammonia and 2 "
+"phosphate to split in half."
+
+#: ../simulation_parameters/common/help_texts.json:14
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr ""
+"But if you survive for twenty generations with 300 population, you are "
+"considered to have won, after winning you get a popup and can continue "
+"playing as you wish."
+
+#: ../simulation_parameters/common/help_texts.json:15
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr ""
+"Be wary because your competitors are evolving alongside you. Every time you "
+"enter the editor they evolve as well."
+
+#: ../simulation_parameters/common/help_texts.json:20
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Prokaryotic Structures\n"
+"\n"
+"Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way "
+"way less efficient, it only takes up 1 Hex\n"
+"\n"
+"Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen "
+"Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex\n"
+"\n"
+"Chromatophores: Produces 1/3rd the amount of glucose as a normal "
+"chloroplast, but also performs glycolysis, and takes up 1 Hex.\n"
+"\n"
+"Rusticyanin: Converts iron into ATP, and takes up 1 Hex.\n"
+"\n"
+"Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
+"anaerobically\n"
+"\n"
+"Cytoplasm: Increases the rate of compound absorbtion and has 4 storage space "
+"and performs glycolysis (Produces small amounts of ATP)."
+
+#: ../simulation_parameters/common/help_texts.json:21
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"External Organelles\n"
+"\n"
+"Flagella: Moves your cell faster by consuming ATP.\n"
+"\n"
+"Pilus: Can be used to stab other cells."
+
+#: ../simulation_parameters/common/help_texts.json:22
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Membrane Bound Organelles\n"
+"\n"
+"Nucleus: Takes up 11 hexes and allows for evolution of membrane bound "
+"organelles. And also doubles your cells size. (Can only be evolved once)\n"
+"\n"
+"Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more "
+"efficiently then cytoplasm\n"
+"\n"
+"Chloroplast: Makes glucose out of sunlight and atmospheric CO2.\n"
+"\n"
+"Chemoplast: Makes glucose out of Hydrogen Sulfide.\n"
+"\n"
+"Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and "
+"Oxygen.\n"
+"\n"
+"Vacuole: Stores 15 collected compounds.\n"
+"\n"
+"Toxin Vacuoles: Produces toxins (called OxyToxyNT)."
+
+#: ../simulation_parameters/common/help_texts.json:23
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr ""
+"Each generation, you have 100 mutation points to spend, and each change (or "
+"mutation) will cost a certain amount of that MP. Adding and removing "
+"organelles cost MP, however removing organelles that were placed in the "
+"current mutation session refunds MP for that organelle. You can remove an "
+"organelle by right-clicking on it. You can rotate your organelles, with A "
+"and D"
+
+#: ../simulation_parameters/common/help_texts.json:24
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr ""
+"Every time you reproduce, you will enter the Microbe Editor, where you can "
+"make changes to your species (by adding, moving, or removing organelles) to "
+"increase your species' success. Each visit to the editor in the Microbe "
+"Stage Represents 100 million years of evolution"
+
+#: ../simulation_parameters/common/help_texts.json:29
+msgid "EASTEREGG_MESSAGE_1"
+msgstr ""
+"Fun Fact, The Didinium and Paramecium are a textbook example of a predator "
+"prey relationship that has been studied for decades, now are you the "
+"Didinium, or the Paramecium? Predator, or Prey?"
+
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "EASTEREGG_MESSAGE_2"
+msgstr ""
+"Here's a tip, toxins can be used to knock other toxins away from you if you "
+"are quick enough."
+
+#: ../simulation_parameters/common/help_texts.json:31
+msgid "EASTEREGG_MESSAGE_3"
+msgstr ""
+"Here's a tip, Osmoregulation costs 1 ATP per second per hex your cell has, "
+"each empty hex of cytoplasm generates 5 ATP per second aswell, which means "
+"if you are losing ATP due to osmoregulation just add a couple empty hexes "
+"cytoplasm or remove some organelles."
+
+#: ../simulation_parameters/common/help_texts.json:32
+msgid "EASTEREGG_MESSAGE_4"
+msgstr ""
+"Fun Fact, In real life prokaryotes have something called Biocompartments "
+"which act like organelles, and are in fact called Polyhedral organelles"
+
+#: ../simulation_parameters/common/help_texts.json:33
+msgid "EASTEREGG_MESSAGE_5"
+msgstr "Fun Fact, The metabolosome is what is called a Polyhedral organelle"
+
+#: ../simulation_parameters/common/help_texts.json:34
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "Here's a tip, sometimes its best just to run away from other cells."
+
+#: ../simulation_parameters/common/help_texts.json:35
+msgid "EASTEREGG_MESSAGE_7"
+msgstr ""
+"Here's a tip, if a cell is about half your size, thats when you can engulf "
+"them."
+
+#: ../simulation_parameters/common/help_texts.json:36
+msgid "EASTEREGG_MESSAGE_8"
+msgstr ""
+"Here's a tip, Bacteria can be stronger then they appear, they may look "
+"small, but some of them can burrow into you and kill you that way!"
+
+#: ../simulation_parameters/common/help_texts.json:37
+msgid "EASTEREGG_MESSAGE_9"
+msgstr ""
+"Here's a tip, You can hunt other species to extinction if you arent careful "
+"enough, they can also be hunted to extinction by other species."
+
+#: ../simulation_parameters/common/help_texts.json:38
+msgid "EASTEREGG_MESSAGE_10"
+msgstr "WIGGLY THINGS!!"
+
+#: ../simulation_parameters/common/help_texts.json:39
+msgid "EASTEREGG_MESSAGE_11"
+msgstr "Smeltal the meltal."
+
+#: ../simulation_parameters/common/help_texts.json:40
+msgid "EASTEREGG_MESSAGE_12"
+msgstr "Those blue cells though."
+
+#: ../simulation_parameters/common/help_texts.json:41
+msgid "EASTEREGG_MESSAGE_13"
+msgstr ""
+"Here's a tip, Biomes are more than just different backgrounds, the compounds "
+"in different biomes sometimes spawn at different rates."
+
+#: ../simulation_parameters/common/help_texts.json:42
+msgid "EASTEREGG_MESSAGE_14"
+msgstr ""
+"Here's a tip, The more flagella you have, the faster you go, vroom vroom, "
+"but it also costs more ATP"
+
+#: ../simulation_parameters/common/help_texts.json:43
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "Here's a tip, you can en[g]ulf chunks iron or otherwise."
+
+#: ../simulation_parameters/common/help_texts.json:44
+msgid "EASTEREGG_MESSAGE_16"
+msgstr ""
+"Here's a tip, prepare before adding a nucleus. those things are expensive! "
+"In upkeep and up front cost."
+
+#: ../simulation_parameters/common/help_texts.json:45
+msgid "EASTEREGG_MESSAGE_17"
+msgstr ""
+"Fun Fact, Did you know that there are over 8000 species of ciliate on planet "
+"earth?"
+
+#: ../simulation_parameters/common/help_texts.json:46
+msgid "EASTEREGG_MESSAGE_18"
+msgstr ""
+"Fun Fact, The Stentor is a ciliate that can stretch itself and catch prey in "
+"a kind of trumpet like mouth that draws prey in by generating water currents "
+"with cilia."
+
+#: ../simulation_parameters/common/help_texts.json:47
+msgid "EASTEREGG_MESSAGE_19"
+msgstr "Fun Fact, The Didinum is a ciliate that hunts paramecia."
+
+#: ../simulation_parameters/common/help_texts.json:48
+msgid "EASTEREGG_MESSAGE_20"
+msgstr ""
+"Fun Fact, The Ameoba hunts and catches prey with 'legs' made of cytoplasm "
+"called pseudopods, eventually we want those in Thrive."
+
+#: ../simulation_parameters/common/help_texts.json:49
+msgid "EASTEREGG_MESSAGE_21"
+msgstr ""
+"Here's a tip, Watch out for larger cells and large bacteria, it's not fun to "
+"be digested, and they will eat you."
+
+#: ../simulation_parameters/common/help_texts.json:50
+msgid "EASTEREGG_MESSAGE_22"
+msgstr ""
+"Here's a tip, Osmoregulation costs 1 ATP per second per hex, each empty hex "
+"of cytoplasm generates 5 ATP per second aswell, which means if you are "
+"losing ATP due to osmoregulation just add a couple empty hexes cytoplasm or "
+"remove some organelles"
+
+#: ../simulation_parameters/common/help_texts.json:51
+msgid "EASTEREGG_MESSAGE_23"
+msgstr ""
+"Here's a tip, if your cell is 150 hexes, you can engulf the large iron "
+"chunks."
+
+#: ../simulation_parameters/common/help_texts.json:52
+msgid "EASTEREGG_MESSAGE_24"
+msgstr ""
+"Thrive is meant as a simulation of an alien planet, therefore it makes sense "
+"that most creatures you find will be related to one or two other species due "
+"to evolution happening around you, see if you can identify them!"
+
+#: ../simulation_parameters/common/help_texts.json:53
+msgid "EASTEREGG_MESSAGE_25"
+msgstr ""
+"Fun Fact, The Thrive team does podcasts every so often, you should check "
+"them out!"
+
+#: ../simulation_parameters/common/help_texts.json:54
+msgid "EASTEREGG_MESSAGE_26"
+msgstr ""
+"Fun Fact, Thrive is meant as a simulation of an alien planet, therefore it "
+"makes sense that most creatures you find will be related to one or two other "
+"species due to evolution happening around you, see if you can identify them!"
+
+#: ../simulation_parameters/common/help_texts.json:55
+msgid "EASTEREGG_MESSAGE_27"
+msgstr ""
+"Fun Fact, One of the first playable game-play prototypes was made by our "
+"awesome programmer, untrustedlife!"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:3
+#: ../simulation_parameters/microbe_stage/bio_processes.json:102
+msgid "RESPIRATION"
+msgstr "Respiration"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:13
+msgid "GLYCOLYSIS"
+msgstr "Glycolysis"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:22
+msgid "CYTOPLASM_GLYCOLYSIS"
+msgstr "Cytoplasm Glycolysis"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:31
+#: ../simulation_parameters/microbe_stage/bio_processes.json:112
+msgid "PHOTOSYNTHESIS"
+msgstr "Photosynthesis"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:41
+#: ../simulation_parameters/microbe_stage/bio_processes.json:51
+msgid "OXYTOXY_SYNTHESIS"
+msgstr "Oxytoxy Synthesis"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:61
+#: ../simulation_parameters/microbe_stage/bio_processes.json:71
+msgid "CHEMO_SYNTHESIS"
+msgstr "Chemo Synthesis"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:81
+msgid "AEROBIC_NITROGEN_FIXING"
+msgstr "Aerobic Nitrogen Fixing"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:92
+msgid "ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerobic Nitrogen Fixation"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:122
+msgid "IRON_CHEMOLITHOAUTOTROPHY"
+msgstr "Iron Chemolithoautotrophy"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:3
+msgid "EPIPELAGIC"
+msgstr "Epipelagic"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:25
+#: ../simulation_parameters/microbe_stage/biomes.json:148
+#: ../simulation_parameters/microbe_stage/biomes.json:343
+#: ../simulation_parameters/microbe_stage/biomes.json:470
+#: ../simulation_parameters/microbe_stage/biomes.json:661
+#: ../simulation_parameters/microbe_stage/biomes.json:856
+#: ../simulation_parameters/microbe_stage/biomes.json:1051
+#: ../simulation_parameters/microbe_stage/biomes.json:1174
+#: ../simulation_parameters/microbe_stage/biomes.json:1301
+#: ../simulation_parameters/microbe_stage/biomes.json:1445
+#: ../simulation_parameters/microbe_stage/biomes.json:1572
+msgid "FLOATING_HAZARD"
+msgstr "Floating Hazard"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:42
+#: ../simulation_parameters/microbe_stage/biomes.json:165
+#: ../simulation_parameters/microbe_stage/biomes.json:360
+#: ../simulation_parameters/microbe_stage/biomes.json:487
+#: ../simulation_parameters/microbe_stage/biomes.json:678
+#: ../simulation_parameters/microbe_stage/biomes.json:873
+#: ../simulation_parameters/microbe_stage/biomes.json:1068
+#: ../simulation_parameters/microbe_stage/biomes.json:1191
+#: ../simulation_parameters/microbe_stage/biomes.json:1318
+#: ../simulation_parameters/microbe_stage/biomes.json:1462
+#: ../simulation_parameters/microbe_stage/biomes.json:1589
+msgid "SMALL_IRON_CHUNK"
+msgstr "Small Iron Chunk"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:73
+#: ../simulation_parameters/microbe_stage/biomes.json:264
+#: ../simulation_parameters/microbe_stage/biomes.json:391
+#: ../simulation_parameters/microbe_stage/biomes.json:518
+#: ../simulation_parameters/microbe_stage/biomes.json:709
+#: ../simulation_parameters/microbe_stage/biomes.json:904
+#: ../simulation_parameters/microbe_stage/biomes.json:1099
+#: ../simulation_parameters/microbe_stage/biomes.json:1222
+#: ../simulation_parameters/microbe_stage/biomes.json:1366
+#: ../simulation_parameters/microbe_stage/biomes.json:1493
+#: ../simulation_parameters/microbe_stage/biomes.json:1620
+msgid "BIG_IRON_CHUNK"
+msgstr "Big Iron Chunk"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:141
+msgid "VOLCANIC_VENT"
+msgstr "Volcanic vent"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:196
+#: ../simulation_parameters/microbe_stage/biomes.json:540
+#: ../simulation_parameters/microbe_stage/biomes.json:731
+#: ../simulation_parameters/microbe_stage/biomes.json:926
+#: ../simulation_parameters/microbe_stage/biomes.json:1642
+msgid "MARINE_SNOW"
+msgstr "Marine snow"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:332
+msgid "TIDEPOOL"
+msgstr "Tidepool"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:459
+msgid "BATHYPELAGIC"
+msgstr "Bathypelagic"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:654
+msgid "ABYSSOPELAGIC"
+msgstr "Abyssopelagic"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:845
+msgid "MESOPELAGIC"
+msgstr "Mesopelagic"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:1040
+msgid "COASTAL"
+msgstr "Coastal"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:1167
+msgid "UNDERWATERCAVE"
+msgstr "UnderwaterCave"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:1290
+msgid "ICESHELF"
+msgstr "IceShelf"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:1349
+msgid "ICESHARD"
+msgstr "Ice Shard"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:1434
+msgid "ESTUARY"
+msgstr "Estuary"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
+msgid "SEA_FLOOR"
+msgstr "Sea Floor"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:3
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:721
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2178
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2465
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3197
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4287
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4781
+msgid "ATP"
+msgstr "ATP"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:15
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1928
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4312
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+msgid "AMMONIA"
+msgstr "Ammonia"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:27
+#: ../src/microbe_stage/MicrobeStage.tscn:1690
+msgid "PHOSPHATE"
+msgstr "Phosphate"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:39
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1265
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4015
+#: ../src/microbe_stage/MicrobeStage.tscn:1744
+msgid "HYDROGEN_SULFIDE"
+msgstr "Hydrogen Sulfide"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:51
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:456
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:696
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3172
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3735
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4040
+#: ../src/microbe_stage/MicrobeStage.tscn:1582
+msgid "GLUCOSE"
+msgstr "Glucose"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:63
+#: ../src/microbe_stage/MicrobeStage.tscn:1905
+msgid "OXYTOXY_NT"
+msgstr "OxyToxy NT"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:75
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
+#: ../src/microbe_stage/MicrobeStage.tscn:1798
+msgid "IRON"
+msgstr "Iron"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:87
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2253
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4872
+msgid "OXYGEN"
+msgstr "Oxygen"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:99
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1661
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3773
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
+msgid "CARBON_DIOXIDE"
+msgstr "Carbon Dioxide"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1966
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
+msgid "NITROGEN"
+msgstr "Nitrogen"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:123
+msgid "SUNLIGHT"
+msgstr "Sunlight"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
+msgid "PREDATORY_PILUS"
+msgstr "Predatory Pilus"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:52
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1564
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2169
+msgid "RUSTICYANIN"
+msgstr "Rusticyanin"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:85
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1869
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2232
+msgid "NITROGENASE"
+msgstr "Nitrogenase"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:117
+msgid "PROTOPLASM"
+msgstr "Protoplasm"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:147
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
+msgid "CHEMOSYNTHESIZING_PROTEINS"
+msgstr "Chemosynthesizing Proteins"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:184
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2295
+msgid "OXYTOXISOME"
+msgstr "Oxytoxisome"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:217
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:943
+msgid "THYLAKOIDS"
+msgstr "Thylakoids"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:249
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:598
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:662
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1978
+msgid "METABOLOSOMES"
+msgstr "Metabolosomes"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:285
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4189
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4253
+msgid "NITROGEN_FIXING_PLASTID"
+msgstr "Nitrogen-Fixing Plastid"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:321
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3981
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2971
+msgid "CHEMOPLAST"
+msgstr "Chemoplast"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:351
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2367
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2443
+msgid "FLAGELLUM"
+msgstr "Flagellum"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4494
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4558
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3102
+msgid "VACUOLE"
+msgstr "Vacuole"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:411
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2780
+msgid "MITOCHONDRION"
+msgstr "Mitochondrion"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4683
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3167
+msgid "TOXIN_VACUOLE"
+msgstr "Toxin Vacuole"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3349
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3413
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
+msgid "CHLOROPLAST"
+msgstr "Chloroplast"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:513
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:358
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:422
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1824
+msgid "CYTOPLASM"
+msgstr "Cytoplasm"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2885
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2949
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2717
+msgid "NUCLEUS"
+msgstr "Nucleus"
 
 #: ../src/auto-evo/AutoEvoRun.cs:119
 msgid "ABORTED"
@@ -392,13 +1036,6 @@ msgstr ""
 "A more rigid membrane is more resistant to damage, but will make it harder "
 "for the cell to move around."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:513
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:358
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:422
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1824
-msgid "CYTOPLASM"
-msgstr "Cytoplasm"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:449
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:689
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1258
@@ -411,20 +1048,6 @@ msgstr "Cytoplasm"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
 msgid "TURNS"
 msgstr "Turns"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:51
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:456
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:696
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3172
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4040
-#: ../src/microbe_stage/MicrobeStage.tscn:1582
-msgid "GLUCOSE"
-msgstr "Glucose"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
@@ -439,20 +1062,6 @@ msgstr "Glucose"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4799
 msgid "INTO"
 msgstr "into"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:721
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2178
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2465
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3197
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4781
-msgid "ATP"
-msgstr "ATP"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:528
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:809
@@ -508,13 +1117,6 @@ msgstr ""
 "advanced metabolisms, this is what they rely on for energy. It is also used "
 "to store molecules in the cell and to grow the cell's size."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:249
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:598
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:662
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1978
-msgid "METABOLOSOMES"
-msgstr "Metabolosomes"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:742
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
 msgid "DOT_RATE_SCALES"
@@ -545,11 +1147,6 @@ msgstr ""
 msgid "THYLAKOID"
 msgstr "Thylakoid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:943
-msgid "THYLAKOIDS"
-msgstr "Thylakoids"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:970
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3728
@@ -568,15 +1165,6 @@ msgstr ". Rate scales with"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3766
 msgid "CONCENTRATION_OF"
 msgstr "concentration of"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:99
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1661
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3485
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3773
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
-msgid "CARBON_DIOXIDE"
-msgstr "Carbon Dioxide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1033
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1684
@@ -608,19 +1196,6 @@ msgstr ""
 "intensity of light. Since the thylakoids are suspended directly in the "
 "cytoplasm, the surrounding fluid performs some fermentation."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Chemosynthesizing Proteins"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4015
-#: ../src/microbe_stage/MicrobeStage.tscn:1744
-msgid "HYDROGEN_SULFIDE"
-msgstr "Hydrogen Sulfide"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1313
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
@@ -648,48 +1223,12 @@ msgstr ""
 "Since the chemosynthesizing proteins are suspended directly in the "
 "cytoplasm, the surrounding fluid performs some fermentation."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:52
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1564
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2169
-msgid "RUSTICYANIN"
-msgstr "Rusticyanin"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
-#: ../src/microbe_stage/MicrobeStage.tscn:1798
-msgid "IRON"
-msgstr "Iron"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2253
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3235
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4380
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4872
-msgid "OXYGEN"
-msgstr "Oxygen"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1789
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to "
 "oxidize iron from one chemical state to another. This process, called Iron "
 "Respiration, releases energy which the cell can then harvest."
-
-#: ../simulation_parameters/microbe_stage/organelles.json:85
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1869
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2232
-msgid "NITROGENASE"
-msgstr "Nitrogenase"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:15
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1928
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4312
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
-msgid "AMMONIA"
-msgstr "Ammonia"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3215
@@ -704,12 +1243,6 @@ msgstr ". Rate"
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "scales with concentration of"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:111
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1966
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
-msgid "NITROGEN"
-msgstr "Nitrogen"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2064
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
@@ -718,13 +1251,6 @@ msgstr ""
 "a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase "
 "is suspended directly in the cytoplasm, the surrounding fluid performs some "
 "fermentation."
-
-#: ../simulation_parameters/microbe_stage/organelles.json:184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2295
-msgid "OXYTOXISOME"
-msgstr "Oxytoxisome"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2203
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4806
@@ -744,13 +1270,6 @@ msgid "OXYTOXISOME_DESC"
 msgstr ""
 "A modified metabolosome responsible for the production of a primitive form "
 "of the toxic agent Oxytoxy NT."
-
-#: ../simulation_parameters/microbe_stage/organelles.json:351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2367
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2443
-msgid "FLAGELLUM"
-msgstr "Flagellum"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2458
 msgid "USES"
@@ -775,13 +1294,6 @@ msgstr ""
 "extending from the cell's membrane which can use ATP to undulate and propel "
 "the cell in a direction."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
-msgid "PREDATORY_PILUS"
-msgstr "Predatory Pilus"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2742
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Stab other cells with this."
@@ -796,13 +1308,6 @@ msgstr "Cilia"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5097
 msgid "TO_BE_IMPLEMENTED"
 msgstr "To be Implemented."
-
-#: ../simulation_parameters/microbe_stage/organelles.json:578
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2885
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2949
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2717
-msgid "NUCLEUS"
-msgstr "Nucleus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2969
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -826,13 +1331,6 @@ msgstr ""
 "making the cell much larger and requiring a lot of the cell's energy to "
 "maintain."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:411
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2780
-msgid "MITOCHONDRION"
-msgstr "Mitochondrion"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
@@ -843,13 +1341,6 @@ msgstr ""
 "done in the cytoplasm in a process called Aerobic Respiration. It does, "
 "however, require oxygen to function, and lower levels of oxygen in the "
 "environment will slow down the rate of its ATP production."
-
-#: ../simulation_parameters/microbe_stage/organelles.json:484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3349
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3413
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
-msgid "CHLOROPLAST"
-msgstr "Chloroplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3621
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -884,13 +1375,6 @@ msgstr ""
 "carbon dioxide in a process called Thermosynthesis. The rate of its glucose "
 "production scales with the concentration of carbon dioxide, and temperature."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3917
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3981
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2971
-msgid "CHEMOPLAST"
-msgstr "Chemoplast"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4173
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
@@ -899,12 +1383,6 @@ msgstr ""
 "a process called Hydrogen Sulfide Chemosynthesis.The rate of its glucose "
 "production scales with the concentration of water and carbon dioxide."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4189
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4253
-msgid "NITROGEN_FIXING_PLASTID"
-msgstr "Nitrogen-Fixing Plastid"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4478
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
@@ -912,13 +1390,6 @@ msgstr ""
 "oxygen and cellular energy in the form of ATP to produce ammonia, a key "
 "growth nutrient for cells. This is a process referred to as Aerobic Nitrogen "
 "Fixation."
-
-#: ../simulation_parameters/microbe_stage/organelles.json:378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4494
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4558
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3102
-msgid "VACUOLE"
-msgstr "Vacuole"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4579
 msgid "INREASE_STORAGE_SPACE"
@@ -932,13 +1403,6 @@ msgstr ""
 "widely used in cells for storage, that have fused together. It is filled "
 "with water which is used to contain molecules, enzymes, solids, and other "
 "substances. Their shape is fluid and can vary between cells."
-
-#: ../simulation_parameters/microbe_stage/organelles.json:444
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4683
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3167
-msgid "TOXIN_VACUOLE"
-msgstr "Toxin Vacuole"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4824
 msgid "DOT_CAN"
@@ -1134,19 +1598,9 @@ msgstr "Press."
 msgid "COMPOUNDS"
 msgstr "Compounds"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1690
-msgid "PHOSPHATE"
-msgstr "Phosphate"
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1851
 msgid "AGENTS"
 msgstr "Agents"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1905
-msgid "OXYTOXY_NT"
-msgstr "OxyToxy NT"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2112
 msgid "POPULATION_CAPITAL"
@@ -1817,457 +2271,3 @@ msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by "
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
-
-#: ../simulation_parameters/common/help_texts.json:4
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"W,A,S,D and mouse to move. E to shoot OxyToxy NT if you have a toxin "
-"vacuole. G to toggle engulf mode."
-
-#: ../simulation_parameters/common/help_texts.json:5
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Your cell uses ATP as it's energy source, if it runs out you will die."
-
-#: ../simulation_parameters/common/help_texts.json:6
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"To unlock the editor and reproduce you need to gatherAmmonia (Orange Cloud) "
-"and Phosphate (Purple Cloud)."
-
-#: ../simulation_parameters/common/help_texts.json:7
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"You can also engulf cells and bacteria and iron chunks and cell chunks that "
-"are smaller than you by pressing G. This will cost additional ATP and will "
-"slow you down. Don't forget to press G a second time to stop engulfing."
-
-#: ../simulation_parameters/common/help_texts.json:8
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Osmoregulation Now costs ATP, which means the bigger your cell is, the more "
-"Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does "
-"Glycolysis) you need to avoid losing ATP when you are stationary. It works "
-"this way: Osmoregulation costs are ((Hex Amount * 1) per second..."
-
-#: ../simulation_parameters/common/help_texts.json:9
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"There are many Organelles in the editor for you to evolve, allowing for a "
-"wide range of different playstyles."
-
-#: ../simulation_parameters/common/help_texts.json:10
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
-"For this Release if your population (top tab) drops to zero you go extinct."
-
-#: ../simulation_parameters/common/help_texts.json:11
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"The various compound clouds are:\n"
-"\n"
-"White – Glucose\n"
-"Yellow – Hydrogen Sulfide\n"
-"Orange - Ammonia\n"
-"Purple - Phosphate\n"
-"Rust Brown - Iron\n"
-"\n"
-"Glucose makes ATP"
-
-#: ../simulation_parameters/common/help_texts.json:12
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"Hydrogen Sulfide can be converted into glucose via chemoplasts and "
-"chemosynthesizing proteins. Iron can be converted via rusticyanin into ATP."
-
-#: ../simulation_parameters/common/help_texts.json:13
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"To reproduce you need to divide each of your organelles into two and then "
-"duplicate the DNA in your nucleus. Each organelle needs 2 ammonia and 2 "
-"phosphate to split in half."
-
-#: ../simulation_parameters/common/help_texts.json:14
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"But if you survive for twenty generations with 300 population, you are "
-"considered to have won, after winning you get a popup and can continue "
-"playing as you wish."
-
-#: ../simulation_parameters/common/help_texts.json:15
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Be wary because your competitors are evolving alongside you. Every time you "
-"enter the editor they evolve as well."
-
-#: ../simulation_parameters/common/help_texts.json:20
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokaryotic Structures\n"
-"\n"
-"Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way "
-"way less efficient, it only takes up 1 Hex\n"
-"\n"
-"Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen "
-"Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex\n"
-"\n"
-"Chromatophores: Produces 1/3rd the amount of glucose as a normal "
-"chloroplast, but also performs glycolysis, and takes up 1 Hex.\n"
-"\n"
-"Rusticyanin: Converts iron into ATP, and takes up 1 Hex.\n"
-"\n"
-"Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
-"anaerobically\n"
-"\n"
-"Cytoplasm: Increases the rate of compound absorbtion and has 4 storage space "
-"and performs glycolysis (Produces small amounts of ATP)."
-
-#: ../simulation_parameters/common/help_texts.json:21
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"External Organelles\n"
-"\n"
-"Flagella: Moves your cell faster by consuming ATP.\n"
-"\n"
-"Pilus: Can be used to stab other cells."
-
-#: ../simulation_parameters/common/help_texts.json:22
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membrane Bound Organelles\n"
-"\n"
-"Nucleus: Takes up 11 hexes and allows for evolution of membrane bound "
-"organelles. And also doubles your cells size. (Can only be evolved once)\n"
-"\n"
-"Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more "
-"efficiently then cytoplasm\n"
-"\n"
-"Chloroplast: Makes glucose out of sunlight and atmospheric CO2.\n"
-"\n"
-"Chemoplast: Makes glucose out of Hydrogen Sulfide.\n"
-"\n"
-"Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and "
-"Oxygen.\n"
-"\n"
-"Vacuole: Stores 15 collected compounds.\n"
-"\n"
-"Toxin Vacuoles: Produces toxins (called OxyToxyNT)."
-
-#: ../simulation_parameters/common/help_texts.json:23
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Each generation, you have 100 mutation points to spend, and each change (or "
-"mutation) will cost a certain amount of that MP. Adding and removing "
-"organelles cost MP, however removing organelles that were placed in the "
-"current mutation session refunds MP for that organelle. You can remove an "
-"organelle by right-clicking on it. You can rotate your organelles, with A "
-"and D"
-
-#: ../simulation_parameters/common/help_texts.json:24
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Every time you reproduce, you will enter the Microbe Editor, where you can "
-"make changes to your species (by adding, moving, or removing organelles) to "
-"increase your species' success. Each visit to the editor in the Microbe "
-"Stage Represents 100 million years of evolution"
-
-#: ../simulation_parameters/common/help_texts.json:29
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Fun Fact, The Didinium and Paramecium are a textbook example of a predator "
-"prey relationship that has been studied for decades, now are you the "
-"Didinium, or the Paramecium? Predator, or Prey?"
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Here's a tip, toxins can be used to knock other toxins away from you if you "
-"are quick enough."
-
-#: ../simulation_parameters/common/help_texts.json:31
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Here's a tip, Osmoregulation costs 1 ATP per second per hex your cell has, "
-"each empty hex of cytoplasm generates 5 ATP per second aswell, which means "
-"if you are losing ATP due to osmoregulation just add a couple empty hexes "
-"cytoplasm or remove some organelles."
-
-#: ../simulation_parameters/common/help_texts.json:32
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Fun Fact, In real life prokaryotes have something called Biocompartments "
-"which act like organelles, and are in fact called Polyhedral organelles"
-
-#: ../simulation_parameters/common/help_texts.json:33
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Fun Fact, The metabolosome is what is called a Polyhedral organelle"
-
-#: ../simulation_parameters/common/help_texts.json:34
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Here's a tip, sometimes its best just to run away from other cells."
-
-#: ../simulation_parameters/common/help_texts.json:35
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Here's a tip, if a cell is about half your size, thats when you can engulf "
-"them."
-
-#: ../simulation_parameters/common/help_texts.json:36
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Here's a tip, Bacteria can be stronger then they appear, they may look "
-"small, but some of them can burrow into you and kill you that way!"
-
-#: ../simulation_parameters/common/help_texts.json:37
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Here's a tip, You can hunt other species to extinction if you arent careful "
-"enough, they can also be hunted to extinction by other species."
-
-#: ../simulation_parameters/common/help_texts.json:38
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "WIGGLY THINGS!!"
-
-#: ../simulation_parameters/common/help_texts.json:39
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Smeltal the meltal."
-
-#: ../simulation_parameters/common/help_texts.json:40
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Those blue cells though."
-
-#: ../simulation_parameters/common/help_texts.json:41
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Here's a tip, Biomes are more than just different backgrounds, the compounds "
-"in different biomes sometimes spawn at different rates."
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Here's a tip, The more flagella you have, the faster you go, vroom vroom, "
-"but it also costs more ATP"
-
-#: ../simulation_parameters/common/help_texts.json:43
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Here's a tip, you can en[g]ulf chunks iron or otherwise."
-
-#: ../simulation_parameters/common/help_texts.json:44
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Here's a tip, prepare before adding a nucleus. those things are expensive! "
-"In upkeep and up front cost."
-
-#: ../simulation_parameters/common/help_texts.json:45
-msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Fun Fact, Did you know that there are over 8000 species of ciliate on planet "
-"earth?"
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Fun Fact, The Stentor is a ciliate that can stretch itself and catch prey in "
-"a kind of trumpet like mouth that draws prey in by generating water currents "
-"with cilia."
-
-#: ../simulation_parameters/common/help_texts.json:47
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Fun Fact, The Didinum is a ciliate that hunts paramecia."
-
-#: ../simulation_parameters/common/help_texts.json:48
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Fun Fact, The Ameoba hunts and catches prey with 'legs' made of cytoplasm "
-"called pseudopods, eventually we want those in Thrive."
-
-#: ../simulation_parameters/common/help_texts.json:49
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Here's a tip, Watch out for larger cells and large bacteria, it's not fun to "
-"be digested, and they will eat you."
-
-#: ../simulation_parameters/common/help_texts.json:50
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Here's a tip, Osmoregulation costs 1 ATP per second per hex, each empty hex "
-"of cytoplasm generates 5 ATP per second aswell, which means if you are "
-"losing ATP due to osmoregulation just add a couple empty hexes cytoplasm or "
-"remove some organelles"
-
-#: ../simulation_parameters/common/help_texts.json:51
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Here's a tip, if your cell is 150 hexes, you can engulf the large iron "
-"chunks."
-
-#: ../simulation_parameters/common/help_texts.json:52
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive is meant as a simulation of an alien planet, therefore it makes sense "
-"that most creatures you find will be related to one or two other species due "
-"to evolution happening around you, see if you can identify them!"
-
-#: ../simulation_parameters/common/help_texts.json:53
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"Fun Fact, The Thrive team does podcasts every so often, you should check "
-"them out!"
-
-#: ../simulation_parameters/common/help_texts.json:54
-msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-"Fun Fact, Thrive is meant as a simulation of an alien planet, therefore it "
-"makes sense that most creatures you find will be related to one or two other "
-"species due to evolution happening around you, see if you can identify them!"
-
-#: ../simulation_parameters/common/help_texts.json:55
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Fun Fact, One of the first playable game-play prototypes was made by our "
-"awesome programmer, untrustedlife!"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:3
-#: ../simulation_parameters/microbe_stage/bio_processes.json:102
-msgid "RESPIRATION"
-msgstr "Respiration"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:13
-msgid "GLYCOLYSIS"
-msgstr "Glycolysis"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:22
-msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "Cytoplasm Glycolysis"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:31
-#: ../simulation_parameters/microbe_stage/bio_processes.json:112
-msgid "PHOTOSYNTHESIS"
-msgstr "Photosynthesis"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:41
-#: ../simulation_parameters/microbe_stage/bio_processes.json:51
-msgid "OXYTOXY_SYNTHESIS"
-msgstr "Oxytoxy Synthesis"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#: ../simulation_parameters/microbe_stage/bio_processes.json:71
-msgid "CHEMO_SYNTHESIS"
-msgstr "Chemo Synthesis"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:81
-msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobic Nitrogen Fixing"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:92
-msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerobic Nitrogen Fixation"
-
-#: ../simulation_parameters/microbe_stage/bio_processes.json:122
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Iron Chemolithoautotrophy"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:3
-msgid "EPIPELAGIC"
-msgstr "Epipelagic"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:148
-#: ../simulation_parameters/microbe_stage/biomes.json:343
-#: ../simulation_parameters/microbe_stage/biomes.json:470
-#: ../simulation_parameters/microbe_stage/biomes.json:661
-#: ../simulation_parameters/microbe_stage/biomes.json:856
-#: ../simulation_parameters/microbe_stage/biomes.json:1051
-#: ../simulation_parameters/microbe_stage/biomes.json:1174
-#: ../simulation_parameters/microbe_stage/biomes.json:1301
-#: ../simulation_parameters/microbe_stage/biomes.json:1445
-#: ../simulation_parameters/microbe_stage/biomes.json:1572
-msgid "FLOATING_HAZARD"
-msgstr "Floating Hazard"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:165
-#: ../simulation_parameters/microbe_stage/biomes.json:360
-#: ../simulation_parameters/microbe_stage/biomes.json:487
-#: ../simulation_parameters/microbe_stage/biomes.json:678
-#: ../simulation_parameters/microbe_stage/biomes.json:873
-#: ../simulation_parameters/microbe_stage/biomes.json:1068
-#: ../simulation_parameters/microbe_stage/biomes.json:1191
-#: ../simulation_parameters/microbe_stage/biomes.json:1318
-#: ../simulation_parameters/microbe_stage/biomes.json:1462
-#: ../simulation_parameters/microbe_stage/biomes.json:1589
-msgid "SMALL_IRON_CHUNK"
-msgstr "Small Iron Chunk"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:73
-#: ../simulation_parameters/microbe_stage/biomes.json:264
-#: ../simulation_parameters/microbe_stage/biomes.json:391
-#: ../simulation_parameters/microbe_stage/biomes.json:518
-#: ../simulation_parameters/microbe_stage/biomes.json:709
-#: ../simulation_parameters/microbe_stage/biomes.json:904
-#: ../simulation_parameters/microbe_stage/biomes.json:1099
-#: ../simulation_parameters/microbe_stage/biomes.json:1222
-#: ../simulation_parameters/microbe_stage/biomes.json:1366
-#: ../simulation_parameters/microbe_stage/biomes.json:1493
-#: ../simulation_parameters/microbe_stage/biomes.json:1620
-msgid "BIG_IRON_CHUNK"
-msgstr "Big Iron Chunk"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:141
-msgid "VOLCANIC_VENT"
-msgstr "Volcanic vent"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:196
-#: ../simulation_parameters/microbe_stage/biomes.json:540
-#: ../simulation_parameters/microbe_stage/biomes.json:731
-#: ../simulation_parameters/microbe_stage/biomes.json:926
-#: ../simulation_parameters/microbe_stage/biomes.json:1642
-msgid "MARINE_SNOW"
-msgstr "Marine snow"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:332
-msgid "TIDEPOOL"
-msgstr "Tidepool"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:459
-msgid "BATHYPELAGIC"
-msgstr "Bathypelagic"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:654
-msgid "ABYSSOPELAGIC"
-msgstr "Abyssopelagic"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:845
-msgid "MESOPELAGIC"
-msgstr "Mesopelagic"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:1040
-msgid "COASTAL"
-msgstr "Coastal"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:1167
-msgid "UNDERWATERCAVE"
-msgstr "UnderwaterCave"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:1290
-msgid "ICESHELF"
-msgstr "IceShelf"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:1349
-msgid "ICESHARD"
-msgstr "Ice Shard"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:1434
-msgid "ESTUARY"
-msgstr "Estuary"
-
-#: ../simulation_parameters/microbe_stage/biomes.json:1561
-msgid "SEA_FLOOR"
-msgstr "Sea Floor"
-
-#: ../simulation_parameters/microbe_stage/compounds.json:123
-msgid "SUNLIGHT"
-msgstr "Sunlight"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:117
-msgid "PROTOPLASM"
-msgstr "Protoplasm"
