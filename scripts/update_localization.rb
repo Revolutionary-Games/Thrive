@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # List of locales, edit this to add new ones:
-LOCALES = %w[en fr].freeze
+LOCALES = %w[en fr fi].freeze
 
 require 'optparse'
 require_relative '../RubySetupSystem/RubyCommon'
