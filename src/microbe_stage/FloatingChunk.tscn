@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://src/microbe_stage/FloatingChunk.cs" type="Script" id=1]
-
-[sub_resource type="SphereShape" id=1]
-resource_local_to_scene = true
 
 [node name="FloatingChunk" type="RigidBody"]
 process_priority = 2
@@ -15,6 +12,5 @@ angular_damp = 0.11
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
 
 [node name="NodeToScale" type="Spatial" parent="."]

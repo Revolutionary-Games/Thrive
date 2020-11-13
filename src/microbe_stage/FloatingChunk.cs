@@ -330,8 +330,20 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         // Apply physics shape
         var shape = GetNode<CollisionShape>("CollisionShape");
 
-        // This only works as long as the sphere shape type is not changed in the editor
-        ((SphereShape)shape.Shape).Radius = Radius;
+        // Collision shape defaults to sphere shape if chunk has no mesh (ie. using particles)
+        if (chunkMesh == null)
+        {
+            var sphere = new SphereShape();
+
+            shape.Shape = sphere;
+            sphere.Radius = Radius;
+        }
+        else
+        {
+            // Make a convex collision shape
+            shape.Shape = chunkMesh.Mesh.CreateConvexShape();
+            shape.Transform = chunkMesh.Transform;
+        }
 
         // Needs physics callback when this is engulfable or damaging
         if (Damages > 0 || DeleteOnTouch || Size > 0)
