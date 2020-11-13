@@ -240,8 +240,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     [Export]
     public AudioStream UnableToPlaceHexSound;
 
-    private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
-
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
@@ -598,8 +596,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         var percentage = value * 100 + "%";
 
-        glucoseReductionLabel.Text = "The amount of glucose has been reduced to " + percentage +
-            " of the previous amount.";
+        // The amount of glucose has been reduced to {0} of the previous amount.
+        glucoseReductionLabel.Text =
+            string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"),
+                percentage);
     }
 
     public void UpdateTimeIndicator(double value)
@@ -655,12 +656,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (energyBalance.FinalBalance > 0)
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
+            atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION");
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
+            atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION") + " - " +
+                TranslationServer.Translate("ATP_PRODUCTION_TOO_LOW");
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
@@ -1459,14 +1461,22 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         patchNothingSelected.Visible = false;
 
         patchName.Text = patch.Name;
-        patchBiome.Text = "Biome: " + patch.BiomeTemplate.Name;
-        patchDepth.Text = patch.Depth[0] + "-" + patch.Depth[1] + "m below sea level";
+
+        // Biome: {0}
+        patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("BIOME_LABEL"),
+            patch.BiomeTemplate.Name);
+
+        // {0}-{1}m below sea level
+        patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("BELOW_SEA_LEVEL"),
+            patch.Depth[0], patch.Depth[1]);
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses
         patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
-        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + "% lux";
+        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + "% lx";
         patchOxygen.Text = (patch.Biome.Compounds[oxygen].Dissolved * 100) + "%";
         patchNitrogen.Text = (patch.Biome.Compounds[nitrogen].Dissolved * 100) + "%";
         patchCO2.Text = (patch.Biome.Compounds[carbondioxide].Dissolved * 100) + "%";
@@ -1498,7 +1508,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             var speciesLabel = new Label();
             speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
             speciesLabel.Autowrap = true;
-            speciesLabel.Text = species.FormattedName + " with population: " + patch.GetSpeciesPopulation(species);
+            speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
+                patch.GetSpeciesPopulation(species));
             speciesListBox.AddItem(speciesLabel);
         }
 

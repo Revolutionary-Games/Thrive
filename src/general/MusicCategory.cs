@@ -58,6 +58,10 @@ public class MusicCategory : IRegistryType
         foreach (var list in TrackLists)
             list.Check();
     }
+
+    public void ApplyTranslations()
+    {
+    }
 }
 
 /// <summary>

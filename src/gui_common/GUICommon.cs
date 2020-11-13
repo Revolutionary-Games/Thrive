@@ -99,8 +99,7 @@ public class GUICommon : Node
     /// </summary>
     public Texture GetCompoundIcon(string compoundName)
     {
-        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName.ReplaceN(
-            " ", string.Empty) + ".png");
+        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName + ".png");
 
         // Just use a dummy icon instead if the requested icon is not found
         if (icon == null)

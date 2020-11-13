@@ -8,6 +8,7 @@ public class BioProcess : IRegistryType
     /// <summary>
     ///   User visible pretty name
     /// </summary>
+    [TranslateFrom("untranslatedName")]
     public string Name;
 
     /// <summary>
@@ -16,6 +17,10 @@ public class BioProcess : IRegistryType
     public Dictionary<Compound, float> Inputs;
 
     public Dictionary<Compound, float> Outputs;
+
+#pragma warning disable 169 // Used through reflection
+    private string untranslatedName;
+#pragma warning restore 169
 
     public string InternalName { get; set; }
 
@@ -50,5 +55,17 @@ public class BioProcess : IRegistryType
                     "Non-positive amount of output compound " + output.Key + " found");
             }
         }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+    }
+
+    public void ApplyTranslations()
+    {
+        TranslationHelper.ApplyTranslations(this);
+    }
+
+    public override string ToString()
+    {
+        return Name;
     }
 }
