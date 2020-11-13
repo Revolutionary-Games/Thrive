@@ -107,12 +107,15 @@ __meta__ = {
 [node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 576.0
 margin_bottom = 35.0
+size_flags_horizontal = 3
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GraphicsButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_right = 130.0
+margin_left = 18.0
+margin_right = 148.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -124,8 +127,8 @@ group = SubResource( 1 )
 text = "GRAPHICS"
 
 [node name="SoundButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 134.0
-margin_right = 264.0
+margin_left = 152.0
+margin_right = 282.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -136,8 +139,8 @@ group = SubResource( 1 )
 text = "SOUND"
 
 [node name="PerformanceButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 268.0
-margin_right = 406.0
+margin_left = 286.0
+margin_right = 424.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -148,8 +151,8 @@ group = SubResource( 1 )
 text = "PERFORMANCE"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 410.0
-margin_right = 540.0
+margin_left = 428.0
+margin_right = 558.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
