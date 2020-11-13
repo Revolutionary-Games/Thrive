@@ -45,21 +45,21 @@
 [ext_resource path="res://assets/textures/gui/bevel/expandPanel.png" type="Texture" id=43]
 [ext_resource path="res://assets/textures/gui/bevel/expandPanelActive.png" type="Texture" id=44]
 [ext_resource path="res://assets/textures/gui/bevel/compressPanelActive.png" type="Texture" id=45]
-[ext_resource path="res://assets/textures/gui/bevel/Glucose.png" type="Texture" id=46]
-[ext_resource path="res://assets/textures/gui/bevel/HydrogenSulfide.png" type="Texture" id=47]
-[ext_resource path="res://assets/textures/gui/bevel/Ammonia.png" type="Texture" id=48]
-[ext_resource path="res://assets/textures/gui/bevel/Iron.png" type="Texture" id=49]
-[ext_resource path="res://assets/textures/gui/bevel/Phosphates.png" type="Texture" id=50]
-[ext_resource path="res://assets/textures/gui/bevel/Oxygen.png" type="Texture" id=51]
+[ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture" id=46]
+[ext_resource path="res://assets/textures/gui/bevel/hydrogensulfide.png" type="Texture" id=47]
+[ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture" id=48]
+[ext_resource path="res://assets/textures/gui/bevel/iron.png" type="Texture" id=49]
+[ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=50]
+[ext_resource path="res://assets/textures/gui/bevel/oxygen.png" type="Texture" id=51]
 [ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture" id=52]
-[ext_resource path="res://assets/textures/gui/bevel/Sunlight.png" type="Texture" id=53]
+[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=53]
 [ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=54]
-[ext_resource path="res://assets/textures/gui/bevel/CarbonDioxide.png" type="Texture" id=55]
-[ext_resource path="res://assets/textures/gui/bevel/Nitrogen.png" type="Texture" id=56]
-[ext_resource path="res://assets/textures/gui/bevel/OxytoxyNT.png" type="Texture" id=57]
+[ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=55]
+[ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=56]
+[ext_resource path="res://assets/textures/gui/bevel/oxytoxy.png" type="Texture" id=57]
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=58]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=59]
-[ext_resource path="res://assets/textures/gui/bevel/ATP.png" type="Texture" id=60]
+[ext_resource path="res://assets/textures/gui/bevel/atp.png" type="Texture" id=60]
 [ext_resource path="res://assets/textures/gui/bevel/Hitpoints.png" type="Texture" id=61]
 [ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=62]
 [ext_resource path="res://assets/textures/gui/bevel/AtpBar.png" type="Texture" id=63]
@@ -77,6 +77,17 @@
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
+
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 73 )

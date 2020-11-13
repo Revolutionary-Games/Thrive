@@ -56,16 +56,16 @@
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=54]
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=55]
 [ext_resource path="res://assets/fonts/Lato-Bold.ttf" type="DynamicFontData" id=56]
-[ext_resource path="res://assets/textures/gui/bevel/Sunlight.png" type="Texture" id=57]
-[ext_resource path="res://assets/textures/gui/bevel/Nitrogen.png" type="Texture" id=58]
-[ext_resource path="res://assets/textures/gui/bevel/HydrogenSulfide.png" type="Texture" id=59]
-[ext_resource path="res://assets/textures/gui/bevel/Oxygen.png" type="Texture" id=60]
-[ext_resource path="res://assets/textures/gui/bevel/CarbonDioxide.png" type="Texture" id=61]
+[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=57]
+[ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=58]
+[ext_resource path="res://assets/textures/gui/bevel/hydrogensulfide.png" type="Texture" id=59]
+[ext_resource path="res://assets/textures/gui/bevel/oxygen.png" type="Texture" id=60]
+[ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=61]
 [ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=62]
-[ext_resource path="res://assets/textures/gui/bevel/Ammonia.png" type="Texture" id=63]
-[ext_resource path="res://assets/textures/gui/bevel/Iron.png" type="Texture" id=64]
+[ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture" id=63]
+[ext_resource path="res://assets/textures/gui/bevel/iron.png" type="Texture" id=64]
 [ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture" id=65]
-[ext_resource path="res://assets/textures/gui/bevel/Glucose.png" type="Texture" id=66]
+[ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture" id=66]
 [ext_resource path="res://assets/textures/gui/bevel/minusButton.png" type="Texture" id=67]
 [ext_resource path="res://assets/textures/gui/bevel/minusButtonHover.png" type="Texture" id=68]
 [ext_resource path="res://assets/textures/gui/bevel/Phosphate.png" type="Texture" id=69]
@@ -88,6 +88,14 @@
 [ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=94]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=95]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=96]
+
+
+
+
+
+
+
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )

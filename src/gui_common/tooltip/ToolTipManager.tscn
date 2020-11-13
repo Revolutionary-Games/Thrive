@@ -6,23 +6,33 @@
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/fonts/Lato-Bold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/FlagellumIcon.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/Nitrogen.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/gui/bevel/Sunlight.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/gui/bevel/Oxygen.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/bevel/HydrogenSulfide.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/oxygen.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/hydrogensulfide.png" type="Texture" id=10]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/VacuoleIcon.png" type="Texture" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/Glucose.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/Iron.png" type="Texture" id=15]
-[ext_resource path="res://assets/textures/gui/bevel/Ammonia.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/iron.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=17]
-[ext_resource path="res://assets/textures/gui/bevel/CarbonDioxide.png" type="Texture" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/ATP.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/OxytoxyNT.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/atp.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/oxytoxy.png" type="Texture" id=20]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.cs" type="Script" id=21]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs" type="Script" id=22]
 [ext_resource path="res://src/gui_common/tooltip/ToolTipManager.cs" type="Script" id=23]
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
