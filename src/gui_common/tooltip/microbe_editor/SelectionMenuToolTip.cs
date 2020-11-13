@@ -183,7 +183,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     var amountLabel = new Label();
                     amountLabel.Text = Math.Round(inputCompound.Amount, 3) + " ";
                     processBody.AddChild(amountLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.Name));
+                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.InternalName));
                 }
 
                 // And the arrow
@@ -220,7 +220,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 amountLabel.Text = stringBuilder.ToString();
 
                 processBody.AddChild(amountLabel);
-                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.Name));
+                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.InternalName));
             }
 
             var perSecondLabel = new Label();
@@ -260,7 +260,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     percentageLabel.Text = Math.Round(environmentCompound.AvailableAmount * 100, 1) + "%";
 
                     processBody.AddChild(percentageLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.Name));
+                    processBody.AddChild(
+                        GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.InternalName));
                 }
             }
 

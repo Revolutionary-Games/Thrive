@@ -118,7 +118,7 @@ size_flags_vertical = 4
 margin_right = 263.0
 margin_bottom = 25.0
 custom_fonts/font = SubResource( 3 )
-text = "Loading..."
+text = "LOADING_DOT"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 29.0
@@ -145,14 +145,14 @@ size_flags_vertical = 3
 margin_right = 75.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "Created at:"
+text = "CREATED_AT"
 
 [node name="CreatedAt" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
 margin_left = 79.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "..."
+text = "DOT_DOT_DOT"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 23.0
@@ -164,14 +164,14 @@ size_flags_vertical = 3
 margin_right = 37.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "Type:"
+text = "TYPE"
 
 [node name="Type" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
 margin_left = 41.0
 margin_right = 50.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "..."
+text = "DOT_DOT_DOT"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 46.0
@@ -183,14 +183,14 @@ size_flags_vertical = 3
 margin_right = 81.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "Description:"
+text = "DESCRIPTION"
 
 [node name="Description" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3"]
 margin_left = 85.0
 margin_right = 94.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "..."
+text = "DOT_DOT_DOT"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 109.0
@@ -206,14 +206,14 @@ size_flags_vertical = 3
 margin_right = 58.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = " Version:"
+text = "VERSION"
 
 [node name="Version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 margin_left = 62.0
 margin_right = 71.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "..."
+text = "DOT_DOT_DOT"
 
 [node name="VersionWarning" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
 margin_left = 75.0
@@ -221,6 +221,9 @@ margin_right = 96.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
 text = "( ! )"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 margin_top = 23.0
@@ -232,14 +235,14 @@ size_flags_vertical = 3
 margin_right = 25.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = " By:"
+text = "BY"
 
 [node name="Creator" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
 margin_left = 29.0
 margin_right = 38.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "..."
+text = "DOT_DOT_DOT"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 margin_top = 46.0
@@ -251,14 +254,14 @@ size_flags_vertical = 3
 margin_right = 141.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = " Created on Platform:"
+text = "CREATED_ON_PLATFORM"
 
 [node name="Platform" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
 margin_left = 145.0
 margin_right = 154.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 6 )
-text = "..."
+text = "DOT_DOT_DOT"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 margin_left = 461.0
@@ -283,7 +286,7 @@ margin_bottom = 43.0
 rect_min_size = Vector2( 55, 43 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Load"
+text = "LOAD"
 
 [node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="MarginContainer/HBoxContainer"]
 margin_left = 619.0
@@ -293,8 +296,8 @@ mouse_filter = 1
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
-window_title = "Delete this Save?"
-dialog_text = "Deleting this save cannot be undone, are you sure you want to permanently delete this?"
+window_title = "DELETE_THIS_SAVE"
+dialog_text = "DELETE_SAVE_CONFIRMATION"
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/HBoxContainer/Delete" to="." method="DeletePressed"]

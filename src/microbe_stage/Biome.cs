@@ -10,6 +10,7 @@ public class Biome : IRegistryType
     /// <summary>
     ///   Name of the biome, for showing to the player in the GUI
     /// </summary>
+    [TranslateFrom("untranslatedName")]
     public string Name;
 
     /// <summary>
@@ -31,6 +32,10 @@ public class Biome : IRegistryType
     public Texture LoadedIcon;
 
     public BiomeConditions Conditions;
+
+#pragma warning disable 169 // Used through reflection
+    private string untranslatedName;
+#pragma warning restore 169
 
     public string InternalName { get; set; }
 
@@ -61,6 +66,8 @@ public class Biome : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "sunlight missing");
         }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
     /// <summary>
@@ -71,6 +78,16 @@ public class Biome : IRegistryType
         Conditions.Resolve(parameters);
 
         LoadedIcon = GD.Load<Texture>(Icon);
+    }
+
+    public void ApplyTranslations()
+    {
+        TranslationHelper.ApplyTranslations(this);
+    }
+
+    public override string ToString()
+    {
+        return "Patch: " + Name;
     }
 
     public class LightDetails

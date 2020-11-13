@@ -56,6 +56,10 @@ code to disable your changes. Note: currently we don't have an options
 menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
 
+## Translating the game
+
+You can find the necessary informations about how to translate the game [here](doc/working_with_translations.md).
+
 ## Planning Board
 
 The planning board contains all issues and pull requests grouped

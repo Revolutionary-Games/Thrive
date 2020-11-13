@@ -31,6 +31,8 @@ There are also other useful documents in the [doc](doc) folder not mentioned her
 If you have game development skills, you can apply to the team
 [here](https://revolutionarygamesstudio.com/application/).
 
+If you'd like to translate the game to your language, you can find the relevant information [here](doc/working_with_translations.md).
+
 The planning board contains all issues and pull requests grouped
 by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
 
