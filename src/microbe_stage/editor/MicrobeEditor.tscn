@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=2]
+[gd_scene load_steps=151 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -291,11 +291,11 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="ButtonGroup" id=30]
 
-[sub_resource type="DynamicFont" id=31]
+[sub_resource type="DynamicFont" id=36]
 size = 12
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 73 )
+font_data = ExtResource( 55 )
 
 [sub_resource type="StyleBoxFlat" id=32]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
@@ -344,12 +344,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="DynamicFont" id=36]
-size = 12
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 55 )
 
 [sub_resource type="StyleBoxEmpty" id=37]
 
@@ -1832,7 +1826,7 @@ __meta__ = {
 margin_top = 78.0
 margin_right = 97.0
 margin_bottom = 91.0
-custom_fonts/font = SubResource( 31 )
+custom_fonts/font = SubResource( 36 )
 text = "CYTOPLASM"
 align = 1
 __meta__ = {
