@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-13 09:33+0200\n"
-"PO-Revision-Date: 2020-11-13 20:57+0000\n"
-"Last-Translator: Weblate Admin <root@revolutionarygamesstudio.com>\n"
+"PO-Revision-Date: 2020-11-13 21:34+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
+"com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -199,7 +200,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr ""
+msgstr "Soluhengitys"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -238,7 +239,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr ""
+msgstr "Epipelaginen vyöhyke"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
 #: ../simulation_parameters/microbe_stage/biomes.json:148
@@ -300,19 +301,19 @@ msgstr "Vuorovesiallas"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:459
 msgid "BATHYPELAGIC"
-msgstr ""
+msgstr "Batypelaginen vyöhyke"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:654
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Abyssaalivyöhyke"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:845
 msgid "MESOPELAGIC"
-msgstr ""
+msgstr "Mesopelaginen vyöhyke"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1040
 msgid "COASTAL"
-msgstr ""
+msgstr "Rantavyöhyke"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1167
 msgid "UNDERWATERCAVE"
@@ -328,7 +329,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1434
 msgid "ESTUARY"
-msgstr ""
+msgstr "Estuaari"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "SEA_FLOOR"
@@ -358,7 +359,7 @@ msgstr "Ammoniakki"
 #: ../simulation_parameters/microbe_stage/compounds.json:27
 #: ../src/microbe_stage/MicrobeStage.tscn:1701
 msgid "PHOSPHATE"
-msgstr ""
+msgstr "Fosfaatti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
@@ -390,7 +391,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1608
 #: ../src/microbe_stage/MicrobeStage.tscn:1809
 msgid "IRON"
-msgstr ""
+msgstr "Rauta"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1701
@@ -1705,19 +1706,21 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:45 ../src/saving/SaveListItem.tscn:120
 msgid "LOADING_DOT"
-msgstr ""
+msgstr "Ladataan..."
 
 #: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:298
 msgid "DELETE_THIS_SAVE"
-msgstr ""
+msgstr "Poista tämä tallennus?"
 
 #: ../src/saving/SaveList.tscn:67 ../src/saving/SaveList.tscn:77
 msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr ""
+msgstr "Lataa epäyhteensopiva tallennus?"
 
 #: ../src/saving/SaveList.tscn:68
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
+"Tämä tallennus on uudemmasta Thriven versiosta ja erittäin todennäköisesti\n"
+"se ei ole yhteensopiva. Lataa kuitenkin?"
 
 #: ../src/saving/SaveList.tscn:78
 msgid "OLDER_VERSION_LOADING_WARNING"
@@ -1725,7 +1728,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:87
 msgid "LOAD_INVALID_SAVE"
-msgstr ""
+msgstr "Lataa rikkinäinen tallennus?"
 
 #: ../src/saving/SaveList.tscn:88
 msgid "LOAD_INVALID_SAVE_WARNING"
@@ -1733,7 +1736,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:96
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr ""
+msgstr "Valittu tallennus ei ole yhteensopiva"
 
 #: ../src/saving/SaveList.tscn:98
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
@@ -1741,7 +1744,7 @@ msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:147
 msgid "CREATED_AT"
-msgstr ""
+msgstr "Luotu:"
 
 #: ../src/saving/SaveListItem.tscn:154 ../src/saving/SaveListItem.tscn:173
 #: ../src/saving/SaveListItem.tscn:192 ../src/saving/SaveListItem.tscn:215
@@ -1755,7 +1758,7 @@ msgstr "Tyyppi:"
 
 #: ../src/saving/SaveListItem.tscn:185
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "Kuvaus:"
 
 #: ../src/saving/SaveListItem.tscn:208
 msgid "VERSION"
@@ -1763,19 +1766,21 @@ msgstr "Versio:"
 
 #: ../src/saving/SaveListItem.tscn:237
 msgid "BY"
-msgstr ""
+msgstr "Tekijä:"
 
 #: ../src/saving/SaveListItem.tscn:256
 msgid "CREATED_ON_PLATFORM"
-msgstr ""
+msgstr "Tehty alustalla:"
 
 #: ../src/saving/SaveListItem.tscn:288 ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
-msgstr ""
+msgstr "Lataa"
 
 #: ../src/saving/SaveListItem.tscn:299
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen "
+"lopullisesti?"
 
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
