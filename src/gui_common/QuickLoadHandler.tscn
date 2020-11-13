@@ -15,6 +15,5 @@ DifferentVersionDialogPath = NodePath("DifferentVersionDialog")
 [node name="DifferentVersionDialog" type="AcceptDialog" parent="."]
 margin_right = 83.0
 margin_bottom = 58.0
-window_title = "Safe has different version"
-dialog_text = "The version of the save you are trying to load does not match the game version.
-Please load the save manually through the menu."
+window_title = "SAVE_HAS_DIFFERENT_VERSION"
+dialog_text = "SAVE_HAS_DIFFERENT_VERSION_TEXT"

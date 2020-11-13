@@ -440,7 +440,9 @@ public class MicrobeHUD : Node
 
     public void UpdatePatchInfo(string patchName)
     {
-        patchLabel.Text = "Patch: " + patchName;
+        // Patch: {0}
+        patchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_PATCH_LABEL"), patchName);
     }
 
     public void EditorButtonPressed()
@@ -611,8 +613,8 @@ public class MicrobeHUD : Node
 
         if (showMouseCoordinates)
         {
-            mousePosLabel.Text = string.Format(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {1:F1}:",
-                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
+            mousePosLabel.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("STUFF_AT"),
+                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z) + "\n";
         }
 
         if (compounds.Count == 0)
