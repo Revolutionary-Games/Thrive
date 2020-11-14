@@ -2,7 +2,6 @@
 
 [ext_resource path="res://src/engine/input/key_mapping/InputActionItem.cs" type="Script" id=1]
 
-
 [node name="InputActionItem" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,6 +17,9 @@ InputEventsContainerPath = NodePath("InputEventsContainer")
 margin_right = 1280.0
 margin_bottom = 14.0
 text = "Title goes here"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="InputEventsContainer" type="HBoxContainer" parent="."]
 margin_top = 18.0

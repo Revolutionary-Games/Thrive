@@ -745,7 +745,7 @@ __meta__ = {
 ConflictDialogPath = NodePath("../../../../../../../ConflictDialog")
 ResetInputsDialog = NodePath("../../../../../../../DefaultsInputsConfirm")
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/VBoxContainer"]
+[node name="ResetInputsButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/VBoxContainer"]
 margin_right = 67.0
 margin_bottom = 30.0
 text = "RESET_INPUTS"
@@ -1131,7 +1131,7 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay" to="." method="OnAutoEvoToggled"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/VBoxContainer/Button" to="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/VBoxContainer/InputGroupList" method="OnResetInputs"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/VBoxContainer/ResetInputsButton" to="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/VBoxContainer/InputGroupList" method="OnResetInputs"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/AutoSave" to="." method="OnAutoSaveToggled"]

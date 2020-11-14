@@ -46,11 +46,11 @@ public class SpecifiedInputKey : ICloneable
         var text = string.Empty;
 
         if (Control)
-            text += "Control+";
+            text += TranslationServer.Translate("CTRL_PLUS");
         if (Alt)
-            text += "Alt+";
+            text += TranslationServer.Translate("ALT_PLUS");
         if (Shift)
-            text += "Shift+";
+            text += TranslationServer.Translate("SHIFT_PLUS");
         if (Type == InputType.Key)
         {
             var enumEntry = (KeyList)Code;
@@ -60,16 +60,16 @@ public class SpecifiedInputKey : ICloneable
         {
             text += Code switch
             {
-                1 => "Left mouse",
-                2 => "Right mouse",
-                3 => "Middle mouse",
-                4 => "Wheel up",
-                5 => "Wheel down",
-                6 => "Wheel left",
-                7 => "Wheel right",
-                8 => "Special 1 mouse",
-                9 => "Special 2 mouse",
-                _ => "Unknown mouse",
+                1 => TranslationServer.Translate("LEFT_MOUSE"),
+                2 => TranslationServer.Translate("RIGHT_MOUSE"),
+                3 => TranslationServer.Translate("MIDDLE_MOUSE"),
+                4 => TranslationServer.Translate("WHEEL_UP"),
+                5 => TranslationServer.Translate("WHEEL_DOWN"),
+                6 => TranslationServer.Translate("WHEEL_LEFT"),
+                7 => TranslationServer.Translate("WHEEL_RIGHT"),
+                8 => TranslationServer.Translate("SPECIAL_MOUSE_1"),
+                9 => TranslationServer.Translate("SPECIAL_MOUSE_2"),
+                _ => TranslationServer.Translate("UNKNOWN_MOUSE"),
             };
         }
 
