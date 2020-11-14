@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-13 09:33+0200\n"
-"PO-Revision-Date: 2020-11-14 19:16+0000\n"
+"PO-Revision-Date: 2020-11-15 08:59+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -103,7 +103,6 @@ msgstr ""
 "her an onlar da evrimleşiyor."
 
 #: ../simulation_parameters/common/help_texts.json:20
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotik Yapılar\n"
@@ -113,14 +112,14 @@ msgstr ""
 "Kimyasal Sentezleyen Proteinler: Kemoplast olarak Hidrojen Sülfür'den "
 "glukozun yarısını üretir ve glikoliz yapar. 1 Altıgen yer kaplar\n"
 "\n"
-"Kromatoforlar: Normal bir kloroplast olarak glukozun 3'te 1'ini üretir ve "
-"glikoliz yapar. 1 Altıgen yer kaplar.\n"
+"Tilakoidler: Normal bir kloroplast olarak glukozun 3'te 1'ini üretir ve "
+"glikoliz yapar. 1 Altıgen yer kaplar\n"
 "\n"
-"Rustisiyanin: Demiri ATP'ye çevirir.\n"
+"Rustisiyanin: Demiri ATP'ye çevirir\n"
 "\n"
 "Nitrojenaz: Atmosferik azotu ve ATP'yi anaerobik olarak amonyağa çevirir\n"
 "\n"
-"Sitoplazma: Depo alanına sahip ve glikoliz yapar (Az miktarda ATP üretir)."
+"Sitoplazma: Depo alanına sahip ve glikoliz yapar (Az miktarda ATP üretir)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -134,82 +133,144 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Zarlı Organeller\n"
+"\n"
+"Çekirdek: 11 altıgen yer kaplar ve zarlı organellerin evrimini sağlar. "
+"Ayrıca hücrenin büyüklüğünü iki katına çıkarır. (Yalnızca bir kez "
+"kullanılabilir)\n"
+"\n"
+"Mitokondri: Glukoz ve atmosferik O2'den ATP üretir. Sitoplazmadan daha da "
+"verimli şekilde yapar.\n"
+"\n"
+"Kloroplast: Güneş ışığı ve atmosferik CO2'den glukoz yapar\n"
+"\n"
+"Kemoplast: Hidrojen Sülfür'den glukoz yapar\n"
+"\n"
+"Azot Fiksasyon Plastidi: ATP ile atmosferik Azot ve Oksijen'den amonyak "
+"yapar\n"
+"\n"
+"Koful: Toplanmış 15 bileşiği depolar\n"
+"\n"
+"Toksin Kofulları: Toksinler üretir (OxyToxy NT diye geçer)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"Her kuşak geçişinde, harcanacak 100 mutasyon puanın var ve her değişim (ya "
+"da mutasyon) o MP'nin belli bir miktarına mal olur. Organel eklemek ya da "
+"kaldırmak MP'ye mal olur ancak mevcut mutasyon sürecinde yerleştirilen "
+"organelleri kaldırmak o organelin mal olduğu kadar MP'yi geri verir. Bir "
+"organeli üzerine sağ tıklayarak kaldırabilirsin. A ve D tuşları ile "
+"organellerini döndürebilirsin"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"Hücren her çoğaldığında, Mikrop Editör'üne giriş yaparsın. Burada, türünün "
+"başarısını arttırmak için onda değişiklikler yapabilirsin (organelleri "
+"ekleyerek, taşıyarak veya kaldırarak). Editöre yapılan her ziyaret, Mikrop "
+"Evre'sinde 100 milyon yıllık evrimi temsil eder"
 
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
+"İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı "
+"ilişkisinin bir ders kitabı örneği. Şimdi sen Didinyum musun yoksa "
+"Paramesyum mu? Avcı mı, av mı?"
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
+"İşte sana bir ipucu. Toksinler, yeterince hızlı davranıldığında, diğer "
+"toksinleri vurup uzaklaştırmak için kullanılabilir."
 
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
+"İşte sana ipucu. Ozmoregülasyon, hücrenin her altıgen alanında her saniyede "
+"1 ATP'ye mal olur. Sitoplazmanın her boş altıgen alanı da saniyede 5 ATP "
+"oluşturur. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP "
+"kaybediyorsan, birkaç tane altıgen alanı yalnızca sitoplazmayla "
+"doldurmalısın ya da bazı organelleri kaldırmalısın."
 
 #: ../simulation_parameters/common/help_texts.json:32
+#, fuzzy
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
+"İlginç Gerçek: Gerçek hayatta prokaryotlar, organeller gibi davranan "
+"Biyolojik Bölüm denilen bir yapıya sahiptir ve aslında Çokyüzlü organeller "
+"olarak adlandırılır"
 
 #: ../simulation_parameters/common/help_texts.json:33
+#, fuzzy
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
+msgstr "İlginç Gerçek: Metabolozom, Çokyüzlü bir organel olarak adlandırılır"
 
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "İşte sana ipucu. Bazen sadece diğer hücrelerden kaçmak en iyisi."
 
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
+"İşte sana ipucu. Eğer bir hücre senin büyüklüğünün yarısı kadarsa, bu onları "
+"yutabileceğin anlamına gelir."
 
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
+"İşte sana ipucu. Bakteriler göründüğünden daha güçlü olabilir. Küçük "
+"görünebilirler ama bazıları önüne çukur kazabilir ve seni bu şekilde "
+"öldürebilir!"
 
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
+"İşte sana ipucu. Eğer yeterince dikkatli olmazsan, diğer türleri avlayarak "
+"soylarının tükenmesine neden olabilirsin. Türler ayrıca başka türler "
+"tarafından avlanıp soyu yok olabilir."
 
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "OYNAK ŞEYLER!!"
 
 #: ../simulation_parameters/common/help_texts.json:39
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
+msgstr "Metali eritalim."
 
 #: ../simulation_parameters/common/help_texts.json:40
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
+msgstr "Şu mavi hücreler ama."
 
 #: ../simulation_parameters/common/help_texts.json:41
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
+"İşte ipucu. Biyomlar arkaplanlardan daha fazlası. Farklı biyomlardaki "
+"bileşikler farklı oranlarda oluşur."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
+"İşte sana ipucu. Ne kadar kamçın varsa, o kadar hızlı gidersin, vınn vınnn, "
+"ama ayrıca daha fazla ATP'ye mal olur"
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
+"İşte sana ipucu. Demir ya da başka türlü parçaları [g]irdap gibi içine "
+"çekebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:44
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
+"İşte sana ipucu. Çekirdeği eklemeden önce hazırlık yap. Bu tür şeyler "
+"pahalı! Bakım ve önden ödeme ücretiyle."
 
 #: ../simulation_parameters/common/help_texts.json:45
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
+"İlginç Gerçek: Dünya gezegeninde 8000'in üzerinde silli türü olduğunu "
+"biliyor muydun?"
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "EASTEREGG_MESSAGE_18"
