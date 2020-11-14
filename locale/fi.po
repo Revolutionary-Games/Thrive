@@ -9,7 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-13 09:33+0200\n"
 "PO-Revision-Date: 2020-11-14 19:16+0000\n"
-"Last-Translator: Jan <jan_fue@icloud.com>\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
+"com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -81,14 +82,21 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Lisääntyäkseen solun kaikkien soluelinten pitää jakautua kahdeksi. "
+"Soluelimet tarvitsevat ammoniakkia ja fosfaattia jakaantuakseen."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Mutta, jos selviydyt kaksikymmentä sukupolvea ja populaatiosi on 300, voitat "
+"Thriven nykyisessä muodossaa, voiton jälkeen aukeaa ponnahdusikkuna, jonka "
+"sulkeuduttua peliä voi jatkaa oman halun mukaan."
 
 #: ../simulation_parameters/common/help_texts.json:15
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Ole varuillasi muita lajeja vastaan, sillä evoluutio muuttaa niitä, kun "
+"menet editoriin."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -148,7 +156,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "KIEMURTELEVIA JUTTUJA!!"
 
 #: ../simulation_parameters/common/help_texts.json:39
 msgid "EASTEREGG_MESSAGE_11"
@@ -239,12 +247,12 @@ msgstr "Photosynteesi"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
+msgstr "Happimyrkkysynteesi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr ""
+msgstr "Kemosynteesi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
@@ -314,7 +322,7 @@ msgstr "Syvänmeren savuttaja"
 #: ../simulation_parameters/microbe_stage/biomes.json:926
 #: ../simulation_parameters/microbe_stage/biomes.json:1642
 msgid "MARINE_SNOW"
-msgstr ""
+msgstr "Leijuvat hiukkaset"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:332
 msgid "TIDEPOOL"
@@ -342,7 +350,7 @@ msgstr "Vedenalainen luola"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1290
 msgid "ICESHELF"
-msgstr ""
+msgstr "Jäähylly"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1349
 msgid "ICESHARD"
@@ -454,7 +462,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1574
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2177
 msgid "RUSTICYANIN"
-msgstr ""
+msgstr "Ruostesyaniini"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1815
@@ -503,7 +511,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3991
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2979
 msgid "CHEMOPLAST"
-msgstr ""
+msgstr "Kemoplasti"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2377
@@ -636,7 +644,7 @@ msgstr "Muut"
 
 #: ../src/general/OptionsMenu.tscn:201
 msgid "VSYNC"
-msgstr "V-synkronointi"
+msgstr "Pystysynkronointi"
 
 #: ../src/general/OptionsMenu.tscn:209
 msgid "FULLSCREEN"
@@ -909,7 +917,7 @@ msgstr "Liikkuvuus"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6426
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6760
 msgid "HEALTH"
-msgstr ""
+msgstr "Terveys"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:347
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
@@ -940,7 +948,7 @@ msgstr "Muuntaa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4315
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4809
 msgid "INTO"
-msgstr ""
+msgstr "muotoon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:538
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:819
@@ -1100,7 +1108,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2213
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4816
 msgid "OXYTOXY"
-msgstr ""
+msgstr "Happimyrkky"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2231
 msgid "DOT_CAN_RELEASE"
@@ -1169,7 +1177,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3711
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2915
 msgid "THERMOPLAST"
-msgstr ""
+msgstr "Lämpöplasti"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3813
 msgid "TEMPERATURE"
@@ -1367,7 +1375,7 @@ msgstr "Yhdisteet"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1862
 msgid "AGENTS"
-msgstr ""
+msgstr "Välittäjäaineet"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "POPULATION_CAPITAL"
@@ -1456,7 +1464,7 @@ msgstr "Nopeus:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1217
 msgid "HP_COLON"
-msgstr ""
+msgstr "Terv.:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1247
 msgid "SIZE_COLON"
@@ -1508,7 +1516,7 @@ msgstr "Soluelin"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3045
 msgid "PLASTID"
-msgstr ""
+msgstr "Plasti"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3201
 msgid "N_A_MP"
