@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-13 09:33+0200\n"
-"PO-Revision-Date: 2020-11-14 12:43+0000\n"
+"PO-Revision-Date: 2020-11-14 19:16+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -35,8 +35,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Editörü açmak ve hücreni bölmek için Amonyak (Turuncu Bulut) ve Fosfat (Mor "
-"Bulut) biriktirmen gerekir."
+"Editörü açmak ve hücreni çoğaltmak için Amonyak (Turuncu Bulut) ve Fosfat ("
+"Mor Bulut) biriktirmen gerekir."
 
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
@@ -69,7 +69,7 @@ msgstr ""
 "Çeşitli bileşik bulutları:\n"
 "\n"
 "Beyaz - Glukoz\n"
-"Sarı - Hidrojen Sülfit\n"
+"Sarı - Hidrojen Sülfür\n"
 "Turuncu - Amonyak\n"
 "Mor - Fosfat\n"
 "Pas Kahverengi - Demir\n"
@@ -79,26 +79,57 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:12
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"Hidrojen sülfür; kemoplastlar ve kimyasal sentezleyen proteinler "
+"aracılığıyla glukoza dönüştürülebilir. Demir, rustisiyanin aracılığıyla "
+"ATP'ye dönüştürülebilir."
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. Organeller "
+"bölünmek için amonyak ve fosfat gerektirir."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Ama eğer 300 popülasyonla yirmi kuşak kadar hayatta kalırsan, mevcut oyunu "
+"kazanmış olduğun sayılır. Kazandıktan sonra, karşına açılır pencere çıkar ve "
+"oyunu istediğin kadar oynamaya devam edebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:15
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Dikkatli ol çünkü rakiplerin seninle birlikte evrimleşiyor. Editöre girdiğin "
+"her an onlar da evrimleşiyor."
 
 #: ../simulation_parameters/common/help_texts.json:20
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"Prokaryotik Yapılar\n"
+"\n"
+"Metabolozomlar: Glukozdan ATP üretir\n"
+"\n"
+"Kimyasal Sentezleyen Proteinler: Kemoplast olarak Hidrojen Sülfür'den "
+"glukozun yarısını üretir ve glikoliz yapar. 1 Altıgen yer kaplar\n"
+"\n"
+"Kromatoforlar: Normal bir kloroplast olarak glukozun 3'te 1'ini üretir ve "
+"glikoliz yapar. 1 Altıgen yer kaplar.\n"
+"\n"
+"Rustisiyanin: Demiri ATP'ye çevirir.\n"
+"\n"
+"Nitrojenaz: Atmosferik azotu ve ATP'yi anaerobik olarak amonyağa çevirir\n"
+"\n"
+"Sitoplazma: Depo alanına sahip ve glikoliz yapar (Az miktarda ATP üretir)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Dış Organeller\n"
+"\n"
+"Kamçı: ATP tüketerek hücreni daha hızlı hareket ettirir\n"
+"\n"
+"Pilus: Diğer hücreleri delmek için kullanılabilir"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
