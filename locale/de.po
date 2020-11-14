@@ -8,98 +8,201 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-13 09:33+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-11-14 12:43+0000\n"
+"Last-Translator: Jan <jan_fue@icloud.com>\n"
+"Language-Team: German <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"W,A,S,D und Maus zum Bewegen. E drücken um OxyToxy NT zu schießen, falls "
+"eine Giftvakuole vorhanden ist. G um den Verschlingungsmodus umzuschalten."
 
 #: ../simulation_parameters/common/help_texts.json:5
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
+"Deine Zelle verwendet ATP als Energiequelle. Falls sie zu Ende geht, wirst "
+"du sterben."
 
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
+"Um den Editor freizuschalten und zu reproduzieren, müssen Ammoniak (orange "
+"Wolke) und Phosphat (lila Wolke) gesammelt werden."
 
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
+"Um andere Zellen, Bakterien, Eisenbrocken sowie Zellenbrocken, welche "
+"kleiner sind als du, zu Verschlingen, drücken Sie G. Dies kostet mehr ATP "
+"und wird dich verlangsamen. Drücken Sie G ein zweites Mal, um den "
+"Verschlingungsmodus zu beenden."
 
 #: ../simulation_parameters/common/help_texts.json:8
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
+"Osmoregulation kostet ATP, was bedeutet, dass deszu größer deine Zelle ist, "
+"deszu mehr Mitochondrium, Metabolosomen oder Rusticyanin (oder Zytoplasma, "
+"welches Glykolyse herstellt) benötigst du, um kein ATP zu verlieren, selbst, "
+"wenn du stillstehst."
 
 #: ../simulation_parameters/common/help_texts.json:9
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
+"Es gibt viele Organellen im Editor, die Sie weiterentwickeln können und die "
+"ein breites Spektrum an verschiedenen Spielstilen ermöglichen."
 
 #: ../simulation_parameters/common/help_texts.json:10
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "Wenn Ihre Population auf Null sinkt, sterben Sie zunächst aus."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"Die verschiedenen zusammengesetzten Wolken sind:\n"
+"\n"
+"Weiß – Glukose\n"
+"Gelb – Schwefelwasserstoff\n"
+"Orange – Ammoniak\n"
+"Lila – Phosphat\n"
+"Rostbraun – Eisen\n"
+"\n"
+"Glukose generiert ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"Schwefelwasserstoff kann über Chemoplasten und chemosynthetisierende "
+"Proteine in Glukose umgewandelt werden. Eisen kann mithilfe von Rusticyanin "
+"in ATP verwandelt werden."
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Um zu reproduzieren muss geder Ihrer Organellen in zwei geteilt werden. "
+"Organellen benötigen Ammoniak und Phosphat um sich zu spalten."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Wenn Sie zwanzig Generationen überleben und eine Population von 300 haben, "
+"gilt das Spiel als gewonnen. Sie werden Benachrichtigt und können danach, "
+"nach Wunsch, weiterspielen."
 
 #: ../simulation_parameters/common/help_texts.json:15
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Seien Sie auf der Hut, denn ihre Mitbewerber entwickeln sich mit Ihnen. "
+"Jedes Mal, wenn der Editor betreten wird, entwickeln sie sich auch."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"Prokaryotische Strukturen\n"
+"\n"
+"Metabolosomen: Produziert ATP aus Glukose\n"
+"\n"
+"Chemosynthetisierende Proteine: Produziert die Hälfte der Glukose aus "
+"Schwefelwasserstoff als Chemoplast, führt aber auch die Glykolyse durch. "
+"Nimmt ein Hex ein\n"
+"\n"
+"Chromatophoren: Produziert 1/3 der Glukosemenge wie ein normaler "
+"Chloroplast, führt aber auch die Glykolyse durch. Nimmt ein Hex ein\n"
+"\n"
+"Rusticyanin: Wandelt Eisen in ATP um\n"
+"\n"
+"Nitrogenase: Verwandeln atmosphärischen Stickstoff und ATP in Ammoniak um\n"
+"\n"
+"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch ("
+"Produziert kleine Mengen ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Externe Organellen\n"
+"\n"
+"Geißel: Erhöht Ihre mobilität auf kosten von ATP\n"
+"\n"
+"Pilus: Kann zum stechen von anderen Zellen verwendet werden"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Membran-gebundene Organellen\n"
+"\n"
+"Nukleus : Nimmt 11 Hex ein und ermöglicht die Evolution von "
+"membrangebundenen Organellen. Außerdem verdoppelt es die Größe Ihrer Zelle. ("
+"Kann nur einmal entwickelt werden)\n"
+"\n"
+"Mitochondrium: Produziert ATP aus Glukose und atmosphärischem O2. Viel "
+"effizienter als Zytoplasma.\n"
+"\n"
+"Chloroplast: Macht Glukose aus Sonnenlicht und atmosphärischem CO2\n"
+"\n"
+"Chemoplast: Macht Glukose aus Schwefelwasserstoff\n"
+"\n"
+"Stickstofffixier-Plastid: Stellt Ammoniak aus ATP, atmosphärischem "
+"Stickstoff und Sauerstoff her\n"
+"\n"
+"Vakuole: Lagert 15 gesammelte Verbindungen\n"
+"\n"
+"Toxin-Vakuolen: Produziert Toxine (genannt OxyToxy NT)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"Für jede Generation können Sie 100 Mutationspunkte ausgeben. Jede Änderung ("
+"oder Mutation) kostet einen bestimmten Betrag von MP. Das Hinzufügen und "
+"Entfernen von Organellen kostet MP, das Entfernen von Organellen, die in der "
+"aktuellen Mutationssitzung platziert wurden, erstattet jedoch MP für diese "
+"Organelle zurück. Sie können eine Organelle entfernen, indem Sie mit der "
+"rechten Maustaste darauf klicken. Sie können Ihre Organellen mit A und D "
+"drehen"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"Jedes Mal, wenn Sie sich reproduzieren, gelangen Sie in den Mikroben-Editor, "
+"wo Sie Änderungen an Ihrer Art vornehmen können (durch Hinzufügen, "
+"Verschieben oder Entfernen von Organellen), um den Erfolg Ihrer Art zu "
+"steigern. Jeder Besuch des Editors in der Mikrobenphase repräsentiert 100 "
+"Millionen Jahre Evolution"
 
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
+"Fun Fact: das Didinium und Pantoffeltierchen sind ein Musterbeispiel für ein "
+"Raubtier-Beute-Verhältnis, das jahrzehntelang untersucht wurde. Sind Sie nun "
+"das Didinium oder das Pantoffeltierchen? Jäger oder Gejagter?"
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
+"Tipp: Giftstoffe können dazu verwendet werden, andere Giftstoffe von Ihnen "
+"wegzuschlagen, wenn Sie schnell genug sind."
 
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
+"Tipp: Osmoregulation kostet 1 ATP pro Sekunde pro Feld, das Ihre Zelle "
+"hat.Jjedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn Sie "
+"ATP durch Osmoregulation verlieren, fügen Sie einfach ein paar leere Felder "
+"Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
 
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
+"Fun Fact: Im echten Leben haben Prokaryoten etwas, das Biokompartimente "
+"genannt wird, die sich wie Organellen verhalten und in der Tat polyedrische "
+"Organellen genannt werden"
 
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "EASTEREGG_MESSAGE_5"
