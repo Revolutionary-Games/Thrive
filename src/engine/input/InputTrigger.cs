@@ -13,7 +13,7 @@ public class InputTrigger : InputBool
 
     public override object GetValueForCallback()
     {
-        return ReadTrigger();
+        return ReadAndResetTrigger();
     }
 
     public override bool CheckInput(InputEvent inputEvent)
@@ -41,7 +41,7 @@ public class InputTrigger : InputBool
     ///   Reads the trigger status and resets it
     /// </summary>
     /// <returns>True if has been triggered</returns>
-    private bool ReadTrigger()
+    private bool ReadAndResetTrigger()
     {
         if (triggered)
         {
