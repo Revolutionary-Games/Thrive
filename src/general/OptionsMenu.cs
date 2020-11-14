@@ -796,6 +796,15 @@ public class OptionsMenu : Control
         backConfirmationBox.Hide();
     }
 
+    private void InputDefaultsConfirm()
+    {
+        Settings.Instance.CurrentControls.Value = InputGroupList.GetDefaultControls();
+        Settings.Instance.ApplyInputSettings();
+        InitInputGroupList();
+
+        UpdateResetSaveButtonState();
+    }
+
     private void DefaultsConfirmSelected()
     {
         // Sets active settings to default values and applies them to the options controls.
@@ -1025,19 +1034,7 @@ public class OptionsMenu : Control
 
     private void InitInputGroupList()
     {
-        foreach (Node child in inputGroupList.GetChildren())
-        {
-            inputGroupList.RemoveChild(child);
-
-            child.Free();
-        }
-
-        inputGroupList.InitFromData(Settings.Instance.CurrentControls);
-
-        foreach (var inputGroup in inputGroupList.ActiveInputGroupList)
-        {
-            inputGroupList.AddChild(inputGroup);
-        }
+        inputGroupList.InitGroupList();
     }
 
     private void OnCustomUsernameEnabledToggled(bool pressed)

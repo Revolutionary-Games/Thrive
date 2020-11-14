@@ -13,6 +13,9 @@ public class InputGroupList : VBoxContainer
     [Export]
     public NodePath ConflictDialogPath;
 
+    [Export]
+    public NodePath ResetInputsDialog;
+
     internal static PackedScene InputEventItemScene;
     internal static PackedScene InputGroupItemScene;
     internal static PackedScene InputActionItemScene;
@@ -27,6 +30,7 @@ public class InputGroupList : VBoxContainer
     private InputEventWithModifiers latestDialogNewEvent;
 
     private ConfirmationDialog conflictDialog;
+    private ConfirmationDialog resetInputsDialog;
 
     public delegate void ControlsChangedDelegate(InputDataList data);
 
@@ -132,6 +136,7 @@ public class InputGroupList : VBoxContainer
     public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict,
         InputEventWithModifiers newEvent)
     {
+        // Conditional access to satisfy jetbrains
         if (!conflict.AssociatedAction.TryGetTarget(out var inputActionItem))
             return;
 
@@ -142,6 +147,11 @@ public class InputGroupList : VBoxContainer
         conflictDialog.DialogText = $"There is a conflict with {inputActionItem.DisplayName}.\n" +
             $"Do you want to remove the input from {inputActionItem.DisplayName}?";
         conflictDialog.PopupCenteredMinsize();
+    }
+
+    public void OnResetInputs()
+    {
+        resetInputsDialog.PopupCenteredMinsize();
     }
 
     public void OnConflictConfirmed()
@@ -158,6 +168,7 @@ public class InputGroupList : VBoxContainer
     /// <summary>
     ///   Loads the input_options and saves it to with the data in the AllGroupItems
     /// </summary>
+    /// <param name="data">The input data the input tab should be loaded with</param>
     public void LoadFromData(InputDataList data)
     {
         // Load json
@@ -186,15 +197,24 @@ public class InputGroupList : VBoxContainer
         InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
 
         conflictDialog = GetNode<ConfirmationDialog>(ConflictDialogPath);
+        resetInputsDialog = GetNode<ConfirmationDialog>(ResetInputsDialog);
     }
 
-    /// <summary>
-    ///   Loads the input_options.json file and sets up the tree.
-    /// </summary>
-    /// <param name="data">The input data the input tab should be loaded with</param>
-    public void InitFromData(InputDataList data)
+    internal void InitGroupList()
     {
-        LoadFromData(data);
+        foreach (Node child in GetChildren())
+        {
+            RemoveChild(child);
+
+            child.QueueFree();
+        }
+
+        LoadFromData(Settings.Instance.CurrentControls);
+
+        foreach (var inputGroup in ActiveInputGroupList)
+        {
+            AddChild(inputGroup);
+        }
     }
 
     internal void ControlsChanged()

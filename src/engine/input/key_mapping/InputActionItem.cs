@@ -143,8 +143,7 @@ public class InputActionItem : VBoxContainer
 
     private InputGroupItem GetGroup()
     {
-        if (AssociatedGroup.TryGetTarget(out var associatedGroup) != true)
-            return null;
+        AssociatedGroup.TryGetTarget(out var associatedGroup);
 
         return associatedGroup;
     }
@@ -152,11 +151,8 @@ public class InputActionItem : VBoxContainer
     private InputGroupList GetGroupList()
     {
         var group = GetGroup();
-        if (group == null)
-            return null;
 
-        if (group.AssociatedList.TryGetTarget(out var associatedList) != true)
-            return null;
+        group.AssociatedList.TryGetTarget(out var associatedList);
 
         return associatedList;
     }
