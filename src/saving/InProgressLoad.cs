@@ -68,7 +68,8 @@ public class InProgressLoad
         {
             case State.Initial:
                 state = State.ReadingData;
-                LoadingScreen.Instance.Show("Loading Game", "Reading save data");
+                LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
+                    TranslationServer.Translate("READING_SAVE_DATA"));
 
                 // Let all suppressed deletions happen
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
@@ -83,13 +84,16 @@ public class InProgressLoad
                 try
                 {
                     save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
-                        LoadingScreen.Instance.Show("Loading Game", "Creating objects from save")));
+                        LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
+                            TranslationServer.Translate("CREATING_OBJECTS_FROM_SAVE"))));
 
                     state = State.CreatingScene;
                 }
                 catch (Exception e)
                 {
-                    ReportStatus(false, "An exception happened while loading the save data", e.ToString());
+                    ReportStatus(false,
+                        TranslationServer.Translate("AN_EXCEPTION_HAPPENED_WHILE_LOADING"),
+                        e.ToString());
                     state = State.Finished;
 
                     // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
@@ -112,7 +116,8 @@ public class InProgressLoad
                 }
                 catch (Exception)
                 {
-                    ReportStatus(false, "Save is invalid", "Save has invalid game state scene");
+                    ReportStatus(false, TranslationServer.Translate("SAVE_IS_INVALID"),
+                        TranslationServer.Translate("SAVE_HAS_INVALID_GAME_STATE"));
                     state = State.Finished;
                     break;
                 }
@@ -123,7 +128,8 @@ public class InProgressLoad
 
             case State.ProcessingLoadedObjects:
             {
-                LoadingScreen.Instance.Show("Loading Game", "Processing loaded objects");
+                LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
+                    TranslationServer.Translate("PROCESSING_LOADED_OBJECTS"));
 
                 if (loadedState.IsLoadedFromSave != true)
                     throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
@@ -135,12 +141,14 @@ public class InProgressLoad
                 }
                 catch (Exception e)
                 {
-                    ReportStatus(false, "An exception happened while processing loaded objects", e.ToString());
+                    ReportStatus(false,
+                        TranslationServer.Translate("AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"),
+                        e.ToString());
                     state = State.Finished;
                     break;
                 }
 
-                ReportStatus(true, "Load finished", string.Empty);
+                ReportStatus(true, TranslationServer.Translate("LOAD_FINISHED"), string.Empty);
                 state = State.Finished;
                 break;
             }
@@ -163,7 +171,8 @@ public class InProgressLoad
                 }
                 else
                 {
-                    SaveStatusOverlay.Instance.ShowError("Error Loading", message, exception, true,
+                    SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_LOADING"),
+                        message, exception, true,
                         () => LoadingScreen.Instance.Hide());
                 }
 

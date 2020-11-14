@@ -129,10 +129,6 @@ public class MainMenu : Node
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
 
-        // Load settings
-        if (Settings.Instance == null)
-            GD.PrintErr("Failed to initialize settings.");
-
         // Set initial menu
         SwitchMenu();
 

@@ -55,4 +55,8 @@ public class Background : IRegistryType
 
         ParticleEffectScene = GD.Load<PackedScene>(ParticleEffect);
     }
+
+    public void ApplyTranslations()
+    {
+    }
 }
