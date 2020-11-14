@@ -70,8 +70,7 @@ public class InputGroupItem : VBoxContainer
 
     private InputGroupList GetGroupList()
     {
-        if (AssociatedList.TryGetTarget(out var associatedList) != true)
-            return null;
+        AssociatedList.TryGetTarget(out var associatedList);
 
         return associatedList;
     }

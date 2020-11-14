@@ -44,8 +44,8 @@ public class InputEventItem : Node
     /// </summary>
     public void Delete()
     {
-        GetAction()?.Inputs?.Remove(this);
-        GetGroupList()?.ControlsChanged();
+        GetAction().Inputs.Remove(this);
+        GetGroupList().ControlsChanged();
     }
 
     public override void _Ready()
@@ -69,8 +69,6 @@ public class InputEventItem : Node
     public override void _Input(InputEvent @event)
     {
         var groupList = GetGroupList();
-        if (groupList == null)
-            return;
 
         if (groupList.IsConflictDialogOpen())
             return;
@@ -132,8 +130,7 @@ public class InputEventItem : Node
             return;
         }
 
-        if (!AssociatedAction.TryGetTarget(out var associatedAction))
-            return;
+        var associatedAction = GetAction();
 
         // Check if the input is already defined for this action
         // This code works by finding a pair
@@ -141,12 +138,15 @@ public class InputEventItem : Node
         {
             for (var x = i + 1; x < associatedAction.Inputs.Count; x++)
             {
-                if (associatedAction.Inputs[i].Equals(associatedAction.Inputs[x]))
-                {
-                    // Pair found (input already defined)
-                    Delete();
-                    return;
-                }
+                // Pair found (input already defined)
+                if (!associatedAction.Inputs[i].Equals(associatedAction.Inputs[x]))
+                    continue;
+
+                // Set AssociatedEvent to null to not delete the wrong InputEventItem,
+                // because Equals threats it the same with the same AssociatedEvent.
+                AssociatedEvent = null;
+                Delete();
+                return;
             }
         }
 
@@ -185,13 +185,11 @@ public class InputEventItem : Node
     private void OnButtonPressed(InputEvent @event)
     {
         var groupList = GetGroupList();
-        if (groupList == null)
-            return;
 
         if (groupList.IsConflictDialogOpen())
             return;
 
-        if (!groupList.ListeningForInput)
+        if (groupList.ListeningForInput)
             return;
 
         if (!(@event is InputEventMouseButton inputButton))
@@ -233,11 +231,8 @@ public class InputEventItem : Node
     private InputGroupItem GetGroup()
     {
         var action = GetAction();
-        if (action == null)
-            return null;
 
-        if (action.AssociatedGroup.TryGetTarget(out var associatedGroup) != true)
-            return null;
+        action.AssociatedGroup.TryGetTarget(out var associatedGroup);
 
         return associatedGroup;
     }
@@ -245,11 +240,8 @@ public class InputEventItem : Node
     private InputGroupList GetGroupList()
     {
         var group = GetGroup();
-        if (group == null)
-            return null;
 
-        if (group.AssociatedList.TryGetTarget(out var associatedList) != true)
-            return null;
+        group.AssociatedList.TryGetTarget(out var associatedList);
 
         return associatedList;
     }
