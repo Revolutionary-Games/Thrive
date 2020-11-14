@@ -5,6 +5,23 @@ Thrive is using gettext as a localization tool. gettext works by having a
 template file (of extension type .pot) and then one translation file for
 each language (of extension type .po).
 
+Online
+------
+
+There is an online translation site for Thrive available 
+[here](https://translate.revolutionarygamesstudio.com). You can use that site
+with just a web browser (after registering) in order to provide translations
+to the game.
+
+<a href="https://translate.revolutionarygamesstudio.com/engage/thrive/">
+<img src="https://translate.revolutionarygamesstudio.com/widgets/thrive/-/open-graph.png" alt="Translation status" width="600px"/>
+</a>
+
+This has the limitation that you can't test how the translations look in the game.
+But if you want to easily just help out a bit with the translations, that's the
+perfect place to do so. You can continue reading this document if you are interested
+working more in-depth with the translations for the game.
+
 Required tools
 --------------
 
