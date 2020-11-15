@@ -369,7 +369,8 @@ def handle_po_file(path)
         end
       end
 
-      if last_msgid.upcase != last_msgid and !LOCALIZATION_UPPERCASE_EXCEPTIONS.include? last_msgid
+      if last_msgid.upcase != last_msgid &&
+	    !LOCALIZATION_UPPERCASE_EXCEPTIONS.include?(last_msgid)
         OUTPUT_MUTEX.synchronize do
           error "Line #{line_number + 1} has message with non-uppercase characters " \
                 " (#{last_msgid})"
