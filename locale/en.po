@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-15 18:41+0100\n"
+"POT-Creation-Date: 2020-11-15 23:29+0100\n"
 "PO-Revision-Date: 2020-11-14 19:16+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -713,11 +713,12 @@ msgstr "{0} by sending: {1} population from patch: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/engine/LoadingScreen.cs:34 ../src/engine/LoadingScreen.tscn:128
+#: ../src/engine/LoadingScreen.cs:34 ../src/engine/LoadingScreen.cs:48
+#: ../src/engine/LoadingScreen.tscn:128
 msgid "LOADING"
 msgstr "Loading"
 
-#: ../src/engine/LoadingScreen.cs:36
+#: ../src/engine/LoadingScreen.cs:80
 msgid "LOADING_TIP"
 msgstr "TIP: press the undo button in the editor to correct a mistake"
 
@@ -1886,44 +1887,48 @@ msgstr "Species Present"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Move to This Patch"
 
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
+msgid "FREEBUILDING"
+msgstr "Freebuilding"
+
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "The amount of glucose has been reduced to {0} of the previous amount."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
 msgstr "Myr"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
 msgstr "years"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:659
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:664
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ATP_PRODUCTION"
 msgstr "ATP Production"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:665
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTION TOO LOW!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:719
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1467
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1469
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1472
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1474
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1512
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1514
 msgid "WITH_POPULATION"
 msgstr "{0} with population: {1}"
 

@@ -545,7 +545,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (editor.FreeBuilding)
         {
-            mutationPointsLabel.Text = "Freebuilding";
+            mutationPointsLabel.Text = TranslationServer.Translate("FREEBUILDING");
         }
         else
         {
