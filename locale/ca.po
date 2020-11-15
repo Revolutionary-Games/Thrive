@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-15 11:14+0200\n"
-"PO-Revision-Date: 2020-11-15 15:15+0000\n"
+"PO-Revision-Date: 2020-11-17 07:36+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ca/>\n"
@@ -23,10 +23,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Feu servir les tecles W,A,S,D i el ratolí per moure-us per la pantalla. "
-"Cliqueu la tecla E per a disparar la toxina OxyToxy NT; cal que tingueu un "
-"vacúol de toxines. Cliqueu la tecla G per a activar el mode d'engolir i "
-"empassar-vos a les cèl·lules amb què entreu en contacte."
+"Fes servir les tecles W,A,S,D i el ratolí per moure't per la pantalla. Clica "
+"la tecla E per a disparar la toxina OxyToxy NT; per fer-ho, cal que tinguis "
+"un vacúol de toxines. Clica la tecla G per a activar el mode d'engolir."
 
 #: ../simulation_parameters/common/help_texts.json:5
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
@@ -43,47 +42,71 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"També podeu engolir cèl·lules, bocins de cèl·lules i trossos de ferro, "
-"sempre que siguin més petits que vosaltres, clicant la tecla G per a activar "
-"el mode d'engolir. Això farà que gasteu més ATP, i us farà més lents. No us "
-"oblideu, per tant, de tornar a clicar la tecla G una altra vegada per a "
-"desactivar el mode d'engolir."
+"També pots engolir cèl·lules, bocins de cèl·lules i trossos de ferro, sempre "
+"que siguin més petits que la teva cèl·lula. Per fer-ho, clica la tecla G per "
+"a activar el mode d'engolir. Això farà que gastis més ATP i que et moguis "
+"més a poc a poc. No t'oblidis, per tant, de tornar a clicar la tecla G una "
+"altra vegada per a desactivar el mode d'engolir."
 
 #: ../simulation_parameters/common/help_texts.json:8
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"L'osmoregulació consumeix molt ATP. Per tant, com més gran sigui la vostra "
-"cèl·lula, més orgànuls (com els Mitocondris) o proteïnes (com el "
-"Metabolosoma i la Rusticianina) o citoplasma necessitareu per tal de no "
-"perdre ATP quan estigueu quiets."
+"L'osmoregulació consumeix molt ATP. Per tant, com més gran sigui la teva cèl·"
+"lula, més orgànuls (com els Mitocondris) o proteïnes (com el Metabolosoma i "
+"la Rusticianina) o citoplasma necessitaràs per tal de no perdre ATP quan "
+"estigueu quiets."
 
 #: ../simulation_parameters/common/help_texts.json:9
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
+"A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; un "
+"munt de possibilitats jugables."
 
 #: ../simulation_parameters/common/help_texts.json:10
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr ""
+"Per a la versió actual del joc, si la teva població baixa fins a 0 t'hauràs "
+"extingit."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"Els núvols que et pots trobar contenen els següents compostos:\n"
+"\n"
+"Blanc - Glucosa\n"
+"Groc - Àcid Sulfhídric\n"
+"Taronja - Amoníac\n"
+"Violeta - Fosfats\n"
+"Marró bru - Ferro\n"
+"\n"
+"La Glucosa produeix ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"L'Àcid Sulfhídric pot ser transformat en Glucosa mitjançant Quimioplasts i "
+"Proteïnes Quimiosintetitzadores. El Ferro pot ser transformat en ATP "
+"mitjançant Rusticianina."
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. "
+"Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Però si sobrevius durant 20 generacions i la teva població té més de 300 "
+"individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà una "
+"finestreta d'enhorabona i, després, podràs seguir jugant."
 
 #: ../simulation_parameters/common/help_texts.json:15
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en "
+"cap moment. Cada vegada que entris a l'editor, ells també faran un salt "
+"evolutiu."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -132,10 +155,15 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
+"Recorda que, si et creues amb una cèl·lula almenys dues vegades més petita "
+"que tu, la pots engolir per alimentar-te'n."
 
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
+"Vés amb compte. Els bacteris, malgrat ser molt petits, poden resultar "
+"perillosos. Alguns t'atacaran agressivament per devorar-te sense pensar-s'ho "
+"dues vegades!"
 
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "EASTEREGG_MESSAGE_9"
