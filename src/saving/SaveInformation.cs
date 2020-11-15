@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Reflection;
 
 /// <summary>
 ///   Info embedded in a save file
