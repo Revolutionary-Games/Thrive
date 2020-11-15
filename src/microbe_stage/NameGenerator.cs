@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -138,5 +138,9 @@ public class NameGenerator : IRegistryType
         Suffixes = new List<string>();
         Suffixes.AddRange(SuffixesC);
         Suffixes.AddRange(SuffixesV);
+    }
+
+    public void ApplyTranslations()
+    {
     }
 }

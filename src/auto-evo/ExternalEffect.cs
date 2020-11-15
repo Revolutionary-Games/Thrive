@@ -1,4 +1,6 @@
-﻿/// <summary>
+using Newtonsoft.Json;
+
+/// <summary>
 ///   Population effect external to the auto-evo simulation
 /// </summary>
 public class ExternalEffect
@@ -11,8 +13,15 @@ public class ExternalEffect
         EventType = eventType;
     }
 
+    [JsonProperty]
     public Species Species { get; }
+
+    [JsonProperty]
     public int Constant { get; set; }
+
+    [JsonProperty]
     public float Coefficient { get; set; }
+
+    [JsonProperty]
     public string EventType { get; set; }
 }

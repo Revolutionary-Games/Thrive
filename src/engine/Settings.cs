@@ -1,11 +1,16 @@
-﻿using Godot;
+using System.Globalization;
+using Godot;
 using Newtonsoft.Json;
+using Environment = System.Environment;
 
 /// <summary>
 ///   Class that handles storing and applying player changeable game settings.
 /// </summary>
 public class Settings
 {
+    private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
+    private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
+
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
     /// </summary>
@@ -17,9 +22,16 @@ public class Settings
 
     private Settings()
     {
+        // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
+        if (DefaultLanguage.Length < 1)
+            GD.PrintErr("Default locale is empty");
     }
 
     public static Settings Instance => SingletonInstance;
+
+    public static string DefaultLanguage => DefaultLanguageValue;
+
+    public static CultureInfo DefaultCulture => DefaultCultureValue;
 
     // Graphics Properties
 
@@ -107,6 +119,8 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
+    public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
+
     // Performance Properties
 
     /// <summary>
@@ -173,6 +187,23 @@ public class Settings
     ///   When true cheats are enabled
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   If false username will be set to System username
+    /// </summary>
+    public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Username that the user can choose
+    /// </summary>
+    public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+
+    [JsonIgnore]
+    public string ActiveUsername =>
+        CustomUsernameEnabled &&
+        CustomUsername.Value != null ?
+            CustomUsername.Value :
+            Environment.UserName;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
@@ -290,11 +321,27 @@ public class Settings
     /// <summary>
     ///   Applies all current settings to any applicable engine systems.
     /// </summary>
-    public void ApplyAll()
+    /// <param name="delayedApply">
+    ///   If true things that can't be immediately on game startup be applied, are applied later
+    /// </param>
+    public void ApplyAll(bool delayedApply = false)
     {
-        ApplyGraphicsSettings();
-        ApplySoundSettings();
+        if (delayedApply)
+        {
+            GD.Print("Doing delayed apply for some settings");
+            Invoke.Instance.Perform(ApplyGraphicsSettings);
+
+            // These need to be also delay applied, otherwise when debugging these overwrite the default settings
+            Invoke.Instance.Queue(ApplySoundSettings);
+        }
+        else
+        {
+            ApplyGraphicsSettings();
+            ApplySoundSettings();
+        }
+
         ApplyWindowSettings();
+        ApplyLanguageSettings();
     }
 
     /// <summary>
@@ -347,12 +394,76 @@ public class Settings
     }
 
     /// <summary>
+    ///   Applies current language settings to any applicable engine systems.
+    /// </summary>
+    public void ApplyLanguageSettings()
+    {
+        string language = SelectedLanguage.Value;
+        CultureInfo cultureInfo;
+
+        // Process locale info in case it isn't exactly right
+        if (string.IsNullOrEmpty(language))
+        {
+            language = DefaultLanguage;
+            cultureInfo = DefaultCulture;
+        }
+        else
+        {
+            cultureInfo = GetCultureInfo(language);
+        }
+
+        // Set locale for the game.
+        TranslationServer.SetLocale(language);
+
+        CultureInfo.CurrentCulture = cultureInfo;
+        CultureInfo.CurrentUICulture = cultureInfo;
+
+        SimulationParameters.Instance.ApplyTranslations();
+    }
+
+    /// <summary>
+    ///   Tries to return a C# culture info from Godot language name
+    /// </summary>
+    /// <param name="language">The language name to try to understand</param>
+    /// <returns>The culture info</returns>
+    private static CultureInfo GetCultureInfo(string language)
+    {
+        try
+        {
+            return new CultureInfo(language);
+        }
+        catch (CultureNotFoundException)
+        {
+            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
+
+            if (!language.Contains("_"))
+                throw;
+
+            // So we first try converting "_" to "-" and go with that
+            language = language.Replace('_', '-');
+
+            try
+            {
+                return new CultureInfo(language);
+            }
+            catch (CultureNotFoundException)
+            {
+                language = language.Split("-")[0];
+
+                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
+                    language);
+                return new CultureInfo(language);
+            }
+        }
+    }
+
+    /// <summary>
     ///   Loads, initializes and returns the global settings object.
     /// </summary>
     private static Settings InitializeGlobalSettings()
     {
         Settings settings = LoadSettings();
-        settings.ApplyAll();
+        settings.ApplyAll(true);
 
         return settings;
     }

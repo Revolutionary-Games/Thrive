@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
+using Environment = System.Environment;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -97,6 +100,9 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CloudResolutionPath;
 
+    [Export]
+    public NodePath RunAutoEvoDuringGameplayPath;
+
     // Misc tab.
     [Export]
     public NodePath MiscTabPath;
@@ -134,6 +140,18 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ErrorAcceptBoxPath;
 
+    [Export]
+    public NodePath LanguageSelectionPath;
+
+    [Export]
+    public NodePath ResetLanguageButtonPath;
+
+    [Export]
+    public NodePath CustomUsernameEnabledPath;
+
+    [Export]
+    public NodePath CustomUsernamePath;
+
     private Button resetButton;
     private Button saveButton;
 
@@ -164,11 +182,15 @@ public class OptionsMenu : Control
     private CheckBox sfxMuted;
     private Slider guiVolume;
     private CheckBox guiMuted;
+    private OptionButton languageSelection;
+    private Button resetLanguageButton;
+    private List<string> languages;
 
     // Performance tab
     private Control performanceTab;
     private OptionButton cloudInterval;
     private OptionButton cloudResolution;
+    private CheckBox runAutoEvoDuringGameplay;
 
     // Misc tab
     private Control miscTab;
@@ -179,6 +201,8 @@ public class OptionsMenu : Control
     private CheckBox autosave;
     private SpinBox maxAutosaves;
     private SpinBox maxQuicksaves;
+    private CheckBox customUsernameEnabled;
+    private LineEdit customUsername;
 
     private CheckBox tutorialsEnabled;
 
@@ -258,11 +282,15 @@ public class OptionsMenu : Control
         sfxMuted = GetNode<CheckBox>(SFXMutedPath);
         guiVolume = GetNode<Slider>(GUIVolumePath);
         guiMuted = GetNode<CheckBox>(GUIMutedPath);
+        languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
+        resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
+        LoadLanguages(languageSelection);
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
+        runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -274,6 +302,8 @@ public class OptionsMenu : Control
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
+        customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
+        customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
@@ -358,10 +388,16 @@ public class OptionsMenu : Control
         sfxMuted.Pressed = settings.VolumeSFXMuted;
         guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
+        UpdateSelectedLanguage(settings);
+
+        // Hide or show the reset language button based on the selected language
+        resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
+            settings.SelectedLanguage.Value != Settings.DefaultLanguage;
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
+        runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -372,6 +408,11 @@ public class OptionsMenu : Control
         maxAutosaves.Value = settings.MaxAutoSaves;
         maxAutosaves.Editable = settings.AutoSaveEnabled;
         maxQuicksaves.Value = settings.MaxQuickSaves;
+        customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
+        customUsername.Text = settings.CustomUsername.Value != null ?
+            settings.CustomUsername :
+            Environment.UserName;
+        customUsername.Editable = settings.CustomUsernameEnabled;
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -602,6 +643,17 @@ public class OptionsMenu : Control
 
         resetButton.Disabled = result;
         saveButton.Disabled = result;
+    }
+
+    private void LoadLanguages(OptionButton optionButton)
+    {
+        languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
+            .ToList();
+
+        foreach (var locale in languages)
+        {
+            optionButton.AddItem(locale);
+        }
     }
 
     /*
@@ -865,6 +917,13 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnAutoEvoToggled(bool pressed)
+    {
+        Settings.Instance.RunAutoEvoDuringGamePlay.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
     // Misc Button Callbacks
     private void OnIntroToggled(bool pressed)
     {
@@ -921,5 +980,72 @@ public class OptionsMenu : Control
         gameProperties.TutorialState.Enabled = pressed;
 
         UpdateResetSaveButtonState();
+    }
+
+    private void OnCustomUsernameEnabledToggled(bool pressed)
+    {
+        Settings.Instance.CustomUsernameEnabled.Value = pressed;
+        customUsername.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCustomUsernameTextChanged(string text)
+    {
+        if (text.Equals(Environment.UserName, StringComparison.CurrentCulture))
+        {
+            Settings.Instance.CustomUsername.Value = null;
+        }
+        else
+        {
+            Settings.Instance.CustomUsername.Value = text;
+        }
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnLanguageSettingSelected(int item)
+    {
+        Settings.Instance.SelectedLanguage.Value = languageSelection.GetItemText(item);
+        resetLanguageButton.Visible = true;
+
+        Settings.Instance.ApplyLanguageSettings();
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnResetLanguagePressed()
+    {
+        Settings.Instance.SelectedLanguage.Value = null;
+        resetLanguageButton.Visible = false;
+
+        Settings.Instance.ApplyLanguageSettings();
+        UpdateSelectedLanguage(Settings.Instance);
+        UpdateResetSaveButtonState();
+    }
+
+    private void UpdateSelectedLanguage(Settings settings)
+    {
+        if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
+        {
+            int index = languages.IndexOf(Settings.DefaultLanguage);
+
+            // Inexact match to match things like "fi_FI"
+            if (index == -1 && Settings.DefaultLanguage.Contains("_"))
+            {
+                index = languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
+            }
+
+            // English is the default language, if the user's default locale didn't match anything
+            if (index < 0)
+            {
+                index = languages.IndexOf("en");
+            }
+
+            languageSelection.Selected = index;
+        }
+        else
+        {
+            languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -57,6 +57,10 @@ public class MusicCategory : IRegistryType
 
         foreach (var list in TrackLists)
             list.Check();
+    }
+
+    public void ApplyTranslations()
+    {
     }
 }
 

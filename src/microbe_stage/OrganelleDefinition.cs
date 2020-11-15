@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -42,6 +42,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   User readable name
     /// </summary>
+    [TranslateFrom("untranslatedName")]
     public string Name;
 
     /// <summary>
@@ -124,6 +125,10 @@ public class OrganelleDefinition : IRegistryType
     ///   Caches the rotated hexes
     /// </summary>
     private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();
+
+#pragma warning disable 169 // Used through reflection
+    private string untranslatedName;
+#pragma warning restore 169
 
     /// <summary>
     ///   The total amount of compounds in InitialComposition
@@ -284,6 +289,8 @@ public class OrganelleDefinition : IRegistryType
                     "Duplicate hex position");
             }
         }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
     /// <summary>
@@ -323,6 +330,16 @@ public class OrganelleDefinition : IRegistryType
         {
             GetRotatedHexes(i);
         }
+    }
+
+    public void ApplyTranslations()
+    {
+        TranslationHelper.ApplyTranslations(this);
+    }
+
+    public override string ToString()
+    {
+        return Name + " Organelle";
     }
 
     public class OrganelleComponentFactoryInfo

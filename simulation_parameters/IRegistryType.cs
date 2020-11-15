@@ -1,4 +1,4 @@
-﻿public interface IRegistryType
+public interface IRegistryType
 {
     /// <summary>
     ///   The name referred to this registry object in json
@@ -12,4 +12,9 @@
     /// <remarks>Some registry types also process their initial data and create
     ///  derived data here</remarks>
     void Check(string name);
+
+    /// <summary>
+    ///   Fetch translations (if needed) for this object
+    /// </summary>
+    void ApplyTranslations();
 }
