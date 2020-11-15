@@ -8,62 +8,98 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-15 11:14+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-11-15 15:15+0000\n"
+"Last-Translator: Georgi <g.georgiev.shumen@gmail.com>\n"
+"Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"Използвайте W, A, S, D и мишката за движение. ОксиТокси се изстрелва с Е, "
+"ако имате токсинова вакуола. Поглъщането на другите клетки става с G."
 
 #: ../simulation_parameters/common/help_texts.json:5
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
+msgstr "Вашата клетка използва АТФ за да оцелее, ако той свърши тя ще умре."
 
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
+"За възпроизвеждане на клетката и влизане в редактора, трябва да съберете "
+"амоняк (оранжевите облаци) и фосфат (лилавите облаци)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
+"Вашата клетка може да поглъща други клетки, останки от клетки, бактерии и "
+"железни късове, стига те да са по-малки от нея. Това ще отнеме допълнителен "
+"АТФ и ще я забави. Не забравяйте да натиснете G още веднъж за да спрете "
+"режима на поглъщане."
 
 #: ../simulation_parameters/common/help_texts.json:8
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
+"Осморегулацията отнема АТФ, това означава, че колкото е по-голяма Вашата "
+"клетка, толкова повече митохондрии, метаболозоми или рустицианин (или "
+"цитоплазма, която създава гликолиза) ще са Ви нужни за да не губите АТФ, "
+"докато не се движите."
 
 #: ../simulation_parameters/common/help_texts.json:9
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
+"В редактора имате на разположение различни органели, които при еволюция Ви "
+"дават възможност за различни стилове на игра."
 
 #: ../simulation_parameters/common/help_texts.json:10
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "Ако популацията Ви спадне до нула, Вашият вид ще изчезне."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"Видовете облаци са:\n"
+"\n"
+"Бял – Глюкоза\n"
+"Жълт – Сероводород\n"
+"Оранжев – Амоняк\n"
+"Лилав – Фосфат\n"
+"Ръждивокафяв - Желязо\n"
+"\n"
+"Глюкозата създава АТФ"
 
 #: ../simulation_parameters/common/help_texts.json:12
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"Водородният сулфид може да се превърне в глюкоза чрез хемопласти и "
+"хемосинтезиращи протеини. Желязото може да се превърне в АТФ чрез "
+"рустицианин."
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"За възпроизвеждане, органелите на клетката трябва да се разделят на две. За "
+"да го направят, те се нуждаят от амоняк и фосфат."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Но ако оцелеете в продължение на 20 поколения с популация от 300, Вие ще "
+"победите, след победата Ви ще се появи изскачащ прозорец, който може да "
+"затворите и да продължите играта."
 
 #: ../simulation_parameters/common/help_texts.json:15
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Внимавайте, защото Вие не сте единствените, които еволюират. Всеки път, "
+"когато отворите редактора, Вашите съперници също еволюират."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
