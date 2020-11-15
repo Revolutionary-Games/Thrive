@@ -291,8 +291,9 @@ public class MicrobeHUD : Node
             UpdateCompoundBars();
             UpdateReproductionProgress();
             UpdateATP();
-            UpdateHealth();
         }
+
+        UpdateHealth();
 
         if (stage.Camera != null)
         {
@@ -439,7 +440,9 @@ public class MicrobeHUD : Node
 
     public void UpdatePatchInfo(string patchName)
     {
-        patchLabel.Text = "Patch: " + patchName;
+        // Patch: {0}
+        patchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_PATCH_LABEL"), patchName);
     }
 
     public void EditorButtonPressed()
@@ -610,8 +613,8 @@ public class MicrobeHUD : Node
 
         if (showMouseCoordinates)
         {
-            mousePosLabel.Text = string.Format(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {1:F1}:",
-                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
+            mousePosLabel.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("STUFF_AT"),
+                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z) + "\n";
         }
 
         if (compounds.Count == 0)
@@ -633,11 +636,10 @@ public class MicrobeHUD : Node
                 var compoundName = new Label();
                 var compoundValue = new Label();
 
-                var readableName = entry.Key.Name;
-                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 20, 20);
+                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(entry.Key.InternalName, 20, 20);
 
                 compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
-                compoundName.Text = readableName;
+                compoundName.Text = entry.Key.Name;
 
                 compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", entry.Value);
 
@@ -792,8 +794,14 @@ public class MicrobeHUD : Node
 
     private void UpdateHealth()
     {
-        var hp = stage.Player.Hitpoints;
-        var maxHP = stage.Player.MaxHitpoints;
+        var hp = 0.0f;
+        var maxHP = 100.0f;
+
+        if (stage.Player != null)
+        {
+            hp = stage.Player.Hitpoints;
+            maxHP = stage.Player.MaxHitpoints;
+        }
 
         GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP);
         hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;

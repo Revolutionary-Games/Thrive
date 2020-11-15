@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Environment = System.Environment;
 
@@ -139,6 +141,12 @@ public class OptionsMenu : Control
     public NodePath ErrorAcceptBoxPath;
 
     [Export]
+    public NodePath LanguageSelectionPath;
+
+    [Export]
+    public NodePath ResetLanguageButtonPath;
+
+    [Export]
     public NodePath CustomUsernameEnabledPath;
 
     [Export]
@@ -174,6 +182,9 @@ public class OptionsMenu : Control
     private CheckBox sfxMuted;
     private Slider guiVolume;
     private CheckBox guiMuted;
+    private OptionButton languageSelection;
+    private Button resetLanguageButton;
+    private List<string> languages;
 
     // Performance tab
     private Control performanceTab;
@@ -271,6 +282,9 @@ public class OptionsMenu : Control
         sfxMuted = GetNode<CheckBox>(SFXMutedPath);
         guiVolume = GetNode<Slider>(GUIVolumePath);
         guiMuted = GetNode<CheckBox>(GUIMutedPath);
+        languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
+        resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
+        LoadLanguages(languageSelection);
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
@@ -374,6 +388,11 @@ public class OptionsMenu : Control
         sfxMuted.Pressed = settings.VolumeSFXMuted;
         guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
+        UpdateSelectedLanguage(settings);
+
+        // Hide or show the reset language button based on the selected language
+        resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
+            settings.SelectedLanguage.Value != Settings.DefaultLanguage;
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
@@ -624,6 +643,17 @@ public class OptionsMenu : Control
 
         resetButton.Disabled = result;
         saveButton.Disabled = result;
+    }
+
+    private void LoadLanguages(OptionButton optionButton)
+    {
+        languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
+            .ToList();
+
+        foreach (var locale in languages)
+        {
+            optionButton.AddItem(locale);
+        }
     }
 
     /*
@@ -972,5 +1002,50 @@ public class OptionsMenu : Control
         }
 
         UpdateResetSaveButtonState();
+    }
+
+    private void OnLanguageSettingSelected(int item)
+    {
+        Settings.Instance.SelectedLanguage.Value = languageSelection.GetItemText(item);
+        resetLanguageButton.Visible = true;
+
+        Settings.Instance.ApplyLanguageSettings();
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnResetLanguagePressed()
+    {
+        Settings.Instance.SelectedLanguage.Value = null;
+        resetLanguageButton.Visible = false;
+
+        Settings.Instance.ApplyLanguageSettings();
+        UpdateSelectedLanguage(Settings.Instance);
+        UpdateResetSaveButtonState();
+    }
+
+    private void UpdateSelectedLanguage(Settings settings)
+    {
+        if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
+        {
+            int index = languages.IndexOf(Settings.DefaultLanguage);
+
+            // Inexact match to match things like "fi_FI"
+            if (index == -1 && Settings.DefaultLanguage.Contains("_"))
+            {
+                index = languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
+            }
+
+            // English is the default language, if the user's default locale didn't match anything
+            if (index < 0)
+            {
+                index = languages.IndexOf("en");
+            }
+
+            languageSelection.Selected = index;
+        }
+        else
+        {
+            languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
+        }
     }
 }

@@ -44,21 +44,21 @@
 [ext_resource path="res://assets/textures/gui/bevel/expandPanel.png" type="Texture" id=43]
 [ext_resource path="res://assets/textures/gui/bevel/expandPanelActive.png" type="Texture" id=44]
 [ext_resource path="res://assets/textures/gui/bevel/compressPanelActive.png" type="Texture" id=45]
-[ext_resource path="res://assets/textures/gui/bevel/Glucose.png" type="Texture" id=46]
-[ext_resource path="res://assets/textures/gui/bevel/HydrogenSulfide.png" type="Texture" id=47]
-[ext_resource path="res://assets/textures/gui/bevel/Ammonia.png" type="Texture" id=48]
-[ext_resource path="res://assets/textures/gui/bevel/Iron.png" type="Texture" id=49]
-[ext_resource path="res://assets/textures/gui/bevel/Phosphates.png" type="Texture" id=50]
-[ext_resource path="res://assets/textures/gui/bevel/Oxygen.png" type="Texture" id=51]
+[ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture" id=46]
+[ext_resource path="res://assets/textures/gui/bevel/hydrogensulfide.png" type="Texture" id=47]
+[ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture" id=48]
+[ext_resource path="res://assets/textures/gui/bevel/iron.png" type="Texture" id=49]
+[ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=50]
+[ext_resource path="res://assets/textures/gui/bevel/oxygen.png" type="Texture" id=51]
 [ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture" id=52]
-[ext_resource path="res://assets/textures/gui/bevel/Sunlight.png" type="Texture" id=53]
+[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=53]
 [ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=54]
-[ext_resource path="res://assets/textures/gui/bevel/CarbonDioxide.png" type="Texture" id=55]
-[ext_resource path="res://assets/textures/gui/bevel/Nitrogen.png" type="Texture" id=56]
-[ext_resource path="res://assets/textures/gui/bevel/OxytoxyNT.png" type="Texture" id=57]
+[ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=55]
+[ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=56]
+[ext_resource path="res://assets/textures/gui/bevel/oxytoxy.png" type="Texture" id=57]
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=58]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=59]
-[ext_resource path="res://assets/textures/gui/bevel/ATP.png" type="Texture" id=60]
+[ext_resource path="res://assets/textures/gui/bevel/atp.png" type="Texture" id=60]
 [ext_resource path="res://assets/textures/gui/bevel/Hitpoints.png" type="Texture" id=61]
 [ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=62]
 [ext_resource path="res://assets/textures/gui/bevel/AtpBar.png" type="Texture" id=63]
@@ -76,6 +76,17 @@
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
+
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 73 )
@@ -874,6 +885,9 @@ margin_bottom = 19.0
 custom_fonts/font = SubResource( 4 )
 text = "At Cursor:"
 align = 1
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="TitleSeparator" type="HSeparator" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 23.0
@@ -893,7 +907,7 @@ margin_right = 208.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
 custom_fonts/font = SubResource( 5 )
-text = "Nothing here"
+text = "NOTHING_HERE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -917,7 +931,7 @@ margin_right = 208.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
 custom_fonts/font = SubResource( 5 )
-text = "Compounds:"
+text = "COMPOUNDS_COLON"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -954,7 +968,7 @@ margin_right = 208.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
 custom_fonts/font = SubResource( 5 )
-text = "Species:"
+text = "SPECIES_COLON"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1034,7 +1048,7 @@ margin_right = 126.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 6 )
-text = "Environment"
+text = "ENVIRONMENT"
 
 [node name="EnvironmentExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 132.0
@@ -1121,10 +1135,11 @@ margin_right = 38.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "02"
+text = "O2"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
@@ -1182,7 +1197,8 @@ custom_fonts/font = SubResource( 16 )
 text = "CO2"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
@@ -1240,7 +1256,8 @@ custom_fonts/font = SubResource( 16 )
 text = "N2"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
@@ -1292,7 +1309,7 @@ margin_right = 60.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "Temp."
+text = "TEMPERATURE_SHORT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1314,7 +1331,8 @@ text = "55° C"
 align = 2
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Sunlight" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
@@ -1347,7 +1365,7 @@ margin_right = 66.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "Light"
+text = "LIGHT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1402,7 +1420,7 @@ margin_right = 69.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "Press."
+text = "PRESSURE_SHORT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1424,7 +1442,8 @@ text = "200 kPa"
 align = 2
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="CompoundsPanel" type="NinePatchRect" parent="MicrobeHUD/BottomLeft/LeftPanels"]
@@ -1477,7 +1496,7 @@ margin_bottom = 29.0
 rect_min_size = Vector2( 145, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 6 )
-text = "Compounds"
+text = "COMPOUNDS"
 
 [node name="CompoundExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 155.0
@@ -1568,7 +1587,7 @@ margin_right = 81.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "Glucose"
+text = "GLUCOSE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1622,7 +1641,7 @@ margin_right = 81.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "Ammonia"
+text = "AMMONIA"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1676,7 +1695,7 @@ margin_right = 95.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "Phosphate"
+text = "PHOSPHATE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1730,7 +1749,7 @@ margin_right = 141.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "Hydrogen Sulfide"
+text = "HYDROGEN_SULFIDE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1784,7 +1803,7 @@ margin_right = 47.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "Iron"
+text = "IRON"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1837,7 +1856,7 @@ margin_top = 8.0
 margin_right = 252.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 6 )
-text = "Agents"
+text = "AGENTS"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer"]
 margin_top = 39.0
@@ -1891,7 +1910,7 @@ margin_right = 97.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 16 )
-text = "OxyToxy NT"
+text = "OXYTOXY_NT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2061,6 +2080,9 @@ margin_right = 396.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 33 )
 text = "Patch:"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="BottomRight" type="Control" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -2095,7 +2117,7 @@ margin_right = 74.0
 margin_bottom = 17.0
 custom_styles/normal = SubResource( 34 )
 custom_fonts/font = SubResource( 35 )
-text = "POPULATION:"
+text = "POPULATION_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2149,6 +2171,9 @@ margin_right = 70.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 37 )
 text = "Hitpoints"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ATPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_top = 25.0
@@ -2156,6 +2181,9 @@ margin_right = 70.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 37 )
 text = "ATP"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HealthBar" type="TextureProgress" parent="MicrobeHUD/BottomRight"]
 anchor_left = 1.0
