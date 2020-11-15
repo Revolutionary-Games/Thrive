@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-15 18:18+0100\n"
+"POT-Creation-Date: 2020-11-15 18:41+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Kubagliko_PL <kubagliko333@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -956,6 +956,14 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
+#: ../src/gui_common/MainMenu.cs:320
+msgid "OK"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.cs:321
+msgid "Cancel"
+msgstr ""
+
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
 msgstr ""
@@ -1771,7 +1779,6 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKCJA ATP JEST ZA NISKA!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#, fuzzy
 msgid "OSMOREGULATION"
 msgstr "populacja:"
 
@@ -1890,6 +1897,22 @@ msgstr ""
 
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
+msgstr ""
+
+#: ../src/saving/SaveInformation.cs:15
+msgid "SAVE_MANUAL"
+msgstr "Zapisz Grę"
+
+#: ../src/saving/SaveInformation.cs:21
+msgid "SAVE_AUTOSAVE"
+msgstr "Użyte miejsce:"
+
+#: ../src/saving/SaveInformation.cs:27
+msgid "SAVE_QUICKSAVE"
+msgstr "Zapisz Grę"
+
+#: ../src/saving/SaveInformation.cs:33
+msgid "SAVE_INVALID"
 msgstr ""
 
 #: ../src/saving/SaveList.cs:173

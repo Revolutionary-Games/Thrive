@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-15 18:18+0100\n"
+"POT-Creation-Date: 2020-11-15 18:41+0100\n"
 "PO-Revision-Date: 2020-11-14 11:21+0000\n"
 "Last-Translator: Jiří NnN <lagerjirka@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -832,6 +832,14 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
+#: ../src/gui_common/MainMenu.cs:320
+msgid "OK"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.cs:321
+msgid "Cancel"
+msgstr ""
+
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
 msgstr ""
@@ -901,7 +909,6 @@ msgid "REDO_THE_LAST_ACTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:148
-#, fuzzy
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Uložit hru"
 
@@ -1558,7 +1565,6 @@ msgid "COLOUR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3994
-#, fuzzy
 msgid "CONFIRM_CAPITAL"
 msgstr "VYHYNUTÍ"
 
@@ -1649,7 +1655,6 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#, fuzzy
 msgid "OSMOREGULATION"
 msgstr "populace:"
 
@@ -1774,6 +1779,22 @@ msgstr "Ukládání hotovo"
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
 msgstr ""
+
+#: ../src/saving/SaveInformation.cs:15
+msgid "SAVE_MANUAL"
+msgstr "Chyba v uložení"
+
+#: ../src/saving/SaveInformation.cs:21
+msgid "SAVE_AUTOSAVE"
+msgstr ""
+
+#: ../src/saving/SaveInformation.cs:27
+msgid "SAVE_QUICKSAVE"
+msgstr ""
+
+#: ../src/saving/SaveInformation.cs:33
+msgid "SAVE_INVALID"
+msgstr "Uložená pozice je invalidní"
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"

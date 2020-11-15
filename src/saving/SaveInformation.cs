@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel;
+using System.Reflection;
 
 /// <summary>
 ///   Info embedded in a save file
@@ -10,21 +12,25 @@ public class SaveInformation
         /// <summary>
         ///   Player initiated save
         /// </summary>
+        [Description("SAVE_MANUAL")]
         Manual,
 
         /// <summary>
         ///   Automatic save
         /// </summary>
+        [Description("SAVE_AUTOSAVE")]
         AutoSave,
 
         /// <summary>
         ///   Quick save, separate from manual to make it easier to keep a fixed number of quick saves
         /// </summary>
+        [Description("SAVE_QUICKSAVE")]
         QuickSave,
 
         /// <summary>
         ///   A broken save that (probably) cannot be loaded
         /// </summary>
+        [Description("SAVE_INVALID")]
         Invalid,
     }
 
@@ -50,6 +56,7 @@ public class SaveInformation
     public Guid ID { get; set; } = Guid.NewGuid();
 
     public SaveType Type { get; set; } = SaveType.Manual;
+    public string TypeString => GetDescriptionForSaveType(Type);
 
     /// <summary>
     ///   Creates save information for an invalid save
@@ -64,5 +71,12 @@ public class SaveInformation
             Platform = "Invalid",
             Creator = "Invalid",
         };
+    }
+
+    internal static string GetDescriptionForSaveType(SaveType value)
+    {
+        var memInfo = typeof(SaveType).GetMember(value.ToString());
+        var attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+        return ((DescriptionAttribute)attrs[0]).Description;
     }
 }

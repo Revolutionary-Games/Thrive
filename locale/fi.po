@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-15 18:18+0100\n"
+"POT-Creation-Date: 2020-11-15 18:41+0100\n"
 "PO-Revision-Date: 2020-11-14 21:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -854,6 +854,14 @@ msgstr "Palaa Päävalikkoon"
 msgid "EXIT"
 msgstr "Poistu"
 
+#: ../src/gui_common/MainMenu.cs:320
+msgid "OK"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.cs:321
+msgid "Cancel"
+msgstr ""
+
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
 msgstr "Uusi Peli"
@@ -895,7 +903,6 @@ msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
-#, fuzzy
 msgid "OPEN_THE_MENU"
 msgstr "Palaa Päävalikkoon"
 
@@ -1670,7 +1677,6 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#, fuzzy
 msgid "OSMOREGULATION"
 msgstr "populaatio:"
 
@@ -1790,6 +1796,22 @@ msgstr ""
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
 msgstr ""
+
+#: ../src/saving/SaveInformation.cs:15
+msgid "SAVE_MANUAL"
+msgstr "Tallenna Peli"
+
+#: ../src/saving/SaveInformation.cs:21
+msgid "SAVE_AUTOSAVE"
+msgstr "Tallenna Peli"
+
+#: ../src/saving/SaveInformation.cs:27
+msgid "SAVE_QUICKSAVE"
+msgstr "Tallenna Peli"
+
+#: ../src/saving/SaveInformation.cs:33
+msgid "SAVE_INVALID"
+msgstr "Lataa rikkinäinen tallennus?"
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"

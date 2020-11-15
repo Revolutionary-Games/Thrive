@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-15 18:18+0100\n"
+"POT-Creation-Date: 2020-11-15 18:41+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -975,6 +975,14 @@ msgstr "Zurück zum Hauptmenü"
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
 msgstr "Verlassen"
+
+#: ../src/gui_common/MainMenu.cs:320
+msgid "OK"
+msgstr "OK"
+
+#: ../src/gui_common/MainMenu.cs:321
+msgid "Cancel"
+msgstr "Abbruch"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
@@ -2051,6 +2059,22 @@ msgstr "Speichern erfolgreich"
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
 msgstr "Speichern fehlgeschlagen! Eine Ausnahme ist aufgetreten"
+
+#: ../src/saving/SaveInformation.cs:15
+msgid "SAVE_MANUAL"
+msgstr "Manuell"
+
+#: ../src/saving/SaveInformation.cs:21
+msgid "SAVE_AUTOSAVE"
+msgstr "Automatisch"
+
+#: ../src/saving/SaveInformation.cs:27
+msgid "SAVE_QUICKSAVE"
+msgstr "Schnell"
+
+#: ../src/saving/SaveInformation.cs:33
+msgid "SAVE_INVALID"
+msgstr "Ungülig"
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"

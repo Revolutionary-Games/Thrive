@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-15 18:18+0100\n"
+"POT-Creation-Date: 2020-11-15 18:41+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Albert Saltarin <albertosaltarin@outlook.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -47,7 +47,6 @@ msgstr ""
 "finito."
 
 #: ../simulation_parameters/common/help_texts.json:8
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "L'osmoregolazione costa ATP: più grande sarà la tua cellula, più il tuo "
@@ -56,14 +55,12 @@ msgstr ""
 "fermare il consumo di ATP mentre non ti muovi."
 
 #: ../simulation_parameters/common/help_texts.json:9
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
 "Nell'editor sono presenti molti organelli per l'evoluzione. Permettono "
 "l'adoperazione di una varietà di modi di giocare."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Se il numero della tua specie calerà a ZERO, ti estinguerai."
 
@@ -101,7 +98,6 @@ msgstr ""
 "dopodiché potrai continuare a giocare."
 
 #: ../simulation_parameters/common/help_texts.json:15
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
 "Sii prudente: le specie competono parallele a te, si evolvono anche loro. "
@@ -903,6 +899,14 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.cs:320
+msgid "OK"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.cs:321
+msgid "Cancel"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:147
@@ -1838,6 +1842,22 @@ msgstr ""
 
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
+msgstr ""
+
+#: ../src/saving/SaveInformation.cs:15
+msgid "SAVE_MANUAL"
+msgstr ""
+
+#: ../src/saving/SaveInformation.cs:21
+msgid "SAVE_AUTOSAVE"
+msgstr ""
+
+#: ../src/saving/SaveInformation.cs:27
+msgid "SAVE_QUICKSAVE"
+msgstr ""
+
+#: ../src/saving/SaveInformation.cs:33
+msgid "SAVE_INVALID"
 msgstr ""
 
 #: ../src/saving/SaveList.cs:173

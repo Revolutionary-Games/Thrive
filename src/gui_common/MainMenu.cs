@@ -51,6 +51,7 @@ public class MainMenu : Node
 
     public override void _Ready()
     {
+        CallMiscTranslations();
         RunMenuSetup();
 
         // Start intro video
@@ -312,5 +313,15 @@ public class MainMenu : Node
         SetCurrentMenu(0, false);
 
         thriveLogo.Show();
+    }
+
+    private void CallMiscTranslations()
+    {
+        _ = TranslationServer.Translate("OK");
+        _ = TranslationServer.Translate("Cancel");
+        foreach (var saveType in Enum.GetValues(typeof(SaveInformation.SaveType)).Cast<SaveInformation.SaveType>())
+        {
+            TranslationServer.Translate(SaveInformation.GetDescriptionForSaveType(saveType));
+        }
     }
 }

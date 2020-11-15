@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-15 18:18+0100\n"
+"POT-Creation-Date: 2020-11-15 18:41+0100\n"
 "PO-Revision-Date: 2020-11-14 19:16+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -956,6 +956,14 @@ msgstr "Return to Menu"
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
 msgstr "Exit"
+
+#: ../src/gui_common/MainMenu.cs:320
+msgid "OK"
+msgstr "OK"
+
+#: ../src/gui_common/MainMenu.cs:321
+msgid "Cancel"
+msgstr "Cancel"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
@@ -2025,6 +2033,22 @@ msgstr "Saving succeeded"
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
 msgstr "Saving failed! An exception happened"
+
+#: ../src/saving/SaveInformation.cs:15
+msgid "SAVE_MANUAL"
+msgstr "Manual"
+
+#: ../src/saving/SaveInformation.cs:21
+msgid "SAVE_AUTOSAVE"
+msgstr "Autosave"
+
+#: ../src/saving/SaveInformation.cs:27
+msgid "SAVE_QUICKSAVE"
+msgstr "Quicksave"
+
+#: ../src/saving/SaveInformation.cs:33
+msgid "SAVE_INVALID"
+msgstr "Invalid"
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"
