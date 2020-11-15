@@ -47,7 +47,7 @@ __meta__ = {
 
 [node name="VSplitContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 390.0
-margin_top = 35.0
+margin_top = 36.0
 margin_right = 890.0
 margin_bottom = 482.0
 size_flags_horizontal = 3
@@ -69,12 +69,15 @@ __meta__ = {
 [node name="ArtDescription" type="Label" parent="CenterContainer/VSplitContainer"]
 margin_top = 424.0
 margin_right = 500.0
-margin_bottom = 447.0
+margin_bottom = 446.0
 text = "Shown image description goes here"
 align = 1
 valign = 2
 autowrap = true
 max_lines_visible = 4
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Spinner" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -116,20 +119,20 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
 margin_left = 598.0
-margin_top = 54.0
+margin_top = 55.0
 margin_right = 677.0
-margin_bottom = 104.0
+margin_bottom = 103.0
 
 [node name="LoadingMessage" type="Label" parent="CenterContainer2/VBoxContainer"]
 margin_right = 79.0
-margin_bottom = 23.0
-text = "Loading"
+margin_bottom = 22.0
+text = "LOADING"
 align = 1
 
 [node name="LoadingDescription" type="Label" parent="CenterContainer2/VBoxContainer"]
-margin_top = 27.0
+margin_top = 26.0
 margin_right = 79.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 align = 1
 
 [node name="TipLabel" type="Label" parent="."]
@@ -148,5 +151,6 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }

@@ -50,7 +50,7 @@ jobs:
    jetbrains:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v5
+       - image: hhyyrylainen/godot-ci:v6
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
        CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
@@ -116,12 +116,12 @@ jobs:
    format_script:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/thrive-lint:v2
+       - image: hhyyrylainen/thrive-lint:v3
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
        - checkout
-       - run: ./check_formatting.rb -c files
+       - run: ./check_formatting.rb -c files,localization
        - run:
            when: always
            command: |
