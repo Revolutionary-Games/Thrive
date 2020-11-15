@@ -636,11 +636,10 @@ public class MicrobeHUD : Node
                 var compoundName = new Label();
                 var compoundValue = new Label();
 
-                var readableName = entry.Key.Name;
-                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 20, 20);
+                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(entry.Key.InternalName, 20, 20);
 
                 compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
-                compoundName.Text = readableName;
+                compoundName.Text = entry.Key.Name;
 
                 compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", entry.Value);
 
