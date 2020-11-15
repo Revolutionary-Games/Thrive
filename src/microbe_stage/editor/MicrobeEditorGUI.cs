@@ -609,8 +609,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             + TranslationServer.Translate("MEGA_YEARS");
 
         ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
-            CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " "
-                + TranslationServer.Translate("YEARS");
+                CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " "
+            + TranslationServer.Translate("YEARS");
     }
 
     public void SetInitialCellStats()
