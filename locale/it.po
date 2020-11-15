@@ -8,74 +8,158 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-15 11:14+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-11-15 15:15+0000\n"
+"Last-Translator: Albert Saltarin <albertosaltarin@outlook.it>\n"
+"Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"W, A, S, D oppure mouse per muoversi. E per lanciare Ossitocina NT se hai un "
+"vacuolo tossina. G per attivare o disabilitare la modalità consumo."
 
 #: ../simulation_parameters/common/help_texts.json:5
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
+"La tua cellula usa ATP per sostenersi. Se tutta è consumata, la cellula "
+"morirà."
 
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
+"Per sbloccare l'editor e per riprodurti, bisogna ottenere Ammoniaca (Nuvole "
+"arancioni) e Fosfato (Nuvole viola)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
+"Puoi consumare cellule, batteri, ferro solido e pezzi di cellule che sono "
+"più piccoli di te premendo G. Tenendo la modalità attiva spenderà più ATP e "
+"ti rallenterà. Non scordarti di premere G per disabilitarla quando hai "
+"finito."
 
 #: ../simulation_parameters/common/help_texts.json:8
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
+"L'osmoregolazione costa ATP: più grande sarà la tua cellula, più il tuo "
+"consumo di ATP si alzerà. Mitocondri, metabolosomi, componenti con attività "
+"di ferrossidasi o citoplasma (che svolge la glicolisi), possono tutti "
+"fermare il consumo di ATP mentre non ti muovi."
 
 #: ../simulation_parameters/common/help_texts.json:9
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
+"Nell'editor sono presenti molti organelli per l'evoluzione. Permettono "
+"l'adoperazione di una varietà di modi di giocare."
 
 #: ../simulation_parameters/common/help_texts.json:10
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "Se il numero della tua specie calerà a ZERO, ti estinguerai."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"Le varie nuvole di composti sono le seguenti:\n"
+"\n"
+"Bianco - Glucosio\n"
+"Giallo - Idrogeno Solforato \n"
+"Arancione - Ammoniaca\n"
+"Viola - Fosfati\n"
+"Marrone - Ferro\n"
+"\n"
+"Il glucosio è necessario per la produzione di ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"L'Idrogeno solforato può essere convertito in glucosio se nella tua cellula "
+"sono presenti chemoplasti o proteine chemosintetizzanti. Il ferro può essere "
+"convertito in ATP con la ferrosintassi."
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Per riprodursi, una cellula deve dividere ognuno dei suoi organelli in due. "
+"Gli organelli hanno bisogno di Ammoniaca e Fosfati per scindersi."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Se sopravvivi per 20 generazioni con l'indicatore della popolazione a 300, "
+"il gioco è considerato vinto. Al momento della vittoria sarai avvisato, "
+"dopodiché potrai continuare a giocare."
 
 #: ../simulation_parameters/common/help_texts.json:15
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Sii prudente: le specie competono parallele a te, si evolvono anche loro. "
+"Ogni volta che entri nell'editor, si evolvono anche i competitori."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"Organelli Procariotici\n"
+"\n"
+"Metabolosomi: Producono ATP consumando glucosio\n"
+"\n"
+"Proteine chemosintetizzanti: Produce metà del glucosio normalmente prodotto "
+"con l'idrogeno solforato, ma svolge anche la glicolisi (produce piccole "
+"quantità di ATP). Occupa un esagono\n"
+"\n"
+"Tilacoidi: Produce 1/3 del glucosio normalmente prodotto da un cloroplasto, "
+"ma svolge anche la glicolisi. Occupa un esagono\n"
+"\n"
+"Ferrosintesi: Produce ATP consumando ferro\n"
+"\n"
+"Nitrogenasi: Produce ammoniaca da nitrogeno libero e ATP anaerobicalmente\n"
+"\n"
+"Citoplasma: Abilità di immagazzinamento, svolge la glicolisi"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Organelli Esterni\n"
+"\n"
+"Flagelli: Permettono la tua cellula di movimento più veloce, al costo di più "
+"ATP\n"
+"\n"
+"Follicoli: Punge le cellule che ci si avvicinano"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Organelli Interni\n"
+"\n"
+"Nucleo: Occupa 11 esagoni e permette l'evoluzione degli organelli interni. "
+"Raddoppia le dimensioni della tua cellula (può essere evoluto solo una volta)"
+"\n"
+"\n"
+"Mitocondrio: Produce ATP consumando glucosio e O2 libero, molto più "
+"efficientemente della glicolisi del citoplasma\n"
+"\n"
+"Cloroplasto: Produce glucosio quando viene esposto a luce solare e CO2 "
+"libera\n"
+"\n"
+"Chemoplasto: Produce glucosio consumando idrogeno solforato\n"
+"\n"
+"Plastide Nitrogenico: Produce Ammoniaca consumando ATP, Nitrogeno e O2 "
+"liberi\n"
+"\n"
+"Vacuolo: Possiede 15 spazi per l'immagazzinamento di composti\n"
+"\n"
+"Vacuoli Tossina: Producono tossine (ovvero Ossitocina NT)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -1427,7 +1511,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:542
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:996
 msgid "LOADING_MICROBE_EDITOR"
-msgstr ""
+msgstr "Caricando l'Editor Microbi"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:543
 msgid "WAITING_FOR_AUTO_EVO"
