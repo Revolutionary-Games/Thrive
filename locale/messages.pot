@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-15 11:14+0200\n"
+"POT-Creation-Date: 2020-11-15 18:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
@@ -348,19 +348,19 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1928
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4312
-#: ../src/microbe_stage/MicrobeStage.tscn:1647
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
 msgid "AMMONIA"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1701
+#: ../src/microbe_stage/MicrobeStage.tscn:1690
 msgid "PHOSPHATE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1265
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4015
-#: ../src/microbe_stage/MicrobeStage.tscn:1755
+#: ../src/microbe_stage/MicrobeStage.tscn:1744
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
@@ -374,18 +374,18 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3735
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4040
-#: ../src/microbe_stage/MicrobeStage.tscn:1593
+#: ../src/microbe_stage/MicrobeStage.tscn:1582
 msgid "GLUCOSE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1916
+#: ../src/microbe_stage/MicrobeStage.tscn:1905
 msgid "OXYTOXY_NT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
-#: ../src/microbe_stage/MicrobeStage.tscn:1809
+#: ../src/microbe_stage/MicrobeStage.tscn:1798
 msgid "IRON"
 msgstr ""
 
@@ -420,21 +420,21 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2513
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
 msgid "PREDATORY_PILUS"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1564
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2177
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2169
 msgid "RUSTICYANIN"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1869
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2240
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2232
 msgid "NITROGENASE"
 msgstr ""
 
@@ -451,7 +451,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2303
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2295
 msgid "OXYTOXISOME"
 msgstr ""
 
@@ -463,7 +463,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:598
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:662
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1986
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1978
 msgid "METABOLOSOMES"
 msgstr ""
 
@@ -476,56 +476,56 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3917
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3981
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2979
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2971
 msgid "CHEMOPLAST"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2367
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2451
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2443
 msgid "FLAGELLUM"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4494
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4558
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3110
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3102
 msgid "VACUOLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2788
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2780
 msgid "MITOCHONDRION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4683
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3175
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3167
 msgid "TOXIN_VACUOLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3349
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3413
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2851
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
 msgid "CHLOROPLAST"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:358
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1832
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1824
 msgid "CYTOPLASM"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2885
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2949
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2725
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2717
 msgid "NUCLEUS"
 msgstr ""
 
@@ -1016,7 +1016,7 @@ msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2049
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2041
 msgid "THYLAKOID"
 msgstr ""
 
@@ -1054,7 +1054,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1053
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
-#: ../src/microbe_stage/MicrobeStage.tscn:1371
+#: ../src/microbe_stage/MicrobeStage.tscn:1360
 msgid "LIGHT"
 msgstr ""
 
@@ -1147,7 +1147,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2568
 msgid "CILIA"
 msgstr ""
 
@@ -1174,7 +1174,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3701
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2915
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2907
 msgid "THERMOPLAST"
 msgstr ""
 
@@ -1229,7 +1229,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5118
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5182
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3422
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3414
 msgid "NORMAL"
 msgstr ""
 
@@ -1248,7 +1248,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5363
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3490
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3482
 msgid "DOUBLE"
 msgstr ""
 
@@ -1258,7 +1258,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5602
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5666
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3558
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
 msgid "CELLULOSE"
 msgstr ""
 
@@ -1281,7 +1281,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5970
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3626
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3618
 msgid "CHITIN"
 msgstr ""
 
@@ -1297,7 +1297,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6210
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6274
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3699
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
 msgid "CALCIUM_CARBONATE"
 msgstr ""
 
@@ -1307,12 +1307,16 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6544
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6608
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3769
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3761
 msgid "SILICA"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6862
 msgid "SILICA_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
+msgid "SECOND"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1150
@@ -1343,40 +1347,44 @@ msgstr ""
 msgid "PLAYER_DIED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:913
+#: ../src/microbe_stage/MicrobeStage.tscn:878
+msgid "AT_CURSOR"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:902
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:937
+#: ../src/microbe_stage/MicrobeStage.tscn:926
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:974
+#: ../src/microbe_stage/MicrobeStage.tscn:963
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1054
+#: ../src/microbe_stage/MicrobeStage.tscn:1043
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1315
+#: ../src/microbe_stage/MicrobeStage.tscn:1304
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1426
+#: ../src/microbe_stage/MicrobeStage.tscn:1415
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1502
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4822
+#: ../src/microbe_stage/MicrobeStage.tscn:1491
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4814
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1862
+#: ../src/microbe_stage/MicrobeStage.tscn:1851
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2123
+#: ../src/microbe_stage/MicrobeStage.tscn:2112
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -1441,169 +1449,181 @@ msgstr ""
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1053
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1045
 msgid "REPORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1074
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1066
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1095
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1087
 msgid "EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1142
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1134
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1187
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1179
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1217
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1209
 msgid "HP_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1247
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1239
 msgid "SIZE_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1268
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1260
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1310
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1302
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1498
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1490
 msgid "MUTATION_POINTS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1585
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1577
 msgid "STRUCTURE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1608
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1600
 msgid "APPEARANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1631
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1623
 msgid "BEHAVIOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1737
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1729
 msgid "STRUCTURAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
 msgid "PROTEINS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2114
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2106
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2363
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
 msgid "EXTERNAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2636
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2628
 msgid "ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3045
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
 msgid "PLASTID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3201
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3193
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3238
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3230
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3331
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3323
 msgid "MEMBRANE_TYPES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3784
 msgid "FLUIDITY_RIGIDITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3829
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3821
 msgid "COLOUR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3994
 msgid "CONFIRM_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4003
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4012
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4004
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4020
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4012
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4021
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4013
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4087
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4079
 msgid "PATCH_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4120
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4112
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4134
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4126
 msgid "TIMELINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4187
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4179
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4206
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4198
 msgid "EXTERNAL_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4245
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5169
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4237
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5161
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4359
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4351
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4474
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4386
+msgid "CURRENT_LOCATION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4466
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4657
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4649
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5074
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5140
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5132
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
+msgid "MEGA_YEARS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
+msgid "YEARS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:659

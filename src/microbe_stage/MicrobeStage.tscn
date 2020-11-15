@@ -78,17 +78,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
-
-
-
-
-
-
-
-
-
-
-
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 73 )
 region_rect = Rect2( 0, 0, 429, 1 )
@@ -887,10 +876,10 @@ theme = SubResource( 3 )
 margin_right = 208.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 4 )
-text = "At Cursor:"
+text = "AT_CURSOR"
 align = 1
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="TitleSeparator" type="HSeparator" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
@@ -2117,7 +2106,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
-margin_right = 74.0
+margin_right = 121.0
 margin_bottom = 17.0
 custom_styles/normal = SubResource( 34 )
 custom_fonts/font = SubResource( 35 )
@@ -2127,8 +2116,8 @@ __meta__ = {
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
-margin_left = 78.0
-margin_right = 103.0
+margin_left = 125.0
+margin_right = 150.0
 margin_bottom = 17.0
 custom_styles/normal = SubResource( 34 )
 custom_fonts/font = SubResource( 35 )

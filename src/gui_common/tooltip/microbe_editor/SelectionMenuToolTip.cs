@@ -224,7 +224,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             }
 
             var perSecondLabel = new Label();
-            perSecondLabel.Text = TranslationServer.Translate("SLASH_SECOND");
+            perSecondLabel.Text = "/" + TranslationServer.Translate("SECOND");
 
             processBody.AddChild(perSecondLabel);
 
