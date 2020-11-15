@@ -8,70 +8,130 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-15 11:14+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-11-17 07:36+0000\n"
+"Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
+"Language-Team: Portuguese (Portugal) <https://translate."
+"revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"W,A,S,D e o rato para te moveres. E para disparar OxiToxi NT se tiveres um "
+"vacúolo de toxinas. G para ativar o modo de engolfar."
 
 #: ../simulation_parameters/common/help_texts.json:5
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
+"A tua célula usa ATP como fonte de energia, se este se esgotar morrerás."
 
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
+"Para desbloqueares o editor e te reproduzires necessitas de recolher "
+"Amoníaco (Nuvem Laranja) e Fosfato (Nuvem Púrpura)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
+"Também podes engolfar células, bactérias, pedaços de ferro e pedaços de "
+"células menores do que tu pressionando G. Isto custará ATP adicional e "
+"abrandar-te-á. Não te esqueças de premir G uma segunda vez para parar de "
+"engolfar."
 
 #: ../simulation_parameters/common/help_texts.json:8
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
+"Osmoregulação custa ATP, o que significa que quanto maior for a tua célula, "
+"mais Mitocôndrias, Metabolossomas ou Rusticianina (ou citoplasma, que faz "
+"Glicólise) necessitas para evitar perder ATP quando te encontrares "
+"estacionário."
 
 #: ../simulation_parameters/common/help_texts.json:9
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
+"Há muitos Organelos no editor para tu evoluires, permitindo uma vasta gama "
+"de diferentes estilos de jogo."
 
 #: ../simulation_parameters/common/help_texts.json:10
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "Por agora, se a tua população cair para zero extingues-te."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"As várias nuvens de compostos são:\n"
+"\n"
+"Branco – Glicose\n"
+"Amarelo – Sulfureto de Hidrogénio\n"
+"Laranja – Amoníaco\n"
+"Roxo – Fosfato\n"
+"Castanho Ferrugem – Ferro\n"
+"\n"
+"Glicose produz ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"Sulfureto de Hidrogénio pode ser convertido em glicose através de "
+"quimioplastos e proteínas quimiossintetizantes. Ferro pode ser convertido em "
+"ATP via rusticianina."
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Para te reproduzires necessitas de dividir cada um dos teus organelos em "
+"dois. Os organelos necessitam de amoníaco e fosfato para se dividirem."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Mas se sobreviveres vinte gerações com 300 de população, considera-se que "
+"ganhaste o jogo, depois de ganhares recebes um pop-up e podes continuar a "
+"jogar como desejares."
 
 #: ../simulation_parameters/common/help_texts.json:15
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Se cauteloso porque a tua concorrência está a evoluir a teu lado. Cada vez "
+"que entrares no editor, eles também evoluem."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"Estruturas Procariotas\n"
+"\n"
+"Metabolossomas: Produz ATP a partir de glicose\n"
+"\n"
+"Proteínas Quimiossintetizantes: Produz metade da quantidade de glicose a "
+"partir de Sulfureto de Hidrogénio que um quimioplasto produziria, mas também "
+"realiza glicólise, ocupa 1 Hexágono\n"
+"\n"
+"Thylakoids: Produz 1/3 da quantidade de glicose que um cloroplasto normal "
+"produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
+"\n"
+"Rusticianina: Converte ferro em ATP\n"
+"\n"
+"Nitrogenase: Converte nitrogénio atmosférico e ATP em amoníaco "
+"anaerobicamente\n"
+"\n"
+"Citoplasma: Tem capacidade de armazenamento e realiza glicólise (Produz "
+"pequenas quatidades de ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Organelos Externo\n"
+"\n"
+"Flagelo: Move a tua célula mais rapidamente ao consumir ATP\n"
+"\n"
+"Pilo: Pode ser usado para apunhalar outras células"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
