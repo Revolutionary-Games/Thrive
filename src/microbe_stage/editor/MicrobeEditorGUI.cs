@@ -605,10 +605,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdateTimeIndicator(double value)
     {
-        timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " " + TranslationServer.Translate("MEGA_YEARS");
+        timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " "
+            + TranslationServer.Translate("MEGA_YEARS");
 
         ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
-            CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " " + TranslationServer.Translate("YEARS");
+            CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " "
+                + TranslationServer.Translate("YEARS");
     }
 
     public void SetInitialCellStats()
