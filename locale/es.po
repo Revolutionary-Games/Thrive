@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-13 09:33+0200\n"
-"PO-Revision-Date: 2020-11-15 08:59+0000\n"
+"PO-Revision-Date: 2020-11-15 15:25+0000\n"
 "Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/es/>\n"
@@ -130,6 +130,7 @@ msgstr ""
 "Pilus: Usable para atacar a otras células."
 
 #: ../simulation_parameters/common/help_texts.json:22
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Orgánulos con membrana\n"
@@ -150,16 +151,16 @@ msgstr ""
 "\n"
 "Vacuola: Aumenta el espacio de almacenamiento a +15.\n"
 "\n"
-"Vacuola de Toxinas: Produce toxinas."
+"Vacuola de Toxinas: Produce toxinas (llamadas OxiToxi NT)."
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Cada generación, tienes 100 puntos de mutación (MP) para gastar, y cada "
+"En cada generación, tienes 100 puntos de mutación (MP) para gastar, y cada "
 "cambio (o mutación) tiene un precio determinado de MP. Añadir y quitar "
 "orgánulos cuesta MP, sin embargo, quitar un orgánulo que fue añadido en la "
-"misma sesión devuelve MP. Para quitar un orgánulo, selecciónala con click "
-"derecho. Puedes rotar orgánulos con A y D."
+"misma sesión devuelve su precio de MP. Para quitar un orgánulo, selecciónalo "
+"y haz click derecho. Puedes rotar orgánulos antes de añadirlos con A y D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -185,7 +186,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Un consejo, la Osmorregulación consume 1 ATP por segundo por espacios que tu "
+"Un consejo: la Osmorregulación consume 1 ATP por segundo por espacios que tu "
 "célula ocupe. Cada espacio ocupado por citoplasma genera 5 ATP por segundo, "
 "lo que significa que, si estás perdiendo ATP, añade algunos espacios de "
 "citoplasma o quita algunos orgánulos."
@@ -2266,3 +2267,47 @@ msgstr ""
 "hacer esto necesitas amoníaco y fosfato.\n"
 "\n"
 "Mira el indicador en la parte inferior derecha para ver cuánto necesitas."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
+msgid "CHANGE_THE_SYMMETRY"
+msgstr "Cambiar la simetría"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:136
+msgid "UNDO_THE_LAST_ACTION"
+msgstr "Deshacer la última acción"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
+msgid "REDO_THE_LAST_ACTION"
+msgstr "Rehacer la última acción"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:148
+msgid "CREATE_A_NEW_MICROBE"
+msgstr "Crear un nuevo microbio"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
+msgid "OPEN_HELP_SCREEN"
+msgstr "Abrir pantalla de ayuda"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:719
+msgid "BASE_MOVEMENT"
+msgstr "Movimiento Base"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4002
+msgid "CONFIRM_CAPITAL"
+msgstr "CONFIRMAR"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
+msgid "OPEN_THE_MENU"
+msgstr "Abrir el menú"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
+msgid "WILL_YOU_THRIVE"
+msgstr "Prosperarás?"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
+msgid "OSMOREGULATION"
+msgstr "Osmorregulación"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:124
+msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
+msgstr "Terminar de editar y volver al juego"
