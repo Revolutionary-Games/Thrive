@@ -7,16 +7,20 @@ public class RandomConverter : JsonConverter
 {
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
+        var settings = new JsonSerializerSettings();
+        string json = JsonConvert.SerializeObject((Random)value, settings);
+
         var formatter = new BinaryFormatter();
         using (var dataWriter = new MemoryStream())
         {
-            formatter.Serialize(dataWriter, (Random)value);
+            formatter.Serialize(dataWriter, json);
             serializer.Serialize(writer, Convert.ToBase64String(dataWriter.GetBuffer()));
         }
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
+        var settings = new JsonSerializerSettings();
         var formatter = new BinaryFormatter();
         var encoded = serializer.Deserialize<string>(reader);
 
@@ -25,7 +29,8 @@ public class RandomConverter : JsonConverter
 
         using (var dataReader = new MemoryStream(Convert.FromBase64String(encoded)))
         {
-            return formatter.Deserialize(dataReader);
+            string json = (string)formatter.Deserialize(dataReader);
+            return JsonConvert.DeserializeObject<Random>(json, settings);
         }
     }
 
