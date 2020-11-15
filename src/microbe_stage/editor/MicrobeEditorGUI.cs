@@ -710,13 +710,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 case "osmoregulation":
                 {
-                    displayName = "Osmoregulation";
+                    displayName = TranslationServer.Translate("OSMOREGULATION");
                     break;
                 }
 
                 case "baseMovement":
                 {
-                    displayName = "Base Movement";
+                    displayName = TranslationServer.Translate("BASE_MOVEMENT");
                     break;
                 }
 

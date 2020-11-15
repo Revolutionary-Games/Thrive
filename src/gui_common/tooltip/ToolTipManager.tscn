@@ -24,16 +24,6 @@
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs" type="Script" id=22]
 [ext_resource path="res://src/gui_common/tooltip/ToolTipManager.cs" type="Script" id=23]
 
-
-
-
-
-
-
-
-
-
-
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
 border_width_left = 1
@@ -110,13 +100,13 @@ mouse_filter = 2
 [node name="DefaultTooltip" parent="Holder/general" instance=ExtResource( 1 )]
 
 [node name="menuButton" parent="Holder/general" instance=ExtResource( 1 )]
-Description = "Open the menu"
+Description = "OPEN_THE_MENU"
 DescriptionLabelPath = NodePath("../../general/menuButton/MarginContainer/VBoxContainer/Description")
 
 [node name="helpButton" parent="Holder/general" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-Description = "Open help screen"
+Description = "OPEN_HELP_SCREEN"
 DescriptionLabelPath = NodePath("../../general/helpButton/MarginContainer/VBoxContainer/Description")
 
 [node name="mainMenu" type="Control" parent="Holder"]
@@ -124,7 +114,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="thriveLogoEasterEgg" parent="Holder/mainMenu" instance=ExtResource( 1 )]
-Description = "Will you thrive?"
+Description = "WILL_YOU_THRIVE"
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="editor" type="Control" parent="Holder"]
@@ -132,31 +122,31 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="finishButton" parent="Holder/editor" instance=ExtResource( 1 )]
-Description = "Finish editing and return to environment"
+Description = "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="symmetryButton" parent="Holder/editor" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-Description = "Change the symmetry"
+Description = "CHANGE_THE_SYMMETRY"
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="undoButton" parent="Holder/editor" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-Description = "Undo the last action"
+Description = "UNDO_THE_LAST_ACTION"
 DescriptionLabelPath = NodePath("../undoButton/MarginContainer/VBoxContainer/Description")
 
 [node name="redoButton" parent="Holder/editor" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-Description = "Redo the last action"
+Description = "REDO_THE_LAST_ACTION"
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="newCellButton" parent="Holder/editor" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-Description = "Create a new microbe"
+Description = "CREATE_A_NEW_MICROBE"
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="timeIndicator" parent="Holder/editor" instance=ExtResource( 1 )]
@@ -188,7 +178,7 @@ ModifierInfoScene = ExtResource( 2 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
-margin_bottom = 238.0
+margin_bottom = 237.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -199,7 +189,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 222.0
+margin_bottom = 221.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -288,14 +278,14 @@ text = "-0.4"
 
 [node name="Name" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_left = 28.0
-margin_right = 86.0
+margin_right = 101.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "MOBILITY"
 
 [node name="Icon" type="TextureRect" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 90.0
-margin_right = 110.0
+margin_left = 105.0
+margin_right = 125.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -319,14 +309,14 @@ text = "+30"
 
 [node name="Name" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
 margin_left = 28.0
-margin_right = 74.0
+margin_right = 87.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "HEALTH"
 
 [node name="Icon" type="TextureRect" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
-margin_left = 78.0
-margin_right = 98.0
+margin_left = 91.0
+margin_right = 111.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -342,7 +332,7 @@ custom_styles/separator = SubResource( 9 )
 [node name="Description" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 margin_top = 150.0
 margin_right = 318.0
-margin_bottom = 207.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "RIGIDITY_MEMBRANE_DESCRIPTION"
@@ -628,7 +618,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/metabolosome/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 382.0
 margin_bottom = 406.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -909,7 +899,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/chromatophore/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 360.0
 margin_bottom = 450.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -1197,7 +1187,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/chemoSynthesizingProteins/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 361.0
 margin_bottom = 464.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -1530,7 +1520,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/rusticyanin/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 366.0
 margin_bottom = 330.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -1835,7 +1825,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/nitrogenase/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 366.0
 margin_bottom = 346.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -2110,7 +2100,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/oxytoxyProteins/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 390.0
 margin_bottom = 287.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -2662,7 +2652,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 74.0
+margin_bottom = 104.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -3104,7 +3094,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/mitochondrion/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 351.0
 margin_bottom = 426.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -3379,7 +3369,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/chloroplast/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 360.0
 margin_bottom = 450.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -3667,7 +3657,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/thermoplast/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 360.0
 margin_bottom = 450.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -3947,7 +3937,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/chemoplast/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 361.0
 margin_bottom = 370.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -4219,7 +4209,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/nitrogenfixingplastid/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 366.0
 margin_bottom = 360.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -4713,7 +4703,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="Holder/organelleSelection/oxytoxy/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 351.0
 margin_bottom = 329.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -5633,7 +5623,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 328.0
+margin_bottom = 280.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -5937,7 +5927,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 328.0
+margin_bottom = 280.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -6241,7 +6231,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 402.0
+margin_bottom = 378.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -6575,7 +6565,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 372.0
+margin_bottom = 348.0
 mouse_filter = 2
 custom_constants/separation = 15
 
