@@ -8,94 +8,192 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-15 11:14+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-11-15 15:15+0000\n"
+"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://translate."
+"revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"Use W,A,S,D e o mouse para mover a célula. Pressione E para lançar Oxitoxina "
+"se você tiver um vacúolo de toxinas. Aperte G para ativar ou desativar o "
+"modo de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:5
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
+"A sua célula utiliza ATP como fonte de energia, se não possuir o composto "
+"você morre."
 
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
+"Para desbloquear o editor e reproduzir você precisa coletar Amônia (Nuvem "
+"Laranja) e Fosfato (Nuvem Roxa)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
+"Você também pode engolir células, bactérias, pedaços de ferro e de células "
+"que são menores que você pressionando G. Isso custará ATP adicional e sua "
+"célula vai se mover mais lentamente. Não esqueça de pressionar G uma segunda "
+"vez para parar de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:8
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
+"A Osmorregulação custa ATP, isso significa que quanto maior a sua célula, "
+"mais Mitocôndrias ou Metabolossomos ou Rusticianina (ou citoplasma, que faz "
+"Glicólise) você precisa para evitar perder ATP quanto você está parado."
 
 #: ../simulation_parameters/common/help_texts.json:9
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
+"Há muitas Organelas no editor para você evoluir, permitindo várias maneiras "
+"de jogar."
 
 #: ../simulation_parameters/common/help_texts.json:10
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "Por agora, se a sua população cair para zero você se extingue."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"As várias nuvens de compostos são:\n"
+"\n"
+"Branca – Glicose\n"
+"Amarela – Sulfeto de Hidrogênio\n"
+"Laranja – Amônia\n"
+"Roxa – Fosfato\n"
+"Marrom – Ferro\n"
+"\n"
+"Glicose produz ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"Sulfeto de Hidrogênio pode ser convertido em glicose por quimioplastos e "
+"proteínas quimiossintetizantes. Ferro pode ser convertido via rusticianina "
+"em ATP."
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Para reproduzir você precisa dividir cada uma de suas organelas em dois. As "
+"organelas precisam de amônia e fosfato para se dividirem."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Mas se você sobreviver por vinte gerações com 300 de população, é "
+"considerado que você ganhou o jogo, após vencer você pode continuar jogando "
+"como quiser."
 
 #: ../simulation_parameters/common/help_texts.json:15
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Tenha cuidado porque seus competidores evoluem junto com você. Toda vez que "
+"você entra no editor eles também evoluem."
 
 #: ../simulation_parameters/common/help_texts.json:20
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"Estruturas Procarióticas\n"
+"\n"
+"Metabolossomos: Produz ATP por meio da glicose\n"
+"\n"
+"Proteínas Quimiossintetizantes: Produz metade da glicose de Sulfeto de "
+"Hidrogênio comparado com o quimioplasto, porém também realizam a glicólise.\n"
+"\n"
+"Tilacóides: Produz um terço da quantidade de glicose comparado a um "
+"quimioplasto, mas também realiza a glicólise.\n"
+"\n"
+"Rusticianina: Converte ferro em ATP\n"
+"\n"
+"Nitrogenase: Converte nitrogênio atmosférico e ATP em amônia "
+"anaerobicamente\n"
+"\n"
+"Citoplasma: Tem espaço de armazenamento e realiza a glicólise (Produz "
+"pequenas quantidades de ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Organelas Externas\n"
+"\n"
+"Flagelos: Aumentam a velocidade da sua célula consumindo ATP\n"
+"\n"
+"Pili: Pode ser usado para perfurar outras células"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Organelas com Membrana\n"
+"\n"
+"Núcleo: Ocupa 11 espaços e permite a evolução de organelas com membranas. "
+"Também dobra o tamanho de sua célula. (Só pode ser evoluído uma vez)\n"
+"\n"
+"Mitocôndria: Produz ATP da glicose e O2 atmosférico. Muito mais eficiente "
+"que o citoplasma\n"
+"\n"
+"Cloroplasto: Produz glicose da luz solar e do O2 atmosférico\n"
+"\n"
+"Quimioplasto: Produz glicose do Sulfeto de Hidrogênio\n"
+"\n"
+"Plastídeo de Fixação de Nitrogênio: Faz amônia do ATP e Nitrogênio "
+"atmosférico e Oxigênio\n"
+"\n"
+"Vacúolo: Armazena 15 compostos coletados\n"
+"\n"
+"Vacúolo de Toxinas: Produz toxinas (chamadas Oxitoxinas)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"A cada geração, você tem 100 pontos de mutação para gastar, e cada mudança ("
+"ou mutação) vai custar uma certa quantidade desses pontos. Adicionar ou "
+"remover organelas custam PM, porém remover organelas que foram adicionadas "
+"na sessão atual devolvem os PM. Você pode remover uma organela clicando nela "
+"com o botão direito. É possível rotacionar as organelas com A e D"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"Toda vez que você reproduzir, você vai entrar no Editor de Micróbio, onde "
+"você pode fazer mudanças para sua espécie (adicionando, movendo ou removendo "
+"organelas) com o objetivo de aumentar o sucesso de sua espécie. Cada visita "
+"ao editor no Estágio Microbial representa 100 milhões de anos de evolução"
 
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
+"Curiosidade, o Dinidium e o Paramecium são um exemplo de relação de predação "
+"que foi estudado por décadas, agora você é o Dinidium, ou o Paramecium? "
+"Predador, ou Presa?"
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
+"Aqui vai uma dica, toxinas podem ser usadas para rebater outras toxinas se "
+"você for rápido o suficiente."
 
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
+"Aqui vai uma dica, a Osmorregulação custa 1 ATP por segundo por espaço que a "
+"sua célula tem, além disso, cada espaço vazio de citoplasma gera 5 ATP por "
+"segundo, o que significa que se você está perdendo ATP por causa do "
+"osmorregulação é só adicionar citoplasma ou remover algumas organelas."
 
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "EASTEREGG_MESSAGE_4"
@@ -107,11 +205,13 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "Aqui vai uma dica, algumas vezes é melhor fugir de outras células."
 
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
+"Aqui vai uma dica, se uma célula é mais ou menos a metade do seu tamanho, "
+"você pode engolir ela."
 
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "EASTEREGG_MESSAGE_8"
@@ -120,6 +220,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
+"Aqui vai uma dica, você pode caçar outras espécies até a extinção se você "
+"não for cuidadoso o suficiente, elas também podem ser extinguidas por outras "
+"espécies."
 
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "EASTEREGG_MESSAGE_10"
@@ -136,22 +239,30 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:41
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
+"Aqui vai uma dica, biomas são mais que fundos diferentes, os compostos em "
+"biomas diferentes aparecem em proporções diferentes."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
+"Aqui vai uma dica, quanto mais flagelos você tem, o mais rápido você pode "
+"ir, vrum vrum, mas também custa mais ATP"
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "Aqui vai uma dica, você pode en[g]olir pedaços de ferro."
 
 #: ../simulation_parameters/common/help_texts.json:44
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
+"Aqui vai uma dica, se prepare antes de adicionar um núcleo. Essas coisas são "
+"caras! Em manutenção e custo inicial."
 
 #: ../simulation_parameters/common/help_texts.json:45
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
+"Curiosidade, você sabia que existem mais de 8000 espécies de ciliados no "
+"planeta Terra?"
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "EASTEREGG_MESSAGE_18"
@@ -159,11 +270,14 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:47
 msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
+msgstr "Curiosidade, o Didinum é um ciliado que caça Paramecia."
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
+"Curiosidade, a Amoeba caça e pega as presas com 'pernas' feitas de "
+"citoplasma chamadas pseudópodes, eventualmente nós queremos implementá-los "
+"no jogo."
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_21"
@@ -176,10 +290,16 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
+"Aqui vai uma dica, se sua célula cobre 150 espaços, você pode engolir "
+"pedaços grandes de ferro."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
+"Thrive foi feito com o objetivo de ser uma simulação de um planeta "
+"alienígena, por isso faz sentido que a maioria das criaturas que você vai "
+"encontrar serão relacionadas com uma ou duas espécies por causa de evolução "
+"acontecendo em sua volta, veja se você consegue identificá-las!"
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_25"
