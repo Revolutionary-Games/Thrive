@@ -54,6 +54,26 @@ public class Save
     public Image Screenshot { get; set; }
 
     /// <summary>
+    ///   The scene object to switch to once this save is loaded
+    /// </summary>
+    [JsonIgnore]
+    public ILoadableGameState TargetScene
+    {
+        get
+        {
+            switch (GameState)
+            {
+                case MainGameState.MicrobeStage:
+                    return MicrobeStage;
+                case MainGameState.MicrobeEditor:
+                    return MicrobeEditor;
+                default:
+                    throw new InvalidOperationException("specified game state has no associated scene");
+            }
+        }
+    }
+
+    /// <summary>
     ///   Loads a save from a file or throws an exception
     /// </summary>
     /// <param name="saveName">The name of the save. This is not the full path.</param>
@@ -154,41 +174,37 @@ public class Save
 
     private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string tempScreenshot)
     {
-        using (var file = new File())
+        using var file = new File();
+        file.Open(target, File.ModeFlags.Write);
+
+        using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
+        using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
+
+        OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
+
+        if (tempScreenshot != null)
         {
-            file.Open(target, File.ModeFlags.Write);
-            using (Stream gzoStream = new GZipOutputStream(new GodotFileStream(file)))
+            byte[] data = null;
+
+            using (var reader = new File())
             {
-                using (var tar = new TarOutputStream(gzoStream))
+                reader.Open(tempScreenshot, File.ModeFlags.Read);
+
+                if (!reader.IsOpen())
                 {
-                    OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
-
-                    if (tempScreenshot != null)
-                    {
-                        byte[] data = null;
-
-                        using (var reader = new File())
-                        {
-                            reader.Open(tempScreenshot, File.ModeFlags.Read);
-
-                            if (!reader.IsOpen())
-                            {
-                                GD.PrintErr("Failed to open temp screenshot for writing to save");
-                            }
-                            else
-                            {
-                                data = reader.GetBuffer((int)reader.GetLen());
-                            }
-                        }
-
-                        if (data != null && data.Length > 0)
-                            OutputEntry(tar, SAVE_SCREENSHOT, data);
-                    }
-
-                    OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
+                    GD.PrintErr("Failed to open temp screenshot for writing to save");
+                }
+                else
+                {
+                    data = reader.GetBuffer((int)reader.GetLen());
                 }
             }
+
+            if (data != null && data.Length > 0)
+                OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
+
+        OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
     }
 
     private static (SaveInformation info, Save save, Image screenshot) LoadFromFile(string file, bool info,
@@ -268,60 +284,54 @@ public class Save
             throw new ArgumentException("no things to load specified from save");
         }
 
-        using (var reader = new File())
+        using var reader = new File();
+        reader.Open(file, File.ModeFlags.Read);
+
+        if (!reader.IsOpen())
+            throw new ArgumentException("couldn't open the file for reading");
+
+        using var stream = new GodotFileStream(reader);
+        using Stream gzoStream = new GZipInputStream(stream);
+        using var tar = new TarInputStream(gzoStream, Encoding.UTF8);
+
+        TarEntry tarEntry;
+        while ((tarEntry = tar.GetNextEntry()) != null)
         {
-            reader.Open(file, File.ModeFlags.Read);
-            if (!reader.IsOpen())
-                throw new ArgumentException("couldn't open the file for reading");
+            if (tarEntry.IsDirectory)
+                continue;
 
-            using (var stream = new GodotFileStream(reader))
+            if (tarEntry.Name == SAVE_INFO_JSON)
             {
-                using (Stream gzoStream = new GZipInputStream(stream))
-                {
-                    using (var tar = new TarInputStream(gzoStream))
-                    {
-                        TarEntry tarEntry;
-                        while ((tarEntry = tar.GetNextEntry()) != null)
-                        {
-                            if (tarEntry.IsDirectory)
-                                continue;
+                if (!info)
+                    continue;
 
-                            if (tarEntry.Name == SAVE_INFO_JSON)
-                            {
-                                if (!info)
-                                    continue;
-
-                                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
-                                --itemsToRead;
-                            }
-                            else if (tarEntry.Name == SAVE_SAVE_JSON)
-                            {
-                                if (!save)
-                                    continue;
-
-                                saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
-                                --itemsToRead;
-                            }
-                            else if (tarEntry.Name == SAVE_SCREENSHOT)
-                            {
-                                if (!screenshot)
-                                    continue;
-
-                                screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
-                                --itemsToRead;
-                            }
-                            else
-                            {
-                                GD.PrintErr("Unknown file in save: ", tarEntry.Name);
-                            }
-
-                            // Early quit if we already got as many things as we want
-                            if (itemsToRead <= 0)
-                                break;
-                        }
-                    }
-                }
+                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                --itemsToRead;
             }
+            else if (tarEntry.Name == SAVE_SAVE_JSON)
+            {
+                if (!save)
+                    continue;
+
+                saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                --itemsToRead;
+            }
+            else if (tarEntry.Name == SAVE_SCREENSHOT)
+            {
+                if (!screenshot)
+                    continue;
+
+                screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
+                --itemsToRead;
+            }
+            else
+            {
+                GD.PrintErr("Unknown file in save: ", tarEntry.Name);
+            }
+
+            // Early quit if we already got as many things as we want
+            if (itemsToRead <= 0)
+                break;
         }
 
         return (infoStr, saveStr, screenshotData);

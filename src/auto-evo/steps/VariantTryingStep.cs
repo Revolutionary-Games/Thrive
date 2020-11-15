@@ -1,4 +1,4 @@
-﻿namespace AutoEvo
+namespace AutoEvo
 {
     /// <summary>
     ///   Base helper class for steps trying a fixed number of variant solutions and picking the best

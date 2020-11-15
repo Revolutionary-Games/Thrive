@@ -50,7 +50,7 @@ margin_right = 195.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 disabled = true
-text = "Load"
+text = "LOAD"
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
 margin_left = 199.0
@@ -62,7 +62,7 @@ margin_left = 207.0
 margin_right = 291.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
-text = "Refresh"
+text = "REFRESH"
 
 [node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
 margin_left = 295.0
@@ -70,7 +70,7 @@ margin_right = 454.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 disabled = true
-text = "Delete Selected"
+text = "DELETE_SELECTED"
 
 [node name="DeleteOld" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
 margin_left = 458.0
@@ -78,7 +78,7 @@ margin_right = 646.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 disabled = true
-text = "Clean Up Old Saves"
+text = "CLEAN_UP_OLD_SAVES"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
 margin_left = 650.0
@@ -89,7 +89,7 @@ margin_bottom = 37.0
 margin_left = 658.0
 margin_right = 860.0
 margin_bottom = 37.0
-text = "Open Save Directory"
+text = "OPEN_SAVE_DIRECTORY"
 
 [node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -109,7 +109,7 @@ margin_bottom = 600.0
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-text = "Back"
+text = "BACK"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 104.0
@@ -121,7 +121,7 @@ margin_left = 112.0
 margin_top = 6.0
 margin_right = 229.0
 margin_bottom = 28.0
-text = "Total saves:"
+text = "TOTAL_SAVES"
 
 [node name="SaveCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 233.0
@@ -141,7 +141,7 @@ margin_left = 256.0
 margin_top = 6.0
 margin_right = 385.0
 margin_bottom = 28.0
-text = " Space used:"
+text = "SAVE_SPACE_USED"
 
 [node name="SavesSpaceUsed" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 389.0
@@ -161,7 +161,7 @@ margin_left = 412.0
 margin_top = 6.0
 margin_right = 512.0
 margin_bottom = 28.0
-text = " Selected:"
+text = "SELECTED_COLON"
 
 [node name="SelectedCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 516.0
@@ -171,23 +171,24 @@ margin_bottom = 28.0
 text = "0"
 
 [node name="DeleteSelectedConfirmDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer"]
+margin_top = 479.0
+margin_right = 1000.0
+margin_bottom = 550.0
 rect_min_size = Vector2( 0, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
-window_title = "Delete selected Save(s)?"
-dialog_text = "Text not set..."
+window_title = "DELETE_SELECTED_SAVES"
 
 [node name="DeleteOldConfirmDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer"]
-margin_right = 184.0
-margin_bottom = 97.0
+margin_top = 479.0
+margin_right = 1000.0
+margin_bottom = 550.0
 rect_min_size = Vector2( 0, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
-window_title = "Delete old Saves?"
-dialog_text = "Text not set...
-"
+window_title = "DELETE_OLD_SAVES"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSaveButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteSelected" to="." method="DeleteSelectedButtonPressed"]

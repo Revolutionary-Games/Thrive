@@ -61,6 +61,7 @@ ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
 NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/Freebuild Editor")
+GLES2PopupPath = NodePath("GLES2 Popup")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -144,7 +145,10 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 enabled_focus_mode = 0
-text = "New Game"
+text = "NEW_GAME"
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="LoadGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
 margin_left = 515.0
@@ -156,7 +160,7 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 enabled_focus_mode = 0
-text = "Load Game"
+text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
 margin_left = 515.0
@@ -168,7 +172,7 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 enabled_focus_mode = 0
-text = "Options"
+text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
 margin_left = 515.0
@@ -180,7 +184,7 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 enabled_focus_mode = 0
-text = "Tools"
+text = "TOOLS"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
 margin_left = 515.0
@@ -192,7 +196,7 @@ mouse_filter = 1
 size_flags_horizontal = 4
 disabled = true
 enabled_focus_mode = 0
-text = "Extras"
+text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
 margin_left = 515.0
@@ -204,7 +208,7 @@ mouse_filter = 1
 size_flags_horizontal = 4
 disabled = true
 enabled_focus_mode = 0
-text = "Credits"
+text = "CREDITS"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
 margin_left = 515.0
@@ -216,7 +220,7 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 enabled_focus_mode = 0
-text = "Quit"
+text = "QUIT"
 
 [node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
 "MenuItem",
@@ -239,7 +243,7 @@ mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 enabled_focus_mode = 0
-text = "Microbe Freebuild Editor"
+text = "MICROBE_FREEBUILD_EDITOR"
 
 [node name="\?\?" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
 margin_left = 558.0
@@ -253,6 +257,9 @@ size_flags_vertical = 0
 disabled = true
 enabled_focus_mode = 0
 text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="\?\?_2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
 margin_left = 558.0
@@ -266,6 +273,9 @@ size_flags_vertical = 0
 disabled = true
 enabled_focus_mode = 0
 text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="\?\?_3" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
 margin_left = 558.0
@@ -279,6 +289,9 @@ size_flags_vertical = 0
 disabled = true
 enabled_focus_mode = 0
 text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
 margin_left = 558.0
@@ -291,7 +304,7 @@ mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 enabled_focus_mode = 0
-text = "Back"
+text = "BACK"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -319,11 +332,20 @@ clip_text = true
 max_lines_visible = 1
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
+
+[node name="GLES2 Popup" type="AcceptDialog" parent="."]
+margin_right = 515.0
+margin_bottom = 108.0
+theme = ExtResource( 2 )
+window_title = "GLES2_MODE_WARNING"
+dialog_text = "GLES2_MODE_WARNING_TEXT"
+dialog_autowrap = true
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Options" to="." method="OptionsPressed"]

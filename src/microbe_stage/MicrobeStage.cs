@@ -7,7 +7,9 @@ using Newtonsoft.Json;
 ///   Main class for managing the microbe stage
 /// </summary>
 [JsonObject(IsReference = true)]
-public class MicrobeStage : Node, ILoadableGameState
+[SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
+[DeserializedCallbackTarget]
+public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath GuidanceLinePath;
@@ -21,6 +23,7 @@ public class MicrobeStage : Node, ILoadableGameState
     private Node rootOfDynamicallySpawned;
 
     [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem spawner;
 
     private MicrobeAISystem microbeAISystem;
@@ -36,6 +39,7 @@ public class MicrobeStage : Node, ILoadableGameState
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
+    [JsonProperty]
     private float elapsedSinceCompoundPositionCheck;
 
     /// <summary>
@@ -57,25 +61,12 @@ public class MicrobeStage : Node, ILoadableGameState
     private float playerRespawnTimer;
 
     /// <summary>
-    ///   Game entities loaded from JSON that are to be recreated
-    /// </summary>
-    private List<Node> savedGameEntities;
-
-    /// <summary>
     ///   True if auto save should trigger ASAP
     /// </summary>
     private bool wantsToSave;
 
     [JsonProperty]
-    public Microbe Player { get; private set; }
-
-    [JsonProperty]
-    public MicrobeCamera Camera { get; private set; }
-
-    [JsonIgnore]
-    public MicrobeHUD HUD { get; private set; }
-
-    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; }
 
     [JsonIgnore]
@@ -86,6 +77,22 @@ public class MicrobeStage : Node, ILoadableGameState
 
     [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; }
+
+    /// <summary>
+    ///   The main camera, needs to be after anything with AssignOnlyChildItemsOnDeserialize due to load order
+    /// </summary>
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    public MicrobeCamera Camera { get; private set; }
+
+    [JsonIgnore]
+    public MicrobeHUD HUD { get; private set; }
+
+    /// <summary>
+    ///   The current player or null. Due to references on save load this needs to be after the systems
+    /// </summary>
+    [JsonProperty]
+    public Microbe Player { get; private set; }
 
     /// <summary>
     ///   The main current game object holding various details
@@ -103,13 +110,22 @@ public class MicrobeStage : Node, ILoadableGameState
 
     public bool IsLoadedFromSave { get; set; }
 
-    public List<Node> SavedGameEntities
+    /// <summary>
+    ///   True once stage fade-in is complete
+    /// </summary>
+    [JsonIgnore]
+    public bool TransitionFinished { get; internal set; }
+
+    [JsonIgnore]
+    public bool NodeReferencesResolved { get; private set; }
+
+    /// <summary>
+    ///   List access to the dynamic entities in the stage. This is used for saving and loading
+    /// </summary>
+    public List<Node> DynamicEntities
     {
         get
         {
-            if (savedGameEntities != null)
-                return savedGameEntities;
-
             var results = new List<Node>();
 
             foreach (var node in rootOfDynamicallySpawned.GetChildren())
@@ -118,11 +134,22 @@ public class MicrobeStage : Node, ILoadableGameState
 
                 var casted = (Spatial)node;
 
-                // Skip disposed exceptions
+                // Objects that cause disposed exceptions. Seems still pretty important to protect saving against
+                // very rare issues
                 try
                 {
-                    if (casted.Transform.origin == Vector3.Zero)
+                    // Skip objects that will be deleted. This might help with Microbe saving as it might be that
+                    // the contained organelles are already disposed whereas the Microbe is just only queued for
+                    // deletion
+                    if (casted.IsQueuedForDeletion())
                     {
+                        disposed = true;
+                    }
+                    else
+                    {
+                        if (casted.Transform.origin == Vector3.Zero)
+                        {
+                        }
                     }
                 }
                 catch (ObjectDisposedException)
@@ -136,14 +163,21 @@ public class MicrobeStage : Node, ILoadableGameState
 
             return results;
         }
-        set => savedGameEntities = value;
-    }
+        set
+        {
+            while (rootOfDynamicallySpawned.GetChildCount() > 0)
+            {
+                var child = rootOfDynamicallySpawned.GetChild(0);
+                rootOfDynamicallySpawned.RemoveChild(child);
+                child.Free();
+            }
 
-    /// <summary>
-    ///   True once stage fade-in is complete
-    /// </summary>
-    [JsonIgnore]
-    public bool TransitionFinished { get; internal set; }
+            foreach (var entity in value)
+            {
+                rootOfDynamicallySpawned.AddChild(entity);
+            }
+        }
+    }
 
     /// <summary>
     ///   This should get called the first time the stage scene is put
@@ -152,26 +186,38 @@ public class MicrobeStage : Node, ILoadableGameState
     /// </summary>
     public override void _Ready()
     {
-        world = GetNode<Node>("World");
-        HUD = GetNode<MicrobeHUD>("MicrobeHUD");
-        tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
-        rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
-        spawner = new SpawnSystem(rootOfDynamicallySpawned);
-        Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
-        Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
-        worldLight = world.GetNode<DirectionalLight>("WorldLight");
-        guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
-        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
-        TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
-        ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
-        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
-        FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
+        ResolveNodeReferences();
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
+    }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        world = GetNode<Node>("World");
+        HUD = GetNode<MicrobeHUD>("MicrobeHUD");
+        tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
+        rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
+        Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
+        Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
+        worldLight = world.GetNode<DirectionalLight>("WorldLight");
+        guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
+        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
+
+        // These need to be created here as well for child property save load to work
+        TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
+        ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
+        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
+        FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
+        spawner = new SpawnSystem(rootOfDynamicallySpawned);
+
+        NodeReferencesResolved = true;
     }
 
     // Prepares the stage for playing
@@ -186,46 +232,46 @@ public class MicrobeStage : Node, ILoadableGameState
         if (Settings.Instance == null)
             GD.PrintErr("Settings load problem");
 
-        spawner.Init();
-        Clouds.Init(FluidSystem);
+        if (!IsLoadedFromSave)
+        {
+            spawner.Init();
 
-        if (IsLoadedFromSave)
-            return;
+            if (CurrentGame == null)
+            {
+                StartNewGame();
+            }
+        }
 
         if (CurrentGame == null)
-        {
-            StartNewGame();
-        }
+            throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
         pauseMenu.GameProperties = CurrentGame;
+
+        Clouds.Init(FluidSystem);
 
         CreatePatchManagerIfNeeded();
 
         StartMusic();
 
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+        if (IsLoadedFromSave)
+        {
+            UpdatePatchSettings(true);
+        }
+        else
+        {
+            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+        }
     }
 
     public void OnFinishLoading(Save save)
     {
-        OnFinishLoading(save.MicrobeStage);
+        OnFinishLoading();
     }
 
-    public void OnFinishLoading(MicrobeStage stage)
+    public void OnFinishLoading()
     {
-        ApplyPropertiesFromSave(stage);
-
-        RespawnEntitiesFromSave(stage);
-
-        CreatePatchManagerIfNeeded();
-
-        UpdatePatchSettings(true);
-
-        StartMusic();
-
-        tutorialGUI.EventReceiver = TutorialState;
-        pauseMenu.GameProperties = CurrentGame;
+        Camera.ObjectToFollow = Player;
     }
 
     public void StartNewGame()
@@ -237,7 +283,6 @@ public class MicrobeStage : Node, ILoadableGameState
         UpdatePatchSettings(false);
 
         SpawnPlayer();
-        Camera.ResetHeight();
     }
 
     public void StartMusic()
@@ -259,28 +304,9 @@ public class MicrobeStage : Node, ILoadableGameState
             CurrentGame);
         Player.AddToGroup("player");
 
-        Player.OnDeath = microbe =>
-        {
-            GD.Print("The player has died");
+        Player.OnDeath = OnPlayerDied;
 
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
-
-            Player = null;
-            Camera.ObjectToFollow = null;
-        };
-
-        Player.OnReproductionStatus = (microbe, ready) =>
-        {
-            if (ready)
-            {
-                TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
-                HUD.ShowReproductionDialog();
-            }
-            else
-            {
-                HUD.HideReproductionDialog();
-            }
-        };
+        Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
         Camera.ObjectToFollow = Player;
 
@@ -384,9 +410,12 @@ public class MicrobeStage : Node, ILoadableGameState
             }
         }
 
-        // Start auto-evo if not already and settings have auto-evo be started during gameplay
-        if (Settings.Instance.RunAutoEvoDuringGamePlay)
+        // Start auto-evo if stage entry finished, don't need to auto save,
+        // settings have auto-evo be started during gameplay and auto-evo is not already started
+        if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
+        {
             GameWorld.IsAutoEvoFinished(true);
+        }
 
         // Save if wanted
         if (TransitionFinished && wantsToSave)
@@ -416,7 +445,8 @@ public class MicrobeStage : Node, ILoadableGameState
         var playerSpecies = GameWorld.PlayerSpecies;
         GameWorld.AlterSpeciesPopulation(
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
-            "player reproduced", false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
+            TranslationServer.Translate("PLAYER_REPRODUCED"),
+            false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
 
@@ -455,9 +485,10 @@ public class MicrobeStage : Node, ILoadableGameState
         // Update the player's cell
         Player.ApplySpecies(Player.Species);
 
-        // Spawn another cell from the player species
+        // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
 
+        // Spawn another cell from the player species
         Player.Divide();
 
         HUD.OnEnterStageTransition();
@@ -473,6 +504,33 @@ public class MicrobeStage : Node, ILoadableGameState
     {
         TransitionFinished = true;
         TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerDied(Microbe player)
+    {
+        GD.Print("The player has died");
+
+        HUD.HideReproductionDialog();
+
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
+
+        Player = null;
+        Camera.ObjectToFollow = null;
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerReproductionStatusChanged(Microbe player, bool ready)
+    {
+        if (ready)
+        {
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
+            HUD.ShowReproductionDialog();
+        }
+        else
+        {
+            HUD.HideReproductionDialog();
+        }
     }
 
     private void CreatePatchManagerIfNeeded()
@@ -494,7 +552,8 @@ public class MicrobeStage : Node, ILoadableGameState
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulation(
             playerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
-            "player died", true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+            TranslationServer.Translate("PLAYER_DIED"),
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
 
         // Respawn if not extinct (or freebuild)
         if (playerSpecies.Population <= 0 && !CurrentGame.FreeBuild)
@@ -527,85 +586,5 @@ public class MicrobeStage : Node, ILoadableGameState
     private void SaveGame(string name)
     {
         SaveHelper.Save(name, this);
-    }
-
-    private void ApplyPropertiesFromSave(MicrobeStage savedMicrobeStage)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeStage, new List<string>
-        {
-            "spawner",
-            "Player",
-            "Camera",
-            "Clouds",
-        });
-
-        spawner.ApplyPropertiesFromSave(savedMicrobeStage.spawner);
-        Clouds.ApplyPropertiesFromSave(savedMicrobeStage.Clouds);
-        Camera.ApplyPropertiesFromSave(savedMicrobeStage.Camera);
-    }
-
-    private void RespawnEntitiesFromSave(MicrobeStage savedMicrobeStage)
-    {
-        if (savedMicrobeStage.Player != null && !savedMicrobeStage.Player.Dead)
-        {
-            SpawnPlayer();
-            Player.ApplyPropertiesFromSave(savedMicrobeStage.Player);
-        }
-
-        if (savedGameEntities == null)
-        {
-            GD.PrintErr("Saved microbe stage contains no entities to load");
-            return;
-        }
-
-        var microbeScene = SpawnHelpers.LoadMicrobeScene();
-        var chunkScene = SpawnHelpers.LoadChunkScene();
-        var agentScene = SpawnHelpers.LoadAgentScene();
-
-        // This only should be used for things that get overridden anyway from the saved properties
-        var random = new Random();
-
-        foreach (var thing in savedGameEntities)
-        {
-            // Skip the player as it was already loaded
-            if (thing == savedMicrobeStage.Player)
-                continue;
-
-            switch (thing)
-            {
-                case Microbe casted:
-                {
-                    var spawned = SpawnHelpers.SpawnMicrobe(casted.Species, Vector3.Zero, rootOfDynamicallySpawned,
-                        microbeScene, !casted.IsPlayerMicrobe, Clouds, CurrentGame);
-                    spawned.ApplyPropertiesFromSave(casted);
-                    break;
-                }
-
-                case FloatingChunk casted:
-                {
-                    var spawned = SpawnHelpers.SpawnChunk(casted.CreateChunkConfigurationFromThis(),
-                        casted.Translation, rootOfDynamicallySpawned, chunkScene, Clouds, random);
-                    spawned.ApplyPropertiesFromSave(casted);
-                    break;
-                }
-
-                case AgentProjectile casted:
-                {
-                    var spawned = SpawnHelpers.SpawnAgent(casted.Properties, casted.Amount, casted.TimeToLiveRemaining,
-                        casted.Translation, Vector3.Forward, rootOfDynamicallySpawned, agentScene, null);
-                    spawned.ApplyPropertiesFromSave(casted);
-
-                    // TODO: mapping from old microbe to recreated microbe to set emitter here
-                    break;
-                }
-
-                default:
-                    GD.PrintErr("Unknown entity type to load from save: ", thing.GetType());
-                    break;
-            }
-        }
-
-        // Clear this to make saving again work
-        savedGameEntities = null;
     }
 }

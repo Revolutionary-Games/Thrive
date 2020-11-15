@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
 using Newtonsoft.Json;
@@ -54,5 +54,9 @@ public class Background : IRegistryType
         }
 
         ParticleEffectScene = GD.Load<PackedScene>(ParticleEffect);
+    }
+
+    public void ApplyTranslations()
+    {
     }
 }
