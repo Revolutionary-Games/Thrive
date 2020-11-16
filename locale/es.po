@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-16 19:53+0100\n"
+"POT-Creation-Date: 2020-11-16 21:42+0100\n"
 "PO-Revision-Date: 2020-11-15 15:25+0000\n"
 "Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -713,14 +713,9 @@ msgstr "{0} al enviar: {1} población desde bioma: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "población en biomas:"
 
-#: ../src/engine/LoadingScreen.cs:55 ../src/engine/LoadingScreen.tscn:128
+#: ../src/engine/LoadingScreen.cs:62 ../src/engine/LoadingScreen.tscn:128
 msgid "LOADING"
 msgstr "Cargando"
-
-#: ../src/engine/LoadingScreen.cs:89
-msgid "LOADING_TIP"
-msgstr ""
-"CONSEJO: Presiona el botón de deshacer en el editor para corregir un error"
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
@@ -1687,19 +1682,19 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Relieve Oceánico Pangónico"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:542
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:996
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:997
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Cargando Editor de Microbio"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:543
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:544
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Esperando auto-evolución:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1800
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1802
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evolución falló"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1801
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1803
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "estado de auto-evolución:"
 
@@ -1942,44 +1937,44 @@ msgstr ""
 "Felicitaciones! Has ganado esta versión de Thrive! Puedes seguir jugando "
 "libremente luego de esta notificación, o puedes empezar una nueva partida."
 
-#: ../src/saving/InProgressLoad.cs:71 ../src/saving/InProgressLoad.cs:87
-#: ../src/saving/InProgressLoad.cs:131
+#: ../src/saving/InProgressLoad.cs:71 ../src/saving/InProgressLoad.cs:88
+#: ../src/saving/InProgressLoad.cs:133
 msgid "LOADING_GAME"
 msgstr "Cargando Partida"
 
-#: ../src/saving/InProgressLoad.cs:72
+#: ../src/saving/InProgressLoad.cs:73
 msgid "READING_SAVE_DATA"
 msgstr "Leyendo datos de guardado"
 
-#: ../src/saving/InProgressLoad.cs:88
+#: ../src/saving/InProgressLoad.cs:90
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creando objetos de la partida guardada"
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Una excepción ha ocurrido al cargar los datos guardados"
 
-#: ../src/saving/InProgressLoad.cs:119
+#: ../src/saving/InProgressLoad.cs:121
 msgid "SAVE_IS_INVALID"
 msgstr "La partida guardada es inválida"
 
-#: ../src/saving/InProgressLoad.cs:120
+#: ../src/saving/InProgressLoad.cs:122
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "La partida tiene una escena de game state inválida"
 
-#: ../src/saving/InProgressLoad.cs:132
+#: ../src/saving/InProgressLoad.cs:135
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Procesando objetos cargados"
 
-#: ../src/saving/InProgressLoad.cs:145
+#: ../src/saving/InProgressLoad.cs:148
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Una excepción ha ocurrido al procesar objetos cargados"
 
-#: ../src/saving/InProgressLoad.cs:151
+#: ../src/saving/InProgressLoad.cs:154
 msgid "LOAD_FINISHED"
 msgstr "Carga terminada"
 
-#: ../src/saving/InProgressLoad.cs:174
+#: ../src/saving/InProgressLoad.cs:177
 msgid "ERROR_LOADING"
 msgstr "Error al cargar"
 
@@ -2351,6 +2346,10 @@ msgstr ""
 "hacer esto necesitas amoníaco y fosfato.\n"
 "\n"
 "Mira el indicador en la parte inferior derecha para ver cuánto necesitas."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr ""
+#~ "CONSEJO: Presiona el botón de deshacer en el editor para corregir un error"
 
 #~ msgid "CONFIRM"
 #~ msgstr "Confirmar"

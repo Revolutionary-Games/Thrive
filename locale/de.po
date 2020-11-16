@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-16 19:53+0100\n"
+"POT-Creation-Date: 2020-11-16 21:42+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -726,15 +726,9 @@ msgstr "{0} durch Senden: {1} Population aus dem Gebiet: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "Population in Gebieten:"
 
-#: ../src/engine/LoadingScreen.cs:55 ../src/engine/LoadingScreen.tscn:128
+#: ../src/engine/LoadingScreen.cs:62 ../src/engine/LoadingScreen.tscn:128
 msgid "LOADING"
 msgstr "Lädt"
-
-#: ../src/engine/LoadingScreen.cs:89
-msgid "LOADING_TIP"
-msgstr ""
-"Tipp: drücken Sie die Rückgängig-Schaltfläche im Editor, um einen Fehler zu "
-"korrigieren"
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
@@ -1723,19 +1717,19 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:542
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:996
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:997
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Lade Mikrobeneditor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:543
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:544
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Warte für auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1800
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1802
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo fehlgeschlagen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1801
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1803
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Laufstatus:"
 
@@ -1979,44 +1973,44 @@ msgstr ""
 "möchten, können Sie das Spiel nach dem Schließen dieses Fensters fortsetzen "
 "oder ein neues Spiel in einer neuen Welt beginnen."
 
-#: ../src/saving/InProgressLoad.cs:71 ../src/saving/InProgressLoad.cs:87
-#: ../src/saving/InProgressLoad.cs:131
+#: ../src/saving/InProgressLoad.cs:71 ../src/saving/InProgressLoad.cs:88
+#: ../src/saving/InProgressLoad.cs:133
 msgid "LOADING_GAME"
 msgstr "Lade Spiel"
 
-#: ../src/saving/InProgressLoad.cs:72
+#: ../src/saving/InProgressLoad.cs:73
 msgid "READING_SAVE_DATA"
 msgstr "Lesen von Speicherdaten"
 
-#: ../src/saving/InProgressLoad.cs:88
+#: ../src/saving/InProgressLoad.cs:90
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objekte aus Speicherstand erstellen"
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Beim Laden der Speicherdaten ist eine Ausnahme aufgetreten"
 
-#: ../src/saving/InProgressLoad.cs:119
+#: ../src/saving/InProgressLoad.cs:121
 msgid "SAVE_IS_INVALID"
 msgstr "Speicherstand ist ungültig"
 
-#: ../src/saving/InProgressLoad.cs:120
+#: ../src/saving/InProgressLoad.cs:122
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Speicherstand hat eine ungültige Spielstatus-Szene"
 
-#: ../src/saving/InProgressLoad.cs:132
+#: ../src/saving/InProgressLoad.cs:135
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Verarbeitung geladener Objekte"
 
-#: ../src/saving/InProgressLoad.cs:145
+#: ../src/saving/InProgressLoad.cs:148
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Während der Verarbeitung geladener Objekte trat eine Ausnahme auf"
 
-#: ../src/saving/InProgressLoad.cs:151
+#: ../src/saving/InProgressLoad.cs:154
 msgid "LOAD_FINISHED"
 msgstr "Laden beendet"
 
-#: ../src/saving/InProgressLoad.cs:174
+#: ../src/saving/InProgressLoad.cs:177
 msgid "ERROR_LOADING"
 msgstr "Fehler beim Laden"
 
@@ -2404,6 +2398,11 @@ msgstr ""
 "genügend Ammoniak und Phosphat sammeln.\n"
 "Schauen Sie auf den Indikator unten rechts, um zu sehen, wie viel mehr Sie "
 "benötigen."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr ""
+#~ "Tipp: drücken Sie die Rückgängig-Schaltfläche im Editor, um einen Fehler "
+#~ "zu korrigieren"
 
 #~ msgid "SECOND"
 #~ msgstr "Sekunde"

@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Timer = System.Timers.Timer;
 
 /// <summary>
 ///   A loading screen that shows cool stuff. This is autoloaded overlay on top of other scenes.
@@ -35,7 +36,7 @@ public class LoadingScreen : Control
     private bool visible;
 
     private Random random;
-    private System.Timers.Timer randomizeTipTimer;
+    private Timer randomizeTipTimer;
 
     private string loadingMessage;
     private string tip;
@@ -50,7 +51,6 @@ public class LoadingScreen : Control
     }
 
     public static LoadingScreen Instance => instance;
-
 
     public string LoadingMessage
     {
@@ -126,7 +126,7 @@ public class LoadingScreen : Control
         spinner = GetNode<Control>("Spinner");
 
         random = new Random();
-        randomizeTipTimer = new System.Timers.Timer { Interval = 5000, AutoReset = true };
+        randomizeTipTimer = new Timer { Interval = 5000, AutoReset = true };
         randomizeTipTimer.Elapsed += (s, e) => RandomizeTip();
 
         UpdateMessage();
