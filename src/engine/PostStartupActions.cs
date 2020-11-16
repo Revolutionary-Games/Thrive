@@ -9,5 +9,8 @@ public class PostStartupActions : Node
     {
         // Queue window title set as setting it in the autoloads doesn't work yet
         Invoke.Instance.Perform(() => { OS.SetWindowTitle("Thrive - " + Constants.Version); });
+
+        if (Settings.Instance != null)
+            Settings.Instance.ApplyAll(true);
     }
 }
