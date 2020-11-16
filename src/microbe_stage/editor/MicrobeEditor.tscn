@@ -1,4 +1,4 @@
-[gd_scene load_steps=151 format=2]
+[gd_scene load_steps=152 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -73,6 +73,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=71]
 [ext_resource path="res://assets/sounds/soundeffects/gui/click_place_blocked.ogg" type="AudioStream" id=72]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=73]
+[ext_resource path="res://src/microbe_stage/EditorArrow.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=75]
 [ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=77]
@@ -88,14 +89,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=94]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=95]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=96]
-
-
-
-
-
-
-
-
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
@@ -925,6 +918,9 @@ __meta__ = {
 "_editor_description_": "Just something to make the microbe camera look at the right place"
 }
 
+[node name="editor_arrow" parent="." instance=ExtResource( 74 )]
+transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -3, 0 )
+
 [node name="World" type="Node" parent="."]
 
 [node name="EditorLight" type="OmniLight" parent="World"]
@@ -1182,14 +1178,14 @@ size_flags_vertical = 4
 expand = true
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Speed"]
-margin_right = 42.0
+margin_right = 98.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 8 )
 text = "SPEED_COLON"
 
 [node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Speed"]
-margin_left = 46.0
-margin_right = 66.0
+margin_left = 102.0
+margin_right = 122.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 9 )
 text = "n/a"
@@ -1212,14 +1208,14 @@ size_flags_vertical = 4
 expand = true
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/HP"]
-margin_right = 24.0
+margin_right = 75.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 8 )
 text = "HP_COLON"
 
 [node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/HP"]
-margin_left = 28.0
-margin_right = 48.0
+margin_left = 79.0
+margin_right = 99.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 9 )
 text = "n/a"
@@ -1242,14 +1238,14 @@ size_flags_vertical = 4
 expand = true
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Size"]
-margin_right = 30.0
+margin_right = 84.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 8 )
 text = "SIZE_COLON"
 
 [node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Size"]
-margin_left = 34.0
-margin_right = 54.0
+margin_left = 88.0
+margin_right = 108.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 9 )
 text = "n/a"
@@ -1263,14 +1259,14 @@ margin_right = 246.0
 margin_bottom = 80.0
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Generation"]
-margin_right = 74.0
+margin_right = 145.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 8 )
 text = "GENERATION_COLON"
 
 [node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Generation"]
-margin_left = 78.0
-margin_right = 98.0
+margin_left = 149.0
+margin_right = 169.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 9 )
 text = "n/a"
@@ -1399,14 +1395,14 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 339.0
+margin_right = 394.0
 margin_bottom = 619.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer"]
-margin_right = 338.0
+margin_right = 393.0
 margin_bottom = 35.0
 mouse_filter = 1
 custom_constants/margin_right = 10
@@ -1417,7 +1413,7 @@ custom_constants/margin_bottom = 5
 [node name="MutationPointsBar" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 328.0
+margin_right = 383.0
 margin_bottom = 30.0
 custom_constants/separation = -10
 
@@ -1433,14 +1429,14 @@ expand = true
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar"]
 show_behind_parent = true
 margin_left = 10.0
-margin_right = 318.0
+margin_right = 373.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
 
 [node name="Background" type="ColorRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer"]
 show_behind_parent = true
-margin_right = 308.0
+margin_right = 363.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1452,7 +1448,7 @@ __meta__ = {
 [node name="MPBarSubtract" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer"]
 self_modulate = Color( 0.721569, 0.721569, 0.721569, 1 )
 show_behind_parent = true
-margin_right = 308.0
+margin_right = 363.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1465,7 +1461,7 @@ percent_visible = false
 
 [node name="MPBarMain" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer"]
 show_behind_parent = true
-margin_right = 308.0
+margin_right = 363.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1485,7 +1481,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer"]
-margin_right = 121.0
+margin_right = 151.0
 margin_bottom = 20.0
 mouse_filter = 1
 custom_constants/margin_left = 20
@@ -1504,15 +1500,15 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer"]
-margin_left = 166.0
-margin_right = 308.0
+margin_left = 196.0
+margin_right = 363.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 15
 
 [node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2"]
-margin_right = 127.0
+margin_right = 152.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -1530,14 +1526,14 @@ anims/FlashBar = SubResource( 17 )
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer"]
 margin_top = 39.0
-margin_right = 338.0
+margin_right = 393.0
 margin_bottom = 43.0
 mouse_filter = 1
 custom_styles/separator = SubResource( 18 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer"]
 margin_top = 47.0
-margin_right = 338.0
+margin_right = 393.0
 margin_bottom = 618.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1553,12 +1549,12 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 328.0
+margin_right = 383.0
 margin_bottom = 561.0
 custom_constants/separation = 10
 
 [node name="Tab" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
-margin_right = 318.0
+margin_right = 373.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 __meta__ = {
@@ -1566,7 +1562,7 @@ __meta__ = {
 }
 
 [node name="Structure" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Tab"]
-margin_right = 103.0
+margin_right = 121.0
 margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
@@ -1589,8 +1585,8 @@ __meta__ = {
 }
 
 [node name="Appearance" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Tab"]
-margin_left = 107.0
-margin_right = 210.0
+margin_left = 125.0
+margin_right = 247.0
 margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
@@ -1612,8 +1608,8 @@ __meta__ = {
 }
 
 [node name="Behavior" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Tab"]
-margin_left = 214.0
-margin_right = 318.0
+margin_left = 251.0
+margin_right = 373.0
 margin_bottom = 30.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1636,14 +1632,14 @@ __meta__ = {
 
 [node name="Structure" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 40.0
-margin_right = 318.0
+margin_right = 373.0
 margin_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 22 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure"]
-margin_right = 318.0
+margin_right = 373.0
 margin_bottom = 516.0
 mouse_filter = 1
 size_flags_vertical = 3
@@ -1653,14 +1649,14 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer"]
-margin_right = 367.0
+margin_right = 373.0
 margin_bottom = 873.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer"]
-margin_right = 357.0
+margin_right = 363.0
 margin_bottom = 873.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -1682,7 +1678,7 @@ selecting_enabled = false
 placeholder_text = "SEARCH_DOTDOTDOT"
 
 [node name="Structural" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection"]
-margin_right = 302.0
+margin_right = 357.0
 margin_bottom = 125.0
 script = ExtResource( 75 )
 __meta__ = {
@@ -1696,7 +1692,7 @@ ItemContainerPath = NodePath("../Structural/Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural"]
-margin_right = 302.0
+margin_right = 357.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/HBoxContainer"]
@@ -1732,15 +1728,15 @@ __meta__ = {
 [node name="Title" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 94.0
+margin_right = 106.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 23 )
 text = "STRUCTURAL"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/HBoxContainer"]
-margin_left = 98.0
-margin_right = 302.0
+margin_left = 110.0
+margin_right = 357.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1748,7 +1744,7 @@ custom_styles/separator = SubResource( 24 )
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural"]
 margin_top = 24.0
-margin_right = 302.0
+margin_right = 357.0
 margin_bottom = 125.0
 rect_clip_content = true
 mouse_filter = 2
@@ -1758,7 +1754,7 @@ custom_constants/margin_left = 5
 
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip"]
 margin_left = 5.0
-margin_right = 297.0
+margin_right = 352.0
 margin_bottom = 101.0
 mouse_filter = 2
 custom_constants/vseparation = 0
@@ -1768,7 +1764,7 @@ columns = 3
 [node name="cytoplasm" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 101.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1778,13 +1774,13 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer/cytoplasm"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 96.0
 mouse_filter = 2
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer/cytoplasm/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "22 MP"
@@ -1795,9 +1791,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer/cytoplasm/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 focus_mode = 0
@@ -1827,7 +1823,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer/cytoplasm/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 91.0
 custom_fonts/font = SubResource( 31 )
 text = "CYTOPLASM"
@@ -1840,8 +1836,8 @@ __meta__ = {
 
 [node name="Proteins" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection"]
 margin_top = 135.0
-margin_right = 302.0
-margin_bottom = 379.0
+margin_right = 357.0
+margin_bottom = 393.0
 script = ExtResource( 75 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1854,7 +1850,7 @@ ItemContainerPath = NodePath("../Proteins/Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins"]
-margin_right = 302.0
+margin_right = 357.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/HBoxContainer"]
@@ -1890,15 +1886,15 @@ __meta__ = {
 [node name="Title" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 82.0
+margin_right = 86.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 23 )
 text = "PROTEINS"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/HBoxContainer"]
-margin_left = 86.0
-margin_right = 302.0
+margin_left = 90.0
+margin_right = 357.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1906,8 +1902,8 @@ custom_styles/separator = SubResource( 24 )
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins"]
 margin_top = 24.0
-margin_right = 302.0
-margin_bottom = 244.0
+margin_right = 357.0
+margin_bottom = 258.0
 rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -1916,7 +1912,7 @@ custom_constants/margin_left = 5
 
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip"]
 margin_left = 5.0
-margin_right = 297.0
+margin_right = 352.0
 margin_bottom = 234.0
 mouse_filter = 2
 custom_constants/vseparation = 0
@@ -1926,8 +1922,8 @@ columns = 3
 [node name="metabolosome" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_right = 97.0
-margin_bottom = 117.0
+margin_right = 115.0
+margin_bottom = 131.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1936,12 +1932,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/metabolosome"]
 margin_top = 5.0
-margin_right = 107.0
-margin_bottom = 112.0
+margin_right = 115.0
+margin_bottom = 126.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/metabolosome/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "45 MP"
@@ -1951,9 +1947,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/metabolosome/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 focus_mode = 0
@@ -1981,7 +1977,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/metabolosome/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "METABOLOSOMES"
@@ -1990,9 +1986,9 @@ align = 1
 [node name="chromatophore" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 97.0
-margin_right = 194.0
-margin_bottom = 117.0
+margin_left = 115.0
+margin_right = 230.0
+margin_bottom = 131.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2001,12 +1997,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chromatophore"]
 margin_top = 5.0
-margin_right = 97.0
-margin_bottom = 112.0
+margin_right = 115.0
+margin_bottom = 126.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chromatophore/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "50 MP"
@@ -2016,9 +2012,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chromatophore/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2044,7 +2040,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chromatophore/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "THYLAKOID"
@@ -2053,9 +2049,9 @@ align = 1
 [node name="chemoSynthesizingProteins" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 194.0
-margin_right = 291.0
-margin_bottom = 117.0
+margin_left = 230.0
+margin_right = 345.0
+margin_bottom = 131.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2064,12 +2060,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chemoSynthesizingProteins"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 126.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chemoSynthesizingProteins/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "45 MP"
@@ -2079,9 +2075,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chemoSynthesizingProteins/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2107,8 +2103,8 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/chemoSynthesizingProteins/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
-margin_bottom = 107.0
+margin_right = 115.0
+margin_bottom = 121.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 36 )
 custom_constants/line_spacing = -1
@@ -2119,9 +2115,9 @@ autowrap = true
 [node name="rusticyanin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_top = 117.0
-margin_right = 97.0
-margin_bottom = 220.0
+margin_top = 131.0
+margin_right = 115.0
+margin_bottom = 234.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2130,12 +2126,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/rusticyanin"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/rusticyanin/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "45 MP"
@@ -2145,9 +2141,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/rusticyanin/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2172,7 +2168,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/rusticyanin/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "RUSTICYANIN"
@@ -2181,10 +2177,10 @@ align = 1
 [node name="nitrogenase" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 97.0
-margin_top = 117.0
-margin_right = 194.0
-margin_bottom = 220.0
+margin_left = 115.0
+margin_top = 131.0
+margin_right = 230.0
+margin_bottom = 234.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2193,12 +2189,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/nitrogenase"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/nitrogenase/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "55 MP"
@@ -2208,9 +2204,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/nitrogenase/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2235,7 +2231,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/nitrogenase/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "NITROGENASE"
@@ -2244,10 +2240,10 @@ align = 1
 [node name="oxytoxyProteins" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 194.0
-margin_top = 117.0
-margin_right = 291.0
-margin_bottom = 220.0
+margin_left = 230.0
+margin_top = 131.0
+margin_right = 345.0
+margin_bottom = 234.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2256,12 +2252,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/oxytoxyProteins"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/oxytoxyProteins/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "55 MP"
@@ -2271,9 +2267,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/oxytoxyProteins/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2298,7 +2294,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins/Clip/GridContainer/oxytoxyProteins/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "OXYTOXISOME"
@@ -2307,9 +2303,9 @@ align = 1
 [node name="Tween" type="Tween" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Proteins"]
 
 [node name="External" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection"]
-margin_top = 389.0
-margin_right = 302.0
-margin_bottom = 516.0
+margin_top = 403.0
+margin_right = 357.0
+margin_bottom = 530.0
 script = ExtResource( 75 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2322,7 +2318,7 @@ ItemContainerPath = NodePath("../External/Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External"]
-margin_right = 302.0
+margin_right = 357.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/HBoxContainer"]
@@ -2358,15 +2354,15 @@ __meta__ = {
 [node name="Title" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 82.0
+margin_right = 90.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 23 )
 text = "EXTERNAL"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/HBoxContainer"]
-margin_left = 86.0
-margin_right = 302.0
+margin_left = 94.0
+margin_right = 357.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -2374,7 +2370,7 @@ custom_styles/separator = SubResource( 24 )
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External"]
 margin_top = 24.0
-margin_right = 302.0
+margin_right = 357.0
 margin_bottom = 127.0
 rect_clip_content = true
 mouse_filter = 2
@@ -2384,7 +2380,7 @@ custom_constants/margin_left = 5
 
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip"]
 margin_left = 5.0
-margin_right = 297.0
+margin_right = 352.0
 margin_bottom = 103.0
 mouse_filter = 2
 custom_constants/vseparation = 0
@@ -2394,7 +2390,7 @@ columns = 3
 [node name="flagellum" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 103.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -2404,12 +2400,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/flagellum"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/flagellum/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "55 MP"
@@ -2419,9 +2415,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/flagellum/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2446,7 +2442,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/flagellum/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "FLAGELLUM"
@@ -2455,8 +2451,8 @@ align = 1
 [node name="pilus" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 97.0
-margin_right = 194.0
+margin_left = 115.0
+margin_right = 230.0
 margin_bottom = 103.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -2466,12 +2462,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/pilus"]
 margin_top = 5.0
-margin_right = 109.0
+margin_right = 115.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/pilus/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "30 MP"
@@ -2481,9 +2477,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/pilus/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2508,7 +2504,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/pilus/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "PREDATORY_PILUS"
@@ -2517,8 +2513,8 @@ align = 1
 [node name="cilia" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 194.0
-margin_right = 291.0
+margin_left = 230.0
+margin_right = 345.0
 margin_bottom = 103.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -2528,12 +2524,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/cilia"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/cilia/VBoxContainer"]
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "40 MP"
@@ -2543,9 +2539,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/cilia/VBoxContainer"]
-margin_left = 8.0
+margin_left = 17.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 97.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2571,7 +2567,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer/cilia/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 115.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "CILIA"
@@ -2580,9 +2576,9 @@ align = 1
 [node name="Tween" type="Tween" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/External"]
 
 [node name="Organelles" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection"]
-margin_top = 526.0
-margin_right = 302.0
-margin_bottom = 885.0
+margin_top = 540.0
+margin_right = 357.0
+margin_bottom = 873.0
 script = ExtResource( 75 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2595,7 +2591,7 @@ ItemContainerPath = NodePath("../Organelles/Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles"]
-margin_right = 302.0
+margin_right = 357.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/HBoxContainer"]
@@ -2631,15 +2627,15 @@ __meta__ = {
 [node name="Title" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 100.0
+margin_right = 110.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 23 )
 text = "ORGANELLES"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/HBoxContainer"]
-margin_left = 104.0
-margin_right = 302.0
+margin_left = 114.0
+margin_right = 357.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -2647,8 +2643,8 @@ custom_styles/separator = SubResource( 24 )
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles"]
 margin_top = 24.0
-margin_right = 302.0
-margin_bottom = 359.0
+margin_right = 357.0
+margin_bottom = 333.0
 rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -2658,7 +2654,7 @@ custom_constants/margin_left = 5
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip"]
 margin_left = 5.0
 margin_right = 352.0
-margin_bottom = 335.0
+margin_bottom = 309.0
 mouse_filter = 2
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
@@ -2667,7 +2663,7 @@ columns = 3
 [node name="nucleus" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_right = 97.0
+margin_right = 86.0
 margin_bottom = 103.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -2677,12 +2673,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nucleus"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 86.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nucleus/VBoxContainer"]
-margin_right = 97.0
+margin_right = 86.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "100 MP"
@@ -2692,9 +2688,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nucleus/VBoxContainer"]
-margin_left = 8.0
+margin_left = 3.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 83.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2720,7 +2716,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nucleus/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 86.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "NUCLEUS"
@@ -2729,7 +2725,7 @@ align = 1
 [node name="mitochondrion" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 97.0
+margin_left = 86.0
 margin_right = 194.0
 margin_bottom = 103.0
 mouse_filter = 1
@@ -2745,7 +2741,7 @@ margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/mitochondrion/VBoxContainer"]
-margin_right = 97.0
+margin_right = 108.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "45 MP"
@@ -2755,9 +2751,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/mitochondrion/VBoxContainer"]
-margin_left = 8.0
+margin_left = 14.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 94.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2783,7 +2779,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/mitochondrion/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 108.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "MITOCHONDRION"
@@ -2793,7 +2789,7 @@ align = 1
 "OrganelleSelectionElement",
 ]]
 margin_left = 194.0
-margin_right = 291.0
+margin_right = 347.0
 margin_bottom = 103.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -2803,12 +2799,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/chloroplast"]
 margin_top = 5.0
-margin_right = 97.0
+margin_right = 153.0
 margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/chloroplast/VBoxContainer"]
-margin_right = 97.0
+margin_right = 153.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "50 MP"
@@ -2818,9 +2814,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/chloroplast/VBoxContainer"]
-margin_left = 8.0
+margin_left = 36.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 116.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2846,7 +2842,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/chloroplast/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 153.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "CHLOROPLAST"
@@ -2856,8 +2852,8 @@ align = 1
 "OrganelleSelectionElement",
 ]]
 margin_top = 103.0
-margin_right = 97.0
-margin_bottom = 219.0
+margin_right = 86.0
+margin_bottom = 206.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2866,12 +2862,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/thermoplast"]
 margin_top = 5.0
-margin_right = 97.0
-margin_bottom = 111.0
+margin_right = 86.0
+margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/thermoplast/VBoxContainer"]
-margin_right = 97.0
+margin_right = 86.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "40 MP"
@@ -2881,9 +2877,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/thermoplast/VBoxContainer"]
-margin_left = 8.0
+margin_left = 3.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 83.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2910,7 +2906,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/thermoplast/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 86.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "THERMOPLAST"
@@ -2919,10 +2915,10 @@ align = 1
 [node name="chemoplast" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 97.0
+margin_left = 86.0
 margin_top = 103.0
 margin_right = 194.0
-margin_bottom = 219.0
+margin_bottom = 206.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2931,12 +2927,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/chemoplast"]
 margin_top = 5.0
-margin_right = 97.0
-margin_bottom = 111.0
+margin_right = 108.0
+margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/chemoplast/VBoxContainer"]
-margin_right = 97.0
+margin_right = 108.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "45 MP"
@@ -2946,9 +2942,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/chemoplast/VBoxContainer"]
-margin_left = 8.0
+margin_left = 14.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 94.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -2974,7 +2970,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/chemoplast/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 108.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 text = "CHEMOPLAST"
@@ -2985,8 +2981,8 @@ align = 1
 ]]
 margin_left = 194.0
 margin_top = 103.0
-margin_right = 291.0
-margin_bottom = 219.0
+margin_right = 347.0
+margin_bottom = 206.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2995,12 +2991,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nitrogenfixingplastid"]
 margin_top = 5.0
-margin_right = 97.0
-margin_bottom = 111.0
+margin_right = 153.0
+margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nitrogenfixingplastid/VBoxContainer"]
-margin_right = 97.0
+margin_right = 153.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "50 MP"
@@ -3010,9 +3006,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nitrogenfixingplastid/VBoxContainer"]
-margin_left = 8.0
+margin_left = 36.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 116.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -3038,8 +3034,8 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nitrogenfixingplastid/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
-margin_bottom = 106.0
+margin_right = 153.0
+margin_bottom = 93.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 36 )
 custom_constants/line_spacing = -2
@@ -3050,9 +3046,9 @@ autowrap = true
 [node name="vacuole" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_top = 219.0
-margin_right = 97.0
-margin_bottom = 335.0
+margin_top = 206.0
+margin_right = 86.0
+margin_bottom = 309.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -3061,12 +3057,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/vacuole"]
 margin_top = 5.0
-margin_right = 97.0
-margin_bottom = 111.0
+margin_right = 86.0
+margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/vacuole/VBoxContainer"]
-margin_right = 97.0
+margin_right = 86.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "50 MP"
@@ -3076,9 +3072,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/vacuole/VBoxContainer"]
-margin_left = 8.0
+margin_left = 3.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 83.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -3104,7 +3100,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/vacuole/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 86.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 custom_constants/line_spacing = -2
@@ -3114,10 +3110,10 @@ align = 1
 [node name="oxytoxy" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer" groups=[
 "OrganelleSelectionElement",
 ]]
-margin_left = 97.0
-margin_top = 219.0
+margin_left = 86.0
+margin_top = 206.0
 margin_right = 194.0
-margin_bottom = 335.0
+margin_bottom = 309.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -3126,12 +3122,12 @@ custom_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/oxytoxy"]
 margin_top = 5.0
-margin_right = 99.0
-margin_bottom = 111.0
+margin_right = 108.0
+margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/oxytoxy/VBoxContainer"]
-margin_right = 97.0
+margin_right = 108.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "70 MP"
@@ -3141,9 +3137,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/oxytoxy/VBoxContainer"]
-margin_left = 8.0
+margin_left = 14.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 94.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -3169,7 +3165,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/oxytoxy/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
+margin_right = 108.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 custom_constants/line_spacing = -2
@@ -3180,9 +3176,9 @@ align = 1
 "OrganelleSelectionElement",
 ]]
 margin_left = 194.0
-margin_top = 219.0
-margin_right = 291.0
-margin_bottom = 335.0
+margin_top = 206.0
+margin_right = 347.0
+margin_bottom = 309.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -3192,20 +3188,20 @@ custom_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/bioluminescentVacuole"]
 margin_top = 5.0
 margin_right = 153.0
-margin_bottom = 111.0
+margin_bottom = 98.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/bioluminescentVacuole/VBoxContainer"]
-margin_right = 97.0
+margin_right = 153.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 25 )
 text = "N_A_MP"
 align = 1
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/bioluminescentVacuole/VBoxContainer"]
-margin_left = 8.0
+margin_left = 36.0
 margin_top = 17.0
-margin_right = 88.0
+margin_right = 116.0
 margin_bottom = 77.0
 rect_min_size = Vector2( 80, 60 )
 mouse_filter = 1
@@ -3232,8 +3228,8 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/bioluminescentVacuole/VBoxContainer"]
 margin_top = 78.0
-margin_right = 97.0
-margin_bottom = 106.0
+margin_right = 153.0
+margin_bottom = 93.0
 custom_fonts/font = SubResource( 36 )
 custom_constants/line_spacing = -2
 text = "BIOLUMESCENT_VACUOLE"
@@ -3839,10 +3835,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 208.0
-margin_top = 230.0
-margin_right = 510.0
-margin_bottom = 696.0
+margin_left = 232.0
+margin_top = 254.0
+margin_right = 534.0
+margin_bottom = 720.0
 theme = SubResource( 42 )
 edit_alpha = false
 
@@ -3989,7 +3985,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/ConfirmButton"]
-margin_right = 140.0
+margin_right = 164.0
 margin_bottom = 40.0
 focus_mode = 0
 mouse_filter = 1
@@ -4469,14 +4465,14 @@ __meta__ = {
 [node name="Title" type="Label" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 161.0
+margin_right = 169.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 23 )
 text = "PHYSICAL_CONDITIONS"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
-margin_left = 165.0
+margin_left = 173.0
 margin_right = 376.0
 margin_bottom = 20.0
 mouse_filter = 1
@@ -4652,14 +4648,14 @@ __meta__ = {
 [node name="Title" type="Label" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 169.0
+margin_right = 173.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 23 )
 text = "ATMOSPHERIC_GASSES"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
-margin_left = 173.0
+margin_left = 177.0
 margin_right = 376.0
 margin_bottom = 20.0
 mouse_filter = 1
@@ -4817,14 +4813,14 @@ __meta__ = {
 [node name="Title" type="Label" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 108.0
+margin_right = 105.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 23 )
 text = "COMPOUNDS"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
-margin_left = 112.0
+margin_left = 109.0
 margin_right = 376.0
 margin_bottom = 20.0
 mouse_filter = 1
@@ -5077,14 +5073,14 @@ __meta__ = {
 [node name="Title" type="Label" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 140.0
+margin_right = 146.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 23 )
 text = "SPECIES_PRESENT"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
-margin_left = 144.0
+margin_left = 150.0
 margin_right = 376.0
 margin_bottom = 20.0
 mouse_filter = 1
