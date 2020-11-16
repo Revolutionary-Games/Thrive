@@ -195,7 +195,7 @@ public class SaveListItem : PanelContainer
 
         version.Text = save.Info.ThriveVersion;
         versionWarning.Visible = versionDifference != 0;
-        type.Text = TranslationServer.Translate(save.Info.TypeString);
+        type.Text = save.Info.TranslatedSaveTypeString;
         createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
         createdBy.Text = save.Info.Creator;
         createdOnPlatform.Text = save.Info.Platform;

@@ -68,6 +68,9 @@ public class InProgressLoad
         {
             case State.Initial:
                 state = State.ReadingData;
+
+                // Invalid is given as the target state here, because it's unknown yet.
+                // TODO: See #1847
                 LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
                     MainGameState.Invalid,
                     TranslationServer.Translate("READING_SAVE_DATA"));
@@ -84,6 +87,8 @@ public class InProgressLoad
                 // TODO: do this in a background thread if possible
                 try
                 {
+                    // Invalid is given as the target state here, because it's unknown yet.
+                    // TODO: See #1847
                     save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
                         LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
                             MainGameState.Invalid,

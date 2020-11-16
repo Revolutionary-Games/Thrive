@@ -5,7 +5,7 @@ using System.Linq;
 public static class EnumHelper
 {
     /// <summary>
-    ///   Fetches all CustomAttributes of type T
+    ///   Fetches all CustomAttributes of type T defined on the enum value.
     /// </summary>
     /// <typeparam name="T">The Attribute type to be fetched</typeparam>
     /// <returns>Returns a list of Attributes of Type T</returns>
@@ -18,7 +18,7 @@ public static class EnumHelper
     }
 
     /// <summary>
-    ///   Fetches one CustomAttributes of type T
+    ///   Fetches one CustomAttributes of type T defined on the enum value.
     /// </summary>
     /// <typeparam name="T">The Attribute type to be fetched</typeparam>
     /// <returns>Returns one Attribute of Type T</returns>

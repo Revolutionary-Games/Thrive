@@ -27,6 +27,8 @@ public class LoadingScreen : Control
 
     private static LoadingScreen instance;
 
+    private readonly Random random = new Random();
+
     private Label artDescription;
     private Label loadingMessageLabel;
     private Label loadingDescriptionLabel;
@@ -35,7 +37,6 @@ public class LoadingScreen : Control
 
     private bool visible;
 
-    private Random random;
     private Timer randomizeTipTimer;
 
     private string loadingMessage;
@@ -43,7 +44,7 @@ public class LoadingScreen : Control
     private string loadingDescription = string.Empty;
 
     private float totalElapsed;
-    private MainGameState target = MainGameState.Invalid;
+    private MainGameState currentlyLoadingGameState = MainGameState.Invalid;
 
     private LoadingScreen()
     {
@@ -103,15 +104,15 @@ public class LoadingScreen : Control
         }
     }
 
-    private MainGameState Target
+    private MainGameState CurrentlyLoadingGameState
     {
-        get => target;
+        get => currentlyLoadingGameState;
         set
         {
-            if (target == value)
+            if (currentlyLoadingGameState == value)
                 return;
 
-            target = value;
+            currentlyLoadingGameState = value;
             RandomizeTip();
         }
     }
@@ -125,7 +126,6 @@ public class LoadingScreen : Control
 
         spinner = GetNode<Control>("Spinner");
 
-        random = new Random();
         randomizeTipTimer = new Timer { Interval = 5000, AutoReset = true };
         randomizeTipTimer.Elapsed += (s, e) => RandomizeTip();
 
@@ -144,7 +144,7 @@ public class LoadingScreen : Control
     {
         LoadingMessage = message;
         LoadingDescription = description;
-        Target = target;
+        CurrentlyLoadingGameState = target;
 
         if (!Visible)
         {
@@ -156,13 +156,13 @@ public class LoadingScreen : Control
 
     public void RandomizeTip()
     {
-        if (Target == MainGameState.Invalid)
+        if (CurrentlyLoadingGameState == MainGameState.Invalid)
         {
             Tip = string.Empty;
             return;
         }
 
-        var tips = SimulationParameters.Instance.GetHelpTexts(Target.ToString());
+        var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState.ToString());
         var selectedTip = tips.Messages.Random(random);
         Tip = selectedTip;
     }

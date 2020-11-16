@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -58,7 +59,7 @@ public class SaveInformation
     public SaveType Type { get; set; } = SaveType.Manual;
 
     [JsonIgnore]
-    public string TypeString => Type.GetAttribute<DescriptionAttribute>().Description;
+    public string TranslatedSaveTypeString => TranslationServer.Translate(Type.GetAttribute<DescriptionAttribute>().Description);
 
     /// <summary>
     ///   Creates save information for an invalid save
