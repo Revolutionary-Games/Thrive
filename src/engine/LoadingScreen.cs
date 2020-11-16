@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 /// <summary>
@@ -31,11 +32,17 @@ public class LoadingScreen : Control
     private Label tipLabel;
     private Control spinner;
 
+    private bool visible;
+
+    private Random random;
+    private System.Timers.Timer randomizeTipTimer;
+
     private string loadingMessage;
     private string tip;
     private string loadingDescription = string.Empty;
 
     private float totalElapsed;
+    private MainGameState target = MainGameState.Invalid;
 
     private LoadingScreen()
     {
@@ -43,6 +50,7 @@ public class LoadingScreen : Control
     }
 
     public static LoadingScreen Instance => instance;
+
 
     public string LoadingMessage
     {
@@ -80,7 +88,7 @@ public class LoadingScreen : Control
 
     public string Tip
     {
-        get => tip ??= TranslationServer.Translate("LOADING_TIP");
+        get => tip;
         set
         {
             if (tip == value)
@@ -95,6 +103,19 @@ public class LoadingScreen : Control
         }
     }
 
+    private MainGameState Target
+    {
+        get => target;
+        set
+        {
+            if (target == value)
+                return;
+
+            target = value;
+            RandomizeTip();
+        }
+    }
+
     public override void _Ready()
     {
         artDescription = GetNode<Label>(ArtDescriptionPath);
@@ -103,6 +124,10 @@ public class LoadingScreen : Control
         tipLabel = GetNode<Label>(TipLabelPath);
 
         spinner = GetNode<Control>("Spinner");
+
+        random = new Random();
+        randomizeTipTimer = new System.Timers.Timer { Interval = 5000, AutoReset = true };
+        randomizeTipTimer.Elapsed += (s, e) => RandomizeTip();
 
         UpdateMessage();
         UpdateDescription();
@@ -115,21 +140,31 @@ public class LoadingScreen : Control
     /// <summary>
     ///   Shows this and updates the shown messages. If this just became visible also loads new art and tip
     /// </summary>
-    public void Show(string message, string description = "")
+    public void Show(string message, MainGameState target, string description = "")
     {
+        LoadingMessage = message;
+        LoadingDescription = description;
+        Target = target;
+
         if (!Visible)
         {
+            visible = true;
             OnBecomeVisible();
             Show();
         }
-
-        LoadingMessage = message;
-        LoadingDescription = description;
     }
 
     public void RandomizeTip()
     {
-        // TODO: implement randomized tip showing
+        if (Target == MainGameState.Invalid)
+        {
+            Tip = string.Empty;
+            return;
+        }
+
+        var tips = SimulationParameters.Instance.GetHelpTexts(Target.ToString());
+        var selectedTip = tips.Messages.Random(random);
+        Tip = selectedTip;
     }
 
     public void RandomizeArt()
@@ -141,7 +176,15 @@ public class LoadingScreen : Control
     {
         // Only elapse passed time if this is visible
         if (!Visible)
+        {
+            if (visible)
+            {
+                visible = false;
+                randomizeTipTimer.Stop();
+            }
+
             return;
+        }
 
         // Spin the spinner
         totalElapsed += delta;
@@ -154,9 +197,8 @@ public class LoadingScreen : Control
         totalElapsed = 0;
 
         RandomizeArt();
-        RandomizeTip();
 
-        // TODO: setup timers to show next art and tip
+        randomizeTipTimer.Start();
     }
 
     private void UpdateMessage()
