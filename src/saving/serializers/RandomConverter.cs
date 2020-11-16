@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json;
 
@@ -7,30 +8,23 @@ public class RandomConverter : JsonConverter
 {
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        var settings = new JsonSerializerSettings();
-        string json = JsonConvert.SerializeObject((Random)value, settings);
-
         var formatter = new BinaryFormatter();
         using (var dataWriter = new MemoryStream())
         {
-            formatter.Serialize(dataWriter, json);
-            serializer.Serialize(writer, Convert.ToBase64String(dataWriter.GetBuffer()));
+            formatter.Serialize(dataWriter, (Random)value);
+            var state = new RandomState(dataWriter.ToArray());
+            serializer.Serialize(writer, state);
         }
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
-        var settings = new JsonSerializerSettings();
         var formatter = new BinaryFormatter();
-        var encoded = serializer.Deserialize<string>(reader);
+        var state = serializer.Deserialize<RandomState>(reader);
 
-        if (string.IsNullOrEmpty(encoded))
-            return null;
-
-        using (var dataReader = new MemoryStream(Convert.FromBase64String(encoded)))
+        using (var dataReader = new MemoryStream(state.State))
         {
-            string json = (string)formatter.Deserialize(dataReader);
-            return JsonConvert.DeserializeObject<Random>(json, settings);
+            return formatter.Deserialize(dataReader);
         }
     }
 
