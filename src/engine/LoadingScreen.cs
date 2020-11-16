@@ -31,7 +31,8 @@ public class LoadingScreen : Control
     private Label tipLabel;
     private Control spinner;
 
-    private string loadingMessage = TranslationServer.Translate("LOADING");
+    private string loadingMessage;
+    private string tip;
     private string loadingDescription = string.Empty;
 
     private float totalElapsed;
@@ -45,7 +46,7 @@ public class LoadingScreen : Control
 
     public string LoadingMessage
     {
-        get => TranslationServer.Translate("LOADING");
+        get => loadingMessage ??= TranslationServer.Translate("LOADING");
         set
         {
             if (loadingMessage == value)
@@ -77,7 +78,22 @@ public class LoadingScreen : Control
         }
     }
 
-    public string Tip => TranslationServer.Translate("LOADING_TIP");
+    public string Tip
+    {
+        get => tip ??= TranslationServer.Translate("LOADING_TIP");
+        set
+        {
+            if (tip == value)
+                return;
+
+            tip = value;
+
+            if (tipLabel != null)
+            {
+                UpdateTip();
+            }
+        }
+    }
 
     public override void _Ready()
     {
