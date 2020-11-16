@@ -10,7 +10,7 @@ output = system 'git diff --cached --name-only '
 
 File.write output 
 
-system './check_formatting.rb'
+system(output) 
 
 File.unlink CHANGED_FILE
 
