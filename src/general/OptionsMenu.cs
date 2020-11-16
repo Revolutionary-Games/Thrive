@@ -135,6 +135,9 @@ public class OptionsMenu : Control
     public NodePath TutorialsEnabledPath;
 
     [Export]
+    public NodePath ScreenshotFolderPath;
+
+    [Export]
     public NodePath DefaultsConfirmationBoxPath;
 
     [Export]
@@ -205,6 +208,8 @@ public class OptionsMenu : Control
     private LineEdit customUsername;
 
     private CheckBox tutorialsEnabled;
+
+    private Button goToScreenshotFolder;
 
     // Confirmation Boxes
     private WindowDialog backConfirmationBox;
@@ -302,6 +307,7 @@ public class OptionsMenu : Control
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
+        goToScreenshotFolder = GetNode<Button>(ScreenshotFolderPath);
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
@@ -408,6 +414,7 @@ public class OptionsMenu : Control
         maxAutosaves.Value = settings.MaxAutoSaves;
         maxAutosaves.Editable = settings.AutoSaveEnabled;
         maxQuicksaves.Value = settings.MaxQuickSaves;
+        goToScreenshotFolder.Pressed = settings.OpenScreenshotFolder;
         customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
         customUsername.Text = settings.CustomUsername.Value != null ?
             settings.CustomUsername :
@@ -982,6 +989,14 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnOpenScreenshotFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
+        UpdateResetSaveButtonState();
+    }
+    
     private void OnCustomUsernameEnabledToggled(bool pressed)
     {
         Settings.Instance.CustomUsernameEnabled.Value = pressed;
@@ -989,7 +1004,6 @@ public class OptionsMenu : Control
 
         UpdateResetSaveButtonState();
     }
-
     private void OnCustomUsernameTextChanged(string text)
     {
         if (text.Equals(Environment.UserName, StringComparison.CurrentCulture))
