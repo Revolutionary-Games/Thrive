@@ -51,7 +51,6 @@ public class MainMenu : Node
 
     public override void _Ready()
     {
-        CallMiscTranslations();
         RunMenuSetup();
 
         // Start intro video
@@ -315,14 +314,13 @@ public class MainMenu : Node
         thriveLogo.Show();
     }
 
+    /// <summary>
+    ///   This never called method contains translation strings that exist, but cannot automatically be extracted.
+    ///   Examples are predefined Godot strings, like popup buttons.
+    /// </summary>
     private void CallMiscTranslations()
     {
         _ = TranslationServer.Translate("OK");
         _ = TranslationServer.Translate("Cancel");
-
-        foreach (var saveType in Enum.GetValues(typeof(SaveInformation.SaveType)).Cast<SaveInformation.SaveType>())
-        {
-            TranslationServer.Translate(SaveInformation.GetDescriptionForSaveType(saveType));
-        }
     }
 }
