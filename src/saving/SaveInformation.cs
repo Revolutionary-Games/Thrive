@@ -58,7 +58,7 @@ public class SaveInformation
     public SaveType Type { get; set; } = SaveType.Manual;
 
     [JsonIgnore]
-    public string TypeString => GetDescriptionForSaveType(Type);
+    public string TypeString => Type.GetAttribute<DescriptionAttribute>().Description;
 
     /// <summary>
     ///   Creates save information for an invalid save
@@ -73,12 +73,5 @@ public class SaveInformation
             Platform = "Invalid",
             Creator = "Invalid",
         };
-    }
-
-    internal static string GetDescriptionForSaveType(SaveType value)
-    {
-        var memInfo = typeof(SaveType).GetMember(value.ToString());
-        var attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-        return ((DescriptionAttribute)attrs[0]).Description;
     }
 }
