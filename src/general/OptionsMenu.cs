@@ -1048,4 +1048,12 @@ public class OptionsMenu : Control
             languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
         }
     }
+
+    private void OnOpenScreenshotFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
+        UpdateResetSaveButtonState();
+    }
 }
