@@ -319,6 +319,7 @@ public class MainMenu : Node
     {
         _ = TranslationServer.Translate("OK");
         _ = TranslationServer.Translate("Cancel");
+
         foreach (var saveType in Enum.GetValues(typeof(SaveInformation.SaveType)).Cast<SaveInformation.SaveType>())
         {
             TranslationServer.Translate(SaveInformation.GetDescriptionForSaveType(saveType));
