@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-16 11:18+0100\n"
+"POT-Creation-Date: 2020-11-16 19:53+0100\n"
 "PO-Revision-Date: 2020-11-15 15:25+0000\n"
 "Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -713,12 +713,11 @@ msgstr "{0} al enviar: {1} población desde bioma: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "población en biomas:"
 
-#: ../src/engine/LoadingScreen.cs:34 ../src/engine/LoadingScreen.cs:48
-#: ../src/engine/LoadingScreen.tscn:128
+#: ../src/engine/LoadingScreen.cs:55 ../src/engine/LoadingScreen.tscn:128
 msgid "LOADING"
 msgstr "Cargando"
 
-#: ../src/engine/LoadingScreen.cs:80
+#: ../src/engine/LoadingScreen.cs:89
 msgid "LOADING_TIP"
 msgstr ""
 "CONSEJO: Presiona el botón de deshacer en el editor para corregir un error"
@@ -959,11 +958,11 @@ msgstr "Volver al Menú"
 msgid "EXIT"
 msgstr "Salir"
 
-#: ../src/gui_common/MainMenu.cs:320
+#: ../src/gui_common/MainMenu.cs:376
 msgid "OK"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:321
+#: ../src/gui_common/MainMenu.cs:377
 msgid "Cancel"
 msgstr ""
 
@@ -1570,8 +1569,8 @@ msgstr ""
 "obstante, ralentiza a la célula drásticamente y absorbe recursos a una "
 "velocidad menor."
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
-msgid "SECOND"
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
+msgid "PER_SECOND_SLASH"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1150
@@ -1877,48 +1876,48 @@ msgstr "Especies Presentes"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Mover especie a este Bioma"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "La cantidad de glucosa ha sido reducida a {0} de su cantidad anterior."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
 msgid "ATP_PRODUCTION"
 msgstr "Producción de ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUCCIÓN DE ATP DEMASIADO BAJA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
 msgid "OSMOREGULATION"
 msgstr "Osmorregulación"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
 msgid "BASE_MOVEMENT"
 msgstr "Movimiento Base"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1469
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1474
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m bajo el nivel del mar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1514
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1579
 msgid "WITH_POPULATION"
 msgstr "{0} con población: {1}"
 
@@ -2028,19 +2027,19 @@ msgstr "Guardado con éxito"
 msgid "SAVING_FAILED"
 msgstr "Guardado fallido! Una excepción ocurrió"
 
-#: ../src/saving/SaveInformation.cs:14
+#: ../src/saving/SaveInformation.cs:21
 msgid "SAVE_MANUAL"
 msgstr "Guardado fallido"
 
-#: ../src/saving/SaveInformation.cs:20
+#: ../src/saving/SaveInformation.cs:30
 msgid "SAVE_AUTOSAVE"
 msgstr "Espacio usado:"
 
-#: ../src/saving/SaveInformation.cs:26
+#: ../src/saving/SaveInformation.cs:39
 msgid "SAVE_QUICKSAVE"
 msgstr "Guardar Partida"
 
-#: ../src/saving/SaveInformation.cs:32
+#: ../src/saving/SaveInformation.cs:48
 msgid "SAVE_INVALID"
 msgstr "La partida guardada es inválida"
 

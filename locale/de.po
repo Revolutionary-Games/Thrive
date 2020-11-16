@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-16 11:18+0100\n"
+"POT-Creation-Date: 2020-11-16 19:53+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -726,12 +726,11 @@ msgstr "{0} durch Senden: {1} Population aus dem Gebiet: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "Population in Gebieten:"
 
-#: ../src/engine/LoadingScreen.cs:34 ../src/engine/LoadingScreen.cs:48
-#: ../src/engine/LoadingScreen.tscn:128
+#: ../src/engine/LoadingScreen.cs:55 ../src/engine/LoadingScreen.tscn:128
 msgid "LOADING"
 msgstr "Lädt"
 
-#: ../src/engine/LoadingScreen.cs:80
+#: ../src/engine/LoadingScreen.cs:89
 msgid "LOADING_TIP"
 msgstr ""
 "Tipp: drücken Sie die Rückgängig-Schaltfläche im Editor, um einen Fehler zu "
@@ -977,11 +976,11 @@ msgstr "Zurück zum Hauptmenü"
 msgid "EXIT"
 msgstr "Verlassen"
 
-#: ../src/gui_common/MainMenu.cs:320
+#: ../src/gui_common/MainMenu.cs:376
 msgid "OK"
 msgstr "OK"
 
-#: ../src/gui_common/MainMenu.cs:321
+#: ../src/gui_common/MainMenu.cs:377
 msgid "Cancel"
 msgstr "Abbruch"
 
@@ -1606,9 +1605,9 @@ msgstr ""
 "erhalten. Allerdings verlangsamt sie die Zelle um einen großen Faktor und "
 "die Zelle absorbiert Ressourcen mit einer reduzierten Geschwindigkeit."
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
-msgid "SECOND"
-msgstr "Sekunde"
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
+msgid "PER_SECOND_SLASH"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1150
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1912,48 +1911,48 @@ msgstr "Gegenwärtige Spezeis"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "In dieses Gebiet wechseln"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
 msgid "FREEBUILDING"
 msgstr "Sandbox"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
 msgid "MEGA_YEARS"
 msgstr "Mya"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
 msgid "YEARS"
 msgstr "Jahre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktion"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTION ZU NIEDRIG!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
 msgid "BASE_MOVEMENT"
 msgstr "Basisbewegung"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1469
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1474
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1514
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1579
 msgid "WITH_POPULATION"
 msgstr "{0} mit Population: {1}"
 
@@ -2065,19 +2064,19 @@ msgstr "Speichern erfolgreich"
 msgid "SAVING_FAILED"
 msgstr "Speichern fehlgeschlagen! Eine Ausnahme ist aufgetreten"
 
-#: ../src/saving/SaveInformation.cs:14
+#: ../src/saving/SaveInformation.cs:21
 msgid "SAVE_MANUAL"
 msgstr "Manuell"
 
-#: ../src/saving/SaveInformation.cs:20
+#: ../src/saving/SaveInformation.cs:30
 msgid "SAVE_AUTOSAVE"
 msgstr "Automatisch"
 
-#: ../src/saving/SaveInformation.cs:26
+#: ../src/saving/SaveInformation.cs:39
 msgid "SAVE_QUICKSAVE"
 msgstr "Schnell"
 
-#: ../src/saving/SaveInformation.cs:32
+#: ../src/saving/SaveInformation.cs:48
 msgid "SAVE_INVALID"
 msgstr "Ungülig"
 
@@ -2405,6 +2404,9 @@ msgstr ""
 "genügend Ammoniak und Phosphat sammeln.\n"
 "Schauen Sie auf den Indikator unten rechts, um zu sehen, wie viel mehr Sie "
 "benötigen."
+
+#~ msgid "SECOND"
+#~ msgstr "Sekunde"
 
 #~ msgid "CONFIRM"
 #~ msgstr "Bestätigen"
