@@ -59,7 +59,8 @@ public class SaveInformation
     public SaveType Type { get; set; } = SaveType.Manual;
 
     [JsonIgnore]
-    public string TranslatedSaveTypeString => TranslationServer.Translate(Type.GetAttribute<DescriptionAttribute>().Description);
+    public string TranslatedSaveTypeString =>
+        TranslationServer.Translate(Type.GetAttribute<DescriptionAttribute>().Description);
 
     /// <summary>
     ///   Creates save information for an invalid save
