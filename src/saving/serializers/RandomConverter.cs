@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json;
 
@@ -7,23 +8,36 @@ public class RandomConverter : JsonConverter
 {
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
+        Type type = typeof(Random);
+        FieldInfo seedArrayInfo = type.GetField("_seedArray", BindingFlags.NonPublic | BindingFlags.Instance);
+        FieldInfo inextInfo = type.GetField("_inext", BindingFlags.NonPublic | BindingFlags.Instance);
+        FieldInfo inextpInfo = type.GetField("_inextp", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        int[] seedArray = (int[])seedArrayInfo.GetValue((Random)value);
+        int inext = (int)inextInfo.GetValue((Random)value);
+        int inextp = (int)inextpInfo.GetValue((Random)value);
+        int currSeed = seedArray[inext] - seedArray[inextp];
+
         var formatter = new BinaryFormatter();
         using (var dataWriter = new MemoryStream())
         {
-            formatter.Serialize(dataWriter, (Random)value);
-            var state = new RandomState(dataWriter.ToArray());
-            serializer.Serialize(writer, state);
+            formatter.Serialize(dataWriter, currSeed);
+            serializer.Serialize(writer, Convert.ToBase64String(dataWriter.GetBuffer()));
         }
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
         var formatter = new BinaryFormatter();
-        var state = serializer.Deserialize<RandomState>(reader);
+        var encoded = serializer.Deserialize<string>(reader);
 
-        using (var dataReader = new MemoryStream(state.State))
+        if (string.IsNullOrEmpty(encoded))
+            return null;
+
+        using (var dataReader = new MemoryStream(Convert.FromBase64String(encoded)))
         {
-            return formatter.Deserialize(dataReader);
+            int seed = (int)formatter.Deserialize(dataReader);
+            return new Random(seed);
         }
     }
 
