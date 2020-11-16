@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Info embedded in a save file
@@ -55,6 +56,8 @@ public class SaveInformation
     public Guid ID { get; set; } = Guid.NewGuid();
 
     public SaveType Type { get; set; } = SaveType.Manual;
+
+    [JsonIgnore]
     public string TypeString => GetDescriptionForSaveType(Type);
 
     /// <summary>
