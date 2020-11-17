@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-15 11:14+0200\n"
-"PO-Revision-Date: 2020-11-17 09:21+0000\n"
+"PO-Revision-Date: 2020-11-18 17:27+0000\n"
 "Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -163,15 +163,15 @@ msgstr ""
 "струва МТ, но премахването на органели, които са добавени в текущата сесия "
 "на редактора, връща тяхната стойност. Може да премахнете органел като го "
 "натиснете с десния бутон на мишката. Може да завъртите органел чрез "
-"натискане на „A“ или „D“"
+"натискане на „A“ или „D“."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"По време на възпроизвеждане Микробния редактор ще бъде отворен, в него може "
+"По време на възпроизвеждане, микробния редактор ще бъде отворен, в него може "
 "да променяте Вашето създание (като добавяте, премествате или премахвате "
 "органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора "
-"е равно на 100 милиона години еволюция"
+"е равно на 100 милиона години еволюция."
 
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "EASTEREGG_MESSAGE_1"
@@ -198,11 +198,11 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Забавен факт е, че истинските прокариоти имат нещо като биоотделения, "
-"приличат си с органелите и всъщност се наричат многостенни органели"
+"приличат си с органелите и всъщност се наричат многостенни органели."
 
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Забавен факт е, че метаболозомата представлява многостенен органел"
+msgstr "Забавен факт е, че метаболозомата представлява многостенен органел."
 
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "EASTEREGG_MESSAGE_6"
@@ -1942,7 +1942,7 @@ msgstr "Записът е невалиден"
 
 #: ../src/saving/InProgressLoad.cs:120
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "Записът има невалидно състояние на играта"
+msgstr "Записът съдържа невалидно състояние на играта"
 
 #: ../src/saving/InProgressLoad.cs:132
 msgid "PROCESSING_LOADED_OBJECTS"
@@ -2002,7 +2002,7 @@ msgstr "Запазването е успешно"
 
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
-msgstr "Запазването е неуспешно! Има грешка"
+msgstr "Запазването е неуспешно! Отчетена е грешка"
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"
@@ -2173,14 +2173,14 @@ msgstr "Упътване"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:59
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Добре дошли в Микробния редактор.\n"
+"Добре дошли в микробния редактор.\n"
 "Тук може да видите какво се е случило от началото на играта или от "
 "последното Ви влизане в редактора.\n"
 "\n"
 "В този раздел може да разгледате отчета за различните създания. Също така, "
-"може да видите промените в околната среда.\n"
+"може да наблюдавате промените в околната среда.\n"
 "\n"
-"За да превключите към слевдващия раздел, натиснете бутона „НАПРЕД“, който се "
+"За да преминете в слевдващия раздел, натиснете бутона „НАПРЕД“, който се "
 "намира долу вдясно."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:92
@@ -2200,7 +2200,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:122
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"Това е Микробния редактор, тук може да добавяте или премахвате органели от "
+"Това е микробния редактор, тук може да добавяте или премахвате органели от "
 "Вашите създания, чрез наличните мутационни точки (МТ).\n"
 "\n"
 "Също така, може да променяте и другите характеристики по Вашите създания, "
@@ -2239,7 +2239,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Това е основната информация за Микробния редактор. Може да разгледате и "
+"Това е основната информация за микробния редактор. Може да разгледате и "
 "останалите раздели в редактора за повече настройки.\n"
 "\n"
 "Може да преименувате Вашите създания, като натиснете с мишката върху "
