@@ -2,8 +2,8 @@
 
 [ext_resource path="res://shaders/SelectDistinctFromBackgroundColor.shader" type="Shader" id=1]
 
-
 [resource]
 shader = ExtResource( 1 )
-shader_param/fg_col = Color( 0.745098, 0.356863, 0.921569, 1 )
-shader_param/bg_col = Color( 0.294118, 0.152941, 0.356863, 1 )
+shader_param/bg_col = Color( 0.75, 0.36, 0.92, 1 )
+shader_param/main_col = Color( 0.0666667, 0.168627, 0.211765, 1 )
+shader_param/sec_col = Color( 0.552941, 0.780392, 0.87451, 1 )
