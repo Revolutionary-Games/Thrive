@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-13 09:33+0200\n"
-"PO-Revision-Date: 2020-11-17 09:21+0000\n"
+"PO-Revision-Date: 2020-11-18 17:27+0000\n"
 "Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
@@ -315,7 +315,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
+msgstr "Ciekawy Fakt, Thrive zrobione jest w open source-owym silniku Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_27"
@@ -693,7 +693,7 @@ msgstr "poprzedni:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr ""
+msgstr "Zmutował się"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
@@ -701,7 +701,7 @@ msgstr "kod genetyczny:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "rozszedł się do biomów:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
@@ -983,7 +983,7 @@ msgstr "Kreatywny Edytor Mikroba"
 
 #: ../src/gui_common/MainMenu.tscn:345
 msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Tryb Ostrzeżenie"
+msgstr "Ostrzeżenie Tryb GLES2"
 
 #: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING_TEXT"
@@ -1030,6 +1030,8 @@ msgstr "Zdrowie"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:347
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Sztywniejsza membrana jest bardziej odporna na uszkodzenia, ale utrudnia "
+"poruszanie się komórce."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:459
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:699
@@ -1042,7 +1044,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4290
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4784
 msgid "TURNS"
-msgstr ""
+msgstr "Skręca"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:724
@@ -1056,7 +1058,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4315
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4809
 msgid "INTO"
-msgstr ""
+msgstr "w"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:538
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:819
@@ -1075,7 +1077,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4623
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4926
 msgid "STORAGE"
-msgstr ""
+msgstr "Magazyn"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:569
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:850
@@ -1100,21 +1102,27 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6366
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6700
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Koszt Osmoregulacji"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:592
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
+"Płynne wnętrze komórki. Cytoplazma to podstawowa mikstura jonów, białek, i "
+"innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. "
+"Jedną z jej funkcji jest Fermentacja, przemiana glukozy w energię ATP. Dla "
+"komórek którym brakuje organelli do bardziej zaawansowanych metabolizmów, to "
+"na tym polegają dla energii. Jest również używana aby przechowywać molekuły "
+"i zwiększać rozmiar komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:752
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1651
 msgid "DOT_RATE_SCALES"
-msgstr ""
+msgstr ". Stosunek się skaluje"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:765
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1664
 msgid "WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "z koncentracją"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:772
 msgid "OXYGEN_DOT"
@@ -1123,11 +1131,17 @@ msgstr "Tlen."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:873
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
+"Metabolosomy to grupy protein zamknięte w proteinowych powłokach. Potrafią "
+"przetwarzać glukozę w ATP o wiele szybciej niż cytoplazma w procesie zwanym "
+"Oddychaniem Tlenowym. Jednak żeby funkcjonować potrzebują tlenu, i niższe "
+"stężenie tlenu w otoczeniu spowalnia ich szybkość produkcji ATP. Przez to, "
+"że metabolosomy są zanurzone bezpośrednio w cytoplazmie, otaczający płyn "
+"dokonuje fermentacji."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:889
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2049
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Tylakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:980
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
@@ -1139,7 +1153,7 @@ msgstr "Produkuje"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3475
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3763
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ""
+msgstr ". Szybkość skaluje się z"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1018
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2256
@@ -1174,7 +1188,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4073
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr ". Szybkość skaluje się ze stężeniem"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1335
 msgid "CARBON"
@@ -2078,3 +2092,7 @@ msgstr "Zmień symetrię"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:148
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Stwórz nowego mikroba"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
+msgid "WILL_YOU_THRIVE"
+msgstr "Czy będziesz prosperować?"
