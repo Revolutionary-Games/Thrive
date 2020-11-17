@@ -158,3 +158,4 @@ __meta__ = {
 
 [node name="TipTimer" type="Timer" parent="."]
 wait_time = 5.0
+[connection signal="timeout" from="TipTimer" to="." method="RandomizeTip"]
