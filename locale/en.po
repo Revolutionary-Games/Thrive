@@ -7,17 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-13 20:46+0700\n"
-"PO-Revision-Date: 2020-11-13 21:02+0700\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2020-11-13 09:33+0200\n"
+"PO-Revision-Date: 2020-11-14 19:16+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
+"com>\n"
+"Language-Team: English <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
@@ -66,9 +68,9 @@ msgstr ""
 "\n"
 "White – Glucose\n"
 "Yellow – Hydrogen Sulfide\n"
-"Orange - Ammonia\n"
-"Purple - Phosphate\n"
-"Rust Brown - Iron\n"
+"Orange – Ammonia\n"
+"Purple – Phosphate\n"
+"Rust Brown – Iron\n"
 "\n"
 "Glucose makes ATP"
 
@@ -107,25 +109,25 @@ msgstr ""
 "Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen "
 "Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex\n"
 "\n"
-"Chromatophores: Produces 1/3rd the amount of glucose as a normal "
-"chloroplast, but also performs glycolysis, and takes up 1 Hex.\n"
+"Thylakoids: Produces 1/3rd the amount of glucose as a normal chloroplast, "
+"but also performs glycolysis, and takes up 1 Hex\n"
 "\n"
-"Rusticyanin: Converts iron into ATP.\n"
+"Rusticyanin: Converts iron into ATP\n"
 "\n"
 "Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
 "anaerobically\n"
 "\n"
 "Cytoplasm: Has storage space and performs glycolysis (Produces small amounts "
-"of ATP)."
+"of ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "External Organelles\n"
 "\n"
-"Flagella: Moves your cell faster by consuming ATP.\n"
+"Flagella: Moves your cell faster by consuming ATP\n"
 "\n"
-"Pilus: Can be used to stab other cells."
+"Pilus: Can be used to stab other cells"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -135,19 +137,19 @@ msgstr ""
 "Nucleus: Takes up 11 hexes and allows for evolution of membrane bound "
 "organelles. And also doubles your cells size. (Can only be evolved once)\n"
 "\n"
-"Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more "
+"Mitochondrion: Produces ATP out of glucose and atmospheric O2. Much more "
 "efficiently than cytoplasm\n"
 "\n"
-"Chloroplast: Makes glucose out of sunlight and atmospheric CO2.\n"
+"Chloroplast: Makes glucose out of sunlight and atmospheric CO2\n"
 "\n"
-"Chemoplast: Makes glucose out of Hydrogen Sulfide.\n"
+"Chemoplast: Makes glucose out of Hydrogen Sulfide\n"
 "\n"
 "Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and "
-"Oxygen.\n"
+"Oxygen\n"
 "\n"
-"Vacuole: Stores 15 collected compounds.\n"
+"Vacuole: Stores 15 collected compounds\n"
 "\n"
-"Toxin Vacuoles: Produces toxins (called OxyToxy NT)."
+"Toxin Vacuoles: Produces toxins (called OxyToxy NT)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -286,10 +288,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"Here's a tip, Osmoregulation costs 1 ATP per second per hex, each empty hex "
-"of cytoplasm generates 5 ATP per second as well, which means if you are "
-"losing ATP due to osmoregulation just add a couple empty hexes cytoplasm or "
-"remove some organelles"
+"Thrive's sound team lead has made many songs that have not been"
+"added to the game yet. You can hear them, or watch streams of"
+"him composing on his YouTube channel, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_23"
@@ -313,9 +314,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
-"Fun Fact, Thrive is meant as a simulation of an alien planet, therefore it "
-"makes sense that most creatures you find will be related to one or two other "
-"species due to evolution happening around you, see if you can identify them!"
+"Fun Fact, Thrive is made with the open source Godot engine!"
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_27"
@@ -550,21 +549,21 @@ msgstr "Sunlight"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2532
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2513
 msgid "PREDATORY_PILUS"
 msgstr "Predatory Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1564
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2184
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2177
 msgid "RUSTICYANIN"
 msgstr "Rusticyanin"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1869
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2249
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2240
 msgid "NITROGENASE"
 msgstr "Nitrogenase"
 
@@ -581,7 +580,7 @@ msgstr "Chemosynthesizing Proteins"
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2303
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisome"
 
@@ -593,7 +592,7 @@ msgstr "Thylakoids"
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:598
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:662
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1987
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1986
 msgid "METABOLOSOMES"
 msgstr "Metabolosomes"
 
@@ -606,56 +605,56 @@ msgstr "Nitrogen-Fixing Plastid"
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3917
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3981
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3012
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2979
 msgid "CHEMOPLAST"
 msgstr "Chemoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2367
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2451
 msgid "FLAGELLUM"
 msgstr "Flagellum"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4494
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4558
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3147
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3110
 msgid "VACUOLE"
 msgstr "Vacuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2816
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2788
 msgid "MITOCHONDRION"
 msgstr "Mitochondrion"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4683
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3214
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3175
 msgid "TOXIN_VACUOLE"
 msgstr "Toxin Vacuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3349
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3413
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2881
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2851
 msgid "CHLOROPLAST"
 msgstr "Chloroplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:358
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1829
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1832
 msgid "CYTOPLASM"
 msgstr "Cytoplasm"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2885
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2949
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2751
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2725
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
@@ -1002,6 +1001,38 @@ msgstr ""
 "version.\n"
 "Please load the save manually through the menu."
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
+msgid "OPEN_THE_MENU"
+msgstr "Open the menu"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
+msgid "OPEN_HELP_SCREEN"
+msgstr "Open help screen"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
+msgid "WILL_YOU_THRIVE"
+msgstr "Will you thrive?"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:124
+msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
+msgstr "Finish editing and return to environment"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
+msgid "CHANGE_THE_SYMMETRY"
+msgstr "Change the symmetry"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:136
+msgid "UNDO_THE_LAST_ACTION"
+msgstr "Undo the last action"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
+msgid "REDO_THE_LAST_ACTION"
+msgstr "Redo the last action"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:148
+msgid "CREATE_A_NEW_MICROBE"
+msgstr "Create a new microbe"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "MEMBRANE_RIGIDITY"
@@ -1009,21 +1040,21 @@ msgstr "Membrane Rigidity"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5233
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5477
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5719
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6023
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6327
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6661
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5475
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5717
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6021
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6659
 msgid "MOBILITY"
 msgstr "Mobility"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:314
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5565
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5810
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6114
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6418
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6752
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5563
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5808
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6112
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6750
 msgid "HEALTH"
 msgstr "Health"
 
@@ -1096,11 +1127,11 @@ msgstr "Storage"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4644
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5264
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5507
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6054
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6358
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6692
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5748
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6052
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6356
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6690
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulation Cost"
 
@@ -1140,7 +1171,7 @@ msgstr ""
 "fermentation."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2052
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2049
 msgid "THYLAKOID"
 msgstr "Thylakoid"
 
@@ -1297,7 +1328,7 @@ msgstr "Stab other cells with this."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2596
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2576
 msgid "CILIA"
 msgstr "Cilia"
 
@@ -1353,7 +1384,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3701
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2946
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2915
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
@@ -1431,16 +1462,16 @@ msgstr "Bioluminescent Vacuole"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5118
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5182
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3468
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3422
 msgid "NORMAL"
 msgstr "Normal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5294
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5780
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6084
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6388
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6722
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5778
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6082
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6720
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
@@ -1453,56 +1484,56 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5363
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3538
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3490
 msgid "DOUBLE"
 msgstr "Double"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5588
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5586
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "A membrane with two layers, it has better protection against damage and "
 "takes less energy to not deform. However, it slows the cell down some and "
 "lowers the rate at which it can absorb resources."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5604
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5668
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3608
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5666
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3558
 msgid "CELLULOSE"
 msgstr "Cellulose"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5840
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6448
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6782
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5838
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6780
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Physical Resistance"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5869
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6173
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6507
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6841
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5867
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6839
 msgid "CANNOT_ENGULF"
 msgstr "Cannot engulf"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5892
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5890
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "This membrane has a wall, resulting in better protection against overall "
 "damage and especially against physical damage. It also costs less energy to "
 "retain its form, but cannot absorb resources quickly and is slower."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5908
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5972
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5970
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3626
 msgid "CHITIN"
 msgstr "Chitin"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6144
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6478
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6812
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6142
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6810
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxin Resistance"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6196
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6194
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "This membrane has a wall, which means it has better protections against "
@@ -1510,13 +1541,13 @@ msgstr ""
 "energy to retain its form, but it is slower and cannot absorb resources "
 "quickly."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6212
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3753
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6210
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3699
 msgid "CALCIUM_CARBONATE"
 msgstr "Calcium Carbonate"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6530
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6528
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "This membrane has a strong shell made from calcium carbonate. It can easily "
@@ -1524,13 +1555,13 @@ msgstr ""
 "having such a heavy shell is that the cell is much slower and takes a while "
 "to absorb resources."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6546
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6610
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6608
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3769
 msgid "SILICA"
 msgstr "Silica"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6864
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6862
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 "This membrane has a strong wall of silica. It can resist overall damage well "
@@ -1550,11 +1581,11 @@ msgstr "successful kill"
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:473
+#: ../src/microbe_stage/MicrobeHUD.cs:445
 msgid "MICROBE_PATCH_LABEL"
 msgstr "Patch: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:658
+#: ../src/microbe_stage/MicrobeHUD.cs:616
 msgid "STUFF_AT"
 msgstr "Stuff at {0:F1}, {1:F1}:"
 
@@ -1764,9 +1795,9 @@ msgstr "Fluidity / Rigidity"
 msgid "COLOUR"
 msgstr "Colour"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4060
-msgid "CONFIRM"
-msgstr "Confirm"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4002
+msgid "CONFIRM_CAPITAL"
+msgstr "CONFIRM"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4069
 msgid "NEGATIVE_ATP_BALANCE"
@@ -1851,7 +1882,15 @@ msgstr "ATP Production"
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTION TOO LOW!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1528
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
+msgid "OSMOREGULATION"
+msgstr "Osmoregulation"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:719
+msgid "BASE_MOVEMENT"
+msgstr "Base Movement"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1467
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 

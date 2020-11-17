@@ -524,7 +524,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public void Damage(float amount, string source)
     {
-        if (amount == 0)
+        if (amount == 0 || Dead)
             return;
 
         if (string.IsNullOrEmpty(source))
