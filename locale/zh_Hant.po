@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-15 11:14+0200\n"
-"PO-Revision-Date: 2020-11-17 07:36+0000\n"
+"PO-Revision-Date: 2020-11-17 09:21+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -21,9 +21,8 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W，A，S，D和鼠標移動。如果你有一個氧化反應毒素，用E射擊氧化反應毒素。 G可以切換吞噬模式。"
+msgstr "W，A，S，D和鼠標移動。如果你有一個毒素液泡，你可以按E發射氧化毒素。G鍵可以切換吞噬模式。"
 
 #: ../simulation_parameters/common/help_texts.json:5
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
@@ -31,12 +30,12 @@ msgstr "您的細胞使用ATP(三磷酸腺苷)作為能量來源，如果耗盡�
 
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "要解鎖編輯器並進行複制，您需要收集氨（橙色雲）和磷酸鹽（紫色雲）。"
+msgstr "要解鎖細胞編輯器並進行複制，您需要收集氨（橙色雲）和磷酸鹽（紫色雲）。"
 
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"你也可以通過按G鍵吞噬比你小的細胞，細菌，鐵塊和細胞塊，這將會花費額外的ATP(三磷酸腺苷)，並且會讓你的速度變慢。不要忘記按第二次G來停止吞噬。"
+"你也可以通過按G鍵吞噬比你小的細胞，細菌，鐵塊和細胞塊，吞噬模式會花費額外的ATP(三磷酸腺苷)，並且會讓你的速度變慢。不要忘記按第二次G來停止吞噬。"
 
 #: ../simulation_parameters/common/help_texts.json:8
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
@@ -66,9 +65,8 @@ msgstr ""
 "葡萄糖製造ATP(三磷酸腺苷)"
 
 #: ../simulation_parameters/common/help_texts.json:12
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "硫化氫可以通過化學合成轉化為葡萄糖。鐵可以通過rusticyanin轉化為ATP。"
+msgstr "硫化氫可以通過化學質體和化學合成蛋白轉化為葡萄糖。鐵可以通過rusticyanin轉化為ATP。"
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
@@ -103,50 +101,78 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"外部細胞器\n"
+"\n"
+"鞭毛：通過消耗ATP加快你細胞的移動速度\n"
+"\n"
+"菌毛：可以用來捅其它細胞"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"膜細胞器\n"
+"\n"
+"細胞核：佔用十一個六角格並允許你進化膜細胞器。同時使你的細胞大小翻倍。 （只能被進化一次）\n"
+"\n"
+"線粒體：用葡萄糖和大氣中的氧氣生產ATP。比細胞質的效率高很多\n"
+"\n"
+"葉綠體：用陽光和大氣中的二氧化碳生產葡萄糖。\n"
+"\n"
+"化學質體：用硫化氫生產葡萄糖。\n"
+"\n"
+"固氮質體：用大氣中的氧氣，氮和ATP生產氨。\n"
+"\n"
+"液泡：儲存15單位收集的化合物\n"
+"\n"
+"毒素液泡：生產毒素（氧化毒素）"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"每一代，你都有100個變異點可供花費，任何變化都會花費一定量的變異點。增加或移除細胞器會花費變異點，無論如何，移除在本代放下的細胞器會返還全部的變異點。你"
+"可以通過右鍵點擊移除細胞器。你可以用A和D鍵旋轉你的細胞器"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"你每次繁殖時都會進入微生物編輯器，你可以在那改變你的物種（通過添加，移動或刪除細胞器）以強化你物種的生存力。在微生物階段每次進入編輯器都代表一億年的進化時"
+"間"
 
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "豆知識：櫛毛蟲和草履蟲被當做教科書級的捕食者與獵物關係研究了幾十年。你是櫛毛蟲，還是草履蟲呢？捕食者，還是獵物？"
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
+msgstr "一個提示：如果你速度夠快，你可以用自己的毒素把其它毒素推開。"
 
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
+"一個提示：每一個六角格每秒需消耗一個ATP來進行滲透調節，而單格細胞質每秒產生5個ATP。這意味著如果你因為滲透調節在損失ATP的話，你只要多加幾格細胞質"
+"或移除一些細胞器就行了。"
 
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
+"豆知識：現實中原核生物有一種叫生物區隔（Biocompartments）的結構，作用跟細胞器很相似，而且實際上也被叫做多角體細胞器（Polyhedral "
+"organelles）"
 
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
+msgstr "豆知識：所謂多角體細胞器（Polyhedral organelle）就是代謝體"
 
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "一個提示：有些時候逃跑就是最佳選擇。"
 
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
+msgstr "一個提示：如果目標細胞大概只有你一半大，你就可以吞噬它。"
 
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
+msgstr "一個提示：細菌可能比它們看上去要強。它們也許體型很小，但它們中有一些可以鑽進你並把你殺掉！"
 
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "EASTEREGG_MESSAGE_9"
