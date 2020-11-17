@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-15 11:14+0200\n"
-"PO-Revision-Date: 2020-11-17 07:36+0000\n"
+"PO-Revision-Date: 2020-11-17 09:21+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -26,103 +26,155 @@ msgstr "用W，A，S，D键和鼠标移动。如果你有一个毒素液泡，�
 
 #: ../simulation_parameters/common/help_texts.json:5
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
+msgstr "你的细胞使用ATP（三磷酸腺苷）作为能量来源，如果耗尽的话你就会死。"
 
 #: ../simulation_parameters/common/help_texts.json:6
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
+msgstr "要解锁细胞编辑器并繁殖，你需要收集氨（橙色云）和磷酸盐（紫色云）。"
 
 #: ../simulation_parameters/common/help_texts.json:7
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
+msgstr "你也可以按G键以吞噬比你小的细胞，细菌，铁块和细胞器。吞噬模式会花费额外的ATP并使你减速。不要忘记再按一次G键来退出吞噬模式。"
 
 #: ../simulation_parameters/common/help_texts.json:8
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
+"渗透调节消耗ATP（三磷酸腺苷），这意味着你的细胞越大，你所需要的线粒体/代谢体/铁硫菌蓝蛋白（或细胞质-其可进行糖酵解）就越多，以避免你在静止时都损失A"
+"TP。"
 
 #: ../simulation_parameters/common/help_texts.json:9
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
+msgstr "编辑器里有很多细胞器可供你进化，提供多种不同的玩法。"
 
 #: ../simulation_parameters/common/help_texts.json:10
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "目前版本只要你的人口降到零，你就会灭绝。"
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"各种化合物云分别是：\n"
+"\n"
+"白色 - 葡萄糖\n"
+"黄色 - 硫化氢\n"
+"橙色 - 氨\n"
+"紫色 - 磷酸盐\n"
+"铁锈棕 - 铁\n"
+"\n"
+"葡萄糖用于生产ATP（三磷酸腺苷）"
 
 #: ../simulation_parameters/common/help_texts.json:12
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
+msgstr "硫化氢可以通过化学质体和化学合成蛋白转换成葡萄糖。铁可以通过铁硫菌蓝蛋白转换成ATP（三磷酸腺苷）。"
 
 #: ../simulation_parameters/common/help_texts.json:13
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
+msgstr "繁殖需要你将每个细胞器都一分为二。细胞器需要氨和硫酸盐才能分裂。"
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
+msgstr "但是，如果你能成功以300人口或以上存活20代，你将被视为赢得了当前游戏，获胜后会弹出一个窗口并可以选择继续玩。"
 
 #: ../simulation_parameters/common/help_texts.json:15
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
+msgstr "保持警惕，因为你的竞争对手也在和你一起进化。每当你进入编辑器时他们也会进化。"
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"原核结构\n"
+"\n"
+"代谢体：用葡萄糖生产ATP\n"
+"\n"
+"化学合成蛋白：跟化学质体比同一份硫化氢只能产出半份葡萄糖，但其同时也能进行糖酵解。占用一个六角格。\n"
+"\n"
+"类囊体：跟正常的叶绿体比只能产出1/3的葡萄糖，但其同时也能进行糖酵解。占用一个六角格。\n"
+"\n"
+"铁硫菌蓝蛋白：将铁转换成ATP\n"
+"\n"
+"固氮酶：在无氧环境下将大气中的氮和ATP转换成氨\n"
+"\n"
+"细胞质：有储存空间并能进行糖酵解（产出少量的ATP）"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"外部细胞器\n"
+"\n"
+"鞭毛：通过消耗ATP加快你细胞的移动速度\n"
+"\n"
+"菌毛：可以用来捅其它细胞"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"膜细胞器\n"
+"\n"
+"细胞核：占用十一个六角格并允许你进化膜细胞器。同时使你的细胞大小翻倍。（只能被进化一次）\n"
+"\n"
+"线粒体：用葡萄糖和大气中的氧气生产ATP。比细胞质的效率高很多\n"
+"\n"
+"叶绿体：用阳光和大气中的二氧化碳生产葡萄糖。\n"
+"\n"
+"化学质体：用硫化氢生产葡萄糖。\n"
+"\n"
+"固氮质体：用大气中的氧气，氮和ATP生产氨。\n"
+"\n"
+"液泡：储存15单位收集的化合物\n"
+"\n"
+"毒素液泡：生产毒素（氧化毒素）"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"每一代，你都有100个变异点可供花费，任何变化都会花费一定量的变异点。增加或移除细胞器会花费变异点，无论如何，移除在本代放下的细胞器会返还全部的变异点。你"
+"可以通过右键点击移除细胞器。你可以用A和D键旋转你的细胞器"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表一亿年的进化时"
+"间"
 
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "逗知识：栉毛虫和草履虫是教科书级的捕食者与猎物关系，人们已经花了数十年研究其。你是栉毛虫，还是草履虫呢？捕食者，还是猎物？"
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
+msgstr "小提示：如果你手速够快，你可以用自己的毒素把其它毒素推开。"
 
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
+"小提示：每一个六角格每秒需消耗一个ATP来进行渗透调节，而单格细胞质每秒产生5个ATP。这意味着如果你因为渗透调节在损失ATP的话，你只要多加几格细胞质或"
+"移除一些细胞器就行了。"
 
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
+"逗知识：现实中原核生物有一种叫生物隔间（Biocompartments）的结构，作用跟细胞器很相似，而且实际上也被叫做多角体细胞器（Polyhedral "
+"organelles）"
 
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
+msgstr "逗知识：所谓多角体细胞器（Polyhedral organelle）就是代谢体"
 
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "小提示：有些时候逃跑就是最佳选择。"
 
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
+msgstr "小提示：如果目标细胞大概只有你一半大，你就可以吞噬它。"
 
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
+msgstr "小提示：细菌可能比它们看上去要强。它们或许体型很小，但它们中有一些可以钻进你并把你杀掉！"
 
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
+msgstr "小提示：如果你足够不小心的话你可以把其它物种捕猎到灭绝，它们也可以被其它物种捕猎到灭绝。"
 
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "EASTEREGG_MESSAGE_10"
@@ -138,35 +190,35 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:41
 msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
+msgstr "小提示：生物群系可不仅仅是背景图不同，不同生物群系的化合物生成速度有时候是不同的。"
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
+msgstr "小提示：鞭毛越多越快，但也会消耗更多的ATP"
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "小提示：你可以在吞噬模式下吞进一整块铁。"
 
 #: ../simulation_parameters/common/help_texts.json:44
 msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
+msgstr "小提示：进化细胞核前请做好准备，这玩意可贵啦！无论是突变点还是ATP都是如此。"
 
 #: ../simulation_parameters/common/help_texts.json:45
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
+msgstr "逗知识：你知道地球上有超过8000种纤毛虫吗？"
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
+msgstr "逗知识：喇叭虫属是一类纤毛虫，它们可以把自己拉开，用纤毛产生水流把猎物吸入自己喇叭形的嘴。"
 
 #: ../simulation_parameters/common/help_texts.json:47
 msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
+msgstr "逗知识：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
+msgstr "逗知识：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天Thrive也能做出这种效果的。"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_21"
