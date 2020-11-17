@@ -137,20 +137,15 @@ margin_bottom = 48.0
 align = 1
 
 [node name="TipLabel" type="Label" parent="."]
-anchor_top = 0.945
-anchor_right = 0.934
+anchor_right = 0.94
 anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 9.60004
-margin_right = -3.52002
-margin_bottom = -1.99994
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 7
 custom_fonts/font = SubResource( 1 )
 text = "TIP: not set"
 valign = 2
+autowrap = true
 clip_text = true
-max_lines_visible = 1
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
