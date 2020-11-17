@@ -129,8 +129,6 @@ public class LoadingScreen : Control
 
         spinner = GetNode<Control>("Spinner");
 
-        randomizeTipTimer.Connect("timeout", this, "RandomizeTip");
-
         UpdateMessage();
         UpdateDescription();
         UpdateTip();
