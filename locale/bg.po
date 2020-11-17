@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-17 11:38+0100\n"
+"POT-Creation-Date: 2020-11-17 11:58+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Georgi <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -37,8 +37,8 @@ msgstr "Вашата клетка използва АТФ за да оцелее
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"За възпроизвеждане и влизане в редактора, трябва да съберете амоняк ("
-"оранжевите облаци) и фосфат (лилавите облаци)."
+"За възпроизвеждане и влизане в редактора, трябва да съберете амоняк "
+"(оранжевите облаци) и фосфат (лилавите облаци)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
@@ -130,8 +130,8 @@ msgstr ""
 "Нитрогеназа: Превръща атмософерния азот и АТФ в амоняк чрез анаеробен "
 "процес\n"
 "\n"
-"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза ("
-"произвежда малки количества АТФ)"
+"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза "
+"(произвежда малки количества АТФ)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -185,7 +185,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "СЪВЕТ: Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
@@ -730,10 +730,6 @@ msgstr "популация в зоните:"
 #: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
 msgstr "Зареждане"
-
-#: ../src/engine/LoadingScreen.cs:36
-msgid "LOADING_TIP"
-msgstr "СЪВЕТ: Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"

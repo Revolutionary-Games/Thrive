@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-17 11:38+0100\n"
+"POT-Creation-Date: 2020-11-17 12:01+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -184,6 +184,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
 msgstr ""
+"İPUCU: Editördeyken, yanlışlıkları düzeltmek için geri al butonuna basın"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
@@ -734,11 +735,6 @@ msgstr "arazilerdeki popülasyon:"
 msgid "LOADING"
 msgstr "Yükleniyor"
 
-#: ../src/engine/LoadingScreen.cs:36
-msgid "LOADING_TIP"
-msgstr ""
-"İPUCU: Editördeyken, yanlışlıkları düzeltmek için geri al butonuna basın"
-
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
 msgstr "Kapat"
@@ -911,7 +907,8 @@ msgstr "Varsayılanlara sıfırlansın mı?"
 
 #: ../src/general/OptionsMenu.tscn:941
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "BÜTÜN ayarları varsayılan değerlere sıfırlamak istediğinden emin misin?"
+msgstr ""
+"BÜTÜN ayarları varsayılan değerlere sıfırlamak istediğinden emin misin?"
 
 #: ../src/general/OptionsMenu.tscn:950
 msgid "CLOSE_OPTIONS"
@@ -1030,35 +1027,35 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Menüyü aç"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Yardım ekranını aç"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Başaracak mısın?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:124
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Düzenlemeyi bitir ve ortama dön"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:130
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Simetriyi değiştir"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:136
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Son eylemi geri al"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:142
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Son eylemi tekrarla"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:148
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Yeni bir mikrop oluştur"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
@@ -2187,35 +2184,3 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
-msgid "OPEN_HELP_SCREEN"
-msgstr "Yardım ekranını aç"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
-msgid "OPEN_THE_MENU"
-msgstr "Menüyü aç"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
-msgid "WILL_YOU_THRIVE"
-msgstr "Başaracak mısın?"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:124
-msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr "Düzenlemeyi bitir ve ortama dön"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
-msgid "CHANGE_THE_SYMMETRY"
-msgstr "Simetriyi değiştir"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:136
-msgid "UNDO_THE_LAST_ACTION"
-msgstr "Son eylemi geri al"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
-msgid "REDO_THE_LAST_ACTION"
-msgstr "Son eylemi tekrarla"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:148
-msgid "CREATE_A_NEW_MICROBE"
-msgstr "Yeni bir mikrop oluştur"

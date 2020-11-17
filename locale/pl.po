@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-17 11:38+0100\n"
+"POT-Creation-Date: 2020-11-17 12:00+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Kubagliko_PL <kubagliko333@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -182,7 +182,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "Porada: wciśnij przycisk wstecz w edytorze żeby poprawić błąd"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
@@ -729,10 +729,6 @@ msgstr "Populacja w biomie:"
 msgid "LOADING"
 msgstr "Wczytywanie"
 
-#: ../src/engine/LoadingScreen.cs:36
-msgid "LOADING_TIP"
-msgstr "Porada: wciśnij przycisk wstecz w edytorze żeby poprawić błąd"
-
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
 msgstr "Zamknij"
@@ -1026,11 +1022,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Otwórz menu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Otwórz ekran pomocy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "WILL_YOU_THRIVE"
@@ -1038,23 +1034,23 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:124
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Zakończ edycję i wróć do środowiska"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:130
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Zmień symetrię"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:136
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Cofnij ostatnią czynność"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:142
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Powtórz ostatnią czynność"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:148
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Stwórz nowego mikroba"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
@@ -2148,35 +2144,3 @@ msgstr ""
 "wystarczająco dużo amoniaku i fosforanów.\n"
 "Patrz na wskaźnik w prawym dolnym rogu żeby sprawdzić ile jeszcze "
 "potrzebujesz."
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4002
-msgid "CONFIRM_CAPITAL"
-msgstr "Potwierdź"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:136
-msgid "UNDO_THE_LAST_ACTION"
-msgstr "Cofnij ostatnią czynność"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
-msgid "REDO_THE_LAST_ACTION"
-msgstr "Powtórz ostatnią czynność"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
-msgid "OPEN_THE_MENU"
-msgstr "Otwórz menu"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
-msgid "OPEN_HELP_SCREEN"
-msgstr "Otwórz ekran pomocy"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:124
-msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr "Zakończ edycję i wróć do środowiska"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
-msgid "CHANGE_THE_SYMMETRY"
-msgstr "Zmień symetrię"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:148
-msgid "CREATE_A_NEW_MICROBE"
-msgstr "Stwórz nowego mikroba"
