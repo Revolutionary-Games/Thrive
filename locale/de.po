@@ -316,10 +316,6 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"Tipp: Osmoregulation kostet 1 ATP pro Sekunde pro Feld, das Ihre Zelle hat. "
-"Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn Sie ATP "
-"durch Osmoregulation verlieren, fügen Sie einfach ein paar leere Felder "
-"Zytoplasma hinzu oder entfernen Sie ein paar Organellen"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
@@ -343,10 +339,6 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
-"Thrive ist als eine Simulation eines fremden Planeten gedacht, daher macht "
-"es Sinn, dass die meisten Lebewesen, die Sie finden, mit einer oder zwei "
-"anderen Spezies verwandt sind, da die Evolution um Sie herum stattfindet - "
-"versuchen Sie, sie zu identifizieren!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
@@ -872,11 +864,11 @@ msgstr "Autospeichern während des Spieles"
 
 #: ../src/general/OptionsMenu.tscn:766
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "Anzahl der zu behaltenden Autospeicherungen:"
+msgstr "Anzahl der Autospeicherungen:"
 
 #: ../src/general/OptionsMenu.tscn:794
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Anzahl der zu behaltenden Schnellspeicherungen:"
+msgstr "Anzahl der Schnellspeicherungen:"
 
 #: ../src/general/OptionsMenu.tscn:820
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
@@ -1673,7 +1665,7 @@ msgstr "Temp."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1415
 msgid "PRESSURE_SHORT"
-msgstr ""
+msgstr "Druck"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1491
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4814

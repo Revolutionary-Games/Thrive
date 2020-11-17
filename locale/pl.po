@@ -303,10 +303,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"Porada, Osmoregulacja kosztuje 1 ATP na sekundę na hex, każdy pusty hex "
-"cytoplazmy generuje też 5 ATP na sekundę, co znaczy, że jeżeli tracisz ATP "
-"przez osmoregulację po prostu dodaj kilka pustych hexów cytoplazmy albo usuń "
-"jakieś organelle"
+"Lider zespołu dźwiękowego Thrive stworzył wiele piosenek, które nie zostały "
+"jeszcze dodane do gry. Możesz ich posłuchać, lub oglądać transmisje z "
+"komponowania ich na jego kanale YouTube, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
@@ -331,10 +330,6 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
-"Zabawny Fakt, Thrive jest stworzone do bycia symulacją obcej planety, więc "
-"sens będzie mieć to, że większość stworzeń które znajdziesz będzie "
-"spokrewnione z jednym lub dwoma innymi gatunkami przez to, że wokół ciebie "
-"dzieje się ewolucja, sprawdź czy możesz je zidentyfikować!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
@@ -578,14 +573,14 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1564
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2169
 msgid "RUSTICYANIN"
-msgstr ""
+msgstr "Rusticyjanina"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1869
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2232
 msgid "NITROGENASE"
-msgstr ""
+msgstr "Azotaza"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:117
 msgid "PROTOPLASM"
@@ -724,15 +719,19 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} wysyłając: {1} populacji z biomu: {2}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr ""
+msgstr "Populacja w biomie:"
 
 #: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
-msgstr ""
+msgstr "Wczytywanie"
+
+#: ../src/engine/LoadingScreen.cs:36
+msgid "LOADING_TIP"
+msgstr "Porada: wciśnij przycisk wstecz w edytorze żeby poprawić błąd"
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
@@ -740,85 +739,85 @@ msgstr "Zamknij"
 
 #: ../src/general/OptionsMenu.tscn:126
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Grafika"
 
 #: ../src/general/OptionsMenu.tscn:138
 msgid "SOUND"
-msgstr ""
+msgstr "Dźwięk"
 
 #: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Wydajność"
 
 #: ../src/general/OptionsMenu.tscn:162
 msgid "MISC"
-msgstr ""
+msgstr "Inne"
 
 #: ../src/general/OptionsMenu.tscn:201
 msgid "VSYNC"
-msgstr ""
+msgstr "Synchronizacja pionowa"
 
 #: ../src/general/OptionsMenu.tscn:209
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Pełny ekran"
 
 #: ../src/general/OptionsMenu.tscn:231
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
+msgstr "Wygładzanie krawędzi:"
 
 #: ../src/general/OptionsMenu.tscn:238
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr ""
+msgstr "(wyższe wartością mogą obniżyć wydajność)"
 
 #: ../src/general/OptionsMenu.tscn:268
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Rozdzielczość:"
 
 #: ../src/general/OptionsMenu.tscn:281
 msgid "AUTO"
-msgstr ""
+msgstr "auto"
 
 #: ../src/general/OptionsMenu.tscn:291
 msgid "MAX_FPS"
-msgstr ""
+msgstr "Maksymalna ilość klatek na sekundę:"
 
 #: ../src/general/OptionsMenu.tscn:317
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Korekta kolorów dla daltonistów:"
 
 #: ../src/general/OptionsMenu.tscn:349
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Aberracja chromatyczna:"
 
 #: ../src/general/OptionsMenu.tscn:390
 msgid "MASTER_VOLUME"
-msgstr ""
+msgstr "Główna głośność"
 
 #: ../src/general/OptionsMenu.tscn:417 ../src/general/OptionsMenu.tscn:458
 #: ../src/general/OptionsMenu.tscn:491 ../src/general/OptionsMenu.tscn:524
 #: ../src/general/OptionsMenu.tscn:557
 msgid "MUTE"
-msgstr ""
+msgstr "Wycisz"
 
 #: ../src/general/OptionsMenu.tscn:431
 msgid "MUSIC_VOLUME"
-msgstr ""
+msgstr "Głośność muzyki"
 
 #: ../src/general/OptionsMenu.tscn:464
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Głośność otoczenia"
 
 #: ../src/general/OptionsMenu.tscn:497
 msgid "SFX_VOLUME"
-msgstr ""
+msgstr "Głośność efektów dźwiękowych"
 
 #: ../src/general/OptionsMenu.tscn:530
 msgid "GUI_VOLUME"
-msgstr ""
+msgstr "Głośność interfejsu"
 
 #: ../src/general/OptionsMenu.tscn:575
 msgid "LANGUAGE"
-msgstr ""
+msgstr "Język:"
 
 #: ../src/general/OptionsMenu.tscn:590 ../src/general/OptionsMenu.tscn:901
 msgid "RESET"
@@ -826,105 +825,111 @@ msgstr "Reset"
 
 #: ../src/general/OptionsMenu.tscn:613
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Chmury związków"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
+"Minimalna Przerwa Symulacji\n"
+"Chmur:"
 
 #: ../src/general/OptionsMenu.tscn:635 ../src/general/OptionsMenu.tscn:679
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
+msgstr "(większe wartości zwiększają wydajność)"
 
 #: ../src/general/OptionsMenu.tscn:672
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Dzielnik Rozdzielczości Chmur:"
 
 #: ../src/general/OptionsMenu.tscn:714
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
+msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
 #: ../src/general/OptionsMenu.tscn:737
 msgid "PLAY_INTRO_VIDEO"
-msgstr ""
+msgstr "Odtwórz wideo intro"
 
 #: ../src/general/OptionsMenu.tscn:746
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
+msgstr "Odtwórz Intro Mikroba przy Nowej Grze"
 
 #: ../src/general/OptionsMenu.tscn:755
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Autozapis w trakcie gry"
 
 #: ../src/general/OptionsMenu.tscn:766
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Zachowana ilość autozapisów:"
 
 #: ../src/general/OptionsMenu.tscn:794
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Zachowana ilość szybkich zapisów:"
 
 #: ../src/general/OptionsMenu.tscn:820
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "Pokazuj samouczki (w nowych grach)"
 
 #: ../src/general/OptionsMenu.tscn:828
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "Pokazuj samouczki (w aktualnej grze)"
 
 #: ../src/general/OptionsMenu.tscn:844
 msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
+msgstr "Klawisze oszustw włączone"
 
 #: ../src/general/OptionsMenu.tscn:856
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
+msgstr "Użyj własnej nazwy użytkownika"
 
 #: ../src/general/OptionsMenu.tscn:867
 msgid "CUSTOM_USERNAME"
-msgstr ""
+msgstr "Własna Nazwa Użytkownika:"
 
 #: ../src/general/OptionsMenu.tscn:891 ../src/general/PauseMenu.tscn:132
 #: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
-msgstr ""
+msgstr "Cofnij"
 
 #: ../src/general/OptionsMenu.tscn:912 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
-msgstr ""
+msgstr "Zapisz"
 
 #: ../src/general/OptionsMenu.tscn:928
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
+msgstr "Domyślne"
 
 #: ../src/general/OptionsMenu.tscn:940
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Przywrócić do domyślnych?"
 
 #: ../src/general/OptionsMenu.tscn:941
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
+"Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości "
+"domyślnych?"
 
 #: ../src/general/OptionsMenu.tscn:950
 msgid "CLOSE_OPTIONS"
-msgstr ""
+msgstr "Zamknąć opcje?"
 
 #: ../src/general/OptionsMenu.tscn:974
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
+"Masz niezapisane zmiany które zostaną odrzucone.\n"
+"Czy chcesz kontynuować?"
 
 #: ../src/general/OptionsMenu.tscn:1005
 msgid "SAVE_AND_CONTINUE"
-msgstr ""
+msgstr "Zapisz i kontynuuj"
 
 #: ../src/general/OptionsMenu.tscn:1014
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Odrzuć i kontynuuj"
 
 #: ../src/general/OptionsMenu.tscn:1030
 msgid "CANCEL"
-msgstr ""
+msgstr "Anuluj"
 
 #: ../src/general/OptionsMenu.tscn:1041
 msgid "ERROR"
@@ -932,11 +937,11 @@ msgstr "Błąd"
 
 #: ../src/general/OptionsMenu.tscn:1042
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Błąd: Nie udało się zapisać nowych ustawień w pliku konfiguracji."
 
 #: ../src/general/PauseMenu.tscn:56
 msgid "RESUME"
-msgstr ""
+msgstr "Wznów"
 
 #: ../src/general/PauseMenu.tscn:63
 msgid "SAVE_GAME"
@@ -948,23 +953,23 @@ msgstr "Wczytaj grę"
 
 #: ../src/general/PauseMenu.tscn:78
 msgid "STATISTICS"
-msgstr ""
+msgstr "Statystyki"
 
 #: ../src/general/PauseMenu.tscn:85
 msgid "HELP"
-msgstr ""
+msgstr "Pomoc"
 
 #: ../src/general/PauseMenu.tscn:92 ../src/gui_common/MainMenu.tscn:174
 msgid "OPTIONS"
-msgstr ""
+msgstr "Opcje"
 
 #: ../src/general/PauseMenu.tscn:99
 msgid "RETURN_TO_MENU"
-msgstr ""
+msgstr "Wróć do Menu"
 
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
-msgstr ""
+msgstr "Wyjdź"
 
 #: ../src/gui_common/MainMenu.cs:376
 msgid "OK"
@@ -976,43 +981,48 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Nowa Gra"
 
 #: ../src/gui_common/MainMenu.tscn:186
 msgid "TOOLS"
-msgstr ""
+msgstr "Narzędzia"
 
 #: ../src/gui_common/MainMenu.tscn:198
 msgid "EXTRAS"
-msgstr ""
+msgstr "Dodatki"
 
 #: ../src/gui_common/MainMenu.tscn:210
 msgid "CREDITS"
-msgstr ""
+msgstr "Twórcy"
 
 #: ../src/gui_common/MainMenu.tscn:222
 msgid "QUIT"
-msgstr ""
+msgstr "Wyjdź"
 
 #: ../src/gui_common/MainMenu.tscn:245
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Kreatywny Edytor Mikroba"
 
 #: ../src/gui_common/MainMenu.tscn:345
 msgid "GLES2_MODE_WARNING"
-msgstr ""
+msgstr "GLES2 Tryb Ostrzeżenie"
 
 #: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
+"Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie "
+"spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie "
+"grafiki AMD lub Nvidia do uruchamiania Trive."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:17
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Zapis ma inną wersję"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"Wersja zapisu który próbujesz wczytać nie zgadza się z wersją gry.\n"
+"Proszę załadować zapis manualnie w menu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "OPEN_THE_MENU"
@@ -1049,7 +1059,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Sztywność Membrany"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5233
@@ -1059,7 +1069,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6325
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6659
 msgid "MOBILITY"
-msgstr ""
+msgstr "Mobilność"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:314
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5324
@@ -1069,7 +1079,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6750
 msgid "HEALTH"
-msgstr ""
+msgstr "Zdrowie"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:337
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
@@ -2138,3 +2148,35 @@ msgstr ""
 "wystarczająco dużo amoniaku i fosforanów.\n"
 "Patrz na wskaźnik w prawym dolnym rogu żeby sprawdzić ile jeszcze "
 "potrzebujesz."
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4002
+msgid "CONFIRM_CAPITAL"
+msgstr "Potwierdź"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:136
+msgid "UNDO_THE_LAST_ACTION"
+msgstr "Cofnij ostatnią czynność"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
+msgid "REDO_THE_LAST_ACTION"
+msgstr "Powtórz ostatnią czynność"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
+msgid "OPEN_THE_MENU"
+msgstr "Otwórz menu"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
+msgid "OPEN_HELP_SCREEN"
+msgstr "Otwórz ekran pomocy"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:124
+msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
+msgstr "Zakończ edycję i wróć do środowiska"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
+msgid "CHANGE_THE_SYMMETRY"
+msgstr "Zmień symetrię"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:148
+msgid "CREATE_A_NEW_MICROBE"
+msgstr "Stwórz nowego mikroba"

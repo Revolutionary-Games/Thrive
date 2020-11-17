@@ -311,11 +311,6 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"İşte sana ipucu. Ozmoregülasyon, hücrenin her altıgen alanında her saniyede "
-"1 ATP'ye mal olur. Sitoplazmanın her boş altıgen alanı da saniyede 5 ATP "
-"oluşturur. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP "
-"kaybediyorsan, birkaç tane altıgen alanı yalnızca sitoplazmayla "
-"doldurmalısın ya da bazı organelleri kaldırmalısın"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
@@ -339,9 +334,6 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
-"İlginç Gerçek: Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğun "
-"çoğu canlının, etrafında gerçekleşen evrimden dolayı, bir ya da iki farklı "
-"türe benzemesi mümkün. Onları tanıyabiliyor musun bir gör!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
@@ -707,271 +699,281 @@ msgstr "Başlıyor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:280
 msgid "AUTOEVO_POPULATION_CHANGED"
-msgstr ""
+msgstr "{0} popülasyonu {1} defa değişti çünkü: {2}"
 
 #: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
-msgstr ""
+msgstr "popülasyon:"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
-msgstr ""
+msgstr "önceki:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr ""
+msgstr "mutasyona sahip"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
-msgstr ""
+msgstr "gen kodu:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "yayıldığı araziler:"
 
 #: ../src/auto-evo/RunResults.cs:273
+#, fuzzy
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0}: {1} popülasyon bu araziden göndererek: {2}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr ""
+msgstr "arazilerdeki popülasyon:"
 
 #: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
+msgstr "Yükleniyor"
+
+#: ../src/engine/LoadingScreen.cs:36
+msgid "LOADING_TIP"
 msgstr ""
+"İPUCU: Editördeyken, yanlışlıkları düzeltmek için geri al butonuna basın"
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
-msgstr ""
+msgstr "Kapat"
 
 #: ../src/general/OptionsMenu.tscn:126
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Grafikler"
 
 #: ../src/general/OptionsMenu.tscn:138
 msgid "SOUND"
-msgstr ""
+msgstr "Ses"
 
 #: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Performans"
 
 #: ../src/general/OptionsMenu.tscn:162
 msgid "MISC"
-msgstr ""
+msgstr "Diğer"
 
 #: ../src/general/OptionsMenu.tscn:201
 msgid "VSYNC"
-msgstr ""
+msgstr "V-sync"
 
 #: ../src/general/OptionsMenu.tscn:209
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Tam Ekran"
 
 #: ../src/general/OptionsMenu.tscn:231
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
+msgstr "Multisample anti-aliasing:"
 
 #: ../src/general/OptionsMenu.tscn:238
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr ""
+msgstr "(daha üst değerler performansı düşürür)"
 
 #: ../src/general/OptionsMenu.tscn:268
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Çözünürlük:"
 
 #: ../src/general/OptionsMenu.tscn:281
 msgid "AUTO"
-msgstr ""
+msgstr "otomatik"
 
 #: ../src/general/OptionsMenu.tscn:291
 msgid "MAX_FPS"
-msgstr ""
+msgstr "Maksimum FPS:"
 
 #: ../src/general/OptionsMenu.tscn:317
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Renk Düzeltme:"
 
 #: ../src/general/OptionsMenu.tscn:349
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Renk Sapması:"
 
 #: ../src/general/OptionsMenu.tscn:390
 msgid "MASTER_VOLUME"
-msgstr ""
+msgstr "Ana ses"
 
 #: ../src/general/OptionsMenu.tscn:417 ../src/general/OptionsMenu.tscn:458
 #: ../src/general/OptionsMenu.tscn:491 ../src/general/OptionsMenu.tscn:524
 #: ../src/general/OptionsMenu.tscn:557
 msgid "MUTE"
-msgstr ""
+msgstr "Sessiz"
 
 #: ../src/general/OptionsMenu.tscn:431
 msgid "MUSIC_VOLUME"
-msgstr ""
+msgstr "Müzik seviyesi"
 
 #: ../src/general/OptionsMenu.tscn:464
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Ortam Seviyesi"
 
 #: ../src/general/OptionsMenu.tscn:497
 msgid "SFX_VOLUME"
-msgstr ""
+msgstr "Ses Efekti Seviyesi"
 
 #: ../src/general/OptionsMenu.tscn:530
 msgid "GUI_VOLUME"
-msgstr ""
+msgstr "Arayüz Seviyesi"
 
 #: ../src/general/OptionsMenu.tscn:575
 msgid "LANGUAGE"
-msgstr ""
+msgstr "Dil:"
 
 #: ../src/general/OptionsMenu.tscn:590 ../src/general/OptionsMenu.tscn:901
 msgid "RESET"
-msgstr ""
+msgstr "Sıfırla"
 
 #: ../src/general/OptionsMenu.tscn:613
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Bileşik bulutları"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
+"Bulut Simülasyonu Minimum\n"
+"Aralığı:"
 
 #: ../src/general/OptionsMenu.tscn:635 ../src/general/OptionsMenu.tscn:679
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
+msgstr "(üst değerler performansı arttırır)"
 
 #: ../src/general/OptionsMenu.tscn:672
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Bulut Çözünürlük Bölücü:"
 
 #: ../src/general/OptionsMenu.tscn:714
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
+msgstr "Oyun esnasında otomatik evrimleşmeyi çalıştır"
 
 #: ../src/general/OptionsMenu.tscn:737
 msgid "PLAY_INTRO_VIDEO"
-msgstr ""
+msgstr "Tanıtım videosunu oynat"
 
 #: ../src/general/OptionsMenu.tscn:746
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
+msgstr "Yeni Oyunda Mikrop Tanıtımını Oynat"
 
 #: ../src/general/OptionsMenu.tscn:755
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Oyun esnasında otomatik kaydet"
 
 #: ../src/general/OptionsMenu.tscn:766
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Saklanacak otomatik kayıt miktarı:"
 
 #: ../src/general/OptionsMenu.tscn:794
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Saklanacak hızlı kayıt miktarı:"
 
 #: ../src/general/OptionsMenu.tscn:820
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "Oyun rehberini göster (yeni oyunlarda)"
 
 #: ../src/general/OptionsMenu.tscn:828
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "Oyun rehberini göster (şu anki oyunda)"
 
 #: ../src/general/OptionsMenu.tscn:844
 msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
+msgstr "Hile tuşları aktif"
 
 #: ../src/general/OptionsMenu.tscn:856
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
+msgstr "Özel bir kullanıcı adı kullan"
 
 #: ../src/general/OptionsMenu.tscn:867
 msgid "CUSTOM_USERNAME"
-msgstr ""
+msgstr "Özel Kullanıcı Adı:"
 
 #: ../src/general/OptionsMenu.tscn:891 ../src/general/PauseMenu.tscn:132
 #: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
-msgstr ""
+msgstr "Geri"
 
 #: ../src/general/OptionsMenu.tscn:912 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
-msgstr ""
+msgstr "Kaydet"
 
 #: ../src/general/OptionsMenu.tscn:928
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
+msgstr "Varsayılanlar"
 
 #: ../src/general/OptionsMenu.tscn:940
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Varsayılanlara sıfırlansın mı?"
 
 #: ../src/general/OptionsMenu.tscn:941
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "BÜTÜN ayarları varsayılan değerlere sıfırlamak istediğinden emin misin?"
 
 #: ../src/general/OptionsMenu.tscn:950
 msgid "CLOSE_OPTIONS"
-msgstr ""
+msgstr "Ayarları kapat?"
 
 #: ../src/general/OptionsMenu.tscn:974
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
+"Kaydedilmemiş değişiklikler var.\n"
+"Devam etmek istiyor musun?"
 
 #: ../src/general/OptionsMenu.tscn:1005
 msgid "SAVE_AND_CONTINUE"
-msgstr ""
+msgstr "Kaydet ve devam et"
 
 #: ../src/general/OptionsMenu.tscn:1014
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Yoksay ve devam et"
 
 #: ../src/general/OptionsMenu.tscn:1030
 msgid "CANCEL"
-msgstr ""
+msgstr "İptal"
 
 #: ../src/general/OptionsMenu.tscn:1041
 msgid "ERROR"
-msgstr ""
+msgstr "Hata"
 
 #: ../src/general/OptionsMenu.tscn:1042
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Hata: Yeni ayarlar konfigürasyon dosyasına kaydedilemedi."
 
 #: ../src/general/PauseMenu.tscn:56
 msgid "RESUME"
-msgstr ""
+msgstr "Devam"
 
 #: ../src/general/PauseMenu.tscn:63
 msgid "SAVE_GAME"
-msgstr ""
+msgstr "Oyunu Kaydet"
 
 #: ../src/general/PauseMenu.tscn:70 ../src/gui_common/MainMenu.tscn:162
 msgid "LOAD_GAME"
-msgstr ""
+msgstr "Oyun Yükle"
 
 #: ../src/general/PauseMenu.tscn:78
 msgid "STATISTICS"
-msgstr ""
+msgstr "İstatistikler"
 
 #: ../src/general/PauseMenu.tscn:85
 msgid "HELP"
-msgstr ""
+msgstr "Yardım"
 
 #: ../src/general/PauseMenu.tscn:92 ../src/gui_common/MainMenu.tscn:174
 msgid "OPTIONS"
-msgstr ""
+msgstr "Ayarlar"
 
 #: ../src/general/PauseMenu.tscn:99
 msgid "RETURN_TO_MENU"
-msgstr ""
+msgstr "Menüye Dön"
 
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
-msgstr ""
+msgstr "Çık"
 
 #: ../src/gui_common/MainMenu.cs:376
 msgid "OK"
@@ -983,43 +985,48 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Yeni Oyun"
 
 #: ../src/gui_common/MainMenu.tscn:186
 msgid "TOOLS"
-msgstr ""
+msgstr "Araçlar"
 
 #: ../src/gui_common/MainMenu.tscn:198
 msgid "EXTRAS"
-msgstr ""
+msgstr "Ekstralar"
 
 #: ../src/gui_common/MainMenu.tscn:210
 msgid "CREDITS"
-msgstr ""
+msgstr "Jenerik"
 
 #: ../src/gui_common/MainMenu.tscn:222
 msgid "QUIT"
-msgstr ""
+msgstr "Çık"
 
 #: ../src/gui_common/MainMenu.tscn:245
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Mikrop Serbest Yapım Editörü"
 
 #: ../src/gui_common/MainMenu.tscn:345
 msgid "GLES2_MODE_WARNING"
-msgstr ""
+msgstr "GLES2 Mod Uyarısı"
 
 #: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
+"Thrive'ı GLES2 ile çalıştırıyorsun. Bu ciddi bir şekilde denenmemiş bir mod "
+"ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene "
+"ve/veya Thrive'ı çalıştırırken AMD veya Nvidia grafiklerini kullanmaya zorla."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:17
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Kayıt farklı versiyona sahip"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"Yüklemeye çalıştığın kayıt versiyonu oyunun versiyonuyla eşleşmiyor.\n"
+"Lütfen menüden manüel olarak kayıt yükleyin."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "OPEN_THE_MENU"
@@ -1056,7 +1063,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Hücre Zarı Sertliği"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5233
@@ -1066,7 +1073,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6325
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6659
 msgid "MOBILITY"
-msgstr ""
+msgstr "Hareketlilik"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:314
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5324
@@ -1076,11 +1083,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6750
 msgid "HEALTH"
-msgstr ""
+msgstr "Sağlık"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:337
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Daha sert bir hücre zarı hasara karşı daha dayanıklı ama hücreyi etrafta "
+"hareket ettirmeyi zorlaştırır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:449
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:689
@@ -1093,7 +1102,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4280
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
 msgid "TURNS"
-msgstr ""
+msgstr "Dönüştürülür"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
@@ -1107,7 +1116,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4305
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4799
 msgid "INTO"
-msgstr ""
+msgstr "molekülünden"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:528
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:809
@@ -1126,7 +1135,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4613
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4916
 msgid "STORAGE"
-msgstr ""
+msgstr "Depo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:559
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:840
@@ -1151,53 +1160,65 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6356
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6690
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Ozmoregülasyon Maliyeti"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
+"Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; "
+"iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımdan oluşur. "
+"Yaptığı işlevlerden biri glukozun ATP enerjisine dönüşümüdür. Daha gelişmiş "
+"metabolizmaya sahip organellerden yoksun hücreler, enerji için sitoplazmaya "
+"bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin "
+"büyüklüğünü arttırmak için kullanılır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:742
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
 msgid "DOT_RATE_SCALES"
-msgstr ""
+msgstr ". Oran doğru orantılı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:755
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
 msgid "WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "konsantrasyonu ile"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:762
 msgid "OXYGEN_DOT"
-msgstr ""
+msgstr "Oksijen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:863
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
+"Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. "
+"Sitoplazmada gerçekleşebilen oksijenli solunuma kıyasla, glukozu ATP'ye daha "
+"yüksek oranlarda dönüştürebilirler. Ancak metabolozomlar çalışmak için "
+"oksijen gerektirir ve ortamda bulunan daha düşük seviyelerdeki oksijen, onun "
+"ATP sentezleme hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı "
+"durduğundan etrafında bulunan akışkan sıvı fermentasyon yapar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2041
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Tilakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:970
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3728
 msgid "PRODUCES"
-msgstr ""
+msgstr "Üretir"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:995
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3465
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ""
+msgstr ". İle doğru orantılı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3478
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3766
 msgid "CONCENTRATION_OF"
-msgstr ""
+msgstr "konsantrasyonu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1033
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1684
@@ -1205,120 +1226,151 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4373
 msgid "AND"
-msgstr ""
+msgstr "ve"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1046
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 msgid "INTENSITY_OF"
-msgstr ""
+msgstr "şiddeti"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1053
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
 #: ../src/microbe_stage/MicrobeStage.tscn:1360
 msgid "LIGHT"
-msgstr ""
+msgstr "Işık"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1151
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
+"Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. "
+"Pigmentler, Fotosentez adı verilen bir işlemde, sudan glukoz ve "
+"karbondioksit gazı üretmek için ışık enerjisini kullanırlar. Bu pigmentler "
+"ayrıca proteine kendine özgü bir renk verir. Üretilen glukoz oranı, "
+"karbondioksit konsantrasyonu ve ışık şiddeti ile doğru orantılıdır. "
+"Tilakoidler direkt sitoplazmada asılı durduğundan etrafında bulunan akışkan "
+"sıvı fermentasyon yapar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1313
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr ". Oran konsantrasyonu ile doğru orantılı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
 msgid "CARBON"
-msgstr ""
+msgstr "Karbon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1332
 msgid "DIOXIDE"
-msgstr ""
+msgstr "Dioksit"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1350
 msgid "ALSO_TURNS"
-msgstr ""
+msgstr "Ayrıca dönüştürülür"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
+"Kimyasal sentezleyen proteinler, Hidrojen Sülfür Kemosentezi adı verilen bir "
+"işlemde, hidrojen sülfür, su ve karbondioksit gazını glukoza dönüştürebilen, "
+"sitoplazmada bulunan küçük proteinler kümesidir. Üretilen glukoz oranı, "
+"karbondioksit konsantrasyonu ile doğru orantılıdır. Kimyasal sentezleyen "
+"proteinler direkt sitoplazmada asılı durduğundan etrafında bulunan akışkan "
+"sıvı fermentasyon yapar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1789
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
+"Rustisiyanin, demiri bir kimsayal halden diğerine yükseltgemek için "
+"karbondioksit gazı ve oksijen kullanabilen bir proteindir. Demir Solunumu "
+"olarak adlandırılan bu işlem, hücrenin sonradan kullanabileceği enerjiyi "
+"verir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3215
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4330
 msgid "DOT_RATE"
-msgstr ""
+msgstr ". Oran"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1959
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3228
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4343
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4865
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "konsantrasyonu ile doğru orantılı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2064
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
+"Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan amonyağı üretmek için "
+"azot gazı ve ATP formundaki hücresel enerjiyi kullanabilen bir proteindir. "
+"Bu işlem Oksijensiz Azot Fiksasyonu olarak anılır. Nitrojenaz direkt "
+"sitoplazmada asılı durduğundan etrafında bulunan akışkan sıvı fermentasyon "
+"yapar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2203
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4806
 msgid "OXYTOXY"
-msgstr ""
+msgstr "OxyToxy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2221
 msgid "DOT_CAN_RELEASE"
-msgstr ""
+msgstr ". Salabilir"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
 msgid "TOXINS_BY_PRESSING_E"
-msgstr ""
+msgstr "toksinler E tuşuna basarak. Oran ile doğru orantılı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2351
 msgid "OXYTOXISOME_DESC"
 msgstr ""
+"OxyToxy NT zehir maddesinin ilkel bir formunun üretilmesinden sorumlu "
+"değiştirilmiş bir metabolozom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2458
 msgid "USES"
-msgstr ""
+msgstr "Kullanır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr ""
+msgstr "arttırmak için hareket"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2495
 msgid "SPEED_OF_THE_CELL"
-msgstr ""
+msgstr "hızını hücrenin."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2530
 msgid "SPEED"
-msgstr ""
+msgstr "Hız"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2615
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
+"Kamçı (veya Flagella), hücrenin bir doğrultuda kıvrılması ve ilerlemesi için "
+"ATP kullanabilen, hücre zarından uzanan kırbaç benzeri birbirine bağlanmış "
+"protein fiberleridir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2742
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr ""
+msgstr "Bununla diğer hücreleri del."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2568
 msgid "CILIA"
-msgstr ""
+msgstr "Sil"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5097
 msgid "TO_BE_IMPLEMENTED"
-msgstr ""
+msgstr "Henüz Eklenmedi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2969
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
+"Daha kompleks olan zarlı organellerin\n"
+"evrimleşmesini sağlar. Bakımı bir sürü\n"
+"ATP'ye mal olur. Bu evrimden geri\n"
+"dönülemez."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "NUCLEUS_DESCRIPTION"
@@ -2135,3 +2187,35 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
+msgid "OPEN_HELP_SCREEN"
+msgstr "Yardım ekranını aç"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
+msgid "OPEN_THE_MENU"
+msgstr "Menüyü aç"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
+msgid "WILL_YOU_THRIVE"
+msgstr "Başaracak mısın?"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:124
+msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
+msgstr "Düzenlemeyi bitir ve ortama dön"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
+msgid "CHANGE_THE_SYMMETRY"
+msgstr "Simetriyi değiştir"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:136
+msgid "UNDO_THE_LAST_ACTION"
+msgstr "Son eylemi geri al"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
+msgid "REDO_THE_LAST_ACTION"
+msgstr "Son eylemi tekrarla"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:148
+msgid "CREATE_A_NEW_MICROBE"
+msgstr "Yeni bir mikrop oluştur"
