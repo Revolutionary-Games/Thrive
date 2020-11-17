@@ -161,7 +161,7 @@ public class LoadingScreen : Control
             return;
         }
 
-        var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState.ToString());
+        var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState + "Tips");
         var selectedTip = tips.Messages.Random(random);
         Tip = selectedTip;
     }
