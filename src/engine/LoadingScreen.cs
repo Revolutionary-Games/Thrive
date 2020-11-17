@@ -37,7 +37,7 @@ public class LoadingScreen : Control
     private Label tipLabel;
     private Control spinner;
 
-    private bool visible;
+    private bool wasVisible;
 
     private Timer randomizeTipTimer;
 
@@ -148,7 +148,6 @@ public class LoadingScreen : Control
 
         if (!Visible)
         {
-            visible = true;
             OnBecomeVisible();
             Show();
         }
@@ -177,9 +176,9 @@ public class LoadingScreen : Control
         // Only elapse passed time if this is visible
         if (!Visible)
         {
-            if (visible)
+            if (wasVisible)
             {
-                visible = false;
+                wasVisible = false;
                 randomizeTipTimer.Stop();
             }
 
@@ -194,6 +193,7 @@ public class LoadingScreen : Control
 
     private void OnBecomeVisible()
     {
+        wasVisible = true;
         totalElapsed = 0;
 
         RandomizeArt();
