@@ -28,6 +28,7 @@ ArtDescriptionPath = NodePath("CenterContainer/VSplitContainer/ArtDescription")
 LoadingMessagePath = NodePath("CenterContainer2/VBoxContainer/LoadingMessage")
 LoadingDescriptionPath = NodePath("CenterContainer2/VBoxContainer/LoadingDescription")
 TipLabelPath = NodePath("TipLabel")
+RandomizeTipTimerPath = NodePath("TipTimer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -154,3 +155,6 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
+
+[node name="TipTimer" type="Timer" parent="."]
+wait_time = 5.0

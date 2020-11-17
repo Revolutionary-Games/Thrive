@@ -18,6 +18,9 @@ public class LoadingScreen : Control
     [Export]
     public NodePath TipLabelPath;
 
+    [Export]
+    public NodePath RandomizeTipTimerPath;
+
     /// <summary>
     ///   How fast the loading indicator spins
     /// </summary>
@@ -122,15 +125,11 @@ public class LoadingScreen : Control
         loadingMessageLabel = GetNode<Label>(LoadingMessagePath);
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
         tipLabel = GetNode<Label>(TipLabelPath);
+        randomizeTipTimer = GetNode<Timer>(RandomizeTipTimerPath);
 
         spinner = GetNode<Control>("Spinner");
 
-        randomizeTipTimer = new Timer
-        {
-            Autostart = false, WaitTime = 5, PauseMode = PauseModeEnum.Process, OneShot = false,
-        };
         randomizeTipTimer.Connect("timeout", this, "RandomizeTip");
-        AddChild(randomizeTipTimer);
 
         UpdateMessage();
         UpdateDescription();
