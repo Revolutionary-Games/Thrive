@@ -2,14 +2,14 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-17 12:00+0100\n"
-"PO-Revision-Date: 2020-11-15 15:15+0000\n"
-"Last-Translator: Kubagliko_PL <kubagliko333@gmail.com>\n"
+"POT-Creation-Date: 2020-11-18 19:40+0200\n"
+"PO-Revision-Date: 2020-11-18 17:27+0000\n"
+"Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -329,7 +329,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
+msgstr "Ciekawy Fakt, Thrive zrobione jest w open source-owym silniku Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
@@ -707,7 +707,7 @@ msgstr "poprzedni:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr ""
+msgstr "Zmutował się"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
@@ -715,7 +715,7 @@ msgstr "kod genetyczny:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "rozszedł się do biomów:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
@@ -725,7 +725,7 @@ msgstr "{0} wysyłając: {1} populacji z biomu: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "Populacja w biomie:"
 
-#: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
+#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
 msgstr "Wczytywanie"
 
@@ -967,11 +967,11 @@ msgstr "Wróć do Menu"
 msgid "EXIT"
 msgstr "Wyjdź"
 
-#: ../src/gui_common/MainMenu.cs:376
+#: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:377
+#: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
 msgstr ""
 
@@ -1001,7 +1001,7 @@ msgstr "Kreatywny Edytor Mikroba"
 
 #: ../src/gui_common/MainMenu.tscn:345
 msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Tryb Ostrzeżenie"
+msgstr "Ostrzeżenie Tryb GLES2"
 
 #: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING_TEXT"
@@ -1030,7 +1030,7 @@ msgstr "Otwórz ekran pomocy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Czy będziesz prosperować?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:124
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
@@ -1080,6 +1080,8 @@ msgstr "Zdrowie"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:337
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Sztywniejsza membrana jest bardziej odporna na uszkodzenia, ale utrudnia "
+"poruszanie się komórce."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:449
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:689
@@ -1092,7 +1094,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4280
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
 msgid "TURNS"
-msgstr ""
+msgstr "Skręca"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
@@ -1106,7 +1108,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4305
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4799
 msgid "INTO"
-msgstr ""
+msgstr "w"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:528
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:809
@@ -1125,7 +1127,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4613
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4916
 msgid "STORAGE"
-msgstr ""
+msgstr "Magazyn"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:559
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:840
@@ -1150,21 +1152,27 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6356
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6690
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Koszt Osmoregulacji"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
+"Płynne wnętrze komórki. Cytoplazma to podstawowa mikstura jonów, białek, i "
+"innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. "
+"Jedną z jej funkcji jest Fermentacja, przemiana glukozy w energię ATP. Dla "
+"komórek którym brakuje organelli do bardziej zaawansowanych metabolizmów, to "
+"na tym polegają dla energii. Jest również używana aby przechowywać molekuły "
+"i zwiększać rozmiar komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:742
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
 msgid "DOT_RATE_SCALES"
-msgstr ""
+msgstr ". Stosunek się skaluje"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:755
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
 msgid "WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "z koncentracją"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:762
 msgid "OXYGEN_DOT"
@@ -1173,11 +1181,17 @@ msgstr "Tlen."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:863
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
+"Metabolosomy to grupy protein zamknięte w proteinowych powłokach. Potrafią "
+"przetwarzać glukozę w ATP o wiele szybciej niż cytoplazma w procesie zwanym "
+"Oddychaniem Tlenowym. Jednak żeby funkcjonować potrzebują tlenu, i niższe "
+"stężenie tlenu w otoczeniu spowalnia ich szybkość produkcji ATP. Przez to, "
+"że metabolosomy są zanurzone bezpośrednio w cytoplazmie, otaczający płyn "
+"dokonuje fermentacji."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2041
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Tylakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:970
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
@@ -1189,7 +1203,7 @@ msgstr "Produkuje"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3465
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ""
+msgstr ". Szybkość skaluje się z"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
@@ -1224,7 +1238,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1313
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr ". Szybkość skaluje się ze stężeniem"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
 msgid "CARBON"
@@ -1474,7 +1488,7 @@ msgstr ""
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
@@ -1706,7 +1720,7 @@ msgstr "Kolor"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3994
 msgid "CONFIRM_CAPITAL"
-msgstr "Potwierdź"
+msgstr "POTWIERDŹ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4003
 msgid "NEGATIVE_ATP_BALANCE"
@@ -1773,48 +1787,48 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ATP_PRODUCTION"
 msgstr "Produkcja ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKCJA ATP JEST ZA NISKA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
 msgid "OSMOREGULATION"
 msgstr "populacja:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1469
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1474
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1579
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1514
 msgid "WITH_POPULATION"
 msgstr ""
 
@@ -1834,44 +1848,44 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:89 ../src/saving/InProgressLoad.cs:113
-#: ../src/saving/InProgressLoad.cs:160
+#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
+#: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:91
+#: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:115
+#: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:122
+#: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:175
+#: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:181
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
 msgstr ""
 
@@ -1919,19 +1933,19 @@ msgstr ""
 msgid "SAVING_FAILED"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:22
+#: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
 msgstr "Zapisz Grę"
 
-#: ../src/saving/SaveInformation.cs:31
+#: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
 msgstr "Użyte miejsce:"
 
-#: ../src/saving/SaveInformation.cs:40
+#: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
 msgstr "Zapisz Grę"
 
-#: ../src/saving/SaveInformation.cs:49
+#: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
 msgstr ""
 

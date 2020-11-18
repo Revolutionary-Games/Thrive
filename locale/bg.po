@@ -2,14 +2,14 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-17 11:58+0100\n"
-"PO-Revision-Date: 2020-11-15 15:15+0000\n"
-"Last-Translator: Georgi <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2020-11-18 19:37+0200\n"
+"PO-Revision-Date: 2020-11-18 17:27+0000\n"
+"Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -173,15 +173,15 @@ msgstr ""
 "струва МТ, но премахването на органели, които са добавени в текущата сесия "
 "на редактора, връща тяхната стойност. Може да премахнете органел като го "
 "натиснете с десния бутон на мишката. Може да завъртите органел чрез "
-"натискане на „A“ или „D“"
+"натискане на „A“ или „D“."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"По време на възпроизвеждане Микробния редактор ще бъде отворен, в него може "
+"По време на възпроизвеждане, микробния редактор ще бъде отворен, в него може "
 "да променяте Вашето създание (като добавяте, премествате или премахвате "
 "органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора "
-"е равно на 100 милиона години еволюция"
+"е равно на 100 милиона години еволюция."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
@@ -212,11 +212,11 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Забавен факт е, че истинските прокариоти имат нещо като биоотделения, "
-"приличат си с органелите и всъщност се наричат многостенни органели"
+"приличат си с органелите и всъщност се наричат многостенни органели."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Забавен факт е, че метаболозомата представлява многостенен органел"
+msgstr "Забавен факт е, че метаболозомата представлява многостенен органел."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
@@ -727,7 +727,7 @@ msgstr "към {0}: {1} от популацията в: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "популация в зоните:"
 
-#: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
+#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
 msgstr "Зареждане"
 
@@ -967,11 +967,11 @@ msgstr "Главно меню"
 msgid "EXIT"
 msgstr "Изход"
 
-#: ../src/gui_common/MainMenu.cs:376
+#: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:377
+#: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
 msgstr ""
 
@@ -1586,7 +1586,7 @@ msgstr ""
 "Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването "
 "на хранителните вещества."
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
@@ -1893,48 +1893,48 @@ msgstr "Създания"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Преселване"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Глюкозата се понижи на {0} от предишното си състояние."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ATP_PRODUCTION"
 msgstr "Произвеждан АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ПРОИЗВЕЖДАНИЯТ АТФ Е НЕДОСТАТЪЧЕН!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
 msgid "OSMOREGULATION"
 msgstr "Осморегулация"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
 msgid "BASE_MOVEMENT"
 msgstr "Базово движение"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1469
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1474
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1579
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1514
 msgid "WITH_POPULATION"
 msgstr "{0} с популация от: {1}"
 
@@ -1961,44 +1961,44 @@ msgstr ""
 "играта след като този прозорец се затвори или да започнете нова игра в нов "
 "свят."
 
-#: ../src/saving/InProgressLoad.cs:89 ../src/saving/InProgressLoad.cs:113
-#: ../src/saving/InProgressLoad.cs:160
+#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
+#: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
 msgstr "Зареждане на играта"
 
-#: ../src/saving/InProgressLoad.cs:91
+#: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
 msgstr "Четене на запазените данни"
 
-#: ../src/saving/InProgressLoad.cs:115
+#: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Създаване на обектите от записа"
 
-#: ../src/saving/InProgressLoad.cs:122
+#: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Грешка по време на зареждането на запазените данни"
 
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
 msgstr "Записът е невалиден"
 
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "Записът има невалидно състояние на играта"
+msgstr "Записът съдържа невалидно състояние на играта"
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обработване на заредените обекти"
 
-#: ../src/saving/InProgressLoad.cs:175
+#: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Грешка по време на обработката на заредените обекти"
 
-#: ../src/saving/InProgressLoad.cs:181
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
 msgstr "Зареждането приключи"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
 msgstr "Грешка по време на зареждането"
 
@@ -2044,21 +2044,21 @@ msgstr "Запазването е успешно"
 
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
-msgstr "Запазването е неуспешно! Има грешка"
+msgstr "Запазването е неуспешно! Отчетена е грешка"
 
-#: ../src/saving/SaveInformation.cs:22
+#: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:31
+#: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:40
+#: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:49
+#: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
 msgstr ""
 
@@ -2231,14 +2231,14 @@ msgstr "Упътване"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:59
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Добре дошли в Микробния редактор.\n"
+"Добре дошли в микробния редактор.\n"
 "Тук може да видите какво се е случило от началото на играта или от "
 "последното Ви влизане в редактора.\n"
 "\n"
 "В този раздел може да разгледате отчета за различните създания. Също така, "
-"може да видите промените в околната среда.\n"
+"може да наблюдавате промените в околната среда.\n"
 "\n"
-"За да превключите към слевдващия раздел, натиснете бутона „НАПРЕД“, който се "
+"За да преминете в слевдващия раздел, натиснете бутона „НАПРЕД“, който се "
 "намира долу вдясно."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:92
@@ -2258,7 +2258,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:122
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"Това е Микробния редактор, тук може да добавяте или премахвате органели от "
+"Това е микробния редактор, тук може да добавяте или премахвате органели от "
 "Вашите създания, чрез наличните мутационни точки (МТ).\n"
 "\n"
 "Също така, може да променяте и другите характеристики по Вашите създания, "
@@ -2297,7 +2297,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Това е основната информация за Микробния редактор. Може да разгледате и "
+"Това е основната информация за микробния редактор. Може да разгледате и "
 "останалите раздели в редактора за повече настройки.\n"
 "\n"
 "Може да преименувате Вашите създания, като натиснете с мишката върху "

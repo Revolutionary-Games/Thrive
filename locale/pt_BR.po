@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-17 12:01+0100\n"
+"POT-Creation-Date: 2020-11-18 19:40+0200\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -728,7 +728,7 @@ msgstr ""
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "população nas regiões:"
 
-#: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
+#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
 msgstr "Carregando"
 
@@ -968,11 +968,11 @@ msgstr "Voltar ao Menu"
 msgid "EXIT"
 msgstr "Sair"
 
-#: ../src/gui_common/MainMenu.cs:376
+#: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:377
+#: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
 msgstr ""
 
@@ -1589,7 +1589,7 @@ msgstr ""
 "energia para manter sua forma. No entanto, diminui a velocidade da célula "
 "drasticamente e a célula e não absorve recursos rapidamente."
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
@@ -1896,48 +1896,48 @@ msgstr "Espécies Presentes"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Mover para esta região"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ATP_PRODUCTION"
 msgstr "Produção de ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUÇÃO DE ATP MUITO BAIXA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
 msgid "OSMOREGULATION"
 msgstr "Osmorregulação"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
 msgid "BASE_MOVEMENT"
 msgstr "Movimento Base"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1469
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1474
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sob o nível do mar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1579
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1514
 msgid "WITH_POPULATION"
 msgstr "{0} com a população: {1}"
 
@@ -1963,44 +1963,44 @@ msgstr ""
 "esta tela fechar se você quiser, ou pode começar um novo jogo em um novo "
 "mundo."
 
-#: ../src/saving/InProgressLoad.cs:89 ../src/saving/InProgressLoad.cs:113
-#: ../src/saving/InProgressLoad.cs:160
+#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
+#: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
 msgstr "Carregando Jogo"
 
-#: ../src/saving/InProgressLoad.cs:91
+#: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
 msgstr "Lendo dados salvos"
 
-#: ../src/saving/InProgressLoad.cs:115
+#: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Criando objetos do jogo salvo"
 
-#: ../src/saving/InProgressLoad.cs:122
+#: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Uma exceção aconteceu ao carregar os dados salvos"
 
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
 msgstr "O jogo salvo é inválido"
 
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "O jogo salvamento tem uma cena de game state inválida"
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processando objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:175
+#: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Uma exceção ocorreu ao processar objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:181
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
@@ -2048,19 +2048,19 @@ msgstr "Salvo com êxito"
 msgid "SAVING_FAILED"
 msgstr "O salvamento falhou! Uma exceção aconteceu"
 
-#: ../src/saving/SaveInformation.cs:22
+#: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:31
+#: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:40
+#: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:49
+#: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
 msgstr ""
 

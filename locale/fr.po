@@ -2,13 +2,13 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-17 11:38+0100\n"
-"PO-Revision-Date: 2020-11-14 19:16+0000\n"
+"POT-Creation-Date: 2020-11-18 19:37+0200\n"
+"PO-Revision-Date: 2020-11-18 17:27+0000\n"
 "Last-Translator: Mauboussin Lucas <dragonmemo492@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "W,A,S,D et souris pour bouger. E pour tirer des OxyToxy NT si vous avez une "
-"vacuole à toxines. G pour passer en mode englouti."
+"vacuole à toxines. G pour passer en mode absorption."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -45,10 +45,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Vous pouvez aussi engloutir des cellules, des bactéries, des morceaux de fer "
+"Vous pouvez aussi absorber des cellules, des bactéries, des morceaux de fer "
 "et de cellules qui sont plus petit que vous en pressant G. Cela vous coûtera "
 "plus d'ATP et vous ralentira. N'oubliez pas de presser G une seconde fois "
-"pour immerger."
+"arrêter d'absorber."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
@@ -125,38 +125,69 @@ msgstr ""
 "du glucose à partir de Sulfure d'Hydrogène, mais réalisent aussi la "
 "glycolyse, prennent un Hexagone\n"
 "\n"
-"Chromatophores : Produisent à 1/3 de l'efficacité de glucose par rapport à "
-"un chloroplaste normal, mais réalisent aussi la glycolyse, et prennent un "
+"Thylacoïdes : Produisent à 1/3 de l'efficacité de glucose par rapport à un "
+"chloroplaste normal, mais réalisent aussi la glycolyse, et prennent un "
 "Hexagone.\n"
 "\n"
-"Rusticyanine : Convertissent le fer en ATP.\n"
+"Rusticyanine : Convertissent le fer en ATP\n"
 "\n"
 "Nitrogénase : Convertissent l'azote environnant et l'ATP en ammoniaque en "
 "anaérobie\n"
 "\n"
 "Cytoplasme : Ont des espaces de stockage et réalisent la glycolyse (Produit "
-"une faible quantité d'ATP)."
+"une faible quantité d'ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Organites Externes\n"
 "\n"
-"Flagelle : Déplacent votre cellule plus vite en consommant de l'ATP.\n"
+"Flagelle : Déplacent votre cellule plus vite en consommant de l'ATP\n"
 "\n"
-"Pilus : Peut être utilisé pour blesser d'autres cellules."
+"Pilus : Peut être utilisé pour blesser d'autres cellules"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Organites Liées à la Membrane\n"
+"\n"
+"Noyau : Prends 11 hexagones et permet l'évolution d'organites liée à la "
+"membrane. Double aussi la taille de votre cellule. (Ne peut être évolué "
+"qu'une fois)\n"
+"\n"
+"Mitochondrie : Produisent de l'ATP à partir de glucose et de l'O2 "
+"environnant. Bien plus efficace que le cytoplasme\n"
+"\n"
+"Chloroplaste : Produisent du glucose à partir de rayons solaires et du CO2 "
+"environnant\n"
+"\n"
+"Chimioplaste : Produisent du glucose à partir de Sulfure d'Hydrogène\n"
+"\n"
+"Plaste Fixeur d'Azote : Produisent de l'ammoniaque à partir d'ATP et d'Azote "
+"et d'Oxygène environnant\n"
+"\n"
+"Vacuole : Stockent 15 éléments collectés\n"
+"\n"
+"Vacuoles à Toxines : Produisent des toxines (nommées OxyToxy NT)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"À chaque génération, vous avez 100 points de mutation à dépenser, et chaque "
+"changement (ou mutation) coûtera une certaine quantité de ces PM. Ajouter ou "
+"retirer des organites coûte de PM, mais retirer les organites placées lors "
+"de cette mutation rembourse les PM de cette organite. Vous pouvez retirer "
+"une organite en faisant un clique droit dessus. Vous pouvez faire tourner "
+"vos organites avec A et D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"À chaque fois que vous vous reproduisez, vous entrez dans l'Éditeur de "
+"Microbes, où vous pouvez faire des modifications à votre espèce (en "
+"ajoutant, tournant ou retirant des organites) pour augmenter les chances de "
+"réussite de votre espèce. Chaque visite à l'éditeur dans le stade Microbe "
+"représente 100 millions d'années d'évolution."
 
 #: ../simulation_parameters/common/help_texts.json:43
 #, fuzzy
@@ -166,30 +197,46 @@ msgstr "Chargement"
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
+"Fait Amusant, les Didiniums et les Paramécies sont des exemples littéraires "
+"de la relation proie/prédateur qui a été étudié pendant des décennies, "
+"maintenant êtes vous le Didinium ou le Paramécie ? Prédateur ou Proie ?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
+"Voici une astuce, les toxines peuvent être utilisées pour envoyer d'autres "
+"toxines loin de vous si vous êtes suffisamment rapide."
 
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
+"Voici une astuce, l'Osmorégulation coûte 1 ATP par seconde par hexagone que "
+"votre cellule possède, chaque cellule vide de votre cytoplasme génère aussi "
+"5 ATP par seconde, ce qui signifie que si vous perdez de l'ATP à cause de "
+"l'osmorégulation ajoutez juste quelques hexagones de cytoplasmes vides ou "
+"retirez quelques organites."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
+"Fait Amusant, dans la vie réelle les procaryotes ont quelque chose appelé "
+"Biocompartiments qui agissent comme des organites, et sont en fait nommés "
+"Organites Polyédraux."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
+"Fait Amusant, le métabolosome est ce qui est appelé un Organite Polyédral."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "Voici une astuce, parfois il vaut mieux fuir les autres cellules."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
+"Voici une astuce, si une cellule fait moins de la moitié de votre taille, "
+"vous pouvez l'absorber."
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
@@ -659,7 +706,7 @@ msgstr ""
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
+#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
 msgstr "Chargement"
 
@@ -895,11 +942,11 @@ msgstr ""
 msgid "EXIT"
 msgstr "Quitter"
 
-#: ../src/gui_common/MainMenu.cs:376
+#: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:377
+#: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
 msgstr ""
 
@@ -1155,7 +1202,7 @@ msgstr "Carbone"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1332
 msgid "DIOXIDE"
-msgstr "Dioxide"
+msgstr "Dioxyde"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1350
 msgid "ALSO_TURNS"
@@ -1397,7 +1444,7 @@ msgstr ""
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
@@ -1696,48 +1743,48 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1469
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1474
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1579
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1514
 msgid "WITH_POPULATION"
 msgstr ""
 
@@ -1757,44 +1804,44 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:89 ../src/saving/InProgressLoad.cs:113
-#: ../src/saving/InProgressLoad.cs:160
+#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
+#: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:91
+#: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:115
+#: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:122
+#: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:175
+#: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:181
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
 msgstr ""
 
@@ -1842,19 +1889,19 @@ msgstr ""
 msgid "SAVING_FAILED"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:22
+#: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:31
+#: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:40
+#: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:49
+#: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
 msgstr ""
 
