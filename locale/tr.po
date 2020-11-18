@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-18 19:42+0200\n"
-"PO-Revision-Date: 2020-11-18 17:27+0000\n"
+"PO-Revision-Date: 2020-11-18 21:59+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -79,7 +79,7 @@ msgstr ""
 "Sarı – Hidrojen Sülfür\n"
 "Turuncu – Amonyak\n"
 "Mor – Fosfat\n"
-"Pas Rengi– Demir\n"
+"Pas Rengi – Demir\n"
 "\n"
 "Glukoz ATP oluşturur"
 
@@ -88,8 +88,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "Hidrojen Sülfür; kemoplastlar ve kemosentez yapan proteinler aracılığıyla "
-"glukoza dönüştürülebilir. Demir, rustisiyanin aracılığıyla ATP'ye "
-"dönüştürülebilir."
+"glukoza dönüştürülür. Demir, rustisiyanin aracılığıyla ATP'ye dönüştürülür."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
@@ -183,8 +182,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr ""
-"İPUCU: Editördeyken, yanlışlıkları düzeltmek için geri al butonuna basın"
+msgstr "Editördeyken yanlışlıkları düzeltmek için geri al butonuna bas"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
@@ -234,15 +232,14 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "İşte sana ipucu. Bakteriler göründüğünden güçlü olabilir. Küçük "
-"görünebilirler ama bazıları sana çukur kazabilir ve seni bu şekilde "
-"öldürebilir!"
+"görünebilirler ama bazıları sana çukur kazıp seni bu şekilde öldürebilir!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "İşte sana ipucu. Eğer yeterince dikkatli olmazsan, diğer türleri avlayarak "
 "soylarının tükenmesine neden olabilirsin. Türler ayrıca başka türler "
-"tarafından avlanıp soyu yok olabilir."
+"tarafından avlanıp yok olabilir."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -314,8 +311,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "Thrive'ın ses ekibi oyuna henüz eklenmeyen birçok şarkı yaptı. Bu şarkıları "
-"dinleyebilirsiniz veya Oliver Lugg'ın YouTube kanalından beste yaptığı "
-"sırada çekilen yayın akışlarını izleyebilirsiniz."
+"dinleyebilirsin veya Oliver Lugg'ın YouTube kanalından beste yaptığı sırada "
+"çekilen yayın akışlarını izleyebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
@@ -856,7 +853,7 @@ msgstr "Tanıtım videosunu oynat"
 
 #: ../src/general/OptionsMenu.tscn:746
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr "Yeni Oyunda Mikrop Tanıtımını Oynat"
+msgstr "Yeni Oyunda Mikrop Tanıtımını oynat"
 
 #: ../src/general/OptionsMenu.tscn:755
 msgid "AUTOSAVE_DURING_THE_GAME"
@@ -868,7 +865,7 @@ msgstr "Saklanacak otomatik kayıt miktarı:"
 
 #: ../src/general/OptionsMenu.tscn:794
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Saklanacak hızlı kayıt miktarı:"
+msgstr "Saklanacak çabuk kayıt miktarı:"
 
 #: ../src/general/OptionsMenu.tscn:820
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
@@ -977,11 +974,11 @@ msgstr "Çık"
 
 #: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
-msgstr ""
+msgstr "Tamam"
 
 #: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
@@ -1191,7 +1188,7 @@ msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. "
 "Sitoplazmada gerçekleşen oksijenli solunuma kıyasla, metabolozomlar glukozu "
-"ATP'ye çok daha yüksek oranlarda dönüştürebilirler. Ancak metabolozomlar "
+"ATP'ye çok daha yüksek oranlarda dönüştürebilir. Ancak metabolozomlar "
 "çalışmak için oksijen gerektirir ve ortamda bulunan düşük seviyelerdeki "
 "oksijen, onun ATP sentezleme hızını yavaşlatır. Metabolozomlar direkt "
 "sitoplazmada asılı durduğundan etrafında bulunan akışkan sıvı fermentasyon "
@@ -1370,7 +1367,7 @@ msgstr ""
 "Daha kompleks olan zarlı organellerin\n"
 "evrimleşmesini sağlar. Bakımı bir sürü\n"
 "ATP'ye mal olur. Bu evrimden geri\n"
-"dönülemez."
+"dönüş yapılamaz."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "NUCLEUS_DESCRIPTION"
@@ -1592,7 +1589,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "/saniye"
 
 #: ../src/microbe_stage/Microbe.cs:1150
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1624,7 +1621,7 @@ msgstr "oyuncu öldü"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:878
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "İmleç Üzerinde:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:902
 msgid "NOTHING_HERE"
@@ -1880,7 +1877,7 @@ msgstr "Detayları görmek için bir arazi seçin"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4386
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
+msgstr "MEVCUT KONUM"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4466
 msgid "PHYSICAL_CONDITIONS"
@@ -1900,7 +1897,7 @@ msgstr "Bu Araziye Git"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "Serbest mod"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -1908,11 +1905,11 @@ msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "Myö"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
-msgstr ""
+msgstr "yıl"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
@@ -1962,7 +1959,7 @@ msgstr "BAŞARDIN!"
 msgid "WIN_TEXT"
 msgstr ""
 "Tebrikler, Thrive'ın bu sürümünü kazanmayı başardın! İstersen, bu bildiri "
-"gittikten sonra da oynamaya devam edebilirsin veya yeni bir konumda, yeni "
+"kaybolduktan sonra da oynamaya devam edebilirsin veya yeni bir konumda, yeni "
 "bir oyun başlatabilirsin."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
@@ -2052,19 +2049,19 @@ msgstr "Kaydetme başarısız! Bir sorun oluştu"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr ""
+msgstr "Manüel kayıt"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "Otomatik kayıt"
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "Çabuk kayıt"
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "Geçersiz"
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"
@@ -2174,10 +2171,10 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Otomatik ve Hızlı kayıtların tamamını silme işlemi geri alınamaz, sıralanan "
+"Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, sıralanan "
 "kayıtları kalıcı olarak silmek istediğinden emin misin?\n"
 " - {0} Otomatik kayıt\n"
-" - {1} Hızlı kayıt"
+" - {1} Çabuk kayıt"
 
 #: ../src/saving/SaveManagerGUI.tscn:64
 msgid "REFRESH"
@@ -2209,7 +2206,7 @@ msgstr "Seçilenler:"
 
 #: ../src/saving/SaveManagerGUI.tscn:180
 msgid "DELETE_SELECTED_SAVES"
-msgstr "Seçilen Kayıtları Sil?"
+msgstr "Seçilen Kayıtları sil?"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES"
@@ -2331,7 +2328,7 @@ msgstr ""
 "\n"
 "Hayat.\n"
 "\n"
-"Okyanusun derinliklerine basit mikroplar ortaya çıktı. Sen bu gezegendeki "
+"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Sen bu gezegendeki "
 "son evrensel ortak atasın (LUCA).\n"
 "\n"
 "Bu hasım dünyada hayatta kalmak için, bulabildiğin her bileşiği toplaman ve "
@@ -2351,7 +2348,7 @@ msgstr ""
 "Hücreni kontrol etmek için hücrenin yakınında gösterilen tuşları (ekranın "
 "ortasında) ve hücreyi döndürmek için fareyi kullan.\n"
 "\n"
-"Devam etmek için birkaç saniyeliğine gösterilen tuşları dene."
+"Devam etmek için birkaç saniyeliğine ekranda gösterilen tuşları dene."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
 msgid "MICROBE_STAGE_COLLECT_TEXT"
