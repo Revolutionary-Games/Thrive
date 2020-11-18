@@ -89,14 +89,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=95]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=96]
 
-
-
-
-
-
-
-
-
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
 border_width_left = 1
@@ -3839,10 +3831,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 208.0
-margin_top = 230.0
-margin_right = 510.0
-margin_bottom = 696.0
+margin_left = 212.0
+margin_top = 234.0
+margin_right = 514.0
+margin_bottom = 700.0
 theme = SubResource( 42 )
 edit_alpha = false
 
@@ -3989,7 +3981,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/ConfirmButton"]
-margin_right = 140.0
+margin_right = 164.0
 margin_bottom = 40.0
 focus_mode = 0
 mouse_filter = 1
@@ -4392,10 +4384,10 @@ margin_right = 376.0
 margin_bottom = 46.0
 custom_fonts/font = SubResource( 57 )
 custom_colors/font_color = Color( 0, 1, 0.117647, 1 )
-text = "CURRENT LOCATION"
+text = "CURRENT_LOCATION_CAPITAL"
 align = 1
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="Biome" type="Label" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
