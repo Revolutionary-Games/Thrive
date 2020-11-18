@@ -1,8 +1,7 @@
 using System;
-using System.IO;
 using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class RandomConverter : JsonConverter
 {
@@ -18,14 +17,19 @@ public class RandomConverter : JsonConverter
             int[] seedArray = (int[])seedArrayInfo.GetValue((Random)value);
             int inext = (int)inextInfo.GetValue((Random)value);
             int inextp = (int)inextpInfo.GetValue((Random)value);
-            int currSeed = seedArray[inext] - seedArray[inextp];
 
-            var formatter = new BinaryFormatter();
-            using (var dataWriter = new MemoryStream())
-            {
-                formatter.Serialize(dataWriter, currSeed);
-                serializer.Serialize(writer, Convert.ToBase64String(dataWriter.GetBuffer()));
-            }
+            writer.WriteStartObject();
+
+            writer.WritePropertyName("seedArray");
+            serializer.Serialize(writer, seedArray);
+
+            writer.WritePropertyName("inext");
+            serializer.Serialize(writer, inext);
+
+            writer.WritePropertyName("inextp");
+            serializer.Serialize(writer, inextp);
+
+            writer.WriteEndObject();
         }
         else
         {
@@ -36,16 +40,35 @@ public class RandomConverter : JsonConverter
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
-        var formatter = new BinaryFormatter();
-        var encoded = serializer.Deserialize<string>(reader);
-
-        if (string.IsNullOrEmpty(encoded))
-            return null;
-
-        using (var dataReader = new MemoryStream(Convert.FromBase64String(encoded)))
+        if (reader.TokenType != JsonToken.StartObject)
         {
-            int seed = (int)formatter.Deserialize(dataReader);
-            return new Random(seed);
+            return default(Random);
+        }
+
+        var item = JObject.Load(reader);
+
+        try
+        {
+            var random = new Random();
+
+            Type type = typeof(Random);
+            FieldInfo seedArrayInfo = type.GetField("_seedArray", BindingFlags.NonPublic | BindingFlags.Instance);
+            FieldInfo inextInfo = type.GetField("_inext", BindingFlags.NonPublic | BindingFlags.Instance);
+            FieldInfo inextpInfo = type.GetField("_inextp", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            int[] seedArray = item["seedArray"].Value<int[]>();
+            int inext = item["inext"].Value<int>();
+            int inextp = item["inextp"].Value<int>();
+
+            seedArrayInfo.SetValue(random, seedArray);
+            inextInfo.SetValue(random, inext);
+            inextpInfo.SetValue(random, inextp);
+
+            return random;
+        }
+        catch (NullReferenceException e)
+        {
+            throw new JsonException("Can't read Random (missing property)", e);
         }
     }
 
