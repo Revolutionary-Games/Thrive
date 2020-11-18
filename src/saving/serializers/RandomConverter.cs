@@ -14,67 +14,65 @@ public class RandomConverter : JsonConverter
     private readonly FieldInfo inextpInfo = typeof(Random).GetField("_inextp", BindingFlags.NonPublic |
         BindingFlags.Instance);
 
+    public RandomConverter()
+    {
+        if (seedArrayInfo == null || inextInfo == null || inextpInfo == null)
+            throw new NullReferenceException("RandomConverter could not find a specified field in Random");
+    }
+
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        if (seedArrayInfo != null && inextInfo != null && inextpInfo != null)
-        {
-            int[] seedArray = (int[])seedArrayInfo.GetValue((Random)value);
-            int inext = (int)inextInfo.GetValue((Random)value);
-            int inextp = (int)inextpInfo.GetValue((Random)value);
+        var converted = (Random)value;
 
-            writer.WriteStartObject();
+        var seedArray = (int[])seedArrayInfo.GetValue(converted);
+        var inext = (int)inextInfo.GetValue(converted);
+        var inextp = (int)inextpInfo.GetValue(converted);
 
-            writer.WritePropertyName("seedArray");
-            serializer.Serialize(writer, seedArray);
+        writer.WriteStartObject();
 
-            writer.WritePropertyName("inext");
-            serializer.Serialize(writer, inext);
+        writer.WritePropertyName("seedArray");
+        serializer.Serialize(writer, seedArray);
 
-            writer.WritePropertyName("inextp");
-            serializer.Serialize(writer, inextp);
+        writer.WritePropertyName("inext");
+        serializer.Serialize(writer, inext);
 
-            writer.WriteEndObject();
-        }
-        else
-        {
-            throw new NullReferenceException("One or more fields did not exist in the type or did not match the " +
-                "specified binding constraints");
-        }
+        writer.WritePropertyName("inextp");
+        serializer.Serialize(writer, inextp);
+
+        writer.WriteEndObject();
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
         if (reader.TokenType != JsonToken.StartObject)
-        {
-            return default(Random);
-        }
+            return null;
 
         var item = JObject.Load(reader);
 
+        var random = new Random();
+
+        // Backwards compatibility with no Random saved state
+        if (!item.HasValues)
+            return random;
+
         try
         {
-            var random = new Random();
+            // ReSharper disable AssignNullToNotNullAttribute PossibleNullReferenceException
+            var inext = item["inext"].Value<int>();
+            var inextp = item["inextp"].Value<int>();
+            var seedArray = item["seedArray"].ToObject<int[]>();
 
-            // ReSharper disable AssignNullToNotNullAttribute
-            int[] seedArray = item["seedArray"].Value<int[]>();
-            int inext = item["inext"].Value<int>();
-            int inextp = item["inextp"].Value<int>();
+            // ReSharper restore AssignNullToNotNullAttribute PossibleNullReferenceException
 
-            // ReSharper restore AssignNullToNotNullAttribute
-
-            if (seedArrayInfo != null && inextInfo != null && inextpInfo != null)
-            {
-                seedArrayInfo.SetValue(random, seedArray);
-                inextInfo.SetValue(random, inext);
-                inextpInfo.SetValue(random, inextp);
-            }
-            else
-            {
-                throw new NullReferenceException("One or more fields did not exist in the type or did not match " +
-                    "the specified binding constraints");
-            }
+            seedArrayInfo.SetValue(random, seedArray);
+            inextInfo.SetValue(random, inext);
+            inextpInfo.SetValue(random, inextp);
 
             return random;
+        }
+        catch (ArgumentException e)
+        {
+            throw new JsonException("Can't read Random (missing property)", e);
         }
         catch (NullReferenceException e)
         {
