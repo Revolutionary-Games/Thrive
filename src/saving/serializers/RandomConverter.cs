@@ -56,24 +56,24 @@ public class RandomConverter : JsonConverter
             FieldInfo inextInfo = type.GetField("_inext", BindingFlags.NonPublic | BindingFlags.Instance);
             FieldInfo inextpInfo = type.GetField("_inextp", BindingFlags.NonPublic | BindingFlags.Instance);
 
-            int[] seedArray = item["seedArray"].Value<int[]>() ?? new int[] { 0 };
-            int? inext = item["inext"].Value<int>();
-            int? inextp = item["inextp"].Value<int>();
+            // ReSharper disable AssignNullToNotNullAttribute
+            int[] seedArray = item["seedArray"].Value<int[]>();
+            int inext = item["inext"].Value<int>();
+            int inextp = item["inextp"].Value<int>();
 
-            if (seedArray.Length == 1 || inext == null || inextp == null)
+            // ReSharper restore AssignNullToNotNullAttribute
+
+            if (seedArrayInfo != null && inextInfo != null && inextpInfo != null)
             {
-                throw new NullReferenceException("Can't read Random (one or more properties are missing");
+                seedArrayInfo.SetValue(random, seedArray);
+                inextInfo.SetValue(random, inext);
+                inextpInfo.SetValue(random, inextp);
             }
-
-            if (seedArrayInfo == null && inextInfo == null && inextpInfo == null)
+            else
             {
-                throw new NullReferenceException("One or more fields did not exist in the type or did not match the " +
-                "specified binding constraints");
+                throw new NullReferenceException("One or more fields did not exist in the type or did not match " +
+                    "the specified binding constraints");
             }
-
-            seedArrayInfo.SetValue(random, seedArray);
-            inextInfo.SetValue(random, inext.Value);
-            inextpInfo.SetValue(random, inextp.Value);
 
             return random;
         }
