@@ -313,4 +313,14 @@ public class MainMenu : Node
 
         thriveLogo.Show();
     }
+
+    /// <summary>
+    ///   This never called method contains translation strings that exist, but cannot automatically be extracted.
+    ///   Examples are predefined Godot strings, like popup buttons.
+    /// </summary>
+    private void CallMiscTranslations()
+    {
+        _ = TranslationServer.Translate("OK");
+        _ = TranslationServer.Translate("Cancel");
+    }
 }
