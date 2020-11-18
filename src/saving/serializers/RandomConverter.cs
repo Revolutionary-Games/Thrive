@@ -7,8 +7,10 @@ public class RandomConverter : JsonConverter
 {
     private readonly FieldInfo seedArrayInfo = typeof(Random).GetField("_seedArray", BindingFlags.NonPublic |
         BindingFlags.Instance);
+
     private readonly FieldInfo inextInfo = typeof(Random).GetField("_inext", BindingFlags.NonPublic |
         BindingFlags.Instance);
+
     private readonly FieldInfo inextpInfo = typeof(Random).GetField("_inextp", BindingFlags.NonPublic |
         BindingFlags.Instance);
 
