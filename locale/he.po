@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-18 19:47+0200\n"
-"PO-Revision-Date: 2020-11-18 17:27+0000\n"
+"PO-Revision-Date: 2020-11-18 20:36+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/he/>\n"
@@ -92,7 +92,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"כדילהתרבות, עליכם לחלק כל אחד מהאברונים לשניים. אברונים זקוקים לאמוניה "
+"כדי להתרבות, עליכם לחלק כל אחד מהאברונים לשניים. האברונים זקוקים לאמוניה "
 "ופוספט על מנת להתפצל לשניים."
 
 #: ../simulation_parameters/common/help_texts.json:14
@@ -162,18 +162,19 @@ msgstr ""
 "בכל דור, נוצרים 100 נקודות מוטציה (נקמ\"ו) שניתן לבזבז, ועל כל שינוי (או "
 "מוטציה) יעלה סכום מסוים מהנקמ\"ו. הוספה או הוסרה של אברונים עולים נקמ\"ו, "
 "אבל הסרה של אברונים שנוספו בסיבוב המוטציה נוכחית מחזיר את העלות של אותו "
-"אברון. ניתן להסיר אברון על ידי הלחצן הימני עליו. ניתן לסובב את אברון עם A וD"
+"אברון. ניתן להסיר אברון על ידי הלחצן הימני עליו. ניתן לסובב את אברון במקשים "
+"A וD."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "בכל פעם שאתה מתרבה, אתה נכנס לעורך המיקרובי. שם תוכל לבצע שינוי במין שלך (על "
 "ידי הוספה, העברה או הסרה של אברונים) בכדי להגדיל את הצלחת המין שלך. כל ביקור "
-"בעורך בשלב המיקרובי מייצג 100 מיליון שנות אבולוציה"
+"בעורך בשלב המיקרובי מייצג 100 מיליון שנות אבולוציה."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr "טיפ: לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
@@ -197,11 +198,11 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "עובדה משעשעת: במציאות, לפרוקריוטים יש משהו שנקרא ביוכומפרטמנט שמתנהג כמו "
-"אברון, שלמעשה הם נקראים אברונים פאותפולידריאליים"
+"אברון, שלמעשה הם נקראים אברונים פאותפולידריאליים."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "עובדה משעשעת! מטבולוזום הוא מה שנקרא אברון פאותפולידריאליים"
+msgstr "עובדה משעשעת! מטבולוזום הוא מה שנקרא אברון פאותפולידריאליים."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
@@ -335,7 +336,7 @@ msgstr "פוטוסינתזה"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "סינתזת \"אוקסיטוקסי נ\"ט\""
+msgstr "סינתזת \"אוקסיטוקסי\""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
@@ -352,7 +353,7 @@ msgstr "קיבוע חנקן אנאירובי"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "כימוליתו-אוטוטרופ של ברזל"
+msgstr "כימוליתו-אוטוטרופ ברזלי"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -370,7 +371,7 @@ msgstr "הים הפתוח"
 #: ../simulation_parameters/microbe_stage/biomes.json:1445
 #: ../simulation_parameters/microbe_stage/biomes.json:1572
 msgid "FLOATING_HAZARD"
-msgstr "קרחון סורר"
+msgstr "מפגע צף"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
 #: ../simulation_parameters/microbe_stage/biomes.json:165
@@ -778,7 +779,7 @@ msgstr "עוצמת מוזיקה"
 
 #: ../src/general/OptionsMenu.tscn:464
 msgid "AMBIANCE_VOLUME"
-msgstr "עוצמת האווירה"
+msgstr "עוצמת אווירה"
 
 #: ../src/general/OptionsMenu.tscn:497
 msgid "SFX_VOLUME"
@@ -786,7 +787,7 @@ msgstr "עוצמת אפקטים"
 
 #: ../src/general/OptionsMenu.tscn:530
 msgid "GUI_VOLUME"
-msgstr "עוצמת ממשק משתמש גרפי"
+msgstr "עוצמת ממשק עזרים"
 
 #: ../src/general/OptionsMenu.tscn:575
 msgid "LANGUAGE"
@@ -944,11 +945,11 @@ msgstr "יציאה"
 
 #: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
-msgstr ""
+msgstr "אוקי"
 
 #: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
-msgstr ""
+msgstr "ביטול"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
@@ -1536,7 +1537,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "\\לשניה"
 
 #: ../src/microbe_stage/Microbe.cs:1150
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1568,7 +1569,7 @@ msgstr "השחקן מת"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:878
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "בסמן העכבר:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:902
 msgid "NOTHING_HERE"
@@ -1822,9 +1823,8 @@ msgid "SELECT_A_PATCH"
 msgstr "בחר אזור להצגת פרטים כאן"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4386
-#, fuzzy
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "אוכלוסיה:"
+msgstr "מיקום נוכחי"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4466
 msgid "PHYSICAL_CONDITIONS"
@@ -1844,7 +1844,7 @@ msgstr "תעבור לאזור זה"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "ארגז חול"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -1852,11 +1852,11 @@ msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "מיליון שנה"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
-msgstr ""
+msgstr "שנים"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
@@ -1993,24 +1993,20 @@ msgid "SAVING_FAILED"
 msgstr "השמירה נכשלה! קרה משהו חריג"
 
 #: ../src/saving/SaveInformation.cs:16
-#, fuzzy
 msgid "SAVE_MANUAL"
-msgstr "שמירה נכשלה"
+msgstr "ידני"
 
 #: ../src/saving/SaveInformation.cs:22
-#, fuzzy
 msgid "SAVE_AUTOSAVE"
-msgstr "שטח משומש:"
+msgstr "שמירה אוטומטית"
 
 #: ../src/saving/SaveInformation.cs:28
-#, fuzzy
 msgid "SAVE_QUICKSAVE"
-msgstr "שמירה"
+msgstr "שמירה מהירה"
 
 #: ../src/saving/SaveInformation.cs:34
-#, fuzzy
 msgid "SAVE_INVALID"
-msgstr "השמירה אינו תקפה"
+msgstr "לא תקף"
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"
