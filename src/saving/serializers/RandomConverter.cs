@@ -5,13 +5,15 @@ using Newtonsoft.Json.Linq;
 
 public class RandomConverter : JsonConverter
 {
+    private readonly FieldInfo seedArrayInfo = typeof(Random).GetField("_seedArray", BindingFlags.NonPublic |
+        BindingFlags.Instance);
+    private readonly FieldInfo inextInfo = typeof(Random).GetField("_inext", BindingFlags.NonPublic |
+        BindingFlags.Instance);
+    private readonly FieldInfo inextpInfo = typeof(Random).GetField("_inextp", BindingFlags.NonPublic |
+        BindingFlags.Instance);
+
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        Type type = typeof(Random);
-        FieldInfo seedArrayInfo = type.GetField("_seedArray", BindingFlags.NonPublic | BindingFlags.Instance);
-        FieldInfo inextInfo = type.GetField("_inext", BindingFlags.NonPublic | BindingFlags.Instance);
-        FieldInfo inextpInfo = type.GetField("_inextp", BindingFlags.NonPublic | BindingFlags.Instance);
-
         if (seedArrayInfo != null && inextInfo != null && inextpInfo != null)
         {
             int[] seedArray = (int[])seedArrayInfo.GetValue((Random)value);
@@ -50,11 +52,6 @@ public class RandomConverter : JsonConverter
         try
         {
             var random = new Random();
-
-            Type type = typeof(Random);
-            FieldInfo seedArrayInfo = type.GetField("_seedArray", BindingFlags.NonPublic | BindingFlags.Instance);
-            FieldInfo inextInfo = type.GetField("_inext", BindingFlags.NonPublic | BindingFlags.Instance);
-            FieldInfo inextpInfo = type.GetField("_inextp", BindingFlags.NonPublic | BindingFlags.Instance);
 
             // ReSharper disable AssignNullToNotNullAttribute
             int[] seedArray = item["seedArray"].Value<int[]>();
