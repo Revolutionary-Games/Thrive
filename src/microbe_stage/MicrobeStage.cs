@@ -186,7 +186,7 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    [RunOnKey("g_hold_forward", RunOnKeyAttribute.InputType.Press)]
+    [RunOnKey("g_hold_forward", InputType.Press)]
     public void ToggleAutoMove()
     {
         autoMove = !autoMove;
@@ -217,45 +217,45 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     [SuppressMessage("ReSharper", "CA1030",
         Justification = "This is called from the intput system and should not be made an event")]
-    [RunOnKey("g_fire_toxin", RunOnKeyAttribute.InputType.Hold)]
+    [RunOnKey("g_fire_toxin", InputType.Hold)]
     public void FireToxin()
     {
         Player?.EmitToxin();
     }
 
-    [RunOnKey("g_toggle_engulf", RunOnKeyAttribute.InputType.Press)]
+    [RunOnKey("g_toggle_engulf", InputType.Press)]
     public void ToggleEngulf()
     {
         if (Player != null)
             Player.EngulfMode = !Player.EngulfMode;
     }
 
-    [RunOnKey("g_cheat_editor", RunOnKeyAttribute.InputType.Press)]
+    [RunOnKey("g_cheat_editor", InputType.Press)]
     public void TryCheatEditor()
     {
         if (Settings.Instance.CheatsEnabled)
             HUD.ShowReproductionDialog();
     }
 
-    [RunOnKey("g_cheat_glucose", RunOnKeyAttribute.InputType.Hold)]
+    [RunOnKey("g_cheat_glucose", InputType.Hold)]
     public void TryCheatGlucose(float delta)
     {
         SpawnCheatCloud("glucose", delta);
     }
 
-    [RunOnKey("g_cheat_ammonia", RunOnKeyAttribute.InputType.Hold)]
+    [RunOnKey("g_cheat_ammonia", InputType.Hold)]
     public void TryCheatAmmonia(float delta)
     {
         SpawnCheatCloud("ammonia", delta);
     }
 
-    [RunOnKey("g_cheat_phosphates", RunOnKeyAttribute.InputType.Hold)]
+    [RunOnKey("g_cheat_phosphates", InputType.Hold)]
     public void TryCheatPhosphates(float delta)
     {
         SpawnCheatCloud("phosphates", delta);
     }
 
-    [RunOnKey("g_quick_save", RunOnKeyAttribute.InputType.Press)]
+    [RunOnKey("g_quick_save", InputType.Press)]
     public void Screenshot()
     {
         GD.Print("quick saving microbe stage");

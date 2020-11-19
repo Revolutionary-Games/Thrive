@@ -15,7 +15,7 @@ public class QuickLoadHandler : Node
         RunOnInputAttribute.InputClasses.Add(this);
     }
 
-    [RunOnKey("quick_load", RunOnKeyAttribute.InputType.Press)]
+    [RunOnKey("quick_load", InputType.Press)]
     public void QuickLoad()
     {
         if (!InProgressLoad.IsLoading)
