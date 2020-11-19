@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-18 19:47+0200\n"
-"PO-Revision-Date: 2020-11-18 21:59+0000\n"
+"PO-Revision-Date: 2020-11-21 13:57+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/he/>\n"
@@ -99,7 +99,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
 "אבל אם שרדת 20 דורות עם 300 פריטים באוכלוסיה, אתה נחשב למנצח במשחק הנוכחי. "
-"שלאחר זכייה, מופיע חלון קופץ ותוכל להמשיך לשחק כרצונך."
+"לאחר שזכית, קופץ חלון משם תוכל להמשיך לשחק כרצונך."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
@@ -202,7 +202,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "עובדה משעשעת! מטבולוזום הוא מה שנקרא אברון פאותפולידריאליים."
+msgstr "עובדה משעשעת: מטבולוזום הוא מה שנקרא אברון פאותפולידריאליים."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
@@ -685,7 +685,7 @@ msgstr "קודם:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr "יש מוטציה"
+msgstr "נוצר מוטציה"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
@@ -983,8 +983,8 @@ msgstr "אזהרת GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. "
-"נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על "
-"מנת להפעלת את Thrive."
+"אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או "
+"Nvidia על מנת להפעלת את Thrive."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:17
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1031,7 +1031,7 @@ msgstr "צור מיקרוב חדש"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "MEMBRANE_RIGIDITY"
-msgstr "קשיחות ממברנה"
+msgstr "קשיחות הקרום"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5233
@@ -1055,7 +1055,7 @@ msgstr "חיים"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:337
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "קרום נוקשה עמיד יותר בפני נזקים, אך יקשה עליו לנוע."
+msgstr "קרום נוקשה עמיד יותר בפני נזקים, אך מקשה עליו לנוע."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:449
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:689
@@ -1307,7 +1307,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2742
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "דקור תאים אחרים בזה."
+msgstr "דקור תאים אחרים עם זה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
@@ -1318,15 +1318,15 @@ msgstr "ריס"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5097
 msgid "TO_BE_IMPLEMENTED"
-msgstr "ביצוא לפועל."
+msgstr "בתהליכי בניה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2969
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "מאפשר התפתחות מורכבת יותר,\n"
 "אברונים בעלי קרום. עולה הרבה\n"
-"של ATP לשמור. בלתי הפיך\n"
-"אבולוציה."
+"של ATP לשמור. \n"
+"זה בלתי הפיך."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "NUCLEUS_DESCRIPTION"
@@ -1408,7 +1408,7 @@ msgstr ". יכול"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4837
 msgid "RELEASE_TOXINS_BY_PRESSING"
-msgstr "לשחרר רעלנים על ידי לחיצה על"
+msgstr "שיחרור רעלנים בלחיצה על"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4844
 msgid "E_DOT"
@@ -1541,7 +1541,7 @@ msgstr "\\לשניה"
 
 #: ../src/microbe_stage/Microbe.cs:1150
 msgid "SUCCESSFUL_SCAVENGE"
-msgstr "ליקוט הוצלח"
+msgstr "ליקוט מוצלח"
 
 #: ../src/microbe_stage/Microbe.cs:1157
 msgid "SUCCESSFUL_KILL"
@@ -1573,7 +1573,7 @@ msgstr "בסמן העכבר:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:902
 msgid "NOTHING_HERE"
-msgstr "אין פה כלום"
+msgstr "אין פה שום דבר"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:926
 msgid "COMPOUNDS_COLON"
