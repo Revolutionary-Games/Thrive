@@ -46,7 +46,7 @@ public class InputManager : Node
             else
             {
                 var instances =
-                    RunOnInputAttribute.InputClasses.Where(x => x.GetType() == p.Item1.DeclaringType).ToList();
+                    RunOnInputAttribute.InputReceivingInstances.Where(x => x.GetType() == p.Item1.DeclaringType).ToList();
                 foreach (var instance in instances)
                 {
                     if (!TryInvoke(p.Item1, instance, delta, inputReceiver, readValue))
@@ -55,7 +55,7 @@ public class InputManager : Node
             }
         });
 
-        disposed.ForEach(p => RunOnInputAttribute.InputClasses.Remove(p));
+        disposed.ForEach(p => RunOnInputAttribute.InputReceivingInstances.Remove(p));
     }
 
     /// <summary>

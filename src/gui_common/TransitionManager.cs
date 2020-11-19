@@ -24,7 +24,7 @@ public class TransitionManager : Node
         screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/Fade.tscn");
         cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
 
-        RunOnInputAttribute.InputClasses.Add(this);
+        RunOnInputAttribute.InputReceivingInstances.Add(this);
     }
 
     [Signal]

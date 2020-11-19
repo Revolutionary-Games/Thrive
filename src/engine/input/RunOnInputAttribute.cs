@@ -13,7 +13,7 @@ public abstract class RunOnInputAttribute : Attribute
         AttributesWithMethods.RemoveAll(p => p.Item2.Equals(this));
     }
 
-    public static IList<object> InputClasses { get; } = new List<object>();
+    public static List<object> InputReceivingInstances { get; } = new List<object>();
     public abstract IInputReceiver InputReceiver { get; }
 
     internal static List<(MethodBase method, RunOnInputAttribute inputAttribute)> AttributesWithMethods { get; }

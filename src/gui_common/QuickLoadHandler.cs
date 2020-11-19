@@ -12,7 +12,7 @@ public class QuickLoadHandler : Node
 
     public QuickLoadHandler()
     {
-        RunOnInputAttribute.InputClasses.Add(this);
+        RunOnInputAttribute.InputReceivingInstances.Add(this);
     }
 
     [RunOnKey("quick_load", InputType.Press)]
