@@ -105,7 +105,8 @@ public class InputManager : Node
                 {
                     var attributes = methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true);
                     var multiAxis = attributes.FirstOrDefault(
-                                                              p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
+                        p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
+
                     foreach (var attr in attributes)
                     {
                         if (!(attr is RunOnInputAttribute myAttr))
