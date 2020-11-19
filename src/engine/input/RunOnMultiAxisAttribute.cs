@@ -13,10 +13,10 @@ using System.Linq;
 public class RunOnMultiAxisAttribute : RunOnInputAttribute
 {
     internal readonly List<RunOnAxisAttribute> DefinitionAttributes = new List<RunOnAxisAttribute>();
-    private InputMultiAxis inputKeys;
+    private InputAxisGroup inputKeys;
 
     public override IInputReceiver InputReceiver => InputKeys;
 
-    private InputMultiAxis InputKeys
-        => inputKeys ??= new InputMultiAxis(DefinitionAttributes.Select(p => p.InputReceiver as InputAxis));
+    private InputAxisGroup InputKeys
+        => inputKeys ??= new InputAxisGroup(DefinitionAttributes.Select(p => p.InputReceiver as InputAxis));
 }

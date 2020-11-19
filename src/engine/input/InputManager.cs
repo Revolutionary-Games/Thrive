@@ -69,7 +69,7 @@ public class InputManager : Node
         {
             switch (inputReceiver)
             {
-                case InputMultiAxis _:
+                case InputAxisGroup _:
                 case InputAxis _:
                     method.Invoke(instance, new[] { delta, readValue });
                     break;

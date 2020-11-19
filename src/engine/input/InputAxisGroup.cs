@@ -5,11 +5,11 @@ using Godot;
 /// <summary>
 ///   Collects multiple InputAxis to make up multiple of them
 /// </summary>
-public class InputMultiAxis : IInputReceiver
+public class InputAxisGroup : IInputReceiver
 {
     private readonly List<InputAxis> inputs;
 
-    public InputMultiAxis(IEnumerable<InputAxis> keys)
+    public InputAxisGroup(IEnumerable<InputAxis> keys)
     {
         inputs = keys.ToList();
     }
