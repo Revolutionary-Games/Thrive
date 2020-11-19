@@ -107,15 +107,12 @@ public class InputManager : Node
                     var multiAxis = attributes.FirstOrDefault(
                         p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
 
-                    foreach (var attr in attributes)
+                    foreach (RunOnInputAttribute attr in attributes)
                     {
                         if (attr is RunOnAxisAttribute axis && multiAxis != null)
                             multiAxis.DefinitionAttributes.Add(axis);
                         else
-                        {
-                            RunOnInputAttribute.AttributesWithMethods.Add(
-                                                                          (methodInfo, myAttr));
-                        }
+                            RunOnInputAttribute.AttributesWithMethods.Add((methodInfo, attr));
                     }
                 }
             }
