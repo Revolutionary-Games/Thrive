@@ -18,7 +18,7 @@ public class RunOnAxisAttribute : RunOnInputAttribute
             throw new TargetParameterCountException("inputs and associatedValues need to be the same length");
 
         InputKeys = new List<(InputBool input, int associatedValue)>();
-        for (var i = 0; i < inputs.Length; i++)
+        for (var i = 0; i < inputs.Length; ++i)
         {
             InputKeys.Add((new InputBool(inputs[i]), associatedValues[i]));
         }
