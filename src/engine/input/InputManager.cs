@@ -13,7 +13,7 @@ public class InputManager : Node
 {
     public override void _Ready()
     {
-        RecalculateAttributes();
+        RecalculateAttributes(new[] { Assembly.GetExecutingAssembly() });
         PauseMode = PauseModeEnum.Process;
     }
 
@@ -95,26 +95,29 @@ public class InputManager : Node
         return true;
     }
 
-    private static void RecalculateAttributes()
+    private static void RecalculateAttributes(Assembly[] assemblies)
     {
-        foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
+        foreach (var assembly in assemblies)
         {
-            foreach (var methodInfo in type.GetMethods())
+            foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
             {
-                var attributes = methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true);
-                var multiAxis = attributes.FirstOrDefault(
-                    p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
-                foreach (var attr in attributes)
+                foreach (var methodInfo in type.GetMethods())
                 {
-                    if (!(attr is RunOnInputAttribute myAttr))
-                        continue;
-
-                    if (attr is RunOnAxisAttribute axis && multiAxis != null)
-                        multiAxis.DefinitionAttributes.Add(axis);
-                    else
+                    var attributes = methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true);
+                    var multiAxis = attributes.FirstOrDefault(
+                                                              p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
+                    foreach (var attr in attributes)
                     {
-                        RunOnInputAttribute.AttributesWithMethods.Add(
-                            (methodInfo, myAttr));
+                        if (!(attr is RunOnInputAttribute myAttr))
+                            continue;
+
+                        if (attr is RunOnAxisAttribute axis && multiAxis != null)
+                            multiAxis.DefinitionAttributes.Add(axis);
+                        else
+                        {
+                            RunOnInputAttribute.AttributesWithMethods.Add(
+                                                                          (methodInfo, myAttr));
+                        }
                     }
                 }
             }
