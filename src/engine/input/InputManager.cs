@@ -109,9 +109,6 @@ public class InputManager : Node
 
                     foreach (var attr in attributes)
                     {
-                        if (!(attr is RunOnInputAttribute myAttr))
-                            continue;
-
                         if (attr is RunOnAxisAttribute axis && multiAxis != null)
                             multiAxis.DefinitionAttributes.Add(axis);
                         else
