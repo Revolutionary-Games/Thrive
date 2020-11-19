@@ -439,7 +439,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         mousePanningStart = null;
     }
 
-    [RunOnKey("e_reset_cam", InputType.Hold)]
+    [RunOnKey("e_reset_cam", InputType.Press)]
     public void ResetCamera()
     {
         camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
