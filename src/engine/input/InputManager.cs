@@ -94,27 +94,24 @@ public class InputManager : Node
 
     private static void RecalculateAttributes()
     {
-        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
         {
-            foreach (var type in assembly.GetTypes())
+            foreach (var methodInfo in type.GetMethods())
             {
-                foreach (var methodInfo in type.GetMethods())
+                var attributes = methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true);
+                var multiAxis = attributes.FirstOrDefault(
+                    p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
+                foreach (var attr in attributes)
                 {
-                    var attributes = methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true);
-                    var multiAxis = attributes.FirstOrDefault(
-                        p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
-                    foreach (var attr in attributes)
-                    {
-                        if (!(attr is RunOnInputAttribute myAttr))
-                            continue;
+                    if (!(attr is RunOnInputAttribute myAttr))
+                        continue;
 
-                        if (attr is RunOnAxisAttribute axis && multiAxis != null)
-                            multiAxis.DefinitionAttributes.Add(axis);
-                        else
-                        {
-                            RunOnInputAttribute.AttributesWithMethods.Add(
-                                (methodInfo, myAttr));
-                        }
+                    if (attr is RunOnAxisAttribute axis && multiAxis != null)
+                        multiAxis.DefinitionAttributes.Add(axis);
+                    else
+                    {
+                        RunOnInputAttribute.AttributesWithMethods.Add(
+                            (methodInfo, myAttr));
                     }
                 }
             }
