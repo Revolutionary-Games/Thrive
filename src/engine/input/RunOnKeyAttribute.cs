@@ -1,5 +1,12 @@
 using System;
 
+/// <summary>
+///   Attribute for a method, that gets called when an input key is pressed.
+/// </summary>
+/// <example>
+///   [RunOnKey("toggle_FPS", RunOnKeyAttribute.InputType.Press)]
+///   public void ToggleFPS() { ... }
+/// </example>
 public class RunOnKeyAttribute : RunOnInputAttribute
 {
     private IInputReceiver inputReceiver;
