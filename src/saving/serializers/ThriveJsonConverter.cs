@@ -533,17 +533,15 @@ public abstract class BaseThriveConverter : JsonConverter
                 try
                 {
                     memberValue = property.GetValue(value, null);
+                    WriteMember(property.Name, memberValue, property.PropertyType, type, writer,
+                                serializer);
                 }
                 catch (ObjectDisposedException)
                 {
                     // Protection against disposed stuff that happen a lot in godot
                     writer.WritePropertyName(property.Name);
                     serializer.Serialize(writer, null);
-                    continue;
                 }
-
-                WriteMember(property.Name, memberValue, property.PropertyType, type, writer,
-                    serializer);
             }
 
             WriteCustomExtraFields(writer, value, serializer);
