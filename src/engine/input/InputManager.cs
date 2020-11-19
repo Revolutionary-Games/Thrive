@@ -58,6 +58,9 @@ public class InputManager : Node
         disposed.ForEach(p => RunOnInputAttribute.InputClasses.Remove(p));
     }
 
+    /// <summary>
+    ///   Try to invoke the given input method with the given data.
+    /// </summary>
     /// <returns>False if the instance was disposed</returns>
     private static bool TryInvoke(MethodBase method, object instance, float delta, IInputReceiver inputReceiver,
         object readValue)
