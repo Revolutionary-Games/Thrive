@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
+/// <summary>
+///   An abstract class for handling various InputAttributes
+/// </summary>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public abstract class RunOnInputAttribute : Attribute
 {
