@@ -3896,11 +3896,11 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 74 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 216.0
-margin_top = 238.0
-margin_right = 518.0
-margin_bottom = 704.0
-theme = SubResource( 76 )
+margin_left = 212.0
+margin_top = 234.0
+margin_right = 514.0
+margin_bottom = 700.0
+theme = SubResource( 42 )
 edit_alpha = false
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
@@ -4047,7 +4047,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="MicrobeEditorGUI/CellEditor/ConfirmButton"]
-margin_right = 140.0
+margin_right = 164.0
 margin_bottom = 40.0
 focus_mode = 0
 mouse_filter = 1
@@ -4494,10 +4494,10 @@ margin_right = 376.0
 margin_bottom = 46.0
 custom_fonts/font = SubResource( 92 )
 custom_colors/font_color = Color( 0, 1, 0.117647, 1 )
-text = "CURRENT LOCATION"
+text = "CURRENT_LOCATION_CAPITAL"
 align = 1
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="Biome" type="Label" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]

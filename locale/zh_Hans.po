@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-19 15:13+0700\n"
+"POT-Creation-Date: 2020-11-19 15:16+0700\n"
 "PO-Revision-Date: 2020-11-18 17:27+0000\n"
-"Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/bg/>\n"
-"Language: bg\n"
+"Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
+"Language-Team: Chinese (Simplified) <https://translate."
+"revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
+"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -24,364 +24,320 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Използвайте „W“, „A“, „S“, „D“ и мишката за да се придвижвате. Окситоксинът "
-"се изстрелва с „Е“, ако имате токсична вакуола. Поглъщането на другите "
-"клетки се извършва с „G“."
+"用W，A，S，D键和鼠标移动。如果你有一个毒素液泡，你可以按E发射氧化毒素。G键可"
+"以切换吞噬模式。"
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Вашата клетка използва АТФ за да оцелее, ако той свърши тя ще умре."
+msgstr "你的细胞使用ATP（三磷酸腺苷）作为能量来源，如果耗尽的话你就会死。"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"За възпроизвеждане и влизане в редактора, трябва да съберете амоняк "
-"(оранжевите облаци) и фосфат (лилавите облаци)."
+msgstr "要解锁细胞编辑器并繁殖，你需要收集氨（橙色云）和磷酸盐（紫色云）。"
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"С натискане на „G“ може да поглъщате другите клетки, клетъчните останки, "
-"бактериите и железните късове, стига те да са по-малки от Вас. Това ще "
-"отнеме допълнителен АТФ и ще Ви забави. Когато приключите, не забравяйте да "
-"натиснете „G“ още веднъж за да спрете режима на поглъщане."
+"你也可以按G键以吞噬比你小的细胞，细菌，铁块和细胞器。吞噬模式会花费额外的ATP"
+"并使你减速。不要忘记再按一次G键来退出吞噬模式。"
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Осморегулацията отнема АТФ, това означава, че колкото е по-голяма Вашата "
-"клетка, толкова повече митохондрии, метаболозоми или рустицианин (или "
-"цитоплазма, която създава гликолиза) ще са Ви нужни за да не губите АТФ, "
-"докато не се движите."
+"渗透调节消耗ATP（三磷酸腺苷），这意味着你的细胞越大，你所需要的线粒体/代谢体/"
+"铁硫菌蓝蛋白（或细胞质-其可进行糖酵解）就越多，以避免你在静止时都损失ATP。"
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"В редактора имате на разположение различни органели, които при еволюция Ви "
-"дават възможност за различни стилове на игра."
+msgstr "编辑器里有很多细胞器可供你进化，提供多种不同的玩法。"
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Ако популацията Ви спадне до нула, Вашият вид ще изчезне."
+msgstr "目前版本只要你的人口降到零，你就会灭绝。"
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"Видовете облаци са:\n"
+"各种化合物云分别是：\n"
 "\n"
-"Бял – Глюкоза\n"
-"Жълт – Сероводород\n"
-"Оранжев – Амоняк\n"
-"Лилав – Фосфат\n"
-"Ръждивокафяв - Желязо\n"
+"白色 - 葡萄糖\n"
+"黄色 - 硫化氢\n"
+"橙色 - 氨\n"
+"紫色 - 磷酸盐\n"
+"铁锈棕 - 铁\n"
 "\n"
-"Глюкозата създава АТФ"
+"葡萄糖用于生产ATP（三磷酸腺苷）"
 
 #: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"Водородният сулфид може да се превърне в глюкоза чрез хемопласти и "
-"хемосинтезиращи протеини. Желязото може да се превърне в АТФ чрез "
-"рустицианин."
+"硫化氢可以通过化学质体和化学合成蛋白转换成葡萄糖。铁可以通过铁硫菌蓝蛋白转换"
+"成ATP（三磷酸腺苷）。"
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"За възпроизвеждане, органелите на клетката трябва да се разделят на две. За "
-"да го направят, те се нуждаят от амоняк и фосфат."
+msgstr "繁殖需要你将每个细胞器都一分为二。细胞器需要氨和硫酸盐才能分裂。"
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Но ако оцелеете в продължение на 20 поколения с популация от 300, Вие ще "
-"победите, след това ще се появи изскачащ прозорец, който може да затворите и "
-"да продължите играта."
+"但是，如果你能成功以300人口或以上存活20代，你将被视为赢得了当前游戏，获胜后会"
+"弹出一个窗口并可以选择继续玩。"
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Внимавайте, защото Вие не сте единствените, които еволюират. Всеки път, "
-"когато отворите редактора, Вашите съперници също еволюират."
+"保持警惕，因为你的竞争对手也在和你一起进化。每当你进入编辑器时他们也会进化。"
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"Прокариотни структури\n"
+"原核结构\n"
 "\n"
-"Метаболозоми: Произвеждат АТФ от глюкоза\n"
+"代谢体：用葡萄糖生产ATP\n"
 "\n"
-"Хемосинтезиращи протеини: Произвеждат 1/2 от глюкозата чрез хемопласт от "
-"водороден сулфид, извършват процеса гликолиза, заемат 1 шестоъгълник\n"
+"化学合成蛋白：跟化学质体比同一份硫化氢只能产出半份葡萄糖，但其同时也能进行糖"
+"酵解。占用一个六角格。\n"
 "\n"
-"Тилакоиди: Произвеждат 1/3 от глюкозата като обикновен хлоропласт, извършват "
-"процеса гликолиза, заемат 1 шестоъгълник\n"
+"类囊体：跟正常的叶绿体比只能产出1/3的葡萄糖，但其同时也能进行糖酵解。占用一个"
+"六角格。\n"
 "\n"
-"Рустицианин: Превръща желязото в АТФ\n"
+"铁硫菌蓝蛋白：将铁转换成ATP\n"
 "\n"
-"Нитрогеназа: Превръща атмософерния азот и АТФ в амоняк чрез анаеробен "
-"процес\n"
+"固氮酶：在无氧环境下将大气中的氮和ATP转换成氨\n"
 "\n"
-"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза "
-"(произвежда малки количества АТФ)"
+"细胞质：有储存空间并能进行糖酵解（产出少量的ATP）"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Външни органели\n"
+"外部细胞器\n"
 "\n"
-"Флагели: Осигуряват по-бързо движение на клетката, използвайки АТФ\n"
+"鞭毛：通过消耗ATP加快你细胞的移动速度\n"
 "\n"
-"Пили: Използва се за пробождане на другите клетки"
+"菌毛：可以用来捅其它细胞"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Вътрешни органели\n"
+"膜细胞器\n"
 "\n"
-"Ядро: Заема 11 шестоъгълника и позволява използването на другите вътрешни "
-"органели. Също така, удвоява размера на клетката (може да се сложи само "
-"веднъж)\n"
+"细胞核：占用十一个六角格并允许你进化膜细胞器。同时使你的细胞大小翻倍。（只能"
+"被进化一次）\n"
 "\n"
-"Митохондрия: Произвежда АТФ чрез глюкоза и атмосферен O2. Много по-ефективна "
-"е от цитоплазмата\n"
+"线粒体：用葡萄糖和大气中的氧气生产ATP。比细胞质的效率高很多\n"
 "\n"
-"Хлоропласт: Създава глюкоза чрез слънчева светлина и атмосферния СО2\n"
+"叶绿体：用阳光和大气中的二氧化碳生产葡萄糖。\n"
 "\n"
-"Хемопласт: Създава глюкоза от сероводород\n"
+"化学质体：用硫化氢生产葡萄糖。\n"
 "\n"
-"Пластид за азотна фиксация: Създава амоняк от АТФ, атмосферен азот и "
-"кислород\n"
+"固氮质体：用大气中的氧气，氮和ATP生产氨。\n"
 "\n"
-"Вакуола: Съхранява до 15 вещества\n"
+"液泡：储存15单位收集的化合物\n"
 "\n"
-"Токсични вакуоли: Произвеждат токсини (наричат се окситоксини)"
+"毒素液泡：生产毒素（氧化毒素）"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Всяко поколение разполага със 100 мутационни точки, всяка промяна (или "
-"мутация) струва определен брой МТ. Добавянето или премахването на органели "
-"струва МТ, но премахването на органели, които са добавени в текущата сесия "
-"на редактора, връща тяхната стойност. Може да премахнете органел като го "
-"натиснете с десния бутон на мишката. Може да завъртите органел чрез "
-"натискане на „A“ или „D“."
+"每一代，你都有100个变异点可供花费，任何变化都会花费一定量的变异点。增加或移除"
+"细胞器会花费变异点，无论如何，移除在本代放下的细胞器会返还全部的变异点。你可"
+"以通过右键点击移除细胞器，你可以用A和D键旋转你的细胞器。"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"По време на възпроизвеждане, микробния редактор ще бъде отворен, в него може "
-"да променяте Вашето създание (като добавяте, премествате или премахвате "
-"органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора "
-"е равно на 100 милиона години еволюция."
+"你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删"
+"除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表一亿年的进化"
+"时间。"
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr "СЪВЕТ: Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+msgstr "小提示：在编辑器中按下撤消键以纠正错误"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и "
-"плячка, Вие от коя страна сте – ловец ли сте или сте плячка?"
+"逗知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物关系研究了几十年。你是栉毛"
+"虫，还是草履虫呢？捕食者，还是猎物？"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Ето един съвет – токсините може да се използват за да спрат токсините на "
-"противника, ако сте достатъчно бързи, разбира се."
+msgstr "小提示：如果你手速够快，你可以用自己的毒素把其它毒素推开。"
 
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Ето един съвет – осморегулацията струва 1 АТФ на секунда за всеки "
-"шестоъгълник на Вашата клетка, всеки празен шестоъгълник от цитоплазма "
-"създава 5 АТФ на секунда, с други думи, ако губите АТФ по време на "
-"осморегулация, просто добавете няколко празни шестоъгълника цитоплазма или "
-"премахнете някои органели."
+"小提示：每一个六角格每秒需消耗一个ATP来进行渗透调节，而单格细胞质每秒产生5个"
+"ATP。这意味着如果你因为渗透调节在损失ATP的话，你只要多加几格细胞质或移除一些"
+"细胞器就行了。"
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Забавен факт е, че истинските прокариоти имат нещо като биоотделения, "
-"приличат си с органелите и всъщност се наричат многостенни органели."
+"逗知识：现实中原核生物有一种叫生物区隔（Biocompartments）的结构，作用跟细胞器"
+"很相似，而且实际上也被叫做多角体细胞器（Polyhedral organelles）。"
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Забавен факт е, че метаболозомата представлява многостенен органел."
+msgstr "逗知识：所谓多角体细胞器（Polyhedral organelle）就是代谢体。"
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "Ето един съвет – понякога просто бягайте от другите клетки."
+msgstr "小提示：有些时候逃跑就是最佳选择。"
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Ето един съвет – ако дадена клетка е 1/2 от Вашия размер, може да я "
-"погълнете."
+msgstr "小提示：如果目标细胞大概只有你一半大，你就可以吞噬它。"
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Ето един съвет – бактериите може да са малки, но някои от тях са много "
-"опасни, могат да Ви унищожат!"
+"小提示：细菌可能比它们看上去要强。它们或许体型很小，但它们中有一些可以钻进你"
+"并把你杀掉！"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Ето един съвет – ако ловувате дадено създание, без да искате може напълно да "
-"го унищожите, защото Вие може да не сте единственият ловец."
+"小提示：如果你不足够小心的话你可以把其它物种捕猎到灭绝，它们也可以被其它物种"
+"捕猎到灭绝。"
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "КАК САМО СЕ ИЗВИВАТ!!"
+msgstr "*扭来扭去*"
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Премахни ръждата."
+msgstr "请不要再想着水下炼制金属踏入铁器时代啦！"
 
 #: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_12"
-msgstr "Ех тези сини клетки."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Ето един съвет – биомите са нещо повече от фонове, веществата в различните "
-"биоми не се появяват по едно и също време."
+"小提示：生物群系可不仅仅是背景图不同，不同生物群系的化合物生成速度有时候是不"
+"同的。"
 
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Ето един съвет – с повече флагели ще се движите по-бързо, бръм, бръм, но "
-"това ще Ви струва повече АТФ"
+msgstr "小提示：鞭毛越多越快，但也会消耗更多的ATP"
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Ето един съвет – може да поглъщате железни късове на воля."
+msgstr "小提示：你可以在吞噬模式下吞进一整块铁。"
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Ето един съвет – подгответе се преди да добавите ядрото. Това нещо е адски "
-"скъпо! И не е лесно да се поддържа."
+"小提示：进化细胞核前请做好准备，这玩意可贵啦！无论是突变点还是ATP都是如此。"
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Забавен факт е, че има над 8 000 ресничести създания на нашата планета, а "
-"Вие не го знаехте, нали?"
+msgstr "逗知识：你知道地球上有超过8000种纤毛虫吗？"
 
 #: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"Забавен факт е, че Тромпетът е ресничест вид, който може да се разтяга и да "
-"улавя плячката в устата си, която е с формата на тромпет, създавайки водно "
-"течение чрез своите реснички."
+"逗知识：喇叭虫属是一类纤毛虫，它们可以把自己拉开，用纤毛产生水流把猎物吸入自"
+"己喇叭形的嘴。"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "Забавен факт е, че Дидиний е ресничест вид, който ловува чехълчета."
+msgstr "逗知识：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
-"Забавен факт е, че Амебата ловува и хваща плячката си чрез „крачета“ от "
-"цитоплазма, които се наричат псевдоподи, със сигурност ще ги добавим в "
-"Thrive."
+"逗知识：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天Thrive也能做出这种效果"
+"的。"
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Ето един съвет – пазете от големите клетки и големите бактерии, няма да е "
-"приятно, ако станете част от менюто им."
+msgstr "小提示：小心比你更大的细胞，它们会吃你哟，被吃可不有趣。"
 
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"Thrive има много мелодии, които все още не са добавени в играта. Може да ги "
-"чуете или да гледате как се правят в YouTube канала на Oliver Lugg."
+"Thrive的声乐团队做了很多还没有被加进游戏里的曲子。你可以在他们的YouTube频道"
+"Oliver Lugg上听他们的音乐，或观看他们直播编曲。"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Ето един съвет – може да поглъщате големите железни късове, ако Вашата "
-"клетка е с размер от 150 шестоъгълника."
+msgstr "小提示：如果你的细胞有超过150个六角格，你可以吞噬那些大型铁块。"
 
 #: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"Thrive се развива на извънземна планета, следователно повечето създания, "
-"които ще видите имат общи черти с едно или две определени създания, "
-"благодарение на еволюционният процес, опитайте се да познаете кои са те!"
+"Thrive是对外星球生物进化的模拟，所以你遇上的大多数生物其实都是之前遇到的生物"
+"的进化型，看看你是否能辨别出来！"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"Забавен факт е, че екипът на Thrive прави аудио конференции от време на "
-"време, може да им хвърлите едно око!"
+msgstr "逗知识：Thrive的开发团队经常做播客，你应该去听听看！"
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Забавен факт е, че Thrive е базиранa на Godot!"
+msgstr "逗知识：Thrive是用开源的Godot引擎做的！"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"Забавен факт е, че един от първите работещи прототипи на играта е създаден "
-"от нашият страхотен програмист, untrustedlife!"
+"逗知识：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Дишане"
+msgstr "呼吸作用"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr "Гликолиза"
+msgstr "糖酵解"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "Цитоплазмена гликолиза"
+msgstr "细胞质糖酵解"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr "Фотосинтеза"
+msgstr "光合作用"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "Окситоксиносинтеза"
+msgstr "氧化毒素合成"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "Хемосинтеза"
+msgstr "化学合成"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Аеробна азотна фиксация"
+msgstr "有氧固氮"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Анаеробна азотна фиксация"
+msgstr "无氧固氨"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Желязна хемолитоавтотрофия"
+msgstr "铁化能无机自养"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr "Епипелагичен"
+msgstr "上远洋带"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
 #: ../simulation_parameters/microbe_stage/biomes.json:148
@@ -395,7 +351,7 @@ msgstr "Епипелагичен"
 #: ../simulation_parameters/microbe_stage/biomes.json:1445
 #: ../simulation_parameters/microbe_stage/biomes.json:1572
 msgid "FLOATING_HAZARD"
-msgstr "Опасен обект"
+msgstr "漂浮的危害物"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
 #: ../simulation_parameters/microbe_stage/biomes.json:165
@@ -409,7 +365,7 @@ msgstr "Опасен обект"
 #: ../simulation_parameters/microbe_stage/biomes.json:1462
 #: ../simulation_parameters/microbe_stage/biomes.json:1589
 msgid "SMALL_IRON_CHUNK"
-msgstr "Малък железен къс"
+msgstr "小铁块"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:73
 #: ../simulation_parameters/microbe_stage/biomes.json:264
@@ -423,11 +379,11 @@ msgstr "Малък железен къс"
 #: ../simulation_parameters/microbe_stage/biomes.json:1493
 #: ../simulation_parameters/microbe_stage/biomes.json:1620
 msgid "BIG_IRON_CHUNK"
-msgstr "Голям железен къс"
+msgstr "大铁块"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:141
 msgid "VOLCANIC_VENT"
-msgstr "Вулканичен отвор"
+msgstr "海底热泉"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:196
 #: ../simulation_parameters/microbe_stage/biomes.json:540
@@ -435,47 +391,47 @@ msgstr "Вулканичен отвор"
 #: ../simulation_parameters/microbe_stage/biomes.json:926
 #: ../simulation_parameters/microbe_stage/biomes.json:1642
 msgid "MARINE_SNOW"
-msgstr "Морски сняг"
+msgstr "海洋雪"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:332
 msgid "TIDEPOOL"
-msgstr "Тидален басейн"
+msgstr "潮池"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:459
 msgid "BATHYPELAGIC"
-msgstr "Батипелагичен"
+msgstr "半深海带"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:654
 msgid "ABYSSOPELAGIC"
-msgstr "Абисопелагичен"
+msgstr "深海带"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:845
 msgid "MESOPELAGIC"
-msgstr "Мезопелагичен"
+msgstr "中层带"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1040
 msgid "COASTAL"
-msgstr "Крайбрежен"
+msgstr "海岸"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1167
 msgid "UNDERWATERCAVE"
-msgstr "Подводна пещера"
+msgstr "水下洞穴"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1290
 msgid "ICESHELF"
-msgstr "Шелфов ледник"
+msgstr "冰架"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1349
 msgid "ICESHARD"
-msgstr "Леден къс"
+msgstr "冰砾"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1434
 msgid "ESTUARY"
-msgstr "Естуар"
+msgstr "河口"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "SEA_FLOOR"
-msgstr "Морско дъно"
+msgstr "海床"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:481
@@ -489,26 +445,26 @@ msgstr "Морско дъно"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4287
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4781
 msgid "ATP"
-msgstr "АТФ"
+msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1928
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4312
 #: ../src/microbe_stage/MicrobeStage.tscn:1636
 msgid "AMMONIA"
-msgstr "Амоняк"
+msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
 #: ../src/microbe_stage/MicrobeStage.tscn:1690
 msgid "PHOSPHATE"
-msgstr "Фосфат"
+msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1265
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4015
 #: ../src/microbe_stage/MicrobeStage.tscn:1744
 msgid "HYDROGEN_SULFIDE"
-msgstr "Сероводород"
+msgstr "硫化氢"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:51
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:456
@@ -522,18 +478,18 @@ msgstr "Сероводород"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4040
 #: ../src/microbe_stage/MicrobeStage.tscn:1582
 msgid "GLUCOSE"
-msgstr "Глюкоза"
+msgstr "葡萄糖"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
 #: ../src/microbe_stage/MicrobeStage.tscn:1905
 msgid "OXYTOXY_NT"
-msgstr "Окситоксин"
+msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
 #: ../src/microbe_stage/MicrobeStage.tscn:1798
 msgid "IRON"
-msgstr "Желязо"
+msgstr "铁"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
@@ -542,7 +498,7 @@ msgstr "Желязо"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4872
 msgid "OXYGEN"
-msgstr "Кислород"
+msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:99
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
@@ -551,422 +507,422 @@ msgstr "Кислород"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3773
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
 msgid "CARBON_DIOXIDE"
-msgstr "Въглероден диоксид"
+msgstr "二氧化碳"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1966
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
 msgid "NITROGEN"
-msgstr "Азот"
+msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
 msgid "SUNLIGHT"
-msgstr "Слънчева светлина"
+msgstr "阳光"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2532
 msgid "PREDATORY_PILUS"
-msgstr "Хищнически Пили"
+msgstr "掠食性菌毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1564
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2184
 msgid "RUSTICYANIN"
-msgstr "Рустицианин"
+msgstr "铁硫菌蓝蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1869
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2249
 msgid "NITROGENASE"
-msgstr "Нитрогеназа"
+msgstr "固氮酶"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:117
 msgid "PROTOPLASM"
-msgstr "Протоплазма"
+msgstr "原生质"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Хемосинтезиращи протеини"
+msgstr "化学合成蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2314
 msgid "OXYTOXISOME"
-msgstr "Окситоксизома"
+msgstr "毒素体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:943
 msgid "THYLAKOIDS"
-msgstr "Тилакоиди"
+msgstr "类囊体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:598
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:662
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1987
 msgid "METABOLOSOMES"
-msgstr "Метаболозоми"
+msgstr "代谢体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4189
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4253
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr "Пластид за азотна фиксация"
+msgstr "固氮质体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3917
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3981
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3012
 msgid "CHEMOPLAST"
-msgstr "Хемопласт"
+msgstr "化学质体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2367
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2468
 msgid "FLAGELLUM"
-msgstr "Флагела"
+msgstr "鞭毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4494
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4558
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3147
 msgid "VACUOLE"
-msgstr "Вакуола"
+msgstr "液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2816
 msgid "MITOCHONDRION"
-msgstr "Митохондрия"
+msgstr "线粒体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4683
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3214
 msgid "TOXIN_VACUOLE"
-msgstr "Токсична вакуола"
+msgstr "毒素液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3349
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3413
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2881
 msgid "CHLOROPLAST"
-msgstr "Хлоропласт"
+msgstr "叶绿体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:358
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1829
 msgid "CYTOPLASM"
-msgstr "Цитоплазма"
+msgstr "细胞质"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2885
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2949
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2751
 msgid "NUCLEUS"
-msgstr "Ядро"
+msgstr "细胞核"
 
 #: ../src/auto-evo/AutoEvoRun.cs:158
 msgid "ABORTED"
-msgstr "Прекратена."
+msgstr "取消。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:161
 msgid "FINISHED"
-msgstr "Завършена."
+msgstr "完成。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:164
 msgid "NOT_RUNNING"
-msgstr "Не се изпълнява."
+msgstr "未运行。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:175
 msgid "AUTOEVO_STEPS_DONE"
-msgstr "{0:F1}% завършена. {1:n0}/{2:n0} стъпки."
+msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:179
 msgid "STARTING"
-msgstr "Стартирана"
+msgstr "启动中"
 
 #: ../src/auto-evo/AutoEvoRun.cs:354
 msgid "AUTOEVO_POPULATION_CHANGED"
-msgstr "популацията на {0} се промени с {1}, поради: {2}"
+msgstr "原{0}人口变化了{1}，原因：{2}"
 
 #: ../src/auto-evo/RunResults.cs:249
 msgid "POPULATION"
-msgstr "популация:"
+msgstr "人口："
 
 #: ../src/auto-evo/RunResults.cs:263
 msgid "PREVIOUS"
-msgstr "предишна:"
+msgstr "先前："
 
 #: ../src/auto-evo/RunResults.cs:279
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr "има мутация"
+msgstr "有变异"
 
 #: ../src/auto-evo/RunResults.cs:284
 msgid "RUNRESULT_GENE_CODE"
-msgstr "генен код:"
+msgstr "基因编码："
 
 #: ../src/auto-evo/RunResults.cs:295
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr "разпространение в зоните:"
+msgstr "传播到的地区："
 
 #: ../src/auto-evo/RunResults.cs:304
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr "към {0}: {1} от популацията в: {2}"
+msgstr "通过由{2}派出的{1}人口扩散到了：{0}"
 
 #: ../src/auto-evo/RunResults.cs:322
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr "популация в зоните:"
+msgstr "地区中的人口："
 
 #: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
-msgstr "Зареждане"
+msgstr "载入中"
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
-msgstr "Затваряне"
+msgstr "关闭"
 
 #: ../src/general/OptionsMenu.tscn:126
 msgid "GRAPHICS"
-msgstr "Графика"
+msgstr "图像"
 
 #: ../src/general/OptionsMenu.tscn:138
 msgid "SOUND"
-msgstr "Звук"
+msgstr "声音"
 
 #: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
-msgstr "Производителност"
+msgstr "性能"
 
 #: ../src/general/OptionsMenu.tscn:162
 msgid "MISC"
-msgstr "Разни"
+msgstr "杂项"
 
 #: ../src/general/OptionsMenu.tscn:201
 msgid "VSYNC"
-msgstr "Вертикална синхронизация"
+msgstr "垂直同步"
 
 #: ../src/general/OptionsMenu.tscn:209
 msgid "FULLSCREEN"
-msgstr "Цял екран"
+msgstr "全屏"
 
 #: ../src/general/OptionsMenu.tscn:231
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr "Множествено изглаждане:"
+msgstr "多重采样抗锯齿："
 
 #: ../src/general/OptionsMenu.tscn:238
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(по-високите стойности понижават производителността)"
+msgstr "（设置的太高会影响性能）"
 
 #: ../src/general/OptionsMenu.tscn:268
 msgid "RESOLUTION"
-msgstr "Резолюция:"
+msgstr "分辨率："
 
 #: ../src/general/OptionsMenu.tscn:281
 msgid "AUTO"
-msgstr "автоматична"
+msgstr "自动"
 
 #: ../src/general/OptionsMenu.tscn:291
 msgid "MAX_FPS"
-msgstr "Максимална ЧКС:"
+msgstr "最大FPS："
 
 #: ../src/general/OptionsMenu.tscn:317
 msgid "COLOURBLIND_CORRECTION"
-msgstr "Корекция за цветна слепота:"
+msgstr "色盲修正："
 
 #: ../src/general/OptionsMenu.tscn:349
 msgid "CHROMATIC_ABERRATION"
-msgstr "Хроматична аберация:"
+msgstr "色差："
 
 #: ../src/general/OptionsMenu.tscn:390
 msgid "MASTER_VOLUME"
-msgstr "Основен звук"
+msgstr "主音量"
 
 #: ../src/general/OptionsMenu.tscn:417 ../src/general/OptionsMenu.tscn:458
 #: ../src/general/OptionsMenu.tscn:491 ../src/general/OptionsMenu.tscn:524
 #: ../src/general/OptionsMenu.tscn:557
 msgid "MUTE"
-msgstr "Без звук"
+msgstr "静音"
 
 #: ../src/general/OptionsMenu.tscn:431
 msgid "MUSIC_VOLUME"
-msgstr "Музика"
+msgstr "音乐音量"
 
 #: ../src/general/OptionsMenu.tscn:464
 msgid "AMBIANCE_VOLUME"
-msgstr "Околна среда"
+msgstr "环境声效"
 
 #: ../src/general/OptionsMenu.tscn:497
 msgid "SFX_VOLUME"
-msgstr "Ефекти"
+msgstr "音效音量"
 
 #: ../src/general/OptionsMenu.tscn:530
 msgid "GUI_VOLUME"
-msgstr "Интерфейс"
+msgstr "页面音量"
 
 #: ../src/general/OptionsMenu.tscn:575
 msgid "LANGUAGE"
-msgstr "Език:"
+msgstr "语言："
 
 #: ../src/general/OptionsMenu.tscn:590 ../src/general/OptionsMenu.tscn:901
 msgid "RESET"
-msgstr "Нулиране"
+msgstr "重置"
 
 #: ../src/general/OptionsMenu.tscn:613
 msgid "COMPOUND_CLOUDS"
-msgstr "Облаци"
+msgstr "化合物云"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
-"Минимален интервал на облачна\n"
-"симулация:"
+"云模拟最小\n"
+"间隔："
 
 #: ../src/general/OptionsMenu.tscn:635 ../src/general/OptionsMenu.tscn:679
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(по-високите стойности подобряват производителността)"
+msgstr "（更高的数值有助于提升性能）"
 
 #: ../src/general/OptionsMenu.tscn:672
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr "Делител на облачната резолюция:"
+msgstr "云分辨率除数："
 
 #: ../src/general/OptionsMenu.tscn:714
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "Автоматична еволюция по време на игра"
+msgstr "在游戏中启用auto-evo"
 
 #: ../src/general/OptionsMenu.tscn:737
 msgid "PLAY_INTRO_VIDEO"
-msgstr "Начално видео"
+msgstr "播放游戏开场动画"
 
 #: ../src/general/OptionsMenu.tscn:746
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr "Начално видео при стартиране на нова игра"
+msgstr "在开始新游戏时播放微生物阶段开场动画"
 
 #: ../src/general/OptionsMenu.tscn:755
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr "Автоматичен запис по време на игра"
+msgstr "游戏中启用自动保存"
 
 #: ../src/general/OptionsMenu.tscn:766
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "Брой на автоматичните записи:"
+msgstr "要保留的自动保存存档数："
 
 #: ../src/general/OptionsMenu.tscn:794
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Брой на бързите записи:"
+msgstr "要保留的快速保存存档数："
 
 #: ../src/general/OptionsMenu.tscn:820
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr "Упътване (при стартиране на нова игра)"
+msgstr "在开始新游戏时显示教程"
 
 #: ../src/general/OptionsMenu.tscn:828
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr "Упътване (в текущата игра)"
+msgstr "在现有游戏里显示教程"
 
 #: ../src/general/OptionsMenu.tscn:844
 msgid "CHEAT_KEYS_ENABLED"
-msgstr "Активиране на кодовете"
+msgstr "作弊键已启用"
 
 #: ../src/general/OptionsMenu.tscn:856
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr "Персонализирано потребителско име"
+msgstr "使用自定义用户名"
 
 #: ../src/general/OptionsMenu.tscn:867
 msgid "CUSTOM_USERNAME"
-msgstr "Потребителско име:"
+msgstr "自定义用户名："
 
 #: ../src/general/OptionsMenu.tscn:891 ../src/general/PauseMenu.tscn:132
 #: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
-msgstr "Назад"
+msgstr "返回"
 
 #: ../src/general/OptionsMenu.tscn:912 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
-msgstr "Запазване"
+msgstr "保存"
 
 #: ../src/general/OptionsMenu.tscn:928
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "По подразбиране"
+msgstr "默认"
 
 #: ../src/general/OptionsMenu.tscn:940
 msgid "RESET_TO_DEFAULTS"
-msgstr "Възстановете настройките по подразбиране?"
+msgstr "重置为默认值？"
 
 #: ../src/general/OptionsMenu.tscn:941
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Сигурни ли сте, че искате да възстановите настройките по подразбиране?"
+msgstr "你确定要把「所有」设置都重置为默认值吗？"
 
 #: ../src/general/OptionsMenu.tscn:950
 msgid "CLOSE_OPTIONS"
-msgstr "Затворете настройките?"
+msgstr "关闭选项菜单？"
 
 #: ../src/general/OptionsMenu.tscn:974
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
-"Вашите промени не са запазени.\n"
-"Искате ли да продължите?"
+"未保存的更改将被丢弃。\n"
+"你想继续吗？"
 
 #: ../src/general/OptionsMenu.tscn:1005
 msgid "SAVE_AND_CONTINUE"
-msgstr "Запазване на промените"
+msgstr "保存并继续"
 
 #: ../src/general/OptionsMenu.tscn:1014
 msgid "DISCARD_AND_CONTINUE"
-msgstr "Без запазване на промените"
+msgstr "放弃更改并继续"
 
 #: ../src/general/OptionsMenu.tscn:1030
 msgid "CANCEL"
-msgstr "Отказ"
+msgstr "取消"
 
 #: ../src/general/OptionsMenu.tscn:1041
 msgid "ERROR"
-msgstr "Грешка"
+msgstr "错误"
 
 #: ../src/general/OptionsMenu.tscn:1042
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Грешка: Неуспешно запазване на промените в конфигурационния файл."
+msgstr "错误：无法将新设置保存到配置文件。"
 
 #: ../src/general/PauseMenu.tscn:56
 msgid "RESUME"
-msgstr "Продължаване"
+msgstr "返回"
 
 #: ../src/general/PauseMenu.tscn:63
 msgid "SAVE_GAME"
-msgstr "Запазване"
+msgstr "保存游戏"
 
 #: ../src/general/PauseMenu.tscn:70 ../src/gui_common/MainMenu.tscn:162
 msgid "LOAD_GAME"
-msgstr "Зареждане"
+msgstr "载入游戏"
 
 #: ../src/general/PauseMenu.tscn:78
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4320
 msgid "STATISTICS"
-msgstr "Статистика"
+msgstr "统计数据"
 
 #: ../src/general/PauseMenu.tscn:85
 msgid "HELP"
-msgstr "Помощ"
+msgstr "帮助"
 
 #: ../src/general/PauseMenu.tscn:92 ../src/gui_common/MainMenu.tscn:174
 msgid "OPTIONS"
-msgstr "Настройки"
+msgstr "选项"
 
 #: ../src/general/PauseMenu.tscn:99
 msgid "RETURN_TO_MENU"
-msgstr "Главно меню"
+msgstr "返回主菜单"
 
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
-msgstr "Изход"
+msgstr "退出"
 
 #: ../src/gui_common/MainMenu.cs:376
 msgid "OK"
@@ -978,85 +934,84 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
-msgstr "Нова игра"
+msgstr "新游戏"
 
 #: ../src/gui_common/MainMenu.tscn:186
 msgid "TOOLS"
-msgstr "Инструменти"
+msgstr "工具"
 
 #: ../src/gui_common/MainMenu.tscn:198
 msgid "EXTRAS"
-msgstr "Екстри"
+msgstr "额外内容"
 
 #: ../src/gui_common/MainMenu.tscn:210
 msgid "CREDITS"
-msgstr "Екип"
+msgstr "制作人名单"
 
 #: ../src/gui_common/MainMenu.tscn:222
 msgid "QUIT"
-msgstr "Изход"
+msgstr "退出"
 
 #: ../src/gui_common/MainMenu.tscn:245
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "Микробен редактор"
+msgstr "微生物阶段自由编辑器"
 
 #: ../src/gui_common/MainMenu.tscn:345
 msgid "GLES2_MODE_WARNING"
-msgstr "Предупреждение за GLES2"
+msgstr "GLES2模式警告"
 
 #: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"В момента Thrive се изпълнява с GLES2. Това не се препоръчва и може да "
-"доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте, "
-"графичните карти на AMD или Nvidia."
+"你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该"
+"考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:17
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr "Версията на записа е различна"
+msgstr "存档的版本号不同"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"Версията на записа не съвпада с Вашата версия на играта.\n"
-"Моля, заредете записа ръчно от менюто."
+"你尝试载入的存档版本跟游戏版本不搭。\n"
+"请在主菜单手动载入存档。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "OPEN_THE_MENU"
-msgstr "Отваряне на менюто"
+msgstr "打开主菜单"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "OPEN_HELP_SCREEN"
-msgstr "Отваряне на помощта"
+msgstr "打开帮助页面"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "WILL_YOU_THRIVE"
-msgstr "Ще процъфтите ли?"
+msgstr "你能Thrive（兴盛）吗？"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:124
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr "Завършване на промените и възобновяване на играта"
+msgstr "完成编辑并返回游戏世界"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:130
 msgid "CHANGE_THE_SYMMETRY"
-msgstr "Промяна на симтерията"
+msgstr "改变对称"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:136
 msgid "UNDO_THE_LAST_ACTION"
-msgstr "Отмяна на последното действие"
+msgstr "撤销上一个动作"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:142
 msgid "REDO_THE_LAST_ACTION"
-msgstr "Възстановяване на последното действие"
+msgstr "重做上一个动作"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:148
 msgid "CREATE_A_NEW_MICROBE"
-msgstr "Създаване на нов микроб"
+msgstr "创建一个新微生物"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "MEMBRANE_RIGIDITY"
-msgstr "Твърдост на мембраната"
+msgstr "膜刚性"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5233
@@ -1066,7 +1021,7 @@ msgstr "Твърдост на мембраната"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6327
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6661
 msgid "MOBILITY"
-msgstr "Подвижност"
+msgstr "移动能力"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:314
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5324
@@ -1076,13 +1031,11 @@ msgstr "Подвижност"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6418
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6752
 msgid "HEALTH"
-msgstr "Здраве"
+msgstr "生命上限"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:337
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr ""
-"По-твърдата мембрана е по-устойчива, но същевременно тя забавя движението на "
-"клетката."
+msgstr "更刚性的细胞膜有助于抵挡伤害，但是也会让细胞更难移动。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:449
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:689
@@ -1095,7 +1048,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4280
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
 msgid "TURNS"
-msgstr "Превръща"
+msgstr "将"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
@@ -1109,7 +1062,7 @@ msgstr "Превръща"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4305
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4799
 msgid "INTO"
-msgstr "в"
+msgstr "转换成"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:528
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:809
@@ -1128,7 +1081,7 @@ msgstr "в"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4613
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4916
 msgid "STORAGE"
-msgstr "Съхранение"
+msgstr "存储"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:559
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:840
@@ -1153,64 +1106,61 @@ msgstr "Съхранение"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6358
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6692
 msgid "OSMOREGULATION_COST"
-msgstr "Осморегулационен разход"
+msgstr "渗透调节消耗"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
-"Това е вътрешността на клетката. Цитоплазмата представлява комбинация от "
-"разтворени във вода йони, протеини и други вещества. Една от функциите, "
-"които изпълнява е ферментацията – превръщането на глюкоза в АТФ. Клетките, "
-"които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. "
-"Също така, цитоплазмата служи за съхранение на молекули в клетката за да "
-"може тя да увеличава размера си."
+"胶质的细胞内容。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，这些"
+"物质充满了细胞内部。它其中一个功能是糖酵解，作用是将葡萄糖转换成ATP能量。对于"
+"那些缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还"
+"能用来储存收集到的化合物以使细胞大小成长。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:742
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
 msgid "DOT_RATE_SCALES"
-msgstr ". Количеството зависи"
+msgstr ". 产出速率取决于"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:755
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
 msgid "WITH_CONCENTRATION_OF"
-msgstr "от концентрацията на"
+msgstr "浓度是"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:762
 msgid "OXYGEN_DOT"
-msgstr "Кислород."
+msgstr "氧。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:863
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
-"Метаболозомите представляват струпвания от протеини, увити в протеинови "
-"обвивки. Те превръщат глюкозата в АТФ, много по-бързо от цитоплазмата, в "
-"процес, който се нарича дишане. За да функционират се нуждаят от кислород, "
-"когато той не е достатъчен произвеждането на АТФ се забавя. Понеже "
-"метаболозомите са скачени с цитоплазма, тя извършва известна ферментация."
+"代谢体是一大堆被蛋白质壳包裹住的蛋白质。通过有氧呼吸它们可以以比细胞质快得多"
+"的速度将葡萄糖转换成ATP。不管怎样，它需要氧才能运作，低水平的环境氧会导致ATP"
+"产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖"
+"酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2052
 msgid "THYLAKOID"
-msgstr "Тилакоид"
+msgstr "类囊体"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:970
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3728
 msgid "PRODUCES"
-msgstr "Произвежда"
+msgstr "产出"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:995
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3465
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ". Количеството зависи от"
+msgstr ". 产出速率取决于"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3478
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3766
 msgid "CONCENTRATION_OF"
-msgstr "концентрацията на"
+msgstr "浓度是"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1033
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1684
@@ -1218,270 +1168,234 @@ msgstr "концентрацията на"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4373
 msgid "AND"
-msgstr "и"
+msgstr "以及"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1046
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 msgid "INTENSITY_OF"
-msgstr "количеството"
+msgstr "亮度是"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1053
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
 #: ../src/microbe_stage/MicrobeStage.tscn:1360
 msgid "LIGHT"
-msgstr "Светлина"
+msgstr "的光"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1151
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"Тилакоидите представляват струпвания от протеини и фоточувствителни "
-"пигменти. Те използват енергията от светлината за да произвеждат глюкоза от "
-"вода и газообразен въглероден диоксид, в процес, който се нарича "
-"фотосинтеза. Благодарение на пигментите, те получават отличителен цвят. "
-"Количеството на произведената глюкоза зависи от концентрацията на "
-"въглеродния диоксид и количеството светлина. Понеже тилакоидите са скачени с "
-"цитоплазма, тя извършва известна ферментация."
+"类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过光合作用将阳光中的能"
+"量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它"
+"们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞"
+"质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1313
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ". Количеството зависи от концентрацията на"
+msgstr ".速率取决于"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
 msgid "CARBON"
-msgstr "Въглероден"
+msgstr "二氧"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1332
 msgid "DIOXIDE"
-msgstr "диоксид"
+msgstr "化碳"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1350
 msgid "ALSO_TURNS"
-msgstr "Също така, превръща"
+msgstr "同时也将"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"Хемосинтезиращите протеини представляват малки струпвания в цитоплазмата, "
-"които превръщат сероводорода, водата и газообразния въглероден диоксид в "
-"глюкоза, в процес, който се нарича сероводородна хемосинтеза. Количеството "
-"на произведената глюкоза зависи от концентрацията на въглероден диоксид. "
-"Понеже хемосинтезиращите протеини са скачени с цитоплазма, тя извършва "
-"известна ферментация."
+"化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫化"
+"氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成蛋白"
+"是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1789
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
-"Рустицианинът е протеин, който използва газообразен въглероден диоксид и "
-"кислород за да окислява желязото, в процес, който се нарича оксидиране. В "
-"резултат на този процес се освобождава енергия, която клетката може да "
-"използва."
+"铁硫菌蓝蛋白能够利用二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个"
+"过程被称作铁呼吸，从中产出可被细胞收集的能量。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3215
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4330
 msgid "DOT_RATE"
-msgstr ". Количеството"
+msgstr ". 速率"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1959
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3228
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4343
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4865
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr "зависи от концентрацията на"
+msgstr "取决于"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2064
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Нитрогеназата представлява протеин, който използва газообразния въглероден "
-"диоксид и клетъчната енергия под формата на АТФ за да произвежда амоняк, "
-"който е ключово вещество за разстежа на клетките. Този процес се нарича "
-"анаеробна азотна фиксация. Понеже нитрогеназата е скачена с цитоплазма, тя "
-"извършва известна ферментация."
+"固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称"
+"作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些"
+"糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2203
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4806
 msgid "OXYTOXY"
-msgstr "ОксиТокси"
+msgstr "氧化毒素"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2221
 msgid "DOT_CAN_RELEASE"
-msgstr ". Освобождава"
+msgstr ". 按E可释放"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
 msgid "TOXINS_BY_PRESSING_E"
-msgstr "токсини с натискане на „Е“. Количеството зависи от"
+msgstr "毒素。速率取决于"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2351
 msgid "OXYTOXISOME_DESC"
-msgstr ""
-"Това е видоизменена метаболозома, която произвежда примитивна форма на "
-"токсичния агент окситоксин."
+msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2458
 msgid "USES"
-msgstr "Използва"
+msgstr "使用"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr "за да увеличи скоростта"
+msgstr "来加快细胞的移动"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2495
 msgid "SPEED_OF_THE_CELL"
-msgstr "на движение на клетката."
+msgstr "速度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2530
 msgid "SPEED"
-msgstr "Скорост"
+msgstr "速度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2615
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"Флагелата (мн. ч.: флагели) представлява протеин с формата на камшик, който "
-"се разпростира извън клетъчната мембрана и използва АТФ за да придвижва "
-"клетката, чрез вълнообразни движения."
+"鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，可使用ATP沿一个方向起伏并推动细胞。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2742
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Пробожда другите клетки с острия си връх."
+msgstr "用来捅其它细胞。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2596
 msgid "CILIA"
-msgstr "Реснички"
+msgstr "纤毛"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5097
 msgid "TO_BE_IMPLEMENTED"
-msgstr "В процес на разработка."
+msgstr "仍在开发中。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2969
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Клетъчното ядро позволява еволюция\n"
-"към по-сложни мембранни органели.\n"
-"Използва голямо количество АТФ.\n"
-"Тази еволюция е необратима."
+"允许进化一些更加复杂的\n"
+"膜细胞器。需要非常多的\n"
+"ATP维护。此进化无法被\n"
+"撤销。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
-"Това е определящата структура на еукариотните клетки. Клетъчното ядро "
-"включва в себе си ендоплазмен ретикулум и апарата на Голджи. То е еволюция "
-"на прокариотните клетки, която им позволява да развият система от вътрешни "
-"мембрани, чрез асимилиране на друг прокариот в самите тях. Ядрото позволява "
-"разделение на различните клетъчни процеси и не им позволява да се "
-"припокриват. Освен това, позволява на мембранните органели да са много по-"
-"сложни, ефикасни и специализирани. За сметка на това, ядрото увеличава "
-"размера на клетката и изисква голямо количество енергия."
+"真核细胞的定义特征。你看见的这个细胞核同时还包括了内质网和高尔基体。这种进化"
+"本质上是原核细胞通过吸收自身内部的另一种原核生物来发展内部膜系统。以允许它们"
+"在细胞内的不同隔间完成不同的生化过程，并防止它们相互重叠干扰。因此，膜细胞器"
+"比那些直接浮在细胞质里的玩意要复杂，高效与专业的多。无论如何，它也会让细胞变"
+"得更大并需要消耗超多的ATP维护。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
-"Това е основния източник на енергия на клетката. Митоходнрията (мн. ч.: "
-"митохондрии) представлява структура с двойна мембрана, изпълнена с протеини "
-"и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. "
-"Митохондрията превръща по много ефективен начин глюкозата в АТФ, в процес, "
-"който се нарича аеробно дишане. За да функционира се нуждае от кислород, "
-"когато той не е достатъчен произвеждането на АТФ се забавя."
+"细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主"
+"同化的原核生物。能够通过有氧呼吸以比细胞质高得多的效率将葡萄糖转换成ATP。不管"
+"怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3621
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
-"Хлоропластът представлява структура с двойна мембрана, съдържаща "
-"фоточувствителни пигменти, събрани заедно в мембранни торбички. Той е "
-"прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в "
-"хлоропласта използват енергията от светлината за да произвеждат глюкоза от "
-"вода и газообразен въглероден диоксид, в процес, който се нарича "
-"фотосинтеза. Благодарение на пигментите, той получава отличителен цвят. "
-"Количеството на произведената глюкоза зависи от концентрацията на "
-"въглеродния диоксид и количеството светлина."
+"叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿主"
+"同化的原核生物。叶绿体中的色素可以通过光合作用把水和二氧化碳转换成葡萄糖。这"
+"些色素也是赋予其独特颜色的原因。产出葡萄糖的速率取决于二氧化碳的浓度和光的强"
+"度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3701
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2946
 msgid "THERMOPLAST"
-msgstr "Термопласт"
+msgstr "热能体"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3803
 msgid "TEMPERATURE"
-msgstr "Температура"
+msgstr "温度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3901
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
-"Термопластът все още не е внедрен. Той представлява структура с двойна "
-"мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни "
-"торбички. Той е прокариот, който е бил асимилиран от еукариотния си "
-"приемник. Пигментите в него използват енергията от топлината за да "
-"произвеждат глюкоза от вода и газообразен въглероден диоксид, в процес, "
-"който се нарича термосинтеза. Количеството на произведената глюкоза зависи "
-"от концентрацията на въглеродния диоксид и температурата."
+"热能体还在开发中。它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是"
+"一种被其真核宿主同化的原核生物。热能体中的色素可以通过热合成用温差把水和二氧"
+"化碳合成成葡萄糖。合成葡萄糖的速率取决于二氧化碳的浓度与温度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4173
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
-"Хемопластът представлява структура с двойна мембрана, съдържаща протеини, "
-"които превръщат сероводорода, водата и газообразния въглероден диоксид в "
-"глюкоза, в процес, който се нарича сероводородна хемосинтеза. Количеството "
-"на произведената глюкоза зависи от концентрацията на водата и въглеродния "
-"диоксид."
+"化学质体是一种双层膜结构，其中包含的蛋白质可以通过硫化氢化学合成将硫化氢，水"
+"和二氧化碳转换成葡萄糖。葡萄糖的产出速率取决于水和二氧化碳的浓度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4478
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
-"Пластидът за азотна фиксация представлява протеин, който използва "
-"газообразен азот и кислород, както и клетъчна енергия под формата на АТФ за "
-"да произвежда амоняк, който е ключово вещество за разстежа на клетките. Този "
-"процес се нарича аеробна азотна фиксация."
+"固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，氨对细胞生长至关重要。这个过"
+"程被称为有氧固氮。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4579
 msgid "INREASE_STORAGE_SPACE"
-msgstr "Увеличава мястото за съхранение на клетката."
+msgstr "增加细胞的储存空间。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4667
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"Вакуолата представлява вътрешен мембранен органел, който се използва за "
-"съхранение в клетката. Състои се от няколко секреторни мехурчета – малки "
-"мембранни структури, които са слети заедно. Изпълнена е с вода, която "
-"съдържа молекули, ензими и други вещества. Формата на вакуолата е течна и "
-"може да варира между различните клетки."
+"液泡是一种用于存储的内膜细胞器。它由好几个通常用于储存的，被固定在一起的囊泡"
+"组成。它装满了水，用于容纳分子，酶，固体和其他物质。它的形状是流性的，所以不"
+"同细胞间形状可以不同。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4824
 msgid "DOT_CAN"
-msgstr ". Освобождава"
+msgstr "。可以"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4837
 msgid "RELEASE_TOXINS_BY_PRESSING"
-msgstr "токсини с натискане на"
+msgstr "通过按E"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4844
 msgid "E_DOT"
-msgstr "„Е“."
+msgstr "释放毒素。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4852
 msgid "RATE"
-msgstr "Количеството"
+msgstr "速率"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4970
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
-"Токсичната вакуола представлява видоизменена вакуола, която произвежда, "
-"съхранява и отделя окситоксини. Всяка токсична вакуола увеличава скоростта "
-"на отделяне на токсините."
+"毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释"
+"放毒素的速度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4986
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5050
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr "Биолуминесцентна вакуола"
+msgstr "生物发光液泡"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5118
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5182
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3468
 msgid "NORMAL"
-msgstr "Обикновена"
+msgstr "普通"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5294
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5536
@@ -1490,102 +1404,92 @@ msgstr "Обикновена"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6388
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6722
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr "Скорост на усвояване на веществата"
+msgstr "物质吸收速度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5347
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Това е най-обикновена мембрана, която не осигурява добра защита на клетката. "
-"Освен това, тя се нуждае от повече енергия за да не се деформира. "
-"Предмиството ѝ е, че позволява на клетката да усвоява хранителните вещества "
-"по-бързо."
+"最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是能"
+"允许细胞更轻松的移动与吸收营养。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5363
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3538
 msgid "DOUBLE"
-msgstr "Двойна"
+msgstr "双层"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5588
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Това е мембрана с два слоя, която осигурява по-добра защита и се нуждае от "
-"по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката "
-"става по-бавна, както и усвояването на хранителните вещества."
+"有两层的细胞膜，对伤害有更好的防护能力，也不需要花费那么多能量避免变形。不管"
+"怎样，它也会减缓细胞的移动速度，并降低其吸收营养的速率。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5604
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5668
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3608
 msgid "CELLULOSE"
-msgstr "Целулозна"
+msgstr "纤维素"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5840
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6448
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6782
 msgid "PHYSICAL_RESISTANCE"
-msgstr "Физическа устойчивост"
+msgstr "物防"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6173
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6507
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6841
 msgid "CANNOT_ENGULF"
-msgstr "Не позволява поглъщане"
+msgstr "无法进入吞噬模式"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5892
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Това е мембрана със стена, която осигурява по-добра цялостна защита и се "
-"нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че "
-"клетката става още по-бавна, както и усвояването на хранителните вещества."
+"这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不"
+"需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5908
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5972
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3678
 msgid "CHITIN"
-msgstr "Хитинова"
+msgstr "几丁质"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6144
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6478
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6812
 msgid "TOXIN_RESISTANCE"
-msgstr "Токсична устойчивост"
+msgstr "毒抗"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6196
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Това е мембрана със стена, която осигурява по-добра цялостна защита, особено "
-"срещу токсини и се нуждае от по-малко енергия за да не се деформира. "
-"Недостатъците ѝ са, че клетката става чувствително по-бавна, както и "
-"усвояването на хранителните вещества."
+"这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是毒抗。同时也不"
+"需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6212
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6276
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3753
 msgid "CALCIUM_CARBONATE"
-msgstr "Калциево-карбонатна"
+msgstr "碳酸钙"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6530
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Това е мембрана с здрава обвивка от калциев карбонат, която осигурява "
-"отлична защита и се нуждае от по-малко енергия за да не се деформира. "
-"Недостатъците ѝ са, че клетката става много бавна, както и усвояването на "
-"хранителните вещества."
+"这个细胞膜额外配置了一层碳酸钙组成的强力外壳。它非常能抵挡伤害并花费很少的能"
+"量抵抗变形。只不过这么沉重的外壳，细胞也别想有什么移动与吸收能力了。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6546
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6610
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3825
 msgid "SILICA"
-msgstr "Силициева"
+msgstr "二氧化硅"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6864
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Това е мембрана с здрава стена от силициев диоксид, която осигурява най-"
-"добрата защита и се нуждае от по-малко енергия за да не се деформира. "
-"Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването "
-"на хранителните вещества."
+"这个细胞膜额外配置了一层二氧化硅外壳。各方面都有更好的防御力，尤其是物防高的"
+"惊人。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
 msgid "PER_SECOND_SLASH"
@@ -1593,31 +1497,31 @@ msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1392
 msgid "SUCCESSFUL_SCAVENGE"
-msgstr "успешно плячкосване"
+msgstr "成功收获"
 
 #: ../src/microbe_stage/Microbe.cs:1399
 msgid "SUCCESSFUL_KILL"
-msgstr "успешно убийство"
+msgstr "成功杀死"
 
 #: ../src/microbe_stage/Microbe.cs:1879
 msgid "ESCAPE_ENGULFING"
-msgstr "бягство от поглъщане"
+msgstr "逃脱被吞噬的命运"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:473
 msgid "MICROBE_PATCH_LABEL"
-msgstr "Зона: {0}"
+msgstr "地区：{0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:658
 msgid "STUFF_AT"
-msgstr "Неща при {0:F1}, {1:F1}:"
+msgstr "在{0:F1}, {1:F1}的东西："
 
 #: ../src/microbe_stage/MicrobeStage.cs:508
 msgid "PLAYER_REPRODUCED"
-msgstr "играчът се възпроизведе"
+msgstr "玩家繁殖"
 
 #: ../src/microbe_stage/MicrobeStage.cs:630
 msgid "PLAYER_DIED"
-msgstr "играчът умря"
+msgstr "玩家死亡"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:878
 msgid "AT_CURSOR"
@@ -1625,279 +1529,280 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:902
 msgid "NOTHING_HERE"
-msgstr "Тук няма нищо"
+msgstr "这里啥都没有"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:926
 msgid "COMPOUNDS_COLON"
-msgstr "Вещества:"
+msgstr "化合物："
 
 #: ../src/microbe_stage/MicrobeStage.tscn:963
 msgid "SPECIES_COLON"
-msgstr "Създания:"
+msgstr "物种："
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1043
 msgid "ENVIRONMENT"
-msgstr "Околна среда"
+msgstr "环境"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1304
 msgid "TEMPERATURE_SHORT"
-msgstr "Темп."
+msgstr "温度"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1415
 msgid "PRESSURE_SHORT"
-msgstr "Наляг."
+msgstr "压力"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1491
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4924
 msgid "COMPOUNDS"
-msgstr "Вещества"
+msgstr "化合物"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1851
 msgid "AGENTS"
-msgstr "Агенти"
+msgstr "物质"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2112
 msgid "POPULATION_CAPITAL"
-msgstr "ПОПУЛАЦИЯ:"
+msgstr "人口："
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:21
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr "Пангонски отвори"
+msgstr "远古热泉"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:29
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr "Пангонска мезопелагична"
+msgstr "远古中层带"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:36
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr "Пангонска епипелагична"
+msgstr "远古上远洋带"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:43
 msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr "Пангонски тидален басейн"
+msgstr "远古潮池"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:50
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr "Пангонска батипелагична"
+msgstr "远古半深海带"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:57
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr "Пангонска абисопелагична"
+msgstr "远古深海带"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:64
 msgid "PATCH_PANGONIAN_COAST"
-msgstr "Пангонско крайбрежие"
+msgstr "远古海岸"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:71
 msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr "Пангонски естуар"
+msgstr "远古河口"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:78
 msgid "PATCH_CAVE"
-msgstr "Пещера"
+msgstr "洞穴"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:85
 msgid "PATCH_ICE_SHELF"
-msgstr "Шелфов ледник"
+msgstr "冰架"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:92
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr "Пангонско морско дъно"
+msgstr "远古海床"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:687
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1188
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "Зареждане на микробния редактор"
+msgstr "载入微生物编辑器中"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:689
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr "Изчакване на автоматичната еволюция:"
+msgstr "等待auto-evo中："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2070
 msgid "AUTO_EVO_FAILED"
-msgstr "Автоматичната еволюция не успя да стартира"
+msgstr "Auto-evo未能正常运行"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2071
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr "състояние:"
+msgstr "运行状态："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1045
 msgid "REPORT"
-msgstr "Отчет"
+msgstr "报告"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1066
 msgid "PATCH_MAP"
-msgstr "Зонална карта"
+msgstr "地区图"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1087
 msgid "EDITOR"
-msgstr "Редактор"
+msgstr "编辑器"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1134
 msgid "ORGANISM_STATISTICS"
-msgstr "Статистика на организма"
+msgstr "生物数据"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1179
 msgid "SPEED_COLON"
-msgstr "Скорост:"
+msgstr "速度："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1209
 msgid "HP_COLON"
-msgstr "ТЗ:"
+msgstr "生命上限："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1239
 msgid "SIZE_COLON"
-msgstr "Размер:"
+msgstr "大小："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1260
 msgid "GENERATION_COLON"
-msgstr "Поколение:"
+msgstr "世代："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1302
 msgid "ATP_BALANCE"
-msgstr "Баланс на АТФ"
+msgstr "ATP开支"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1490
 msgid "MUTATION_POINTS"
-msgstr "Мутационни точки"
+msgstr "变异点"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1577
 msgid "STRUCTURE"
-msgstr "Структура"
+msgstr "结构"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1600
 msgid "APPEARANCE"
-msgstr "Външност"
+msgstr "外观"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1623
 msgid "BEHAVIOR"
-msgstr "Поведение"
+msgstr "行为"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1734
 msgid "STRUCTURAL"
-msgstr "Строеж"
+msgstr "结构"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1896
 msgid "PROTEINS"
-msgstr "Протеини"
+msgstr "蛋白质"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2119
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
-"Хемосинтези-\n"
-"ращи протеини"
+"化学合\n"
+"成蛋白"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2378
 msgid "EXTERNAL"
-msgstr "Външна"
+msgstr "外部"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
 msgid "ORGANELLES"
-msgstr "Органели"
+msgstr "细胞器"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3080
 msgid "PLASTID"
-msgstr "Пластид"
+msgstr "质体"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3240
 msgid "N_A_MP"
-msgstr "Няма МТ"
+msgstr "不消耗变异点"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3278
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
-"Биолуминесцентна\n"
-"вакуола"
+"生物发光\n"
+"液泡"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3375
 msgid "MEMBRANE_TYPES"
-msgstr "Видове мембрани"
+msgstr "细胞膜类型"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3848
 msgid "FLUIDITY_RIGIDITY"
-msgstr "Мека / Твърда"
+msgstr "流动性/刚性"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3886
 msgid "COLOUR"
-msgstr "Цвят"
+msgstr "颜色"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4060
 msgid "CONFIRM_CAPITAL"
-msgstr "ПОТВЪРЖДАВАНЕ"
+msgstr "确认"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4069
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Отрицателен баланс на АТФ"
+msgstr "ATP开支为负"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4070
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
-"Вашият микроб не произвежда достатъчно АТФ за да оцелее!\n"
-"Искате ли да продължите?"
+"你的微生物没办法产出足以维持生存的量的ATP！\n"
+"你确定要继续吗？"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4078
 msgid "DISCONNECTED_ORGANELLES"
-msgstr "Несвързани органели"
+msgstr "未连接的细胞器"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4079
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
-"Има органели, които не са свързани с останалите.\n"
-"Моля, свържете ги или отменете Вашите промени."
+"有一些细胞器没有连接到其它细胞器上。\n"
+"请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4145
 msgid "PATCH_NAME"
-msgstr "Име на зоната"
+msgstr "地区名称"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4179
 #, fuzzy
 msgid "AUTO_EVO"
-msgstr "Автоматичната еволюция не успя да стартира"
+msgstr "Auto-evo未能正常运行"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4193
 msgid "FOOD_CHAIN"
-msgstr "Хранителна верига"
+msgstr "食物链"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4207
 msgid "TIMELINE"
-msgstr "Хронология"
+msgstr "时间线"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4260
 msgid "AUTO_EVO_RESULTS"
-msgstr "Резултати от автоматичната еволюция:"
+msgstr "Auto-evo结果："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4279
 msgid "EXTERNAL_EFFECTS"
-msgstr "Странични ефекти:"
+msgstr "外部影响："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4347
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5271
 msgid "NEXT_CAPITAL"
-msgstr "НАПРЕД"
+msgstr "下一个"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4461
 msgid "SELECT_A_PATCH"
-msgstr "Изберете зона"
+msgstr "选择一个地区以显示详细"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4496
+#, fuzzy
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
+msgstr "人口："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4576
 msgid "PHYSICAL_CONDITIONS"
-msgstr "Условия"
+msgstr "物理条件"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4759
 msgid "ATMOSPHERIC_GASSES"
-msgstr "Газове"
+msgstr "大气气体"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5184
 msgid "SPECIES_PRESENT"
-msgstr "Създания"
+msgstr "存在的物种"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5242
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "Преселване"
+msgstr "移动到这个地区"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
 msgid "FREEBUILDING"
@@ -1905,7 +1810,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Глюкозата се понижи на {0} от предишното си състояние."
+msgstr "环境中的葡萄糖已减少到原先量的{0}。"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
 msgid "MEGA_YEARS"
@@ -1918,307 +1823,301 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
 msgid "ATP_PRODUCTION"
-msgstr "Произвеждан АТФ"
+msgstr "ATP产出"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "ПРОИЗВЕЖДАНИЯТ АТФ Е НЕДОСТАТЪЧЕН!"
+msgstr "ATP产出不足！"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
 msgid "OSMOREGULATION"
-msgstr "Осморегулация"
+msgstr "渗透调节"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
 msgid "BASE_MOVEMENT"
-msgstr "Базово движение"
+msgstr "移动需求"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
 msgid "BIOME_LABEL"
-msgstr "Биом: {0}"
+msgstr "生物群系：{0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
 msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1} м. под морското равнище"
+msgstr "在海平面下方{0}-{1}米处"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1579
 msgid "WITH_POPULATION"
-msgstr "{0} с популация от: {1}"
+msgstr "{0} 有人口： {1}"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:57
 msgid "EXTINCTION_CAPITAL"
-msgstr "ИЗМИРАНЕ"
+msgstr "灭绝"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
-"Вашите създания изчезнаха, както 99% от всички създания, които някога са "
-"съществували. Други ще продължат по Вашия път и ще процъфтят, но това няма "
-"да са Вашите създания. Те ще бъдат забравени като провален еволюционен "
-"експеримент."
+"就像世上存在过的99%的物种一样，你的物种灭绝了。其它的物种会来取代你的生态位并"
+"发展兴盛，但那不会是你。作为进化中一个失败的实验品，你将被遗忘。"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
-msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
+msgstr "你已发展繁荣（Thrived）！"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
-"Поздравления, Вие победихте в тази версия на Thrive! Може да продължите "
-"играта след като този прозорец се затвори или да започнете нова игра в нов "
-"свят."
+"恭喜你！你已赢得了这个版本的Thrive！如果你愿意你可以关掉这个页面并继续游玩，"
+"或者在新世界开始一场新游戏。"
 
 #: ../src/saving/InProgressLoad.cs:89 ../src/saving/InProgressLoad.cs:113
 #: ../src/saving/InProgressLoad.cs:160
 msgid "LOADING_GAME"
-msgstr "Зареждане на играта"
+msgstr "载入游戏"
 
 #: ../src/saving/InProgressLoad.cs:91
 msgid "READING_SAVE_DATA"
-msgstr "Четене на запазените данни"
+msgstr "读取存档数据中"
 
 #: ../src/saving/InProgressLoad.cs:115
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr "Създаване на обектите от записа"
+msgstr "从存档数据中创建物体"
 
 #: ../src/saving/InProgressLoad.cs:122
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr "Грешка по време на зареждането на запазените данни"
+msgstr "加载存档数据时发生异常"
 
 #: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_IS_INVALID"
-msgstr "Записът е невалиден"
+msgstr "存档无效"
 
 #: ../src/saving/InProgressLoad.cs:149
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "Записът съдържа невалидно състояние на играта"
+msgstr "存档具有无效的游戏状态场景"
 
 #: ../src/saving/InProgressLoad.cs:162
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr "Обработване на заредените обекти"
+msgstr "处理载入的物体中"
 
 #: ../src/saving/InProgressLoad.cs:175
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr "Грешка по време на обработката на заредените обекти"
+msgstr "处理载入的对象时发生异常"
 
 #: ../src/saving/InProgressLoad.cs:181
 msgid "LOAD_FINISHED"
-msgstr "Зареждането приключи"
+msgstr "载入完成"
 
 #: ../src/saving/InProgressLoad.cs:206
 msgid "ERROR_LOADING"
-msgstr "Грешка по време на зареждането"
+msgstr "载入时出错"
 
 #: ../src/saving/InProgressSave.cs:172
 msgid "SAVING"
-msgstr "Запазване..."
+msgstr "保存中……"
 
 #: ../src/saving/InProgressSave.cs:202
 msgid "SAVE_FAILED"
-msgstr "Запазването е неуспешно"
+msgstr "保存失败"
 
 #: ../src/saving/InProgressSave.cs:203
 msgid "ERROR_SAVING"
-msgstr "Грешка по време на запазването"
+msgstr "存档时出错"
 
 #: ../src/saving/NewSaveMenu.cs:65
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "Името ({0}) вече съществува. Презаписване?"
+msgstr "目标文件名{0}已存在。确定要覆盖吗？"
 
 #: ../src/saving/NewSaveMenu.tscn:28
 msgid "CREATE_NEW_SAVE"
-msgstr "Създаване на нов запис"
+msgstr "创建新存档"
 
 #: ../src/saving/NewSaveMenu.tscn:45
 msgid "NAME"
-msgstr "Наименование:"
+msgstr "名称："
 
 #: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
-msgstr "Допълнителни опции"
+msgstr "额外选项"
 
 #: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr "Презаписване на съществуващ запис:"
+msgstr "覆写已有的存档："
 
 #: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Презапишете съществуващия запис?"
+msgstr "覆写已有的存档？"
 
 #: ../src/saving/SaveHelper.cs:437
 msgid "SAVING_SUCCEEDED"
-msgstr "Запазването е успешно"
+msgstr "保存成功"
 
 #: ../src/saving/SaveHelper.cs:441
 msgid "SAVING_FAILED"
-msgstr "Запазването е неуспешно! Отчетена е грешка"
+msgstr "保存失败！发生了一个异常"
 
 #: ../src/saving/SaveInformation.cs:22
+#, fuzzy
 msgid "SAVE_MANUAL"
-msgstr ""
+msgstr "保存失败"
 
 #: ../src/saving/SaveInformation.cs:31
+#, fuzzy
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "使用的空间："
 
 #: ../src/saving/SaveInformation.cs:40
+#, fuzzy
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "保存游戏"
 
 #: ../src/saving/SaveInformation.cs:49
+#, fuzzy
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "存档无效"
 
 #: ../src/saving/SaveList.cs:177
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-"Изтриването на записа не може да бъде отменено, сигурни ли сте, че искате да "
-"изтриете {0}?"
+msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
 
 #: ../src/saving/SaveList.tscn:45 ../src/saving/SaveListItem.tscn:120
 msgid "LOADING_DOT"
-msgstr "Зареждане..."
+msgstr "载入中……"
 
 #: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:298
 msgid "DELETE_THIS_SAVE"
-msgstr "Изтрийте този запис?"
+msgstr "删除这个存档？"
 
 #: ../src/saving/SaveList.tscn:67 ../src/saving/SaveList.tscn:77
 msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "Заредете несъвместим запис?"
+msgstr "载入不兼容的存档？"
 
 #: ../src/saving/SaveList.tscn:68
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Този запис е от по-нова версия на Thrive и не е съвместим.\n"
-"Искате ли да го заредите въпреки това?"
+"这个存档是来自更新版本的Thrive的并且很可能不兼容。\n"
+"你确定要强行载入这个存档吗？"
 
 #: ../src/saving/SaveList.tscn:78
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Този запис е от стара версия на Thrive и е несъвместим.\n"
-"Играта е в начален етап на разработка и съвместимостта не е приоритет.\n"
-"Ако искате, може да докладвате за потенциалните проблеми.\n"
-"Искате ли да го заредите въпреки това?"
+"这个存档是来自于更老版本的Thrive的，有可能不兼容。\n"
+"由于Thrive尚在早期开发中，存档兼容性并不是首要目标。\n"
+"你很可能会碰上各种问题，但它们不会是我们的首要解决对象。\n"
+"你确定要强行载入这个存档吗？"
 
 #: ../src/saving/SaveList.tscn:87
 msgid "LOAD_INVALID_SAVE"
-msgstr "Заредете невалиден запис?"
+msgstr "载入无效的存档？"
 
 #: ../src/saving/SaveList.tscn:88
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
-"Запазената информация не може да бъде заредена.\n"
-"Записът най-вероятно е повреден или е от по-нова версия на Thrive.\n"
-"Искате ли да го заредите въпреки това?"
+"无法从这个文件中载入存档信息。\n"
+"这个存档可能被损坏了，或者是来自于无法被这个版本的Thrive理解的新版本格式。\n"
+"你确定要强行载入这个存档吗？"
 
 #: ../src/saving/SaveList.tscn:96
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr "Избраният запис е несъвместим"
+msgstr "选择的存档不兼容"
 
 #: ../src/saving/SaveList.tscn:98
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Избраният запис не е съвместим с тази версия на Thrive.\n"
-"Понеже играта е в начален етап на разработка и съвместимостта не е "
-"приоритет, все още не е създаден вграден конвертор за стари записи."
+"被选中的存档已知会跟这个版本的Thrive不兼容。\n"
+"由于Thrive尚在早期开发中，存档兼容性并不是首要目标。目前也没有内置的存档转换"
+"器来升级旧版本的存档。"
 
 #: ../src/saving/SaveListItem.tscn:147
 msgid "CREATED_AT"
-msgstr "Създаден на:"
+msgstr "保存于："
 
 #: ../src/saving/SaveListItem.tscn:154 ../src/saving/SaveListItem.tscn:173
 #: ../src/saving/SaveListItem.tscn:192 ../src/saving/SaveListItem.tscn:215
 #: ../src/saving/SaveListItem.tscn:244 ../src/saving/SaveListItem.tscn:263
 msgid "DOT_DOT_DOT"
-msgstr "..."
+msgstr "…"
 
 #: ../src/saving/SaveListItem.tscn:166
 msgid "TYPE"
-msgstr "Тип:"
+msgstr "类型："
 
 #: ../src/saving/SaveListItem.tscn:185
 msgid "DESCRIPTION"
-msgstr "Описание:"
+msgstr "介绍："
 
 #: ../src/saving/SaveListItem.tscn:208
 msgid "VERSION"
-msgstr "Версия:"
+msgstr "版本："
 
 #: ../src/saving/SaveListItem.tscn:237
 msgid "BY"
-msgstr "От:"
+msgstr "创建者："
 
 #: ../src/saving/SaveListItem.tscn:256
 msgid "CREATED_ON_PLATFORM"
-msgstr "Създаден в:"
+msgstr "创建平台："
 
 #: ../src/saving/SaveListItem.tscn:288 ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
-msgstr "Зареждане"
+msgstr "载入"
 
 #: ../src/saving/SaveListItem.tscn:299
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr ""
-"Изтриването на този запис не може да бъде отменено, сигурни ли сте, че "
-"искате да го изтриете?"
+msgstr "删除此存档将无法撤消，确定要永久删除吗？"
 
 #: ../src/saving/SaveManagerGUI.cs:211
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr ""
-"Изтриването на {0} запис(а) не може да бъде отменено, сигурни ли сте, че "
-"искате да го направите?"
+msgstr "删除被选中的这些存档将无法撤消，确定要永久删除这{0}个存档吗？"
 
 #: ../src/saving/SaveManagerGUI.cs:223
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Изтриването на всички стари автоматични и бързи записи не може да бъде "
-"отменено, сигурни ли сте?\n"
-"- {0} Автоматични запис(а)и\n"
-"- {1} Бързи запис(а)и"
+"删除所有自动和快速存档将无法撤消，确定要永久删除这些存档吗？\n"
+"- {0} 个自动存档\n"
+"- {1} 个快速存档"
 
 #: ../src/saving/SaveManagerGUI.tscn:64
 msgid "REFRESH"
-msgstr "Опресняване"
+msgstr "刷新"
 
 #: ../src/saving/SaveManagerGUI.tscn:72
 msgid "DELETE_SELECTED"
-msgstr "Изтриване на избраните"
+msgstr "删除选中的"
 
 #: ../src/saving/SaveManagerGUI.tscn:80
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr "Изчистване на стари записи"
+msgstr "清除旧存档"
 
 #: ../src/saving/SaveManagerGUI.tscn:91
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr "Отваряне на директорията с записи"
+msgstr "打开存档文件夹"
 
 #: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
-msgstr "Общо записи:"
+msgstr "存档数："
 
 #: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
-msgstr "Използвано място:"
+msgstr "使用的空间："
 
 #: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
-msgstr "Избрани:"
+msgstr "选中的："
 
 #: ../src/saving/SaveManagerGUI.tscn:180
 msgid "DELETE_SELECTED_SAVES"
-msgstr "Изтрийте избраните (записи)?"
+msgstr "删除选中的存档？"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES"
-msgstr "Изтрийте старите записи?"
+msgstr "删除旧存档？"
 
 #: ../src/saving/SaveStatusOverlay.tscn:116
 msgid "SAVING_ERROR"
-msgstr "Грешка при запазването"
+msgstr "存档错误"
 
 #: ../src/saving/SaveStatusOverlay.tscn:176
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr "Копиране на грешката в клипборда"
+msgstr "将错误复制到剪贴板"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:39
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:72
@@ -2232,140 +2131,124 @@ msgstr "Копиране на грешката в клипборда"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:234
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
 msgid "TUTORIAL"
-msgstr "Упътване"
+msgstr "教程"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:59
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Добре дошли в микробния редактор.\n"
-"Тук може да видите какво се е случило от началото на играта или от "
-"последното Ви влизане в редактора.\n"
+"欢迎来到微生物编辑器。\n"
+"在这里，你可以查看自游戏开始或上一次进入编辑器以来发生的情况。 并对你的物种进"
+"行更改。\n"
 "\n"
-"В този раздел може да разгледате отчета за различните създания. Също така, "
-"може да наблюдавате промените в околната среда.\n"
+"在这个选项卡中，你可以查看有关存在的物种，位置以及其人口的报告。你还可以在顶"
+"部看到环境变化。\n"
 "\n"
-"За да преминете в слевдващия раздел, натиснете бутона „НАПРЕД“, който се "
-"намира долу вдясно."
+"要进入下一个编辑器选项卡，按右下角的下一个按钮。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:92
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
-"Това е зоналната карта.\n"
-"Тук може да видите различните зони, в които живеят микробите.\n"
-"Вашата зона е подчертана.\n"
-"Изберете дадена зона с мишката за да я разгледате в повече детайли.\n"
+"这里是地区地区。\n"
+"在这里你可以看见微生物可以生存的不同地区。\n"
+"你目前的地区会被高光显示。\n"
+"你可以点击这些地区并从屏幕右方看见它们的详细资料。\n"
 "\n"
-"Ако изберете зона, съседна на Вашата, може да натиснете бутона „Преселване“ "
-"за да се придвижите в нея. Така Вашата популация се разпространява в нови "
-"зони.\n"
+"如果你选择一个紧接着你目前位置的地区，你可以通过屏幕右边的按钮来移动到那个地"
+"区。这将允许你将你的人口散播到新地区。\n"
 "\n"
-"Изберете зона за да продължите."
+"选择一个地区以继续。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:122
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"Това е микробния редактор, тук може да добавяте или премахвате органели от "
-"Вашите създания, чрез наличните мутационни точки (МТ).\n"
+"这里是你的细胞编辑器，你可以在这通过花费变异点来添加或移除细胞器。\n"
 "\n"
-"Също така, може да променяте и другите характеристики по Вашите създания, "
-"чрез останалите раздели в редактора.\n"
+"你还可以在细胞编辑器里修改你的物种的其它属性。\n"
 "\n"
-"За да продължите, изберете органел от панела вляво (например цитоплазмата). "
-"След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето "
-"създание."
+"想要继续的话，从左侧面板选中一个细胞器（细胞质是个好选择）。然后再点击右侧面"
+"板中央附近的六角格以将此细胞器放入你的物种中。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Премахването на органели също струва МТ, защото се води за мутация. Може да "
-"ги премахнете с десния бутон на мишката.\n"
-"Ако направите грешка, може да отмените Вашите промени в редактора.\n"
+"移除细胞器也需要消耗变异点。你可以通过右键点击细胞器来移除它们。\n"
+"如果你犯了个错的话，你可以撤销你在编辑器里做的任何改变。\n"
 "\n"
-"Важно: Премахването на органели, които са добавени в текущата сесия на "
-"редактора не отнема МТ.\n"
+"请注意：移除任何在当前世代添加的细胞器都是免费的。\n"
 "\n"
-"Натиснете бутона „Отмяна“ за да продължите."
+"按撤销按钮以继续。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:190
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Важно е да разберете какви ефекти има даден органел върху Вашата клетка, "
-"преди да го поставите.\n"
+"当选择要添加的细胞器时，请注意用于细胞器的工具提示，它们做什么以及使用和产生"
+"的化合物。\n"
 "\n"
-"Обърнете внимание на баланса на АТФ, за да сте сигурни, че Вашата клетка ще "
-"оцелее.\n"
+"同时也请注意右上角的ATP开支条，确保其不会入不敷出。\n"
 "\n"
-"Може да завъртите органелите с „A“ и „D“ (по подразбиране), преди да ги "
-"поставите.\n"
+"你可以通过A和D键（默认按键）旋转细胞器。\n"
 "\n"
-"Натиснете бутона „Възстановяване“ (до бутона „Отмени“) за да продължите."
+"按下重做按钮（和撤销按钮在一起）以继续。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Това е основната информация за микробния редактор. Може да разгледате и "
-"останалите раздели в редактора за повече настройки.\n"
+"这些就是改变物种的基础操作了。你可以自己试试看其它选项卡里提供的选项。\n"
 "\n"
-"Може да преименувате Вашите създания, като натиснете с мишката върху "
-"текущото им име.\n"
+"你可以通过点击物种的现有名称并编辑其来改变你的物种名称。\n"
 "\n"
-"Като за начало, насочете се към морската повърхност и не увеличавайте "
-"прекалено много размера на Вашата клетка.\n"
+"目前来说，你应该尝试保持一个比较小的细胞尺寸，并向表层地区前进。\n"
 "\n"
-"Успех!"
+"祝你好运！"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
 msgid "GOT_IT"
-msgstr "Разбрах"
+msgstr "明白了"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"В далечна извънземна планета, след дълъг период на вулканична активност и "
-"метеоритни удари, се заражда нов феномен.\n"
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
 "\n"
-"Живот.\n"
+"生命。\n"
 "\n"
-"Обикновени микроби обитават дълбините на океана. Вие сте последният "
-"универсален общ предшественик (ПУОП) на тази планета.\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先（LUCA）。\n"
 "\n"
-"За да оцелеете в този враждебен свят, трябва да приспособите и да еволюирате "
-"Вашите създания."
+"要在这个艰难的世界存活下来，你会需要收集各种化合物并不断进化，才能跟其它的微"
+"生物竞争。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:89
 msgid "SHOW_TUTORIALS"
-msgstr "Показване на упътването"
+msgstr "显示教程"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
 msgid "BEGIN_THRIVING"
-msgstr "Започнете да процъфтявате"
+msgstr "开始游戏"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:138
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"За да управлявате Вашата клетка, използвайте бутоните, които са показани "
-"около нея (в центъра на екрана) и мишката за посоката на движение.\n"
+"使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
 "\n"
-"Натиснете всеки един бутон за няколко секунди за да продължите."
+"尝试所有按键几秒钟以继续。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"Събирайте глюкоза (белите облаци), като се движите през нея.\n"
-"Вашата клетка се нуждае от глюкоза за да оцелее.\n"
-"Следвайте напътствията за да намерите глюкозата."
+"通过移动到白色的云上来收集葡萄糖。\n"
+"你需要葡萄糖才能产生能量并存活。\n"
+"请跟随显示的线到最近的葡萄糖云中。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Наблюдавайте Вашето здраве (долу вдясно).\n"
-"Клетката Ви ще умре, ако изгуби всичките си точки здраве.\n"
-"Ако имате АТФ, точките здраве се възстановяват.\n"
-"Събирайте глюкоза за да произвеждате АТФ."
+"随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
+"生命值归零你的细胞就会死。\n"
+"只要你还有ATP，你的生命值就会不断恢复。\n"
+"所以要确保总是有足够的葡萄糖来产出ATP。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"За възпроизвеждане, органелите на клетката трябва да се разделят на две. За "
-"да го направят те се нуждаят от амоняк и фосфат.\n"
-"Наблюдавайте показателите долу вдясно."
+"繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
+"右下角的指示器会显示你需要多少氨和磷酸盐。"
