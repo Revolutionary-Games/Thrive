@@ -95,6 +95,11 @@ public class InputManager : Node
         return true;
     }
 
+    /// <summary>
+    ///   Searches the given assemblies for <see cref="RunOnInputAttribute">RunOnInputAttributes</see>
+    ///   and stores them in the RunOnInputAttribute.AttributesWithMethods
+    /// </summary>
+    /// <param name="assemblies">The assemblies to search through</param>
     private static void RecalculateAttributes(Assembly[] assemblies)
     {
         foreach (var assembly in assemblies)
