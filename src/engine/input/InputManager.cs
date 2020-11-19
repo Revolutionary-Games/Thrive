@@ -109,7 +109,7 @@ public class InputManager : Node
                         else
                         {
                             RunOnInputAttribute.AttributesWithMethods.Add(
-                                new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
+                                (methodInfo, myAttr));
                         }
                     }
                 }
