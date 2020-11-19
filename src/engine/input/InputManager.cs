@@ -54,6 +54,7 @@ public class InputManager : Node
                 }
             }
         });
+
         disposed.ForEach(p => RunOnInputAttribute.InputClasses.Remove(p));
     }
 
