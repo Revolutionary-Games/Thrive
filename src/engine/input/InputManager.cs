@@ -30,7 +30,7 @@ public class InputManager : Node
     /// </summary>
     public override void _Process(float delta)
     {
-        var disposed = new List<object>();
+        var disposed = new List<WeakReference<object>>();
         RunOnInputAttribute.AttributesWithMethods.ForEach(p =>
         {
             var inputReceiver = p.Item2.InputReceiver;
@@ -39,18 +39,34 @@ public class InputManager : Node
 
             var readValue = inputReceiver.GetValueForCallback();
 
-            if (p.Item1.IsStatic)
+            var method = p.method;
+
+            if (method.IsStatic)
             {
-                TryInvoke(p.Item1, null, delta, inputReceiver, readValue);
+                TryInvoke(method, null, delta, inputReceiver, readValue);
             }
             else
             {
                 var instances =
-                    RunOnInputAttribute.InputReceivingInstances.Where(x => x.GetType() == p.Item1.DeclaringType).ToList();
+                    RunOnInputAttribute.InputReceivingInstances.Select(x =>
+                    {
+                        if (!x.TryGetTarget(out var result))
+                            disposed.Add(x);
+                        return (weakReference: x, result);
+                    }).Where(x => x.result != null && x.result.GetType() == method.DeclaringType).ToList();
                 foreach (var instance in instances)
                 {
-                    if (!TryInvoke(p.Item1, instance, delta, inputReceiver, readValue))
-                        disposed.Add(instance);
+                    if (instance.result is Node nInstance)
+                    {
+                        if (nInstance.IsQueuedForDeletion())
+                        {
+                            disposed.Add(instance.weakReference);
+                            continue;
+                        }
+                    }
+
+                    if (!TryInvoke(method, instance.result, delta, inputReceiver, readValue))
+                        disposed.Add(instance.weakReference);
                 }
             }
         });
@@ -59,9 +75,8 @@ public class InputManager : Node
     }
 
     /// <summary>
-    ///   Try to invoke the given input method with the given data.
+    ///   Invoke the given input method with the given data.
     /// </summary>
-    /// <returns>False if the instance was disposed</returns>
     private static bool TryInvoke(MethodBase method, object instance, float delta, IInputReceiver inputReceiver,
         object readValue)
     {

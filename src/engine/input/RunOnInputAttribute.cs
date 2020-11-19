@@ -13,9 +13,14 @@ public abstract class RunOnInputAttribute : Attribute
         AttributesWithMethods.RemoveAll(p => p.Item2.Equals(this));
     }
 
-    public static List<object> InputReceivingInstances { get; } = new List<object>();
     public abstract IInputReceiver InputReceiver { get; }
+    internal static List<WeakReference<object>> InputReceivingInstances { get; } = new List<WeakReference<object>>();
 
     internal static List<(MethodBase method, RunOnInputAttribute inputAttribute)> AttributesWithMethods { get; }
         = new List<(MethodBase method, RunOnInputAttribute inputAttribute)>();
+
+    public static void AddInstance(object obj)
+    {
+        InputReceivingInstances.Add(new WeakReference<object>(obj));
+    }
 }

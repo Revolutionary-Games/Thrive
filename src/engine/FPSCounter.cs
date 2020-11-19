@@ -10,7 +10,7 @@ public class FPSCounter : Control
 
     public FPSCounter()
     {
-        RunOnInputAttribute.InputReceivingInstances.Add(this);
+        RunOnInputAttribute.AddInstance(this);
     }
 
     public override void _Ready()

@@ -35,7 +35,7 @@ public class PauseMenu : Control
 
     public PauseMenu()
     {
-        RunOnInputAttribute.InputReceivingInstances.Add(this);
+        RunOnInputAttribute.AddInstance(this);
     }
 
     [Signal]

@@ -67,7 +67,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     public MicrobeCamera()
     {
-        RunOnInputAttribute.InputReceivingInstances.Add(this);
+        RunOnInputAttribute.AddInstance(this);
     }
 
     /// <summary>

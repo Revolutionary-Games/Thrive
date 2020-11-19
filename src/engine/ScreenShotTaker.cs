@@ -12,7 +12,7 @@ public class ScreenShotTaker : Node
     private ScreenShotTaker()
     {
         instance = this;
-        RunOnInputAttribute.InputReceivingInstances.Add(this);
+        RunOnInputAttribute.AddInstance(this);
     }
 
     public static ScreenShotTaker Instance => instance;
