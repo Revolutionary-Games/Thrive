@@ -99,7 +99,7 @@ public class InputManager : Node
     {
         foreach (var assembly in assemblies)
         {
-            foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
+            foreach (var type in assembly.GetTypes())
             {
                 foreach (var methodInfo in type.GetMethods())
                 {
