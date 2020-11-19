@@ -86,7 +86,10 @@ public class InputManager : Node
         catch (TargetInvocationException ex)
         {
             // Disposed object
-            return !(ex.InnerException is ObjectDisposedException);
+            if (ex.InnerException is ObjectDisposedException)
+                return false;
+
+            throw;
         }
 
         return true;
