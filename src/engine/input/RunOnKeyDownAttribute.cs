@@ -12,7 +12,11 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
         if (before)
             return false;
 
-        return base.OnInput(@event);
+        if (!base.OnInput(@event))
+            return false;
+
+        CallMethod();
+        return true;
     }
 
     public override void OnProcess(float delta)

@@ -9,7 +9,11 @@ public class RunOnKeyChangeAttribute : RunOnKeyAttribute
     public override bool OnInput(InputEvent @event)
     {
         var before = HeldDown;
-        return base.OnInput(@event) != before;
+        if (base.OnInput(@event) == before)
+            return false;
+
+        CallMethod();
+        return true;
     }
 
     public override void OnProcess(float delta)
