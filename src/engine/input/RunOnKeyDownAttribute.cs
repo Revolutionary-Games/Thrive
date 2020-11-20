@@ -9,14 +9,13 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
     public override bool OnInput(InputEvent @event)
     {
         var before = HeldDown;
-        if (before)
-            return false;
+        if (base.OnInput(@event) && !before)
+        {
+            CallMethod();
+            return true;
+        }
 
-        if (!base.OnInput(@event))
-            return false;
-
-        CallMethod();
-        return true;
+        return false;
     }
 
     public override void OnProcess(float delta)
