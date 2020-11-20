@@ -19,12 +19,12 @@ public class RunOnAxisAttribute : InputAttribute
         }
     }
 
-    internal int CurrentResult => (int)inputs.Where(p => p.Key.HeldDown).Select(p => p.Value).DefaultIfEmpty(0).Average();
+    internal int CurrentResult => (int)inputs.AsParallel().Where(p => p.Key.HeldDown).Select(p => p.Value).DefaultIfEmpty(0).Average();
 
     public override bool OnInput(InputEvent @event)
     {
         var result = false;
-        foreach (var input in inputs)
+        foreach (var input in inputs.AsParallel())
         {
             if (input.Key.OnInput(@event))
                 result = true;
@@ -42,7 +42,7 @@ public class RunOnAxisAttribute : InputAttribute
 
     public override void FocusLost()
     {
-        foreach (var input in inputs)
+        foreach (var input in inputs.AsParallel())
         {
             input.Key.FocusLost();
         }

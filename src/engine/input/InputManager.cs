@@ -17,7 +17,7 @@ public class InputManager : Node
 
     public static void AddInstance(object instance)
     {
-        foreach (var inputAttribute in singleton.allAttributes.Where(p => p.Method.DeclaringType == instance.GetType()))
+        foreach (var inputAttribute in singleton.allAttributes.Where(p => p.Method.DeclaringType == instance.GetType()).AsParallel())
         {
             inputAttribute.AddInstance(new WeakReference(instance));
         }
@@ -25,18 +25,18 @@ public class InputManager : Node
 
     public static void FocusLost()
     {
-        singleton.allAttributes.ForEach(p => p.FocusLost());
+        singleton.allAttributes.AsParallel().ForAll(p => p.FocusLost());
     }
 
     public override void _Process(float delta)
     {
-        allAttributes.ForEach(p => p.OnProcess(delta));
+        allAttributes.AsParallel().ForAll(p => p.OnProcess(delta));
     }
 
     public override void _Input(InputEvent @event)
     {
         var result = false;
-        allAttributes.ForEach(p =>
+        allAttributes.AsParallel().ForAll(p =>
         {
             if (p.OnInput(@event))
                 result = true;
@@ -64,7 +64,7 @@ public class InputManager : Node
                             .AsParallel()
                             .FirstOrDefault(p => p is RunOnAxisGroupAttribute);
 
-                    foreach (var attribute in attributes)
+                    foreach (var attribute in attributes.AsParallel())
                     {
                         attribute.Init(methodInfo);
 

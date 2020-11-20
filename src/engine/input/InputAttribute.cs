@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Godot;
@@ -50,7 +51,7 @@ public abstract class InputAttribute : Attribute
                 }
                 else
                 {
-                    instances.ForEach(p =>
+                    instances.AsParallel().ForAll(p =>
                     {
                         if (!p.IsAlive)
                         {
@@ -62,7 +63,7 @@ public abstract class InputAttribute : Attribute
                     });
                 }
 
-                disposed.ForEach(p => instances.Remove(p));
+                disposed.AsParallel().ForAll(p => instances.Remove(p));
             }
         });
     }

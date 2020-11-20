@@ -12,7 +12,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
     public override bool OnInput(InputEvent @event)
     {
         var result = false;
-        axes.ForEach(p =>
+        axes.AsParallel().ForAll(p =>
         {
             if (p.OnInput(@event))
                 result = true;
@@ -22,7 +22,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
     public override void OnProcess(float delta)
     {
-        var param = axes.Select(axis => axis.CurrentResult).Cast<object>().ToList();
+        var param = axes.AsParallel().Select(axis => axis.CurrentResult).Cast<object>().ToList();
 
         if (!InvokeWithNoInput && param.All(p => (int)p == 0))
             return;
