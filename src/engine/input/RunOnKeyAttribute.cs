@@ -9,8 +9,8 @@ public class RunOnKeyAttribute : InputAttribute
         GodotInputName = godotInputName;
     }
 
-    public bool HeldDown { get; protected set; }
-    internal string GodotInputName { get; }
+    public bool HeldDown { get; private set; }
+    private string GodotInputName { get; }
 
     public override bool OnInput(InputEvent @event)
     {

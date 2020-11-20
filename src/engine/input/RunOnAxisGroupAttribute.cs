@@ -24,11 +24,11 @@ public class RunOnAxisGroupAttribute : InputAttribute
     {
         var param = axes.Select(axis => axis.CurrentResult).Cast<object>().ToList();
 
-        if (InvokeWithNoInput || param.Any(p => (int)p != 0))
-        {
-            param.Insert(0, delta);
-            CallMethod(param.ToArray());
-        }
+        if (!InvokeWithNoInput && param.All(p => (int)p == 0))
+            return;
+
+        param.Insert(0, delta);
+        CallMethod(param.ToArray());
     }
 
     public override void FocusLost()

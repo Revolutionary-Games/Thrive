@@ -6,7 +6,7 @@ using Godot;
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class RunOnAxisAttribute : InputAttribute
 {
-    private Dictionary<RunOnKeyChangeAttribute, int> inputs = new Dictionary<RunOnKeyChangeAttribute, int>();
+    private readonly Dictionary<RunOnKeyChangeAttribute, int> inputs = new Dictionary<RunOnKeyChangeAttribute, int>();
 
     public RunOnAxisAttribute(string[] godotInputNames, int[] associatedValues)
     {
