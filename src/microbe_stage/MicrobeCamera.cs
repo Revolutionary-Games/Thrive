@@ -60,6 +60,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
     private bool cursorDirty = true;
 
+    public MicrobeCamera()
+    {
+        InputManager.AddInstance(this);
+    }
+
     /// <summary>
     ///   How high the camera is above the followed object
     /// </summary>
@@ -117,24 +122,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    [RunOnAxis(new[] { "g_zoom_out", "g_zoom_in" }, new[] { -1, 1 })]
+    public void Zoom(float delta, int direction)
     {
-        bool changed = false;
-
-        if (@event.IsActionPressed("g_zoom_in", true))
-        {
-            CameraHeight -= ZoomSpeed;
-            changed = true;
-        }
-
-        if (@event.IsActionPressed("g_zoom_out", true))
-        {
-            CameraHeight += ZoomSpeed;
-            changed = true;
-        }
-
-        if (changed)
-            CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+        CameraHeight += ZoomSpeed * direction;
+        CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 
     /// <summary>

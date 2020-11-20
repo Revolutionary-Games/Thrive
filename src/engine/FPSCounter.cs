@@ -8,23 +8,26 @@ public class FPSCounter : Control
 {
     private Label label;
 
+    public FPSCounter()
+    {
+        InputManager.AddInstance(this);
+    }
+
     public override void _Ready()
     {
         label = GetNode<Label>("Label");
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyDown("toggle_FPS")]
+    public void ToggleFps()
     {
-        if (@event.IsActionPressed("toggle_FPS"))
+        if (Visible)
         {
-            if (Visible)
-            {
-                Hide();
-            }
-            else
-            {
-                Show();
-            }
+            Hide();
+        }
+        else
+        {
+            Show();
         }
     }
 

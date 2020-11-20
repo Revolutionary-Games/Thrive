@@ -24,6 +24,11 @@ namespace Tutorial
         [JsonProperty]
         private float moveBackwardsTime;
 
+        public MicrobeMovement()
+        {
+            InputManager.AddInstance(this);
+        }
+
         public override string ClosedByName { get; } = "MicrobeMovementExplain";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
@@ -84,28 +89,23 @@ namespace Tutorial
             return false;
         }
 
+        [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1, 1 })]
+        [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1, 1 })]
+        [RunOnAxisGroup]
+        public void OnMovement(float delta, int forwardBackwardMovement, int leftRightMovement)
+        {
+            if (forwardBackwardMovement == -1)
+                moveForwardTime += delta;
+            if (forwardBackwardMovement == 1)
+                moveBackwardsTime += delta;
+            if (leftRightMovement == -1)
+                moveLeftTime += delta;
+            if (leftRightMovement == 1)
+                moveRightTime += delta;
+        }
+
         protected override void OnProcess(TutorialState overallState, float delta)
         {
-            if (Input.IsActionPressed("g_move_forward"))
-            {
-                moveForwardTime += delta;
-            }
-
-            if (Input.IsActionPressed("g_move_left"))
-            {
-                moveLeftTime += delta;
-            }
-
-            if (Input.IsActionPressed("g_move_right"))
-            {
-                moveRightTime += delta;
-            }
-
-            if (Input.IsActionPressed("g_move_backwards"))
-            {
-                moveBackwardsTime += delta;
-            }
-
             // Check if all keys have been pressed, and if so close the tutorial
             if (moveForwardTime >= Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME &&
                 moveLeftTime >= Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME &&

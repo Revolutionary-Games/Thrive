@@ -33,6 +33,11 @@ public class PauseMenu : Control
     private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
 
+    public PauseMenu()
+    {
+        InputManager.AddInstance(this);
+    }
+
     [Signal]
     public delegate void OnClosed();
 
@@ -69,28 +74,28 @@ public class PauseMenu : Control
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    [RunOnKeyDown("ui_cancel")]
+    public void EscPressed()
     {
-        if (@event.IsActionPressed("ui_cancel"))
+        if (Visible)
         {
-            if (Visible)
-            {
-                SetActiveMenu("primary");
+            SetActiveMenu("primary");
 
-                EmitSignal(nameof(OnClosed));
-            }
-            else if (NoExclusiveTutorialActive())
-            {
-                EmitSignal(nameof(OnOpenWithKeyPress));
-            }
+            EmitSignal(nameof(OnClosed));
         }
-        else if (@event.IsActionPressed("help"))
+        else if (NoExclusiveTutorialActive())
         {
-            if (NoExclusiveTutorialActive())
-            {
-                EmitSignal(nameof(OnOpenWithKeyPress));
-                ShowHelpScreen();
-            }
+            EmitSignal(nameof(OnOpenWithKeyPress));
+        }
+    }
+
+    [RunOnKey("help")]
+    public void ShowHelpPressed()
+    {
+        if (NoExclusiveTutorialActive())
+        {
+            EmitSignal(nameof(OnOpenWithKeyPress));
+            ShowHelpScreen();
         }
     }
 

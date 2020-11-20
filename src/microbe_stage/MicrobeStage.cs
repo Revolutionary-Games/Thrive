@@ -65,6 +65,11 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
     /// </summary>
     private bool wantsToSave;
 
+    public MicrobeStage()
+    {
+        InputManager.AddInstance(this);
+    }
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; }
@@ -427,13 +432,11 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyDown("g_quick_save")]
+    public void QuickSave()
     {
-        if (@event.IsActionPressed("g_quick_save"))
-        {
-            GD.Print("quick saving microbe stage");
-            SaveHelper.QuickSave(this);
-        }
+        GD.Print("quick saving microbe stage");
+        SaveHelper.QuickSave(this);
     }
 
     /// <summary>
