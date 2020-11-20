@@ -40,6 +40,9 @@ public abstract class InputAttribute : Attribute
 
     protected void CallMethod(params object[] parameters)
     {
+        if (Method == null)
+            return;
+
         Task.Run(() =>
         {
             lock (disposed)

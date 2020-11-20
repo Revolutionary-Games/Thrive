@@ -122,10 +122,17 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
     }
 
-    [RunOnAxis(new[] { "g_zoom_out", "g_zoom_in" }, new[] { -1, 1 })]
-    public void Zoom(float delta, int direction)
+    [RunOnKey("g_zoom_in")]
+    public void ZoomIn(float delta)
     {
-        CameraHeight += ZoomSpeed * direction;
+        CameraHeight -= ZoomSpeed;
+        CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+    }
+
+    [RunOnKey("g_zoom_out")]
+    public void ZoomOut(float delta)
+    {
+        CameraHeight += ZoomSpeed;
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 

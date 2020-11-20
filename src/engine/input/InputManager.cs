@@ -13,6 +13,7 @@ public class InputManager : Node
     {
         singleton = this;
         LoadAttributes(new[] { Assembly.GetExecutingAssembly() });
+        PauseMode = PauseModeEnum.Process;
     }
 
     public static void AddInstance(object instance)
@@ -69,12 +70,13 @@ public class InputManager : Node
 
                     foreach (var attribute in attributes.AsParallel())
                     {
-                        attribute.Init(methodInfo);
-
                         if (runOnAxisGroupAttribute != null && attribute is RunOnAxisAttribute axis)
                             runOnAxisGroupAttribute.AddAxis(axis);
                         else
+                        {
+                            attribute.Init(methodInfo);
                             allAttributes.Add(attribute);
+                        }
                     }
                 }
             }

@@ -19,7 +19,9 @@ public class RunOnAxisAttribute : InputAttribute
         }
     }
 
-    internal int CurrentResult => (int)inputs.AsParallel().Where(p => p.Key.HeldDown).Select(p => p.Value).DefaultIfEmpty(0).Average();
+    public bool InvokeWithNoInput { get; set; }
+
+    internal int CurrentResult => (int)inputs.Where(p => p.Key.HeldDown).Select(p => p.Value).DefaultIfEmpty(0).Average();
 
     public override bool OnInput(InputEvent @event)
     {
@@ -36,7 +38,7 @@ public class RunOnAxisAttribute : InputAttribute
     public override void OnProcess(float delta)
     {
         var currRes = CurrentResult;
-        if (currRes != 0)
+        if (InvokeWithNoInput || currRes != 0)
             CallMethod(delta, currRes);
     }
 
