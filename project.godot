@@ -30,8 +30,8 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 [autoload]
 
-InputManager="*res://src/engine/input/InputManager.cs"
 StartupActions="*res://src/engine/StartupActions.cs"
+InputManager="*res://src/engine/input/InputManager.cs"
 SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
 Invoke="*res://src/engine/Invoke.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
