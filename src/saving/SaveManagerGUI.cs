@@ -204,8 +204,9 @@ public class SaveManagerGUI : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         deleteSelectedConfirmDialog.DialogText =
-            "Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete " +
-            $"{Selected.Count} save(s)?";
+            string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
+                Selected.Count);
         deleteSelectedConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -215,10 +216,9 @@ public class SaveManagerGUI : Control
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
         deleteOldConfirmDialog.DialogText =
-            "Deleting all old Auto and Quick saves cannot be undone, " +
-            "are you sure you want to permanently delete the following?\n" +
-            $" - {autoSavesToDeleteCount} Auto save(s)\n" +
-            $" - {quickSavesToDeleteCount} Quick save(s)";
+            string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
+                autoSavesToDeleteCount, quickSavesToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredMinsize();
     }
 

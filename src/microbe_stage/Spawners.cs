@@ -1,4 +1,4 @@
-﻿// This file contains all the different microbe stage spawner types
+// This file contains all the different microbe stage spawner types
 // just so that they are in one place.
 
 using System;

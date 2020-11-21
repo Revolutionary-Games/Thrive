@@ -6,13 +6,14 @@ using Newtonsoft.Json;
 /// <summary>
 ///   An organelle that has been placed in a microbe.
 /// </summary>
-[JsonObject(IsReference = true)]
-public class PlacedOrganelle : Spatial, IPositionedOrganelle
+public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 {
     [JsonIgnore]
     private List<uint> shapes = new List<uint>();
 
     private bool needsColourUpdate = true;
+
+    [JsonProperty]
     private Color colour = new Color(1, 1, 1, 1);
 
     private bool growthValueDirty = true;
@@ -46,7 +47,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     public int Orientation { get; set; }
 
-    [JsonIgnore]
+    [JsonProperty]
     public Microbe ParentMicrobe { get; private set; }
 
     /// <summary>
@@ -144,6 +145,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     [JsonIgnore]
     public bool IsAgentVacuole => HasComponent<AgentVacuoleComponent>();
 
+    public bool IsLoadedFromSave { get; set; }
+
     /// <summary>
     ///   Checks if this organelle has the specified component type
     /// </summary>
@@ -170,6 +173,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
         if (ParentMicrobe == null)
             GD.PrintErr("PlacedOrganelle not added to scene through OnAddedToMicrobe");
+
+        if (IsLoadedFromSave)
+            FinishAttachToMicrobe();
+
+        ApplyScale();
     }
 
     /// <summary>
@@ -191,60 +199,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
         ParentMicrobe.OrganelleParent.AddChild(this);
 
-        // Graphical display
-        if (Definition.LoadedScene != null)
-        {
-            SetupOrganelleGraphics();
-        }
-
-        float hexSize = Constants.DEFAULT_HEX_SIZE;
-
-        // Scale the physics hex size down for bacteria
-        if (microbe.Species.IsBacteria)
-            hexSize *= 0.5f;
-
-        // Physics
-        ParentMicrobe.Mass += Definition.Mass;
-
-        // Add hex collision shapes
-        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
-        {
-            var shape = new SphereShape();
-            shape.Radius = hexSize * 2.0f;
-
-            var ownerId = ParentMicrobe.CreateShapeOwner(shape);
-
-            // This is needed to actually add the shape
-            ParentMicrobe.ShapeOwnerAddShape(ownerId, shape);
-
-            // The shape is in our parent so the final position is our
-            // offset plus the hex offset
-            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Hex.AxialToCartesian(Position);
-
-            // Scale for bacteria physics.
-            if (microbe.Species.IsBacteria)
-                shapePosition *= 0.5f;
-
-            var transform = new Transform(Quat.Identity, shapePosition);
-            ParentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
-
-            shapes.Add(ownerId);
-        }
-
-        // Components
-        Components = new List<IOrganelleComponent>();
-
-        foreach (var factory in Definition.ComponentFactories)
-        {
-            var component = factory.Create();
-
-            if (component == null)
-                throw new Exception("PlacedOrganelle component factory returned null");
-
-            component.OnAttachToCell(this);
-
-            Components.Add(component);
-        }
+        FinishAttachToMicrobe();
 
         ResetGrowth();
     }
@@ -429,6 +384,66 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         rawColour.ToHsv(out var hue, out var saturation, out var brightness);
 
         return Color.FromHsv(hue, saturation * 2, brightness);
+    }
+
+    private void FinishAttachToMicrobe()
+    {
+        // Graphical display
+        if (Definition.LoadedScene != null)
+        {
+            SetupOrganelleGraphics();
+        }
+
+        float hexSize = Constants.DEFAULT_HEX_SIZE;
+
+        // Scale the physics hex size down for bacteria
+        if (ParentMicrobe.Species.IsBacteria)
+            hexSize *= 0.5f;
+
+        // Physics
+        ParentMicrobe.Mass += Definition.Mass;
+
+        // Add hex collision shapes
+        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
+        {
+            var shape = new SphereShape();
+            shape.Radius = hexSize * 2.0f;
+
+            var ownerId = ParentMicrobe.CreateShapeOwner(shape);
+
+            // This is needed to actually add the shape
+            ParentMicrobe.ShapeOwnerAddShape(ownerId, shape);
+
+            // The shape is in our parent so the final position is our
+            // offset plus the hex offset
+            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Hex.AxialToCartesian(Position);
+
+            // Scale for bacteria physics.
+            if (ParentMicrobe.Species.IsBacteria)
+                shapePosition *= 0.5f;
+
+            var transform = new Transform(Quat.Identity, shapePosition);
+            ParentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
+
+            shapes.Add(ownerId);
+        }
+
+        // Components
+        Components = new List<IOrganelleComponent>();
+
+        foreach (var factory in Definition.ComponentFactories)
+        {
+            var component = factory.Create();
+
+            if (component == null)
+                throw new Exception("PlacedOrganelle component factory returned null");
+
+            component.OnAttachToCell(this);
+
+            Components.Add(component);
+        }
+
+        growthValueDirty = true;
     }
 
     private void RecalculateGrowthValue()

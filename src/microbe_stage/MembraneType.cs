@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Defines properties of a membrane type
@@ -53,5 +53,9 @@ public class MembraneType : IRegistryType
     {
         LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
         LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
+    }
+
+    public void ApplyTranslations()
+    {
     }
 }

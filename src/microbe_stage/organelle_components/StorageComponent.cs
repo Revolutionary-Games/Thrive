@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 ///   Allows cell to store more stuff
 /// </summary>
 public class StorageComponent : IOrganelleComponent

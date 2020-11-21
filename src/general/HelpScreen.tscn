@@ -103,7 +103,7 @@ margin_right = 475.0
 margin_bottom = 604.0
 rect_min_size = Vector2( 150, 35 )
 size_flags_horizontal = 4
-text = "Close"
+text = "CLOSE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,6 +118,9 @@ custom_colors/font_color = Color( 1, 1, 0, 1 )
 text = "Easter egg message goes here"
 align = 1
 autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

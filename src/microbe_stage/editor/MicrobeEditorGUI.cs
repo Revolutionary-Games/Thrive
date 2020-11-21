@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Main class managing the microbe editor GUI
 /// </summary>
-public class MicrobeEditorGUI : Node
+public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 {
     // The labels to update are at really long relative paths, so they are set in the Godot editor
     [Export]
@@ -239,8 +240,6 @@ public class MicrobeEditorGUI : Node
     [Export]
     public AudioStream UnableToPlaceHexSound;
 
-    private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
-
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
@@ -257,8 +256,14 @@ public class MicrobeEditorGUI : Node
     private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
 
     private EnergyBalanceInfo energyBalanceInfo;
+
+    [JsonProperty]
     private float initialCellSpeed;
+
+    [JsonProperty]
     private int initialCellSize;
+
+    [JsonProperty]
     private float initialCellHp;
 
     private MicrobeEditor editor;
@@ -354,8 +359,12 @@ public class MicrobeEditorGUI : Node
     private TextureButton menuButton;
     private TextureButton helpButton;
 
+    [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
+
+    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
+
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     public enum EditorTab
@@ -371,6 +380,8 @@ public class MicrobeEditorGUI : Node
         Appearance,
         Behaviour,
     }
+
+    public bool IsLoadedFromSave { get; set; }
 
     public override void _Ready()
     {
@@ -471,6 +482,10 @@ public class MicrobeEditorGUI : Node
     {
         this.editor = editor ?? throw new ArgumentNullException(nameof(editor));
 
+        // Set the right tabs if they aren't the defaults
+        ApplyEditorTab();
+        ApplySelectionMenuTab();
+
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
@@ -530,7 +545,7 @@ public class MicrobeEditorGUI : Node
 
         if (editor.FreeBuilding)
         {
-            mutationPointsLabel.Text = "Freebuilding";
+            mutationPointsLabel.Text = TranslationServer.Translate("FREEBUILDING");
         }
         else
         {
@@ -581,16 +596,21 @@ public class MicrobeEditorGUI : Node
     {
         var percentage = value * 100 + "%";
 
-        glucoseReductionLabel.Text = "The amount of glucose has been reduced to " + percentage +
-            " of the previous amount.";
+        // The amount of glucose has been reduced to {0} of the previous amount.
+        glucoseReductionLabel.Text =
+            string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"),
+                percentage);
     }
 
     public void UpdateTimeIndicator(double value)
     {
-        timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " Myr";
+        timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " "
+            + TranslationServer.Translate("MEGA_YEARS");
 
         ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
-            CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " years";
+                CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " "
+            + TranslationServer.Translate("YEARS");
     }
 
     public void SetInitialCellStats()
@@ -598,7 +618,10 @@ public class MicrobeEditorGUI : Node
         initialCellSpeed = editor.CalculateSpeed();
         initialCellHp = editor.CalculateHitpoints();
         initialCellSize = editor.MicrobeHexSize;
+    }
 
+    public void ResetStatisticsPanelSize()
+    {
         // Resets the statistics panel size to fit
         statisticsPanel.RectSize = Vector2.Zero;
     }
@@ -635,12 +658,13 @@ public class MicrobeEditorGUI : Node
 
         if (energyBalance.FinalBalance > 0)
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
+            atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION");
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
+            atpBalanceLabel.Text = TranslationServer.Translate("ATP_PRODUCTION") + " - " +
+                TranslationServer.Translate("ATP_PRODUCTION_TOO_LOW");
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
@@ -688,13 +712,13 @@ public class MicrobeEditorGUI : Node
             {
                 case "osmoregulation":
                 {
-                    displayName = "Osmoregulation";
+                    displayName = TranslationServer.Translate("OSMOREGULATION");
                     break;
                 }
 
                 case "baseMovement":
                 {
-                    displayName = "Base Movement";
+                    displayName = TranslationServer.Translate("BASE_MOVEMENT");
                     break;
                 }
 
@@ -888,7 +912,7 @@ public class MicrobeEditorGUI : Node
         }
 
         // Can't exit the editor with disconnected organelles
-        if (editor.GetIslandHexes().Count > 0)
+        if (editor.HasIslands)
         {
             islandPopup.PopupCenteredMinsize();
             return;
@@ -919,21 +943,19 @@ public class MicrobeEditorGUI : Node
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.None)
         {
-            symmetryIcon.Texture = SymmetryIcon2x;
             symmetry = MicrobeEditor.MicrobeSymmetry.XAxisSymmetry;
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.XAxisSymmetry)
         {
-            symmetryIcon.Texture = SymmetryIcon4x;
             symmetry = MicrobeEditor.MicrobeSymmetry.FourWaySymmetry;
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.FourWaySymmetry)
         {
-            symmetryIcon.Texture = SymmetryIcon6x;
             symmetry = MicrobeEditor.MicrobeSymmetry.SixWaySymmetry;
         }
 
         editor.Symmetry = symmetry;
+        UpdateSymmetryIcon();
     }
 
     internal void OnSymmetryHold()
@@ -950,6 +972,14 @@ public class MicrobeEditorGUI : Node
     {
         symmetryIcon.Texture = SymmetryIconDefault;
         symmetry = 0;
+    }
+
+    internal void SetSymmetry(MicrobeEditor.MicrobeSymmetry newSymmetry)
+    {
+        symmetry = newSymmetry;
+        editor.Symmetry = newSymmetry;
+
+        UpdateSymmetryIcon();
     }
 
     internal void HelpButtonPressed()
@@ -1063,6 +1093,25 @@ public class MicrobeEditorGUI : Node
         }
     }
 
+    private void UpdateSymmetryIcon()
+    {
+        switch (symmetry)
+        {
+            case MicrobeEditor.MicrobeSymmetry.None:
+                symmetryIcon.Texture = SymmetryIconDefault;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
+                symmetryIcon.Texture = SymmetryIcon2x;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
+                symmetryIcon.Texture = SymmetryIcon4x;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
+                symmetryIcon.Texture = SymmetryIcon6x;
+                break;
+        }
+    }
+
     private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
@@ -1090,6 +1139,15 @@ public class MicrobeEditorGUI : Node
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        selectedEditorTab = selection;
+
+        ApplyEditorTab();
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
+    }
+
+    private void ApplyEditorTab()
+    {
         // Hide all
         var cellEditor = GetNode<Control>("CellEditor");
         var report = GetNode<Control>("Report");
@@ -1100,7 +1158,7 @@ public class MicrobeEditorGUI : Node
         cellEditor.Hide();
 
         // Show selected
-        switch (selection)
+        switch (selectedEditorTab)
         {
             case EditorTab.Report:
             {
@@ -1126,10 +1184,6 @@ public class MicrobeEditorGUI : Node
             default:
                 throw new Exception("Invalid editor tab");
         }
-
-        selectedEditorTab = selection;
-
-        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void SetSelectionMenuTab(string tab)
@@ -1141,12 +1195,18 @@ public class MicrobeEditorGUI : Node
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        selectedSelectionMenuTab = selection;
+        ApplySelectionMenuTab();
+    }
+
+    private void ApplySelectionMenuTab()
+    {
         // Hide all
         structureTab.Hide();
         appearanceTab.Hide();
 
         // Show selected
-        switch (selection)
+        switch (selectedSelectionMenuTab)
         {
             case SelectionMenuTab.Structure:
             {
@@ -1165,8 +1225,6 @@ public class MicrobeEditorGUI : Node
             default:
                 throw new Exception("Invalid selection menu tab");
         }
-
-        selectedSelectionMenuTab = selection;
     }
 
     private void MenuButtonPressed()
@@ -1405,14 +1463,22 @@ public class MicrobeEditorGUI : Node
         patchNothingSelected.Visible = false;
 
         patchName.Text = patch.Name;
-        patchBiome.Text = "Biome: " + patch.BiomeTemplate.Name;
-        patchDepth.Text = patch.Depth[0] + "-" + patch.Depth[1] + "m below sea level";
+
+        // Biome: {0}
+        patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("BIOME_LABEL"),
+            patch.BiomeTemplate.Name);
+
+        // {0}-{1}m below sea level
+        patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("BELOW_SEA_LEVEL"),
+            patch.Depth[0], patch.Depth[1]);
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses
         patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
-        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + "% lux";
+        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + "% lx";
         patchOxygen.Text = (patch.Biome.Compounds[oxygen].Dissolved * 100) + "%";
         patchNitrogen.Text = (patch.Biome.Compounds[nitrogen].Dissolved * 100) + "%";
         patchCO2.Text = (patch.Biome.Compounds[carbondioxide].Dissolved * 100) + "%";
@@ -1444,7 +1510,9 @@ public class MicrobeEditorGUI : Node
             var speciesLabel = new Label();
             speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
             speciesLabel.Autowrap = true;
-            speciesLabel.Text = species.FormattedName + " with population: " + patch.GetSpeciesPopulation(species);
+            speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
+                patch.GetSpeciesPopulation(species));
             speciesListBox.AddItem(speciesLabel);
         }
 

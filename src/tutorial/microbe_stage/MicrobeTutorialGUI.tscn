@@ -42,7 +42,7 @@ margin_bottom = 66.0
 rect_min_size = Vector2( 450, 450 )
 size_flags_horizontal = 3
 popup_exclusive = true
-window_title = "Tutorial"
+window_title = "TUTORIAL"
 resizable = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -63,13 +63,7 @@ __meta__ = {
 margin_right = 420.0
 margin_bottom = 296.0
 custom_fonts/font = SubResource( 1 )
-text = "On a distant alien planet, eons of volcanic activity and meteor impacts have lead to the development of a new phenomenon in the universe.
-
-Life.
-
-Simple microbes reside in the deep regions of the ocean. You are the last universal common ancestor (LUCA) on this planet.
-
-To survive in this hostile world, you will need to collect any compounds that you can find and evolve each generation to compete against the other species of microbes."
+text = "MICROBE_STAGE_INITIAL"
 autowrap = true
 
 [node name="Control" type="Control" parent="MicrobeWelcome/VBoxContainer"]
@@ -93,7 +87,7 @@ margin_left = 14.0
 margin_right = 176.0
 margin_bottom = 22.0
 pressed = true
-text = "Show tutorials"
+text = "SHOW_TUTORIALS"
 
 [node name="Button" type="Button" parent="MicrobeWelcome/VBoxContainer"]
 margin_left = 139.0
@@ -101,7 +95,7 @@ margin_top = 390.0
 margin_right = 281.0
 margin_bottom = 420.0
 size_flags_horizontal = 4
-text = "Begin Thriving"
+text = "BEGIN_THRIVING"
 
 [node name="MicrobeMovementTutorial" type="Control" parent="."]
 anchor_right = 1.0
@@ -122,7 +116,7 @@ margin_right = 627.0
 margin_bottom = 86.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
-window_title = "Tutorial"
+window_title = "TUTORIAL"
 resizable = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -142,9 +136,7 @@ __meta__ = {
 margin_right = 230.0
 margin_bottom = 158.0
 custom_fonts/font = SubResource( 1 )
-text = "To control your cell use the keys shown near your cell (center of screen) and the mouse to control the cell orientation.
-
-Try all of the keys for a few seconds to continue."
+text = "MICROBE_STAGE_CONTROL_TEXT"
 autowrap = true
 
 [node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
@@ -206,7 +198,7 @@ margin_right = 627.0
 margin_bottom = 86.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
-window_title = "Tutorial"
+window_title = "TUTORIAL"
 resizable = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -226,9 +218,7 @@ __meta__ = {
 margin_right = 230.0
 margin_bottom = 135.0
 custom_fonts/font = SubResource( 1 )
-text = "Collect glucose (white clouds) by moving over them.
-Your cell needs glucose in order to produce energy to stay alive.
-Follow the line from your cell to nearby glucose."
+text = "MICROBE_STAGE_COLLECT_TEXT"
 autowrap = true
 
 [node name="StayingAliveTutorial" type="WindowDialog" parent="."]
@@ -242,7 +232,7 @@ margin_right = 627.0
 margin_bottom = 86.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
-window_title = "Tutorial"
+window_title = "TUTORIAL"
 resizable = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -262,10 +252,7 @@ __meta__ = {
 margin_right = 230.0
 margin_bottom = 204.0
 custom_fonts/font = SubResource( 1 )
-text = "Keep an eye on your health bar next to the ATP bar (bottom right).
-Your cell dies if it runs out of health.
-You regenerate health while you have ATP.
-Make sure to collect enough glucose to produce ATP."
+text = "MICROBE_STAGE_HEALTH_TEXT"
 autowrap = true
 
 [node name="ReproductionTutorial" type="WindowDialog" parent="."]
@@ -279,7 +266,7 @@ margin_right = 627.0
 margin_bottom = 86.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
-window_title = "Tutorial"
+window_title = "TUTORIAL"
 resizable = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -299,8 +286,7 @@ __meta__ = {
 margin_right = 230.0
 margin_bottom = 158.0
 custom_fonts/font = SubResource( 1 )
-text = "In order to reproduce you need to duplicate all of your organelles by collecting enough ammonia and phosphates.
-Look at the indicator in the bottom right to see how much more you need."
+text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]

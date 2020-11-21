@@ -1,4 +1,4 @@
-﻿namespace AutoEvo
+namespace AutoEvo
 {
     /// <summary>
     ///   Interface for all auto-evo step types

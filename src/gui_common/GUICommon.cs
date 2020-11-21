@@ -89,8 +89,7 @@ public class GUICommon : Node
         element.Expand = true;
         element.RectMinSize = new Vector2(sizeX, sizeY);
 
-        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName.ReplaceN(
-            " ", string.Empty) + ".png");
+        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName + ".png");
 
         element.Texture = icon;
 

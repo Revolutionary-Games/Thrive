@@ -69,7 +69,7 @@ public class HelpScreen : Control
         {
             var helpTexts = SimulationParameters.Instance.GetHelpTexts("EasterEgg");
 
-            tipMessageLabel.Text = helpTexts.Messages.Random(random);
+            tipMessageLabel.Text = TranslationServer.Translate(helpTexts.Messages.Random(random));
             tipMessageLabel.Show();
 
             timer.Start(20);
@@ -88,7 +88,7 @@ public class HelpScreen : Control
 
         for (var i = 0; i < helpTexts.Messages.Count; i++)
         {
-            var message = helpTexts.Messages[i];
+            var message = TranslationServer.Translate(helpTexts.Messages[i]);
 
             var helpBox = HelpBoxScene.Instance();
             helpBox.GetNode<Label>("MarginContainer/Label").Text = message;

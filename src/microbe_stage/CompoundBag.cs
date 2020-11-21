@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
+[UseThriveSerializer]
 public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
 {
     /// <summary>

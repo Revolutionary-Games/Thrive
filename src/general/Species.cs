@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Godot;
@@ -79,6 +79,11 @@ public abstract class Species : ICloneable
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
+
+    /// <summary>
+    ///   Repositions the structure of the species according to stage specific rules
+    /// </summary>
+    public abstract void RepositionToOrigin();
 
     public void SetPopulationFromPatches(long population)
     {

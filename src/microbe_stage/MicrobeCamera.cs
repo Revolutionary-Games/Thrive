@@ -1,16 +1,14 @@
-using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
 /// </summary>
-public class MicrobeCamera : Camera
+public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 {
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
-    [JsonProperty]
     public Spatial ObjectToFollow;
 
     /// <summary>
@@ -21,9 +19,6 @@ public class MicrobeCamera : Camera
 
     [JsonIgnore]
     public Particles BackgroundParticles;
-
-    [JsonProperty]
-    public float CameraHeight;
 
     /// <summary>
     ///   How fast the camera zooming is
@@ -62,8 +57,13 @@ public class MicrobeCamera : Camera
 
     private ShaderMaterial materialToUpdate;
 
-    private Vector3 cursorWorldPos;
+    private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
     private bool cursorDirty = true;
+
+    /// <summary>
+    ///   How high the camera is above the followed object
+    /// </summary>
+    public float CameraHeight { get; set; }
 
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
@@ -79,6 +79,10 @@ public class MicrobeCamera : Camera
         }
         private set => cursorWorldPos = value;
     }
+
+    public bool NodeReferencesResolved { get; private set; }
+
+    public bool IsLoadedFromSave { get; set; }
 
     public void ResetHeight()
     {
@@ -96,27 +100,41 @@ public class MicrobeCamera : Camera
 
         materialToUpdate = (ShaderMaterial)material;
 
-        CursorWorldPos = new Vector3(0, 0, 0);
+        ResolveNodeReferences();
+
+        if (!IsLoadedFromSave)
+            ResetHeight();
+    }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
 
         if (HasNode("BackgroundPlane"))
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
-
-        ResetHeight();
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        bool changed = false;
+
         if (@event.IsActionPressed("g_zoom_in", true))
         {
             CameraHeight -= ZoomSpeed;
+            changed = true;
         }
 
         if (@event.IsActionPressed("g_zoom_out", true))
         {
             CameraHeight += ZoomSpeed;
+            changed = true;
         }
 
-        CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+        if (changed)
+            CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 
     /// <summary>
@@ -169,11 +187,6 @@ public class MicrobeCamera : Camera
             BackgroundParticles.LocalCoords = false;
             AddChild(BackgroundParticles);
         }
-    }
-
-    public void ApplyPropertiesFromSave(MicrobeCamera camera)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, camera, new List<string> { "ObjectToFollow" });
     }
 
     private void UpdateCursorWorldPos()

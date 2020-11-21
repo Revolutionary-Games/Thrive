@@ -73,6 +73,8 @@ public class SpawnSystem
         worldRoot = root;
     }
 
+    // Needs no params constructor for loading saves?
+
     /// <summary>
     ///   Adds an externally spawned entity to be despawned
     /// </summary>
@@ -178,11 +180,6 @@ public class SpawnSystem
 
             SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
         }
-    }
-
-    public void ApplyPropertiesFromSave(SpawnSystem spawner)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, spawner);
     }
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)

@@ -15,7 +15,8 @@ public class SerializationBinder : DefaultSerializationBinder
 
         if (type.CustomAttributes.Any(attr =>
             attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute) ||
-            attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute)))
+            attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
+            attr.AttributeType == typeof(SceneLoadedClassAttribute)))
         {
             // Allowed type
             return type;

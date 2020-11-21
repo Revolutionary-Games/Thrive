@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -55,7 +56,10 @@ public class NewSaveMenu : Control
 
         if (FileHelpers.Exists(PathUtils.Join(Constants.SAVE_FOLDER, name)))
         {
-            overwriteConfirm.DialogText = $"The chosen filename ({name}) already exists. Overwrite?";
+            // The chosen filename ({0}) already exists. Overwrite?
+            overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
+                name);
             overwriteConfirm.PopupCentered();
         }
         else

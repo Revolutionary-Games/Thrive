@@ -8,6 +8,10 @@ public class StartupActions : Node
 {
     private StartupActions()
     {
+        // Print game version
+        // TODO: for devbuilds it would be nice to print the hash here
+        GD.Print("This is Thrive version: ", Constants.Version);
+
         var userDir = OS.GetUserDataDir().Replace('\\', '/');
 
         GD.Print("user:// directory is: ", userDir);

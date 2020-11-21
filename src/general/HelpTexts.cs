@@ -14,4 +14,8 @@ public class HelpTexts : IRegistryType
         if (Messages == null || Messages.Count < 1)
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing help messages");
     }
+
+    public void ApplyTranslations()
+    {
+    }
 }

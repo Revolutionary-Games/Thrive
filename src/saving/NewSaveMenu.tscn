@@ -26,7 +26,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 1280.0
 margin_bottom = 23.0
-text = "Create New Save"
+text = "CREATE_NEW_SAVE"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
@@ -43,7 +43,7 @@ margin_bottom = 37.0
 margin_top = 7.0
 margin_right = 62.0
 margin_bottom = 30.0
-text = "Name:"
+text = "NAME"
 
 [node name="SaveName" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 66.0
@@ -63,14 +63,14 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 disabled = true
-text = "Extra Options"
+text = "EXTRA_OPTIONS"
 
 [node name="Save" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 1180.0
 margin_right = 1280.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 100, 37 )
-text = "Save"
+text = "SAVE"
 
 [node name="VSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
 margin_top = 41.0
@@ -81,7 +81,7 @@ margin_bottom = 45.0
 margin_top = 49.0
 margin_right = 1280.0
 margin_bottom = 72.0
-text = "Overwrite existing save:"
+text = "OVERWRITE_EXISTING_SAVE"
 
 [node name="SaveList" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -106,7 +106,7 @@ margin_bottom = 37.0
 rect_min_size = Vector2( 100, 37 )
 size_flags_horizontal = 0
 theme = ExtResource( 1 )
-text = "Back"
+text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -115,7 +115,7 @@ __meta__ = {
 margin_right = 200.0
 margin_bottom = 71.0
 popup_exclusive = true
-window_title = "Overwrite existing save?"
+window_title = "OVERWRITE_EXISTING_SAVE_TITLE"
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="SaveButtonPressed"]
 [connection signal="OnSelectedChanged" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Back" to="." method="ClosePressed"]

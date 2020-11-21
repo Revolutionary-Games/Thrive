@@ -45,6 +45,8 @@ public class ReferenceResolver : IReferenceResolver
 
     public void AddReference(object context, string reference, object value)
     {
+        // TODO: when replacing references this first assignment doesn't overwrite the old value, so an outdated
+        // reference is left. Should that be removed?
         objectToReference[value] = reference;
         referenceToObject[reference] = value;
     }

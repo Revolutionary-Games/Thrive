@@ -131,10 +131,6 @@ public class MainMenu : Node
         modLoader = GetNode<ModManagerUI>("ModLoader");
         gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
 
-        // Load settings
-        if (Settings.Instance == null)
-            GD.PrintErr("Failed to initialize settings.");
-
         // Set initial menu
         SwitchMenu();
 
@@ -339,5 +335,15 @@ public class MainMenu : Node
         SetCurrentMenu(0, false);
 
         thriveLogo.Show();
+    }
+
+    /// <summary>
+    ///   This never called method contains translation strings that exist, but cannot automatically be extracted.
+    ///   Examples are predefined Godot strings, like popup buttons.
+    /// </summary>
+    private void CallMiscTranslations()
+    {
+        _ = TranslationServer.Translate("OK");
+        _ = TranslationServer.Translate("Cancel");
     }
 }

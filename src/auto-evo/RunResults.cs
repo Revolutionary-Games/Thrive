@@ -1,7 +1,8 @@
-﻿namespace AutoEvo
+namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Text;
     using Godot;
 
@@ -213,7 +214,9 @@
                 {
                     builder.Append("  ");
                     builder.Append(PatchString(patch));
-                    builder.Append(" population: ");
+                    builder.Append(" ");
+                    builder.Append(TranslationServer.Translate("POPULATION"));
+                    builder.Append(" ");
                     builder.Append(population);
                 }
                 else
@@ -225,7 +228,9 @@
 
                 if (previousPopulations != null)
                 {
-                    builder.Append(" previous: ");
+                    builder.Append(" ");
+                    builder.Append(TranslationServer.Translate("PREVIOUS"));
+                    builder.Append(" ");
                     builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
                 }
 
@@ -239,11 +244,14 @@
 
                 if (entry.MutatedProperties != null)
                 {
-                    builder.Append(" has a mutation");
+                    builder.Append(" ");
+                    builder.Append(TranslationServer.Translate("RUNRESULT_HAS_A_MUTATION"));
 
                     if (!playerReadable)
                     {
-                        builder.Append(", gene code: ");
+                        builder.Append(", ");
+                        builder.Append(TranslationServer.Translate("RUNRESULT_GENE_CODE"));
+                        builder.Append(" ");
                         builder.Append(entry.MutatedProperties.StringCode);
                     }
 
@@ -252,19 +260,18 @@
 
                 if (entry.SpreadToPatches.Count > 0)
                 {
-                    builder.Append(" spread to patches:\n");
+                    builder.Append(" ");
+                    builder.Append(TranslationServer.Translate("RUNRESULT_SPREAD_TO_PATCHES"));
+                    builder.Append("\n");
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
                         if (playerReadable)
                         {
                             builder.Append("  ");
-                            builder.Append(spreadEntry.To.Name);
-                            builder.Append(" by sending: ");
-                            builder.Append(spreadEntry.Population);
-                            builder.Append(" population");
-                            builder.Append(" from patch: ");
-                            builder.Append(spreadEntry.From.Name);
+                            builder.Append(string.Format(CultureInfo.CurrentCulture,
+                                TranslationServer.Translate("RUNRESULT_BY_SENDING_POPULATION"),
+                                spreadEntry.To.Name, spreadEntry.Population, spreadEntry.From.Name));
                         }
                         else
                         {
@@ -280,7 +287,9 @@
                     }
                 }
 
-                builder.Append(" population in patches:\n");
+                builder.Append(" ");
+                builder.Append(TranslationServer.Translate("RUNRESULT_POP_IN_PATCHES"));
+                builder.Append("\n");
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {

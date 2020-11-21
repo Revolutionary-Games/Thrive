@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using Godot;
 
@@ -13,6 +13,7 @@ public class Compound : IRegistryType
     /// <summary>
     ///   Display name for the user to see
     /// </summary>
+    [TranslateFrom("untranslatedName")]
     public string Name;
 
     public float Volume;
@@ -28,6 +29,10 @@ public class Compound : IRegistryType
     public bool IsEnvironmental;
 
     public Color Colour;
+
+#pragma warning disable 169 // Used through reflection
+    private string untranslatedName;
+#pragma warning restore 169
 
     public string InternalName { get; set; }
 
@@ -63,6 +68,13 @@ public class Compound : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Volume should be > 0");
         }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+    }
+
+    public void ApplyTranslations()
+    {
+        TranslationHelper.ApplyTranslations(this);
     }
 
     public override string ToString()
