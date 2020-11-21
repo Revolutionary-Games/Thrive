@@ -2,6 +2,7 @@ using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets called when the defined key is pressed down.
+///   Can be applied multiple times.
 /// </summary>
 /// <example>
 ///   [RunOnKeyDown("screenshot")]

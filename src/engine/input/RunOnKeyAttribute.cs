@@ -3,6 +3,7 @@ using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets repeatedly called when the defined key is pressed.
+///   Can be applied multiple times.
 /// </summary>
 /// <example>
 ///   [RunOnKey("g_cheat_glucose")]

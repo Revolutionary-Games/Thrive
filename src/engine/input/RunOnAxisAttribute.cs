@@ -5,12 +5,11 @@ using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets called when the defined axis is not in its idle state.
+///   Can be applied multiple times. [RunOnAxisGroup] required to distinguish between the axes.
 /// </summary>
 /// <example>
-///   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
-///   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-///   [RunOnAxisGroup]
-///   public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement)
+///   [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
+///   public void Zoom(float delta, float value)
 /// </example>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class RunOnAxisAttribute : InputAttribute

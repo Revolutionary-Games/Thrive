@@ -2,6 +2,7 @@ using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets called when the defined key is pressed or released.
+///   Can be applied multiple times.
 /// </summary>
 public class RunOnKeyChangeAttribute : RunOnKeyAttribute
 {

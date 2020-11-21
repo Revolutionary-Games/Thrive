@@ -4,7 +4,8 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Combines multiple RunOnAxisAttributes
+///   Combines multiple RunOnAxisAttributes to be able to distinguish between axes
+///   Can only be applied once.
 /// </summary>
 /// <example>
 ///   [RunOnMultiAxis]
