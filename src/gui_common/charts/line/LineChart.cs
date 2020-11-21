@@ -31,7 +31,7 @@ public class LineChart : VBoxContainer
     public NodePath LegendsContainerPath;
 
     /// <summary>
-    ///   The name identifier for this chart. Each chart instance should have unique names.
+    ///   The name identifier for this chart. Each chart instance should have unique name.
     /// </summary>
     [Export]
     public string ChartName;
@@ -133,7 +133,7 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Returns true if the number of datasets is more than the allowed maximum amount displayed.
     /// </summary>
-    public bool IsMaxDataSetShown
+    public bool VisibleDataSetLimitReached
     {
         get
         {
@@ -151,6 +151,9 @@ public class LineChart : VBoxContainer
 
     public override void _Ready()
     {
+        if (string.IsNullOrEmpty(ChartName))
+            throw new Exception("Chart name must not be unset");
+
         horizontalLabel = GetNode<Label>(HorizontalLabelPath);
         verticalLabel = GetNode<Label>(VerticalLabelPath);
         verticalLabelsContainer = GetNode<VBoxContainer>(VerticalTicksContainerPath);
@@ -162,13 +165,10 @@ public class LineChart : VBoxContainer
         vLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/vSeparatorUp.png");
 
         UpdateAxesName();
-
-        if (string.IsNullOrEmpty(ChartName))
-            throw new Exception("Chart name must not be unset");
     }
 
     /// <summary>
-    ///   Add a dataset into this chart (overwrites existing one)
+    ///   Add a dataset into this chart (overwrites existing one if the name already existed)
     /// </summary>
     public void AddDataSet(string name, LineChartData dataset)
     {
@@ -583,7 +583,7 @@ public class LineChart : VBoxContainer
 
     private void IconLegendToggled(bool toggled, TextureButton icon, string name, bool fallbackIconIsUsed)
     {
-        if (toggled && IsMaxDataSetShown)
+        if (toggled && VisibleDataSetLimitReached)
         {
             icon.Pressed = false;
             return;
@@ -610,7 +610,7 @@ public class LineChart : VBoxContainer
     {
         var name = dropDown.Popup.GetItemText(index);
 
-        if (!dropDown.Popup.IsItemChecked(index) && IsMaxDataSetShown)
+        if (!dropDown.Popup.IsItemChecked(index) && VisibleDataSetLimitReached)
             return;
 
         dropDown.Popup.ToggleItemChecked(index);

@@ -48,6 +48,11 @@ public class CustomDropDown : MenuButton
         Popup.Connect("draw", this, nameof(RedrawPopup));
     }
 
+    public override void _Draw()
+    {
+        ReadjustRectSizes();
+    }
+
     /// <summary>
     ///   Helper for adding item into PopupMenu and also an icon to be custom drawn in this class
     /// </summary>
@@ -73,20 +78,28 @@ public class CustomDropDown : MenuButton
             Popup.AddItem(item.Text, id);
         }
 
-        // Use Invoke.Queue to redraw on the next frame, because that seem to help the redraw
-        // to work correctly, otherwise the popup rect size is not updated with the right size
-        Invoke.Instance.Queue(() => Popup.EmitSignal("draw"));
+        // Redraw the menu button and popup
+        Popup.Update();
+        Update();
     }
 
     private void RedrawPopup()
+    {
+        ReadjustRectSizes();
+        DrawIcons();
+    }
+
+    /// <summary>
+    ///   This readjust the rect size of this MenuButton and its PopupMenu.
+    ///   Called when they are to be redrawn.
+    /// </summary>
+    private void ReadjustRectSizes()
     {
         // Set popup to minimum length
         Popup.RectSize = new Vector2(GetContentsMinimumSize().x + iconSize.x + 6, 0);
 
         // Adjust the menu button to have the same length as the popup
         RectMinSize = new Vector2(Popup.RectSize.x, RectMinSize.y);
-
-        DrawIcons();
     }
 
     /// <summary>
