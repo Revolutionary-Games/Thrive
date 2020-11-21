@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -31,7 +31,10 @@ public class InputManager : Node
     public static void AddInstance(object instance)
     {
         // Find all attributes where the associated method's class matches the instances class
-        foreach (var inputAttribute in singleton.allAttributes.Where(p => p.Method.DeclaringType == instance.GetType()).AsParallel())
+        foreach (var inputAttribute in singleton
+            .allAttributes
+            .Where(p => p.Method.DeclaringType == instance.GetType())
+            .AsParallel())
         {
             inputAttribute.AddInstance(new WeakReference(instance));
         }

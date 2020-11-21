@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -16,7 +16,8 @@ using Godot;
 public class RunOnAxisAttribute : InputAttribute
 {
     /// <summary>all associated inputs</summary>
-    private readonly Dictionary<RunOnKeyChangeAttribute, float> inputs = new Dictionary<RunOnKeyChangeAttribute, float>();
+    private readonly Dictionary<RunOnKeyChangeAttribute, float> inputs =
+        new Dictionary<RunOnKeyChangeAttribute, float>();
 
     /// <summary>
     ///   Instances a new RunOnAxisAttribute.

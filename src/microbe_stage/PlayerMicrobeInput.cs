@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -55,7 +54,7 @@ public class PlayerMicrobeInput : Node
         var movement = new Vector3(leftRightMovement, 0, forwardMovement);
         if (stage.Player != null)
         {
-            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
+            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : (movement * delta).Normalized();
 
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }

@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets called when the defined key is released.
