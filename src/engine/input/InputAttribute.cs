@@ -30,6 +30,7 @@ public abstract class InputAttribute : Attribute
     {
         if (!(obj is InputAttribute attr))
             return false;
+
         return Equals(attr.Method, Method);
     }
 
