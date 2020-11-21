@@ -14,12 +14,13 @@ public class ToolTipManager : CanvasLayer
     private static ToolTipManager instance;
 
     /// <summary>
-    ///   Collection of tooltips in a group
+    ///   Collection of tooltips in a group, with Key being the group node
+    ///   and Value the tooltips inside it
     /// </summary>
     private Dictionary<Control, List<ICustomToolTip>> tooltips =
         new Dictionary<Control, List<ICustomToolTip>>();
 
-    private Control holder;
+    private Control groupHolder;
 
     private bool display;
     private float displayTimer;
@@ -49,10 +50,10 @@ public class ToolTipManager : CanvasLayer
 
     public override void _Ready()
     {
-        holder = GetNode<Control>("Holder");
+        groupHolder = GetNode<Control>("GroupHolder");
 
         // Make sure the tooltip parent control is visible
-        holder.Show();
+        groupHolder.Show();
 
         FetchToolTips();
     }
@@ -174,7 +175,7 @@ public class ToolTipManager : CanvasLayer
         var groupNode = new Control();
         groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;
-        holder.AddChild(groupNode);
+        groupHolder.AddChild(groupNode);
 
         tooltips.Add(groupNode, new List<ICustomToolTip>());
 
@@ -200,7 +201,7 @@ public class ToolTipManager : CanvasLayer
     /// </summary>
     private void FetchToolTips()
     {
-        foreach (Control group in holder.GetChildren())
+        foreach (Control group in groupHolder.GetChildren())
         {
             var collectedTooltips = new List<ICustomToolTip>();
 

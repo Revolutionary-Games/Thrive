@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
+using DataSetDictionary = System.Collections.Generic.Dictionary<string, LineChartData>;
 
 /// <summary>
 ///   A custom widget for multi-line chart with hoverable data points tooltip. Uses <see cref="LineChartData"/>
@@ -30,16 +31,22 @@ public class LineChart : VBoxContainer
     public NodePath LegendsContainerPath;
 
     /// <summary>
+    ///   The name identifier for this chart. Each chart instance should have unique names.
+    /// </summary>
+    [Export]
+    public string ChartName;
+
+    /// <summary>
     ///   Number of scales to represent x axis values
     /// </summary>
     [Export]
-    public int XAxisTicks;
+    public int XAxisTicks = 3;
 
     /// <summary>
     ///   Number of scales to represent y axis values
     /// </summary>
     [Export]
-    public int YAxisTicks;
+    public int YAxisTicks = 3;
 
     [Export]
     public LegendDisplayMode LegendMode = LegendDisplayMode.Icon;
@@ -77,6 +84,11 @@ public class LineChart : VBoxContainer
     private List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
 
     /// <summary>
+    ///   Datasets to be plotted on the chart. Key is the dataset's name
+    /// </summary>
+    private DataSetDictionary dataSets = new DataSetDictionary();
+
+    /// <summary>
     ///   Modes on how the chart legend should be displayed
     /// </summary>
     public enum LegendDisplayMode
@@ -91,16 +103,6 @@ public class LineChart : VBoxContainer
         /// </summary>
         DropDown,
     }
-
-    // ReSharper disable once CollectionNeverUpdated.Global
-    // ReSharper disable RedundantNameQualifier
-    /// <summary>
-    ///   Datasets to be plotted on the chart. Key is the dataset's name
-    /// </summary>
-    public System.Collections.Generic.Dictionary<string, LineChartData> DataSets { get; set; } =
-        new System.Collections.Generic.Dictionary<string, LineChartData>();
-
-    // ReSharper restore RedundantNameQualifier
 
     public Vector2 MinValues { get; private set; }
 
@@ -128,6 +130,25 @@ public class LineChart : VBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Returns true if the number of datasets is more than the allowed maximum amount displayed.
+    /// </summary>
+    public bool IsMaxDataSetShown
+    {
+        get
+        {
+            var count = 0;
+
+            foreach (var data in dataSets)
+            {
+                if (data.Value.Draw)
+                    count++;
+            }
+
+            return count >= MaxDisplayedDataSet;
+        }
+    }
+
     public override void _Ready()
     {
         horizontalLabel = GetNode<Label>(HorizontalLabelPath);
@@ -141,6 +162,28 @@ public class LineChart : VBoxContainer
         vLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/vSeparatorUp.png");
 
         UpdateAxesName();
+
+        if (string.IsNullOrEmpty(ChartName))
+            throw new Exception("Chart name must not be unset");
+    }
+
+    /// <summary>
+    ///   Add a dataset into this chart (overwrites existing one)
+    /// </summary>
+    public void AddDataSet(string name, LineChartData dataset)
+    {
+        dataSets[name] = dataset;
+    }
+
+    public LineChartData GetDataSet(string name)
+    {
+        if (!dataSets.ContainsKey(name))
+        {
+            GD.PrintErr("DataSet with name '" + name + "' not found");
+            return null;
+        }
+
+        return dataSets[name];
     }
 
     /// <summary>
@@ -149,7 +192,7 @@ public class LineChart : VBoxContainer
     /// <param name="legendTitle">Title for the chart legend. If null, the legend will not be created</param>
     public void Plot(string legendTitle = null)
     {
-        if (DataSets == null || DataSets.Count <= 0)
+        if (dataSets == null || dataSets.Count <= 0)
         {
             GD.PrintErr("Missing data sets, aborting plotting data");
             return;
@@ -165,7 +208,7 @@ public class LineChart : VBoxContainer
 
         var dataSetCount = 0;
 
-        foreach (var data in DataSets)
+        foreach (var data in dataSets)
         {
             dataSetCount++;
 
@@ -187,7 +230,7 @@ public class LineChart : VBoxContainer
                 toolTip.DisplayDelay = 0;
 
                 ToolTipHelper.RegisterToolTipForControl(point, toolTipCallbacks, toolTip);
-                ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + data.Key);
+                ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
             }
         }
 
@@ -227,8 +270,25 @@ public class LineChart : VBoxContainer
             verticalLabelsContainer.AddChild(label);
         }
 
+        // Create chart legend
         if (!string.IsNullOrEmpty(legendTitle))
-            CreateLegend(legendTitle);
+        {
+            // Switch to dropdown if amount of dataset is more than maximum number of icon legends allowed
+            if (dataSets.Count > MaxIconLegend && LegendMode == LegendDisplayMode.Icon)
+                LegendMode = LegendDisplayMode.DropDown;
+
+            switch (LegendMode)
+            {
+                case LegendDisplayMode.Icon:
+                    CreateIconLegend(legendTitle);
+                    break;
+                case LegendDisplayMode.DropDown:
+                    CreateDropDownLegend(legendTitle);
+                    break;
+                default:
+                    throw new Exception("Invalid legend display mode");
+            }
+        }
 
         drawArea.Update();
     }
@@ -237,14 +297,14 @@ public class LineChart : VBoxContainer
     {
         toolTipCallbacks.Clear();
 
-        foreach (var data in DataSets)
+        foreach (var data in dataSets)
         {
-            ToolTipManager.Instance.ClearToolTips("chartMarkers" + data.Key);
+            ToolTipManager.Instance.ClearToolTips("chartMarkers" + ChartName + data.Key);
         }
 
-        foreach (var data in DataSets)
+        foreach (var data in dataSets)
         {
-            ToolTipManager.Instance.ClearToolTips("chartLegend" + data.Key);
+            ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName + data.Key);
         }
 
         // Clear points
@@ -274,126 +334,111 @@ public class LineChart : VBoxContainer
 
     public void UpdateDataSetVisibility(string name, bool visible)
     {
-        DataSets[name].Draw = visible;
+        dataSets[name].Draw = visible;
         drawArea.Update();
     }
 
-    private void CreateLegend(string title)
+    private void CreateIconLegend(string title)
     {
-        // Switch to dropdown if amount of dataset is more than maximum number of icon legends allowed
-        if (DataSets.Count > MaxIconLegend && LegendMode == LegendDisplayMode.Icon)
-            LegendMode = LegendDisplayMode.DropDown;
+        _ = title;
 
-        switch (LegendMode)
+        foreach (var data in dataSets)
         {
-            case LegendDisplayMode.Icon:
+            var fallbackIconIsUsed = false;
+
+            // Use the default icon as a fallback if the data icon texture hasn't been set already
+            if (data.Value.IconTexture == null)
             {
-                foreach (var data in DataSets)
-                {
-                    var fallbackIconIsUsed = false;
-
-                    // Use the default icon as a fallback if the data icon texture hasn't been set already
-                    if (data.Value.IconTexture == null)
-                    {
-                        data.Value.IconTexture = defaultIconLegendTexture;
-                        fallbackIconIsUsed = true;
-                    }
-
-                    var icon = new TextureButton
-                    {
-                        Expand = true,
-                        RectMinSize = new Vector2(18, 18),
-                        EnabledFocusMode = FocusModeEnum.None,
-                        ToggleMode = true,
-                        Pressed = true,
-                        Name = data.Key,
-                        TextureNormal = data.Value.IconTexture,
-                    };
-
-                    // Set the default icon's color
-                    if (fallbackIconIsUsed)
-                        icon.Modulate = data.Value.DataColor;
-
-                    legendContainer.AddChild(icon);
-
-                    icon.Connect("mouse_entered", this, nameof(IconLegendMouseEnter), new Array
-                    {
-                        icon, fallbackIconIsUsed, data.Value.DataColor,
-                    });
-                    icon.Connect("mouse_exited", this, nameof(IconLegendMouseExit), new Array
-                    {
-                        icon, fallbackIconIsUsed, data.Value.DataColor,
-                    });
-                    icon.Connect("toggled", this, nameof(IconLegendToggled), new Array
-                    {
-                        icon, data.Key, fallbackIconIsUsed,
-                    });
-
-                    // Set initial icon toggle state
-                    if (!data.Value.Draw)
-                    {
-                        icon.Pressed = false;
-                        IconLegendToggled(false, icon, data.Key, fallbackIconIsUsed);
-                    }
-
-                    // Create tooltips
-                    var toolTip = ToolTipHelper.CreateDefaultToolTip();
-
-                    toolTip.DisplayName = data.Key;
-                    toolTip.Description = data.Key;
-
-                    ToolTipHelper.RegisterToolTipForControl(icon, toolTipCallbacks, toolTip);
-                    ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + data.Key);
-                }
-
-                break;
+                data.Value.IconTexture = defaultIconLegendTexture;
+                fallbackIconIsUsed = true;
             }
 
-            case LegendDisplayMode.DropDown:
+            var icon = new TextureButton
             {
-                var dropDown = new CustomDropDown
-                {
-                    Flat = false,
-                    Text = title,
-                    EnabledFocusMode = FocusModeEnum.None,
-                };
+                Expand = true,
+                RectMinSize = new Vector2(18, 18),
+                EnabledFocusMode = FocusModeEnum.None,
+                ToggleMode = true,
+                Pressed = true,
+                Name = data.Key,
+                TextureNormal = data.Value.IconTexture,
+            };
 
-                var itemId = 0;
+            // Set the default icon's color
+            if (fallbackIconIsUsed)
+                icon.Modulate = data.Value.DataColour;
 
-                dropDown.Popup.HideOnCheckableItemSelection = false;
+            legendContainer.AddChild(icon);
 
-                foreach (var data in DataSets)
-                {
-                    // Use the default icon as a fallback if the data icon texture hasn't been set already
-                    data.Value.IconTexture = data.Value.IconTexture == null ?
-                        defaultIconLegendTexture :
-                        data.Value.IconTexture;
+            icon.Connect("mouse_entered", this, nameof(IconLegendMouseEnter), new Array
+            {
+                icon, fallbackIconIsUsed, data.Value.DataColour,
+            });
+            icon.Connect("mouse_exited", this, nameof(IconLegendMouseExit), new Array
+            {
+                icon, fallbackIconIsUsed, data.Value.DataColour,
+            });
+            icon.Connect("toggled", this, nameof(IconLegendToggled), new Array
+            {
+                icon, data.Key, fallbackIconIsUsed,
+            });
 
-                    // Use the DataColor as the icon's color if using the default icon
-                    var colorToUse = data.Value.IconTexture == defaultIconLegendTexture ?
-                        data.Value.DataColor :
-                        new Color(1, 1, 1);
-
-                    dropDown.AddItem(data.Key, itemId, true, colorToUse, data.Value.IconTexture);
-
-                    // Set initial item check state
-                    if (data.Value.Draw)
-                        dropDown.Popup.SetItemChecked(dropDown.Popup.GetItemIndex(itemId), true);
-
-                    itemId++;
-                }
-
-                legendContainer.AddChild(dropDown);
-
-                dropDown.Popup.Connect("index_pressed", this, nameof(DropDownLegendItemSelected),
-                    new Array { dropDown });
-
-                break;
+            // Set initial icon toggle state
+            if (!data.Value.Draw)
+            {
+                icon.Pressed = false;
+                IconLegendToggled(false, icon, data.Key, fallbackIconIsUsed);
             }
 
-            default:
-                throw new Exception("Invalid legend display mode");
+            // Create tooltips
+            var toolTip = ToolTipHelper.CreateDefaultToolTip();
+
+            toolTip.DisplayName = data.Key;
+            toolTip.Description = data.Key;
+
+            ToolTipHelper.RegisterToolTipForControl(icon, toolTipCallbacks, toolTip);
+            ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + ChartName + data.Key);
         }
+    }
+
+    private void CreateDropDownLegend(string title)
+    {
+        var dropDown = new CustomDropDown
+        {
+            Flat = false,
+            Text = title,
+            EnabledFocusMode = FocusModeEnum.None,
+        };
+
+        var itemId = 0;
+
+        dropDown.Popup.HideOnCheckableItemSelection = false;
+
+        foreach (var data in dataSets)
+        {
+            // Use the default icon as a fallback if the data icon texture hasn't been set already
+            data.Value.IconTexture = data.Value.IconTexture == null ?
+                defaultIconLegendTexture :
+                data.Value.IconTexture;
+
+            // Use the DataColor as the icon's color if using the default icon
+            var colorToUse = data.Value.IconTexture == defaultIconLegendTexture ?
+                data.Value.DataColour :
+                new Color(1, 1, 1);
+
+            dropDown.AddItem(data.Key, itemId, true, colorToUse, data.Value.IconTexture);
+
+            // Set initial item check state
+            if (data.Value.Draw)
+                dropDown.Popup.SetItemChecked(dropDown.Popup.GetItemIndex(itemId), true);
+
+            itemId++;
+        }
+
+        legendContainer.AddChild(dropDown);
+
+        dropDown.Popup.Connect("index_pressed", this, nameof(DropDownLegendItemSelected),
+            new Array { dropDown });
     }
 
     /// <summary>
@@ -401,7 +446,7 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void RenderChart()
     {
-        if (DataSets.Count <= 0)
+        if (dataSets.Count <= 0)
             return;
 
         DrawOrdinateLines();
@@ -428,7 +473,7 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void DrawLineSegments()
     {
-        foreach (var data in DataSets)
+        foreach (var data in dataSets)
         {
             // Setup the points
             data.Value.DataPoints.ForEach(point =>
@@ -442,7 +487,7 @@ public class LineChart : VBoxContainer
 
                 point.Draw = pointHasZeroValue ? false : true;
 
-                // Keep draw if this flag is set to true
+                // Let the point at zero coordinates be drawn if this flag is set to true
                 if (point.DrawAtZeroValue)
                 {
                     point.Draw = true;
@@ -464,7 +509,7 @@ public class LineChart : VBoxContainer
             {
                 if (data.Value.Draw)
                 {
-                    drawArea.DrawLine(previousPoint.Coordinate, point.Coordinate, data.Value.DataColor,
+                    drawArea.DrawLine(previousPoint.Coordinate, point.Coordinate, data.Value.DataColour,
                         data.Value.LineWidth, true);
                 }
 
@@ -504,22 +549,6 @@ public class LineChart : VBoxContainer
         return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY;
     }
 
-    /// <summary>
-    ///   Returns true if the number of datasets is more than the allowed maximum amount displayed.
-    /// </summary>
-    private bool CheckMaxDataSetShown()
-    {
-        var count = 0;
-
-        foreach (var data in DataSets)
-        {
-            if (data.Value.Draw)
-                count++;
-        }
-
-        return count >= MaxDisplayedDataSet;
-    }
-
     private void UpdateAxesName()
     {
         if (horizontalLabel == null || verticalLabel == null)
@@ -554,20 +583,20 @@ public class LineChart : VBoxContainer
 
     private void IconLegendToggled(bool toggled, TextureButton icon, string name, bool fallbackIconIsUsed)
     {
-        if (toggled && CheckMaxDataSetShown())
+        if (toggled && IsMaxDataSetShown)
         {
             icon.Pressed = false;
             return;
         }
 
-        var data = DataSets[name];
+        var data = dataSets[name];
 
         if (fallbackIconIsUsed)
         {
             icon.Modulate = toggled ?
-                data.DataColor :
+                data.DataColour :
                 new Color(
-                    data.DataColor.r - 0.5f, data.DataColor.g - 0.5f, data.DataColor.b - 0.5f);
+                    data.DataColour.r - 0.5f, data.DataColour.g - 0.5f, data.DataColour.b - 0.5f);
         }
         else
         {
@@ -581,7 +610,7 @@ public class LineChart : VBoxContainer
     {
         var name = dropDown.Popup.GetItemText(index);
 
-        if (!dropDown.Popup.IsItemChecked(index) && CheckMaxDataSetShown())
+        if (!dropDown.Popup.IsItemChecked(index) && IsMaxDataSetShown)
             return;
 
         dropDown.Popup.ToggleItemChecked(index);

@@ -73,7 +73,8 @@ public class CustomDropDown : MenuButton
             Popup.AddItem(item.Text, id);
         }
 
-        // Waits until next frame, this fixes an incorrect rect size for some reason
+        // Use Invoke.Queue to redraw on the next frame, because that seem to help the redraw
+        // to work correctly, otherwise the popup rect size is not updated with the right size
         Invoke.Instance.Queue(() => Popup.EmitSignal("draw"));
     }
 

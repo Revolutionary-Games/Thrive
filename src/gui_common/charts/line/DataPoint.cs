@@ -67,8 +67,15 @@ public class DataPoint : Control
         }
     }
 
-    public Color MarkerColor { get; set; }
+    public Color MarkerFillerColour { get; set; } = new Color(0.0f, 0.13f, 0.14f);
 
+    public Color MarkerFillerHighlightedColour { get; set; } = new Color(0.07f, 1.0f, 0.84f);
+
+    public Color MarkerColour { get; set; }
+
+    /// <summary>
+    ///   Used to hide marker visual while still keeping the tooltip for this data point hoverable
+    /// </summary>
     public bool Draw { get; set; }
 
     /// <summary>
@@ -102,22 +109,22 @@ public class DataPoint : Control
                 // Circle filler
                 if (isMouseOver)
                 {
-                    DrawCircle(RectSize / 2, Size / 2, new Color(0.07f, 1.0f, 0.84f));
+                    DrawCircle(RectSize / 2, Size / 2, MarkerFillerHighlightedColour);
                 }
                 else
                 {
-                    DrawCircle(RectSize / 2, Size / 2, new Color(0.0f, 0.13f, 0.14f));
+                    DrawCircle(RectSize / 2, Size / 2, MarkerFillerColour);
                 }
 
                 DrawTextureRect(graphMarkerCircle, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColor);
+                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColour);
 
                 break;
             }
 
             case MarkerIcon.Cross:
                 DrawTextureRect(graphMarkerCross, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColor);
+                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColour);
                 break;
             default:
                 throw new Exception("Invalid marker shape");

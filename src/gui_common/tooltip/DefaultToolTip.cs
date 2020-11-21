@@ -62,8 +62,9 @@ public class DefaultToolTip : Control, ICustomToolTip
 
     public override void _Ready()
     {
-        // For some reason the NodePath wouldn't set correctly if the scene is instantiated with
+        // TODO: for some reason the NodePath wouldn't set correctly if the scene is instantiated with
         // a different node name, so this use hard-coded path for now
+        // See https://github.com/Revolutionary-Games/Thrive/issues/1855
         descriptionLabel = GetNode<Label>("MarginContainer/VBoxContainer/Description");
 
         tween = GetNode<Tween>("Tween");
