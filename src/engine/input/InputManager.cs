@@ -43,6 +43,18 @@ public class InputManager : Node
     }
 
     /// <summary>
+    ///   Removes the given instance from the list of managed instances.
+    /// </summary>
+    /// <param name="instance">The instance to remove</param>
+    public static void RemoveInstance(object instance)
+    {
+        singleton.allAttributes.ForEach(attribute =>
+        {
+            attribute.RemoveInstance(instance);
+        });
+    }
+
+    /// <summary>
     ///   Used for resetting various InputAttributes to their default states.
     /// </summary>
     public static void FocusLost()

@@ -79,6 +79,16 @@ public abstract class InputAttribute : Attribute
     }
 
     /// <summary>
+    ///   Called by InputManager.RemoveInstance().
+    ///   Removes an instance from the list of associated instances.
+    /// </summary>
+    /// <param name="instance">The instance to remove</param>
+    internal void RemoveInstance(object instance)
+    {
+        instances.RemoveAll(p => !p.IsAlive || p.Target == instance);
+    }
+
+    /// <summary>
     ///   Call the associated method.
     ///   Calls the method with all of the instances or once if the method is static.
     /// </summary>
