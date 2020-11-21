@@ -89,19 +89,15 @@ namespace Tutorial
             return false;
         }
 
-        [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1, 1 })]
-        [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1, 1 })]
+        [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
+        [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
         [RunOnAxisGroup]
-        public void OnMovement(float delta, int forwardBackwardMovement, int leftRightMovement)
+        public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement)
         {
-            if (forwardBackwardMovement == -1)
-                moveForwardTime += delta;
-            if (forwardBackwardMovement == 1)
-                moveBackwardsTime += delta;
-            if (leftRightMovement == -1)
-                moveLeftTime += delta;
-            if (leftRightMovement == 1)
-                moveRightTime += delta;
+            moveForwardTime += delta * (forwardBackwardMovement + 1);
+            moveBackwardsTime += delta * (forwardBackwardMovement - 1);
+            moveLeftTime += delta * (leftRightMovement + 1);
+            moveRightTime += delta * (leftRightMovement - 1);
         }
 
         protected override void OnProcess(TutorialState overallState, float delta)

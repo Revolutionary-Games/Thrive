@@ -41,10 +41,10 @@ public class PlayerMicrobeInput : Node
         autoMove = !autoMove;
     }
 
-    [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1, 1 })]
-    [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1, 1 })]
+    [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup(InvokeWithNoInput = true)]
-    public void OnMovement(float delta, int forwardMovement, int leftRightMovement)
+    public void OnMovement(float delta, float forwardMovement, float leftRightMovement)
     {
         // Reset auto move if a key was pressed
         if (forwardMovement != 0 || leftRightMovement != 0)

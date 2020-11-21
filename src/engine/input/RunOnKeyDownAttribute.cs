@@ -1,5 +1,12 @@
 ﻿using Godot;
 
+/// <summary>
+///   Attribute for a method, that gets called when the defined key is pressed down.
+/// </summary>
+/// <example>
+///   [RunOnKeyDown("screenshot")]
+///   public void TakeScreenshotPressed()
+/// </example>
 public class RunOnKeyDownAttribute : RunOnKeyAttribute
 {
     public RunOnKeyDownAttribute(string godotInputName) : base(godotInputName)
