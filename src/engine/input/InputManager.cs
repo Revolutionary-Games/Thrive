@@ -13,7 +13,9 @@ public class InputManager : Node
 {
     private static InputManager singleton;
 
-    /// <summary>A list of all loaded attributes</summary>
+    /// <summary>
+    ///   A list of all loaded attributes
+    /// </summary>
     private List<InputAttribute> allAttributes;
 
     public InputManager()
