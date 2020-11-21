@@ -8,10 +8,10 @@ using Godot;
 ///   Can only be applied once.
 /// </summary>
 /// <example>
-///   [RunOnMultiAxis]
-///   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1, 1 })]
-///   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1, 1 })]
-///   public void MovePlayer(float delta, int[] inputs)
+///   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
+///   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
+///   [RunOnAxisGroup]
+///   public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement)
 /// </example>
 [AttributeUsage(AttributeTargets.Method)]
 public class RunOnAxisGroupAttribute : InputAttribute
