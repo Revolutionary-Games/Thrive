@@ -11,8 +11,7 @@ public class RunOnKeyUpAttribute : RunOnKeyAttribute
         var before = HeldDown;
         if (!base.OnInput(@event) && before)
         {
-            CallMethod();
-            return true;
+            return CallMethod();
         }
 
         return false;

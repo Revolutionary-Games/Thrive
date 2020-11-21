@@ -38,11 +38,12 @@ public abstract class InputAttribute : Attribute
         instances.Add(instance);
     }
 
-    protected void CallMethod(params object[] parameters)
+    protected bool CallMethod(params object[] parameters)
     {
         if (Method == null)
-            return;
+            return false;
 
+        var result = false;
         Task.Run(() =>
         {
             lock (disposed)
@@ -51,11 +52,13 @@ public abstract class InputAttribute : Attribute
                 if (Method.IsStatic)
                 {
                     Method.Invoke(null, parameters);
+                    result = true;
                 }
                 else
                 {
                     instances.AsParallel().ForAll(p =>
                     {
+                        result = true;
                         if (!p.IsAlive)
                         {
                             disposed.Add(p);
@@ -69,5 +72,6 @@ public abstract class InputAttribute : Attribute
                 disposed.AsParallel().ForAll(p => instances.Remove(p));
             }
         });
+        return result;
     }
 }

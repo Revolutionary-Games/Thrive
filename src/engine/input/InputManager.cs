@@ -46,8 +46,8 @@ public class InputManager : Node
                 result = true;
         });
 
-        // if (result)
-            // GetTree().SetInputAsHandled();
+        if (result)
+            GetTree().SetInputAsHandled();
     }
 
     private void LoadAttributes(IEnumerable<Assembly> assemblies)
