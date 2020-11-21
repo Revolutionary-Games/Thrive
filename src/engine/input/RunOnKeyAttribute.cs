@@ -11,8 +11,10 @@ using Godot;
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class RunOnKeyAttribute : InputAttribute
 {
-    // Priming comes to effect when an input gets pressed for less than one frame
-    // (when the release input gets detected before OnProcess could be called)
+    /// <summary>
+    ///   Priming comes to effect when an input gets pressed for less than one frame
+    ///   (when the release input gets detected before OnProcess could be called)
+    /// </summary>
     private bool primed;
 
     public RunOnKeyAttribute(string godotInputName)
