@@ -89,7 +89,7 @@ public class PauseMenu : Control
         }
     }
 
-    [RunOnKey("help")]
+    [RunOnKeyDown("help")]
     public void ShowHelpPressed()
     {
         if (NoExclusiveTutorialActive())
