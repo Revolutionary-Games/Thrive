@@ -24,6 +24,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
     ///   Should the method be invoked when all of it's inputs are in it's idle state
     /// </summary>
     public bool InvokeWithNoInput { get; set; }
+    
     public override bool OnInput(InputEvent @event)
     {
         var result = false;
