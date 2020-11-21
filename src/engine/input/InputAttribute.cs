@@ -78,7 +78,7 @@ public abstract class InputAttribute : Attribute
     ///   Calls the method with all of the instances or once if the method is static.
     /// </summary>
     /// <param name="parameters">The parameters the method will be called with</param>
-    /// <returns>Weather a method was called or not</returns>
+    /// <returns>Whether a method was called or not</returns>
     protected bool CallMethod(params object[] parameters)
     {
         // Do nothing if no method is associated
