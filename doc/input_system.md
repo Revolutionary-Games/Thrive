@@ -6,7 +6,7 @@ The current system uses C# Attributes attached to methods to call the correct co
 How to use attributes
 -----------
 To apply an attribute to a method, you need to add a code line like this over a method: `[OneOfTheInputAttributes(parameters)]`<br>
-The different avaible attributes and their parameters are described further below.<br>
+The different avaible attributes and their parameters are described below.<br>
 You can read more about C# attributes [here](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/).
 
 The avaible input attributes
@@ -72,6 +72,7 @@ public MicrobeCamera()
 public void Zoom(float delta, float value) {}
 ```
 The Zoom method gets called when `g_zoom_in` or `g_zoom_out` gets pressed. Via the `value` parameter you know if the user pressed wants to zoom in or out.<br>
+The -1.0f belongs to the g_zoom_in and the 1.0f belongs to the g_zoom_out
 <hr>
 
 ```
