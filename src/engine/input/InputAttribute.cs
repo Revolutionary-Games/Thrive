@@ -11,10 +11,14 @@ using Godot;
 /// </summary>
 public abstract class InputAttribute : Attribute
 {
-    // All instances associated with this InputAttribute
+    /// <summary>
+    ///   All instances associated with this InputAttribute
+    /// </summary>
     private readonly List<WeakReference> instances = new List<WeakReference>();
 
-    // All references to instances pending removal
+    /// <summary>
+    ///   All references to instances pending removal
+    /// </summary>
     private readonly List<WeakReference> disposed = new List<WeakReference>();
 
     /// <summary>
