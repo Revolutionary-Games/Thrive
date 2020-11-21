@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=2]
+[gd_scene load_steps=150 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -73,6 +73,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=71]
 [ext_resource path="res://assets/sounds/soundeffects/gui/click_place_blocked.ogg" type="AudioStream" id=72]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=73]
+[ext_resource path="res://src/microbe_stage/editor/MutationPointsTextMaterial.tres" type="Material" id=74]
 [ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=75]
 [ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=77]
@@ -1357,7 +1358,7 @@ __meta__ = {
 [node name="MainPanel" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 405.0
+margin_right = 350.0
 margin_bottom = 625.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1461,6 +1462,7 @@ mouse_filter = 1
 custom_constants/margin_left = 20
 
 [node name="MPLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer"]
+material = ExtResource( 74 )
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 151.0
@@ -1482,6 +1484,7 @@ size_flags_horizontal = 3
 custom_constants/margin_right = 15
 
 [node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2"]
+material = ExtResource( 74 )
 margin_right = 152.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
@@ -3874,9 +3877,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 39 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_top = 22.0
-margin_right = 357.0
-margin_bottom = 471.0
+margin_left = 4.0
+margin_top = 26.0
+margin_right = 361.0
+margin_bottom = 475.0
 theme = SubResource( 41 )
 edit_alpha = false
 
