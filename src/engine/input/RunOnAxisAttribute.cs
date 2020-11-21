@@ -22,7 +22,7 @@ public class RunOnAxisAttribute : InputAttribute
         new Dictionary<RunOnKeyChangeAttribute, float>();
 
     /// <summary>
-    ///   Instances a new RunOnAxisAttribute.
+    ///   Instantiates a new RunOnAxisAttribute.
     /// </summary>
     /// <param name="godotInputNames">All godot input names</param>
     /// <param name="associatedValues">All associated values. Length must match the godotInputNames</param>
