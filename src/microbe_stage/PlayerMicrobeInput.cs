@@ -35,6 +35,12 @@ public class PlayerMicrobeInput : Node
         }
     }
 
+    [RunOnKeyDown("g_hold_forward")]
+    public void ToggleAutoMove()
+    {
+        autoMove = !autoMove;
+    }
+
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1, 1 })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1, 1 })]
     [RunOnAxisGroup(InvokeWithNoInput = true)]
@@ -49,7 +55,9 @@ public class PlayerMicrobeInput : Node
         var movement = new Vector3(leftRightMovement, 0, forwardMovement);
         if (stage.Player != null)
         {
-            stage.Player.MovementDirection = movement.Normalized();
+            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
+
+            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }
     }
 
@@ -101,21 +109,6 @@ public class PlayerMicrobeInput : Node
         if (Settings.Instance.CheatsEnabled)
         {
             SpawnCheatCloud("phosphates", delta);
-        }
-    }
-
-    public override void _Process(float delta)
-    {
-        var settings = Settings.Instance;
-
-        if (stage.Player != null)
-        {
-            if (autoMove)
-            {
-                stage.Player.MovementDirection = new Vector3(0, 0, -1);
-            }
-
-            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }
     }
 
