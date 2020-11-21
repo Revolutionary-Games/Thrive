@@ -48,10 +48,7 @@ public class InputManager : Node
     /// <param name="instance">The instance to remove</param>
     public static void RemoveInstance(object instance)
     {
-        singleton.allAttributes.ForEach(attribute =>
-        {
-            attribute.RemoveInstance(instance);
-        });
+        singleton.allAttributes.AsParallel().ForAll(attribute => attribute.RemoveInstance(instance));
     }
 
     /// <summary>
