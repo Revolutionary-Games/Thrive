@@ -21,7 +21,7 @@ public class RunOnAxisAttribute : InputAttribute
 
     public bool InvokeWithNoInput { get; set; }
 
-    internal int CurrentResult => (int)inputs.Where(p => p.Key.HeldDown).Select(p => p.Value).DefaultIfEmpty(0).Average();
+    internal int CurrentResult => (int)inputs.Where(p => p.Key.ReadHeldOrPrimedAndResetPrimed()).Select(p => p.Value).DefaultIfEmpty(0).Average();
 
     public override bool OnInput(InputEvent @event)
     {
