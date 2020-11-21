@@ -15,7 +15,9 @@ using Godot;
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class RunOnAxisAttribute : InputAttribute
 {
-    /// <summary>all associated inputs</summary>
+    /// <summary>
+    ///   all associated inputs
+    /// </summary>
     private readonly Dictionary<RunOnKeyChangeAttribute, float> inputs =
         new Dictionary<RunOnKeyChangeAttribute, float>();
 
@@ -71,9 +73,9 @@ public class RunOnAxisAttribute : InputAttribute
 
     public override void OnProcess(float delta)
     {
-        var currRes = CurrentResult;
-        if (InvokeWithNoInput || currRes != 0)
-            CallMethod(delta, currRes);
+        var currentResult = CurrentResult;
+        if (InvokeWithNoInput || currentResult != 0)
+            CallMethod(delta, currentResult);
     }
 
     public override void FocusLost()
