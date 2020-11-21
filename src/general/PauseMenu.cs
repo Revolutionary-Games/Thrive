@@ -75,7 +75,7 @@ public class PauseMenu : Control
     }
 
     [RunOnKeyDown("ui_cancel")]
-    public void EscPressed()
+    public void EscapeKeyPressed()
     {
         if (Visible)
         {
