@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 ///   Class that holds the info of a mod from a 'mod_info.json' file
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public class ModInfo : Object
+public class ModInfo : Resource
 {
     [JsonProperty]
     public string Name;

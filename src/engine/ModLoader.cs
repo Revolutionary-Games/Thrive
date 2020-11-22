@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   Class that manages all the loading, getting the mods from the directory, and other things
 ///   relating to mods
 /// </summary>
-public class ModLoader
+public class ModLoader : Reference
 {
     /// <summary>
     ///   Mods that are loaded in by the auto mod loader
@@ -81,6 +81,13 @@ public class ModLoader
     /// <summary>
     ///   This is the method that actually loads the mod after verifying it and updating all the other variables
     /// </summary>
+    /// <returns>
+    ///   Returns a postive integer when successful and negative when it fails
+    ///   -2: Returns when the mod file can not be found
+    ///   -1: Returns when the mod file fails to be loaded
+    ///    0: Returns when the mod is already loaded
+    ///    1: Returns when the mod is successfully loaded
+    /// </returns>
     public int LoadMod(ModInfo currentMod, bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
         var file = new File();
@@ -223,7 +230,7 @@ public class ModLoader
                 return false;
             }
 
-            file.StoreString(JsonConvert.SerializeObject(AutoLoadedMods));
+            file.StoreString(JsonConvert.SerializeObject(AutoLoadedMods,Formatting.Indented));
 
             file.Close();
         }
