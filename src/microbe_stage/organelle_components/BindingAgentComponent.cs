@@ -1,4 +1,4 @@
-﻿public class BindingAgentComponent : IOrganelleComponent
+public class BindingAgentComponent : IOrganelleComponent
 {
     public void OnAttachToCell(PlacedOrganelle organelle)
     {

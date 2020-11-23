@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -72,7 +72,10 @@ public class BindingColony
             Master = master;
 
             if (master != null)
-                OffsetToMaster = (((Microbe)master).Translation - microbe.Translation).Rotated(Vector3.Up, Mathf.Deg2Rad(-((Microbe)master).RotationDegrees.y));
+            {
+                OffsetToMaster = (((Microbe)master).Translation - microbe.Translation)
+                   .Rotated(Vector3.Up, Mathf.Deg2Rad(-((Microbe)master).RotationDegrees.y));
+            }
         }
 
         internal List<ColonyMember> BindingTo { get; }

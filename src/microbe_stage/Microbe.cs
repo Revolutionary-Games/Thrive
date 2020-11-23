@@ -73,9 +73,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private Vector3 queuedMovementForce;
 
-    [JsonProperty]
-    private bool bindingMode;
-
     // variables for engulfing
     [JsonProperty]
     private bool engulfMode;
@@ -230,14 +227,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   </para>
     /// </remarks>
     [JsonIgnore]
-    public bool BindingMode
-    {
-        get => bindingMode;
-        set
-        {
-            bindingMode = value;
-        }
-    }
+    public bool BindingMode { get; set; }
 
     [JsonIgnore]
     public int HexCount
@@ -1146,7 +1136,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             MovementDirection = Translation - targetPos;
             DoBaseMovementForce(delta);
             Rotation = master.Rotation;
-            Translation = masterTranslation + (masterTranslation - targetPos).Rotated(Vector3.Up, Mathf.Deg2Rad(master.RotationDegrees.y));
+            Translation = masterTranslation + (masterTranslation - targetPos)
+                .Rotated(Vector3.Up, Mathf.Deg2Rad(master.RotationDegrees.y));
         }
 
         // Rotation is applied in the physics force callback as that's
@@ -1809,7 +1800,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -
-            (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+                (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)
