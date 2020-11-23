@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-public class BindingColony : IDisposable
+public class BindingColony
 {
     private ColonyMember leader;
 
     public BindingColony(Microbe leader)
     {
-        this.leader = new ColonyMember(leader);
+        this.leader = new ColonyMember(leader, null);
     }
-
-    ~BindingColony()
-    {
-        Dispose(false);
-    }
-
-    public event EventHandler OnColonyDiscontinued;
 
     public IEnumerable<Microbe> Members => leader.GetAllMembers().Select(p => (Microbe)p);
 
@@ -30,13 +22,13 @@ public class BindingColony : IDisposable
         if (leader.MicrobeEquals(microbe))
             return null;
 
-        return (Microbe)leader.GetMaster(microbe);
+        return (Microbe)leader.GetMember(microbe).Master;
     }
 
     public void AddToColony(Microbe binder, Microbe bound)
     {
         var binderMember = leader.GetMember(binder);
-        binderMember.BindingTo.Add(new ColonyMember(bound));
+        binderMember.BindingTo.Add(new ColonyMember(bound, binderMember));
     }
 
     public bool RemoveFromColony(Microbe microbe)
@@ -44,40 +36,28 @@ public class BindingColony : IDisposable
         if (leader.MicrobeEquals(microbe))
         {
             // TODO: Determine new leader
-            // Currently the colony gets destroyed
-            Dispose();
+            foreach (var member in Members)
+            {
+                member.RemovedFromColony();
+            }
         }
 
-        return leader.RemoveMember(microbe);
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (leader == null)
-            return;
-
-        if (disposing)
-        {
-            OnColonyDiscontinued?.Invoke(this, new EventArgs());
-        }
-
-        leader = null;
+        var child = leader.GetMember(microbe);
+        var parent = child.Master;
+        ((Microbe)child).RemovedFromColony();
+        return parent.BindingTo.Remove(child);
     }
 
     private class ColonyMember
     {
+        internal readonly ColonyMember Master;
         private readonly Microbe microbe;
 
-        internal ColonyMember(Microbe microbe)
+        internal ColonyMember(Microbe microbe, ColonyMember master)
         {
             this.microbe = microbe;
             BindingTo = new List<ColonyMember>();
+            Master = master;
         }
 
         internal List<ColonyMember> BindingTo { get; }
@@ -102,25 +82,6 @@ public class BindingColony : IDisposable
             return microbe.Equals(otherMicrobe);
         }
 
-        internal ColonyMember GetMaster(Microbe searchedMicrobe, ICollection<ColonyMember> visitedMicrobes = null)
-        {
-            (visitedMicrobes ??= new List<ColonyMember>()).Add(this);
-            foreach (var currentMicrobeNeighbour in BindingTo)
-            {
-                if (!visitedMicrobes.Contains(currentMicrobeNeighbour))
-                {
-                    if (currentMicrobeNeighbour.MicrobeEquals(searchedMicrobe))
-                        return this;
-
-                    var res = currentMicrobeNeighbour.GetMaster(searchedMicrobe, visitedMicrobes);
-                    if (res != null)
-                        return res;
-                }
-            }
-
-            return null;
-        }
-
         internal ColonyMember GetMember(Microbe searchedMicrobe, ICollection<ColonyMember> visitedMicrobes = null)
         {
             if (MicrobeEquals(searchedMicrobe))
@@ -138,24 +99,6 @@ public class BindingColony : IDisposable
             }
 
             return null;
-        }
-
-        internal bool RemoveMember(Microbe toRemove, ICollection<ColonyMember> visitedMicrobes = null)
-        {
-            (visitedMicrobes ??= new List<ColonyMember>()).Add(this);
-            foreach (var colonyMember in BindingTo)
-            {
-                if (colonyMember.MicrobeEquals(toRemove))
-                {
-                    BindingTo.Remove(colonyMember);
-                    return true;
-                }
-
-                if (colonyMember.RemoveMember(toRemove, visitedMicrobes))
-                    return true;
-            }
-
-            return false;
         }
 
         internal ICollection<ColonyMember> GetAllMembers(ICollection<ColonyMember> visitedMicrobes = null)

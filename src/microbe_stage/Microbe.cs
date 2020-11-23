@@ -29,6 +29,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
+    /// <summary>
+    ///   The colony this microbe is currently in
+    /// </summary>
+    [JsonProperty]
+    public BindingColony AssociatedColony;
+
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     [JsonProperty]
@@ -1167,6 +1173,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // TODO: should movement also be applied here?
 
         state.Transform = GetNewPhysicsRotation(state.Transform);
+    }
+
+    internal void RemovedFromColony()
+    {
+        AssociatedColony = null;
     }
 
     internal void SuccessfulScavenge()
