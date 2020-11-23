@@ -1098,24 +1098,36 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Movement
-        if (MovementDirection != new Vector3(0, 0, 0) ||
-            queuedMovementForce != new Vector3(0, 0, 0))
+        if (AssociatedColony?.GetMyMaster(this) == null)
         {
-            // Movement direction should not be normalized to allow different speeds
-            Vector3 totalMovement = new Vector3(0, 0, 0);
-
-            if (MovementDirection != new Vector3(0, 0, 0))
+            if (MovementDirection != new Vector3(0, 0, 0) ||
+                queuedMovementForce != new Vector3(0, 0, 0))
             {
-                totalMovement += DoBaseMovementForce(delta);
+                // Movement direction should not be normalized to allow different speeds
+                Vector3 totalMovement = new Vector3(0, 0, 0);
+
+                if (MovementDirection != new Vector3(0, 0, 0))
+                {
+                    totalMovement += DoBaseMovementForce(delta);
+                }
+
+                totalMovement += queuedMovementForce;
+
+                ApplyMovementImpulse(totalMovement, delta);
+
+                // Play movement sound if one isn't already playing.
+                if (!movementAudio.Playing)
+                    movementAudio.Play();
             }
+        }
+        else
+        {
+            var targetPos = AssociatedColony.GetMyMaster(this).Translation +
+                AssociatedColony.GetOffsetToMaster(this) !.Value;
 
-            totalMovement += queuedMovementForce;
-
-            ApplyMovementImpulse(totalMovement, delta);
-
-            // Play movement sound if one isn't already playing.
-            if (!movementAudio.Playing)
-                movementAudio.Play();
+            MovementDirection = Translation - targetPos;
+            DoBaseMovementForce(delta);
+            Translation = targetPos;
         }
 
         // Rotation is applied in the physics force callback as that's
@@ -1177,6 +1189,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     internal void RemovedFromColony()
     {
+        foreach (var myBindingTarget in AssociatedColony.GetMyBindingTargets(this))
+        {
+            RemoveCollisionExceptionWith(myBindingTarget);
+            myBindingTarget.RemoveCollisionExceptionWith(this);
+        }
+
+        var master = AssociatedColony.GetMyMaster(this);
+        RemoveCollisionExceptionWith(master);
+        master.RemoveCollisionExceptionWith(this);
+
         AssociatedColony = null;
     }
 
@@ -1768,7 +1790,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -
-                (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+            (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)
@@ -2040,6 +2062,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Cannot hijack the player or other colonies (TODO: yet)
             if (other.IsPlayerMicrobe || other.AssociatedColony != null)
                 return;
+
+            AddCollisionExceptionWith(other);
+            other.AddCollisionExceptionWith(this);
 
             // Create a colony if there isn't one yet
             if (AssociatedColony == null)

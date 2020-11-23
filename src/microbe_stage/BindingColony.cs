@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 public class BindingColony
 {
@@ -23,6 +24,14 @@ public class BindingColony
             return null;
 
         return (Microbe)leader.GetMember(microbe).Master;
+    }
+
+    public Vector3? GetOffsetToMaster(Microbe microbe)
+    {
+        if (leader.MicrobeEquals(microbe))
+            return null;
+
+        return leader.GetMember(microbe).OffsetToMaster;
     }
 
     public void AddToColony(Microbe binder, Microbe bound)
@@ -51,6 +60,7 @@ public class BindingColony
     private class ColonyMember
     {
         internal readonly ColonyMember Master;
+        internal readonly Vector3? OffsetToMaster;
         private readonly Microbe microbe;
 
         internal ColonyMember(Microbe microbe, ColonyMember master)
@@ -58,11 +68,12 @@ public class BindingColony
             this.microbe = microbe;
             BindingTo = new List<ColonyMember>();
             Master = master;
+            OffsetToMaster = microbe.Translation - ((Microbe)master)?.Translation;
         }
 
         internal List<ColonyMember> BindingTo { get; }
 
-        public static explicit operator Microbe(ColonyMember m) => m.microbe;
+        public static explicit operator Microbe(ColonyMember m) => m?.microbe;
 
         public override int GetHashCode()
         {

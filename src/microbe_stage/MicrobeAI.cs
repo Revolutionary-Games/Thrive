@@ -281,10 +281,6 @@ public class MicrobeAI
                 }
             }
         }
-        else
-        {
-            targetPosition = microbe.Translation;
-        }
 
         // Run reflexes
         DoReflexes();
