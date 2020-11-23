@@ -11,6 +11,8 @@ public class BindingColony
         this.leader = new ColonyMember(leader, null);
     }
 
+    public Microbe Leader => (Microbe)leader;
+
     public IEnumerable<Microbe> Members => leader.GetAllMembers().Select(p => (Microbe)p);
 
     public IEnumerable<Microbe> GetMyBindingTargets(Microbe microbe)
@@ -68,7 +70,9 @@ public class BindingColony
             this.microbe = microbe;
             BindingTo = new List<ColonyMember>();
             Master = master;
-            OffsetToMaster = microbe.Translation - ((Microbe)master)?.Translation;
+
+            if (master != null)
+                OffsetToMaster = (((Microbe)master).Translation - microbe.Translation).Rotated(Vector3.Up, Mathf.Deg2Rad(-((Microbe)master).RotationDegrees.y));
         }
 
         internal List<ColonyMember> BindingTo { get; }

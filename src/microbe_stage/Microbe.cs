@@ -358,6 +358,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (!isPlayer)
             ai = new MicrobeAI(this);
 
+        AssociatedColony = null;
+
         // Needed for immediately applying the species
         _Ready();
     }
@@ -1122,12 +1124,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
         else
         {
-            var targetPos = AssociatedColony.GetMyMaster(this).Translation +
+            var master = AssociatedColony.GetMyMaster(this);
+            var masterTranslation = master.Translation;
+            var targetPos = masterTranslation +
                 AssociatedColony.GetOffsetToMaster(this) !.Value;
 
             MovementDirection = Translation - targetPos;
             DoBaseMovementForce(delta);
-            Translation = targetPos;
+            Rotation = master.Rotation;
+            Translation = masterTranslation + (masterTranslation - targetPos).Rotated(Vector3.Up, Mathf.Deg2Rad(master.RotationDegrees.y));
         }
 
         // Rotation is applied in the physics force callback as that's
