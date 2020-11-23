@@ -2048,8 +2048,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 GD.Print("Created a new colony");
             }
 
-            other.AssociatedColony = AssociatedColony;
             AssociatedColony.AddToColony(this, other);
+            other.AssociatedColony = AssociatedColony;
         }
     }
 
