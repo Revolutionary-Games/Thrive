@@ -10,7 +10,20 @@ public class BindingColony
         this.leader = new ColonyMember(leader);
     }
 
-    public IEnumerable<Microbe> Members => leader.GetAllMembers().Select(p => p.Microbe);
+    public IEnumerable<Microbe> Members => leader.GetAllMembers().Select(p => (Microbe)p);
+
+    public IEnumerable<Microbe> GetMyBindingTargets(Microbe microbe)
+    {
+        return leader.GetMember(microbe).BindingTo.Select(p => (Microbe)p);
+    }
+
+    public Microbe GetMyMaster(Microbe microbe)
+    {
+        if (leader.MicrobeEquals(microbe))
+            return null;
+
+        return (Microbe)leader.GetMaster(microbe);
+    }
 
     public void AddToColony(Microbe binder, Microbe bound)
     {
@@ -30,19 +43,21 @@ public class BindingColony
 
     private class ColonyMember
     {
-        internal readonly Microbe Microbe;
+        private readonly Microbe microbe;
 
         internal ColonyMember(Microbe microbe)
         {
-            Microbe = microbe;
+            this.microbe = microbe;
             BindingTo = new List<ColonyMember>();
         }
 
         internal List<ColonyMember> BindingTo { get; }
 
+        public static explicit operator Microbe(ColonyMember m) => m.microbe;
+
         public override int GetHashCode()
         {
-            return Microbe.GetHashCode();
+            return microbe.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -50,12 +65,31 @@ public class BindingColony
             if (!(obj is ColonyMember cm))
                 return false;
 
-            return Microbe.Equals(cm.Microbe);
+            return microbe.Equals(cm.microbe);
         }
 
         public bool MicrobeEquals(Microbe otherMicrobe)
         {
-            return Microbe.Equals(otherMicrobe);
+            return microbe.Equals(otherMicrobe);
+        }
+
+        internal ColonyMember GetMaster(Microbe searchedMicrobe, ICollection<ColonyMember> visitedMicrobes = null)
+        {
+            (visitedMicrobes ??= new List<ColonyMember>()).Add(this);
+            foreach (var currentMicrobeNeighbour in BindingTo)
+            {
+                if (!visitedMicrobes.Contains(currentMicrobeNeighbour))
+                {
+                    if (currentMicrobeNeighbour.MicrobeEquals(searchedMicrobe))
+                        return this;
+
+                    var res = currentMicrobeNeighbour.GetMaster(searchedMicrobe, visitedMicrobes);
+                    if (res != null)
+                        return res;
+                }
+            }
+
+            return null;
         }
 
         internal ColonyMember GetMember(Microbe searchedMicrobe, ICollection<ColonyMember> visitedMicrobes = null)
