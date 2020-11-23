@@ -74,13 +74,16 @@ public class BindingColony
             if (master != null)
             {
                 OffsetToMaster = (((Microbe)master).Translation - microbe.Translation)
-                   .Rotated(Vector3.Up, Mathf.Deg2Rad(-((Microbe)master).RotationDegrees.y));
+                    .Rotated(Vector3.Up, Mathf.Deg2Rad(-((Microbe)master).RotationDegrees.y));
             }
         }
 
         internal List<ColonyMember> BindingTo { get; }
 
-        public static explicit operator Microbe(ColonyMember m) => m?.microbe;
+        public static explicit operator Microbe(ColonyMember m)
+        {
+            return m?.microbe;
+        }
 
         public override int GetHashCode()
         {
