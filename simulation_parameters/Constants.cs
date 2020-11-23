@@ -240,6 +240,11 @@ public static class Constants
     public const float ENGULF_DAMAGE = 45.0f;
 
     /// <summary>
+    ///   How much ATP does binding mode cost per second
+    /// </summary>
+    public const float BINDING_ATP_COST_SECOND = 2.0f;
+
+    /// <summary>
     ///   Damage a single pilus stab does
     /// </summary>
     public const float PILUS_BASE_DAMAGE = 5.0f;

@@ -36,6 +36,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     // Child components
     private AudioStreamPlayer3D engulfAudio;
+    private AudioStreamPlayer3D bindingAudio;
     private AudioStreamPlayer3D movementAudio;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
     private SphereShape engulfShape;
@@ -65,6 +66,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private bool membraneOrganellePositionsAreDirty = true;
 
     private Vector3 queuedMovementForce;
+
+    [JsonProperty]
+    private bool bindingMode;
 
     // variables for engulfing
     [JsonProperty]
@@ -211,6 +215,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
+    /// <summary>
+    ///   If true cell is in binding mode.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Prefer setting this instead of directly setting the private variable.
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public bool BindingMode
+    {
+        get => bindingMode;
+        set
+        {
+            bindingMode = value;
+        }
+    }
+
     [JsonIgnore]
     public int HexCount
     {
@@ -347,6 +369,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
+        bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
@@ -1057,6 +1080,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // called on organelles as movement organelles will use
         // MovementFactor.
         HandleEngulfing(delta);
+
+        // Handles binding related stuff
+        HandleBinding(delta);
         HandleOsmoregulation(delta);
 
         // Let organelles do stuff (this for example gets the movement force from flagella)
@@ -1474,6 +1500,33 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             ResetOrganelleLayout();
 
             Divide();
+        }
+    }
+
+    /// <summary>
+    ///   Handles things related to binding
+    /// </summary>
+    private void HandleBinding(float delta)
+    {
+        if (BindingMode)
+        {
+            // Drain atp
+            var cost = Constants.BINDING_ATP_COST_SECOND * delta;
+
+            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
+            {
+                BindingMode = false;
+            }
+
+            if (!bindingAudio.Playing)
+                bindingAudio.Play();
+
+            Flash(1, new Color(45.0f / 255.0f, 132.0f / 255.0f, 12.0f / 255.0f, 0.5f));
+        }
+        else
+        {
+            if (bindingAudio.Playing)
+                bindingAudio.Stop();
         }
     }
 

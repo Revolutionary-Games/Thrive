@@ -27,6 +27,7 @@ public class PlayerMicrobeInput : Node
     private readonly InputBool cheatPhosphates = new InputBool("g_cheat_phosphates");
 
     private readonly InputTrigger toggleEngulf = new InputTrigger("g_toggle_engulf");
+    private readonly InputTrigger toggleBinding = new InputTrigger("g_toggle_binding");
 
     private readonly InputBool fireToxin = new InputBool("g_fire_toxin");
     private readonly InputToggle autoMove = new InputToggle("g_hold_forward");
@@ -57,6 +58,7 @@ public class PlayerMicrobeInput : Node
             leftRightAxis,
             autoMove,
             toggleEngulf,
+            toggleBinding,
             fireToxin,
             cheatEditor,
             cheatGlucose,
@@ -125,7 +127,31 @@ public class PlayerMicrobeInput : Node
         {
             if (stage.Player != null)
             {
-                stage.Player.EngulfMode = !stage.Player.EngulfMode;
+                if (stage.Player.EngulfMode)
+                {
+                    stage.Player.EngulfMode = false;
+                }
+                else
+                {
+                    stage.Player.BindingMode = false;
+                    stage.Player.EngulfMode = true;
+                }
+            }
+        }
+
+        if (toggleBinding.ReadTrigger())
+        {
+            if (stage.Player != null)
+            {
+                if (stage.Player.BindingMode)
+                {
+                    stage.Player.BindingMode = false;
+                }
+                else
+                {
+                    stage.Player.EngulfMode = false;
+                    stage.Player.BindingMode = true;
+                }
             }
         }
 
