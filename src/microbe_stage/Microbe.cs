@@ -2074,25 +2074,27 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (!BindingMode)
             return;
 
-        foreach (var other in touchedMicrobes)
+        var other = touchedMicrobes.FirstOrDefault();
+        if (other == null)
+            return;
+
+        // Cannot hijack the player or other colonies (TODO: yet)
+        if (other.IsPlayerMicrobe || other.AssociatedColony != null)
+            return;
+
+        AddCollisionExceptionWith(other);
+        other.AddCollisionExceptionWith(this);
+
+        // Create a colony if there isn't one yet
+        if (AssociatedColony == null)
         {
-            // Cannot hijack the player or other colonies (TODO: yet)
-            if (other.IsPlayerMicrobe || other.AssociatedColony != null)
-                return;
-
-            AddCollisionExceptionWith(other);
-            other.AddCollisionExceptionWith(this);
-
-            // Create a colony if there isn't one yet
-            if (AssociatedColony == null)
-            {
-                AssociatedColony = new BindingColony(this);
-                GD.Print("Created a new colony");
-            }
-
-            AssociatedColony.AddToColony(this, other);
-            other.AssociatedColony = AssociatedColony;
+            AssociatedColony = new BindingColony(this);
+            GD.Print("Created a new colony");
         }
+
+        AssociatedColony.AddToColony(this, other);
+        other.AssociatedColony = AssociatedColony;
+        BindingMode = false;
     }
 
     /// <summary>
