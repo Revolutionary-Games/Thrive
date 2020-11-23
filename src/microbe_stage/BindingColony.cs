@@ -3,7 +3,7 @@ using System.Linq;
 
 public class BindingColony
 {
-    private ColonyMember leader;
+    private readonly ColonyMember leader;
 
     public BindingColony(Microbe leader)
     {
