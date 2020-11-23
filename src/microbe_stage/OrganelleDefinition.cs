@@ -347,6 +347,7 @@ public class OrganelleDefinition : IRegistryType
         public NucleusComponentFactory Nucleus;
         public StorageComponentFactory Storage;
         public AgentVacuoleComponentFactory AgentVacuole;
+        public BindingAgentComponentFactory BindingAgent;
         public MovementComponentFactory Movement;
         public PilusComponentFactory Pilus;
 
@@ -388,6 +389,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 AgentVacuole.Check(name);
                 allFactories.Add(AgentVacuole);
+                count++;
+            }
+
+            if (BindingAgent != null)
+            {
+                BindingAgent.Check(name);
+                allFactories.Add(BindingAgent);
                 count++;
             }
 

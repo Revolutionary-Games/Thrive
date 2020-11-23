@@ -145,6 +145,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonIgnore]
     public bool IsAgentVacuole => HasComponent<AgentVacuoleComponent>();
 
+    [JsonIgnore]
+    public bool IsBindingAgent => HasComponent<BindingAgentComponent>();
+
     public bool IsLoadedFromSave { get; set; }
 
     /// <summary>
