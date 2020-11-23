@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-18 19:40+0200\n"
 "PO-Revision-Date: 2020-11-23 11:59+0000\n"
-"Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
+"Last-Translator: Mieszko Polak <mieszko.polak@onet.pl>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -464,8 +464,9 @@ msgid "ICESHELF"
 msgstr "Półka Lodowa"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1349
+#, fuzzy
 msgid "ICESHARD"
-msgstr ""
+msgstr "Okruch Lodu"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1434
 msgid "ESTUARY"
@@ -968,12 +969,14 @@ msgid "EXIT"
 msgstr "Wyjdź"
 
 #: ../src/gui_common/MainMenu.cs:323
+#, fuzzy
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/gui_common/MainMenu.cs:324
+#, fuzzy
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
@@ -1249,12 +1252,19 @@ msgid "DIOXIDE"
 msgstr "Dwutlenek"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1350
+#, fuzzy
 msgid "ALSO_TURNS"
-msgstr ""
+msgstr "Też obraca [się]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
+"Białka chemosyntezującę są małymi grupami białek które umieją przemieniać "
+"siarkowodór, wodę i dwutlenek węgla (jako gas) na glukozę w procesie "
+"nazywającym się chemosynthezą siarkowodoru. Tempo produkcji glukozy skaluje "
+"się z koncentracją dwutlenku węgla. Dlatego że białka chemosyntezującę są "
+"zawieszone bez pośrednio w cytoplazmie, otaczający płyn wykonuje fermentację."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1789
 msgid "RUSTICYANIN_DESCRIPTION"
