@@ -638,6 +638,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
+    ///   Returns true when this microbe can enable binding mode
+    /// </summary>
+    public bool CanBind()
+    {
+        var bindingAgents = organelles.Count(p => p.IsBindingAgent);
+        if (AssociatedColony == null)
+            return bindingAgents > 0;
+
+        return AssociatedColony.GetMyBindingTargets(this).Count() < bindingAgents;
+    }
+
+    /// <summary>
     ///   Called from movement organelles to add movement force
     /// </summary>
     public void AddMovementForce(Vector3 force)
