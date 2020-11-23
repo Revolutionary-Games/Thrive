@@ -1089,6 +1089,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             button.Disabled = !nucleus;
         }
+        else if (organelleItem.Name == "bindingagent")
+        {
+            button.Disabled = !nucleus;
+        }
     }
 
     private void UpdateSymmetryIcon()

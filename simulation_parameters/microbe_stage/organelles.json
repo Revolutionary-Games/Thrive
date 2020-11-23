@@ -446,6 +446,35 @@
         "consumptionColour": "#c4307b",
         "iconPath": "res://assets/textures/gui/bevel/ToxinVacuoleIcon.png"
     },
+    "bindingagent": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            },
+            {
+                "r": 0,
+                "q": -1
+            }
+        ],
+        "processes": { },
+        "components": {
+            "storage": {
+                "capacity": 5
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0.3,
+        "mass": 0.9,
+        "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
+        "name": "BINDING_AGENT",
+        "iconPath": "res://assets/textures/gui/bevel/BindingAgentIcon.png"
+    },
     "chloroplast": {
         "mpCost": 50,
         "initialComposition": {
