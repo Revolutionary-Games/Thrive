@@ -1,18 +1,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
+[UseThriveSerializer]
 public class BindingColony
 {
-    private readonly ColonyMember leader;
+    [JsonProperty]
+    private ColonyMember leader;
+
+    /// <summary>
+    ///   Used for json. Should not be used
+    /// </summary>
+    public BindingColony()
+    {
+    }
 
     public BindingColony(Microbe leader)
     {
         this.leader = new ColonyMember(leader, null);
     }
 
+    [JsonIgnore]
     public Microbe Leader => (Microbe)leader;
 
+    [JsonIgnore]
     public IEnumerable<Microbe> Members => leader.GetAllMembers().Select(p => (Microbe)p);
 
     public IEnumerable<Microbe> GetMyBindingTargets(Microbe microbe)
@@ -59,15 +71,19 @@ public class BindingColony
         return parent.BindingTo.Remove(child);
     }
 
+    [UseThriveSerializer]
     private class ColonyMember
     {
-        internal readonly ColonyMember Master;
-        internal readonly Vector3? OffsetToMaster;
-        private readonly Microbe microbe;
+        /// <summary>
+        ///   Used for json. Should not be used
+        /// </summary>
+        public ColonyMember()
+        {
+        }
 
         internal ColonyMember(Microbe microbe, ColonyMember master)
         {
-            this.microbe = microbe;
+            Microbe = microbe;
             BindingTo = new List<ColonyMember>();
             Master = master;
 
@@ -78,16 +94,23 @@ public class BindingColony
             }
         }
 
-        internal List<ColonyMember> BindingTo { get; }
+        [JsonProperty]
+        internal ColonyMember Master { get; set; }
+        [JsonProperty]
+        internal Vector3? OffsetToMaster { get; set; }
+        [JsonProperty]
+        internal List<ColonyMember> BindingTo { get; set; }
+        [JsonProperty]
+        internal Microbe Microbe { get; set; }
 
         public static explicit operator Microbe(ColonyMember m)
         {
-            return m?.microbe;
+            return m?.Microbe;
         }
 
         public override int GetHashCode()
         {
-            return microbe.GetHashCode();
+            return Microbe.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -95,12 +118,12 @@ public class BindingColony
             if (!(obj is ColonyMember cm))
                 return false;
 
-            return microbe.Equals(cm.microbe);
+            return Microbe.Equals(cm.Microbe);
         }
 
         public bool MicrobeEquals(Microbe otherMicrobe)
         {
-            return microbe.Equals(otherMicrobe);
+            return Microbe.Equals(otherMicrobe);
         }
 
         internal ColonyMember GetMember(Microbe searchedMicrobe, ICollection<ColonyMember> visitedMicrobes = null)
