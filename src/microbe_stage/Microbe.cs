@@ -1206,8 +1206,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         var master = AssociatedColony.GetMyMaster(this);
-        RemoveCollisionExceptionWith(master);
-        master.RemoveCollisionExceptionWith(this);
+        if (master != null)
+        {
+            RemoveCollisionExceptionWith(master);
+            master.RemoveCollisionExceptionWith(this);
+        }
 
         AssociatedColony = null;
     }
