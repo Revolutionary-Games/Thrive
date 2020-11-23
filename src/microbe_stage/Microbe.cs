@@ -1983,6 +1983,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (touchedMicrobes.Add(microbe))
             {
                 CheckStartEngulfingOnCandidates();
+                CheckBinding();
             }
         }
     }
@@ -2026,6 +2027,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             {
                 CheckStopEngulfingOnTarget(microbe);
             }
+        }
+    }
+
+    private void CheckBinding()
+    {
+        if (!BindingMode)
+            return;
+
+        foreach (var other in touchedMicrobes)
+        {
+            // Cannot hijack the player or other colonies (TODO: yet)
+            if (other.IsPlayerMicrobe || other.AssociatedColony != null)
+                return;
+
+            // Create a colony if there isn't one yet
+            if (AssociatedColony == null)
+            {
+                AssociatedColony = new BindingColony(this);
+                GD.Print("Created a new colony");
+            }
+
+            other.AssociatedColony = AssociatedColony;
+            AssociatedColony.AddToColony(this, other);
         }
     }
 
