@@ -2074,6 +2074,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (!BindingMode)
             return;
 
+        if (!CanBind())
+        {
+            BindingMode = false;
+            return;
+        }
+
         var other = touchedMicrobes.FirstOrDefault();
         if (other == null)
             return;
