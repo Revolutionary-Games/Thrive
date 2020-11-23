@@ -686,9 +686,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Dead = true;
 
         OnDeath?.Invoke(this);
+        AssociatedColony?.RemoveFromColony(this);
 
         // Reset some stuff
         EngulfMode = false;
+        BindingMode = false;
         MovementDirection = new Vector3(0, 0, 0);
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
