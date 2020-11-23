@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
-public class BindingColony
+public class BindingColony : IDisposable
 {
     private ColonyMember leader;
 
@@ -9,6 +10,13 @@ public class BindingColony
     {
         this.leader = new ColonyMember(leader);
     }
+
+    ~BindingColony()
+    {
+        Dispose(false);
+    }
+
+    public event EventHandler OnColonyDiscontinued;
 
     public IEnumerable<Microbe> Members => leader.GetAllMembers().Select(p => (Microbe)p);
 
@@ -36,9 +44,30 @@ public class BindingColony
         if (leader.MicrobeEquals(microbe))
         {
             // TODO: Determine new leader
+            // Currently the colony gets destroyed
+            Dispose();
         }
 
         return leader.RemoveMember(microbe);
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (leader == null)
+            return;
+
+        if (disposing)
+        {
+            OnColonyDiscontinued?.Invoke(this, new EventArgs());
+        }
+
+        leader = null;
     }
 
     private class ColonyMember
