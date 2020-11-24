@@ -338,8 +338,11 @@ public class Settings
             ApplyGraphicsSettings();
             ApplySoundSettings();
         }
-        ApplyWindowSettings();
+        
         ApplyLanguageSettings();
+        ApplyWindowSettings();
+        
+        GD.Print("All settings apply");
     }
 
     /// <summary>
