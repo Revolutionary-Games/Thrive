@@ -330,6 +330,7 @@ public class Settings
         {
             GD.Print("Doing delayed apply for some settings");
             Invoke.Instance.Perform(ApplyGraphicsSettings);
+
             // These need to be also delay applied, otherwise when debugging these overwrite the default settings
             Invoke.Instance.Queue(ApplySoundSettings);
         }
@@ -464,7 +465,7 @@ public class Settings
     private static Settings InitializeGlobalSettings()
     {
         Settings settings = LoadSettings();
-        // settings.ApplyAll(true);
+        settings.ApplyAll(true);
 
         return settings;
     }

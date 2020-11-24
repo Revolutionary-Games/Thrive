@@ -23,10 +23,5 @@ public class StartupActions : Node
         // Load settings here, to make sure locales etc. are applied to the main loaded scene
         if (Settings.Instance == null)
             GD.PrintErr("Failed to initialize settings.");
-        else
-        {
-            GD.Print("Successfully initialize settings");
-            Settings.Instance.ApplyAll(true);
-        }
     }
 }
