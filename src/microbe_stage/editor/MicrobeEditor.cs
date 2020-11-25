@@ -540,6 +540,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
                 LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
+                    MainGameState.MicrobeEditor,
                     TranslationServer.Translate("WAITING_FOR_AUTO_EVO") + " " +
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
@@ -994,6 +995,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         {
             ready = false;
             LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
+                MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
         }
         else if (!transitionFinished)
