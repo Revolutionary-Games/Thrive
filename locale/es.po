@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-18 19:37+0200\n"
 "PO-Revision-Date: 2020-11-25 00:57+0000\n"
-"Last-Translator: Generatoror <sebistian.mondo@gmail.com>\n"
+"Last-Translator: josem019 <josemcci06@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -79,14 +79,16 @@ msgstr ""
 "Amarillo – Sulfuro de Hidrógeno\n"
 "Naranja – Amoníaco\n"
 "Púrpura – Fosfato\n"
-"Rojo Oscuro – Hierro"
+"Rojo Oscuro – Hierro\n"
+"\n"
+"La glucosa hace ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "El Sulfuro de Hidrógeno puede ser convertido a glucosa con quimioplastos y "
-"proteinas quimiosintetizadoras. El hierro puede ser convertido a ATP con "
+"proteínas quimiosintetizadoras. El hierro puede ser convertido a ATP con "
 "rusticianinas."
 
 #: ../simulation_parameters/common/help_texts.json:13
@@ -99,16 +101,16 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Pero si sobrevives por veinte generaciones con población 300, está "
-"considerado ganado el juego actual. Luego de ganar puedes seguir jugando "
-"libremente."
+"Pero si sobrevives por veinte generaciones con una población de 300, se "
+"considera que ha ganado el juego actual. Después de ganar te aparecerá una "
+"ventana emergente y puedes seguir jugando libremente."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Ten cuidado, tus competidores evolución a la par con tu célula. Cada vez que "
-"entres al editor, evolucionan a la vez."
+"Ten cuidado, tus competidores evolucionan a la par con tu célula. Cada vez "
+"que entres al editor ellos evolucionarán a la vez."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -181,8 +183,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr ""
-"CONSEJO: Presiona el botón de deshacer en el editor para corregir un error"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
@@ -245,7 +246,7 @@ msgstr "TENTÁCULOS!!"
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Smeltal the meltal."
+msgstr "¡Derrite el metal!"
 
 #: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_12"
@@ -965,11 +966,11 @@ msgstr "Salir"
 
 #: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
@@ -1898,7 +1899,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
-msgstr ""
+msgstr "años"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
