@@ -339,6 +339,7 @@ public class Settings
             ApplyGraphicsSettings();
             ApplySoundSettings();
         }
+        
         ApplyLanguageSettings();
         ApplyWindowSettings();
     }
