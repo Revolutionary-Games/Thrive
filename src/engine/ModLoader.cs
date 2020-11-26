@@ -230,7 +230,7 @@ public class ModLoader : Reference
                 return false;
             }
 
-            file.StoreString(JsonConvert.SerializeObject(AutoLoadedMods,Formatting.Indented));
+            file.StoreString(JsonConvert.SerializeObject(AutoLoadedMods, Formatting.Indented));
 
             file.Close();
         }
