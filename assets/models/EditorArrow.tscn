@@ -6,7 +6,8 @@
 albedo_color = Color( 0, 0.129412, 0.141176, 1 )
 
 [sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.0666667, 1, 0.835294, 1 )
+flags_transparent = true
+albedo_color = Color( 0.0666667, 1, 0.835294, 0.337255 )
 
 [node name="MeshInstance" type="MeshInstance"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
