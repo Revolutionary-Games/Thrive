@@ -24,16 +24,6 @@ public class PlayerMicrobeInput : Node
         stage = (MicrobeStage)GetParent();
     }
 
-    public override void _Notification(int focus)
-    {
-        // If the window goes out of focus, we don't receive the key released events
-        // We reset our held down keys if the player tabs out while pressing a key
-        if (focus == MainLoop.NotificationWmFocusOut)
-        {
-            InputManager.FocusLost();
-        }
-    }
-
     [RunOnKeyDown("g_hold_forward")]
     public void ToggleAutoMove()
     {

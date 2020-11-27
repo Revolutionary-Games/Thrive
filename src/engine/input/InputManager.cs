@@ -92,6 +92,16 @@ public class InputManager : Node
             GetTree().SetInputAsHandled();
     }
 
+    public override void _Notification(int focus)
+    {
+        // If the window goes out of focus, we don't receive the key released events
+        // We reset our held down keys if the player tabs out while pressing a key
+        if (focus == MainLoop.NotificationWmFocusOut)
+        {
+            FocusLost();
+        }
+    }
+
     /// <summary>
     ///   Searches the given assemblies for any InputAttributes, prepares them and adds them to the allAttributes list.
     /// </summary>
