@@ -125,8 +125,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
     public void Zoom(float delta, float value)
     {
-        _ = delta;
-        CameraHeight += ZoomSpeed * value;
+        CameraHeight += ZoomSpeed * value * delta * 55;
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 
