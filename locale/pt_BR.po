@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-18 19:40+0200\n"
-"PO-Revision-Date: 2020-11-15 15:15+0000\n"
+"PO-Revision-Date: 2020-11-21 13:57+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -24,9 +24,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Use W,A,S,D e o mouse para mover a célula. Pressione E para lançar Oxitoxina "
-"se você tiver um vacúolo de toxinas. Aperte G para ativar ou desativar o "
-"modo de engolir."
+"Use W, A, S, D e o mouse para mover a célula. Pressione E para lançar "
+"Oxitoxina se você tiver um vacúolo de toxinas. Aperte G para ativar ou "
+"desativar o modo de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -40,7 +40,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Para desbloquear o editor e reproduzir você precisa coletar Amônia (Nuvem "
-"Laranja) e Fosfato (Nuvem Roxa)."
+"laranja) e Fosfato (Nuvem roxa)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
@@ -55,15 +55,15 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"A Osmorregulação custa ATP, isso significa que quanto maior a sua célula, "
-"mais Mitocôndrias ou Metabolossomos ou Rusticianina (ou citoplasma, que faz "
-"Glicólise) você precisa para evitar perder ATP quanto você está parado."
+"A osmorregulação custa ATP, isso significa que quanto maior a sua célula, "
+"mais Mitocôndrias, Metabolossomos ou Rusticianina (ou citoplasma, que faz "
+"Glicólise) você precisa para evitar perder ATP quando você está parado."
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"Há muitas Organelas no editor para você evoluir, permitindo várias maneiras "
+"Há muitas organelas no editor para você evoluir, permitindo várias maneiras "
 "de jogar."
 
 #: ../simulation_parameters/common/help_texts.json:10
@@ -82,7 +82,7 @@ msgstr ""
 "Roxa – Fosfato\n"
 "Marrom – Ferro\n"
 "\n"
-"Glicose produz ATP"
+"A glicose produz ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:36
@@ -120,8 +120,9 @@ msgstr ""
 "\n"
 "Metabolossomos: Produz ATP por meio da glicose\n"
 "\n"
-"Proteínas Quimiossintetizantes: Produz metade da glicose oe Sulfeto de "
-"Hidrogênio comparado com o quimioplasto, porém também realizam a glicólise\n"
+"Proteínas Quimiossintetizantes: Produz metade da glicose por meio do Sulfeto "
+"de Hidrogênio comparado com o quimioplasto, porém também realizam a "
+"glicólise\n"
 "\n"
 "Tilacóides: Produz um terço da quantidade de glicose comparado a um "
 "quimioplasto, mas também realiza a glicólise\n"
@@ -146,7 +147,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Organelas com Membrana\n"
+"Organelas com membrana\n"
 "\n"
 "Núcleo: Ocupa 11 espaços e permite a evolução de organelas com membranas. "
 "Também dobra o tamanho de sua célula. (Só pode ser evoluído uma vez)\n"
@@ -158,40 +159,40 @@ msgstr ""
 "\n"
 "Quimioplasto: Produz glicose do Sulfeto de Hidrogênio\n"
 "\n"
-"Plastídeo de Fixação de Nitrogênio: Faz amônia do ATP e Nitrogênio "
-"atmosférico e Oxigênio\n"
+"Plastídeo de Fixação de Nitrogênio: Faz amônia do ATP e nitrogênio "
+"atmosférico e oxigênio\n"
 "\n"
 "Vacúolo: Armazena 15 compostos coletados\n"
 "\n"
-"Vacúolo de Toxinas: Produz toxinas (chamadas Oxitoxinas)"
+"Vacúolo de Toxinas: Produz toxinas (chamadas oxitoxinas)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"A cada geração, você tem 100 pontos de mutação para gastar, e cada mudança "
-"(ou mutação) vai custar uma certa quantidade desses pontos. Adicionar ou "
+"A cada geração, você tem 100 pontos de mutação para gastar, e cada mudança ("
+"ou mutação) vai custar uma certa quantidade desses pontos. Adicionar ou "
 "remover organelas custam PM, porém remover organelas que foram adicionadas "
 "na sessão atual devolvem os PM. Você pode remover uma organela clicando nela "
-"com o botão direito. É possível rotacionar as organelas com A e D"
+"com o botão direito. É possível rotacionar as organelas com A e D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Toda vez que você reproduzir, você vai entrar no Editor de Micróbio, onde "
-"você pode fazer mudanças para sua espécie (adicionando, movendo ou removendo "
+"Toda vez que você reproduzir, você vai entrar no Editor de Micróbios, onde "
+"você pode fazer mudanças na sua espécie (adicionando, movendo ou removendo "
 "organelas) com o objetivo de aumentar o sucesso de sua espécie. Cada visita "
-"ao editor no Estágio Microbial representa 100 milhões de anos de evolução"
+"ao editor no Estágio Microbial representa 100 milhões de anos de evolução."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr "DICA: Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Curiosidade, o Dinidium e o Paramecium são um exemplo de relação de predação "
-"que foi estudado por décadas, agora você é o Dinidium, ou o Paramecium? "
-"Predador, ou Presa?"
+"que foi estudado por décadas. Você é o Dinidium ou o Paramecium? Predador ou "
+"Presa?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
@@ -202,7 +203,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Aqui vai uma dica, a Osmorregulação custa 1 ATP por segundo por espaço que a "
+"Aqui vai uma dica, a osmorregulação custa 1 ATP por segundo por espaço que a "
 "sua célula tem, além disso, cada espaço vazio de citoplasma gera 5 ATP por "
 "segundo, o que significa que se você está perdendo ATP por causa do "
 "osmorregulação é só adicionar citoplasma ou remover algumas organelas."
@@ -211,12 +212,12 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Curiosidade, na vida real, as células procarióticas têm algo chamado "
-"Biocompartimentos que agem como organelas, e são chamados de Organelas "
-"poliédricas"
+"biocompartimentos, que agem como organelas, e são chamados de organelas "
+"poliédricas."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Curiosidade, o metabolossomo é o que se chama de Organela poliédrica"
+msgstr "Curiosidade, o metabolossomo é o que se chama de organela poliédrica."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
@@ -264,7 +265,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 "Aqui vai uma dica, quanto mais flagelos você tem, o mais rápido você pode "
-"ir, vrum vrum, mas também custa mais ATP"
+"ir, mas também custa mais ATP"
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
@@ -321,18 +322,18 @@ msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive foi feito com o objetivo de ser uma simulação de um planeta "
 "alienígena, por isso faz sentido que a maioria das criaturas que você vai "
-"encontrar serão relacionadas com uma ou duas espécies por causa de evolução "
+"encontrar sejam relacionadas com uma ou duas espécies por causa de evolução "
 "acontecendo em sua volta, veja se você consegue identificá-las!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"Curiosidade, A equipe que produz Thrive faz podcasts de vez em quando, você "
-"poderia vê-los!"
+"Curiosidade, A equipe que desenvolve o jogo faz podcasts de vez em quando, "
+"você poderia vê-los!"
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
+msgstr "Curiosidade, Thrive é feito com o motor de código aberto Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
@@ -396,7 +397,7 @@ msgstr "Epipelágico"
 #: ../simulation_parameters/microbe_stage/biomes.json:1445
 #: ../simulation_parameters/microbe_stage/biomes.json:1572
 msgid "FLOATING_HAZARD"
-msgstr "Perigo Flutuante"
+msgstr "Perigo flutuante"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
 #: ../simulation_parameters/microbe_stage/biomes.json:165
@@ -410,7 +411,7 @@ msgstr "Perigo Flutuante"
 #: ../simulation_parameters/microbe_stage/biomes.json:1462
 #: ../simulation_parameters/microbe_stage/biomes.json:1589
 msgid "SMALL_IRON_CHUNK"
-msgstr "Pedaço de Ferro Pequeno"
+msgstr "Pedaço de ferro pequeno"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:73
 #: ../simulation_parameters/microbe_stage/biomes.json:264
@@ -424,7 +425,7 @@ msgstr "Pedaço de Ferro Pequeno"
 #: ../simulation_parameters/microbe_stage/biomes.json:1493
 #: ../simulation_parameters/microbe_stage/biomes.json:1620
 msgid "BIG_IRON_CHUNK"
-msgstr "Pedaço de Ferro Grande"
+msgstr "Pedaço de ferro grande"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:141
 msgid "VOLCANIC_VENT"
@@ -468,7 +469,7 @@ msgstr "Plataforma de Gelo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1349
 msgid "ICESHARD"
-msgstr "Fragmento de Gelo"
+msgstr "Fragmento de gelo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1434
 msgid "ESTUARY"
