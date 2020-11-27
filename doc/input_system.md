@@ -6,10 +6,10 @@ The current system uses C# Attributes attached to methods to call the correct co
 How to use attributes
 -----------
 To apply an attribute to a method, you need to add a code line like this over a method: `[OneOfTheInputAttributes(parameters)]`<br>
-The different avaible attributes and their parameters are described below.<br>
+The different available attributes and their parameters are described below.<br>
 You can read more about C# attributes [here](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/).
 
-The avaible input attributes
+The available input attributes
 -----------
 | Attribute | Description | Parameters | Method parameters | Multiple |
 | --------- | ----------- | ---------- | ----------------- | -------- |
@@ -18,11 +18,11 @@ The avaible input attributes
 | RunOnKeyDown | Fires once when the input is pressed | input : string | none | yes |
 | RunOnKeyUp | Fires once when the input is released | input : string | none | yes |
 | RunOnAxis | Fires repeatedly when one of the axis members is pressed<br>Every axis member has a value associated with it.<br>The average of the pressed values is given to the method | inputs : string[]<br> values : float[] | delta : float<br> value : float | yes |
-| RunOnAxisGroup | Combines multiple RunOnAxis<br>Used when you want to combile multiple axes and want to differenciate between them | none | delta : float<br>value1 : float<br>value2 : float... | no |
+| RunOnAxisGroup | Combines multiple RunOnAxis<br>Used when you want to combile multiple axes and want to differentiate between them | none | delta : float<br>value1 : float<br>value2 : float... | no |
 
 - **Attribute** is the name of the attribute
 - **Parameters** are the parameters you have to provide to the attribute
-- **Method** parametes are the parameters the method you are applying this attribute to has to have. You can name the parameters however you want.
+- **Method** parameters are the parameters the method you are applying this attribute to has to have. You can name the parameters however you want.
 - **Multiple** describes if you can attach this attribute to the same method multiple times.
 
 Instance management
@@ -30,7 +30,7 @@ Instance management
 The input system has to know for with which instances the method should be called with.<br>
 If the method is **static**, you don't have to worry about instance management.<br>
 If the method is **not static**, you need to add `InputManager.AddInstance(this);` into the constructor of you class to subscribe this instance to the input system.<br>
-To unsubsribe an instance from the input system call `InputManager.RemoveInstance(this);`. An instance automatically gets unsubscribed if it got disposed by the garbage collector.
+To unsubscribe an instance from the input system call `InputManager.RemoveInstance(this);`. An instance automatically gets unsubscribed if it got disposed by the garbage collector.
 
 InvokeWithNoInput
 -----------
@@ -113,7 +113,7 @@ public MicrobeMovement()
 [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
 public void OnMovement(float delta, float value) {}
 ```
-This example would theoretically work, but would not make sense, because you cannot differenciate between forward/backward input and left/right input.<br>
+This example would theoretically work, but would not make sense, because you cannot differentiate between forward/backward input and left/right input.<br>
 The correct way of implementing this would be this:
 ```
 public MicrobeMovement()
