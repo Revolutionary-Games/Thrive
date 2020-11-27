@@ -10,7 +10,7 @@ using Godot;
 /// </example>
 public class RunOnKeyDownAttribute : RunOnKeyAttribute
 {
-    public RunOnKeyDownAttribute(string godotInputName) : base(godotInputName)
+    public RunOnKeyDownAttribute(string inputName) : base(inputName)
     {
     }
 

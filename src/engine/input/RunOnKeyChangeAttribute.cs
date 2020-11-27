@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public class RunOnKeyChangeAttribute : RunOnKeyAttribute
 {
-    public RunOnKeyChangeAttribute(string godotInputName) : base(godotInputName)
+    public RunOnKeyChangeAttribute(string inputName) : base(inputName)
     {
     }
 

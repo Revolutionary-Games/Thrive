@@ -18,9 +18,9 @@ public class RunOnKeyAttribute : InputAttribute
     /// </summary>
     private bool primed;
 
-    public RunOnKeyAttribute(string godotInputName)
+    public RunOnKeyAttribute(string inputName)
     {
-        GodotInputName = godotInputName;
+        InputName = inputName;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class RunOnKeyAttribute : InputAttribute
     ///   The internal godot input name
     /// </summary>
     /// <example>ui_select</example>
-    private string GodotInputName { get; }
+    private string InputName { get; }
 
     /// <summary>
     ///   Reads the current prime or held state and resets the primed state
@@ -47,13 +47,13 @@ public class RunOnKeyAttribute : InputAttribute
 
     public override bool OnInput(InputEvent @event)
     {
-        if (@event.IsActionPressed(GodotInputName))
+        if (@event.IsActionPressed(InputName))
         {
             primed = true;
             HeldDown = true;
         }
 
-        if (@event.IsActionReleased(GodotInputName))
+        if (@event.IsActionReleased(InputName))
             HeldDown = false;
 
         return HeldDown;
@@ -78,14 +78,14 @@ public class RunOnKeyAttribute : InputAttribute
         if (!base.Equals(obj) || !(obj is RunOnKeyAttribute key))
             return false;
 
-        return string.Equals(GodotInputName, key.GodotInputName, StringComparison.InvariantCulture);
+        return string.Equals(InputName, key.InputName, StringComparison.InvariantCulture);
     }
 
     public override int GetHashCode()
     {
         unchecked
         {
-            return (base.GetHashCode() * 397) ^ GodotInputName.GetHashCode();
+            return (base.GetHashCode() * 397) ^ InputName.GetHashCode();
         }
     }
 }
