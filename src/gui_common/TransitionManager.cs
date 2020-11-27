@@ -40,12 +40,13 @@ public class TransitionManager : Node
     public bool HasQueuedTransitions => TransitionSequence.Count > 0;
 
     [RunOnKeyDown("ui_cancel")]
-    public void CancelTransitionPressed()
+    public bool CancelTransitionPressed()
     {
-        if (HasQueuedTransitions)
-        {
-            CancelQueuedTransitions();
-        }
+        if (!HasQueuedTransitions)
+            return false;
+
+        CancelQueuedTransitions();
+        return true;
     }
 
     /// <summary>
