@@ -93,12 +93,12 @@ public abstract class InputAttribute : Attribute
     ///   Calls the method with all of the instances or once if the method is static.
     /// </summary>
     /// <param name="parameters">The parameters the method will be called with</param>
-    /// <returns>Whether a method was called or not</returns>
+    /// <returns>Returns whether the event was consumed or not</returns>
     protected bool CallMethod(params object[] parameters)
     {
         // Do nothing if no method is associated
         if (Method == null)
-            return false;
+            return true;
 
         var result = false;
         Task.Run(() =>
@@ -109,15 +109,13 @@ public abstract class InputAttribute : Attribute
                 if (Method.IsStatic)
                 {
                     // Call the method without an instance if it's static
-                    Method.Invoke(null, parameters);
-                    result = true;
+                    result = Method.Invoke(null, parameters) as bool? ?? true;
                 }
                 else
                 {
                     // Call the method for each instance
                     instances.AsParallel().ForAll(p =>
                     {
-                        result = true;
                         if (!p.IsAlive)
                         {
                             // if the WeakReference got disposed
@@ -125,7 +123,9 @@ public abstract class InputAttribute : Attribute
                             return;
                         }
 
-                        Method.Invoke(p.Target, parameters);
+                        var methodResult = Method.Invoke(p.Target, parameters) as bool? ?? true;
+                        if (!result)
+                            result = methodResult;
                     });
                 }
 
