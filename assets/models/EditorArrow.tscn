@@ -9,7 +9,7 @@ albedo_color = Color( 0, 0.129412, 0.141176, 1 )
 albedo_color = Color( 0.0666667, 1, 0.835294, 1 )
 
 [node name="MeshInstance" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0394628, -0.00890255, -0.0160165 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
 mesh = ExtResource( 1 )
 skeleton = NodePath("")
 material/0 = SubResource( 1 )
