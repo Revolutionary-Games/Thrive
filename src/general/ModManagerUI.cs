@@ -83,7 +83,7 @@ public class ModManagerUI : Control
             unloadedItemList.UnselectAll();
         }
 
-        modInfoContainer.SetVisible(true);
+        modInfoContainer.Visible = true;
 
         modInfoName.Text = tempModInfo.Name;
         modInfoAuthor.Text = tempModInfo.Author;
