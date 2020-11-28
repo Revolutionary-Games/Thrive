@@ -20,9 +20,11 @@ public class AutoModLoader : Node
 
     public void OpenModErrorPopup(AcceptDialog errorBox)
     {
+        errorBox.DialogText += "\n\n";
+
         if (failedToLoadMods.Count != 0)
         {
-            errorBox.DialogText = GetFailedMods();
+            errorBox.DialogText += GetFailedMods();
             errorBox.PopupCenteredMinsize();
         }
     }
@@ -31,7 +33,7 @@ public class AutoModLoader : Node
     {
         if (failedToLoadMods.Count != 0)
         {
-            string text = "The Following Mods Failed To Load: \n \n";
+            string text = string.Empty;
             foreach (ModInfo currentModInfo in failedToLoadMods)
             {
                 text += currentModInfo.Name + "\n";

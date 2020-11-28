@@ -235,8 +235,8 @@ __meta__ = {
 }
 
 [node name="Freebuild Editor" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 515.0
-margin_right = 765.0
+margin_left = 509.0
+margin_right = 770.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -257,9 +257,9 @@ mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 enabled_focus_mode = 0
-text = "Mod Loader"
+text = "MOD_LOADER"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="\?\?_2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
@@ -347,11 +347,12 @@ anims/MenuSlide = SubResource( 1 )
 margin_right = 83.0
 margin_bottom = 58.0
 theme = ExtResource( 2 )
-window_title = "Mod Error!"
+window_title = "MOD_LOAD_FAILURE"
 resizable = true
+dialog_text = "MOD_LOAD_FAILURE_TEXT"
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="GLES2 Popup" type="AcceptDialog" parent="."]

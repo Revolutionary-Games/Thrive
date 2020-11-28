@@ -25,13 +25,15 @@ margin_bottom = 0.735107
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 UnloadedItemListPath = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList")
-ModInfoNamePath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Mod Name")
-ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Author Name")
-ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/Label")
-ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label4")
+ModInfoContainerPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container")
+ModInfoNamePath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer/Mod Name")
+ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer/HBoxContainer/Author Name")
+ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer/HBoxContainer2/Label")
+ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer/Label4")
 LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList")
 ConfirmationPopupPath = NodePath("ConfirmationDialog")
 AcceptPopupPath = NodePath("AcceptDialog")
@@ -76,28 +78,28 @@ margin_bottom = 22.0
 alignment = 1
 
 [node name="Unloaded" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 190.0
-margin_right = 286.0
+margin_left = 139.0
+margin_right = 299.0
 margin_bottom = 22.0
-text = "Unloaded"
+text = "UNLOADED_MODS"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 290.0
-margin_right = 910.0
+margin_left = 303.0
+margin_right = 903.0
 margin_bottom = 22.0
 custom_styles/separator = SubResource( 1 )
-custom_constants/separation = 620
+custom_constants/separation = 600
 
 [node name="Loaded" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 914.0
-margin_right = 989.0
+margin_left = 907.0
+margin_right = 1041.0
 margin_bottom = 22.0
-text = "Loaded"
+text = "LOADED_MODS"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
@@ -219,7 +221,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
+[node name="Mod Info Container" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
+visible = false
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1179.0
@@ -229,13 +232,13 @@ custom_constants/margin_top = 6
 custom_constants/margin_left = 6
 custom_constants/margin_bottom = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container"]
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 1172.0
 margin_bottom = 281.0
 
-[node name="Mod Name" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="Mod Name" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer"]
 margin_right = 1166.0
 margin_bottom = 22.0
 text = "The Mod Name"
@@ -244,13 +247,13 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer"]
 margin_top = 26.0
 margin_right = 1166.0
 margin_bottom = 30.0
 custom_styles/separator = SubResource( 3 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer"]
 margin_top = 34.0
 margin_right = 1166.0
 margin_bottom = 56.0
@@ -259,32 +262,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Author Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 514.0
-margin_right = 590.0
+[node name="Author Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer/HBoxContainer"]
+margin_left = 492.0
+margin_right = 612.0
 margin_bottom = 22.0
-text = "Author: "
+text = "MOD_AUTHOR"
 align = 1
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
-[node name="Author Name" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 594.0
-margin_right = 651.0
+[node name="Author Name" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer/HBoxContainer"]
+margin_left = 616.0
+margin_right = 673.0
 margin_bottom = 22.0
 text = "Maker"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer"]
 margin_top = 60.0
 margin_right = 1166.0
 margin_bottom = 64.0
 custom_styles/separator = SubResource( 3 )
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer"]
 margin_top = 68.0
 margin_right = 1166.0
 margin_bottom = 90.0
@@ -293,33 +296,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 518.0
-margin_right = 598.0
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer/HBoxContainer2"]
+margin_left = 495.0
+margin_right = 622.0
 margin_bottom = 22.0
-text = "Version:"
+text = "MOD_VERSION"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 602.0
-margin_right = 647.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer/HBoxContainer2"]
+margin_left = 626.0
+margin_right = 671.0
 margin_bottom = 22.0
 text = "X.Y.Z"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer"]
 margin_top = 94.0
 margin_right = 1166.0
 margin_bottom = 129.0
 custom_constants/separation = 35
 
-[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/Mod Info Container/VBoxContainer"]
 margin_top = 133.0
 margin_right = 1166.0
 margin_bottom = 258.0
@@ -341,64 +344,64 @@ margin_bottom = 620.0
 alignment = 1
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 246.0
-margin_right = 346.0
+margin_left = 244.0
+margin_right = 344.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-text = "Back"
+text = "BACK"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 350.0
-margin_right = 450.0
+margin_left = 348.0
+margin_right = 448.0
 margin_bottom = 35.0
 custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 100
 
 [node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 454.0
-margin_right = 518.0
+margin_left = 452.0
+margin_right = 519.0
 margin_bottom = 35.0
-text = "Reset"
+text = "RESET"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="VSeparator3" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 522.0
-margin_right = 622.0
+margin_left = 523.0
+margin_right = 623.0
 margin_bottom = 35.0
 custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 100
 
 [node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 626.0
-margin_right = 726.0
+margin_left = 627.0
+margin_right = 727.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-text = "Refresh"
+text = "REFRESH"
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 730.0
-margin_right = 830.0
+margin_left = 731.0
+margin_right = 831.0
 margin_bottom = 35.0
 custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 100
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 834.0
-margin_right = 934.0
+margin_left = 835.0
+margin_right = 935.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-text = "Load"
+text = "LOAD"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]

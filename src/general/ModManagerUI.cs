@@ -9,6 +9,9 @@ public class ModManagerUI : Control
     public NodePath UnloadedItemListPath;
 
     [Export]
+    public NodePath ModInfoContainerPath;
+
+    [Export]
     public NodePath ModInfoNamePath;
 
     [Export]
@@ -41,6 +44,8 @@ public class ModManagerUI : Control
     private ConfirmationDialog confirmationPopup;
     private AcceptDialog acceptPopup;
 
+    private MarginContainer modInfoContainer;
+
     private ModLoader loader = new ModLoader();
 
     [Signal]
@@ -48,6 +53,8 @@ public class ModManagerUI : Control
 
     public override void _Ready()
     {
+        modInfoContainer = GetNode<MarginContainer>(ModInfoContainerPath);
+
         unloadedItemList = GetNode<ItemList>(UnloadedItemListPath);
         loadedItemList = GetNode<ItemList>(LoadedItemListPath);
 
@@ -75,6 +82,8 @@ public class ModManagerUI : Control
             tempModInfo = (ModInfo)loadedItemList.GetItemMetadata(index);
             unloadedItemList.UnselectAll();
         }
+
+        modInfoContainer.SetVisible(true);
 
         modInfoName.Text = tempModInfo.Name;
         modInfoAuthor.Text = tempModInfo.Author;
