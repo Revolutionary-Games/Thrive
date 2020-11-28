@@ -413,20 +413,21 @@ margin_left = -136.699
 margin_top = -71.5148
 margin_right = 208.301
 margin_bottom = 44.4852
-window_title = ""
-dialog_text = "Are you sure you want to reset?"
+window_title = "ARE_YOU_SURE"
+dialog_text = "ARE_YOU_SURE_TO_RESET_GAME"
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
 margin_right = 87.0
 margin_bottom = 71.0
-window_title = "Reminder"
-dialog_text = "Please relaunch the game now to fully reset the game."
+window_title = "REMINDER"
+dialog_text = "RESTART_REMINDER_TEXT"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_edit_use_anchors_": false,
+"_editor_description_": ""
 }
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList" to="." method="OnModSelected" binds= [ true ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button" to="." method="OnMoveToUnloadPressed"]

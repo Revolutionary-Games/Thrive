@@ -20,7 +20,7 @@ public class AutoModLoader : Node
 
     public void OpenModErrorPopup(AcceptDialog errorBox)
     {
-        errorBox.DialogText += "\n\n";
+        errorBox.DialogText = TranslationServer.Translate("MOD_LOAD_FAILURE_TEXT") + "\n\n";
 
         if (failedToLoadMods.Count != 0)
         {

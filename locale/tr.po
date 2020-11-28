@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-28 13:31-0600\n"
+"POT-Creation-Date: 2020-11-28 15:37-0600\n"
 "PO-Revision-Date: 2020-11-21 13:57+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -732,6 +732,10 @@ msgstr "{0}: {1} popülasyonu {2} adlı araziden göndererek"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "arazilerdeki popülasyon:"
 
+#: ../src/engine/AutoModLoader.cs:23 ../src/gui_common/MainMenu.tscn:351
+msgid "MOD_LOAD_FAILURE_TEXT"
+msgstr ""
+
 #: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
 msgstr "Yükleniyor"
@@ -773,6 +777,28 @@ msgstr "Yenile"
 #: ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
 msgstr "Yükle"
+
+#: ../src/engine/ModLoader.tscn:415
+msgid "ARE_YOU_SURE"
+msgstr ""
+
+#: ../src/engine/ModLoader.tscn:416
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_RESET_GAME"
+msgstr ""
+"BÜTÜN ayarları varsayılan değerlere sıfırlamak istediğinden emin misin?"
+
+#: ../src/engine/ModLoader.tscn:425
+msgid "REMINDER"
+msgstr ""
+
+#: ../src/engine/ModLoader.tscn:426
+#, fuzzy
+msgid "RESTART_REMINDER_TEXT"
+msgstr ""
+"Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün "
+"organellerini ikiye katlaman gerekir.\n"
+"Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki göstergeye bak."
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
@@ -1039,10 +1065,6 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:349
 msgid "MOD_LOAD_FAILURE"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:351
-msgid "MOD_LOAD_FAILURE_TEXT"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:361

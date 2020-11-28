@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-28 13:31-0600\n"
+"POT-Creation-Date: 2020-11-28 15:37-0600\n"
 "PO-Revision-Date: 2020-11-27 17:23+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -740,6 +740,10 @@ msgstr "{0} durch Senden: {1} Population aus dem Gebiet: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "Population in Gebieten:"
 
+#: ../src/engine/AutoModLoader.cs:23 ../src/gui_common/MainMenu.tscn:351
+msgid "MOD_LOAD_FAILURE_TEXT"
+msgstr ""
+
 #: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
 msgstr "Lädt"
@@ -781,6 +785,30 @@ msgstr "Aktualisieren"
 #: ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
 msgstr "Laden"
+
+#: ../src/engine/ModLoader.tscn:415
+msgid "ARE_YOU_SURE"
+msgstr ""
+
+#: ../src/engine/ModLoader.tscn:416
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_RESET_GAME"
+msgstr ""
+"Bist du sicher, dass du ALLE Einstellungen auf ihre Standardwerte "
+"zurücksetzen willst?"
+
+#: ../src/engine/ModLoader.tscn:425
+msgid "REMINDER"
+msgstr ""
+
+#: ../src/engine/ModLoader.tscn:426
+#, fuzzy
+msgid "RESTART_REMINDER_TEXT"
+msgstr ""
+"Um sich zu vermehren, müssen Sie alle Ihre Organellen duplizieren, indem Sie "
+"genügend Ammoniak und Phosphat sammeln.\n"
+"Schauen Sie auf den Indikator unten rechts, um zu sehen, wie viel mehr Sie "
+"benötigen."
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
@@ -1050,10 +1078,6 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:349
 msgid "MOD_LOAD_FAILURE"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:351
-msgid "MOD_LOAD_FAILURE_TEXT"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:361

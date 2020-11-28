@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-28 13:31-0600\n"
+"POT-Creation-Date: 2020-11-28 15:37-0600\n"
 "PO-Revision-Date: 2020-11-18 21:59+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -684,6 +684,10 @@ msgstr "通过由{2}派出的{1}人口扩散到了：{0}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "地区中的人口："
 
+#: ../src/engine/AutoModLoader.cs:23 ../src/gui_common/MainMenu.tscn:351
+msgid "MOD_LOAD_FAILURE_TEXT"
+msgstr ""
+
 #: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:129
 msgid "LOADING"
 msgstr "载入中"
@@ -725,6 +729,26 @@ msgstr "刷新"
 #: ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
 msgstr "载入"
+
+#: ../src/engine/ModLoader.tscn:415
+msgid "ARE_YOU_SURE"
+msgstr ""
+
+#: ../src/engine/ModLoader.tscn:416
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_RESET_GAME"
+msgstr "你确定要把「所有」设置都重置为默认值吗？"
+
+#: ../src/engine/ModLoader.tscn:425
+msgid "REMINDER"
+msgstr ""
+
+#: ../src/engine/ModLoader.tscn:426
+#, fuzzy
+msgid "RESTART_REMINDER_TEXT"
+msgstr ""
+"繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
+"右下角的指示器会显示你需要多少氨和磷酸盐。"
 
 #: ../src/general/HelpScreen.tscn:105
 msgid "CLOSE"
@@ -990,10 +1014,6 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:349
 msgid "MOD_LOAD_FAILURE"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:351
-msgid "MOD_LOAD_FAILURE_TEXT"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:361
