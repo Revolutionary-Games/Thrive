@@ -258,6 +258,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 enabled_focus_mode = 0
 text = "Mod Loader"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="\?\?_2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
 margin_left = 515.0
@@ -347,7 +350,8 @@ theme = ExtResource( 2 )
 window_title = "Mod Error!"
 resizable = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="GLES2 Popup" type="AcceptDialog" parent="."]
