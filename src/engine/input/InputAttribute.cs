@@ -69,7 +69,7 @@ public abstract class InputAttribute : Attribute
     }
 
     /// <summary>
-    ///   Called by InputManager.AddInstance().
+    ///   Called by InputManager.RegisterReceiver().
     ///   Adds an instance to the list of associated instances.
     /// </summary>
     /// <param name="instance">The new instance</param>
@@ -79,7 +79,7 @@ public abstract class InputAttribute : Attribute
     }
 
     /// <summary>
-    ///   Called by InputManager.RemoveInstance().
+    ///   Called by InputManager.UnregisterReceiver().
     ///   Removes an instance from the list of associated instances.
     /// </summary>
     /// <param name="instance">The instance to remove</param>

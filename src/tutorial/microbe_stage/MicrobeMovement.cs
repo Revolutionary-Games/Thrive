@@ -25,7 +25,7 @@ namespace Tutorial
 
         public MicrobeMovement()
         {
-            InputManager.AddInstance(this);
+            InputManager.RegisterInstance(this);
         }
 
         public override string ClosedByName { get; } = "MicrobeMovementExplain";

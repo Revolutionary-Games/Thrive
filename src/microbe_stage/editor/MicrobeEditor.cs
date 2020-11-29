@@ -166,7 +166,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     public MicrobeEditor()
     {
-        InputManager.AddInstance(this);
+        InputManager.RegisterInstance(this);
     }
 
     [Signal]

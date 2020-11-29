@@ -15,7 +15,7 @@ public class PlayerMicrobeInput : Node
 
     public PlayerMicrobeInput()
     {
-        InputManager.AddInstance(this);
+        InputManager.RegisterInstance(this);
     }
 
     public override void _Ready()

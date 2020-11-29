@@ -67,7 +67,7 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     public MicrobeStage()
     {
-        InputManager.AddInstance(this);
+        InputManager.RegisterInstance(this);
     }
 
     [JsonProperty]

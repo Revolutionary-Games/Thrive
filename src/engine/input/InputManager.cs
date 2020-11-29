@@ -5,13 +5,16 @@ using System.Reflection;
 using Godot;
 
 /// <summary>
-///   A handler for inputs.
-///   This is an AutoLoad class.
-///   Listens for inputs and notifies the input attributes.
+///   A handler for inputs. Listens for inputs and notifies the input attributes.
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is an AutoLoad class.
+///   </para>
+/// </remarks>
 public class InputManager : Node
 {
-    private static InputManager singleton;
+    private static InputManager staticInstance;
 
     /// <summary>
     ///   A list of all loaded attributes
@@ -20,52 +23,53 @@ public class InputManager : Node
 
     public InputManager()
     {
-        singleton = this;
+        staticInstance = this;
+
         LoadAttributes(new[] { Assembly.GetExecutingAssembly() });
+
         PauseMode = PauseModeEnum.Process;
     }
 
     /// <summary>
-    ///   Adds the calling instance to the list of managed instances.
-    ///   Used for calling knowing which instances' method an input event should call
+    ///   Adds the instance to the list of objects receiving input.
     /// </summary>
     /// <param name="instance">The instance to add</param>
-    public static void AddInstance(object instance)
+    public static void RegisterInstance(object instance)
     {
         // Find all attributes where the associated method's class matches the instances class
-        foreach (var inputAttribute in singleton
+        foreach (var inputAttribute in staticInstance
             .allAttributes
-            .Where(p => p.Method.DeclaringType == instance.GetType())
-            .AsParallel())
+            .Where(p => p.Method.DeclaringType == instance.GetType()))
         {
             inputAttribute.AddInstance(new WeakReference(instance));
         }
     }
 
     /// <summary>
-    ///   Removes the given instance from the list of managed instances.
+    ///   Removes the given instance from receiving input.
     /// </summary>
     /// <param name="instance">The instance to remove</param>
-    public static void RemoveInstance(object instance)
+    public static void UnregisterReceiver(object instance)
     {
-        singleton.allAttributes.AsParallel().ForAll(attribute => attribute.RemoveInstance(instance));
+        staticInstance.allAttributes.ForEach(attribute => attribute.RemoveInstance(instance));
     }
 
     /// <summary>
-    ///   Used for resetting various InputAttributes to their default states.
+    ///   Used for resetting various InputAttributes to their default states when window focus is lost as key up
+    ///   notifications won't be received when unfocused.
     /// </summary>
-    public static void FocusLost()
+    public static void OnFocusLost()
     {
-        singleton.allAttributes.AsParallel().ForAll(p => p.FocusLost());
+        staticInstance.allAttributes.ForEach(p => p.FocusLost());
     }
 
     /// <summary>
-    ///   Calls all OnProcess methods of all attributes
+    ///   Calls all OnProcess methods of all input attributes
     /// </summary>
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
-        allAttributes.AsParallel().ForAll(p => p.OnProcess(delta));
+        allAttributes.ForEach(p => p.OnProcess(delta));
     }
 
     /// <summary>
@@ -74,21 +78,22 @@ public class InputManager : Node
     ///   Sets the input as consumed, if it was consumed.
     /// </summary>
     /// <param name="event">The event the user fired</param>
-    public override void _Input(InputEvent @event)
+    public override void _UnhandledInput(InputEvent @event)
     {
         // Ignore mouse motion
         if (@event is InputEventMouseMotion)
             return;
 
-        var result = false;
-        allAttributes.AsParallel().ForAll(p =>
+        var handled = false;
+
+        allAttributes.ForEach(p =>
         {
             if (p.OnInput(@event))
-                result = true;
+                handled = true;
         });
 
         // Define input as consumed
-        if (result)
+        if (handled)
             GetTree().SetInputAsHandled();
     }
 
@@ -98,7 +103,7 @@ public class InputManager : Node
         // We reset our held down keys if the player tabs out while pressing a key
         if (focus == MainLoop.NotificationWmFocusOut)
         {
-            FocusLost();
+            OnFocusLost();
         }
     }
 
@@ -112,13 +117,13 @@ public class InputManager : Node
         allAttributes = new List<InputAttribute>();
 
         // foreach assembly
-        foreach (var assembly in assemblies.AsParallel())
+        foreach (var assembly in assemblies)
         {
             // foreach type
-            foreach (var type in assembly.GetTypes().AsParallel())
+            foreach (var type in assembly.GetTypes())
             {
                 // foreach method
-                foreach (var methodInfo in type.GetMethods().AsParallel())
+                foreach (var methodInfo in type.GetMethods())
                 {
                     // get all InputAttributes
                     var attributes = (InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true);
@@ -127,11 +132,9 @@ public class InputManager : Node
 
                     // get the RunOnAxisGroupAttribute, if there is one
                     var runOnAxisGroupAttribute =
-                        (RunOnAxisGroupAttribute)attributes
-                            .AsParallel()
-                            .FirstOrDefault(p => p is RunOnAxisGroupAttribute);
+                        (RunOnAxisGroupAttribute)attributes.FirstOrDefault(p => p is RunOnAxisGroupAttribute);
 
-                    foreach (var attribute in attributes.AsParallel())
+                    foreach (var attribute in attributes)
                     {
                         if (runOnAxisGroupAttribute != null && attribute is RunOnAxisAttribute axis)
                         {
