@@ -73,7 +73,7 @@ public class RunOnAxisAttribute : InputAttribute
     public override void OnProcess(float delta)
     {
         var currentResult = CurrentResult;
-        if (InvokeWithNoInput || currentResult != 0)
+        if (InvokeWithNoInput || currentResult != DefaultState)
             CallMethod(delta, currentResult);
     }
 
