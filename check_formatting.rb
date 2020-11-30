@@ -16,6 +16,8 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 MAX_LINE_LENGTH = 120
 DUPLICATE_THRESSHOLD = 110
 
+LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
+
 # Pretty generous, so can't detect like small models with only a few
 # vertices, as text etc. is on a single line
 SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
@@ -367,7 +369,8 @@ def handle_po_file(path)
         end
       end
 
-      if last_msgid.upcase != last_msgid
+      if last_msgid.upcase != last_msgid &&
+         !LOCALIZATION_UPPERCASE_EXCEPTIONS.include?(last_msgid)
         OUTPUT_MUTEX.synchronize do
           error "Line #{line_number + 1} has message with non-uppercase characters " \
                 " (#{last_msgid})"
