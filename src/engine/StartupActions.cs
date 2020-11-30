@@ -20,7 +20,7 @@ public class StartupActions : Node
         GD.Print("Game logs are written to: ", PathUtils.Join(userDir, Constants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
-        // Load settings here, to make sure locales etc. are applied to the main loaded scene
+        // Load settings here, to make sure locales etc. are applied to the main loaded and autoloaded scenes
         if (Settings.Instance == null)
             GD.PrintErr("Failed to initialize settings.");
     }
