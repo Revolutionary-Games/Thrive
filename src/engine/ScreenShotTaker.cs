@@ -12,7 +12,7 @@ public class ScreenShotTaker : Node
     private ScreenShotTaker()
     {
         instance = this;
-        InputManager.RegisterInstance(this);
+        InputManager.RegisterReceiver(this);
     }
 
     public static ScreenShotTaker Instance => instance;

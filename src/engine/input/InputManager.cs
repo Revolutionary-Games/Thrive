@@ -19,7 +19,7 @@ public class InputManager : Node
     /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
-    private List<InputAttribute> allAttributes;
+    private readonly List<InputAttribute> attributes = new List<InputAttribute>();
 
     public InputManager()
     {
@@ -34,11 +34,12 @@ public class InputManager : Node
     ///   Adds the instance to the list of objects receiving input.
     /// </summary>
     /// <param name="instance">The instance to add</param>
-    public static void RegisterInstance(object instance)
+    public static void RegisterReceiver(object instance)
     {
         // Find all attributes where the associated method's class matches the instances class
+        // TODO: check if there is some alternative faster approach to registering instances
         foreach (var inputAttribute in staticInstance
-            .allAttributes
+            .attributes
             .Where(p => p.Method.DeclaringType == instance.GetType()))
         {
             inputAttribute.AddInstance(new WeakReference(instance));
@@ -51,7 +52,7 @@ public class InputManager : Node
     /// <param name="instance">The instance to remove</param>
     public static void UnregisterReceiver(object instance)
     {
-        staticInstance.allAttributes.ForEach(attribute => attribute.RemoveInstance(instance));
+        staticInstance.attributes.ForEach(attribute => attribute.RemoveInstance(instance));
     }
 
     /// <summary>
@@ -60,7 +61,7 @@ public class InputManager : Node
     /// </summary>
     public static void OnFocusLost()
     {
-        staticInstance.allAttributes.ForEach(p => p.FocusLost());
+        staticInstance.attributes.ForEach(p => p.FocusLost());
     }
 
     /// <summary>
@@ -69,7 +70,7 @@ public class InputManager : Node
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
-        allAttributes.ForEach(p => p.OnProcess(delta));
+        attributes.ForEach(p => p.OnProcess(delta));
     }
 
     /// <summary>
@@ -81,18 +82,19 @@ public class InputManager : Node
     public override void _UnhandledInput(InputEvent @event)
     {
         // Ignore mouse motion
+        // TODO: support mouse movement input as well
         if (@event is InputEventMouseMotion)
             return;
 
         var handled = false;
 
-        allAttributes.ForEach(p =>
+        foreach (var attribute in attributes)
         {
-            if (p.OnInput(@event))
+            if (attribute.OnInput(@event))
                 handled = true;
-        });
+        }
 
-        // Define input as consumed
+        // Define input as consumed to Godot if something reacted to it
         if (handled)
             GetTree().SetInputAsHandled();
     }
@@ -108,44 +110,45 @@ public class InputManager : Node
     }
 
     /// <summary>
-    ///   Searches the given assemblies for any InputAttributes, prepares them and adds them to the allAttributes list.
+    ///   Searches the given assemblies for any InputAttributes, prepares them and adds them to the attributes list.
     /// </summary>
     /// <param name="assemblies">The assemblies to search through</param>
     private void LoadAttributes(IEnumerable<Assembly> assemblies)
     {
-        // reset the list
-        allAttributes = new List<InputAttribute>();
+        attributes.Clear();
 
-        // foreach assembly
         foreach (var assembly in assemblies)
         {
-            // foreach type
+            // foreach type in the specified assemblies
             foreach (var type in assembly.GetTypes())
             {
-                // foreach method
+                // foreach method in the classes
                 foreach (var methodInfo in type.GetMethods())
                 {
-                    // get all InputAttributes
-                    var attributes = (InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true);
-                    if (attributes.Length == 0)
+                    // Check attributes
+                    var inputAttributes =
+                        (InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true);
+                    if (inputAttributes.Length == 0)
                         continue;
 
-                    // get the RunOnAxisGroupAttribute, if there is one
+                    // Get the RunOnAxisGroupAttribute, if there is one
                     var runOnAxisGroupAttribute =
-                        (RunOnAxisGroupAttribute)attributes.FirstOrDefault(p => p is RunOnAxisGroupAttribute);
+                        (RunOnAxisGroupAttribute)inputAttributes.FirstOrDefault(p => p is RunOnAxisGroupAttribute);
 
-                    foreach (var attribute in attributes)
+                    foreach (var attribute in inputAttributes)
                     {
                         if (runOnAxisGroupAttribute != null && attribute is RunOnAxisAttribute axis)
                         {
-                            // add the axis to the AxisGroup
+                            // Add the axis to the AxisGroup
                             runOnAxisGroupAttribute.AddAxis(axis);
                         }
                         else
                         {
-                            // add the attribute to the list of all attributes
+                            // Give the attribute a reference to the method it is placed on
                             attribute.Init(methodInfo);
-                            allAttributes.Add(attribute);
+
+                            // Add the attribute to the list of all attributes
+                            attributes.Add(attribute);
                         }
                     }
                 }

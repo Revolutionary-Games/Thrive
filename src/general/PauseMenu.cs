@@ -35,7 +35,7 @@ public class PauseMenu : Control
 
     public PauseMenu()
     {
-        InputManager.RegisterInstance(this);
+        InputManager.RegisterReceiver(this);
     }
 
     [Signal]

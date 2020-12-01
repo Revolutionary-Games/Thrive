@@ -35,7 +35,7 @@ public class RunOnKeyAttribute : InputAttribute
     private string InputName { get; }
 
     /// <summary>
-    ///   Reads the current prime or held state and resets the primed state
+    ///   Reads the current primed or held state and resets the primed state
     /// </summary>
     /// <returns>True when the key is held down or primed</returns>
     public bool ReadHeldOrPrimedAndResetPrimed()
@@ -47,16 +47,22 @@ public class RunOnKeyAttribute : InputAttribute
 
     public override bool OnInput(InputEvent @event)
     {
+        bool wasOurKey = false;
+
         if (@event.IsActionPressed(InputName))
         {
+            wasOurKey = true;
             primed = true;
             HeldDown = true;
         }
 
         if (@event.IsActionReleased(InputName))
+        {
+            wasOurKey = true;
             HeldDown = false;
+        }
 
-        return HeldDown;
+        return wasOurKey;
     }
 
     public override void OnProcess(float delta)

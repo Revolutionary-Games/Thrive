@@ -15,7 +15,7 @@ public class PlayerMicrobeInput : Node
 
     public PlayerMicrobeInput()
     {
-        InputManager.RegisterInstance(this);
+        InputManager.RegisterReceiver(this);
     }
 
     public override void _Ready()
@@ -32,19 +32,24 @@ public class PlayerMicrobeInput : Node
 
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-    [RunOnAxisGroup(InvokeWithNoInput = true)]
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
     public void OnMovement(float delta, float forwardMovement, float leftRightMovement)
     {
+        _ = delta;
+        const float epsilon = 0.01f;
+
         // Reset auto move if a key was pressed
-        if (forwardMovement != 0 || leftRightMovement != 0)
+        if ((forwardMovement < epsilon && forwardMovement > -epsilon) ||
+            (leftRightMovement < epsilon && leftRightMovement > -epsilon))
         {
             autoMove = false;
         }
 
-        var movement = new Vector3(leftRightMovement, 0, forwardMovement);
         if (stage.Player != null)
         {
-            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : (movement * delta).Normalized();
+            var movement = new Vector3(leftRightMovement, 0, forwardMovement);
+
+            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
 
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }

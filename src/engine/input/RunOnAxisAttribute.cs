@@ -15,45 +15,45 @@ using Godot;
 public class RunOnAxisAttribute : InputAttribute
 {
     /// <summary>
-    ///   all associated inputs
+    ///   All associated inputs for this axis
     /// </summary>
-    private readonly Dictionary<RunOnKeyChangeAttribute, float> inputs =
-        new Dictionary<RunOnKeyChangeAttribute, float>();
+    private readonly Dictionary<RunOnKeyDownAttribute, float> inputs =
+        new Dictionary<RunOnKeyDownAttribute, float>();
 
     /// <summary>
     ///   Instantiates a new RunOnAxisAttribute.
     /// </summary>
-    /// <param name="godotInputNames">All godot input names</param>
-    /// <param name="associatedValues">All associated values. Length must match the godotInputNames</param>
+    /// <param name="inputNames">All godot input names</param>
+    /// <param name="associatedValues">All associated values. Length must match the inputNames</param>
     /// <exception cref="ArgumentException">Gets thrown when the lengths don't match</exception>
-    public RunOnAxisAttribute(string[] godotInputNames, float[] associatedValues)
+    public RunOnAxisAttribute(string[] inputNames, float[] associatedValues)
     {
-        if (godotInputNames.Length != associatedValues.Length)
+        if (inputNames.Length != associatedValues.Length)
             throw new ArgumentException("input names and associated values have to be the same length");
 
-        for (var i = 0; i < godotInputNames.Length; i++)
+        for (var i = 0; i < inputNames.Length; i++)
         {
-            inputs.Add(new RunOnKeyChangeAttribute(godotInputNames[i]), associatedValues[i]);
+            inputs.Add(new RunOnKeyDownAttribute(inputNames[i]), associatedValues[i]);
         }
 
-        // Round to make sure that there isn't a really close number instead of the exactly wanted value
+        // Round to make sure that there isn't a really close number instead of the exactly wanted default value
         DefaultState = (float)Math.Round(associatedValues.Average(), 4);
     }
 
     /// <summary>
-    ///   The idle state
+    ///   The idle state. This is the average value of all the associated input values on this axis
     /// </summary>
     public float DefaultState { get; }
 
     /// <summary>
-    ///   Should the method be invoked when all of it's inputs are in it's idle state
+    ///   Should the method be invoked when all of this object's inputs are in their idle states
     /// </summary>
     public bool InvokeWithNoInput { get; set; }
 
     /// <summary>
     ///   Get the average of all currently fired inputs.
     /// </summary>
-    internal float CurrentResult =>
+    public float CurrentResult =>
         inputs.Where(p => p.Key.ReadHeldOrPrimedAndResetPrimed())
             .Select(p => p.Value)
             .DefaultIfEmpty(DefaultState)
@@ -61,26 +61,30 @@ public class RunOnAxisAttribute : InputAttribute
 
     public override bool OnInput(InputEvent @event)
     {
-        var result = false;
-        foreach (var input in inputs.AsParallel())
+        var wasUsed = false;
+
+        foreach (var input in inputs)
         {
             if (input.Key.OnInput(@event))
-                result = true;
+                wasUsed = true;
         }
 
-        return result;
+        return wasUsed;
     }
 
     public override void OnProcess(float delta)
     {
+        const float epsilon = 0.0001f;
+
         var currentResult = CurrentResult;
-        if (InvokeWithNoInput || currentResult != DefaultState)
+
+        if (InvokeWithNoInput || Math.Abs(currentResult - DefaultState) > epsilon)
             CallMethod(delta, currentResult);
     }
 
     public override void FocusLost()
     {
-        foreach (var input in inputs.AsParallel())
+        foreach (var input in inputs)
         {
             input.Key.FocusLost();
         }

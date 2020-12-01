@@ -12,7 +12,7 @@ public class QuickLoadHandler : Node
 
     public QuickLoadHandler()
     {
-        InputManager.RegisterInstance(this);
+        InputManager.RegisterReceiver(this);
     }
 
     public override void _Ready()

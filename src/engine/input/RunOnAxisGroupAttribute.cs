@@ -22,32 +22,35 @@ public class RunOnAxisGroupAttribute : InputAttribute
     private readonly List<RunOnAxisAttribute> axes = new List<RunOnAxisAttribute>();
 
     /// <summary>
-    ///   Should the method be invoked when all of it's inputs are in it's idle state
+    ///   Should the method be invoked when all of the inputs are in their idle states
     /// </summary>
-    public bool InvokeWithNoInput { get; set; }
+    public bool InvokeAlsoWithNoInput { get; set; }
 
     public override bool OnInput(InputEvent @event)
     {
-        var result = false;
-        axes.AsParallel().ForAll(p =>
+        var wasUsed = false;
+
+        foreach (var axis in axes)
         {
-            if (p.OnInput(@event))
-                result = true;
-        });
-        return result;
+            if (axis.OnInput(@event))
+                wasUsed = true;
+        }
+
+        return wasUsed;
     }
 
     public override void OnProcess(float delta)
     {
-        List<(float currentValue, float defaultValue)> param =
+        List<(float currentValue, float defaultValue)> axisValues =
             axes.Select(axis => (axis.CurrentResult, axis.DefaultState)).ToList();
 
-        if (!InvokeWithNoInput && param.All(p => Math.Abs(p.currentValue - p.defaultValue) < 0.001f))
+        // Skip process if all axes have default values, and invoke also with no input is not set
+        if (!InvokeAlsoWithNoInput && axisValues.All(p => Math.Abs(p.currentValue - p.defaultValue) < 0.001f))
             return;
 
-        var values = param.Select(p => p.currentValue).ToList();
-        values.Insert(0, delta);
-        CallMethod(values.Cast<object>().ToArray());
+        var callParameters = axisValues.Select(p => p.currentValue).ToList();
+        callParameters.Insert(0, delta);
+        CallMethod(callParameters);
     }
 
     public override void FocusLost()

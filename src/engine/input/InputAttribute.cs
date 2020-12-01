@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
 ///   An abstract attribute for handling input methods.
 ///   Can be applied to a method.
 /// </summary>
+/// <remarks>
+///   <para>
+///     As this is abstract you need to use one of the following: <see cref="RunOnKeyDownAttribute"/>,
+///     <see cref="RunOnKeyUpAttribute"/>, <see cref="RunOnKeyChangeAttribute"/>
+///   </para>
+/// </remarks>
 public abstract class InputAttribute : Attribute
 {
     /// <summary>
@@ -40,27 +44,26 @@ public abstract class InputAttribute : Attribute
     }
 
     /// <summary>
-    ///   Called by InputManager._Input()
+    ///   Processes input event for this attribute
     /// </summary>
     /// <param name="input">The event fired by the user</param>
-    /// <returns>Returns whether the input was consumed or not</returns>
+    /// <returns>Returns whether the input was acted on (/ consumed) or not</returns>
     public abstract bool OnInput(InputEvent input);
 
     /// <summary>
-    ///   Called by InputManager._Process()
+    ///   Processes input actions that aren't triggered on key events directly
     /// </summary>
     /// <param name="delta">The time since the last call of OnProcess</param>
     public abstract void OnProcess(float delta);
 
     /// <summary>
     ///   Called when the games window lost it's focus.
-    ///   Can be used to reset things to their normal state.
+    ///   Is used to reset things to their unpressed state.
     /// </summary>
     public abstract void FocusLost();
 
     /// <summary>
-    ///   Called by InputManager.LoadAttributes().
-    ///   Sets the associated method.
+    ///   Sets the associated method. Called by InputManager.LoadAttributes().
     /// </summary>
     /// <param name="method">The method this attribute is associated with</param>
     internal void Init(MethodBase method)
@@ -69,8 +72,8 @@ public abstract class InputAttribute : Attribute
     }
 
     /// <summary>
-    ///   Called by InputManager.RegisterReceiver().
     ///   Adds an instance to the list of associated instances.
+    ///   Called by InputManager.RegisterReceiver().
     /// </summary>
     /// <param name="instance">The new instance</param>
     internal void AddInstance(WeakReference instance)
@@ -79,8 +82,8 @@ public abstract class InputAttribute : Attribute
     }
 
     /// <summary>
-    ///   Called by InputManager.UnregisterReceiver().
     ///   Removes an instance from the list of associated instances.
+    ///   Called by InputManager.UnregisterReceiver().
     /// </summary>
     /// <param name="instance">The instance to remove</param>
     internal void RemoveInstance(object instance)
@@ -93,45 +96,63 @@ public abstract class InputAttribute : Attribute
     ///   Calls the method with all of the instances or once if the method is static.
     /// </summary>
     /// <param name="parameters">The parameters the method will be called with</param>
-    /// <returns>Returns whether the event was consumed or not</returns>
+    /// <returns>Returns whether the event was consumed or not. Methods returning a boolean can control this.</returns>
     protected bool CallMethod(params object[] parameters)
     {
         // Do nothing if no method is associated
+        // TODO: it would be safer against mistakes to make it so that only specific attributes can have null method
         if (Method == null)
             return true;
 
-        var result = false;
-        Task.Run(() =>
+        bool result = false;
+
+        if (Method.IsStatic)
         {
-            lock (disposed)
+            // Call the method without an instance if it's static
+            var invokeResult = Method.Invoke(null, parameters);
+
+            if (invokeResult != null && invokeResult is bool asBool)
             {
-                disposed.Clear();
-                if (Method.IsStatic)
+                result = asBool;
+            }
+            else
+            {
+                result = true;
+            }
+        }
+        else
+        {
+            // Call the method for each instance
+            foreach (var instance in instances)
+            {
+                if (!instance.IsAlive)
                 {
-                    // Call the method without an instance if it's static
-                    result = Method.Invoke(null, parameters) as bool? ?? true;
+                    // if the WeakReference got disposed
+                    disposed.Add(instance);
+                    continue;
+                }
+
+                bool thisInstanceResult;
+
+                var invokeResult = Method.Invoke(instance.Target, parameters);
+
+                if (invokeResult != null && invokeResult is bool asBool)
+                {
+                    thisInstanceResult = asBool;
                 }
                 else
                 {
-                    // Call the method for each instance
-                    instances.AsParallel().ForAll(p =>
-                    {
-                        if (!p.IsAlive)
-                        {
-                            // if the WeakReference got disposed
-                            disposed.Add(p);
-                            return;
-                        }
-
-                        var methodResult = Method.Invoke(p.Target, parameters) as bool? ?? true;
-                        if (!result)
-                            result = methodResult;
-                    });
+                    thisInstanceResult = true;
                 }
 
-                disposed.AsParallel().ForAll(p => instances.Remove(p));
+                if (thisInstanceResult && !result)
+                    result = true;
             }
-        });
+        }
+
+        disposed.ForEach(p => instances.Remove(p));
+        disposed.Clear();
+
         return result;
     }
 }
