@@ -36,7 +36,8 @@ public class RunOnAxisAttribute : InputAttribute
             inputs.Add(new RunOnKeyChangeAttribute(godotInputNames[i]), associatedValues[i]);
         }
 
-        DefaultState = associatedValues.Average();
+        // Round to make sure that there isn't a really close number instead of the exactly wanted value
+        DefaultState = (float)Math.Round(associatedValues.Average(), 4);
     }
 
     /// <summary>
