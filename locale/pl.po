@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-01 20:44+0700\n"
-"PO-Revision-Date: 2020-11-23 11:59+0000\n"
-"Last-Translator: Mieszko Polak <mieszko.polak@onet.pl>\n"
+"POT-Creation-Date: 2020-11-18 19:40+0200\n"
+"PO-Revision-Date: 2020-11-30 15:40+0000\n"
+"Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -146,8 +146,8 @@ msgstr ""
 "Organelle Otoczone Membranami\n"
 "\n"
 "Jądro komórkowe: Zajmuje 11 hexów i pozwala na ewolucję organelli otoczonych "
-"membranami. Podwaja również rozmiar twojej komórki. (Można mieć tylko "
-"jedno)\n"
+"membranami. Podwaja również rozmiar twojej komórki. (Można mieć tylko jedno)"
+"\n"
 "\n"
 "Mitochondrium: Produkuje ATP z glukozy i atmosferycznego O2. O wiele "
 "wydajniejsze niż cytoplazma\n"
@@ -161,13 +161,13 @@ msgstr ""
 "\n"
 "Wakuola: Przechowuje 15 zebranych substancji chemicznych.\n"
 "\n"
-"Toksyczna Wakuola: Produkuje toksyny (nazwane OxyToxy NT)"
+"Toksyczna Wakuola: Produkuje toksyny (nazwane OxyToksy NT)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Każdej generacji masz 100 punktów mutacji do wydania, i każda zmiana (lub "
-"mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli "
+"Każdej generacji masz 100 punktów mutacji (PM) do wydania, i każda zmiana ("
+"lub mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli "
 "kosztuje PM, jednak usuwanie organelli które były dodane w obecnej generacji "
 "zwraca PM za tą organellę. Możesz usunąć organellę klikając na nią prawym "
 "przyciskiem. Możesz obracać swoje organelle używając klawiszy A i D."
@@ -464,9 +464,8 @@ msgid "ICESHELF"
 msgstr "Półka Lodowa"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1349
-#, fuzzy
 msgid "ICESHARD"
-msgstr "Okruch Lodu"
+msgstr "Odłamy Lodu"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1434
 msgid "ESTUARY"
@@ -526,7 +525,7 @@ msgstr "Glukoza"
 #: ../simulation_parameters/microbe_stage/compounds.json:63
 #: ../src/microbe_stage/MicrobeStage.tscn:1905
 msgid "OXYTOXY_NT"
-msgstr ""
+msgstr "OxyToksy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
@@ -567,7 +566,7 @@ msgstr "Światło słoneczne"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2513
 msgid "PREDATORY_PILUS"
-msgstr ""
+msgstr "Drapieżny Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
@@ -598,7 +597,7 @@ msgstr "Białka Chemosyntezujące"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2295
 msgid "OXYTOXISOME"
-msgstr ""
+msgstr "Oxytoksysoma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:943
@@ -970,12 +969,10 @@ msgid "EXIT"
 msgstr "Wyjdź"
 
 #: ../src/gui_common/MainMenu.cs:376
-#, fuzzy
 msgid "OK"
 msgstr "OK"
 
 #: ../src/gui_common/MainMenu.cs:377
-#, fuzzy
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -1238,6 +1235,12 @@ msgstr "Światło"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1151
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
+"Tylakoidy to grupy białek i foto sensytywnych pigmentów. Te pigmenty mogą "
+"użyć energii światła do produkcji glukozy z wody i gazowego dwutlenku węgla "
+"w procesie zwanym Fotosyntezą. Te pigmenty nadają im również wyróżniający "
+"się kolor. Szybkość produkcji skaluje się z koncentracją dwutlenku węgla, "
+"oraz intensywnością światła. Ponieważ tylakoidy zawieszone są bezpośrednio w "
+"cytoplazmie, otaczający płyn dokonuje fermentacji."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1313
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
@@ -1258,7 +1261,6 @@ msgid "ALSO_TURNS"
 msgstr "Też obraca [się]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Białka chemosyntezującę są małymi grupami białek które umieją przemieniać "
@@ -1270,48 +1272,58 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1789
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
+"Rusticyjanina to białko mogące użyć gazowego dwutlenku węgla i tlenu do "
+"utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, "
+"nazywany Oddychaniem Żelaza, uwalnia energię którą komórka może zebrać."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3215
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4330
 msgid "DOT_RATE"
-msgstr ""
+msgstr ". Tempo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1959
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3228
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4343
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4865
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "skaluje się ze stężeniem"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2064
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
+"Nitrogenaza to białko mogące użyć gazowego azotu i energii komórkowej w "
+"formie ATP do produkcji amoniaku, kluczowego składnika dla wzrostu komórki. "
+"Ten proces nazywany jest Beztlenowym Wiązaniem Azotu. Ponieważ nitrogenaza "
+"jest zawieszona bezpośrednio w cytoplazmie, otaczający płyn dokonuje "
+"fermentacji."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2203
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4806
 msgid "OXYTOXY"
-msgstr ""
+msgstr "OxyToksy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2221
 msgid "DOT_CAN_RELEASE"
-msgstr ""
+msgstr ". Może wypuścić"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
 msgid "TOXINS_BY_PRESSING_E"
-msgstr ""
+msgstr "toksyny naciskając E. Tempo skaluje się z"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2351
 msgid "OXYTOXISOME_DESC"
 msgstr ""
+"Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy "
+"toksycznego czynnika OxyToksy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2458
 msgid "USES"
-msgstr ""
+msgstr "Używa"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr ""
+msgstr "żeby zwiększyć ruch"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2495
 msgid "SPEED_OF_THE_CELL"
@@ -1324,25 +1336,31 @@ msgstr "Szybkość"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2615
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
+"Flagellum (l.m. flagella) to wicio-podobny zbiór białek wysunięty z membrany "
+"komórki który używa ATP do falowania i poruszania komórki w danym kierunku."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2742
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr ""
+msgstr "Dźgaj tym inne komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2577
 msgid "CILIA"
-msgstr ""
+msgstr "Rzęski"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5097
 msgid "TO_BE_IMPLEMENTED"
-msgstr ""
+msgstr "Do zaimplementowania."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2969
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
+"Pozwala na ewolucję bardziej złożonych,\n"
+"membranowych organelli. Utrzymanie\n"
+"kosztuje dużo ATP. Jest to nieodwracalna\n"
+"ewolucja."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "NUCLEUS_DESCRIPTION"
@@ -1380,7 +1398,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4579
 msgid "INREASE_STORAGE_SPACE"
-msgstr ""
+msgstr "Zwiększa możliwości magazynowe komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4667
 msgid "VACUOLE_DESCRIPTION"
@@ -1415,7 +1433,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5182
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3449
 msgid "NORMAL"
-msgstr ""
+msgstr "Normalna"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5294
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5536
@@ -1424,7 +1442,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6388
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6722
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Szybkość Absorbcji Zasobów"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5347
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -1434,7 +1452,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3519
 msgid "DOUBLE"
-msgstr ""
+msgstr "Podwójna"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5588
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
@@ -1450,14 +1468,14 @@ msgstr "Celuloza"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6448
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6782
 msgid "PHYSICAL_RESISTANCE"
-msgstr ""
+msgstr "Odporność Fizyczna"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6173
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6507
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6841
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Nie może połykać"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5892
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
@@ -1529,7 +1547,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:630
 msgid "PLAYER_DIED"
-msgstr ""
+msgstr "gracz zginął"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:878
 msgid "AT_CURSOR"
