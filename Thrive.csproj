@@ -46,6 +46,10 @@
     <Compile Include="src\general\PauseMenu.cs" />
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
+    <Compile Include="src\gui_common\charts\line\LineChart.cs" />
+    <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
+    <Compile Include="src\gui_common\charts\line\DataPoint.cs" />
+    <Compile Include="src\gui_common\CustomDropDown.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
