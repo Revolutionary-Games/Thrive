@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Basically a class that inherits MenuButton, but with extra popup menu functionality
+///   A custom dropdown implemented through MenuButton, but with extra popup menu functionality
 ///   such as adjusted custom icon size with tweakable color and some slide down animation.
 ///   (Might need to expand this later)
 /// </summary>
@@ -166,7 +166,7 @@ public class CustomDropDown : MenuButton
     }
 
     /// <summary>
-    ///   Helper data regarding the item
+    ///   Helper data regarding the popup menu item
     /// </summary>
     private class Item
     {
