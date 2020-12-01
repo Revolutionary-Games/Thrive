@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-01 20:44+0700\n"
-"PO-Revision-Date: 2020-11-21 13:57+0000\n"
+"POT-Creation-Date: 2020-11-18 19:40+0200\n"
+"PO-Revision-Date: 2020-11-30 15:40+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -140,7 +140,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Organelas Externas\n"
 "\n"
-"Flagelos: Aumentam a velocidade da sua célula consumindo ATP\n"
+"Flagelo: Aumentam a velocidade da sua célula consumindo ATP\n"
 "\n"
 "Pili: Pode ser usado para perfurar outras células"
 
@@ -258,7 +258,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Aqui vai uma dica, biomas são mais que fundos diferentes, os compostos em "
+"Aqui vai uma dica, os biomas são mais que fundos diferentes, os compostos em "
 "biomas diferentes aparecem em proporções diferentes."
 
 #: ../simulation_parameters/common/help_texts.json:61
@@ -321,14 +321,14 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive foi feito com o objetivo de ser uma simulação de um planeta "
-"alienígena, por isso faz sentido que a maioria das criaturas que você vai "
-"encontrar sejam relacionadas com uma ou duas espécies por causa de evolução "
+"alienígena, por isso faz sentido que a maioria das criaturas que você "
+"encontra serão relacionadas com uma ou duas espécies por causa de evolução "
 "acontecendo em sua volta, veja se você consegue identificá-las!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"Curiosidade, A equipe que desenvolve o jogo faz podcasts de vez em quando, "
+"Curiosidade, a equipe que desenvolve o jogo faz podcasts de vez em quando, "
 "você poderia vê-los!"
 
 #: ../simulation_parameters/common/help_texts.json:73
@@ -723,7 +723,7 @@ msgstr "migrou para:"
 
 #: ../src/auto-evo/RunResults.cs:304
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} mandando: {1} indivíduos da região: {2}"
 
 #: ../src/auto-evo/RunResults.cs:322
 msgid "RUNRESULT_POP_IN_PATCHES"
@@ -972,11 +972,11 @@ msgstr "Sair"
 
 #: ../src/gui_common/MainMenu.cs:376
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/gui_common/MainMenu.cs:377
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
@@ -1593,7 +1593,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "/segundo"
 
 #: ../src/microbe_stage/Microbe.cs:1392
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1885,7 +1885,7 @@ msgstr "Selecione uma região para mostrar detalhes aqui"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4474
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
+msgstr "LOCALIZAÇÃO ATUAL"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4554
 msgid "PHYSICAL_CONDITIONS"
@@ -1913,11 +1913,11 @@ msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "milhões de anos"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
 msgid "YEARS"
-msgstr ""
+msgstr "anos"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
@@ -2061,15 +2061,15 @@ msgstr ""
 
 #: ../src/saving/SaveInformation.cs:31
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "Salvamento automático"
 
 #: ../src/saving/SaveInformation.cs:40
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "Salvamento rápido"
 
 #: ../src/saving/SaveInformation.cs:49
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "Inválido"
 
 #: ../src/saving/SaveList.cs:177
 msgid "SAVE_DELETE_WARNING"
