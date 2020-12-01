@@ -17,7 +17,7 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
     public override bool OnInput(InputEvent @event)
     {
         var before = HeldDown;
-        if (base.OnInput(@event) && !before)
+        if (base.OnInput(@event) && !before && HeldDown)
         {
             return CallMethod();
         }
