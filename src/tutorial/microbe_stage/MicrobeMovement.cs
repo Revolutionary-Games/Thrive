@@ -1,6 +1,7 @@
 namespace Tutorial
 {
     using System;
+    using Godot;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -22,11 +23,6 @@ namespace Tutorial
 
         [JsonProperty]
         private float moveBackwardsTime;
-
-        public MicrobeMovement()
-        {
-            InputManager.RegisterInstance(this);
-        }
 
         public override string ClosedByName { get; } = "MicrobeMovementExplain";
 
@@ -88,19 +84,30 @@ namespace Tutorial
             return false;
         }
 
-        [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
-        [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-        [RunOnAxisGroup]
-        public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement)
-        {
-            moveForwardTime += delta * (forwardBackwardMovement + 1);
-            moveBackwardsTime += delta * (forwardBackwardMovement - 1);
-            moveLeftTime += delta * (leftRightMovement + 1);
-            moveRightTime += delta * (leftRightMovement - 1);
-        }
-
         protected override void OnProcess(TutorialState overallState, float delta)
         {
+            // This does not use the input system because when OnProcess is called in a tutorial is complicated, so
+            // when this code is triggered would be different using the input system
+            if (Input.IsActionPressed("g_move_forward"))
+            {
+                moveForwardTime += delta;
+            }
+
+            if (Input.IsActionPressed("g_move_left"))
+            {
+                moveLeftTime += delta;
+            }
+
+            if (Input.IsActionPressed("g_move_right"))
+            {
+                moveRightTime += delta;
+            }
+
+            if (Input.IsActionPressed("g_move_backwards"))
+            {
+                moveBackwardsTime += delta;
+            }
+
             // Check if all keys have been pressed, and if so close the tutorial
             if (moveForwardTime >= Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME &&
                 moveLeftTime >= Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME &&
