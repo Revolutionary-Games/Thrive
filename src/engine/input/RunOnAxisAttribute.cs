@@ -48,7 +48,7 @@ public class RunOnAxisAttribute : InputAttribute
     /// <summary>
     ///   Should the method be invoked when all of this object's inputs are in their idle states
     /// </summary>
-    public bool InvokeWithNoInput { get; set; }
+    public bool InvokeAlsoWithNoInput { get; set; }
 
     /// <summary>
     ///   Get the average of all currently fired inputs.
@@ -78,7 +78,7 @@ public class RunOnAxisAttribute : InputAttribute
 
         var currentResult = CurrentResult;
 
-        if (InvokeWithNoInput || Math.Abs(currentResult - DefaultState) > epsilon)
+        if (InvokeAlsoWithNoInput || Math.Abs(currentResult - DefaultState) > epsilon)
             CallMethod(delta, currentResult);
     }
 

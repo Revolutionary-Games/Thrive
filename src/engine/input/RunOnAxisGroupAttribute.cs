@@ -50,7 +50,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
         var callParameters = axisValues.Select(p => p.currentValue).ToList();
         callParameters.Insert(0, delta);
-        CallMethod(callParameters);
+        CallMethod(callParameters.Cast<object>().ToArray());
     }
 
     public override void FocusLost()
