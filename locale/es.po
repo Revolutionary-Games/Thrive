@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-01 20:44+0700\n"
-"PO-Revision-Date: 2020-11-27 17:24+0000\n"
-"Last-Translator: josem019 <josemcci06@gmail.com>\n"
+"PO-Revision-Date: 2020-12-02 19:25+0000\n"
+"Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -102,7 +102,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
 "Pero si sobrevives por veinte generaciones con una población de 300, se "
-"considera que ha ganado el juego actual. Después de ganar te aparecerá una "
+"considera que has ganado el juego actual. Después de ganar te aparecerá una "
 "ventana emergente y puedes seguir jugando libremente."
 
 #: ../simulation_parameters/common/help_texts.json:15
@@ -152,8 +152,8 @@ msgstr ""
 "Mitocondrias: Produce ATP y consume glucosa y O2 atmosférico. Son mucho más "
 "eficientes que el citoplasma o los metabolosomas.\n"
 "\n"
-"Cloroplastos: Sintetiza glucosa dependiendo de la concentración de CO2 y "
-"Lux.\n"
+"Cloroplastos: Sintetiza glucosa dependiendo de la concentración de CO2 y luz "
+"solar.\n"
 "\n"
 "Quimioplastos: Sintetiza glucosa consumiendo Sulfuro de Hidrógeno.\n"
 "\n"
@@ -1844,9 +1844,8 @@ msgid "PATCH_NAME"
 msgstr "Nombre de la Región"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4158
-#, fuzzy
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-evolución"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4172
 msgid "FOOD_CHAIN"
@@ -1895,7 +1894,7 @@ msgstr "Moverse a esta región"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "Modo Libre"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -1903,7 +1902,7 @@ msgstr "La cantidad de glucosa ha sido reducida a {0} de su cantidad anterior."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "Ma"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
 msgid "YEARS"
