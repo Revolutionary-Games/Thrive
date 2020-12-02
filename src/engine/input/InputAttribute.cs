@@ -145,8 +145,11 @@ public abstract class InputAttribute : Attribute
                     thisInstanceResult = true;
                 }
 
-                if (thisInstanceResult && !result)
+                if (thisInstanceResult)
+                {
                     result = true;
+                    break;
+                }
             }
         }
 
