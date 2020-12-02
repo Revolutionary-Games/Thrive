@@ -185,7 +185,15 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     {
         var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
 
-        var mousePos = GetViewport().GetMousePosition();
+        var viewPort = GetViewport();
+
+        if (viewPort == null)
+        {
+            GD.PrintErr("Camera is not related to a viewport, can't update mouse world position");
+            return;
+        }
+
+        var mousePos = viewPort.GetMousePosition();
 
         var intersection = worldPlane.IntersectRay(ProjectRayOrigin(mousePos),
             ProjectRayNormal(mousePos));
