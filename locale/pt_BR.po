@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-18 19:40+0200\n"
-"PO-Revision-Date: 2020-11-30 15:40+0000\n"
+"PO-Revision-Date: 2020-12-03 12:58+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -150,7 +150,7 @@ msgstr ""
 "Organelas com membrana\n"
 "\n"
 "Núcleo: Ocupa 11 espaços e permite a evolução de organelas com membranas. "
-"Também dobra o tamanho de sua célula. (Só pode ser evoluído uma vez)\n"
+"Também dobra o tamanho de sua célula (Só pode ser evoluído uma vez).\n"
 "\n"
 "Mitocôndria: Produz ATP da glicose e O2 atmosférico. Muito mais eficiente "
 "que o citoplasma\n"
@@ -169,11 +169,12 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"A cada geração, você tem 100 pontos de mutação para gastar, e cada mudança "
-"(ou mutação) vai custar uma certa quantidade desses pontos. Adicionar ou "
-"remover organelas custam PM, porém remover organelas que foram adicionadas "
-"na sessão atual devolvem os PM. Você pode remover uma organela clicando nela "
-"com o botão direito. É possível rotacionar as organelas com A e D."
+"A cada geração, você tem 100 pontos de mutação (PM) para gastar, e cada "
+"mudança (ou mutação) vai custar uma certa quantidade desses pontos. "
+"Adicionar ou remover organelas custam PM, porém remover organelas que foram "
+"adicionadas na sessão atual devolvem os PM. Você pode remover uma organela "
+"clicando nela com o botão direito. É possível rotacionar as organelas com A "
+"e D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -297,8 +298,8 @@ msgstr "Curiosidade, o Didinum é um ciliado que caça Paramecia."
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
-"Curiosidade, a Amoeba caça e pega as presas com 'pernas' feitas de "
-"citoplasma chamadas pseudópodes, eventualmente nós queremos implementá-los "
+"Curiosidade, a Amoeba caça e pega suas presas com 'pernas' feitas de "
+"citoplasma chamadas pseudópodes, eventualmente nós queremos implementar isso "
 "no jogo."
 
 #: ../simulation_parameters/common/help_texts.json:68
@@ -310,6 +311,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
+"O líder da equipe sonora fez várias músicas que ainda não foram adicionadas "
+"no jogo. Você pode ouvi-las ou assistir ele compondo ao vivo em seu canal do "
+"YouTube, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
@@ -1625,7 +1629,7 @@ msgstr "jogador morreu"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:878
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "No ponteiro:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:902
 msgid "NOTHING_HERE"
@@ -1854,9 +1858,8 @@ msgid "PATCH_NAME"
 msgstr "Nome da Região"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4158
-#, fuzzy
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4172
 msgid "FOOD_CHAIN"
@@ -2057,7 +2060,7 @@ msgstr "O salvamento falhou! Uma exceção aconteceu"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_MANUAL"
-msgstr ""
+msgstr "Salvamento manual"
 
 #: ../src/saving/SaveInformation.cs:31
 msgid "SAVE_AUTOSAVE"
