@@ -8,7 +8,7 @@ CHANGED_FILE = 'files_to_check.txt'
 
 system 'git diff --cached --name-only > files_to_check.txt'
 
-system './check_formatting.rb'
+system 'ruby ./check_formatting.rb'
 
 File.unlink CHANGED_FILE
 
