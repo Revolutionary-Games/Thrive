@@ -340,8 +340,8 @@ public class Settings
             ApplySoundSettings();
         }
 
-        ApplyWindowSettings();
         ApplyLanguageSettings();
+        ApplyWindowSettings();
     }
 
     /// <summary>

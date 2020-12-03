@@ -30,9 +30,9 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 [autoload]
 
-StartupActions="*res://src/engine/StartupActions.cs"
-SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
 Invoke="*res://src/engine/Invoke.cs"
+SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
+StartupActions="*res://src/engine/StartupActions.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
 SceneManager="*res://src/engine/SceneManager.cs"
 ScreenOverlays="*res://src/engine/ScreenOverlays.tscn"
