@@ -39,12 +39,17 @@
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
+    <Compile Include="src\general\EnumHelper.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
+    <Compile Include="src\gui_common\charts\line\LineChart.cs" />
+    <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
+    <Compile Include="src\gui_common\charts\line\DataPoint.cs" />
+    <Compile Include="src\gui_common\CustomDropDown.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
@@ -241,6 +246,7 @@
     <Compile Include="src\tutorial\TutorialHelper.cs" />
     <Compile Include="src\tutorial\TutorialPhase.cs" />
     <Compile Include="src\tutorial\TutorialState.cs" />
+    <Compile Include="src\saving\serializers\RandomConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

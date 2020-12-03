@@ -6,6 +6,17 @@ using Godot;
 /// </summary>
 public static class ToolTipHelper
 {
+    private static readonly PackedScene DefaultTipScene = GD.Load<PackedScene>(
+        "res://src/gui_common/tooltip/DefaultToolTip.tscn");
+
+    /// <summary>
+    ///   Instantiates default tooltip scene
+    /// </summary>
+    public static DefaultToolTip CreateDefaultToolTip()
+    {
+        return (DefaultToolTip)DefaultTipScene.Instance();
+    }
+
     /// <summary>
     ///   Registers a Control mouse enter/exit event to display a tooltip
     /// </summary>
