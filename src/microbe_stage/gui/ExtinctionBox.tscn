@@ -57,6 +57,7 @@ custom_fonts/font = ExtResource( 1 )
 text = "EXTINCTION_BOX_TEXT"
 align = 1
 valign = 1
+autowrap = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"
