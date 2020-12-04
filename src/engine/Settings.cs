@@ -193,7 +193,7 @@ public class Settings
     /// <summary>
     ///   The current controls of the game.
     ///   It stores the godot actions like g_move_left and
-    ///   their associated <see cref="SpecifiedInputKey">ThriveInputEventWithModifiers</see>
+    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
@@ -481,10 +481,26 @@ public class Settings
     /// </summary>
     private static Settings InitializeGlobalSettings()
     {
-        Settings settings = LoadSettings();
-        settings.ApplyAll(true);
+        try
+        {
+            Settings settings = LoadSettings();
 
-        return settings;
+            if (settings == null)
+            {
+                GD.PrintErr("Loading settings from file failed, using default settings");
+                settings = new Settings();
+            }
+
+            settings.ApplyAll(true);
+
+            return settings;
+        }
+        catch (Exception e)
+        {
+            // Godot doesn't seem to catch this nicely so we print the errors ourselves
+            GD.PrintErr("Error initializing global settings: ", e);
+            throw;
+        }
     }
 
     /// <summary>
@@ -513,11 +529,7 @@ public class Settings
 
             try
             {
-                var result = JsonConvert.DeserializeObject<Settings>(text);
-                if (result == null)
-                    throw new Exception("Could not deserialize settings");
-
-                return result;
+                return JsonConvert.DeserializeObject<Settings>(text);
             }
             catch
             {

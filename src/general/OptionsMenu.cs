@@ -312,7 +312,7 @@ public class OptionsMenu : Control
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
-        InitInputGroupList();
+        inputGroupList.OnControlsChanged += OnControlsChanged;
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -422,7 +422,7 @@ public class OptionsMenu : Control
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
 
         // Input
-        inputGroupList.OnControlsChanged += OnControlsChanged;
+        BuildInputRebindControls();
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -712,7 +712,6 @@ public class OptionsMenu : Control
         // Restore and apply the old saved settings.
         Settings.Instance.LoadFromObject(savedSettings);
         Settings.Instance.ApplyAll();
-        InitInputGroupList();
         ApplySettingsToControls(Settings.Instance);
 
         if (optionsMode == OptionsMode.InGame)
@@ -776,7 +775,6 @@ public class OptionsMenu : Control
     {
         Settings.Instance.LoadFromObject(savedSettings);
         Settings.Instance.ApplyAll();
-        InitInputGroupList();
         ApplySettingsToControls(Settings.Instance);
 
         if (optionsMode == OptionsMode.InGame)
@@ -800,7 +798,7 @@ public class OptionsMenu : Control
     {
         Settings.Instance.CurrentControls.Value = InputGroupList.GetDefaultControls();
         Settings.Instance.ApplyInputSettings();
-        InitInputGroupList();
+        BuildInputRebindControls();
 
         UpdateResetSaveButtonState();
     }
@@ -810,7 +808,6 @@ public class OptionsMenu : Control
         // Sets active settings to default values and applies them to the options controls.
         Settings.Instance.LoadDefaults();
         Settings.Instance.ApplyAll();
-        InitInputGroupList();
         ApplySettingsToControls(Settings.Instance);
 
         UpdateResetSaveButtonState();
@@ -1032,7 +1029,7 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
-    private void InitInputGroupList()
+    private void BuildInputRebindControls()
     {
         inputGroupList.InitGroupList();
     }

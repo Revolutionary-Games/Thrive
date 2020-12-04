@@ -1,6 +1,9 @@
 using System;
 using Godot;
 
+/// <summary>
+///   Represents a single button, along with modifiers, used to trigger some action
+/// </summary>
 public class SpecifiedInputKey : ICloneable
 {
     public SpecifiedInputKey()
@@ -46,15 +49,15 @@ public class SpecifiedInputKey : ICloneable
         var text = string.Empty;
 
         if (Control)
-            text += TranslationServer.Translate("CTRL_PLUS");
+            text += TranslationServer.Translate("CTRL") + "+";
         if (Alt)
-            text += TranslationServer.Translate("ALT_PLUS");
+            text += TranslationServer.Translate("ALT") + "+";
         if (Shift)
-            text += TranslationServer.Translate("SHIFT_PLUS");
+            text += TranslationServer.Translate("SHIFT") + "+";
+
         if (Type == InputType.Key)
         {
-            var enumEntry = (KeyList)Code;
-            text += enumEntry.ToString();
+            text += ((KeyList)Code).ToString();
         }
         else if (Type == InputType.MouseButton)
         {
