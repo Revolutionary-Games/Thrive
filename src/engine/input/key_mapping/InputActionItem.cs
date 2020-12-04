@@ -6,12 +6,20 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Defines one input aspect like g_move_forward.
+///   Shows keys associated with one Godot input, for example g_move_forward.
 ///   Each InputActionItem has <see cref="InputEventItem">InputEventItems</see> associated with it.
-///   Used by OptionsMenu>Inputs>InputGroupContainer>InputGroupItem>InputActionItem.
-///   Does not contain changing inputs logic, but contains InputEventItems, which do.
-///   Handles the + button
 /// </summary>
+/// <remarks>
+///   <para>
+///     Used by OptionsMenu>Inputs>InputGroupContainer>InputGroupItem>InputActionItem.
+///   </para>
+///   <para>
+///     Does not contain changing inputs logic, but contains InputEventItems, which do.
+///   </para>
+///   <para>
+///     Handles the + button for adding new bindings.
+///   </para>
+/// </remarks>
 public class InputActionItem : VBoxContainer
 {
     [Export]
