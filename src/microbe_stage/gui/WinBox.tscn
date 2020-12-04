@@ -1,22 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="DynamicFont" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 65
-use_filter = true
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 22
-use_filter = true
-font_data = ExtResource( 1 )
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "FadeIn"
 length = 0.5
 tracks/0/type = "value"
@@ -53,7 +43,7 @@ alignment = 1
 margin_top = 102.0
 margin_right = 1280.0
 margin_bottom = 168.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
 text = "WIN_BOX_TITLE"
 align = 1
 valign = 1
@@ -62,14 +52,14 @@ valign = 1
 margin_top = 172.0
 margin_right = 1280.0
 margin_bottom = 196.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 1 )
 text = "WIN_TEXT"
 align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"
-anims/FadeIn = SubResource( 4 )
+anims/FadeIn = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 15.0
