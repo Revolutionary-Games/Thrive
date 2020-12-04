@@ -3,7 +3,7 @@
 
 # List of locales, edit this to add new ones:
 LOCALES = %w[bg ca cs de en es_AR es fi fr he id it pl pt_BR pt_PT ru tr
-             zh_Hans zh_Hant].freeze
+             zh_CN zh_TW].freeze
 
 require 'optparse'
 require_relative '../RubySetupSystem/RubyCommon'
