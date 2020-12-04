@@ -1,10 +1,8 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://assets/fonts/Lato-Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/FlagellumIcon.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=8]
@@ -23,6 +21,11 @@
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.cs" type="Script" id=21]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs" type="Script" id=22]
 [ext_resource path="res://src/gui_common/tooltip/ToolTipManager.cs" type="Script" id=23]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" type="DynamicFont" id=25]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=26]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=27]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=28]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=29]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
@@ -48,33 +51,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="DynamicFont" id=3]
-use_filter = true
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 25
-use_filter = true
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=5]
-use_filter = true
-font_data = ExtResource( 5 )
-
-[sub_resource type="Theme" id=6]
-default_font = SubResource( 5 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 14
-use_filter = true
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 15
-use_filter = true
-font_data = ExtResource( 5 )
-
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 11 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
@@ -88,6 +65,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -220,7 +198,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 33.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 28 )
 text = "2"
 
 [node name="Title" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/Header"]
@@ -229,7 +207,7 @@ margin_right = 259.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "MEMBRANE_RIGIDITY"
 align = 1
 autowrap = true
@@ -254,7 +232,6 @@ margin_top = 87.0
 margin_right = 318.0
 margin_bottom = 87.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 margin_top = 72.0
@@ -272,7 +249,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-0.4"
 
@@ -280,7 +257,7 @@ text = "-0.4"
 margin_left = 28.0
 margin_right = 101.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
@@ -303,7 +280,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+30"
 
@@ -311,7 +288,7 @@ text = "+30"
 margin_left = 28.0
 margin_right = 87.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
@@ -327,14 +304,14 @@ margin_top = 131.0
 margin_right = 318.0
 margin_bottom = 135.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 margin_top = 150.0
 margin_right = 318.0
 margin_bottom = 167.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 26 )
 text = "RIGIDITY_MEMBRANE_DESCRIPTION"
 autowrap = true
 
@@ -410,7 +387,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 28 )
 text = "22"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/Header"]
@@ -419,7 +396,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "CYTOPLASM"
 align = 1
 autowrap = true
@@ -446,14 +423,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 40.0
 margin_right = 95.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -471,14 +448,14 @@ margin_left = 123.0
 margin_top = 1.0
 margin_right = 148.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 152.0
 margin_right = 181.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -499,7 +476,6 @@ margin_top = 77.0
 margin_right = 318.0
 margin_bottom = 77.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer"]
 margin_top = 92.0
@@ -517,7 +493,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+4"
 
@@ -525,7 +501,7 @@ text = "+4"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -548,7 +524,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -556,7 +532,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -572,14 +548,14 @@ margin_top = 151.0
 margin_right = 318.0
 margin_bottom = 155.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer"]
 margin_top = 170.0
 margin_right = 318.0
 margin_bottom = 347.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CYTOPLASM_DESCRIPTION"
 autowrap = true
 
@@ -618,7 +594,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 382.0
+margin_right = 398.0
 margin_bottom = 406.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -650,7 +626,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "45"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/Header"]
@@ -659,7 +635,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "METABOLOSOMES"
 align = 1
 autowrap = true
@@ -686,14 +662,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 95.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -711,14 +687,14 @@ margin_left = 123.0
 margin_top = 1.0
 margin_right = 148.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 152.0
 margin_right = 181.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -739,7 +715,7 @@ margin_left = 209.0
 margin_top = 1.0
 margin_right = 283.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE_SCALES"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -752,14 +728,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 135.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "WITH_CONCENTRATION_OF"
 
 [node name="Label7" type="Label" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 139.0
 margin_right = 195.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OXYGEN_DOT"
 
 [node name="OxygenIcon" type="TextureRect" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -780,7 +756,6 @@ margin_top = 101.0
 margin_right = 318.0
 margin_bottom = 101.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer"]
 margin_top = 116.0
@@ -798,7 +773,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+1"
 
@@ -806,7 +781,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -829,7 +804,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -837,7 +812,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -853,14 +828,14 @@ margin_top = 175.0
 margin_right = 318.0
 margin_bottom = 179.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer"]
 margin_top = 194.0
 margin_right = 318.0
 margin_bottom = 391.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "METABOLOSOMES_DESCRIPTION"
 autowrap = true
 
@@ -899,7 +874,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 360.0
+margin_right = 379.0
 margin_bottom = 450.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -931,7 +906,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/Header"]
@@ -940,7 +915,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "THYLAKOIDS"
 align = 1
 autowrap = true
@@ -967,14 +942,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 59.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "PRODUCES"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 63.0
 margin_right = 118.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -992,7 +967,7 @@ margin_left = 146.0
 margin_top = 1.0
 margin_right = 251.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE_SCALES_WITH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -1005,14 +980,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 104.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CONCENTRATION_OF"
 
 [node name="Label7" type="Label" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 108.0
 margin_right = 215.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -1030,7 +1005,7 @@ margin_left = 243.0
 margin_top = 1.0
 margin_right = 266.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "AND"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -1043,14 +1018,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 70.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTENSITY_OF"
 
 [node name="Label9" type="Label" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_left = 74.0
 margin_right = 109.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "LIGHT"
 
 [node name="LightIcon" type="TextureRect" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -1068,7 +1043,6 @@ margin_top = 125.0
 margin_right = 318.0
 margin_bottom = 125.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer"]
 margin_top = 140.0
@@ -1086,7 +1060,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+1"
 
@@ -1094,7 +1068,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -1117,7 +1091,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -1125,7 +1099,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -1141,14 +1115,14 @@ margin_top = 199.0
 margin_right = 318.0
 margin_bottom = 203.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer"]
 margin_top = 218.0
 margin_right = 318.0
 margin_bottom = 435.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "THYLAKOIDS_DESCRIPTION"
 autowrap = true
 
@@ -1187,7 +1161,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 361.0
+margin_right = 380.0
 margin_bottom = 464.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -1219,7 +1193,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "45"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Header"]
@@ -1228,7 +1202,7 @@ margin_right = 259.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "CHEMOSYNTHESIZING_PROTEINS"
 align = 1
 autowrap = true
@@ -1255,14 +1229,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 158.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HYDROGEN_SULFIDE"
 
 [node name="HSIcon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -1280,14 +1254,14 @@ margin_left = 186.0
 margin_top = 1.0
 margin_right = 211.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 215.0
 margin_right = 270.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -1310,7 +1284,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 236.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -1322,14 +1296,14 @@ mouse_filter = 2
 [node name="Label12" type="Label" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_right = 51.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "CARBON"
 
 [node name="Label7" type="Label" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_left = 55.0
 margin_right = 108.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -1347,14 +1321,14 @@ margin_left = 136.0
 margin_top = 1.0
 margin_right = 200.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "ALSO_TURNS"
 
 [node name="Label9" type="Label" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_left = 204.0
 margin_right = 259.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -1377,14 +1351,14 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 49.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label11" type="Label" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer4"]
 margin_left = 53.0
 margin_right = 82.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="TextureRect" type="TextureRect" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer4"]
@@ -1401,7 +1375,6 @@ margin_top = 179.0
 margin_right = 318.0
 margin_bottom = 179.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer"]
 margin_top = 194.0
@@ -1419,7 +1392,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+1"
 
@@ -1427,7 +1400,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -1450,7 +1423,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -1458,7 +1431,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -1474,14 +1447,14 @@ margin_top = 253.0
 margin_right = 318.0
 margin_bottom = 257.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer"]
 margin_top = 272.0
 margin_right = 318.0
 margin_bottom = 449.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 autowrap = true
 
@@ -1520,7 +1493,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 366.0
+margin_right = 371.0
 margin_bottom = 330.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -1552,7 +1525,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "45"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/Header"]
@@ -1561,7 +1534,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "RUSTICYANIN"
 align = 1
 autowrap = true
@@ -1588,14 +1561,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 69.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "IRON"
 
 [node name="IronIcon" type="TextureRect" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -1613,14 +1586,14 @@ margin_left = 97.0
 margin_top = 1.0
 margin_right = 122.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 126.0
 margin_right = 155.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcon2" type="TextureRect" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -1638,7 +1611,7 @@ margin_left = 183.0
 margin_top = 1.0
 margin_right = 257.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE_SCALES"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -1651,14 +1624,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 135.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "WITH_CONCENTRATION_OF"
 
 [node name="Label12" type="Label" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 139.0
 margin_right = 246.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -1681,14 +1654,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 23.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "AND"
 
 [node name="Label12" type="Label" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_left = 27.0
 margin_right = 80.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OXYGEN"
 
 [node name="O2Icon" type="TextureRect" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -1706,7 +1679,6 @@ margin_top = 125.0
 margin_right = 318.0
 margin_bottom = 125.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer"]
 margin_top = 140.0
@@ -1724,7 +1696,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+1"
 
@@ -1732,7 +1704,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -1755,7 +1727,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -1763,7 +1735,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -1779,14 +1751,14 @@ margin_top = 199.0
 margin_right = 318.0
 margin_bottom = 203.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer"]
 margin_top = 218.0
 margin_right = 318.0
 margin_bottom = 315.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "RUSTICYANIN_DESCRIPTION"
 autowrap = true
 
@@ -1825,7 +1797,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 366.0
+margin_right = 382.0
 margin_bottom = 346.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -1857,7 +1829,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "55"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/Header"]
@@ -1866,7 +1838,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "NITROGENASE"
 align = 1
 autowrap = true
@@ -1893,14 +1865,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 69.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcoon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -1918,14 +1890,14 @@ margin_left = 97.0
 margin_top = 1.0
 margin_right = 122.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 126.0
 margin_right = 193.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "AMMONIA"
 
 [node name="AmmoniaIcon2" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -1943,7 +1915,7 @@ margin_left = 221.0
 margin_top = 1.0
 margin_right = 255.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -1956,14 +1928,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 175.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "SCALES_WITH_CONCENTRATION_OF"
 
 [node name="Label12" type="Label" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 179.0
 margin_right = 240.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "NITROGEN"
 
 [node name="NitrogenIcon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -1981,7 +1953,6 @@ margin_top = 101.0
 margin_right = 318.0
 margin_bottom = 101.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer"]
 margin_top = 116.0
@@ -1999,7 +1970,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+2"
 
@@ -2007,7 +1978,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -2030,7 +2001,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -2038,7 +2009,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -2054,14 +2025,14 @@ margin_top = 175.0
 margin_right = 318.0
 margin_bottom = 179.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer"]
 margin_top = 194.0
 margin_right = 318.0
 margin_bottom = 331.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "NITROGENASE_DESCRIPTION"
 autowrap = true
 
@@ -2100,7 +2071,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 390.0
+margin_right = 405.0
 margin_bottom = 287.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -2132,7 +2103,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "55"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/Header"]
@@ -2141,7 +2112,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "OXYTOXISOME"
 align = 1
 autowrap = true
@@ -2168,14 +2139,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 69.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcoon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -2193,14 +2164,14 @@ margin_left = 97.0
 margin_top = 1.0
 margin_right = 122.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 126.0
 margin_right = 185.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OXYTOXY"
 
 [node name="OxytoxyIcon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -2218,7 +2189,7 @@ margin_left = 213.0
 margin_top = 1.0
 margin_right = 291.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_CAN_RELEASE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -2230,7 +2201,7 @@ mouse_filter = 2
 [node name="Label7" type="Label" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_right = 227.0
 margin_bottom = 17.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TOXINS_BY_PRESSING_E"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -2243,14 +2214,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 104.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CONCENTRATION_OF"
 
 [node name="Label12" type="Label" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_left = 108.0
 margin_right = 161.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OXYGEN"
 
 [node name="OxygenIcon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -2268,7 +2239,6 @@ margin_top = 122.0
 margin_right = 318.0
 margin_bottom = 122.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer"]
 margin_top = 137.0
@@ -2286,7 +2256,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+4"
 
@@ -2294,7 +2264,7 @@ text = "+4"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -2317,7 +2287,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -2325,7 +2295,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -2341,14 +2311,14 @@ margin_top = 196.0
 margin_right = 318.0
 margin_bottom = 200.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer"]
 margin_top = 215.0
 margin_right = 318.0
 margin_bottom = 272.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "OXYTOXISOME_DESC"
 autowrap = true
 
@@ -2387,7 +2357,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 340.0
 margin_bottom = 307.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -2419,7 +2389,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "55"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/Header"]
@@ -2428,7 +2398,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "FLAGELLUM"
 align = 1
 autowrap = true
@@ -2455,14 +2425,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 29.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "USES"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 33.0
 margin_right = 62.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcoon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -2480,7 +2450,7 @@ margin_left = 90.0
 margin_top = 1.0
 margin_right = 250.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TO_INCREASE_THE_MOVEMENT"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -2492,7 +2462,7 @@ mouse_filter = 2
 [node name="Label7" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_right = 103.0
 margin_bottom = 17.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "SPEED_OF_THE_CELL"
 
 [node name="ProcessList" type="VBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer"]
@@ -2501,7 +2471,6 @@ margin_top = 98.0
 margin_right = 318.0
 margin_bottom = 98.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer"]
 margin_top = 98.0
@@ -2519,7 +2488,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+0.7"
 
@@ -2527,7 +2496,7 @@ text = "+0.7"
 margin_left = 31.0
 margin_right = 72.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "SPEED"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/Speed"]
@@ -2550,7 +2519,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+4"
 
@@ -2558,7 +2527,7 @@ text = "+4"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -2581,7 +2550,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -2589,7 +2558,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -2605,14 +2574,14 @@ margin_top = 181.0
 margin_right = 318.0
 margin_bottom = 185.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer"]
 margin_top = 200.0
 margin_right = 318.0
 margin_bottom = 277.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "FLAGELLUM_DESCRIPTION"
 autowrap = true
 
@@ -2652,7 +2621,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 104.0
+margin_bottom = 105.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -2683,7 +2652,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "30"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/Header"]
@@ -2692,7 +2661,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "PREDATORY_PILUS"
 align = 1
 autowrap = true
@@ -2717,7 +2686,6 @@ margin_top = 57.0
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer"]
 visible = false
@@ -2732,14 +2700,14 @@ margin_top = 87.0
 margin_right = 318.0
 margin_bottom = 91.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 318.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "PREDATORY_PILUS_DESCRIPTION"
 autowrap = true
 
@@ -2779,7 +2747,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 74.0
+margin_bottom = 75.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -2810,7 +2778,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 33.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "0"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/Header"]
@@ -2819,7 +2787,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "CILIA"
 align = 1
 autowrap = true
@@ -2844,7 +2812,6 @@ margin_top = 57.0
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer"]
 visible = false
@@ -2859,14 +2826,14 @@ margin_top = 87.0
 margin_right = 318.0
 margin_bottom = 91.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 318.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TO_BE_IMPLEMENTED"
 autowrap = true
 
@@ -2937,7 +2904,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 51.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "100"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/Header"]
@@ -2946,7 +2913,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "NUCLEUS"
 align = 1
 autowrap = true
@@ -2975,7 +2942,6 @@ margin_top = 105.0
 margin_right = 318.0
 margin_bottom = 105.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer"]
 margin_top = 120.0
@@ -2993,7 +2959,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+15"
 
@@ -3001,7 +2967,7 @@ text = "+15"
 margin_left = 28.0
 margin_right = 81.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -3024,7 +2990,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+10"
 
@@ -3032,7 +2998,7 @@ text = "+10"
 margin_left = 28.0
 margin_right = 175.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -3048,14 +3014,14 @@ margin_top = 179.0
 margin_right = 318.0
 margin_bottom = 183.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer"]
 margin_top = 198.0
 margin_right = 318.0
 margin_bottom = 475.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "NUCLEUS_DESCRIPTION"
 autowrap = true
 
@@ -3094,7 +3060,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 351.0
+margin_right = 367.0
 margin_bottom = 426.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -3126,7 +3092,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "45"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/Header"]
@@ -3135,7 +3101,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "MITOCHONDRION"
 align = 1
 autowrap = true
@@ -3162,14 +3128,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 95.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="GlucoseIcoon" type="TextureRect" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -3187,14 +3153,14 @@ margin_left = 123.0
 margin_top = 1.0
 margin_right = 148.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 152.0
 margin_right = 181.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -3212,7 +3178,7 @@ margin_left = 209.0
 margin_top = 1.0
 margin_right = 243.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -3225,14 +3191,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 175.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "SCALES_WITH_CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 179.0
 margin_right = 232.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OXYGEN"
 
 [node name="OxygenIcon2" type="TextureRect" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -3250,7 +3216,6 @@ margin_top = 101.0
 margin_right = 318.0
 margin_bottom = 101.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer"]
 margin_top = 116.0
@@ -3268,7 +3233,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+2"
 
@@ -3276,7 +3241,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -3299,7 +3264,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+2"
 
@@ -3307,7 +3272,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -3323,14 +3288,14 @@ margin_top = 175.0
 margin_right = 318.0
 margin_bottom = 179.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer"]
 margin_top = 194.0
 margin_right = 318.0
 margin_bottom = 411.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "MITOCHONDRION_DESCRIPTION"
 autowrap = true
 
@@ -3369,7 +3334,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 360.0
+margin_right = 379.0
 margin_bottom = 450.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -3401,7 +3366,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/Header"]
@@ -3410,7 +3375,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "CHLOROPLAST"
 align = 1
 autowrap = true
@@ -3437,14 +3402,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 59.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "PRODUCES"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 63.0
 margin_right = 118.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -3462,7 +3427,7 @@ margin_left = 146.0
 margin_top = 1.0
 margin_right = 251.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE_SCALES_WITH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -3475,14 +3440,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 104.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 108.0
 margin_right = 215.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -3500,7 +3465,7 @@ margin_left = 243.0
 margin_top = 1.0
 margin_right = 266.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "AND"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -3513,14 +3478,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 70.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTENSITY_OF"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_left = 74.0
 margin_right = 109.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "LIGHT"
 
 [node name="LightIcon" type="TextureRect" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -3538,7 +3503,6 @@ margin_top = 125.0
 margin_right = 318.0
 margin_bottom = 125.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer"]
 margin_top = 140.0
@@ -3556,7 +3520,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+2"
 
@@ -3564,7 +3528,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -3587,7 +3551,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+3"
 
@@ -3595,7 +3559,7 @@ text = "+3"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -3611,14 +3575,14 @@ margin_top = 199.0
 margin_right = 318.0
 margin_bottom = 203.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer"]
 margin_top = 218.0
 margin_right = 318.0
 margin_bottom = 435.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CHLOROPLAST_DESCRIPTION"
 autowrap = true
 
@@ -3657,7 +3621,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 360.0
+margin_right = 379.0
 margin_bottom = 450.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -3689,7 +3653,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "40"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/Header"]
@@ -3698,7 +3662,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "THERMOPLAST"
 align = 1
 autowrap = true
@@ -3725,14 +3689,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 59.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "PRODUCES"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 63.0
 margin_right = 118.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -3750,7 +3714,7 @@ margin_left = 146.0
 margin_top = 1.0
 margin_right = 251.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE_SCALES_WITH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -3763,14 +3727,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 104.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 108.0
 margin_right = 215.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -3788,7 +3752,7 @@ margin_left = 243.0
 margin_top = 1.0
 margin_right = 266.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "AND"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -3800,7 +3764,7 @@ mouse_filter = 2
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_right = 89.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "TEMPERATURE"
 
 [node name="TemperatureIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -3818,7 +3782,6 @@ margin_top = 125.0
 margin_right = 318.0
 margin_bottom = 125.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
 margin_top = 140.0
@@ -3836,7 +3799,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+2"
 
@@ -3844,7 +3807,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -3867,7 +3830,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+2"
 
@@ -3875,7 +3838,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -3891,14 +3854,14 @@ margin_top = 199.0
 margin_right = 318.0
 margin_bottom = 203.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
 margin_top = 218.0
 margin_right = 318.0
 margin_bottom = 435.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "THERMOPLAST_DESCRIPTION"
 autowrap = true
 
@@ -3937,7 +3900,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 361.0
+margin_right = 380.0
 margin_bottom = 370.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -3969,7 +3932,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "45"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/Header"]
@@ -3978,7 +3941,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "CHEMOPLAST"
 align = 1
 autowrap = true
@@ -4005,14 +3968,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 158.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HYDROGEN_SULFIDE"
 
 [node name="HSIcon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -4030,14 +3993,14 @@ margin_left = 186.0
 margin_top = 1.0
 margin_right = 211.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 215.0
 margin_right = 270.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "GLUCOSE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -4060,7 +4023,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 236.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -4072,7 +4035,7 @@ mouse_filter = 2
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_right = 107.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -4090,7 +4053,6 @@ margin_top = 125.0
 margin_right = 318.0
 margin_bottom = 125.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer"]
 margin_top = 140.0
@@ -4108,7 +4070,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+2"
 
@@ -4116,7 +4078,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -4139,7 +4101,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+2"
 
@@ -4147,7 +4109,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -4163,14 +4125,14 @@ margin_top = 199.0
 margin_right = 318.0
 margin_bottom = 203.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer"]
 margin_top = 218.0
 margin_right = 318.0
 margin_bottom = 355.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CHEMOPLAST_DESCRIPTION"
 autowrap = true
 
@@ -4209,7 +4171,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 366.0
+margin_right = 382.0
 margin_bottom = 360.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -4241,7 +4203,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/Header"]
@@ -4250,7 +4212,7 @@ margin_right = 259.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "NITROGEN_FIXING_PLASTID"
 align = 1
 autowrap = true
@@ -4277,14 +4239,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 69.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -4302,14 +4264,14 @@ margin_left = 97.0
 margin_top = 1.0
 margin_right = 122.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 126.0
 margin_right = 193.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "AMMONIA"
 
 [node name="AmmoniaIcon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -4327,7 +4289,7 @@ margin_left = 221.0
 margin_top = 1.0
 margin_right = 255.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_RATE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -4340,14 +4302,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 175.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "SCALES_WITH_CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 179.0
 margin_right = 240.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "NITROGEN"
 
 [node name="NitrogenIcon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -4370,14 +4332,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 23.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "AND"
 
 [node name="Label5" type="Label" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_left = 27.0
 margin_right = 80.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OXYGEN"
 
 [node name="OxygenIcon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -4395,7 +4357,6 @@ margin_top = 155.0
 margin_right = 318.0
 margin_bottom = 155.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer"]
 margin_top = 170.0
@@ -4413,7 +4374,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+2"
 
@@ -4421,7 +4382,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -4444,7 +4405,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+2"
 
@@ -4452,7 +4413,7 @@ text = "+2"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -4468,14 +4429,14 @@ margin_top = 229.0
 margin_right = 318.0
 margin_bottom = 233.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer"]
 margin_top = 248.0
 margin_right = 318.0
 margin_bottom = 345.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 autowrap = true
 
@@ -4546,7 +4507,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer/Header"]
@@ -4555,7 +4516,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "VACUOLE"
 align = 1
 autowrap = true
@@ -4576,7 +4537,7 @@ mouse_filter = 2
 [node name="Label" type="Label" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer/ProcessDescription"]
 margin_right = 318.0
 margin_bottom = 17.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INREASE_STORAGE_SPACE"
 
 [node name="ProcessList" type="VBoxContainer" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer"]
@@ -4584,7 +4545,6 @@ margin_top = 74.0
 margin_right = 318.0
 margin_bottom = 74.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer"]
 margin_top = 89.0
@@ -4602,7 +4562,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+15"
 
@@ -4610,7 +4570,7 @@ text = "+15"
 margin_left = 28.0
 margin_right = 81.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -4633,7 +4593,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -4641,7 +4601,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -4657,14 +4617,14 @@ margin_top = 148.0
 margin_right = 318.0
 margin_bottom = 152.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer"]
 margin_top = 167.0
 margin_right = 318.0
 margin_bottom = 324.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "VACUOLE_DESCRIPTION"
 autowrap = true
 
@@ -4703,7 +4663,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 351.0
+margin_right = 367.0
 margin_bottom = 329.0
 mouse_filter = 2
 custom_constants/separation = 15
@@ -4735,7 +4695,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "70"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/Header"]
@@ -4744,7 +4704,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "TOXIN_VACUOLE"
 align = 1
 autowrap = true
@@ -4771,14 +4731,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 36.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 69.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -4796,14 +4756,14 @@ margin_left = 97.0
 margin_top = 1.0
 margin_right = 122.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "INTO"
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 126.0
 margin_right = 185.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OXYTOXY"
 
 [node name="ToxinIcon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -4821,7 +4781,7 @@ margin_left = 213.0
 margin_top = 1.0
 margin_right = 244.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOT_CAN"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -4834,14 +4794,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 158.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "RELEASE_TOXINS_BY_PRESSING"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 162.0
 margin_right = 174.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "E_DOT"
 
 [node name="Label9" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
@@ -4849,7 +4809,7 @@ margin_left = 178.0
 margin_top = 1.0
 margin_right = 206.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "RATE"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -4862,14 +4822,14 @@ mouse_filter = 2
 margin_top = 1.0
 margin_right = 175.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "SCALES_WITH_CONCENTRATION_OF"
 
 [node name="Label5" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
 margin_left = 179.0
 margin_right = 232.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OXYGEN"
 
 [node name="OxygenIcon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer3"]
@@ -4887,7 +4847,6 @@ margin_top = 124.0
 margin_right = 318.0
 margin_bottom = 124.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer"]
 margin_top = 139.0
@@ -4905,7 +4864,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+5"
 
@@ -4913,7 +4872,7 @@ text = "+5"
 margin_left = 20.0
 margin_right = 73.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList/Storage"]
@@ -4936,7 +4895,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
@@ -4944,7 +4903,7 @@ text = "+1"
 margin_left = 20.0
 margin_right = 167.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -4960,14 +4919,14 @@ margin_top = 198.0
 margin_right = 318.0
 margin_bottom = 202.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer"]
 margin_top = 217.0
 margin_right = 318.0
 margin_bottom = 314.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TOXIN_VACUOLE_DESCRIPTION"
 autowrap = true
 
@@ -5007,7 +4966,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 104.0
+margin_bottom = 105.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -5038,7 +4997,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 33.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "0"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer/Header"]
@@ -5047,7 +5006,7 @@ margin_right = 259.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "BIOLUMINESCENT_VACUOLE"
 align = 1
 autowrap = true
@@ -5072,7 +5031,6 @@ margin_top = 87.0
 margin_right = 318.0
 margin_bottom = 87.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer"]
 visible = false
@@ -5087,14 +5045,14 @@ margin_top = 117.0
 margin_right = 318.0
 margin_bottom = 121.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer"]
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 89.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "TO_BE_IMPLEMENTED"
 autowrap = true
 
@@ -5170,7 +5128,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/Header"]
@@ -5179,7 +5137,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "NORMAL"
 align = 1
 autowrap = true
@@ -5204,7 +5162,6 @@ margin_top = 57.0
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer"]
 margin_top = 42.0
@@ -5222,7 +5179,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 35.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+10%"
 
@@ -5230,7 +5187,7 @@ text = "+10%"
 margin_left = 39.0
 margin_right = 97.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Mobility"]
@@ -5253,7 +5210,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 35.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+10%"
 
@@ -5261,7 +5218,7 @@ text = "+10%"
 margin_left = 39.0
 margin_right = 186.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -5283,7 +5240,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 35.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+30%"
 
@@ -5291,7 +5248,7 @@ text = "+30%"
 margin_left = 39.0
 margin_right = 228.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
@@ -5313,7 +5270,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 21.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-40"
 
@@ -5321,7 +5278,7 @@ text = "-40"
 margin_left = 25.0
 margin_right = 71.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Health"]
@@ -5337,14 +5294,14 @@ margin_top = 149.0
 margin_right = 318.0
 margin_bottom = 153.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer"]
 margin_top = 168.0
 margin_right = 318.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "NORMAL_MEMBRANE_DESCRIPTION"
 autowrap = true
 
@@ -5415,7 +5372,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/Header"]
@@ -5424,7 +5381,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "DOUBLE"
 align = 1
 autowrap = true
@@ -5449,7 +5406,6 @@ margin_top = 42.0
 margin_right = 318.0
 margin_bottom = 42.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer"]
 margin_top = 42.0
@@ -5467,14 +5423,14 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "+0"
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_left = 20.0
 margin_right = 93.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Mobility"]
@@ -5497,14 +5453,14 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "+0"
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
 margin_left = 20.0
 margin_right = 208.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -5526,14 +5482,14 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "+0"
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
 margin_left = 20.0
 margin_right = 255.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
@@ -5555,14 +5511,14 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "+0"
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Health"]
 margin_left = 20.0
 margin_right = 79.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Health"]
@@ -5578,14 +5534,14 @@ margin_top = 149.0
 margin_right = 318.0
 margin_bottom = 153.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer"]
 margin_top = 168.0
 margin_right = 318.0
 margin_bottom = 185.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "DOUBLE_MEMBRANE_DESCRIPTION"
 autowrap = true
 
@@ -5656,7 +5612,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/Header"]
@@ -5665,7 +5621,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "CELLULOSE"
 align = 1
 autowrap = true
@@ -5690,7 +5646,6 @@ margin_top = 57.0
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer"]
 margin_top = 42.0
@@ -5708,7 +5663,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-10%"
 
@@ -5716,7 +5671,7 @@ text = "-10%"
 margin_left = 28.0
 margin_right = 86.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Mobility"]
@@ -5739,7 +5694,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "-20%"
 
@@ -5747,7 +5702,7 @@ text = "-20%"
 margin_left = 36.0
 margin_right = 183.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -5769,7 +5724,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-20%"
 
@@ -5777,7 +5732,7 @@ text = "-20%"
 margin_left = 28.0
 margin_right = 217.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Resource Absoprtion Speed"]
@@ -5799,7 +5754,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+10"
 
@@ -5807,7 +5762,7 @@ text = "+10"
 margin_left = 28.0
 margin_right = 74.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Health"]
@@ -5829,7 +5784,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
@@ -5837,7 +5792,7 @@ text = "+40%"
 margin_left = 31.0
 margin_right = 164.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "PHYSICAL_RESISTANCE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
@@ -5859,13 +5814,13 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
 margin_left = 31.0
 margin_right = 164.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "CANNOT_ENGULF"
 
@@ -5882,14 +5837,14 @@ margin_top = 149.0
 margin_right = 318.0
 margin_bottom = 153.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer"]
 margin_top = 168.0
 margin_right = 318.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CELLULOSE_MEMBRANE_DESCRIPTION"
 autowrap = true
 
@@ -5960,7 +5915,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/Header"]
@@ -5969,7 +5924,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "CHITIN"
 align = 1
 autowrap = true
@@ -5994,7 +5949,6 @@ margin_top = 57.0
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer"]
 margin_top = 42.0
@@ -6012,7 +5966,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-10%"
 
@@ -6020,7 +5974,7 @@ text = "-10%"
 margin_left = 28.0
 margin_right = 86.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Mobility"]
@@ -6043,7 +5997,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "-20%"
 
@@ -6051,7 +6005,7 @@ text = "-20%"
 margin_left = 36.0
 margin_right = 183.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -6073,7 +6027,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-20%"
 
@@ -6081,7 +6035,7 @@ text = "-20%"
 margin_left = 28.0
 margin_right = 217.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
@@ -6103,7 +6057,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+10"
 
@@ -6111,7 +6065,7 @@ text = "+10"
 margin_left = 28.0
 margin_right = 74.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Health"]
@@ -6133,7 +6087,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
@@ -6141,7 +6095,7 @@ text = "+40%"
 margin_left = 31.0
 margin_right = 147.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "TOXIN_RESISTANCE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
@@ -6163,13 +6117,13 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
 margin_left = 31.0
 margin_right = 164.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "CANNOT_ENGULF"
 
@@ -6186,14 +6140,14 @@ margin_top = 149.0
 margin_right = 318.0
 margin_bottom = 153.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer"]
 margin_top = 168.0
 margin_right = 318.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CHITIN_MEMBRANE_DESCRIPTION"
 autowrap = true
 
@@ -6264,7 +6218,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/Header"]
@@ -6273,7 +6227,7 @@ margin_right = 259.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "CALCIUM_CARBONATE"
 align = 1
 autowrap = true
@@ -6298,7 +6252,6 @@ margin_top = 87.0
 margin_right = 318.0
 margin_bottom = 87.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer"]
 margin_top = 72.0
@@ -6316,7 +6269,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-20%"
 
@@ -6324,7 +6277,7 @@ text = "-20%"
 margin_left = 28.0
 margin_right = 86.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Mobility"]
@@ -6347,7 +6300,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "-30%"
 
@@ -6355,7 +6308,7 @@ text = "-30%"
 margin_left = 36.0
 margin_right = 183.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -6377,7 +6330,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-30%"
 
@@ -6385,7 +6338,7 @@ text = "-30%"
 margin_left = 28.0
 margin_right = 217.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
@@ -6407,7 +6360,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40"
 
@@ -6415,7 +6368,7 @@ text = "+40"
 margin_left = 28.0
 margin_right = 74.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Health"]
@@ -6437,7 +6390,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-40%"
 
@@ -6445,7 +6398,7 @@ text = "-40%"
 margin_left = 31.0
 margin_right = 164.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "PHYSICAL_RESISTANCE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
@@ -6467,7 +6420,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+60%"
 
@@ -6475,7 +6428,7 @@ text = "+60%"
 margin_left = 31.0
 margin_right = 147.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "TOXIN_RESISTANCE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
@@ -6497,13 +6450,13 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
 margin_left = 31.0
 margin_right = 164.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "CANNOT_ENGULF"
 
@@ -6520,14 +6473,14 @@ margin_top = 227.0
 margin_right = 318.0
 margin_bottom = 231.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer"]
 margin_top = 246.0
 margin_right = 318.0
 margin_bottom = 363.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 autowrap = true
 
@@ -6598,7 +6551,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 29 )
 text = "50"
 
 [node name="Title" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/Header"]
@@ -6607,7 +6560,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "SILICA"
 align = 1
 autowrap = true
@@ -6632,7 +6585,6 @@ margin_top = 42.0
 margin_right = 318.0
 margin_bottom = 42.0
 mouse_filter = 2
-theme = SubResource( 6 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer"]
 margin_top = 42.0
@@ -6650,7 +6602,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-20%"
 
@@ -6658,7 +6610,7 @@ text = "-20%"
 margin_left = 28.0
 margin_right = 86.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Mobility"]
@@ -6681,7 +6633,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "-30%"
 
@@ -6689,7 +6641,7 @@ text = "-30%"
 margin_left = 36.0
 margin_right = 183.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
@@ -6711,7 +6663,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-30%"
 
@@ -6719,7 +6671,7 @@ text = "-30%"
 margin_left = 28.0
 margin_right = 217.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
@@ -6741,7 +6693,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40"
 
@@ -6749,7 +6701,7 @@ text = "+40"
 margin_left = 28.0
 margin_right = 74.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Health"]
@@ -6771,7 +6723,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+60%"
 
@@ -6779,7 +6731,7 @@ text = "+60%"
 margin_left = 31.0
 margin_right = 164.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "PHYSICAL_RESISTANCE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
@@ -6801,7 +6753,7 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-40%"
 
@@ -6809,7 +6761,7 @@ text = "-40%"
 margin_left = 31.0
 margin_right = 147.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 text = "TOXIN_RESISTANCE"
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
@@ -6831,13 +6783,13 @@ script = ExtResource( 21 )
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
 margin_left = 31.0
 margin_right = 164.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 27 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "CANNOT_ENGULF"
 
@@ -6854,14 +6806,14 @@ margin_top = 197.0
 margin_right = 318.0
 margin_bottom = 201.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer"]
 margin_top = 216.0
 margin_right = 318.0
 margin_bottom = 333.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 28 )
 text = "SILICA_MEMBRANE_DESCRIPTION"
 autowrap = true
 
