@@ -15,4 +15,4 @@ The following fonts are licensed under the SIL Open Font License
 - Lato.ttf (Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic with Reserved Font Name "Lato")
 - Noto (Copyright (c) Google)
 
-SIL license text is included in the fonts folder.
+SIL license text is included in "OFL.txt" file.
