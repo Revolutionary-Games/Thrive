@@ -20,6 +20,8 @@ public class RunOnAxisAttribute : InputAttribute
     private readonly Dictionary<RunOnKeyDownAttribute, float> inputs =
         new Dictionary<RunOnKeyDownAttribute, float>();
 
+    private RunOnKeyDownAttribute currentlyPressed;
+
     /// <summary>
     ///   Instantiates a new RunOnAxisAttribute.
     /// </summary>
@@ -53,11 +55,22 @@ public class RunOnAxisAttribute : InputAttribute
     /// <summary>
     ///   Get the average of all currently fired inputs.
     /// </summary>
-    public float CurrentResult =>
-        inputs.Where(p => p.Key.ReadHeldOrPrimedAndResetPrimed())
-            .Select(p => p.Value)
-            .DefaultIfEmpty(DefaultState)
-            .Average();
+    public float CurrentResult
+    {
+        get
+        {
+            if (currentlyPressed == null)
+                return DefaultState;
+
+            if (!currentlyPressed.ReadHeldOrPrimedAndResetPrimed())
+            {
+                currentlyPressed = inputs.Keys.FirstOrDefault(p => p.ReadHeldOrPrimedAndResetPrimed());
+                return currentlyPressed == null ? DefaultState : inputs[currentlyPressed];
+            }
+
+            return inputs[currentlyPressed];
+        }
+    }
 
     public override bool OnInput(InputEvent @event)
     {
@@ -66,7 +79,10 @@ public class RunOnAxisAttribute : InputAttribute
         foreach (var input in inputs)
         {
             if (input.Key.OnInput(@event))
+            {
                 wasUsed = true;
+                currentlyPressed = input.Key;
+            }
         }
 
         return wasUsed;
@@ -74,12 +90,7 @@ public class RunOnAxisAttribute : InputAttribute
 
     public override void OnProcess(float delta)
     {
-        const float epsilon = 0.0001f;
-
-        var currentResult = CurrentResult;
-
-        if (InvokeWithNoInput || Math.Abs(currentResult - DefaultState) > epsilon)
-            CallMethod(delta, currentResult);
+        CallMethod(delta, CurrentResult);
     }
 
     public override void FocusLost()
