@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/CompoundPanelShortened.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/environmentPanelShortened.png" type="Texture" id=14]
 [ext_resource path="res://assets/textures/gui/bevel/agentsPanel.png" type="Texture" id=15]
@@ -57,7 +57,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=55]
 [ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=56]
 [ext_resource path="res://assets/textures/gui/bevel/oxytoxy.png" type="Texture" id=57]
-[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=58]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=59]
 [ext_resource path="res://assets/textures/gui/bevel/atp.png" type="Texture" id=60]
 [ext_resource path="res://assets/textures/gui/bevel/Hitpoints.png" type="Texture" id=61]
@@ -65,468 +64,25 @@
 [ext_resource path="res://assets/textures/gui/bevel/AtpBar.png" type="Texture" id=63]
 [ext_resource path="res://assets/textures/gui/bevel/HealthBar.png" type="Texture" id=64]
 [ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture" id=65]
-[ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=66]
+[ext_resource path="res://src/gui_common/fonts/Jura-Medium-Bigger.tres" type="DynamicFont" id=66]
 [ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=67]
-[ext_resource path="res://assets/fonts/Lato-Bold.ttf" type="DynamicFontData" id=68]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=68]
 [ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=71]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=72]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=73]
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=77]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 73 )
-region_rect = Rect2( 0, 0, 429, 1 )
-expand_margin_left = 10.0
-expand_margin_right = 10.0
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 80 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 13
-use_filter = true
-font_data = ExtResource( 58 )
-
-[sub_resource type="Theme" id=3]
-default_font = SubResource( 2 )
-Button/colors/font_color = Color( 0, 0, 0, 1 )
-Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
-Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-Button/constants/hseparation = 2
-Button/fonts/font = null
-Button/styles/disabled = null
-Button/styles/focus = null
-Button/styles/hover = null
-Button/styles/normal = null
-Button/styles/pressed = null
-CheckBox/colors/font_color = Color( 0, 0, 0, 1 )
-CheckBox/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-CheckBox/colors/font_color_hover = Color( 0, 0, 0, 1 )
-CheckBox/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
-CheckBox/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-CheckBox/constants/check_vadjust = 0
-CheckBox/constants/hseparation = 4
-CheckBox/fonts/font = null
-CheckBox/icons/checked = null
-CheckBox/icons/radio_checked = null
-CheckBox/icons/radio_unchecked = null
-CheckBox/icons/unchecked = null
-CheckBox/styles/disabled = null
-CheckBox/styles/focus = null
-CheckBox/styles/hover = null
-CheckBox/styles/hover_pressed = null
-CheckBox/styles/normal = null
-CheckBox/styles/pressed = null
-CheckButton/colors/font_color = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-CheckButton/constants/check_vadjust = 0
-CheckButton/constants/hseparation = 4
-CheckButton/fonts/font = null
-CheckButton/icons/off = null
-CheckButton/icons/off_disabled = null
-CheckButton/icons/on = null
-CheckButton/icons/on_disabled = null
-CheckButton/styles/disabled = null
-CheckButton/styles/focus = null
-CheckButton/styles/hover = null
-CheckButton/styles/hover_pressed = null
-CheckButton/styles/normal = null
-CheckButton/styles/pressed = null
-ColorPicker/constants/h_width = 30
-ColorPicker/constants/label_width = 10
-ColorPicker/constants/margin = 4
-ColorPicker/constants/sv_height = 256
-ColorPicker/constants/sv_width = 256
-ColorPicker/icons/add_preset = null
-ColorPicker/icons/color_hue = null
-ColorPicker/icons/color_sample = null
-ColorPicker/icons/overbright_indicator = null
-ColorPicker/icons/preset_bg = null
-ColorPicker/icons/screen_picker = null
-ColorPickerButton/colors/font_color = Color( 0, 0, 0, 1 )
-ColorPickerButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-ColorPickerButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-ColorPickerButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-ColorPickerButton/constants/hseparation = 2
-ColorPickerButton/fonts/font = null
-ColorPickerButton/icons/bg = null
-ColorPickerButton/styles/disabled = null
-ColorPickerButton/styles/focus = null
-ColorPickerButton/styles/hover = null
-ColorPickerButton/styles/normal = null
-ColorPickerButton/styles/pressed = null
-Dialogs/constants/button_margin = 32
-Dialogs/constants/margin = 8
-FileDialog/colors/file_icon_modulate = Color( 0, 0, 0, 1 )
-FileDialog/colors/files_disabled = Color( 0, 0, 0, 1 )
-FileDialog/colors/folder_icon_modulate = Color( 0, 0, 0, 1 )
-FileDialog/icons/file = null
-FileDialog/icons/folder = null
-FileDialog/icons/parent_folder = null
-FileDialog/icons/reload = null
-FileDialog/icons/toggle_hidden = null
-Fonts/fonts/large = null
-Fonts/fonts/normal = null
-GraphEdit/colors/activity = Color( 0, 0, 0, 1 )
-GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )
-GraphEdit/colors/grid_minor = Color( 0, 0, 0, 1 )
-GraphEdit/colors/selection_fill = Color( 0, 0, 0, 1 )
-GraphEdit/colors/selection_stroke = Color( 0, 0, 0, 1 )
-GraphEdit/constants/bezier_len_neg = 160
-GraphEdit/constants/bezier_len_pos = 80
-GraphEdit/constants/port_grab_distance_horizontal = 48
-GraphEdit/constants/port_grab_distance_vertical = 6
-GraphEdit/icons/minus = null
-GraphEdit/icons/more = null
-GraphEdit/icons/reset = null
-GraphEdit/icons/snap = null
-GraphEdit/styles/bg = null
-GraphNode/colors/close_color = Color( 0, 0, 0, 1 )
-GraphNode/colors/resizer_color = Color( 0, 0, 0, 1 )
-GraphNode/colors/title_color = Color( 0, 0, 0, 1 )
-GraphNode/constants/close_offset = 18
-GraphNode/constants/port_offset = 3
-GraphNode/constants/separation = 1
-GraphNode/constants/title_offset = 20
-GraphNode/fonts/title_font = null
-GraphNode/icons/close = null
-GraphNode/icons/port = null
-GraphNode/icons/resizer = null
-GraphNode/styles/breakpoint = null
-GraphNode/styles/comment = null
-GraphNode/styles/commentfocus = null
-GraphNode/styles/defaultfocus = null
-GraphNode/styles/defaultframe = null
-GraphNode/styles/frame = null
-GraphNode/styles/position = null
-GraphNode/styles/selectedframe = null
-GridContainer/constants/hseparation = 4
-GridContainer/constants/vseparation = 4
-HBoxContainer/constants/separation = 4
-HScrollBar/icons/decrement = null
-HScrollBar/icons/decrement_highlight = null
-HScrollBar/icons/increment = null
-HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = null
-HScrollBar/styles/grabber_highlight = null
-HScrollBar/styles/grabber_pressed = null
-HScrollBar/styles/scroll = null
-HScrollBar/styles/scroll_focus = null
-HSeparator/constants/separation = 4
-HSeparator/styles/separator = SubResource( 1 )
-HSlider/icons/grabber = null
-HSlider/icons/grabber_disabled = null
-HSlider/icons/grabber_highlight = null
-HSlider/icons/tick = null
-HSlider/styles/grabber_area = null
-HSlider/styles/grabber_area_highlight = null
-HSlider/styles/slider = null
-HSplitContainer/constants/autohide = 1
-HSplitContainer/constants/separation = 12
-HSplitContainer/icons/grabber = null
-HSplitContainer/styles/bg = null
-Icons/icons/close = null
-ItemList/colors/font_color = Color( 0, 0, 0, 1 )
-ItemList/colors/font_color_selected = Color( 0, 0, 0, 1 )
-ItemList/colors/guide_color = Color( 0, 0, 0, 1 )
-ItemList/constants/hseparation = 4
-ItemList/constants/icon_margin = 4
-ItemList/constants/line_separation = 2
-ItemList/constants/vseparation = 2
-ItemList/fonts/font = null
-ItemList/styles/bg = null
-ItemList/styles/bg_focus = null
-ItemList/styles/cursor = null
-ItemList/styles/cursor_unfocused = null
-ItemList/styles/selected = null
-ItemList/styles/selected_focus = null
-Label/colors/font_color = Color( 1, 1, 1, 1 )
-Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
-Label/colors/font_outline_modulate = Color( 0, 0, 0, 0 )
-Label/constants/line_spacing = 3
-Label/constants/shadow_as_outline = 0
-Label/constants/shadow_offset_x = 1
-Label/constants/shadow_offset_y = 1
-Label/fonts/font = null
-Label/styles/normal = null
-LineEdit/colors/clear_button_color = Color( 0, 0, 0, 1 )
-LineEdit/colors/clear_button_color_pressed = Color( 0, 0, 0, 1 )
-LineEdit/colors/cursor_color = Color( 0, 0, 0, 1 )
-LineEdit/colors/font_color = Color( 0, 0, 0, 1 )
-LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
-LineEdit/colors/font_color_uneditable = Color( 0, 0, 0, 1 )
-LineEdit/colors/selection_color = Color( 0, 0, 0, 1 )
-LineEdit/constants/minimum_spaces = 12
-LineEdit/fonts/font = null
-LineEdit/icons/clear = null
-LineEdit/styles/focus = null
-LineEdit/styles/normal = null
-LineEdit/styles/read_only = null
-LinkButton/colors/font_color = Color( 0, 0, 0, 1 )
-LinkButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-LinkButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-LinkButton/constants/underline_spacing = 2
-LinkButton/fonts/font = null
-LinkButton/styles/focus = null
-MarginContainer/constants/margin_bottom = 0
-MarginContainer/constants/margin_left = 0
-MarginContainer/constants/margin_right = 0
-MarginContainer/constants/margin_top = 0
-MenuButton/colors/font_color = Color( 0, 0, 0, 1 )
-MenuButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-MenuButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-MenuButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-MenuButton/constants/hseparation = 3
-MenuButton/fonts/font = null
-MenuButton/styles/disabled = null
-MenuButton/styles/focus = null
-MenuButton/styles/hover = null
-MenuButton/styles/normal = null
-MenuButton/styles/pressed = null
-OptionButton/colors/font_color = Color( 0, 0, 0, 1 )
-OptionButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-OptionButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-OptionButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-OptionButton/constants/arrow_margin = 2
-OptionButton/constants/hseparation = 2
-OptionButton/fonts/font = null
-OptionButton/icons/arrow = null
-OptionButton/styles/disabled = null
-OptionButton/styles/focus = null
-OptionButton/styles/hover = null
-OptionButton/styles/normal = null
-OptionButton/styles/pressed = null
-Panel/styles/panel = null
-PanelContainer/styles/panel = null
-PopupDialog/styles/panel = null
-PopupMenu/colors/font_color = Color( 0, 0, 0, 1 )
-PopupMenu/colors/font_color_accel = Color( 0, 0, 0, 1 )
-PopupMenu/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-PopupMenu/colors/font_color_hover = Color( 0, 0, 0, 1 )
-PopupMenu/constants/hseparation = 4
-PopupMenu/constants/vseparation = 4
-PopupMenu/fonts/font = null
-PopupMenu/icons/checked = null
-PopupMenu/icons/radio_checked = null
-PopupMenu/icons/radio_unchecked = null
-PopupMenu/icons/submenu = null
-PopupMenu/icons/unchecked = null
-PopupMenu/styles/hover = null
-PopupMenu/styles/labeled_separator_left = null
-PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = null
-PopupMenu/styles/panel_disabled = null
-PopupMenu/styles/separator = null
-PopupPanel/styles/panel = null
-ProgressBar/colors/font_color = Color( 0, 0, 0, 1 )
-ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
-ProgressBar/fonts/font = null
-ProgressBar/styles/bg = null
-ProgressBar/styles/fg = null
-RichTextLabel/colors/default_color = Color( 0, 0, 0, 1 )
-RichTextLabel/colors/font_color_selected = Color( 0, 0, 0, 1 )
-RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
-RichTextLabel/colors/selection_color = Color( 0, 0, 0, 1 )
-RichTextLabel/constants/line_separation = 1
-RichTextLabel/constants/shadow_as_outline = 0
-RichTextLabel/constants/shadow_offset_x = 1
-RichTextLabel/constants/shadow_offset_y = 1
-RichTextLabel/constants/table_hseparation = 3
-RichTextLabel/constants/table_vseparation = 3
-RichTextLabel/fonts/bold_font = null
-RichTextLabel/fonts/bold_italics_font = null
-RichTextLabel/fonts/italics_font = null
-RichTextLabel/fonts/mono_font = null
-RichTextLabel/fonts/normal_font = null
-RichTextLabel/styles/focus = null
-RichTextLabel/styles/normal = null
-ScrollContainer/styles/bg = null
-SpinBox/icons/updown = null
-TabContainer/colors/font_color_bg = Color( 0, 0, 0, 1 )
-TabContainer/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
-TabContainer/constants/hseparation = 4
-TabContainer/constants/label_valign_bg = 2
-TabContainer/constants/label_valign_fg = 0
-TabContainer/constants/side_margin = 8
-TabContainer/constants/top_margin = 24
-TabContainer/fonts/font = null
-TabContainer/icons/decrement = null
-TabContainer/icons/decrement_highlight = null
-TabContainer/icons/increment = null
-TabContainer/icons/increment_highlight = null
-TabContainer/icons/menu = null
-TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = null
-TabContainer/styles/tab_bg = null
-TabContainer/styles/tab_disabled = null
-TabContainer/styles/tab_fg = null
-Tabs/colors/font_color_bg = Color( 0, 0, 0, 1 )
-Tabs/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-Tabs/colors/font_color_fg = Color( 0, 0, 0, 1 )
-Tabs/constants/hseparation = 4
-Tabs/constants/label_valign_bg = 2
-Tabs/constants/label_valign_fg = 0
-Tabs/constants/top_margin = 24
-Tabs/fonts/font = null
-Tabs/icons/close = null
-Tabs/icons/decrement = null
-Tabs/icons/decrement_highlight = null
-Tabs/icons/increment = null
-Tabs/icons/increment_highlight = null
-Tabs/styles/button = null
-Tabs/styles/button_pressed = null
-Tabs/styles/panel = null
-Tabs/styles/tab_bg = null
-Tabs/styles/tab_disabled = null
-Tabs/styles/tab_fg = null
-TextEdit/colors/background_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/bookmark_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/brace_mismatch_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/breakpoint_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/caret_background_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/caret_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/code_folding_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_background_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_existing_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_font_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_scroll_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_selected_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/current_line_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/executing_line_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/font_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/font_color_readonly = Color( 0, 0, 0, 1 )
-TextEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
-TextEdit/colors/function_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/line_number_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/mark_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/member_variable_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/number_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/safe_line_number_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/selection_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/symbol_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/word_highlighted_color = Color( 0, 0, 0, 1 )
-TextEdit/constants/completion_lines = 7
-TextEdit/constants/completion_max_width = 50
-TextEdit/constants/completion_scroll_width = 3
-TextEdit/constants/line_spacing = 4
-TextEdit/fonts/font = null
-TextEdit/icons/fold = null
-TextEdit/icons/folded = null
-TextEdit/icons/space = null
-TextEdit/icons/tab = null
-TextEdit/styles/completion = null
-TextEdit/styles/focus = null
-TextEdit/styles/normal = null
-TextEdit/styles/read_only = null
-ToolButton/colors/font_color = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-ToolButton/constants/hseparation = 3
-ToolButton/fonts/font = null
-ToolButton/styles/disabled = null
-ToolButton/styles/focus = null
-ToolButton/styles/hover = null
-ToolButton/styles/normal = null
-ToolButton/styles/pressed = null
-TooltipLabel/colors/font_color = Color( 0, 0, 0, 1 )
-TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
-TooltipLabel/constants/shadow_offset_x = 1
-TooltipLabel/constants/shadow_offset_y = 1
-TooltipLabel/fonts/font = null
-TooltipPanel/styles/panel = null
-Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
-Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
-Tree/colors/font_color = Color( 0, 0, 0, 1 )
-Tree/colors/font_color_selected = Color( 0, 0, 0, 1 )
-Tree/colors/guide_color = Color( 0, 0, 0, 1 )
-Tree/colors/relationship_line_color = Color( 0, 0, 0, 1 )
-Tree/colors/title_button_color = Color( 0, 0, 0, 1 )
-Tree/constants/button_margin = 4
-Tree/constants/draw_guides = 1
-Tree/constants/draw_relationship_lines = 0
-Tree/constants/hseparation = 4
-Tree/constants/item_margin = 12
-Tree/constants/scroll_border = 4
-Tree/constants/scroll_speed = 12
-Tree/constants/vseparation = 4
-Tree/fonts/font = null
-Tree/fonts/title_button_font = null
-Tree/icons/arrow = null
-Tree/icons/arrow_collapsed = null
-Tree/icons/checked = null
-Tree/icons/select_arrow = null
-Tree/icons/unchecked = null
-Tree/icons/updown = null
-Tree/styles/bg = null
-Tree/styles/bg_focus = null
-Tree/styles/button_pressed = null
-Tree/styles/cursor = null
-Tree/styles/cursor_unfocused = null
-Tree/styles/custom_button = null
-Tree/styles/custom_button_hover = null
-Tree/styles/custom_button_pressed = null
-Tree/styles/selected = null
-Tree/styles/selected_focus = null
-Tree/styles/title_button_hover = null
-Tree/styles/title_button_normal = null
-Tree/styles/title_button_pressed = null
-VBoxContainer/constants/separation = 4
-VScrollBar/icons/decrement = null
-VScrollBar/icons/decrement_highlight = null
-VScrollBar/icons/increment = null
-VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = null
-VScrollBar/styles/grabber_highlight = null
-VScrollBar/styles/grabber_pressed = null
-VScrollBar/styles/scroll = null
-VScrollBar/styles/scroll_focus = null
-VSeparator/constants/separation = 4
-VSeparator/styles/separator = null
-VSlider/icons/grabber = null
-VSlider/icons/grabber_disabled = null
-VSlider/icons/grabber_highlight = null
-VSlider/icons/tick = null
-VSlider/styles/grabber_area = null
-VSlider/styles/grabber_area_highlight = null
-VSlider/styles/slider = null
-VSplitContainer/constants/autohide = 1
-VSplitContainer/constants/separation = 12
-VSplitContainer/icons/grabber = null
-VSplitContainer/styles/bg = null
-WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
-WindowDialog/constants/close_h_ofs = 18
-WindowDialog/constants/close_v_ofs = 18
-WindowDialog/constants/scaleborder_size = 4
-WindowDialog/constants/title_height = 20
-WindowDialog/fonts/title_font = null
-WindowDialog/icons/close = null
-WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = null
-
-[sub_resource type="DynamicFont" id=4]
-size = 15
-use_filter = true
-font_data = ExtResource( 68 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 15
-use_filter = true
-font_data = ExtResource( 58 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 18
-use_filter = true
-font_data = ExtResource( 12 )
-
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 43 )
 region_rect = Rect2( 0, 0, 20, 20 )
 expand_margin_left = 1.0
@@ -535,97 +91,87 @@ expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 modulate_color = Color( 0, 0.435294, 0.52549, 1 )
 
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 44 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 43 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="ButtonGroup" id=10]
+[sub_resource type="ButtonGroup" id=5]
 
-[sub_resource type="StyleBoxTexture" id=11]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 modulate_color = Color( 0, 0.435294, 0.52549, 1 )
 
-[sub_resource type="StyleBoxTexture" id=12]
+[sub_resource type="StyleBoxTexture" id=7]
 texture = ExtResource( 45 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=13]
+[sub_resource type="StyleBoxTexture" id=8]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0, 0.596078, 0.764706, 1 )
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="DynamicFont" id=16]
-size = 14
-use_filter = true
-font_data = ExtResource( 58 )
-
-[sub_resource type="StyleBoxFlat" id=17]
+[sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.141176, 0.278431, 0.682353, 1 )
 
-[sub_resource type="StyleBoxFlat" id=18]
+[sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0.407843, 0.698039, 0.431373, 1 )
 
-[sub_resource type="ButtonGroup" id=19]
+[sub_resource type="ButtonGroup" id=13]
 
-[sub_resource type="StyleBoxTexture" id=20]
+[sub_resource type="StyleBoxTexture" id=14]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 modulate_color = Color( 0, 0.435294, 0.52549, 1 )
 
-[sub_resource type="StyleBoxTexture" id=21]
+[sub_resource type="StyleBoxTexture" id=15]
 texture = ExtResource( 45 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=22]
+[sub_resource type="StyleBoxTexture" id=16]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxFlat" id=23]
+[sub_resource type="StyleBoxFlat" id=17]
 bg_color = Color( 0.568627, 0.611765, 0.615686, 1 )
 
-[sub_resource type="StyleBoxFlat" id=24]
+[sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=19]
 bg_color = Color( 0.631373, 0.396078, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.380392, 0.141176, 0.8, 1 )
 
-[sub_resource type="StyleBoxFlat" id=27]
+[sub_resource type="StyleBoxFlat" id=21]
 bg_color = Color( 0.462745, 0.470588, 0.184314, 1 )
 
-[sub_resource type="StyleBoxFlat" id=28]
+[sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 
-[sub_resource type="StyleBoxTexture" id=29]
+[sub_resource type="StyleBoxTexture" id=23]
 texture = ExtResource( 15 )
 region_rect = Rect2( 0, 0, 250, 91 )
 
-[sub_resource type="StyleBoxFlat" id=30]
+[sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
 
-[sub_resource type="StyleBoxFlat" id=31]
+[sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="StyleBoxEmpty" id=32]
+[sub_resource type="StyleBoxEmpty" id=26]
 
-[sub_resource type="DynamicFont" id=33]
-size = 21
-use_filter = true
-font_data = ExtResource( 66 )
-
-[sub_resource type="StyleBoxFlat" id=34]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
 border_width_left = 2
 border_width_top = 2
@@ -633,21 +179,11 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.533333, 0.745098, 0.815686, 0.392157 )
 
-[sub_resource type="DynamicFont" id=35]
-size = 12
-use_filter = true
-font_data = ExtResource( 12 )
-
-[sub_resource type="StyleBoxTexture" id=36]
+[sub_resource type="StyleBoxTexture" id=28]
 texture = ExtResource( 62 )
 region_rect = Rect2( 0, 0, 86, 52 )
 
-[sub_resource type="DynamicFont" id=37]
-size = 14
-use_filter = true
-font_data = ExtResource( 58 )
-
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=29]
 length = 5.0
 loop = true
 tracks/0/type = "value"
@@ -675,7 +211,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.8, 0.8, 0.0 ]
 }
 
-[sub_resource type="Animation" id=39]
+[sub_resource type="Animation" id=30]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("BottomLeft/LeftPanels:modulate")
@@ -714,7 +250,7 @@ tracks/2/keys = {
 "values": [ Vector2( 10, 37 ), Vector2( -350, 37 ) ]
 }
 
-[sub_resource type="Animation" id=40]
+[sub_resource type="Animation" id=31]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("BottomLeft/LeftPanels:modulate")
@@ -870,12 +406,11 @@ margin_left = 10.0
 margin_top = 5.0
 margin_right = 218.0
 margin_bottom = 57.0
-theme = SubResource( 3 )
 
 [node name="MousePos" type="Label" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 208.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 71 )
 text = "AT_CURSOR"
 align = 1
 __meta__ = {
@@ -899,7 +434,7 @@ margin_left = 10.0
 margin_right = 208.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 68 )
 text = "NOTHING_HERE"
 valign = 1
 __meta__ = {
@@ -910,7 +445,7 @@ __meta__ = {
 visible = false
 margin_top = 56.0
 margin_right = 208.0
-margin_bottom = 96.0
+margin_bottom = 80.0
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds"]
@@ -923,7 +458,7 @@ margin_left = 10.0
 margin_right = 208.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 68 )
 text = "COMPOUNDS_COLON"
 valign = 1
 __meta__ = {
@@ -933,8 +468,9 @@ __meta__ = {
 [node name="List" type="VBoxContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds"]
 margin_top = 24.0
 margin_right = 208.0
-margin_bottom = 40.0
+margin_bottom = 24.0
 size_flags_vertical = 3
+theme = SubResource( 1 )
 
 [node name="SpeciesSeparator" type="HSeparator" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
@@ -945,9 +481,9 @@ rect_min_size = Vector2( 0, 5 )
 
 [node name="HoveredCells" type="VBoxContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 99.0
+margin_top = 56.0
 margin_right = 208.0
-margin_bottom = 153.0
+margin_bottom = 97.0
 size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells"]
@@ -960,7 +496,7 @@ margin_left = 10.0
 margin_right = 208.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 68 )
 text = "SPECIES_COLON"
 valign = 1
 __meta__ = {
@@ -970,8 +506,9 @@ __meta__ = {
 [node name="List" type="VBoxContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells"]
 margin_top = 24.0
 margin_right = 208.0
-margin_bottom = 54.0
+margin_bottom = 41.0
 size_flags_vertical = 3
+theme = SubResource( 1 )
 
 [node name="BottomLeft" type="Control" parent="MicrobeHUD"]
 anchor_top = 1.0
@@ -1040,7 +577,7 @@ margin_top = 8.0
 margin_right = 126.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 77 )
 text = "ENVIRONMENT"
 
 [node name="EnvironmentExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
@@ -1052,14 +589,14 @@ rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/normal = SubResource( 9 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
 toggle_mode = true
 pressed = true
 action_mode = 0
 enabled_focus_mode = 0
-group = SubResource( 10 )
+group = SubResource( 5 )
 
 [node name="EnvironmentCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 156.0
@@ -1070,13 +607,13 @@ rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_styles/hover = SubResource( 11 )
-custom_styles/pressed = SubResource( 12 )
-custom_styles/normal = SubResource( 13 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
-group = SubResource( 10 )
+group = SubResource( 5 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
 margin_top = 39.0
@@ -1101,8 +638,8 @@ show_behind_parent = true
 margin_right = 162.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 14 )
-custom_styles/bg = SubResource( 15 )
+custom_styles/fg = SubResource( 9 )
+custom_styles/bg = SubResource( 10 )
 step = 0.1
 percent_visible = false
 
@@ -1127,7 +664,7 @@ margin_top = -12.5
 margin_right = 38.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "O2"
 valign = 1
 __meta__ = {
@@ -1146,7 +683,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0%"
 align = 2
 valign = 1
@@ -1160,8 +697,8 @@ margin_top = 29.0
 margin_right = 162.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 17 )
-custom_styles/bg = SubResource( 15 )
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 10 )
 step = 0.1
 percent_visible = false
 
@@ -1186,7 +723,7 @@ margin_top = -12.5
 margin_right = 46.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "CO2"
 valign = 1
 __meta__ = {
@@ -1205,7 +742,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0%"
 align = 2
 valign = 1
@@ -1219,8 +756,8 @@ margin_top = 58.0
 margin_right = 162.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 18 )
-custom_styles/bg = SubResource( 15 )
+custom_styles/fg = SubResource( 12 )
+custom_styles/bg = SubResource( 10 )
 step = 0.1
 percent_visible = false
 
@@ -1245,7 +782,7 @@ margin_top = -12.5
 margin_right = 49.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "N2"
 valign = 1
 __meta__ = {
@@ -1264,7 +801,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0%"
 align = 2
 valign = 1
@@ -1301,7 +838,7 @@ margin_top = -12.5
 margin_right = 60.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "TEMPERATURE_SHORT"
 valign = 1
 __meta__ = {
@@ -1319,7 +856,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "55° C"
 align = 2
 valign = 1
@@ -1357,7 +894,7 @@ margin_top = -12.5
 margin_right = 66.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "LIGHT"
 valign = 1
 __meta__ = {
@@ -1375,7 +912,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0%"
 align = 2
 valign = 1
@@ -1412,7 +949,7 @@ margin_top = -12.5
 margin_right = 69.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "PRESSURE_SHORT"
 valign = 1
 __meta__ = {
@@ -1430,7 +967,7 @@ margin_right = -4.0
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "200 kPa"
 align = 2
 valign = 1
@@ -1488,7 +1025,7 @@ margin_right = 149.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 145, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 77 )
 text = "COMPOUNDS"
 
 [node name="CompoundExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
@@ -1500,14 +1037,14 @@ rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/normal = SubResource( 9 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
 toggle_mode = true
 pressed = true
 action_mode = 0
 enabled_focus_mode = 0
-group = SubResource( 19 )
+group = SubResource( 13 )
 
 [node name="CompoundCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 179.0
@@ -1518,13 +1055,13 @@ rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_styles/hover = SubResource( 20 )
-custom_styles/pressed = SubResource( 21 )
-custom_styles/normal = SubResource( 22 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
 toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
-group = SubResource( 19 )
+group = SubResource( 13 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer"]
 margin_top = 44.0
@@ -1557,8 +1094,8 @@ margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 23 )
-custom_styles/bg = SubResource( 24 )
+custom_styles/fg = SubResource( 17 )
+custom_styles/bg = SubResource( 18 )
 step = 0.1
 percent_visible = false
 
@@ -1579,7 +1116,7 @@ margin_left = 20.0
 margin_right = 81.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "GLUCOSE"
 valign = 1
 __meta__ = {
@@ -1594,7 +1131,7 @@ margin_right = -4.0
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1611,8 +1148,8 @@ margin_right = 220.0
 margin_bottom = 55.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 25 )
-custom_styles/bg = SubResource( 24 )
+custom_styles/fg = SubResource( 19 )
+custom_styles/bg = SubResource( 18 )
 step = 0.1
 percent_visible = false
 
@@ -1633,7 +1170,7 @@ margin_left = 20.0
 margin_right = 81.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "AMMONIA"
 valign = 1
 __meta__ = {
@@ -1648,7 +1185,7 @@ margin_right = -4.0
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1665,8 +1202,8 @@ margin_right = 220.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 26 )
-custom_styles/bg = SubResource( 24 )
+custom_styles/fg = SubResource( 20 )
+custom_styles/bg = SubResource( 18 )
 step = 0.1
 percent_visible = false
 
@@ -1687,7 +1224,7 @@ margin_left = 20.0
 margin_right = 95.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "PHOSPHATE"
 valign = 1
 __meta__ = {
@@ -1702,7 +1239,7 @@ margin_right = -3.99998
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1719,8 +1256,8 @@ margin_right = 220.0
 margin_bottom = 115.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 27 )
-custom_styles/bg = SubResource( 24 )
+custom_styles/fg = SubResource( 21 )
+custom_styles/bg = SubResource( 18 )
 step = 0.1
 percent_visible = false
 
@@ -1741,7 +1278,7 @@ margin_left = 20.0
 margin_right = 141.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "HYDROGEN_SULFIDE"
 valign = 1
 __meta__ = {
@@ -1756,7 +1293,7 @@ margin_right = -3.99998
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1773,8 +1310,8 @@ margin_right = 220.0
 margin_bottom = 145.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 28 )
-custom_styles/bg = SubResource( 24 )
+custom_styles/fg = SubResource( 22 )
+custom_styles/bg = SubResource( 18 )
 step = 0.1
 percent_visible = false
 
@@ -1795,7 +1332,7 @@ margin_left = 20.0
 margin_right = 47.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "IRON"
 valign = 1
 __meta__ = {
@@ -1810,7 +1347,7 @@ margin_right = -3.99998
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1825,7 +1362,7 @@ margin_bottom = 543.0
 rect_min_size = Vector2( 252, 89 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 29 )
+custom_styles/panel = SubResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1848,7 +1385,7 @@ margin_left = 40.0
 margin_top = 8.0
 margin_right = 252.0
 margin_bottom = 27.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 77 )
 text = "AGENTS"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer"]
@@ -1877,8 +1414,8 @@ margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 30 )
-custom_styles/bg = SubResource( 31 )
+custom_styles/fg = SubResource( 24 )
+custom_styles/bg = SubResource( 25 )
 step = 0.1
 percent_visible = false
 
@@ -1902,7 +1439,7 @@ margin_left = 18.0
 margin_right = 97.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "OXYTOXY_NT"
 valign = 1
 __meta__ = {
@@ -1917,7 +1454,7 @@ margin_right = -4.99998
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = ExtResource( 80 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -2064,14 +1601,14 @@ margin_left = 317.0
 margin_right = 332.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 15, 0 )
-custom_styles/separator = SubResource( 32 )
+custom_styles/separator = SubResource( 26 )
 
 [node name="PatchLabel" type="Label" parent="MicrobeHUD/BottomLeft/BottomBar"]
 margin_left = 336.0
 margin_top = 6.0
-margin_right = 396.0
-margin_bottom = 28.0
-custom_fonts/font = SubResource( 33 )
+margin_right = 398.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 66 )
 text = "Patch:"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -2108,8 +1645,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
 margin_right = 121.0
 margin_bottom = 17.0
-custom_styles/normal = SubResource( 34 )
-custom_fonts/font = SubResource( 35 )
+custom_styles/normal = SubResource( 27 )
+custom_fonts/font = ExtResource( 12 )
 text = "POPULATION_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2119,8 +1656,8 @@ __meta__ = {
 margin_left = 125.0
 margin_right = 150.0
 margin_bottom = 17.0
-custom_styles/normal = SubResource( 34 )
-custom_fonts/font = SubResource( 35 )
+custom_styles/normal = SubResource( 27 )
+custom_fonts/font = ExtResource( 12 )
 text = "100"
 align = 1
 __meta__ = {
@@ -2138,7 +1675,7 @@ margin_right = -44.0
 margin_bottom = -185.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 36 )
+custom_styles/panel = SubResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2162,7 +1699,7 @@ alignment = 1
 [node name="HPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_right = 70.0
 margin_bottom = 17.0
-custom_fonts/font = SubResource( 37 )
+custom_fonts/font = ExtResource( 80 )
 text = "Hitpoints"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -2172,7 +1709,7 @@ __meta__ = {
 margin_top = 25.0
 margin_right = 70.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 37 )
+custom_fonts/font = ExtResource( 80 )
 text = "ATP"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -2381,19 +1918,22 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
-anims/EditorButtonFlash = SubResource( 38 )
+anims/EditorButtonFlash = SubResource( 29 )
 
 [node name="WinExtinctBoxHolder" type="Control" parent="MicrobeHUD"]
-margin_right = 40.0
-margin_bottom = 40.0
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
-anims/HideLeftPanels = SubResource( 39 )
-anims/ShowLeftPanels = SubResource( 40 )
+anims/HideLeftPanels = SubResource( 30 )
+anims/ShowLeftPanels = SubResource( 31 )
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false
