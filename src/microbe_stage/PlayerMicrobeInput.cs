@@ -32,7 +32,7 @@ public class PlayerMicrobeInput : Node
 
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-    [RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
+    [RunOnAxisGroup(InvokeWithNoInput = true)]
     public void OnMovement(float delta, float forwardMovement, float leftRightMovement)
     {
         _ = delta;
