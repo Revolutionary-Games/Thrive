@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/general/HelpScreen.cs" type="Script" id=4]
 [ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=6]
@@ -9,10 +9,6 @@
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 429, 1 )
-
-[sub_resource type="DynamicFont" id=2]
-use_filter = true
-font_data = ExtResource( 3 )
 
 [node name="HelpScreen" type="Control"]
 anchor_right = 1.0
@@ -113,7 +109,7 @@ margin_top = 619.0
 margin_right = 800.0
 margin_bottom = 639.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 1, 0, 1 )
 text = "Easter egg message goes here"
 align = 1

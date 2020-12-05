@@ -1,15 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/engine/LoadingScreen.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/planet.png" type="Texture" id=2]
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
-[ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 5 )
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=5]
 
 [node name="LoadingScreen" type="Control"]
 pause_mode = 2
@@ -141,7 +136,7 @@ anchor_right = 0.94
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "TIP: not set"
 valign = 2
 autowrap = true
