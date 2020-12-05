@@ -86,13 +86,7 @@ public class InputManager : Node
         if (@event is InputEventMouseMotion)
             return;
 
-        var handled = false;
-
-        foreach (var attribute in attributes)
-        {
-            if (attribute.OnInput(@event))
-                handled = true;
-        }
+        var handled = attributes.Any(attribute => attribute.OnInput(@event));
 
         // Define input as consumed to Godot if something reacted to it
         if (handled)
