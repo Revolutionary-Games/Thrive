@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
 length = 0.5
 tracks/0/type = "value"
@@ -34,14 +34,21 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1280.0
 margin_bottom = 300.0
+custom_constants/margin_right = 25
+custom_constants/margin_left = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 25.0
+margin_right = 1255.0
+margin_bottom = 299.0
 alignment = 1
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 102.0
-margin_right = 1280.0
+margin_right = 1230.0
 margin_bottom = 168.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.2, 0.2, 1 )
@@ -49,9 +56,9 @@ text = "EXTINCTION_CAPITAL"
 align = 1
 valign = 1
 
-[node name="Message" type="Label" parent="VBoxContainer"]
+[node name="Message" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 172.0
-margin_right = 1280.0
+margin_right = 1230.0
 margin_bottom = 196.0
 custom_fonts/font = ExtResource( 1 )
 text = "EXTINCTION_BOX_TEXT"
@@ -61,4 +68,4 @@ autowrap = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"
-anims/FadeIn = SubResource( 4 )
+anims/FadeIn = SubResource( 2 )
