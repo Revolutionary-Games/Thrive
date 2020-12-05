@@ -50,6 +50,8 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
         var callParameters = axisValues.Select(p => p.currentValue).ToList();
         callParameters.Insert(0, delta);
+
+        // Casting to an object[] to match CallMethods parameter declaration
         CallMethod(callParameters.Cast<object>().ToArray());
     }
 
