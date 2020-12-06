@@ -16,6 +16,8 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 MAX_LINE_LENGTH = 120
 DUPLICATE_THRESSHOLD = 110
 
+LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
+
 # Pretty generous, so can't detect like small models with only a few
 # vertices, as text etc. is on a single line
 SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
@@ -27,6 +29,8 @@ ONLY_FILE_LIST = 'files_to_check.txt'
 
 LOCALE_TEMP_SUFFIX = '.temp_check'
 MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
+
+EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
 OUTPUT_MUTEX = Mutex.new
 MSBUILD_MUTEX = Mutex.new
@@ -291,6 +295,14 @@ def handle_tscn_file(path)
         errors = true
       end
     end
+
+    if line.include? EMBEDDED_FONT_SIGNATURE
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} contains embedded font. "\
+              "Don't embed fonts in scenes, instead place font resources in a separate .tres"
+        errors = true
+      end
+    end
   end
 
   errors
@@ -367,7 +379,8 @@ def handle_po_file(path)
         end
       end
 
-      if last_msgid.upcase != last_msgid
+      if last_msgid.upcase != last_msgid &&
+         !LOCALIZATION_UPPERCASE_EXCEPTIONS.include?(last_msgid)
         OUTPUT_MUTEX.synchronize do
           error "Line #{line_number + 1} has message with non-uppercase characters " \
                 " (#{last_msgid})"

@@ -14,12 +14,13 @@ public class ToolTipManager : CanvasLayer
     private static ToolTipManager instance;
 
     /// <summary>
-    ///   Collection of tooltips in a group
+    ///   Collection of tooltips in a group, with Key being the group node
+    ///   and Value the tooltips inside it
     /// </summary>
     private Dictionary<Control, List<ICustomToolTip>> tooltips =
         new Dictionary<Control, List<ICustomToolTip>>();
 
-    private Control holder;
+    private Control groupHolder;
 
     private bool display;
     private float displayTimer;
@@ -49,10 +50,10 @@ public class ToolTipManager : CanvasLayer
 
     public override void _Ready()
     {
-        holder = GetNode<Control>("Holder");
+        groupHolder = GetNode<Control>("GroupHolder");
 
         // Make sure the tooltip parent control is visible
-        holder.Show();
+        groupHolder.Show();
 
         FetchToolTips();
     }
@@ -91,11 +92,17 @@ public class ToolTipManager : CanvasLayer
         }
     }
 
+    /// <summary>
+    ///   Add tooltip into collection. Creates a new group if group node with the given name doesn't exist
+    /// </summary>
     public void AddToolTip(ICustomToolTip tooltip, string group = "general")
     {
         tooltip.ToolTipVisible = false;
 
-        var groupNode = GetGroup(group);
+        var groupNode = GetGroup(group, false);
+
+        if (groupNode == null)
+            groupNode = AddGroup(group);
 
         tooltips[groupNode].Add(tooltip);
         groupNode.AddChild(tooltip.ToolTipNode);
@@ -105,8 +112,39 @@ public class ToolTipManager : CanvasLayer
     {
         var tooltip = GetToolTip(name, group);
 
-        tooltip.ToolTipNode.QueueFree();
-        tooltips[GetGroup(group)].Remove(tooltip);
+        tooltip?.ToolTipNode.QueueFree();
+        tooltips[GetGroup(group)]?.Remove(tooltip);
+    }
+
+    /// <summary>
+    ///   Deletes all tooltip from a group
+    /// </summary>
+    /// <param name="group">Name of the group node</param>
+    /// <param name="deleteGroup">Removes the group node if true</param>
+    public void ClearToolTips(string group, bool deleteGroup = false)
+    {
+        var groupNode = GetGroup(group, false);
+
+        if (groupNode == null)
+            return;
+
+        var tooltipList = tooltips[groupNode];
+
+        if (tooltipList == null || tooltipList.Count <= 0)
+            return;
+
+        var intermediateList = new List<ICustomToolTip>(tooltipList);
+
+        foreach (var item in intermediateList)
+        {
+            RemoveToolTip(item.ToolTipNode.Name, group);
+        }
+
+        if (deleteGroup)
+        {
+            groupNode.QueueFree();
+            tooltips.Remove(groupNode);
+        }
     }
 
     /// <summary>
@@ -130,17 +168,21 @@ public class ToolTipManager : CanvasLayer
     /// <summary>
     ///   Creates a new group node to contain tooltips
     /// </summary>
-    public void AddGroup(string name)
+    public Control AddGroup(string name)
     {
+        GD.Print("Creating new tooltip group: '" + name + "'");
+
         var groupNode = new Control();
         groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;
-        holder.AddChild(groupNode);
+        groupHolder.AddChild(groupNode);
 
         tooltips.Add(groupNode, new List<ICustomToolTip>());
+
+        return groupNode;
     }
 
-    private Control GetGroup(string name)
+    private Control GetGroup(string name, bool verbose = true)
     {
         foreach (var group in tooltips.Keys)
         {
@@ -148,7 +190,9 @@ public class ToolTipManager : CanvasLayer
                 return group;
         }
 
-        GD.PrintErr("Tooltip group with name '" + name + "' not found");
+        if (verbose)
+            GD.PrintErr("Tooltip group with name '" + name + "' not found");
+
         return null;
     }
 
@@ -157,7 +201,7 @@ public class ToolTipManager : CanvasLayer
     /// </summary>
     private void FetchToolTips()
     {
-        foreach (Control group in holder.GetChildren())
+        foreach (Control group in groupHolder.GetChildren())
         {
             var collectedTooltips = new List<ICustomToolTip>();
 

@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/Lato-Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs" type="Script" id=7]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
@@ -20,36 +22,19 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="DynamicFont" id=2]
-use_filter = true
-font_data = ExtResource( 1 )
+[sub_resource type="Theme" id=4]
+default_font = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 25
-use_filter = true
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=4]
-use_filter = true
-font_data = ExtResource( 6 )
-
-[sub_resource type="Theme" id=5]
-default_font = SubResource( 4 )
-
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 429, 1 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 14
-use_filter = true
-font_data = ExtResource( 2 )
 
 [node name="SelectionMenuTooltip" type="PanelContainer"]
 margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
+theme = ExtResource( 9 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 7 )
 __meta__ = {
@@ -108,7 +93,7 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 8 )
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
 margin_left = 59.0
@@ -116,7 +101,7 @@ margin_right = 259.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 1 )
 align = 1
 autowrap = true
 
@@ -138,7 +123,7 @@ margin_top = 57.0
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
-theme = SubResource( 5 )
+theme = SubResource( 4 )
 
 [node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 72.0
@@ -151,14 +136,14 @@ margin_top = 87.0
 margin_right = 318.0
 margin_bottom = 91.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 6 )
+custom_styles/separator = SubResource( 5 )
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 106.0
 margin_right = 318.0
 margin_bottom = 123.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="Tween" type="Tween" parent="."]
