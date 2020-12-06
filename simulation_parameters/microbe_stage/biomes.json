@@ -43,19 +43,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0,
@@ -78,7 +78,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0,
@@ -171,19 +171,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -206,15 +206,15 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -225,39 +225,39 @@
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.shape"
                         }
                     ],
                     "density": 0,
@@ -286,7 +286,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -383,19 +383,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -418,7 +418,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -515,19 +515,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.00003,
@@ -550,7 +550,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.00003,
@@ -573,15 +573,15 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -592,39 +592,39 @@
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.shape"
                         }
                     ],
                     "density": 0.0002,
@@ -723,19 +723,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0,
@@ -758,7 +758,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0,
@@ -781,15 +781,15 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -800,39 +800,39 @@
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.shape"
                         }
                     ],
                     "density": 0.00002,
@@ -935,19 +935,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.0005,
@@ -970,7 +970,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -993,15 +993,15 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -1012,39 +1012,39 @@
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.shape"
                         }
                     ],
                     "density": 0.00002,
@@ -1147,19 +1147,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -1182,7 +1182,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -1275,19 +1275,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.0001,
@@ -1310,7 +1310,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.0001,
@@ -1407,19 +1407,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.0002,
@@ -1442,7 +1442,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iceshard1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iceshard1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iceshard1.shape"
                         }
                     ],
                     "density": 0.002,
@@ -1460,7 +1460,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.0002,
@@ -1557,19 +1557,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -1592,7 +1592,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -1689,19 +1689,19 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/IronRock1.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock1.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock1.shape"
                         },
                         {
                             "scenePath": "res://assets/models/IronRock2.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/IronRock2.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/IronRock2.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron3.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron3.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron3.shape"
                         },
                         {
                             "scenePath": "res://assets/models/Iron4.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron4.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron4.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -1724,7 +1724,7 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iron5.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/Iron5.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/Iron5.shape"
                         }
                     ],
                     "density": 0.00005,
@@ -1747,15 +1747,15 @@
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Oxytoxy.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nucleus.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chloroplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -1766,39 +1766,39 @@
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chemoplast.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/NitrogenFixingPlastid.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Metabolosome.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Chromatophore.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Vacuole.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Mitochondrion.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/ChemoSynthesizingProteins.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Nitrogenase.shape"
                         },
                         {
                             "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-                            "physicsScenePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.tscn"
+                            "collisionShapePath": "res://src/microbe_stage/collision_shapes/organelles/Rusticyanin.shape"
                         }
                     ],
                     "density": 0.00004,

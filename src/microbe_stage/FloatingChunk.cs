@@ -15,12 +15,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public PackedScene GraphicsScene;
 
     /// <summary>
-    ///   The collision shape scene for this chunk. If null, a sphere shape
-    ///   is used as a default.
+    ///   If this is null, a sphere shape is used as a default for collision detections.
     /// </summary>
     [Export]
     [JsonProperty]
-    public PackedScene PhysicsScene;
+    public Shape PhysicsMesh;
 
     /// <summary>
     ///   The node path to the mesh of this chunk
@@ -153,7 +152,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         var item = new ChunkConfiguration.ChunkScene
         {
             LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
-            LoadedPhysicsScene = PhysicsScene, PhysicsScenePath = PhysicsScene.ResourcePath
+            LoadedCollisionShape = PhysicsMesh, CollisionShapePath = PhysicsMesh.ResourcePath,
         };
 
         config.Meshes.Add(item);
@@ -338,20 +337,17 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     private void InitPhysics()
     {
-        CollisionShape shape = null;
+        var shape = GetNode<CollisionShape>("CollisionShape");
 
-        if (PhysicsScene == null)
+        if (PhysicsMesh == null)
         {
-            shape = new CollisionShape();
             shape.Shape = new SphereShape { Radius = Radius };
         }
         else
         {
-            shape = (CollisionShape)PhysicsScene.Instance();
+            shape.Shape = PhysicsMesh;
             shape.Transform = chunkMesh.Transform;
         }
-
-        AddChild(shape);
 
         // Needs physics callback when this is engulfable or damaging
         if (Damages > 0 || DeleteOnTouch || Size > 0)

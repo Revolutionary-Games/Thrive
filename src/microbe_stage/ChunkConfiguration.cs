@@ -119,7 +119,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     {
         public string ScenePath;
 
-        public string PhysicsScenePath;
+        public string CollisionShapePath;
 
         /// <summary>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
@@ -130,14 +130,14 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         public PackedScene LoadedScene;
 
         [JsonIgnore]
-        public PackedScene LoadedPhysicsScene;
+        public Shape LoadedCollisionShape;
 
         public void LoadScene()
         {
             LoadedScene = GD.Load<PackedScene>(ScenePath);
 
-            if (!string.IsNullOrEmpty(PhysicsScenePath))
-                LoadedPhysicsScene = GD.Load<PackedScene>(PhysicsScenePath);
+            if (!string.IsNullOrEmpty(CollisionShapePath))
+                LoadedCollisionShape = GD.Load<Shape>(CollisionShapePath);
         }
 
         public void FinishLoading(ISaveContext context)
