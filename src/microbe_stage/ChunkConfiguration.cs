@@ -119,6 +119,8 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     {
         public string ScenePath;
 
+        public string PhysicsScenePath;
+
         /// <summary>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
         /// </summary>
@@ -127,9 +129,15 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         [JsonIgnore]
         public PackedScene LoadedScene;
 
+        [JsonIgnore]
+        public PackedScene LoadedPhysicsScene;
+
         public void LoadScene()
         {
             LoadedScene = GD.Load<PackedScene>(ScenePath);
+
+            if (!string.IsNullOrEmpty(PhysicsScenePath))
+                LoadedPhysicsScene = GD.Load<PackedScene>(PhysicsScenePath);
         }
 
         public void FinishLoading(ISaveContext context)

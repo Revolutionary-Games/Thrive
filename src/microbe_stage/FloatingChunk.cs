@@ -15,6 +15,14 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public PackedScene GraphicsScene;
 
     /// <summary>
+    ///   The collision shape scene for this chunk. If null, a sphere shape
+    ///   is used as a default.
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public PackedScene PhysicsScene;
+
+    /// <summary>
     ///   The node path to the mesh of this chunk
     /// </summary>
     public string ModelNodePath;
@@ -143,7 +151,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         config.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
         var item = new ChunkConfiguration.ChunkScene
-            { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath };
+        {
+            LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
+            LoadedPhysicsScene = PhysicsScene, PhysicsScenePath = PhysicsScene.ResourcePath
+        };
 
         config.Meshes.Add(item);
 
@@ -327,23 +338,20 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     private void InitPhysics()
     {
-        // Apply physics shape
-        var shape = GetNode<CollisionShape>("CollisionShape");
+        CollisionShape shape = null;
 
-        // Collision shape defaults to sphere shape if chunk has no mesh (ie. using particles)
-        if (chunkMesh == null)
+        if (PhysicsScene == null)
         {
-            var sphere = new SphereShape();
-
-            shape.Shape = sphere;
-            sphere.Radius = Radius;
+            shape = new CollisionShape();
+            shape.Shape = new SphereShape { Radius = Radius };
         }
         else
         {
-            // Make a convex collision shape
-            shape.Shape = chunkMesh.Mesh.CreateConvexShape();
+            shape = (CollisionShape)PhysicsScene.Instance();
             shape.Transform = chunkMesh.Transform;
         }
+
+        AddChild(shape);
 
         // Needs physics callback when this is engulfable or damaging
         if (Damages > 0 || DeleteOnTouch || Size > 0)
