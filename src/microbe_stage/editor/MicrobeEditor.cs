@@ -28,6 +28,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     public float CurrentOrganelleCost;
 
     private const float ARROW_OFFSET = 3.5f;
+    private const float HEX_HEIGHT = 1.3f;
     private const float ARROW_INTERPOLATE_SPEED = 0.1f;
 
     private Vector3 arrowPosition = Vector3.Zero;
@@ -926,7 +927,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
                 _ => p.R,
             }).DefaultIfEmpty(0).Min(); // get the min (highest in the editor) value
 
-        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows - ARROW_OFFSET);
+        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows * HEX_HEIGHT - ARROW_OFFSET);
     }
 
     /// <summary>
@@ -988,6 +989,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         UpdateUndoRedoButtons();
 
+        UpdateArrow();
         editorArrow.Translation = arrowPosition; // Force no lerp on init
 
         // Send freebuild value to GUI
