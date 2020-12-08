@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=4]
-
-[sub_resource type="DynamicFont" id=1]
-use_filter = true
-font_data = ExtResource( 4 )
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -62,7 +58,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MicrobeWelcome/VBoxContainer"]
 margin_right = 420.0
 margin_bottom = 296.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_INITIAL"
 autowrap = true
 
@@ -135,7 +131,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MicrobeMovementTutorial/ExplainingPopup/VBoxContainer"]
 margin_right = 230.0
 margin_bottom = 158.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_CONTROL_TEXT"
 autowrap = true
 
@@ -217,7 +213,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="GlucoseTutorial/VBoxContainer"]
 margin_right = 230.0
 margin_bottom = 135.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_COLLECT_TEXT"
 autowrap = true
 
@@ -251,7 +247,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="StayingAliveTutorial/VBoxContainer"]
 margin_right = 230.0
 margin_bottom = 204.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_HEALTH_TEXT"
 autowrap = true
 
@@ -285,7 +281,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="ReproductionTutorial/VBoxContainer"]
 margin_right = 230.0
 margin_bottom = 158.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
