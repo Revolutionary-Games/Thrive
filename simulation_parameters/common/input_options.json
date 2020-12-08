@@ -3,27 +3,27 @@
         "EnvironmentId": [
             "Game"
         ],
-        "GroupName": "Movement",
+        "GroupName": "MOVEMENT",
         "Actions": [
             {
                 "InputName": "g_move_left",
-                "Name": "Move left"
+                "Name": "MOVE_LEFT"
             },
             {
                 "InputName": "g_move_right",
-                "Name": "Move right"
+                "Name": "MOVE_RIGHT"
             },
             {
                 "InputName": "g_move_forward",
-                "Name": "Move forward"
+                "Name": "MOVE_FORWARD"
             },
             {
                 "InputName": "g_move_backwards",
-                "Name": "Move backwards"
+                "Name": "MOVE_BACKWARDS"
             },
             {
                 "InputName": "g_hold_forward",
-                "Name": "Auto move forwards"
+                "Name": "AUTO_MOVE_FORWARDS"
             }
         ]
     },
@@ -31,15 +31,15 @@
         "EnvironmentId": [
             "Game"
         ],
-        "GroupName": "Abilities",
+        "GroupName": "ABILITIES",
         "Actions": [
             {
                 "InputName": "g_fire_toxin",
-                "Name": "Fire toxin"
+                "Name": "FIRE_TOXIN"
             },
             {
                 "InputName": "g_toggle_engulf",
-                "Name": "Toggle engulf"
+                "Name": "TOGGLE_ENGULF"
             }
         ]
     },
@@ -48,15 +48,15 @@
             "Game",
             "Editor"
         ],
-        "GroupName": "Camera",
+        "GroupName": "CAMERA",
         "Actions": [
             {
                 "InputName": "g_zoom_out",
-                "Name": "Zoom out"
+                "Name": "ZOOM_OUT"
             },
             {
                 "InputName": "g_zoom_in",
-                "Name": "Zoom in"
+                "Name": "ZOOM_IN"
             }
         ]
     },
@@ -64,31 +64,31 @@
         "EnvironmentId": [
             "Editor"
         ],
-        "GroupName": "Editor",
+        "GroupName": "EDITOR",
         "Actions": [
             {
                 "InputName": "e_rotate_right",
-                "Name": "Rotate right"
+                "Name": "ROTATE_RIGHT"
             },
             {
                 "InputName": "e_rotate_left",
-                "Name": "Rotate left"
+                "Name": "ROTATE_LEFT"
             },
             {
                 "InputName": "e_undo",
-                "Name": "Undo"
+                "Name": "UNDO"
             },
             {
                 "InputName": "e_redo",
-                "Name": "Redo"
+                "Name": "REDO"
             },
             {
                 "InputName": "e_primary",
-                "Name": "Place organelle"
+                "Name": "PLACE_ORGANELLE"
             },
             {
                 "InputName": "e_secondary",
-                "Name": "Remove organelle"
+                "Name": "REMOVE_ORGANELLE"
             }
         ]
     },
@@ -96,23 +96,23 @@
         "EnvironmentId": [
             "Game"
         ],
-        "GroupName": "Cheats",
+        "GroupName": "CHEATS",
         "Actions": [
             {
                 "InputName": "g_cheat_editor",
-                "Name": "Enable Editor"
+                "Name": "ENABLE_EDITOR"
             },
             {
                 "InputName": "g_cheat_glucose",
-                "Name": "Spawn glucose"
+                "Name": "SPAWN_GLUCOSE"
             },
             {
                 "InputName": "g_cheat_ammonia",
-                "Name": "Spawn ammonia"
+                "Name": "SPAWN_AMMONIA"
             },
             {
                 "InputName": "g_cheat_phosphates",
-                "Name": "Spawn phosphates"
+                "Name": "SPAWN_PHOSPHATES"
             }
         ]
     },
@@ -121,27 +121,27 @@
             "Game",
             "Editor"
         ],
-        "GroupName": "Misc",
+        "GroupName": "MISC",
         "Actions": [
             {
                 "InputName": "toggle_FPS",
-                "Name": "Toggle FPS"
+                "Name": "TOGGLE_FPS"
             },
             {
                 "InputName": "g_quick_save",
-                "Name": "Quick save"
+                "Name": "QUICK_SAVE"
             },
             {
                 "InputName": "quick_load",
-                "Name": "Quick load"
+                "Name": "QUICK_LOAD"
             },
             {
                 "InputName": "screenshot",
-                "Name": "Take screenshot"
+                "Name": "TAKE_SCREENSHOT"
             },
             {
                 "InputName": "help",
-                "Name": "Show help"
+                "Name": "SHOW_HELP"
             }
         ]
     }

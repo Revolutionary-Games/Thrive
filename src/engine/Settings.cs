@@ -133,7 +133,7 @@ public class Settings
     /// <remarks>
     ///   <para>
     ///     This should be made user configurable for different
-    ///     computers. The choises should probably be:
+    ///     computers. The choices should probably be:
     ///     0.0f, 0.020f, 0.040f, 0.1f, 0.25f
     ///   </para>
     /// </remarks>
@@ -351,6 +351,7 @@ public class Settings
         }
 
         ApplyLanguageSettings();
+        ApplyWindowSettings();
         ApplyInputSettings();
         ApplyWindowSettings();
     }
