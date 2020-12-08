@@ -210,8 +210,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonIgnore]
     public MicrobeCamera Camera => camera;
 
-    public MeshInstance EditorArrow => editorArrow;
-
     /// <summary>
     ///   The selected membrane rigidity
     /// </summary>
