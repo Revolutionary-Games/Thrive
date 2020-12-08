@@ -6,7 +6,7 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Shows keys associated with one Godot input, for example g_move_forward.
+///   Shows keys associated with one Godot input action, for example g_move_forward.
 ///   Each InputActionItem has <see cref="InputEventItem">InputEventItems</see> associated with it.
 /// </summary>
 /// <remarks>
@@ -59,7 +59,27 @@ public class InputActionItem : VBoxContainer
     /// <summary>
     ///   All the associated inputs executing this action
     /// </summary>
-    public ObservableCollection<InputEventItem> Inputs { get; set; }
+    public ObservableCollection<InputEventItem> Inputs { get; private set; }
+
+    public InputGroupItem Group
+    {
+        get
+        {
+            AssociatedGroup.TryGetTarget(out var associatedGroup);
+            return associatedGroup;
+        }
+    }
+
+    public InputGroupList GroupList
+    {
+        get
+        {
+            var group = Group;
+            group.AssociatedList.TryGetTarget(out var associatedList);
+
+            return associatedList;
+        }
+    }
 
     /// <summary>
     ///   Sets up the inputs and adds them as children.
@@ -100,14 +120,19 @@ public class InputActionItem : VBoxContainer
         return InputName != null ? InputName.GetHashCode() : 0;
     }
 
-    internal static InputActionItem BuildGUI(InputGroupItem caller, NamedInputAction data,
+    internal static InputActionItem BuildGUI(InputGroupItem associatedGroup, NamedInputAction data,
         IEnumerable<SpecifiedInputKey> inputs)
     {
-        var inputActionItem = (InputActionItem)InputGroupList.InputActionItemScene.Instance();
+        associatedGroup.AssociatedList.TryGetTarget(out var target);
+
+        if (target == null)
+            throw new ArgumentException("associatedGroup has no associated list");
+
+        var inputActionItem = (InputActionItem)target.InputActionItemScene.Instance();
 
         inputActionItem.InputName = data.InputName;
         inputActionItem.DisplayName = data.Name;
-        inputActionItem.AssociatedGroup = new WeakReference<InputGroupItem>(caller);
+        inputActionItem.AssociatedGroup = new WeakReference<InputGroupItem>(associatedGroup);
         inputActionItem.Inputs =
             new ObservableCollection<InputEventItem>(inputs.Select(d => InputEventItem.BuildGUI(inputActionItem, d)));
 
@@ -119,7 +144,7 @@ public class InputActionItem : VBoxContainer
     /// </summary>
     internal void OnAddEventButtonPressed()
     {
-        var newInput = (InputEventItem)InputGroupList.InputEventItemScene.Instance();
+        var newInput = (InputEventItem)GroupList.InputEventItemScene.Instance();
         newInput.AssociatedAction = new WeakReference<InputActionItem>(this);
         newInput.JustAdded = true;
         Inputs.Add(newInput);
@@ -133,8 +158,9 @@ public class InputActionItem : VBoxContainer
                 foreach (InputEventItem newItem in e.NewItems)
                 {
                     inputEventsContainer.AddChild(newItem);
-                    inputEventsContainer.MoveChild(addInputEvent, Inputs.Count);
                 }
+
+                inputEventsContainer.MoveChild(addInputEvent, Inputs.Count);
 
                 break;
             case NotifyCollectionChangedAction.Remove:
@@ -147,21 +173,5 @@ public class InputActionItem : VBoxContainer
             default:
                 throw new NotSupportedException($"{e.Action} is not supported on {nameof(Inputs)}");
         }
-    }
-
-    private InputGroupItem GetGroup()
-    {
-        AssociatedGroup.TryGetTarget(out var associatedGroup);
-
-        return associatedGroup;
-    }
-
-    private InputGroupList GetGroupList()
-    {
-        var group = GetGroup();
-
-        group.AssociatedList.TryGetTarget(out var associatedList);
-
-        return associatedList;
     }
 }

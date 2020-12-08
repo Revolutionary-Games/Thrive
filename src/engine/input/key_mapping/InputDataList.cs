@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Stores godot input actions and their associated events
+///   Stores Godot input actions and their associated events
 /// </summary>
 public class InputDataList : ICloneable
 {
@@ -12,6 +12,9 @@ public class InputDataList : ICloneable
         Data = data;
     }
 
+    /// <summary>
+    ///   The key map, key is the godot action name and the list contains the keys that are used to trigger that action
+    /// </summary>
     public Dictionary<string, List<SpecifiedInputKey>> Data { get; }
 
     public List<SpecifiedInputKey> this[string index] => Data[index];
@@ -32,19 +35,19 @@ public class InputDataList : ICloneable
     }
 
     /// <summary>
-    ///   Applies the current controls to the InputMap.
+    ///   Applies the current controls (from Data) to the global InputMap.
     /// </summary>
     internal void ApplyToGodotInputMap()
     {
         foreach (var action in Data)
         {
-            // Clear all old input events
+            // Clear all old input keys
             InputMap.ActionEraseEvents(action.Key);
 
-            // Add the new input events
+            // Register the new input keys
             foreach (var inputEvent in action.Value)
             {
-                // If the game is waiting for an input
+                // If the game is waiting for an input for this thing, skip trying to apply it
                 if (inputEvent == null)
                     return;
 

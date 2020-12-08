@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Holds the various <see cref="InputGroupItem">input groups</see> in one VBoxContainer.
@@ -17,11 +15,7 @@ public class InputGroupList : VBoxContainer
     [Export]
     public NodePath ResetInputsDialog;
 
-    internal static PackedScene InputEventItemScene;
-    internal static PackedScene InputGroupItemScene;
-    internal static PackedScene InputActionItemScene;
-
-    private static InputDataList defaultControls = GetCurrentlyAppliedControls();
+    private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
     private static bool wasListeningForInput;
 
     private IEnumerable<InputGroupItem> activeInputGroupList;
@@ -55,13 +49,17 @@ public class InputGroupList : VBoxContainer
         internal set => wasListeningForInput = value;
     }
 
+    public PackedScene InputEventItemScene { get; private set; }
+    public PackedScene InputGroupItemScene { get; private set; }
+    public PackedScene InputActionItemScene { get; private set; }
+
     /// <summary>
     ///   Is any Input currently waiting for input
     /// </summary>
     public bool ListeningForInput => ActiveInputGroupList
-        .Any(x => x.Actions
-            .Any(y => y.Inputs
-                .Any(z => z.WaitingForInput)));
+        .Any(group => group.Actions
+            .Any(action => action.Inputs
+                .Any(singularInput => singularInput.WaitingForInput)));
 
     public IEnumerable<InputGroupItem> ActiveInputGroupList => activeInputGroupList;
 
@@ -77,7 +75,7 @@ public class InputGroupList : VBoxContainer
     /// <returns>The default controls</returns>
     public static InputDataList GetDefaultControls()
     {
-        return (InputDataList)defaultControls.Clone();
+        return (InputDataList)DefaultControls.Clone();
     }
 
     /// <summary>
@@ -138,11 +136,11 @@ public class InputGroupList : VBoxContainer
         // Take the ones with any interception of the environments.
         // Take the input actions.
         // Get the first action where the event collides or null if there aren't any.
-        return ActiveInputGroupList.Where(p => p.EnvironmentId.Any(x => environments.Contains(x)))
-            .SelectMany(p => p.Actions)
-            .Where(p => !Equals(inputActionItem, p))
-            .SelectMany(p => p.Inputs)
-            .FirstOrDefault(p => Equals(p, item));
+        return ActiveInputGroupList.Where(group => group.EnvironmentId.Any(x => environments.Contains(x)))
+            .SelectMany(group => group.Actions)
+            .Where(action => !Equals(inputActionItem, action))
+            .SelectMany(action => action.Inputs)
+            .FirstOrDefault(input => Equals(input, item));
     }
 
     /// <summary>
