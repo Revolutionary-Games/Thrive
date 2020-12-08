@@ -1008,7 +1008,7 @@ public class OptionsMenu : Control
 
     private void OnLanguageSettingSelected(int item)
     {
-        Settings.Instance.SelectedLanguage.Value = languageSelection.GetItemText(item);
+        Settings.Instance.SelectedLanguage.Value = languageSelection.GetItemText(item).Split("(")[0];
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
