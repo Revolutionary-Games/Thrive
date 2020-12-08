@@ -27,6 +27,12 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     public float CurrentOrganelleCost;
 
+    private const float ARROW_OFFSET = 3.5f;
+    private const float HEX_HEIGHT = 1.3f;
+    private const float ARROW_INTERPOLATE_SPEED = 0.1f;
+
+    private Vector3 arrowPosition = Vector3.Zero;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     /// <summary>
@@ -39,6 +45,10 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeCamera camera;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private MeshInstance editorArrow;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -368,6 +378,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         NodeReferencesResolved = true;
 
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
+        editorArrow = GetNode<MeshInstance>("EditorArrow");
         cameraFollow = GetNode<Spatial>("CameraLookAt");
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
@@ -906,6 +917,21 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         Jukebox.Instance.Resume();
     }
 
+    private void UpdateArrow()
+    {
+        var highestPointInMiddleRows = editedMicrobeOrganelles
+            .SelectMany(p => p.Definition.Hexes.Select(x => x + p.Position)) // get all hexes
+            .Where(p => p.Q >= -1 && p.Q <= 1) // only select the middle 3 rows
+            .Select(p => p.Q switch
+            {
+                -1 => p.R - 1,
+                0 => p.R - .5f,
+                _ => p.R,
+            }).DefaultIfEmpty(0).Min(); // get the min (highest in the editor) value
+
+        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows * HEX_HEIGHT - ARROW_OFFSET);
+    }
+
     /// <summary>
     ///   Calculates the effectiveness of organelles in the current or
     ///   given patch
@@ -964,6 +990,9 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
 
         UpdateUndoRedoButtons();
+
+        UpdateArrow();
+        editorArrow.Translation = arrowPosition; // Force no lerp on init
 
         // Send freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
@@ -1208,6 +1237,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         {
             CurrentOrganelleCost = 0;
         }
+
+        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(arrowPosition, ARROW_INTERPOLATE_SPEED);
     }
 
     /// <summary>
@@ -1595,6 +1626,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     private void OnOrganellesChanged()
     {
         UpdateAlreadyPlacedVisuals();
+
+        UpdateArrow();
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
