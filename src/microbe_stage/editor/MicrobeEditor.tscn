@@ -1107,11 +1107,11 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -272.0
-margin_top = 257.0
+margin_bottom = 257.0
 
 [node name="Statistics" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/TopRight"]
 margin_right = 272.0
-margin_bottom = 2.0
+margin_bottom = 257.0
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3836,10 +3836,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 272.0
-margin_top = 294.0
-margin_right = 574.0
-margin_bottom = 760.0
+margin_left = 276.0
+margin_top = 298.0
+margin_right = 578.0
+margin_bottom = 764.0
 theme = SubResource( 42 )
 edit_alpha = false
 
