@@ -42,6 +42,10 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    private MeshInstance editorArrow;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorGUI gui;
 
     private Node world;
@@ -200,6 +204,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     [JsonIgnore]
     public MicrobeCamera Camera => camera;
+
+    public MeshInstance EditorArrow => editorArrow;
 
     /// <summary>
     ///   The selected membrane rigidity
@@ -368,6 +374,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         NodeReferencesResolved = true;
 
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
+        editorArrow = GetNode<MeshInstance>("EditorArrow");
         cameraFollow = GetNode<Spatial>("CameraLookAt");
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
@@ -606,6 +613,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         if (AddOrganelle(ActiveActionName))
         {
+            UpdateArrow();
+
             // Only trigger tutorial if something was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
@@ -733,6 +742,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
                 break;
             }
         }
+
+        UpdateArrow();
     }
 
     public float CalculateSpeed()
@@ -905,6 +916,18 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         Jukebox.Instance.Resume();
     }
 
+    private void UpdateArrow()
+    {
+        var highestPointInMiddleRows = editedMicrobeOrganelles.SelectMany(p => p.Definition.Hexes.Select(x => x + p.Position)) // get all hexes
+            .Where(p => p.Q >= -1 && p.Q <= 1) // only select the middle 3 rows
+            .Select(p => p.Q switch
+            {
+                -1 => p.R - 1,
+                0 => p.R - .5f,
+                _ => p.R,
+            }).Min(); // get the min (highest in the editor) value
+    }
+
     /// <summary>
     ///   Calculates the effectiveness of organelles in the current or
     ///   given patch
@@ -963,6 +986,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
 
         UpdateUndoRedoButtons();
+
+        UpdateArrow();
 
         // Send freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
