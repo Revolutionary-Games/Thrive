@@ -6,14 +6,15 @@ using Newtonsoft.Json;
 /// </summary>
 public class NamedInputGroup : IRegistryType
 {
-    [TranslateFrom("untranslatedGroupName")]
-    public string GroupName { get; set; }
-    public IReadOnlyList<string> EnvironmentId { get; set; }
-    public IReadOnlyList<NamedInputAction> Actions { get; set; }
-
 #pragma warning disable 169 // Used through reflection
     private string untranslatedGroupName;
 #pragma warning restore 169
+
+    [TranslateFrom("untranslatedGroupName")]
+    public string GroupName { get; set; }
+
+    public IReadOnlyList<string> EnvironmentId { get; set; }
+    public IReadOnlyList<NamedInputAction> Actions { get; set; }
 
     [JsonIgnore]
     public string InternalName { get; set; }

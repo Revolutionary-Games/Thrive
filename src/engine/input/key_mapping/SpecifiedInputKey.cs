@@ -57,6 +57,8 @@ public class SpecifiedInputKey : ICloneable
 
         if (Type == InputType.Key)
         {
+            // TODO: add translation support for key names like Right, and Left etc.
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/1895
             text += ((KeyList)Code).ToString();
         }
         else if (Type == InputType.MouseButton)
