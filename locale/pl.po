@@ -337,6 +337,137 @@ msgstr ""
 "Zabawny Fakt, Jeden z pierwszych grywalnych prototypów rozgrywki został "
 "stworzony przez naszego niesamowitego programistę, untrustedlife!"
 
+#: ../simulation_parameters/common/input_options.json:6
+msgid "MOVEMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:10
+msgid "MOVE_LEFT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:14
+#, fuzzy
+msgid "MOVE_RIGHT"
+msgstr "Światło"
+
+#: ../simulation_parameters/common/input_options.json:18
+msgid "MOVE_FORWARD"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:22
+msgid "MOVE_BACKWARDS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:26
+msgid "AUTO_MOVE_FORWARDS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:34
+msgid "ABILITIES"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:38
+msgid "FIRE_TOXIN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:42
+#, fuzzy
+msgid "TOGGLE_ENGULF"
+msgstr "Nie może połykać"
+
+#: ../simulation_parameters/common/input_options.json:51
+msgid "CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:55
+msgid "ZOOM_OUT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:59
+msgid "ZOOM_IN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
+msgid "EDITOR"
+msgstr "Edytor"
+
+#: ../simulation_parameters/common/input_options.json:71
+#, fuzzy
+msgid "ROTATE_RIGHT"
+msgstr "Światło"
+
+#: ../simulation_parameters/common/input_options.json:75
+#, fuzzy
+msgid "ROTATE_LEFT"
+msgstr ". Stosunek się skaluje"
+
+#: ../simulation_parameters/common/input_options.json:79
+msgid "UNDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:83
+msgid "REDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:87
+msgid "PLACE_ORGANELLE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:91
+msgid "REMOVE_ORGANELLE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:99
+msgid "CHEATS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
+msgid "ENABLE_EDITOR"
+msgstr "Edytor"
+
+#: ../simulation_parameters/common/input_options.json:107
+#, fuzzy
+msgid "SPAWN_GLUCOSE"
+msgstr "Glukoza"
+
+#: ../simulation_parameters/common/input_options.json:111
+#, fuzzy
+msgid "SPAWN_AMMONIA"
+msgstr "Amoniak"
+
+#: ../simulation_parameters/common/input_options.json:115
+#, fuzzy
+msgid "SPAWN_PHOSPHATES"
+msgstr "Fosforan"
+
+#: ../simulation_parameters/common/input_options.json:124
+msgid "MISCELLANEOUS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:128
+msgid "TOGGLE_FPS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:132
+#, fuzzy
+msgid "QUICK_SAVE"
+msgstr "Zapisz Grę"
+
+#: ../simulation_parameters/common/input_options.json:136
+msgid "QUICK_LOAD"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:140
+msgid "TAKE_SCREENSHOT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:144
+#, fuzzy
+msgid "SHOW_HELP"
+msgstr "Pomoc"
+
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
@@ -729,11 +860,11 @@ msgstr "Populacja w biomie:"
 msgid "LOADING"
 msgstr "Wczytywanie"
 
-#: ../src/engine/LoadingScreen.cs:42
-msgid "LOADING_TIP"
+#: ../src/engine/input/key_mapping/InputGroupList.cs:166
+msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:49
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
 msgstr ""
 
@@ -790,221 +921,224 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Zamknij"
 
-#: ../src/general/OptionsMenu.tscn:133
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:145
+#: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
 msgstr "Dźwięk"
 
-#: ../src/general/OptionsMenu.tscn:157
+#: ../src/general/OptionsMenu.tscn:152
 msgid "PERFORMANCE"
 msgstr "Wydajność"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:164
 msgid "INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:181
+#: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
 msgstr "Inne"
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:215
 msgid "VSYNC"
 msgstr "Synchronizacja pionowa"
 
-#: ../src/general/OptionsMenu.tscn:228
+#: ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
 msgstr "Pełny ekran"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Wygładzanie krawędzi:"
 
-#: ../src/general/OptionsMenu.tscn:257
+#: ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(wyższe wartością mogą obniżyć wydajność)"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
 msgstr "Rozdzielczość:"
 
-#: ../src/general/OptionsMenu.tscn:300
+#: ../src/general/OptionsMenu.tscn:295
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:310
+#: ../src/general/OptionsMenu.tscn:305
 msgid "MAX_FPS"
 msgstr "Maksymalna ilość klatek na sekundę:"
 
-#: ../src/general/OptionsMenu.tscn:336
+#: ../src/general/OptionsMenu.tscn:331
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekta kolorów dla daltonistów:"
 
-#: ../src/general/OptionsMenu.tscn:368
+#: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberracja chromatyczna:"
 
-#: ../src/general/OptionsMenu.tscn:409
+#: ../src/general/OptionsMenu.tscn:404
 msgid "MASTER_VOLUME"
 msgstr "Główna głośność"
 
-#: ../src/general/OptionsMenu.tscn:436 ../src/general/OptionsMenu.tscn:477
-#: ../src/general/OptionsMenu.tscn:510 ../src/general/OptionsMenu.tscn:543
-#: ../src/general/OptionsMenu.tscn:576
+#: ../src/general/OptionsMenu.tscn:431 ../src/general/OptionsMenu.tscn:472
+#: ../src/general/OptionsMenu.tscn:505 ../src/general/OptionsMenu.tscn:538
+#: ../src/general/OptionsMenu.tscn:571
 msgid "MUTE"
 msgstr "Wycisz"
 
-#: ../src/general/OptionsMenu.tscn:450
+#: ../src/general/OptionsMenu.tscn:445
 msgid "MUSIC_VOLUME"
 msgstr "Głośność muzyki"
 
-#: ../src/general/OptionsMenu.tscn:483
+#: ../src/general/OptionsMenu.tscn:478
 msgid "AMBIANCE_VOLUME"
 msgstr "Głośność otoczenia"
 
-#: ../src/general/OptionsMenu.tscn:516
+#: ../src/general/OptionsMenu.tscn:511
 msgid "SFX_VOLUME"
 msgstr "Głośność efektów dźwiękowych"
 
-#: ../src/general/OptionsMenu.tscn:549
+#: ../src/general/OptionsMenu.tscn:544
 msgid "GUI_VOLUME"
 msgstr "Głośność interfejsu"
 
-#: ../src/general/OptionsMenu.tscn:594
+#: ../src/general/OptionsMenu.tscn:589
 msgid "LANGUAGE"
 msgstr "Język:"
 
-#: ../src/general/OptionsMenu.tscn:609 ../src/general/OptionsMenu.tscn:952
+#: ../src/general/OptionsMenu.tscn:604 ../src/general/OptionsMenu.tscn:947
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:627
 msgid "COMPOUND_CLOUDS"
 msgstr "Chmury związków"
 
-#: ../src/general/OptionsMenu.tscn:647
+#: ../src/general/OptionsMenu.tscn:642
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Minimalna Przerwa Symulacji\n"
 "Chmur:"
 
-#: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
+#: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:693
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(większe wartości zwiększają wydajność)"
 
-#: ../src/general/OptionsMenu.tscn:691
+#: ../src/general/OptionsMenu.tscn:686
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Dzielnik Rozdzielczości Chmur:"
 
-#: ../src/general/OptionsMenu.tscn:733
+#: ../src/general/OptionsMenu.tscn:728
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
-#: ../src/general/OptionsMenu.tscn:765
+#: ../src/general/OptionsMenu.tscn:760
+#, fuzzy
 msgid "RESET_INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:788
+#: ../src/general/OptionsMenu.tscn:783
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Odtwórz wideo intro"
 
-#: ../src/general/OptionsMenu.tscn:797
+#: ../src/general/OptionsMenu.tscn:792
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Odtwórz Intro Mikroba przy Nowej Grze"
 
-#: ../src/general/OptionsMenu.tscn:806
+#: ../src/general/OptionsMenu.tscn:801
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autozapis w trakcie gry"
 
-#: ../src/general/OptionsMenu.tscn:817
+#: ../src/general/OptionsMenu.tscn:812
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Zachowana ilość autozapisów:"
 
-#: ../src/general/OptionsMenu.tscn:845
+#: ../src/general/OptionsMenu.tscn:840
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Zachowana ilość szybkich zapisów:"
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:866
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Pokazuj samouczki (w nowych grach)"
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:874
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Pokazuj samouczki (w aktualnej grze)"
 
-#: ../src/general/OptionsMenu.tscn:895
+#: ../src/general/OptionsMenu.tscn:890
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Klawisze oszustw włączone"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:902
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Użyj własnej nazwy użytkownika"
 
-#: ../src/general/OptionsMenu.tscn:918
+#: ../src/general/OptionsMenu.tscn:913
 msgid "CUSTOM_USERNAME"
 msgstr "Własna Nazwa Użytkownika:"
 
-#: ../src/general/OptionsMenu.tscn:942 ../src/general/PauseMenu.tscn:132
+#: ../src/general/OptionsMenu.tscn:937 ../src/general/PauseMenu.tscn:132
 #: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "Cofnij"
 
-#: ../src/general/OptionsMenu.tscn:963 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:958 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Zapisz"
 
-#: ../src/general/OptionsMenu.tscn:979
+#: ../src/general/OptionsMenu.tscn:974
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Domyślne"
 
-#: ../src/general/OptionsMenu.tscn:991
+#: ../src/general/OptionsMenu.tscn:986
 msgid "RESET_TO_DEFAULTS"
 msgstr "Przywrócić do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:992
+#: ../src/general/OptionsMenu.tscn:987
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości "
 "domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1001
+#: ../src/general/OptionsMenu.tscn:996
+#, fuzzy
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1002
+#: ../src/general/OptionsMenu.tscn:997
+#, fuzzy
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1011
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "CLOSE_OPTIONS"
 msgstr "Zamknąć opcje?"
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1030
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Masz niezapisane zmiany które zostaną odrzucone.\n"
 "Czy chcesz kontynuować?"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "SAVE_AND_CONTINUE"
 msgstr "Zapisz i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1075
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Odrzuć i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1091
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "CANCEL"
 msgstr "Anuluj"
 
-#: ../src/general/OptionsMenu.tscn:1102
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ERROR"
 msgstr "Błąd"
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Błąd: Nie udało się zapisać nowych ustawień w pliku konfiguracji."
 
@@ -1732,11 +1866,7 @@ msgstr "Raport"
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1088
-msgid "EDITOR"
-msgstr "Edytor"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1135
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1024
 msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
 

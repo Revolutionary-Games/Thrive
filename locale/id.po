@@ -235,6 +235,127 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 
+#: ../simulation_parameters/common/input_options.json:6
+msgid "MOVEMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:10
+msgid "MOVE_LEFT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:14
+msgid "MOVE_RIGHT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:18
+msgid "MOVE_FORWARD"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:22
+msgid "MOVE_BACKWARDS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:26
+msgid "AUTO_MOVE_FORWARDS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:34
+msgid "ABILITIES"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:38
+msgid "FIRE_TOXIN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:42
+msgid "TOGGLE_ENGULF"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:51
+msgid "CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:55
+msgid "ZOOM_OUT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:59
+msgid "ZOOM_IN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
+msgid "EDITOR"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:71
+msgid "ROTATE_RIGHT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:75
+msgid "ROTATE_LEFT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:79
+msgid "UNDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:83
+msgid "REDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:87
+msgid "PLACE_ORGANELLE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:91
+msgid "REMOVE_ORGANELLE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:99
+msgid "CHEATS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:103
+msgid "ENABLE_EDITOR"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:107
+msgid "SPAWN_GLUCOSE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:111
+msgid "SPAWN_AMMONIA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:115
+msgid "SPAWN_PHOSPHATES"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:124
+msgid "MISCELLANEOUS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:128
+msgid "TOGGLE_FPS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:132
+msgid "QUICK_SAVE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:136
+msgid "QUICK_LOAD"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:140
+msgid "TAKE_SCREENSHOT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:144
+msgid "SHOW_HELP"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
@@ -627,7 +748,11 @@ msgstr ""
 msgid "LOADING"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:49
+#: ../src/engine/input/key_mapping/InputGroupList.cs:166
+msgid "KEY_BINDING_CHANGE_CONFLICT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
 msgstr ""
 
@@ -683,215 +808,215 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:133
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:145
+#: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:157
+#: ../src/general/OptionsMenu.tscn:152
 msgid "PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:164
 msgid "INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:181
+#: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:215
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:228
+#: ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:257
+#: ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:300
+#: ../src/general/OptionsMenu.tscn:295
 msgid "AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:310
+#: ../src/general/OptionsMenu.tscn:305
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:336
+#: ../src/general/OptionsMenu.tscn:331
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:368
+#: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:409
+#: ../src/general/OptionsMenu.tscn:404
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:436 ../src/general/OptionsMenu.tscn:477
-#: ../src/general/OptionsMenu.tscn:510 ../src/general/OptionsMenu.tscn:543
-#: ../src/general/OptionsMenu.tscn:576
+#: ../src/general/OptionsMenu.tscn:431 ../src/general/OptionsMenu.tscn:472
+#: ../src/general/OptionsMenu.tscn:505 ../src/general/OptionsMenu.tscn:538
+#: ../src/general/OptionsMenu.tscn:571
 msgid "MUTE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:450
+#: ../src/general/OptionsMenu.tscn:445
 msgid "MUSIC_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:483
+#: ../src/general/OptionsMenu.tscn:478
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:516
+#: ../src/general/OptionsMenu.tscn:511
 msgid "SFX_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:549
+#: ../src/general/OptionsMenu.tscn:544
 msgid "GUI_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:594
+#: ../src/general/OptionsMenu.tscn:589
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:609 ../src/general/OptionsMenu.tscn:952
+#: ../src/general/OptionsMenu.tscn:604 ../src/general/OptionsMenu.tscn:947
 msgid "RESET"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:627
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:647
+#: ../src/general/OptionsMenu.tscn:642
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
+#: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:693
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:691
+#: ../src/general/OptionsMenu.tscn:686
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:733
+#: ../src/general/OptionsMenu.tscn:728
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:765
+#: ../src/general/OptionsMenu.tscn:760
 msgid "RESET_INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:788
+#: ../src/general/OptionsMenu.tscn:783
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:797
+#: ../src/general/OptionsMenu.tscn:792
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:806
+#: ../src/general/OptionsMenu.tscn:801
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:817
+#: ../src/general/OptionsMenu.tscn:812
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:845
+#: ../src/general/OptionsMenu.tscn:840
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:866
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:874
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:895
+#: ../src/general/OptionsMenu.tscn:890
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:902
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:918
+#: ../src/general/OptionsMenu.tscn:913
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:942 ../src/general/PauseMenu.tscn:132
+#: ../src/general/OptionsMenu.tscn:937 ../src/general/PauseMenu.tscn:132
 #: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:963 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:958 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:979
+#: ../src/general/OptionsMenu.tscn:974
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:991
+#: ../src/general/OptionsMenu.tscn:986
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:992
+#: ../src/general/OptionsMenu.tscn:987
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1001
+#: ../src/general/OptionsMenu.tscn:996
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1002
+#: ../src/general/OptionsMenu.tscn:997
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1011
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1030
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1075
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1091
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "CANCEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1102
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ERROR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
@@ -1570,10 +1695,6 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1067
 msgid "PATCH_MAP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1088
-msgid "EDITOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1135

@@ -63,9 +63,7 @@ public class SimulationParameters : Node
 
         helpTexts = LoadRegistry<HelpTexts>("res://simulation_parameters/common/help_texts.json");
 
-        inputGroups = JsonConvert.DeserializeObject<List<NamedInputGroup>>(Constants.INPUT_OPTIONS);
-        if (inputGroups == null)
-            throw new InvalidDataException("Could not load input groups");
+        inputGroups = LoadListRegistry<NamedInputGroup>(Constants.INPUT_OPTIONS);
 
         GD.Print("SimulationParameters loading ended");
 
@@ -249,10 +247,22 @@ public class SimulationParameters : Node
 
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
     {
-        if (extraConverters == null)
-            extraConverters = Array.Empty<JsonConverter>();
+        extraConverters ??= Array.Empty<JsonConverter>();
 
         var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path), extraConverters);
+
+        if (result == null)
+            throw new InvalidDataException("Could not load a registry from file: " + path);
+
+        GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
+        return result;
+    }
+
+    private List<T> LoadListRegistry<T>(string path, JsonConverter[] extraConverters = null)
+    {
+        extraConverters ??= Array.Empty<JsonConverter>();
+
+        var result = JsonConvert.DeserializeObject<List<T>>(ReadJSONFile(path), extraConverters);
 
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);

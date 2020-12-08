@@ -6,6 +6,10 @@ using Newtonsoft.Json;
 /// </summary>
 public class NamedInputAction : IRegistryType
 {
+#pragma warning disable 169 // Used through reflection
+    private string untranslatedName;
+#pragma warning restore 169
+
     public string InputName { get; set; }
 
     /// <summary>
@@ -17,14 +21,8 @@ public class NamedInputAction : IRegistryType
     [JsonIgnore]
     public string InternalName { get => InputName; set => throw new NotSupportedException(); }
 
-#pragma warning disable 169 // Used through reflection
-    private string untranslatedName;
-#pragma warning restore 169
-
     public void Check(string name)
     {
-        InternalName = InputName;
-
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
