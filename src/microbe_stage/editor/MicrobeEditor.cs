@@ -924,7 +924,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
                 -1 => p.R - 1,
                 0 => p.R - .5f,
                 _ => p.R,
-            }).Min(); // get the min (highest in the editor) value
+            }).DefaultIfEmpty(0).Min(); // get the min (highest in the editor) value
 
         arrowPosition = new Vector3(0, 0, highestPointInMiddleRows - ARROW_OFFSET);
     }
