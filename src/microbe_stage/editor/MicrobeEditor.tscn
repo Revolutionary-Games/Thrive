@@ -919,7 +919,7 @@ __meta__ = {
 }
 
 [node name="EditorArrow" parent="." instance=ExtResource( 74 )]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -2, 0 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -0.5, 0 )
 
 [node name="World" type="Node" parent="."]
 
@@ -3835,10 +3835,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 256.0
-margin_top = 278.0
-margin_right = 558.0
-margin_bottom = 744.0
+margin_left = 260.0
+margin_top = 282.0
+margin_right = 562.0
+margin_bottom = 748.0
 theme = SubResource( 42 )
 edit_alpha = false
 
