@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Environment = System.Environment;
@@ -652,7 +653,9 @@ public class OptionsMenu : Control
 
         foreach (var locale in languages)
         {
-            optionButton.AddItem(locale);
+            var currentCulture = new CultureInfo(TranslationServer.GetLocale());
+            var native = currentCulture.NativeName;
+            optionButton.AddItem(locale + "(" + native + ")");
         }
     }
 
