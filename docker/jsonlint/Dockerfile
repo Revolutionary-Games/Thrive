@@ -5,4 +5,5 @@ RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config mak
 RUN git lfs install
 RUN gem install os colorize rubyzip json sha3 httparty nokogiri
 RUN npm install -g jsonlint && npm cache clean --force
-RUN pip3 --no-cache-dir install Babel Babel-Thrive
+COPY requirements.txt /requirements-thrive.txt
+RUN pip3 --no-cache-dir install -r /requirements-thrive.txt
