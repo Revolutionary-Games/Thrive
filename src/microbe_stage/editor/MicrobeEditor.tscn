@@ -918,7 +918,7 @@ __meta__ = {
 "_editor_description_": "Just something to make the microbe camera look at the right place"
 }
 
-[node name="MeshInstance" parent="." instance=ExtResource( 74 )]
+[node name="EditorArrow" parent="." instance=ExtResource( 74 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -2, 0 )
 
 [node name="World" type="Node" parent="."]
@@ -3835,10 +3835,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 248.0
-margin_top = 270.0
-margin_right = 550.0
-margin_bottom = 736.0
+margin_left = 252.0
+margin_top = 274.0
+margin_right = 554.0
+margin_bottom = 740.0
 theme = SubResource( 42 )
 edit_alpha = false
 
