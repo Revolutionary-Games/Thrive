@@ -616,8 +616,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         if (AddOrganelle(ActiveActionName))
         {
-            UpdateArrow();
-
             // Only trigger tutorial if something was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
@@ -745,8 +743,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
                 break;
             }
         }
-
-        UpdateArrow();
     }
 
     public float CalculateSpeed()
@@ -992,7 +988,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         UpdateUndoRedoButtons();
 
-        UpdateArrow();
         editorArrow.Translation = arrowPosition; // Force no lerp on init
 
         // Send freebuild value to GUI
@@ -1626,6 +1621,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     private void OnOrganellesChanged()
     {
         UpdateAlreadyPlacedVisuals();
+
+        UpdateArrow();
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
