@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -35,7 +36,7 @@ public class InputGroupList : VBoxContainer
     public delegate void ControlsChangedDelegate(InputDataList data);
 
     /// <summary>
-    ///   Fires whenever some inputs were redefined.
+    ///   Fired whenever some inputs were redefined.
     /// </summary>
     public event ControlsChangedDelegate OnControlsChanged;
 
@@ -47,9 +48,9 @@ public class InputGroupList : VBoxContainer
     {
         get
         {
-            var res = wasListeningForInput;
+            var result = wasListeningForInput;
             wasListeningForInput = false;
-            return res;
+            return result;
         }
         internal set => wasListeningForInput = value;
     }
@@ -67,6 +68,12 @@ public class InputGroupList : VBoxContainer
     /// <summary>
     ///   Returns the default controls which never change, unless there is a new release.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This relies on the static member holding the default controls to be initialized before the code has a chance
+    ///     to modify the controls.
+    ///   </para>
+    /// </remarks>
     /// <returns>The default controls</returns>
     public static InputDataList GetDefaultControls()
     {
@@ -86,25 +93,36 @@ public class InputGroupList : VBoxContainer
                     x => new SpecifiedInputKey(x)).ToList()));
     }
 
+    public override void _Ready()
+    {
+        InputEventItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputEventItem.tscn");
+        InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
+        InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
+
+        conflictDialog = GetNode<ConfirmationDialog>(ConflictDialogPath);
+        resetInputsDialog = GetNode<ConfirmationDialog>(ResetInputsDialog);
+    }
+
     /// <summary>
     ///   Returns not only the applied controls, but the controls the user is currently editing before pressing save.
     /// </summary>
-    /// <returns>The not applied controls.</returns>
+    /// <returns>
+    ///   The not applied controls, contains the full set of controls, also ones that haven't been changed.
+    /// </returns>
     public InputDataList GetCurrentlyPendingControls()
     {
-        var groups = ActiveInputGroupList.ToList();
-        if (!groups.Any())
+        if (!activeInputGroupList.Any())
             return GetDefaultControls();
 
-        return new InputDataList(groups.SelectMany(p => p.Actions)
+        return new InputDataList(activeInputGroupList.SelectMany(p => p.Actions)
             .ToDictionary(p => p.InputName, p => p.Inputs.Select(x => x.AssociatedEvent).ToList()));
     }
 
     /// <summary>
-    ///   Get the input conflict if there are any
+    ///   Get the input conflicts if there are any
     /// </summary>
-    /// <param name="item">The event with the new value</param>
-    /// <returns>The collision if any</returns>
+    /// <param name="item">The event with the new value to set</param>
+    /// <returns>The collisions if any of item against already set controls</returns>
     public InputEventItem Conflicts(InputEventItem item)
     {
         if (!item.AssociatedAction.TryGetTarget(out var inputActionItem))
@@ -144,8 +162,11 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = $"There is a conflict with {inputActionItem.DisplayName}.\n" +
-            $"Do you want to remove the input from {inputActionItem.DisplayName}?";
+        conflictDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
+            inputActionItem.DisplayName,
+            inputActionItem.DisplayName);
+
         conflictDialog.PopupCenteredMinsize();
     }
 
@@ -157,6 +178,8 @@ public class InputGroupList : VBoxContainer
     public void OnConflictConfirmed()
     {
         latestDialogConflict.Delete();
+
+        // Pass the input event again to have the key be set where it was previously skipped
         latestDialogCaller._Input(latestDialogNewEvent);
     }
 
@@ -171,36 +194,16 @@ public class InputGroupList : VBoxContainer
     /// <param name="data">The input data the input tab should be loaded with</param>
     public void LoadFromData(InputDataList data)
     {
-        // Load json
-        try
+        if (activeInputGroupList != null)
         {
-            using var file = new File();
-            file.Open(Constants.INPUT_OPTIONS, File.ModeFlags.Read);
-            var fileContent = file.GetAsText();
-            var loadedJson = JsonConvert.DeserializeObject<List<NamedInputGroup>>(fileContent);
-            foreach (var inputGroupItem in activeInputGroupList ?? Array.Empty<InputGroupItem>())
-                inputGroupItem.Dispose();
+            foreach (var inputGroupItem in activeInputGroupList)
+                inputGroupItem.Free();
+        }
 
-            activeInputGroupList = BuildGUI(loadedJson, data);
-            file.Close();
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr($"Could not load the input settings: {e}");
-        }
+        activeInputGroupList = BuildGUI(SimulationParameters.Instance.InputGroups, data);
     }
 
-    public override void _Ready()
-    {
-        InputEventItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputEventItem.tscn");
-        InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
-        InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
-
-        conflictDialog = GetNode<ConfirmationDialog>(ConflictDialogPath);
-        resetInputsDialog = GetNode<ConfirmationDialog>(ResetInputsDialog);
-    }
-
-    internal void InitGroupList()
+    public void InitGroupList()
     {
         foreach (Node child in GetChildren())
         {
@@ -222,8 +225,8 @@ public class InputGroupList : VBoxContainer
         OnControlsChanged?.Invoke(GetCurrentlyPendingControls());
     }
 
-    private IEnumerable<InputGroupItem> BuildGUI(IEnumerable<NamedInputGroup> loadedJson, InputDataList data)
+    private IEnumerable<InputGroupItem> BuildGUI(IEnumerable<NamedInputGroup> groupData, InputDataList data)
     {
-        return loadedJson.Select(p => InputGroupItem.BuildGUI(this, p, data)).ToList();
+        return groupData.Select(p => InputGroupItem.BuildGUI(this, p, data)).ToList();
     }
 }

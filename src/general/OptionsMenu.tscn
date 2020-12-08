@@ -1104,7 +1104,10 @@ margin_right = 835.0
 margin_bottom = 399.0
 popup_exclusive = true
 window_title = "ERROR"
-dialog_text = ""
+dialog_text = "PLACEHOLDER"
+__meta__ = {
+"_editor_description_": "If text is left empty babel complains so that text is used (because ERROR needs to be translated)"
+}
 
 [node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
 margin_left = 445.0
