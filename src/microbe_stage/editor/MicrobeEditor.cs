@@ -918,7 +918,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     private void UpdateArrow()
     {
-        var highestPointInMiddleRows = editedMicrobeOrganelles.SelectMany(p => p.Definition.Hexes.Select(x => x + p.Position)) // get all hexes
+        var highestPointInMiddleRows = editedMicrobeOrganelles
+            .SelectMany(p => p.Definition.Hexes.Select(x => x + p.Position)) // get all hexes
             .Where(p => p.Q >= -1 && p.Q <= 1) // only select the middle 3 rows
             .Select(p => p.Q switch
             {
