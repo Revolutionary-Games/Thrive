@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-01 20:44+0700\n"
-"PO-Revision-Date: 2020-12-05 18:16+0000\n"
-"Last-Translator: Alex Larbière <alex@larbiere.eu>\n"
+"PO-Revision-Date: 2020-12-09 15:46+0000\n"
+"Last-Translator: Mauboussin Lucas <dragonmemo492@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -1511,7 +1511,7 @@ msgstr "Vacuole bioluminescente"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5182
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3449
 msgid "NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5294
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5536
@@ -1533,7 +1533,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3519
 msgid "DOUBLE"
-msgstr ""
+msgstr "Double"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5588
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
@@ -1553,44 +1553,56 @@ msgstr "Cellulose"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6448
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6782
 msgid "PHYSICAL_RESISTANCE"
-msgstr ""
+msgstr "Résistance Physique"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6173
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6507
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6841
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Ne peut pas absorber"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5892
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Cette membrane a un mur, ce qui lui donne une meilleure résistance contre "
+"les dégâts généraux et plus spécifiquement contre les dégâts physiques. Elle "
+"coûte aussi moins d'énergie pour garder sa forme, mais ne peut pas absorber "
+"des ressources rapidement et est plus lente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5908
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5972
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3659
 msgid "CHITIN"
-msgstr ""
+msgstr "Chitine"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6144
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6478
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6812
 msgid "TOXIN_RESISTANCE"
-msgstr ""
+msgstr "Résistance aux toxines"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6196
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Cette membrane a un mur, ce qui signifie qu'elle a une meilleure protection "
+"contre les dégâts généraux et spécialement contre les dégâts de toxines. "
+"Elle coûte aussi moins d'énergie pour garder sa forme, mais est plus lente "
+"et ne peut pas absorber de ressources rapidement."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6212
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6276
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3734
 msgid "CALCIUM_CARBONATE"
-msgstr ""
+msgstr "Carbonate de Calcium"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6530
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Cette membrane a une coque résistante faite de carbonate de calcium. Elle "
+"peut facilement résister aux dégâts et requiert moins d'énergie pour ne pas "
+"se déformer. L'inconvénient d'avoir une coque si résistante est que la "
+"cellule est plus lente et va prendre du temps à absorber les ressources."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6546
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6610
@@ -1685,92 +1697,92 @@ msgstr "Vents pangoniens"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:29
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr ""
+msgstr "Mésopélagique Pangonien"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:36
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr ""
+msgstr "Épipélagique Pangonien"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:43
 msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr ""
+msgstr "Flaque Pangonienne"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:50
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr ""
+msgstr "Bathypélagique Pangonien"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:57
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr ""
+msgstr "Abyssopélagique Pangonien"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:64
 msgid "PATCH_PANGONIAN_COAST"
-msgstr ""
+msgstr "Côte Pangonienne"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:71
 msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr ""
+msgstr "Estuaire Pangonien"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:78
 msgid "PATCH_CAVE"
-msgstr ""
+msgstr "Grotte"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:85
 msgid "PATCH_ICE_SHELF"
-msgstr ""
+msgstr "Plateau de Glace"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:92
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
+msgstr "Sol Marin Pangonien"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:687
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1188
 msgid "LOADING_MICROBE_EDITOR"
-msgstr ""
+msgstr "Chargement de l'Éditeur de Microbes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:689
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr ""
+msgstr "Attente pour l'auto-évo :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2070
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "L'Auto-évo n'a pas pu se lancer"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2071
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "état de lancement :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1024
 msgid "REPORT"
-msgstr ""
+msgstr "Rapport"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1045
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "Carte de Parcelles"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1066
 msgid "EDITOR"
-msgstr ""
+msgstr "Éditeur"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1113
 msgid "ORGANISM_STATISTICS"
-msgstr ""
+msgstr "Statistiques de l'Organisme"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1158
 msgid "SPEED_COLON"
-msgstr ""
+msgstr "Vitesse :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1188
 msgid "HP_COLON"
-msgstr ""
+msgstr "PV :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1218
 msgid "SIZE_COLON"
-msgstr ""
+msgstr "Taille :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1239
 msgid "GENERATION_COLON"
-msgstr ""
+msgstr "Génération :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1281
 msgid "ATP_BALANCE"
@@ -1794,71 +1806,80 @@ msgstr "Comportement"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1715
 msgid "STRUCTURAL"
-msgstr ""
+msgstr "Structure"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1877
 msgid "PROTEINS"
-msgstr ""
+msgstr "Protéines"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2100
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
+"Protéines Chimio-\n"
+"synthétisantes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2359
 msgid "EXTERNAL"
-msgstr ""
+msgstr "Externe"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2641
 msgid "ORGANELLES"
-msgstr ""
+msgstr "Organites"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3061
 msgid "PLASTID"
-msgstr ""
+msgstr "Plastide"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3221
 msgid "N_A_MP"
-msgstr ""
+msgstr "N/A PM"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3259
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
+"Vacuole\n"
+"Bioluminescent"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3356
 msgid "MEMBRANE_TYPES"
-msgstr ""
+msgstr "Types de Membranes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3829
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Fluidité / Rigidité"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3867
 msgid "COLOUR"
-msgstr ""
+msgstr "Couleur"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4039
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "ACCEPTER"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4048
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr ""
+msgstr "Quantité d'ATP Négative"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4049
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
+"Votre microbe ne produit pas assez d'ATP pour survivre!\n"
+"Voulez-vous continuer?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4057
 msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
+msgstr "Organites Déconnectés"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4058
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
+"Il y a des organites placées qui ne sont pas connectés au reste.\n"
+"Veuillez connecter toutes les organites placées avec les autres ou annulez "
+"vos changements."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4124
 msgid "PATCH_NAME"
-msgstr ""
+msgstr "Nom de la Parcelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4158
 msgid "AUTO_EVO"
@@ -1866,230 +1887,241 @@ msgstr "Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4172
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Chaîne Alimentaire"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4186
 msgid "TIMELINE"
-msgstr ""
+msgstr "Chronologie"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4239
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Résultats de l'auto-évo :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4258
 msgid "EXTERNAL_EFFECTS"
-msgstr ""
+msgstr "Effets externes :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4325
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5248
 msgid "NEXT_CAPITAL"
-msgstr ""
+msgstr "SUIVANT"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4439
 msgid "SELECT_A_PATCH"
-msgstr ""
+msgstr "Choisir une parcelle pour voir ses détails ici"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4474
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
+msgstr "POSITION ACTUELLE"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4554
 msgid "PHYSICAL_CONDITIONS"
-msgstr ""
+msgstr "Conditions Physique"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4737
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "Gaz Atmosphériques"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5162
 msgid "SPECIES_PRESENT"
-msgstr ""
+msgstr "Espèces Présentes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5220
 msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
+msgstr "Se Déplacer vers Cette Parcelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "Construction Libre"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
+msgstr "La quantité de glucose a été réduite a {0} se sa valeur précédente."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "Myr"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
 msgid "YEARS"
-msgstr ""
+msgstr "années"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "Production d'ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "LA PRODUCTION D'ATP EST TROP FAIBLE!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
 msgid "OSMOREGULATION"
-msgstr ""
+msgstr "Osmorégulation"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Mouvement de Base"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1530
 msgid "BIOME_LABEL"
-msgstr ""
+msgstr "Terrain : {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1536
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1}m sous la mer"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1579
 msgid "WITH_POPULATION"
-msgstr ""
+msgstr "{0} avec population : {1}"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:57
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "EXTINCTION"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
+"Tout comme 99% des espèces qui ont existé, votre espèce s'est éteinte. "
+"D'autres continuerons à remplir vos abris et prospérerons, mais ça ne sera "
+"pas vous. Vous serez oublié, une expérience qui a échoué dans l'évolution."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
-msgstr ""
+msgstr "VOUS AVEZ PROSPÉRÉ !"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
+"Bravo, vous avez gagné cette version de Thrive! vous pouvez continuer à "
+"jouer après que cet écran se soit fermé si vous le souhaitez, ou démarrer "
+"une nouvelle partie dans un autre monde."
 
 #: ../src/saving/InProgressLoad.cs:89 ../src/saving/InProgressLoad.cs:113
 #: ../src/saving/InProgressLoad.cs:160
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "Chargement du Jeu"
 
 #: ../src/saving/InProgressLoad.cs:91
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Lecture des données de sauvegarde"
 
 #: ../src/saving/InProgressLoad.cs:115
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "Création des objets à partir de la sauvegarde"
 
 #: ../src/saving/InProgressLoad.cs:122
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Une exception a eu lieu pendant le chargement des données de sauvegarde"
 
 #: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "La sauvegarde est invalide"
 
 #: ../src/saving/InProgressLoad.cs:149
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr ""
+msgstr "La sauvegarde a un état scénique de jeu invalide"
 
 #: ../src/saving/InProgressLoad.cs:162
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
+msgstr "Compréhension des objets chargés"
 
 #: ../src/saving/InProgressLoad.cs:175
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr ""
+msgstr "Une exception a eu lieu lors de la compréhension des objets chargés"
 
 #: ../src/saving/InProgressLoad.cs:181
 msgid "LOAD_FINISHED"
-msgstr ""
+msgstr "Chargement terminé"
 
 #: ../src/saving/InProgressLoad.cs:206
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Erreur de Chargement"
 
 #: ../src/saving/InProgressSave.cs:172
 msgid "SAVING"
-msgstr ""
+msgstr "Sauvegarde..."
 
 #: ../src/saving/InProgressSave.cs:202
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "Sauvegarde Échouée"
 
 #: ../src/saving/InProgressSave.cs:203
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Erreur de Sauvegarde"
 
 #: ../src/saving/NewSaveMenu.cs:65
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
+msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Réécrire par dessus?"
 
 #: ../src/saving/NewSaveMenu.tscn:28
 msgid "CREATE_NEW_SAVE"
-msgstr ""
+msgstr "Créer une Nouvelle Sauvegarde"
 
 #: ../src/saving/NewSaveMenu.tscn:45
 msgid "NAME"
-msgstr ""
+msgstr "Nom :"
 
 #: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Autres Options"
 
 #: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr ""
+msgstr "Réécriture sur la sauvegarde existante :"
 
 #: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr ""
+msgstr "Réécrire la sauvegarde existante?"
 
 #: ../src/saving/SaveHelper.cs:437
 msgid "SAVING_SUCCEEDED"
-msgstr ""
+msgstr "Sauvegarde réussi"
 
 #: ../src/saving/SaveHelper.cs:441
 msgid "SAVING_FAILED"
-msgstr ""
+msgstr "Sauvegarde échoué! Une exception a eu lieu"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_MANUAL"
-msgstr ""
+msgstr "Manuelle"
 
 #: ../src/saving/SaveInformation.cs:31
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "Auto-sauvegarde"
 
 #: ../src/saving/SaveInformation.cs:40
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "Sauvegarde rapide"
 
 #: ../src/saving/SaveInformation.cs:49
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "Invalide"
 
 #: ../src/saving/SaveList.cs:177
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
+"Supprimer cette sauvegarde ne peut pas être défait, êtes-vous sûr de vouloir "
+"détruire {0} de manière permanente?"
 
 #: ../src/saving/SaveList.tscn:45 ../src/saving/SaveListItem.tscn:120
 msgid "LOADING_DOT"
-msgstr ""
+msgstr "Chargement..."
 
 #: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:298
 msgid "DELETE_THIS_SAVE"
-msgstr ""
+msgstr "Supprimer cette Sauvegarde?"
 
 #: ../src/saving/SaveList.tscn:67 ../src/saving/SaveList.tscn:77
 msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr ""
+msgstr "Charger une sauvegarde incompatible?"
 
 #: ../src/saving/SaveList.tscn:68
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
+"Cette sauvegarde vient dune version postérieure de Thrive et a beaucoup de "
+"chances d'être incompatible.\n"
+"Voulez-vous tout de même tenter de charger la sauvegarde?"
 
 #: ../src/saving/SaveList.tscn:78
 msgid "OLDER_VERSION_LOADING_WARNING"
@@ -2172,54 +2204,62 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:211
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
+"Supprimer la(les) sauvegarde(s) sélectionnée(s) ne peut pas être défait, "
+"êtes-vous sûr que vous voulez supprimer {0} sauvegarde(s) de manière "
+"permanente?"
 
 #: ../src/saving/SaveManagerGUI.cs:223
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
+"Supprimer toutes les anciennes Auto sauvegardes et Rapides ne peut être "
+"défait, êtes-vous sûr de vouloir supprimer de manière permanente les "
+"sauvegardes suivantes ?\n"
+"- {0} Auto sauvegarde(s)\n"
+"- {1} sauvegarde(s) Rapide"
 
 #: ../src/saving/SaveManagerGUI.tscn:64
 msgid "REFRESH"
-msgstr ""
+msgstr "Rafraîchir"
 
 #: ../src/saving/SaveManagerGUI.tscn:72
 msgid "DELETE_SELECTED"
-msgstr ""
+msgstr "Supprimer la Sélection"
 
 #: ../src/saving/SaveManagerGUI.tscn:80
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "Suppression des Anciennes Sauvegardes"
 
 #: ../src/saving/SaveManagerGUI.tscn:91
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr ""
+msgstr "Ouvrir le Dossier de Sauvegarde"
 
 #: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
-msgstr ""
+msgstr "Nombre de sauvegardes :"
 
 #: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
-msgstr ""
+msgstr "Espace utilisé :"
 
 #: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
-msgstr ""
+msgstr "Sélectionné :"
 
 #: ../src/saving/SaveManagerGUI.tscn:180
 msgid "DELETE_SELECTED_SAVES"
-msgstr ""
+msgstr "Supprimer la(les) Sauvegarde(s) sélectionnée(s)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES"
-msgstr ""
+msgstr "Supprimer les anciennes Sauvegardes?"
 
 #: ../src/saving/SaveStatusOverlay.tscn:116
 msgid "SAVING_ERROR"
-msgstr ""
+msgstr "Erreur de Sauvegarde"
 
 #: ../src/saving/SaveStatusOverlay.tscn:176
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Copier l'Erreur"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:39
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:72
@@ -2233,60 +2273,153 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:234
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
 msgid "TUTORIAL"
-msgstr ""
+msgstr "Tutoriel"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:59
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+"Bienvenue à l'Éditeur de mode Microbe.\n"
+"Ici vous pouvez revoir ce qu'il s'est passé depuis le début de la partie ou "
+"depuis quand vous êtes allés pour la dernière fois dans l'éditeur. Et "
+"ensuite faire des changement à votre espèce.\n"
+"\n"
+"Dans cet onglet vous pouvez voir un rapport sur quelles espèces existe, où, "
+"et quelle est leur population. Vous pouvez aussi voir les changements "
+"environnementaux au sommet.\n"
+"\n"
+"Pour aller au prochain onglet de l'éditeur, appuyez sur le bouton suivant en "
+"bas à droite."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:92
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
+"C'est la carte des parcelles.\n"
+"Ici vous pouvez voir les différentes parcelles dans lesquels votre microbe "
+"peut vivre.\n"
+"Votre parcelle actuelle est en surbrillance.\n"
+"Vous pouvez cliquer sur les parcelles avec votre souris pour les "
+"sélectionner pour voir leurs détails sur la partie droite.\n"
+"\n"
+"Si vous sélectionnez une parcelle adjacente à celle dans laquelle vous êtes, "
+"vous pouvez appuyer sur le bouton sur la droite pour vous y déplacer. Cela "
+"permet à votre population de se propager vers de nouvelles parcelles.\n"
+"\n"
+"Sélectionnez une parcelle pour continuer."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:122
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
+"C'est l'éditeur de cellule ou vous pouvez ajouter ou retirer des organites à "
+"votre espèce en dépensant des points de mutation (PM).\n"
+"\n"
+"Vous pouvez aussi changer d'autres propriétés de votre espèce dans les "
+"autres onglets de l'éditeur de cellule.\n"
+"\n"
+"Pour continuer, sélectionnez un organite sur le panneau de gauche (le "
+"cytoplasme est un bon choix). Ensuite faites un clique gauche à côté de "
+"l'hexagone montré au milieu de l'écran pour ajouter cet organite à votre "
+"espèce."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
+"Retirer des organites coûte aussi des PM comme c'est une mutation pour votre "
+"espèce. Vous pouvez faire un clique droit sur les organites pour les retirer."
+"\n"
+"Si vous faites une erreur, vous pouvez annuler tous les changements que vous "
+"faites dans l'éditeur.\n"
+"\n"
+"Note : retirer des organites que vous avez placé dans la session actuelle "
+"d'édition est gratuit.\n"
+"\n"
+"Cliquez sur le bouton d'annulation pour continuer."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:190
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
+"En sélectionnant quelles organites ajouter, faites attention aux "
+"informations sur les organites pour quels processus elles réalisent et quels "
+"composants ils utilisent et produisent.\n"
+"\n"
+"Aussi faites attention à votre barre d'équilibrage d'ATP en haut à droite "
+"pour être sûr que votre cellule peut survivre.\n"
+"\n"
+"Vous pouvez tourner les organites avec A et D (touches par défaut) avant de "
+"les placer.\n"
+"\n"
+"Pressez le bouton refaire (près du bouton d'annulation) pour continuer."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
+"Ceci sont les bases de l'édition de votre espèce. Vous pouvez les autres "
+"onglets de l'éditeur de cellule pour plus d'options.\n"
+"\n"
+"Vous pouvez renommer votre espèce en cliquant sur le nom actuel de votre "
+"espèce et en changeant le texte.\n"
+"\n"
+"Au début vous devriez garder votre cellule petite et aller vers les "
+"parcelles en surface.\n"
+"\n"
+"Bonne chance!"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
 msgid "GOT_IT"
-msgstr ""
+msgstr "Bien reçu"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique "
+"et d'impacts de météores on mené au développement d'un nouveau phénomène "
+"dans l'univers.\n"
+"\n"
+"Vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan. Vous êtes le "
+"dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans un monde hostile, vous aurez besoin de collecter "
+"n'importe quel composant que vous pourrez trouver et évoluer à chaque "
+"génération en étant en compétition contre d'autres espèces de microbes."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:89
 msgid "SHOW_TUTORIALS"
-msgstr ""
+msgstr "Montrer les tutoriels"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Commencer à Prospérer"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:138
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
+"Pour contrôler votre cellule utilisez les touches affichées près de votre "
+"cellule (au centre de l'écran) et la souris pour contrôler l'orientation de "
+"votre cellule.\n"
+"\n"
+"Essayez toutes les touches pendant quelques secondes pour continuer."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
+"Collectez du glucose (nuages blanc) en vous déplaçant dessus.\n"
+"Votre cellule a besoin de glucose afin de produire de l'énergie et rester en "
+"vie.\n"
+"Suivez la ligne entre votre cellule et le glucose le plus proche."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
+"Gardez un œil sur votre barre de santé près de votre barre d'ATP (en bas à "
+"droite).\n"
+"Votre cellule meurt si elle est à court de vie.\n"
+"Vous régénérez votre santé tant que vous avez de l'ATP.\n"
+"Faites en sorte de collecter assez de glucose pour produire de l'ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+"Afin de vous reproduire vous devez dupliquer tous vos organites en "
+"collectant assez d'ammoniaque et de phosphates.\n"
+"Regardez l'indicateur en bas à droite pour voir combien il vous en manque."
