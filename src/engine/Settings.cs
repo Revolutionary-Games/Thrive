@@ -426,7 +426,7 @@ public class Settings
     /// </summary>
     /// <param name="language">The language name to try to understand</param>
     /// <returns>The culture info</returns>
-    private static CultureInfo GetCultureInfo(string language)
+    public static CultureInfo GetCultureInfo(string language)
     {
         try
         {

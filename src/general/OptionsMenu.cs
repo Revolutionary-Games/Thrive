@@ -653,7 +653,7 @@ public class OptionsMenu : Control
 
         foreach (var locale in languages)
         {
-            var currentCulture = new CultureInfo(TranslationServer.GetLocale());
+            var CurrentCulture = Settings.GetCultureInfo(locale);
             var native = currentCulture.NativeName;
             optionButton.AddItem(locale + "(" + native + ")");
         }
