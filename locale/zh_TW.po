@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-01 20:44+0700\n"
-"PO-Revision-Date: 2020-11-18 21:59+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
-"com>\n"
+"PO-Revision-Date: 2020-12-07 19:19+0000\n"
+"Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -47,11 +46,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"滲透調節耗費ATP(三磷酸腺苷)，這意味著您的細胞越大，你所需要的線粒體/代謝體/"
-"Rusticyanin（或細胞質-可進行糖酵解）越多，以避免在你靜止時失去ATP。"
+"滲透調節耗費ATP(三磷酸腺苷)，這意味著您的細胞越大，你所需要的線粒體/代謝體/Rusticyanin（或細胞質-可進行糖酵解）越多，以避免在你靜止時失"
+"去ATP。"
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
@@ -125,7 +123,7 @@ msgstr ""
 "\n"
 "鞭毛：通過消耗ATP加快你細胞的移動速度\n"
 "\n"
-"菌毛：可以用來捅其它細胞"
+"菌毛：可以用來刺其它細胞"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -150,21 +148,18 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"每一代，你都有100個變異點可供花費，任何變化都會花費一定量的變異點。增加或移除"
-"細胞器會花費變異點，無論如何，移除在本代放下的細胞器會返還全部的變異點。你可"
-"以通過右鍵點擊移除細胞器。你可以用A和D鍵旋轉你的細胞器"
+"每一代，你都有100個變異點(MP)可供花費，任何變化都會花費一定量的變異點。增加或移除細胞器會花費變異點，無論如何，移除在本代放下的細胞器會返還全部的變"
+"異點。你可以通過右鍵點擊移除細胞器。你可以用A和D鍵旋轉你的細胞器"
 
 #: ../simulation_parameters/common/help_texts.json:24
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"你每次繁殖時都會進入微生物編輯器，你可以在那改變你的物種（通過添加，移動或刪"
-"除細胞器）以強化你物種的生存力。在微生物階段每次進入編輯器都代表一億年的進化"
-"時間"
+"你每次繁殖時都會進入微生物編輯器，你可以在那改變你的物種（通過添加，移動或刪除細胞器）以強化你物種的生存力。在微生物階段每次進入編輯器都代表一億年的進化時"
+"間。"
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr "提示：在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
@@ -186,8 +181,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"豆知識：現實中原核生物有一種叫生物區隔（Biocompartments）的結構，作用跟細胞器"
-"很相似，而且實際上也被叫做多角體細胞器（Polyhedral organelles）"
+"豆知識：現實中原核生物有一種叫生物區隔（Biocompartments）的結構，作用跟細胞器很相似，而且實際上也被叫做多角體細胞器（Polyhedral "
+"organelles）。"
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
@@ -926,11 +921,11 @@ msgstr "退出"
 
 #: ../src/gui_common/MainMenu.cs:376
 msgid "OK"
-msgstr ""
+msgstr "確認"
 
 #: ../src/gui_common/MainMenu.cs:377
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
@@ -989,7 +984,6 @@ msgid "WILL_YOU_THRIVE"
 msgstr "你能Thrive(繁盛)嗎？"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:124
-#, fuzzy
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "完成編輯並返回環境"
 
@@ -1049,7 +1043,7 @@ msgstr "更剛性的細胞膜有助於抵抗擋傷，但是也會讓細胞更難
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4280
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
 msgid "TURNS"
-msgstr ""
+msgstr "回合"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
@@ -1677,23 +1671,23 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3356
 msgid "MEMBRANE_TYPES"
-msgstr ""
+msgstr "膜類型"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3829
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "流動性/剛性"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3867
 msgid "COLOUR"
-msgstr ""
+msgstr "顏色"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4039
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "確認"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4048
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr ""
+msgstr "負 ATP平衡"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4049
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
@@ -1709,41 +1703,41 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4124
 msgid "PATCH_NAME"
-msgstr ""
+msgstr "區域名字"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4158
-#, fuzzy
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "自動進化"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4172
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "食物鏈"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4186
 msgid "TIMELINE"
-msgstr ""
+msgstr "時間線"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4239
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "自動進化 結果："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4258
 msgid "EXTERNAL_EFFECTS"
-msgstr ""
+msgstr "外部影響："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4325
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5248
+#, fuzzy
 msgid "NEXT_CAPITAL"
-msgstr ""
+msgstr "下一頁"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4439
 msgid "SELECT_A_PATCH"
-msgstr ""
+msgstr "選擇一個區域以在此處顯示詳細信息"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4474
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
+msgstr "當前位置"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4554
 msgid "PHYSICAL_CONDITIONS"
@@ -1751,15 +1745,16 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4737
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "大氣氣體"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5162
+#, fuzzy
 msgid "SPECIES_PRESENT"
-msgstr ""
+msgstr "存在的物種"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5220
 msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
+msgstr "移動到這個區域"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
 msgid "FREEBUILDING"
@@ -1771,24 +1766,24 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "百萬年"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
 msgid "YEARS"
-msgstr ""
+msgstr "年"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "ATP產出"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "ATP產出太低！"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:733
 msgid "OSMOREGULATION"
-msgstr ""
+msgstr "滲透壓調節"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
 msgid "BASE_MOVEMENT"
@@ -1808,7 +1803,7 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:57
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "滅絕"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:66
 msgid "EXTINCTION_BOX_TEXT"
@@ -1825,23 +1820,23 @@ msgstr ""
 #: ../src/saving/InProgressLoad.cs:89 ../src/saving/InProgressLoad.cs:113
 #: ../src/saving/InProgressLoad.cs:160
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "加載遊戲中"
 
 #: ../src/saving/InProgressLoad.cs:91
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "讀取存檔數據中"
 
 #: ../src/saving/InProgressLoad.cs:115
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "從存檔中建立物體"
 
 #: ../src/saving/InProgressLoad.cs:122
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "加載存檔數據時發生異常"
 
 #: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "存檔無效"
 
 #: ../src/saving/InProgressLoad.cs:149
 msgid "SAVE_HAS_INVALID_GAME_STATE"
@@ -1849,79 +1844,79 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:162
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
+msgstr "已載入物體處理中"
 
 #: ../src/saving/InProgressLoad.cs:175
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr ""
+msgstr "處理已載入對象時發生異常"
 
 #: ../src/saving/InProgressLoad.cs:181
 msgid "LOAD_FINISHED"
-msgstr ""
+msgstr "加載完成"
 
 #: ../src/saving/InProgressLoad.cs:206
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "錯誤加載"
 
 #: ../src/saving/InProgressSave.cs:172
 msgid "SAVING"
-msgstr ""
+msgstr "保存中..."
 
 #: ../src/saving/InProgressSave.cs:202
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "保存失敗"
 
 #: ../src/saving/InProgressSave.cs:203
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "保存時出錯"
 
 #: ../src/saving/NewSaveMenu.cs:65
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
+msgstr "目標文件名({0})已存在。確定要覆蓋嗎？"
 
 #: ../src/saving/NewSaveMenu.tscn:28
 msgid "CREATE_NEW_SAVE"
-msgstr ""
+msgstr "建立新存檔"
 
 #: ../src/saving/NewSaveMenu.tscn:45
 msgid "NAME"
-msgstr ""
+msgstr "名字："
 
 #: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "額外選項"
 
 #: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr ""
+msgstr "覆寫現有的存檔："
 
 #: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr ""
+msgstr "覆寫現有的存檔？"
 
 #: ../src/saving/SaveHelper.cs:437
 msgid "SAVING_SUCCEEDED"
-msgstr ""
+msgstr "保存成功"
 
 #: ../src/saving/SaveHelper.cs:441
 msgid "SAVING_FAILED"
-msgstr ""
+msgstr "保存失敗！發生了一個異常"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_MANUAL"
-msgstr ""
+msgstr "手動"
 
 #: ../src/saving/SaveInformation.cs:31
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "自動存檔"
 
 #: ../src/saving/SaveInformation.cs:40
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "快速存檔"
 
 #: ../src/saving/SaveInformation.cs:49
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "無效"
 
 #: ../src/saving/SaveList.cs:177
 msgid "SAVE_DELETE_WARNING"
@@ -1929,11 +1924,11 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:45 ../src/saving/SaveListItem.tscn:120
 msgid "LOADING_DOT"
-msgstr ""
+msgstr "加載中..."
 
 #: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:298
 msgid "DELETE_THIS_SAVE"
-msgstr ""
+msgstr "刪除這個存檔嗎?"
 
 #: ../src/saving/SaveList.tscn:67 ../src/saving/SaveList.tscn:77
 msgid "LOAD_INCOMPATIBLE_SAVE"
@@ -2008,6 +2003,9 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:223
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
+"刪除所有舊的自動和快速保存這操作無法被撤銷，你確定要永久刪除以下內容？\n"
+" - {0} 自動保存\n"
+" - {1} 快速保存"
 
 #: ../src/saving/SaveManagerGUI.tscn:64
 msgid "REFRESH"
@@ -2031,11 +2029,11 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
-msgstr ""
+msgstr "已被使用的空間："
 
 #: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
-msgstr ""
+msgstr "已選："
 
 #: ../src/saving/SaveManagerGUI.tscn:180
 msgid "DELETE_SELECTED_SAVES"
@@ -2047,11 +2045,11 @@ msgstr "刪除舊存檔嗎？"
 
 #: ../src/saving/SaveStatusOverlay.tscn:116
 msgid "SAVING_ERROR"
-msgstr ""
+msgstr "保存錯誤"
 
 #: ../src/saving/SaveStatusOverlay.tscn:176
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "往粘貼板複製錯誤"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:39
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:72
@@ -2092,8 +2090,9 @@ msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#, fuzzy
 msgid "GOT_IT"
-msgstr ""
+msgstr "明白了"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
@@ -2110,6 +2109,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:138
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
+"要控制細胞，請使用在細胞附近（屏幕中心）顯示的按鍵和鼠標來控制細胞的方向。\n"
+"\n"
+"請花幾秒時間嘗試所有按鍵以繼續。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
 msgid "MICROBE_STAGE_COLLECT_TEXT"
