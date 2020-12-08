@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
+[ext_resource path="res://src/engine/input/key_mapping/InputGroupList.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=4]
 
 [sub_resource type="ButtonGroup" id=1]
@@ -718,6 +719,15 @@ margin_top = 163.0
 margin_right = 635.0
 margin_bottom = 167.0
 
+[node name="RunAutoEvoDuringGameplay" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
+margin_top = 177.0
+margin_right = 316.0
+margin_bottom = 199.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 2 )
+pressed = true
+text = "RUN_AUTO_EVO_DURING_GAMEPLAY"
+
 [node name="Inputs" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
 margin_left = 15.0
@@ -738,7 +748,7 @@ margin_bottom = 36.0
 
 [node name="InputGroupList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/VBoxContainer"]
 custom_constants/separation = 30
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -749,15 +759,6 @@ ResetInputsDialog = NodePath("../../../../../../../DefaultsInputsConfirm")
 margin_right = 67.0
 margin_bottom = 30.0
 text = "RESET_INPUTS"
-
-[node name="RunAutoEvoDuringGameplay" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
-margin_top = 177.0
-margin_right = 316.0
-margin_bottom = 199.0
-size_flags_horizontal = 0
-custom_styles/hover_pressed = SubResource( 2 )
-pressed = true
-text = "RUN_AUTO_EVO_DURING_GAMEPLAY"
 
 [node name="Misc" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
@@ -1089,18 +1090,18 @@ __meta__ = {
 }
 
 [node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
-margin_left = 366.0
-margin_top = 322.0
-margin_right = 913.0
-margin_bottom = 398.0
+margin_left = 445.0
+margin_top = 321.0
+margin_right = 835.0
+margin_bottom = 399.0
 popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 
 [node name="ConflictDialog" type="ConfirmationDialog" parent="CenterContainer"]
-margin_left = 445.0
+margin_left = 540.0
 margin_top = 321.0
-margin_right = 835.0
+margin_right = 740.0
 margin_bottom = 399.0
 popup_exclusive = true
 window_title = "ERROR"
@@ -1111,13 +1112,12 @@ __meta__ = {
 
 [node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
 margin_left = 445.0
-margin_top = 322.0
+margin_top = 321.0
 margin_right = 835.0
-margin_bottom = 398.0
+margin_bottom = 399.0
 popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= [ "Performance" ]]
