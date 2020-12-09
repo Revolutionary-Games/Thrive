@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-09 16:54+0200\n"
-"PO-Revision-Date: 2020-11-21 13:57+0000\n"
+"PO-Revision-Date: 2020-12-10 12:44+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -25,6 +25,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos "
+"solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -123,10 +125,20 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"Joka sukupolvi käytössäsi on 100 mutaatiopistettä (MP). Jokainen muutos "
+"(mutaatio) maksaa tietyn verran mutaatiopisteitä. Soluelinten lisääminen tai "
+"poistaminen maksaa MP:tä, mutta soluelinten poistaminen, jotka on lisätty "
+"nykyisessä editorisessiossa, antaa takaisin niiden kustannuksen. Soluelimen "
+"voi poistaa painamalla sitä oikealla hiirennapilla. Asetettavaa soluelintä "
+"voi kääntää painamalla A:ta tai D:tä."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"Joka kerta kun jatkat sukuasi, pääset mikrobieditoriin, jossa voit tehdä "
+"muutoksia lajiisi (lisäämällä, siirtämällä tai poistamalla soluelimiä) "
+"parantaaksesi sen menestystä. Jokainen vierailu editoriin mikrobitasolla "
+"edustaa evoluutiota, joka tapahtuu 100 miljoonan vuoden aikana."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
@@ -241,7 +253,6 @@ msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
-#, fuzzy
 msgid "MOVEMENT"
 msgstr "Liikkuminen"
 
@@ -279,7 +290,7 @@ msgstr "Aloita/lopeta nieleminen"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr "Camera"
+msgstr "Kamera"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
@@ -995,9 +1006,8 @@ msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1030
-#, fuzzy
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "Palauta oletukset"
+msgstr "Palauta näppäimien oletukset?"
 
 #: ../src/general/OptionsMenu.tscn:1031
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
@@ -1818,7 +1828,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4071
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4085
 msgid "FOOD_CHAIN"
@@ -2214,7 +2224,7 @@ msgstr "Näytä tutoriaalit"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:93
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Aloita selviytyminen"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
