@@ -463,8 +463,6 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
 
-    public const string INPUT_OPTIONS = "res://simulation_parameters/common/input_options.json";
-
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";

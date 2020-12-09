@@ -107,10 +107,9 @@ public class InputEventItem : Node
 
     /// <summary>
     ///   Performs the key reassigning.
-    ///   Checks if it is waiting for a user input
-    ///   Checks if there are any conflicts and opens the dialog if so
-    ///   Overrides the old input with the new one
-    ///   Update the godot InputMap
+    ///   Checks if it is waiting for a user input and if there are any conflicts (opens a warning dialog
+    ///   if there is any).
+    ///   Overrides the old input with the new one and update the godot InputMap.
     /// </summary>
     public override void _Input(InputEvent @event)
     {
@@ -227,7 +226,7 @@ public class InputEventItem : Node
                     continue;
 
                 // Set AssociatedEvent to null to not delete the wrong InputEventItem,
-                // because Equals threats it the same with the same AssociatedEvent.
+                // because Equals treats it the same with the same AssociatedEvent.
                 AssociatedEvent = null;
                 Delete();
                 return true;

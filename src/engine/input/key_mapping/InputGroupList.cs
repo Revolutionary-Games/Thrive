@@ -187,7 +187,7 @@ public class InputGroupList : VBoxContainer
     }
 
     /// <summary>
-    ///   Loads the input_options and saves it to with the data in the AllGroupItems
+    ///   Processes the input data and saves the created GUI Controls in AllGroupItems
     /// </summary>
     /// <param name="data">The input data the input tab should be loaded with</param>
     public void LoadFromData(InputDataList data)
