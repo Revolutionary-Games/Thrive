@@ -20,11 +20,6 @@ Thank you!
 Prerequisites
 =============
 
-NOTE: since the move to Godot the setup process has changed a lot and
-these instructions are not as battle tested as before, so if you have
-issues please don't hesitate to bring them up.
-
-
 Godot mono version
 ------------------
 
