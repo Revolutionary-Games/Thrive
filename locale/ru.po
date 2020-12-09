@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-09 17:55+0700\n"
+"POT-Creation-Date: 2020-12-09 16:54+0200\n"
 "PO-Revision-Date: 2020-11-17 07:36+0000\n"
 "Last-Translator: Viktor <xaad3@disroot.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -765,122 +765,122 @@ msgstr "Цитоплазма"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/auto-evo/AutoEvoRun.cs:158
+#: ../src/auto-evo/AutoEvoRun.cs:119
 msgid "ABORTED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:161
+#: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "FINISHED"
 msgstr "Завершено."
 
-#: ../src/auto-evo/AutoEvoRun.cs:164
+#: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "NOT_RUNNING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:175
+#: ../src/auto-evo/AutoEvoRun.cs:135
 msgid "AUTOEVO_STEPS_DONE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:179
+#: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "STARTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:354
+#: ../src/auto-evo/AutoEvoRun.cs:280
 msgid "AUTOEVO_POPULATION_CHANGED"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:249
+#: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:263
+#: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:279
+#: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:284
+#: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:295
+#: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:304
+#: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:322
+#: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:124
+#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:124
 msgid "LOADING"
 msgstr "Загрузка"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:333
+#: ../src/engine/input/key_mapping/InputEventItem.cs:283
 #, fuzzy
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:216
+#: ../src/engine/input/key_mapping/InputGroupList.cs:164
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:59
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:61
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 #, fuzzy
 msgid "ALT"
 msgstr "АТФ"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:63
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:78
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:79
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:80
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:81
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:82
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:83
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 #, fuzzy
 msgid "WHEEL_RIGHT"
 msgstr "Свет"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
@@ -1143,11 +1143,11 @@ msgstr "Вернуться в меню"
 msgid "EXIT"
 msgstr "Выход"
 
-#: ../src/gui_common/MainMenu.cs:376
+#: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:377
+#: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
 msgstr ""
 
@@ -1648,35 +1648,35 @@ msgstr "Кремнезём"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:249
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1150
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1157
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/Microbe.cs:1879
+#: ../src/microbe_stage/Microbe.cs:1551
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:476
+#: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:666
+#: ../src/microbe_stage/MicrobeHUD.cs:624
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:508
+#: ../src/microbe_stage/MicrobeStage.cs:448
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:630
+#: ../src/microbe_stage/MicrobeStage.cs:555
 msgid "PLAYER_DIED"
 msgstr "игрок умер"
 
@@ -1721,64 +1721,64 @@ msgstr "Агенты"
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:21
+#: ../src/microbe_stage/PatchMapGenerator.cs:16
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:29
+#: ../src/microbe_stage/PatchMapGenerator.cs:24
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:36
+#: ../src/microbe_stage/PatchMapGenerator.cs:31
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:43
+#: ../src/microbe_stage/PatchMapGenerator.cs:38
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:50
+#: ../src/microbe_stage/PatchMapGenerator.cs:45
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:57
+#: ../src/microbe_stage/PatchMapGenerator.cs:52
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:64
+#: ../src/microbe_stage/PatchMapGenerator.cs:59
 msgid "PATCH_PANGONIAN_COAST"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:71
+#: ../src/microbe_stage/PatchMapGenerator.cs:66
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:78
+#: ../src/microbe_stage/PatchMapGenerator.cs:73
 msgid "PATCH_CAVE"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:85
+#: ../src/microbe_stage/PatchMapGenerator.cs:80
 msgid "PATCH_ICE_SHELF"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:92
+#: ../src/microbe_stage/PatchMapGenerator.cs:87
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:687
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1188
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:542
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:997
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка редактора микроба"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:689
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:544
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2070
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1802
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2071
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1803
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
@@ -1952,48 +1952,48 @@ msgstr "Присутствующие виды"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:617
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:624
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:682
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ATP_PRODUCTION"
 msgstr "АТФ производство"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "АТФ ПРОИЗВОДСТВО СЛИШКОМ МАЛО!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:731
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
 msgid "OSMOREGULATION"
 msgstr "Осморегуляция"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:737
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1532
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1473
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1538
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1478
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1581
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1518
 msgid "WITH_POPULATION"
 msgstr ""
 
@@ -2018,60 +2018,60 @@ msgstr ""
 "Поздравляю вы выиграли эту версию Thrive! Вы можете продолжить игру после "
 "закрытия этого экрана, если хотите, или начать новую игру в новом мире."
 
-#: ../src/saving/InProgressLoad.cs:89 ../src/saving/InProgressLoad.cs:113
-#: ../src/saving/InProgressLoad.cs:160
+#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
+#: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
 msgstr "Загрузка игры"
 
-#: ../src/saving/InProgressLoad.cs:91
+#: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
 msgstr "Чтение данных сохранения"
 
-#: ../src/saving/InProgressLoad.cs:115
+#: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:122
+#: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:175
+#: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:181
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
 msgstr "Загрузка завершенна"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
 msgstr "Ошибка загрузки"
 
-#: ../src/saving/InProgressSave.cs:172
+#: ../src/saving/InProgressSave.cs:161
 msgid "SAVING"
 msgstr "Сохранение..."
 
-#: ../src/saving/InProgressSave.cs:202
+#: ../src/saving/InProgressSave.cs:191
 msgid "SAVE_FAILED"
 msgstr "Сохранение неудалось"
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:192
 msgid "ERROR_SAVING"
 msgstr "Ошибка сохранения"
 
-#: ../src/saving/NewSaveMenu.cs:65
+#: ../src/saving/NewSaveMenu.cs:61
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Выбранное имя файла ({0}) уже существует. Перезаписать?"
 
@@ -2095,35 +2095,35 @@ msgstr "Перезаписать существующие сохранение:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Перезаписать существующее сохранение?"
 
-#: ../src/saving/SaveHelper.cs:437
+#: ../src/saving/SaveHelper.cs:373
 msgid "SAVING_SUCCEEDED"
 msgstr "Сохранение успешно"
 
-#: ../src/saving/SaveHelper.cs:441
+#: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
 msgstr "Сохранение неудалось! Случается в исключительных ситуациях"
 
-#: ../src/saving/SaveInformation.cs:22
+#: ../src/saving/SaveInformation.cs:16
 #, fuzzy
 msgid "SAVE_MANUAL"
 msgstr "Сохранение неудалось"
 
-#: ../src/saving/SaveInformation.cs:31
+#: ../src/saving/SaveInformation.cs:22
 #, fuzzy
 msgid "SAVE_AUTOSAVE"
 msgstr "Места используется:"
 
-#: ../src/saving/SaveInformation.cs:40
+#: ../src/saving/SaveInformation.cs:28
 #, fuzzy
 msgid "SAVE_QUICKSAVE"
 msgstr "Сохранить игру"
 
-#: ../src/saving/SaveInformation.cs:49
+#: ../src/saving/SaveInformation.cs:34
 #, fuzzy
 msgid "SAVE_INVALID"
 msgstr "Сохранение неудалось"
 
-#: ../src/saving/SaveList.cs:177
+#: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
@@ -2203,11 +2203,11 @@ msgstr "Загрузить"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:211
+#: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:223
+#: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 

@@ -63,7 +63,7 @@ public class SimulationParameters : Node
 
         helpTexts = LoadRegistry<HelpTexts>("res://simulation_parameters/common/help_texts.json");
 
-        inputGroups = LoadListRegistry<NamedInputGroup>(Constants.INPUT_OPTIONS);
+        inputGroups = LoadListRegistry<NamedInputGroup>("res://simulation_parameters/common/input_options.json");
 
         GD.Print("SimulationParameters loading ended");
 
