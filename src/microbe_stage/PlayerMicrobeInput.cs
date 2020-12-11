@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 /// <summary>
@@ -39,8 +40,7 @@ public class PlayerMicrobeInput : Node
         const float epsilon = 0.01f;
 
         // Reset auto move if a key was pressed
-        if ((forwardMovement < epsilon && forwardMovement > -epsilon) ||
-            (leftRightMovement < epsilon && leftRightMovement > -epsilon))
+        if (Math.Abs(forwardMovement) + Math.Abs(leftRightMovement) > epsilon)
         {
             autoMove = false;
         }
