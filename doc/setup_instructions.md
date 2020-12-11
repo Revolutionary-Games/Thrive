@@ -525,8 +525,10 @@ You can enable a pre-commit hook to automatically run the
 formatting checks before each commit to avoid accidentally committing
 code with formatting issues.
 
-To install pre-commit use the commands `pip install pre-commit` or `pip3 install pre-commit`,
-if you are using Linux don't forget to add `--user` flag or it won't work.
+To install pre-commit use the commands for Windows `pip install pre-commit`,
+if you are using Linux you can install with your package manager.
+More installation instruction can be seen [here](https://pre-commit.com/#installation)
+
 To finally install the hook run in terminal:
 
 ```sh
