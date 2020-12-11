@@ -521,13 +521,16 @@ the pre-commit hook section for how to speed things up.
 Pre-commit hook
 ---------------
 
-On Linux you can enable a pre-commit hook to automatically run the
+You can enable a pre-commit hook to automatically run the
 formatting checks before each commit to avoid accidentally committing
-code with formatting issues. To install the hook run the following
-script:
+code with formatting issues.
+
+To install pre-commit use the commands `pip install pre-commit` or `pip3 install pre-commit`,
+if you are using Linux don't forget to add `--user` flag or it won't work.
+To finally install the hook run in terminal:
 
 ```sh
-./install_git_hooks.rb
+pre-commit install
 ```
 
 The hook has the advantage that it will only run the checks on the
