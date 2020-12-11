@@ -10,7 +10,7 @@ output = `git diff --cached --name-only`.strip
 
 File.write CHANGED_FILE, output
 
-system './check_formatting.rb'
+system 'ruby ./check_formatting.rb'
 
 File.unlink CHANGED_FILE
 
