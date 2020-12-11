@@ -526,11 +526,12 @@ formatting checks before each commit to avoid accidentally committing
 code with formatting issues.
 
 To install pre-commit run `pip install pre-commit`. On Linux you can
-optionally install it with `sudo` or with the `--user` flag.  More
+optionally install it with `sudo` or with the `--user` flag as was
+done for the dependencies needed for working withtranslations. More
 instruction for installing pre-commit can be found
 [here](https://pre-commit.com/#installation).
 
-Then, to install the hook run in the following in the Thrive source
+Then, to install the hook run the following in the Thrive source
 folder:
 
 ```sh
