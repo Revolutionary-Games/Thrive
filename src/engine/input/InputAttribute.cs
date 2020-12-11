@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Godot;
 
@@ -89,6 +90,11 @@ public abstract class InputAttribute : Attribute
     internal void RemoveInstance(object instance)
     {
         instances.RemoveAll(p => !p.IsAlive || p.Target == instance);
+    }
+
+    internal void ClearReferences()
+    {
+        instances.RemoveAll(p => !p.IsAlive);
     }
 
     /// <summary>

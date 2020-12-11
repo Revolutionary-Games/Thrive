@@ -28,6 +28,8 @@ public class InputManager : Node
         LoadAttributes(new[] { Assembly.GetExecutingAssembly() });
 
         PauseMode = PauseModeEnum.Process;
+
+        StartTimer();
     }
 
     /// <summary>
@@ -101,6 +103,24 @@ public class InputManager : Node
         {
             OnFocusLost();
         }
+    }
+
+    private void StartTimer()
+    {
+        var timer = new Timer
+        {
+            Autostart = true,
+            OneShot = false,
+            PauseMode = PauseModeEnum.Process,
+            WaitTime = 1,
+        };
+        timer.Connect("timeout", this, "ClearReferences");
+        AddChild(timer);
+    }
+
+    private void ClearReferences()
+    {
+        staticInstance.attributes.ForEach(p => p.ClearReferences());
     }
 
     /// <summary>
