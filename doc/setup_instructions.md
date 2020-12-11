@@ -527,7 +527,7 @@ code with formatting issues.
 
 To install pre-commit run `pip install pre-commit`. On Linux you can
 optionally install it with `sudo` or with the `--user` flag as was
-done for the dependencies needed for working withtranslations. More
+done for the dependencies needed for working with translations. More
 instruction for installing pre-commit can be found
 [here](https://pre-commit.com/#installation).
 
