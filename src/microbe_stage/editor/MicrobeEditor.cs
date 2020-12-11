@@ -29,7 +29,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     private const float ARROW_OFFSET = 3.5f;
     private const float HEX_HEIGHT = 1.3f;
-    private const float ARROW_INTERPOLATE_SPEED = 0.1f;
+    private const float ARROW_INTERPOLATE_SPEED = 5.0f;
 
     private Vector3 arrowPosition = Vector3.Zero;
 
@@ -1240,7 +1240,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             CurrentOrganelleCost = 0;
         }
 
-        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(arrowPosition, ARROW_INTERPOLATE_SPEED);
+        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(arrowPosition, ARROW_INTERPOLATE_SPEED * delta);
     }
 
     /// <summary>
