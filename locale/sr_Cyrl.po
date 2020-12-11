@@ -8,13 +8,17 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-09 16:54+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-12-11 16:01+0000\n"
+"Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
+"Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio"
+".com/projects/thrive/thrive-game/sr_Cyrl/>\n"
 "Language: sr_Cyrl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -31,6 +35,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
+"Да бисте откључали уређивач и репродуковали ћелију, потребно је да сакупите "
+"амонијак (наранџасти облак) и фосфат (љубичасти облак)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
@@ -225,19 +231,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr ""
+msgstr "Померите се уназад"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "Аутоматско кретање напред"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Ватрени токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
 msgid "TOGGLE_ENGULF"
@@ -245,15 +251,15 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr ""
+msgstr "Камера"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Одзумирати"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Зумирати"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
@@ -262,19 +268,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "ROTATE_RIGHT"
-msgstr ""
+msgstr "Ротирајте десно"
 
 #: ../simulation_parameters/common/input_options.json:75
 msgid "ROTATE_LEFT"
-msgstr ""
+msgstr "Ротирајте лево"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr ""
+msgstr "Поништи"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr ""
+msgstr "Понови"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "PLACE_ORGANELLE"
@@ -298,71 +304,71 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "SPAWN_AMMONIA"
-msgstr ""
+msgstr "Ставите амонијак"
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "SPAWN_PHOSPHATES"
-msgstr ""
+msgstr "Ставите фосфат"
 
 #: ../simulation_parameters/common/input_options.json:124
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Остало"
 
 #: ../simulation_parameters/common/input_options.json:128
 msgid "TOGGLE_FPS"
-msgstr ""
+msgstr "Укључите или искључите приказ ФПС"
 
 #: ../simulation_parameters/common/input_options.json:132
 msgid "QUICK_SAVE"
-msgstr ""
+msgstr "Сачувајте брзо"
 
 #: ../simulation_parameters/common/input_options.json:136
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "Учитајте брзо"
 
 #: ../simulation_parameters/common/input_options.json:140
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Направите снимак екрана"
 
 #: ../simulation_parameters/common/input_options.json:144
 msgid "SHOW_HELP"
-msgstr ""
+msgstr "Покажите помоћ"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr ""
+msgstr "Дисање"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr ""
+msgstr "Гликолиза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr ""
+msgstr "Гликолиза цитоплазме"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Фотосинтеза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
+msgstr "Синтеза Токсина"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr ""
+msgstr "Хемосинтеза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Аеробно Фиксирање Азота"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Анаеробна Фиксација Азота"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
@@ -750,23 +756,23 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Средњи миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Померање нагоре"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Померите надоле"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Померите се улево"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
-msgstr ""
+msgstr "Померите се удесно"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
@@ -778,39 +784,39 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Непознати миш"
 
 #: ../src/general/HelpScreen.tscn:101
 msgid "CLOSE"
-msgstr ""
+msgstr "Затвори"
 
 #: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Графика"
 
 #: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
-msgstr ""
+msgstr "Звук"
 
 #: ../src/general/OptionsMenu.tscn:152
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Перформансе"
 
 #: ../src/general/OptionsMenu.tscn:164
 msgid "INPUTS"
-msgstr ""
+msgstr "Уноси"
 
 #: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
-msgstr ""
+msgstr "Остало"
 
 #: ../src/general/OptionsMenu.tscn:215
 msgid "VSYNC"
-msgstr ""
+msgstr "V-sync"
 
 #: ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Цео екран"
 
 #: ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
@@ -1011,15 +1017,15 @@ msgstr ""
 #: ../src/general/PauseMenu.tscn:78
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4212
 msgid "STATISTICS"
-msgstr ""
+msgstr "Статистика"
 
 #: ../src/general/PauseMenu.tscn:85
 msgid "HELP"
-msgstr ""
+msgstr "Помоћ"
 
 #: ../src/general/PauseMenu.tscn:92 ../src/gui_common/MainMenu.tscn:174
 msgid "OPTIONS"
-msgstr ""
+msgstr "Опције"
 
 #: ../src/general/PauseMenu.tscn:99
 msgid "RETURN_TO_MENU"
@@ -1039,7 +1045,7 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Нова игра"
 
 #: ../src/gui_common/MainMenu.tscn:186
 msgid "TOOLS"
@@ -1122,7 +1128,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6302
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6635
 msgid "MOBILITY"
-msgstr ""
+msgstr "Мобилност"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:293
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5301
@@ -1132,7 +1138,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6393
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6726
 msgid "HEALTH"
-msgstr ""
+msgstr "Здравље"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:316
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
@@ -1396,7 +1402,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3781
 msgid "TEMPERATURE"
-msgstr ""
+msgstr "Температура"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3879
 msgid "THERMOPLAST_DESCRIPTION"
@@ -1549,31 +1555,31 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "MICROBE_PATCH_LABEL"
-msgstr ""
+msgstr "Зона: {0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:624
 msgid "STUFF_AT"
-msgstr ""
+msgstr "Ствари у {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeStage.cs:448
 msgid "PLAYER_REPRODUCED"
-msgstr ""
+msgstr "Играч се репродуковао"
 
 #: ../src/microbe_stage/MicrobeStage.cs:555
 msgid "PLAYER_DIED"
-msgstr ""
+msgstr "играч је умро"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:413
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "На Курсору:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:437
 msgid "NOTHING_HERE"
-msgstr ""
+msgstr "Ништа овде"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:461
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "Једињења:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:499
 msgid "SPECIES_COLON"
