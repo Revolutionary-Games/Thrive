@@ -27,10 +27,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     public float CurrentOrganelleCost;
 
-    private const float ARROW_OFFSET = 3.5f;
-    private const float HEX_HEIGHT = 1.3f;
-    private const float ARROW_INTERPOLATE_SPEED = 5.0f;
-
     private Vector3 arrowPosition = Vector3.Zero;
 
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
@@ -929,7 +925,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
                 _ => p.R,
             }).DefaultIfEmpty(0).Min(); // get the min (highest in the editor) value
 
-        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows * HEX_HEIGHT - ARROW_OFFSET);
+        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows * Constants.HEX_HEIGHT - Constants.ARROW_OFFSET);
     }
 
     /// <summary>
@@ -1240,7 +1236,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             CurrentOrganelleCost = 0;
         }
 
-        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(arrowPosition, ARROW_INTERPOLATE_SPEED * delta);
+        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(arrowPosition, Constants.ARROW_INTERPOLATE_SPEED * delta);
     }
 
     /// <summary>
