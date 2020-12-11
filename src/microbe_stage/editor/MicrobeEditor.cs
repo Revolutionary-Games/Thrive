@@ -992,7 +992,9 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         UpdateUndoRedoButtons();
 
         UpdateArrow();
-        editorArrow.Translation = arrowPosition; // Force no lerp on init
+
+        // Force no lerp on init
+        editorArrow.Translation = arrowPosition;
 
         // Send freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
