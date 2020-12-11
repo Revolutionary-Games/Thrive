@@ -20,11 +20,6 @@ Thank you!
 Prerequisites
 =============
 
-NOTE: since the move to Godot the setup process has changed a lot and
-these instructions are not as battle tested as before, so if you have
-issues please don't hesitate to bring them up.
-
-
 Godot mono version
 ------------------
 
@@ -486,6 +481,20 @@ You can quickly install these by using the command
 if you have Python installed. On Linux you need to use the `--user`
 flag to get the `pybabel` command to work, installing with sudo won't
 work.
+
+A slightly more difficult way to install the required pip packages is
+to first navigate in command prompt / terminal to the Thrive base
+folder and run the following:
+
+```
+pip install -r docker/jsonlint/requirements.txt --user
+```
+
+That will make sure that you have compatible versions of the
+requirements. If you try to update for example the Babel version, the
+plain install command won't do it. So it is recommended that you use
+the above command with the provided `requirements.txt` file which
+tells pip the exact versions that should be installed.
 
 ### Poedit (optional)
 

@@ -162,6 +162,14 @@ Godot usage
   user input. String literal colours should not be used in C# source
   code.
 
+- When using fonts, don't directly load the .ttf file with an embedded
+  font in a scene file. Instead create a font definition in
+  `src/gui_common/fonts` folder and use that. This is needed because
+  all fonts must have fallback fonts defined for translations that use
+  character sets that aren't in the main fonts, for example
+  Chinese. All fonts should be truetype (`.ttf`) and stored in
+  `assets/fonts`.
+
 Other files
 -----------
 
