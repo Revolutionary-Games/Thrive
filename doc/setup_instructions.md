@@ -525,18 +525,20 @@ You can enable a pre-commit hook to automatically run the
 formatting checks before each commit to avoid accidentally committing
 code with formatting issues.
 
-To install pre-commit use the commands for Windows `pip install pre-commit`,
-if you are using Linux you can install with your package manager.
-More installation instruction can be seen [here](https://pre-commit.com/#installation)
+To install pre-commit run `pip install pre-commit`. On Linux you can
+optionally install it with `sudo` or with the `--user` flag.  More
+instruction for installing pre-commit can be found
+[here](https://pre-commit.com/#installation).
 
-To finally install the hook run in terminal:
+Then, to install the hook run in the following in the Thrive source
+folder:
 
 ```sh
 pre-commit install
 ```
 
 The hook has the advantage that it will only run the checks on the
-files staged for commit saving many minutes of time. You can manually
+files staged for commit, saving many minutes of time. You can manually
 emulate this by creating a file in the Thrive folder called
 `files_to_check.txt` with one relative path per line specifying which
 files to check.
