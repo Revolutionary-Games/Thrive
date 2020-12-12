@@ -19,7 +19,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// </summary>
     [Export]
     [JsonProperty]
-    public Shape PhysicsMesh;
+    public ConvexPolygonShape ConvexPhysicsMesh;
 
     /// <summary>
     ///   The node path to the mesh of this chunk
@@ -152,7 +152,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         var item = new ChunkConfiguration.ChunkScene
         {
             LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
-            LoadedCollisionShape = PhysicsMesh, CollisionShapePath = PhysicsMesh.ResourcePath,
+            LoadedConvexShape = ConvexPhysicsMesh, ConvexShapePath = ConvexPhysicsMesh?.ResourcePath,
         };
 
         config.Meshes.Add(item);
@@ -337,15 +337,16 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     private void InitPhysics()
     {
+        // Apply physics shape
         var shape = GetNode<CollisionShape>("CollisionShape");
 
-        if (PhysicsMesh == null)
+        if (ConvexPhysicsMesh == null)
         {
             shape.Shape = new SphereShape { Radius = Radius };
         }
         else
         {
-            shape.Shape = PhysicsMesh;
+            shape.Shape = ConvexPhysicsMesh;
             shape.Transform = chunkMesh.Transform;
         }
 

@@ -119,7 +119,10 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     {
         public string ScenePath;
 
-        public string CollisionShapePath;
+        /// <summary>
+        ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
+        /// </summary>
+        public string ConvexShapePath;
 
         /// <summary>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
@@ -130,14 +133,14 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         public PackedScene LoadedScene;
 
         [JsonIgnore]
-        public Shape LoadedCollisionShape;
+        public ConvexPolygonShape LoadedConvexShape;
 
         public void LoadScene()
         {
             LoadedScene = GD.Load<PackedScene>(ScenePath);
 
-            if (!string.IsNullOrEmpty(CollisionShapePath))
-                LoadedCollisionShape = GD.Load<Shape>(CollisionShapePath);
+            if (!string.IsNullOrEmpty(ConvexShapePath))
+                LoadedConvexShape = GD.Load<ConvexPolygonShape>(ConvexShapePath);
         }
 
         public void FinishLoading(ISaveContext context)
