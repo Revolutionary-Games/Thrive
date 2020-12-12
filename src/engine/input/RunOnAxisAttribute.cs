@@ -50,7 +50,7 @@ public class RunOnAxisAttribute : InputAttribute
     /// <summary>
     ///   Should the method be invoked when all of this object's inputs are in their idle states
     /// </summary>
-    public bool InvokeWithNoInput { get; set; }
+    public bool InvokeAlsoWithNoInput { get; set; }
 
     /// <summary>
     ///   Get the average of all currently fired inputs.

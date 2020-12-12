@@ -24,7 +24,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
     /// <summary>
     ///   Should the method be invoked when all of the inputs are in their idle states
     /// </summary>
-    public bool InvokeWithNoInput { get; set; }
+    public bool InvokeAlsoWithNoInput { get; set; }
 
     public override bool OnInput(InputEvent @event)
     {
@@ -45,7 +45,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
             axes.Select(axis => (axis.CurrentResult, axis.DefaultState)).ToList();
 
         // Skip process if all axes have default values, and invoke also with no input is not set
-        if (!InvokeWithNoInput && axisValues.All(p => Math.Abs(p.currentValue - p.defaultValue) < 0.001f))
+        if (!InvokeAlsoWithNoInput && axisValues.All(p => Math.Abs(p.currentValue - p.defaultValue) < 0.001f))
             return;
 
         var callParameters = axisValues.Select(p => p.currentValue).ToList();
