@@ -4,14 +4,9 @@ using Godot;
 ///   Shows FPS at top left of the screen
 ///   Toggled with F3
 /// </summary>
-public class FPSCounter : Control
+public class FPSCounter : InputControl
 {
     private Label label;
-
-    public FPSCounter()
-    {
-        InputManager.RegisterReceiver(this);
-    }
 
     public override void _Ready()
     {

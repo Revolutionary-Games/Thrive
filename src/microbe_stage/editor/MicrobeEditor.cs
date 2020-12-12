@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeEditor : InputNode, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath PauseMenuPath;
@@ -163,11 +163,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     [JsonProperty]
     private string activeActionName;
-
-    public MicrobeEditor()
-    {
-        InputManager.RegisterReceiver(this);
-    }
 
     [Signal]
     public delegate void InvalidPlacementOfHex();

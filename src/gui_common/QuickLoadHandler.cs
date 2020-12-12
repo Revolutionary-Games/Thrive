@@ -3,17 +3,12 @@ using Godot;
 /// <summary>
 ///   Handles triggering quick load whenever the quick load key is pressed
 /// </summary>
-public class QuickLoadHandler : Node
+public class QuickLoadHandler : InputNode
 {
     [Export]
     public NodePath DifferentVersionDialogPath;
 
     private AcceptDialog differentVersionDialog;
-
-    public QuickLoadHandler()
-    {
-        InputManager.RegisterReceiver(this);
-    }
 
     public override void _Ready()
     {

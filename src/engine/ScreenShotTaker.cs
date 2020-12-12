@@ -5,14 +5,13 @@ using Godot;
 /// <summary>
 ///   Singleton handling screenshot taking
 /// </summary>
-public class ScreenShotTaker : Node
+public class ScreenShotTaker : InputNode
 {
     private static ScreenShotTaker instance;
 
     private ScreenShotTaker()
     {
         instance = this;
-        InputManager.RegisterReceiver(this);
     }
 
     public static ScreenShotTaker Instance => instance;

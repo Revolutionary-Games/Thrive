@@ -5,7 +5,7 @@ using Godot;
 ///   Manages the screen transitions, usually used for when
 ///   switching scenes. This is autoloaded
 /// </summary>
-public class TransitionManager : Node
+public class TransitionManager : InputNode
 {
     private static TransitionManager instance;
 
@@ -23,8 +23,6 @@ public class TransitionManager : Node
 
         screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/Fade.tscn");
         cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
-
-        InputManager.RegisterReceiver(this);
     }
 
     [Signal]

@@ -33,11 +33,6 @@ public class PauseMenu : Control
     private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
 
-    public PauseMenu()
-    {
-        InputManager.RegisterReceiver(this);
-    }
-
     [Signal]
     public delegate void OnClosed();
 

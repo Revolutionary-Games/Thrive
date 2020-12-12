@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles key input in the microbe stage
 /// </summary>
-public class PlayerMicrobeInput : Node
+public class PlayerMicrobeInput : InputNode
 {
     private bool autoMove;
 
@@ -13,11 +13,6 @@ public class PlayerMicrobeInput : Node
     ///   and also the cloud spawning.
     /// </summary>
     private MicrobeStage stage;
-
-    public PlayerMicrobeInput()
-    {
-        InputManager.RegisterReceiver(this);
-    }
 
     public override void _Ready()
     {

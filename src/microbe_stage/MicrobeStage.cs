@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeStage : InputNode, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath GuidanceLinePath;
@@ -64,11 +64,6 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
     ///   True if auto save should trigger ASAP
     /// </summary>
     private bool wantsToSave;
-
-    public MicrobeStage()
-    {
-        InputManager.RegisterReceiver(this);
-    }
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]

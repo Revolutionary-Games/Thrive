@@ -60,11 +60,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
     private bool cursorDirty = true;
 
-    public MicrobeCamera()
-    {
-        InputManager.RegisterReceiver(this);
-    }
-
     /// <summary>
     ///   How high the camera is above the followed object
     /// </summary>
@@ -109,6 +104,18 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         if (!IsLoadedFromSave)
             ResetHeight();
+    }
+
+    public override void _EnterTree()
+    {
+        InputManager.RegisterReceiver(this);
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        InputManager.UnregisterReceiver(this);
+        base._ExitTree();
     }
 
     public void ResolveNodeReferences()
