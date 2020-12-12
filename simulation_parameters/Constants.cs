@@ -467,9 +467,8 @@ public static class Constants
 
     public const string LOGS_FOLDER_NAME = "logs";
 
-    public const float ARROW_OFFSET= 3.5f;
-    public const float HEX_HEIGHT = 1.3f;
-    public const float ARROW_INTERPOLATE_SPEED = 5.0f;
+    public const float EDITOR_ARROW_OFFSET = 3.5f;
+    public const float EDITOR_ARROW_INTERPOLATE_SPEED = 5.0f;
 
     /// <summary>
     ///   This is just here to make it easier to debug saves
