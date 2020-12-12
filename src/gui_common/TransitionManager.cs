@@ -37,7 +37,7 @@ public class TransitionManager : InputNode
 
     public bool HasQueuedTransitions => TransitionSequence.Count > 0;
 
-    [RunOnKeyDown("ui_cancel", ActivationType = InputActivationType.UnhandledInput)]
+    [RunOnKeyDown("ui_cancel")]
     public bool CancelTransitionPressed()
     {
         if (!HasQueuedTransitions)

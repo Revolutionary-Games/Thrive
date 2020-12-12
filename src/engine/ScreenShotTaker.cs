@@ -22,7 +22,7 @@ public class ScreenShotTaker : InputNode
         PauseMode = PauseModeEnum.Process;
     }
 
-    [RunOnKeyDown("screenshot", ActivationType = InputActivationType.UnhandledInput)]
+    [RunOnKeyDown("screenshot")]
     public void TakeScreenshotPressed()
     {
         GD.Print("Taking a screenshot");

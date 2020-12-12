@@ -18,7 +18,7 @@ public class QuickLoadHandler : InputNode
         PauseMode = PauseModeEnum.Process;
     }
 
-    [RunOnKeyDown("quick_load", ActivationType = InputActivationType.UnhandledInput)]
+    [RunOnKeyDown("quick_load")]
     public void OnQuickLoad()
     {
         if (!InProgressLoad.IsLoading)

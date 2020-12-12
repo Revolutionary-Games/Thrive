@@ -34,7 +34,7 @@ public abstract class InputAttribute : Attribute
     ///   Whether this method should be called on Input or on UnhandledInput.
     ///   Default value is Input.
     /// </summary>
-    public InputActivationType ActivationType { get; set; } = InputActivationType.Input;
+    public InputActivationType ActivationType { get; set; } = InputActivationType.UnhandledInput;
 
     public override bool Equals(object obj)
     {
