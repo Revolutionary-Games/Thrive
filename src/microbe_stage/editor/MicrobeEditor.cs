@@ -913,6 +913,10 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         Jukebox.Instance.Resume();
     }
 
+    /// <summary>
+    ///   Updates the arrowPosition variable.
+    ///   Should be called on any layout change
+    /// </summary>
     private void UpdateArrow()
     {
         var highestPointInMiddleRows = editedMicrobeOrganelles
