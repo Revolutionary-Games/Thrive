@@ -36,12 +36,6 @@
     <Compile Include="src\engine\input\RunOnKeyChangeAttribute.cs" />
     <Compile Include="src\engine\input\RunOnKeyDownAttribute.cs" />
     <Compile Include="src\engine\input\RunOnKeyUpAttribute.cs" />
-    <Compile Include="src\engine\input\IInputReceiver.cs" />
-    <Compile Include="src\engine\input\InputAxis.cs" />
-    <Compile Include="src\engine\input\InputBool.cs" />
-    <Compile Include="src\engine\input\InputGroup.cs" />
-    <Compile Include="src\engine\input\InputToggle.cs" />
-    <Compile Include="src\engine\input\InputTrigger.cs" />
     <Compile Include="src\engine\input\key_mapping\InputActionItem.cs" />
     <Compile Include="src\engine\input\key_mapping\InputDataList.cs" />
     <Compile Include="src\engine\input\key_mapping\InputEventItem.cs" />
