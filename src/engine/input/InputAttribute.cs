@@ -32,7 +32,7 @@ public abstract class InputAttribute : Attribute
 
     /// <summary>
     ///   Whether this method should be called on Input or on UnhandledInput.
-    ///   Default value is Input.
+    ///   Default value is UnhandledInput.
     /// </summary>
     public InputActivationType ActivationType { get; set; } = InputActivationType.UnhandledInput;
 
