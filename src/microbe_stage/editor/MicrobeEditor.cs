@@ -914,22 +914,30 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     }
 
     /// <summary>
-    ///   Updates the arrowPosition variable.
+    ///   Updates the arrowPosition variable to the top most point of the middle 3 rows
     ///   Should be called on any layout change
     /// </summary>
     private void UpdateArrow()
     {
+        // 1. Retrieves all the hexes in the microbe
+        // 2. Fetches only the middle 3 rows
+        // 3. Maps the R position to the actual height
+        // 4. Retrieves the minimum value, which is the top most location in the middle 3 rows
+        // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
         var highestPointInMiddleRows = editedMicrobeOrganelles
-            .SelectMany(p => p.Definition.Hexes.Select(x => x + p.Position)) // get all hexes
-            .Where(p => p.Q >= -1 && p.Q <= 1) // only select the middle 3 rows
+            .SelectMany(p => p.Definition.Hexes.Select(x => x + p.Position))
+            .Where(p => p.Q >= -1 && p.Q <= 1)
             .Select(p => p.Q switch
             {
                 -1 => p.R - 1,
                 0 => p.R - .5f,
                 _ => p.R,
-            }).DefaultIfEmpty(0).Min(); // get the min (highest in the editor) value
+            }).DefaultIfEmpty(0).Min();
 
-        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows * Constants.DEFAULT_HEX_SIZE * 1.75f - Constants.EDITOR_ARROW_OFFSET);
+        arrowPosition = new Vector3(
+            0,
+            0,
+            highestPointInMiddleRows * Constants.DEFAULT_HEX_SIZE * 1.75f - Constants.EDITOR_ARROW_OFFSET);
     }
 
     /// <summary>
