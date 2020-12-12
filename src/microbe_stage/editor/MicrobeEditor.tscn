@@ -806,7 +806,7 @@ __meta__ = {
 }
 
 [node name="EditorArrow" type="MeshInstance" parent="."]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -0.05, 0 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -0.1, 0 )
 mesh = ExtResource( 5 )
 skeleton = NodePath("")
 material/0 = SubResource( 1 )
@@ -3804,10 +3804,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 31 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 12.0
-margin_top = 35.0
-margin_right = 369.0
-margin_bottom = 484.0
+margin_left = 16.0
+margin_top = 39.0
+margin_right = 373.0
+margin_bottom = 488.0
 theme = SubResource( 32 )
 edit_alpha = false
 
