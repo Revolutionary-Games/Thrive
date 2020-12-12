@@ -11,17 +11,17 @@ public class ConvexPolygonShapeConverter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        serializer.Serialize(writer, ((ConvexPolygonShape)value).Points);
+        serializer.Serialize(writer, ((ConvexPolygonShape)value).ResourcePath);
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
-        var points = serializer.Deserialize<Vector3[]>(reader);
+        var path = serializer.Deserialize<string>(reader);
 
-        if (points == null)
+        if (string.IsNullOrEmpty(path))
             return null;
 
-        return new ConvexPolygonShape { Points = points };
+        return GD.Load<ConvexPolygonShape>(path);
     }
 
     public override bool CanConvert(Type objectType)
