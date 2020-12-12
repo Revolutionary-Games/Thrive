@@ -1,5 +1,8 @@
 using Godot;
 
+/// <summary>
+///   Input class for a <see cref="Godot.Node"/>
+/// </summary>
 public class InputNode : Node
 {
     public override void _EnterTree()
