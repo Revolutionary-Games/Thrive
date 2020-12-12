@@ -925,13 +925,13 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         // 4. Retrieves the minimum value, which is the top most location in the middle 3 rows
         // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
         var highestPointInMiddleRows = editedMicrobeOrganelles
-            .SelectMany(p => p.Definition.Hexes.Select(x => x + p.Position))
-            .Where(p => p.Q >= -1 && p.Q <= 1)
-            .Select(p => p.Q switch
+            .SelectMany(organelle => organelle.Definition.Hexes.Select(hex => hex + organelle.Position))
+            .Where(hex => hex.Q >= -1 && hex.Q <= 1)
+            .Select(hex => hex.Q switch
             {
-                -1 => p.R - 1,
-                0 => p.R - .5f,
-                _ => p.R,
+                -1 => hex.R - 1,
+                0 => hex.R - .5f,
+                _ => hex.R,
             }).DefaultIfEmpty(0).Min();
 
         arrowPosition = new Vector3(
