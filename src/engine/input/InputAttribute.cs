@@ -31,10 +31,10 @@ public abstract class InputAttribute : Attribute
     public MethodBase Method { get; private set; }
 
     /// <summary>
-    ///   Whether this method should be called on Input or on UnhandledInput.
-    ///   Default value is UnhandledInput.
+    ///   Whether this method should be called even if the input was marked as handled.
+    ///   Default value is true.
     /// </summary>
-    public InputActivationType ActivationType { get; set; } = InputActivationType.UnhandledInput;
+    public bool OnlyUnhandled { get; set; } = true;
 
     /// <summary>
     ///   Defines the priority of the input.

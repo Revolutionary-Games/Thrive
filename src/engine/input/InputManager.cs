@@ -19,8 +19,7 @@ public class InputManager : Node
     /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
-    private readonly SortedSet<InputAttribute> attributes =
-        new SortedSet<InputAttribute>(Comparer<InputAttribute>.Create((x, y) => x.Priority - y.Priority));
+    private readonly List<InputAttribute> attributes = new List<InputAttribute>();
 
     public InputManager()
     {
@@ -84,7 +83,7 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _UnhandledInput(InputEvent @event)
     {
-        OnInput(InputActivationType.UnhandledInput, @event);
+        OnInput(true, @event);
     }
 
     /// <summary>
@@ -95,7 +94,7 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _Input(InputEvent @event)
     {
-        OnInput(InputActivationType.Input, @event);
+        OnInput(false, @event);
     }
 
     public override void _Notification(int focus)
@@ -108,14 +107,14 @@ public class InputManager : Node
         }
     }
 
-    private void OnInput(InputActivationType type, InputEvent @event)
+    private void OnInput(bool inputUnhandled, InputEvent @event)
     {
         // Ignore mouse motion
         // TODO: support mouse movement input as well
         if (@event is InputEventMouseMotion)
             return;
 
-        var handled = attributes.Any(attribute => attribute.ActivationType == type && attribute.OnInput(@event));
+        var handled = attributes.Any(attribute => (inputUnhandled || !attribute.OnlyUnhandled) && attribute.OnInput(@event));
 
         // Define input as consumed to Godot if something reacted to it
         if (handled)
@@ -185,5 +184,7 @@ public class InputManager : Node
                 }
             }
         }
+
+        attributes.Sort(Comparer<InputAttribute>.Create((x, y) => y.Priority - x.Priority));
     }
 }

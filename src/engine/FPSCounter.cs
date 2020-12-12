@@ -13,7 +13,7 @@ public class FPSCounter : InputControl
         label = GetNode<Label>("Label");
     }
 
-    [RunOnKeyDown("toggle_FPS")]
+    [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
     public void ToggleFps()
     {
         if (Visible)
