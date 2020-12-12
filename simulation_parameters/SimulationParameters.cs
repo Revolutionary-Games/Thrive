@@ -277,9 +277,17 @@ public class SimulationParameters : Node
         return result;
     }
 
-    private T LoadDirectObject<T>(string path)
+    private T LoadDirectObject<T>(string path, JsonConverter[] extraConverters = null)
+        where T : class
     {
-        return JsonConvert.DeserializeObject<T>(ReadJSONFile(path));
+        extraConverters ??= Array.Empty<JsonConverter>();
+
+        var result = JsonConvert.DeserializeObject<T>(ReadJSONFile(path), extraConverters);
+
+        if (result == null)
+            throw new InvalidDataException("Could not load a registry from file: " + path);
+
+        return result;
     }
 
     private void CheckForInvalidValues()
