@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 
 public class AutoEvoConfiguration : IRegistryType
 {
+#pragma warning disable 169
     [JsonProperty]
     private int mutationsPerSpecies;
 
@@ -13,10 +14,11 @@ public class AutoEvoConfiguration : IRegistryType
 
     [JsonProperty]
     private bool allowNoMigration;
+#pragma warning restore 169
 
     public int MutationsPerSpecies => mutationsPerSpecies;
 
-    public bool AllowNoMutation => allowNoMigration;
+    public bool AllowNoMutation => allowNoMutation;
 
     public int MoveAttemptsPerSpecies => moveAttemptsPerSpecies;
 
