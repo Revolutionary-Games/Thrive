@@ -375,11 +375,11 @@ public class AutoEvoRun
                 else
                 {
                     runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
-                        autoEvoConfiguration.MUTATIONS_PER_SPECIES,
-                        autoEvoConfiguration.ALLOW_NO_MUTATION));
+                        autoEvoConfiguration.MutationsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
                     runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key,
-                        autoEvoConfiguration.MOVE_ATTEMPTS_PER_SPECIES,
-                        autoEvoConfiguration.ALLOW_NO_MIGRATION));
+                        autoEvoConfiguration.MoveAttemptsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
                 }
             }
         }
