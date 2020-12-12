@@ -2,27 +2,17 @@ using Newtonsoft.Json;
 
 public class AutoEvoConfiguration : IRegistryType
 {
-#pragma warning disable 169
     [JsonProperty]
-    private int mutationsPerSpecies;
-
-    [JsonProperty]
-    private bool allowNoMutation;
+    public int MutationsPerSpecies { get; private set; }
 
     [JsonProperty]
-    private int moveAttemptsPerSpecies;
+    public bool AllowNoMutation { get; private set; }
 
     [JsonProperty]
-    private bool allowNoMigration;
-#pragma warning restore 169
+    public int MoveAttemptsPerSpecies { get; private set; }
 
-    public int MutationsPerSpecies => mutationsPerSpecies;
-
-    public bool AllowNoMutation => allowNoMutation;
-
-    public int MoveAttemptsPerSpecies => moveAttemptsPerSpecies;
-
-    public bool AllowNoMigration => allowNoMigration;
+    [JsonProperty]
+    public bool AllowNoMigration { get; private set; }
 
     /// <summary>
     /// Unused
@@ -32,13 +22,13 @@ public class AutoEvoConfiguration : IRegistryType
 
     public void Check(string name)
     {
-        if (mutationsPerSpecies < 0)
+        if (MutationsPerSpecies < 0)
         {
             throw new InvalidRegistryDataException("AutoEvoConfiguration", GetType().Name,
                 "Mutations per species must be positive");
         }
 
-        if (moveAttemptsPerSpecies < 0)
+        if (MoveAttemptsPerSpecies < 0)
         {
             throw new InvalidRegistryDataException("AutoEvoConfiguration", GetType().Name,
                 "Move attempts per species must be positive");
