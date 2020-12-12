@@ -1,15 +1,15 @@
 public class AutoEvoConfiguration : IRegistryType
 {
+    public int MUTATIONS_PER_SPECIES;
+    public bool ALLOW_NO_MUTATION;
+    public int MOVE_ATTEMPTS_PER_SPECIES;
+    public bool ALLOW_NO_MIGRATION;
+
     /// <summary>
     /// Unused
     /// </summary>
     /// <value>The name of the internal.</value>
     public string InternalName { get; set; }
-
-    public int MUTATIONS_PER_SPECIES;
-    public bool ALLOW_NO_MUTATION;
-    public int MOVE_ATTEMPTS_PER_SPECIES;
-    public bool ALLOW_NO_MIGRATION;
 
     public void Check(string name)
     {
