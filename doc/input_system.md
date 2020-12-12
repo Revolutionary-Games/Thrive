@@ -42,8 +42,8 @@ If the method is **static**, you don't have to worry about instance management.
 
 If the method is **not static** you must
 
-- inherit from `InputNode` if your class needs to inherit from `Godot.Node`
-- inherit from `InputControl` if your class needs to inherit from `Godot.Control`
+- inherit from `InputNode` if your class needs to inherit from `Godot.Node` **or**
+- inherit from `InputControl` if your class needs to inherit from `Godot.Control` **or**
 - add `InputManager.RegisterReceiver(this)` to your `\_EnterTree` and `InputManager.UnregisterReceiver(this)` to your `\_ExitTree`
 
 InvokeAlsoWithNoInput
