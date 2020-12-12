@@ -264,6 +264,12 @@ public class MainMenu : Node
         SetCurrentMenu(0);
     }
 
+    private void ViewSourceCodePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
+    }
+
     private void QuitPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
