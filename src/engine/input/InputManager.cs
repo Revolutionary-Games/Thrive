@@ -114,7 +114,8 @@ public class InputManager : Node
         if (@event is InputEventMouseMotion)
             return;
 
-        var handled = attributes.Any(attribute => (inputUnhandled || !attribute.OnlyUnhandled) && attribute.OnInput(@event));
+        var handled = attributes.Any(
+            attribute => (inputUnhandled || !attribute.OnlyUnhandled) && attribute.OnInput(@event));
 
         // Define input as consumed to Godot if something reacted to it
         if (handled)
