@@ -38,27 +38,18 @@ The available input attributes
 
 Input receiving instance management
 -----------------------------------
-
-The input system only knows about object instances it is told about. Object constructors need
-to register the instance if it uses the input system.
-
 If the method is **static**, you don't have to worry about instance management.
 
-If the method is **not static**, you need to add: 
-```csharp
-InputManager.RegisterReceiver(this);
-``` 
+If the method is **not static** you must
 
-into the constructor of that class.
+- inherit from `InputNode` if your class needs to inherit from `Godot.Node`
+- inherit from `InputControl` if your class needs to inherit from `Godot.Control`
+- add `InputManager.RegisterReceiver(this)` to your `\_EnterTree` and `InputManager.UnregisterReceiver(this)` to your `\_ExitTree`
 
-To unsubscribe an instance from the input system, call 
-`InputManager.UnregisterReceiver(this);`. An instance automatically gets unsubscribed if it 
-got disposed / garbage collected.
-
-InvokeWithNoInput
+InvokeAlsoWithNoInput
 -----------------
 
-`RunOnAxis` and `RunOnAxisGroup` both have the `InvokeWithNoInput` property.
+`RunOnAxis` and `RunOnAxisGroup` both have the `InvokeAlsoWithNoInput` property.
 
 You can set that property like this: 
 ```csharp
@@ -77,42 +68,73 @@ input is pressed. The default value is the average of all given values.
 If `RunOnAxisGroup` attribute is found on a method, all other `InvokeWithNoInput` 
 values are ignored as the axis group overwrites them.
 
+OnlyUnhandled
+-------
+
+Every `InputAttribute` has the `OnlyUnhandled` property.
+
+By default this property is true.
+
+This property defines if the method should be called even if the Input was already marked as handled.
+
+Priority
+-------
+
+Every `InputAttribute` has the `Priority` property.
+
+By default this property is 0.
+
+This property defines which method gets called if two methods have the same Action attached to them.
+The method with the lower priority only gets called if there is no instance attached to the method with the higher priority or no instance returned true.
+
 Examples
 --------
 
 ```csharp
-public FPSCounter()
+public class FPSCounter : InputControl
 {
-    InputManager.RegisterReceiver(this);
+  [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
+  public void ToggleFps() {}
 }
-
-[RunOnKeyDown("toggle_FPS")]
-public void ToggleFps() {}
 ```
 
 The ToggleFps method gets called whenever the `toggle_FPS` action is pressed (determined by 
 the current key bindings).
+The ToggleFps method even gets called if something else already consumed this event.
 
 ---
 
 ```csharp
-[RunOnKeyDown("toggle_FPS")]
-public static void ToggleFps() {}
+public class FPSCounter
+{
+  [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
+  public static void ToggleFps() {}
+}
 ```
 
 This method also gets called whenever the `toggle_FPS` action gets pressed. 
-Notice that no instance management is required.
+Notice that no inheritation is required.
 
 ---
 
 ```csharp
-public MicrobeCamera()
+public class MicrobeCamera : Camera
 {
+  public override void _EnterTree()
+  {
     InputManager.RegisterReceiver(this);
-}
+    base._EnterTree();
+  }
 
-[RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
-public void Zoom(float delta, float value) {}
+  public override void _ExitTree()
+  {
+    InputManager.UnregisterReceiver(this);
+    base._ExitTree();
+  }
+
+  [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
+  public void Zoom(float delta, float value) {}
+}
 ```
 
 The Zoom method gets called when `g_zoom_in` or `g_zoom_out` gets pressed. 
@@ -120,18 +142,20 @@ Via the `value` parameter you know if the user pressed wants to zoom in or out.
 
 The `-1.0f` belongs to the `g_zoom_in` and the `1.0f` belongs to the `g_zoom_out`.
 
+Because there is no input class ready for Camera we have to write the logic ourself.
+
 ---
 
 ```csharp
-public MicrobeCamera()
+public class MicrobeCamera
 {
-    InputManager.RegisterReceiver(this);
+  [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
+  [RunOnAxis(new[] { "g_zoom_in_fast", "g_zoom_out_fast" }, new[] { -3.0f, 3.0f })]
+  public void Zoom(float delta, float value) {}
 }
-
-[RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
-[RunOnAxis(new[] { "g_zoom_in_fast", "g_zoom_out_fast" }, new[] { -3.0f, 3.0f })]
-public void Zoom(float delta, float value) {}
 ```
+
+The instance management is omitted in this example.
 
 This example is valid as well. Using the value you know in which direction and how fast 
 you should zoom the camera
@@ -139,14 +163,13 @@ you should zoom the camera
 ---
 
 ```csharp
-public MicrobeCamera()
+public class MicrobeCamera
 {
-    InputManager.RegisterReceiver(this);
-}
 
-[RunOnAxis(new[] { "g_zoom_in", "g_zoom_out", "g_zoom_in_fast", "g_zoom_out_fast" }, 
-    new[] { -1.0f, 1.0f, -3.0f, 3.0f })]
-public void Zoom(float delta, float value) {}
+  [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out", "g_zoom_in_fast", "g_zoom_out_fast" }, 
+      new[] { -1.0f, 1.0f, -3.0f, 3.0f })]
+  public void Zoom(float delta, float value) {}
+}
 ```
 
 This example is almost the same as the example above. The only difference is when pressing 
@@ -161,14 +184,12 @@ With a correct implementation utilizing delta, this difference should not matter
 ---
 
 ```csharp
-public MicrobeMovement()
+public class PlayerMicrobeInput : InputNode
 {
-    InputManager.RegisterReceiver(this);
+  [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
+  [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
+  public void OnMovement(float delta, float value) {}
 }
-
-[RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
-[RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-public void OnMovement(float delta, float value) {}
 ```
 
 This example would theoretically work, but would not make sense, because you cannot 
@@ -176,14 +197,13 @@ differentiate between forward/backward input and left/right input.
 
 The correct way of implementing this would be this:
 ```csharp
-public MicrobeMovement()
+public PlayerMicrobeInput : InputNode
 {
-    InputManager.RegisterReceiver(this);
+  [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
+  [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
+  [RunOnAxisGroup]
+  public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement) {}
 }
-[RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
-[RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-[RunOnAxisGroup]
-public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement) {}
 ```
 
 Using `RunOnAxisGroup` you can differentiate between forward/backward input and left/right 
