@@ -1248,7 +1248,9 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             CurrentOrganelleCost = 0;
         }
 
-        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED * delta);
+        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(
+            arrowPosition,
+            Constants.EDITOR_ARROW_INTERPOLATE_SPEED * delta);
     }
 
     /// <summary>
