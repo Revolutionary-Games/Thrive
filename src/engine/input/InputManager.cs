@@ -76,23 +76,25 @@ public class InputManager : Node
     }
 
     /// <summary>
-    ///   Calls all OnInput methods of all attributes.
+    ///   Calls the OnInput methods of the attributes where ActivationType is UnhandledInput.
     ///   Ignores InputEventMouseMotion events.
     ///   Sets the input as consumed, if it was consumed.
     /// </summary>
     /// <param name="event">The event the user fired</param>
     public override void _UnhandledInput(InputEvent @event)
     {
-        // Ignore mouse motion
-        // TODO: support mouse movement input as well
-        if (@event is InputEventMouseMotion)
-            return;
+        OnInput(InputActivationType.UnhandledInput, @event);
+    }
 
-        var handled = attributes.Any(attribute => attribute.OnInput(@event));
-
-        // Define input as consumed to Godot if something reacted to it
-        if (handled)
-            GetTree().SetInputAsHandled();
+    /// <summary>
+    ///   Calls the OnInput methods of the attributes where ActivationType is Input.
+    ///   Ignores InputEventMouseMotion events.
+    ///   Sets the input as consumed, if it was consumed.
+    /// </summary>
+    /// <param name="event">The event the user fired</param>
+    public override void _Input(InputEvent @event)
+    {
+        OnInput(InputActivationType.Input, @event);
     }
 
     public override void _Notification(int focus)
@@ -103,6 +105,20 @@ public class InputManager : Node
         {
             OnFocusLost();
         }
+    }
+
+    private void OnInput(InputActivationType type, InputEvent @event)
+    {
+        // Ignore mouse motion
+        // TODO: support mouse movement input as well
+        if (@event is InputEventMouseMotion)
+            return;
+
+        var handled = attributes.Any(attribute => attribute.ActivationType == type && attribute.OnInput(@event));
+
+        // Define input as consumed to Godot if something reacted to it
+        if (handled)
+            GetTree().SetInputAsHandled();
     }
 
     private void StartTimer()

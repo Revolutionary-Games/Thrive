@@ -30,6 +30,12 @@ public abstract class InputAttribute : Attribute
     /// </summary>
     public MethodBase Method { get; private set; }
 
+    /// <summary>
+    ///   Whether this method should be called on Input or on UnhandledInput.
+    ///   Default value is Input.
+    /// </summary>
+    public InputActivationType ActivationType { get; set; } = InputActivationType.Input;
+
     public override bool Equals(object obj)
     {
         if (!(obj is InputAttribute attr))

@@ -18,7 +18,7 @@ public class FPSCounter : Control
         label = GetNode<Label>("Label");
     }
 
-    [RunOnKeyDown("toggle_FPS")]
+    [RunOnKeyDown("toggle_FPS", ActivationType = InputActivationType.UnhandledInput)]
     public void ToggleFps()
     {
         if (Visible)
