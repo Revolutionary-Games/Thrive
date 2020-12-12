@@ -36,6 +36,12 @@ public abstract class InputAttribute : Attribute
     /// </summary>
     public InputActivationType ActivationType { get; set; } = InputActivationType.UnhandledInput;
 
+    /// <summary>
+    ///   Defines the priority of the input.
+    ///   Priority defines which method gets to consume an input if two method match the input.
+    /// </summary>
+    public int Priority { get; set; } = 0;
+
     public override bool Equals(object obj)
     {
         if (!(obj is InputAttribute attr))

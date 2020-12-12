@@ -19,7 +19,8 @@ public class InputManager : Node
     /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
-    private readonly List<InputAttribute> attributes = new List<InputAttribute>();
+    private readonly SortedSet<InputAttribute> attributes =
+        new SortedSet<InputAttribute>(Comparer<InputAttribute>.Create((x, y) => x.Priority - y.Priority));
 
     public InputManager()
     {
@@ -54,7 +55,7 @@ public class InputManager : Node
     /// <param name="instance">The instance to remove</param>
     public static void UnregisterReceiver(object instance)
     {
-        staticInstance.attributes.ForEach(attribute => attribute.RemoveInstance(instance));
+        staticInstance.attributes.ToList().ForEach(attribute => attribute.RemoveInstance(instance));
     }
 
     /// <summary>
@@ -63,7 +64,7 @@ public class InputManager : Node
     /// </summary>
     public static void OnFocusLost()
     {
-        staticInstance.attributes.ForEach(p => p.FocusLost());
+        staticInstance.attributes.ToList().ForEach(p => p.FocusLost());
     }
 
     /// <summary>
@@ -72,7 +73,7 @@ public class InputManager : Node
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
-        attributes.ForEach(p => p.OnProcess(delta));
+        attributes.ToList().ForEach(p => p.OnProcess(delta));
     }
 
     /// <summary>
@@ -136,7 +137,7 @@ public class InputManager : Node
 
     private void ClearReferences()
     {
-        staticInstance.attributes.ForEach(p => p.ClearReferences());
+        staticInstance.attributes.ToList().ForEach(p => p.ClearReferences());
     }
 
     /// <summary>
