@@ -18,7 +18,7 @@ public abstract class InputAttribute : Attribute
     /// <summary>
     ///   All instances associated with this InputAttribute
     /// </summary>
-    private readonly List<WeakReference> instances = new List<WeakReference>();
+    internal readonly List<WeakReference> Instances = new List<WeakReference>();
 
     /// <summary>
     ///   All references to instances pending removal
@@ -84,31 +84,6 @@ public abstract class InputAttribute : Attribute
     }
 
     /// <summary>
-    ///   Adds an instance to the list of associated instances.
-    ///   Called by InputManager.RegisterReceiver().
-    /// </summary>
-    /// <param name="instance">The new instance</param>
-    internal void AddInstance(WeakReference instance)
-    {
-        instances.Add(instance);
-    }
-
-    /// <summary>
-    ///   Removes an instance from the list of associated instances.
-    ///   Called by InputManager.UnregisterReceiver().
-    /// </summary>
-    /// <param name="instance">The instance to remove</param>
-    internal void RemoveInstance(object instance)
-    {
-        instances.RemoveAll(p => !p.IsAlive || p.Target == instance);
-    }
-
-    internal void ClearReferences()
-    {
-        instances.RemoveAll(p => !p.IsAlive);
-    }
-
-    /// <summary>
     ///   Call the associated method.
     ///   Calls the method with all of the instances or once if the method is static.
     /// </summary>
@@ -140,7 +115,7 @@ public abstract class InputAttribute : Attribute
         else
         {
             // Call the method for each instance
-            foreach (var instance in instances)
+            foreach (var instance in Instances)
             {
                 if (!instance.IsAlive)
                 {
@@ -169,7 +144,7 @@ public abstract class InputAttribute : Attribute
             }
         }
 
-        disposed.ForEach(p => instances.Remove(p));
+        disposed.ForEach(p => Instances.Remove(p));
         disposed.Clear();
 
         return result;

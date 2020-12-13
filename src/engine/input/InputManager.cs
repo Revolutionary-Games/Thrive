@@ -44,7 +44,7 @@ public class InputManager : Node
             .attributes
             .Where(p => p.Method.DeclaringType == instance.GetType()))
         {
-            inputAttribute.AddInstance(new WeakReference(instance));
+            inputAttribute.Instances.Add(new WeakReference(instance));
         }
     }
 
@@ -54,7 +54,8 @@ public class InputManager : Node
     /// <param name="instance">The instance to remove</param>
     public static void UnregisterReceiver(object instance)
     {
-        staticInstance.attributes.ToList().ForEach(attribute => attribute.RemoveInstance(instance));
+        foreach (var attribute in staticInstance.attributes)
+            attribute.Instances.RemoveAll(p => !p.IsAlive || p.Target == instance);
     }
 
     /// <summary>
@@ -63,7 +64,7 @@ public class InputManager : Node
     /// </summary>
     public static void OnFocusLost()
     {
-        staticInstance.attributes.ToList().ForEach(p => p.FocusLost());
+        staticInstance.attributes.ForEach(p => p.FocusLost());
     }
 
     /// <summary>
@@ -72,7 +73,7 @@ public class InputManager : Node
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
-        attributes.ToList().ForEach(p => p.OnProcess(delta));
+        attributes.ForEach(p => p.OnProcess(delta));
     }
 
     /// <summary>
@@ -135,9 +136,12 @@ public class InputManager : Node
         AddChild(timer);
     }
 
+    /// <summary>
+    ///   Called every second using a timer
+    /// </summary>
     private void ClearReferences()
     {
-        staticInstance.attributes.ToList().ForEach(p => p.ClearReferences());
+        staticInstance.attributes.ForEach(p => p.Instances.RemoveAll(x => !x.IsAlive));
     }
 
     /// <summary>
