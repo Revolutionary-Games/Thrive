@@ -129,7 +129,8 @@ public class InputEventItem : Node
             return;
 
         // Hacky custom button press detection
-        if ((@event is InputEventMouseButton inputMouse) && inputMouse.ButtonIndex == (int)ButtonList.Left &&
+        if ((@event is InputEventMouseButton inputMouse) &&
+            (inputMouse.ButtonIndex == (int)ButtonList.Left || inputMouse.ButtonIndex == (int)ButtonList.Right) &&
             xButton.IsHovered())
         {
             Delete();
