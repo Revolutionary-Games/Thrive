@@ -44,7 +44,7 @@ public class InputManager : Node
             .attributes
             .Where(p => p.Method.DeclaringType == instance.GetType()))
         {
-            inputAttribute.Instances.Add(new WeakReference(instance));
+            inputAttribute.AddInstance(new WeakReference(instance));
         }
     }
 
@@ -54,8 +54,7 @@ public class InputManager : Node
     /// <param name="instance">The instance to remove</param>
     public static void UnregisterReceiver(object instance)
     {
-        foreach (var attribute in staticInstance.attributes)
-            attribute.Instances.RemoveAll(p => !p.IsAlive || p.Target == instance);
+        staticInstance.attributes.ToList().ForEach(attribute => attribute.RemoveInstance(instance));
     }
 
     /// <summary>
@@ -138,8 +137,7 @@ public class InputManager : Node
 
     private void ClearReferences()
     {
-        foreach (var attribute in staticInstance.attributes)
-            attribute.Instances.Clear();
+        staticInstance.attributes.ToList().ForEach(p => p.ClearReferences());
     }
 
     /// <summary>
