@@ -21,11 +21,6 @@ public abstract class InputAttribute : Attribute
     internal readonly List<WeakReference> Instances = new List<WeakReference>();
 
     /// <summary>
-    ///   All references to instances pending removal
-    /// </summary>
-    private readonly List<WeakReference> disposed = new List<WeakReference>();
-
-    /// <summary>
     ///   The method this Attribute is applied to
     /// </summary>
     public MethodBase Method { get; private set; }
@@ -91,62 +86,6 @@ public abstract class InputAttribute : Attribute
     /// <returns>Returns whether the event was consumed or not. Methods returning a boolean can control this.</returns>
     protected bool CallMethod(params object[] parameters)
     {
-        // Do nothing if no method is associated
-        // TODO: it would be safer against mistakes to make it so that only specific attributes can have null method
-        if (Method == null)
-            return true;
-
-        bool result = false;
-
-        if (Method.IsStatic)
-        {
-            // Call the method without an instance if it's static
-            var invokeResult = Method.Invoke(null, parameters);
-
-            if (invokeResult != null && invokeResult is bool asBool)
-            {
-                result = asBool;
-            }
-            else
-            {
-                result = true;
-            }
-        }
-        else
-        {
-            // Call the method for each instance
-            foreach (var instance in Instances)
-            {
-                if (!instance.IsAlive)
-                {
-                    // if the WeakReference got disposed
-                    disposed.Add(instance);
-                    continue;
-                }
-
-                bool thisInstanceResult;
-
-                var invokeResult = Method.Invoke(instance.Target, parameters);
-
-                if (invokeResult != null && invokeResult is bool asBool)
-                {
-                    thisInstanceResult = asBool;
-                }
-                else
-                {
-                    thisInstanceResult = true;
-                }
-
-                if (thisInstanceResult)
-                {
-                    result = true;
-                }
-            }
-        }
-
-        disposed.ForEach(p => Instances.Remove(p));
-        disposed.Clear();
-
-        return result;
+        return InputManager.CallMethod(this, parameters);
     }
 }

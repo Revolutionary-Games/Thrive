@@ -108,6 +108,70 @@ public class InputManager : Node
         }
     }
 
+    internal static bool CallMethod(InputAttribute attribute, object[] parameters)
+    {
+        var method = attribute.Method;
+
+        // Do nothing if no method is associated
+        // TODO: it would be safer against mistakes to make it so that only specific attributes can have null method
+        if (method == null)
+            return true;
+
+        var disposed = new List<WeakReference>();
+        var instances = attribute.Instances;
+        var result = false;
+
+        if (method.IsStatic)
+        {
+            // Call the method without an instance if it's static
+            var invokeResult = method.Invoke(null, parameters);
+
+            if (invokeResult != null && invokeResult is bool asBool)
+            {
+                result = asBool;
+            }
+            else
+            {
+                result = true;
+            }
+        }
+        else
+        {
+            // Call the method for each instance
+            foreach (var instance in instances)
+            {
+                if (!instance.IsAlive)
+                {
+                    // if the WeakReference got disposed
+                    disposed.Add(instance);
+                    continue;
+                }
+
+                bool thisInstanceResult;
+
+                var invokeResult = method.Invoke(instance.Target, parameters);
+
+                if (invokeResult != null && invokeResult is bool asBool)
+                {
+                    thisInstanceResult = asBool;
+                }
+                else
+                {
+                    thisInstanceResult = true;
+                }
+
+                if (thisInstanceResult)
+                {
+                    result = true;
+                }
+            }
+        }
+
+        disposed.ForEach(p => instances.Remove(p));
+
+        return result;
+    }
+
     private void OnInput(bool inputUnhandled, InputEvent @event)
     {
         // Ignore mouse motion
