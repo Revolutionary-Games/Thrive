@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
-[JsonConverter(typeof(ColonyMemberSerializer))]
 public class ColonyMember
 {
     /// <summary>

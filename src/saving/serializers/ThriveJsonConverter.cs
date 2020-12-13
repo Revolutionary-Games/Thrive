@@ -32,7 +32,7 @@ public class ThriveJsonConverter : IDisposable
 
     // private IReferenceResolver referenceResolver = new Default;
 
-    private ThriveJsonConverter(SaveContext context)
+    public ThriveJsonConverter(SaveContext context)
     {
         this.context = context;
 
@@ -59,7 +59,7 @@ public class ThriveJsonConverter : IDisposable
             new BaseNodeConverter(context),
 
             new MicrobeConverter(context),
-            new ColonyMemberSerializer(),
+            new ColonyMemberSerializer(context),
 
             // Converter for all types with a specific few attributes for this to be enabled
             new DefaultThriveJSONConverter(context),

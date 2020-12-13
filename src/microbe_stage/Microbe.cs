@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 using Newtonsoft.Json;
 
@@ -36,6 +37,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public ColonyMember Colony;
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
+    [JsonProperty]
+    private Dictionary<string, object> colonyValues = new Dictionary<string, object>();
 
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
@@ -74,9 +78,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private Vector3 queuedMovementForce;
 
     // variables for engulfing
-    [JsonProperty]
-    private bool engulfMode;
-
     [JsonProperty]
     private bool previousEngulfMode;
 
@@ -204,17 +205,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonIgnore]
     public bool EngulfMode
     {
-        get => engulfMode;
+        get => GetColonyValue<bool>();
         set
         {
-            if (!Membrane.Type.CellWall)
-            {
-                engulfMode = value;
-            }
-            else
-            {
-                engulfMode = false;
-            }
+            SetColonyValue(!Membrane.Type.CellWall && value);
         }
     }
 
@@ -2141,5 +2135,27 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         RemoveCollisionExceptionWith(microbe);
         microbe.hostileEngulfer = null;
+    }
+
+    private T GetColonyValue<T>([CallerMemberName] string property = "")
+    {
+        if (!colonyValues.ContainsKey(property))
+        {
+            colonyValues[property] =
+                Colony?.Master == null ? default : Colony.Master.Microbe.GetColonyValue<T>(property);
+        }
+
+        return (T)colonyValues[property];
+    }
+
+    private void SetColonyValue<T>(T value, [CallerMemberName] string property = "")
+    {
+        colonyValues[property] = value;
+
+        if (Colony == null)
+            return;
+
+        foreach (var colonyMember in Colony.BindingTo)
+            colonyMember.Microbe.SetColonyValue(value, property);
     }
 }

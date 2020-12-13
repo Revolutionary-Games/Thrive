@@ -1,26 +1,28 @@
 using System;
 using Newtonsoft.Json;
 
-public class ColonyMemberSerializer : JsonConverter<ColonyMember>
+public class ColonyMemberSerializer : BaseThriveConverter
 {
-    public override ColonyMember ReadJson(JsonReader reader, Type objectType, ColonyMember existingValue, bool hasExistingValue,
-        JsonSerializer serializer)
+    public ColonyMemberSerializer(ISaveContext context) : base(context)
     {
-        if (reader.Value == null)
-            return null;
+    }
 
-        var result = new ColonyMember();
-        serializer.Populate(reader, result);
-        foreach (var colonyMember in result.BindingTo)
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    {
+        var result = (ColonyMember)base.ReadJson(reader, objectType, existingValue, serializer);
+        if (result != null)
         {
-            colonyMember.Master = result;
+            foreach (var colonyMember in result.BindingTo)
+            {
+                colonyMember.Master = result;
+            }
         }
 
         return result;
     }
 
-    public override void WriteJson(JsonWriter writer, ColonyMember value, JsonSerializer serializer)
+    public override bool CanConvert(Type objectType)
     {
-        serializer.Serialize(writer, value);
+        return typeof(ColonyMember).IsAssignableFrom(objectType);
     }
 }
