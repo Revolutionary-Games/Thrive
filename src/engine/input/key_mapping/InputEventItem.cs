@@ -129,10 +129,19 @@ public class InputEventItem : Node
             return;
 
         // Hacky custom button press detection
-        if (@event is InputEventMouseButton && xButton.IsHovered())
+        if (@event is InputEventMouseButton mouseEvent)
         {
-            Delete();
-            return;
+            if (xButton.IsHovered())
+            {
+                Delete();
+                return;
+            }
+
+            if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed)
+            {
+                OnButtonPressed(mouseEvent);
+                return;
+            }
         }
 
         if (!WaitingForInput)
@@ -164,6 +173,11 @@ public class InputEventItem : Node
                 case (uint)KeyList.Control:
                     return;
             }
+        }
+        else if (@event is InputEventMouseButton mouse)
+        {
+            if (!mouse.Pressed)
+                return;
         }
 
         // The old key input event. Null if this event is assigned a value the first time.
@@ -251,7 +265,7 @@ public class InputEventItem : Node
     /// <summary>
     ///   Detect mouse button presses on this input key Control
     /// </summary>
-    private void OnButtonPressed(InputEvent @event)
+    private void OnButtonPressed(InputEventMouseButton @event)
     {
         var groupList = GroupList;
 
@@ -261,10 +275,7 @@ public class InputEventItem : Node
         if (groupList.ListeningForInput)
             return;
 
-        if (!(@event is InputEventMouseButton inputButton))
-            return;
-
-        switch (inputButton.ButtonIndex)
+        switch (@event.ButtonIndex)
         {
             case (int)ButtonList.Left:
                 wasPressingButton = true;
