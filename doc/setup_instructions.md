@@ -20,11 +20,6 @@ Thank you!
 Prerequisites
 =============
 
-NOTE: since the move to Godot the setup process has changed a lot and
-these instructions are not as battle tested as before, so if you have
-issues please don't hesitate to bring them up.
-
-
 Godot mono version
 ------------------
 
@@ -487,6 +482,20 @@ if you have Python installed. On Linux you need to use the `--user`
 flag to get the `pybabel` command to work, installing with sudo won't
 work.
 
+A slightly more difficult way to install the required pip packages is
+to first navigate in command prompt / terminal to the Thrive base
+folder and run the following:
+
+```
+pip install -r docker/jsonlint/requirements.txt --user
+```
+
+That will make sure that you have compatible versions of the
+requirements. If you try to update for example the Babel version, the
+plain install command won't do it. So it is recommended that you use
+the above command with the provided `requirements.txt` file which
+tells pip the exact versions that should be installed.
+
 ### Poedit (optional)
 
 [Poedit](https://poedit.net/) is a free .pot and .po file editor that may
@@ -521,17 +530,25 @@ the pre-commit hook section for how to speed things up.
 Pre-commit hook
 ---------------
 
-On Linux you can enable a pre-commit hook to automatically run the
+You can enable a pre-commit hook to automatically run the
 formatting checks before each commit to avoid accidentally committing
-code with formatting issues. To install the hook run the following
-script:
+code with formatting issues.
+
+To install pre-commit run `pip install pre-commit`. On Linux you can
+optionally install it with `sudo` or with the `--user` flag as was
+done for the dependencies needed for working with translations. More
+instruction for installing pre-commit can be found
+[here](https://pre-commit.com/#installation).
+
+Then, to install the hook run the following in the Thrive source
+folder:
 
 ```sh
-./install_git_hooks.rb
+pre-commit install
 ```
 
 The hook has the advantage that it will only run the checks on the
-files staged for commit saving many minutes of time. You can manually
+files staged for commit, saving many minutes of time. You can manually
 emulate this by creating a file in the Thrive folder called
 `files_to_check.txt` with one relative path per line specifying which
 files to check.

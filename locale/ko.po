@@ -18,62 +18,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.3.2\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
-#, fuzzy
+#: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "W，A，S，D和鼠標移動。如果你有一個氧化反應毒素，用E射擊氧化反應毒素。 G可以切"
 "換吞噬模式。"
 
 #: ../simulation_parameters/common/help_texts.json:5
+#: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "您的細胞使用ATP(三磷酸腺苷)作為能量來源，如果耗盡，您將會死亡。"
+msgstr "당신의 세포는 에너지원으로써 ATP를 사용하며, 전부 바닥나면 죽게 될 것입니다."
 
 #: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "要解鎖編輯器並進行複制，您需要收集氨（橙色雲）和磷酸鹽（紫色雲）。"
+msgstr "편집기를 해금하고 복제하려면 암모니아(오렌지색 구름) 와 인산염(보라색 구름)을 모아야 합니다."
 
 #: ../simulation_parameters/common/help_texts.json:7
+#: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "你也可以通過按G鍵吞噬比你小的細胞，細菌，鐵塊和細胞塊，這將會花費額外的ATP(三"
 "磷酸腺苷)，並且會讓你的速度變慢。不要忘記按第二次G來停止吞噬。"
 
 #: ../simulation_parameters/common/help_texts.json:8
+#: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "滲透調節耗費ATP(三磷酸腺苷)，這意味著您的細胞越大，你所需要的線粒體/代謝體/"
 "Rusticyanin（或細胞質-可進行糖酵解）越多，以避免在你靜止時失去ATP。"
 
 #: ../simulation_parameters/common/help_texts.json:9
+#: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "在編輯器中，有很多的細胞器供你進化，讓你有多種不同的玩法。"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "現在版本如果你的人口降到零，你就會滅絕。"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"各種複合雲為：\n"
-"\n"
-"白–葡萄糖\n"
-"黃色–硫化氫\n"
-"橙色–氨\n"
-"紫色–磷酸鹽\n"
-"鐵鏽棕–鐵\n"
-"\n"
-"葡萄糖製造ATP(三磷酸腺苷)"
 
 #: ../simulation_parameters/common/help_texts.json:12
-#, fuzzy
+#: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "硫化氫可以通過化學合成轉化為葡萄糖。鐵可以通過rusticyanin轉化為ATP。"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:13
+#: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "要繁殖，您需要將每個細胞器一分為二。 細胞器需要氨和磷酸鹽才能分裂成兩半。"
@@ -85,27 +83,14 @@ msgstr ""
 "出一個視窗並可以選擇繼續玩。"
 
 #: ../simulation_parameters/common/help_texts.json:15
+#: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
 "保持警惕，因為你的競爭對手也在和你一起進化。每當你進入編輯器，他們也在進化。"
 
 #: ../simulation_parameters/common/help_texts.json:20
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"原核結構\n"
-"\n"
-"代謝體：由葡萄糖產生ATP\n"
-"\n"
-"化學合成蛋白：從一份硫化氫中產生半份葡萄糖，進行糖酵解，佔用1個六角格。\n"
-"\n"
-"類囊體：產生的葡萄糖量是正常葉綠體的1/3，進行糖酵解，佔用1個六角格。\n"
-"\n"
-"鐵鏽素：將鐵轉化為ATP\n"
-"\n"
-"氮化酶：將大氣中的氮和ATP轉化為厭氧氨。\n"
-"\n"
-"細胞質：有儲存空間，進行糖酵解（產生少量ATP）。"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -123,158 +108,161 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:29
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:31
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:32
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:33
-msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:34
-msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:35
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:36
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:37
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:38
-msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:39
-msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:40
-msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:41
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-
 #: ../simulation_parameters/common/help_texts.json:43
-msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:44
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:45
-msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:47
-msgid "EASTEREGG_MESSAGE_19"
+msgid "LOADING_TIP"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:48
-msgid "EASTEREGG_MESSAGE_20"
+msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:49
-msgid "EASTEREGG_MESSAGE_21"
+msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:50
-msgid "EASTEREGG_MESSAGE_22"
+msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:51
-msgid "EASTEREGG_MESSAGE_23"
+msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:52
-msgid "EASTEREGG_MESSAGE_24"
+msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:53
-msgid "EASTEREGG_MESSAGE_25"
+msgid "EASTEREGG_MESSAGE_6"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:54
-msgid "EASTEREGG_MESSAGE_26"
+msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:55
+msgid "EASTEREGG_MESSAGE_8"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:56
+msgid "EASTEREGG_MESSAGE_9"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:57
+msgid "EASTEREGG_MESSAGE_10"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:58
+msgid "EASTEREGG_MESSAGE_11"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:59
+msgid "EASTEREGG_MESSAGE_12"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:60
+msgid "EASTEREGG_MESSAGE_13"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:61
+msgid "EASTEREGG_MESSAGE_14"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:62
+msgid "EASTEREGG_MESSAGE_15"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:63
+msgid "EASTEREGG_MESSAGE_16"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:64
+msgid "EASTEREGG_MESSAGE_17"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:65
+msgid "EASTEREGG_MESSAGE_18"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "EASTEREGG_MESSAGE_19"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:67
+msgid "EASTEREGG_MESSAGE_20"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:68
+msgid "EASTEREGG_MESSAGE_21"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:69
+msgid "EASTEREGG_MESSAGE_22"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:70
+msgid "EASTEREGG_MESSAGE_23"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:71
+msgid "EASTEREGG_MESSAGE_24"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:72
+msgid "EASTEREGG_MESSAGE_25"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:73
+msgid "EASTEREGG_MESSAGE_26"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "呼吸"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr "糖酵解"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "細胞質糖酵解"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr "光合作用"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
-#, fuzzy
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "氧化毒素合成"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "化學合成"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "有氧固氮"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "厭氧固氮"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "鐵-化能無機自養"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr "海洋表層帶"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
 #: ../simulation_parameters/microbe_stage/biomes.json:148
@@ -302,7 +290,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1462
 #: ../simulation_parameters/microbe_stage/biomes.json:1589
 msgid "SMALL_IRON_CHUNK"
-msgstr "小鐵塊"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:73
 #: ../simulation_parameters/microbe_stage/biomes.json:264
@@ -316,11 +304,11 @@ msgstr "小鐵塊"
 #: ../simulation_parameters/microbe_stage/biomes.json:1493
 #: ../simulation_parameters/microbe_stage/biomes.json:1620
 msgid "BIG_IRON_CHUNK"
-msgstr "大鐵塊"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:141
 msgid "VOLCANIC_VENT"
-msgstr "火山口"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:196
 #: ../simulation_parameters/microbe_stage/biomes.json:540
@@ -328,23 +316,23 @@ msgstr "火山口"
 #: ../simulation_parameters/microbe_stage/biomes.json:926
 #: ../simulation_parameters/microbe_stage/biomes.json:1642
 msgid "MARINE_SNOW"
-msgstr "海洋雪(有機物碎屑)"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:332
 msgid "TIDEPOOL"
-msgstr "潮池"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:459
 msgid "BATHYPELAGIC"
-msgstr "半深海帶"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:654
 msgid "ABYSSOPELAGIC"
-msgstr "深海帶"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:845
 msgid "MESOPELAGIC"
-msgstr "海洋中層帶"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1040
 msgid "COASTAL"
@@ -392,7 +380,7 @@ msgid "AMMONIA"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1701
+#: ../src/microbe_stage/MicrobeStage.tscn:1690
 msgid "PHOSPHATE"
 msgstr ""
 
@@ -418,13 +406,13 @@ msgid "GLUCOSE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1916
+#: ../src/microbe_stage/MicrobeStage.tscn:1905
 msgid "OXYTOXY_NT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
-#: ../src/microbe_stage/MicrobeStage.tscn:1809
+#: ../src/microbe_stage/MicrobeStage.tscn:1798
 msgid "IRON"
 msgstr ""
 
@@ -848,6 +836,7 @@ msgid "LOAD_GAME"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:78
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4299
 msgid "STATISTICS"
 msgstr ""
 
@@ -865,6 +854,14 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.cs:376
+msgid "OK"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.cs:377
+msgid "Cancel"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:147
@@ -1399,27 +1396,31 @@ msgstr ""
 msgid "PLAYER_DIED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:913
+#: ../src/microbe_stage/MicrobeStage.tscn:878
+msgid "AT_CURSOR"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:902
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:937
+#: ../src/microbe_stage/MicrobeStage.tscn:926
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:974
+#: ../src/microbe_stage/MicrobeStage.tscn:963
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1054
+#: ../src/microbe_stage/MicrobeStage.tscn:1043
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1315
+#: ../src/microbe_stage/MicrobeStage.tscn:1304
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1426
+#: ../src/microbe_stage/MicrobeStage.tscn:1415
 msgid "PRESSURE_SHORT"
 msgstr ""
 
@@ -1428,11 +1429,11 @@ msgstr ""
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1862
+#: ../src/microbe_stage/MicrobeStage.tscn:1851
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2123
+#: ../src/microbe_stage/MicrobeStage.tscn:2112
 msgid "POPULATION_CAPITAL"
 msgstr ""
 

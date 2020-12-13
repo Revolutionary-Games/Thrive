@@ -62,6 +62,7 @@ tracks/4/keys = {
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -76,6 +77,7 @@ ExceptionPath = NodePath("CenterContainer2/ErrorPopup/VBoxContainer/ScrollContai
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 0.332
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -98,6 +100,7 @@ anims/SavingStatusFadeOut = SubResource( 1 )
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -121,7 +124,7 @@ resizable = true
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 642.0
-margin_bottom = 304.0
+margin_bottom = 302.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -130,7 +133,7 @@ __meta__ = {
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
 margin_right = 634.0
-margin_bottom = 262.0
+margin_bottom = 258.0
 rect_min_size = Vector2( 300, 200 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -140,7 +143,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer"]
 margin_right = 634.0
-margin_bottom = 262.0
+margin_bottom = 258.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -162,16 +165,16 @@ __meta__ = {
 }
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
-margin_top = 266.0
+margin_top = 262.0
 margin_right = 634.0
-margin_bottom = 296.0
+margin_bottom = 294.0
 size_flags_horizontal = 5
 size_flags_vertical = 9
 alignment = 2
 
 [node name="CopyErrorButton" type="Button" parent="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2"]
 margin_right = 634.0
-margin_bottom = 30.0
+margin_bottom = 32.0
 size_flags_horizontal = 5
 size_flags_vertical = 9
 text = "COPY_ERROR_TO_CLIPBOARD"
