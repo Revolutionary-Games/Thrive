@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 public class ColonyMemberSerializer : JsonConverter<ColonyMember>
 {

@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 1, 0, 1, 1 )
+[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=1]
+[ext_resource path="res://assets/textures/metabolosome.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/dissolveValue = null
+shader_param/outlineWidth = 0.05
+shader_param/growColor = Color( 1, 1, 1, 1 )
+shader_param/tint = Color( 1, 0, 1, 1 )
+shader_param/texture = ExtResource( 2 )
+shader_param/dissolveTexture = ExtResource( 3 )
 
 [sub_resource type="CubeMesh" id=2]
 
