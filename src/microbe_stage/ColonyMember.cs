@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
+[JsonObject(IsReference = true)]
 public class ColonyMember
 {
     /// <summary>
@@ -25,13 +26,13 @@ public class ColonyMember
         }
     }
 
-    [JsonIgnore]
+    [JsonProperty]
     public ColonyMember Master { get; set; }
     [JsonProperty]
     public Vector3? OffsetToMaster { get; set; }
     [JsonProperty]
     public List<ColonyMember> BindingTo { get; set; }
-    [JsonIgnore]
+    [JsonProperty]
     public Microbe Microbe { get; set; }
 
     public static explicit operator Microbe(ColonyMember m)
@@ -61,19 +62,6 @@ public class ColonyMember
         }
 
         BindingTo = null;
-    }
-
-    public override int GetHashCode()
-    {
-        return Microbe.GetHashCode();
-    }
-
-    public override bool Equals(object obj)
-    {
-        if (!(obj is ColonyMember cm))
-            return false;
-
-        return Microbe.Equals(cm.Microbe);
     }
 
     public bool MicrobeEquals(Microbe otherMicrobe)

@@ -58,9 +58,6 @@ public class ThriveJsonConverter : IDisposable
             // to not use this
             new BaseNodeConverter(context),
 
-            new MicrobeConverter(context),
-            new ColonyMemberSerializer(context),
-
             // Converter for all types with a specific few attributes for this to be enabled
             new DefaultThriveJSONConverter(context),
         };
