@@ -55,6 +55,8 @@ public class ThriveJsonConverter : IDisposable
             // attribute work correctly. Unfortunately this means it is not possible to force a Node derived class
             // to not use this
             new BaseNodeConverter(context),
+
+            new MicrobeConverter(context),
             new ColonyMemberSerializer(),
 
             // Converter for all types with a specific few attributes for this to be enabled

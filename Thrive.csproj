@@ -73,7 +73,6 @@
     <Compile Include="src\general\OptionsMenu.cs" />
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
-    <Compile Include="src\microbe_stage\BindingColony.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\ChunkConfiguration.cs" />
     <Compile Include="src\microbe_stage\ColonyMember.cs" />
@@ -209,6 +208,7 @@
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
+    <Compile Include="src\saving\serializers\MicrobeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeGroupSaveHelper.cs" />
     <Compile Include="src\saving\serializers\PackedSceneConverter.cs" />

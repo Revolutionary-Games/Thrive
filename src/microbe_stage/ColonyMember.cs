@@ -12,7 +12,7 @@ public class ColonyMember
     {
     }
 
-    internal ColonyMember(Microbe microbe, ColonyMember master)
+    public ColonyMember(Microbe microbe, ColonyMember master)
     {
         Microbe = microbe;
         BindingTo = new List<ColonyMember>();
@@ -20,23 +20,48 @@ public class ColonyMember
 
         if (master != null)
         {
-            OffsetToMaster = (((Microbe)master).Translation - microbe.Translation)
-                .Rotated(Vector3.Up, Mathf.Deg2Rad(-((Microbe)master).RotationDegrees.y));
+            var masterMicrobe = master.Microbe;
+            OffsetToMaster = (masterMicrobe.Translation - microbe.Translation)
+                .Rotated(Vector3.Up, Mathf.Deg2Rad(-masterMicrobe.RotationDegrees.y));
         }
     }
 
     [JsonIgnore]
-    internal ColonyMember Master { get; set; }
+    public ColonyMember Master { get; set; }
     [JsonProperty]
-    internal Vector3? OffsetToMaster { get; set; }
+    public Vector3? OffsetToMaster { get; set; }
     [JsonProperty]
-    internal List<ColonyMember> BindingTo { get; set; }
+    public List<ColonyMember> BindingTo { get; set; }
     [JsonIgnore]
-    internal Microbe Microbe { get; set; }
+    public Microbe Microbe { get; set; }
 
     public static explicit operator Microbe(ColonyMember m)
     {
         return m?.Microbe;
+    }
+
+    public void RemoveFromColony()
+    {
+        Microbe.RemovedFromColony();
+        Microbe = null;
+
+        Master?.BindingTo.Remove(this);
+
+        Master = null;
+        OffsetToMaster = null;
+
+        foreach (var colonyMember in BindingTo)
+        {
+            colonyMember.Master = null;
+
+            // A colony alone doesn't make sense
+            if (colonyMember.BindingTo.Count == 0)
+            {
+                colonyMember.RemoveFromColony();
+            }
+        }
+
+        BindingTo = null;
     }
 
     public override int GetHashCode()

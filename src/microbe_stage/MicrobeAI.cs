@@ -107,7 +107,7 @@ public class MicrobeAI
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
         // Disable most AI in a colony
-        if (microbe.AssociatedColony?.GetMyMaster(microbe) == null)
+        if (microbe.Colony?.Master == null)
         {
             _ = delta;
 

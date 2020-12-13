@@ -33,7 +33,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   The colony this microbe is currently in
     /// </summary>
     [JsonProperty]
-    public BindingColony AssociatedColony;
+    public ColonyMember Colony;
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
@@ -348,7 +348,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (!isPlayer)
             ai = new MicrobeAI(this);
 
-        AssociatedColony = null;
+        Colony = null;
 
         // Needed for immediately applying the species
         _Ready();
@@ -633,10 +633,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public bool CanBind()
     {
         var bindingAgents = organelles.Count(p => p.IsBindingAgent);
-        if (AssociatedColony == null)
+        if (Colony == null)
             return bindingAgents > 0;
 
-        return AssociatedColony.GetMyBindingTargets(this).Count() < bindingAgents;
+        return Colony.BindingTo.Count < bindingAgents;
     }
 
     /// <summary>
@@ -676,7 +676,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Dead = true;
 
         OnDeath?.Invoke(this);
-        AssociatedColony?.RemoveFromColony(this);
+        Colony?.RemoveFromColony();
 
         // Reset some stuff
         EngulfMode = false;
@@ -1104,7 +1104,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Movement
-        if (AssociatedColony?.GetMyMaster(this) == null)
+        if (Colony?.Master == null)
         {
             if (MovementDirection != new Vector3(0, 0, 0) ||
                 queuedMovementForce != new Vector3(0, 0, 0))
@@ -1128,16 +1128,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
         else
         {
-            var master = AssociatedColony.GetMyMaster(this);
-            var masterTranslation = master.Translation;
+            var masterMicrobe = Colony.Master.Microbe;
+            var masterTranslation = masterMicrobe.Translation;
             var targetPos = masterTranslation +
-                AssociatedColony.GetOffsetToMaster(this) !.Value;
+                Colony.OffsetToMaster !.Value;
 
             MovementDirection = Translation - targetPos;
             DoBaseMovementForce(delta);
-            Rotation = master.Rotation;
+            Rotation = masterMicrobe.Rotation;
             Translation = masterTranslation + (masterTranslation - targetPos)
-                .Rotated(Vector3.Up, Mathf.Deg2Rad(master.RotationDegrees.y));
+                .Rotated(Vector3.Up, Mathf.Deg2Rad(masterMicrobe.RotationDegrees.y));
         }
 
         // Rotation is applied in the physics force callback as that's
@@ -1199,20 +1199,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     internal void RemovedFromColony()
     {
-        foreach (var myBindingTarget in AssociatedColony.GetMyBindingTargets(this))
+        if (Colony == null)
+            return;
+
+        foreach (var myBindingTarget in Colony.BindingTo)
         {
-            RemoveCollisionExceptionWith(myBindingTarget);
-            myBindingTarget.RemoveCollisionExceptionWith(this);
+            RemoveCollisionExceptionWith(myBindingTarget.Microbe);
+            myBindingTarget.Microbe.RemoveCollisionExceptionWith(this);
         }
 
-        var master = AssociatedColony.GetMyMaster(this);
-        if (master != null)
+        if (Colony.Master != null)
         {
-            RemoveCollisionExceptionWith(master);
-            master.RemoveCollisionExceptionWith(this);
+            RemoveCollisionExceptionWith(Colony.Master.Microbe);
+            Colony.Master.Microbe.RemoveCollisionExceptionWith(this);
         }
 
-        AssociatedColony = null;
+        Colony = null;
     }
 
     internal void SuccessfulScavenge()
@@ -2081,21 +2083,21 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
 
         // Cannot hijack the player or other colonies (TODO: yet)
-        if (other.IsPlayerMicrobe || other.AssociatedColony != null)
+        if (other.IsPlayerMicrobe || other.Colony != null)
             return;
 
         AddCollisionExceptionWith(other);
         other.AddCollisionExceptionWith(this);
 
         // Create a colony if there isn't one yet
-        if (AssociatedColony == null)
+        if (Colony == null)
         {
-            AssociatedColony = new BindingColony(this);
+            Colony = new ColonyMember(this, null);
             GD.Print("Created a new colony");
         }
 
-        AssociatedColony.AddToColony(this, other);
-        other.AssociatedColony = AssociatedColony;
+        other.Colony = new ColonyMember(other, Colony);
+        Colony.BindingTo.Add(other.Colony);
         BindingMode = false;
     }
 
