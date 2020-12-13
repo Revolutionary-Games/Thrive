@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-12 23:13+0100\n"
+"POT-Creation-Date: 2020-12-13 12:31+0100\n"
 "PO-Revision-Date: 2020-11-18 17:27+0000\n"
 "Last-Translator: Mauboussin Lucas <dragonmemo492@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -354,6 +354,142 @@ msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "Fait amusant, l'un des premiers prototypes de gameplay jouables a été créé "
 "par notre merveilleux programmer, untrustedlife!"
+
+#: ../simulation_parameters/common/input_options.json:6
+#, fuzzy
+msgid "MOVEMENT"
+msgstr "Mouvement de Base"
+
+#: ../simulation_parameters/common/input_options.json:10
+#, fuzzy
+msgid "MOVE_LEFT"
+msgstr "Lumière"
+
+#: ../simulation_parameters/common/input_options.json:14
+#, fuzzy
+msgid "MOVE_RIGHT"
+msgstr "Lumière"
+
+#: ../simulation_parameters/common/input_options.json:18
+msgid "MOVE_FORWARD"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:22
+msgid "MOVE_BACKWARDS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:26
+#, fuzzy
+msgid "AUTO_MOVE_FORWARDS"
+msgstr "L'Auto-évo n'a pas pu se lancer"
+
+#: ../simulation_parameters/common/input_options.json:34
+msgid "ABILITIES"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:38
+msgid "FIRE_TOXIN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:42
+#, fuzzy
+msgid "TOGGLE_ENGULF"
+msgstr "Ne peut pas absorber"
+
+#: ../simulation_parameters/common/input_options.json:51
+msgid "CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:55
+msgid "ZOOM_OUT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:59
+msgid "ZOOM_IN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
+msgid "EDITOR"
+msgstr "Éditeur"
+
+#: ../simulation_parameters/common/input_options.json:71
+#, fuzzy
+msgid "ROTATE_RIGHT"
+msgstr "Lumière"
+
+#: ../simulation_parameters/common/input_options.json:75
+#, fuzzy
+msgid "ROTATE_LEFT"
+msgstr "Lumière"
+
+#: ../simulation_parameters/common/input_options.json:79
+msgid "UNDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:83
+msgid "REDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "PLACE_ORGANELLE"
+msgstr "Organites"
+
+#: ../simulation_parameters/common/input_options.json:91
+#, fuzzy
+msgid "REMOVE_ORGANELLE"
+msgstr "Organites"
+
+#: ../simulation_parameters/common/input_options.json:99
+msgid "CHEATS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
+msgid "ENABLE_EDITOR"
+msgstr "Éditeur"
+
+#: ../simulation_parameters/common/input_options.json:107
+#, fuzzy
+msgid "SPAWN_GLUCOSE"
+msgstr "Glucose"
+
+#: ../simulation_parameters/common/input_options.json:111
+#, fuzzy
+msgid "SPAWN_AMMONIA"
+msgstr "Ammoniaque"
+
+#: ../simulation_parameters/common/input_options.json:115
+#, fuzzy
+msgid "SPAWN_PHOSPHATES"
+msgstr "Phosphate"
+
+#: ../simulation_parameters/common/input_options.json:124
+msgid "MISCELLANEOUS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:128
+msgid "TOGGLE_FPS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:132
+#, fuzzy
+msgid "QUICK_SAVE"
+msgstr "Sauvegarde rapide"
+
+#: ../simulation_parameters/common/input_options.json:136
+msgid "QUICK_LOAD"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:140
+msgid "TAKE_SCREENSHOT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:144
+#, fuzzy
+msgid "SHOW_HELP"
+msgstr "Aide"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -1831,10 +1967,6 @@ msgstr "Rapport"
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
-msgid "EDITOR"
-msgstr "Éditeur"
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1027
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiques de l'Organisme"
@@ -2495,35 +2627,3 @@ msgstr ""
 "Afin de vous reproduire vous devez dupliquer tous vos organites en "
 "collectant assez d'ammoniaque et de phosphates.\n"
 "Regardez l'indicateur en bas à droite pour voir combien il vous en manque."
-
-#, fuzzy
-#~ msgid "MOVE_LEFT"
-#~ msgstr "Lumière"
-
-#, fuzzy
-#~ msgid "MOVE_RIGHT"
-#~ msgstr "Lumière"
-
-#, fuzzy
-#~ msgid "ROTATE_RIGHT"
-#~ msgstr "Lumière"
-
-#, fuzzy
-#~ msgid "ROTATE_LEFT"
-#~ msgstr "Lumière"
-
-#, fuzzy
-#~ msgid "SPAWN_GLUCOSE"
-#~ msgstr "Glucose"
-
-#, fuzzy
-#~ msgid "SPAWN_AMMONIA"
-#~ msgstr "Ammoniaque"
-
-#, fuzzy
-#~ msgid "SPAWN_PHOSPHATES"
-#~ msgstr "Phosphate"
-
-#, fuzzy
-#~ msgid "SHOW_HELP"
-#~ msgstr "Aide"

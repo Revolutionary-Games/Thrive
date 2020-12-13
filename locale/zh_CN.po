@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-12 23:13+0100\n"
+"POT-Creation-Date: 2020-12-13 12:31+0100\n"
 "PO-Revision-Date: 2020-11-18 17:27+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -297,6 +297,146 @@ msgstr "逗知识：Thrive是用开源的Godot引擎做的！"
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "逗知识：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
+
+#: ../simulation_parameters/common/input_options.json:6
+#, fuzzy
+msgid "MOVEMENT"
+msgstr "移动需求"
+
+#: ../simulation_parameters/common/input_options.json:10
+#, fuzzy
+msgid "MOVE_LEFT"
+msgstr "移动需求"
+
+#: ../simulation_parameters/common/input_options.json:14
+#, fuzzy
+msgid "MOVE_RIGHT"
+msgstr "的光"
+
+#: ../simulation_parameters/common/input_options.json:18
+#, fuzzy
+msgid "MOVE_FORWARD"
+msgstr "Auto-evo未能正常运行"
+
+#: ../simulation_parameters/common/input_options.json:22
+#, fuzzy
+msgid "MOVE_BACKWARDS"
+msgstr "Auto-evo未能正常运行"
+
+#: ../simulation_parameters/common/input_options.json:26
+#, fuzzy
+msgid "AUTO_MOVE_FORWARDS"
+msgstr "Auto-evo未能正常运行"
+
+#: ../simulation_parameters/common/input_options.json:34
+msgid "ABILITIES"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:38
+msgid "FIRE_TOXIN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:42
+#, fuzzy
+msgid "TOGGLE_ENGULF"
+msgstr "无法进入吞噬模式"
+
+#: ../simulation_parameters/common/input_options.json:51
+msgid "CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:55
+msgid "ZOOM_OUT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:59
+msgid "ZOOM_IN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
+msgid "EDITOR"
+msgstr "编辑器"
+
+#: ../simulation_parameters/common/input_options.json:71
+#, fuzzy
+msgid "ROTATE_RIGHT"
+msgstr "的光"
+
+#: ../simulation_parameters/common/input_options.json:75
+#, fuzzy
+msgid "ROTATE_LEFT"
+msgstr ". 产出速率取决于"
+
+#: ../simulation_parameters/common/input_options.json:79
+msgid "UNDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:83
+msgid "REDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "PLACE_ORGANELLE"
+msgstr "细胞器"
+
+#: ../simulation_parameters/common/input_options.json:91
+#, fuzzy
+msgid "REMOVE_ORGANELLE"
+msgstr "细胞器"
+
+#: ../simulation_parameters/common/input_options.json:99
+msgid "CHEATS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
+msgid "ENABLE_EDITOR"
+msgstr "编辑器"
+
+#: ../simulation_parameters/common/input_options.json:107
+#, fuzzy
+msgid "SPAWN_GLUCOSE"
+msgstr "葡萄糖"
+
+#: ../simulation_parameters/common/input_options.json:111
+#, fuzzy
+msgid "SPAWN_AMMONIA"
+msgstr "氨"
+
+#: ../simulation_parameters/common/input_options.json:115
+#, fuzzy
+msgid "SPAWN_PHOSPHATES"
+msgstr "磷酸盐"
+
+#: ../simulation_parameters/common/input_options.json:124
+msgid "MISCELLANEOUS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:128
+#, fuzzy
+msgid "TOGGLE_FPS"
+msgstr "无法进入吞噬模式"
+
+#: ../simulation_parameters/common/input_options.json:132
+#, fuzzy
+msgid "QUICK_SAVE"
+msgstr "快速保存"
+
+#: ../simulation_parameters/common/input_options.json:136
+#, fuzzy
+msgid "QUICK_LOAD"
+msgstr "快速保存"
+
+#: ../simulation_parameters/common/input_options.json:140
+msgid "TAKE_SCREENSHOT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:144
+#, fuzzy
+msgid "SHOW_HELP"
+msgstr "帮助"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -1716,10 +1856,6 @@ msgstr "报告"
 msgid "PATCH_MAP"
 msgstr "地区图"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
-msgid "EDITOR"
-msgstr "编辑器"
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1027
 msgid "ORGANISM_STATISTICS"
 msgstr "生物数据"
@@ -2335,79 +2471,3 @@ msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
-
-#, fuzzy
-#~ msgid "MOVEMENT"
-#~ msgstr "移动需求"
-
-#, fuzzy
-#~ msgid "MOVE_LEFT"
-#~ msgstr "移动需求"
-
-#, fuzzy
-#~ msgid "MOVE_RIGHT"
-#~ msgstr "的光"
-
-#, fuzzy
-#~ msgid "MOVE_FORWARD"
-#~ msgstr "Auto-evo未能正常运行"
-
-#, fuzzy
-#~ msgid "MOVE_BACKWARDS"
-#~ msgstr "Auto-evo未能正常运行"
-
-#, fuzzy
-#~ msgid "AUTO_MOVE_FORWARDS"
-#~ msgstr "Auto-evo未能正常运行"
-
-#, fuzzy
-#~ msgid "TOGGLE_ENGULF"
-#~ msgstr "无法进入吞噬模式"
-
-#, fuzzy
-#~ msgid "ROTATE_RIGHT"
-#~ msgstr "的光"
-
-#, fuzzy
-#~ msgid "ROTATE_LEFT"
-#~ msgstr ". 产出速率取决于"
-
-#, fuzzy
-#~ msgid "PLACE_ORGANELLE"
-#~ msgstr "细胞器"
-
-#, fuzzy
-#~ msgid "REMOVE_ORGANELLE"
-#~ msgstr "细胞器"
-
-#, fuzzy
-#~ msgid "ENABLE_EDITOR"
-#~ msgstr "编辑器"
-
-#, fuzzy
-#~ msgid "SPAWN_GLUCOSE"
-#~ msgstr "葡萄糖"
-
-#, fuzzy
-#~ msgid "SPAWN_AMMONIA"
-#~ msgstr "氨"
-
-#, fuzzy
-#~ msgid "SPAWN_PHOSPHATES"
-#~ msgstr "磷酸盐"
-
-#, fuzzy
-#~ msgid "TOGGLE_FPS"
-#~ msgstr "无法进入吞噬模式"
-
-#, fuzzy
-#~ msgid "QUICK_SAVE"
-#~ msgstr "快速保存"
-
-#, fuzzy
-#~ msgid "QUICK_LOAD"
-#~ msgstr "快速保存"
-
-#, fuzzy
-#~ msgid "SHOW_HELP"
-#~ msgstr "帮助"

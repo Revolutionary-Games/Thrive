@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-12 23:13+0100\n"
+"POT-Creation-Date: 2020-12-13 12:31+0100\n"
 "PO-Revision-Date: 2020-11-14 21:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -239,6 +239,128 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:6
+#, fuzzy
+msgid "MOVEMENT"
+msgstr "Liikkuminen"
+
+#: ../simulation_parameters/common/input_options.json:10
+msgid "MOVE_LEFT"
+msgstr "Liiku vasemmalle"
+
+#: ../simulation_parameters/common/input_options.json:14
+msgid "MOVE_RIGHT"
+msgstr "Liiku oikealle"
+
+#: ../simulation_parameters/common/input_options.json:18
+msgid "MOVE_FORWARD"
+msgstr "Liiku eteenpäin"
+
+#: ../simulation_parameters/common/input_options.json:22
+msgid "MOVE_BACKWARDS"
+msgstr "Liiku taaksepäin"
+
+#: ../simulation_parameters/common/input_options.json:26
+msgid "AUTO_MOVE_FORWARDS"
+msgstr "Liiku automaattisesti eteenpäin"
+
+#: ../simulation_parameters/common/input_options.json:34
+msgid "ABILITIES"
+msgstr "Kyvyt"
+
+#: ../simulation_parameters/common/input_options.json:38
+msgid "FIRE_TOXIN"
+msgstr "Ammu myrkkuä"
+
+#: ../simulation_parameters/common/input_options.json:42
+msgid "TOGGLE_ENGULF"
+msgstr "Aloita/lopeta nieleminen"
+
+#: ../simulation_parameters/common/input_options.json:51
+msgid "CAMERA"
+msgstr "Camera"
+
+#: ../simulation_parameters/common/input_options.json:55
+msgid "ZOOM_OUT"
+msgstr "Zoomaa ulospäin"
+
+#: ../simulation_parameters/common/input_options.json:59
+msgid "ZOOM_IN"
+msgstr "Zoomaa sisään"
+
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
+msgid "EDITOR"
+msgstr "Editori"
+
+#: ../simulation_parameters/common/input_options.json:71
+msgid "ROTATE_RIGHT"
+msgstr "Käännä oikealle"
+
+#: ../simulation_parameters/common/input_options.json:75
+msgid "ROTATE_LEFT"
+msgstr "Käännä vasemmalle"
+
+#: ../simulation_parameters/common/input_options.json:79
+msgid "UNDO"
+msgstr "Kumoa"
+
+#: ../simulation_parameters/common/input_options.json:83
+msgid "REDO"
+msgstr "Tee uudelleen"
+
+#: ../simulation_parameters/common/input_options.json:87
+msgid "PLACE_ORGANELLE"
+msgstr "Lisää soluelin"
+
+#: ../simulation_parameters/common/input_options.json:91
+msgid "REMOVE_ORGANELLE"
+msgstr "Poista soluelin"
+
+#: ../simulation_parameters/common/input_options.json:99
+msgid "CHEATS"
+msgstr "Huijauskoodit"
+
+#: ../simulation_parameters/common/input_options.json:103
+msgid "ENABLE_EDITOR"
+msgstr "Avaa editorin lukitus"
+
+#: ../simulation_parameters/common/input_options.json:107
+msgid "SPAWN_GLUCOSE"
+msgstr "Luo glukoosia"
+
+#: ../simulation_parameters/common/input_options.json:111
+msgid "SPAWN_AMMONIA"
+msgstr "Luo ammoniakkia"
+
+#: ../simulation_parameters/common/input_options.json:115
+msgid "SPAWN_PHOSPHATES"
+msgstr "Luo fosfaattia"
+
+#: ../simulation_parameters/common/input_options.json:124
+msgid "MISCELLANEOUS"
+msgstr "Muut"
+
+#: ../simulation_parameters/common/input_options.json:128
+msgid "TOGGLE_FPS"
+msgstr "Näytä FPS-laskuri"
+
+#: ../simulation_parameters/common/input_options.json:132
+msgid "QUICK_SAVE"
+msgstr "Tee pika-tallennus"
+
+#: ../simulation_parameters/common/input_options.json:136
+msgid "QUICK_LOAD"
+msgstr "Lataa viimeisin tallennus"
+
+#: ../simulation_parameters/common/input_options.json:140
+msgid "TAKE_SCREENSHOT"
+msgstr "Ota ruudunkaappaus"
+
+#: ../simulation_parameters/common/input_options.json:144
+msgid "SHOW_HELP"
+msgstr "Näytä apu"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -1586,10 +1708,6 @@ msgstr "Raportti"
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
-msgid "EDITOR"
-msgstr "Editori"
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1027
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiikkaa organismista"
@@ -2113,94 +2231,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-
-#, fuzzy
-#~ msgid "MOVEMENT"
-#~ msgstr "Liikkuminen"
-
-#~ msgid "MOVE_LEFT"
-#~ msgstr "Liiku vasemmalle"
-
-#~ msgid "MOVE_RIGHT"
-#~ msgstr "Liiku oikealle"
-
-#~ msgid "MOVE_FORWARD"
-#~ msgstr "Liiku eteenpäin"
-
-#~ msgid "MOVE_BACKWARDS"
-#~ msgstr "Liiku taaksepäin"
-
-#~ msgid "AUTO_MOVE_FORWARDS"
-#~ msgstr "Liiku automaattisesti eteenpäin"
-
-#~ msgid "ABILITIES"
-#~ msgstr "Kyvyt"
-
-#~ msgid "FIRE_TOXIN"
-#~ msgstr "Ammu myrkkuä"
-
-#~ msgid "TOGGLE_ENGULF"
-#~ msgstr "Aloita/lopeta nieleminen"
-
-#~ msgid "CAMERA"
-#~ msgstr "Camera"
-
-#~ msgid "ZOOM_OUT"
-#~ msgstr "Zoomaa ulospäin"
-
-#~ msgid "ZOOM_IN"
-#~ msgstr "Zoomaa sisään"
-
-#~ msgid "ROTATE_RIGHT"
-#~ msgstr "Käännä oikealle"
-
-#~ msgid "ROTATE_LEFT"
-#~ msgstr "Käännä vasemmalle"
-
-#~ msgid "UNDO"
-#~ msgstr "Kumoa"
-
-#~ msgid "REDO"
-#~ msgstr "Tee uudelleen"
-
-#~ msgid "PLACE_ORGANELLE"
-#~ msgstr "Lisää soluelin"
-
-#~ msgid "REMOVE_ORGANELLE"
-#~ msgstr "Poista soluelin"
-
-#~ msgid "CHEATS"
-#~ msgstr "Huijauskoodit"
-
-#~ msgid "ENABLE_EDITOR"
-#~ msgstr "Avaa editorin lukitus"
-
-#~ msgid "SPAWN_GLUCOSE"
-#~ msgstr "Luo glukoosia"
-
-#~ msgid "SPAWN_AMMONIA"
-#~ msgstr "Luo ammoniakkia"
-
-#~ msgid "SPAWN_PHOSPHATES"
-#~ msgstr "Luo fosfaattia"
-
-#~ msgid "MISCELLANEOUS"
-#~ msgstr "Muut"
-
-#~ msgid "TOGGLE_FPS"
-#~ msgstr "Näytä FPS-laskuri"
-
-#~ msgid "QUICK_SAVE"
-#~ msgstr "Tee pika-tallennus"
-
-#~ msgid "QUICK_LOAD"
-#~ msgstr "Lataa viimeisin tallennus"
-
-#~ msgid "TAKE_SCREENSHOT"
-#~ msgstr "Ota ruudunkaappaus"
-
-#~ msgid "SHOW_HELP"
-#~ msgstr "Näytä apu"
 
 #~ msgid "CONFIRM"
 #~ msgstr "Vahvista"

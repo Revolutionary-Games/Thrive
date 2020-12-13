@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-12 23:13+0100\n"
+"POT-Creation-Date: 2020-12-13 12:31+0100\n"
 "PO-Revision-Date: 2020-11-18 17:27+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -343,6 +343,146 @@ msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerden biri bizim müthiş "
 "programcımız untrustedlife tarafından yapıldı!"
+
+#: ../simulation_parameters/common/input_options.json:6
+#, fuzzy
+msgid "MOVEMENT"
+msgstr "Ana Hareket"
+
+#: ../simulation_parameters/common/input_options.json:10
+#, fuzzy
+msgid "MOVE_LEFT"
+msgstr "Ana Hareket"
+
+#: ../simulation_parameters/common/input_options.json:14
+#, fuzzy
+msgid "MOVE_RIGHT"
+msgstr "Işık"
+
+#: ../simulation_parameters/common/input_options.json:18
+#, fuzzy
+msgid "MOVE_FORWARD"
+msgstr "Oto-evrim çalıştırılamadı"
+
+#: ../simulation_parameters/common/input_options.json:22
+#, fuzzy
+msgid "MOVE_BACKWARDS"
+msgstr "Oto-evrim çalıştırılamadı"
+
+#: ../simulation_parameters/common/input_options.json:26
+#, fuzzy
+msgid "AUTO_MOVE_FORWARDS"
+msgstr "Oto-evrim çalıştırılamadı"
+
+#: ../simulation_parameters/common/input_options.json:34
+msgid "ABILITIES"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:38
+msgid "FIRE_TOXIN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:42
+#, fuzzy
+msgid "TOGGLE_ENGULF"
+msgstr "Yutamaz"
+
+#: ../simulation_parameters/common/input_options.json:51
+msgid "CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:55
+msgid "ZOOM_OUT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:59
+msgid "ZOOM_IN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
+msgid "EDITOR"
+msgstr "Editör"
+
+#: ../simulation_parameters/common/input_options.json:71
+#, fuzzy
+msgid "ROTATE_RIGHT"
+msgstr "Işık"
+
+#: ../simulation_parameters/common/input_options.json:75
+#, fuzzy
+msgid "ROTATE_LEFT"
+msgstr ". Oran doğru orantılı"
+
+#: ../simulation_parameters/common/input_options.json:79
+msgid "UNDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:83
+msgid "REDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "PLACE_ORGANELLE"
+msgstr "Organeller"
+
+#: ../simulation_parameters/common/input_options.json:91
+#, fuzzy
+msgid "REMOVE_ORGANELLE"
+msgstr "Organeller"
+
+#: ../simulation_parameters/common/input_options.json:99
+msgid "CHEATS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
+msgid "ENABLE_EDITOR"
+msgstr "Editör"
+
+#: ../simulation_parameters/common/input_options.json:107
+#, fuzzy
+msgid "SPAWN_GLUCOSE"
+msgstr "Glukoz"
+
+#: ../simulation_parameters/common/input_options.json:111
+#, fuzzy
+msgid "SPAWN_AMMONIA"
+msgstr "Amonyak"
+
+#: ../simulation_parameters/common/input_options.json:115
+#, fuzzy
+msgid "SPAWN_PHOSPHATES"
+msgstr "Fosfat"
+
+#: ../simulation_parameters/common/input_options.json:124
+msgid "MISCELLANEOUS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:128
+#, fuzzy
+msgid "TOGGLE_FPS"
+msgstr "Yutamaz"
+
+#: ../simulation_parameters/common/input_options.json:132
+#, fuzzy
+msgid "QUICK_SAVE"
+msgstr "Çabuk kayıt"
+
+#: ../simulation_parameters/common/input_options.json:136
+#, fuzzy
+msgid "QUICK_LOAD"
+msgstr "Çabuk kayıt"
+
+#: ../simulation_parameters/common/input_options.json:140
+msgid "TAKE_SCREENSHOT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:144
+#, fuzzy
+msgid "SHOW_HELP"
+msgstr "Yardım"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -1831,10 +1971,6 @@ msgstr "Rapor"
 msgid "PATCH_MAP"
 msgstr "Arazi Haritası"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
-msgid "EDITOR"
-msgstr "Editör"
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1027
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
@@ -2478,79 +2614,3 @@ msgstr ""
 "Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün "
 "organellerini ikiye katlaman gerekir.\n"
 "Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki göstergeye bak."
-
-#, fuzzy
-#~ msgid "MOVEMENT"
-#~ msgstr "Ana Hareket"
-
-#, fuzzy
-#~ msgid "MOVE_LEFT"
-#~ msgstr "Ana Hareket"
-
-#, fuzzy
-#~ msgid "MOVE_RIGHT"
-#~ msgstr "Işık"
-
-#, fuzzy
-#~ msgid "MOVE_FORWARD"
-#~ msgstr "Oto-evrim çalıştırılamadı"
-
-#, fuzzy
-#~ msgid "MOVE_BACKWARDS"
-#~ msgstr "Oto-evrim çalıştırılamadı"
-
-#, fuzzy
-#~ msgid "AUTO_MOVE_FORWARDS"
-#~ msgstr "Oto-evrim çalıştırılamadı"
-
-#, fuzzy
-#~ msgid "TOGGLE_ENGULF"
-#~ msgstr "Yutamaz"
-
-#, fuzzy
-#~ msgid "ROTATE_RIGHT"
-#~ msgstr "Işık"
-
-#, fuzzy
-#~ msgid "ROTATE_LEFT"
-#~ msgstr ". Oran doğru orantılı"
-
-#, fuzzy
-#~ msgid "PLACE_ORGANELLE"
-#~ msgstr "Organeller"
-
-#, fuzzy
-#~ msgid "REMOVE_ORGANELLE"
-#~ msgstr "Organeller"
-
-#, fuzzy
-#~ msgid "ENABLE_EDITOR"
-#~ msgstr "Editör"
-
-#, fuzzy
-#~ msgid "SPAWN_GLUCOSE"
-#~ msgstr "Glukoz"
-
-#, fuzzy
-#~ msgid "SPAWN_AMMONIA"
-#~ msgstr "Amonyak"
-
-#, fuzzy
-#~ msgid "SPAWN_PHOSPHATES"
-#~ msgstr "Fosfat"
-
-#, fuzzy
-#~ msgid "TOGGLE_FPS"
-#~ msgstr "Yutamaz"
-
-#, fuzzy
-#~ msgid "QUICK_SAVE"
-#~ msgstr "Çabuk kayıt"
-
-#, fuzzy
-#~ msgid "QUICK_LOAD"
-#~ msgstr "Çabuk kayıt"
-
-#, fuzzy
-#~ msgid "SHOW_HELP"
-#~ msgstr "Yardım"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-12 23:13+0100\n"
+"POT-Creation-Date: 2020-12-13 12:31+0100\n"
 "PO-Revision-Date: 2020-12-07 19:19+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -291,6 +291,146 @@ msgstr "豆知識：Thrive是用開源的Godot引擎做的！"
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "豆知識：我們最初的可玩遊戲原型是由我們了不起的程序員，untrustedlife製作的！"
+
+#: ../simulation_parameters/common/input_options.json:6
+#, fuzzy
+msgid "MOVEMENT"
+msgstr "光"
+
+#: ../simulation_parameters/common/input_options.json:10
+#, fuzzy
+msgid "MOVE_LEFT"
+msgstr "光"
+
+#: ../simulation_parameters/common/input_options.json:14
+#, fuzzy
+msgid "MOVE_RIGHT"
+msgstr "光"
+
+#: ../simulation_parameters/common/input_options.json:18
+#, fuzzy
+msgid "MOVE_FORWARD"
+msgstr "自動進化啟動失敗"
+
+#: ../simulation_parameters/common/input_options.json:22
+#, fuzzy
+msgid "MOVE_BACKWARDS"
+msgstr "自動進化啟動失敗"
+
+#: ../simulation_parameters/common/input_options.json:26
+#, fuzzy
+msgid "AUTO_MOVE_FORWARDS"
+msgstr "自動進化啟動失敗"
+
+#: ../simulation_parameters/common/input_options.json:34
+msgid "ABILITIES"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:38
+msgid "FIRE_TOXIN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:42
+#, fuzzy
+msgid "TOGGLE_ENGULF"
+msgstr "無法吞沒"
+
+#: ../simulation_parameters/common/input_options.json:51
+msgid "CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:55
+msgid "ZOOM_OUT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:59
+msgid "ZOOM_IN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
+msgid "EDITOR"
+msgstr "編輯器"
+
+#: ../simulation_parameters/common/input_options.json:71
+#, fuzzy
+msgid "ROTATE_RIGHT"
+msgstr "光"
+
+#: ../simulation_parameters/common/input_options.json:75
+#, fuzzy
+msgid "ROTATE_LEFT"
+msgstr "光"
+
+#: ../simulation_parameters/common/input_options.json:79
+msgid "UNDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:83
+msgid "REDO"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "PLACE_ORGANELLE"
+msgstr "細胞器"
+
+#: ../simulation_parameters/common/input_options.json:91
+#, fuzzy
+msgid "REMOVE_ORGANELLE"
+msgstr "細胞器"
+
+#: ../simulation_parameters/common/input_options.json:99
+msgid "CHEATS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
+msgid "ENABLE_EDITOR"
+msgstr "編輯器"
+
+#: ../simulation_parameters/common/input_options.json:107
+#, fuzzy
+msgid "SPAWN_GLUCOSE"
+msgstr "葡萄糖"
+
+#: ../simulation_parameters/common/input_options.json:111
+#, fuzzy
+msgid "SPAWN_AMMONIA"
+msgstr "氨"
+
+#: ../simulation_parameters/common/input_options.json:115
+#, fuzzy
+msgid "SPAWN_PHOSPHATES"
+msgstr "磷酸鹽"
+
+#: ../simulation_parameters/common/input_options.json:124
+msgid "MISCELLANEOUS"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:128
+#, fuzzy
+msgid "TOGGLE_FPS"
+msgstr "無法吞沒"
+
+#: ../simulation_parameters/common/input_options.json:132
+#, fuzzy
+msgid "QUICK_SAVE"
+msgstr "快速存檔"
+
+#: ../simulation_parameters/common/input_options.json:136
+#, fuzzy
+msgid "QUICK_LOAD"
+msgstr "快速存檔"
+
+#: ../simulation_parameters/common/input_options.json:140
+msgid "TAKE_SCREENSHOT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:144
+#, fuzzy
+msgid "SHOW_HELP"
+msgstr "幫助"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -1676,10 +1816,6 @@ msgstr "報告"
 msgid "PATCH_MAP"
 msgstr "區域地圖"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
-msgid "EDITOR"
-msgstr "編輯器"
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1027
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
@@ -2207,71 +2343,3 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-
-#, fuzzy
-#~ msgid "MOVE_LEFT"
-#~ msgstr "光"
-
-#, fuzzy
-#~ msgid "MOVE_RIGHT"
-#~ msgstr "光"
-
-#, fuzzy
-#~ msgid "MOVE_FORWARD"
-#~ msgstr "自動進化啟動失敗"
-
-#, fuzzy
-#~ msgid "MOVE_BACKWARDS"
-#~ msgstr "自動進化啟動失敗"
-
-#, fuzzy
-#~ msgid "AUTO_MOVE_FORWARDS"
-#~ msgstr "自動進化啟動失敗"
-
-#, fuzzy
-#~ msgid "TOGGLE_ENGULF"
-#~ msgstr "無法吞沒"
-
-#, fuzzy
-#~ msgid "ROTATE_RIGHT"
-#~ msgstr "光"
-
-#, fuzzy
-#~ msgid "ROTATE_LEFT"
-#~ msgstr "光"
-
-#, fuzzy
-#~ msgid "PLACE_ORGANELLE"
-#~ msgstr "細胞器"
-
-#, fuzzy
-#~ msgid "REMOVE_ORGANELLE"
-#~ msgstr "細胞器"
-
-#, fuzzy
-#~ msgid "ENABLE_EDITOR"
-#~ msgstr "編輯器"
-
-#, fuzzy
-#~ msgid "SPAWN_GLUCOSE"
-#~ msgstr "葡萄糖"
-
-#, fuzzy
-#~ msgid "SPAWN_AMMONIA"
-#~ msgstr "氨"
-
-#, fuzzy
-#~ msgid "SPAWN_PHOSPHATES"
-#~ msgstr "磷酸鹽"
-
-#, fuzzy
-#~ msgid "TOGGLE_FPS"
-#~ msgstr "無法吞沒"
-
-#, fuzzy
-#~ msgid "QUICK_SAVE"
-#~ msgstr "快速存檔"
-
-#, fuzzy
-#~ msgid "SHOW_HELP"
-#~ msgstr "幫助"

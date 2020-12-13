@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-12 23:13+0100\n"
+"POT-Creation-Date: 2020-12-13 12:31+0100\n"
 "PO-Revision-Date: 2020-11-18 17:27+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -334,6 +334,127 @@ msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "Fun Fact, One of the first playable game-play prototypes was made by our "
 "awesome programmer, untrustedlife!"
+
+#: ../simulation_parameters/common/input_options.json:6
+msgid "MOVEMENT"
+msgstr "Movement"
+
+#: ../simulation_parameters/common/input_options.json:10
+msgid "MOVE_LEFT"
+msgstr "Move left"
+
+#: ../simulation_parameters/common/input_options.json:14
+msgid "MOVE_RIGHT"
+msgstr "Move right"
+
+#: ../simulation_parameters/common/input_options.json:18
+msgid "MOVE_FORWARD"
+msgstr "Move forward"
+
+#: ../simulation_parameters/common/input_options.json:22
+msgid "MOVE_BACKWARDS"
+msgstr "Move backwards"
+
+#: ../simulation_parameters/common/input_options.json:26
+msgid "AUTO_MOVE_FORWARDS"
+msgstr "Auto move forwards"
+
+#: ../simulation_parameters/common/input_options.json:34
+msgid "ABILITIES"
+msgstr "Abilities"
+
+#: ../simulation_parameters/common/input_options.json:38
+msgid "FIRE_TOXIN"
+msgstr "Fire toxin"
+
+#: ../simulation_parameters/common/input_options.json:42
+msgid "TOGGLE_ENGULF"
+msgstr "Toggle engulf"
+
+#: ../simulation_parameters/common/input_options.json:51
+msgid "CAMERA"
+msgstr "Camera"
+
+#: ../simulation_parameters/common/input_options.json:55
+msgid "ZOOM_OUT"
+msgstr "Zoom Out"
+
+#: ../simulation_parameters/common/input_options.json:59
+msgid "ZOOM_IN"
+msgstr "Zoom in"
+
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
+msgid "EDITOR"
+msgstr "Editor"
+
+#: ../simulation_parameters/common/input_options.json:71
+msgid "ROTATE_RIGHT"
+msgstr "Rotate right"
+
+#: ../simulation_parameters/common/input_options.json:75
+msgid "ROTATE_LEFT"
+msgstr "Rotate left"
+
+#: ../simulation_parameters/common/input_options.json:79
+msgid "UNDO"
+msgstr "Undo"
+
+#: ../simulation_parameters/common/input_options.json:83
+msgid "REDO"
+msgstr "Redo"
+
+#: ../simulation_parameters/common/input_options.json:87
+msgid "PLACE_ORGANELLE"
+msgstr "Place organelle"
+
+#: ../simulation_parameters/common/input_options.json:91
+msgid "REMOVE_ORGANELLE"
+msgstr "Remove organelle"
+
+#: ../simulation_parameters/common/input_options.json:99
+msgid "CHEATS"
+msgstr "Cheats"
+
+#: ../simulation_parameters/common/input_options.json:103
+msgid "ENABLE_EDITOR"
+msgstr "Enable the editor"
+
+#: ../simulation_parameters/common/input_options.json:107
+msgid "SPAWN_GLUCOSE"
+msgstr "Spawn glucose"
+
+#: ../simulation_parameters/common/input_options.json:111
+msgid "SPAWN_AMMONIA"
+msgstr "Spawn ammonia"
+
+#: ../simulation_parameters/common/input_options.json:115
+msgid "SPAWN_PHOSPHATES"
+msgstr "Spawn phosphate"
+
+#: ../simulation_parameters/common/input_options.json:124
+msgid "MISCELLANEOUS"
+msgstr "Miscellaneous"
+
+#: ../simulation_parameters/common/input_options.json:128
+msgid "TOGGLE_FPS"
+msgstr "Toggle FPS display"
+
+#: ../simulation_parameters/common/input_options.json:132
+msgid "QUICK_SAVE"
+msgstr "Quick save"
+
+#: ../simulation_parameters/common/input_options.json:136
+msgid "QUICK_LOAD"
+msgstr "Quick load"
+
+#: ../simulation_parameters/common/input_options.json:140
+msgid "TAKE_SCREENSHOT"
+msgstr "Take a screenshot"
+
+#: ../simulation_parameters/common/input_options.json:144
+msgid "SHOW_HELP"
+msgstr "Show help"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -1806,10 +1927,6 @@ msgstr "Report"
 msgid "PATCH_MAP"
 msgstr "Patch Map"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
-msgid "EDITOR"
-msgstr "Editor"
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1027
 msgid "ORGANISM_STATISTICS"
 msgstr "Organism Statistics"
@@ -2448,93 +2565,6 @@ msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by "
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
-
-#~ msgid "MOVEMENT"
-#~ msgstr "Movement"
-
-#~ msgid "MOVE_LEFT"
-#~ msgstr "Move left"
-
-#~ msgid "MOVE_RIGHT"
-#~ msgstr "Move right"
-
-#~ msgid "MOVE_FORWARD"
-#~ msgstr "Move forward"
-
-#~ msgid "MOVE_BACKWARDS"
-#~ msgstr "Move backwards"
-
-#~ msgid "AUTO_MOVE_FORWARDS"
-#~ msgstr "Auto move forwards"
-
-#~ msgid "ABILITIES"
-#~ msgstr "Abilities"
-
-#~ msgid "FIRE_TOXIN"
-#~ msgstr "Fire toxin"
-
-#~ msgid "TOGGLE_ENGULF"
-#~ msgstr "Toggle engulf"
-
-#~ msgid "CAMERA"
-#~ msgstr "Camera"
-
-#~ msgid "ZOOM_OUT"
-#~ msgstr "Zoom Out"
-
-#~ msgid "ZOOM_IN"
-#~ msgstr "Zoom in"
-
-#~ msgid "ROTATE_RIGHT"
-#~ msgstr "Rotate right"
-
-#~ msgid "ROTATE_LEFT"
-#~ msgstr "Rotate left"
-
-#~ msgid "UNDO"
-#~ msgstr "Undo"
-
-#~ msgid "REDO"
-#~ msgstr "Redo"
-
-#~ msgid "PLACE_ORGANELLE"
-#~ msgstr "Place organelle"
-
-#~ msgid "REMOVE_ORGANELLE"
-#~ msgstr "Remove organelle"
-
-#~ msgid "CHEATS"
-#~ msgstr "Cheats"
-
-#~ msgid "ENABLE_EDITOR"
-#~ msgstr "Enable the editor"
-
-#~ msgid "SPAWN_GLUCOSE"
-#~ msgstr "Spawn glucose"
-
-#~ msgid "SPAWN_AMMONIA"
-#~ msgstr "Spawn ammonia"
-
-#~ msgid "SPAWN_PHOSPHATES"
-#~ msgstr "Spawn phosphate"
-
-#~ msgid "MISCELLANEOUS"
-#~ msgstr "Miscellaneous"
-
-#~ msgid "TOGGLE_FPS"
-#~ msgstr "Toggle FPS display"
-
-#~ msgid "QUICK_SAVE"
-#~ msgstr "Quick save"
-
-#~ msgid "QUICK_LOAD"
-#~ msgstr "Quick load"
-
-#~ msgid "TAKE_SCREENSHOT"
-#~ msgstr "Take a screenshot"
-
-#~ msgid "SHOW_HELP"
-#~ msgstr "Show help"
 
 #~ msgid "SECOND"
 #~ msgstr "second"
