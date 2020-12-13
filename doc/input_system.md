@@ -28,6 +28,7 @@ The available input attributes
 | RunOnKeyChange | Fires once when the input is pressed or released | input : string | none | yes |
 | RunOnKeyDown | Fires once when the input is pressed | input : string | none | yes |
 | RunOnKeyUp | Fires once when the input is released | input : string | none | yes |
+| RunOnKeyToggle | Fires once when the input is released | input : string | state : bool | yes |
 | RunOnAxis | Fires repeatedly when one of the axis members is pressed. Every axis member has a value associated with it. The average of the pressed values is given to the method | inputs : string[]<br> values : float[] | delta : float<br> value : float | yes |
 | RunOnAxisGroup | Combines multiple RunOnAxis. Used when you want to combine multiple axes and want to differentiate between them | none | delta : float<br>value1 : float<br>value2 : float... | no |
 
@@ -197,7 +198,7 @@ differentiate between forward/backward input and left/right input.
 
 The correct way of implementing this would be this:
 ```csharp
-public PlayerMicrobeInput : InputNode
+public class PlayerMicrobeInput : InputNode
 {
   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
@@ -209,3 +210,17 @@ public PlayerMicrobeInput : InputNode
 Using `RunOnAxisGroup` you can differentiate between forward/backward input and left/right 
 input.
 
+---
+
+```csharp
+public class FPSCounter : InputControl
+{
+    [RunOnKeyToggle("toggle_FPS", OnlyUnhandled = false)]
+    public void ToggleFps(bool state)
+    {
+        Visible = state;
+    }
+}
+```
+
+This example allows you to toggle the visibility of a control each time the user presses one button.
