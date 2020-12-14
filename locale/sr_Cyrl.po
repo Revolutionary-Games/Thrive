@@ -7,572 +7,595 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-14 17:47+0200\n"
-"PO-Revision-Date: 2020-12-10 12:44+0000\n"
-"Last-Translator: doomlightning <tamirt500@gmail.com>\n"
-"Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/he/>\n"
-"Language: he\n"
+"POT-Creation-Date: 2020-12-09 16:54+0200\n"
+"PO-Revision-Date: 2020-12-13 13:07+0000\n"
+"Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
+"Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio"
+".com/projects/thrive/thrive-game/sr_Cyrl/>\n"
+"Language: sr_Cyrl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.3.2\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"W,A,S,D והעכבר בשביל לנוע, E בשביל לירות את הרעלן \"אוקסיטוקסי נ\"ט\" אם יש "
-"לך חלולית רעלן. G בשביל מצב בליעה."
+"W, A, S, D и миш за кретање. Е да пуцате ОксиТокси НТ ако имате отровна "
+"вацуоле. G за пребацивање режима гутања."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "התא שלך משתמש בATP כמקור אנרגיה. אם זה נגמר, אתה תמות."
+msgstr "Ваша ћелија користи ATP као извор енергије, ако се потроши, умрећете."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"בשביל לפתוח את העורך ולהתרבות, אתה צריך לצבור אמוניה (הענן הכתום) ופוספט "
-"(הענן הסגול)."
+"Да бисте откључали уређивач и репродуковали ћелију, потребно је да сакупите "
+"амонијак (наранџасти облак) и фосфат (љубичасти облак)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"אתה יכול לבלוע תאים, חיידקים, גושי ברזל וחלקי תא אשר קטנים ממך על ידי לחיצה "
-"על G. מצב זה יעלה ATP נוסף ויאט אותך. אל תשכח ללחוץ שנית על G על מנת להפסיק "
-"את מצב הבליעה."
+"Такође можете да обузмете ћелије и бактерије и комаде гвожђа и делове ћелија "
+"који су мањи од вас када притиснеш G. То ће коштати додатни ATP и успориће "
+"вас. Не заборавите да притиснеш Г други пут да бисте престали да прождирете."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"ויסות אוסמטי עולה ATP, מה שזה אומר שככל שהתא שלך גדול יותר, כך יותר "
-"מיטוכונדריה, מטבולוזומים או רוסטיצינין (או ציטופלזמה, שעושה גליקוליזה) אתה "
-"צריך על מנת למנוע איבוד של ATP בזמן שאתה נח."
+"Осморегулација кошта ATP, што значи да што је већа ваша ћелија, то вам је "
+"потребно више митохондрије или метаболосоми или рустицијанине (или "
+"цитоплазме, која врши гликолизу) да бисте избегли губитак АTP-а када "
+"мирујете."
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"ישנו אוסף של אברונים בעורך שאתה יכול לבחור ולפתח, מה שמאפשר סגנונות משחק "
-"שונים ומגוונים."
+"У уређивачу има много oрганела да бисте могли да се развијате, омогућавајући "
+"широк спектар различитих стилова играња."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "לעת עתה אם כמות האוכלוסיה שלך יורדת לאפס, אתה נכחד."
+msgstr "За сада, ако вам популација падне на нулу, ви сте изумрли."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"העננים המורכבים השונים הם:\n"
+"Разни облак једињења су:\n"
 "\n"
-"לבן - גלוקוז\n"
-"צהוב - מימן גופרתי\n"
-"כתום - אמוניה\n"
-"סגול - פוספט\n"
-"חום חלוד - ברזל\n"
+"Бела - глукоза\n"
+"Жута - водоник-сулфид\n"
+"Наранџа - амонијак\n"
+"Љубичаста - фосфат\n"
+"Руст Бровн - гвожђе\n"
 "\n"
-"גלוקוז מייצר ATP"
+"Глукоза ствара ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"ניתן להמיר מימן גופרתי לגלוקוז באמצעות כימופלסטים וחלבונים כימוסנתזיים. ניתן "
-"להמיר ברזל לגלוקוז באמצעות רוסטיציאנין לATP."
+"Водоник-сулфид се може претворити у глукозу помоћу хемопласта и "
+"хемосинтетизујућих протеина. Гвожђе се може претворити путем рустицианина у "
+"ATP."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"כדי להתרבות, עליכם לחלק כל אחד מהאברונים לשניים. האברונים זקוקים לאמוניה "
-"ופוספט על מנת להתפצל לשניים."
+"Да бисте се репродуковали, потребно је да поделите сваки од својих органела "
+"на два дела. Органели требају амонијак и фосфат да се поделе на пола."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"אבל אם שרדת 20 דורות עם 300 פריטים באוכלוסיה, אתה נחשב למנצח במשחק הנוכחי. "
-"לאחר שזכית, קופץ חלון משם תוכל להמשיך לשחק כרצונך."
+"Али ако преживите двадесет генерација са популациија од , сматра се да сте "
+"победили у тренутној игри, након победе добијате искачући прозор и можете да "
+"наставите да играте како желите."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"שים לב שגם המתחרים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים גם "
-"כן."
+"Будите опрезни јер се ваши конкуренти развијају заједно са вама. Сваки пут "
+"када уђете у уредник, они такође еволуирају."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"מבנים פרוקריוטיים\n"
+"Прокариотске структуре\n"
 "\n"
-"מטבולוזומים: מייצר ATP מגלוקוז\n"
+"Метаболосоми: Ствара ATP из глукозе\n"
 "\n"
-"חלבונים כימוסינתזיים: מפיק מחצית מהכמות הגלוקוז ממימן גופרתי שמיוצר "
-"בכימופלסט, אבל גם מבצע גליקוליזה, לוקח משושה אחד\n"
+"Хемосинтизујући протеини: производи половину глукозе из водоник-сулфида као "
+"хемопласт, али такође врши гликолизу, заузима 1 хекс\n"
 "\n"
-"תילקואיד: מפיק שליש מהכמות הגלוקוז שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה, "
-"לוקח משושה אחד\n"
+"Тилакоиди: Производи 1/3 количине глукозе као нормални хлоропласт, али "
+"такође врши гликолизу и заузима 1 хекс\n"
 "\n"
-"רוסטיצינין: ממיר ברזל לATP\n"
+"Рустицијанин: Претвара гвожђе у ATP\n"
 "\n"
-"ניטרוגנאז: ממיר חנקן אטמוספרי ו ATP לאמוניה באופן אנאירובי\n"
+"Нитрогеназа: Анаеробно претвара атмосферски азот и ATP у амонијак\n"
 "\n"
-"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של ATP)"
+"Цитоплазма: Има простор за складиштење и врши гликолизу (производи мале "
+"количине ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"אברונים חיצוניים\n"
+"Спољне органеле\n"
 "\n"
-"שוטון: מזיז את התא שלך מהר יותר על ידי צריכת ATP\n"
+"Бич: брже покреће ћелију конзумирањем ATP-а\n"
 "\n"
-"פילוס: ניתן להשתמש בו בשביל לדקור תאים אחרים"
+"Грабежљива Коса: Може се користити за убадање других ћелија"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"אברונים בעלי ממברנה\n"
+"Мембране везане органеле\n"
 "\n"
-"גרעין: תופס עד 11 משושים ומאפשר התפתחות של אברונים בעלי ממברנה. בנוסף הוא גם "
-"מכפיל את גודל התא שלך. (יכול להתפתח רק פעם אחת)\n"
+"Нуклеус: Заузима 11 хексе и омогућава развој мембрана везаних органела. "
+"Такође удвостручује величину ваше ћелије. (Може се развити само једном)\n"
 "\n"
-"מיטכונדריון: מפיק ATP מגלוקוז וחמצן אטמוספרי. הרבה יותר יעיל מציטופלזמה\n"
+"Митохондрион: Ствара ATP из глукозе и атмосферског О2. Много ефикасније од "
+"цитоплазме\n"
 "\n"
-"כלורופלסט: מייצר גלוקוז מאור שמש ופחמן דו חמצני אטמוספרי\n"
+"Хлоропласт: Ствара глукозу од сунчеве светлости и атмосферског CO2\n"
 "\n"
-"כימופלסט: מייצר גלוקוז ממימן גופרתי\n"
+"Хемопласт: Ствара глукозу од водоник-сулфида\n"
 "\n"
-"פלסטיד מקבע חנקן: מייצר אמוניה מATP ומחמצן וחנקן אטמוספרי\n"
+"Пластид за фиксирање азота: Ствара амонијак од ATP и атмосферског азота и "
+"кисеоника\n"
 "\n"
-"חלולית: מאחסן עד 15 תרכובות שנאספו\n"
+"Вацуоле: Чува 15 прикупљених једињења\n"
 "\n"
-"חלוליות רעלן: מייצר רעלנים (הנקראים \"אוקסיטוקסי נ\"ט\")"
+"Отровна Вацуоле: Производе токсине (назване ОксиТокси НТ)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"בכל דור, נוצרים 100 נקודות מוטציה (נקמ\"ו) שניתן לבזבז, ועל כל שינוי (או "
-"מוטציה) יעלה סכום מסוים מהנקמ\"ו. הוספה או הוסרה של אברונים עולים נקמ\"ו, "
-"אבל הסרה של אברונים שנוספו בסיבוב המוטציה נוכחית מחזיר את העלות של אותו "
-"אברון. ניתן להסיר אברון על ידי הלחצן הימני עליו. ניתן לסובב את אברון במקשים "
-"A וD."
+"Свака генерација имаш 100 мутациски поени (МП), а свака промена (или "
+"мутација) коштаће одређену количину тог МП. Додавање и уклањање органела "
+"кошта МП, међутим уклањање органела које су постављене у тренутној сесији "
+"мутације рефундира МП за ту органелу. Органелу можете уклонити десним кликом "
+"на њу. Органеле можете ротирати A и D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"בכל פעם שאתה מתרבה, אתה נכנס לעורך המיקרובי. שם תוכל לבצע שינוי במין שלך (על "
-"ידי הוספה, העברה או הסרה של אברונים) בכדי להגדיל את הצלחת המין שלך. כל ביקור "
-"בעורך בשלב המיקרובי מייצג 100 מיליון שנות אבולוציה."
+"Сваки пут када се размножавате, ући ћете у уређивач микроба, где можете да "
+"измените врсту (додавањем, премештањем или уклањањем органела) да бисте "
+"повећали успех своје врсте. Свака посета уреднику на сцени микроба "
+"представља 100 милиона година еволуције."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+msgstr "Притисните дугме поништи у уређивачу да бисте исправили грешку"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"עובדה משעשעת: דידיניום וסנדלית הם דוגמא קלאסית של יחסי טורף - נטרף שנחקר "
-"במשך עשורים. אז האם אתה דידיניום או סנדלית? הטורף או הנטרף?"
+"Забавна чињеница, Дидинијум и Парамецијум су уџбенички пример односа "
+"грабежљивог плена који се проучава деценијама, да ли сте сада Дидинијум или "
+"Парамецијум? Предатор или плен?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"הנה טיפ: ניתן להשתמש ברעלנים בשביל להדוף רעלנים אחרים אם אתה מהיר מספיק."
+"Ево савета, токсини се могу користити за одбацивање других токсина од вас "
+"ако сте довољно брзи."
 
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"הנה טיפ: ויסות אוסמטי עולה ATP 1 לשניה על כל משושה שהתא שלך מכיל, על כל "
-"משושה ריק של ציטופלזמה מייצר ATP 5 לשניה גם כן, כלומר אם אתה מאבד ATP בגלל "
-"ויסות אוסמטי, רק הוסף עוד משושי ציטופלזמה או הסר אברון כלשהו."
+"Ево савета, осморегулација кошта 1 ATP по секунди по хеку коју има ваша "
+"ћелија, сваки празан хек цитоплазме такође генерише 5 ATP у секунди, што "
+"значи да ако губите ATP услед осморегулације, само додајте неколико празних "
+"хекес цитоплазме или уклоните неке органеле ."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"עובדה משעשעת: במציאות, לפרוקריוטים יש משהו שנקרא ביוכומפרטמנט שמתנהג כמו "
-"אברון, שלמעשה הם נקראים אברונים פאותפולידריאליים."
+"Забавна чињеница, у стварном животу прокарионти имају нешто што се назива "
+"Биокомпаније и делују попут органела, а заправо се називају Полиедричне "
+"органеле."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "עובדה משעשעת: מטבולוזום הוא מה שנקרא אברון פאותפולידריאליים."
+msgstr ""
+"Забавна чињеница, метаболосом је оно што се назива полиедрична органела."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "הנה טיפ: לפעמים עדיף פשוט לברוח מתאים אחרים."
+msgstr "Ево савета, понекад је најбоље само побећи од других ћелија."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "הנה טיפ: אם תא בערך חצי מגודל שלך, זה מתי שאתה יכול לבלוע אתם."
+msgstr ""
+"Ево савета, ако је ћелија приближно половине ваше величине, тада је можете "
+"прогутати."
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"הינה טיפ: חיידקים יכולים להיות חזקים יותר ממה שהם נראים. הם אומנם נראים "
-"קטנים, אך חלקם יכולים להתחפר תוכך ולהרוגך!"
+"Ево савета, Бактерије могу бити јаче него што се појаве, можда изгледају "
+"малено, али неке од њих могу да се укопају у вас и тако вас убију!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"הנה טיפ: אתה יכול לצוד מינים אחרים עד כי הכחדה אם אתה לא זהיר מספיק. הם גם "
-"יכולים להינצד להכחדה על ידי מינים אחרים."
+"Ево савета: Можете ловити друге врсте до изумирања ако нисте довољно "
+"пажљиви, а друге врсте их могу ловити до изумирања."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "פיתולים!!"
+msgstr "СТВАРИ КОЈЕ СЕ МИГОЉИТИ!!"
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "התכה את המתכה."
+msgstr "Отопитела метела."
 
 #: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_12"
-msgstr "אבל התאים הכחולים האלה."
+msgstr "Те плаве ћелије ипак."
 
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"הנה טיפ: ביומות הן לא רק רקעים שונים, התרכובות בביומות שונות לעיתים נוצרים "
-"בקצב שונה."
+"Ево савета, биоми су више него само различито порекло, једињења у различитим "
+"биомима се понекад мрестају различитим брзинама."
 
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"הנה טיפ: ככל שיש לך יותר שוטונים, כך אתה זז מהר יותר, ורוום ורוום!!, אבל זה "
-"גם עולה יותר ATP"
+"Ево савета: Што више бичева имате, брже идете, врум врум, али кошта и ATP "
+"више"
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "הנה טיפ: אתה יכול \"לבלוע\" גושי ברזל או כל דבר אחר."
+msgstr "Ево савета, можете гутати комаде гвожђа."
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"הנה טיפ: תתכונן לפני שאתה מוסיף את הגרעין. הם יקרים! הן בעלות והן בתחזוקה."
+"Ево савета, припремите се пре додавања језгра. Они су скупе у одржавању и у "
+"авансни трошак."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "עובדה משעשעת: היעדת שיש יותר מ8000 מינים של ריסניות על כדור הארץ?"
+msgstr ""
+"Забавна чињеница, да ли сте знали да на планети Земљи постоји преко 8000 "
+"врста трепавица?"
 
 #: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"עובדה משעשעת: הסטנטור היא ריסנית היכולה למתוח את עצמה ולתפוס טרף במעין פה "
-"בצורת חצוצרה אשר שואב את הטרף פנימה על ידי יצירת זרמי מים עם הריסים."
+"Забавна чињеница, Стентор је цилијар који се може истегнути и ухватити плен "
+"у некој врсти трубе попут уста која увлаче плен генеришући водене струје "
+"цилијама."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "עובדה משעשעת: הדידיום הוא ריסנית אשר צד סנדליות."
+msgstr "Забавна чињеница, Дидинијум је цилијар који лови Парамецијум."
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
-"עובדה משעשעת: האמבה צדה ותופסת את טרפה עם 'רגליים' אשר עשויות מציטופלזמה "
-"הנקראות פסאודופודים. בסופו של דבר, אנחנו רוצים אתם בThrive."
+"Забавна чињеница је да амеба лови и хвата плен „ногама“ направљеним од "
+"цитоплазме названих псеудоподи, коначно желимо да буду у Thrive-у."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"הינה טיפ: תזהר מתאים וחיידקים גדולים, זה לא כיף להתעכל, והם יאכלו אותך."
+"Ево савета, Пазите на веће ћелије и велике бактерије, није забавно да будеш "
+"пробављајен и они ће вас појести."
 
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"מוביל צוות המוזיקה של Thrive יצר מלא שירים שטרם נוספו למשחק! ניתן לשמוע אותם "
-"או לצפות בסרטונים של המלחין בערוץ היוטיוב שלו: אוליבר לאוג (Oliver Lugg)."
+"Вођа звучног тима Thrive-а направио је много песама које још нису додате у "
+"игру. Можете их чути или гледати како он компонује на свом ИоуТубе каналу "
+"Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"הנה טיפ: אם גודל התא שלך הוא 150 משושים או יותר, אתה תוכל לבלוע את הגוש "
-"הברזל הגדול ביותר."
+"Ево савета, ако је ваша ћелија 150 хексе, можете прогутати велике гвоздене "
+"комаде."
 
 #: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"בThrive נועד להיות הדמיה של כוכב חייזרי, ולכן הגיוני שרוב היצורים היו דומים "
-"אחד לשני עקב אבולוציה שמתרחש סביבם. נראה אותכם אם תוכלו לזהות אותם!"
+"Thrive је замишљен као симулација ванземаљске планете, стога има смисла да "
+"ће већина створења која нађете бити повезана са једном или две друге врсте "
+"услед еволуције која се дешава око вас, погледајте да ли их можете "
+"препознати!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"עובדה משעשעת: צוות Thrive מדי פעם עושים פודקאסטים (הסכתות), כדאי לבדוק אותם!"
+"Забавна чињеница, Thrive тим свако мало прави подкастове, требало би да их "
+"погледате!"
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "עובדה משעשעת: Thrive נעשתה בעמצאות מנוע \"Godot\" בקוד פתוח!"
+msgstr "Забавна чињеница, Thrive је направљен са Godot, што је отвореног кода!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"עובדה משעשעת: אחד מאבות טיפוס הראשונים שנתן לשחק, נוצר על ידי המתכנת המדהים "
-"שלנו: \"untrustedlife\"!"
+"Забавна чињеница, Један од првих прототипова за играње направио је наш "
+"сјајни програмер, UntrustedLife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr "תנועה"
+msgstr "Покрет"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
-msgstr "זוז שמאלה"
+msgstr "Помери се лево"
 
 #: ../simulation_parameters/common/input_options.json:14
 msgid "MOVE_RIGHT"
-msgstr "זוז ימינה"
+msgstr "Помери се десно"
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
-msgstr "זוז קדימה"
+msgstr "Крени напред"
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr "זוז אחורה"
+msgstr "Померите се уназад"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "התקדמות אוטומטית"
+msgstr "Аутоматско кретање напред"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr "יכולות"
+msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr "שחרר רעלנים"
+msgstr "Ватрени токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
 msgid "TOGGLE_ENGULF"
-msgstr "החלף מצב בליעה"
+msgstr "Пребаците гутање"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr "מצלמה"
+msgstr "Камера"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr "זום אאוט"
+msgstr "Одзумирати"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr "להתמקד"
+msgstr "Зумирати"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
 msgid "EDITOR"
-msgstr "עורך"
+msgstr "Уредник"
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "ROTATE_RIGHT"
-msgstr "סובב ימינה"
+msgstr "Ротирајте десно"
 
 #: ../simulation_parameters/common/input_options.json:75
 msgid "ROTATE_LEFT"
-msgstr "סובב שמאלה"
+msgstr "Ротирајте лево"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr "בטל"
+msgstr "Поништи"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr "עשה מחדש"
+msgstr "Понови"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "PLACE_ORGANELLE"
-msgstr "הוסף אברון"
+msgstr "Поставите органелу"
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "REMOVE_ORGANELLE"
-msgstr "הסר אברון"
+msgstr "Макните органелу"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "CHEATS"
-msgstr "קודים"
+msgstr "Варање"
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "ENABLE_EDITOR"
-msgstr "הפעל את העורך"
+msgstr "Омогућите уређивач"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "SPAWN_GLUCOSE"
-msgstr "זמן גלוקוז"
+msgstr "Поставите глукозу"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "SPAWN_AMMONIA"
-msgstr "זמן אמוניה"
+msgstr "Ставите амонијак"
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "SPAWN_PHOSPHATES"
-msgstr "זמן פוספט"
+msgstr "Ставите фосфат"
 
 #: ../simulation_parameters/common/input_options.json:124
 msgid "MISCELLANEOUS"
-msgstr "שונות"
+msgstr "Остало"
 
 #: ../simulation_parameters/common/input_options.json:128
 msgid "TOGGLE_FPS"
-msgstr "החלף תצוגת FPS"
+msgstr "Пребацивање FPS приказа"
 
 #: ../simulation_parameters/common/input_options.json:132
 msgid "QUICK_SAVE"
-msgstr "שמירה מהירה"
+msgstr "Сачувајте брзо"
 
 #: ../simulation_parameters/common/input_options.json:136
 msgid "QUICK_LOAD"
-msgstr "טעינה מהירה"
+msgstr "Учитајте брзо"
 
 #: ../simulation_parameters/common/input_options.json:140
 msgid "TAKE_SCREENSHOT"
-msgstr "צלם מסך"
+msgstr "Направите снимак екрана"
 
 #: ../simulation_parameters/common/input_options.json:144
 msgid "SHOW_HELP"
-msgstr "הצג עזרה"
+msgstr "Покажите помоћ"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "נשימה"
+msgstr "Дисање"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr "גליקוליזה"
+msgstr "Гликолиза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "גליקוליזה של הציטופלזמה"
+msgstr "Гликолиза цитоплазме"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr "פוטוסינתזה"
+msgstr "Фотосинтеза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "סינתזת \"אוקסיטוקסי\""
+msgstr "Синтеза ОксиТокси"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "כימוסינתזה"
+msgstr "Хемосинтеза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "קיבוע חנקן אירובי"
+msgstr "Аеробно Фиксирање Азота"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "קיבוע חנקן אנאירובי"
+msgstr "Анаеробна Фиксација Азота"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "כימוליתו-אוטוטרופ ברזלי"
+msgstr "Хемолитоаутотрофија гвожђа"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr "הים הפתוח"
+msgstr "Епипелагиц"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:148
+#: ../simulation_parameters/microbe_stage/biomes.json:343
+#: ../simulation_parameters/microbe_stage/biomes.json:470
+#: ../simulation_parameters/microbe_stage/biomes.json:661
+#: ../simulation_parameters/microbe_stage/biomes.json:856
+#: ../simulation_parameters/microbe_stage/biomes.json:1051
+#: ../simulation_parameters/microbe_stage/biomes.json:1174
+#: ../simulation_parameters/microbe_stage/biomes.json:1301
+#: ../simulation_parameters/microbe_stage/biomes.json:1445
+#: ../simulation_parameters/microbe_stage/biomes.json:1572
 msgid "FLOATING_HAZARD"
-msgstr "מפגע צף"
+msgstr "Плутајућа опасност"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:165
+#: ../simulation_parameters/microbe_stage/biomes.json:360
+#: ../simulation_parameters/microbe_stage/biomes.json:487
+#: ../simulation_parameters/microbe_stage/biomes.json:678
+#: ../simulation_parameters/microbe_stage/biomes.json:873
+#: ../simulation_parameters/microbe_stage/biomes.json:1068
+#: ../simulation_parameters/microbe_stage/biomes.json:1191
+#: ../simulation_parameters/microbe_stage/biomes.json:1318
+#: ../simulation_parameters/microbe_stage/biomes.json:1462
+#: ../simulation_parameters/microbe_stage/biomes.json:1589
 msgid "SMALL_IRON_CHUNK"
-msgstr "גוש ברזל קטן"
+msgstr "Мали гвоздени комад"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:73
+#: ../simulation_parameters/microbe_stage/biomes.json:264
+#: ../simulation_parameters/microbe_stage/biomes.json:391
+#: ../simulation_parameters/microbe_stage/biomes.json:518
+#: ../simulation_parameters/microbe_stage/biomes.json:709
+#: ../simulation_parameters/microbe_stage/biomes.json:904
+#: ../simulation_parameters/microbe_stage/biomes.json:1099
+#: ../simulation_parameters/microbe_stage/biomes.json:1222
+#: ../simulation_parameters/microbe_stage/biomes.json:1366
+#: ../simulation_parameters/microbe_stage/biomes.json:1493
+#: ../simulation_parameters/microbe_stage/biomes.json:1620
 msgid "BIG_IRON_CHUNK"
-msgstr "גוש ברזל גדול"
+msgstr "Велики комад гвожђа"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:146
+#: ../simulation_parameters/microbe_stage/biomes.json:141
 msgid "VOLCANIC_VENT"
-msgstr "נביעה געשית"
+msgstr "Вулкански отвор"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:196
+#: ../simulation_parameters/microbe_stage/biomes.json:540
+#: ../simulation_parameters/microbe_stage/biomes.json:731
+#: ../simulation_parameters/microbe_stage/biomes.json:926
+#: ../simulation_parameters/microbe_stage/biomes.json:1642
 msgid "MARINE_SNOW"
-msgstr "שלג ימי"
+msgstr "Морски снег"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:332
 msgid "TIDEPOOL"
-msgstr "בריכת גאות"
+msgstr "Плима и осека"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:459
 msgid "BATHYPELAGIC"
-msgstr "בתיפלגיים"
+msgstr "Батхипелагиц"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:654
 msgid "ABYSSOPELAGIC"
-msgstr "אביסלפלגיים"
+msgstr "Абиссопелагиц"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:845
 msgid "MESOPELAGIC"
-msgstr "מזופלגיים"
+msgstr "Месопелагиц"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1040
 msgid "COASTAL"
-msgstr "חוף"
+msgstr "Приобални"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1167
 msgid "UNDERWATERCAVE"
-msgstr "מערה תת-ימית"
+msgstr "Подводна Пећина"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1290
 msgid "ICESHELF"
-msgstr "מדף קרח"
+msgstr "Ледена Полица"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1349
 msgid "ICESHARD"
-msgstr "רסיסי קרח"
+msgstr "Крхотина Леда"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1434
 msgid "ESTUARY"
-msgstr "שפך נהר"
+msgstr "Естуарски Залив"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "SEA_FLOOR"
-msgstr "קרקעית הים"
+msgstr "Морско Дно"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:460
@@ -593,19 +616,19 @@ msgstr "ATP"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4290
 #: ../src/microbe_stage/MicrobeStage.tscn:1173
 msgid "AMMONIA"
-msgstr "אמוניה"
+msgstr "Амонијак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
 #: ../src/microbe_stage/MicrobeStage.tscn:1227
 msgid "PHOSPHATE"
-msgstr "פוספט"
+msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1244
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3993
 #: ../src/microbe_stage/MicrobeStage.tscn:1281
 msgid "HYDROGEN_SULFIDE"
-msgstr "מימן גופרתי"
+msgstr "Водоник Сулфид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:51
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:435
@@ -619,18 +642,18 @@ msgstr "מימן גופרתי"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4018
 #: ../src/microbe_stage/MicrobeStage.tscn:1119
 msgid "GLUCOSE"
-msgstr "גלוקוז"
+msgstr "Глукоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
 #: ../src/microbe_stage/MicrobeStage.tscn:1442
 msgid "OXYTOXY_NT"
-msgstr "אוקסיטוקסי נ\"ט"
+msgstr "ОксиТокси НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1577
 #: ../src/microbe_stage/MicrobeStage.tscn:1335
 msgid "IRON"
-msgstr "ברזל"
+msgstr "Гвожђе"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
@@ -639,7 +662,7 @@ msgstr "ברזל"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4358
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4850
 msgid "OXYGEN"
-msgstr "חמצן"
+msgstr "Кисеоник"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:99
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:994
@@ -648,195 +671,195 @@ msgstr "חמצן"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3751
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4053
 msgid "CARBON_DIOXIDE"
-msgstr "פחמן דו חמצני"
+msgstr "Угљен Диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4328
 msgid "NITROGEN"
-msgstr "חנקן"
+msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
 msgid "SUNLIGHT"
-msgstr "אור שמש"
+msgstr "Сунчева Светлост"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2610
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2674
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2426
 msgid "PREDATORY_PILUS"
-msgstr "פילוס טורפני"
+msgstr "Грабежљива Коса"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1479
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1543
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2078
 msgid "RUSTICYANIN"
-msgstr "רוסטיצינין"
+msgstr "Рустицијанин"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1784
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1848
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
 msgid "NITROGENASE"
-msgstr "ניטרוגנאז"
+msgstr "Нитрогеназа"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:117
 msgid "PROTOPLASM"
-msgstr "פרוטופלזמה"
+msgstr "Протоплазма"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1146
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1210
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "חלבונים כימוסינתזיים"
+msgstr "Хемосинтетски Протеини"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2059
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2123
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2208
 msgid "OXYTOXISOME"
-msgstr "אוקסיטוקסיזום"
+msgstr "ОксиТоксизом"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:922
 msgid "THYLAKOIDS"
-msgstr "תילקואידים"
+msgstr "Тилакоиди"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1881
 msgid "METABOLOSOMES"
-msgstr "מטבולוזומים"
+msgstr "Метаболосоми"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4167
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4231
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr "פלסטיד מקבע חנקן"
+msgstr "Пластид за Фиксирање Азота"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3895
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3959
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2906
 msgid "CHEMOPLAST"
-msgstr "כימופלסט"
+msgstr "Хемопласт"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2346
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2410
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
 msgid "FLAGELLUM"
-msgstr "שוטון"
+msgstr "Бич"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4472
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4536
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
 msgid "VACUOLE"
-msgstr "חלולית"
+msgstr "Вацуоле"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3052
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3116
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2710
 msgid "MITOCHONDRION"
-msgstr "מיטוכונדריון"
+msgstr "Митохондрија"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4661
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4725
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "TOXIN_VACUOLE"
-msgstr "חלוליות רעלן"
+msgstr "Отровна Вацуоле"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3327
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3391
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2775
 msgid "CHLOROPLAST"
-msgstr "כלורופלסט"
+msgstr "Хлоропласт"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:337
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:401
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1723
 msgid "CYTOPLASM"
-msgstr "ציטופלזמה"
+msgstr "Цитоплазма"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2862
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2926
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2645
 msgid "NUCLEUS"
-msgstr "גרעין התא"
+msgstr "Ћелијско Језгро"
 
 #: ../src/auto-evo/AutoEvoRun.cs:119
 msgid "ABORTED"
-msgstr "נכשל."
+msgstr "Прекинуто."
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "FINISHED"
-msgstr "נגמר."
+msgstr "Готов."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "NOT_RUNNING"
-msgstr "לא פועל."
+msgstr "Не ради."
 
 #: ../src/auto-evo/AutoEvoRun.cs:135
 msgid "AUTOEVO_STEPS_DONE"
-msgstr "{0:F1}% הסתיים. {1:n0}/{2:n0} צעדים."
+msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "STARTING"
-msgstr "מתחיל"
+msgstr "Почиње"
 
 #: ../src/auto-evo/AutoEvoRun.cs:280
 msgid "AUTOEVO_POPULATION_CHANGED"
-msgstr "{0} האכלוסיה השתנתה ב {1} בגלל ש: {2}"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
-msgstr "אוכלוסיה:"
+msgstr "популација:"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
-msgstr "קודם:"
+msgstr "претходна:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr "נוצר מוטציה"
+msgstr "има мутацију"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
-msgstr "קוד גנטי:"
+msgstr "генетски код:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr "התפשט לאזורים:"
+msgstr "се проширила на зоне:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr "{0} על ידי שליחה: {1} פריטים מאזור: {2}"
+msgstr "{0} због слања: {1} популација из зона: {2}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr "אוכלוסיה באזור:"
+msgstr "популација у зонама:"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:124
 msgid "LOADING"
-msgstr "טוען"
+msgstr "Учитавање"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:293
+#: ../src/engine/input/key_mapping/InputEventItem.cs:283
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "לחץ על מקש..."
+msgstr "Притисните тастер..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:164
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
-"יש התנגשות עם {0}.\n"
-"האם אתה רוצה להסיר את הקלט {1}?"
+"Постоји сукоб са {0}.\n"
+"Да ли желите да уклоните унос из {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -852,386 +875,391 @@ msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
-msgstr "עכבר שמאלי"
+msgstr "Леви миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
-msgstr "עכבר ימני"
+msgstr "Десни миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr "גלגלת"
+msgstr "Средњи миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr "גלגל קדימה"
+msgstr "Померање нагоре"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr "גלגל אחורה"
+msgstr "Померите надоле"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr "גלגל שמאלה"
+msgstr "Померите се улево"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
-msgstr "גלגל ימינה"
+msgstr "Померите се удесно"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
-msgstr "מקש עכבר מיוחד 1"
+msgstr "Специјални 1 миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr "מקש עכבר מיוחד 2"
+msgstr "Специјални 2 миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr "עכבר לא יודע"
+msgstr "Непознати миш"
 
 #: ../src/general/HelpScreen.tscn:101
 msgid "CLOSE"
-msgstr "סגור"
+msgstr "Затвори"
 
 #: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
-msgstr "גרפיקה"
+msgstr "Графика"
 
 #: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
-msgstr "קול"
+msgstr "Звук"
 
 #: ../src/general/OptionsMenu.tscn:152
 msgid "PERFORMANCE"
-msgstr "ביצועים"
+msgstr "Перформансе"
 
 #: ../src/general/OptionsMenu.tscn:164
 msgid "INPUTS"
-msgstr "קלטים"
+msgstr "Уноси"
 
 #: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
-msgstr "שונות"
+msgstr "Остало"
 
 #: ../src/general/OptionsMenu.tscn:215
 msgid "VSYNC"
-msgstr "סנכרון אנכי"
+msgstr "В-синц"
 
 #: ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
-msgstr "מסך מלא"
+msgstr "Цео екран"
 
 #: ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr "החלקת גרפיקה:"
+msgstr "Мултисампле анти-алиасинг:"
 
 #: ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(ערכים גבוהים מדרדר ביצועים)"
+msgstr "(веће вредности погоршавају перформансе)"
 
 #: ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
-msgstr "רזולוציה:"
+msgstr "Резолуција:"
 
 #: ../src/general/OptionsMenu.tscn:295
 msgid "AUTO"
-msgstr "אוטו"
+msgstr "аутоматски"
 
 #: ../src/general/OptionsMenu.tscn:305
 msgid "MAX_FPS"
-msgstr "מקסימום פריימים לשניה:"
+msgstr "Максимум FPS:"
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "COLOURBLIND_CORRECTION"
-msgstr "תיקון לעיוור צבעים:"
+msgstr "Корекција далтониста:"
 
 #: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
-msgstr "אברציה כרומטית:"
+msgstr "Хроматске аберације:"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "MASTER_VOLUME"
-msgstr "עוצמה כללית"
+msgstr "Главна јачина звука"
 
 #: ../src/general/OptionsMenu.tscn:431 ../src/general/OptionsMenu.tscn:472
 #: ../src/general/OptionsMenu.tscn:505 ../src/general/OptionsMenu.tscn:538
 #: ../src/general/OptionsMenu.tscn:571
 msgid "MUTE"
-msgstr "השתק"
+msgstr "Пригуши звук"
 
 #: ../src/general/OptionsMenu.tscn:445
 msgid "MUSIC_VOLUME"
-msgstr "עוצמת מוזיקה"
+msgstr "Јачина музике"
 
 #: ../src/general/OptionsMenu.tscn:478
 msgid "AMBIANCE_VOLUME"
-msgstr "עוצמת אווירה"
+msgstr "Амбијента јачина звука"
 
 #: ../src/general/OptionsMenu.tscn:511
 msgid "SFX_VOLUME"
-msgstr "עוצמת אפקטים"
+msgstr "Том од звучних ефеката"
 
 #: ../src/general/OptionsMenu.tscn:544
 msgid "GUI_VOLUME"
-msgstr "עוצמת ממשק עזרים"
+msgstr "Том од интерфејс"
 
 #: ../src/general/OptionsMenu.tscn:589
 msgid "LANGUAGE"
-msgstr "שפה:"
+msgstr "Језик:"
 
 #: ../src/general/OptionsMenu.tscn:604 ../src/general/OptionsMenu.tscn:981
 msgid "RESET"
-msgstr "איפוס"
+msgstr "Ресетовати"
 
 #: ../src/general/OptionsMenu.tscn:627
 msgid "COMPOUND_CLOUDS"
-msgstr "ענני תרכובות"
+msgstr "Облак једињења"
 
 #: ../src/general/OptionsMenu.tscn:642
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
-"סימולצית ענן מינמלית\n"
-"רווח:"
+"Минимум Интервал од Симулације\n"
+"Облака:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:693
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(ערכים גבוהים יותר מגדילים ביצועים)"
+msgstr "(веће вредности побољшавају перформансе)"
 
 #: ../src/general/OptionsMenu.tscn:686
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr "מחליק רזולוציית ענן:"
+msgstr "Делитељ Облачне Резолуције:"
 
 #: ../src/general/OptionsMenu.tscn:728
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "הפעל התפתחות-אוטומטית במהלך המשחק"
+msgstr "Покрените аутоматску еволуцију током играња"
 
 #: ../src/general/OptionsMenu.tscn:794
 msgid "RESET_INPUTS"
-msgstr "איפוס קלטים"
+msgstr "Ресетујте Уноси"
 
 #: ../src/general/OptionsMenu.tscn:817
 msgid "PLAY_INTRO_VIDEO"
-msgstr "הפעל סרטון פתיחה"
+msgstr "Пусти уводни видео"
 
 #: ../src/general/OptionsMenu.tscn:826
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr "הפעל פתיח שלב המיקרוב במשחק חדש"
+msgstr "Пустите уводни видео за микробе на Новој Игри"
 
 #: ../src/general/OptionsMenu.tscn:835
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr "שמירה אוטומטית במהלך המשחק"
+msgstr "Аутоматско чување током игре"
 
 #: ../src/general/OptionsMenu.tscn:846
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "כמות שמירה-אוטומטית שניתן לשמור:"
+msgstr "Количина аутоматског чувања да задржати:"
 
 #: ../src/general/OptionsMenu.tscn:874
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "כמות שמירה-מהירה שניתן לשמור:"
+msgstr "Количина брзог чувања да задржати:"
 
 #: ../src/general/OptionsMenu.tscn:900
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr "הצג מדריך (בשמירות חדשות)"
+msgstr "Прикажи водиче (у новим играма)"
 
 #: ../src/general/OptionsMenu.tscn:908
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr "הצג מדריך (בשמירה נוכחית)"
+msgstr "Прикажи водиче (у тренутној игри)"
 
 #: ../src/general/OptionsMenu.tscn:924
 msgid "CHEAT_KEYS_ENABLED"
-msgstr "מקשי צ'יט מופעלים"
+msgstr "Укључи тастери за варања"
 
 #: ../src/general/OptionsMenu.tscn:936
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr "השתמש בשם משתמש מותאם אישית"
+msgstr "Користите прилагођено корисничко име"
 
 #: ../src/general/OptionsMenu.tscn:947
 msgid "CUSTOM_USERNAME"
-msgstr "שם משתמש מותאם אישית:"
+msgstr "Корисничко име:"
 
 #: ../src/general/OptionsMenu.tscn:971 ../src/general/PauseMenu.tscn:132
 #: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
-msgstr "חזור"
+msgstr "Назад"
 
 #: ../src/general/OptionsMenu.tscn:992 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
-msgstr "שמור"
+msgstr "Сачувати"
 
 #: ../src/general/OptionsMenu.tscn:1008
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "ברירת מחדל"
+msgstr "Подразумеване вредности"
 
 #: ../src/general/OptionsMenu.tscn:1020
 msgid "RESET_TO_DEFAULTS"
-msgstr "איפוס לברירת מחדל?"
+msgstr "Ресетуј до почетног?"
 
 #: ../src/general/OptionsMenu.tscn:1021
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות לברירת מחדל?"
+msgstr ""
+"Да ли сте сигурни да желите да вратите СВА подешавања на подразумеване "
+"вредности?"
 
 #: ../src/general/OptionsMenu.tscn:1030
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "איפוס קלטים לברירת מחדל?"
+msgstr "Ресетовати уносе на подразумеване вредности?"
 
 #: ../src/general/OptionsMenu.tscn:1031
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות הקלטים לברירת מחדל?"
+msgstr ""
+"Да ли сте сигурни да желите да вратите поставке уноса на подразумеване "
+"вредности?"
 
 #: ../src/general/OptionsMenu.tscn:1040
 msgid "CLOSE_OPTIONS"
-msgstr "לסגור אפשרויות?"
+msgstr "Затворити опције?"
 
 #: ../src/general/OptionsMenu.tscn:1064
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
-"ישנם שינויים שלא נשמרו שיימחקו.\n"
-"האם ברצונך להמשיך?"
+"Имате несачуване промене које ће бити одбачене.\n"
+"Да ли желите да наставите?"
 
 #: ../src/general/OptionsMenu.tscn:1095
 msgid "SAVE_AND_CONTINUE"
-msgstr "שמור והמשך"
+msgstr "Сачувај и настави"
 
 #: ../src/general/OptionsMenu.tscn:1104
 msgid "DISCARD_AND_CONTINUE"
-msgstr "מחק והמשך"
+msgstr "Одбаци и настави"
 
 #: ../src/general/OptionsMenu.tscn:1120
 msgid "CANCEL"
-msgstr "ביטול"
+msgstr "Отказати"
 
 #: ../src/general/OptionsMenu.tscn:1131 ../src/general/OptionsMenu.tscn:1152
 msgid "ERROR"
-msgstr "שגיאה"
+msgstr "Грешка"
 
 #: ../src/general/OptionsMenu.tscn:1132 ../src/general/OptionsMenu.tscn:1153
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "שגיאה: נכשל הניסיון לשמור ההגדרות החדשות לקובץ התצורה."
+msgstr "Грешка: Није успело чување нових поставки у конфигурационој датотеци."
 
 #: ../src/general/PauseMenu.tscn:56
 msgid "RESUME"
-msgstr "להמשיך"
+msgstr "Наставити"
 
 #: ../src/general/PauseMenu.tscn:63
 msgid "SAVE_GAME"
-msgstr "שמירה"
+msgstr "Сачувај Игру"
 
 #: ../src/general/PauseMenu.tscn:70 ../src/gui_common/MainMenu.tscn:162
 msgid "LOAD_GAME"
-msgstr "טען שמירה"
+msgstr "Учитајте Игру"
 
 #: ../src/general/PauseMenu.tscn:78
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4212
 msgid "STATISTICS"
-msgstr "סטטיסטיקה"
+msgstr "Статистика"
 
 #: ../src/general/PauseMenu.tscn:85
 msgid "HELP"
-msgstr "עזרה"
+msgstr "Помоћ"
 
 #: ../src/general/PauseMenu.tscn:92 ../src/gui_common/MainMenu.tscn:174
 msgid "OPTIONS"
-msgstr "אפשרויות"
+msgstr "Опције"
 
 #: ../src/general/PauseMenu.tscn:99
 msgid "RETURN_TO_MENU"
-msgstr "חזור לתפריט"
+msgstr "Вратите се у Мени"
 
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
-msgstr "יציאה"
+msgstr "Изаћи"
 
 #: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
-msgstr "בסדר"
+msgstr "У реду"
 
 #: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
-msgstr "ביטול"
+msgstr "Отказати"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
-msgstr "משחק חדש"
+msgstr "Нова игра"
 
 #: ../src/gui_common/MainMenu.tscn:186
 msgid "TOOLS"
-msgstr "כלים"
+msgstr "Алати"
 
 #: ../src/gui_common/MainMenu.tscn:198
 msgid "EXTRAS"
-msgstr "תוספות"
+msgstr "Додатне"
 
 #: ../src/gui_common/MainMenu.tscn:210
 msgid "CREDITS"
-msgstr "קרדיט"
+msgstr "Кредити"
 
 #: ../src/gui_common/MainMenu.tscn:222
 msgid "QUIT"
-msgstr "יציאה"
+msgstr "Одустати"
 
 #: ../src/gui_common/MainMenu.tscn:245
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "עורך ארגז חול המיקרובי"
+msgstr "Слободна-Градња Уређивач Микроба"
 
 #: ../src/gui_common/MainMenu.tscn:345
 msgid "GLES2_MODE_WARNING"
-msgstr "אזהרת GLES2"
+msgstr "Упозорење у режиму GLES2"
 
 #: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. "
-"אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או "
-"Nvidia על מנת להפעלת את Thrive."
+"Користите Thrive витх GLES2. Ово је озбиљно непроверено и вероватно ће "
+"изазвати проблеме. Покушајте да ажурирате управљачке програме за видео и / "
+"или присилите АМД или Нвидиа графику да се користи за покретање програма "
+"Thrive."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:17
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr "לשמירה יש גרסה שונה"
+msgstr "Сачувај има другачију верзију"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"הגרסה שאתה מנסה לטעון אינה תואמת את גרסת המשחק.\n"
-"אנא טען את השמירה באופן ידני דרך התפריט."
+"Верзија спремишта које покушавате да учитате не одговара верзији игре.\n"
+"Молимо вас учитајте спремање ручно кроз мени."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "OPEN_THE_MENU"
-msgstr "פתח את התפריט"
+msgstr "Отворите мени"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:88
 msgid "OPEN_HELP_SCREEN"
-msgstr "פתח את מסך העזרה"
+msgstr "Отворите екран помоћи"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "WILL_YOU_THRIVE"
-msgstr "האם אתה תשגשג (Thrive)?"
+msgstr "Хоћете ли бујати?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr "סיים עריכה וחזור לסביבה"
+msgstr "Завршите уређивање и вратите се у окружење"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:110
 msgid "CHANGE_THE_SYMMETRY"
-msgstr "שנה סימטריה"
+msgstr "Промените симетрију"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "UNDO_THE_LAST_ACTION"
-msgstr "בטל פעולה אחרונה"
+msgstr "Опозови последњу акцију"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:122
 msgid "REDO_THE_LAST_ACTION"
-msgstr "בצע מחדש פעולה אחרונה"
+msgstr "Понови последњу акцију"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "CREATE_A_NEW_MICROBE"
-msgstr "צור מיקרוב חדש"
+msgstr "Направите нови микроб"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:148
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:211
 msgid "MEMBRANE_RIGIDITY"
-msgstr "קשיחות הקרום"
+msgstr "Ригидност Мембране"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:262
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5210
@@ -1241,7 +1269,7 @@ msgstr "קשיחות הקרום"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6302
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6635
 msgid "MOBILITY"
-msgstr "ניידות"
+msgstr "Мобилност"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:293
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5301
@@ -1251,11 +1279,13 @@ msgstr "ניידות"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6393
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6726
 msgid "HEALTH"
-msgstr "חיים"
+msgstr "Здравље"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:316
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "קרום נוקשה עמיד יותר בפני נזקים, אך מקשה עליו לנוע."
+msgstr ""
+"Чвршћа мембрана је отпорнија на оштећења, али ће исто отежати кретање за "
+"ћелију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:428
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:668
@@ -1268,7 +1298,7 @@ msgstr "קרום נוקשה עמיד יותר בפני נזקים, אך מקשה
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4258
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4752
 msgid "TURNS"
-msgstr "הפך ל"
+msgstr "Претвара"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:453
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:693
@@ -1282,7 +1312,7 @@ msgstr "הפך ל"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4777
 msgid "INTO"
-msgstr "לתוך"
+msgstr "у"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:507
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:788
@@ -1301,7 +1331,7 @@ msgstr "לתוך"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4591
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4894
 msgid "STORAGE"
-msgstr "אחסון"
+msgstr "Складиште"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:538
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:819
@@ -1326,63 +1356,65 @@ msgstr "אחסון"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6333
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6666
 msgid "OSMOREGULATION_COST"
-msgstr "עלות ויסות אוסמטי"
+msgstr "Цена осморегулације"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:561
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
-"הקרביים הדביקים של התא. הציטופלזמה היא התערובת בסיסית של יונים, חלבונים "
-"ותרכובות אחרות המומסים במים הממלאים את פנים התא. אחד התפקידים שהוא מבצע הוא "
-"תסיסה, המרת הגלוקוז לאנרגיית ATP. לתאים שחסרים האברונים למטבוליזם מתקדמת "
-"יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון מולקולות בתא "
-"ולגדילתו."
+"Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и "
+"других супстанци растворених у води која испуњава унутрашњост ћелије. Једна "
+"од функција коју обавља је ферментација, претварање глукозе у ATP енергију. "
+"Да би ћелије којима недостају органели имали напреднији метаболизам, на то "
+"се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и "
+"за повећање величине ћелије."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:721
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
 msgid "DOT_RATE_SCALES"
-msgstr ". קצב צמיחה"
+msgstr ". Стопа скалира се"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:734
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
 msgid "WITH_CONCENTRATION_OF"
-msgstr "עם ריכוז של"
+msgstr "са концентрацијом"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:741
 msgid "OXYGEN_DOT"
-msgstr "חמצן."
+msgstr "Кисеоник."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:842
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
-"מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר גלוקוז "
-"ל- ATP בקצב גבוה ביותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא נשימה "
-"אירובית. יחד עם זאת, הוא דורש חמצן כדי לתפקד, ורמות חמצן נמוכות יותר בסביבה "
-"יאטו את קצב ייצור שלו. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם "
-"מבצעים תסיסה ברמה מסוימת."
+"Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању "
+"да претворе глукозу у ATP много већом брзином него што се то може учинити у "
+"цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је "
+"кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће "
+"брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у "
+"цитоплазми, околна течност врши одређену ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:858
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1946
 msgid "THYLAKOID"
-msgstr "תילקואיד"
+msgstr "Тхилакоид"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:949
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3418
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3706
 msgid "PRODUCES"
-msgstr "מייצר"
+msgstr "Производи"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3443
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3731
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ". בקנה מידה עם"
+msgstr ". Стопа скалира се са"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:987
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3456
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3744
 msgid "CONCENTRATION_OF"
-msgstr "ריכוז של"
+msgstr "концентрацијом"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1012
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1663
@@ -1390,250 +1422,261 @@ msgstr "ריכוז של"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4351
 msgid "AND"
-msgstr "ו"
+msgstr "и"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3494
 msgid "INTENSITY_OF"
-msgstr "עוצמת"
+msgstr "интензитет"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1032
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3501
 #: ../src/microbe_stage/MicrobeStage.tscn:897
 msgid "LIGHT"
-msgstr "אור"
+msgstr "Светлост"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1130
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"תילקואידים הם מקבצי חלבונים ופיגמנטים רגישים לאור. הפיגמנטים מסוגלים להשתמש "
-"באנרגיית האור כדי לייצר גלוקוז ממים ופחמן דו חמצני במצב צבירה גזי בתהליך "
-"שנקרא פוטוסינתזה. הפיגמנטים האללו הם גם מה שמעניק להם צבע ייחודי. קצב ייצור "
-"הגלוקוז מתרחש בהתאם לריכוז פחמן הדו-חמצני ועוצמת האור. מכיוון שהתילקואידים "
-"צפים בציטופלזמה, הנוזל שמסביבם מבצעים תסיסה ברמה מסוימת."
+"Тилакоиди су грозди протеина и фотосензибилних пигмената. Пигменти су у "
+"стању да користе енергију светлости за производњу глукозе из воде и "
+"гасовитог угљен-диоксида у процесу названом Фотосинтеза. Ови пигменти су "
+"такође оно што им даје препознатљиву боју. Стопа њихове производње глукозе "
+"скалира се са концентрацијом угљен-диоксида и интензитетом светлости. Пошто "
+"су тилакоиди суспендовани директно у цитоплазми, околна течност врши "
+"ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4041
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ". בקנה מידה עם ריכוז של"
+msgstr ". Стопа скалира се са концентрацијом"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1304
 msgid "CARBON"
-msgstr "פחמן"
+msgstr "Угљеник"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1311
 msgid "DIOXIDE"
-msgstr "דו תחמוצת"
+msgstr "Диоксид"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1329
 msgid "ALSO_TURNS"
-msgstr "גם הפך ל"
+msgstr "Такође претвара"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1463
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"חלבונים כימוסינתזיים הם מקבצים קטנים של חלבונים בציטופלזמה המסוגלים להמיר "
-"מימן גופרתי, מים ופחמן דו-חמצני לגלוקוז בתהליך הנקרא \"מימן סולפיד כימוסינתזה"
-"\". קצב ייצור הגלוקוז מתאזן עם ריכוז הפחמן הדו חמצני. מכיוון שהחלבונים "
-"הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים תסיסה ברמה מסוימת."
+"Хемосинтетизујући протеини су мале групе протеина у цитоплазми које су у "
+"стању да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у "
+"процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње "
+"глукозе скалира се са концентрацијом угљен-диоксида. Пошто су протеини "
+"хемосинтезе суспендовани директно у цитоплазми, околна течност врши "
+"ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1768
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
-"רוסטיצינין הוא חלבון המסוגל להשתמש בפחמן דו חמצני ובחמצן כדי לחמצן ברזל ממצב "
-"כימי אחד למשנהו. תהליך זה, הנקרא נשימת ברזל, משחרר אנרגיה שהתא מסוגל לקצור."
+"Рустицијанин је протеин који може да користи гасовити угљен-диоксид и "
+"кисеоник за оксидацију гвожђа из једног хемијског стања у друго. Овај "
+"процес, назван Респирација гвожђа, ослобађа енергију коју ћелија тада може "
+"да сакупи."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3193
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4308
 msgid "DOT_RATE"
-msgstr ". קצב"
+msgstr ". Стопа"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1938
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3206
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4843
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr "נמדד בריכוז של"
+msgstr "скалира се са концентрацијом"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2043
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"ניטרוגנאז הוא חלבון המסוגל להשתמש בחנקן גזי ובאנרגיה תאית בצורת ATP כדי "
-"לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע חנקן "
-"אנאירובי. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע תסיסה ברמה "
-"מסוימת."
+"Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију "
+"у облику ATP за производњу амонијака, кључног хранљивог састојка за раст "
+"ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је "
+"нитрогеназа суспендована директно у цитоплазми, околна течност врши "
+"ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4784
 msgid "OXYTOXY"
-msgstr "אוקסיטוקסי"
+msgstr "ОксиТокси"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2200
 msgid "DOT_CAN_RELEASE"
-msgstr ". יכול לשחרר"
+msgstr ". Може ослободити"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2212
 msgid "TOXINS_BY_PRESSING_E"
-msgstr "רעלנים על ידי לחיצה על E. בקנה המידה עם"
+msgstr "токсине притиском на E. Стопа скалира се са"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2330
 msgid "OXYTOXISOME_DESC"
 msgstr ""
-"מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ\"ט"
-"\"."
+"Модификовани метаболосом одговоран за производњу примитивног облика "
+"токсичног агенса ОксиТокси НТ."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2437
 msgid "USES"
-msgstr "שימושים"
+msgstr "Користи"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2462
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr "להגדלת התנועה"
+msgstr "за повећање кретања"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2474
 msgid "SPEED_OF_THE_CELL"
-msgstr "מהירות התא."
+msgstr "брзину ћелије."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2509
 msgid "SPEED"
-msgstr "מהירות"
+msgstr "Брзина"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2594
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"השוטון (ברבים: שוטונים) הוא צרור סיבי חלבון דמוי שוט המשתרע מקרום התא אשר "
-"מסוגל להשתמש ב- ATP כדי לגלול ולהניע את התא לכיוון מסויים."
+"Бич (множина: бичеви) је сноп протеинских влакана који се протеже од "
+"ћелијске мембране која може да користи ATP да би се поваљао и покренуо "
+"ћелију у правцу."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2720
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "דקור תאים אחרים עם זה."
+msgstr "Избодите друге ћелије са ово."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2736
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2800
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2490
 msgid "CILIA"
-msgstr "ריס"
+msgstr "Цилија"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2846
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5074
 msgid "TO_BE_IMPLEMENTED"
-msgstr "בתהליכי בניה."
+msgstr "Да се имплементира."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2947
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"מאפשר התפתחות מורכבת יותר,\n"
-"אברונים בעלי קרום. עולה הרבה\n"
-"של ATP לשמור. \n"
-"זה בלתי הפיך."
+"Омогућава еволуцију сложенијих,\n"
+"мембране везане органеле. Много кошта\n"
+"ATP-а за одржавање. Ово је неповратно\n"
+"еволуција."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3036
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
-"המאפיין המגדיר של תאים אוקריוטים. הגרעין כולל גם את הרטיקולום האנדופלזמי ואת "
-"גוף הגולגי. זוהי התפתחות של תאים פרוקריוטיים לפתח מערכת של קרומים פנימיים, "
-"הנעשית על ידי הטמעת פרוקריוט נוסף בתוכם. זה מאפשר להם למלא, או להדוף, את "
-"התהליכים השונים שקורים בתוך התא ולמנוע מהם לחפוף בינם. זה מאפשר לאברונים "
-"החדשים שבעלי קרום להיות הרבה יותר מורכבים, יעילים ומתמחים מאשר אם היו צפים "
-"חופשיים בציטופלזמה.יחד עם זאת, זה כרוך במחיר של הפיכת התא להרבה יותר גדול "
-"ולדרישה רבה יותר אנרגיה להחזקתו."
+"Дефинитивна карактеристика еукариотских ћелија. Језгро такође укључује "
+"ендоплазматски ретикулум и тело голгија. Еволуција прокарионтских ћелија је "
+"развити систем унутрашњих мембрана, урађен асимилацијом другог прокариота у "
+"себи. То им омогућава да раздвоје или одбаце различите процесе који се "
+"дешавају унутар ћелије и спречава их да се преклапају. То омогућава да "
+"њихови нови мембрански органели буду много сложенији, ефикаснији и "
+"специјализованији него да слободно лебде у цитоплазми. Међутим, ово долази "
+"по цену да ћелија буде много већа и да јој треба пуно енергије за одржавање."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3311
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
-"תחנת הכוח של התא. המיטוכונדרון (ברבים: מיטוכונדריה) הוא אברון בעל קרום כפול "
-"שמלא בחלבונים ואנזימים. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי "
-"שלו. הוא מסוגל להמיר גלוקוז ל- ATP ביעילות גבוהה בהרבה ממה שניתן לעשות "
-"בציטופלזמה בתהליך הנקרא נשימה אירובית. עם זאת, הוא דורש חמצן כדי לתפקד, "
-"ורמות חמצן נמוכות יותר בסביבה יאטו את קצב ייצור ה- ATP שלו."
+"Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска "
+"структура испуњена протеинима и ензимима. То је прокариот који је асимилирао "
+"за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у "
+"ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у "
+"процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да "
+"би функционисао, а нижи нивои кисеоника у околини успориће брзину његове "
+"производње ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3599
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
-"הכלורופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לאור הנערמים בשקיות "
-"קרומיות. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי שלו. הפיגמנטים "
-"בכלורופלסט מסוגלים להשתמש באנרגיית האור כדי לייצר גלוקוז ממים ופחמן דו-חמצני "
-"בתהליך הנקרא פוטוסינתזה. הפיגמנטים הללו הם גם מה שמעניקים לו את הצבע ייחודי. "
-"קצב ייצור הגלוקוז שלו משתנה עם ריכוז הפחמן הדו חמצני ועוצמת האור."
+"Хлоропласт је двострука мембранска структура која садржи фотосензибилне "
+"пигменте сложене заједно у опнене врећице. То је прокариот који је "
+"асимилирао за употребу од свог еукариотског домаћина. Пигменти у хлоропласту "
+"су способни да користе енергију светлости за производњу глукозе из воде и "
+"гасовитог угљен-диоксида у процесу названом Фотосинтеза. Ови пигменти су "
+"такође оно што му даје препознатљиву боју. Стопа његове производње глукозе "
+"скалира се са концентрацијом угљен-диоксида и интензитетом светлости."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3615
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3679
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2840
 msgid "THERMOPLAST"
-msgstr "תרמופלסט"
+msgstr "Термопласт"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3781
 msgid "TEMPERATURE"
-msgstr "טמפרטורה"
+msgstr "Температура"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3879
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
-"התרמופלסט עדיין לא מיושם. התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים "
-"רגישים לחום הנערמים יחד בוך שקי קרום. זהו פרוקריוט שהוטמע לשימוש על ידי "
-"המארח האוקריוטי שלו. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של הבדלי חום "
-"בסביבה כדי לייצר גלוקוז ממים ופחמן דו חמצני בתהליך שנקרא תרמו-סינתזה. קצב "
-"ייצור הגלוקוז שלו משתנה עם ריכוז הפחמן הדו חמצני והטמפרטורה."
+"Термопласт још није имплементиран. Термопласт је двострука мембранска "
+"структура која садржи термосензибилне пигменте сложене заједно у мембранске "
+"врећице. То је прокариот који је асимилирао за употребу од свог еукариотског "
+"домаћина. Пигменти у термопласту могу да користе енергију топлотних разлика "
+"у околини за производњу глукозе из воде и гасовитог угљен-диоксида у процесу "
+"који се назива термосинтеза. Стопа његове производње глукозе скалира се са "
+"концентрацијом угљен-диоксида и температуром."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4151
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
-"הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר מימן גופרתי, "
-"מים ופחמן דו-חמצני לגלוקוז בתהליך הנקרא כימוסינתזה מימן גופרתי. קצב ייצור "
-"הגלוקוז שלו משתנה עם ריכוז המים והפחמן הדו חמצני."
+"Хемопласт је двострука мембранска структура која садржи протеине који су "
+"способни да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу "
+"у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове "
+"производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4456
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
-"פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש בחנקן ,חמצן ובאנרגיה תאית בצורת ATP "
-"כדי לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע חנקן "
-"אירובי."
+"Пластид за фиксирање азота је протеин који може да користи гасовити азот и "
+"кисеоник и ћелијску енергију у облику ATP за производњу амонијака, кључног "
+"хранљивог састојка за раст ћелија. Ово је процес који се назива аеробна "
+"фиксација азота."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4557
 msgid "INREASE_STORAGE_SPACE"
-msgstr "מגדיל את קיבולת האחסון של התא."
+msgstr "Повећава простор за складиштење ћелије."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4645
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"החלולית היא אברון קרום פנימי המשמש לאחסון בתא. הם מורכבים מכמה שלפוחיות, "
-"מבנים קרומים קטנים יותר שנמצאים בשימוש נרחב בתאים לאחסון, שהתמזגו יחד. היא "
-"מלאה במים המסוגלים להכיל מולקולות, אנזימים, מוצקים וחומרים אחרים. צורתם "
-"נוזלית ויכולה להשתנות בין התאים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4802
 msgid "DOT_CAN"
-msgstr ". יכול"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4815
 msgid "RELEASE_TOXINS_BY_PRESSING"
-msgstr "שיחרור רעלנים בלחיצה על"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4822
 msgid "E_DOT"
-msgstr "E."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4830
 msgid "RATE"
-msgstr "קצב"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4948
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
-"חלוליות רעלן הוא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים "
-"אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4964
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5028
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr "חלולית של ביולומינסנציה"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5095
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5159
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3362
 msgid "NORMAL"
-msgstr "רגיל"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5271
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5513
@@ -1642,734 +1685,671 @@ msgstr "רגיל"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6363
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6696
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr "מהירות ספיגת משאבים"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5324
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"הצורה הבסיסית ביותר של הקרום, מספק מעט הגנה מפני נזק וצריך יותר אנרגיה כדי "
-"לא לעוות. היתרונו הוא שזה מאפשר לתא לנוע ולקלוט חומרים מזינים במהירות גדולה "
-"יותר."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5340
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5404
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3432
 msgid "DOUBLE"
-msgstr "כפול"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5565
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"קרום עם שתי שכבות, יש לו הגנה טובה יותר מפני נזק ולוקח פחות אנרגיה על מנת "
-"שלא להתעוות. יחד עם זאת, זה מאט את התא במעט ומוריד את הקצב שבו הוא ספוג "
-"משאבים מהסביבה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5581
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5645
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3502
 msgid "CELLULOSE"
-msgstr "תאית"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5817
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6423
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6756
 msgid "PHYSICAL_RESISTANCE"
-msgstr "עמידות מפגיעה פיזית"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5845
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6148
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6814
 msgid "CANNOT_ENGULF"
-msgstr "לא יכול לבלוע"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5868
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"לקרום זה יש שכבה קשה, התורמת להגנה טובה יותר מפני נזק כולל ובמיוחד מפני נזק "
-"פיזי. זה גם עולה פחות אנרגיה כדי לשמור על צורתו, אך אינו יכול לספוג משאבים "
-"במהירות וגם איטי יותר."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5884
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5948
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3572
 msgid "CHITIN"
-msgstr "כיטין"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6120
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6453
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6786
 msgid "TOXIN_RESISTANCE"
-msgstr "עמידות לרעלים"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6171
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
-"לקרום זה יש דופן קשיח, מה שאומר שיש לו הגנות טובות יותר מפני נזק כולל "
-"ובמיוחד מפני נזק מרעלים. זהו גם עולה פחות אנרגיה כדי לשמור על צורתו, יחד עם "
-"זאת, הוא איטי יותר ואינו מסוגל לספוג משאבים במהירות."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6187
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6251
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3647
 msgid "CALCIUM_CARBONATE"
-msgstr "סידן פחמתי"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6504
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"לממברנה זו יש קליפה חזקה העשויה מסידן פחמתי. הוא מסוגל בקלות לעמוד בפני נזק "
-"ודורש פחות אנרגיה כדי לא לעוות. החסרונות זה שמעטפת כה כבדה עד שהיא גורמת לתא "
-"לנוע באיטיות הרבה יותר ויותר זמן בלספוג משאבים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6520
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6584
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3719
 msgid "SILICA"
-msgstr "צורן"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6837
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
-"לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי ועמיד "
-"מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. עם זאת, "
-"הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
-msgstr "\\לשניה"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1150
 msgid "SUCCESSFUL_SCAVENGE"
-msgstr "ליקוט מוצלח"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1157
 msgid "SUCCESSFUL_KILL"
-msgstr "הרג מוצלח"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1551
 msgid "ESCAPE_ENGULFING"
-msgstr "בריחה מבליעה"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "MICROBE_PATCH_LABEL"
-msgstr "אזור: {0}"
+msgstr "Зона: {0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:624
 msgid "STUFF_AT"
-msgstr "דברים ב {0:F1}, {1:F1}:"
+msgstr "Ствари у {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeStage.cs:448
 msgid "PLAYER_REPRODUCED"
-msgstr "השחקן התרבה"
+msgstr "Играч се репродуковао"
 
 #: ../src/microbe_stage/MicrobeStage.cs:555
 msgid "PLAYER_DIED"
-msgstr "השחקן מת"
+msgstr "играч је умро"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:413
 msgid "AT_CURSOR"
-msgstr "בסמן העכבר:"
+msgstr "На Курсору:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:437
 msgid "NOTHING_HERE"
-msgstr "אין פה שום דבר"
+msgstr "Ништа овде"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:461
 msgid "COMPOUNDS_COLON"
-msgstr "תרכובות:"
+msgstr "Једињења:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:499
 msgid "SPECIES_COLON"
-msgstr "מינים:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:580
 msgid "ENVIRONMENT"
-msgstr "סביבה"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:841
 msgid "TEMPERATURE_SHORT"
-msgstr "טמפ'."
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:952
 msgid "PRESSURE_SHORT"
-msgstr "לחץ."
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1028
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4814
 msgid "COMPOUNDS"
-msgstr "תרכובות"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1388
 msgid "AGENTS"
-msgstr "שליחים"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1649
 msgid "POPULATION_CAPITAL"
-msgstr "אוכלוסיה:"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:16
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr "אזור הנביעות"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:24
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr "אזור המזופלגי"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:31
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr "אזור האפיפלגי"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:38
 msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr "אזור בריכות הגאות"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:45
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr "אזור הבתיאלי"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:52
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr "אזור התהומות"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:59
 msgid "PATCH_PANGONIAN_COAST"
-msgstr "אזור החוף"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:66
 msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr "אזור שפך הנהר"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:73
 msgid "PATCH_CAVE"
-msgstr "מערה"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:80
 msgid "PATCH_ICE_SHELF"
-msgstr "מדף קרח"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:87
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr "אזור קרקעית הים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:542
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:997
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "טוען עורך המיקרובי"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:544
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr "מחכה למפתח האוטומטי:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1802
 msgid "AUTO_EVO_FAILED"
-msgstr "המפתח האוטומטי נכשל"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1803
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr "מריץ סטטוס:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:926
 msgid "REPORT"
-msgstr "דוח"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:947
 msgid "PATCH_MAP"
-msgstr "מפת האזורים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1024
 msgid "ORGANISM_STATISTICS"
-msgstr "סטטיסטיקת האורגניזם"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1070
 msgid "SPEED_COLON"
-msgstr "מהירות:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1100
 msgid "HP_COLON"
-msgstr "חיים:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1130
 msgid "SIZE_COLON"
-msgstr "גודל:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1151
 msgid "GENERATION_COLON"
-msgstr "דור:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1193
 msgid "ATP_BALANCE"
-msgstr "מאזן ATP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1383
 msgid "MUTATION_POINTS"
-msgstr "נקודות מוטציה"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1471
 msgid "STRUCTURE"
-msgstr "מבנה"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1494
 msgid "APPEARANCE"
-msgstr "הופעה"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1517
 msgid "BEHAVIOR"
-msgstr "התנהגות"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
-#, fuzzy
-msgid "SEARCH_DOT_DOT_DOT"
-msgstr "..."
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "STRUCTURAL"
-msgstr "חלקי בניה"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1790
 msgid "PROTEINS"
-msgstr "חלבונים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
-"חלבונים\n"
-"כימוסינתזיים"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2272
 msgid "EXTERNAL"
-msgstr "חיצוניים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2554
 msgid "ORGANELLES"
-msgstr "אברונים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2974
 msgid "PLASTID"
-msgstr "פלסטיד"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3134
 msgid "N_A_MP"
-msgstr "אין נקמ\"ו"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3172
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
-"חלולית של \n"
-"ביולומינסנציה"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3269
 msgid "MEMBRANE_TYPES"
-msgstr "סוגי קרום"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3742
 msgid "FLUIDITY_RIGIDITY"
-msgstr "נזילות / קשיחות"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3780
 msgid "COLOUR"
-msgstr "צבע"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3925
-#, fuzzy
-msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "..."
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3952
 msgid "CONFIRM_CAPITAL"
-msgstr "אשר"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3961
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "מאזן ATP שלילי"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3962
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
-"המיקרוב שלך איננו מייצר מספיק ATP בשביל לשרוד!\n"
-"האם ברצונך להמשיך?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3970
 msgid "DISCONNECTED_ORGANELLES"
-msgstr "אברונים מנותקים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3971
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
-"ישנם אברונים שאינם מחוברים לשאר.\n"
-"בבקשה חבר את כל האברונים אחד עם השני או בטל את הפעולה."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4037
 msgid "PATCH_NAME"
-msgstr "שם האזור"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4071
 msgid "AUTO_EVO"
-msgstr "מפתח - אוטומטי"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4085
 msgid "FOOD_CHAIN"
-msgstr "שרשרת המזון"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4099
 msgid "TIMELINE"
-msgstr "ציר זמן"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4152
 msgid "AUTO_EVO_RESULTS"
-msgstr "תוצאות מפתח אוטומטי:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4171
 msgid "EXTERNAL_EFFECTS"
-msgstr "השפעות חיצוניות:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4237
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5159
 msgid "NEXT_CAPITAL"
-msgstr "הבא"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4351
 msgid "SELECT_A_PATCH"
-msgstr "בחר אזור להצגת פרטים כאן"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4386
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "מיקום נוכחי"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4466
 msgid "PHYSICAL_CONDITIONS"
-msgstr "מצב פיזי"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4649
 msgid "ATMOSPHERIC_GASSES"
-msgstr "גזים אטמוספריים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5074
 msgid "SPECIES_PRESENT"
-msgstr "מינים נוכחים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5132
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "תעבור לאזור זה"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
 msgid "FREEBUILDING"
-msgstr "ארגז חול"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
 msgid "MEGA_YEARS"
-msgstr "מיליון שנה"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
-msgstr "שנים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ATP_PRODUCTION"
-msgstr "ייצור ATP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "ייצור ATP נמוך מדי!"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
 msgid "OSMOREGULATION"
-msgstr "ויסות אוסמטי"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
 msgid "BASE_MOVEMENT"
-msgstr "מהירות בסיסית"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1473
 msgid "BIOME_LABEL"
-msgstr "ביומה: {0}"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1478
 msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}מ' מתחת פני הים"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1518
 msgid "WITH_POPULATION"
-msgstr "{0} עם אוכלוסיה: {1}"
+msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:54
 msgid "EXTINCTION_CAPITAL"
-msgstr "נכחד"
+msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:63
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
-"כמו 99% מכל המינים שאי-פעם חיו, אתה נכחדת. אחרים ימשיכו את תפקידך וישגשגו "
-"במקומך. אבל אתה תישכח, ניסוי כושל של האבולוציה."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:53
 msgid "WIN_BOX_TITLE"
-msgstr "אתה שגשגת!"
+msgstr ""
 
 #: ../src/microbe_stage/gui/WinBox.tscn:62
 msgid "WIN_TEXT"
 msgstr ""
-"כל הכבוד על הזכיה בגרסה זו של Thrive! אתה יכול להמשיך לשחק אחרי סגירת מסך זה "
-"אם תרצה, או תוכל להתחיל עולם חדש במשחק חדש."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
 #: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
-msgstr "טוען משחק"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
-msgstr "קורא שמירה"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr "יוצר אובייקטים משמירה"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr "חריגה קרתה בעת טעינת השמירה"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
-msgstr "השמירה אינו תקפה"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "לשמירה סצנת משחק לא תקפה"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr "מעלה אובייקטים"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr "משהו חריג קרה בזמן העלת אובייקטים"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
-msgstr "טעינה הסתיימה"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
-msgstr "טוען שגיאה"
+msgstr ""
 
 #: ../src/saving/InProgressSave.cs:161
 msgid "SAVING"
-msgstr "שומר..."
+msgstr ""
 
 #: ../src/saving/InProgressSave.cs:191
 msgid "SAVE_FAILED"
-msgstr "שמירה נכשלה"
+msgstr ""
 
 #: ../src/saving/InProgressSave.cs:192
 msgid "ERROR_SAVING"
-msgstr "שומר שגיאה"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:61
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "שם הקובץ ({0}) קיים. האם ברצונך להחליפו?"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:28
 msgid "CREATE_NEW_SAVE"
-msgstr "יוצר שמירה חדשה"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:45
 msgid "NAME"
-msgstr "שם:"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
-msgstr "אפשרויות נוספות"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr "משכתב שמירה קיימת:"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "לשכתב מחדש שמירה קיימת?"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:373
 msgid "SAVING_SUCCEEDED"
-msgstr "נשמר בהצלחה"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
-msgstr "השמירה נכשלה! קרה משהו חריג"
+msgstr ""
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr "שמירה ידנית"
+msgstr ""
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr "שמירה אוטומטית"
+msgstr ""
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr "שמירה מהירה"
+msgstr ""
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr "לא תקף"
+msgstr ""
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-"מחיקת שמירה זו הינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק לצמיתות "
-"את {0}?"
 
 #: ../src/saving/SaveList.tscn:45 ../src/saving/SaveListItem.tscn:102
 msgid "LOADING_DOT"
-msgstr "טוען..."
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
-msgstr "למחוק שמירה זו?"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:67 ../src/saving/SaveList.tscn:77
 msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "האם לעלות שמירה שלא תואמת לגרסה זו?"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:68
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"השמירה זו נוצרה בגרסאות החדשות יותר של Thrive ויכולה שלא תפקד כראוי.\n"
-"האם ברצונך להמשיך לפתוח בכל זאת?"
 
 #: ../src/saving/SaveList.tscn:78
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"השמירה זו נוצרה בגרסאות החדשות יותר של Thrive ויכולה שלא תפקד כראוי.\n"
-"בגלל שThrive עוד בשלבי בנייה ראשוניים, שמירת גרסאות שלא תואמות לגרסה אינו "
-"בסדר העדיפויות.\n"
-"אתה יכול לדווח על כל בעיה שנתקלת, אבל זה אינו בעדיפות גבוהה כרגע.\n"
-"האם ברצונך להמשיך לטעון שמירה זו?"
 
 #: ../src/saving/SaveList.tscn:87
 msgid "LOAD_INVALID_SAVE"
-msgstr "לטעון שמירה לא תקפה?"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:88
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
-"מידע משמירה זו אינו ניתנת לקריאה.\n"
-"יתכן ששמירה זו משובשת או שהפורמט הקריאה אינו מובנת בגרסה זו של Thrive.\n"
-"האם בכל זאת לנסות לטעון שמירה זו?"
 
 #: ../src/saving/SaveList.tscn:96
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr "השמירה שנבחרה אינו תואמת לגרסה זו"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:98
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"השמירה שנבחרה לטעינה ידועה שלא מתאימה לגרסה זו של Thrive.\n"
-"בגלל שThrive עדין בשלבי פיתוח ראשונים, התאמה שמירות אינו בעדיפות גבוהה, בשל "
-"כך, אינו מובנה עדין דרך לעדכן שמירות מגרסאות ישנות."
 
 #: ../src/saving/SaveListItem.tscn:128
 msgid "CREATED_AT"
-msgstr "נוצר ב:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:135 ../src/saving/SaveListItem.tscn:154
 #: ../src/saving/SaveListItem.tscn:173 ../src/saving/SaveListItem.tscn:196
 #: ../src/saving/SaveListItem.tscn:225 ../src/saving/SaveListItem.tscn:244
 msgid "DOT_DOT_DOT"
-msgstr "..."
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:147
 msgid "TYPE"
-msgstr "סוג:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:166
 msgid "DESCRIPTION"
-msgstr "תיאור:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:189
 msgid "VERSION"
-msgstr "גרסה:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:218
 msgid "BY"
-msgstr "על ידי:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:237
 msgid "CREATED_ON_PLATFORM"
-msgstr "נוצר בפלטפורמה:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:269 ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
-msgstr "טען"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:280
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
-"מחיקת שמירה זו הינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק אתה "
-"לצמיתות?"
 
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
-"מחיקת שמירות שנבחרו הינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק את "
-"{0} לצמיתות ?"
 
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"מחיקת כל השמירות האוטומטיות והמהירות הישנות הינו בלתי הפיך, האם אתה בטוח "
-"שאתה רוצה למחוק את?:\n"
-" - {0} שמירות אוטומטיות\n"
-" - {1} שמירות מהירות"
 
 #: ../src/saving/SaveManagerGUI.tscn:64
 msgid "REFRESH"
-msgstr "רענן"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:72
 msgid "DELETE_SELECTED"
-msgstr "מחק נבחרים"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:80
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr "נקה שמירות ישנות"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:91
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr "פתח ספריית שמירות"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
-msgstr "נשמר בסך הכל:"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
-msgstr "שטח משומש:"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
-msgstr "נבחרו:"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:180
 msgid "DELETE_SELECTED_SAVES"
-msgstr "למחוק שמירה/ות שנבחרו?"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES"
-msgstr "למחוק שמירות ישנות?"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:119
 msgid "SAVING_ERROR"
-msgstr "שומר שגיאה"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:179
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr "מעתיק שגיאה"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:35
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:68
@@ -2383,135 +2363,60 @@ msgstr "מעתיק שגיאה"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "TUTORIAL"
-msgstr "מדריך"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:55
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"ברוך הבא לעורך המיקרובי.\n"
-"כאן אתה יכול לסקור את כל מה שקרה מתחילת המשחק או ממתי שפעם אחרונה בקרת "
-"בעורך, ולערוך שינויים למין שלך.\n"
-"\n"
-"בלשונית זו תוכל לראות בדוח איזה מינים קיימים, איפה וכמה יש. אתה גם יכול "
-"לראות איזה גורמים סביבתים השתנו בחלק העליון של הדוח.\n"
-"\n"
-"בשביל לעבור ללשונית הבאה, לחץ על הבא שבפניה הימנית התחתונה."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
-"זה מפת האזורים.\n"
-"כאן אתה יכול את כל האזורים השונים שמיקרובים יכולים לחיות.\n"
-"האזור האתה נוכח בו כרגע מסומן בהגדשה.\n"
-"אתה יכול ללחוץ על האזורים בעזרת העכבר ולבחור אותם על מנת לראות פרטים ומידע "
-"עלהם בצד ימין.\n"
-"\n"
-"אם בחרת באזור שנמצא ליד האזור שאתה נמצא בו , אתה יכול לבחור על הכפתור מימין "
-"בשביל לעבור לשם. זה מאפשר לאוכלוסיה שלך לנוע לאזורים חדשים.\n"
-"\n"
-"תבחר באזור מסויים בשביל להמשיך."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"זה עורך המיקרובי או התא, איפה שאתה יכול להוסיף או להסיר אברונים מהמין שלך על "
-"ידי תשלום בנקודות מוטציה (נקמ\"ו).\n"
-"\n"
-"אתה גם יכול לשנות מאפיינים אחרים שך המין שלך בלשוניות האחרות של הערוך.\n"
-"\n"
-"בשביל להמשיך, בחר אברון מהחלונית שמשמאל (ציטופלזמה הינו התחלה טובה). ואז לחץ "
-"לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין שלך."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:151
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"הסרה של אברונים גם עולה נקמ\"ו שכן זה מוטציה של המין שלך. לחיצה ימנית על "
-"האברון תמחק אותה.\n"
-"אם עשית טעות, אתה יכול לבטל כל שינוי שעשית בעורך.\n"
-"\n"
-"הערה: הסרה של אברונים שהוספת בעריכה הנוכחית היא בחינם.\n"
-"\n"
-"לחץ על הכפתור בטל בשביל להמשיך."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:187
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"כאשר אתה בוחר אילו אברונים להוסיף, שים לב בחלונית המידע עלהם איזה תהליכים הם "
-"עושים ואילו תרכובות הם צריכים ומייצרים.\n"
-"\n"
-"גם שים לב לחלונית מאזן הATP שבצד ימין העליון בשביל לוודא שהתא שלך מסוגל "
-"לשרוד.\n"
-"\n"
-"אתה יכול לסובב את האברונים בלחיצה על A או D (בררת מחדל) לפני שאתה הצבתם "
-"בלוח.\n"
-"\n"
-"לחץ על הכפתור בצע שוב (זה שליד כפתור הבטל) בשביל להמשיך."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:220
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"אלו כל הדברים הבסיסים על עריכת המין שלך. אתה גם יכול לבדוק בלשוניות האחרות "
-"בעורך לעוד אפשרויות.\n"
-"\n"
-"אתה יכול לשנות את שם המין שלך על ידי לחיצה על השם מין הנוכחי ולערוך את "
-"הטקסט.\n"
-"\n"
-"כדאי בתור התחלה לשמור על התא קטן ולזוז לאזורים העליוניים.\n"
-"\n"
-"בהצלחה!"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
 msgid "GOT_IT"
-msgstr "הבנתי"
+msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"על כוכב חייזרי מרוחק,לאחר עידנים של פעילות געשית ופגיעות של מטאוריטים, החלה "
-"לצוץ תופעה חדשה ביקום:\n"
-"\n"
-"חיים.\n"
-"\n"
-"מיקרובים פשוטים שוכנים באזורים העמוקים של האוקיינוס. אתה האב הקדמון המשותף "
-"האחרון (או LUCA באנגלית) של הכוכב הזה.\n"
-"\n"
-"בשביל לשרוד בעולם העוין זה, אתה חייב למצוא כל תרכובת בדרך ולהתפתח בכל דור "
-"בכדי להצליח לתחרות במינים אחרים של מיקרובים."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:85
 msgid "SHOW_TUTORIALS"
-msgstr "הצג מדריך"
+msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:93
 msgid "BEGIN_THRIVING"
-msgstr "התחל לשגשג"
+msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"בשביל לשלוט בתא שלך, השתמש במקשים המוצגים סביבו (במרכז המסך) ובעכבר על מנת "
-"לשלוט בכיוון התנועה שלו.\n"
-"\n"
-"נסה את כל המקשים למשך מספר שניות על מנת להמשיך."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"את יכול לאסוף גלוקוז (הענן הלבן) על ידי מעבר מעליהם.\n"
-"התא שלך זקוק לגלוקוז על מנת ליצור אנרגיה שתשאיר אותך חיי.\n"
-"עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"עקוב אחרי מד החיים שלך שליד מד הATP (בימין התחתון).\n"
-"התא שלך ימות אם יגמר לו החיים.\n"
-"ואתה מתרפא כל עוד יש לך ATP.\n"
-"הקפד לאסוף מספיק גלוקוז ליצור ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"בכדי להתרבות, עליך לשכפל את כל האברונים, ובשביל זה אתה צריך לאסוף מספיק "
-"אמוניה ופוספט.\n"
-"תסתכל על האינדיקטור שבצד השמאלית התחתונה בשביל לראות כמה עוד צריך."
