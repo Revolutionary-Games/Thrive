@@ -7,10 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-13 16:38+0100\n"
-"PO-Revision-Date: 2020-11-14 19:16+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
-"com>\n"
+"POT-Creation-Date: 2020-12-14 21:03+0100\n"
+"PO-Revision-Date: 2020-12-14 17:48+0200\n"
+"Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -855,8 +854,7 @@ msgstr "population in patches:"
 msgid "LOADING"
 msgstr "Loading"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:331
-#, fuzzy
+#: ../src/engine/input/key_mapping/InputEventItem.cs:341
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "..."
 
@@ -1812,15 +1810,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1481
+#: ../src/microbe_stage/Microbe.cs:1475
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.cs:1488
+#: ../src/microbe_stage/Microbe.cs:1482
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1999
+#: ../src/microbe_stage/Microbe.cs:1993
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -1990,6 +1988,10 @@ msgstr "Appearance"
 msgid "BEHAVIOR"
 msgstr "Behavior"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr "Search..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "STRUCTURAL"
 msgstr "Structural"
@@ -2037,6 +2039,10 @@ msgstr "Fluidity / Rigidity"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3844
 msgid "COLOUR"
 msgstr "Colour"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3989
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Species name..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4016
 msgid "CONFIRM_CAPITAL"

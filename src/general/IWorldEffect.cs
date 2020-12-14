@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 /// <summary>
 ///   Time dependent effects running on a world

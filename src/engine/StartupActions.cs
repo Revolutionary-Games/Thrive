@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   This is the first autoloaded class. Used to perform some actions that should happen

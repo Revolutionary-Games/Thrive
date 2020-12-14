@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     /// <summary>
     ///   Step that finds the best mutation for a single species

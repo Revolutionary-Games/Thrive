@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 /// <summary>
 ///   Types that implement this interface can have their Godot child nodes (from NodePaths) evaluated before entering

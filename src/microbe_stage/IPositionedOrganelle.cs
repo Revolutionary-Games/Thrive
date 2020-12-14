@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Organelle type along with position information
 /// </summary>
 public interface IPositionedOrganelle

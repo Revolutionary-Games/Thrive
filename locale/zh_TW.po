@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-13 16:40+0100\n"
+"POT-Creation-Date: 2020-12-14 21:05+0100\n"
 "PO-Revision-Date: 2020-12-07 19:19+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -829,7 +829,7 @@ msgstr "區域中的人口："
 msgid "LOADING"
 msgstr "載入中"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:331
+#: ../src/engine/input/key_mapping/InputEventItem.cs:341
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
@@ -1693,16 +1693,16 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1481
+#: ../src/microbe_stage/Microbe.cs:1475
 #, fuzzy
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功清除"
 
-#: ../src/microbe_stage/Microbe.cs:1488
+#: ../src/microbe_stage/Microbe.cs:1482
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.cs:1999
+#: ../src/microbe_stage/Microbe.cs:1993
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
@@ -1872,6 +1872,10 @@ msgstr "出現"
 msgid "BEHAVIOR"
 msgstr "行為"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr ""
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "STRUCTURAL"
 msgstr "結構性"
@@ -1915,6 +1919,10 @@ msgstr "流動性/剛性"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3844
 msgid "COLOUR"
 msgstr "顏色"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3989
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4016
 msgid "CONFIRM_CAPITAL"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-13 16:38+0100\n"
+"POT-Creation-Date: 2020-12-14 21:02+0100\n"
 "PO-Revision-Date: 2020-11-15 15:15+0000\n"
 "Last-Translator: Georgi <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -340,59 +340,52 @@ msgstr ""
 "от нашият страхотен програмист, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
-#, fuzzy
 msgid "MOVEMENT"
-msgstr "Базово движение"
+msgstr "Движение"
 
 #: ../simulation_parameters/common/input_options.json:10
-#, fuzzy
 msgid "MOVE_LEFT"
-msgstr "Базово движение"
+msgstr "Наляво"
 
 #: ../simulation_parameters/common/input_options.json:14
-#, fuzzy
 msgid "MOVE_RIGHT"
-msgstr "Светлина"
+msgstr "Надясно"
 
 #: ../simulation_parameters/common/input_options.json:18
-#, fuzzy
 msgid "MOVE_FORWARD"
-msgstr "Автоматичната еволюция не успя да стартира"
+msgstr "Напред"
 
 #: ../simulation_parameters/common/input_options.json:22
-#, fuzzy
 msgid "MOVE_BACKWARDS"
-msgstr "Автоматичната еволюция не успя да стартира"
+msgstr "Назад"
 
 #: ../simulation_parameters/common/input_options.json:26
-#, fuzzy
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "Автоматичната еволюция не успя да стартира"
+msgstr "Автоматично движение напред"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Изстрелване на токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
-#, fuzzy
 msgid "TOGGLE_ENGULF"
-msgstr "Не позволява поглъщане"
+msgstr "Поглъщане"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr ""
+msgstr "Камера"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Отдалечаване"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Приближаване"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:969
@@ -400,82 +393,70 @@ msgid "EDITOR"
 msgstr "Редактор"
 
 #: ../simulation_parameters/common/input_options.json:71
-#, fuzzy
 msgid "ROTATE_RIGHT"
-msgstr "Светлина"
+msgstr "Завъртане надясно"
 
 #: ../simulation_parameters/common/input_options.json:75
-#, fuzzy
 msgid "ROTATE_LEFT"
-msgstr ". Количеството зависи"
+msgstr "Завъртане наляво"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr ""
+msgstr "Отмяна"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr ""
+msgstr "Възстановяване"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "PLACE_ORGANELLE"
-msgstr "Органели"
+msgstr "Добавяне на органел"
 
 #: ../simulation_parameters/common/input_options.json:91
-#, fuzzy
 msgid "REMOVE_ORGANELLE"
-msgstr "Органели"
+msgstr "Премахване на органел"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "CHEATS"
-msgstr ""
+msgstr "Кодове"
 
 #: ../simulation_parameters/common/input_options.json:103
-#, fuzzy
 msgid "ENABLE_EDITOR"
-msgstr "Редактор"
+msgstr "Активиране на редактора"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "SPAWN_GLUCOSE"
-msgstr "Глюкоза"
+msgstr "Създаване на глюкоза"
 
 #: ../simulation_parameters/common/input_options.json:111
-#, fuzzy
 msgid "SPAWN_AMMONIA"
-msgstr "Амоняк"
+msgstr "Създаване на амоняк"
 
 #: ../simulation_parameters/common/input_options.json:115
-#, fuzzy
 msgid "SPAWN_PHOSPHATES"
-msgstr "Фосфат"
+msgstr "Създаване на фосфат"
 
 #: ../simulation_parameters/common/input_options.json:124
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Разни"
 
 #: ../simulation_parameters/common/input_options.json:128
-#, fuzzy
 msgid "TOGGLE_FPS"
-msgstr "Не позволява поглъщане"
+msgstr "Показване на ЧКС"
 
 #: ../simulation_parameters/common/input_options.json:132
-#, fuzzy
 msgid "QUICK_SAVE"
 msgstr "Бърз запис"
 
 #: ../simulation_parameters/common/input_options.json:136
-#, fuzzy
 msgid "QUICK_LOAD"
-msgstr "Бърз запис"
+msgstr "Бързо зареждане"
 
 #: ../simulation_parameters/common/input_options.json:140
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Снимка на екрана"
 
 #: ../simulation_parameters/common/input_options.json:144
-#, fuzzy
 msgid "SHOW_HELP"
 msgstr "Помощ"
 
@@ -878,68 +859,67 @@ msgstr "популация в зоните:"
 msgid "LOADING"
 msgstr "Зареждане"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:331
-#, fuzzy
+#: ../src/engine/input/key_mapping/InputEventItem.cs:341
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Натиснете бутон..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:216
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Установен е конфликт с {0}.\n"
+"Искате ли да нулирате {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:59
 msgid "CTRL"
-msgstr ""
+msgstr "Ctrl"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:61
-#, fuzzy
 msgid "ALT"
-msgstr "АТФ"
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:63
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "Ляв бутон"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:78
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Десен бутон"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:79
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Среден бутон"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:80
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Колелце нагоре"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:81
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Колелце надолу"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:82
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Колелце наляво"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:83
-#, fuzzy
 msgid "WHEEL_RIGHT"
-msgstr "Светлина"
+msgstr "Колелце надясно"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Специален бутон №1"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Специален бутон №2"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Неизвестен бутон"
 
 #: ../src/general/HelpScreen.tscn:101
 msgid "CLOSE"
@@ -959,7 +939,7 @@ msgstr "Производителност"
 
 #: ../src/general/OptionsMenu.tscn:164
 msgid "INPUTS"
-msgstr ""
+msgstr "Контроли"
 
 #: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
@@ -1058,9 +1038,8 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Автоматична еволюция по време на игра"
 
 #: ../src/general/OptionsMenu.tscn:794
-#, fuzzy
 msgid "RESET_INPUTS"
-msgstr "Възстановете настройките по подразбиране?"
+msgstr "Нулиране на контролите"
 
 #: ../src/general/OptionsMenu.tscn:817
 msgid "PLAY_INTRO_VIDEO"
@@ -1125,14 +1104,12 @@ msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Сигурни ли сте, че искате да възстановите настройките по подразбиране?"
 
 #: ../src/general/OptionsMenu.tscn:1030
-#, fuzzy
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "По подразбиране"
+msgstr "Възстановете контролите по подразбиране?"
 
 #: ../src/general/OptionsMenu.tscn:1031
-#, fuzzy
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Сигурни ли сте, че искате да възстановите настройките по подразбиране?"
+msgstr "Сигурни ли сте, че искате да възстановите контролите по подразбиране?"
 
 #: ../src/general/OptionsMenu.tscn:1040
 msgid "CLOSE_OPTIONS"
@@ -1820,15 +1797,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr "/в секунда"
 
-#: ../src/microbe_stage/Microbe.cs:1481
+#: ../src/microbe_stage/Microbe.cs:1475
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешно плячкосване"
 
-#: ../src/microbe_stage/Microbe.cs:1488
+#: ../src/microbe_stage/Microbe.cs:1482
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.cs:1999
+#: ../src/microbe_stage/Microbe.cs:1993
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -1998,6 +1975,11 @@ msgstr "Външност"
 msgid "BEHAVIOR"
 msgstr "Поведение"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
+#, fuzzy
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr "..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "STRUCTURAL"
 msgstr "Строеж"
@@ -2045,6 +2027,11 @@ msgstr "Мека / Твърда"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3844
 msgid "COLOUR"
 msgstr "Цвят"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3989
+#, fuzzy
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4016
 msgid "CONFIRM_CAPITAL"
