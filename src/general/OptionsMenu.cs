@@ -1034,6 +1034,14 @@ public class OptionsMenu : Control
         inputGroupList.InitGroupList();
     }
 
+    private void OnOpenScreenshotFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
+        UpdateResetSaveButtonState();
+    }
+    
     private void OnCustomUsernameEnabledToggled(bool pressed)
     {
         Settings.Instance.CustomUsernameEnabled.Value = pressed;
@@ -1041,7 +1049,6 @@ public class OptionsMenu : Control
 
         UpdateResetSaveButtonState();
     }
-
     private void OnCustomUsernameTextChanged(string text)
     {
         if (text.Equals(Environment.UserName, StringComparison.CurrentCulture))
@@ -1099,5 +1106,13 @@ public class OptionsMenu : Control
         {
             languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
         }
+    }
+
+    private void OnOpenScreenshotFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
+        UpdateResetSaveButtonState();
     }
 }
