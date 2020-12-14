@@ -12,8 +12,6 @@ public class Jukebox : Node
     private const float FADE_LOW_VOLUME = 0.0f;
     private const float NORMAL_VOLUME = 1.0f;
 
-    private const float FADE_PER_TIME_UNIT = (FADE_LOW_VOLUME - NORMAL_VOLUME) / FADE_TIME;
-
     private static Jukebox instance;
 
     /// <summary>
@@ -247,45 +245,38 @@ public class Jukebox : Node
 
     private void AddFadeOut()
     {
-        var data = new TimedOperationData(FADE_TIME);
-        operations.Enqueue(new Operation(delta =>
-        {
-            data.TimeLeft -= delta;
-
-            bool finished = data.TimeLeft <= 0;
-
-            if (!finished)
-            {
-                AdjustVolume(FADE_PER_TIME_UNIT * delta);
-            }
-            else
-            {
-                SetVolume(FADE_LOW_VOLUME);
-            }
-
-            return finished;
-        }));
+        AddVolumeChange(FADE_TIME, linearVolume, FADE_LOW_VOLUME);
     }
 
     private void AddFadeIn()
     {
-        var data = new TimedOperationData(FADE_TIME);
+        AddVolumeChange(FADE_TIME, 0, NORMAL_VOLUME);
+    }
+
+    private void AddVolumeChange(float duration, float startVolume, float endVolume)
+    {
+        var data = new TimedOperationData(duration) { StartVolume = startVolume, EndVolume = endVolume };
+
         operations.Enqueue(new Operation(delta =>
         {
             data.TimeLeft -= delta;
 
-            bool finished = data.TimeLeft <= 0;
+            if (data.TimeLeft < 0)
+                data.TimeLeft = 0;
 
-            if (!finished)
+            float progress = (data.TotalDuration - data.TimeLeft) / data.TotalDuration;
+
+            if (progress >= 1.0f)
             {
-                AdjustVolume(-1 * FADE_PER_TIME_UNIT * delta);
-            }
-            else
-            {
-                SetVolume(NORMAL_VOLUME);
+                SetVolume(data.EndVolume);
+                return true;
             }
 
-            return finished;
+            float targetVolume = data.StartVolume + (data.EndVolume - data.StartVolume) * progress;
+
+            SetVolume(targetVolume);
+
+            return false;
         }));
     }
 
@@ -497,11 +488,17 @@ public class Jukebox : Node
 
     private class TimedOperationData
     {
+        public readonly float TotalDuration;
         public float TimeLeft;
+
+        // Data for timed operations dealing with volumes
+        public float StartVolume;
+        public float EndVolume;
 
         public TimedOperationData(float time)
         {
             TimeLeft = time;
+            TotalDuration = time;
         }
     }
 }
