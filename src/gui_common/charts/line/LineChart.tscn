@@ -1,32 +1,20 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
 [ext_resource path="res://src/gui_common/charts/line/LineChart.cs" type="Script" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/vSeparatorUp.png" type="Texture" id=6]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=7]
 
-[sub_resource type="DynamicFont" id=1]
-size = 14
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 1 )
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 12
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 2 )
-
-[sub_resource type="Theme" id=3]
-default_font = SubResource( 2 )
-
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 1, 258 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 258, 1 )
 
@@ -69,7 +57,7 @@ margin_right = 9.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 0, 15 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "y"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -122,14 +110,14 @@ custom_constants/margin_bottom = -7
 [node name="Labels" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/VBoxContainer/MarginContainer"]
 margin_top = 7.0
 margin_bottom = 693.0
-theme = SubResource( 3 )
+theme = SubResource( 1 )
 custom_constants/separation = 0
 
 [node name="Line" type="VSeparator" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate"]
 margin_right = 4.0
 margin_bottom = 686.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 4 )
+custom_styles/separator = SubResource( 2 )
 
 [node name="Drawer" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
 margin_left = 1.0
@@ -162,7 +150,7 @@ custom_constants/separation = 0
 margin_right = 1255.0
 margin_bottom = 4.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 5 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer"]
 margin_top = 4.0
@@ -179,7 +167,7 @@ custom_constants/margin_left = -3
 margin_left = -3.0
 margin_right = 4.0
 margin_bottom = 15.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -198,7 +186,7 @@ margin_left = 7.0
 margin_right = 1265.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-theme = SubResource( 3 )
+theme = SubResource( 1 )
 custom_constants/separation = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
@@ -213,7 +201,7 @@ margin_right = 1280.0
 margin_bottom = 701.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "x"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -622,7 +622,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void ResetStatisticsPanelSize()
     {
-        // Resets the statistics panel size to fit
+        // Resets the statistics panel size to fit with the contents
         statisticsPanel.RectSize = Vector2.Zero;
     }
 
@@ -678,8 +678,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
         atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
 
-        // Resets the statistics panel size to fit
-        statisticsPanel.RectSize = Vector2.Zero;
+        ResetStatisticsPanelSize();
 
         UpdateEnergyBalanceToolTips(energyBalance);
     }
@@ -846,11 +845,17 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void OnInvalidHexLocationSelected()
     {
+        if (selectedEditorTab != EditorTab.CellEditor)
+            return;
+
         GUICommon.Instance.PlayCustomSound(UnableToPlaceHexSound);
     }
 
     internal void OnInsufficientMPToPlaceHex()
     {
+        if (selectedEditorTab != EditorTab.CellEditor)
+            return;
+
         AnimationPlayer animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
         GUICommon.Instance.PlayCustomSound(UnableToPlaceHexSound);
@@ -1299,8 +1304,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             hpIndicator.Hide();
         }
 
-        // Resets the statistics panel size to fit
-        statisticsPanel.RectSize = Vector2.Zero;
+        ResetStatisticsPanelSize();
     }
 
     /// <remarks>

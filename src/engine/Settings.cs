@@ -1,3 +1,4 @@
+﻿using System;
 using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
@@ -131,7 +132,7 @@ public class Settings
     /// <remarks>
     ///   <para>
     ///     This should be made user configurable for different
-    ///     computers. The choises should probably be:
+    ///     computers. The choices should probably be:
     ///     0.0f, 0.020f, 0.040f, 0.1f, 0.25f
     ///   </para>
     /// </remarks>
@@ -187,6 +188,14 @@ public class Settings
     ///   When true cheats are enabled
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   The current controls of the game.
+    ///   It stores the godot actions like g_move_left and
+    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
+    /// </summary>
+    public SettingValue<InputDataList> CurrentControls { get; set; } =
+        new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
 
     /// <summary>
     ///   If false username will be set to System username
@@ -342,6 +351,8 @@ public class Settings
 
         ApplyLanguageSettings();
         ApplyWindowSettings();
+        ApplyInputSettings();
+        ApplyWindowSettings();
     }
 
     /// <summary>
@@ -382,6 +393,14 @@ public class Settings
 
         AudioServer.SetBusVolumeDb(gui, VolumeGUI);
         AudioServer.SetBusMute(gui, VolumeGUIMuted);
+    }
+
+    /// <summary>
+    ///   Applies the current controls to the InputMap.
+    /// </summary>
+    public void ApplyInputSettings()
+    {
+        CurrentControls.Value.ApplyToGodotInputMap();
     }
 
     /// <summary>
@@ -462,10 +481,26 @@ public class Settings
     /// </summary>
     private static Settings InitializeGlobalSettings()
     {
-        Settings settings = LoadSettings();
-        settings.ApplyAll(true);
+        try
+        {
+            Settings settings = LoadSettings();
 
-        return settings;
+            if (settings == null)
+            {
+                GD.PrintErr("Loading settings from file failed, using default settings");
+                settings = new Settings();
+            }
+
+            settings.ApplyAll(true);
+
+            return settings;
+        }
+        catch (Exception e)
+        {
+            // Godot doesn't seem to catch this nicely so we print the errors ourselves
+            GD.PrintErr("Error initializing global settings: ", e);
+            throw;
+        }
     }
 
     /// <summary>

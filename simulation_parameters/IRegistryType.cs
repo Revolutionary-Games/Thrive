@@ -1,4 +1,4 @@
-public interface IRegistryType
+﻿public interface IRegistryType
 {
     /// <summary>
     ///   The name referred to this registry object in json

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -197,6 +197,7 @@ public class MicrobeHUD : Node
     private Node extinctionBox;
     private Node winBox;
     private Tween panelsTween;
+    private Control winExtinctBoxHolder;
 
     private Array compoundBars;
 
@@ -230,6 +231,8 @@ public class MicrobeHUD : Node
     public override void _Ready()
     {
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
+
+        winExtinctBoxHolder = GetNode<Control>("WinExtinctBoxHolder");
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
@@ -464,20 +467,25 @@ public class MicrobeHUD : Node
         if (extinctionBox != null)
             return;
 
+        winExtinctBoxHolder.Show();
+
         extinctionBox = ExtinctionBoxScene.Instance();
-        GetNode("WinExtinctBoxHolder").AddChild(extinctionBox);
+        winExtinctBoxHolder.AddChild(extinctionBox);
     }
 
     public void ToggleWinBox()
     {
         if (winBox != null)
         {
+            winExtinctBoxHolder.Hide();
             winBox.QueueFree();
             return;
         }
 
+        winExtinctBoxHolder.Show();
+
         winBox = WinBoxScene.Instance();
-        GetNode("WinExtinctBoxHolder").AddChild(winBox);
+        winExtinctBoxHolder.AddChild(winBox);
 
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }

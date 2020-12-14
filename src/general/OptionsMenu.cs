@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -30,6 +30,9 @@ public class OptionsMenu : Control
 
     [Export]
     public NodePath PerformanceButtonPath;
+
+    [Export]
+    public NodePath InputsButtonPath;
 
     [Export]
     public NodePath MiscButtonPath;
@@ -103,6 +106,13 @@ public class OptionsMenu : Control
     [Export]
     public NodePath RunAutoEvoDuringGameplayPath;
 
+    // Inputs tab.
+    [Export]
+    public NodePath InputsTabPath;
+
+    [Export]
+    public NodePath InputGroupListPath;
+
     // Misc tab.
     [Export]
     public NodePath MiscTabPath;
@@ -159,6 +169,7 @@ public class OptionsMenu : Control
     private Button graphicsButton;
     private Button soundButton;
     private Button performanceButton;
+    private Button inputsButton;
     private Button miscButton;
 
     // Graphics tab
@@ -191,6 +202,10 @@ public class OptionsMenu : Control
     private OptionButton cloudInterval;
     private OptionButton cloudResolution;
     private CheckBox runAutoEvoDuringGameplay;
+
+    // Inputs tab
+    private Control inputsTab;
+    private InputGroupList inputGroupList;
 
     // Misc tab
     private Control miscTab;
@@ -246,6 +261,7 @@ public class OptionsMenu : Control
         Graphics,
         Sound,
         Performance,
+        Inputs,
         Miscellaneous,
     }
 
@@ -259,6 +275,7 @@ public class OptionsMenu : Control
         graphicsButton = GetNode<Button>(GraphicsButtonPath);
         soundButton = GetNode<Button>(SoundButtonPath);
         performanceButton = GetNode<Button>(PerformanceButtonPath);
+        inputsButton = GetNode<Button>(InputsButtonPath);
         miscButton = GetNode<Button>(MiscButtonPath);
 
         // Graphics
@@ -291,6 +308,11 @@ public class OptionsMenu : Control
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
         runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
+
+        // Inputs
+        inputsTab = GetNode<Control>(InputsTabPath);
+        inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
+        inputGroupList.OnControlsChanged += OnControlsChanged;
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -399,6 +421,9 @@ public class OptionsMenu : Control
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
 
+        // Input
+        BuildInputRebindControls();
+
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
@@ -458,6 +483,7 @@ public class OptionsMenu : Control
         graphicsTab.Hide();
         soundTab.Hide();
         performanceTab.Hide();
+        inputsTab.Hide();
         miscTab.Hide();
 
         switch (selection)
@@ -473,6 +499,10 @@ public class OptionsMenu : Control
             case SelectedOptionsTab.Performance:
                 performanceTab.Show();
                 performanceButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Inputs:
+                inputsTab.Show();
+                inputsButton.Pressed = true;
                 break;
             case SelectedOptionsTab.Miscellaneous:
                 miscTab.Show();
@@ -764,6 +794,15 @@ public class OptionsMenu : Control
         backConfirmationBox.Hide();
     }
 
+    private void InputDefaultsConfirm()
+    {
+        Settings.Instance.CurrentControls.Value = InputGroupList.GetDefaultControls();
+        Settings.Instance.ApplyInputSettings();
+        BuildInputRebindControls();
+
+        UpdateResetSaveButtonState();
+    }
+
     private void DefaultsConfirmSelected()
     {
         // Sets active settings to default values and applies them to the options controls.
@@ -924,6 +963,14 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    // Input Callbacks
+    private void OnControlsChanged(InputDataList data)
+    {
+        Settings.Instance.CurrentControls.Value = data;
+        Settings.Instance.ApplyInputSettings();
+        UpdateResetSaveButtonState();
+    }
+
     // Misc Button Callbacks
     private void OnIntroToggled(bool pressed)
     {
@@ -980,6 +1027,11 @@ public class OptionsMenu : Control
         gameProperties.TutorialState.Enabled = pressed;
 
         UpdateResetSaveButtonState();
+    }
+
+    private void BuildInputRebindControls()
+    {
+        inputGroupList.InitGroupList();
     }
 
     private void OnCustomUsernameEnabledToggled(bool pressed)

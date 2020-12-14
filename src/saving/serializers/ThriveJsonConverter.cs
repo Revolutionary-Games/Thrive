@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -45,6 +45,7 @@ public class ThriveJsonConverter : IDisposable
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
             new RandomConverter(),
+            new ConvexPolygonShapeConverter(),
 
             new CompoundCloudPlaneConverter(context),
 

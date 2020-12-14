@@ -1,4 +1,4 @@
-// This file contains all the different microbe stage spawner types
+﻿// This file contains all the different microbe stage spawner types
 // just so that they are in one place.
 
 using System;
@@ -188,6 +188,7 @@ public static class SpawnHelpers
         // Settings need to be applied before adding it to the scene
         var selectedMesh = chunkType.Meshes.Random(random);
         chunk.GraphicsScene = selectedMesh.LoadedScene;
+        chunk.ConvexPhysicsMesh = selectedMesh.LoadedConvexShape;
 
         if (chunk.GraphicsScene == null)
             throw new ArgumentException("couldn't find a graphics scene for a chunk");

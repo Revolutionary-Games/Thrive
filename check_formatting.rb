@@ -30,6 +30,8 @@ ONLY_FILE_LIST = 'files_to_check.txt'
 LOCALE_TEMP_SUFFIX = '.temp_check'
 MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
 
+EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
+
 OUTPUT_MUTEX = Mutex.new
 MSBUILD_MUTEX = Mutex.new
 
@@ -195,9 +197,9 @@ def handle_cs_file(path)
   errors = false
 
   # Check for BOM first
-  if file_begins_with_bom path
+  unless file_begins_with_bom path
     OUTPUT_MUTEX.synchronize do
-      error 'File begins with BOM'
+      error 'File should begin with UTF-8 BOM'
       errors = true
     end
   end
@@ -290,6 +292,14 @@ def handle_tscn_file(path)
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} probably has an embedded resource. "\
               "Length #{length} is over heuristic value of #{SCENE_EMBEDDED_LENGTH_HEURISTIC}"
+        errors = true
+      end
+    end
+
+    if line.include? EMBEDDED_FONT_SIGNATURE
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} contains embedded font. "\
+              "Don't embed fonts in scenes, instead place font resources in a separate .tres"
         errors = true
       end
     end
