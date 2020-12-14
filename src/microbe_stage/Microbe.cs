@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using Godot;
 using Newtonsoft.Json;
@@ -2137,6 +2138,30 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         microbe.hostileEngulfer = null;
     }
 
+    private double GetColonySum(string property)
+    {
+        return GetColonySum(typeof(Microbe).GetProperty(property));
+    }
+
+    private double GetColonySum(PropertyInfo property, bool fromAbove = false, double currValue = 0)
+    {
+        var myValue = (double)property.GetValue(this);
+        if (Colony == null)
+            return myValue;
+
+        if (Colony.Master == null || fromAbove)
+        {
+            currValue += myValue;
+
+            foreach (var colonyMember in Colony.BindingTo)
+                currValue = colonyMember.Microbe.GetColonySum(property, true, currValue);
+
+            return currValue;
+        }
+
+        return Colony.Master.Microbe.GetColonySum(property, false, currValue);
+    }
+
     private T GetColonyValue<T>([CallerMemberName] string property = "")
     {
         if (!colonyValues.ContainsKey(property))
@@ -2148,14 +2173,21 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         return (T)colonyValues[property];
     }
 
-    private void SetColonyValue<T>(T value, [CallerMemberName] string property = "")
+    private void SetColonyValue<T>(T value, [CallerMemberName] string property = "", bool fromAbove = false)
     {
         colonyValues[property] = value;
 
         if (Colony == null)
             return;
 
-        foreach (var colonyMember in Colony.BindingTo)
-            colonyMember.Microbe.SetColonyValue(value, property);
+        if (Colony.Master == null || fromAbove)
+        {
+            foreach (var colonyMember in Colony.BindingTo)
+                colonyMember.Microbe.SetColonyValue(value, property, true);
+        }
+        else
+        {
+            Colony.Master.Microbe.SetColonyValue(value, property, false);
+        }
     }
 }
