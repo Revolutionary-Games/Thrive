@@ -9,8 +9,8 @@ using Godot;
 public class Jukebox : Node
 {
     private const float FADE_TIME = 0.6f;
-    private const float FADE_LOW_VOLUME = -24.0f;
-    private const float NORMAL_VOLUME = 0.0f;
+    private const float FADE_LOW_VOLUME = 0.063f;
+    private const float NORMAL_VOLUME = 1.0f;
 
     private const float FADE_PER_TIME_UNIT = (FADE_LOW_VOLUME - NORMAL_VOLUME) / FADE_TIME;
 
@@ -149,11 +149,11 @@ public class Jukebox : Node
         }
     }
 
-    private void AdjustVolume(float adjustement)
+    private void AdjustVolume(float adjustment)
     {
         foreach (var player in audioPlayers)
         {
-            player.Player.VolumeDb += adjustement;
+            player.Player.VolumeDb += GD.Linear2Db(adjustment);
         }
     }
 
@@ -161,7 +161,7 @@ public class Jukebox : Node
     {
         foreach (var player in audioPlayers)
         {
-            player.Player.VolumeDb = volume;
+            player.Player.VolumeDb = GD.Linear2Db(volume);
         }
     }
 
