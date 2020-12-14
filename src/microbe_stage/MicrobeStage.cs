@@ -496,6 +496,9 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         StartMusic();
 
+        // Apply language settings (to fix bug, see #1885)
+        Settings.Instance.ApplyLanguageSettings();
+
         // Auto save is wanted once possible
         wantsToSave = true;
     }
