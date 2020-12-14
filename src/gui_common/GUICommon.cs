@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.

@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Read only context access to converters
 /// </summary>
 public interface ISaveContext

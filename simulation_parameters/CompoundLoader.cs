@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   Needed to make loading Compounds from json work

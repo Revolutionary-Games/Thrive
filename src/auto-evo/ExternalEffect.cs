@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 /// <summary>
 ///   Population effect external to the auto-evo simulation
