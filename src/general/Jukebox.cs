@@ -142,12 +142,6 @@ public class Jukebox : Node
         }
     }
 
-    private void AdjustVolume(float adjustment)
-    {
-        linearVolume += adjustment;
-        ApplyLinearVolume();
-    }
-
     private void SetVolume(float volume)
     {
         linearVolume = volume;
@@ -171,6 +165,9 @@ public class Jukebox : Node
         AddChild(player);
 
         player.Bus = "Music";
+
+        // Set initial volume to be what the volume should be currently
+        player.VolumeDb = GD.Linear2Db(linearVolume);
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
