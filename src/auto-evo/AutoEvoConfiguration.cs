@@ -15,9 +15,8 @@ public class AutoEvoConfiguration : IRegistryType
     public bool AllowNoMigration { get; private set; }
 
     /// <summary>
-    /// Unused
+    ///   Unused
     /// </summary>
-    /// <value>The name of the internal.</value>
     public string InternalName { get; set; }
 
     public void Check(string name)
