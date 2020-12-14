@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   This is a shot agent projectile, does damage on hitting a cell of different species

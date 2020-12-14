@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     /// <summary>
     ///   Step that calculate the populations for all species

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Helper class to contain the OnMouseEnter and OnMouseExit callback for the custom tooltips
