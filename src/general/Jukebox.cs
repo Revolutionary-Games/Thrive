@@ -8,8 +8,8 @@ using Godot;
 /// </summary>
 public class Jukebox : Node
 {
-    private const float FADE_TIME = 0.6f;
-    private const float FADE_LOW_VOLUME = 0.063f;
+    private const float FADE_TIME = 0.75f;
+    private const float FADE_LOW_VOLUME = 0.0f;
     private const float NORMAL_VOLUME = 1.0f;
 
     private const float FADE_PER_TIME_UNIT = (FADE_LOW_VOLUME - NORMAL_VOLUME) / FADE_TIME;
@@ -24,6 +24,11 @@ public class Jukebox : Node
     private readonly List<AudioPlayer> audioPlayers = new List<AudioPlayer>();
 
     private readonly Queue<Operation> operations = new Queue<Operation>();
+
+    /// <summary>
+    ///   The current jukebox volume level in linear volume range 0-1.0f
+    /// </summary>
+    private float linearVolume = 1.0f;
 
     private bool paused = true;
 
@@ -151,17 +156,23 @@ public class Jukebox : Node
 
     private void AdjustVolume(float adjustment)
     {
-        foreach (var player in audioPlayers)
-        {
-            player.Player.VolumeDb += GD.Linear2Db(adjustment);
-        }
+        linearVolume += adjustment;
+        ApplyLinearVolume();
     }
 
     private void SetVolume(float volume)
     {
+        linearVolume = volume;
+        ApplyLinearVolume();
+    }
+
+    private void ApplyLinearVolume()
+    {
+        var dbValue = GD.Linear2Db(linearVolume);
+
         foreach (var player in audioPlayers)
         {
-            player.Player.VolumeDb = GD.Linear2Db(volume);
+            player.Player.VolumeDb = dbValue;
         }
     }
 
