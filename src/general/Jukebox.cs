@@ -126,16 +126,6 @@ public class Jukebox : Node
             if (operations.Peek().Action(delta))
                 operations.Dequeue();
         }
-
-        // // Check if a stream has ended
-        // foreach (var player in audioPlayers)
-        // {
-        //     if (!player.Playing)
-        //     {
-        //         OnSomeTrackEnded();
-        //         break;
-        //     }
-        // }
     }
 
     private void UpdateStreamsPauseStatus()
@@ -264,7 +254,7 @@ public class Jukebox : Node
 
             bool finished = data.TimeLeft <= 0;
 
-            if (finished)
+            if (!finished)
             {
                 AdjustVolume(FADE_PER_TIME_UNIT * delta);
             }
@@ -286,7 +276,7 @@ public class Jukebox : Node
 
             bool finished = data.TimeLeft <= 0;
 
-            if (finished)
+            if (!finished)
             {
                 AdjustVolume(-1 * FADE_PER_TIME_UNIT * delta);
             }
