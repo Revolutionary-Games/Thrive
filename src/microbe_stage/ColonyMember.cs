@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -28,10 +28,13 @@ public class ColonyMember
 
     [JsonProperty]
     public ColonyMember Master { get; set; }
+
     [JsonProperty]
     public Vector3? OffsetToMaster { get; set; }
+
     [JsonProperty]
     public List<ColonyMember> BindingTo { get; set; }
+
     [JsonProperty]
     public Microbe Microbe { get; set; }
 

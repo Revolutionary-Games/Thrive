@@ -35,10 +35,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public ColonyMember Colony;
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
     [JsonProperty]
     internal Dictionary<string, object> ColonyValues = new Dictionary<string, object>();
+
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
@@ -205,10 +205,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public bool EngulfMode
     {
         get => this.GetColonyValue<bool>();
-        set
-        {
-            this.SetColonyValue(!Membrane.Type.CellWall && value);
-        }
+        set => this.SetColonyValue(!Membrane.Type.CellWall && value);
     }
 
     /// <summary>

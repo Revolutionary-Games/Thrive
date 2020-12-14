@@ -36,7 +36,8 @@ public static class BindingExtensions
         return GetColonyValueSum(microbe, typeof(Microbe).GetProperty(property));
     }
 
-    public static double GetColonyValueSum(this Microbe microbe, PropertyInfo property, bool fromAbove = false, double currValue = 0)
+    public static double GetColonyValueSum(
+        this Microbe microbe, PropertyInfo property, bool fromAbove = false, double currValue = 0)
     {
         var myValue = (double)property.GetValue(microbe);
         if (microbe.Colony == null)
@@ -66,7 +67,8 @@ public static class BindingExtensions
         return (T)microbe.ColonyValues[property];
     }
 
-    public static void SetColonyValue<T>(this Microbe microbe, T value, [CallerMemberName] string property = "", bool fromAbove = false)
+    public static void SetColonyValue<T>(
+        this Microbe microbe, T value, [CallerMemberName] string property = "", bool fromAbove = false)
     {
         microbe.ColonyValues[property] = value;
 
