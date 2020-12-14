@@ -2138,12 +2138,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         microbe.hostileEngulfer = null;
     }
 
-    private double GetColonySum(string property)
+    private double GetColonyValueSum(string property)
     {
-        return GetColonySum(typeof(Microbe).GetProperty(property));
+        return GetColonyValueSum(typeof(Microbe).GetProperty(property));
     }
 
-    private double GetColonySum(PropertyInfo property, bool fromAbove = false, double currValue = 0)
+    private double GetColonyValueSum(PropertyInfo property, bool fromAbove = false, double currValue = 0)
     {
         var myValue = (double)property.GetValue(this);
         if (Colony == null)
@@ -2154,12 +2154,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             currValue += myValue;
 
             foreach (var colonyMember in Colony.BindingTo)
-                currValue = colonyMember.Microbe.GetColonySum(property, true, currValue);
+                currValue = colonyMember.Microbe.GetColonyValueSum(property, true, currValue);
 
             return currValue;
         }
 
-        return Colony.Master.Microbe.GetColonySum(property, false, currValue);
+        return Colony.Master.Microbe.GetColonyValueSum(property, false, currValue);
     }
 
     private T GetColonyValue<T>([CallerMemberName] string property = "")
