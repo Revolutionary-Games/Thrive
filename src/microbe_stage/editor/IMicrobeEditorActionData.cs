@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 /// <summary>
 ///   This is its own interface to make JSON loading dynamic type more strict

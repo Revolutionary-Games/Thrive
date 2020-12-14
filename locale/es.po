@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-09 16:54+0200\n"
-"PO-Revision-Date: 2020-12-09 15:46+0000\n"
-"Last-Translator: Israel <isragmc@gmail.com>\n"
+"POT-Creation-Date: 2020-12-14 17:47+0200\n"
+"PO-Revision-Date: 2020-12-11 16:01+0000\n"
+"Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -370,11 +370,11 @@ msgstr "Auto-evolución falló"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "Habilidades"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Toxina de fuego"
 
 #: ../simulation_parameters/common/input_options.json:42
 #, fuzzy
@@ -383,15 +383,15 @@ msgstr "No puede engullir"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr ""
+msgstr "Cámara"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Alejar el zoom"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Hacer zoom"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
@@ -410,11 +410,11 @@ msgstr ". La eficiencia escala"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr ""
+msgstr "Deshacer"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr ""
+msgstr "Rehacer"
 
 #: ../simulation_parameters/common/input_options.json:87
 #, fuzzy
@@ -428,7 +428,7 @@ msgstr "Externos"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "CHEATS"
-msgstr ""
+msgstr "Trucos"
 
 #: ../simulation_parameters/common/input_options.json:103
 #, fuzzy
@@ -452,7 +452,7 @@ msgstr "Fosfato"
 
 #: ../simulation_parameters/common/input_options.json:124
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Diverso"
 
 #: ../simulation_parameters/common/input_options.json:128
 #, fuzzy
@@ -471,7 +471,7 @@ msgstr "Guardar Partida"
 
 #: ../simulation_parameters/common/input_options.json:140
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Tomar una captura de pantalla"
 
 #: ../simulation_parameters/common/input_options.json:144
 #, fuzzy
@@ -870,7 +870,7 @@ msgstr "Población en regiones:"
 msgid "LOADING"
 msgstr "Cargando"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:283
+#: ../src/engine/input/key_mapping/InputEventItem.cs:293
 #, fuzzy
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "..."
@@ -878,10 +878,12 @@ msgstr "..."
 #: ../src/engine/input/key_mapping/InputGroupList.cs:164
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Hay un conflicto con {0}.\n"
+"¿Quieres eliminar la entrada de {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 #, fuzzy
@@ -890,7 +892,7 @@ msgstr "ATP"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
@@ -1985,6 +1987,11 @@ msgstr "Apariencia"
 msgid "BEHAVIOR"
 msgstr "Comportamiento"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
+#, fuzzy
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr "..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "STRUCTURAL"
 msgstr "Estructural"
@@ -2033,6 +2040,11 @@ msgstr "Fluidez / Rigidez"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3780
 msgid "COLOUR"
 msgstr "Color"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3925
+#, fuzzy
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3952
 msgid "CONFIRM_CAPITAL"
