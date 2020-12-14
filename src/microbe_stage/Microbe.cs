@@ -2138,6 +2138,34 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         microbe.hostileEngulfer = null;
     }
 
+    private int CountColonyMembers(int runningValue = 0, bool fromAbove = false)
+    {
+        if (Colony == null)
+            return 0;
+
+        if (Colony.Master == null || fromAbove)
+        {
+            runningValue++;
+
+            foreach (var colonyMember in Colony.BindingTo)
+                runningValue = colonyMember.Microbe.CountColonyMembers(runningValue, true);
+
+            return runningValue;
+        }
+
+        return Colony.Master.Microbe.CountColonyMembers(0, false);
+    }
+
+    private double GetColonyValueAvg(string property)
+    {
+        return GetColonyValueAvg(typeof(Microbe).GetProperty(property));
+    }
+
+    private double GetColonyValueAvg(PropertyInfo property)
+    {
+        return GetColonyValueSum(property) / CountColonyMembers();
+    }
+
     private double GetColonyValueSum(string property)
     {
         return GetColonyValueSum(typeof(Microbe).GetProperty(property));
