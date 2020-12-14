@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-09 16:54+0200\n"
-"PO-Revision-Date: 2020-11-21 13:57+0000\n"
+"POT-Creation-Date: 2020-12-14 17:47+0200\n"
+"PO-Revision-Date: 2020-12-14 17:49+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -754,7 +754,7 @@ msgstr ""
 msgid "LOADING"
 msgstr "Ladataan"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:283
+#: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Paina jotain näppäintä..."
 
@@ -995,7 +995,6 @@ msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1030
-#, fuzzy
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
 
@@ -1748,6 +1747,10 @@ msgstr "Ulkonäkö"
 msgid "BEHAVIOR"
 msgstr "Käyttäytyminen"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr "Hae..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "STRUCTURAL"
 msgstr "Rakenteellinen"
@@ -1791,6 +1794,10 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3780
 msgid "COLOUR"
 msgstr "Väri"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3925
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Lajin nimi..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3952
 msgid "CONFIRM_CAPITAL"
