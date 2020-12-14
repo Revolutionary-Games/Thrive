@@ -495,8 +495,10 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         HUD.HideReproductionDialog();
 
         StartMusic();
-
-        // Apply language settings (to fix bug, see #1885)
+        
+        // Apply language settings here to be sure the stage doesn't continue to use the wrong language
+        // Because the stage scene tree being unattached during editor,
+        // if language was changed while in the editor, it doesn't properly propagate
         Settings.Instance.ApplyLanguageSettings();
 
         // Auto save is wanted once possible
