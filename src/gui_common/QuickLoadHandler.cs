@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Handles triggering quick load whenever the quick load key is pressed
