@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Singleton handling screenshot taking
 /// </summary>
-public class ScreenShotTaker : InputNode
+public class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker instance;
 

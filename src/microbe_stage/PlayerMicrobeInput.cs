@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Handles key input in the microbe stage
 /// </summary>
-public class PlayerMicrobeInput : InputNode
+public class PlayerMicrobeInput : NodeWithInput
 {
     private bool autoMove;
 

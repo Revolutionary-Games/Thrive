@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeStage : InputNode, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath GuidanceLinePath;

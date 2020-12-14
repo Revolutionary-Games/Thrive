@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles triggering quick load whenever the quick load key is pressed
 /// </summary>
-public class QuickLoadHandler : InputNode
+public class QuickLoadHandler : NodeWithInput
 {
     [Export]
     public NodePath DifferentVersionDialogPath;
