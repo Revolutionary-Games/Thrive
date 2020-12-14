@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   When a field or property has this attribute, that field is not entirely assigned on deserialize from JSON,

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   Wrapper class for settings options containing the value and a delegate that provides a callback for

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   When a class has this attribute it is loaded from a Godot scene on deserialization.
