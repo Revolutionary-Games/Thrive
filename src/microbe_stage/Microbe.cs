@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using Godot;
 using Newtonsoft.Json;
 
@@ -40,7 +38,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     [JsonProperty]
-    private Dictionary<string, object> colonyValues = new Dictionary<string, object>();
+    internal Dictionary<string, object> ColonyValues = new Dictionary<string, object>();
 
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
@@ -206,10 +204,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonIgnore]
     public bool EngulfMode
     {
-        get => GetColonyValue<bool>();
+        get => this.GetColonyValue<bool>();
         set
         {
-            SetColonyValue(!Membrane.Type.CellWall && value);
+            this.SetColonyValue(!Membrane.Type.CellWall && value);
         }
     }
 
@@ -2136,86 +2134,5 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         RemoveCollisionExceptionWith(microbe);
         microbe.hostileEngulfer = null;
-    }
-
-    private int CountColonyMembers(int runningValue = 0, bool fromAbove = false)
-    {
-        if (Colony == null)
-            return 0;
-
-        if (Colony.Master == null || fromAbove)
-        {
-            runningValue++;
-
-            foreach (var colonyMember in Colony.BindingTo)
-                runningValue = colonyMember.Microbe.CountColonyMembers(runningValue, true);
-
-            return runningValue;
-        }
-
-        return Colony.Master.Microbe.CountColonyMembers(0, false);
-    }
-
-    private double GetColonyValueAvg(string property)
-    {
-        return GetColonyValueAvg(typeof(Microbe).GetProperty(property));
-    }
-
-    private double GetColonyValueAvg(PropertyInfo property)
-    {
-        return GetColonyValueSum(property) / CountColonyMembers();
-    }
-
-    private double GetColonyValueSum(string property)
-    {
-        return GetColonyValueSum(typeof(Microbe).GetProperty(property));
-    }
-
-    private double GetColonyValueSum(PropertyInfo property, bool fromAbove = false, double currValue = 0)
-    {
-        var myValue = (double)property.GetValue(this);
-        if (Colony == null)
-            return myValue;
-
-        if (Colony.Master == null || fromAbove)
-        {
-            currValue += myValue;
-
-            foreach (var colonyMember in Colony.BindingTo)
-                currValue = colonyMember.Microbe.GetColonyValueSum(property, true, currValue);
-
-            return currValue;
-        }
-
-        return Colony.Master.Microbe.GetColonyValueSum(property, false, currValue);
-    }
-
-    private T GetColonyValue<T>([CallerMemberName] string property = "")
-    {
-        if (!colonyValues.ContainsKey(property))
-        {
-            colonyValues[property] =
-                Colony?.Master == null ? default : Colony.Master.Microbe.GetColonyValue<T>(property);
-        }
-
-        return (T)colonyValues[property];
-    }
-
-    private void SetColonyValue<T>(T value, [CallerMemberName] string property = "", bool fromAbove = false)
-    {
-        colonyValues[property] = value;
-
-        if (Colony == null)
-            return;
-
-        if (Colony.Master == null || fromAbove)
-        {
-            foreach (var colonyMember in Colony.BindingTo)
-                colonyMember.Microbe.SetColonyValue(value, property, true);
-        }
-        else
-        {
-            Colony.Master.Microbe.SetColonyValue(value, property, false);
-        }
     }
 }
