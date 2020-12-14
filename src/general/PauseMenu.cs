@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : InputControl
+public class PauseMenu : ControlWithInput
 {
     [Export]
     public string HelpCategory;

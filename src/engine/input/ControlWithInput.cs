@@ -3,7 +3,7 @@ using Godot;
 /// <summary>
 ///   Input class for a <see cref="Godot.Control"/>
 /// </summary>
-public class InputControl : Control
+public class ControlWithInput : Control
 {
     public override void _EnterTree()
     {

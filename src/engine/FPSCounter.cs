@@ -4,7 +4,7 @@
 ///   Shows FPS at top left of the screen
 ///   Toggled with F3
 /// </summary>
-public class FPSCounter : InputControl
+public class FPSCounter : ControlWithInput
 {
     private Label label;
 
