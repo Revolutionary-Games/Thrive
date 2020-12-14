@@ -2,7 +2,8 @@
 # frozen_string_literal: true
 
 # List of locales, edit this to add new ones:
-LOCALES = %w[bg ca cs de en es_AR es fi fr he id it ko lt pl pt_BR pt_PT ru tr zh_CN zh_TW].freeze
+LOCALES = %w[bg ca cs de en es_AR es fi fr he id it ko lt pl pt_BR pt_PT ru sr_Cyrl sv tr zh_CN zh_TW].freeze
+
 
 require 'optparse'
 require_relative '../RubySetupSystem/RubyCommon'
