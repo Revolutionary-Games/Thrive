@@ -1015,7 +1015,7 @@ public class OptionsMenu : Control
         {
             languageList.Add(locale);
         }
-    
+
         Settings.Instance.SelectedLanguage.Value = languageList[item];
         resetLanguageButton.Visible = true;
 
