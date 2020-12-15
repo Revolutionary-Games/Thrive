@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -75,6 +75,11 @@ public class PauseMenu : Control
         {
             if (Visible)
             {
+                // Do not close the window if the user is rebinding the input keys
+                // TODO: https://github.com/Revolutionary-Games/Thrive/issues/1888
+                if (InputGroupList.WasListeningForInput)
+                    return;
+
                 SetActiveMenu("primary");
 
                 EmitSignal(nameof(OnClosed));

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Used to access the color and icon of a bar from a provided dictionary

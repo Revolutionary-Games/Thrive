@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   A really hacky converter that returns can handle once for object

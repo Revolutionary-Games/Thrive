@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -8,11 +8,9 @@ using Godot;
 /// </summary>
 public class Jukebox : Node
 {
-    private const float FADE_TIME = 0.6f;
-    private const float FADE_LOW_VOLUME = -24.0f;
-    private const float NORMAL_VOLUME = 0.0f;
-
-    private const float FADE_PER_TIME_UNIT = (FADE_LOW_VOLUME - NORMAL_VOLUME) / FADE_TIME;
+    private const float FADE_TIME = 0.75f;
+    private const float FADE_LOW_VOLUME = 0.0f;
+    private const float NORMAL_VOLUME = 1.0f;
 
     private static Jukebox instance;
 
@@ -24,6 +22,11 @@ public class Jukebox : Node
     private readonly List<AudioPlayer> audioPlayers = new List<AudioPlayer>();
 
     private readonly Queue<Operation> operations = new Queue<Operation>();
+
+    /// <summary>
+    ///   The current jukebox volume level in linear volume range 0-1.0f
+    /// </summary>
+    private float linearVolume = 1.0f;
 
     private bool paused = true;
 
@@ -121,16 +124,6 @@ public class Jukebox : Node
             if (operations.Peek().Action(delta))
                 operations.Dequeue();
         }
-
-        // // Check if a stream has ended
-        // foreach (var player in audioPlayers)
-        // {
-        //     if (!player.Playing)
-        //     {
-        //         OnSomeTrackEnded();
-        //         break;
-        //     }
-        // }
     }
 
     private void UpdateStreamsPauseStatus()
@@ -149,19 +142,19 @@ public class Jukebox : Node
         }
     }
 
-    private void AdjustVolume(float adjustement)
-    {
-        foreach (var player in audioPlayers)
-        {
-            player.Player.VolumeDb += adjustement;
-        }
-    }
-
     private void SetVolume(float volume)
     {
+        linearVolume = volume;
+        ApplyLinearVolume();
+    }
+
+    private void ApplyLinearVolume()
+    {
+        var dbValue = GD.Linear2Db(linearVolume);
+
         foreach (var player in audioPlayers)
         {
-            player.Player.VolumeDb = volume;
+            player.Player.VolumeDb = dbValue;
         }
     }
 
@@ -172,6 +165,9 @@ public class Jukebox : Node
         AddChild(player);
 
         player.Bus = "Music";
+
+        // Set initial volume to be what the volume should be currently
+        player.VolumeDb = GD.Linear2Db(linearVolume);
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
@@ -246,45 +242,38 @@ public class Jukebox : Node
 
     private void AddFadeOut()
     {
-        var data = new TimedOperationData(FADE_TIME);
-        operations.Enqueue(new Operation(delta =>
-        {
-            data.TimeLeft -= delta;
-
-            bool finished = data.TimeLeft <= 0;
-
-            if (finished)
-            {
-                AdjustVolume(FADE_PER_TIME_UNIT * delta);
-            }
-            else
-            {
-                SetVolume(FADE_LOW_VOLUME);
-            }
-
-            return finished;
-        }));
+        AddVolumeChange(FADE_TIME, linearVolume, FADE_LOW_VOLUME);
     }
 
     private void AddFadeIn()
     {
-        var data = new TimedOperationData(FADE_TIME);
+        AddVolumeChange(FADE_TIME, 0, NORMAL_VOLUME);
+    }
+
+    private void AddVolumeChange(float duration, float startVolume, float endVolume)
+    {
+        var data = new TimedOperationData(duration) { StartVolume = startVolume, EndVolume = endVolume };
+
         operations.Enqueue(new Operation(delta =>
         {
             data.TimeLeft -= delta;
 
-            bool finished = data.TimeLeft <= 0;
+            if (data.TimeLeft < 0)
+                data.TimeLeft = 0;
 
-            if (finished)
+            float progress = (data.TotalDuration - data.TimeLeft) / data.TotalDuration;
+
+            if (progress >= 1.0f)
             {
-                AdjustVolume(-1 * FADE_PER_TIME_UNIT * delta);
-            }
-            else
-            {
-                SetVolume(NORMAL_VOLUME);
+                SetVolume(data.EndVolume);
+                return true;
             }
 
-            return finished;
+            float targetVolume = data.StartVolume + (data.EndVolume - data.StartVolume) * progress;
+
+            SetVolume(targetVolume);
+
+            return false;
         }));
     }
 
@@ -496,11 +485,17 @@ public class Jukebox : Node
 
     private class TimedOperationData
     {
+        public readonly float TotalDuration;
         public float TimeLeft;
+
+        // Data for timed operations dealing with volumes
+        public float StartVolume;
+        public float EndVolume;
 
         public TimedOperationData(float time)
         {
             TimeLeft = time;
+            TotalDuration = time;
         }
     }
 }

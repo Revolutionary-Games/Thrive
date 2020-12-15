@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -13,6 +13,13 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     [Export]
     [JsonProperty]
     public PackedScene GraphicsScene;
+
+    /// <summary>
+    ///   If this is null, a sphere shape is used as a default for collision detections.
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public ConvexPolygonShape ConvexPhysicsMesh;
 
     /// <summary>
     ///   The node path to the mesh of this chunk
@@ -143,7 +150,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         config.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
         var item = new ChunkConfiguration.ChunkScene
-            { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath };
+        {
+            LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
+            LoadedConvexShape = ConvexPhysicsMesh, ConvexShapePath = ConvexPhysicsMesh?.ResourcePath,
+        };
 
         config.Meshes.Add(item);
 
@@ -330,8 +340,15 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         // Apply physics shape
         var shape = GetNode<CollisionShape>("CollisionShape");
 
-        // This only works as long as the sphere shape type is not changed in the editor
-        ((SphereShape)shape.Shape).Radius = Radius;
+        if (ConvexPhysicsMesh == null)
+        {
+            shape.Shape = new SphereShape { Radius = Radius };
+        }
+        else
+        {
+            shape.Shape = ConvexPhysicsMesh;
+            shape.Transform = chunkMesh.Transform;
+        }
 
         // Needs physics callback when this is engulfable or damaging
         if (Damages > 0 || DeleteOnTouch || Size > 0)

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -9,14 +9,14 @@ using Newtonsoft.Json;
 ///   <para>
 ///     Actual concrete placed organelles are PlacedOrganelle
 ///     objects. There should be only a single OrganelleTemplate
-///     instance in existance for each organelle defined in
+///     instance in existence for each organelle defined in
 ///     organelles.json.
 ///   </para>
 /// </remarks>
 public class OrganelleDefinition : IRegistryType
 {
     /*
-    Organelle atributes:
+    Organelle attributes:
     mass:   How heavy an organelle is. Affects speed, mostly.
 
     mpCost: The cost (in mutation points) an organelle costs in the

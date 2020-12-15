@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   This is the last autoloaded class to perform some actions there
