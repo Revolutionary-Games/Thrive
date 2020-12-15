@@ -1008,7 +1008,14 @@ public class OptionsMenu : Control
 
     private void OnLanguageSettingSelected(int item)
     {
-        Settings.Instance.SelectedLanguage.Value = languageSelection.GetItemText(item).Split("(")[0];
+        languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
+            .ToList();
+        List<string> languageList = new List<string>();
+            foreach (var locale in languages)
+        {
+            languageList.Add(locale);
+        }
+        Settings.Instance.SelectedLanguage.Value = languageList[item];
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
