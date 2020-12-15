@@ -1011,10 +1011,11 @@ public class OptionsMenu : Control
         languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
             .ToList();
         List<string> languageList = new List<string>();
-            foreach (var locale in languages)
+        foreach (var locale in languages)
         {
             languageList.Add(locale);
         }
+        
         Settings.Instance.SelectedLanguage.Value = languageList[item];
         resetLanguageButton.Visible = true;
 
