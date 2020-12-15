@@ -8,7 +8,7 @@ public class TranslationSiteButton : Button
 {
     public override void _Process(float delta)
     {
-        if (this.Pressed)
+        if (Pressed)
             OS.ShellOpen("https://translate.revolutionarygamesstudio.com/");
     }
 }
