@@ -1113,6 +1113,6 @@ public class OptionsMenu : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
-        UpdateResetSaveButtonState();
+        
     }
 }
