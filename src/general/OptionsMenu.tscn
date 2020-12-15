@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
 [ext_resource path="res://src/engine/input/key_mapping/InputGroupList.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/TranslationSiteButton.cs" type="Script" id=5]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -400,32 +401,32 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 22.0
 text = "MASTER_VOLUME"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 32.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 54.0
 
 [node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_right = 464.0
+margin_right = 568.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 100.0
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_left = 468.0
-margin_right = 471.0
+margin_left = 572.0
+margin_right = 575.0
 margin_bottom = 22.0
 custom_styles/separator = SubResource( 4 )
 
 [node name="MasterMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_left = 475.0
-margin_right = 544.0
+margin_left = 579.0
+margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
@@ -433,7 +434,7 @@ text = "MUTE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 64.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 68.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -441,32 +442,32 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 78.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 100.0
 text = "MUSIC_VOLUME"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 110.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 132.0
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_right = 464.0
+margin_right = 568.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_left = 468.0
-margin_right = 471.0
+margin_left = 572.0
+margin_right = 575.0
 margin_bottom = 22.0
 custom_styles/separator = SubResource( 4 )
 
 [node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_left = 475.0
-margin_right = 544.0
+margin_left = 579.0
+margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
@@ -474,32 +475,32 @@ text = "MUTE"
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 142.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 164.0
 text = "AMBIANCE_VOLUME"
 align = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 174.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 196.0
 
 [node name="AmbianceVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_right = 464.0
+margin_right = 568.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_left = 468.0
-margin_right = 471.0
+margin_left = 572.0
+margin_right = 575.0
 margin_bottom = 22.0
 custom_styles/separator = SubResource( 4 )
 
 [node name="AmbianceMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_left = 475.0
-margin_right = 544.0
+margin_left = 579.0
+margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
@@ -507,32 +508,32 @@ text = "MUTE"
 
 [node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 206.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 228.0
 text = "SFX_VOLUME"
 align = 1
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 238.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 260.0
 
 [node name="SFXVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
-margin_right = 464.0
+margin_right = 568.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
-margin_left = 468.0
-margin_right = 471.0
+margin_left = 572.0
+margin_right = 575.0
 margin_bottom = 22.0
 custom_styles/separator = SubResource( 4 )
 
 [node name="SFXMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
-margin_left = 475.0
-margin_right = 544.0
+margin_left = 579.0
+margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
@@ -540,32 +541,32 @@ text = "MUTE"
 
 [node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 270.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 292.0
 text = "GUI_VOLUME"
 align = 1
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 302.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 324.0
 
 [node name="GUIVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
-margin_right = 464.0
+margin_right = 568.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
-margin_left = 468.0
-margin_right = 471.0
+margin_left = 572.0
+margin_right = 575.0
 margin_bottom = 22.0
 custom_styles/separator = SubResource( 4 )
 
 [node name="GUIMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
-margin_left = 475.0
-margin_right = 544.0
+margin_left = 579.0
+margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
@@ -573,7 +574,7 @@ text = "MUTE"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 334.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 338.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -581,7 +582,7 @@ __meta__ = {
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 348.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 370.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6"]
@@ -592,7 +593,7 @@ align = 1
 
 [node name="LanguagesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6"]
 margin_left = 103.0
-margin_right = 544.0
+margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 
@@ -606,6 +607,13 @@ text = "RESET"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 380.0
+margin_right = 648.0
+margin_bottom = 412.0
+text = "TRANSLATION_SITE"
+script = ExtResource( 5 )
 
 [node name="Performance" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
