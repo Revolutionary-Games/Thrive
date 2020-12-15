@@ -1084,6 +1084,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Play movement sound if one isn't already playing.
             if (!movementAudio.Playing)
                 movementAudio.Play();
+
+            movementAudio.UnitDb = GD.Linear2Db(totalMovement.Length() - 15.0f) * 8.0f - 230.0f;
         }
 
         // Rotation is applied in the physics force callback as that's
