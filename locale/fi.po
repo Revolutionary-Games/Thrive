@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-09 16:54+0200\n"
-"PO-Revision-Date: 2020-11-21 13:57+0000\n"
+"POT-Creation-Date: 2020-12-14 17:47+0200\n"
+"PO-Revision-Date: 2020-12-10 12:44+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -18,13 +18,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos "
+"solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -123,10 +125,20 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"Joka sukupolvi käytössäsi on 100 mutaatiopistettä (MP). Jokainen muutos "
+"(mutaatio) maksaa tietyn verran mutaatiopisteitä. Soluelinten lisääminen tai "
+"poistaminen maksaa MP:tä, mutta soluelinten poistaminen, jotka on lisätty "
+"nykyisessä editorisessiossa, antaa takaisin niiden kustannuksen. Soluelimen "
+"voi poistaa painamalla sitä oikealla hiirennapilla. Asetettavaa soluelintä "
+"voi kääntää painamalla A:ta tai D:tä."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"Joka kerta kun jatkat sukuasi, pääset mikrobieditoriin, jossa voit tehdä "
+"muutoksia lajiisi (lisäämällä, siirtämällä tai poistamalla soluelimiä) "
+"parantaaksesi sen menestystä. Jokainen vierailu editoriin mikrobitasolla "
+"edustaa evoluutiota, joka tapahtuu 100 miljoonan vuoden aikana."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
@@ -241,7 +253,6 @@ msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
-#, fuzzy
 msgid "MOVEMENT"
 msgstr "Liikkuminen"
 
@@ -279,7 +290,7 @@ msgstr "Aloita/lopeta nieleminen"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr "Camera"
+msgstr "Kamera"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
@@ -407,96 +418,96 @@ msgid "EPIPELAGIC"
 msgstr "Epipelaginen vyöhyke"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:148
-#: ../simulation_parameters/microbe_stage/biomes.json:343
-#: ../simulation_parameters/microbe_stage/biomes.json:470
-#: ../simulation_parameters/microbe_stage/biomes.json:661
-#: ../simulation_parameters/microbe_stage/biomes.json:856
-#: ../simulation_parameters/microbe_stage/biomes.json:1051
-#: ../simulation_parameters/microbe_stage/biomes.json:1174
-#: ../simulation_parameters/microbe_stage/biomes.json:1301
-#: ../simulation_parameters/microbe_stage/biomes.json:1445
-#: ../simulation_parameters/microbe_stage/biomes.json:1572
+#: ../simulation_parameters/microbe_stage/biomes.json:153
+#: ../simulation_parameters/microbe_stage/biomes.json:365
+#: ../simulation_parameters/microbe_stage/biomes.json:497
+#: ../simulation_parameters/microbe_stage/biomes.json:705
+#: ../simulation_parameters/microbe_stage/biomes.json:917
+#: ../simulation_parameters/microbe_stage/biomes.json:1129
+#: ../simulation_parameters/microbe_stage/biomes.json:1257
+#: ../simulation_parameters/microbe_stage/biomes.json:1389
+#: ../simulation_parameters/microbe_stage/biomes.json:1539
+#: ../simulation_parameters/microbe_stage/biomes.json:1671
 msgid "FLOATING_HAZARD"
 msgstr "Kelluva vaara"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:165
-#: ../simulation_parameters/microbe_stage/biomes.json:360
-#: ../simulation_parameters/microbe_stage/biomes.json:487
-#: ../simulation_parameters/microbe_stage/biomes.json:678
-#: ../simulation_parameters/microbe_stage/biomes.json:873
-#: ../simulation_parameters/microbe_stage/biomes.json:1068
-#: ../simulation_parameters/microbe_stage/biomes.json:1191
-#: ../simulation_parameters/microbe_stage/biomes.json:1318
-#: ../simulation_parameters/microbe_stage/biomes.json:1462
-#: ../simulation_parameters/microbe_stage/biomes.json:1589
+#: ../simulation_parameters/microbe_stage/biomes.json:170
+#: ../simulation_parameters/microbe_stage/biomes.json:382
+#: ../simulation_parameters/microbe_stage/biomes.json:514
+#: ../simulation_parameters/microbe_stage/biomes.json:722
+#: ../simulation_parameters/microbe_stage/biomes.json:934
+#: ../simulation_parameters/microbe_stage/biomes.json:1146
+#: ../simulation_parameters/microbe_stage/biomes.json:1274
+#: ../simulation_parameters/microbe_stage/biomes.json:1406
+#: ../simulation_parameters/microbe_stage/biomes.json:1556
+#: ../simulation_parameters/microbe_stage/biomes.json:1688
 msgid "SMALL_IRON_CHUNK"
 msgstr "Pieni rautalohkare"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:73
-#: ../simulation_parameters/microbe_stage/biomes.json:264
-#: ../simulation_parameters/microbe_stage/biomes.json:391
-#: ../simulation_parameters/microbe_stage/biomes.json:518
-#: ../simulation_parameters/microbe_stage/biomes.json:709
-#: ../simulation_parameters/microbe_stage/biomes.json:904
-#: ../simulation_parameters/microbe_stage/biomes.json:1099
-#: ../simulation_parameters/microbe_stage/biomes.json:1222
-#: ../simulation_parameters/microbe_stage/biomes.json:1366
-#: ../simulation_parameters/microbe_stage/biomes.json:1493
-#: ../simulation_parameters/microbe_stage/biomes.json:1620
+#: ../simulation_parameters/microbe_stage/biomes.json:77
+#: ../simulation_parameters/microbe_stage/biomes.json:285
+#: ../simulation_parameters/microbe_stage/biomes.json:417
+#: ../simulation_parameters/microbe_stage/biomes.json:549
+#: ../simulation_parameters/microbe_stage/biomes.json:757
+#: ../simulation_parameters/microbe_stage/biomes.json:969
+#: ../simulation_parameters/microbe_stage/biomes.json:1181
+#: ../simulation_parameters/microbe_stage/biomes.json:1309
+#: ../simulation_parameters/microbe_stage/biomes.json:1459
+#: ../simulation_parameters/microbe_stage/biomes.json:1591
+#: ../simulation_parameters/microbe_stage/biomes.json:1723
 msgid "BIG_IRON_CHUNK"
 msgstr "Iso rautalohkare"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:141
+#: ../simulation_parameters/microbe_stage/biomes.json:146
 msgid "VOLCANIC_VENT"
 msgstr "Syvänmeren savuttaja"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:196
-#: ../simulation_parameters/microbe_stage/biomes.json:540
-#: ../simulation_parameters/microbe_stage/biomes.json:731
-#: ../simulation_parameters/microbe_stage/biomes.json:926
-#: ../simulation_parameters/microbe_stage/biomes.json:1642
+#: ../simulation_parameters/microbe_stage/biomes.json:205
+#: ../simulation_parameters/microbe_stage/biomes.json:572
+#: ../simulation_parameters/microbe_stage/biomes.json:780
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1746
 msgid "MARINE_SNOW"
 msgstr "Leijuvat hiukkaset"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:332
+#: ../simulation_parameters/microbe_stage/biomes.json:354
 msgid "TIDEPOOL"
 msgstr "Vuorovesiallas"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:459
+#: ../simulation_parameters/microbe_stage/biomes.json:486
 msgid "BATHYPELAGIC"
 msgstr "Batypelaginen vyöhyke"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:654
+#: ../simulation_parameters/microbe_stage/biomes.json:698
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssaalivyöhyke"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:845
+#: ../simulation_parameters/microbe_stage/biomes.json:906
 msgid "MESOPELAGIC"
 msgstr "Mesopelaginen vyöhyke"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1040
+#: ../simulation_parameters/microbe_stage/biomes.json:1118
 msgid "COASTAL"
 msgstr "Rantavyöhyke"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1167
+#: ../simulation_parameters/microbe_stage/biomes.json:1250
 msgid "UNDERWATERCAVE"
 msgstr "Vedenalainen luola"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1290
+#: ../simulation_parameters/microbe_stage/biomes.json:1378
 msgid "ICESHELF"
 msgstr "Jäähylly"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1349
+#: ../simulation_parameters/microbe_stage/biomes.json:1441
 msgid "ICESHARD"
 msgstr "Jääsirpale"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1434
+#: ../simulation_parameters/microbe_stage/biomes.json:1528
 msgid "ESTUARY"
 msgstr "Estuaari"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1561
+#: ../simulation_parameters/microbe_stage/biomes.json:1660
 msgid "SEA_FLOOR"
 msgstr "Merenpohja"
 
@@ -754,7 +765,7 @@ msgstr ""
 msgid "LOADING"
 msgstr "Ladataan"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:283
+#: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Paina jotain näppäintä..."
 
@@ -995,9 +1006,8 @@ msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1030
-#, fuzzy
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "Palauta oletukset"
+msgstr "Palauta näppäimien oletukset?"
 
 #: ../src/general/OptionsMenu.tscn:1031
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
@@ -1748,6 +1758,10 @@ msgstr "Ulkonäkö"
 msgid "BEHAVIOR"
 msgstr "Käyttäytyminen"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr "Hae..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "STRUCTURAL"
 msgstr "Rakenteellinen"
@@ -1792,6 +1806,10 @@ msgstr ""
 msgid "COLOUR"
 msgstr "Väri"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3925
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Lajin nimi..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3952
 msgid "CONFIRM_CAPITAL"
 msgstr "VAHVISTA"
@@ -1818,7 +1836,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4071
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4085
 msgid "FOOD_CHAIN"
@@ -2214,7 +2232,7 @@ msgstr "Näytä tutoriaalit"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:93
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Aloita selviytyminen"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"

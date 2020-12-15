@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using Godot;
@@ -20,6 +20,7 @@ public class SimulationParameters : Node
     private readonly Dictionary<string, OrganelleDefinition> organelles;
     private readonly Dictionary<string, MusicCategory> musicCategories;
     private readonly Dictionary<string, HelpTexts> helpTexts;
+    private readonly AutoEvoConfiguration autoEvoConfiguration;
     private readonly List<NamedInputGroup> inputGroups;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
@@ -65,6 +66,9 @@ public class SimulationParameters : Node
 
         inputGroups = LoadListRegistry<NamedInputGroup>("res://simulation_parameters/common/input_options.json");
 
+        autoEvoConfiguration =
+            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/autoevo_parameters.json");
+
         GD.Print("SimulationParameters loading ended");
 
         CheckForInvalidValues();
@@ -76,6 +80,8 @@ public class SimulationParameters : Node
     public static SimulationParameters Instance => instance;
 
     public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
+
+    public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
     public NameGenerator NameGenerator { get; }
 
@@ -297,6 +303,7 @@ public class SimulationParameters : Node
         CheckRegistryType(inputGroups);
 
         NameGenerator.Check(string.Empty);
+        autoEvoConfiguration.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()

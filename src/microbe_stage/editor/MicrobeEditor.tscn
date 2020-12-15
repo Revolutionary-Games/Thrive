@@ -1566,7 +1566,7 @@ custom_colors/selection_color = Color( 1, 1, 1, 1 )
 custom_colors/cursor_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 selecting_enabled = false
-placeholder_text = "SEARCH_DOTDOTDOT"
+placeholder_text = "SEARCH_DOT_DOT_DOT"
 
 [node name="Structural" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection"]
 margin_right = 357.0
@@ -3923,7 +3923,7 @@ rect_min_size = Vector2( 240, 27 )
 focus_mode = 1
 mouse_filter = 1
 size_flags_vertical = 4
-placeholder_text = "SPECIES_NAME_DOTDOTDOT"
+placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
