@@ -3,374 +3,505 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-14 18:46+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2020-12-13 13:07+0000\n"
+"Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
+"Language-Team: Serbian (cyrillic) <https://translate."
+"revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
+"Language: sr_Cyrl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"W, A, S, D и миш за кретање. Е да пуцате ОксиТокси НТ ако имате отровна "
+"вацуоле. G за пребацивање режима гутања."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
+msgstr "Ваша ћелија користи ATP као извор енергије, ако се потроши, умрећете."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
+"Да бисте откључали уређивач и репродуковали ћелију, потребно је да сакупите "
+"амонијак (наранџасти облак) и фосфат (љубичасти облак)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
+"Такође можете да обузмете ћелије и бактерије и комаде гвожђа и делове ћелија "
+"који су мањи од вас када притиснеш G. То ће коштати додатни ATP и успориће "
+"вас. Не заборавите да притиснеш Г други пут да бисте престали да прождирете."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
+"Осморегулација кошта ATP, што значи да што је већа ваша ћелија, то вам је "
+"потребно више митохондрије или метаболосоми или рустицијанине (или "
+"цитоплазме, која врши гликолизу) да бисте избегли губитак АTP-а када "
+"мирујете."
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
+"У уређивачу има много oрганела да бисте могли да се развијате, омогућавајући "
+"широк спектар различитих стилова играња."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "За сада, ако вам популација падне на нулу, ви сте изумрли."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"Разни облак једињења су:\n"
+"\n"
+"Бела - глукоза\n"
+"Жута - водоник-сулфид\n"
+"Наранџа - амонијак\n"
+"Љубичаста - фосфат\n"
+"Руст Бровн - гвожђе\n"
+"\n"
+"Глукоза ствара ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"Водоник-сулфид се може претворити у глукозу помоћу хемопласта и "
+"хемосинтетизујућих протеина. Гвожђе се може претворити путем рустицианина у "
+"ATP."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Да бисте се репродуковали, потребно је да поделите сваки од својих органела "
+"на два дела. Органели требају амонијак и фосфат да се поделе на пола."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Али ако преживите двадесет генерација са популациија од , сматра се да сте "
+"победили у тренутној игри, након победе добијате искачући прозор и можете да "
+"наставите да играте како желите."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Будите опрезни јер се ваши конкуренти развијају заједно са вама. Сваки пут "
+"када уђете у уредник, они такође еволуирају."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"Прокариотске структуре\n"
+"\n"
+"Метаболосоми: Ствара ATP из глукозе\n"
+"\n"
+"Хемосинтизујући протеини: производи половину глукозе из водоник-сулфида као "
+"хемопласт, али такође врши гликолизу, заузима 1 хекс\n"
+"\n"
+"Тилакоиди: Производи 1/3 количине глукозе као нормални хлоропласт, али "
+"такође врши гликолизу и заузима 1 хекс\n"
+"\n"
+"Рустицијанин: Претвара гвожђе у ATP\n"
+"\n"
+"Нитрогеназа: Анаеробно претвара атмосферски азот и ATP у амонијак\n"
+"\n"
+"Цитоплазма: Има простор за складиштење и врши гликолизу (производи мале "
+"количине ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Спољне органеле\n"
+"\n"
+"Бич: брже покреће ћелију конзумирањем ATP-а\n"
+"\n"
+"Грабежљива Коса: Може се користити за убадање других ћелија"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Мембране везане органеле\n"
+"\n"
+"Нуклеус: Заузима 11 хексе и омогућава развој мембрана везаних органела. "
+"Такође удвостручује величину ваше ћелије. (Може се развити само једном)\n"
+"\n"
+"Митохондрион: Ствара ATP из глукозе и атмосферског О2. Много ефикасније од "
+"цитоплазме\n"
+"\n"
+"Хлоропласт: Ствара глукозу од сунчеве светлости и атмосферског CO2\n"
+"\n"
+"Хемопласт: Ствара глукозу од водоник-сулфида\n"
+"\n"
+"Пластид за фиксирање азота: Ствара амонијак од ATP и атмосферског азота и "
+"кисеоника\n"
+"\n"
+"Вацуоле: Чува 15 прикупљених једињења\n"
+"\n"
+"Отровна Вацуоле: Производе токсине (назване ОксиТокси НТ)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"Свака генерација имаш 100 мутациски поени (МП), а свака промена (или "
+"мутација) коштаће одређену количину тог МП. Додавање и уклањање органела "
+"кошта МП, међутим уклањање органела које су постављене у тренутној сесији "
+"мутације рефундира МП за ту органелу. Органелу можете уклонити десним кликом "
+"на њу. Органеле можете ротирати A и D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"Сваки пут када се размножавате, ући ћете у уређивач микроба, где можете да "
+"измените врсту (додавањем, премештањем или уклањањем органела) да бисте "
+"повећали успех своје врсте. Свака посета уреднику на сцени микроба "
+"представља 100 милиона година еволуције."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "Притисните дугме поништи у уређивачу да бисте исправили грешку"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
+"Забавна чињеница, Дидинијум и Парамецијум су уџбенички пример односа "
+"грабежљивог плена који се проучава деценијама, да ли сте сада Дидинијум или "
+"Парамецијум? Предатор или плен?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
+"Ево савета, токсини се могу користити за одбацивање других токсина од вас "
+"ако сте довољно брзи."
 
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
+"Ево савета, осморегулација кошта 1 ATP по секунди по хеку коју има ваша "
+"ћелија, сваки празан хек цитоплазме такође генерише 5 ATP у секунди, што "
+"значи да ако губите ATP услед осморегулације, само додајте неколико празних "
+"хекес цитоплазме или уклоните неке органеле ."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
+"Забавна чињеница, у стварном животу прокарионти имају нешто што се назива "
+"Биокомпаније и делују попут органела, а заправо се називају Полиедричне "
+"органеле."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
+"Забавна чињеница, метаболосом је оно што се назива полиедрична органела."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "Ево савета, понекад је најбоље само побећи од других ћелија."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
+"Ево савета, ако је ћелија приближно половине ваше величине, тада је можете "
+"прогутати."
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
+"Ево савета, Бактерије могу бити јаче него што се појаве, можда изгледају "
+"малено, али неке од њих могу да се укопају у вас и тако вас убију!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
+"Ево савета: Можете ловити друге врсте до изумирања ако нисте довољно "
+"пажљиви, а друге врсте их могу ловити до изумирања."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "СТВАРИ КОЈЕ СЕ МИГОЉИТИ!!"
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
+msgstr "Отопитела метела."
 
 #: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
+msgstr "Те плаве ћелије ипак."
 
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
+"Ево савета, биоми су више него само различито порекло, једињења у различитим "
+"биомима се понекад мрестају различитим брзинама."
 
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
+"Ево савета: Што више бичева имате, брже идете, врум врум, али кошта и ATP "
+"више"
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "Ево савета, можете гутати комаде гвожђа."
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
+"Ево савета, припремите се пре додавања језгра. Они су скупе у одржавању и у "
+"авансни трошак."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
+"Забавна чињеница, да ли сте знали да на планети Земљи постоји преко 8000 "
+"врста трепавица?"
 
 #: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
+"Забавна чињеница, Стентор је цилијар који се може истегнути и ухватити плен "
+"у некој врсти трубе попут уста која увлаче плен генеришући водене струје "
+"цилијама."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
+msgstr "Забавна чињеница, Дидинијум је цилијар који лови Парамецијум."
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
+"Забавна чињеница је да амеба лови и хвата плен „ногама“ направљеним од "
+"цитоплазме названих псеудоподи, коначно желимо да буду у Thrive-у."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
+"Ево савета, Пазите на веће ћелије и велике бактерије, није забавно да будеш "
+"пробављајен и они ће вас појести."
 
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
+"Вођа звучног тима Thrive-а направио је много песама које још нису додате у "
+"игру. Можете их чути или гледати како он компонује на свом ИоуТубе каналу "
+"Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
+"Ево савета, ако је ваша ћелија 150 хексе, можете прогутати велике гвоздене "
+"комаде."
 
 #: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
+"Thrive је замишљен као симулација ванземаљске планете, стога има смисла да "
+"ће већина створења која нађете бити повезана са једном или две друге врсте "
+"услед еволуције која се дешава око вас, погледајте да ли их можете "
+"препознати!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
+"Забавна чињеница, Thrive тим свако мало прави подкастове, требало би да их "
+"погледате!"
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
+msgstr "Забавна чињеница, Thrive је направљен са Godot, што је отвореног кода!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
+"Забавна чињеница, Један од првих прототипова за играње направио је наш "
+"сјајни програмер, UntrustedLife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "Покрет"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
-msgstr ""
+msgstr "Помери се лево"
 
 #: ../simulation_parameters/common/input_options.json:14
 msgid "MOVE_RIGHT"
-msgstr ""
+msgstr "Помери се десно"
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
-msgstr ""
+msgstr "Крени напред"
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr ""
+msgstr "Померите се уназад"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "Аутоматско кретање напред"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Ватрени токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
 msgid "TOGGLE_ENGULF"
-msgstr ""
+msgstr "Пребаците гутање"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr ""
+msgstr "Камера"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Одзумирати"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Зумирати"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
 msgid "EDITOR"
-msgstr ""
+msgstr "Уредник"
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "ROTATE_RIGHT"
-msgstr ""
+msgstr "Ротирајте десно"
 
 #: ../simulation_parameters/common/input_options.json:75
 msgid "ROTATE_LEFT"
-msgstr ""
+msgstr "Ротирајте лево"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr ""
+msgstr "Поништи"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr ""
+msgstr "Понови"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "PLACE_ORGANELLE"
-msgstr ""
+msgstr "Поставите органелу"
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "REMOVE_ORGANELLE"
-msgstr ""
+msgstr "Макните органелу"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "CHEATS"
-msgstr ""
+msgstr "Варање"
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "ENABLE_EDITOR"
-msgstr ""
+msgstr "Омогућите уређивач"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "SPAWN_GLUCOSE"
-msgstr ""
+msgstr "Поставите глукозу"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "SPAWN_AMMONIA"
-msgstr ""
+msgstr "Ставите амонијак"
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "SPAWN_PHOSPHATES"
-msgstr ""
+msgstr "Ставите фосфат"
 
 #: ../simulation_parameters/common/input_options.json:124
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Остало"
 
 #: ../simulation_parameters/common/input_options.json:128
 msgid "TOGGLE_FPS"
-msgstr ""
+msgstr "Пребацивање FPS приказа"
 
 #: ../simulation_parameters/common/input_options.json:132
 msgid "QUICK_SAVE"
-msgstr ""
+msgstr "Сачувајте брзо"
 
 #: ../simulation_parameters/common/input_options.json:136
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "Учитајте брзо"
 
 #: ../simulation_parameters/common/input_options.json:140
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Направите снимак екрана"
 
 #: ../simulation_parameters/common/input_options.json:144
 msgid "SHOW_HELP"
-msgstr ""
+msgstr "Покажите помоћ"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr ""
+msgstr "Дисање"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr ""
+msgstr "Гликолиза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr ""
+msgstr "Гликолиза цитоплазме"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Фотосинтеза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
+msgstr "Синтеза ОксиТокси"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr ""
+msgstr "Хемосинтеза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Аеробно Фиксирање Азота"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Анаеробна Фиксација Азота"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr ""
+msgstr "Хемолитоаутотрофија гвожђа"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr ""
+msgstr "Епипелагиц"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
 #: ../simulation_parameters/microbe_stage/biomes.json:153
@@ -384,7 +515,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1539
 #: ../simulation_parameters/microbe_stage/biomes.json:1671
 msgid "FLOATING_HAZARD"
-msgstr ""
+msgstr "Плутајућа опасност"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
 #: ../simulation_parameters/microbe_stage/biomes.json:170
@@ -398,7 +529,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1556
 #: ../simulation_parameters/microbe_stage/biomes.json:1688
 msgid "SMALL_IRON_CHUNK"
-msgstr ""
+msgstr "Мали гвоздени комад"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
 #: ../simulation_parameters/microbe_stage/biomes.json:285
@@ -412,11 +543,11 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1591
 #: ../simulation_parameters/microbe_stage/biomes.json:1723
 msgid "BIG_IRON_CHUNK"
-msgstr ""
+msgstr "Велики комад гвожђа"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:146
 msgid "VOLCANIC_VENT"
-msgstr ""
+msgstr "Вулкански отвор"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:205
 #: ../simulation_parameters/microbe_stage/biomes.json:572
@@ -424,47 +555,47 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:992
 #: ../simulation_parameters/microbe_stage/biomes.json:1746
 msgid "MARINE_SNOW"
-msgstr ""
+msgstr "Морски снег"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:354
 msgid "TIDEPOOL"
-msgstr ""
+msgstr "Плима и осека"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:486
 msgid "BATHYPELAGIC"
-msgstr ""
+msgstr "Батхипелагиц"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:698
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Абиссопелагиц"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:906
 msgid "MESOPELAGIC"
-msgstr ""
+msgstr "Месопелагиц"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1118
 msgid "COASTAL"
-msgstr ""
+msgstr "Приобални"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1250
 msgid "UNDERWATERCAVE"
-msgstr ""
+msgstr "Подводна Пећина"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1378
 msgid "ICESHELF"
-msgstr ""
+msgstr "Ледена Полица"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1441
 msgid "ICESHARD"
-msgstr ""
+msgstr "Крхотина Леда"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1528
 msgid "ESTUARY"
-msgstr ""
+msgstr "Естуарски Залив"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1660
 msgid "SEA_FLOOR"
-msgstr ""
+msgstr "Морско Дно"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:460
@@ -478,26 +609,26 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4265
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4759
 msgid "ATP"
-msgstr ""
+msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1907
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4290
 #: ../src/microbe_stage/MicrobeStage.tscn:1173
 msgid "AMMONIA"
-msgstr ""
+msgstr "Амонијак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
 #: ../src/microbe_stage/MicrobeStage.tscn:1227
 msgid "PHOSPHATE"
-msgstr ""
+msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1244
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3993
 #: ../src/microbe_stage/MicrobeStage.tscn:1281
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Водоник Сулфид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:51
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:435
@@ -511,18 +642,18 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4018
 #: ../src/microbe_stage/MicrobeStage.tscn:1119
 msgid "GLUCOSE"
-msgstr ""
+msgstr "Глукоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
 #: ../src/microbe_stage/MicrobeStage.tscn:1442
 msgid "OXYTOXY_NT"
-msgstr ""
+msgstr "ОксиТокси НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1577
 #: ../src/microbe_stage/MicrobeStage.tscn:1335
 msgid "IRON"
-msgstr ""
+msgstr "Гвожђе"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
@@ -531,7 +662,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4358
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4850
 msgid "OXYGEN"
-msgstr ""
+msgstr "Кисеоник"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:99
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:994
@@ -540,579 +671,595 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3751
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4053
 msgid "CARBON_DIOXIDE"
-msgstr ""
+msgstr "Угљен Диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4328
 msgid "NITROGEN"
-msgstr ""
+msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
 msgid "SUNLIGHT"
-msgstr ""
+msgstr "Сунчева Светлост"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2610
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2674
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2426
 msgid "PREDATORY_PILUS"
-msgstr ""
+msgstr "Грабежљива Коса"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1479
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1543
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2078
 msgid "RUSTICYANIN"
-msgstr ""
+msgstr "Рустицијанин"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1784
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1848
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
 msgid "NITROGENASE"
-msgstr ""
+msgstr "Нитрогеназа"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:117
 msgid "PROTOPLASM"
-msgstr ""
+msgstr "Протоплазма"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1146
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1210
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "Хемосинтетски Протеини"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2059
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2123
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2208
 msgid "OXYTOXISOME"
-msgstr ""
+msgstr "ОксиТоксизом"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:922
 msgid "THYLAKOIDS"
-msgstr ""
+msgstr "Тилакоиди"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1881
 msgid "METABOLOSOMES"
-msgstr ""
+msgstr "Метаболосоми"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4167
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4231
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr ""
+msgstr "Пластид за Фиксирање Азота"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3895
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3959
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2906
 msgid "CHEMOPLAST"
-msgstr ""
+msgstr "Хемопласт"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2346
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2410
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
 msgid "FLAGELLUM"
-msgstr ""
+msgstr "Бич"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4472
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4536
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
 msgid "VACUOLE"
-msgstr ""
+msgstr "Вацуоле"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3052
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3116
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2710
 msgid "MITOCHONDRION"
-msgstr ""
+msgstr "Митохондрија"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4661
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4725
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "TOXIN_VACUOLE"
-msgstr ""
+msgstr "Отровна Вацуоле"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3327
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3391
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2775
 msgid "CHLOROPLAST"
-msgstr ""
+msgstr "Хлоропласт"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:337
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:401
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1723
 msgid "CYTOPLASM"
-msgstr ""
+msgstr "Цитоплазма"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2862
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2926
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2645
 msgid "NUCLEUS"
-msgstr ""
+msgstr "Ћелијско Језгро"
 
 #: ../src/auto-evo/AutoEvoRun.cs:119
 msgid "ABORTED"
-msgstr ""
+msgstr "Прекинуто."
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "FINISHED"
-msgstr ""
+msgstr "Готов."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "NOT_RUNNING"
-msgstr ""
+msgstr "Не ради."
 
 #: ../src/auto-evo/AutoEvoRun.cs:135
 msgid "AUTOEVO_STEPS_DONE"
-msgstr ""
+msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "STARTING"
-msgstr ""
+msgstr "Почиње"
 
 #: ../src/auto-evo/AutoEvoRun.cs:280
 msgid "AUTOEVO_POPULATION_CHANGED"
-msgstr ""
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
-msgstr ""
+msgstr "популација:"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
-msgstr ""
+msgstr "претходна:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr ""
+msgstr "има мутацију"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
-msgstr ""
+msgstr "генетски код:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "се проширила на зоне:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} због слања: {1} популација из зона: {2}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr ""
+msgstr "популација у зонама:"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:124
 msgid "LOADING"
-msgstr ""
+msgstr "Учитавање"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr ""
+msgstr "Притисните тастер..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:164
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Постоји сукоб са {0}.\n"
+"Да ли желите да уклоните унос из {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "Леви миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Десни миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Средњи миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Померање нагоре"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Померите надоле"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Померите се улево"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
-msgstr ""
+msgstr "Померите се удесно"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Специјални 1 миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Специјални 2 миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Непознати миш"
 
 #: ../src/general/HelpScreen.tscn:101
 msgid "CLOSE"
-msgstr ""
+msgstr "Затвори"
 
 #: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Графика"
 
 #: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
-msgstr ""
+msgstr "Звук"
 
 #: ../src/general/OptionsMenu.tscn:152
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Перформансе"
 
 #: ../src/general/OptionsMenu.tscn:164
 msgid "INPUTS"
-msgstr ""
+msgstr "Уноси"
 
 #: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
-msgstr ""
+msgstr "Остало"
 
 #: ../src/general/OptionsMenu.tscn:215
 msgid "VSYNC"
-msgstr ""
+msgstr "В-синц"
 
 #: ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Цео екран"
 
 #: ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
+msgstr "Мултисампле анти-алиасинг:"
 
 #: ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr ""
+msgstr "(веће вредности погоршавају перформансе)"
 
 #: ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Резолуција:"
 
 #: ../src/general/OptionsMenu.tscn:295
 msgid "AUTO"
-msgstr ""
+msgstr "аутоматски"
 
 #: ../src/general/OptionsMenu.tscn:305
 msgid "MAX_FPS"
-msgstr ""
+msgstr "Максимум FPS:"
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Корекција далтониста:"
 
 #: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Хроматске аберације:"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "MASTER_VOLUME"
-msgstr ""
+msgstr "Главна јачина звука"
 
 #: ../src/general/OptionsMenu.tscn:431 ../src/general/OptionsMenu.tscn:472
 #: ../src/general/OptionsMenu.tscn:505 ../src/general/OptionsMenu.tscn:538
 #: ../src/general/OptionsMenu.tscn:571
 msgid "MUTE"
-msgstr ""
+msgstr "Пригуши звук"
 
 #: ../src/general/OptionsMenu.tscn:445
 msgid "MUSIC_VOLUME"
-msgstr ""
+msgstr "Јачина музике"
 
 #: ../src/general/OptionsMenu.tscn:478
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Амбијента јачина звука"
 
 #: ../src/general/OptionsMenu.tscn:511
 msgid "SFX_VOLUME"
-msgstr ""
+msgstr "Том од звучних ефеката"
 
 #: ../src/general/OptionsMenu.tscn:544
 msgid "GUI_VOLUME"
-msgstr ""
+msgstr "Том од интерфејс"
 
 #: ../src/general/OptionsMenu.tscn:589
 msgid "LANGUAGE"
-msgstr ""
+msgstr "Језик:"
 
 #: ../src/general/OptionsMenu.tscn:604 ../src/general/OptionsMenu.tscn:981
 msgid "RESET"
-msgstr ""
+msgstr "Ресетовати"
 
 #: ../src/general/OptionsMenu.tscn:627
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Облак једињења"
 
 #: ../src/general/OptionsMenu.tscn:642
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
+"Минимум Интервал од Симулације\n"
+"Облака:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:693
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
+msgstr "(веће вредности побољшавају перформансе)"
 
 #: ../src/general/OptionsMenu.tscn:686
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Делитељ Облачне Резолуције:"
 
 #: ../src/general/OptionsMenu.tscn:728
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
+msgstr "Покрените аутоматску еволуцију током играња"
 
 #: ../src/general/OptionsMenu.tscn:794
 msgid "RESET_INPUTS"
-msgstr ""
+msgstr "Ресетујте Уноси"
 
 #: ../src/general/OptionsMenu.tscn:817
 msgid "PLAY_INTRO_VIDEO"
-msgstr ""
+msgstr "Пусти уводни видео"
 
 #: ../src/general/OptionsMenu.tscn:826
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
+msgstr "Пустите уводни видео за микробе на Новој Игри"
 
 #: ../src/general/OptionsMenu.tscn:835
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Аутоматско чување током игре"
 
 #: ../src/general/OptionsMenu.tscn:846
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Количина аутоматског чувања да задржати:"
 
 #: ../src/general/OptionsMenu.tscn:874
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Количина брзог чувања да задржати:"
 
 #: ../src/general/OptionsMenu.tscn:900
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "Прикажи водиче (у новим играма)"
 
 #: ../src/general/OptionsMenu.tscn:908
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "Прикажи водиче (у тренутној игри)"
 
 #: ../src/general/OptionsMenu.tscn:924
 msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
+msgstr "Укључи тастери за варања"
 
 #: ../src/general/OptionsMenu.tscn:936
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
+msgstr "Користите прилагођено корисничко име"
 
 #: ../src/general/OptionsMenu.tscn:947
 msgid "CUSTOM_USERNAME"
-msgstr ""
+msgstr "Корисничко име:"
 
 #: ../src/general/OptionsMenu.tscn:971 ../src/general/PauseMenu.tscn:132
 #: ../src/gui_common/MainMenu.tscn:306 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/general/OptionsMenu.tscn:992 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
-msgstr ""
+msgstr "Сачувати"
 
 #: ../src/general/OptionsMenu.tscn:1008
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
+msgstr "Подразумеване вредности"
 
 #: ../src/general/OptionsMenu.tscn:1020
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Ресетуј до почетног?"
 
 #: ../src/general/OptionsMenu.tscn:1021
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
+"Да ли сте сигурни да желите да вратите СВА подешавања на подразумеване "
+"вредности?"
 
 #: ../src/general/OptionsMenu.tscn:1030
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr ""
+msgstr "Ресетовати уносе на подразумеване вредности?"
 
 #: ../src/general/OptionsMenu.tscn:1031
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
+"Да ли сте сигурни да желите да вратите поставке уноса на подразумеване "
+"вредности?"
 
 #: ../src/general/OptionsMenu.tscn:1040
 msgid "CLOSE_OPTIONS"
-msgstr ""
+msgstr "Затворити опције?"
 
 #: ../src/general/OptionsMenu.tscn:1064
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
+"Имате несачуване промене које ће бити одбачене.\n"
+"Да ли желите да наставите?"
 
 #: ../src/general/OptionsMenu.tscn:1095
 msgid "SAVE_AND_CONTINUE"
-msgstr ""
+msgstr "Сачувај и настави"
 
 #: ../src/general/OptionsMenu.tscn:1104
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Одбаци и настави"
 
 #: ../src/general/OptionsMenu.tscn:1120
 msgid "CANCEL"
-msgstr ""
+msgstr "Отказати"
 
 #: ../src/general/OptionsMenu.tscn:1131 ../src/general/OptionsMenu.tscn:1152
 msgid "ERROR"
-msgstr ""
+msgstr "Грешка"
 
 #: ../src/general/OptionsMenu.tscn:1132 ../src/general/OptionsMenu.tscn:1153
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Грешка: Није успело чување нових поставки у конфигурационој датотеци."
 
 #: ../src/general/PauseMenu.tscn:56
 msgid "RESUME"
-msgstr ""
+msgstr "Наставити"
 
 #: ../src/general/PauseMenu.tscn:63
 msgid "SAVE_GAME"
-msgstr ""
+msgstr "Сачувај Игру"
 
 #: ../src/general/PauseMenu.tscn:70 ../src/gui_common/MainMenu.tscn:162
 msgid "LOAD_GAME"
-msgstr ""
+msgstr "Учитајте Игру"
 
 #: ../src/general/PauseMenu.tscn:78
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4212
 msgid "STATISTICS"
-msgstr ""
+msgstr "Статистика"
 
 #: ../src/general/PauseMenu.tscn:85
 msgid "HELP"
-msgstr ""
+msgstr "Помоћ"
 
 #: ../src/general/PauseMenu.tscn:92 ../src/gui_common/MainMenu.tscn:174
 msgid "OPTIONS"
-msgstr ""
+msgstr "Опције"
 
 #: ../src/general/PauseMenu.tscn:99
 msgid "RETURN_TO_MENU"
-msgstr ""
+msgstr "Вратите се у Мени"
 
 #: ../src/general/PauseMenu.tscn:106
 msgid "EXIT"
-msgstr ""
+msgstr "Изаћи"
 
 #: ../src/gui_common/MainMenu.cs:323
 msgid "OK"
-msgstr ""
+msgstr "У реду"
 
 #: ../src/gui_common/MainMenu.cs:324
 msgid "Cancel"
-msgstr ""
+msgstr "Отказати"
 
 #: ../src/gui_common/MainMenu.tscn:147
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Нова игра"
 
 #: ../src/gui_common/MainMenu.tscn:186
 msgid "TOOLS"
-msgstr ""
+msgstr "Алати"
 
 #: ../src/gui_common/MainMenu.tscn:198
 msgid "EXTRAS"
-msgstr ""
+msgstr "Додатне"
 
 #: ../src/gui_common/MainMenu.tscn:210
 msgid "CREDITS"
-msgstr ""
+msgstr "Кредити"
 
 #: ../src/gui_common/MainMenu.tscn:222
 msgid "QUIT"
-msgstr ""
+msgstr "Одустати"
 
 #: ../src/gui_common/MainMenu.tscn:245
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Слободна-Градња Уређивач Микроба"
 
 #: ../src/gui_common/MainMenu.tscn:345
 msgid "GLES2_MODE_WARNING"
-msgstr ""
+msgstr "Упозорење у режиму GLES2"
 
 #: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
+"Користите Thrive витх GLES2. Ово је озбиљно непроверено и вероватно ће "
+"изазвати проблеме. Покушајте да ажурирате управљачке програме за видео и / "
+"или присилите АМД или Нвидиа графику да се користи за покретање програма "
+"Thrive."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:17
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Сачувај има другачију верзију"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"Верзија спремишта које покушавате да учитате не одговара верзији игре.\n"
+"Молимо вас учитајте спремање ручно кроз мени."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Отворите мени"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:88
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Отворите екран помоћи"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Хоћете ли бујати?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Завршите уређивање и вратите се у окружење"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:110
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Промените симетрију"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Опозови последњу акцију"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:122
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Понови последњу акцију"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Направите нови микроб"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:148
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:211
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Ригидност Мембране"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:262
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5210
@@ -1122,7 +1269,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6302
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6635
 msgid "MOBILITY"
-msgstr ""
+msgstr "Мобилност"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:293
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5301
@@ -1132,11 +1279,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6393
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6726
 msgid "HEALTH"
-msgstr ""
+msgstr "Здравље"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:316
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Чвршћа мембрана је отпорнија на оштећења, али ће исто отежати кретање за "
+"ћелију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:428
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:668
@@ -1149,7 +1298,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4258
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4752
 msgid "TURNS"
-msgstr ""
+msgstr "Претвара"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:453
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:693
@@ -1163,7 +1312,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4777
 msgid "INTO"
-msgstr ""
+msgstr "у"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:507
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:788
@@ -1182,7 +1331,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4591
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4894
 msgid "STORAGE"
-msgstr ""
+msgstr "Складиште"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:538
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:819
@@ -1207,53 +1356,65 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6333
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6666
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Цена осморегулације"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:561
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
+"Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и "
+"других супстанци растворених у води која испуњава унутрашњост ћелије. Једна "
+"од функција коју обавља је ферментација, претварање глукозе у ATP енергију. "
+"Да би ћелије којима недостају органели имали напреднији метаболизам, на то "
+"се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и "
+"за повећање величине ћелије."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:721
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
 msgid "DOT_RATE_SCALES"
-msgstr ""
+msgstr ". Стопа скалира се"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:734
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
 msgid "WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "са концентрацијом"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:741
 msgid "OXYGEN_DOT"
-msgstr ""
+msgstr "Кисеоник."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:842
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
+"Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању "
+"да претворе глукозу у ATP много већом брзином него што се то може учинити у "
+"цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је "
+"кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће "
+"брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у "
+"цитоплазми, околна течност врши одређену ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:858
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1946
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Тхилакоид"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:949
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3418
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3706
 msgid "PRODUCES"
-msgstr ""
+msgstr "Производи"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3443
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3731
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ""
+msgstr ". Стопа скалира се са"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:987
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3456
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3744
 msgid "CONCENTRATION_OF"
-msgstr ""
+msgstr "концентрацијом"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1012
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1663
@@ -1261,158 +1422,226 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4351
 msgid "AND"
-msgstr ""
+msgstr "и"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3494
 msgid "INTENSITY_OF"
-msgstr ""
+msgstr "интензитет"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1032
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3501
 #: ../src/microbe_stage/MicrobeStage.tscn:897
 msgid "LIGHT"
-msgstr ""
+msgstr "Светлост"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1130
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
+"Тилакоиди су грозди протеина и фотосензибилних пигмената. Пигменти су у "
+"стању да користе енергију светлости за производњу глукозе из воде и "
+"гасовитог угљен-диоксида у процесу названом Фотосинтеза. Ови пигменти су "
+"такође оно што им даје препознатљиву боју. Стопа њихове производње глукозе "
+"скалира се са концентрацијом угљен-диоксида и интензитетом светлости. Пошто "
+"су тилакоиди суспендовани директно у цитоплазми, околна течност врши "
+"ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4041
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr ". Стопа скалира се са концентрацијом"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1304
 msgid "CARBON"
-msgstr ""
+msgstr "Угљеник"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1311
 msgid "DIOXIDE"
-msgstr ""
+msgstr "Диоксид"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1329
 msgid "ALSO_TURNS"
-msgstr ""
+msgstr "Такође претвара"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1463
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
+"Хемосинтетизујући протеини су мале групе протеина у цитоплазми које су у "
+"стању да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у "
+"процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње "
+"глукозе скалира се са концентрацијом угљен-диоксида. Пошто су протеини "
+"хемосинтезе суспендовани директно у цитоплазми, околна течност врши "
+"ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1768
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
+"Рустицијанин је протеин који може да користи гасовити угљен-диоксид и "
+"кисеоник за оксидацију гвожђа из једног хемијског стања у друго. Овај "
+"процес, назван Респирација гвожђа, ослобађа енергију коју ћелија тада може "
+"да сакупи."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3193
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4308
 msgid "DOT_RATE"
-msgstr ""
+msgstr ". Стопа"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1938
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3206
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4843
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "скалира се са концентрацијом"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2043
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
+"Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију "
+"у облику ATP за производњу амонијака, кључног хранљивог састојка за раст "
+"ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је "
+"нитрогеназа суспендована директно у цитоплазми, околна течност врши "
+"ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4784
 msgid "OXYTOXY"
-msgstr ""
+msgstr "ОксиТокси"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2200
 msgid "DOT_CAN_RELEASE"
-msgstr ""
+msgstr ". Може ослободити"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2212
 msgid "TOXINS_BY_PRESSING_E"
-msgstr ""
+msgstr "токсине притиском на E. Стопа скалира се са"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2330
 msgid "OXYTOXISOME_DESC"
 msgstr ""
+"Модификовани метаболосом одговоран за производњу примитивног облика "
+"токсичног агенса ОксиТокси НТ."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2437
 msgid "USES"
-msgstr ""
+msgstr "Користи"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2462
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr ""
+msgstr "за повећање кретања"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2474
 msgid "SPEED_OF_THE_CELL"
-msgstr ""
+msgstr "брзину ћелије."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2509
 msgid "SPEED"
-msgstr ""
+msgstr "Брзина"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2594
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
+"Бич (множина: бичеви) је сноп протеинских влакана који се протеже од "
+"ћелијске мембране која може да користи ATP да би се поваљао и покренуо "
+"ћелију у правцу."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2720
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr ""
+msgstr "Избодите друге ћелије са ово."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2736
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2800
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2490
 msgid "CILIA"
-msgstr ""
+msgstr "Цилија"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2846
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5074
 msgid "TO_BE_IMPLEMENTED"
-msgstr ""
+msgstr "Да се имплементира."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2947
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
+"Омогућава еволуцију сложенијих,\n"
+"мембране везане органеле. Много кошта\n"
+"ATP-а за одржавање. Ово је неповратно\n"
+"еволуција."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3036
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
+"Дефинитивна карактеристика еукариотских ћелија. Језгро такође укључује "
+"ендоплазматски ретикулум и тело голгија. Еволуција прокарионтских ћелија је "
+"развити систем унутрашњих мембрана, урађен асимилацијом другог прокариота у "
+"себи. То им омогућава да раздвоје или одбаце различите процесе који се "
+"дешавају унутар ћелије и спречава их да се преклапају. То омогућава да "
+"њихови нови мембрански органели буду много сложенији, ефикаснији и "
+"специјализованији него да слободно лебде у цитоплазми. Међутим, ово долази "
+"по цену да ћелија буде много већа и да јој треба пуно енергије за одржавање."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3311
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
+"Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска "
+"структура испуњена протеинима и ензимима. То је прокариот који је асимилирао "
+"за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у "
+"ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у "
+"процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да "
+"би функционисао, а нижи нивои кисеоника у околини успориће брзину његове "
+"производње ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3599
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
+"Хлоропласт је двострука мембранска структура која садржи фотосензибилне "
+"пигменте сложене заједно у опнене врећице. То је прокариот који је "
+"асимилирао за употребу од свог еукариотског домаћина. Пигменти у хлоропласту "
+"су способни да користе енергију светлости за производњу глукозе из воде и "
+"гасовитог угљен-диоксида у процесу названом Фотосинтеза. Ови пигменти су "
+"такође оно што му даје препознатљиву боју. Стопа његове производње глукозе "
+"скалира се са концентрацијом угљен-диоксида и интензитетом светлости."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3615
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3679
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2840
 msgid "THERMOPLAST"
-msgstr ""
+msgstr "Термопласт"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3781
 msgid "TEMPERATURE"
-msgstr ""
+msgstr "Температура"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3879
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
+"Термопласт још није имплементиран. Термопласт је двострука мембранска "
+"структура која садржи термосензибилне пигменте сложене заједно у мембранске "
+"врећице. То је прокариот који је асимилирао за употребу од свог еукариотског "
+"домаћина. Пигменти у термопласту могу да користе енергију топлотних разлика "
+"у околини за производњу глукозе из воде и гасовитог угљен-диоксида у процесу "
+"који се назива термосинтеза. Стопа његове производње глукозе скалира се са "
+"концентрацијом угљен-диоксида и температуром."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4151
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
+"Хемопласт је двострука мембранска структура која садржи протеине који су "
+"способни да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу "
+"у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове "
+"производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4456
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
+"Пластид за фиксирање азота је протеин који може да користи гасовити азот и "
+"кисеоник и ћелијску енергију у облику ATP за производњу амонијака, кључног "
+"хранљивог састојка за раст ћелија. Ово је процес који се назива аеробна "
+"фиксација азота."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4557
 msgid "INREASE_STORAGE_SPACE"
-msgstr ""
+msgstr "Повећава простор за складиштење ћелије."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4645
 msgid "VACUOLE_DESCRIPTION"
@@ -1549,31 +1778,31 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "MICROBE_PATCH_LABEL"
-msgstr ""
+msgstr "Зона: {0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:624
 msgid "STUFF_AT"
-msgstr ""
+msgstr "Ствари у {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeStage.cs:448
 msgid "PLAYER_REPRODUCED"
-msgstr ""
+msgstr "Играч се репродуковао"
 
 #: ../src/microbe_stage/MicrobeStage.cs:555
 msgid "PLAYER_DIED"
-msgstr ""
+msgstr "играч је умро"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:413
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "На Курсору:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:437
 msgid "NOTHING_HERE"
-msgstr ""
+msgstr "Ништа овде"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:461
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "Једињења:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:499
 msgid "SPECIES_COLON"
@@ -1714,8 +1943,9 @@ msgid "BEHAVIOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
+#, fuzzy
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr ""
+msgstr "Притисните тастер..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "STRUCTURAL"
@@ -1762,8 +1992,9 @@ msgid "COLOUR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3925
+#, fuzzy
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr ""
+msgstr "Притисните тастер..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3952
 msgid "CONFIRM_CAPITAL"
@@ -2199,4 +2430,3 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-
