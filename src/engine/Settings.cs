@@ -258,6 +258,42 @@ public class Settings
                     x => new SpecifiedInputKey(x)).ToList()));
     }
 
+    /// <summary>
+    ///   Tries to return a C# culture info from Godot language name
+    /// </summary>
+    /// <param name="language">The language name to try to understand</param>
+    /// <returns>The culture info</returns>
+    public static CultureInfo GetCultureInfo(string language)
+    {
+        try
+        {
+            return new CultureInfo(language);
+        }
+        catch (CultureNotFoundException)
+        {
+            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
+
+            if (!language.Contains("_"))
+                throw;
+
+            // So we first try converting "_" to "-" and go with that
+            language = language.Replace('_', '-');
+
+            try
+            {
+                return new CultureInfo(language);
+            }
+            catch (CultureNotFoundException)
+            {
+                language = language.Split("-")[0];
+
+                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
+                    language);
+                return new CultureInfo(language);
+            }
+        }
+    }
+
     public override bool Equals(object obj)
     {
         if (obj == null)
@@ -468,42 +504,6 @@ public class Settings
         CultureInfo.CurrentUICulture = cultureInfo;
 
         SimulationParameters.Instance.ApplyTranslations();
-    }
-
-    /// <summary>
-    ///   Tries to return a C# culture info from Godot language name
-    /// </summary>
-    /// <param name="language">The language name to try to understand</param>
-    /// <returns>The culture info</returns>
-    private static CultureInfo GetCultureInfo(string language)
-    {
-        try
-        {
-            return new CultureInfo(language);
-        }
-        catch (CultureNotFoundException)
-        {
-            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
-
-            if (!language.Contains("_"))
-                throw;
-
-            // So we first try converting "_" to "-" and go with that
-            language = language.Replace('_', '-');
-
-            try
-            {
-                return new CultureInfo(language);
-            }
-            catch (CultureNotFoundException)
-            {
-                language = language.Split("-")[0];
-
-                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
-                    language);
-                return new CultureInfo(language);
-            }
-        }
     }
 
     /// <summary>
