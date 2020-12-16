@@ -798,7 +798,7 @@ public class OptionsMenu : Control
 
     private void InputDefaultsConfirm()
     {
-        Settings.Instance.CurrentControls.Value = InputGroupList.GetDefaultControls();
+        Settings.Instance.CurrentControls.Value = Settings.GetDefaultControls();
         Settings.Instance.ApplyInputSettings();
         BuildInputRebindControls();
 

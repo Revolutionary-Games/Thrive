@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Environment = System.Environment;
@@ -11,6 +12,7 @@ public class Settings
 {
     private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
+    private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
@@ -195,7 +197,7 @@ public class Settings
     ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
+        new SettingValue<InputDataList>(GetDefaultControls());
 
     /// <summary>
     ///   If false username will be set to System username
