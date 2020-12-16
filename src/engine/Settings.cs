@@ -231,6 +231,34 @@ public class Settings
     }
 
     /// <summary>
+    ///   Returns the default controls which never change, unless there is a new release.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This relies on the static member holding the default controls to be initialized before the code has a chance
+    ///     to modify the controls.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The default controls</returns>
+    public static InputDataList GetDefaultControls()
+    {
+        return (InputDataList)DefaultControls.Clone();
+    }
+
+    /// <summary>
+    ///   Returns the currently applied controls. Gathers the data from the godot InputMap.
+    ///   Required to get the default controls.
+    /// </summary>
+    /// <returns>The current inputs</returns>
+    public static InputDataList GetCurrentlyAppliedControls()
+    {
+        return new InputDataList(InputMap.GetActions().OfType<string>()
+            .ToDictionary(p => p,
+                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                    x => new SpecifiedInputKey(x)).ToList()));
+    }
+
+    /// <summary>
     ///   Tries to return a C# culture info from Godot language name
     /// </summary>
     /// <param name="language">The language name to try to understand</param>
