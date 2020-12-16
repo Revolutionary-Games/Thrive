@@ -385,6 +385,7 @@ public class Settings
             ApplySoundSettings();
         }
 
+        ApplyLanguageSettings();
         ApplyWindowSettings();
         ApplyInputSettings();
         ApplyWindowSettings();
