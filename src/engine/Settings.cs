@@ -197,7 +197,7 @@ public class Settings
     ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(Settings.GetDefaultControls());
+        new SettingValue<InputDataList>(GetDefaultControls());
 
     /// <summary>
     ///   If false username will be set to System username
