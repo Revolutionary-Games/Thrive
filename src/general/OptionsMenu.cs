@@ -684,7 +684,7 @@ public class OptionsMenu : Control
         {
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = currentCulture.NativeName;
-            optionButton.AddItem(locale + "( " + native + ")");
+            optionButton.AddItem(locale + " (" + native + ")");
         }
     }
 
