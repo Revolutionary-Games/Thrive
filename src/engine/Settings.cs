@@ -240,7 +240,6 @@ public class Settings
     ///   </para>
     /// </remarks>
     /// <returns>The default controls</returns>
-
     public static InputDataList GetDefaultControls()
     {
         return (InputDataList)DefaultControls.Clone();
