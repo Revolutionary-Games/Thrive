@@ -123,7 +123,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private Color flashColour = new Color(0, 0, 0, 0);
 
-    [JsonProperty]
     private bool allOrganellesDivided;
 
     [JsonProperty]
