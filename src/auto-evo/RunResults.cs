@@ -222,7 +222,7 @@
                 else
                 {
                     builder.Append("  ");
-                    builder.Append(" went extinct in ");
+                    builder.Append(TranslationServer.Translate("EXTINCT"));
                     builder.Append(PatchString(patch));
                 }
 
@@ -368,7 +368,7 @@
                 if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
                 {
                     builder.Append(" ");
-                    builder.Append("went extinct from the planet");
+                    builder.Append(TranslationServer.Translate("WENT_EXTINCT"));
                     builder.Append("\n");
                 }
 
