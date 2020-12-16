@@ -12,7 +12,7 @@ public class Settings
 {
     private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
-    private static readonly InputDataList DefaultControls = Settings.GetCurrentlyAppliedControls();
+    private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
