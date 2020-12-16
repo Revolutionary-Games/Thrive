@@ -245,6 +245,7 @@ public class Settings
     {
         return (InputDataList)DefaultControls.Clone();
     }
+
     /// <summary>
     ///   Returns the currently applied controls. Gathers the data from the godot InputMap.
     ///   Required to get the default controls.
