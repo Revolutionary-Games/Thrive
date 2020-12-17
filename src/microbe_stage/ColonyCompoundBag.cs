@@ -47,8 +47,7 @@ public class ColonyCompoundBag : CompoundBag
                 var currValue = member.Compounds.GetCompoundAmount(compound);
                 var toAdd = Math.Min(Math.Max(0, average - currValue), surplus);
                 surplus -= toAdd;
-                microbe.Compounds.TakeCompound(compound, toAdd);
-                member.Compounds.AddCompound(compound, toAdd);
+                member.Compounds.AddCompound(compound, microbe.Compounds.TakeCompound(compound, toAdd));
             }
         }
     }
