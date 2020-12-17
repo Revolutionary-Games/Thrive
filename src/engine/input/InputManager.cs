@@ -19,7 +19,8 @@ public class InputManager : Node
     /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
-    private readonly List<InputAttribute> attributes = new List<InputAttribute>();
+    private Dictionary<InputAttribute, List<WeakReference>> attributes
+        = new Dictionary<InputAttribute, List<WeakReference>>();
 
     public InputManager()
     {
@@ -42,9 +43,9 @@ public class InputManager : Node
         // TODO: check if there is some alternative faster approach to registering instances
         foreach (var inputAttribute in staticInstance
             .attributes
-            .Where(p => p.Method.DeclaringType == instance.GetType()))
+            .Where(p => p.Key.Method.DeclaringType == instance.GetType()))
         {
-            inputAttribute.AddInstance(new WeakReference(instance));
+            inputAttribute.Value.Add(new WeakReference(instance));
         }
     }
 
@@ -55,7 +56,7 @@ public class InputManager : Node
     public static void UnregisterReceiver(object instance)
     {
         foreach (var attribute in staticInstance.attributes)
-            attribute.RemoveInstance(instance);
+            attribute.Value.RemoveAll(p => !p.IsAlive || p.Target.Equals(instance));
     }
 
     /// <summary>
@@ -64,7 +65,8 @@ public class InputManager : Node
     /// </summary>
     public static void OnFocusLost()
     {
-        staticInstance.attributes.ForEach(p => p.FocusLost());
+        foreach (var attribute in staticInstance.attributes)
+            attribute.Key.FocusLost();
     }
 
     /// <summary>
@@ -73,7 +75,8 @@ public class InputManager : Node
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
-        attributes.ForEach(p => p.OnProcess(delta));
+        foreach (var attribute in staticInstance.attributes)
+            attribute.Key.OnProcess(delta);
     }
 
     /// <summary>
@@ -118,7 +121,7 @@ public class InputManager : Node
             return true;
 
         var disposed = new List<WeakReference>();
-        var instances = attribute.Instances;
+        var instances = staticInstance.attributes[attribute];
         var result = false;
 
         if (method.IsStatic)
@@ -126,7 +129,7 @@ public class InputManager : Node
             // Call the method without an instance if it's static
             var invokeResult = method.Invoke(null, parameters);
 
-            if (invokeResult != null && invokeResult is bool asBool)
+            if (invokeResult is bool asBool)
             {
                 result = asBool;
             }
@@ -180,7 +183,7 @@ public class InputManager : Node
             return;
 
         var handled = attributes.Any(
-            attribute => (inputUnhandled || !attribute.OnlyUnhandled) && attribute.OnInput(@event));
+            attribute => (inputUnhandled || !attribute.Key.OnlyUnhandled) && attribute.Key.OnInput(@event));
 
         // Define input as consumed to Godot if something reacted to it
         if (handled)
@@ -205,7 +208,8 @@ public class InputManager : Node
     /// </summary>
     private void ClearReferences()
     {
-        staticInstance.attributes.ForEach(p => p.Instances.RemoveAll(x => !x.IsAlive));
+        foreach (var attributesValue in staticInstance.attributes.Values)
+            attributesValue.RemoveAll(p => !p.IsAlive);
     }
 
     /// <summary>
@@ -247,13 +251,15 @@ public class InputManager : Node
                             attribute.Init(methodInfo);
 
                             // Add the attribute to the list of all attributes
-                            attributes.Add(attribute);
+                            attributes.Add(attribute, new List<WeakReference>());
                         }
                     }
                 }
             }
         }
 
-        attributes.Sort(Comparer<InputAttribute>.Create((x, y) => y.Priority - x.Priority));
+        attributes = attributes
+            .OrderBy(p => p.Key, Comparer<InputAttribute>.Create((x, y) => y.Priority - x.Priority))
+            .ToDictionary(p => p.Key, p => p.Value);
     }
 }

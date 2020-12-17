@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 
@@ -16,11 +15,6 @@ using Godot;
 public abstract class InputAttribute : Attribute
 {
     /// <summary>
-    ///   All instances associated with this InputAttribute
-    /// </summary>
-    internal readonly List<WeakReference> Instances = new List<WeakReference>();
-
-    /// <summary>
     ///   The method this Attribute is applied to
     /// </summary>
     public MethodBase Method { get; private set; }
@@ -36,16 +30,6 @@ public abstract class InputAttribute : Attribute
     ///   Priority defines which method gets to consume an input if two method match the input.
     /// </summary>
     public int Priority { get; set; } = 0;
-
-    public void AddInstance(WeakReference instance)
-    {
-        Instances.Add(instance);
-    }
-
-    public void RemoveInstance(object instance)
-    {
-        Instances.RemoveAll(p => !p.IsAlive || p.Target == instance);
-    }
 
     public override bool Equals(object obj)
     {
