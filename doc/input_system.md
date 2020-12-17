@@ -43,8 +43,8 @@ If the method is **static**, you don't have to worry about instance management.
 
 If the method is **not static** you must
 
-- inherit from `InputNode` if your class needs to inherit from `Godot.Node` **or**
-- inherit from `InputControl` if your class needs to inherit from `Godot.Control` **or**
+- inherit from `NodeWithInput` if your class needs to inherit from `Godot.Node` **or**
+- inherit from `ControlWithInput` if your class needs to inherit from `Godot.Control` **or**
 - add `InputManager.RegisterReceiver(this)` to your `\_EnterTree` and `InputManager.UnregisterReceiver(this)` to your `\_ExitTree`
 
 InvokeAlsoWithNoInput
@@ -92,7 +92,7 @@ Examples
 --------
 
 ```csharp
-public class FPSCounter : InputControl
+public class FPSCounter : ControlWithInput
 {
   [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
   public void ToggleFps() {}
@@ -185,7 +185,7 @@ With a correct implementation utilizing delta, this difference should not matter
 ---
 
 ```csharp
-public class PlayerMicrobeInput : InputNode
+public class PlayerMicrobeInput : NodeWithInput
 {
   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
@@ -198,7 +198,7 @@ differentiate between forward/backward input and left/right input.
 
 The correct way of implementing this would be this:
 ```csharp
-public class PlayerMicrobeInput : InputNode
+public class PlayerMicrobeInput : NodeWithInput
 {
   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
@@ -213,7 +213,7 @@ input.
 ---
 
 ```csharp
-public class FPSCounter : InputControl
+public class FPSCounter : ControlWithInput
 {
     [RunOnKeyToggle("toggle_FPS", OnlyUnhandled = false)]
     public void ToggleFps(bool state)
