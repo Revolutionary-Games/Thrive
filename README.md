@@ -6,7 +6,6 @@ This is the code repository for Thrive. For more information, visit
 
 ### Build Status [![CircleCI](https://circleci.com/gh/Revolutionary-Games/Thrive.svg?style=svg)](https://circleci.com/gh/Revolutionary-Games/Thrive)
 ### Patreon [![Patreon](https://img.shields.io/badge/Join-Patreon-orange.svg)](https://www.patreon.com/thrivegame)
-### Code of Conduct [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
 <a href="https://translate.revolutionarygamesstudio.com/engage/thrive/">
 <img src="https://translate.revolutionarygamesstudio.com/widgets/thrive/-/thrive-game/svg-badge.svg" alt="translation status" />
@@ -27,7 +26,7 @@ Getting Involved
 Depending on what you want to contribute, you need to take different steps
 to get your development environment set up.
 
-Read the [contribution guidelines](CONTRIBUTING.md) first. If you need
+Read the [contribution guidelines](CONTRIBUTING.md) and [code of coduct](code_of_conduct.md) first. If you need
 help please ask [on our
 forums](https://community.revolutionarygamesstudio.com/c/dev-help).
 
