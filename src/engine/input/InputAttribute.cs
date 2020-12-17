@@ -37,6 +37,16 @@ public abstract class InputAttribute : Attribute
     /// </summary>
     public int Priority { get; set; } = 0;
 
+    public void AddInstance(WeakReference instance)
+    {
+        Instances.Add(instance);
+    }
+
+    public void RemoveInstance(object instance)
+    {
+        Instances.RemoveAll(p => !p.IsAlive || p.Target == instance);
+    }
+
     public override bool Equals(object obj)
     {
         if (!(obj is InputAttribute attr))
