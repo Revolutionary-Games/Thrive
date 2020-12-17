@@ -24,12 +24,12 @@ The available input attributes
 
 | Attribute | Description | Parameters | Method parameters | Multiple |
 | --------- | ----------- | ---------- | ----------------- | -------- |
-| RunOnKey  | Fires repeatedly when the input is pressed | input : string | delta : float | yes |
+| RunOnKey  | Fires repeatedly when the input is held down | input : string | delta : float | yes |
 | RunOnKeyChange | Fires once when the input is pressed or released | input : string | none | yes |
 | RunOnKeyDown | Fires once when the input is pressed | input : string | none | yes |
 | RunOnKeyUp | Fires once when the input is released | input : string | none | yes |
-| RunOnKeyToggle | Fires once when the input is pressed | input : string | state : bool | yes |
-| RunOnAxis | Fires repeatedly when one of the axis members is pressed. Every axis member has a value associated with it. The average of the pressed values is given to the method | inputs : string[]<br> values : float[] | delta : float<br> value : float | yes |
+| RunOnKeyToggle | Fires once when the input is pressed and provides an alternating bool | input : string | state : bool | yes |
+| RunOnAxis | Fires repeatedly when one of the axis members is held down. Every axis member has a value associated with it. The average of the pressed values is given to the method | inputs : string[]<br> values : float[] | delta : float<br> value : float | yes |
 | RunOnAxisGroup | Combines multiple RunOnAxis. Used when you want to combine multiple axes and want to differentiate between them | none | delta : float<br>value1 : float<br>value2 : float... | no |
 
 - **Attribute** is the name of the attribute
