@@ -41,7 +41,7 @@ Input receiving instance management
 -----------------------------------
 If the method is **static**, you don't have to worry about instance management.
 
-If the method is **not static** you must
+If the method is **not static** you must do one of the following:
 
 - inherit from `NodeWithInput` if your class needs to inherit from `Godot.Node` **or**
 - inherit from `ControlWithInput` if your class needs to inherit from `Godot.Control` **or**
