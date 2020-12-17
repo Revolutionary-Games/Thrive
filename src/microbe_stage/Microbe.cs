@@ -1998,7 +1998,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (body is Microbe microbe)
         {
             // TODO: does this need to check for disposed exception?
-            if (microbe.Dead)
+            if (microbe.Dead || microbe.GetAllColonyMembers().Contains(this))
                 return;
 
             bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
