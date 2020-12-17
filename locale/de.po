@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 12:08+0100\n"
+"POT-Creation-Date: 2020-12-17 12:30+0100\n"
 "PO-Revision-Date: 2020-12-10 12:44+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -750,6 +750,7 @@ msgstr "Metabolome"
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4356
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4420
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3038
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Stickstofffixier-Plastid"
 
@@ -876,7 +877,7 @@ msgstr "Lädt"
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Drücke eine Taste..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:216
+#: ../src/engine/input/key_mapping/InputGroupList.cs:172
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Es besteht ein Konflikt mit {0}.\n"
@@ -2043,10 +2044,6 @@ msgstr "Extern"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2554
 msgid "ORGANELLES"
 msgstr "Organellen"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3038
-msgid "PLASTID"
-msgstr "Plastid"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3198
 msgid "N_A_MP"

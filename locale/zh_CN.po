@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 12:08+0100\n"
+"POT-Creation-Date: 2020-12-17 12:30+0100\n"
 "PO-Revision-Date: 2020-12-13 13:07+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -696,6 +696,7 @@ msgstr "代谢体"
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4356
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4420
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3038
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "固氮质体"
 
@@ -822,7 +823,7 @@ msgstr "载入中"
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下你要设置的按钮…"
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:216
+#: ../src/engine/input/key_mapping/InputGroupList.cs:172
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "这会跟{0}冲突。\n"
@@ -1916,10 +1917,6 @@ msgstr "外部"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2554
 msgid "ORGANELLES"
 msgstr "细胞器"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3038
-msgid "PLASTID"
-msgstr "质体"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3198
 msgid "N_A_MP"
