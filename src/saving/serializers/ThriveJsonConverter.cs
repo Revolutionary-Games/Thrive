@@ -32,7 +32,7 @@ public class ThriveJsonConverter : IDisposable
 
     // private IReferenceResolver referenceResolver = new Default;
 
-    public ThriveJsonConverter(SaveContext context)
+    private ThriveJsonConverter(SaveContext context)
     {
         this.context = context;
 
