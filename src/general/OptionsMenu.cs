@@ -682,7 +682,9 @@ public class OptionsMenu : Control
 
         foreach (var locale in languages)
         {
-            optionButton.AddItem(locale);
+            var currentCulture = Settings.GetCultureInfo(locale);
+            var native = currentCulture.NativeName;
+            optionButton.AddItem(locale + " (" + native + ")");
         }
     }
 
@@ -796,7 +798,7 @@ public class OptionsMenu : Control
 
     private void InputDefaultsConfirm()
     {
-        Settings.Instance.CurrentControls.Value = InputGroupList.GetDefaultControls();
+        Settings.Instance.CurrentControls.Value = Settings.GetDefaultControls();
         Settings.Instance.ApplyInputSettings();
         BuildInputRebindControls();
 
@@ -1058,7 +1060,7 @@ public class OptionsMenu : Control
 
     private void OnLanguageSettingSelected(int item)
     {
-        Settings.Instance.SelectedLanguage.Value = languageSelection.GetItemText(item);
+        Settings.Instance.SelectedLanguage.Value = languages[item];
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();

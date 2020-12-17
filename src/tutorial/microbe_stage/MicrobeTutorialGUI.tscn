@@ -44,51 +44,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 435.0
-margin_bottom = 435.0
+margin_right = -15.0
+margin_bottom = -15.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/ScrollContainer"]
+margin_right = 420.0
+margin_bottom = 420.0
 rect_min_size = Vector2( 420, 420 )
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MicrobeWelcome/VBoxContainer"]
+[node name="Label" type="Label" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
 margin_right = 420.0
-margin_bottom = 296.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_INITIAL"
 autowrap = true
 
-[node name="Control" type="Control" parent="MicrobeWelcome/VBoxContainer"]
-margin_top = 306.0
+[node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+margin_top = 30.0
 margin_right = 420.0
-margin_bottom = 348.0
+margin_bottom = 346.0
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/VBoxContainer"]
-margin_top = 358.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+margin_top = 356.0
 margin_right = 420.0
-margin_bottom = 380.0
+margin_bottom = 378.0
 
-[node name="Control" type="Control" parent="MicrobeWelcome/VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_right = 10.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/VBoxContainer/HBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_left = 14.0
-margin_right = 176.0
+margin_right = 198.0
 margin_bottom = 22.0
 pressed = true
 text = "SHOW_TUTORIALS"
 
-[node name="Button" type="Button" parent="MicrobeWelcome/VBoxContainer"]
-margin_left = 139.0
-margin_top = 390.0
-margin_right = 281.0
+[node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+margin_left = 131.0
+margin_top = 388.0
+margin_right = 289.0
 margin_bottom = 420.0
 size_flags_horizontal = 4
 text = "BEGIN_THRIVING"
@@ -118,19 +128,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 245.0
-margin_bottom = 245.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 230, 230 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_horizontal_enabled = false
 
-[node name="Label" type="Label" parent="MicrobeMovementTutorial/ExplainingPopup/VBoxContainer"]
+[node name="Label" type="Label" parent="MicrobeMovementTutorial/ExplainingPopup/ScrollContainer"]
 margin_right = 230.0
-margin_bottom = 158.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_CONTROL_TEXT"
 autowrap = true
@@ -200,19 +211,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GlucoseTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GlucoseTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 245.0
-margin_bottom = 245.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 230, 230 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_horizontal_enabled = false
 
-[node name="Label" type="Label" parent="GlucoseTutorial/VBoxContainer"]
+[node name="Label" type="Label" parent="GlucoseTutorial/ScrollContainer"]
 margin_right = 230.0
-margin_bottom = 135.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_COLLECT_TEXT"
 autowrap = true
@@ -234,19 +246,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="StayingAliveTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="StayingAliveTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 245.0
-margin_bottom = 245.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 230, 230 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_horizontal_enabled = false
 
-[node name="Label" type="Label" parent="StayingAliveTutorial/VBoxContainer"]
+[node name="Label" type="Label" parent="StayingAliveTutorial/ScrollContainer"]
 margin_right = 230.0
-margin_bottom = 204.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_HEALTH_TEXT"
 autowrap = true
@@ -268,25 +281,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ReproductionTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ReproductionTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 245.0
-margin_bottom = 245.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 230, 230 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_horizontal_enabled = false
 
-[node name="Label" type="Label" parent="ReproductionTutorial/VBoxContainer"]
+[node name="Label" type="Label" parent="ReproductionTutorial/ScrollContainer"]
 margin_right = 230.0
-margin_bottom = 158.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
-[connection signal="toggled" from="MicrobeWelcome/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
-[connection signal="pressed" from="MicrobeWelcome/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
+[connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
+[connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
 [connection signal="hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
