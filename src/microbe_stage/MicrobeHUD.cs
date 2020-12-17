@@ -700,7 +700,7 @@ public class MicrobeHUD : Node
     /// </summary>
     private void UpdateCompoundBars()
     {
-        var compounds = stage.Player.Compounds;
+        var compounds = stage.Player.ColonyCompoundBag;
 
         glucoseBar.MaxValue = compounds.Capacity;
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
