@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Input class for a <see cref="Godot.Control"/>
+///   Is like a <see cref="Godot.Control"/>, but handles instance management for the input system.
 /// </summary>
 public class ControlWithInput : Control
 {
