@@ -110,10 +110,12 @@ public class MicrobeAI
 
         // Disable most AI in a colony
         if (microbe.Colony?.Master == null)
+        {
             Think(random, data);
 
-        // Run reflexes
-        DoReflexes();
+            // Run reflexes
+            DoReflexes();
+        }
 
         // Clear the absorbed compounds for run and rumble
         microbe.TotalAbsorbedCompounds.Clear();
