@@ -2097,6 +2097,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         AddCollisionExceptionWith(other);
         other.AddCollisionExceptionWith(this);
+        touchedMicrobes.Remove(other);
+        other.touchedMicrobes.Remove(this);
 
         // Create a colony if there isn't one yet
         if (Colony == null)

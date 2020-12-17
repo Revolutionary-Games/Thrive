@@ -92,6 +92,7 @@ public class MicrobeAI
         PREDATING_STATE,
         PLANTLIKE_STATE,
         SCAVENGING_STATE,
+        BOUND_STATE,
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;
@@ -115,6 +116,12 @@ public class MicrobeAI
 
             // Run reflexes
             DoReflexes();
+        }
+        else
+        {
+            targetPosition = Vector3.Zero;
+            hasTargetPosition = false;
+            lifeState = LifeState.BOUND_STATE;
         }
 
         // Clear the absorbed compounds for run and rumble
