@@ -13,20 +13,26 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     [JsonProperty]
     private readonly HashSet<Compound> usefulCompounds = new HashSet<Compound>();
 
+    private float capacity;
+
     /// <summary>
     ///   Creates a new bag
     /// </summary>
     /// <param name="capacity">Specifies the initial capacity of the compound bag</param>
     public CompoundBag(float capacity)
     {
-        Capacity = capacity;
+        this.capacity = capacity;
     }
 
     /// <summary>
     ///   The max amount of any compound that can be stored
     /// </summary>
     [JsonProperty]
-    public virtual float Capacity { get; set; }
+    public virtual float Capacity
+    {
+        get => capacity;
+        set => capacity = value;
+    }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
