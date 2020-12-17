@@ -357,8 +357,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (!isPlayer)
             ai = new MicrobeAI(this);
 
-        Colony = null;
-
         // Needed for immediately applying the species
         _Ready();
     }
