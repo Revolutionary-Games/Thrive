@@ -81,4 +81,19 @@ public class Compound : IRegistryType
     {
         return Name;
     }
+
+    public override int GetHashCode()
+    {
+        return InternalName?.GetHashCode() ?? 0;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return ReferenceEquals(this, obj) || (obj is Compound other && Equals(other));
+    }
+
+    protected bool Equals(Compound other)
+    {
+        return InternalName == other.InternalName;
+    }
 }
