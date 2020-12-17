@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 11:17-0800\n"
-"PO-Revision-Date: 2020-12-09 15:46+0000\n"
-"Last-Translator: 1n48yg <xiaoyang5811@gmail.com>\n"
+"POT-Creation-Date: 2020-12-17 20:40+0200\n"
+"PO-Revision-Date: 2020-12-16 02:36+0000\n"
+"Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "MIME-Version: 1.0\n"
@@ -299,59 +299,52 @@ msgstr ""
 "逗知识：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
 
 #: ../simulation_parameters/common/input_options.json:6
-#, fuzzy
 msgid "MOVEMENT"
-msgstr "移动需求"
+msgstr "移动"
 
 #: ../simulation_parameters/common/input_options.json:10
-#, fuzzy
 msgid "MOVE_LEFT"
-msgstr "移动需求"
+msgstr "左移"
 
 #: ../simulation_parameters/common/input_options.json:14
-#, fuzzy
 msgid "MOVE_RIGHT"
-msgstr "的光"
+msgstr "右移"
 
 #: ../simulation_parameters/common/input_options.json:18
-#, fuzzy
 msgid "MOVE_FORWARD"
-msgstr "Auto-evo未能正常运行"
+msgstr "前进"
 
 #: ../simulation_parameters/common/input_options.json:22
-#, fuzzy
 msgid "MOVE_BACKWARDS"
-msgstr "Auto-evo未能正常运行"
+msgstr "后退"
 
 #: ../simulation_parameters/common/input_options.json:26
-#, fuzzy
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "Auto-evo未能正常运行"
+msgstr "自动前移"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "发射毒素"
 
 #: ../simulation_parameters/common/input_options.json:42
-#, fuzzy
 msgid "TOGGLE_ENGULF"
-msgstr "无法进入吞噬模式"
+msgstr "切换吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr ""
+msgstr "视角"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "缩小"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "放大"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:969
@@ -359,84 +352,72 @@ msgid "EDITOR"
 msgstr "编辑器"
 
 #: ../simulation_parameters/common/input_options.json:71
-#, fuzzy
 msgid "ROTATE_RIGHT"
-msgstr "的光"
+msgstr "向右转"
 
 #: ../simulation_parameters/common/input_options.json:75
-#, fuzzy
 msgid "ROTATE_LEFT"
-msgstr ". 产出速率取决于"
+msgstr "向左转"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr ""
+msgstr "撤销"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr ""
+msgstr "重做"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "PLACE_ORGANELLE"
-msgstr "细胞器"
+msgstr "放置细胞器"
 
 #: ../simulation_parameters/common/input_options.json:91
-#, fuzzy
 msgid "REMOVE_ORGANELLE"
-msgstr "细胞器"
+msgstr "移除细胞器"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "CHEATS"
-msgstr ""
+msgstr "作弊"
 
 #: ../simulation_parameters/common/input_options.json:103
-#, fuzzy
 msgid "ENABLE_EDITOR"
-msgstr "编辑器"
+msgstr "启用编辑器"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "SPAWN_GLUCOSE"
-msgstr "葡萄糖"
+msgstr "生成葡萄糖"
 
 #: ../simulation_parameters/common/input_options.json:111
-#, fuzzy
 msgid "SPAWN_AMMONIA"
-msgstr "氨"
+msgstr "生成氨"
 
 #: ../simulation_parameters/common/input_options.json:115
-#, fuzzy
 msgid "SPAWN_PHOSPHATES"
-msgstr "磷酸盐"
+msgstr "生成磷酸盐"
 
 #: ../simulation_parameters/common/input_options.json:124
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "杂项"
 
 #: ../simulation_parameters/common/input_options.json:128
-#, fuzzy
 msgid "TOGGLE_FPS"
-msgstr "无法进入吞噬模式"
+msgstr "切换帧数显示"
 
 #: ../simulation_parameters/common/input_options.json:132
-#, fuzzy
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
 #: ../simulation_parameters/common/input_options.json:136
-#, fuzzy
 msgid "QUICK_LOAD"
-msgstr "快速保存"
+msgstr "快速读档"
 
 #: ../simulation_parameters/common/input_options.json:140
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "截图"
 
 #: ../simulation_parameters/common/input_options.json:144
-#, fuzzy
 msgid "SHOW_HELP"
-msgstr "帮助"
+msgstr "显示帮助"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -715,6 +696,7 @@ msgstr "代谢体"
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4232
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "固氮质体"
 
@@ -774,27 +756,27 @@ msgstr "细胞质"
 msgid "NUCLEUS"
 msgstr "细胞核"
 
-#: ../src/auto-evo/AutoEvoRun.cs:158
+#: ../src/auto-evo/AutoEvoRun.cs:112
 msgid "ABORTED"
 msgstr "取消。"
 
-#: ../src/auto-evo/AutoEvoRun.cs:161
+#: ../src/auto-evo/AutoEvoRun.cs:115
 msgid "FINISHED"
 msgstr "完成。"
 
-#: ../src/auto-evo/AutoEvoRun.cs:164
+#: ../src/auto-evo/AutoEvoRun.cs:118
 msgid "NOT_RUNNING"
 msgstr "未运行。"
 
-#: ../src/auto-evo/AutoEvoRun.cs:175
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "AUTOEVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
-#: ../src/auto-evo/AutoEvoRun.cs:179
+#: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "STARTING"
 msgstr "启动中"
 
-#: ../src/auto-evo/AutoEvoRun.cs:354
+#: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTOEVO_POPULATION_CHANGED"
 msgstr "{0}生物数量变化了{1}，原因：{2}"
 
@@ -826,72 +808,71 @@ msgstr "通过由{2}派出的{1}个生物扩散到了：{0}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "地区中的生物数量："
 
-#: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:125
+#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "载入中"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:331
-#, fuzzy
+#: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "…"
+msgstr "按下你要设置的按钮…"
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:216
+#: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"这会跟{0}冲突。\n"
+"你想要移除{1}的输入吗？"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:59
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:61
-#, fuzzy
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr "ATP"
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:63
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "鼠标左键"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:78
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "鼠标右键"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:79
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "鼠标中键"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:80
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "向上滚轮"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:81
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "向下滚轮"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:82
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "向左滚轮"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:83
-#, fuzzy
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
-msgstr "的光"
+msgstr "向右滚轮"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "鼠标侧键1"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "鼠标侧键2"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "鼠标未知键"
 
 #: ../src/general/HelpScreen.tscn:102
 msgid "CLOSE"
@@ -911,7 +892,7 @@ msgstr "性能"
 
 #: ../src/general/OptionsMenu.tscn:165
 msgid "INPUTS"
-msgstr ""
+msgstr "输入"
 
 #: ../src/general/OptionsMenu.tscn:177
 msgid "MISC"
@@ -1008,9 +989,8 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在游戏中启用auto-evo"
 
 #: ../src/general/OptionsMenu.tscn:795
-#, fuzzy
 msgid "RESET_INPUTS"
-msgstr "重置为默认值？"
+msgstr "重置输入"
 
 #: ../src/general/OptionsMenu.tscn:818
 msgid "PLAY_INTRO_VIDEO"
@@ -1053,7 +1033,7 @@ msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
 #: ../src/general/OptionsMenu.tscn:972 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/gui_common/MainMenu.tscn:307 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:112
 msgid "BACK"
 msgstr "返回"
@@ -1075,14 +1055,12 @@ msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你确定要把「所有」设置都重置为默认值吗？"
 
 #: ../src/general/OptionsMenu.tscn:1031
-#, fuzzy
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "默认"
+msgstr "将输入重置为默认值？"
 
 #: ../src/general/OptionsMenu.tscn:1032
-#, fuzzy
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "你确定要把「所有」设置都重置为默认值吗？"
+msgstr "你确定要把输入设置重置为默认值吗？"
 
 #: ../src/general/OptionsMenu.tscn:1041
 msgid "CLOSE_OPTIONS"
@@ -1164,30 +1142,26 @@ msgid "TOOLS"
 msgstr "工具"
 
 #: ../src/gui_common/MainMenu.tscn:199
-msgid "VIEW_SOURCE_CODE"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
 msgstr "额外内容"
 
-#: ../src/gui_common/MainMenu.tscn:223
+#: ../src/gui_common/MainMenu.tscn:211
 msgid "CREDITS"
 msgstr "制作人名单"
 
-#: ../src/gui_common/MainMenu.tscn:235
+#: ../src/gui_common/MainMenu.tscn:223
 msgid "QUIT"
 msgstr "退出"
 
-#: ../src/gui_common/MainMenu.tscn:258
+#: ../src/gui_common/MainMenu.tscn:246
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
-#: ../src/gui_common/MainMenu.tscn:358
+#: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/gui_common/MainMenu.tscn:359
+#: ../src/gui_common/MainMenu.tscn:347
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该"
@@ -1351,7 +1325,7 @@ msgstr ". 产出速率取决于"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:735
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1634
 msgid "WITH_CONCENTRATION_OF"
-msgstr "浓度是"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:742
 msgid "OXYGEN_DOT"
@@ -1387,7 +1361,7 @@ msgstr ". 产出速率取决于"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3457
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3745
 msgid "CONCENTRATION_OF"
-msgstr "浓度是"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1013
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1664
@@ -1400,7 +1374,7 @@ msgstr "以及"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1026
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3495
 msgid "INTENSITY_OF"
-msgstr "亮度是"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1033
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
@@ -1522,10 +1496,8 @@ msgstr "仍在开发中。"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2948
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"允许进化一些更加复杂的\n"
-"膜细胞器。需要非常多的\n"
-"ATP维护。此进化无法被\n"
-"撤销。"
+"允许进化一些更加复杂的膜细胞器。需要非常多的\n"
+"ATP维护。此进化无法被撤销。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3037
 msgid "NUCLEUS_DESCRIPTION"
@@ -1722,15 +1694,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr "每秒"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1161
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1168
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.cs:1879
+#: ../src/microbe_stage/Microbe.cs:1562
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -1746,7 +1718,7 @@ msgstr "在{0:F1}, {1:F1}的东西："
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
-#: ../src/microbe_stage/MicrobeStage.cs:630
+#: ../src/microbe_stage/MicrobeStage.cs:560
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -1900,6 +1872,10 @@ msgstr "外观"
 msgid "BEHAVIOR"
 msgstr "行为"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1569
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr "搜索…"
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1629
 msgid "STRUCTURAL"
 msgstr "结构"
@@ -1922,10 +1898,6 @@ msgstr "外部"
 msgid "ORGANELLES"
 msgstr "细胞器"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
-msgid "PLASTID"
-msgstr "质体"
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3135
 msgid "N_A_MP"
 msgstr "不消耗变异点"
@@ -1947,6 +1919,10 @@ msgstr "流动性/刚性"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3781
 msgid "COLOUR"
 msgstr "颜色"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3926
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "物种名…"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3953
 msgid "CONFIRM_CAPITAL"
@@ -2337,20 +2313,20 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "将错误复制到剪贴板"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:132
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:201
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:110
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:41
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:278
 msgid "TUTORIAL"
 msgstr "教程"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "欢迎来到微生物编辑器。\n"
@@ -2362,7 +2338,7 @@ msgstr ""
 "\n"
 "要进入下一个编辑器选项卡，按右下角的下一个按钮。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:89
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "这里是地区地图。\n"
@@ -2375,7 +2351,7 @@ msgstr ""
 "\n"
 "选择一个地区以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "这里是你的细胞编辑器，你可以在这通过花费变异点来添加或移除细胞器。\n"
@@ -2385,7 +2361,7 @@ msgstr ""
 "想要继续的话，从左侧面板选中一个细胞器（细胞质是个好选择）。然后再点击右侧面"
 "板中央附近的六角格以将此细胞器放入你的物种中。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:152
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "移除细胞器也需要消耗变异点。你可以通过右键点击细胞器来移除它们。\n"
@@ -2395,7 +2371,7 @@ msgstr ""
 "\n"
 "按撤销按钮以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "当选择要添加的细胞器时，请注意用于细胞器的工具提示，它们的功能以及使用和产生"
@@ -2407,7 +2383,7 @@ msgstr ""
 "\n"
 "按下重做按钮（和撤销按钮在一起）以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "这些就是改变物种的基础操作了。你可以自己试试看其它选项卡里提供的选项。\n"
@@ -2418,11 +2394,11 @@ msgstr ""
 "\n"
 "祝你好运！"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "GOT_IT"
 msgstr "明白了"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
@@ -2434,29 +2410,29 @@ msgstr ""
 "要在这个艰难的世界存活下来，你将需要收集各种化合物并不断进化，才能跟其它的微"
 "生物竞争。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:86
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
 msgid "SHOW_TUTORIALS"
 msgstr "显示教程"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:94
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "BEGIN_THRIVING"
 msgstr "开始游戏"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
 "\n"
 "尝试所有按键几秒钟以继续。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通过移动到白色的云上来收集葡萄糖。\n"
 "你需要葡萄糖才能产生能量并存活。\n"
 "请跟随显示的线到最近的葡萄糖云中。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
@@ -2464,8 +2440,11 @@ msgstr ""
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
+
+#~ msgid "PLASTID"
+#~ msgstr "质体"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 11:17-0800\n"
+"POT-Creation-Date: 2020-12-17 20:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -605,6 +605,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4232
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr ""
 
@@ -664,27 +665,27 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:158
+#: ../src/auto-evo/AutoEvoRun.cs:112
 msgid "ABORTED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:161
+#: ../src/auto-evo/AutoEvoRun.cs:115
 msgid "FINISHED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:164
+#: ../src/auto-evo/AutoEvoRun.cs:118
 msgid "NOT_RUNNING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:175
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "AUTOEVO_STEPS_DONE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:179
+#: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "STARTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:354
+#: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTOEVO_POPULATION_CHANGED"
 msgstr ""
 
@@ -716,15 +717,15 @@ msgstr ""
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:125
+#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:331
+#: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:216
+#: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 
@@ -939,7 +940,7 @@ msgid "CUSTOM_USERNAME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:972 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/gui_common/MainMenu.tscn:307 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:112
 msgid "BACK"
 msgstr ""
@@ -1046,30 +1047,26 @@ msgid "TOOLS"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:199
-msgid "VIEW_SOURCE_CODE"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:223
+#: ../src/gui_common/MainMenu.tscn:211
 msgid "CREDITS"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:235
+#: ../src/gui_common/MainMenu.tscn:223
 msgid "QUIT"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:258
+#: ../src/gui_common/MainMenu.tscn:246
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:358
+#: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:359
+#: ../src/gui_common/MainMenu.tscn:347
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -1539,15 +1536,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1161
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1168
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1879
+#: ../src/microbe_stage/Microbe.cs:1562
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1563,7 +1560,7 @@ msgstr ""
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:630
+#: ../src/microbe_stage/MicrobeStage.cs:560
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -1717,6 +1714,10 @@ msgstr ""
 msgid "BEHAVIOR"
 msgstr ""
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1569
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr ""
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1629
 msgid "STRUCTURAL"
 msgstr ""
@@ -1737,10 +1738,6 @@ msgstr ""
 msgid "ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
-msgid "PLASTID"
-msgstr ""
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3135
 msgid "N_A_MP"
 msgstr ""
@@ -1759,6 +1756,10 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3781
 msgid "COLOUR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3926
+msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3953
@@ -2127,71 +2128,71 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:132
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:201
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:110
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:41
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:278
 msgid "TUTORIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:89
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:152
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "GOT_IT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:86
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:94
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""

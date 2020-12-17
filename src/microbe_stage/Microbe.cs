@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -123,7 +123,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private Color flashColour = new Color(0, 0, 0, 0);
 
-    [JsonProperty]
+    /// <summary>
+    ///   True once all organelles are divided to not continuously run code that is triggered
+    ///   when a cell is ready to reproduce.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is not saved so that the player cell can enable the editor when loading a save
+    ///     where the player is ready to reproduce. If more code is added to be ran just once based
+    ///     on this flag, it needs to be made sure that that code re-running after loading a save is
+    ///     not a problem.
+    ///   </para>
+    /// </remarks>
     private bool allOrganellesDivided;
 
     [JsonProperty]

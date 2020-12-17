@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 11:17-0800\n"
-"PO-Revision-Date: 2020-12-12 10:23-0800\n"
+"POT-Creation-Date: 2020-12-17 20:40+0200\n"
+"PO-Revision-Date: 2020-12-14 17:48+0200\n"
 "Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/en/>\n"
@@ -732,6 +732,7 @@ msgstr "Metabolosomes"
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4168
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4232
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Nitrogen-Fixing Plastid"
 
@@ -791,27 +792,27 @@ msgstr "Cytoplasm"
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
-#: ../src/auto-evo/AutoEvoRun.cs:158
+#: ../src/auto-evo/AutoEvoRun.cs:112
 msgid "ABORTED"
 msgstr "Aborted."
 
-#: ../src/auto-evo/AutoEvoRun.cs:161
+#: ../src/auto-evo/AutoEvoRun.cs:115
 msgid "FINISHED"
 msgstr "Finished."
 
-#: ../src/auto-evo/AutoEvoRun.cs:164
+#: ../src/auto-evo/AutoEvoRun.cs:118
 msgid "NOT_RUNNING"
 msgstr "Not running."
 
-#: ../src/auto-evo/AutoEvoRun.cs:175
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "AUTOEVO_STEPS_DONE"
 msgstr "{0:F1}% done. {1:n0}/{2:n0} steps."
 
-#: ../src/auto-evo/AutoEvoRun.cs:179
+#: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "STARTING"
 msgstr "Starting"
 
-#: ../src/auto-evo/AutoEvoRun.cs:354
+#: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTOEVO_POPULATION_CHANGED"
 msgstr "{0} population changed by {1} because of: {2}"
 
@@ -843,15 +844,15 @@ msgstr "{0} by sending: {1} population from patch: {2}"
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/engine/LoadingScreen.cs:66 ../src/engine/LoadingScreen.tscn:125
+#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "Loading"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:331
+#: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Press a key..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:216
+#: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "There is a conflict with {0}.\n"
@@ -1070,7 +1071,7 @@ msgid "CUSTOM_USERNAME"
 msgstr "Custom Username:"
 
 #: ../src/general/OptionsMenu.tscn:972 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/gui_common/MainMenu.tscn:307 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:112
 msgid "BACK"
 msgstr "Back"
@@ -1179,30 +1180,26 @@ msgid "TOOLS"
 msgstr "Tools"
 
 #: ../src/gui_common/MainMenu.tscn:199
-msgid "VIEW_SOURCE_CODE"
-msgstr "View Source Code"
-
-#: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/gui_common/MainMenu.tscn:223
+#: ../src/gui_common/MainMenu.tscn:211
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/gui_common/MainMenu.tscn:235
+#: ../src/gui_common/MainMenu.tscn:223
 msgid "QUIT"
 msgstr "Quit"
 
-#: ../src/gui_common/MainMenu.tscn:258
+#: ../src/gui_common/MainMenu.tscn:246
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/gui_common/MainMenu.tscn:358
+#: ../src/gui_common/MainMenu.tscn:346
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
-#: ../src/gui_common/MainMenu.tscn:359
+#: ../src/gui_common/MainMenu.tscn:347
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "You are running Thrive with GLES2. This is severely untested and is likely "
@@ -1792,15 +1789,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr "/second"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1161
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1168
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1879
+#: ../src/microbe_stage/Microbe.cs:1562
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -1816,7 +1813,7 @@ msgstr "Stuff at {0:F1}, {1:F1}:"
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:630
+#: ../src/microbe_stage/MicrobeStage.cs:560
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -1970,6 +1967,10 @@ msgstr "Appearance"
 msgid "BEHAVIOR"
 msgstr "Behavior"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1569
+msgid "SEARCH_DOT_DOT_DOT"
+msgstr "Search..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1629
 msgid "STRUCTURAL"
 msgstr "Structural"
@@ -1992,10 +1993,6 @@ msgstr "External"
 msgid "ORGANELLES"
 msgstr "Organelles"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
-msgid "PLASTID"
-msgstr "Plastid"
-
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3135
 msgid "N_A_MP"
 msgstr "N/A MP"
@@ -2017,6 +2014,10 @@ msgstr "Fluidity / Rigidity"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3781
 msgid "COLOUR"
 msgstr "Colour"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3926
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Species name..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3953
 msgid "CONFIRM_CAPITAL"
@@ -2420,20 +2421,20 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copy Error To Clipboard"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:132
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:201
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:110
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:41
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:278
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Welcome to the Microbe Editor.\n"
@@ -2445,7 +2446,7 @@ msgstr ""
 "\n"
 "To go to the next editor tab, press the next button in the bottom right."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:89
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "This is the patch map.\n"
@@ -2460,7 +2461,7 @@ msgstr ""
 "\n"
 "Select a patch to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "This is the cell editor where you can add or remove organelles from your "
@@ -2473,7 +2474,7 @@ msgstr ""
 "good choice). Then left click next to the hex shown middle of the screen to "
 "add that organelle to your species."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:152
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Removing organelles also costs MP as it is a mutation to your species. You "
@@ -2484,7 +2485,7 @@ msgstr ""
 "\n"
 "Click the undo button to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "When selecting which organelles to add, pay attention to the tooltips for "
@@ -2498,7 +2499,7 @@ msgstr ""
 "\n"
 "Press the redo button (close to the undo button) to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "Those are the basics of editing your species. You can check the other cell "
@@ -2511,11 +2512,11 @@ msgstr ""
 "\n"
 "Good luck!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "GOT_IT"
 msgstr "Got it"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "On a distant alien planet, eons of volcanic activity and meteor impacts have "
@@ -2530,15 +2531,15 @@ msgstr ""
 "that you can find and evolve each generation to compete against the other "
 "species of microbes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:86
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
 msgid "SHOW_TUTORIALS"
 msgstr "Show tutorials"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:94
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "BEGIN_THRIVING"
 msgstr "Begin Thriving"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "To control your cell use the keys shown near your cell (center of screen) "
@@ -2546,14 +2547,14 @@ msgstr ""
 "\n"
 "Try all of the keys for a few seconds to continue."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Collect glucose (white clouds) by moving over them.\n"
 "Your cell needs glucose in order to produce energy to stay alive.\n"
 "Follow the line from your cell to nearby glucose."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Keep an eye on your health bar next to the ATP bar (bottom right).\n"
@@ -2561,12 +2562,15 @@ msgstr ""
 "You regenerate health while you have ATP.\n"
 "Make sure to collect enough glucose to produce ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by "
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
+
+#~ msgid "PLASTID"
+#~ msgstr "Plastid"
 
 #~ msgid "SECOND"
 #~ msgstr "second"

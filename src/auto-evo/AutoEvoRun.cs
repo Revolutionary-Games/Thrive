@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -14,13 +14,6 @@ using Thread = System.Threading.Thread;
 /// </summary>
 public class AutoEvoRun
 {
-    // Configuration parameters for auto evo
-    // TODO: allow loading these from JSON
-    private const int MUTATIONS_PER_SPECIES = 3;
-    private const bool ALLOW_NO_MUTATION = true;
-    private const int MOVE_ATTEMPTS_PER_SPECIES = 5;
-    private const bool ALLOW_NO_MIGRATION = true;
-
     private readonly RunParameters parameters;
 
     /// <summary>
@@ -363,6 +356,8 @@ public class AutoEvoRun
 
         var map = parameters.World.Map;
 
+        var autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
+
         foreach (var entry in map.Patches)
         {
             foreach (var speciesEntry in entry.Value.SpeciesInPatch)
@@ -379,10 +374,12 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key, MUTATIONS_PER_SPECIES,
-                        ALLOW_NO_MUTATION));
-                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key, MOVE_ATTEMPTS_PER_SPECIES,
-                        ALLOW_NO_MIGRATION));
+                    runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
+                        autoEvoConfiguration.MutationsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
+                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key,
+                        autoEvoConfiguration.MoveAttemptsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
                 }
             }
         }

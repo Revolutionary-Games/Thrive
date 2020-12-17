@@ -197,9 +197,9 @@ def handle_cs_file(path)
   errors = false
 
   # Check for BOM first
-  if file_begins_with_bom path
+  unless file_begins_with_bom path
     OUTPUT_MUTEX.synchronize do
-      error 'File begins with BOM'
+      error 'File should begin with UTF-8 BOM'
       errors = true
     end
   end

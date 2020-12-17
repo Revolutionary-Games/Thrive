@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # List of locales, edit this to add new ones:
-LOCALES = %w[bg ca cs de en es_AR es fi fr he id it pl pt_BR pt_PT ru tr
+LOCALES = %w[bg ca cs de en es_AR es fi fr he id it pl pt_BR pt_PT ru sr_Cyrl tr
              lt zh_CN zh_TW].freeze
 
 require 'optparse'
@@ -38,7 +38,8 @@ Dir.chdir(LOCALE_FOLDER) do
 
   runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
                   'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'Description', '-k',
-                  'window_title', '-k', 'dialog_text', '-k', 'Translate', '-o',
+                  'window_title', '-k', 'dialog_text', '-k', 'placeholder_text',
+                  '-k', 'TranslationServer.Translate', '-o',
                   File.join(LOCALE_FOLDER, 'messages' + @options[:pot_suffix]),
                   '../simulation_parameters', '../assets', '../src'
 
