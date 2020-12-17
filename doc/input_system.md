@@ -54,11 +54,11 @@ InvokeAlsoWithNoInput
 
 You can set that property like this: 
 ```csharp
-[RunOnAxisGroup(InvokeWithNoInput = true)]
+[RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
 ```
 or
 ```csharp
-[RunOnAxis(InvokeWithNoInput = true)]
+[RunOnAxis(InvokeAlsoWithNoInput = true)]
 ```
 
 By default this property is false.
@@ -66,7 +66,7 @@ By default this property is false.
 This property defines if the method should be called with the default value even when no axis 
 input is pressed. The default value is the average of all given values.
 
-If `RunOnAxisGroup` attribute is found on a method, all other `InvokeWithNoInput` 
+If `RunOnAxisGroup` attribute is found on a method, all other `InvokeAlsoWithNoInput` 
 values are ignored as the axis group overwrites them.
 
 OnlyUnhandled
