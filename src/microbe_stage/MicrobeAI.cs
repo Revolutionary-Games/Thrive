@@ -104,183 +104,13 @@ public class MicrobeAI
 
     private float SpeciesOpportunism => microbe.Species.Opportunism;
 
-    public void Think(float delta, Random random, MicrobeAICommonData data)
+    public void TryThink(float delta, Random random, MicrobeAICommonData data)
     {
+        _ = delta;
+
         // Disable most AI in a colony
         if (microbe.Colony?.Master == null)
-        {
-            _ = delta;
-
-            // SetRandomTargetAndSpeed(random);
-
-            // Clear the lists
-            predatoryMicrobes.Clear();
-            preyMicrobes.Clear();
-            chunkList.Clear();
-
-            prey = null;
-
-            // 30 seconds about
-            if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
-            {
-                // Occasionally you need to reevaluate things
-                boredom = 0;
-                if (RollCheck(SpeciesActivity, 400, random))
-                {
-                    lifeState = LifeState.PLANTLIKE_STATE;
-                }
-                else
-                {
-                    lifeState = LifeState.NEUTRAL_STATE;
-                }
-            }
-            else
-            {
-                boredom++;
-            }
-
-            switch (lifeState)
-            {
-                case LifeState.PLANTLIKE_STATE:
-                    // This ai would ideally just sit there, until it sees a nice opportunity pop-up unlike neutral,
-                    // which wanders randomly (has a gather chance) until something interesting pops up
-                    break;
-                case LifeState.NEUTRAL_STATE:
-                {
-                    // Before these would run every time, now they just run for the states that need them.
-                    boredom = 0;
-                    preyPegged = false;
-                    prey = null;
-                    if (predator == null)
-                    {
-                        GetNearestPredatorItem(data.AllMicrobes);
-                    }
-
-                    // Peg your prey
-                    if (!preyPegged)
-                    {
-                        prey = null;
-                        prey = GetNearestPreyItem(data.AllMicrobes);
-                        if (prey != null)
-                        {
-                            preyPegged = true;
-                        }
-                    }
-
-                    if (targetChunk == null)
-                    {
-                        targetChunk = GetNearestChunkItem(data.AllChunks);
-                    }
-
-                    EvaluateEnvironment(random);
-                    break;
-                }
-
-                case LifeState.GATHERING_STATE:
-                {
-                    // In this state you gather compounds
-                    if (RollCheck(SpeciesOpportunism, 400.0f, random))
-                    {
-                        lifeState = LifeState.SCAVENGING_STATE;
-                        boredom = 0;
-                    }
-                    else
-                    {
-                        DoRunAndTumble(random);
-                    }
-
-                    break;
-                }
-
-                case LifeState.FLEEING_STATE:
-                {
-                    if (predator == null)
-                    {
-                        GetNearestPredatorItem(data.AllMicrobes);
-                    }
-
-                    // In this state you run from predatory microbes
-                    if (predator != null)
-                    {
-                        DealWithPredators(random);
-                    }
-                    else
-                    {
-                        if (RollCheck(SpeciesActivity, 400, random))
-                        {
-                            lifeState = LifeState.PLANTLIKE_STATE;
-                            boredom = 0;
-                        }
-                        else
-                        {
-                            lifeState = LifeState.NEUTRAL_STATE;
-                        }
-                    }
-
-                    break;
-                }
-
-                case LifeState.PREDATING_STATE:
-                {
-                    // Peg your prey
-                    if (!preyPegged)
-                    {
-                        prey = null;
-                        prey = GetNearestPreyItem(data.AllMicrobes);
-                        if (prey != null)
-                        {
-                            preyPegged = true;
-                        }
-                    }
-
-                    if (preyPegged && prey != null)
-                    {
-                        DealWithPrey(data.AllMicrobes, random);
-                    }
-                    else
-                    {
-                        if (RollCheck(SpeciesActivity, 400, random))
-                        {
-                            lifeState = LifeState.PLANTLIKE_STATE;
-                            boredom = 0;
-                        }
-                        else
-                        {
-                            lifeState = LifeState.NEUTRAL_STATE;
-                        }
-                    }
-
-                    break;
-                }
-
-                case LifeState.SCAVENGING_STATE:
-                {
-                    if (targetChunk == null)
-                    {
-                        targetChunk = GetNearestChunkItem(data.AllChunks);
-                    }
-
-                    if (targetChunk != null)
-                    {
-                        DealWithChunks(targetChunk, data.AllChunks);
-                    }
-                    else
-                    {
-                        if (!RollCheck(SpeciesOpportunism, 400, random))
-                        {
-                            lifeState = LifeState.NEUTRAL_STATE;
-                            boredom = 0;
-                        }
-                        else
-                        {
-                            lifeState = LifeState.SCAVENGING_STATE;
-                        }
-                    }
-
-                    break;
-                }
-            }
-        }
+            Think(random, data);
 
         // Run reflexes
         DoReflexes();
@@ -298,6 +128,179 @@ public class MicrobeAI
     private static bool RollReverseCheck(float ourStat, float dc, Random random)
     {
         return ourStat >= random.Next(0.0f, dc);
+    }
+
+    private void Think(Random random, MicrobeAICommonData data)
+    {
+        // SetRandomTargetAndSpeed(random);
+
+        // Clear the lists
+        predatoryMicrobes.Clear();
+        preyMicrobes.Clear();
+        chunkList.Clear();
+
+        prey = null;
+
+        // 30 seconds about
+        if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
+        {
+            // Occasionally you need to reevaluate things
+            boredom = 0;
+            if (RollCheck(SpeciesActivity, 400, random))
+            {
+                lifeState = LifeState.PLANTLIKE_STATE;
+            }
+            else
+            {
+                lifeState = LifeState.NEUTRAL_STATE;
+            }
+        }
+        else
+        {
+            boredom++;
+        }
+
+        switch (lifeState)
+        {
+            case LifeState.PLANTLIKE_STATE:
+                // This ai would ideally just sit there, until it sees a nice opportunity pop-up unlike neutral,
+                // which wanders randomly (has a gather chance) until something interesting pops up
+                break;
+            case LifeState.NEUTRAL_STATE:
+            {
+                // Before these would run every time, now they just run for the states that need them.
+                boredom = 0;
+                preyPegged = false;
+                prey = null;
+                if (predator == null)
+                {
+                    GetNearestPredatorItem(data.AllMicrobes);
+                }
+
+                // Peg your prey
+                if (!preyPegged)
+                {
+                    prey = null;
+                    prey = GetNearestPreyItem(data.AllMicrobes);
+                    if (prey != null)
+                    {
+                        preyPegged = true;
+                    }
+                }
+
+                if (targetChunk == null)
+                {
+                    targetChunk = GetNearestChunkItem(data.AllChunks);
+                }
+
+                EvaluateEnvironment(random);
+                break;
+            }
+
+            case LifeState.GATHERING_STATE:
+            {
+                // In this state you gather compounds
+                if (RollCheck(SpeciesOpportunism, 400.0f, random))
+                {
+                    lifeState = LifeState.SCAVENGING_STATE;
+                    boredom = 0;
+                }
+                else
+                {
+                    DoRunAndTumble(random);
+                }
+
+                break;
+            }
+
+            case LifeState.FLEEING_STATE:
+            {
+                if (predator == null)
+                {
+                    GetNearestPredatorItem(data.AllMicrobes);
+                }
+
+                // In this state you run from predatory microbes
+                if (predator != null)
+                {
+                    DealWithPredators(random);
+                }
+                else
+                {
+                    if (RollCheck(SpeciesActivity, 400, random))
+                    {
+                        lifeState = LifeState.PLANTLIKE_STATE;
+                        boredom = 0;
+                    }
+                    else
+                    {
+                        lifeState = LifeState.NEUTRAL_STATE;
+                    }
+                }
+
+                break;
+            }
+
+            case LifeState.PREDATING_STATE:
+            {
+                // Peg your prey
+                if (!preyPegged)
+                {
+                    prey = null;
+                    prey = GetNearestPreyItem(data.AllMicrobes);
+                    if (prey != null)
+                    {
+                        preyPegged = true;
+                    }
+                }
+
+                if (preyPegged && prey != null)
+                {
+                    DealWithPrey(data.AllMicrobes, random);
+                }
+                else
+                {
+                    if (RollCheck(SpeciesActivity, 400, random))
+                    {
+                        lifeState = LifeState.PLANTLIKE_STATE;
+                        boredom = 0;
+                    }
+                    else
+                    {
+                        lifeState = LifeState.NEUTRAL_STATE;
+                    }
+                }
+
+                break;
+            }
+
+            case LifeState.SCAVENGING_STATE:
+            {
+                if (targetChunk == null)
+                {
+                    targetChunk = GetNearestChunkItem(data.AllChunks);
+                }
+
+                if (targetChunk != null)
+                {
+                    DealWithChunks(targetChunk, data.AllChunks);
+                }
+                else
+                {
+                    if (!RollCheck(SpeciesOpportunism, 400, random))
+                    {
+                        lifeState = LifeState.NEUTRAL_STATE;
+                        boredom = 0;
+                    }
+                    else
+                    {
+                        lifeState = LifeState.SCAVENGING_STATE;
+                    }
+                }
+
+                break;
+            }
+        }
     }
 
     private void DoReflexes()

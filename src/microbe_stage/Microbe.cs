@@ -1181,7 +1181,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         try
         {
-            ai.Think(delta, random, data);
+            ai.TryThink(delta, random, data);
         }
 #pragma warning disable CA1031 // AI needs to be boxed good
         catch (Exception e)
