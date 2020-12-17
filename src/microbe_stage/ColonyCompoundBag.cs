@@ -36,7 +36,7 @@ public class ColonyCompoundBag : CompoundBag
         foreach (var compoundPair in Compounds)
         {
             var compound = compoundPair.Key;
-            var average = compoundPair.Value;
+            var average = compoundPair.Value / microbe.CountColonyMembers();
 
             var surplus = Math.Max(0, microbe.Compounds.GetCompoundAmount(compound) - average);
             foreach (var member in microbe.GetAllColonyMembers())
