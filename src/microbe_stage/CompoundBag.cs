@@ -10,12 +10,6 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
 {
-    /// <summary>
-    ///   The max amount of any compound that can be stored
-    /// </summary>
-    [JsonProperty]
-    public virtual float Capacity { get; set; }
-
     [JsonProperty]
     private readonly HashSet<Compound> usefulCompounds = new HashSet<Compound>();
 
@@ -27,6 +21,12 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     {
         Capacity = capacity;
     }
+
+    /// <summary>
+    ///   The max amount of any compound that can be stored
+    /// </summary>
+    [JsonProperty]
+    public virtual float Capacity { get; set; }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
