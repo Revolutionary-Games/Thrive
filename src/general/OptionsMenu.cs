@@ -1038,8 +1038,8 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
-        UpdateResetSaveButtonState();
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.OPEN_SCREENSHOT_FOLDER));
+        
     }
     
     private void OnCustomUsernameEnabledToggled(bool pressed)
@@ -1106,13 +1106,5 @@ public class OptionsMenu : Control
         {
             languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
         }
-    }
-
-    private void OnOpenScreenshotFolder()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
-        
     }
 }

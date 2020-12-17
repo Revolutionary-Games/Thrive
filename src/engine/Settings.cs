@@ -460,7 +460,7 @@ public class Settings
         }
     }
 }
-using Godot;
+
 using Newtonsoft.Json;
 
 /// <summary>
