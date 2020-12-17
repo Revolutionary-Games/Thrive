@@ -17,10 +17,10 @@ public class ColonyCompoundBag : CompoundBag
     public override Dictionary<Compound, float> Compounds =>
         IsInAColony ?
             microbe
-               .GetAllColonyMembers()
-               .SelectMany(p => p.Compounds.Compounds)
-               .GroupBy(p => p.Key)
-               .ToDictionary(p => p.Key, p => p.Sum(x => x.Value)) :
+                .GetAllColonyMembers()
+                .SelectMany(p => p.Compounds.Compounds)
+                .GroupBy(p => p.Key)
+                .ToDictionary(p => p.Key, p => p.Sum(x => x.Value)) :
             base.Compounds;
 
     private bool IsInAColony => microbe.Colony != null;
