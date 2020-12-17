@@ -41,9 +41,6 @@ public class ColonyCompoundBag : CompoundBag
             var surplus = Math.Max(0, microbe.Compounds.GetCompoundAmount(compound) - average);
             foreach (var member in microbe.GetAllColonyMembers())
             {
-                if (!member.Compounds.IsUseful(compound))
-                    continue;
-
                 if (surplus <= 0.0001)
                     continue;
 
