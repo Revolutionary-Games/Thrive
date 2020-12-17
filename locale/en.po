@@ -859,7 +859,6 @@ msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:216
-#, fuzzy
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr "Binding Agent"
 
@@ -868,7 +867,6 @@ msgid "CTRL"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:61
-#, fuzzy
 msgid "ALT"
 msgstr "ATP"
 
@@ -889,7 +887,6 @@ msgid "MIDDLE_MOUSE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:80
-#, fuzzy
 msgid "WHEEL_UP"
 msgstr "Wheel down"
 
@@ -2073,7 +2070,6 @@ msgid "PATCH_NAME"
 msgstr "Patch Name"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4136
-#, fuzzy
 msgid "AUTO_EVO"
 msgstr "Auto-evo failed to run"
 
@@ -2103,7 +2099,6 @@ msgid "SELECT_A_PATCH"
 msgstr "Select a patch to show details here"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4451
-#, fuzzy
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -2276,22 +2271,18 @@ msgid "SAVING_FAILED"
 msgstr "Saving failed! An exception happened"
 
 #: ../src/saving/SaveInformation.cs:22
-#, fuzzy
 msgid "SAVE_MANUAL"
 msgstr "Save failed"
 
 #: ../src/saving/SaveInformation.cs:31
-#, fuzzy
 msgid "SAVE_AUTOSAVE"
 msgstr "Space used:"
 
 #: ../src/saving/SaveInformation.cs:40
-#, fuzzy
 msgid "SAVE_QUICKSAVE"
 msgstr "Quick save"
 
 #: ../src/saving/SaveInformation.cs:49
-#, fuzzy
 msgid "SAVE_INVALID"
 msgstr "Save is invalid"
 
@@ -2599,6 +2590,9 @@ msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by "
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
+
+#~ msgid "PLASTID"
+#~ msgstr "Plastid"
 
 #~ msgid "SECOND"
 #~ msgstr "second"

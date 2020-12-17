@@ -73,7 +73,6 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Если число особей упадёт до нуля, то твой вид вымрет."
 
 #: ../simulation_parameters/common/help_texts.json:11
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Различные соединения облаков:\n"
@@ -297,27 +296,22 @@ msgid "MOVEMENT"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:10
-#, fuzzy
 msgid "MOVE_LEFT"
 msgstr "Свет"
 
 #: ../simulation_parameters/common/input_options.json:14
-#, fuzzy
 msgid "MOVE_RIGHT"
 msgstr "Свет"
 
 #: ../simulation_parameters/common/input_options.json:18
-#, fuzzy
 msgid "MOVE_FORWARD"
 msgstr "Авто-эво не удалось запустить"
 
 #: ../simulation_parameters/common/input_options.json:22
-#, fuzzy
 msgid "MOVE_BACKWARDS"
 msgstr "Авто-эво не удалось запустить"
 
 #: ../simulation_parameters/common/input_options.json:26
-#, fuzzy
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Авто-эво не удалось запустить"
 
@@ -351,12 +345,10 @@ msgid "EDITOR"
 msgstr "Редактор"
 
 #: ../simulation_parameters/common/input_options.json:71
-#, fuzzy
 msgid "ROTATE_RIGHT"
 msgstr "Свет"
 
 #: ../simulation_parameters/common/input_options.json:75
-#, fuzzy
 msgid "ROTATE_LEFT"
 msgstr "Свет"
 
@@ -369,12 +361,10 @@ msgid "REDO"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "PLACE_ORGANELLE"
 msgstr "Органеллы"
 
 #: ../simulation_parameters/common/input_options.json:91
-#, fuzzy
 msgid "REMOVE_ORGANELLE"
 msgstr "Органеллы"
 
@@ -383,22 +373,18 @@ msgid "CHEATS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:103
-#, fuzzy
 msgid "ENABLE_EDITOR"
 msgstr "Редактор"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "SPAWN_GLUCOSE"
 msgstr "Глюкоза"
 
 #: ../simulation_parameters/common/input_options.json:111
-#, fuzzy
 msgid "SPAWN_AMMONIA"
 msgstr "Аммиак"
 
 #: ../simulation_parameters/common/input_options.json:115
-#, fuzzy
 msgid "SPAWN_PHOSPHATES"
 msgstr "Фосфат"
 
@@ -411,12 +397,10 @@ msgid "TOGGLE_FPS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:132
-#, fuzzy
 msgid "QUICK_SAVE"
 msgstr "Сохранить игру"
 
 #: ../simulation_parameters/common/input_options.json:136
-#, fuzzy
 msgid "QUICK_LOAD"
 msgstr "Сохранить игру"
 
@@ -425,7 +409,6 @@ msgid "TAKE_SCREENSHOT"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:144
-#, fuzzy
 msgid "SHOW_HELP"
 msgstr "Помощь"
 
@@ -829,7 +812,6 @@ msgid "LOADING"
 msgstr "Загрузка"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:341
-#, fuzzy
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "..."
 
@@ -842,7 +824,6 @@ msgid "CTRL"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:61
-#, fuzzy
 msgid "ALT"
 msgstr "АТФ"
 
@@ -875,7 +856,6 @@ msgid "WHEEL_LEFT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:83
-#, fuzzy
 msgid "WHEEL_RIGHT"
 msgstr "Свет"
 
@@ -1008,7 +988,6 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать авто-эво во время геймплея"
 
 #: ../src/general/OptionsMenu.tscn:794
-#, fuzzy
 msgid "RESET_INPUTS"
 msgstr "Сбросить по умолчанию?"
 
@@ -1017,7 +996,6 @@ msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
 #: ../src/general/OptionsMenu.tscn:826
-#, fuzzy
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать Вступление Микроба при новой игре"
 
@@ -1077,12 +1055,10 @@ msgstr ""
 "Ты действительно хочешь сбросить ВСЕ настройки до значений по умолчанию?"
 
 #: ../src/general/OptionsMenu.tscn:1030
-#, fuzzy
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "По умолчанию"
 
 #: ../src/general/OptionsMenu.tscn:1031
-#, fuzzy
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Ты действительно хочешь сбросить ВСЕ настройки до значений по умолчанию?"
@@ -1503,7 +1479,6 @@ msgid "ALLOWS_BINDING"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3035
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Описание:"
 
@@ -1849,7 +1824,6 @@ msgid "BEHAVIOR"
 msgstr "Поведение"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
-#, fuzzy
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "..."
 
@@ -1902,7 +1876,6 @@ msgid "COLOUR"
 msgstr "Окраска"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3989
-#, fuzzy
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "..."
 
@@ -1960,7 +1933,6 @@ msgid "SELECT_A_PATCH"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4451
-#, fuzzy
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
@@ -2132,22 +2104,18 @@ msgid "SAVING_FAILED"
 msgstr "Сохранение неудалось! Случается в исключительных ситуациях"
 
 #: ../src/saving/SaveInformation.cs:22
-#, fuzzy
 msgid "SAVE_MANUAL"
 msgstr "Сохранение неудалось"
 
 #: ../src/saving/SaveInformation.cs:31
-#, fuzzy
 msgid "SAVE_AUTOSAVE"
 msgstr "Места используется:"
 
 #: ../src/saving/SaveInformation.cs:40
-#, fuzzy
 msgid "SAVE_QUICKSAVE"
 msgstr "Сохранить игру"
 
 #: ../src/saving/SaveInformation.cs:49
-#, fuzzy
 msgid "SAVE_INVALID"
 msgstr "Сохранение неудалось"
 
@@ -2342,7 +2310,6 @@ msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
-#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Собирайте глюкозу (белые облака) двигаясь по нему.\n"
@@ -2356,3 +2323,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:298
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#~ msgid "PLASTID"
+#~ msgstr "Пластид"

@@ -339,54 +339,51 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "Ruch"
 
 #: ../simulation_parameters/common/input_options.json:10
-#, fuzzy
 msgid "MOVE_LEFT"
-msgstr ". Stosunek się skaluje"
+msgstr "Poruszanie w lewo"
 
 #: ../simulation_parameters/common/input_options.json:14
-#, fuzzy
 msgid "MOVE_RIGHT"
-msgstr "Światło"
+msgstr "Poruszanie w prawo"
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
-msgstr ""
+msgstr "Poruszanie do przodu"
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr ""
+msgstr "Poruszanie do tyłu"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "Automatyczne poruszanie do przodu"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "Umiejętności"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Strzał toksyną"
 
 #: ../simulation_parameters/common/input_options.json:42
-#, fuzzy
 msgid "TOGGLE_ENGULF"
-msgstr "Nie może połykać"
+msgstr "Przełączenie połykania"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr ""
+msgstr "Kamera"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Oddal"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Przybliż"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:969
@@ -394,82 +391,72 @@ msgid "EDITOR"
 msgstr "Edytor"
 
 #: ../simulation_parameters/common/input_options.json:71
-#, fuzzy
 msgid "ROTATE_RIGHT"
-msgstr "Światło"
+msgstr "Obróć w prawo"
 
 #: ../simulation_parameters/common/input_options.json:75
-#, fuzzy
 msgid "ROTATE_LEFT"
-msgstr ". Stosunek się skaluje"
+msgstr "Obróć w lewo"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr ""
+msgstr "Cofnij"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr ""
+msgstr "Powtórz"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "PLACE_ORGANELLE"
-msgstr ""
+msgstr "Dodaj organellę"
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "REMOVE_ORGANELLE"
-msgstr ""
+msgstr "Usuń organellę"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "CHEATS"
-msgstr ""
+msgstr "Oszustwa"
 
 #: ../simulation_parameters/common/input_options.json:103
-#, fuzzy
 msgid "ENABLE_EDITOR"
-msgstr "Edytor"
+msgstr "Włącz edytor"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "SPAWN_GLUCOSE"
-msgstr "Glukoza"
+msgstr "Stwórz glukozę"
 
 #: ../simulation_parameters/common/input_options.json:111
-#, fuzzy
 msgid "SPAWN_AMMONIA"
-msgstr "Amoniak"
+msgstr "Stwórz amoniak"
 
 #: ../simulation_parameters/common/input_options.json:115
-#, fuzzy
 msgid "SPAWN_PHOSPHATES"
-msgstr "Fosforan"
+msgstr "Stwórz fosforan"
 
 #: ../simulation_parameters/common/input_options.json:124
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Różne"
 
 #: ../simulation_parameters/common/input_options.json:128
-#, fuzzy
 msgid "TOGGLE_FPS"
-msgstr "Nie może połykać"
+msgstr "Przełącz wyświetlacz FPS"
 
 #: ../simulation_parameters/common/input_options.json:132
-#, fuzzy
 msgid "QUICK_SAVE"
-msgstr "Zapisz Grę"
+msgstr "Szybki zapis"
 
 #: ../simulation_parameters/common/input_options.json:136
-#, fuzzy
 msgid "QUICK_LOAD"
-msgstr "Zapisz Grę"
+msgstr "Szybkie wczytanie"
 
 #: ../simulation_parameters/common/input_options.json:140
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Zrzut ekranu"
 
 #: ../simulation_parameters/common/input_options.json:144
-#, fuzzy
 msgid "SHOW_HELP"
-msgstr "Pomoc"
+msgstr "Pokaż pomoc"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -871,66 +858,66 @@ msgid "LOADING"
 msgstr "Wczytywanie"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:341
-#, fuzzy
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Naciśnij klawisz..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:216
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Jest konflikt z {0}.\n"
+"Czy chcesz usunąć wejście z {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:59
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:61
-#, fuzzy
 msgid "ALT"
-msgstr "ATP"
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:63
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "Lewy myszy"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:78
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Prawy myszy"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:79
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Środkowy myszy"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:80
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Koło do góry"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:81
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Koło do góry"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:82
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Koło w lewo"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:83
 msgid "WHEEL_RIGHT"
-msgstr ""
+msgstr "Koło w prawo"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Specjalny 1 myszy"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Specjalny 2 myszy"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Nieznany myszy"
 
 #: ../src/general/HelpScreen.tscn:101
 msgid "CLOSE"
@@ -950,7 +937,7 @@ msgstr "Wydajność"
 
 #: ../src/general/OptionsMenu.tscn:164
 msgid "INPUTS"
-msgstr ""
+msgstr "Wejścia"
 
 #: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
@@ -1050,7 +1037,7 @@ msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
 #: ../src/general/OptionsMenu.tscn:794
 msgid "RESET_INPUTS"
-msgstr ""
+msgstr "Zresetuj Wejścia"
 
 #: ../src/general/OptionsMenu.tscn:817
 msgid "PLAY_INTRO_VIDEO"
@@ -1118,11 +1105,13 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1030
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr ""
+msgstr "Zresetować wejścia do domyślnych?"
 
 #: ../src/general/OptionsMenu.tscn:1031
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
+"Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości "
+"domyślnych?"
 
 #: ../src/general/OptionsMenu.tscn:1040
 msgid "CLOSE_OPTIONS"
@@ -1577,7 +1566,6 @@ msgid "ALLOWS_BINDING"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3035
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Opis:"
 
@@ -1654,7 +1642,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5153
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5217
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Bioluminescencyjna Wakuola"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5284
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5348
@@ -1718,7 +1706,7 @@ msgstr "Chityna"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6975
 msgid "TOXIN_RESISTANCE"
-msgstr ""
+msgstr "Odporność Na Toksyny"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6360
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -1927,7 +1915,6 @@ msgid "BEHAVIOR"
 msgstr "Zachowanie"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
-#, fuzzy
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "..."
 
@@ -1976,7 +1963,6 @@ msgid "COLOUR"
 msgstr "Kolor"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3989
-#, fuzzy
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "..."
 
@@ -2005,7 +1991,6 @@ msgid "PATCH_NAME"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4136
-#, fuzzy
 msgid "AUTO_EVO"
 msgstr "auto"
 
@@ -2035,7 +2020,6 @@ msgid "SELECT_A_PATCH"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4451
-#, fuzzy
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POPULACJA:"
 
@@ -2081,7 +2065,6 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKCJA ATP JEST ZA NISKA!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:731
-#, fuzzy
 msgid "OSMOREGULATION"
 msgstr "populacja:"
 
@@ -2203,17 +2186,14 @@ msgid "SAVING_FAILED"
 msgstr ""
 
 #: ../src/saving/SaveInformation.cs:22
-#, fuzzy
 msgid "SAVE_MANUAL"
 msgstr "Zapisz Grę"
 
 #: ../src/saving/SaveInformation.cs:31
-#, fuzzy
 msgid "SAVE_AUTOSAVE"
 msgstr "Użyte miejsce:"
 
 #: ../src/saving/SaveInformation.cs:40
-#, fuzzy
 msgid "SAVE_QUICKSAVE"
 msgstr "Zapisz Grę"
 
