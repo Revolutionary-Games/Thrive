@@ -48,7 +48,7 @@ If the method is **not static** you must do one of the following:
 - add `InputManager.RegisterReceiver(this)` to your `\_EnterTree` and `InputManager.UnregisterReceiver(this)` to your `\_ExitTree`
 
 InvokeAlsoWithNoInput
------------------
+---------------------
 
 `RunOnAxis` and `RunOnAxisGroup` both have the `InvokeAlsoWithNoInput` property.
 
@@ -70,7 +70,7 @@ If `RunOnAxisGroup` attribute is found on a method, all other `InvokeAlsoWithNoI
 values are ignored as the axis group overwrites them.
 
 OnlyUnhandled
--------
+-------------
 
 Every `InputAttribute` has the `OnlyUnhandled` property.
 
@@ -79,7 +79,7 @@ By default this property is true.
 This property defines if the method should be called even if the Input was already marked as handled.
 
 Priority
--------
+--------
 
 Every `InputAttribute` has the `Priority` property.
 
