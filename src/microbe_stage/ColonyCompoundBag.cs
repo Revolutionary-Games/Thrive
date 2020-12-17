@@ -12,7 +12,7 @@ public class ColonyCompoundBag : CompoundBag
     }
 
     public override float Capacity =>
-        IsInAColony ? microbe.GetAllColonyMembers().Sum(p => p.Compounds.Capacity) : base.Capacity;
+        IsInAColony ? microbe.GetAllColonyMembers().Sum(p => p.Compounds.Capacity) : microbe.Compounds.Capacity;
 
     public override Dictionary<Compound, float> Compounds =>
         IsInAColony ?
@@ -21,7 +21,7 @@ public class ColonyCompoundBag : CompoundBag
                 .SelectMany(p => p.Compounds.Compounds)
                 .GroupBy(p => p.Key)
                 .ToDictionary(p => p.Key, p => p.Sum(x => x.Value)) :
-            base.Compounds;
+            microbe.Compounds.Compounds;
 
     private bool IsInAColony => microbe.Colony != null;
 
