@@ -1,8 +1,22 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 public static class BindingExtensions
 {
+    /// <summary>
+    ///   Get all the members of the colony.
+    /// </summary>
+    /// <param name="microbe">The microbe</param>
+    /// <returns>A list containing all members.</returns>
+    public static List<Microbe> GetAllColonyMembers(this Microbe microbe)
+    {
+        var result = new List<Microbe>();
+        GetAllColonyMembers(microbe, result, false);
+        return result;
+    }
+
     /// <summary>
     ///   Counts the members of my colony.
     /// </summary>
@@ -10,7 +24,7 @@ public static class BindingExtensions
     /// <returns>Returns the number of colony members. Returns 0 if the microbe is not in a colony.</returns>
     public static int CountColonyMembers(this Microbe microbe)
     {
-        return CountColonyMembers(microbe, 0, false);
+        return GetAllColonyMembers(microbe).Count;
     }
 
     /// <summary>
@@ -32,7 +46,7 @@ public static class BindingExtensions
     /// <returns>Returns the average value across the colony.</returns>
     public static double GetColonyValueAvg(this Microbe microbe, PropertyInfo property)
     {
-        return GetColonyValueSum(microbe, property) / CountColonyMembers(microbe);
+        return GetAllColonyMembers(microbe).Average(p => (double)property.GetValue(p));
     }
 
     /// <summary>
@@ -54,7 +68,7 @@ public static class BindingExtensions
     /// <returns>Returns the sum across the colony.</returns>
     public static double GetColonyValueSum(this Microbe microbe, PropertyInfo property)
     {
-        return GetColonyValueSum(microbe, property, false, 0);
+        return GetAllColonyMembers(microbe).Sum(p => (double)property.GetValue(p));
     }
 
     /// <summary>
@@ -88,42 +102,24 @@ public static class BindingExtensions
     }
 
     // --- private recursive methods --- //
-    private static int CountColonyMembers(this Microbe microbe, int runningValue, bool fromAbove)
+    private static void GetAllColonyMembers(this Microbe microbe, ICollection<Microbe> current, bool fromAbove)
     {
         if (microbe.Colony == null)
-            return 0;
+        {
+            current.Add(microbe);
+            return;
+        }
 
         if (microbe.Colony.Master == null || fromAbove)
         {
-            runningValue++;
-
-            foreach (var colonyMember in microbe.Colony.BindingTo)
-                runningValue = CountColonyMembers(colonyMember.Microbe, runningValue, true);
-
-            return runningValue;
+            current.Add(microbe);
+            foreach (var colony in microbe.Colony.BindingTo)
+                GetAllColonyMembers(colony.Microbe, current, true);
         }
-
-        return CountColonyMembers(microbe.Colony.Master.Microbe, 0, false);
-    }
-
-    private static double GetColonyValueSum(this Microbe microbe, PropertyInfo property, bool fromAbove,
-        double currValue)
-    {
-        var myValue = (double)property.GetValue(microbe);
-        if (microbe.Colony == null)
-            return myValue;
-
-        if (microbe.Colony.Master == null || fromAbove)
+        else
         {
-            currValue += myValue;
-
-            foreach (var colonyMember in microbe.Colony.BindingTo)
-                currValue = GetColonyValueSum(colonyMember.Microbe, property, true, currValue);
-
-            return currValue;
+            GetAllColonyMembers(microbe.Colony.Master.Microbe, current, false);
         }
-
-        return GetColonyValueSum(microbe.Colony.Master.Microbe, property, false, currValue);
     }
 
     private static void SetColonyValue<T>(this Microbe microbe, T value, string property, bool fromAbove)

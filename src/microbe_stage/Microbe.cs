@@ -19,6 +19,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public readonly CompoundBag Compounds = new CompoundBag(0.0f);
 
+    [JsonIgnore]
+    public readonly ColonyCompoundBag ColonyCompoundBag;
+
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
@@ -156,6 +159,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   3d audio listener attached to this microbe if it is the player owned one.
     /// </summary>
     private Listener listener;
+
+    public Microbe()
+    {
+        ColonyCompoundBag = new ColonyCompoundBag(this);
+    }
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
@@ -925,9 +933,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 // Since the child cell is always an NPC they are given either 50% of the compound from the
                 // parent, or 90% of the amount required to immediately divide again, whichever is smaller.
                 float amountToGive = Math.Min(amount * 0.5f, divideAmount * 0.9f);
-                var didntFit = copyEntity.Compounds.AddCompound(compound, amountToGive);
+                var addedCompound = copyEntity.Compounds.AddCompound(compound, amountToGive);
 
-                if (didntFit > 0)
+                if (addedCompound < amountToGive)
                 {
                     // TODO: handle the excess compound that didn't fit in the other cell
                 }
@@ -1146,6 +1154,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // without problems
 
         HandleCompoundVenting(delta);
+
+        ColonyCompoundBag.DistributeCompoundSurplus();
 
         lastCheckedATPDamage += delta;
 
