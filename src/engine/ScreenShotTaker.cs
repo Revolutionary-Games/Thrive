@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Singleton handling screenshot taking
 /// </summary>
-public class ScreenShotTaker : Node
+public class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker instance;
 
@@ -22,13 +22,11 @@ public class ScreenShotTaker : Node
         PauseMode = PauseModeEnum.Process;
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyDown("screenshot", OnlyUnhandled = false)]
+    public void TakeScreenshotPressed()
     {
-        if (@event.IsActionPressed("screenshot"))
-        {
-            GD.Print("Taking a screenshot");
-            TakeAndSaveScreenShot();
-        }
+        GD.Print("Taking a screenshot");
+        TakeAndSaveScreenShot();
     }
 
     /// <summary>
