@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 20:40+0200\n"
+"POT-Creation-Date: 2020-12-18 11:35-0800\n"
 "PO-Revision-Date: 2020-12-10 12:44+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -37,8 +37,8 @@ msgstr "Solusi käyttää ATP:tä energianlähteenään, jos se loppuu, kuolet."
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Avataksesi editorin ja lisääntyäksesi, kerää ammoniakkia (oransseja pilviä) "
-"sekä fosfaattia (purppuroita pilviä)."
+"Avataksesi editorin ja lisääntyäksesi, kerää ammoniakkia (oransseja "
+"pilviä) sekä fosfaattia (purppuroita pilviä)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
@@ -46,17 +46,17 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Voit myös nielaista soluja, bakteereja, rautalohkareita sekä solujen "
 "kappaleita, jotka ovat sinua pienenmpiä painamalla G:tä. Tämä lisää ATP:n "
-"kulutusta ja hidastaa sinua. Älä unohda painaa G:tä uudestaan lopettaaksesi "
-"nielemisen."
+"kulutusta ja hidastaa sinua. Älä unohda painaa G:tä uudestaan "
+"lopettaaksesi nielemisen."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Osmoregulaatio kuluttaa ATP:tä, joka tarkoittaa, että mitä suurempi solusi "
-"on, sitä enemmän tarvitset mitokondrioita, metabolosomeja tai rusticyaninia "
-"(tai solulimaa, joka suorittaa glykolyysiä) välttääksesi menettämästä ATP:"
-"tä, kun olet paikallasi."
+"on, sitä enemmän tarvitset mitokondrioita, metabolosomeja tai "
+"rusticyaninia (tai solulimaa, joka suorittaa glykolyysiä) välttääksesi "
+"menettämästä ATP:tä, kun olet paikallasi."
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
@@ -99,9 +99,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Mutta, jos selviydyt kaksikymmentä sukupolvea ja populaatiosi on 300, voitat "
-"Thriven nykyisessä muodossaa, voiton jälkeen aukeaa ponnahdusikkuna, jonka "
-"sulkeuduttua peliä voi jatkaa oman halun mukaan."
+"Mutta, jos selviydyt kaksikymmentä sukupolvea ja populaatiosi on 300, "
+"voitat Thriven nykyisessä muodossaa, voiton jälkeen aukeaa "
+"ponnahdusikkuna, jonka sulkeuduttua peliä voi jatkaa oman halun mukaan."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
@@ -126,11 +126,11 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Joka sukupolvi käytössäsi on 100 mutaatiopistettä (MP). Jokainen muutos "
-"(mutaatio) maksaa tietyn verran mutaatiopisteitä. Soluelinten lisääminen tai "
-"poistaminen maksaa MP:tä, mutta soluelinten poistaminen, jotka on lisätty "
-"nykyisessä editorisessiossa, antaa takaisin niiden kustannuksen. Soluelimen "
-"voi poistaa painamalla sitä oikealla hiirennapilla. Asetettavaa soluelintä "
-"voi kääntää painamalla A:ta tai D:tä."
+"(mutaatio) maksaa tietyn verran mutaatiopisteitä. Soluelinten lisääminen "
+"tai poistaminen maksaa MP:tä, mutta soluelinten poistaminen, jotka on "
+"lisätty nykyisessä editorisessiossa, antaa takaisin niiden kustannuksen. "
+"Soluelimen voi poistaa painamalla sitä oikealla hiirennapilla. Asetettavaa "
+"soluelintä voi kääntää painamalla A:ta tai D:tä."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -985,7 +985,7 @@ msgid "CUSTOM_USERNAME"
 msgstr "Valittu käyttäjänimi:"
 
 #: ../src/general/OptionsMenu.tscn:972 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:307 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:112
 msgid "BACK"
 msgstr "Takaisin"
@@ -1075,11 +1075,11 @@ msgstr "Palaa Päävalikkoon"
 msgid "EXIT"
 msgstr "Poistu"
 
-#: ../src/gui_common/MainMenu.cs:323
+#: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
 msgstr "OK"
 
-#: ../src/gui_common/MainMenu.cs:324
+#: ../src/gui_common/MainMenu.cs:330
 msgid "Cancel"
 msgstr "Peruuta"
 
@@ -1092,26 +1092,30 @@ msgid "TOOLS"
 msgstr "Työkalut"
 
 #: ../src/gui_common/MainMenu.tscn:199
+msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
 msgstr "Ekstrat"
 
-#: ../src/gui_common/MainMenu.tscn:211
+#: ../src/gui_common/MainMenu.tscn:223
 msgid "CREDITS"
 msgstr "Tekijät"
 
-#: ../src/gui_common/MainMenu.tscn:223
+#: ../src/gui_common/MainMenu.tscn:235
 msgid "QUIT"
 msgstr "Lopeta"
 
-#: ../src/gui_common/MainMenu.tscn:246
+#: ../src/gui_common/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:346
+#: ../src/gui_common/MainMenu.tscn:358
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-moodi Varoitus"
 
-#: ../src/gui_common/MainMenu.tscn:347
+#: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -1601,11 +1605,11 @@ msgstr ""
 msgid "STUFF_AT"
 msgstr "Juttuja sijainnissa {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:448
+#: ../src/microbe_stage/MicrobeStage.cs:446
 msgid "PLAYER_REPRODUCED"
 msgstr "pelaaja jatkoi sukuaan"
 
-#: ../src/microbe_stage/MicrobeStage.cs:560
+#: ../src/microbe_stage/MicrobeStage.cs:558
 msgid "PLAYER_DIED"
 msgstr "pelaaja kuoli"
 
@@ -1694,20 +1698,20 @@ msgstr "Jäähylly"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:542
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:997
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:505
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:977
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:544
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:507
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Odotetaan auto-evoa:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1802
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1782
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1803
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1783
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
 
@@ -2062,7 +2066,8 @@ msgstr "Lataa epäyhteensopiva tallennus?"
 #: ../src/saving/SaveList.tscn:69
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Tämä tallennus on uudemmasta Thriven versiosta ja erittäin todennäköisesti\n"
+"Tämä tallennus on uudemmasta Thriven versiosta ja erittäin "
+"todennäköisesti\n"
 "se ei ole yhteensopiva. Lataa kuitenkin?"
 
 #: ../src/saving/SaveList.tscn:79
@@ -2122,8 +2127,8 @@ msgstr "Lataa"
 #: ../src/saving/SaveListItem.tscn:281
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
-"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen "
-"lopullisesti?"
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa "
+"sen lopullisesti?"
 
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 20:40+0200\n"
+"POT-Creation-Date: 2020-12-18 11:35-0800\n"
 "PO-Revision-Date: 2020-11-17 07:36+0000\n"
 "Last-Translator: Viktor <xaad3@disroot.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -26,8 +26,8 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "Двигайся, используя клавиши \"W\", \"А\", \"S\" и \"D\" и мышь. Стреляй "
-"токсином, нажимая \"E\" (если есть вакуоль с токсином). Поглощай, нажимая \"G"
-"\"."
+"токсином, нажимая \"E\" (если есть вакуоль с токсином). Поглощай, нажимая "
+"\"G\"."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -49,8 +49,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Нажимая кнопку \"G\", ты входишь в режим поглощения. Ты можешь потреблять "
 "меньшие по размеру клетки, бактерии, а также молекулы железа. Это стоит "
-"дополнительных затрат АТФ, а также замедляет передвижение. Не забудь нажать "
-"\"G\" снова, как закончишь поглощать."
+"дополнительных затрат АТФ, а также замедляет передвижение. Не забудь "
+"нажать \"G\" снова, как закончишь поглощать."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
@@ -64,8 +64,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"В редакторе тебе доступен обширный ряд органелл. Это позволяет тебе выбрать "
-"свой стиль игры."
+"В редакторе тебе доступен обширный ряд органелл. Это позволяет тебе "
+"выбрать свой стиль игры."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
@@ -97,8 +97,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Чтобы размножиться, нужно каждую органеллу поделить надвое. Для этого нужно "
-"иметь больше аммиака и фосфата."
+"Чтобы размножиться, нужно каждую органеллу поделить надвое. Для этого "
+"нужно иметь больше аммиака и фосфата."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -159,8 +159,8 @@ msgstr ""
 "\n"
 "Хемопласт: делает глюкозу из сероводорода;\n"
 "\n"
-"Азотфиксирующий пластид: превращает аммиак а АТФ, свободный азот и свободный "
-"кислород;\n"
+"Азотфиксирующий пластид: превращает аммиак а АТФ, свободный азот и "
+"свободный кислород;\n"
 "\n"
 "Вакуоль: хранит до 15 веществ;\n"
 "\n"
@@ -170,10 +170,10 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "С каждым новым поколением тебе будут давать 100 очков мутации (ОМ). Любое "
-"улучшение клетки, любое удаление ненужных органелл стоит ОМ. Бесплатно можно "
-"удалить лишь ту часть клетки, которую ты только что поставил. Удаляются "
-"части клетки нажатием правой кнопки мыши. Органеллы можно вращать, нажимая "
-"\"A\" и \"D\""
+"улучшение клетки, любое удаление ненужных органелл стоит ОМ. Бесплатно "
+"можно удалить лишь ту часть клетки, которую ты только что поставил. "
+"Удаляются части клетки нажатием правой кнопки мыши. Органеллы можно "
+"вращать, нажимая \"A\" и \"D\""
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1048,7 +1048,7 @@ msgid "CUSTOM_USERNAME"
 msgstr "Имя пользователя:"
 
 #: ../src/general/OptionsMenu.tscn:972 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:307 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:112
 msgid "BACK"
 msgstr "Назад"
@@ -1109,7 +1109,8 @@ msgstr "Ошибка"
 
 #: ../src/general/OptionsMenu.tscn:1133 ../src/general/OptionsMenu.tscn:1154
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
+msgstr ""
+"Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
 
 #: ../src/general/PauseMenu.tscn:57
 msgid "RESUME"
@@ -1144,11 +1145,11 @@ msgstr "Вернуться в меню"
 msgid "EXIT"
 msgstr "Выход"
 
-#: ../src/gui_common/MainMenu.cs:323
+#: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:324
+#: ../src/gui_common/MainMenu.cs:330
 msgid "Cancel"
 msgstr ""
 
@@ -1161,26 +1162,30 @@ msgid "TOOLS"
 msgstr "Инструменты"
 
 #: ../src/gui_common/MainMenu.tscn:199
+msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
 msgstr "Дополнительное"
 
-#: ../src/gui_common/MainMenu.tscn:211
+#: ../src/gui_common/MainMenu.tscn:223
 msgid "CREDITS"
 msgstr "Титры"
 
-#: ../src/gui_common/MainMenu.tscn:223
+#: ../src/gui_common/MainMenu.tscn:235
 msgid "QUIT"
 msgstr "Выйти"
 
-#: ../src/gui_common/MainMenu.tscn:246
+#: ../src/gui_common/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:346
+#: ../src/gui_common/MainMenu.tscn:358
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:347
+#: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Ты запустил Thrive через GLES2. Это сильно не проверенно и может вызывать "
@@ -1673,11 +1678,11 @@ msgstr ""
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:448
+#: ../src/microbe_stage/MicrobeStage.cs:446
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:560
+#: ../src/microbe_stage/MicrobeStage.cs:558
 msgid "PLAYER_DIED"
 msgstr "игрок умер"
 
@@ -1766,20 +1771,20 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:542
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:997
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:505
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:977
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка редактора микроба"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:544
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:507
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1802
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1782
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1803
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1783
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
