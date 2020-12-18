@@ -175,15 +175,34 @@ public class InputManager : Node
         return result;
     }
 
-    private void OnInput(bool inputUnhandled, InputEvent @event)
+    private void OnInput(bool unhandledInput, InputEvent @event)
     {
         // Ignore mouse motion
         // TODO: support mouse movement input as well
         if (@event is InputEventMouseMotion)
             return;
 
-        var handled = attributes.Any(
-            attribute => (inputUnhandled || !attribute.Key.OnlyUnhandled) && attribute.Key.OnInput(@event));
+        bool isUp = !@event.IsPressed();
+
+        bool handled = false;
+
+        foreach (var entry in attributes)
+        {
+            var attribute = entry.Key;
+
+            if (unhandledInput || !attribute.OnlyUnhandled)
+            {
+                if (attribute.OnInput(@event))
+                {
+                    handled = true;
+
+                    // Key releases are passed along to all input listeners, key down is passed to only the first one
+                    // that consumes it
+                    if (!isUp)
+                        break;
+                }
+            }
+        }
 
         // Define input as consumed to Godot if something reacted to it
         if (handled)
@@ -199,14 +218,14 @@ public class InputManager : Node
             PauseMode = PauseModeEnum.Process,
             WaitTime = 1,
         };
-        timer.Connect("timeout", this, "ClearReferences");
+        timer.Connect("timeout", this, "ClearExpiredReferences");
         AddChild(timer);
     }
 
     /// <summary>
     ///   Called every second using a timer
     /// </summary>
-    private void ClearReferences()
+    private void ClearExpiredReferences()
     {
         foreach (var attributesValue in staticInstance.attributes.Values)
             attributesValue.RemoveAll(p => !p.IsAlive);
@@ -258,6 +277,7 @@ public class InputManager : Node
             }
         }
 
+        // Sort the attributes based on priority
         attributes = attributes
             .OrderBy(p => p.Key, Comparer<InputAttribute>.Create((x, y) => y.Priority - x.Priority))
             .ToDictionary(p => p.Key, p => p.Value);
