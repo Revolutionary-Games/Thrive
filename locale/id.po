@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 20:40+0200\n"
+"POT-Creation-Date: 2020-12-18 11:35-0800\n"
 "PO-Revision-Date: 2020-12-09 15:46+0000\n"
 "Last-Translator: Rizky Pramudya <rizkypramudyacj@outlook.co.id>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -24,21 +24,22 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"W,A,S,D dan mouse untuk menggerakkan. E untuk menembak OxyToxy NT jika kamu "
-"punya vakula toksin. G untuk menyalakan/mematikan mode engulf."
+"W,A,S,D dan mouse untuk menggerakkan. E untuk menembak OxyToxy NT jika "
+"kamu punya vakula toksin. G untuk menyalakan/mematikan mode engulf."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Sel kamu menggunakan ATP sebagai sumber energinya, jika habis kamu akan mati."
+"Sel kamu menggunakan ATP sebagai sumber energinya, jika habis kamu akan "
+"mati."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah Ammonia "
-"(Awan Oranye) dan Fosfat (Awan Ungu)."
+"Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah "
+"Ammonia (Awan Oranye) dan Fosfat (Awan Ungu)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
@@ -46,8 +47,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan "
 "potongan sel yang lebih kecil dari sel kamu dengan cara menekan tombol G. "
-"Proses ini membutuhkan ATP dan memperlambat sel kamu. Jangan lupa tekan lagi "
-"G untuk menghentikan penelanan."
+"Proses ini membutuhkan ATP dan memperlambat sel kamu. Jangan lupa tekan "
+"lagi G untuk menghentikan penelanan."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
@@ -89,15 +90,15 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "Hidrogen Sulfida dapat dikonversi menjadi glukosa dengan cara melalui "
-"kemoplas yang menjalankan proses kemosintesis protein. Besi dapat dikonversi "
-"menjadi ATP melalui rusticyanin."
+"kemoplas yang menjalankan proses kemosintesis protein. Besi dapat "
+"dikonversi menjadi ATP melalui rusticyanin."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi dua. "
-"Diperlukan amonia dan fosfat untuk membelah semua organel menjadi dua."
+"Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi "
+"dua. Diperlukan amonia dan fosfat untuk membelah semua organel menjadi dua."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -110,8 +111,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar kamu. "
-"Setiap kamu memasuki sesi editor, para kompetitor juga ikut berkembang."
+"Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar "
+"kamu. Setiap kamu memasuki sesi editor, para kompetitor juga ikut "
+"berkembang."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -978,7 +980,7 @@ msgid "CUSTOM_USERNAME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:972 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:307 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:112
 msgid "BACK"
 msgstr ""
@@ -1068,11 +1070,11 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:323
+#: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:324
+#: ../src/gui_common/MainMenu.cs:330
 msgid "Cancel"
 msgstr ""
 
@@ -1085,26 +1087,30 @@ msgid "TOOLS"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:199
-msgid "EXTRAS"
+msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:211
-msgid "CREDITS"
+msgid "EXTRAS"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:223
+msgid "CREDITS"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:235
 msgid "QUIT"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:246
+#: ../src/gui_common/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:346
+#: ../src/gui_common/MainMenu.tscn:358
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:347
+#: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -1594,11 +1600,11 @@ msgstr ""
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:448
+#: ../src/microbe_stage/MicrobeStage.cs:446
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:560
+#: ../src/microbe_stage/MicrobeStage.cs:558
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -1687,20 +1693,20 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:542
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:997
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:505
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:977
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:544
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:507
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1802
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1782
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1803
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1783
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 

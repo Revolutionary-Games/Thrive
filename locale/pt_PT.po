@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-17 20:40+0200\n"
+"POT-Creation-Date: 2020-12-18 11:35-0800\n"
 "PO-Revision-Date: 2020-11-30 15:40+0000\n"
 "Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -53,9 +53,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulação custa ATP, o que significa que quanto maior for a tua célula, "
-"mais Mitocôndrias, Metabolossomas ou Rusticianina (ou citoplasma, que faz "
-"Glicólise) necessitas para evitar perder ATP quando te encontrares "
+"Osmoregulação custa ATP, o que significa que quanto maior for a tua "
+"célula, mais Mitocôndrias, Metabolossomas ou Rusticianina (ou citoplasma, "
+"que faz Glicólise) necessitas para evitar perder ATP quando te encontrares "
 "estacionário."
 
 #: ../simulation_parameters/common/help_texts.json:9
@@ -88,8 +88,8 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "Sulfureto de Hidrogénio pode ser convertido em glicose através de "
-"quimioplastos e proteínas quimiossintetizantes. Ferro pode ser convertido em "
-"ATP via rusticianina."
+"quimioplastos e proteínas quimiossintetizantes. Ferro pode ser convertido "
+"em ATP via rusticianina."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
@@ -120,8 +120,8 @@ msgstr ""
 "Metabolossomas: Produz ATP a partir de glicose\n"
 "\n"
 "Proteínas Quimiossintetizantes: Produz metade da quantidade de glicose a "
-"partir de Sulfureto de Hidrogénio que um quimioplasto produziria, mas também "
-"realiza glicólise, ocupa 1 Hexágono\n"
+"partir de Sulfureto de Hidrogénio que um quimioplasto produziria, mas "
+"também realiza glicólise, ocupa 1 Hexágono\n"
 "\n"
 "Tilacoides: Produz 1/3 da quantidade de glicose que um cloroplasto normal "
 "produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
@@ -150,11 +150,11 @@ msgstr ""
 "Organelos Limitados por Membrana\n"
 "\n"
 "Núcleo: Ocupa 11 hexágonos e permite a evolução de organelos limitados por "
-"membrana. Também duplica o tamanho da tua célula. (Apenas pode ser evoluido "
-"uma única vez)\n"
+"membrana. Também duplica o tamanho da tua célula. (Apenas pode ser "
+"evoluido uma única vez)\n"
 "\n"
-"Mitocôndria: Produz ATP a partir de glicose e O2 atmosférico. Bastante mais "
-"eficiente que o citoplasma\n"
+"Mitocôndria: Produz ATP a partir de glicose e O2 atmosférico. Bastante "
+"mais eficiente que o citoplasma\n"
 "\n"
 "Cloroplasto: Produz glicose a partir de luz solar e CO2 atmosférico\n"
 "\n"
@@ -209,8 +209,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Curiosidade, na vida real os procariotas têm algo chamado Biocompartimentos, "
-"que actuam como organelos, e são de facto chamados organelos poliédricos."
+"Curiosidade, na vida real os procariotas têm algo chamado "
+"Biocompartimentos, que actuam como organelos, e são de facto chamados "
+"organelos poliédricos."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
@@ -1044,7 +1045,7 @@ msgid "CUSTOM_USERNAME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:972 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:307 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:112
 msgid "BACK"
 msgstr ""
@@ -1134,11 +1135,11 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.cs:323
+#: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
 msgstr "OK"
 
-#: ../src/gui_common/MainMenu.cs:324
+#: ../src/gui_common/MainMenu.cs:330
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1151,26 +1152,30 @@ msgid "TOOLS"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:199
-msgid "EXTRAS"
+msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:211
-msgid "CREDITS"
+msgid "EXTRAS"
 msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:223
+msgid "CREDITS"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:235
 msgid "QUIT"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:246
+#: ../src/gui_common/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:346
+#: ../src/gui_common/MainMenu.tscn:358
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/gui_common/MainMenu.tscn:347
+#: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -1660,11 +1665,11 @@ msgstr ""
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:448
+#: ../src/microbe_stage/MicrobeStage.cs:446
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:560
+#: ../src/microbe_stage/MicrobeStage.cs:558
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -1753,20 +1758,20 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:542
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:997
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:505
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:977
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:544
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:507
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1802
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1782
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1803
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1783
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
