@@ -29,6 +29,7 @@ ONLY_FILE_LIST = 'files_to_check.txt'
 
 LOCALE_TEMP_SUFFIX = '.temp_check'
 MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
+FUZZY_TRANSLATION_REGEX = /^#, fuzzy/.freeze
 
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
@@ -344,6 +345,13 @@ def handle_po_file(path)
   msg_ids = Set[]
 
   File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if is_english && line.match(FUZZY_TRANSLATION_REGEX)
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} has fuzzy (marked needs changes) translation, not allowed for en"
+        errors = true
+      end
+    end
+
     matches = line.match(MSG_ID_REGEX)
 
     if matches
