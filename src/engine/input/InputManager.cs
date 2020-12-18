@@ -224,7 +224,7 @@ public class InputManager : Node
         if (@event is InputEventMouseMotion)
             return;
 
-        bool isUp = !@event.IsPressed();
+        bool isDown = @event.IsPressed();
 
         bool handled = false;
 
@@ -240,7 +240,7 @@ public class InputManager : Node
 
                     // Key releases are passed along to all input listeners, key down is passed to only the first one
                     // that consumes it
-                    if (!isUp)
+                    if (isDown)
                         break;
                 }
             }
