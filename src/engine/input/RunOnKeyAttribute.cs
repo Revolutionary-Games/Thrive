@@ -16,6 +16,11 @@ public class RunOnKeyAttribute : InputAttribute
     ///   Priming comes to effect when an input gets pressed for less than one frame
     ///   (when the release input gets detected before OnProcess could be called)
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Also used by <see cref="RunOnKeyDownWithRepeat"/> to report to axis that it is down now or repeated.
+    ///   </para>
+    /// </remarks>
     private bool primed;
 
     public RunOnKeyAttribute(string inputName)
@@ -26,13 +31,13 @@ public class RunOnKeyAttribute : InputAttribute
     /// <summary>
     ///   Whether the key is currently held down or not
     /// </summary>
-    public bool HeldDown { get; private set; }
+    public bool HeldDown { get; protected set; }
 
     /// <summary>
     ///   The internal godot input name
     /// </summary>
     /// <example>ui_select</example>
-    private string InputName { get; }
+    public string InputName { get; }
 
     /// <summary>
     ///   Reads the current primed or held state and resets the primed state
@@ -52,7 +57,7 @@ public class RunOnKeyAttribute : InputAttribute
         if (@event.IsActionPressed(InputName))
         {
             wasOurKey = true;
-            primed = true;
+            Prime();
             HeldDown = true;
         }
 
@@ -93,5 +98,10 @@ public class RunOnKeyAttribute : InputAttribute
         {
             return (base.GetHashCode() * 397) ^ InputName.GetHashCode();
         }
+    }
+
+    protected void Prime()
+    {
+        primed = true;
     }
 }

@@ -129,10 +129,12 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
     }
 
-    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]
     public void Zoom(float delta, float value)
     {
-        CameraHeight += ZoomSpeed * value * delta * 55;
+        // The constant on next line is for converting from delta corrected value to a good zooming speed.
+        // ZoomSpeed was not adjusted because different speeds were already used in different parts of the game.
+        CameraHeight += ZoomSpeed * value * delta * 150;
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 

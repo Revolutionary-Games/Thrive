@@ -17,13 +17,14 @@ public class RunOnAxisAttribute : InputAttribute
     /// <summary>
     ///   All associated inputs for this axis
     /// </summary>
-    private readonly Dictionary<RunOnKeyDownAttribute, MemberData> inputs =
-        new Dictionary<RunOnKeyDownAttribute, MemberData>();
+    private Dictionary<RunOnKeyAttribute, MemberData> inputs = new Dictionary<RunOnKeyAttribute, MemberData>();
 
     /// <summary>
     ///   Used to track order keys are pressed down
     /// </summary>
     private int inputNumber;
+
+    private bool useDiscreteKeyInputs;
 
     /// <summary>
     ///   Instantiates a new RunOnAxisAttribute.
@@ -54,6 +55,43 @@ public class RunOnAxisAttribute : InputAttribute
     ///   Should the method be invoked when all of this object's inputs are in their idle states
     /// </summary>
     public bool InvokeAlsoWithNoInput { get; set; }
+
+    /// <summary>
+    ///   If true then the axis members only trigger on key down and repeat. Should not be changed after initialization
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: would be nice to not have to recreate the objects here
+    ///   </para>
+    /// </remarks>
+    public bool UseDiscreteKeyInputs
+    {
+        get => useDiscreteKeyInputs;
+        set
+        {
+            if (useDiscreteKeyInputs == value)
+                return;
+
+            useDiscreteKeyInputs = value;
+
+            // Change the objects in inputs used for the key handling to the right type
+            var newInputs = new Dictionary<RunOnKeyAttribute, MemberData>();
+
+            foreach (var entry in inputs)
+            {
+                if (useDiscreteKeyInputs)
+                {
+                    newInputs.Add(new RunOnKeyDownWithRepeat(entry.Key.InputName), entry.Value);
+                }
+                else
+                {
+                    newInputs.Add(new RunOnKeyDownAttribute(entry.Key.InputName), entry.Value);
+                }
+            }
+
+            inputs = newInputs;
+        }
+    }
 
     /// <summary>
     ///   Get the currently active axis member value, or DefaultState
@@ -110,8 +148,10 @@ public class RunOnAxisAttribute : InputAttribute
 
     public override void OnProcess(float delta)
     {
-        if (CurrentResult != DefaultState || InvokeAlsoWithNoInput)
-            CallMethod(delta, CurrentResult);
+        // If UseDiscreteKeyInputs is true CurrentResult evaluation actually changes state, which is not optimal...
+        var currentResult = CurrentResult;
+        if (currentResult != DefaultState || InvokeAlsoWithNoInput)
+            CallMethod(delta, currentResult);
     }
 
     public override void FocusLost()
