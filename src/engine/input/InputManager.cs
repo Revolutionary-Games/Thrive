@@ -44,6 +44,8 @@ public class InputManager : Node
     /// <param name="instance">The instance to add</param>
     public static void RegisterReceiver(object instance)
     {
+        bool registered = false;
+
         var reference = new WeakReference(instance);
 
         // Find all attributes where the associated method's class matches the instances class
@@ -53,6 +55,12 @@ public class InputManager : Node
             .Where(p => p.Key.Method.DeclaringType == instance.GetType()))
         {
             inputAttribute.Value.Add(reference);
+            registered = true;
+        }
+
+        if (!registered)
+        {
+            GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods");
         }
     }
 
