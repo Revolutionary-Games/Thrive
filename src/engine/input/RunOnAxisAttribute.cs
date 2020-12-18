@@ -17,10 +17,13 @@ public class RunOnAxisAttribute : InputAttribute
     /// <summary>
     ///   All associated inputs for this axis
     /// </summary>
-    private readonly Dictionary<RunOnKeyDownAttribute, float> inputs =
-        new Dictionary<RunOnKeyDownAttribute, float>();
+    private readonly Dictionary<RunOnKeyDownAttribute, MemberData> inputs =
+        new Dictionary<RunOnKeyDownAttribute, MemberData>();
 
-    private RunOnKeyDownAttribute currentlyPressed;
+    /// <summary>
+    ///   Used to track order keys are pressed down
+    /// </summary>
+    private int inputNumber;
 
     /// <summary>
     ///   Instantiates a new RunOnAxisAttribute.
@@ -35,7 +38,7 @@ public class RunOnAxisAttribute : InputAttribute
 
         for (var i = 0; i < inputNames.Length; i++)
         {
-            inputs.Add(new RunOnKeyDownAttribute(inputNames[i]), associatedValues[i]);
+            inputs.Add(new RunOnKeyDownAttribute(inputNames[i]), new MemberData(associatedValues[i]));
         }
 
         // Round to make sure that there isn't a really close number instead of the exactly wanted default value
@@ -53,24 +56,29 @@ public class RunOnAxisAttribute : InputAttribute
     public bool InvokeAlsoWithNoInput { get; set; }
 
     /// <summary>
-    ///   Get the average of all currently fired inputs.
+    ///   Get the currently active axis member value, or DefaultState
     /// </summary>
     public float CurrentResult
     {
         get
         {
-            if (currentlyPressed == null)
-                return DefaultState;
+            int highestFoundPressed = int.MinValue;
+            float foundValue = DefaultState;
 
-            if (!currentlyPressed.ReadHeldOrPrimedAndResetPrimed())
+            foreach (var entry in inputs)
             {
-                currentlyPressed = inputs.Keys.FirstOrDefault(p => p.ReadHeldOrPrimedAndResetPrimed());
-                return currentlyPressed == null ? DefaultState : inputs[currentlyPressed];
+                if (entry.Key.ReadHeldOrPrimedAndResetPrimed() && entry.Value.LastDown >= highestFoundPressed)
+                {
+                    highestFoundPressed = entry.Value.LastDown;
+                    foundValue = entry.Value.Value;
+                }
             }
 
-            return inputs[currentlyPressed];
+            return foundValue;
         }
     }
+
+    private int NextInputNumber => checked(++inputNumber);
 
     public override bool OnInput(InputEvent @event)
     {
@@ -78,10 +86,22 @@ public class RunOnAxisAttribute : InputAttribute
 
         foreach (var input in inputs)
         {
-            if (input.Key.OnInput(@event))
+            if (input.Key.OnInput(@event) && input.Key.HeldDown)
             {
                 wasUsed = true;
-                currentlyPressed = input.Key;
+
+                try
+                {
+                    input.Value.LastDown = NextInputNumber;
+                }
+                catch (OverflowException)
+                {
+                    // Reset to a lower value
+                    OnInputNumberOverflow();
+
+                    input.Value.LastDown = 0;
+                    inputNumber = 0;
+                }
             }
         }
 
@@ -115,6 +135,23 @@ public class RunOnAxisAttribute : InputAttribute
         unchecked
         {
             return (base.GetHashCode() * 397) ^ inputs.GetHashCode();
+        }
+    }
+
+    private void OnInputNumberOverflow()
+    {
+        foreach (var input in inputs)
+            input.Value.LastDown = -input.Value.LastDown;
+    }
+
+    private class MemberData
+    {
+        public readonly float Value;
+        public int LastDown;
+
+        public MemberData(float value)
+        {
+            Value = value;
         }
     }
 }
