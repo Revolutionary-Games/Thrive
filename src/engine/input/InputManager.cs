@@ -44,13 +44,15 @@ public class InputManager : Node
     /// <param name="instance">The instance to add</param>
     public static void RegisterReceiver(object instance)
     {
+        var reference = new WeakReference(instance);
+
         // Find all attributes where the associated method's class matches the instances class
         // TODO: check if there is some alternative faster approach to registering instances
         foreach (var inputAttribute in staticInstance
             .attributes
             .Where(p => p.Key.Method.DeclaringType == instance.GetType()))
         {
-            inputAttribute.Value.Add(new WeakReference(instance));
+            inputAttribute.Value.Add(reference);
         }
     }
 
