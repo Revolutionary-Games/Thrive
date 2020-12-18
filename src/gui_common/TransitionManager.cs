@@ -5,7 +5,7 @@ using Godot;
 ///   Manages the screen transitions, usually used for when
 ///   switching scenes. This is autoloaded
 /// </summary>
-public class TransitionManager : Node
+public class TransitionManager : NodeWithInput
 {
     private static TransitionManager instance;
 
@@ -37,13 +37,14 @@ public class TransitionManager : Node
 
     public bool HasQueuedTransitions => TransitionSequence.Count > 0;
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyDown("ui_cancel", OnlyUnhandled = false)]
+    public bool CancelTransitionPressed()
     {
-        if (@event.IsActionPressed("ui_cancel") && HasQueuedTransitions)
-        {
-            GetTree().SetInputAsHandled();
-            CancelQueuedTransitions();
-        }
+        if (!HasQueuedTransitions)
+            return false;
+
+        CancelQueuedTransitions();
+        return true;
     }
 
     /// <summary>

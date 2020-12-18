@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath GuidanceLinePath;
@@ -427,13 +427,11 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyDown("g_quick_save")]
+    public void QuickSave()
     {
-        if (@event.IsActionPressed("g_quick_save"))
-        {
-            GD.Print("quick saving microbe stage");
-            SaveHelper.QuickSave(this);
-        }
+        GD.Print("quick saving microbe stage");
+        SaveHelper.QuickSave(this);
     }
 
     /// <summary>
