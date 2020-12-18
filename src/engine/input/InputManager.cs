@@ -60,8 +60,17 @@ public class InputManager : Node
     /// <param name="instance">The instance to remove</param>
     public static void UnregisterReceiver(object instance)
     {
+        int removed = 0;
+
         foreach (var attribute in staticInstance.attributes)
-            attribute.Value.RemoveAll(p => !p.IsAlive || p.Target.Equals(instance));
+        {
+            removed += attribute.Value.RemoveAll(p => !p.IsAlive || p.Target.Equals(instance));
+        }
+
+        if (removed < 1)
+        {
+            GD.PrintErr("Found no instances to unregister input receiving from");
+        }
     }
 
     /// <summary>
@@ -150,14 +159,32 @@ public class InputManager : Node
             {
                 if (!instance.IsAlive)
                 {
-                    // if the WeakReference got disposed
+                    // if the WeakReference is no longer valid
                     disposed.Add(instance);
                     continue;
                 }
 
                 bool thisInstanceResult;
+                object invokeResult;
 
-                var invokeResult = method.Invoke(instance.Target, parameters);
+                try
+                {
+                    invokeResult = method.Invoke(instance.Target, parameters);
+                }
+                catch (TargetInvocationException e)
+                {
+                    if (e.InnerException is ObjectDisposedException)
+                    {
+                        GD.PrintErr("A disposed object is still registered for input: ", e.InnerException);
+                    }
+                    else
+                    {
+                        GD.PrintErr("Failed to perform input method invoke: ", e);
+                    }
+
+                    disposed.Add(instance);
+                    continue;
+                }
 
                 if (invokeResult != null && invokeResult is bool asBool)
                 {

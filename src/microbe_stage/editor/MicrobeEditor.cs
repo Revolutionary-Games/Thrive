@@ -377,6 +377,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         // As we will no longer return to the microbe stage we need to free it, if we have it
         // This might be disposed if this was loaded from a save and we loaded another save
         try
