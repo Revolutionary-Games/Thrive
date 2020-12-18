@@ -30,6 +30,8 @@ ONLY_FILE_LIST = 'files_to_check.txt'
 LOCALE_TEMP_SUFFIX = '.temp_check'
 MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
 FUZZY_TRANSLATION_REGEX = /^#, fuzzy/.freeze
+PLAIN_QUOTED_MESSAGE = /^"(.*)"/.freeze
+GETTEXT_HEADER_NAME = /^([\w-]+):\s+/.freeze
 
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
@@ -692,6 +694,39 @@ def find_next_msg_id(reader)
   end
 end
 
+def read_gettext_header_order(reader)
+  expected_header_msg = find_next_msg_id reader
+
+  onError 'File ended when looking for gettext header' if expected_header_msg.nil?
+
+  if expected_header_msg != ''
+    error 'Could not find gettext header, expected blank msg id, ' \
+          "but got: #{expected_header_msg}"
+    return ['header not found...']
+  end
+
+  headers = []
+
+  # Read content lines
+  loop do
+    line = reader.gets
+
+    break if line.nil?
+
+    break if line.strip.empty?
+
+    matches = line.match(PLAIN_QUOTED_MESSAGE)
+
+    next unless matches
+
+    matches = matches[1].match(GETTEXT_HEADER_NAME)
+
+    headers.push matches[1] if matches
+  end
+
+  headers
+end
+
 def run_localization_checks
   cleanup_temp_check_locales
 
@@ -720,6 +755,19 @@ def run_localization_checks
 
     File.open(original, encoding: 'utf-8') do |original_reader|
       File.open(updated, encoding: 'utf-8') do |updated_reader|
+        # Check that headers are in the right order
+        original_header_order = read_gettext_header_order original_reader
+        updated_header_order = read_gettext_header_order updated_reader
+
+        if original_header_order != updated_header_order
+          OUTPUT_MUTEX.synchronize do
+            puts "Headers are in wrong order in #{original}"
+            error "Header order should be: #{original_header_order}, but " \
+                  "it is: #{updated_header_order}"
+            issues_found = true
+          end
+        end
+
         loop do
           original_message = find_next_msg_id original_reader
           updated_message = find_next_msg_id updated_reader
@@ -769,6 +817,7 @@ run_check = proc { |check|
     run_localization_checks
   else
     OUTPUT_MUTEX.synchronize do
+      puts "Valid checks: #{VALID_CHECKS}"
       onError "Unknown check type: #{check}"
     end
   end
