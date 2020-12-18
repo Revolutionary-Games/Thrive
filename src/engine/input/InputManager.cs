@@ -19,6 +19,11 @@ public class InputManager : Node
     /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is sorted based on priority, so if Dictionary doesn't keep key order this will break.
+    ///   </para>
+    /// </remarks>
     private Dictionary<InputAttribute, List<WeakReference>> attributes
         = new Dictionary<InputAttribute, List<WeakReference>>();
 

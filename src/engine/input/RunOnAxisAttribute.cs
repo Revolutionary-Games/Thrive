@@ -90,7 +90,8 @@ public class RunOnAxisAttribute : InputAttribute
 
     public override void OnProcess(float delta)
     {
-        CallMethod(delta, CurrentResult);
+        if (CurrentResult != DefaultState || InvokeAlsoWithNoInput)
+            CallMethod(delta, CurrentResult);
     }
 
     public override void FocusLost()
