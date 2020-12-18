@@ -86,6 +86,8 @@
 
         protected override void OnProcess(TutorialState overallState, float delta)
         {
+            // This does not use the input system because when OnProcess is called in a tutorial is complicated, so
+            // when this code is triggered would be different using the input system
             if (Input.IsActionPressed("g_move_forward"))
             {
                 moveForwardTime += delta;
