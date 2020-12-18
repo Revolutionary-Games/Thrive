@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
 public class ColonyMember
 {
+    public event EventHandler OnRemovedFromColony;
+    public event EventHandler OnOtherRemovedFromColony;
+
     /// <summary>
     ///   Used for serialization. Should not be used otherwise
     /// </summary>
@@ -45,7 +50,10 @@ public class ColonyMember
 
     public void RemoveFromColony()
     {
-        Microbe.RemovedFromColony();
+        OnRemovedFromColony?.Invoke(this, new EventArgs());
+        foreach (var microbe in Microbe.GetAllColonyMembers().Where(p => p != Microbe))
+            microbe.Colony.OnOtherRemovedFromColony?.Invoke(this, new EventArgs());
+
         Microbe = null;
 
         Master?.BindingTo.Remove(this);

@@ -32,16 +32,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
-    /// <summary>
-    ///   The colony this microbe is currently in
-    /// </summary>
-    [JsonProperty]
-    public ColonyMember Colony;
-
     [JsonProperty]
     internal Dictionary<string, object> ColonyValues = new Dictionary<string, object>();
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
+    private ColonyMember colony;
 
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
@@ -163,6 +159,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Microbe()
     {
         ColonyCompoundBag = new ColonyCompoundBag(this);
+    }
+
+    /// <summary>
+    ///   The colony this microbe is currently in
+    /// </summary>
+    [JsonProperty]
+    public ColonyMember Colony
+    {
+        get => colony;
+        set
+        {
+            if (colony != null)
+            {
+                colony.OnRemovedFromColony -= RemovedFromColony;
+            }
+
+            colony = value;
+
+            if (colony == null)
+                return;
+
+            colony.OnRemovedFromColony += RemovedFromColony;
+        }
     }
 
     /// <summary>
@@ -1206,11 +1225,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
-    internal void RemovedFromColony()
+    internal void RemovedFromColony(object sender, EventArgs e)
     {
-        if (Colony == null)
-            return;
-
         foreach (var myBindingTarget in Colony.BindingTo)
         {
             RemoveCollisionExceptionWith(myBindingTarget.Microbe);
