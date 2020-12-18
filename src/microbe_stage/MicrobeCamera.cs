@@ -66,6 +66,16 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     public float CameraHeight { get; set; }
 
     /// <summary>
+    ///   If true zoom speed is adjusted based on the elapsed time.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     At least in my experience this actually makes the zooming feel more laggy -hhyyrylainen
+    ///   </para>
+    /// </remarks>
+    public bool FramerateAdjustZoomSpeed { get; set; }
+
+    /// <summary>
     ///   Returns the position the player is pointing to with their cursor
     /// </summary>
     [JsonIgnore]
@@ -132,9 +142,17 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]
     public void Zoom(float delta, float value)
     {
-        // The constant on next line is for converting from delta corrected value to a good zooming speed.
-        // ZoomSpeed was not adjusted because different speeds were already used in different parts of the game.
-        CameraHeight += ZoomSpeed * value * delta * 150;
+        if (FramerateAdjustZoomSpeed)
+        {
+            // The constant on next line is for converting from delta corrected value to a good zooming speed.
+            // ZoomSpeed was not adjusted because different speeds were already used in different parts of the game.
+            CameraHeight += ZoomSpeed * value * delta * 165;
+        }
+        else
+        {
+            CameraHeight += ZoomSpeed * value;
+        }
+
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 
