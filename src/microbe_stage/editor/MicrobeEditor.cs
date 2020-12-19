@@ -42,8 +42,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeCamera camera;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
+    [JsonIgnore]
     private MeshInstance editorArrow;
 
     [JsonProperty]
