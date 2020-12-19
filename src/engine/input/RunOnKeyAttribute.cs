@@ -1,12 +1,5 @@
 using System;
 
-/// <summary>
-///   Attribute for a method, that gets called when an input key is pressed.
-/// </summary>
-/// <example>
-///   [RunOnKey("toggle_FPS", RunOnKeyAttribute.InputType.Press)]
-///   public void ToggleFPS() { ... }
-/// </example>
 public class RunOnKeyAttribute : RunOnInputAttribute
 {
     private IInputReceiver inputReceiver;
@@ -15,6 +8,29 @@ public class RunOnKeyAttribute : RunOnInputAttribute
     {
         InputString = inputString;
         Type = type;
+    }
+
+    public enum InputType
+    {
+        /// <summary>
+        ///   Fires the method once when the key is pressed down
+        /// </summary>
+        Press,
+
+        /// <summary>
+        ///   Fires the method repeatedly when the key is held down
+        /// </summary>
+        Hold,
+
+        /// <summary>
+        ///   Fires the method once when the key is released
+        /// </summary>
+        Released,
+
+        /// <summary>
+        ///   Fires the method repeatedly and toggles when the key is pressed down
+        /// </summary>
+        ToggleHold,
     }
 
     public override IInputReceiver InputReceiver

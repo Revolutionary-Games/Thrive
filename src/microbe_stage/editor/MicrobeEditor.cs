@@ -172,7 +172,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     public MicrobeEditor()
     {
-        RunOnInputAttribute.AddInstance(this);
+        RunOnInputAttribute.InputClasses.Add(this);
     }
 
     [Signal]
@@ -421,7 +421,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             MoveObjectToFollow(movement.Normalized() * delta * Camera.CameraHeight);
     }
 
-    [RunOnKey("e_pan_mouse", InputType.Hold)]
+    [RunOnKey("e_pan_mouse", RunOnKeyAttribute.InputType.Hold)]
     public void PanCamWithMouse(float delta)
     {
         if (mousePanningStart == null)
@@ -433,26 +433,26 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    [RunOnKey("e_pan_mouse", InputType.Released)]
+    [RunOnKey("e_pan_mouse", RunOnKeyAttribute.InputType.Released)]
     public void ReleasePanCamWithMouse()
     {
         mousePanningStart = null;
     }
 
-    [RunOnKey("e_reset_cam", InputType.Press)]
+    [RunOnKey("e_reset_cam", RunOnKeyAttribute.InputType.Hold)]
     public void ResetCamera()
     {
         camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
         camera.ResetHeight();
     }
 
-    [RunOnKey("e_rotate_right", InputType.Press)]
+    [RunOnKey("e_rotate_right", RunOnKeyAttribute.InputType.Press)]
     public void RotateRight()
     {
         organelleRot = (organelleRot + 1) % 6;
     }
 
-    [RunOnKey("e_rotate_left", InputType.Press)]
+    [RunOnKey("e_rotate_left", RunOnKeyAttribute.InputType.Press)]
     public void RotateLeft()
     {
         --organelleRot;
@@ -461,7 +461,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             organelleRot = 5;
     }
 
-    [RunOnKey("e_redo", InputType.Press)]
+    [RunOnKey("e_redo", RunOnKeyAttribute.InputType.Press)]
     public void Redo()
     {
         if (history.Redo())
@@ -472,7 +472,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         UpdateUndoRedoButtons();
     }
 
-    [RunOnKey("e_undo", InputType.Press)]
+    [RunOnKey("e_undo", RunOnKeyAttribute.InputType.Press)]
     public void Undo()
     {
         if (history.Undo())
@@ -483,7 +483,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         UpdateUndoRedoButtons();
     }
 
-    [RunOnKey("e_primary", InputType.Press)]
+    [RunOnKey("e_primary", RunOnKeyAttribute.InputType.Press)]
     public void PlaceOrganelle()
     {
         if (ActiveActionName == null)
@@ -499,7 +499,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     /// <summary>
     ///   Removes organelles under the cursor
     /// </summary>
-    [RunOnKey("e_secondary", InputType.Press)]
+    [RunOnKey("e_secondary", RunOnKeyAttribute.InputType.Press)]
     public void RemoveOrganelle()
     {
         GetMouseHex(out int q, out int r);
@@ -558,7 +558,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    [RunOnKey("g_quick_save", InputType.Press)]
+    [RunOnKey("g_quick_save", RunOnKeyAttribute.InputType.Press)]
     public void Quicksave()
     {
         // Can only save once the editor is ready

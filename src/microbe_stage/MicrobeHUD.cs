@@ -227,21 +227,6 @@ public class MicrobeHUD : Node
     /// </summary>
     private float hoverInfoTimeElapsed;
 
-    public bool Paused
-    {
-        get
-        {
-            var tree = GetTree();
-            return tree != null && tree.Paused;
-        }
-        set
-        {
-            var tree = GetTree();
-            if (tree != null)
-                tree.Paused = value;
-        }
-    }
-
     public override void _Ready()
     {
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
@@ -465,7 +450,7 @@ public class MicrobeHUD : Node
         GD.Print("Move to editor pressed");
 
         // Make sure the game is unpaused
-        if (Paused)
+        if (GetTree().Paused)
         {
             PauseButtonPressed();
         }
@@ -840,7 +825,7 @@ public class MicrobeHUD : Node
     private void OpenMenu()
     {
         menu.Show();
-        Paused = true;
+        GetTree().Paused = true;
     }
 
     private void CloseMenu()
@@ -848,7 +833,7 @@ public class MicrobeHUD : Node
         menu.Hide();
 
         if (!paused)
-            Paused = false;
+            GetTree().Paused = false;
     }
 
     private void PauseButtonPressed()
@@ -863,7 +848,7 @@ public class MicrobeHUD : Node
             pauseButton.Pressed = false;
 
             // Pause the game
-            Paused = true;
+            GetTree().Paused = true;
         }
         else
         {
@@ -872,7 +857,7 @@ public class MicrobeHUD : Node
             resumeButton.Pressed = false;
 
             // Unpause the game
-            Paused = false;
+            GetTree().Paused = false;
         }
     }
 

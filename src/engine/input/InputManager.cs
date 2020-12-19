@@ -13,7 +13,7 @@ public class InputManager : Node
 {
     public override void _Ready()
     {
-        RecalculateAttributes(new[] { Assembly.GetExecutingAssembly() });
+        RecalculateAttributes();
         PauseMode = PauseModeEnum.Process;
     }
 
@@ -30,7 +30,7 @@ public class InputManager : Node
     /// </summary>
     public override void _Process(float delta)
     {
-        var disposed = new List<WeakReference<object>>();
+        var disposed = new List<object>();
         RunOnInputAttribute.AttributesWithMethods.ForEach(p =>
         {
             var inputReceiver = p.Item2.InputReceiver;
@@ -39,44 +39,25 @@ public class InputManager : Node
 
             var readValue = inputReceiver.GetValueForCallback();
 
-            var method = p.method;
-
-            if (method.IsStatic)
+            if (p.Item1.IsStatic)
             {
-                TryInvoke(method, null, delta, inputReceiver, readValue);
+                TryInvoke(p.Item1, null, delta, inputReceiver, readValue);
             }
             else
             {
                 var instances =
-                    RunOnInputAttribute.InputReceivingInstances.Select(x =>
-                    {
-                        if (!x.TryGetTarget(out var result))
-                            disposed.Add(x);
-                        return (weakReference: x, result);
-                    }).Where(x => x.result != null && x.result.GetType() == method.DeclaringType).ToList();
+                    RunOnInputAttribute.InputClasses.Where(x => x.GetType() == p.Item1.DeclaringType).ToList();
                 foreach (var instance in instances)
                 {
-                    if (instance.result is Node nInstance)
-                    {
-                        if (nInstance.IsQueuedForDeletion())
-                        {
-                            disposed.Add(instance.weakReference);
-                            continue;
-                        }
-                    }
-
-                    if (!TryInvoke(method, instance.result, delta, inputReceiver, readValue))
-                        disposed.Add(instance.weakReference);
+                    if (!TryInvoke(p.Item1, instance, delta, inputReceiver, readValue))
+                        disposed.Add(instance);
                 }
             }
         });
-
-        disposed.ForEach(p => RunOnInputAttribute.InputReceivingInstances.Remove(p));
+        disposed.ForEach(p => RunOnInputAttribute.InputClasses.Remove(p));
     }
 
-    /// <summary>
-    ///   Invoke the given input method with the given data.
-    /// </summary>
+    /// <returns>False if the instance was disposed</returns>
     private static bool TryInvoke(MethodBase method, object instance, float delta, IInputReceiver inputReceiver,
         object readValue)
     {
@@ -84,7 +65,7 @@ public class InputManager : Node
         {
             switch (inputReceiver)
             {
-                case InputAxisGroup _:
+                case InputMultiAxis _:
                 case InputAxis _:
                     method.Invoke(instance, new[] { delta, readValue });
                     break;
@@ -101,41 +82,35 @@ public class InputManager : Node
         catch (TargetInvocationException ex)
         {
             // Disposed object
-            if (ex.InnerException is ObjectDisposedException)
-                return false;
-
-            throw;
+            return !(ex.InnerException is ObjectDisposedException);
         }
 
         return true;
     }
 
-    /// <summary>
-    ///   Searches the given assemblies for <see cref="RunOnInputAttribute">RunOnInputAttributes</see>
-    ///   and stores them in the RunOnInputAttribute.AttributesWithMethods
-    /// </summary>
-    /// <param name="assemblies">The assemblies to search through</param>
-    private static void RecalculateAttributes(Assembly[] assemblies)
+    private static void RecalculateAttributes()
     {
-        foreach (var assembly in assemblies)
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
             foreach (var type in assembly.GetTypes())
             {
                 foreach (var methodInfo in type.GetMethods())
                 {
                     var attributes = methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true);
-                    if (attributes.Length == 0)
-                        continue;
-
                     var multiAxis = attributes.FirstOrDefault(
                         p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
-
-                    foreach (RunOnInputAttribute attr in attributes)
+                    foreach (var attr in attributes)
                     {
+                        if (!(attr is RunOnInputAttribute myAttr))
+                            continue;
+
                         if (attr is RunOnAxisAttribute axis && multiAxis != null)
                             multiAxis.DefinitionAttributes.Add(axis);
                         else
-                            RunOnInputAttribute.AttributesWithMethods.Add((methodInfo, attr));
+                        {
+                            RunOnInputAttribute.AttributesWithMethods.Add(
+                                (methodInfo, myAttr));
+                        }
                     }
                 }
             }

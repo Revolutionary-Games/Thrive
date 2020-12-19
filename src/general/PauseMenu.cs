@@ -35,7 +35,7 @@ public class PauseMenu : Control
 
     public PauseMenu()
     {
-        RunOnInputAttribute.AddInstance(this);
+        RunOnInputAttribute.InputClasses.Add(this);
     }
 
     [Signal]
@@ -74,7 +74,7 @@ public class PauseMenu : Control
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
     }
 
-    [RunOnKey("ui_cancel", InputType.Released)]
+    [RunOnKey("ui_cancel", RunOnKeyAttribute.InputType.Released)]
     public void Cancel()
     {
         if (Visible)
@@ -89,7 +89,7 @@ public class PauseMenu : Control
         }
     }
 
-    [RunOnKey("help", InputType.Hold)]
+    [RunOnKey("help", RunOnKeyAttribute.InputType.Hold)]
     public void Help()
     {
         if (NoExclusiveTutorialActive())

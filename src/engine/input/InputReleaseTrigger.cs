@@ -1,7 +1,7 @@
 using Godot;
 
 /// <summary>
-///   Input that is moved to triggered state on release
+///   Input that is moved to triggered state on press
 /// </summary>
 public class InputReleaseTrigger : InputBool
 {

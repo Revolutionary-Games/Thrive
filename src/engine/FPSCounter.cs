@@ -10,7 +10,7 @@ public class FPSCounter : Control
 
     public FPSCounter()
     {
-        RunOnInputAttribute.AddInstance(this);
+        RunOnInputAttribute.InputClasses.Add(this);
     }
 
     public override void _Ready()
@@ -18,7 +18,7 @@ public class FPSCounter : Control
         label = GetNode<Label>("Label");
     }
 
-    [RunOnKey("toggle_FPS", InputType.Press)]
+    [RunOnKey("toggle_FPS", RunOnKeyAttribute.InputType.Press)]
     public void ToggleFPS()
     {
         if (Visible)
