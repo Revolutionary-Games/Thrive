@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Godot;
 
 /// <summary>
 ///   Handles key input in the microbe stage
 /// </summary>
-public class PlayerMicrobeInput : Node
+public class PlayerMicrobeInput : NodeWithInput
 {
+<<<<<<< HEAD
     // Inputs all grouped for easy focus loss and input passing
     private readonly InputGroup inputs;
 
@@ -31,6 +32,9 @@ public class PlayerMicrobeInput : Node
 
     private readonly InputBool fireToxin = new InputBool("g_fire_toxin");
     private readonly InputToggle autoMove = new InputToggle("g_hold_forward");
+=======
+    private bool autoMove;
+>>>>>>> master
 
     /// <summary>
     ///   A reference to the stage is kept to get to the player object
@@ -38,6 +42,7 @@ public class PlayerMicrobeInput : Node
     /// </summary>
     private MicrobeStage stage;
 
+<<<<<<< HEAD
     public PlayerMicrobeInput()
     {
         forwardBackAxis = new InputAxis(new List<(InputBool input, int associatedValue)>
@@ -67,62 +72,51 @@ public class PlayerMicrobeInput : Node
         });
     }
 
+=======
+>>>>>>> master
     public override void _Ready()
     {
         // Not the cleanest that the parent has to be MicrobeState type...
         stage = (MicrobeStage)GetParent();
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    [RunOnKeyDown("g_hold_forward")]
+    public void ToggleAutoMove()
     {
-        if (inputs.CheckInput(@event))
-        {
-            GetTree().SetInputAsHandled();
-        }
+        autoMove = !autoMove;
     }
 
-    public override void _Notification(int focus)
+    [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
+    public void OnMovement(float delta, float forwardMovement, float leftRightMovement)
     {
-        // If the window goes out of focus, we don't receive the key released events
-        // We reset our held down keys if the player tabs out while pressing a key
-        if (focus == MainLoop.NotificationWmFocusOut)
-        {
-            inputs.FocusLost();
-        }
-    }
-
-    public override void _Process(float delta)
-    {
-        inputs.OnFrameChanged();
-
-        var settings = Settings.Instance;
-
-        float forwardMovement = forwardBackAxis.CurrentValue;
-
-        if (autoMove.ToggledOn)
-        {
-            forwardMovement = -1;
-        }
-
-        var movement = new Vector3(leftRightAxis.CurrentValue, 0, forwardMovement);
+        _ = delta;
+        const float epsilon = 0.01f;
 
         // Reset auto move if a key was pressed
-        if (forward.ReadTrigger() || backwards.ReadTrigger() || left.ReadTrigger() || right.ReadTrigger())
+        if (Math.Abs(forwardMovement) + Math.Abs(leftRightMovement) > epsilon)
         {
-            autoMove.ToggledOn = false;
+            autoMove = false;
         }
 
         if (stage.Player != null)
         {
-            stage.Player.MovementDirection = movement.Normalized();
+            var movement = new Vector3(leftRightMovement, 0, forwardMovement);
+
+            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
+
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }
+    }
 
-        if (fireToxin.Pressed)
-        {
-            stage.Player?.EmitToxin();
-        }
+    [RunOnKeyDown("g_fire_toxin")]
+    public void EmitToxin()
+    {
+        stage.Player?.EmitToxin();
+    }
 
+<<<<<<< HEAD
         if (toggleEngulf.ReadTrigger())
         {
             if (stage.Player != null)
@@ -154,23 +148,48 @@ public class PlayerMicrobeInput : Node
                 }
             }
         }
+=======
+    [RunOnKeyDown("g_toggle_engulf")]
+    public void ToggleEngulf()
+    {
+        if (stage.Player == null)
+            return;
+>>>>>>> master
 
-        if (settings.CheatsEnabled && cheatEditor.ReadTrigger())
+        stage.Player.EngulfMode = !stage.Player.EngulfMode;
+    }
+
+    [RunOnKeyDown("g_cheat_editor")]
+    public void CheatEditor()
+    {
+        if (Settings.Instance.CheatsEnabled)
         {
             stage.HUD.ShowReproductionDialog();
         }
+    }
 
-        if (settings.CheatsEnabled && cheatAmmonia.Pressed)
-        {
-            SpawnCheatCloud("ammonia", delta);
-        }
-
-        if (settings.CheatsEnabled && cheatGlucose.Pressed)
+    [RunOnKey("g_cheat_glucose")]
+    public void CheatGlucose(float delta)
+    {
+        if (Settings.Instance.CheatsEnabled)
         {
             SpawnCheatCloud("glucose", delta);
         }
+    }
 
-        if (settings.CheatsEnabled && cheatPhosphates.Pressed)
+    [RunOnKey("g_cheat_ammonia")]
+    public void CheatAmmonia(float delta)
+    {
+        if (Settings.Instance.CheatsEnabled)
+        {
+            SpawnCheatCloud("ammonia", delta);
+        }
+    }
+
+    [RunOnKey("g_cheat_phosphates")]
+    public void CheatPhosphates(float delta)
+    {
+        if (Settings.Instance.CheatsEnabled)
         {
             SpawnCheatCloud("phosphates", delta);
         }

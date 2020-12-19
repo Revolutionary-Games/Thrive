@@ -4,7 +4,7 @@
 ///   Shows FPS at top left of the screen
 ///   Toggled with F3
 /// </summary>
-public class FPSCounter : Control
+public class FPSCounter : ControlWithInput
 {
     private Label label;
 
@@ -13,19 +13,10 @@ public class FPSCounter : Control
         label = GetNode<Label>("Label");
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyToggle("toggle_FPS", OnlyUnhandled = false)]
+    public void ToggleFps(bool state)
     {
-        if (@event.IsActionPressed("toggle_FPS"))
-        {
-            if (Visible)
-            {
-                Hide();
-            }
-            else
-            {
-                Show();
-            }
-        }
+        Visible = state;
     }
 
     public override void _Process(float delta)

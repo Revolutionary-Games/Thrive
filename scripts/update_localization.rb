@@ -5,6 +5,9 @@
 LOCALES = %w[bg ca cs de en es_AR es fi fr he id it ko lt pl pt_BR pt_PT ru sr_Cyrl sv tr zh_CN zh_TW].freeze
 
 
+# Weblate doesn't let you configure this so we need the same here
+LINE_WIDTH = 77
+
 require 'optparse'
 require_relative '../RubySetupSystem/RubyCommon'
 
@@ -39,7 +42,7 @@ Dir.chdir(LOCALE_FOLDER) do
   runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
                   'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'Description', '-k',
                   'window_title', '-k', 'dialog_text', '-k', 'placeholder_text',
-                  '-k', 'Translate', '-o',
+                  '-k', 'TranslationServer.Translate', '-o',
                   File.join(LOCALE_FOLDER, 'messages' + @options[:pot_suffix]),
                   '../simulation_parameters', '../assets', '../src'
 
@@ -52,13 +55,13 @@ Dir.chdir(LOCALE_FOLDER) do
 
     if File.exist? target
       puts "Extracting #{locale}.po"
-      runOpen3Checked 'msgmerge', '--update', '--backup=none',
+      runOpen3Checked 'msgmerge', '--update', '--backup=none', "--width=#{LINE_WIDTH}",
                       target,
                       'messages' + @options[:pot_suffix]
     else
       puts "Creating new file #{locale}.po"
 
-      runOpen3Checked 'msginit', '-l', locale, '--no-translator',
+      runOpen3Checked 'msginit', '-l', locale, '--no-translator', "--width=#{LINE_WIDTH}",
                       '-o', target, '-i',
                       'messages' + @options[:pot_suffix]
     end

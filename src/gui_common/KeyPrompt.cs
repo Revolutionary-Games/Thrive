@@ -39,6 +39,8 @@ public class KeyPrompt : Control
 
     public override void _EnterTree()
     {
+        base._EnterTree();
+
         if (icon == null)
         {
             icon = GetNode<TextureRect>("Icon");
@@ -51,6 +53,8 @@ public class KeyPrompt : Control
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         KeyPromptHelper.IconsChanged -= OnIconsChanged;
     }
 
