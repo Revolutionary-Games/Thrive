@@ -668,11 +668,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public bool CanBind()
     {
-        var bindingAgents = organelles.Count(p => p.IsBindingAgent);
-        if (Colony == null)
-            return bindingAgents > 0;
-
-        return Colony.BindingTo.Count < bindingAgents;
+        return organelles.Any(p => p.IsBindingAgent);
     }
 
     /// <summary>
