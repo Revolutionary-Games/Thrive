@@ -6,35 +6,7 @@ using Godot;
 /// </summary>
 public class PlayerMicrobeInput : NodeWithInput
 {
-<<<<<<< HEAD
-    // Inputs all grouped for easy focus loss and input passing
-    private readonly InputGroup inputs;
-
-    private readonly InputAxis forwardBackAxis;
-    private readonly InputAxis leftRightAxis;
-
-    // Access to individual inputs
-
-    private readonly InputTrigger forward = new InputTrigger("g_move_forward");
-    private readonly InputTrigger backwards = new InputTrigger("g_move_backwards");
-    private readonly InputTrigger left = new InputTrigger("g_move_left");
-    private readonly InputTrigger right = new InputTrigger("g_move_right");
-
-    // Other inputs
-
-    private readonly InputTrigger cheatEditor = new InputTrigger("g_cheat_editor");
-    private readonly InputBool cheatGlucose = new InputBool("g_cheat_glucose");
-    private readonly InputBool cheatAmmonia = new InputBool("g_cheat_ammonia");
-    private readonly InputBool cheatPhosphates = new InputBool("g_cheat_phosphates");
-
-    private readonly InputTrigger toggleEngulf = new InputTrigger("g_toggle_engulf");
-    private readonly InputTrigger toggleBinding = new InputTrigger("g_toggle_binding");
-
-    private readonly InputBool fireToxin = new InputBool("g_fire_toxin");
-    private readonly InputToggle autoMove = new InputToggle("g_hold_forward");
-=======
     private bool autoMove;
->>>>>>> master
 
     /// <summary>
     ///   A reference to the stage is kept to get to the player object
@@ -42,38 +14,6 @@ public class PlayerMicrobeInput : NodeWithInput
     /// </summary>
     private MicrobeStage stage;
 
-<<<<<<< HEAD
-    public PlayerMicrobeInput()
-    {
-        forwardBackAxis = new InputAxis(new List<(InputBool input, int associatedValue)>
-        {
-            (forward, -1),
-            (backwards, 1),
-        });
-
-        leftRightAxis = new InputAxis(new List<(InputBool input, int associatedValue)>
-        {
-            (left, -1),
-            (right, 1),
-        });
-
-        inputs = new InputGroup(new List<IInputReceiver>
-        {
-            forwardBackAxis,
-            leftRightAxis,
-            autoMove,
-            toggleEngulf,
-            toggleBinding,
-            fireToxin,
-            cheatEditor,
-            cheatGlucose,
-            cheatAmmonia,
-            cheatPhosphates,
-        });
-    }
-
-=======
->>>>>>> master
     public override void _Ready()
     {
         // Not the cleanest that the parent has to be MicrobeState type...
@@ -116,47 +56,28 @@ public class PlayerMicrobeInput : NodeWithInput
         stage.Player?.EmitToxin();
     }
 
-<<<<<<< HEAD
-        if (toggleEngulf.ReadTrigger())
-        {
-            if (stage.Player != null)
-            {
-                if (stage.Player.EngulfMode)
-                {
-                    stage.Player.EngulfMode = false;
-                }
-                else
-                {
-                    stage.Player.BindingMode = false;
-                    stage.Player.EngulfMode = true;
-                }
-            }
-        }
-
-        if (toggleBinding.ReadTrigger())
-        {
-            if (stage.Player != null)
-            {
-                if (stage.Player.AnyInBindingMode)
-                {
-                    stage.Player.AnyInBindingMode = false;
-                }
-                else
-                {
-                    stage.Player.EngulfMode = false;
-                    stage.Player.AnyInBindingMode = true;
-                }
-            }
-        }
-=======
     [RunOnKeyDown("g_toggle_engulf")]
     public void ToggleEngulf()
     {
         if (stage.Player == null)
             return;
->>>>>>> master
 
         stage.Player.EngulfMode = !stage.Player.EngulfMode;
+
+        if (stage.Player.EngulfMode)
+            stage.Player.BindingMode = false;
+    }
+
+    [RunOnKeyDown("g_toggle_binding")]
+    public void ToggleBinding()
+    {
+        if (stage.Player == null)
+            return;
+
+        stage.Player.AnyInBindingMode = !stage.Player.AnyInBindingMode;
+
+        if (stage.Player.AnyInBindingMode)
+            stage.Player.EngulfMode = false;
     }
 
     [RunOnKeyDown("g_cheat_editor")]
