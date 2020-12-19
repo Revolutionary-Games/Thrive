@@ -11,8 +11,13 @@ This is the code repository for Thrive. For more information, visit
 <img src="https://translate.revolutionarygamesstudio.com/widgets/thrive/-/thrive-game/svg-badge.svg" alt="translation status" />
 </a>
 
+<br>
+<br>
+<img src="https://randomthrivefiles.b-cdn.net/screenshots/github_screenshot_1.png" alt="game screenshot" width="900px">
+
 Overview
-----------------
+--------
+
 Repository structure:
 - assets: This folder contains all the assets such as models and other binaries. The big files in this folder use [Git LFS](https://git-lfs.github.com/) in order to keep this repository from bloating. You need to have Git LFS installed to get the files. Some better editable versions of the assets are stored in a separate [repository](https://github.com/Revolutionary-Games/Thrive-Raw-Assets).
 - [doc: Documentation files.](/doc) Contains style guide, engine overview and other useful documentation.
@@ -39,6 +44,9 @@ If you'd like to translate the game to your language, you can find the relevant 
 
 The planning board contains all issues and pull requests grouped
 by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
+
+<br>
+<img src="https://randomthrivefiles.b-cdn.net/screenshots/github_screenshot_2.png" alt="game screenshot" width="900px">
 
 ### Programmers 
 Thrive is written in C# with a few helper scripts written in ruby. In
