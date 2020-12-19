@@ -575,7 +575,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
-    [RunOnKeyUp("e_pan_mouse", OnlyUnhandled = false)]
+    [RunOnKeyUp("e_pan_mouse")]
     public void ReleasePanCameraWithMouse()
     {
         mousePanningStart = null;
