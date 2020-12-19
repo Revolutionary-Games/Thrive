@@ -52,8 +52,13 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public bool DisableBackgroundParticles;
 
+    [Export]
     [JsonProperty]
     public float InterpolateSpeed = 0.3f;
+
+    [Export]
+    [JsonProperty]
+    public float InterpolateZoomSpeed = 0.3f;
 
     private ShaderMaterial materialToUpdate;
 
@@ -161,17 +166,24 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// </summary>
     public override void _PhysicsProcess(float delta)
     {
+        var currFloorPos = new Vector3(Translation.x, 0, Translation.z);
+        var currCamHeight = new Vector3(0, Translation.y, 0);
+        var newCamPos = new Vector3(0, CameraHeight,  0);
         if (ObjectToFollow != null)
         {
-            var target = ObjectToFollow.Transform.origin + new Vector3(0, CameraHeight, 0);
+            var newFloorPos = new Vector3(ObjectToFollow.Transform.origin.x, 0, ObjectToFollow.Transform.origin.z);
 
-            Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
+            var target = currFloorPos.LinearInterpolate(newFloorPos, InterpolateSpeed)
+                + currCamHeight.LinearInterpolate(newCamPos, InterpolateZoomSpeed);
+
+            Translation = target;
         }
         else
         {
-            var target = new Vector3(Translation.x, CameraHeight, Translation.z);
+            var target = new Vector3(Translation.x, 0, Translation.z)
+                + currCamHeight.LinearInterpolate(newCamPos, InterpolateZoomSpeed);
 
-            Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
+            Translation = target;
         }
 
         if (BackgroundPlane != null)
@@ -179,7 +191,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             var target = new Vector3(0, 0, -15 - CameraHeight);
 
             BackgroundPlane.Translation = BackgroundPlane.Translation.LinearInterpolate(
-                target, InterpolateSpeed);
+                target, InterpolateZoomSpeed);
         }
 
         cursorDirty = true;
