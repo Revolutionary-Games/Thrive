@@ -37,11 +37,11 @@ public class ModInfo : Resource
             return false;
         }
 
-        return Name == item.Name && Location == item.Location && Version == item.Version;
+        return Name == item.Name && Location == item.Location && Version == item.Version && Author == item.Author;
     }
 
     public override int GetHashCode()
     {
-        return (Name, Location, Version).GetHashCode();
+        return (Name, Location, Version, Author).GetHashCode();
     }
 }

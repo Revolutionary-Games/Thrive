@@ -1,12 +1,7 @@
-[gd_resource type="Theme" load_steps=55 format=2]
+[gd_resource type="Theme" load_steps=50 format=2]
 
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="DynamicFont" id=1]
@@ -391,10 +386,10 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = SubResource( 7 )
-CheckBox/icons/checked = ExtResource( 5 )
+CheckBox/icons/checked = null
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
-CheckBox/icons/unchecked = ExtResource( 6 )
+CheckBox/icons/unchecked = null
 CheckBox/styles/disabled = SubResource( 8 )
 CheckBox/styles/focus = SubResource( 9 )
 CheckBox/styles/hover = SubResource( 10 )
@@ -499,9 +494,9 @@ HScrollBar/styles/scroll = SubResource( 17 )
 HScrollBar/styles/scroll_focus = null
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = null
-HSlider/icons/grabber = ExtResource( 2 )
-HSlider/icons/grabber_disabled = ExtResource( 7 )
-HSlider/icons/grabber_highlight = ExtResource( 3 )
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource( 18 )
 HSlider/styles/grabber_area_highlight = SubResource( 19 )
