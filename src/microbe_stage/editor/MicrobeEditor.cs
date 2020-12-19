@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath PauseMenuPath;
@@ -384,6 +384,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         // As we will no longer return to the microbe stage we need to free it, if we have it
         // This might be disposed if this was loaded from a save and we loaded another save
         try
@@ -501,45 +503,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         stage.OnReturnFromEditor();
     }
 
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        if (@event.IsActionPressed("e_rotate_right"))
-        {
-            RotateRight();
-        }
-
-        if (@event.IsActionPressed("e_rotate_left"))
-        {
-            RotateLeft();
-        }
-
-        if (@event.IsActionPressed("e_redo"))
-        {
-            Redo();
-        }
-        else if (@event.IsActionPressed("e_undo"))
-        {
-            Undo();
-        }
-
-        if (@event.IsActionPressed("e_primary"))
-        {
-            PlaceOrganelle();
-        }
-
-        if (@event.IsActionPressed("e_secondary"))
-        {
-            RemoveOrganelle();
-        }
-
-        // Can only save once the editor is ready
-        if (@event.IsActionPressed("g_quick_save") && ready)
-        {
-            GD.Print("quick saving microbe editor");
-            SaveHelper.QuickSave(this);
-        }
-    }
-
     public override void _Process(float delta)
     {
         if (!ready)
@@ -587,6 +550,18 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         EnqueueAction(action);
     }
 
+    [RunOnKeyDown("g_quick_save")]
+    public void QuickSave()
+    {
+        // Can only save once the editor is ready
+        if (ready)
+        {
+            GD.Print("quick saving microbe editor");
+            SaveHelper.QuickSave(this);
+        }
+    }
+
+    [RunOnKeyDown("e_redo")]
     public void Redo()
     {
         if (history.Redo())
@@ -597,6 +572,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         UpdateUndoRedoButtons();
     }
 
+    [RunOnKeyDown("e_undo")]
     public void Undo()
     {
         if (history.Undo())
@@ -607,6 +583,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         UpdateUndoRedoButtons();
     }
 
+    [RunOnKeyDown("e_primary")]
     public void PlaceOrganelle()
     {
         if (ActiveActionName == null)
@@ -619,11 +596,13 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
+    [RunOnKeyDown("e_rotate_right")]
     public void RotateRight()
     {
         organelleRot = (organelleRot + 1) % 6;
     }
 
+    [RunOnKeyDown("e_rotate_left")]
     public void RotateLeft()
     {
         --organelleRot;
@@ -685,6 +664,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     /// <summary>
     ///   Removes organelles under the cursor
     /// </summary>
+    [RunOnKeyDown("e_secondary")]
     public void RemoveOrganelle()
     {
         GetMouseHex(out int q, out int r);

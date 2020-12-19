@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -19,9 +19,8 @@ public class NameGenerator : IRegistryType
     public List<string> Suffixes;
 
     /// <summary>
-    /// Unused
+    ///   Unused
     /// </summary>
-    /// <value>The name of the internal.</value>
     public string InternalName { get; set; }
 
     /// <summary>

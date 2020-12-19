@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -262,6 +262,12 @@ public class MainMenu : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
         SetCurrentMenu(0);
+    }
+
+    private void ViewSourceCodePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
     }
 
     private void QuitPressed()

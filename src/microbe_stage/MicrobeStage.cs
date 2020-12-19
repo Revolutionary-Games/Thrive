@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath GuidanceLinePath;
@@ -427,13 +427,11 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyDown("g_quick_save")]
+    public void QuickSave()
     {
-        if (@event.IsActionPressed("g_quick_save"))
-        {
-            GD.Print("quick saving microbe stage");
-            SaveHelper.QuickSave(this);
-        }
+        GD.Print("quick saving microbe stage");
+        SaveHelper.QuickSave(this);
     }
 
     /// <summary>
@@ -495,6 +493,11 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         HUD.HideReproductionDialog();
 
         StartMusic();
+
+        // Apply language settings here to be sure the stage doesn't continue to use the wrong language
+        // Because the stage scene tree being unattached during editor,
+        // if language was changed while in the editor, it doesn't properly propagate
+        Settings.Instance.ApplyLanguageSettings();
 
         // Auto save is wanted once possible
         wantsToSave = true;

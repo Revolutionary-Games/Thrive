@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Environment = System.Environment;
@@ -11,6 +12,7 @@ public class Settings
 {
     private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
+    private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
@@ -195,7 +197,7 @@ public class Settings
     ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
+        new SettingValue<InputDataList>(GetDefaultControls());
 
     /// <summary>
     ///   If false username will be set to System username
@@ -226,6 +228,70 @@ public class Settings
     public static bool operator !=(Settings lhs, Settings rhs)
     {
         return !(lhs == rhs);
+    }
+
+    /// <summary>
+    ///   Returns the default controls which never change, unless there is a new release.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This relies on the static member holding the default controls to be initialized before the code has a chance
+    ///     to modify the controls.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The default controls</returns>
+    public static InputDataList GetDefaultControls()
+    {
+        return (InputDataList)DefaultControls.Clone();
+    }
+
+    /// <summary>
+    ///   Returns the currently applied controls. Gathers the data from the godot InputMap.
+    ///   Required to get the default controls.
+    /// </summary>
+    /// <returns>The current inputs</returns>
+    public static InputDataList GetCurrentlyAppliedControls()
+    {
+        return new InputDataList(InputMap.GetActions().OfType<string>()
+            .ToDictionary(p => p,
+                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                    x => new SpecifiedInputKey(x)).ToList()));
+    }
+
+    /// <summary>
+    ///   Tries to return a C# culture info from Godot language name
+    /// </summary>
+    /// <param name="language">The language name to try to understand</param>
+    /// <returns>The culture info</returns>
+    public static CultureInfo GetCultureInfo(string language)
+    {
+        try
+        {
+            return new CultureInfo(language);
+        }
+        catch (CultureNotFoundException)
+        {
+            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
+
+            if (!language.Contains("_"))
+                throw;
+
+            // So we first try converting "_" to "-" and go with that
+            language = language.Replace('_', '-');
+
+            try
+            {
+                return new CultureInfo(language);
+            }
+            catch (CultureNotFoundException)
+            {
+                language = language.Split("-")[0];
+
+                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
+                    language);
+                return new CultureInfo(language);
+            }
+        }
     }
 
     public override bool Equals(object obj)
@@ -438,42 +504,6 @@ public class Settings
         CultureInfo.CurrentUICulture = cultureInfo;
 
         SimulationParameters.Instance.ApplyTranslations();
-    }
-
-    /// <summary>
-    ///   Tries to return a C# culture info from Godot language name
-    /// </summary>
-    /// <param name="language">The language name to try to understand</param>
-    /// <returns>The culture info</returns>
-    private static CultureInfo GetCultureInfo(string language)
-    {
-        try
-        {
-            return new CultureInfo(language);
-        }
-        catch (CultureNotFoundException)
-        {
-            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
-
-            if (!language.Contains("_"))
-                throw;
-
-            // So we first try converting "_" to "-" and go with that
-            language = language.Replace('_', '-');
-
-            try
-            {
-                return new CultureInfo(language);
-            }
-            catch (CultureNotFoundException)
-            {
-                language = language.Split("-")[0];
-
-                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
-                    language);
-                return new CultureInfo(language);
-            }
-        }
     }
 
     /// <summary>
