@@ -3854,19 +3854,11 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 32 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-<<<<<<< HEAD
 margin_left = 8.0
 margin_top = 31.0
 margin_right = 365.0
 margin_bottom = 480.0
 theme = SubResource( 33 )
-=======
-margin_left = 12.0
-margin_top = 35.0
-margin_right = 369.0
-margin_bottom = 484.0
-theme = SubResource( 30 )
->>>>>>> master
 edit_alpha = false
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
