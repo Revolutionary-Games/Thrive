@@ -141,16 +141,16 @@ public class PlayerMicrobeInput : Node
 
         if (toggleBinding.ReadTrigger())
         {
-            if (stage.Player != null && stage.Player.CanBind())
+            if (stage.Player != null)
             {
-                if (stage.Player.BindingMode)
+                if (stage.Player.AnyInBindingMode)
                 {
-                    stage.Player.BindingMode = false;
+                    stage.Player.AnyInBindingMode = false;
                 }
                 else
                 {
                     stage.Player.EngulfMode = false;
-                    stage.Player.BindingMode = true;
+                    stage.Player.AnyInBindingMode = true;
                 }
             }
         }
