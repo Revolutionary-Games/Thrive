@@ -778,7 +778,6 @@ msgstr "Toxin Vacuole"
 #: ../simulation_parameters/microbe_stage/organelles.json:472
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2927
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2710
-#, fuzzy
 msgid "BINDING_AGENT"
 msgstr "Binding Agent"
 
@@ -865,7 +864,9 @@ msgstr "..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
-msgstr "Binding Agent"
+msgstr ""
+"There is a conflict with {0}."
+"Do you want to remove the input from {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -1570,17 +1571,12 @@ msgstr "To be Implemented."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2948
 msgid "ALLOWS_BINDING"
-msgstr ""
+msgstr "Allows binding to other cells."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3036
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy "
-"in the form of ATP to produce ammonia, a key growth nutrient for cells. "
-"This is a process referred to as Anaerobic Nitrogen Fixation. Since the "
-"nitrogenase is suspended directly in the cytoplasm, the surrounding fluid "
-"performs some fermentation."
+"The binding agents allows binding to other cells."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3137
 msgid "NUCLEUS_SMALL_DESCRIPTION"
