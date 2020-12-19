@@ -168,7 +168,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     {
         var currFloorPos = new Vector3(Translation.x, 0, Translation.z);
         var currCamHeight = new Vector3(0, Translation.y, 0);
-        var newCamPos = new Vector3(0, CameraHeight,  0);
+        var newCamPos = new Vector3(0, CameraHeight, 0);
         if (ObjectToFollow != null)
         {
             var newFloorPos = new Vector3(ObjectToFollow.Transform.origin.x, 0, ObjectToFollow.Transform.origin.z);

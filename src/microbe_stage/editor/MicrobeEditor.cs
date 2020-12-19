@@ -550,7 +550,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [RunOnAxisGroup]
-    [RunOnAxis(new[] { "e_pan_up", "e_pan_down" },    new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1.0f, 1.0f })]
     public void PanCamWithKeys(float delta, float upDown, float leftRight)
     {
