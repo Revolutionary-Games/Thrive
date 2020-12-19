@@ -904,15 +904,29 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // 3. Maps the R position to the actual height
         // 4. Retrieves the minimum value, which is the top most location in the middle 3 rows
         // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
-        var highestPointInMiddleRows = editedMicrobeOrganelles
-            .SelectMany(organelle => organelle.Definition.Hexes.Select(hex => hex + organelle.Position))
-            .Where(hex => hex.Q >= -1 && hex.Q <= 1)
-            .Select(hex => hex.Q switch
+        var highestPointInMiddleRows = 0.0f;
+
+        foreach (var organelle in editedMicrobeOrganelles)
+        {
+            foreach (var relativeHex in organelle.Definition.Hexes)
             {
-                -1 => hex.R - 1,
-                0 => hex.R - .5f,
-                _ => hex.R,
-            }).DefaultIfEmpty(0).Min();
+                var absoluteHex = relativeHex + organelle.Position;
+
+                if (absoluteHex.Q < -1 || absoluteHex.Q > 1)
+                    continue;
+
+#pragma warning disable 8509 // nothing else possible due to the if above
+                var r = absoluteHex.Q switch
+#pragma warning restore 8509
+                {
+                    -1 => absoluteHex.R - 1,
+                    0 => absoluteHex.R - .5f,
+                    1 => absoluteHex.R,
+                };
+
+                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, r);
+            }
+        }
 
         arrowPosition = new Vector3(
             0,
