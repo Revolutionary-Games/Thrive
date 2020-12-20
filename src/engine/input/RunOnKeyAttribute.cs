@@ -61,7 +61,10 @@ public class RunOnKeyAttribute : InputAttribute
 
         if (@event.IsActionPressed(InputName))
         {
-            result = !CallMethodInOnInput || CallMethod(0.0f);
+            if (CallMethodInOnInput)
+                result = CallMethod(0.0f);
+            else
+                result = true;
             Prime();
             HeldDown = true;
         }
