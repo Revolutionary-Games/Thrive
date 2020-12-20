@@ -9,13 +9,6 @@ using Newtonsoft.Json;
 public class ColonyMember
 {
     /// <summary>
-    ///   Caches all the members of this colony.
-    ///   Use Microbe.GetAllColonyMembers instead.
-    /// </summary>
-    [JsonIgnore]
-    internal List<Microbe> AllMembersCache { get; set; }
-
-    /// <summary>
     ///   Used for serialization. Should not be used otherwise
     /// </summary>
     public ColonyMember()
@@ -55,6 +48,13 @@ public class ColonyMember
 
     [JsonProperty]
     public Microbe Microbe { get; set; }
+
+    /// <summary>
+    ///   Caches all the members of this colony.
+    ///   Use Microbe.GetAllColonyMembers instead.
+    /// </summary>
+    [JsonIgnore]
+    internal List<Microbe> AllMembersCache { get; set; }
 
     public static explicit operator Microbe(ColonyMember m)
     {
