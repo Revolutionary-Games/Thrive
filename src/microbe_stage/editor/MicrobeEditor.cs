@@ -876,7 +876,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Called by PlayerMicrobeEditorInput
+    ///   Moves the ObjectToFollow of the camera in a direction
     /// </summary>
     /// <param name="vector">The direction to move the camera</param>
     private void MoveObjectToFollow(Vector3 vector)
