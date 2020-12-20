@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -7,9 +8,6 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class ColonyMember
 {
-    public event EventHandler OnRemovedFromColony;
-    public event EventHandler OnOtherRemovedFromColony;
-
     /// <summary>
     ///   Used for serialization. Should not be used otherwise
     /// </summary>
@@ -27,9 +25,15 @@ public class ColonyMember
         {
             var masterMicrobe = master.Microbe;
             OffsetToMaster = (masterMicrobe.Translation - microbe.Translation)
-                .Rotated(Vector3.Up, Mathf.Deg2Rad(-masterMicrobe.RotationDegrees.y));
+               .Rotated(Vector3.Up, Mathf.Deg2Rad(-masterMicrobe.RotationDegrees.y));
         }
+
+        foreach (var member in Microbe.GetAllColonyMembers().Where(p => p != microbe))
+            member.Colony.OnColonyMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, this));
     }
+
+    public event EventHandler OnRemovedFromColony;
+    public event EventHandler<CollectionChangeEventArgs> OnColonyMembersChanged;
 
     [JsonProperty]
     public ColonyMember Master { get; set; }
@@ -52,7 +56,7 @@ public class ColonyMember
     {
         OnRemovedFromColony?.Invoke(this, new EventArgs());
         foreach (var microbe in Microbe.GetAllColonyMembers().Where(p => p != Microbe))
-            microbe.Colony.OnOtherRemovedFromColony?.Invoke(this, new EventArgs());
+            microbe.Colony.OnColonyMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Remove, this));
 
         Microbe = null;
 
