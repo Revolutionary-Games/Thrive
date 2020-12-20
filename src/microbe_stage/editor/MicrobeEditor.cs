@@ -881,7 +881,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <param name="vector">The direction to move the camera</param>
     private void MoveObjectToFollow(Vector3 vector)
     {
-        camera.ObjectToFollow.Translation += vector;
+        cameraFollow.Translation += vector;
     }
 
     /// <summary>
