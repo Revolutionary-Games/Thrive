@@ -169,6 +169,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     private string activeActionName;
 
+    /// <summary>
+    ///   Where the user started panning with the mouse
+    ///   Null if the user is not panning with the mouse
+    /// </summary>
+    private Vector3? mousePanningStart;
+
     [Signal]
     public delegate void InvalidPlacementOfHex();
 
@@ -549,6 +555,47 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         EnqueueAction(action);
     }
 
+    [RunOnAxisGroup]
+    [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1.0f, 1.0f })]
+    public void PanCameraWithKeys(float delta, float upDown, float leftRight)
+    {
+        if (mousePanningStart != null)
+            return;
+
+        var movement = new Vector3(leftRight, 0, upDown);
+        MoveObjectToFollow(movement.Normalized() * delta * Camera.CameraHeight);
+    }
+
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
+    public bool PanCameraWithMouse(float delta)
+    {
+        if (mousePanningStart == null)
+        {
+            mousePanningStart = Camera.CursorWorldPos;
+        }
+        else
+        {
+            var mousePanDirection = mousePanningStart.Value - Camera.CursorWorldPos;
+            MoveObjectToFollow(mousePanDirection * delta * 10);
+        }
+
+        return false;
+    }
+
+    [RunOnKeyUp("e_pan_mouse")]
+    public void ReleasePanCameraWithMouse()
+    {
+        mousePanningStart = null;
+    }
+
+    [RunOnKeyDown("e_reset_camera")]
+    public void ResetCamera()
+    {
+        camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
+        camera.ResetHeight();
+    }
+
     [RunOnKeyDown("g_quick_save")]
     public void QuickSave()
     {
@@ -834,6 +881,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
 
         MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
+    }
+
+    /// <summary>
+    ///   Moves the ObjectToFollow of the camera in a direction
+    /// </summary>
+    /// <param name="vector">The direction to move the camera</param>
+    private void MoveObjectToFollow(Vector3 vector)
+    {
+        cameraFollow.Translation += vector;
     }
 
     /// <summary>

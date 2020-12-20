@@ -793,6 +793,7 @@ PauseMenuPath = NodePath("PauseMenu")
 DefaultCameraHeight = 10.0
 MaxCameraHeight = 40.0
 DisableBackgroundParticles = true
+InterpolateSpeed = 1.0
 
 [node name="CameraLookAt" type="Spatial" parent="."]
 __meta__ = {
