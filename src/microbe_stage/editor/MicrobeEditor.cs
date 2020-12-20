@@ -283,10 +283,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public MicrobeStage ReturnToStage { get; set; }
 
     [JsonIgnore]
-    public bool HasNucleus
-    {
-        get => HasOrganelle("nucleus");
-    }
+    public bool HasNucleus => HasOrganelle("nucleus");
 
     [JsonIgnore]
     public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
