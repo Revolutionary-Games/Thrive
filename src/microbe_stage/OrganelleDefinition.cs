@@ -122,6 +122,11 @@ public class OrganelleDefinition : IRegistryType
     public bool ShouldScale = true;
 
     /// <summary>
+    ///   If the organelle should only be placeable once per cell.
+    /// </summary>
+    public bool Unique = false;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();

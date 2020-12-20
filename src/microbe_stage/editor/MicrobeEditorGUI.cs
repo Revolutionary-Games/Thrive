@@ -871,11 +871,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     ///     to be not cluttered
     ///   </para>
     /// </remarks>
-    internal void UpdateGuiButtonStatus(bool hasNucleus)
+    internal void UpdateGuiButtonStatus(List<string> uniquesAlreadyPlaced)
     {
         foreach (Control organelleItem in organelleSelectionElements)
         {
-            SetOrganelleButtonStatus(organelleItem, hasNucleus);
+            SetOrganelleButtonStatus(organelleItem, uniquesAlreadyPlaced);
         }
     }
 
@@ -1064,8 +1064,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
     }
 
-    private static void SetOrganelleButtonStatus(Control organelleItem, bool nucleus)
+    private static void SetOrganelleButtonStatus(Control organelleItem, List<string> uniquesAlreadyPlaced)
     {
+        var nucleus = uniquesAlreadyPlaced.Contains("nucleus");
         var button = organelleItem.GetNode<Button>("VBoxContainer/Button");
 
         if (organelleItem.Name == "nucleus")
@@ -1098,7 +1099,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
         else if (organelleItem.Name == "bindingagent")
         {
-            button.Disabled = !nucleus;
+            button.Disabled = !nucleus || uniquesAlreadyPlaced.Contains("bindingagent");
         }
     }
 

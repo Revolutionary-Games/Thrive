@@ -470,7 +470,8 @@
         "mass": 0.9,
         "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
         "name": "BINDING_AGENT",
-        "iconPath": "res://assets/textures/gui/bevel/BindingAgentIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/BindingAgentIcon.png",
+        "unique": true
     },
     "chloroplast": {
         "mpCost": 50,
@@ -601,6 +602,7 @@
         "chanceToCreate": 0,
         "mass": 0.7,
         "displayScene": "res://assets/models/organelles/Nucleus.tscn",
-        "name": "NUCLEUS"
+        "name": "NUCLEUS",
+        "unique": true
     }
 }
