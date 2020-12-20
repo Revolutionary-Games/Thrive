@@ -29,7 +29,10 @@ public class ColonyMember
         }
 
         foreach (var member in Microbe.GetAllColonyMembers().Where(p => p != microbe))
-            member.Colony.OnColonyMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, this));
+        {
+            member.Colony.OnColonyMembersChanged?.Invoke(this,
+                new CollectionChangeEventArgs(CollectionChangeAction.Add, this));
+        }
 
         OnColonyMembersChanged += (s, e) => AllMembersCache = null;
     }
@@ -65,7 +68,10 @@ public class ColonyMember
     {
         OnRemovedFromColony?.Invoke(this, new EventArgs());
         foreach (var microbe in Microbe.GetAllColonyMembers().Where(p => p != Microbe))
-            microbe.Colony.OnColonyMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Remove, this));
+        {
+            microbe.Colony.OnColonyMembersChanged?.Invoke(this,
+                new CollectionChangeEventArgs(CollectionChangeAction.Remove, this));
+        }
 
         Microbe = null;
 
