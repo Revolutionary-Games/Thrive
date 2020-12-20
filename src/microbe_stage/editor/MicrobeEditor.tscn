@@ -792,6 +792,7 @@ PauseMenuPath = NodePath("PauseMenu")
 DefaultCameraHeight = 10.0
 MaxCameraHeight = 40.0
 DisableBackgroundParticles = true
+InterpolateSpeed = 1.0
 
 [node name="CameraLookAt" type="Spatial" parent="."]
 __meta__ = {
@@ -1540,14 +1541,14 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer"]
 margin_right = 373.0
-margin_bottom = 875.0
+margin_bottom = 888.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer"]
 margin_right = 363.0
-margin_bottom = 875.0
+margin_bottom = 888.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_constants/separation = 10
@@ -2576,7 +2577,7 @@ custom_constants/margin_left = 5
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip"]
 margin_left = 5.0
 margin_right = 352.0
-margin_bottom = 309.0
+margin_bottom = 322.0
 mouse_filter = 2
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
@@ -2923,7 +2924,7 @@ custom_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nitrogenfixingplastid"]
 margin_top = 5.0
 margin_right = 153.0
-margin_bottom = 98.0
+margin_bottom = 111.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nitrogenfixingplastid/VBoxContainer"]
@@ -3790,10 +3791,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 12.0
-margin_top = 35.0
-margin_right = 369.0
-margin_bottom = 484.0
+margin_left = 16.0
+margin_top = 39.0
+margin_right = 373.0
+margin_bottom = 488.0
 theme = SubResource( 30 )
 edit_alpha = false
 

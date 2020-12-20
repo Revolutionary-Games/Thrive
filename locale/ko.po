@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 16:47+0200\n"
+"POT-Creation-Date: 2020-12-20 18:16+0100\n"
 "PO-Revision-Date: 2020-12-17 09:10+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -367,7 +367,7 @@ msgid "ZOOM_IN"
 msgstr "확대"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:969
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:970
 msgid "EDITOR"
 msgstr "편집기"
 
@@ -395,47 +395,69 @@ msgstr "세포 기관 배치"
 msgid "REMOVE_ORGANELLE"
 msgstr "세포 기관 제거"
 
+#: ../simulation_parameters/common/input_options.json:95
+msgid "PAN_CAMERA_LEFT"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:99
+#, fuzzy
+msgid "PAN_CAMERA_RIGHT"
+msgstr "오른쪽으로 이동"
+
+#: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
+msgid "PAN_CAMERA_UP"
+msgstr "카메라"
+
+#: ../simulation_parameters/common/input_options.json:107
+msgid "PAN_CAMERA_DOWN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:111
+msgid "PAN_CAMERA_RESET"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:119
 msgid "CHEATS"
 msgstr "치트"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:123
 msgid "ENABLE_EDITOR"
 msgstr "편집기 활성화"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:127
 msgid "SPAWN_GLUCOSE"
 msgstr "포도당 배치"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:131
 msgid "SPAWN_AMMONIA"
 msgstr "암모니아 배치"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:135
 msgid "SPAWN_PHOSPHATES"
 msgstr "인산염 배치"
 
-#: ../simulation_parameters/common/input_options.json:124
+#: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
 msgstr "기타"
 
-#: ../simulation_parameters/common/input_options.json:128
+#: ../simulation_parameters/common/input_options.json:148
 msgid "TOGGLE_FPS"
 msgstr "FPS 표시 전환"
 
-#: ../simulation_parameters/common/input_options.json:132
+#: ../simulation_parameters/common/input_options.json:152
 msgid "QUICK_SAVE"
 msgstr "빠른 저장"
 
-#: ../simulation_parameters/common/input_options.json:136
+#: ../simulation_parameters/common/input_options.json:156
 msgid "QUICK_LOAD"
 msgstr "빠른 불러오기"
 
-#: ../simulation_parameters/common/input_options.json:140
+#: ../simulation_parameters/common/input_options.json:160
 msgid "TAKE_SCREENSHOT"
 msgstr "스크린샷 촬영"
 
-#: ../simulation_parameters/common/input_options.json:144
+#: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
 msgstr "도움말 보기"
 
@@ -667,21 +689,21 @@ msgstr "햇빛"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2427
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
 msgid "PREDATORY_PILUS"
 msgstr "포식자 선모"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2079
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2080
 msgid "RUSTICYANIN"
 msgstr "루스티시아닌"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1779
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1843
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2144
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2145
 msgid "NITROGENASE"
 msgstr "니트로게나아제"
 
@@ -698,7 +720,7 @@ msgstr "화학 단백질"
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2054
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2209
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2210
 msgid "OXYTOXISOME"
 msgstr "옥시톡시솜"
 
@@ -710,70 +732,70 @@ msgstr "틸라코이드"
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1882
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1883
 msgid "METABOLOSOMES"
 msgstr "대사체"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4162
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4226
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "질소 고정 색소체"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3890
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3954
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2907
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2908
 msgid "CHEMOPLAST"
 msgstr "화학 기관"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2405
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2363
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2364
 msgid "FLAGELLUM"
 msgstr "편모"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4467
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4531
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3042
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3043
 msgid "VACUOLE"
 msgstr "액포"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3047
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3111
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2711
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2712
 msgid "MITOCHONDRION"
 msgstr "미토콘드리아"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4656
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4720
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3109
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3110
 msgid "TOXIN_VACUOLE"
 msgstr "독성 액포"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3322
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2776
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2777
 msgid "CHLOROPLAST"
 msgstr "엽록체"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:338
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:402
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1724
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1725
 msgid "CYTOPLASM"
 msgstr "세포질"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2857
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2921
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2646
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2647
 msgid "NUCLEUS"
 msgstr "핵"
 
@@ -1128,7 +1150,7 @@ msgid "LOAD_GAME"
 msgstr "불러오기"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4213
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4214
 msgid "STATISTICS"
 msgstr "상태"
 
@@ -1372,7 +1394,7 @@ msgstr ""
 "체가 일부 발효를 수행합니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:859
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1947
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1948
 msgid "THYLAKOID"
 msgstr "틸라코이드"
 
@@ -1513,7 +1535,7 @@ msgstr "이것으로 다른 세포를 찌르세요."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2731
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2795
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2491
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2492
 msgid "CILIA"
 msgstr "섬모"
 
@@ -1560,7 +1582,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3610
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3674
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2842
 msgid "THERMOPLAST"
 msgstr "열 세포"
 
@@ -1632,7 +1654,7 @@ msgstr "생물발광 액포"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5090
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5154
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3363
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3364
 msgid "NORMAL"
 msgstr "보통"
 
@@ -1654,7 +1676,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5335
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5399
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3433
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3434
 msgid "DOUBLE"
 msgstr "이중"
 
@@ -1667,7 +1689,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5576
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5640
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3503
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3504
 msgid "CELLULOSE"
 msgstr "섬유소"
 
@@ -1693,7 +1715,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5879
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5943
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3573
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3574
 msgid "CHITIN"
 msgstr "키틴질"
 
@@ -1712,7 +1734,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6182
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6246
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3648
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3649
 msgid "CALCIUM_CARBONATE"
 msgstr "탄산 칼슘"
 
@@ -1725,7 +1747,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6515
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6579
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3720
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3721
 msgid "SILICA"
 msgstr "이산화규소"
 
@@ -1798,7 +1820,7 @@ msgid "PRESSURE_SHORT"
 msgstr "압력."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1029
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4815
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4816
 msgid "COMPOUNDS"
 msgstr "화합물"
 
@@ -1863,197 +1885,197 @@ msgstr "빙붕"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian 해저"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:505
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:977
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:511
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1033
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:507
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:513
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1782
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1838
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1783
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1839
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:927
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:928
 msgid "REPORT"
 msgstr "보고"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:948
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:949
 msgid "PATCH_MAP"
 msgstr "파편 지도"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1025
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1026
 msgid "ORGANISM_STATISTICS"
 msgstr "생체 상태창"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1071
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1072
 msgid "SPEED_COLON"
 msgstr "속도:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1101
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1102
 msgid "HP_COLON"
 msgstr "생명력:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1131
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1132
 msgid "SIZE_COLON"
 msgstr "크기:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1152
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1153
 msgid "GENERATION_COLON"
 msgstr "세대:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1194
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1195
 msgid "ATP_BALANCE"
 msgstr "ATP 균형"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1384
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1385
 msgid "MUTATION_POINTS"
 msgstr "변이 점수"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1472
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1473
 msgid "STRUCTURE"
 msgstr "구조"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1495
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1496
 msgid "APPEARANCE"
 msgstr "외관"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1519
 msgid "BEHAVIOR"
 msgstr "행동"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1569
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1570
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "검색..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1630
 msgid "STRUCTURAL"
 msgstr "구조의"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1792
 msgid "PROTEINS"
 msgstr "단백질"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2014
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
 "화학 합성\n"
 "단백질"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2274
 msgid "EXTERNAL"
 msgstr "외부의"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2555
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2556
 msgid "ORGANELLES"
 msgstr "세포 기관"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3135
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3136
 msgid "N_A_MP"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3173
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3174
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
 "생물발광\n"
 "액포"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3270
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3271
 msgid "MEMBRANE_TYPES"
 msgstr "세포막 유형"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3743
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3744
 msgid "FLUIDITY_RIGIDITY"
 msgstr "유동성 / 강도"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3781
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3782
 msgid "COLOUR"
 msgstr "색"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3926
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3927
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "종 명칭..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3953
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3954
 msgid "CONFIRM_CAPITAL"
 msgstr "확인"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3963
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "부정적 ATP 균형"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3963
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3964
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "미생물이 생존에 필요한 만큼의 ATP를 생산하지 않습니다!\n"
 "계속하시겠습니까?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3971
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "단절된 세포기관"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3973
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
 "배치된 모든 세포 기관을 서로 연결하거나 변경을 취소하세요."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4038
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4039
 msgid "PATCH_NAME"
 msgstr "파편 이름"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4072
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4073
 msgid "AUTO_EVO"
 msgstr "자동 진화"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4086
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4087
 msgid "FOOD_CHAIN"
 msgstr "먹이 사슬"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4100
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4101
 msgid "TIMELINE"
 msgstr "연대"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4153
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4154
 msgid "AUTO_EVO_RESULTS"
 msgstr "자동 진화 결과:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4172
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4173
 msgid "EXTERNAL_EFFECTS"
 msgstr "외부 효과:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4238
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5160
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4239
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5161
 msgid "NEXT_CAPITAL"
 msgstr "다음"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4352
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4353
 msgid "SELECT_A_PATCH"
 msgstr "세부 사항을 표시할 파편을 선택하십시오"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4387
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4388
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "현재 위치"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4467
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4468
 msgid "PHYSICAL_CONDITIONS"
 msgstr "물리적 상태"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4650
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4651
 msgid "ATMOSPHERIC_GASSES"
 msgstr "대기 가스"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5075
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5076
 msgid "SPECIES_PRESENT"
 msgstr "존재하는 종"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5133
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5134
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "해당 파편으로 이동"
 
