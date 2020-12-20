@@ -18,7 +18,7 @@ public class RunOnKeyAttribute : InputAttribute
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Also used by <see cref="RunOnKeyDownWithRepeat"/> to report to axis that it is down now or repeated.
+    ///     Also used by <see cref="RunOnKeyDownWithRepeatAttribute"/> to report to axis that it was down or repeated.
     ///   </para>
     /// </remarks>
     private bool primed;
@@ -40,6 +40,16 @@ public class RunOnKeyAttribute : InputAttribute
     public string InputName { get; }
 
     /// <summary>
+    ///   If this is set to false the callback method is allowed to be called without the delta value (using 0.0f)
+    /// </summary>
+    public bool CallbackRequiresElapsedTime { get; set; } = true;
+
+    /// <summary>
+    ///   Should OnInput run the callback method instantly
+    /// </summary>
+    protected virtual bool CallMethodInOnInput => true;
+
+    /// <summary>
     ///   Reads the current primed or held state and resets the primed state
     /// </summary>
     /// <returns>True when the key is held down or primed</returns>
@@ -52,22 +62,30 @@ public class RunOnKeyAttribute : InputAttribute
 
     public override bool OnInput(InputEvent @event)
     {
-        bool wasOurKey = false;
+        bool result = false;
 
         if (@event.IsActionPressed(InputName))
         {
-            wasOurKey = true;
+            if (CallMethodInOnInput && !CallbackRequiresElapsedTime)
+            {
+                result = CallMethod(0.0f);
+            }
+            else
+            {
+                result = true;
+            }
+
             Prime();
             HeldDown = true;
         }
 
         if (@event.IsActionReleased(InputName))
         {
-            wasOurKey = true;
+            result = true;
             HeldDown = false;
         }
 
-        return wasOurKey;
+        return result;
     }
 
     public override void OnProcess(float delta)
