@@ -2107,8 +2107,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (other == null)
             return;
 
-        // Cannot hijack the player or other colonies (TODO: yet)
-        if (other.IsPlayerMicrobe || other.Colony != null)
+        // Cannot hijack the player, other species or other colonies (TODO: yet)
+        if (other.IsPlayerMicrobe || other.Colony != null || other.Species != Species)
             return;
 
         AddCollisionExceptionWith(other);

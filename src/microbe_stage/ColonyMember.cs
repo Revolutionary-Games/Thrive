@@ -8,7 +8,8 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class ColonyMember
 {
-    internal List<Microbe> AllMembersCache;
+    [JsonIgnore]
+    internal List<Microbe> AllMembersCache { get; set; }
 
     /// <summary>
     ///   Used for serialization. Should not be used otherwise
