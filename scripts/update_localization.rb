@@ -3,7 +3,7 @@
 
 # List of locales, edit this to add new ones:
 LOCALES = %w[bg ca cs de en es_AR es fi fr he id it pl pt_BR pt_PT ru sr_Cyrl tr
-             lt zh_CN zh_TW].freeze
+             lt zh zh_CN].freeze
 
 # Weblate doesn't let you configure this so we need the same here
 LINE_WIDTH = 77
