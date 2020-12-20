@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class ColonyMember
 {
+    internal List<Microbe> AllMembersCache;
+
     /// <summary>
     ///   Used for serialization. Should not be used otherwise
     /// </summary>
@@ -30,6 +32,8 @@ public class ColonyMember
 
         foreach (var member in Microbe.GetAllColonyMembers().Where(p => p != microbe))
             member.Colony.OnColonyMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, this));
+
+        OnColonyMembersChanged += (s, e) => AllMembersCache = null;
     }
 
     public event EventHandler OnRemovedFromColony;

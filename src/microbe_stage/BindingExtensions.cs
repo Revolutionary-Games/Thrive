@@ -12,8 +12,18 @@ public static class BindingExtensions
     /// <returns>A list containing all members.</returns>
     public static List<Microbe> GetAllColonyMembers(this Microbe microbe)
     {
+        if (microbe.Colony?.AllMembersCache != null)
+            return microbe.Colony.AllMembersCache;
+
         var result = new List<Microbe>();
         GetAllColonyMembers(microbe, result, false);
+
+        if (microbe.Colony == null)
+            return result;
+
+        foreach (var item in result)
+            item.Colony.AllMembersCache = result;
+
         return result;
     }
 
