@@ -154,6 +154,7 @@ bg_color = Color( 0.745098, 0.356863, 0.921569, 1 )
 [sub_resource type="StyleBoxEmpty" id=11]
 
 [sub_resource type="Animation" id=12]
+resource_name = "FlashBar"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
