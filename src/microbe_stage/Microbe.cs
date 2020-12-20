@@ -255,16 +255,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   </para>
     /// </remarks>
     [JsonIgnore]
-    public bool BindingMode { get; set; }
-
-    /// <summary>
-    ///   Gets or sets if any colony member is currently in <see cref="BindingMode"/>
-    /// </summary>
-    [JsonIgnore]
-    public bool AnyInBindingMode
+    public bool BindingMode
     {
-        get => this.GetAllColonyMembers().Any(p => p.BindingMode);
-        set => this.GetAllColonyMembers().Where(p => !value || p.CanBind()).ToList().ForEach(p => p.BindingMode = value);
+        get => this.GetColonyValue<bool>();
+        set => this.SetColonyValue(CanBind() && value);
     }
 
     [JsonIgnore]
@@ -2131,7 +2125,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         other.Colony = new ColonyMember(other, Colony);
         Colony.BindingTo.Add(other.Colony);
-        AnyInBindingMode = false;
+        BindingMode = false;
     }
 
     /// <summary>

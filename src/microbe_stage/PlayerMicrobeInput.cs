@@ -74,9 +74,9 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        stage.Player.AnyInBindingMode = !stage.Player.AnyInBindingMode;
+        stage.Player.BindingMode = !stage.Player.BindingMode;
 
-        if (stage.Player.AnyInBindingMode)
+        if (stage.Player.BindingMode)
             stage.Player.EngulfMode = false;
     }
 
