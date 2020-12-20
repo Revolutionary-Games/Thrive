@@ -916,14 +916,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
 
                 // Get the min z-axis (highest point in the editor)
-                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z * Constants.DEFAULT_HEX_SIZE);
+                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
             }
         }
 
         arrowPosition = new Vector3(
             0,
             0,
-            highestPointInMiddleRows * Constants.DEFAULT_HEX_SIZE * 1.75f - Constants.EDITOR_ARROW_OFFSET);
+            highestPointInMiddleRows * Constants.DEFAULT_HEX_SIZE * 1.33333333f - Constants.EDITOR_ARROW_OFFSET);
     }
 
     /// <summary>
