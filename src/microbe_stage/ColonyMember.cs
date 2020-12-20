@@ -25,7 +25,7 @@ public class ColonyMember
         {
             var masterMicrobe = master.Microbe;
             OffsetToMaster = (masterMicrobe.Translation - microbe.Translation)
-               .Rotated(Vector3.Up, Mathf.Deg2Rad(-masterMicrobe.RotationDegrees.y));
+                .Rotated(Vector3.Up, Mathf.Deg2Rad(-masterMicrobe.RotationDegrees.y));
         }
 
         foreach (var member in Microbe.GetAllColonyMembers().Where(p => p != microbe))
