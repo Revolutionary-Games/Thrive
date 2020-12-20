@@ -18,7 +18,7 @@ public class RunOnKeyAttribute : InputAttribute
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Also used by <see cref="RunOnKeyDownWithRepeat"/> to report to axis that it is down now or repeated.
+    ///     Also used by <see cref="RunOnKeyDownWithRepeatAttribute"/> to report to axis that it is down now or repeated.
     ///   </para>
     /// </remarks>
     private bool primed;

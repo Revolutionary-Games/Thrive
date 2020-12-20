@@ -9,9 +9,9 @@ using Godot;
 ///   [RunOnKeyDown("zoom_out")]
 ///   public void ZoomOutPressed()
 /// </example>
-public class RunOnKeyDownWithRepeat : RunOnKeyAttribute
+public class RunOnKeyDownWithRepeatAttribute : RunOnKeyAttribute
 {
-    public RunOnKeyDownWithRepeat(string inputName) : base(inputName)
+    public RunOnKeyDownWithRepeatAttribute(string inputName) : base(inputName)
     {
     }
 
