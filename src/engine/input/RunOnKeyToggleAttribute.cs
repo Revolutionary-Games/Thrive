@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 public class RunOnKeyToggleAttribute : RunOnKeyAttribute
 {
@@ -8,7 +9,14 @@ public class RunOnKeyToggleAttribute : RunOnKeyAttribute
 
     public bool ToggleState { get; set; }
 
-    protected override bool CallMethodInOnInput => false;
+    /// <summary>
+    ///   Not supported in RunOnKeyToggle
+    /// </summary>
+    public override bool CallMethodWithZeroOnInput
+    {
+        get => false;
+        set => throw new NotSupportedException("Only RunOnKey supports setting CallMethodWithZeroOnInput");
+    }
 
     public override bool OnInput(InputEvent @event)
     {
