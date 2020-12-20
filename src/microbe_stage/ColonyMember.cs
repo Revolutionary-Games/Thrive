@@ -8,6 +8,10 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class ColonyMember
 {
+    /// <summary>
+    ///   Caches all the members of this colony.
+    ///   Use Microbe.GetAllColonyMembers instead.
+    /// </summary>
     [JsonIgnore]
     internal List<Microbe> AllMembersCache { get; set; }
 
