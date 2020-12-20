@@ -898,10 +898,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     private void UpdateArrow()
     {
-        // 1. Retrieves all the hexes in the microbe
-        // 2. Fetches only the middle 3 rows
-        // 3. Maps the R position to the actual height
-        // 4. Retrieves the minimum value, which is the top most location in the middle 3 rows
         // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
         var highestPointInMiddleRows = 0.0f;
 
@@ -913,11 +909,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             {
                 var absoluteHex = relativeHex + organelle.Position;
 
+                // Only consider the middle 3 rows
                 if (absoluteHex.Q < -1 || absoluteHex.Q > 1)
                     continue;
 
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
 
+                // Get the min z-axis (highest point in the editor)
                 highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z * Constants.DEFAULT_HEX_SIZE);
             }
         }
