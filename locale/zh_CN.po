@@ -376,47 +376,69 @@ msgstr "放置细胞器"
 msgid "REMOVE_ORGANELLE"
 msgstr "移除细胞器"
 
+#: ../simulation_parameters/common/input_options.json:95
+msgid "PAN_CAMERA_LEFT"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:99
+#, fuzzy
+msgid "PAN_CAMERA_RIGHT"
+msgstr "右移"
+
+#: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
+msgid "PAN_CAMERA_UP"
+msgstr "视角"
+
+#: ../simulation_parameters/common/input_options.json:107
+msgid "PAN_CAMERA_DOWN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:111
+msgid "PAN_CAMERA_RESET"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:119
 msgid "CHEATS"
 msgstr "作弊"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:123
 msgid "ENABLE_EDITOR"
 msgstr "启用编辑器"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:127
 msgid "SPAWN_GLUCOSE"
 msgstr "生成葡萄糖"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:131
 msgid "SPAWN_AMMONIA"
 msgstr "生成氨"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:135
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸盐"
 
-#: ../simulation_parameters/common/input_options.json:124
+#: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
 msgstr "杂项"
 
-#: ../simulation_parameters/common/input_options.json:128
+#: ../simulation_parameters/common/input_options.json:148
 msgid "TOGGLE_FPS"
 msgstr "切换帧数显示"
 
-#: ../simulation_parameters/common/input_options.json:132
+#: ../simulation_parameters/common/input_options.json:152
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
-#: ../simulation_parameters/common/input_options.json:136
+#: ../simulation_parameters/common/input_options.json:156
 msgid "QUICK_LOAD"
 msgstr "快速读档"
 
-#: ../simulation_parameters/common/input_options.json:140
+#: ../simulation_parameters/common/input_options.json:160
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
-#: ../simulation_parameters/common/input_options.json:144
+#: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
@@ -611,7 +633,7 @@ msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
 #: ../src/microbe_stage/MicrobeStage.tscn:1336
 msgid "IRON"
 msgstr "铁"
@@ -645,23 +667,23 @@ msgid "SUNLIGHT"
 msgstr "阳光"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2611
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2675
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2427
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
 msgid "PREDATORY_PILUS"
 msgstr "掠食性菌毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1544
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2079
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2080
 msgid "RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1785
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1849
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2144
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1779
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1843
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2145
 msgid "NITROGENASE"
 msgstr "固氮酶"
 
@@ -676,9 +698,9 @@ msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化学合成蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2060
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2124
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2210
 msgid "OXYTOXISOME"
 msgstr "毒素体"
 
@@ -690,7 +712,7 @@ msgstr "类囊体"
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1882
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1883
 msgid "METABOLOSOMES"
 msgstr "代谢体"
 
@@ -709,9 +731,9 @@ msgid "CHEMOPLAST"
 msgstr "化学质体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2347
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2411
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2363
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2341
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2405
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2364
 msgid "FLAGELLUM"
 msgstr "鞭毛"
 
@@ -756,7 +778,7 @@ msgstr "叶绿体"
 #: ../simulation_parameters/microbe_stage/organelles.json:539
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:338
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:402
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1724
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1725
 msgid "CYTOPLASM"
 msgstr "细胞质"
 
@@ -1154,7 +1176,7 @@ msgstr "工具"
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "查看源代码"
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
@@ -1335,12 +1357,12 @@ msgstr ""
 "同样还能用来储存收集到的化合物以使细胞大小成长。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:722
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1615
 msgid "DOT_RATE_SCALES"
 msgstr ". 产出速率取决于"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1634
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
 msgid "WITH_CONCENTRATION_OF"
 msgstr ""
 
@@ -1357,7 +1379,7 @@ msgstr ""
 "些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:859
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1947
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1948
 msgid "THYLAKOID"
 msgstr "类囊体"
 
@@ -1412,26 +1434,18 @@ msgstr ""
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ".速率取决于"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1305
-msgid "CARBON"
-msgstr "二氧"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1312
-msgid "DIOXIDE"
-msgstr "化碳"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1330
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
 msgid "ALSO_TURNS"
 msgstr "同时也将"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1464
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1458
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫"
 "化氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成"
 "蛋白是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1763
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "铁硫菌蓝蛋白能够利用二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这"
@@ -1450,7 +1464,7 @@ msgstr ". 速率"
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "取决于"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2044
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被"
@@ -1462,46 +1476,46 @@ msgstr ""
 msgid "OXYTOXY"
 msgstr "氧化毒素"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2201
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2195
 msgid "DOT_CAN_RELEASE"
 msgstr ". 按E可释放"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2213
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2207
 msgid "TOXINS_BY_PRESSING_E"
 msgstr "毒素。速率取决于"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 msgid "OXYTOXISOME_DESC"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2432
 msgid "USES"
 msgstr "使用"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2463
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2457
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr "来加快细胞的移动"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2475
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2469
 msgid "SPEED_OF_THE_CELL"
 msgstr "速度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2510
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2504
 msgid "SPEED"
 msgstr "速度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2595
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2589
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，可使用ATP沿一个方向起伏并推动细胞。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2721
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2715
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "用来捅其它细胞。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2737
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2801
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2731
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2795
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2492
 msgid "CILIA"
 msgstr "纤毛"
 
@@ -1836,20 +1850,20 @@ msgstr "冰架"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "远古海床"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:505
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:977
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:511
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1033
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:507
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:513
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo中："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1782
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1838
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1783
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1839
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
@@ -1861,69 +1875,69 @@ msgstr "报告"
 msgid "PATCH_MAP"
 msgstr "地区图"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1025
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1026
 msgid "ORGANISM_STATISTICS"
 msgstr "生物数据"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1071
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1072
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1101
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1102
 msgid "HP_COLON"
 msgstr "生命上限："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1131
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1132
 msgid "SIZE_COLON"
 msgstr "大小："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1152
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1153
 msgid "GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1194
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1195
 msgid "ATP_BALANCE"
 msgstr "ATP开支"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1384
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1385
 msgid "MUTATION_POINTS"
 msgstr "变异点（MP）"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1472
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1473
 msgid "STRUCTURE"
 msgstr "结构"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1495
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1496
 msgid "APPEARANCE"
 msgstr "外观"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1519
 msgid "BEHAVIOR"
 msgstr "行为"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1569
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1570
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1630
 msgid "STRUCTURAL"
 msgstr "结构"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1792
 msgid "PROTEINS"
 msgstr "蛋白质"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2014
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
 "化学合\n"
 "成蛋白"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2274
 msgid "EXTERNAL"
 msgstr "外部"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2555
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2556
 msgid "ORGANELLES"
 msgstr "细胞器"
 
@@ -2476,6 +2490,12 @@ msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
+
+#~ msgid "CARBON"
+#~ msgstr "二氧"
+
+#~ msgid "DIOXIDE"
+#~ msgstr "化碳"
 
 #~ msgid "PLASTID"
 #~ msgstr "质体"

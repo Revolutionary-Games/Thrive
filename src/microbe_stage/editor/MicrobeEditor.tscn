@@ -4,6 +4,7 @@
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/6xSymmetry.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://assets/models/EditorArrow.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/clockButton.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=8]
@@ -793,11 +794,14 @@ PauseMenuPath = NodePath("PauseMenu")
 DefaultCameraHeight = 10.0
 MaxCameraHeight = 40.0
 DisableBackgroundParticles = true
+InterpolateSpeed = 1.0
 
 [node name="CameraLookAt" type="Spatial" parent="."]
 __meta__ = {
 "_editor_description_": "Just something to make the microbe camera look at the right place"
 }
+
+[node name="EditorArrow" parent="." instance=ExtResource( 5 )]
 
 [node name="World" type="Node" parent="."]
 
@@ -2987,7 +2991,7 @@ custom_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nitrogenfixingplastid"]
 margin_top = 5.0
 margin_right = 153.0
-margin_bottom = 98.0
+margin_bottom = 111.0
 custom_constants/separation = 1
 
 [node name="MP" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelles/Clip/GridContainer/nitrogenfixingplastid/VBoxContainer"]

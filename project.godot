@@ -208,6 +208,36 @@ help={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
  ]
 }
+e_pan_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+e_pan_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+e_pan_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+ ]
+}
+e_pan_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+ ]
+}
+e_pan_mouse={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+e_reset_camera={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -216,7 +246,7 @@ help={
 
 [locale]
 
-translations=PoolStringArray( "res://locale/en.po", "res://locale/fr.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/de.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/pl.po", "res://locale/tr.po", "res://locale/bg.po", "res://locale/ca.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ru.po", "res://locale/sr_Cyrl.po", "res://locale/he.po", "res://locale/lt.po", "res://locale/lt.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po" )
+translations=PoolStringArray( "res://locale/en.po", "res://locale/fr.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/de.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/nl_BE.po", "res://locale/pl.po", "res://locale/tr.po", "res://locale/bg.po", "res://locale/ca.po", "res://locale/ko.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ru.po", "res://locale/sr_Cyrl.po", "res://locale/he.po", "res://locale/lt.po", "res://locale/lt.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po" )
 
 [logging]
 

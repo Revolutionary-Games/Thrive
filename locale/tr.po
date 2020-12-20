@@ -424,47 +424,69 @@ msgstr "Organel yerleştir"
 msgid "REMOVE_ORGANELLE"
 msgstr "Organel sil"
 
+#: ../simulation_parameters/common/input_options.json:95
+msgid "PAN_CAMERA_LEFT"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:99
+#, fuzzy
+msgid "PAN_CAMERA_RIGHT"
+msgstr "Sağa doğru git"
+
+#: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
+msgid "PAN_CAMERA_UP"
+msgstr "Kamera"
+
+#: ../simulation_parameters/common/input_options.json:107
+msgid "PAN_CAMERA_DOWN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:111
+msgid "PAN_CAMERA_RESET"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:119
 msgid "CHEATS"
 msgstr "Hileler"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:123
 msgid "ENABLE_EDITOR"
 msgstr "Editörü aç"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:127
 msgid "SPAWN_GLUCOSE"
 msgstr "Glukoz oluştur"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:131
 msgid "SPAWN_AMMONIA"
 msgstr "Amonyak oluştur"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:135
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fosfat oluştur"
 
-#: ../simulation_parameters/common/input_options.json:124
+#: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
 msgstr "Diğer"
 
-#: ../simulation_parameters/common/input_options.json:128
+#: ../simulation_parameters/common/input_options.json:148
 msgid "TOGGLE_FPS"
 msgstr "FPS göstergesini aç"
 
-#: ../simulation_parameters/common/input_options.json:132
+#: ../simulation_parameters/common/input_options.json:152
 msgid "QUICK_SAVE"
 msgstr "Çabuk kayıt"
 
-#: ../simulation_parameters/common/input_options.json:136
+#: ../simulation_parameters/common/input_options.json:156
 msgid "QUICK_LOAD"
 msgstr "Çabuk yükleme"
 
-#: ../simulation_parameters/common/input_options.json:140
+#: ../simulation_parameters/common/input_options.json:160
 msgid "TAKE_SCREENSHOT"
 msgstr "Ekran görüntüsü al"
 
-#: ../simulation_parameters/common/input_options.json:144
+#: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
 msgstr "Yardım menüsünü göster"
 
@@ -659,7 +681,7 @@ msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
 #: ../src/microbe_stage/MicrobeStage.tscn:1336
 msgid "IRON"
 msgstr "Demir"
@@ -693,23 +715,23 @@ msgid "SUNLIGHT"
 msgstr "Güneş ışığı"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2611
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2675
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2427
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
 msgid "PREDATORY_PILUS"
 msgstr "Yırtıcı Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1544
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2079
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2080
 msgid "RUSTICYANIN"
 msgstr "Rustisiyanin"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1785
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1849
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2144
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1779
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1843
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2145
 msgid "NITROGENASE"
 msgstr "Nitrojenaz"
 
@@ -724,9 +746,9 @@ msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosentez Yapan Proteinler"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2060
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2124
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2210
 msgid "OXYTOXISOME"
 msgstr "Oksitoksizom"
 
@@ -738,7 +760,7 @@ msgstr "Tilakoidler"
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1882
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1883
 msgid "METABOLOSOMES"
 msgstr "Metabolozomlar"
 
@@ -757,9 +779,9 @@ msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2347
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2411
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2363
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2341
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2405
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2364
 msgid "FLAGELLUM"
 msgstr "Kamçı"
 
@@ -804,7 +826,7 @@ msgstr "Kloroplast"
 #: ../simulation_parameters/microbe_stage/organelles.json:539
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:338
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:402
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1724
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1725
 msgid "CYTOPLASM"
 msgstr "Sitoplazma"
 
@@ -1391,13 +1413,13 @@ msgstr ""
 "depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:722
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1615
 #, fuzzy
 msgid "DOT_RATE_SCALES"
 msgstr ". Oran doğru orantılı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1634
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
 #, fuzzy
 msgid "WITH_CONCENTRATION_OF"
 msgstr "konsantrasyonu ile"
@@ -1419,7 +1441,7 @@ msgstr ""
 "akışkan fermentasyon yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:859
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1947
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1948
 msgid "THYLAKOID"
 msgstr "Tilakoid"
 
@@ -1483,22 +1505,12 @@ msgstr ""
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ". Oran konsantrasyonu ile doğru orantılı"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1305
-#, fuzzy
-msgid "CARBON"
-msgstr "Karbon"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1312
-#, fuzzy
-msgid "DIOXIDE"
-msgstr "Dioksit"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1330
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
 #, fuzzy
 msgid "ALSO_TURNS"
 msgstr "Ayrıca dönüştürür"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1464
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1458
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Kemosentez yapan proteinler, Hidrojen Sülfür Kemosentezi adı verilen bir "
@@ -1508,7 +1520,7 @@ msgstr ""
 "proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan "
 "akışkan fermentasyon yapabilir."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1763
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için "
@@ -1530,7 +1542,7 @@ msgstr ". Oran"
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "konsantrasyonu ile doğru orantılı"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2044
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan amonyağı üretmek "
@@ -1544,52 +1556,52 @@ msgstr ""
 msgid "OXYTOXY"
 msgstr "OksiToksi"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2201
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2195
 #, fuzzy
 msgid "DOT_CAN_RELEASE"
 msgstr ". Salabilir"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2213
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2207
 msgid "TOXINS_BY_PRESSING_E"
 msgstr "toksinler E tuşuna basarak. Oran ile doğru orantılı"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "OksiToksi NT zehir maddesinin basit bir formunun üretilmesinden sorumlu, "
 "değişime uğramış bir metabolozom."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2432
 #, fuzzy
 msgid "USES"
 msgstr "Kullanır"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2463
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2457
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr "hareketi arttırmak için"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2475
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2469
 msgid "SPEED_OF_THE_CELL"
 msgstr "hücrenin hızı."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2510
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2504
 msgid "SPEED"
 msgstr "Hız"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2595
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2589
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "Kamçı (veya Flagella), hücrenin bir doğrultuda kıvrılması ve ilerlemesi "
 "için ATP kullanan, hücre zarından uzanıp birbirine bağlanmış kamçı benzeri "
 "protein fiberleridir."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2721
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2715
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Bununla diğer hücreleri del."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2737
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2801
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2731
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2795
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2492
 msgid "CILIA"
 msgstr "Sil"
 
@@ -1955,20 +1967,20 @@ msgstr "Buz Sahanlığı"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonik Deniz Tabanı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:505
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:977
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:511
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1033
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikrop Editörü Yükleniyor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:507
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:513
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Oto-evrim bekleniyor:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1782
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1838
 msgid "AUTO_EVO_FAILED"
 msgstr "Oto-evrim çalıştırılamadı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1783
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1839
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
@@ -1980,69 +1992,69 @@ msgstr "Rapor"
 msgid "PATCH_MAP"
 msgstr "Arazi Haritası"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1025
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1026
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1071
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1072
 msgid "SPEED_COLON"
 msgstr "Hız:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1101
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1102
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1131
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1132
 msgid "SIZE_COLON"
 msgstr "Büyüklük:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1152
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1153
 msgid "GENERATION_COLON"
 msgstr "Kuşak:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1194
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1195
 msgid "ATP_BALANCE"
 msgstr "ATP Bilançosu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1384
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1385
 msgid "MUTATION_POINTS"
 msgstr "Mutasyon Puanı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1472
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1473
 msgid "STRUCTURE"
 msgstr "Yapı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1495
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1496
 msgid "APPEARANCE"
 msgstr "Görünüm"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1519
 msgid "BEHAVIOR"
 msgstr "Davranış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1569
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1570
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Ara..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1630
 msgid "STRUCTURAL"
 msgstr "Yapısal"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1792
 msgid "PROTEINS"
 msgstr "Proteinler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2014
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
 "Kemosentez\n"
 "Yapan Proteinler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2274
 msgid "EXTERNAL"
 msgstr "Dış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2555
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2556
 msgid "ORGANELLES"
 msgstr "Organeller"
 
@@ -2629,6 +2641,14 @@ msgstr ""
 "Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün "
 "organellerini ikiye katlaman gerekir.\n"
 "Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki göstergeye bak."
+
+#, fuzzy
+#~ msgid "CARBON"
+#~ msgstr "Karbon"
+
+#, fuzzy
+#~ msgid "DIOXIDE"
+#~ msgstr "Dioksit"
 
 #~ msgid "PLASTID"
 #~ msgstr "Plastid"

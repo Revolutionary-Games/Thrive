@@ -10,10 +10,12 @@ public class RunOnKeyUpAttribute : RunOnKeyAttribute
     {
     }
 
+    protected override bool CallMethodInOnInput => false;
+
     public override bool OnInput(InputEvent @event)
     {
         var before = HeldDown;
-        if (!base.OnInput(@event) && before && !HeldDown)
+        if (base.OnInput(@event) && before && !HeldDown)
         {
             return CallMethod();
         }
