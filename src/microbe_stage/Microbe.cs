@@ -232,7 +232,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public float MovementFactor { get; private set; } = 1.0f;
 
     /// <summary>
-    ///   If true cell is in engulf mode.
+    ///   If true the colony is in engulf mode.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -247,7 +247,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
-    ///   If true cell is in binding mode.
+    ///   If true the colony is in binding mode.
     /// </summary>
     /// <remarks>
     ///   <para>
