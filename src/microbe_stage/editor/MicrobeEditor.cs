@@ -920,10 +920,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             }
         }
 
-        arrowPosition = new Vector3(
-            0,
-            0,
-            highestPointInMiddleRows * Constants.DEFAULT_HEX_SIZE * 1.33333333f - Constants.EDITOR_ARROW_OFFSET);
+        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET);
     }
 
     /// <summary>
