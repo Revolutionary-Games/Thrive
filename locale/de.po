@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-18 11:35-0800\n"
+"POT-Creation-Date: 2020-12-20 14:16-0800\n"
 "PO-Revision-Date: 2020-12-10 12:44+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -477,7 +477,7 @@ msgid "SHOW_HELP"
 msgstr "Hilfe anzeigen"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
-#: ../simulation_parameters/microbe_stage/bio_processes.json:102
+#: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "RESPIRATION"
 msgstr "Atmung"
 
@@ -490,29 +490,34 @@ msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Zytoplasma-Glykolyse"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
-#: ../simulation_parameters/microbe_stage/bio_processes.json:112
+#: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosynthese"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
+#, fuzzy
+msgid "THERMOSYNTHESIS"
+msgstr "Chemo-Synthese"
+
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
+#: ../simulation_parameters/microbe_stage/bio_processes.json:61
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxid-Synthese"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
+#: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "CHEMO_SYNTHESIS"
 msgstr "Chemo-Synthese"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:81
+#: ../simulation_parameters/microbe_stage/bio_processes.json:91
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobe Stickstofffixierung"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:92
+#: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobe Stickstofffixierung"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:122
+#: ../simulation_parameters/microbe_stage/bio_processes.json:132
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Eisen-Chemolithoautotrophie"
 
@@ -522,43 +527,43 @@ msgstr "Euphotische"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
 #: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:369
+#: ../simulation_parameters/microbe_stage/biomes.json:501
+#: ../simulation_parameters/microbe_stage/biomes.json:713
+#: ../simulation_parameters/microbe_stage/biomes.json:929
+#: ../simulation_parameters/microbe_stage/biomes.json:1145
+#: ../simulation_parameters/microbe_stage/biomes.json:1273
+#: ../simulation_parameters/microbe_stage/biomes.json:1405
+#: ../simulation_parameters/microbe_stage/biomes.json:1555
+#: ../simulation_parameters/microbe_stage/biomes.json:1687
 msgid "FLOATING_HAZARD"
 msgstr "Schwimmende Gefahr"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
 #: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:386
+#: ../simulation_parameters/microbe_stage/biomes.json:518
+#: ../simulation_parameters/microbe_stage/biomes.json:730
+#: ../simulation_parameters/microbe_stage/biomes.json:946
+#: ../simulation_parameters/microbe_stage/biomes.json:1162
+#: ../simulation_parameters/microbe_stage/biomes.json:1290
+#: ../simulation_parameters/microbe_stage/biomes.json:1422
+#: ../simulation_parameters/microbe_stage/biomes.json:1572
+#: ../simulation_parameters/microbe_stage/biomes.json:1704
 msgid "SMALL_IRON_CHUNK"
 msgstr "Kleiner Eisenbrocken"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:289
+#: ../simulation_parameters/microbe_stage/biomes.json:421
+#: ../simulation_parameters/microbe_stage/biomes.json:553
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:981
+#: ../simulation_parameters/microbe_stage/biomes.json:1197
+#: ../simulation_parameters/microbe_stage/biomes.json:1325
+#: ../simulation_parameters/microbe_stage/biomes.json:1475
+#: ../simulation_parameters/microbe_stage/biomes.json:1607
+#: ../simulation_parameters/microbe_stage/biomes.json:1739
 msgid "BIG_IRON_CHUNK"
 msgstr "Großer Eisenbrocken"
 
@@ -567,50 +572,50 @@ msgid "VOLCANIC_VENT"
 msgstr "Vulkanschlot"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:576
+#: ../simulation_parameters/microbe_stage/biomes.json:788
+#: ../simulation_parameters/microbe_stage/biomes.json:1004
+#: ../simulation_parameters/microbe_stage/biomes.json:1762
 msgid "MARINE_SNOW"
 msgstr "Meeresschnee"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:358
 msgid "TIDEPOOL"
 msgstr "Gezeitentümpel"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:490
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagische"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:706
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssale"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:918
 msgid "MESOPELAGIC"
 msgstr "Mesopelagische"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1134
 msgid "COASTAL"
 msgstr "Küstennahe"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1266
 msgid "UNDERWATERCAVE"
 msgstr "Unterwasser-Höhle"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1394
 msgid "ICESHELF"
 msgstr "Schelfeis"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1457
 msgid "ICESHARD"
 msgstr "Eissplitter"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1544
 msgid "ESTUARY"
 msgstr "Ästuar"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1676
 msgid "SEA_FLOOR"
 msgstr "Meeresboden"
 
@@ -799,14 +804,21 @@ msgstr "Toxin-Vakuole"
 msgid "CHLOROPLAST"
 msgstr "Chloroplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:513
+#: ../simulation_parameters/microbe_stage/organelles.json:517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3616
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2841
+msgid "THERMOPLAST"
+msgstr "Thermoplaste"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:546
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:338
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:402
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1724
 msgid "CYTOPLASM"
 msgstr "Zytoplasma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:578
+#: ../simulation_parameters/microbe_stage/organelles.json:611
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2863
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2927
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2646
@@ -1641,12 +1653,6 @@ msgstr ""
 "verleihen. Die Geschwindigkeit der Glukoseproduktion hängt von der "
 "Konzentration des Kohlendioxids und der Lichtintensität ab."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3680
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2841
-msgid "THERMOPLAST"
-msgstr "Thermoplaste"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3782
 msgid "TEMPERATURE"
 msgstr "Temperatur"
@@ -2184,15 +2190,15 @@ msgstr "Osmoregulation"
 msgid "BASE_MOVEMENT"
 msgstr "Basisbewegung"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1473
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1477
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1478
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1482
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1518
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1522
 msgid "WITH_POPULATION"
 msgstr "{0} mit Population: {1}"
 
@@ -2425,8 +2431,8 @@ msgstr ""
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Das Löschen des/der ausgewählten Spielstandes/Spielständen kann nicht "
-"rückgängig gemacht werden. Sind Sie sicher, dass Sie die {0} "
-"Speicherung(en) dauerhaft löschen möchten?"
+"rückgängig gemacht werden. Sind Sie sicher, dass Sie die {0} Speicherung"
+"(en) dauerhaft löschen möchten?"
 
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
