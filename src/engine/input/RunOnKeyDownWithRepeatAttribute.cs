@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets called when the defined key is pressed down.
@@ -8,9 +9,9 @@
 ///   [RunOnKeyDown("zoom_out")]
 ///   public void ZoomOutPressed()
 /// </example>
-public class RunOnKeyDownWithRepeat : RunOnKeyAttribute
+public class RunOnKeyDownWithRepeatAttribute : RunOnKeyAttribute
 {
-    public RunOnKeyDownWithRepeat(string inputName) : base(inputName)
+    public RunOnKeyDownWithRepeatAttribute(string inputName) : base(inputName)
     {
     }
 
@@ -18,6 +19,8 @@ public class RunOnKeyDownWithRepeat : RunOnKeyAttribute
     ///   If false, doesn't set key down state
     /// </summary>
     public bool SetKeyDown { get; set; }
+
+    protected override bool CallMethodInOnInput => false;
 
     public override bool OnInput(InputEvent @event)
     {

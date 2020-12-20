@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets called when the defined key is pressed down.
@@ -13,6 +14,8 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
     public RunOnKeyDownAttribute(string inputName) : base(inputName)
     {
     }
+
+    protected override bool CallMethodInOnInput => false;
 
     public override bool OnInput(InputEvent @event)
     {

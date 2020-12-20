@@ -81,7 +81,7 @@ public class RunOnAxisAttribute : InputAttribute
             {
                 if (useDiscreteKeyInputs)
                 {
-                    newInputs.Add(new RunOnKeyDownWithRepeat(entry.Key.InputName), entry.Value);
+                    newInputs.Add(new RunOnKeyDownWithRepeatAttribute(entry.Key.InputName), entry.Value);
                 }
                 else
                 {

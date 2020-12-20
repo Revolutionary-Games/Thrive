@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets called when the defined key is pressed or released.
@@ -9,6 +10,8 @@ public class RunOnKeyChangeAttribute : RunOnKeyAttribute
     public RunOnKeyChangeAttribute(string inputName) : base(inputName)
     {
     }
+
+    protected override bool CallMethodInOnInput => false;
 
     public override bool OnInput(InputEvent @event)
     {
