@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 public class RunOnKeyToggleAttribute : RunOnKeyAttribute
 {
