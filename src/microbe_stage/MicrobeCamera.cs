@@ -166,22 +166,23 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// </summary>
     public override void _PhysicsProcess(float delta)
     {
-        var currentFloorPos = new Vector3(Translation.x, 0, Translation.z);
-        var currentCamHeight = new Vector3(0, Translation.y, 0);
-        var newCameraPosition = new Vector3(0, CameraHeight, 0);
+        var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
+        var currentCameraHeight = new Vector3(0, Translation.y, 0);
+        var newCameraHeight = new Vector3(0, CameraHeight, 0);
+
         if (ObjectToFollow != null)
         {
             var newFloorPosition = new Vector3(ObjectToFollow.Transform.origin.x, 0, ObjectToFollow.Transform.origin.z);
 
-            var target = currentFloorPos.LinearInterpolate(newFloorPosition, InterpolateSpeed)
-                + currentCamHeight.LinearInterpolate(newCameraPosition, InterpolateZoomSpeed);
+            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
 
             Translation = target;
         }
         else
         {
             var target = new Vector3(Translation.x, 0, Translation.z)
-                + currentCamHeight.LinearInterpolate(newCameraPosition, InterpolateZoomSpeed);
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
 
             Translation = target;
         }
