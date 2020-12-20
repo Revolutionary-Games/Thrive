@@ -905,8 +905,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
         var highestPointInMiddleRows = 0.0f;
 
+        // Iterate through all organelles
         foreach (var organelle in editedMicrobeOrganelles)
         {
+            // Iterate through all hexes
             foreach (var relativeHex in organelle.Definition.Hexes)
             {
                 var absoluteHex = relativeHex + organelle.Position;
@@ -914,16 +916,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 if (absoluteHex.Q < -1 || absoluteHex.Q > 1)
                     continue;
 
-#pragma warning disable 8509 // nothing else possible due to the if above
-                var r = absoluteHex.Q switch
-#pragma warning restore 8509
-                {
-                    -1 => absoluteHex.R - 1,
-                    0 => absoluteHex.R - .5f,
-                    1 => absoluteHex.R,
-                };
+                var cartesian = Hex.AxialToCartesian(absoluteHex);
 
-                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, r);
+                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z * Constants.DEFAULT_HEX_SIZE);
             }
         }
 
