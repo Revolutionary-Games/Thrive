@@ -11,14 +11,7 @@ public class RunOnKeyUpAttribute : RunOnKeyAttribute
     {
     }
 
-    /// <summary>
-    ///   Not supported in RunOnKeyUp.
-    /// </summary>
-    public override bool CallMethodWithZeroOnInput
-    {
-        get => false;
-        set => throw new NotSupportedException("Only RunOnKey supports setting CallMethodWithZeroOnInput");
-    }
+    protected override bool CallMethodInOnInput => false;
 
     public override bool OnInput(InputEvent @event)
     {

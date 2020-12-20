@@ -16,18 +16,11 @@ public class RunOnKeyDownWithRepeatAttribute : RunOnKeyAttribute
     }
 
     /// <summary>
-    ///   Not supported in RunOnKeyDownWithRepeat
-    /// </summary>
-    public override bool CallMethodWithZeroOnInput
-    {
-        get => false;
-        set => throw new NotSupportedException("Only RunOnKey supports setting CallMethodWithZeroOnInput");
-    }
-
-    /// <summary>
     ///   If false, doesn't set key down state
     /// </summary>
     public bool SetKeyDown { get; set; }
+
+    protected override bool CallMethodInOnInput => false;
 
     public override bool OnInput(InputEvent @event)
     {

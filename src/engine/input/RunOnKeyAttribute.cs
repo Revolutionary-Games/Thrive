@@ -42,7 +42,7 @@ public class RunOnKeyAttribute : InputAttribute
     /// <summary>
     ///   Should OnInput run the callback method instantly
     /// </summary>
-    public virtual bool CallMethodWithZeroOnInput { get; set; } = true;
+    protected virtual bool CallMethodInOnInput => true;
 
     /// <summary>
     ///   Reads the current primed or held state and resets the primed state
@@ -61,7 +61,7 @@ public class RunOnKeyAttribute : InputAttribute
 
         if (@event.IsActionPressed(InputName))
         {
-            if (CallMethodWithZeroOnInput)
+            if (CallMethodInOnInput)
             {
                 result = CallMethod(0.0f);
             }

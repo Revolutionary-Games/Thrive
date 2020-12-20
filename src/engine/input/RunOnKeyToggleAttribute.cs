@@ -9,14 +9,7 @@ public class RunOnKeyToggleAttribute : RunOnKeyAttribute
 
     public bool ToggleState { get; set; }
 
-    /// <summary>
-    ///   Not supported in RunOnKeyToggle
-    /// </summary>
-    public override bool CallMethodWithZeroOnInput
-    {
-        get => false;
-        set => throw new NotSupportedException("Only RunOnKey supports setting CallMethodWithZeroOnInput");
-    }
+    protected override bool CallMethodInOnInput => false;
 
     public override bool OnInput(InputEvent @event)
     {
