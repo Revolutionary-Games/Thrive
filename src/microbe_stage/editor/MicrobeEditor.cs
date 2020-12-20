@@ -561,8 +561,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         MoveObjectToFollow(movement.Normalized() * delta * Camera.CameraHeight);
     }
 
-    [RunOnKey("e_pan_mouse")]
-    public void PanCameraWithMouse(float delta)
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
+    public bool PanCameraWithMouse(float delta)
     {
         if (mousePanningStart == null)
         {
@@ -573,6 +573,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             var mousePanDirection = mousePanningStart.Value - Camera.CursorWorldPos;
             MoveObjectToFollow(mousePanDirection * delta * 10);
         }
+
+        return false;
     }
 
     [RunOnKeyUp("e_pan_mouse")]
