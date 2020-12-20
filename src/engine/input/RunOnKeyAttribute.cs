@@ -40,7 +40,7 @@ public class RunOnKeyAttribute : InputAttribute
     public string InputName { get; }
 
     /// <summary>
-    ///   Whether is allowed to call the callback method with 0.0f delta or not
+    ///   If this is set to false the callback method is allowed to be called without the delta value (using 0.0f)
     /// </summary>
     public bool CallbackRequiresElapsedTime { get; set; } = true;
 
