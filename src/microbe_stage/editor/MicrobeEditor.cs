@@ -27,6 +27,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     public float CurrentOrganelleCost;
 
+    private Vector3 arrowPosition = Vector3.Zero;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     /// <summary>
@@ -39,6 +41,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeCamera camera;
+
+    [JsonIgnore]
+    private MeshInstance editorArrow;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -374,6 +379,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         NodeReferencesResolved = true;
 
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
+        editorArrow = GetNode<MeshInstance>("EditorArrow");
         cameraFollow = GetNode<Spatial>("CameraLookAt");
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
@@ -943,6 +949,37 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
+    ///   Updates the arrowPosition variable to the top most point of the middle 3 rows
+    ///   Should be called on any layout change
+    /// </summary>
+    private void UpdateArrow()
+    {
+        // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
+        var highestPointInMiddleRows = 0.0f;
+
+        // Iterate through all organelles
+        foreach (var organelle in editedMicrobeOrganelles)
+        {
+            // Iterate through all hexes
+            foreach (var relativeHex in organelle.Definition.Hexes)
+            {
+                var absoluteHex = relativeHex + organelle.Position;
+
+                // Only consider the middle 3 rows
+                if (absoluteHex.Q < -1 || absoluteHex.Q > 1)
+                    continue;
+
+                var cartesian = Hex.AxialToCartesian(absoluteHex);
+
+                // Get the min z-axis (highest point in the editor)
+                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
+            }
+        }
+
+        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET);
+    }
+
+    /// <summary>
     ///   Calculates the effectiveness of organelles in the current or
     ///   given patch
     /// </summary>
@@ -1000,6 +1037,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         UpdateUndoRedoButtons();
+
+        UpdateArrow();
+
+        // Force no lerp on init
+        editorArrow.Translation = arrowPosition;
 
         // Send freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
@@ -1244,6 +1286,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             CurrentOrganelleCost = 0;
         }
+
+        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(
+            arrowPosition,
+            Constants.EDITOR_ARROW_INTERPOLATE_SPEED * delta);
     }
 
     /// <summary>
@@ -1631,6 +1677,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void OnOrganellesChanged()
     {
         UpdateAlreadyPlacedVisuals();
+
+        UpdateArrow();
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);

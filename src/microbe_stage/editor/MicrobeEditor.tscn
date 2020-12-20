@@ -1,9 +1,10 @@
-[gd_scene load_steps=138 format=2]
+[gd_scene load_steps=139 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/6xSymmetry.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://assets/models/EditorArrow.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/clockButton.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=8]
@@ -798,6 +799,8 @@ InterpolateSpeed = 1.0
 __meta__ = {
 "_editor_description_": "Just something to make the microbe camera look at the right place"
 }
+
+[node name="EditorArrow" parent="." instance=ExtResource( 5 )]
 
 [node name="World" type="Node" parent="."]
 
@@ -3791,10 +3794,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 16.0
-margin_top = 39.0
-margin_right = 373.0
-margin_bottom = 488.0
+margin_left = 20.0
+margin_top = 43.0
+margin_right = 377.0
+margin_bottom = 492.0
 theme = SubResource( 30 )
 edit_alpha = false
 
