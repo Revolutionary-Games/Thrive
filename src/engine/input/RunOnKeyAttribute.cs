@@ -12,6 +12,8 @@ using Godot;
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class RunOnKeyAttribute : InputAttribute
 {
+    protected virtual bool CallMethodInOnInput => true;
+
     /// <summary>
     ///   Priming comes to effect when an input gets pressed for less than one frame
     ///   (when the release input gets detected before OnProcess could be called)
@@ -52,22 +54,22 @@ public class RunOnKeyAttribute : InputAttribute
 
     public override bool OnInput(InputEvent @event)
     {
-        bool wasOurKey = false;
+        bool result = false;
 
         if (@event.IsActionPressed(InputName))
         {
-            wasOurKey = true;
+            result = !CallMethodInOnInput || CallMethod(0.0f);
             Prime();
             HeldDown = true;
         }
 
         if (@event.IsActionReleased(InputName))
         {
-            wasOurKey = true;
+            result = true;
             HeldDown = false;
         }
 
-        return wasOurKey;
+        return result;
     }
 
     public override void OnProcess(float delta)

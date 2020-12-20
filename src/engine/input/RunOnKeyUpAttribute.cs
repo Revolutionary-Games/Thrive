@@ -10,6 +10,8 @@ public class RunOnKeyUpAttribute : RunOnKeyAttribute
     {
     }
 
+    protected override bool CallMethodInOnInput => false;
+
     public override bool OnInput(InputEvent @event)
     {
         var before = HeldDown;
