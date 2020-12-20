@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Attribute for a method, that gets called when the defined key is pressed down.
@@ -12,6 +13,15 @@ public class RunOnKeyDownWithRepeat : RunOnKeyAttribute
 {
     public RunOnKeyDownWithRepeat(string inputName) : base(inputName)
     {
+    }
+
+    /// <summary>
+    ///   Not supported in RunOnKeyDownWithRepeat
+    /// </summary>
+    public override bool CallMethodWithZeroOnInput
+    {
+        get => false;
+        set => throw new NotSupportedException("Only RunOnKey supports setting CallMethodWithZeroOnInput");
     }
 
     /// <summary>
