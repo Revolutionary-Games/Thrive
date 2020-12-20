@@ -483,6 +483,39 @@
         "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
         "name": "CHLOROPLAST"
     },
+    "thermoplast": {
+        "mpCost": 50,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "thermosynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 2
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 2,
+        "mass": 0.3,
+        "displayScene": "res://assets/models/organelles/Thermoplast.tscn",
+        "name": "THERMOPLAST"
+    },
     "cytoplasm": {
         "mpCost": 22,
         "initialComposition": {

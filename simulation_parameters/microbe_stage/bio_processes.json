@@ -37,6 +37,16 @@
             "glucose": 0.1
         }
     },
+    "thermosynthesis": {
+        "name": "THERMOSYNTHESIS",
+        "inputs": {
+            "carbondioxide": 0.09,
+            "sunlight": 1
+        },
+        "outputs": {
+            "glucose": 0.12
+        }
+    },
     "oxytoxySynthesis": {
         "name": "OXYTOXY_SYNTHESIS",
         "inputs": {

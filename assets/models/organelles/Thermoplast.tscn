@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/models/organelles/Thermoplast.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/dissolveValue = 0.0
+shader_param/outlineWidth = 10.0
+shader_param/growColor = Color( 0.870588, 0.0156863, 0.0156863, 1 )
+shader_param/tint = Color( 1, 0.886275, 0.764706, 1 )
+
+[node name="Thermoplast" type="MeshInstance"]
+transform = Transform( 100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0 )
+material_override = SubResource( 1 )
+mesh = ExtResource( 1 )
+material/0 = null

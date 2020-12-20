@@ -1080,6 +1080,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             button.Disabled = !nucleus;
         }
+        else if (organelleItem.Name == "thermoplast")
+        {
+            button.Disabled = !nucleus;
+        }
         else if (organelleItem.Name == "chemoplast")
         {
             button.Disabled = !nucleus;
