@@ -1416,6 +1416,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
+        if (Colony != null)
+            return;
+
         bool reproductionStageComplete = true;
 
         // Organelles that are ready to split
