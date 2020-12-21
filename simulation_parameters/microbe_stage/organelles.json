@@ -87,6 +87,39 @@
         "consumptionColour": "#ff8425",
         "iconPath": "res://assets/textures/gui/bevel/NitrogenaseIcon.png"
     },
+    "thermosynthase": {
+        "mpCost": 40,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "bacterial_thermosynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 2
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 3,
+        "chanceToCreate": 1,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Thermosynthase.tscn",
+        "name": "THERMOSYNTHASE"
+    },
     "protoplasm": {
         "mpCost": 55,
         "initialComposition": {
@@ -484,7 +517,7 @@
         "name": "CHLOROPLAST"
     },
     "thermoplast": {
-        "mpCost": 50,
+        "mpCost": 40,
         "initialComposition": {
             "ammonia": 2,
             "phosphates": 2
