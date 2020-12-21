@@ -9,6 +9,10 @@ public interface ICustomToolTip
 
     Vector2 Size { get; set; }
 
+    /// <summary>
+    ///   Used as the human readable name for the tooltip, as opposed to the Node name
+    ///   which usually functions as the "InternalName".
+    /// </summary>
     string DisplayName { get; set; }
 
     string Description { get; set; }

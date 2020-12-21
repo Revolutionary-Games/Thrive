@@ -5129,7 +5129,7 @@ ModifierInfoScene = ExtResource( 2 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
-margin_bottom = 320.0
+margin_bottom = 344.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -5140,7 +5140,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 304.0
+margin_bottom = 328.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -5210,7 +5210,7 @@ theme = SubResource( 6 )
 [node name="ModifierList" type="VBoxContainer" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 318.0
-margin_bottom = 134.0
+margin_bottom = 182.0
 mouse_filter = 2
 
 [node name="Mobility" type="HBoxContainer" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList"]
@@ -5334,76 +5334,76 @@ mouse_filter = 2
 expand = true
 
 [node name="Physical Resistance" type="HBoxContainer" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 96.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 116.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 39.0
+margin_right = 172.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Physical Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 176.0
+margin_right = 196.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="Toxin Resistance" type="HBoxContainer" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 120.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 140.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 39.0
+margin_right = 155.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Toxin Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 159.0
+margin_right = 179.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer"]
-margin_top = 149.0
+margin_top = 197.0
 margin_right = 318.0
-margin_bottom = 153.0
+margin_bottom = 201.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 9 )
 
 [node name="Description" type="Label" parent="Holder/membraneSelection/single/MarginContainer/VBoxContainer"]
-margin_top = 168.0
+margin_top = 216.0
 margin_right = 318.0
-margin_bottom = 265.0
+margin_bottom = 313.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "The most basic form of membrane, it has little protection against damage. It also needs more energy to not deform. The advantage is that it allows the cell to move and absorb nutrients swiftly."
@@ -5434,7 +5434,7 @@ ModifierInfoScene = ExtResource( 2 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
-margin_bottom = 326.0
+margin_bottom = 374.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -5445,7 +5445,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 310.0
+margin_bottom = 358.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -5513,7 +5513,7 @@ theme = SubResource( 6 )
 [node name="ModifierList" type="VBoxContainer" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer"]
 margin_top = 72.0
 margin_right = 318.0
-margin_bottom = 164.0
+margin_bottom = 212.0
 mouse_filter = 2
 
 [node name="Mobility" type="HBoxContainer" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList"]
@@ -5633,76 +5633,76 @@ mouse_filter = 2
 expand = true
 
 [node name="Physical Resistance" type="HBoxContainer" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 42.0
+margin_top = 96.0
 margin_right = 318.0
-margin_bottom = 62.0
+margin_bottom = 116.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 39.0
+margin_right = 172.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Physical Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 176.0
+margin_right = 196.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="Toxin Resistance" type="HBoxContainer" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 42.0
+margin_top = 120.0
 margin_right = 318.0
-margin_bottom = 62.0
+margin_bottom = 140.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 39.0
+margin_right = 155.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Toxin Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 159.0
+margin_right = 179.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer"]
-margin_top = 179.0
+margin_top = 227.0
 margin_right = 318.0
-margin_bottom = 183.0
+margin_bottom = 231.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 9 )
 
 [node name="Description" type="Label" parent="Holder/membraneSelection/double/MarginContainer/VBoxContainer"]
-margin_top = 198.0
+margin_top = 246.0
 margin_right = 318.0
-margin_bottom = 295.0
+margin_bottom = 343.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources."
@@ -5733,7 +5733,7 @@ ModifierInfoScene = ExtResource( 2 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
-margin_bottom = 296.0
+margin_bottom = 392.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -5744,7 +5744,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 328.0
+margin_bottom = 376.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -5814,7 +5814,7 @@ theme = SubResource( 6 )
 [node name="ModifierList" type="VBoxContainer" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 318.0
-margin_bottom = 134.0
+margin_bottom = 206.0
 mouse_filter = 2
 
 [node name="Mobility" type="HBoxContainer" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList"]
@@ -5825,22 +5825,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-10%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 28.0
-margin_right = 86.0
+margin_left = 36.0
+margin_right = 94.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Mobility"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 90.0
-margin_right = 110.0
+margin_left = 98.0
+margin_right = 118.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -5886,22 +5886,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-20%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
-margin_left = 28.0
-margin_right = 217.0
+margin_left = 36.0
+margin_right = 225.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Resource Absorption Speed"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
-margin_left = 221.0
-margin_right = 241.0
+margin_left = 229.0
+margin_right = 249.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -5938,105 +5938,106 @@ mouse_filter = 2
 expand = true
 
 [node name="Physical Resistance" type="HBoxContainer" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 96.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 116.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 39.0
+margin_right = 172.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Physical Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 176.0
+margin_right = 196.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="Toxin Resistance" type="HBoxContainer" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 120.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 140.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 39.0
+margin_right = 155.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Toxin Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 159.0
+margin_right = 179.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="Can Engulf" type="HBoxContainer" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 144.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 164.0
 mouse_filter = 2
 script = ExtResource( 21 )
+ShowValue = false
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
 margin_top = 1.0
-margin_right = 27.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 4.0
+margin_right = 102.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-text = "Cannot engulf"
+text = "Cannot Engulf"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 106.0
+margin_right = 126.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer"]
-margin_top = 149.0
+margin_top = 221.0
 margin_right = 318.0
-margin_bottom = 153.0
+margin_bottom = 225.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 9 )
 
 [node name="Description" type="Label" parent="Holder/membraneSelection/cellulose/MarginContainer/VBoxContainer"]
-margin_top = 168.0
+margin_top = 240.0
 margin_right = 318.0
-margin_bottom = 265.0
+margin_bottom = 337.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower."
@@ -6067,7 +6068,7 @@ ModifierInfoScene = ExtResource( 2 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
-margin_bottom = 296.0
+margin_bottom = 368.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -6078,7 +6079,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 328.0
+margin_bottom = 352.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -6148,7 +6149,7 @@ theme = SubResource( 6 )
 [node name="ModifierList" type="VBoxContainer" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 318.0
-margin_bottom = 134.0
+margin_bottom = 206.0
 mouse_filter = 2
 
 [node name="Mobility" type="HBoxContainer" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList"]
@@ -6159,22 +6160,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-10%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 28.0
-margin_right = 86.0
+margin_left = 36.0
+margin_right = 94.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Mobility"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 90.0
-margin_right = 110.0
+margin_left = 98.0
+margin_right = 118.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -6220,22 +6221,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-20%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
-margin_left = 28.0
-margin_right = 217.0
+margin_left = 36.0
+margin_right = 225.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Resource Absorption Speed"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
-margin_left = 221.0
-margin_right = 241.0
+margin_left = 229.0
+margin_right = 249.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -6272,105 +6273,106 @@ mouse_filter = 2
 expand = true
 
 [node name="Physical Resistance" type="HBoxContainer" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 96.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 116.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 31.0
-margin_right = 147.0
+margin_left = 39.0
+margin_right = 172.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Physical Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 151.0
-margin_right = 171.0
+margin_left = 176.0
+margin_right = 196.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="Toxin Resistance" type="HBoxContainer" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 120.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 140.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 31.0
-margin_right = 147.0
+margin_left = 39.0
+margin_right = 155.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Toxin Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 151.0
-margin_right = 171.0
+margin_left = 159.0
+margin_right = 179.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="Can Engulf" type="HBoxContainer" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 144.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 164.0
 mouse_filter = 2
 script = ExtResource( 21 )
+ShowValue = false
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
 margin_top = 1.0
-margin_right = 27.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 4.0
+margin_right = 102.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-text = "Cannot engulf"
+text = "Cannot Engulf"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 106.0
+margin_right = 126.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer"]
-margin_top = 149.0
+margin_top = 221.0
 margin_right = 318.0
-margin_bottom = 153.0
+margin_bottom = 225.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 9 )
 
 [node name="Description" type="Label" parent="Holder/membraneSelection/chitin/MarginContainer/VBoxContainer"]
-margin_top = 168.0
+margin_top = 240.0
 margin_right = 318.0
-margin_bottom = 265.0
+margin_bottom = 337.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "This membrane has a wall, which means it has better protections against overall damage and especially against toxin damage. It also costs less energy to retain its form, but it is slower and cannot absorb resources quickly."
@@ -6401,7 +6403,7 @@ ModifierInfoScene = ExtResource( 2 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
-margin_bottom = 394.0
+margin_bottom = 418.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -6482,7 +6484,7 @@ theme = SubResource( 6 )
 [node name="ModifierList" type="VBoxContainer" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer"]
 margin_top = 72.0
 margin_right = 318.0
-margin_bottom = 212.0
+margin_bottom = 236.0
 mouse_filter = 2
 
 [node name="Mobility" type="HBoxContainer" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList"]
@@ -6493,22 +6495,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-20%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 28.0
-margin_right = 86.0
+margin_left = 36.0
+margin_right = 94.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Mobility"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 90.0
-margin_right = 110.0
+margin_left = 98.0
+margin_right = 118.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -6554,22 +6556,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-30%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
-margin_left = 28.0
-margin_right = 217.0
+margin_left = 36.0
+margin_right = 225.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Resource Absorption Speed"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
-margin_left = 221.0
-margin_right = 241.0
+margin_left = 229.0
+margin_right = 249.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -6614,22 +6616,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 36.0
+margin_right = 169.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Physical Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 173.0
+margin_right = 193.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -6644,67 +6646,68 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+60%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 31.0
-margin_right = 147.0
+margin_left = 39.0
+margin_right = 155.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Toxin Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 151.0
-margin_right = 171.0
+margin_left = 159.0
+margin_right = 179.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="Can Engulf" type="HBoxContainer" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 42.0
+margin_top = 144.0
 margin_right = 318.0
-margin_bottom = 62.0
+margin_bottom = 164.0
 mouse_filter = 2
 script = ExtResource( 21 )
+ShowValue = false
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
 margin_top = 1.0
-margin_right = 27.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 4.0
+margin_right = 102.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-text = "Cannot engulf"
+text = "Cannot Engulf"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 106.0
+margin_right = 126.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer"]
-margin_top = 227.0
+margin_top = 251.0
 margin_right = 318.0
-margin_bottom = 231.0
+margin_bottom = 255.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 9 )
 
 [node name="Description" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer"]
-margin_top = 246.0
+margin_top = 270.0
 margin_right = 318.0
-margin_bottom = 363.0
+margin_bottom = 387.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "This membrane has a strong shell made from calcium carbonate. It can easily resist toxic damage and requires less energy to not deform. The disadvantages of having such a heavy shell is that the cell is much slower and takes a while to absorb resources."
@@ -6735,7 +6738,7 @@ ModifierInfoScene = ExtResource( 2 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
-margin_bottom = 364.0
+margin_bottom = 388.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -6816,7 +6819,7 @@ theme = SubResource( 6 )
 [node name="ModifierList" type="VBoxContainer" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 318.0
-margin_bottom = 182.0
+margin_bottom = 206.0
 mouse_filter = 2
 
 [node name="Mobility" type="HBoxContainer" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList"]
@@ -6827,22 +6830,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-20%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 28.0
-margin_right = 86.0
+margin_left = 36.0
+margin_right = 94.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Mobility"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Mobility"]
-margin_left = 90.0
-margin_right = 110.0
+margin_left = 98.0
+margin_right = 118.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -6888,22 +6891,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-30%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
-margin_left = 28.0
-margin_right = 217.0
+margin_left = 36.0
+margin_right = 225.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Resource Absorption Speed"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Resource Absorption Speed"]
-margin_left = 221.0
-margin_right = 241.0
+margin_left = 229.0
+margin_right = 249.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -6948,22 +6951,22 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 35.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+60%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 39.0
+margin_right = 172.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Physical Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 176.0
+margin_right = 196.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -6978,67 +6981,68 @@ script = ExtResource( 21 )
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
 margin_top = 1.0
-margin_right = 27.0
+margin_right = 32.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 31.0
-margin_right = 147.0
+margin_left = 36.0
+margin_right = 152.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Toxin Resistance"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
-margin_left = 151.0
-margin_right = 171.0
+margin_left = 156.0
+margin_right = 176.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="Can Engulf" type="HBoxContainer" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList"]
-margin_top = 72.0
+margin_top = 144.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 164.0
 mouse_filter = 2
 script = ExtResource( 21 )
+ShowValue = false
 
 [node name="Value" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
 margin_top = 1.0
-margin_right = 27.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
-margin_left = 31.0
-margin_right = 164.0
+margin_left = 4.0
+margin_right = 102.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-text = "Cannot engulf"
+text = "Cannot Engulf"
 
 [node name="Icon" type="TextureRect" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Can Engulf"]
-margin_left = 168.0
-margin_right = 188.0
+margin_left = 106.0
+margin_right = 126.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer"]
-margin_top = 197.0
+margin_top = 221.0
 margin_right = 318.0
-margin_bottom = 201.0
+margin_bottom = 225.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 9 )
 
 [node name="Description" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer"]
-margin_top = 216.0
+margin_top = 240.0
 margin_right = 318.0
-margin_bottom = 333.0
+margin_bottom = 357.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "This membrane has a strong wall of silica. It can resist overall damage well and is very resistant to physical damage. It also requires less energy to maintain its form. However, it slows the cell down by a large factor and the cell absorbs resources at a reduced rate."

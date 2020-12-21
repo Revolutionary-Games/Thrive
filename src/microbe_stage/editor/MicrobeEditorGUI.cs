@@ -737,7 +737,7 @@ public class MicrobeEditorGUI : Node
             var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
                 membraneType.InternalName, "membraneSelection");
 
-            tooltip.WriteMembraneModifierList(referenceMembrane, membraneType);
+            tooltip?.WriteMembraneModifierList(referenceMembrane, membraneType);
         }
     }
 
@@ -762,23 +762,8 @@ public class MicrobeEditorGUI : Node
         mobilityModifier.ModifierValue = ((mobilityChange > 0) ? "+" : string.Empty)
             + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
 
-        if (healthChange >= 0)
-        {
-            healthModifier.ModifierValueColor = new Color(0, 1, 0);
-        }
-        else
-        {
-            healthModifier.ModifierValueColor = new Color(1, 0.3f, 0.3f);
-        }
-
-        if (mobilityChange >= 0)
-        {
-            mobilityModifier.ModifierValueColor = new Color(0, 1, 0);
-        }
-        else
-        {
-            mobilityModifier.ModifierValueColor = new Color(1, 0.3f, 0.3f);
-        }
+        healthModifier.AdjustValueColor(healthChange);
+        mobilityModifier.AdjustValueColor(mobilityChange);
     }
 
     public void UpdateAutoEvoResults(string results, string external)

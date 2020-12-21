@@ -6,7 +6,7 @@ using Godot;
 
 /// <summary>
 ///   The main tooltip class for the selections on the microbe editor's selection menu.
-///   Contains list of processes and modifiers info
+///   Contains list of processes and modifiers info.
 /// </summary>
 public class SelectionMenuToolTip : Control, ICustomToolTip
 {
@@ -268,82 +268,63 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    /// <summary>
+    ///   Used to set the value of all the membrane type modifiers on this tooltip relative
+    ///   to the currently selected membrane type. This currently only reads from the preadded
+    ///   modifier UI elements on this tooltip and doesn't actually create them on runtime.
+    /// </summary>
     public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType)
     {
-        string[] modifierNames =
+        foreach (var modifier in modifierInfos)
         {
-            "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
-            "Physical Resistance", "Toxin Resistance",
-        };
-        var modifierInfoLabels = new Dictionary<string, ModifierInfoLabel>();
-        var modifierValues = new Dictionary<string, float>();
-        foreach (var modifier in modifierNames)
-        {
-            modifierInfoLabels.Add(modifier, GetModifierInfo(modifier));
-            switch (modifier)
+            var deltaValue = 0.0f;
+
+            switch (modifier.ModifierName)
             {
                 case "Mobility":
-                    modifierValues.Add(modifier, membraneType.MovementFactor - referenceMembrane.MovementFactor);
+                    deltaValue = membraneType.MovementFactor - referenceMembrane.MovementFactor;
                     break;
                 case "Osmoregulation Cost":
-                    modifierValues.Add(modifier,
-                        membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor);
+                    deltaValue = membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor;
                     break;
                 case "Resource Absorption Speed":
-                    modifierValues.Add(modifier,
-                        membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor);
+                    deltaValue = membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor;
                     break;
                 case "Health":
-                    modifierValues.Add(modifier, membraneType.Hitpoints - referenceMembrane.Hitpoints);
+                    deltaValue = membraneType.Hitpoints - referenceMembrane.Hitpoints;
                     break;
                 case "Physical Resistance":
-                    modifierValues.Add(modifier,
-                        membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance);
+                    deltaValue = membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance;
                     break;
                 case "Toxin Resistance":
-                    modifierValues.Add(modifier,
-                        membraneType.ToxinResistance - referenceMembrane.ToxinResistance);
+                    deltaValue = membraneType.ToxinResistance - referenceMembrane.ToxinResistance;
                     break;
             }
-        }
 
-        foreach (var modifierLabel in modifierInfoLabels)
-        {
-            if (modifierLabel.Key == "Physical Resistance" || modifierLabel.Key == "Toxin Resistance")
-            {
-                if (modifierValues[modifierLabel.Key] == 0)
-                {
-                    modifierLabel.Value.Hide();
-                }
-                else
-                {
-                    modifierLabel.Value.Show();
-                }
-            }
+            // All stats with +0 value that are not part of the selected membrane is made hidden
+            // on the tooltip so it'll be easier to digest and compare modifier changes
+            if (Name != referenceMembrane.InternalName && modifier.ShowValue)
+                modifier.Visible = deltaValue != 0;
 
-            if (modifierLabel.Key == "Health")
+            // Apply the value to the text labels as percentage (except for Health)
+            if (modifier.ModifierName == "Health")
             {
-                modifierLabel.Value.ModifierValue = (modifierValues[modifierLabel.Key] >= 0 ? "+" : string.Empty)
-                    + modifierValues[modifierLabel.Key].ToString("F0", CultureInfo.CurrentCulture);
+                modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
+                    + deltaValue.ToString("F0", CultureInfo.CurrentCulture);
             }
             else
             {
-                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] >= 0) ? "+" : string.Empty)
-                    + (modifierValues[modifierLabel.Key] * 100).ToString("F0", CultureInfo.CurrentCulture)
-                    + "%";
+                modifier.ModifierValue = ((deltaValue >= 0) ? "+" : string.Empty)
+                    + (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture) + "%";
             }
 
-            if (modifierValues[modifierLabel.Key] > 0)
+            if (modifier.ModifierName == "Osmoregulation Cost")
             {
-                modifierLabel.Value.ModifierValueColor = new Color(0, 1, 0);
-            }
-            else if (modifierValues[modifierLabel.Key] == 0)
-            {
-                modifierLabel.Value.ModifierValueColor = new Color(1, 1, 1);
+                modifier.AdjustValueColor(deltaValue, true);
             }
             else
             {
-                modifierLabel.Value.ModifierValueColor = new Color(1, 0.3f, 0.3f);
+                modifier.AdjustValueColor(deltaValue);
             }
         }
     }
