@@ -140,6 +140,9 @@ public class MicrobeHUD : Node
     [Export]
     public Texture PhosphatesInv;
 
+    [Export]
+    public NodePath ProcessPanelPath;
+
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -200,6 +203,8 @@ public class MicrobeHUD : Node
     private Control winExtinctBoxHolder;
 
     private Array compoundBars;
+
+    private ProcessPanel processPanel;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as
@@ -273,6 +278,8 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+
+        processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
     }
 
     public void OnEnterStageTransition()
@@ -909,5 +916,19 @@ public class MicrobeHUD : Node
 
         editorButton.GetNode<TextureRect>("Highlight").Show();
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
+    }
+
+    private void ProcessPanelButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (processPanel.Visible)
+        {
+            processPanel.Visible = false;
+        }
+        else
+        {
+            processPanel.Show();
+        }
     }
 }

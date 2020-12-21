@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=2]
+[gd_scene load_steps=111 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -57,6 +57,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=55]
 [ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=56]
 [ext_resource path="res://assets/textures/gui/bevel/oxytoxy.png" type="Texture" id=57]
+[ext_resource path="res://src/microbe_stage/ProcessPanel.tscn" type="PackedScene" id=58]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=59]
 [ext_resource path="res://assets/textures/gui/bevel/atp.png" type="Texture" id=60]
 [ext_resource path="res://assets/textures/gui/bevel/Hitpoints.png" type="Texture" id=61]
@@ -369,6 +370,7 @@ AmmoniaBW = ExtResource( 6 )
 PhosphatesBW = ExtResource( 5 )
 AmmoniaInv = ExtResource( 3 )
 PhosphatesInv = ExtResource( 4 )
+ProcessPanelPath = NodePath("ProcessPanel")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -1539,7 +1541,7 @@ margin_right = 157.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 focus_mode = 0
-disabled = true
+toggle_mode = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 21 )
 texture_pressed = ExtResource( 30 )
@@ -1920,6 +1922,12 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
 anims/EditorButtonFlash = SubResource( 29 )
 
+[node name="ProcessPanel" parent="MicrobeHUD" instance=ExtResource( 58 )]
+margin_left = 8.0
+margin_top = 72.0
+margin_right = -872.0
+margin_bottom = -48.0
+
 [node name="WinExtinctBoxHolder" type="Control" parent="MicrobeHUD"]
 visible = false
 anchor_right = 1.0
@@ -1948,6 +1956,7 @@ visible = false
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin/Pause" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin/Resume" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/CompoundsButton" to="MicrobeHUD" method="CompoundButtonPressed"]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/ChemicalButton" to="MicrobeHUD" method="ProcessPanelButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="mouse_entered" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseEnter"]

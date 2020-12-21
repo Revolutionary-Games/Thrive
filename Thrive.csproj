@@ -105,6 +105,7 @@
     <Compile Include="src\microbe_stage\editor\PatchMapNode.cs" />
     <Compile Include="src\microbe_stage\EnvironmentalCompoundProperties.cs" />
     <Compile Include="src\microbe_stage\FloatingChunk.cs" />
+    <Compile Include="src\microbe_stage\IProcessDisplayInfo.cs" />
     <Compile Include="src\microbe_stage\Membrane.cs" />
     <Compile Include="src\microbe_stage\Microbe.cs" />
     <Compile Include="src\microbe_stage\MicrobeCamera.cs" />
@@ -113,6 +114,8 @@
     <Compile Include="src\microbe_stage\NucleusMesh.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
+    <Compile Include="src\microbe_stage\ProcessList.cs" />
+    <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />
