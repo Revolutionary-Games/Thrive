@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 
 /// <summary>
 ///   Info needed to show a process in a process list
@@ -13,22 +13,22 @@ public interface IProcessDisplayInfo
     /// <summary>
     ///   Input compounds that aren't environmental
     /// </summary>
-    public ReadOnlyDictionary<Compound, float> Inputs { get; }
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs { get; }
 
     /// <summary>
     ///   Current environmental input values
     /// </summary>
-    public ReadOnlyDictionary<Compound, float> EnvironmentalInputs { get; }
+    public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs { get; }
 
     /// <summary>
     ///   Environment inputs that result in process running at maximum speed
     /// </summary>
-    public ReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs { get; }
+    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs { get; }
 
     /// <summary>
     ///   All of the output compounds
     /// </summary>
-    public ReadOnlyDictionary<Compound, float> Outputs { get; }
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs { get; }
 
     /// <summary>
     ///   The current speed of the process (if known)
@@ -36,7 +36,7 @@ public interface IProcessDisplayInfo
     public float CurrentSpeed { get; }
 
     /// <summary>
-    ///   The limiting compound in speed. Or null if not set
+    ///   The limiting compounds in speed. Or null if not set
     /// </summary>
-    public Compound LimitingCompound { get; }
+    public IReadOnlyList<Compound> LimitingCompounds { get; }
 }

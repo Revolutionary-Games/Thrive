@@ -16,9 +16,7 @@ public interface IProcessable
     CompoundBag ProcessCompoundStorage { get; }
 
     /// <summary>
-    ///   Optional list to track what the ProcessSystem was able to run for this processable entity.
-    ///   Used for example to show that processes the player cell is performing
-    ///   TODO: this might need additional information tracking to be more useful for process panel implementation
+    ///   Optional statistics object to get data out of the process system on what processes it actually ran
     /// </summary>
-    List<TweakedProcess> LastRanProcesses { get; }
+    ProcessStatistics ProcessStatistics { get; }
 }

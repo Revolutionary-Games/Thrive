@@ -48,6 +48,7 @@
     <Compile Include="src\engine\input\key_mapping\SpecifiedInputKey.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
+    <Compile Include="src\engine\NodeHelpers.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
+    <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />

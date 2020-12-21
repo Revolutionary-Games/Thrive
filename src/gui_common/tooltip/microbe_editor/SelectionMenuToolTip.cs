@@ -132,13 +132,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     public void WriteOrganelleProcessList(List<ProcessSpeedInformation> processes)
     {
         // Remove previous process list
-        if (processList.GetChildCount() > 0)
-        {
-            foreach (Node children in processList.GetChildren())
-            {
-                children.QueueFree();
-            }
-        }
+        processList.QueueFreeChildren(true);
 
         if (processes == null)
         {

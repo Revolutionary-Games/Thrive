@@ -311,6 +311,7 @@ public class MicrobeHUD : Node
         }
 
         UpdatePopulation();
+        UpdateProcessPanel();
     }
 
     public void Init(MicrobeStage stage)
@@ -825,6 +826,21 @@ public class MicrobeHUD : Node
     private void UpdatePopulation()
     {
         populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString(CultureInfo.InvariantCulture);
+    }
+
+    private void UpdateProcessPanel()
+    {
+        if (!processPanel.Visible)
+            return;
+
+        if (stage.Player == null)
+        {
+            processPanel.ShownData = null;
+        }
+        else
+        {
+            processPanel.ShownData = stage.Player.ProcessStatistics;
+        }
     }
 
     /// <summary>

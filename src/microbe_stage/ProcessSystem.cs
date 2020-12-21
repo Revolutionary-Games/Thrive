@@ -294,9 +294,9 @@ public class ProcessSystem
         // used it will be marked useful
         bag.ClearUseful();
 
-        var ranProcesses = processor.LastRanProcesses;
+        var processStatistics = processor.ProcessStatistics;
 
-        ranProcesses?.Clear();
+        processStatistics?.MarkAllUnused();
 
         foreach (TweakedProcess process in processor.ActiveProcesses)
         {
@@ -307,6 +307,9 @@ public class ProcessSystem
                 continue;
 
             var processData = process.Process;
+
+            var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process);
+            currentProcessStatistics?.Clear();
 
             // Can your cell do the process
             bool canDoProcess = true;
@@ -334,6 +337,9 @@ public class ProcessSystem
                 {
                     // do environmental modifier here, and save it for later
                     environmentModifier *= GetDissolved(entry.Key) / entry.Value;
+
+                    if (environmentModifier <= MathUtils.EPSILON)
+                        currentProcessStatistics?.AddLimitingFactor(entry.Key);
                 }
                 else
                 {
@@ -341,6 +347,7 @@ public class ProcessSystem
                     if (bag.GetCompoundAmount(entry.Key) < inputRemoved)
                     {
                         canDoProcess = false;
+                        currentProcessStatistics?.AddLimitingFactor(entry.Key);
                     }
                 }
             }
@@ -373,6 +380,7 @@ public class ProcessSystem
                 if (bag.GetCompoundAmount(entry.Key) + outputAdded > bag.Capacity)
                 {
                     canDoProcess = false;
+                    currentProcessStatistics?.AddCapacityProblem(entry.Key);
                 }
             }
 
@@ -380,6 +388,9 @@ public class ProcessSystem
             // ingredients and enough space for the outputs
             if (!canDoProcess)
                 continue;
+
+            if (currentProcessStatistics != null)
+                currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier;
 
             // Inputs.
             foreach (var entry in processData.Inputs)
@@ -398,6 +409,8 @@ public class ProcessSystem
                 var inputRemoved = entry.Value * process.Rate * delta *
                     environmentModifier;
 
+                currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
+
                 // This should always succeed (due to the earlier check) so
                 // it is always assumed here that the process succeeded
                 bag.TakeCompound(entry.Key, inputRemoved);
@@ -412,13 +425,14 @@ public class ProcessSystem
                 var outputGenerated = entry.Value * process.Rate * delta *
                     environmentModifier;
 
+                currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated);
+
                 bag.AddCompound(entry.Key, outputGenerated);
             }
-
-            // Mark as having been ran
-            ranProcesses?.Add(process);
         }
 
         bag.ClampNegativeCompoundAmounts();
+
+        processStatistics?.RemoveUnused();
     }
 }

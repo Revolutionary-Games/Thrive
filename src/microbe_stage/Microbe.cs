@@ -292,10 +292,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public CompoundBag ProcessCompoundStorage => Compounds;
 
     /// <summary>
-    ///   List of actually running processes. For now only computed for the player cell
+    ///   Process running statistics for this cell. For now only computed for the player cell
     /// </summary>
     [JsonIgnore]
-    public List<TweakedProcess> LastRanProcesses { get; private set; }
+    public ProcessStatistics ProcessStatistics { get; private set; }
 
     /// <summary>
     ///   For checking if the player is in freebuild mode or not
@@ -332,12 +332,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     [JsonProperty]
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
-
-    /// <summary>
-    ///   Called each frame to report active processes.
-    /// </summary>
-    [JsonIgnore]
-    public Action<Microbe, List<TweakedProcess>> OnReportActiveProcesses { get; set; }
 
     public bool IsLoadedFromSave { get; set; }
 
@@ -383,7 +377,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             listener.MakeCurrent();
 
             // Setup tracking running processes
-            LastRanProcesses = new List<TweakedProcess>();
+            ProcessStatistics = new ProcessStatistics();
 
             GD.Print("Player Microbe spawned");
         }
@@ -1139,11 +1133,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             {
                 OnReproductionStatus(this, true);
             }
-        }
-
-        if (IsPlayerMicrobe)
-        {
-            OnReportActiveProcesses.Invoke(this, LastRanProcesses);
         }
     }
 

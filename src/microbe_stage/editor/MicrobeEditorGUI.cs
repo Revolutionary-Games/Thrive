@@ -496,38 +496,40 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     public void RegisterTooltips()
     {
+        var toolTipManager = ToolTipManager.Instance;
+
         foreach (Control organelleSelection in organelleSelectionElements)
         {
             ToolTipHelper.RegisterToolTipForControl(
-                organelleSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
+                organelleSelection, tooltipCallbacks, toolTipManager.GetToolTip(
                     organelleSelection.Name, "organelleSelection"));
         }
 
         foreach (Control membraneSelection in membraneSelectionElements)
         {
             ToolTipHelper.RegisterToolTipForControl(
-                membraneSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
+                membraneSelection, tooltipCallbacks, toolTipManager.GetToolTip(
                     membraneSelection.Name, "membraneSelection"));
         }
 
         ToolTipHelper.RegisterToolTipForControl(
-            rigiditySlider, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor"));
+            rigiditySlider, tooltipCallbacks, toolTipManager.GetToolTip("rigiditySlider", "editor"));
         ToolTipHelper.RegisterToolTipForControl(
-            helpButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("helpButton"));
+            helpButton, tooltipCallbacks, toolTipManager.GetToolTip("helpButton"));
         ToolTipHelper.RegisterToolTipForControl(
-            symmetryButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("symmetryButton", "editor"));
+            symmetryButton, tooltipCallbacks, toolTipManager.GetToolTip("symmetryButton", "editor"));
         ToolTipHelper.RegisterToolTipForControl(
-            undoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("undoButton", "editor"));
+            undoButton, tooltipCallbacks, toolTipManager.GetToolTip("undoButton", "editor"));
         ToolTipHelper.RegisterToolTipForControl(
-            redoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("redoButton", "editor"));
+            redoButton, tooltipCallbacks, toolTipManager.GetToolTip("redoButton", "editor"));
         ToolTipHelper.RegisterToolTipForControl(
-            newCellButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("newCellButton", "editor"));
+            newCellButton, tooltipCallbacks, toolTipManager.GetToolTip("newCellButton", "editor"));
         ToolTipHelper.RegisterToolTipForControl(
-            timeIndicator, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("timeIndicator", "editor"));
+            timeIndicator, tooltipCallbacks, toolTipManager.GetToolTip("timeIndicator", "editor"));
         ToolTipHelper.RegisterToolTipForControl(
-            finishButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("finishButton", "editor"));
+            finishButton, tooltipCallbacks, toolTipManager.GetToolTip("finishButton", "editor"));
         ToolTipHelper.RegisterToolTipForControl(
-            menuButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("menuButton"));
+            menuButton, tooltipCallbacks, toolTipManager.GetToolTip("menuButton"));
     }
 
     public override void _Process(float delta)
