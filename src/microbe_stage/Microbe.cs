@@ -1216,6 +1216,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             myBindingTarget.Microbe.RemoveCollisionExceptionWith(this);
         }
 
+        if (MicrobeMode == MicrobeMode.UNBINDING)
+            MicrobeMode = MicrobeMode.NONE;
+
         if (Colony.Master != null)
         {
             RemoveCollisionExceptionWith(Colony.Master.Microbe);
