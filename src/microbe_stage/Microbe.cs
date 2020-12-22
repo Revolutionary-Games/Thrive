@@ -1099,6 +1099,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Handles binding related stuff
         HandleBinding(delta);
+        HandleUnbinding();
+
         HandleOsmoregulation(delta);
 
         // Let organelles do stuff (this for example gets the movement force from flagella)
@@ -1582,6 +1584,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (bindingAudio.Playing)
                 bindingAudio.Stop();
         }
+    }
+
+    /// <summary>
+    ///   Handles things related to unbinding
+    /// </summary>
+    private void HandleUnbinding()
+    {
+        if (MicrobeMode != MicrobeMode.UNBINDING)
+            return;
+
+        Flash(1, new Color(255.0f / 255.0f, 127.0f / 255.0f, 39.0f / 255.0f, 0.5f));
     }
 
     /// <summary>

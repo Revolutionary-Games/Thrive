@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -42,6 +43,9 @@ public class PlayerMicrobeInput : NodeWithInput
 
         if (stage.Player != null)
         {
+            if (stage.Player.MicrobeMode == MicrobeMode.UNBINDING)
+                return;
+
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
             stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
@@ -78,6 +82,36 @@ public class PlayerMicrobeInput : NodeWithInput
             stage.Player.MicrobeMode = MicrobeMode.NONE;
         else if (stage.Player.CanBind())
             stage.Player.MicrobeMode = MicrobeMode.BINDING;
+    }
+
+    [RunOnKeyDown("g_toggle_unbinding")]
+    public void ToggleUnbinding()
+    {
+        if (stage.Player == null)
+            return;
+
+        if (stage.Player.MicrobeMode == MicrobeMode.UNBINDING)
+            stage.Player.MicrobeMode = MicrobeMode.NONE;
+        else if (stage.Player.Colony != null)
+            stage.Player.MicrobeMode = MicrobeMode.UNBINDING;
+    }
+
+    [RunOnKeyDown("g_accept_unbinding", Priority = 1)]
+    public bool AcceptUnbind()
+    {
+        if (stage.Player == null)
+            return false;
+        if (stage.Player.MicrobeMode != MicrobeMode.UNBINDING)
+            return false;
+        if (stage.MicrobesAtMouse.Count == 0)
+            return false;
+
+        var target = stage.MicrobesAtMouse[0];
+
+        target.Colony.RemoveFromColony();
+        target.MicrobeMode = MicrobeMode.NONE;
+
+        return true;
     }
 
     [RunOnKeyDown("g_cheat_editor")]

@@ -672,7 +672,7 @@ public class MicrobeAI
             500 + microbe.EngulfSize * 3.0f && microbe.MicrobeMode == MicrobeMode.ENGULF && ticksSinceLastToggle >=
             Constants.AI_ENGULF_INTERVAL)
         {
-            microbe.MicrobeMode  = MicrobeMode.NONE;
+            microbe.MicrobeMode = MicrobeMode.NONE;
             ticksSinceLastToggle = 0;
         }
     }
