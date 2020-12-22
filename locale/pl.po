@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-22 17:11+0100\n"
+"POT-Creation-Date: 2020-12-22 19:34+0100\n"
 "PO-Revision-Date: 2020-12-17 09:10+0000\n"
 "Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -391,9 +391,8 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Przełączenie połykania"
 
 #: ../simulation_parameters/common/input_options.json:54
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Przełączenie połykania"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:63
 msgid "CAMERA"
@@ -1284,40 +1283,40 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:83
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Otwórz menu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Otwórz ekran pomocy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:97
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Czy będziesz prosperować?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:105
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Zakończ edycję i wróć do środowiska"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:111
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Zmień symetrię"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:117
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Cofnij ostatnią czynność"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Powtórz ostatnią czynność"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Stwórz nowego mikroba"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:212
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Sztywność Membrany"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5394
@@ -1342,6 +1341,8 @@ msgstr "Zdrowie"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:317
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Sztywniejsza membrana jest bardziej odporna na uszkodzenia, ale utrudnia "
+"poruszanie się komórce."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:429
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:669
@@ -1354,7 +1355,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4442
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4936
 msgid "TURNS"
-msgstr ""
+msgstr "Skręca"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:454
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:694
@@ -1703,7 +1704,7 @@ msgstr "Bioluminescencyjna Wakuola"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5343
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3431
 msgid "NORMAL"
-msgstr ""
+msgstr "Normalna"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5455
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5697
@@ -1791,15 +1792,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1229
+#: ../src/microbe_stage/Microbe.cs:1235
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1236
+#: ../src/microbe_stage/Microbe.cs:1242
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1671
+#: ../src/microbe_stage/Microbe.cs:1680
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1811,11 +1812,11 @@ msgstr ""
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:482
+#: ../src/microbe_stage/MicrobeStage.cs:489
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:594
+#: ../src/microbe_stage/MicrobeStage.cs:601
 msgid "PLAYER_DIED"
 msgstr "gracz zginął"
 
@@ -2021,7 +2022,7 @@ msgstr "..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4021
 msgid "CONFIRM_CAPITAL"
-msgstr "Potwierdź"
+msgstr "POTWIERDŹ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4030
 msgid "NEGATIVE_ATP_BALANCE"
@@ -2045,7 +2046,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4141
 msgid "AUTO_EVO"
-msgstr "auto"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4155
 msgid "FOOD_CHAIN"

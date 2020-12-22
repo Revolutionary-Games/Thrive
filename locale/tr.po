@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-22 17:11+0100\n"
+"POT-Creation-Date: 2020-12-22 19:34+0100\n"
 "PO-Revision-Date: 2020-12-17 09:10+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -396,7 +396,7 @@ msgstr "Yutma modunu aç"
 #: ../simulation_parameters/common/input_options.json:54
 #, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Yutma modunu aç"
+msgstr "Yükleme Hatası"
 
 #: ../simulation_parameters/common/input_options.json:63
 msgid "CAMERA"
@@ -1286,40 +1286,40 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:83
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Menüyü aç"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Yardım ekranını aç"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:97
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Başaracak mısın?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:105
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Düzenlemeyi bitir ve ortama dön"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:111
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Simetriyi değiştir"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:117
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Son eylemi geri al"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Son eylemi tekrarla"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Yeni bir mikrop oluştur"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:212
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Hücre Zarı Sertliği"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5394
@@ -1344,6 +1344,8 @@ msgstr "Sağlık"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:317
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Sert bir hücre zarı hasara karşı daha dayanıklıdır ama hücreyi etrafta "
+"hareket ettirmeyi zorlaştırır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:429
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:669
@@ -1355,8 +1357,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4170
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4442
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4936
+#, fuzzy
 msgid "TURNS"
-msgstr ""
+msgstr "Dönüştürür"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:454
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:694
@@ -1673,6 +1676,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3783
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
+"Kloroplast zarsı keseler içinde birbirinin üstüne dizili, ışığa hassas "
+"pigmentler içeren çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı "
+"tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Kloroplasttaki "
+"pigmentler, Fotosentez adı verilen bir işlemde, sudan glukoz ve "
+"karbondioksit gazı üretmek için ışık enerjisini kullanırlar. Bu pigmentler "
+"ayrıca yapıya kendine özgü bir renk verir. Üretilen glukoz oranı, "
+"karbondioksit konsantrasyonu ve ışık şiddeti ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3799
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3863
@@ -1759,7 +1769,7 @@ msgstr "Biyolüminesant Koful"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5343
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3431
 msgid "NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5455
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5697
@@ -1870,15 +1880,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
 
-#: ../src/microbe_stage/Microbe.cs:1229
+#: ../src/microbe_stage/Microbe.cs:1235
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek bulma"
 
-#: ../src/microbe_stage/Microbe.cs:1236
+#: ../src/microbe_stage/Microbe.cs:1242
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.cs:1671
+#: ../src/microbe_stage/Microbe.cs:1680
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -1890,11 +1900,11 @@ msgstr "Arazi: {0}"
 msgid "STUFF_AT"
 msgstr "Burada bir şey var {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:482
+#: ../src/microbe_stage/MicrobeStage.cs:489
 msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
-#: ../src/microbe_stage/MicrobeStage.cs:594
+#: ../src/microbe_stage/MicrobeStage.cs:601
 msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
 
@@ -2102,7 +2112,7 @@ msgstr "Tür ismi..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4021
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "ONAYLA"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4030
 msgid "NEGATIVE_ATP_BALANCE"
@@ -2131,7 +2141,7 @@ msgstr "Arazi Adı"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4141
 msgid "AUTO_EVO"
-msgstr "Oto-evrim çalıştırılamadı"
+msgstr "Oto-Evrim"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4155
 msgid "FOOD_CHAIN"
@@ -2192,7 +2202,7 @@ msgstr "Myö"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
-msgstr "Myö"
+msgstr "yıl"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
@@ -2209,7 +2219,7 @@ msgstr "Ozmoregülasyon"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Ana Hareket"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1478
 msgid "BIOME_LABEL"

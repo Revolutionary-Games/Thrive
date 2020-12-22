@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-22 17:11+0100\n"
-"PO-Revision-Date: 2020-12-14 14:17+0000\n"
+"POT-Creation-Date: 2020-12-22 19:34+0100\n"
+"PO-Revision-Date: 2020-12-17 09:10+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ko/>\n"
@@ -45,8 +45,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"你也可以通過按G鍵吞噬比你小的細胞，細菌，鐵塊和細胞塊，這將會花費額外的"
-"ATP(三磷酸腺苷)，並且會讓你的速度變慢。不要忘記按第二次G來停止吞噬。"
+"G 키를 눌러 자신보다 작은 세포나 박테리아 또는 철과 세포 조각들을 삼킬 수 "
+"있습니다. 이것은 추가적인 ATP를 소모하며 더 느려지게 만듭니다. G 키를 한번 "
+"더 눌러 삼키기를 멈추는 것을 잊지 마십시오."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
@@ -92,20 +93,21 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"要繁殖，您需要將每個細胞器一分為二。 細胞器需要氨和磷酸鹽才能分裂成兩半。"
+"번식하려면 세포 기관을 각각 두개로 나눠야 합니다. 세포 기관을 반으로 나누"
+"기 위해 암모니아와 인산염이 필요합니다."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"但是，如果您以300個人口存活20代，那麼你將被視為贏得了當前遊戲，贏得遊戲后會"
-"彈出一個視窗並可以選擇繼續玩。"
+"그러나 300 명의 개체 수로 20 세대 동안 생존했다면 현재 게임에서 승리 한 것"
+"으로 간주되며, 승리 후 팝업이 나타나고 원한다면 계속 플레이 할 수 있습니다."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"保持警惕，因為你的競爭對手也在和你一起進化。每當你進入編輯器，他們也在進"
-"化。"
+"당신의 경쟁자 또한 당신처럼 진화한다는 것을 명심하십시오. 당신이 편집기에 "
+"들어갈 때마다 그들도 진화할 것입니다."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -318,47 +320,49 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "이동"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
-msgstr ""
+msgstr "왼쪽으로 이동"
 
 #: ../simulation_parameters/common/input_options.json:14
 msgid "MOVE_RIGHT"
-msgstr ""
+msgstr "오른쪽으로 이동"
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
-msgstr ""
+msgstr "앞으로 이동"
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr ""
+msgstr "뒤로 이동"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "자동 앞으로 이동"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "능력"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "독소 공격"
 
 #: ../simulation_parameters/common/input_options.json:42
 msgid "TOGGLE_ENGULF"
-msgstr ""
+msgstr "삼키기 전환"
 
 #: ../simulation_parameters/common/input_options.json:46
+#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr ""
+msgstr "삼키기 전환"
 
 #: ../simulation_parameters/common/input_options.json:50
+#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr ""
+msgstr "삼키기 전환"
 
 #: ../simulation_parameters/common/input_options.json:54
 #, fuzzy
@@ -367,56 +371,58 @@ msgstr "불러오기 오류"
 
 #: ../simulation_parameters/common/input_options.json:63
 msgid "CAMERA"
-msgstr ""
+msgstr "카메라"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "축소"
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "확대"
 
 #: ../simulation_parameters/common/input_options.json:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:974
 msgid "EDITOR"
-msgstr ""
+msgstr "편집기"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "ROTATE_RIGHT"
-msgstr ""
+msgstr "오른쪽으로 회전"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "ROTATE_LEFT"
-msgstr ""
+msgstr "왼쪽으로 회전"
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "UNDO"
-msgstr ""
+msgstr "실행 취소"
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "REDO"
-msgstr ""
+msgstr "다시 실행"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "PLACE_ORGANELLE"
-msgstr ""
+msgstr "세포 기관 배치"
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "REMOVE_ORGANELLE"
-msgstr ""
+msgstr "세포 기관 제거"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_LEFT"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:111
+#, fuzzy
 msgid "PAN_CAMERA_RIGHT"
-msgstr ""
+msgstr "오른쪽으로 이동"
 
 #: ../simulation_parameters/common/input_options.json:115
+#, fuzzy
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "카메라"
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_DOWN"
@@ -428,47 +434,47 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:131
 msgid "CHEATS"
-msgstr ""
+msgstr "치트"
 
 #: ../simulation_parameters/common/input_options.json:135
 msgid "ENABLE_EDITOR"
-msgstr ""
+msgstr "편집기 활성화"
 
 #: ../simulation_parameters/common/input_options.json:139
 msgid "SPAWN_GLUCOSE"
-msgstr ""
+msgstr "포도당 배치"
 
 #: ../simulation_parameters/common/input_options.json:143
 msgid "SPAWN_AMMONIA"
-msgstr ""
+msgstr "암모니아 배치"
 
 #: ../simulation_parameters/common/input_options.json:147
 msgid "SPAWN_PHOSPHATES"
-msgstr ""
+msgstr "인산염 배치"
 
 #: ../simulation_parameters/common/input_options.json:156
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "기타"
 
 #: ../simulation_parameters/common/input_options.json:160
 msgid "TOGGLE_FPS"
-msgstr ""
+msgstr "FPS 표시 전환"
 
 #: ../simulation_parameters/common/input_options.json:164
 msgid "QUICK_SAVE"
-msgstr ""
+msgstr "빠른 저장"
 
 #: ../simulation_parameters/common/input_options.json:168
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "빠른 불러오기"
 
 #: ../simulation_parameters/common/input_options.json:172
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "스크린샷 촬영"
 
 #: ../simulation_parameters/common/input_options.json:176
 msgid "SHOW_HELP"
-msgstr ""
+msgstr "도움말 보기"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -791,8 +797,11 @@ msgstr "독성 액포"
 #: ../simulation_parameters/microbe_stage/organelles.json:472
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2921
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2714
+#, fuzzy
 msgid "BINDING_AGENT"
 msgstr ""
+"{0}에서 충돌이 있습니다.\n"
+"{1}에서 입력을 제거하시겠습니까?"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:511
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
@@ -873,63 +882,65 @@ msgstr "불러오는 중"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr ""
+msgstr "아무 키나 누르시오..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"{0}에서 충돌이 있습니다.\n"
+"{1}에서 입력을 제거하시겠습니까?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "마우스 왼쪽 버튼"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "마우스 오른쪽 버튼"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "마우스 가운데 버튼"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "휠 위로"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "휠 아래로"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "휠 왼쪽으로"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
-msgstr ""
+msgstr "휠 오른쪽으로"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "마우스 특수 키 1"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "마우스 특수 키 2"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "마우스 미확인 키"
 
 #: ../src/general/HelpScreen.tscn:102
 msgid "CLOSE"
@@ -949,7 +960,7 @@ msgstr "성능"
 
 #: ../src/general/OptionsMenu.tscn:165
 msgid "INPUTS"
-msgstr ""
+msgstr "입력"
 
 #: ../src/general/OptionsMenu.tscn:177
 msgid "MISC"
@@ -1049,7 +1060,7 @@ msgstr "게임 플레이 중 자동 진화 실행"
 
 #: ../src/general/OptionsMenu.tscn:795
 msgid "RESET_INPUTS"
-msgstr ""
+msgstr "키 설정 초기화"
 
 #: ../src/general/OptionsMenu.tscn:818
 msgid "PLAY_INTRO_VIDEO"
@@ -1115,11 +1126,11 @@ msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
 
 #: ../src/general/OptionsMenu.tscn:1031
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr ""
+msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
 #: ../src/general/OptionsMenu.tscn:1032
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
 #: ../src/general/OptionsMenu.tscn:1041
 msgid "CLOSE_OPTIONS"
@@ -1565,8 +1576,13 @@ msgid "ALLOWS_BINDING"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3030
+#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
+"니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 "
+"성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 "
+"고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 "
+"주변 유체가 일부 발효를 수행합니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3131
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -1787,15 +1803,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr "/초"
 
-#: ../src/microbe_stage/Microbe.cs:1229
+#: ../src/microbe_stage/Microbe.cs:1235
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1236
+#: ../src/microbe_stage/Microbe.cs:1242
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1671
+#: ../src/microbe_stage/Microbe.cs:1680
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
@@ -1807,11 +1823,11 @@ msgstr "파편: {0}"
 msgid "STUFF_AT"
 msgstr "{0:F1}, {1:F1}에 위치함:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:482
+#: ../src/microbe_stage/MicrobeStage.cs:489
 msgid "PLAYER_REPRODUCED"
 msgstr "플레이어 복제됨"
 
-#: ../src/microbe_stage/MicrobeStage.cs:594
+#: ../src/microbe_stage/MicrobeStage.cs:601
 msgid "PLAYER_DIED"
 msgstr "플레이어 사망함"
 
@@ -1857,34 +1873,42 @@ msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:16
+#, fuzzy
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangonian 분출구"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:24
+#, fuzzy
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Pangonian 중해수층"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:31
+#, fuzzy
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Pangonian 표해수층"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:38
+#, fuzzy
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pangonian 웅덩이"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:45
+#, fuzzy
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Pangonian 심해수층"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:52
+#, fuzzy
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Pangonian 심해원양성"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:59
+#, fuzzy
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangonian 해안"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:66
+#, fuzzy
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangonian 어귀"
 
@@ -1897,6 +1921,7 @@ msgid "PATCH_ICE_SHELF"
 msgstr "빙붕"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:87
+#, fuzzy
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian 해저"
 
@@ -1967,7 +1992,7 @@ msgstr "행동"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1573
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr ""
+msgstr "검색..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1633
 msgid "STRUCTURAL"
@@ -2015,7 +2040,7 @@ msgstr "색"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3994
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr ""
+msgstr "종 명칭..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4021
 msgid "CONFIRM_CAPITAL"

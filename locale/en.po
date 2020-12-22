@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-22 17:11+0100\n"
+"POT-Creation-Date: 2020-12-22 19:34+0100\n"
 "PO-Revision-Date: 2020-12-18 00:44-0800\n"
 "Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -1596,11 +1596,17 @@ msgstr "To be Implemented."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2942
 msgid "ALLOWS_BINDING"
-msgstr "Allows binding to other cells."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3030
+#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "The binding agents allows binding to other cells."
+msgstr ""
+"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy "
+"in the form of ATP to produce ammonia, a key growth nutrient for cells. "
+"This is a process referred to as Anaerobic Nitrogen Fixation. Since the "
+"nitrogenase is suspended directly in the cytoplasm, the surrounding fluid "
+"performs some fermentation."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3131
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -1840,15 +1846,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr "/second"
 
-#: ../src/microbe_stage/Microbe.cs:1229
+#: ../src/microbe_stage/Microbe.cs:1235
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.cs:1236
+#: ../src/microbe_stage/Microbe.cs:1242
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1671
+#: ../src/microbe_stage/Microbe.cs:1680
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -1860,11 +1866,11 @@ msgstr "Patch: {0}"
 msgid "STUFF_AT"
 msgstr "Stuff at {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:482
+#: ../src/microbe_stage/MicrobeStage.cs:489
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:594
+#: ../src/microbe_stage/MicrobeStage.cs:601
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -2100,7 +2106,7 @@ msgstr "Patch Name"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4141
 msgid "AUTO_EVO"
-msgstr "Auto-evo failed to run"
+msgstr "Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4155
 msgid "FOOD_CHAIN"
@@ -2129,7 +2135,7 @@ msgstr "Select a patch to show details here"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4456
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "POPULATION:"
+msgstr "CURRENT LOCATION"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4536
 msgid "PHYSICAL_CONDITIONS"
@@ -2302,19 +2308,19 @@ msgstr "Saving failed! An exception happened"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr "Save failed"
+msgstr "Manual"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr "Space used:"
+msgstr "Autosave"
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr "Quick save"
+msgstr "Quicksave"
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr "Save is invalid"
+msgstr "Invalid"
 
 #: ../src/saving/SaveList.cs:173
 msgid "SAVE_DELETE_WARNING"
@@ -2623,6 +2629,15 @@ msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by "
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
+
+#~ msgid "CARBON"
+#~ msgstr "Carbon"
+
+#~ msgid "DIOXIDE"
+#~ msgstr "Dioxide"
+
+#~ msgid "PLASTID"
+#~ msgstr "Plastid"
 
 #~ msgid "SECOND"
 #~ msgstr "second"

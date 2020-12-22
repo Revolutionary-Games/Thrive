@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-22 17:11+0100\n"
+"POT-Creation-Date: 2020-12-22 19:34+0100\n"
 "PO-Revision-Date: 2020-12-07 19:19+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -299,22 +299,27 @@ msgid "MOVEMENT"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:10
+#, fuzzy
 msgid "MOVE_LEFT"
 msgstr "光"
 
 #: ../simulation_parameters/common/input_options.json:14
+#, fuzzy
 msgid "MOVE_RIGHT"
 msgstr "光"
 
 #: ../simulation_parameters/common/input_options.json:18
+#, fuzzy
 msgid "MOVE_FORWARD"
 msgstr "自動進化啟動失敗"
 
 #: ../simulation_parameters/common/input_options.json:22
+#, fuzzy
 msgid "MOVE_BACKWARDS"
 msgstr "自動進化啟動失敗"
 
 #: ../simulation_parameters/common/input_options.json:26
+#, fuzzy
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自動進化啟動失敗"
 
@@ -327,6 +332,7 @@ msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:42
+#, fuzzy
 msgid "TOGGLE_ENGULF"
 msgstr "無法吞沒"
 
@@ -343,7 +349,7 @@ msgstr "無法吞沒"
 #: ../simulation_parameters/common/input_options.json:54
 #, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "無法吞沒"
+msgstr "錯誤加載"
 
 #: ../simulation_parameters/common/input_options.json:63
 msgid "CAMERA"
@@ -363,10 +369,12 @@ msgid "EDITOR"
 msgstr "編輯器"
 
 #: ../simulation_parameters/common/input_options.json:83
+#, fuzzy
 msgid "ROTATE_RIGHT"
 msgstr "光"
 
 #: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
 msgid "ROTATE_LEFT"
 msgstr "光"
 
@@ -379,10 +387,12 @@ msgid "REDO"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:99
+#, fuzzy
 msgid "PLACE_ORGANELLE"
 msgstr "細胞器"
 
 #: ../simulation_parameters/common/input_options.json:103
+#, fuzzy
 msgid "REMOVE_ORGANELLE"
 msgstr "細胞器"
 
@@ -412,18 +422,22 @@ msgid "CHEATS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:135
+#, fuzzy
 msgid "ENABLE_EDITOR"
 msgstr "編輯器"
 
 #: ../simulation_parameters/common/input_options.json:139
+#, fuzzy
 msgid "SPAWN_GLUCOSE"
 msgstr "葡萄糖"
 
 #: ../simulation_parameters/common/input_options.json:143
+#, fuzzy
 msgid "SPAWN_AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/common/input_options.json:147
+#, fuzzy
 msgid "SPAWN_PHOSPHATES"
 msgstr "磷酸鹽"
 
@@ -432,10 +446,12 @@ msgid "MISCELLANEOUS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:160
+#, fuzzy
 msgid "TOGGLE_FPS"
 msgstr "無法吞沒"
 
 #: ../simulation_parameters/common/input_options.json:164
+#, fuzzy
 msgid "QUICK_SAVE"
 msgstr "快速存檔"
 
@@ -448,6 +464,7 @@ msgid "TAKE_SCREENSHOT"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:176
+#, fuzzy
 msgid "SHOW_HELP"
 msgstr "幫助"
 
@@ -865,6 +882,7 @@ msgid "CTRL"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
+#, fuzzy
 msgid "ALT"
 msgstr "ATP"
 
@@ -897,6 +915,7 @@ msgid "WHEEL_LEFT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#, fuzzy
 msgid "WHEEL_RIGHT"
 msgstr "光"
 
@@ -1709,16 +1728,16 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1229
+#: ../src/microbe_stage/Microbe.cs:1235
 #, fuzzy
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功清除"
 
-#: ../src/microbe_stage/Microbe.cs:1236
+#: ../src/microbe_stage/Microbe.cs:1242
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.cs:1671
+#: ../src/microbe_stage/Microbe.cs:1680
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
@@ -1730,11 +1749,11 @@ msgstr ""
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:482
+#: ../src/microbe_stage/MicrobeStage.cs:489
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:594
+#: ../src/microbe_stage/MicrobeStage.cs:601
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 

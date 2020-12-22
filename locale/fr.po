@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-22 17:11+0100\n"
+"POT-Creation-Date: 2020-12-22 19:34+0100\n"
 "PO-Revision-Date: 2020-12-14 14:17+0000\n"
 "Last-Translator: Mauboussin Lucas <dragonmemo492@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -957,7 +957,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr "Lumière"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
@@ -1323,7 +1323,7 @@ msgstr "Créer un nouveau microbe"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:212
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Rigidité de la membrane"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5394
@@ -1348,6 +1348,8 @@ msgstr "Santé"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:317
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Une membrane plus rigide est plus résistante aux dommages, mais réduira la "
+"capacité motrice de la cellule."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:429
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:669
@@ -1766,7 +1768,7 @@ msgstr "Vacuole bioluminescente"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5343
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3431
 msgid "NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5455
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5697
@@ -1877,15 +1879,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr "/second"
 
-#: ../src/microbe_stage/Microbe.cs:1229
+#: ../src/microbe_stage/Microbe.cs:1235
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "récupération réussie"
 
-#: ../src/microbe_stage/Microbe.cs:1236
+#: ../src/microbe_stage/Microbe.cs:1242
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.cs:1671
+#: ../src/microbe_stage/Microbe.cs:1680
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
@@ -1897,11 +1899,11 @@ msgstr "Patch: {0}"
 msgid "STUFF_AT"
 msgstr "Matériel à {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:482
+#: ../src/microbe_stage/MicrobeStage.cs:489
 msgid "PLAYER_REPRODUCED"
 msgstr "joueur reproduit"
 
-#: ../src/microbe_stage/MicrobeStage.cs:594
+#: ../src/microbe_stage/MicrobeStage.cs:601
 msgid "PLAYER_DIED"
 msgstr "joueur mort"
 
@@ -2013,7 +2015,7 @@ msgstr "Rapport"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:953
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "Carte de Parcelles"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1029
 msgid "ORGANISM_STATISTICS"
@@ -2201,7 +2203,7 @@ msgstr "Myr"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
 msgid "YEARS"
-msgstr "Myr"
+msgstr "années"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
