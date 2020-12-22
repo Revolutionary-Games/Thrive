@@ -118,7 +118,10 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Thermosynthase.tscn",
-        "name": "THERMOSYNTHASE"
+        "name": "THERMOSYNTHASE",
+        "productionColour": "#6a5cc6",
+        "consumptionColour": "#ad5161",
+        "iconPath": "res://assets/textures/gui/bevel/ThermosynthaseIcon.png"
     },
     "protoplasm": {
         "mpCost": 55,
@@ -547,7 +550,10 @@
         "chanceToCreate": 2,
         "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Thermoplast.tscn",
-        "name": "THERMOPLAST"
+        "name": "THERMOPLAST",
+        "productionColour": "#9168b5",
+        "consumptionColour": "#d15378",
+        "iconPath": "res://assets/textures/gui/bevel/ThermoplastIcon.png"
     },
     "cytoplasm": {
         "mpCost": 22,

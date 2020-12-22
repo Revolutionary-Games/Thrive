@@ -41,20 +41,20 @@
         "name": "THERMOSYNTHESIS",
         "inputs": {
             "carbondioxide": 0.09,
-            "sunlight": 1
+            "hydrogensulfide": 1
         },
         "outputs": {
-            "glucose": 0.12
+            "atp": 90
         }
     },
     "bacterial_thermosynthesis": {
         "name": "THERMOSYNTHESIS",
         "inputs": {
             "carbondioxide": 0.09,
-            "sunlight": 1
+            "hydrogensulfide": 1
         },
         "outputs": {
-            "glucose": 0.04
+            "atp": 10
         }
     },
     "oxytoxySynthesis": {
