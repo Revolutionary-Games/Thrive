@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-22 19:34+0100\n"
-"PO-Revision-Date: 2020-12-17 09:10+0000\n"
+"POT-Creation-Date: 2020-12-20 18:16+0100\n"
+"PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -441,25 +441,23 @@ msgstr "Organel sil"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "Kamerayı sola çevir"
 
-#: ../simulation_parameters/common/input_options.json:111
-#, fuzzy
+#: ../simulation_parameters/common/input_options.json:99
 msgid "PAN_CAMERA_RIGHT"
-msgstr "Sağa doğru git"
+msgstr "Kamerayı sağa çevir"
 
-#: ../simulation_parameters/common/input_options.json:115
-#, fuzzy
+#: ../simulation_parameters/common/input_options.json:103
 msgid "PAN_CAMERA_UP"
-msgstr "Kamera"
+msgstr "Kamerayı yukarı çevir"
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "Kamerayı aşağı çevir"
 
 #: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "Kamerayı sıfırla"
 
 #: ../simulation_parameters/common/input_options.json:131
 msgid "CHEATS"
@@ -1244,7 +1242,7 @@ msgstr "Araçlar"
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Kaynak Kodunu İncele"
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
@@ -1697,13 +1695,12 @@ msgstr "Sıcaklık"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
-"Termoplast oyuna henüz eklenmedi. Termoplast zarsı keseler içinde "
-"birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı "
-"yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere "
-"özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, Termosentez adı "
-"verilen bir işlemde, sudan glukoz ve karbondioksit gazı üretmek için "
-"çevredeki ısı farkını kullanırlar. Üretilen glukoz oranı, karbondioksit "
-"konsantrasyonu ve sıcaklıkla doğru orantılıdır."
+"Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas "
+"pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı "
+"tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki "
+"pigmentler, Termosentez adı verilen bir işlemde, sudan glukoz ve "
+"karbondioksit gazı üretmek için çevredeki ısı farkını kullanırlar. Üretilen "
+"glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4335
 msgid "CHEMOPLAST_DESCRIPTION"

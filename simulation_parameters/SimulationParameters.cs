@@ -103,6 +103,11 @@ public class SimulationParameters : Node
         return membranes[name];
     }
 
+    public IEnumerable<MembraneType> GetAllMembranes()
+    {
+        return membranes.Values;
+    }
+
     public Background GetBackground(string name)
     {
         return backgrounds[name];

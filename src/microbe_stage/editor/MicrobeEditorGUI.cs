@@ -752,6 +752,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
+    public void SetMembraneTooltips(MembraneType referenceMembrane)
+    {
+        // Pass in a membrane that the values are taken as relative to
+        foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes())
+        {
+            var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
+                membraneType.InternalName, "membraneSelection");
+
+            tooltip?.WriteMembraneModifierList(referenceMembrane, membraneType);
+        }
+    }
+
     /// <summary>
     ///   Updates the fluidity / rigidity slider tooltip
     /// </summary>
@@ -761,8 +773,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         var rigidityTooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor");
 
-        var healthModifier = rigidityTooltip.GetModifierInfo("Health");
-        var mobilityModifier = rigidityTooltip.GetModifierInfo("Mobility");
+        var healthModifier = rigidityTooltip.GetModifierInfo("health");
+        var mobilityModifier = rigidityTooltip.GetModifierInfo("mobility");
 
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
@@ -773,23 +785,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         mobilityModifier.ModifierValue = ((mobilityChange > 0) ? "+" : string.Empty)
             + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
 
-        if (healthChange >= 0)
-        {
-            healthModifier.ModifierValueColor = new Color(0, 1, 0);
-        }
-        else
-        {
-            healthModifier.ModifierValueColor = new Color(1, 0.3f, 0.3f);
-        }
-
-        if (mobilityChange >= 0)
-        {
-            mobilityModifier.ModifierValueColor = new Color(0, 1, 0);
-        }
-        else
-        {
-            mobilityModifier.ModifierValueColor = new Color(1, 0.3f, 0.3f);
-        }
+        healthModifier.AdjustValueColor(healthChange);
+        mobilityModifier.AdjustValueColor(mobilityChange);
     }
 
     public void UpdateAutoEvoResults(string results, string external)
@@ -1010,6 +1007,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         OnSpeciesNameTextChanged(name);
 
         UpdateMembraneButtons(membrane.InternalName);
+        SetMembraneTooltips(membrane);
 
         UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
             editor.MutationPoints);
