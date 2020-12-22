@@ -100,6 +100,18 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [JsonProperty]
     public GameProperties CurrentGame { get; set; }
 
+    /// <summary>
+    ///   All compounds the user is hovering over
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<Compound, float> CompoundsAtMouse { get; private set; }
+
+    /// <summary>
+    ///   All microbes the user is hovering over
+    /// </summary>
+    [JsonIgnore]
+    public List<Microbe> MicrobesAtMouse { get; private set; }
+
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
 
@@ -289,6 +301,30 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         Jukebox.Instance.PlayingCategory = "MicrobeStage";
         Jukebox.Instance.Resume();
+    }
+
+    /// <summary>
+    ///   Updates CompoundsAtMouse and MicrobesAtMouse
+    /// </summary>
+    public void UpdateMouseHover()
+    {
+        CompoundsAtMouse = Clouds.GetAllAvailableAt(Camera.CursorWorldPos);
+
+        var aiMicrobes = GetTree().GetNodesInGroup(Constants.AI_GROUP);
+
+        MicrobesAtMouse = new List<Microbe>();
+
+        foreach (Microbe entry in aiMicrobes)
+        {
+            var distance = (entry.Translation - Camera.CursorWorldPos).Length();
+
+            // Find only cells that have the mouse
+            // position within their membrane
+            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
+                continue;
+
+            MicrobesAtMouse.Add(entry);
+        }
     }
 
     /// <summary>

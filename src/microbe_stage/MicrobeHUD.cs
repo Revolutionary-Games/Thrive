@@ -613,8 +613,6 @@ public class MicrobeHUD : Node
         if (mouseHoverPanel.MarginRight != 0)
             mouseHoverPanel.MarginRight = 0;
 
-        var compounds = stage.Clouds.GetAllAvailableAt(stage.Camera.CursorWorldPos);
-
         var container = mouseHoverPanel.GetNode("PanelContainer/MarginContainer/VBoxContainer");
         var mousePosLabel = container.GetNode<Label>("MousePos");
         var nothingHere = container.GetNode<MarginContainer>("NothingHere");
@@ -625,7 +623,9 @@ public class MicrobeHUD : Node
                 stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z) + "\n";
         }
 
-        if (compounds.Count == 0)
+        stage.UpdateMouseHover();
+
+        if (stage.CompoundsAtMouse.Count == 0)
         {
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = false;
         }
@@ -634,7 +634,7 @@ public class MicrobeHUD : Node
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = true;
 
             // Create for each compound the information in GUI
-            foreach (var entry in compounds)
+            foreach (var entry in stage.CompoundsAtMouse)
             {
                 // It is not useful to show trace amounts of a compound, so those are skipped
                 if (entry.Value < 0.1)
@@ -658,18 +658,9 @@ public class MicrobeHUD : Node
             }
         }
 
-        var aiMicrobes = GetTree().GetNodesInGroup(Constants.AI_GROUP);
-
         // Show the species name of hovered cells
-        foreach (Microbe entry in aiMicrobes)
+        foreach (var entry in stage.MicrobesAtMouse)
         {
-            var distance = (entry.Translation - stage.Camera.CursorWorldPos).Length();
-
-            // Find only cells that have the mouse
-            // position within their membrane
-            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
-                continue;
-
             // TODO: Combine cells of same species within mouse over
             // into a single line with total number of them
 
@@ -685,7 +676,7 @@ public class MicrobeHUD : Node
 
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
-        if (compounds.Count > 0 || hoveredCellsContainer.GetChildCount() > 0)
+        if (stage.CompoundsAtMouse.Count > 0 || hoveredCellsContainer.GetChildCount() > 0)
         {
             nothingHere.Hide();
         }
