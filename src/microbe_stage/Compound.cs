@@ -28,6 +28,11 @@ public class Compound : IRegistryType
 
     public bool IsEnvironmental;
 
+    /// <summary>
+    ///   Whether this compound can be distributed in a colony
+    /// </summary>
+    public bool CanBeDistributed = true;
+
     public Color Colour;
 
 #pragma warning disable 169 // Used through reflection
