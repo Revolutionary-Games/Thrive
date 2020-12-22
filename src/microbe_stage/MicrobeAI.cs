@@ -561,7 +561,7 @@ public class MicrobeAI
                 preyPegged = true;
             }
 
-            microbe.EngulfMode = false;
+            microbe.MicrobeMode = MicrobeMode.NONE;
 
             // You got a kill, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
@@ -580,17 +580,17 @@ public class MicrobeAI
             // Turn on engulfmode if close
             if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + microbe.EngulfSize * 3.0f
                 && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-                && !microbe.EngulfMode &&
+                && microbe.MicrobeMode != MicrobeMode.ENGULF &&
                 microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize
                 && !microbe.Membrane.Type.CellWall)
             {
-                microbe.EngulfMode = true;
+                microbe.MicrobeMode = MicrobeMode.ENGULF;
                 ticksSinceLastToggle = 0;
             }
             else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f &&
-                microbe.EngulfMode && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
+                microbe.MicrobeMode == MicrobeMode.ENGULF && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
             {
-                microbe.EngulfMode = false;
+                microbe.MicrobeMode = MicrobeMode.NONE;
                 ticksSinceLastToggle = 0;
             }
         }
@@ -640,7 +640,7 @@ public class MicrobeAI
 
             hasTargetPosition = false;
             targetChunk = GetNearestChunkItem(allChunks);
-            microbe.EngulfMode = false;
+            microbe.MicrobeMode = MicrobeMode.NONE;
 
             // You got a consumption, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
@@ -661,18 +661,18 @@ public class MicrobeAI
         if ((microbe.Translation - targetPosition).LengthSquared() <= 300 +
             microbe.EngulfSize * 3.0f
             && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-            && !microbe.EngulfMode &&
+            && microbe.MicrobeMode != MicrobeMode.ENGULF &&
             microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * chunk.Size
             && !microbe.Membrane.Type.CellWall)
         {
-            microbe.EngulfMode = true;
+            microbe.MicrobeMode = MicrobeMode.ENGULF;
             ticksSinceLastToggle = 0;
         }
         else if ((microbe.Translation - targetPosition).LengthSquared() >=
-            500 + microbe.EngulfSize * 3.0f && microbe.EngulfMode && ticksSinceLastToggle >=
+            500 + microbe.EngulfSize * 3.0f && microbe.MicrobeMode == MicrobeMode.ENGULF && ticksSinceLastToggle >=
             Constants.AI_ENGULF_INTERVAL)
         {
-            microbe.EngulfMode = false;
+            microbe.MicrobeMode  = MicrobeMode.NONE;
             ticksSinceLastToggle = 0;
         }
     }

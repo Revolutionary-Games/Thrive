@@ -62,10 +62,10 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        stage.Player.EngulfMode = !stage.Player.EngulfMode;
-
-        if (stage.Player.EngulfMode)
-            stage.Player.BindingMode = false;
+        if (stage.Player.MicrobeMode == MicrobeMode.ENGULF)
+            stage.Player.MicrobeMode = MicrobeMode.NONE;
+        else if (!stage.Player.Membrane.Type.CellWall)
+            stage.Player.MicrobeMode = MicrobeMode.ENGULF;
     }
 
     [RunOnKeyDown("g_toggle_binding")]
@@ -74,10 +74,10 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        stage.Player.BindingMode = !stage.Player.BindingMode;
-
-        if (stage.Player.BindingMode)
-            stage.Player.EngulfMode = false;
+        if (stage.Player.MicrobeMode == MicrobeMode.BINDING)
+            stage.Player.MicrobeMode = MicrobeMode.NONE;
+        else if (stage.Player.CanBind())
+            stage.Player.MicrobeMode = MicrobeMode.BINDING;
     }
 
     [RunOnKeyDown("g_cheat_editor")]
