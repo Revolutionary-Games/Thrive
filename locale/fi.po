@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 20:26+0100\n"
+"POT-Creation-Date: 2020-12-22 17:11+0100\n"
 "PO-Revision-Date: 2020-12-10 12:44+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -293,110 +293,120 @@ msgstr "Aloita/lopeta nieleminen"
 msgid "TOGGLE_BINDING"
 msgstr "Aloita/lopeta nieleminen"
 
-#: ../simulation_parameters/common/input_options.json:55
+#: ../simulation_parameters/common/input_options.json:50
+#, fuzzy
+msgid "TOGGLE_UNBINDING"
+msgstr "Aloita/lopeta nieleminen"
+
+#: ../simulation_parameters/common/input_options.json:54
+#, fuzzy
+msgid "PERFORM_UNBINDING"
+msgstr "Aloita/lopeta nieleminen"
+
+#: ../simulation_parameters/common/input_options.json:63
 msgid "CAMERA"
 msgstr "Kamera"
 
-#: ../simulation_parameters/common/input_options.json:59
+#: ../simulation_parameters/common/input_options.json:67
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 
-#: ../simulation_parameters/common/input_options.json:63
+#: ../simulation_parameters/common/input_options.json:71
 msgid "ZOOM_IN"
 msgstr "Zoomaa sisään"
 
-#: ../simulation_parameters/common/input_options.json:71
+#: ../simulation_parameters/common/input_options.json:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:974
 msgid "EDITOR"
 msgstr "Editori"
 
-#: ../simulation_parameters/common/input_options.json:75
+#: ../simulation_parameters/common/input_options.json:83
 msgid "ROTATE_RIGHT"
 msgstr "Käännä oikealle"
 
-#: ../simulation_parameters/common/input_options.json:79
+#: ../simulation_parameters/common/input_options.json:87
 msgid "ROTATE_LEFT"
 msgstr "Käännä vasemmalle"
 
-#: ../simulation_parameters/common/input_options.json:83
+#: ../simulation_parameters/common/input_options.json:91
 msgid "UNDO"
 msgstr "Kumoa"
 
-#: ../simulation_parameters/common/input_options.json:87
+#: ../simulation_parameters/common/input_options.json:95
 msgid "REDO"
 msgstr "Tee uudelleen"
 
-#: ../simulation_parameters/common/input_options.json:91
+#: ../simulation_parameters/common/input_options.json:99
 msgid "PLACE_ORGANELLE"
 msgstr "Lisää soluelin"
 
-#: ../simulation_parameters/common/input_options.json:95
+#: ../simulation_parameters/common/input_options.json:103
 msgid "REMOVE_ORGANELLE"
 msgstr "Poista soluelin"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:111
 #, fuzzy
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Liiku oikealle"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:115
 #, fuzzy
 msgid "PAN_CAMERA_UP"
 msgstr "Kamera"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_DOWN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_RESET"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:131
 msgid "CHEATS"
 msgstr "Huijauskoodit"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:135
 msgid "ENABLE_EDITOR"
 msgstr "Avaa editorin lukitus"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:139
 msgid "SPAWN_GLUCOSE"
 msgstr "Luo glukoosia"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:143
 msgid "SPAWN_AMMONIA"
 msgstr "Luo ammoniakkia"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:147
 msgid "SPAWN_PHOSPHATES"
 msgstr "Luo fosfaattia"
 
-#: ../simulation_parameters/common/input_options.json:148
+#: ../simulation_parameters/common/input_options.json:156
 msgid "MISCELLANEOUS"
 msgstr "Muut"
 
-#: ../simulation_parameters/common/input_options.json:152
+#: ../simulation_parameters/common/input_options.json:160
 msgid "TOGGLE_FPS"
 msgstr "Näytä FPS-laskuri"
 
-#: ../simulation_parameters/common/input_options.json:156
+#: ../simulation_parameters/common/input_options.json:164
 msgid "QUICK_SAVE"
 msgstr "Tee pika-tallennus"
 
-#: ../simulation_parameters/common/input_options.json:160
+#: ../simulation_parameters/common/input_options.json:168
 msgid "QUICK_LOAD"
 msgstr "Lataa viimeisin tallennus"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:172
 msgid "TAKE_SCREENSHOT"
 msgstr "Ota ruudunkaappaus"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:176
 msgid "SHOW_HELP"
 msgstr "Näytä apu"
 
@@ -1623,15 +1633,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1253
+#: ../src/microbe_stage/Microbe.cs:1229
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "onnistunut raadonsyönti"
 
-#: ../src/microbe_stage/Microbe.cs:1260
+#: ../src/microbe_stage/Microbe.cs:1236
 msgid "SUCCESSFUL_KILL"
 msgstr "onnistunut tappo"
 
-#: ../src/microbe_stage/Microbe.cs:1684
+#: ../src/microbe_stage/Microbe.cs:1671
 msgid "ESCAPE_ENGULFING"
 msgstr "pakeni nielaisulta"
 
@@ -1639,15 +1649,15 @@ msgstr "pakeni nielaisulta"
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:624
+#: ../src/microbe_stage/MicrobeHUD.cs:622
 msgid "STUFF_AT"
 msgstr "Juttuja sijainnissa {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:446
+#: ../src/microbe_stage/MicrobeStage.cs:482
 msgid "PLAYER_REPRODUCED"
 msgstr "pelaaja jatkoi sukuaan"
 
-#: ../src/microbe_stage/MicrobeStage.cs:558
+#: ../src/microbe_stage/MicrobeStage.cs:594
 msgid "PLAYER_DIED"
 msgstr "pelaaja kuoli"
 

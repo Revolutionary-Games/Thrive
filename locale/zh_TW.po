@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 20:26+0100\n"
+"POT-Creation-Date: 2020-12-22 17:11+0100\n"
 "PO-Revision-Date: 2020-12-07 19:19+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -335,109 +335,119 @@ msgstr "無法吞沒"
 msgid "TOGGLE_BINDING"
 msgstr "無法吞沒"
 
-#: ../simulation_parameters/common/input_options.json:55
+#: ../simulation_parameters/common/input_options.json:50
+#, fuzzy
+msgid "TOGGLE_UNBINDING"
+msgstr "無法吞沒"
+
+#: ../simulation_parameters/common/input_options.json:54
+#, fuzzy
+msgid "PERFORM_UNBINDING"
+msgstr "無法吞沒"
+
+#: ../simulation_parameters/common/input_options.json:63
 msgid "CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:59
+#: ../simulation_parameters/common/input_options.json:67
 msgid "ZOOM_OUT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:63
+#: ../simulation_parameters/common/input_options.json:71
 msgid "ZOOM_IN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:71
+#: ../simulation_parameters/common/input_options.json:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:974
 msgid "EDITOR"
 msgstr "編輯器"
 
-#: ../simulation_parameters/common/input_options.json:75
+#: ../simulation_parameters/common/input_options.json:83
 msgid "ROTATE_RIGHT"
 msgstr "光"
 
-#: ../simulation_parameters/common/input_options.json:79
+#: ../simulation_parameters/common/input_options.json:87
 msgid "ROTATE_LEFT"
 msgstr "光"
 
-#: ../simulation_parameters/common/input_options.json:83
+#: ../simulation_parameters/common/input_options.json:91
 msgid "UNDO"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:87
+#: ../simulation_parameters/common/input_options.json:95
 msgid "REDO"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:91
+#: ../simulation_parameters/common/input_options.json:99
 msgid "PLACE_ORGANELLE"
 msgstr "細胞器"
 
-#: ../simulation_parameters/common/input_options.json:95
+#: ../simulation_parameters/common/input_options.json:103
 msgid "REMOVE_ORGANELLE"
 msgstr "細胞器"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:111
 #, fuzzy
 msgid "PAN_CAMERA_RIGHT"
 msgstr "光"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:115
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_DOWN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_RESET"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:131
 msgid "CHEATS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:135
 msgid "ENABLE_EDITOR"
 msgstr "編輯器"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:139
 msgid "SPAWN_GLUCOSE"
 msgstr "葡萄糖"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:143
 msgid "SPAWN_AMMONIA"
 msgstr "氨"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:147
 msgid "SPAWN_PHOSPHATES"
 msgstr "磷酸鹽"
 
-#: ../simulation_parameters/common/input_options.json:148
+#: ../simulation_parameters/common/input_options.json:156
 msgid "MISCELLANEOUS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:152
+#: ../simulation_parameters/common/input_options.json:160
 msgid "TOGGLE_FPS"
 msgstr "無法吞沒"
 
-#: ../simulation_parameters/common/input_options.json:156
+#: ../simulation_parameters/common/input_options.json:164
 msgid "QUICK_SAVE"
 msgstr "快速存檔"
 
-#: ../simulation_parameters/common/input_options.json:160
+#: ../simulation_parameters/common/input_options.json:168
 msgid "QUICK_LOAD"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:172
 msgid "TAKE_SCREENSHOT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:176
 msgid "SHOW_HELP"
 msgstr "幫助"
 
@@ -1699,16 +1709,16 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1253
+#: ../src/microbe_stage/Microbe.cs:1229
 #, fuzzy
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功清除"
 
-#: ../src/microbe_stage/Microbe.cs:1260
+#: ../src/microbe_stage/Microbe.cs:1236
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.cs:1684
+#: ../src/microbe_stage/Microbe.cs:1671
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
@@ -1716,15 +1726,15 @@ msgstr "逃脫吞噬"
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:624
+#: ../src/microbe_stage/MicrobeHUD.cs:622
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:446
+#: ../src/microbe_stage/MicrobeStage.cs:482
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:558
+#: ../src/microbe_stage/MicrobeStage.cs:594
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 

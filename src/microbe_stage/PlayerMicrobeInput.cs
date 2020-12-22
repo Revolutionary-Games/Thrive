@@ -96,7 +96,7 @@ public class PlayerMicrobeInput : NodeWithInput
             stage.Player.MicrobeMode = MicrobeMode.UNBINDING;
     }
 
-    [RunOnKeyDown("g_accept_unbinding", Priority = 1)]
+    [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
     public bool AcceptUnbind()
     {
         if (stage.Player == null)

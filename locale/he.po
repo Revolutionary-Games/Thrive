@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 20:26+0100\n"
+"POT-Creation-Date: 2020-12-22 17:11+0100\n"
 "PO-Revision-Date: 2020-12-16 02:36+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -358,110 +358,120 @@ msgstr "החלף מצב בליעה"
 msgid "TOGGLE_BINDING"
 msgstr "החלף מצב בליעה"
 
-#: ../simulation_parameters/common/input_options.json:55
+#: ../simulation_parameters/common/input_options.json:50
+#, fuzzy
+msgid "TOGGLE_UNBINDING"
+msgstr "החלף מצב בליעה"
+
+#: ../simulation_parameters/common/input_options.json:54
+#, fuzzy
+msgid "PERFORM_UNBINDING"
+msgstr "החלף מצב בליעה"
+
+#: ../simulation_parameters/common/input_options.json:63
 msgid "CAMERA"
 msgstr "מצלמה"
 
-#: ../simulation_parameters/common/input_options.json:59
+#: ../simulation_parameters/common/input_options.json:67
 msgid "ZOOM_OUT"
 msgstr "זום אאוט"
 
-#: ../simulation_parameters/common/input_options.json:63
+#: ../simulation_parameters/common/input_options.json:71
 msgid "ZOOM_IN"
 msgstr "להתמקד"
 
-#: ../simulation_parameters/common/input_options.json:71
+#: ../simulation_parameters/common/input_options.json:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:974
 msgid "EDITOR"
 msgstr "עורך"
 
-#: ../simulation_parameters/common/input_options.json:75
+#: ../simulation_parameters/common/input_options.json:83
 msgid "ROTATE_RIGHT"
 msgstr "סובב ימינה"
 
-#: ../simulation_parameters/common/input_options.json:79
+#: ../simulation_parameters/common/input_options.json:87
 msgid "ROTATE_LEFT"
 msgstr "סובב שמאלה"
 
-#: ../simulation_parameters/common/input_options.json:83
+#: ../simulation_parameters/common/input_options.json:91
 msgid "UNDO"
 msgstr "בטל"
 
-#: ../simulation_parameters/common/input_options.json:87
+#: ../simulation_parameters/common/input_options.json:95
 msgid "REDO"
 msgstr "עשה מחדש"
 
-#: ../simulation_parameters/common/input_options.json:91
+#: ../simulation_parameters/common/input_options.json:99
 msgid "PLACE_ORGANELLE"
 msgstr "הוסף אברון"
 
-#: ../simulation_parameters/common/input_options.json:95
+#: ../simulation_parameters/common/input_options.json:103
 msgid "REMOVE_ORGANELLE"
 msgstr "הסר אברון"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:111
 #, fuzzy
 msgid "PAN_CAMERA_RIGHT"
 msgstr "זוז ימינה"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:115
 #, fuzzy
 msgid "PAN_CAMERA_UP"
 msgstr "מצלמה"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_DOWN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_RESET"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:131
 msgid "CHEATS"
 msgstr "קודים"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:135
 msgid "ENABLE_EDITOR"
 msgstr "הפעל את העורך"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:139
 msgid "SPAWN_GLUCOSE"
 msgstr "זמן גלוקוז"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:143
 msgid "SPAWN_AMMONIA"
 msgstr "זמן אמוניה"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:147
 msgid "SPAWN_PHOSPHATES"
 msgstr "זמן פוספט"
 
-#: ../simulation_parameters/common/input_options.json:148
+#: ../simulation_parameters/common/input_options.json:156
 msgid "MISCELLANEOUS"
 msgstr "שונות"
 
-#: ../simulation_parameters/common/input_options.json:152
+#: ../simulation_parameters/common/input_options.json:160
 msgid "TOGGLE_FPS"
 msgstr "החלף תצוגת FPS"
 
-#: ../simulation_parameters/common/input_options.json:156
+#: ../simulation_parameters/common/input_options.json:164
 msgid "QUICK_SAVE"
 msgstr "שמירה מהירה"
 
-#: ../simulation_parameters/common/input_options.json:160
+#: ../simulation_parameters/common/input_options.json:168
 msgid "QUICK_LOAD"
 msgstr "טעינה מהירה"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:172
 msgid "TAKE_SCREENSHOT"
 msgstr "צלם מסך"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:176
 msgid "SHOW_HELP"
 msgstr "הצג עזרה"
 
@@ -1794,15 +1804,15 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr "\\לשניה"
 
-#: ../src/microbe_stage/Microbe.cs:1253
+#: ../src/microbe_stage/Microbe.cs:1229
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "ליקוט מוצלח"
 
-#: ../src/microbe_stage/Microbe.cs:1260
+#: ../src/microbe_stage/Microbe.cs:1236
 msgid "SUCCESSFUL_KILL"
 msgstr "הרג מוצלח"
 
-#: ../src/microbe_stage/Microbe.cs:1684
+#: ../src/microbe_stage/Microbe.cs:1671
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
@@ -1810,15 +1820,15 @@ msgstr "בריחה מבליעה"
 msgid "MICROBE_PATCH_LABEL"
 msgstr "אזור: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:624
+#: ../src/microbe_stage/MicrobeHUD.cs:622
 msgid "STUFF_AT"
 msgstr "דברים ב {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:446
+#: ../src/microbe_stage/MicrobeStage.cs:482
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeStage.cs:558
+#: ../src/microbe_stage/MicrobeStage.cs:594
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
