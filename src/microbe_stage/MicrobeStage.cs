@@ -525,7 +525,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [DeserializedCallbackAllowed]
     private void OnPlayerReproductionStatusChanged(Microbe player, bool ready)
     {
-        if (ready)
+        if (ready && player.Colony == null)
         {
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
             HUD.ShowReproductionDialog();

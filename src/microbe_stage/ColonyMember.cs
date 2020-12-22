@@ -66,8 +66,10 @@ public class ColonyMember
 
     public void RemoveFromColony()
     {
+        var members = Microbe.GetAllColonyMembers();
+
         OnRemovedFromColony?.Invoke(this, new EventArgs());
-        foreach (var microbe in Microbe.GetAllColonyMembers().Where(p => p != Microbe))
+        foreach (var microbe in members.Where(p => p != Microbe))
         {
             microbe.Colony.OnColonyMembersChanged?.Invoke(this,
                 new CollectionChangeEventArgs(CollectionChangeAction.Remove, this));
@@ -76,6 +78,8 @@ public class ColonyMember
         Microbe = null;
 
         Master?.BindingTo.Remove(this);
+        if (Master?.Microbe.GetAllColonyMembers().Count == 1)
+            Master.RemoveFromColony();
 
         Master = null;
         OffsetToMaster = null;
