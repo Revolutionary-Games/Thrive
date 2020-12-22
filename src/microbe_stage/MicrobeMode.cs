@@ -3,5 +3,5 @@
     NONE,
     BINDING,
     UNBINDING,
-    ENGULF
+    ENGULF,
 }
