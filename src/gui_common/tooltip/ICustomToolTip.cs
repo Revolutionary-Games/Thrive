@@ -1,7 +1,7 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
-///   Interface for all custom tooltip nodes
+///   Interface for all custom tooltip Control nodes
 /// </summary>
 public interface ICustomToolTip
 {

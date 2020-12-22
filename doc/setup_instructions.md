@@ -20,11 +20,6 @@ Thank you!
 Prerequisites
 =============
 
-NOTE: since the move to Godot the setup process has changed a lot and
-these instructions are not as battle tested as before, so if you have
-issues please don't hesitate to bring them up.
-
-
 Godot mono version
 ------------------
 
@@ -451,6 +446,77 @@ https://www.jetbrains.com/help/resharper/InspectCode.html
 On Linux you need to install the dotnet runtime for them to work. On
 Fedora this can be done with: `sudo dnf install dotnet-runtime-3.1`
 
+## Localization tools
+
+If you are planning to do anything that would require translation, or
+simply to translate the game into your locale language you may need
+a few more tools.
+
+**NOTE: if you are simply planning to edit or add a new localization, Poedit is
+enough. You can find more information on how to translate the game with poedit
+ [here](working_with_translations.md#Translating-the-game-into-a-new-language).**
+
+### Python 3
+
+The tool used to extract strings from the game files is using
+[Python 3](https://www.python.org/downloads).
+You'll need it if you are planning to add or edit strings in the game.
+
+NOTE: Linux users should already have it installed.
+You can use the command `python --version` to make sure you have it. On some distros 
+the command is named `python3`, in which case `pip` maybe named `pip3`.
+If you don't have Python, you can use the package manager of your distribution to 
+install the `python3` package.
+
+### Babel and Babel_thrive
+
+Babel and its extension [Babel_thrive](https://github.com/Revolutionary-Games/pybabel-godot-thrive)
+are the tools used for extracting strings from the game files.
+Just like Python, you'll want to download these if you are planning
+to add or edit strings into the game.
+
+You can quickly install these by using the command 
+`pip install Babel Babel-Thrive` or 
+`pip3 install Babel Babel-Thrive`
+if you have Python installed. On Linux you need to use the `--user`
+flag to get the `pybabel` command to work, installing with sudo won't
+work.
+
+A slightly more difficult way to install the required pip packages is
+to first navigate in command prompt / terminal to the Thrive base
+folder and run the following:
+
+```
+pip install -r docker/jsonlint/requirements.txt --user
+```
+
+That will make sure that you have compatible versions of the
+requirements. If you try to update for example the Babel version, the
+plain install command won't do it. So it is recommended that you use
+the above command with the provided `requirements.txt` file which
+tells pip the exact versions that should be installed.
+
+### Poedit (optional)
+
+[Poedit](https://poedit.net/) is a free .pot and .po file editor that may
+make your life easier when working on translation files.
+
+It is needed to create new .po files without using the command line tools.
+
+NOTE: Poedit will complain about translation format since it was made to
+directly use text as keys. Those can be ignored.
+
+### Gettext tools
+
+If you want to run the translation scripts and checks, you need the gettext command 
+line tools. They are also an alternative to using Poedit, with the gettext tools you can just
+use them and a plain text editor to work on translations.
+
+On Windows you can download precompiled versions of the tools. You will likely need to extract
+them and then add the folder you extracted them in to your PATH for them to be found.
+
+On Linux use your package manager to install the `gettext` package.
+
 ## Running the Format Checks
 
 When you are getting ready to commit you should run `ruby
@@ -464,17 +530,25 @@ the pre-commit hook section for how to speed things up.
 Pre-commit hook
 ---------------
 
-On Linux you can enable a pre-commit hook to automatically run the
+You can enable a pre-commit hook to automatically run the
 formatting checks before each commit to avoid accidentally committing
-code with formatting issues. To install the hook run the following
-script:
+code with formatting issues.
+
+To install pre-commit run `pip install pre-commit`. On Linux you can
+optionally install it with `sudo` or with the `--user` flag as was
+done for the dependencies needed for working with translations. More
+instruction for installing pre-commit can be found
+[here](https://pre-commit.com/#installation).
+
+Then, to install the hook run the following in the Thrive source
+folder:
 
 ```sh
-./install_git_hooks.rb
+pre-commit install
 ```
 
 The hook has the advantage that it will only run the checks on the
-files staged for commit saving many minutes of time. You can manually
+files staged for commit, saving many minutes of time. You can manually
 emulate this by creating a file in the Thrive folder called
 `files_to_check.txt` with one relative path per line specifying which
 files to check.
@@ -500,3 +574,8 @@ Linux to get the latest version of mono.
 
 Your locally cloned Thrive version may get messed up from time to time.
 [Here are the steps to fix it.](https://wiki.revolutionarygamesstudio.com/wiki/Cleaning_Local_Thrive_Version)
+
+### Translating the game
+
+You can find information about how to translate the game on the 
+[Working with translation page](working_with_translations.md).

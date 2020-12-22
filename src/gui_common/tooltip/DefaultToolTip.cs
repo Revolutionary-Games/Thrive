@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   For a more generic use and less customized tooltips, only has message text
@@ -30,7 +30,7 @@ public class DefaultToolTip : Control, ICustomToolTip
     }
 
     /// <summary>
-    ///   Only get and set the node name since this tooltip only shows a message
+    ///   Only get and sets node name since this tooltip only shows a message
     /// </summary>
     public string DisplayName
     {
@@ -62,7 +62,11 @@ public class DefaultToolTip : Control, ICustomToolTip
 
     public override void _Ready()
     {
-        descriptionLabel = GetNode<Label>(DescriptionLabelPath);
+        // TODO: for some reason the NodePath wouldn't set correctly if the scene is instantiated with
+        // a different node name, so this use hard-coded path for now
+        // See https://github.com/Revolutionary-Games/Thrive/issues/1855
+        descriptionLabel = GetNode<Label>("MarginContainer/VBoxContainer/Description");
+
         tween = GetNode<Tween>("Tween");
 
         UpdateDescription();

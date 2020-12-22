@@ -116,6 +116,12 @@ Code style rules
   runnable scripts they need to begin with a shebang and be marked
   executable.
 
+- Defensive programming is recommended. The idea is to write code that
+  expects other parts of the codebase to mess up somewhere. For example,
+  when checking if a species is extinct, instead of checking
+  `population == 0`, it is recommended to do `population <= 0` to guard
+  against negative population bugs.
+
 - Finally you should attempt to reach the abstract goal of clean
   code. Here are some concepts that are indicative of good code (and
   breaking these can be bad code): Liskov substitution principle,
@@ -155,6 +161,14 @@ Godot usage
   needed. An explicit need is for example loading from JSON or from
   user input. String literal colours should not be used in C# source
   code.
+
+- When using fonts, don't directly load the .ttf file with an embedded
+  font in a scene file. Instead create a font definition in
+  `src/gui_common/fonts` folder and use that. This is needed because
+  all fonts must have fallback fonts defined for translations that use
+  character sets that aren't in the main fonts, for example
+  Chinese. All fonts should be truetype (`.ttf`) and stored in
+  `assets/fonts`.
 
 Other files
 -----------

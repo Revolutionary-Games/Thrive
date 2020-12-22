@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   Wrapper class for settings options containing the value and a delegate that provides a callback for
@@ -66,6 +66,11 @@ public class SettingValue<TValueType> : IAssignableSetting
 
     public bool Equals(SettingValue<TValueType> obj)
     {
+        if (ReferenceEquals(value, null))
+        {
+            return ReferenceEquals(obj.value, null);
+        }
+
         if (!value.Equals(obj.value))
             return false;
 

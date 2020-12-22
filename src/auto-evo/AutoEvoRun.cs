@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,13 +14,6 @@ using Thread = System.Threading.Thread;
 /// </summary>
 public class AutoEvoRun
 {
-    // Configuration parameters for auto evo
-    // TODO: allow loading these from JSON
-    private const int MUTATIONS_PER_SPECIES = 3;
-    private const bool ALLOW_NO_MUTATION = true;
-    private const int MOVE_ATTEMPTS_PER_SPECIES = 5;
-    private const bool ALLOW_NO_MIGRATION = true;
-
     private readonly RunParameters parameters;
 
     /// <summary>
@@ -115,13 +109,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return "Aborted.";
+                return TranslationServer.Translate("ABORTED");
 
             if (Finished)
-                return "Finished.";
+                return TranslationServer.Translate("FINISHED");
 
             if (!Running)
-                return "Not running.";
+                return TranslationServer.Translate("NOT_RUNNING");
 
             int total = totalSteps;
 
@@ -129,10 +123,13 @@ public class AutoEvoRun
             {
                 var percentage = CompletionFraction * 100;
 
-                return $"{percentage:F1}% done. {CompleteSteps:n0}/{total:n0} steps.";
+                // {0:F1}% done. {1:n0}/{2:n0} steps.
+                return string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("AUTOEVO_STEPS_DONE"),
+                    percentage, CompleteSteps, total);
             }
 
-            return "Starting";
+            return TranslationServer.Translate("STARTING");
         }
     }
 
@@ -271,11 +268,10 @@ public class AutoEvoRun
 
         foreach (var entry in combinedExternalEffects)
         {
-            builder.Append(entry.Key.Item1.FormattedName);
-            builder.Append(" population changed by ");
-            builder.Append(entry.Value);
-            builder.Append(" because of: ");
-            builder.Append(entry.Key.Item2);
+            // entry.Value is the amount, Item2 is the reason string
+            builder.Append(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("AUTOEVO_POPULATION_CHANGED"),
+                entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
             builder.Append("\n");
         }
 
@@ -360,6 +356,8 @@ public class AutoEvoRun
 
         var map = parameters.World.Map;
 
+        var autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
+
         foreach (var entry in map.Patches)
         {
             foreach (var speciesEntry in entry.Value.SpeciesInPatch)
@@ -376,10 +374,12 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key, MUTATIONS_PER_SPECIES,
-                        ALLOW_NO_MUTATION));
-                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key, MOVE_ATTEMPTS_PER_SPECIES,
-                        ALLOW_NO_MIGRATION));
+                    runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
+                        autoEvoConfiguration.MutationsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
+                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key,
+                        autoEvoConfiguration.MoveAttemptsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
                 }
             }
         }

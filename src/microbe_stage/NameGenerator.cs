@@ -19,9 +19,8 @@ public class NameGenerator : IRegistryType
     public List<string> Suffixes;
 
     /// <summary>
-    /// Unused
+    ///   Unused
     /// </summary>
-    /// <value>The name of the internal.</value>
     public string InternalName { get; set; }
 
     /// <summary>
@@ -138,5 +137,9 @@ public class NameGenerator : IRegistryType
         Suffixes = new List<string>();
         Suffixes.AddRange(SuffixesC);
         Suffixes.AddRange(SuffixesV);
+    }
+
+    public void ApplyTranslations()
+    {
     }
 }

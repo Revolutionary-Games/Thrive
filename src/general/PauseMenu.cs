@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : Control
+public class PauseMenu : ControlWithInput
 {
     [Export]
     public string HelpCategory;
@@ -59,6 +59,7 @@ public class PauseMenu : Control
         // This needs to be done early here to make sure the help screen loads the right text
         helpScreen = GetNode<HelpScreen>(HelpScreenPath);
         helpScreen.Category = HelpCategory;
+        base._EnterTree();
     }
 
     public override void _Ready()
@@ -69,28 +70,33 @@ public class PauseMenu : Control
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    [RunOnKeyDown("ui_cancel")]
+    public void EscapeKeyPressed()
     {
-        if (@event.IsActionPressed("ui_cancel"))
+        if (Visible)
         {
-            if (Visible)
-            {
-                SetActiveMenu("primary");
+            // Do not close the window if the user is rebinding the input keys
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/1888
+            if (InputGroupList.WasListeningForInput)
+                return;
 
-                EmitSignal(nameof(OnClosed));
-            }
-            else if (NoExclusiveTutorialActive())
-            {
-                EmitSignal(nameof(OnOpenWithKeyPress));
-            }
+            SetActiveMenu("primary");
+
+            EmitSignal(nameof(OnClosed));
         }
-        else if (@event.IsActionPressed("help"))
+        else if (NoExclusiveTutorialActive())
         {
-            if (NoExclusiveTutorialActive())
-            {
-                EmitSignal(nameof(OnOpenWithKeyPress));
-                ShowHelpScreen();
-            }
+            EmitSignal(nameof(OnOpenWithKeyPress));
+        }
+    }
+
+    [RunOnKeyDown("help")]
+    public void ShowHelpPressed()
+    {
+        if (NoExclusiveTutorialActive())
+        {
+            EmitSignal(nameof(OnOpenWithKeyPress));
+            ShowHelpScreen();
         }
     }
 

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Used to display a modifier info as UI element on a selection menu tooltip
@@ -10,7 +10,7 @@ public class ModifierInfoLabel : HBoxContainer
     private Label valueLabel;
     private TextureRect icon;
 
-    private string modifierName;
+    private string displayName;
     private string modifierValue;
     private Color modifierValueColor;
     private Texture iconTexture;
@@ -18,12 +18,12 @@ public class ModifierInfoLabel : HBoxContainer
     private bool showValue = true;
 
     [Export]
-    public string ModifierName
+    public string DisplayName
     {
-        get => modifierName;
+        get => displayName;
         set
         {
-            modifierName = value;
+            displayName = value;
             UpdateName();
         }
     }
@@ -87,7 +87,7 @@ public class ModifierInfoLabel : HBoxContainer
     }
 
     /// <summary>
-    ///   Helper method for setting the color of the modifier value text to either green,
+    ///   Helper method for setting the color of the value text to either green,
     ///   white or red based on the magnitude of the given numerical value.
     /// </summary>
     /// <param name="value">Positive numbers = green, negative numbers = red.</param>
@@ -119,14 +119,7 @@ public class ModifierInfoLabel : HBoxContainer
         if (nameLabel == null)
             return;
 
-        if (string.IsNullOrEmpty(ModifierName))
-        {
-            modifierName = nameLabel.Text;
-        }
-        else
-        {
-            nameLabel.Text = modifierName;
-        }
+        nameLabel.Text = displayName;
     }
 
     private void UpdateValue()
@@ -136,23 +129,9 @@ public class ModifierInfoLabel : HBoxContainer
 
         valueLabel.Visible = ShowValue;
 
-        if (string.IsNullOrEmpty(ModifierValue))
-        {
-            modifierValue = valueLabel.Text;
-        }
-        else
-        {
-            valueLabel.Text = modifierValue;
-        }
+        valueLabel.Text = modifierValue;
 
-        if (ModifierValueColor == new Color(0, 0, 0, 0))
-        {
-            valueLabel.GetColor("font_color");
-        }
-        else
-        {
-            valueLabel.AddColorOverride("font_color", modifierValueColor);
-        }
+        valueLabel.AddColorOverride("font_color", modifierValueColor);
     }
 
     private void UpdateIcon()
@@ -160,13 +139,6 @@ public class ModifierInfoLabel : HBoxContainer
         if (icon == null)
             return;
 
-        if (ModifierIcon == null)
-        {
-            iconTexture = icon.Texture;
-        }
-        else
-        {
-            icon.Texture = iconTexture;
-        }
+        icon.Texture = iconTexture;
     }
 }

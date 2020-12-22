@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Displayes a scene based on its path. Also stores the previous path to avoid duplicate loads

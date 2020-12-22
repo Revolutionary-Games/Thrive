@@ -188,6 +188,7 @@ public static class SpawnHelpers
         // Settings need to be applied before adding it to the scene
         var selectedMesh = chunkType.Meshes.Random(random);
         chunk.GraphicsScene = selectedMesh.LoadedScene;
+        chunk.ConvexPhysicsMesh = selectedMesh.LoadedConvexShape;
 
         if (chunk.GraphicsScene == null)
             throw new ArgumentException("couldn't find a graphics scene for a chunk");
@@ -245,9 +246,6 @@ public static class SpawnHelpers
 
         worldRoot.AddChild(agent);
         agent.Translation = location + (direction * 1.5f);
-
-        // TODO: pass in this random from somewhere
-        agent.Rotate(new Vector3(0, 1, 0), 2 * Mathf.Pi * (float)new Random().NextDouble());
 
         agent.ApplyCentralImpulse(normalizedDirection *
             Constants.AGENT_EMISSION_IMPULSE_STRENGTH);

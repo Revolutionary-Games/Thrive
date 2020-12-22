@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
+[UseThriveSerializer]
 public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
 {
     /// <summary>

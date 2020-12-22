@@ -22,7 +22,7 @@ public class MicrobeAI
     private int boredom;
 
     // ReSharper disable once CollectionNeverQueried.Local
-    [JsonIgnore]
+    [JsonProperty]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
     [JsonProperty]
@@ -42,26 +42,26 @@ public class MicrobeAI
 
     // All of the game entities stored here are probable places where disposed objects come from
     // so they are ignored for now
-    [JsonIgnore]
+    [JsonProperty]
     private Microbe predator;
 
     // Prey and predator lists
-    [JsonIgnore]
+    [JsonProperty]
     private List<Microbe> predatoryMicrobes = new List<Microbe>();
 
     [JsonProperty]
     private float previousAngle;
 
-    [JsonIgnore]
+    [JsonProperty]
     private Microbe prey;
 
-    [JsonIgnore]
+    [JsonProperty]
     private List<Microbe> preyMicrobes = new List<Microbe>();
 
     [JsonProperty]
     private bool preyPegged;
 
-    [JsonIgnore]
+    [JsonProperty]
     private FloatingChunk targetChunk;
 
     [JsonProperty]
@@ -283,23 +283,6 @@ public class MicrobeAI
 
         // Clear the absorbed compounds for run and rumble
         microbe.TotalAbsorbedCompounds.Clear();
-    }
-
-    /// <summary>
-    ///   Clears all the found targets. Currently used for loading from saves
-    /// </summary>
-    public void ClearAfterLoadedFromSave(Microbe newParent)
-    {
-        microbe = newParent;
-        chunkList?.Clear();
-        predator = null;
-        predatoryMicrobes.Clear();
-        prey = null;
-        preyMicrobes.Clear();
-        targetChunk = null;
-
-        // Probably should clear this
-        preyPegged = false;
     }
 
     // There are cases when we want either ||, so here's two state rolls

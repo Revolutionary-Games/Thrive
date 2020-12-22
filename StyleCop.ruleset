@@ -36,6 +36,7 @@
     <Rule Id="CA1814" Action="None" /> <!-- don't recommend jagged arrays -->
     <Rule Id="CA1821" Action="Warning" />
     <Rule Id="CA1822" Action="None" /> <!-- don't suggest everything including godot callbacks to be static -->
+    <Rule Id="CA1823" Action="None" /> <!-- allow unused fields -->
     <Rule Id="CA1900" Action="Warning" />
     <Rule Id="CA1901" Action="Warning" />
     <Rule Id="CA2000" Action="None" /> <!-- literally everything should be disposed... -->

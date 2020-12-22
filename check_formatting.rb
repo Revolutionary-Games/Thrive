@@ -7,6 +7,7 @@ require 'optparse'
 require 'find'
 require 'digest'
 require 'nokogiri'
+require 'set'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
@@ -15,17 +16,30 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 MAX_LINE_LENGTH = 120
 DUPLICATE_THRESSHOLD = 110
 
+LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
+
 # Pretty generous, so can't detect like small models with only a few
 # vertices, as text etc. is on a single line
 SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
 
-VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode].freeze
-DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode].freeze
+VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
+DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
 
 ONLY_FILE_LIST = 'files_to_check.txt'
 
+LOCALE_TEMP_SUFFIX = '.temp_check'
+MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
+FUZZY_TRANSLATION_REGEX = /^#, fuzzy/.freeze
+PLAIN_QUOTED_MESSAGE = /^"(.*)"/.freeze
+GETTEXT_HEADER_NAME = /^([\w-]+):\s+/.freeze
+
+EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
+
 OUTPUT_MUTEX = Mutex.new
 MSBUILD_MUTEX = Mutex.new
+
+# Bom bytes
+BOM = [239, 187, 191].freeze
 
 @options = {
   checks: DEFAULT_CHECKS,
@@ -165,6 +179,15 @@ def process_file?(filepath)
   end
 end
 
+def file_begins_with_bom(path)
+  raw_data = File.binread(path, 3)
+
+  # Unpack as raw bytes for comparison
+  potential_bom = raw_data.unpack('CCC')
+
+  potential_bom == BOM
+end
+
 # Different handle functions for file checks
 def handle_gd_file(_path)
   OUTPUT_MUTEX.synchronize do
@@ -175,6 +198,15 @@ end
 
 def handle_cs_file(path)
   errors = false
+
+  # Check for BOM first
+  unless file_begins_with_bom path
+    OUTPUT_MUTEX.synchronize do
+      error 'File should begin with UTF-8 BOM'
+      errors = true
+    end
+  end
+
   original = File.read(path)
   line_number = 0
 
@@ -266,6 +298,14 @@ def handle_tscn_file(path)
         errors = true
       end
     end
+
+    if line.include? EMBEDDED_FONT_SIGNATURE
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} contains embedded font. "\
+              "Don't embed fonts in scenes, instead place font resources in a separate .tres"
+        errors = true
+      end
+    end
   end
 
   errors
@@ -295,6 +335,116 @@ def handle_csproj_file(path)
   errors
 end
 
+def handle_po_file(path)
+  errors = false
+
+  is_english = path.end_with? 'en.po'
+  in_header = true
+  last_msgstr = nil
+  last_msgid = nil
+  seen_message = false
+
+  msg_ids = Set[]
+
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if is_english && line.match(FUZZY_TRANSLATION_REGEX)
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} has fuzzy (marked needs changes) translation, not allowed for en"
+        errors = true
+      end
+    end
+
+    matches = line.match(MSG_ID_REGEX)
+
+    if matches
+
+      unless in_header
+        if is_english && (!last_msgstr || last_msgstr.strip.empty?)
+          OUTPUT_MUTEX.synchronize do
+            error "Line #{line_number + 1} previous message (#{last_msgid}) is blank"
+            errors = true
+          end
+        end
+
+        # TODO: might need a specific whitelist
+        if last_msgid && last_msgstr && (last_msgid == last_msgstr) &&
+           last_msgstr.include?('_')
+          OUTPUT_MUTEX.synchronize do
+            error "Line #{line_number + 1} previous message (#{last_msgid}) " \
+                  'is the same as the message key'
+            errors = true
+          end
+        end
+      end
+
+      last_msgid = matches[1]
+      last_msgstr = ''
+
+      next if in_header
+
+      unless last_msgid
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has empty msgid"
+          errors = true
+        end
+      end
+
+      if last_msgid.upcase != last_msgid &&
+         !LOCALIZATION_UPPERCASE_EXCEPTIONS.include?(last_msgid)
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has message with non-uppercase characters " \
+                " (#{last_msgid})"
+          errors = true
+        end
+      end
+
+      if last_msgid.include? ' '
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has message with with a space " \
+                " (#{last_msgid})"
+          errors = true
+        end
+      end
+
+      if msg_ids.include? last_msgid
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has duplicate msgid, #{last_msgid} " \
+                'already appeared in the file'
+          errors = true
+        end
+      else
+        msg_ids.add last_msgid
+      end
+
+      next
+    end
+
+    matches = line.match(/^msgstr "(.*)"$/)
+
+    matches ||= line.match(/^"(.*)"$/)
+
+    if matches
+      seen_message = true if in_header
+
+      last_msgstr += matches[1]
+      next
+    end
+
+    # Blank / comment
+    in_header = false if in_header && seen_message
+  end
+
+  # TODO: solve code duplication with this
+  if is_english && (!last_msgstr || last_msgstr.strip.empty?)
+    OUTPUT_MUTEX.synchronize do
+      error "previous message (last in file) (#{last_msgid}) is blank"
+      errors = true
+    end
+  end
+
+  errors
+end
+
 # Forwards the file handling to a specific handler function if
 # something should be done with the file type
 def handle_file(path)
@@ -312,6 +462,8 @@ def handle_file(path)
     handle_csproj_file path
   elsif path =~ /\.tscn$/
     handle_tscn_file path
+  elsif path =~ /\.po$/
+    handle_po_file path
   else
     false
   end
@@ -521,6 +673,135 @@ def run_duplicate_finder
   exit 2
 end
 
+def cleanup_temp_check_locales
+  Dir['locale/**/*' + LOCALE_TEMP_SUFFIX].each do |f|
+    File.unlink f
+  end
+end
+
+def find_next_msg_id(reader)
+  loop do
+    line = reader.gets
+
+    if line.nil?
+      # File ended
+      return nil
+    end
+
+    matches = line.match(MSG_ID_REGEX)
+
+    return matches[1] if matches
+  end
+end
+
+def read_gettext_header_order(reader)
+  expected_header_msg = find_next_msg_id reader
+
+  onError 'File ended when looking for gettext header' if expected_header_msg.nil?
+
+  if expected_header_msg != ''
+    error 'Could not find gettext header, expected blank msg id, ' \
+          "but got: #{expected_header_msg}"
+    return ['header not found...']
+  end
+
+  headers = []
+
+  # Read content lines
+  loop do
+    line = reader.gets
+
+    break if line.nil?
+
+    break if line.strip.empty?
+
+    matches = line.match(PLAIN_QUOTED_MESSAGE)
+
+    next unless matches
+
+    matches = matches[1].match(GETTEXT_HEADER_NAME)
+
+    headers.push matches[1] if matches
+  end
+
+  headers
+end
+
+def run_localization_checks
+  cleanup_temp_check_locales
+
+  # Create duplicates of all .po files for msgmerge
+  Dir['locale/**/*.po'].each do |f|
+    FileUtils.cp f, f + LOCALE_TEMP_SUFFIX
+  end
+
+  status, output = runOpen3CaptureOutput(
+    'ruby', 'scripts/update_localization.rb', '--pot-suffix',
+    '.pot' + LOCALE_TEMP_SUFFIX, '--po-suffix', '.po' + LOCALE_TEMP_SUFFIX
+  )
+
+  if status != 0
+    OUTPUT_MUTEX.synchronize do
+      puts output
+      onError 'Failed to run translation generation to check if current files are up to date'
+    end
+  end
+
+  issues_found = false
+
+  Dir['locale/**/*' + LOCALE_TEMP_SUFFIX].each do |f|
+    original = f.gsub LOCALE_TEMP_SUFFIX, ''
+    updated = f
+
+    File.open(original, encoding: 'utf-8') do |original_reader|
+      File.open(updated, encoding: 'utf-8') do |updated_reader|
+        # Check that headers are in the right order
+        original_header_order = read_gettext_header_order original_reader
+        updated_header_order = read_gettext_header_order updated_reader
+
+        if original_header_order != updated_header_order
+          OUTPUT_MUTEX.synchronize do
+            puts "Headers are in wrong order in #{original}"
+            error "Header order should be: #{original_header_order}, but " \
+                  "it is: #{updated_header_order}"
+            issues_found = true
+          end
+        end
+
+        loop do
+          original_message = find_next_msg_id original_reader
+          updated_message = find_next_msg_id updated_reader
+
+          if original_message.nil? && updated_message.nil?
+            # Both files ended
+            break
+          end
+
+          next unless original_message != updated_message
+
+          OUTPUT_MUTEX.synchronize do
+            puts "When comparing #{original}, with freshly updated: #{updated}:"
+            error "Original (committed) file has msgid: #{original_message}, while it " \
+                  "should have #{updated_message} at this point in the file"
+            issues_found = true
+          end
+          break
+        end
+      end
+    end
+  end
+
+  cleanup_temp_check_locales
+
+  return unless issues_found
+
+  OUTPUT_MUTEX.synchronize do
+    error 'Translations are not up to date. Please rerun scripts/update_localization.rb'
+  end
+
+  exit 2
+end
+
 run_check = proc { |check|
   if check == 'compile'
     run_compile
@@ -532,8 +813,11 @@ run_check = proc { |check|
     run_cleanup_code
   elsif check == 'duplicatecode'
     run_duplicate_finder
+  elsif check == 'localization'
+    run_localization_checks
   else
     OUTPUT_MUTEX.synchronize do
+      puts "Valid checks: #{VALID_CHECKS}"
       onError "Unknown check type: #{check}"
     end
   end

@@ -1,11 +1,19 @@
-﻿using Godot;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using Godot;
 using Newtonsoft.Json;
+using Environment = System.Environment;
 
 /// <summary>
 ///   Class that handles storing and applying player changeable game settings.
 /// </summary>
 public class Settings
 {
+    private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
+    private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
+    private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
+
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
     /// </summary>
@@ -17,9 +25,16 @@ public class Settings
 
     private Settings()
     {
+        // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
+        if (DefaultLanguage.Length < 1)
+            GD.PrintErr("Default locale is empty");
     }
 
     public static Settings Instance => SingletonInstance;
+
+    public static string DefaultLanguage => DefaultLanguageValue;
+
+    public static CultureInfo DefaultCulture => DefaultCultureValue;
 
     // Graphics Properties
 
@@ -107,6 +122,8 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
+    public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
+
     // Performance Properties
 
     /// <summary>
@@ -117,7 +134,7 @@ public class Settings
     /// <remarks>
     ///   <para>
     ///     This should be made user configurable for different
-    ///     computers. The choises should probably be:
+    ///     computers. The choices should probably be:
     ///     0.0f, 0.020f, 0.040f, 0.1f, 0.25f
     ///   </para>
     /// </remarks>
@@ -174,6 +191,31 @@ public class Settings
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
+    /// <summary>
+    ///   The current controls of the game.
+    ///   It stores the godot actions like g_move_left and
+    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
+    /// </summary>
+    public SettingValue<InputDataList> CurrentControls { get; set; } =
+        new SettingValue<InputDataList>(GetDefaultControls());
+
+    /// <summary>
+    ///   If false username will be set to System username
+    /// </summary>
+    public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Username that the user can choose
+    /// </summary>
+    public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+
+    [JsonIgnore]
+    public string ActiveUsername =>
+        CustomUsernameEnabled &&
+        CustomUsername.Value != null ?
+            CustomUsername.Value :
+            Environment.UserName;
+
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
@@ -186,6 +228,70 @@ public class Settings
     public static bool operator !=(Settings lhs, Settings rhs)
     {
         return !(lhs == rhs);
+    }
+
+    /// <summary>
+    ///   Returns the default controls which never change, unless there is a new release.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This relies on the static member holding the default controls to be initialized before the code has a chance
+    ///     to modify the controls.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The default controls</returns>
+    public static InputDataList GetDefaultControls()
+    {
+        return (InputDataList)DefaultControls.Clone();
+    }
+
+    /// <summary>
+    ///   Returns the currently applied controls. Gathers the data from the godot InputMap.
+    ///   Required to get the default controls.
+    /// </summary>
+    /// <returns>The current inputs</returns>
+    public static InputDataList GetCurrentlyAppliedControls()
+    {
+        return new InputDataList(InputMap.GetActions().OfType<string>()
+            .ToDictionary(p => p,
+                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                    x => new SpecifiedInputKey(x)).ToList()));
+    }
+
+    /// <summary>
+    ///   Tries to return a C# culture info from Godot language name
+    /// </summary>
+    /// <param name="language">The language name to try to understand</param>
+    /// <returns>The culture info</returns>
+    public static CultureInfo GetCultureInfo(string language)
+    {
+        try
+        {
+            return new CultureInfo(language);
+        }
+        catch (CultureNotFoundException)
+        {
+            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
+
+            if (!language.Contains("_"))
+                throw;
+
+            // So we first try converting "_" to "-" and go with that
+            language = language.Replace('_', '-');
+
+            try
+            {
+                return new CultureInfo(language);
+            }
+            catch (CultureNotFoundException)
+            {
+                language = language.Split("-")[0];
+
+                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
+                    language);
+                return new CultureInfo(language);
+            }
+        }
     }
 
     public override bool Equals(object obj)
@@ -290,10 +396,28 @@ public class Settings
     /// <summary>
     ///   Applies all current settings to any applicable engine systems.
     /// </summary>
-    public void ApplyAll()
+    /// <param name="delayedApply">
+    ///   If true things that can't be immediately on game startup be applied, are applied later
+    /// </param>
+    public void ApplyAll(bool delayedApply = false)
     {
-        ApplyGraphicsSettings();
-        ApplySoundSettings();
+        if (delayedApply)
+        {
+            GD.Print("Doing delayed apply for some settings");
+            Invoke.Instance.Perform(ApplyGraphicsSettings);
+
+            // These need to be also delay applied, otherwise when debugging these overwrite the default settings
+            Invoke.Instance.Queue(ApplySoundSettings);
+        }
+        else
+        {
+            ApplyGraphicsSettings();
+            ApplySoundSettings();
+        }
+
+        ApplyLanguageSettings();
+        ApplyWindowSettings();
+        ApplyInputSettings();
         ApplyWindowSettings();
     }
 
@@ -338,6 +462,14 @@ public class Settings
     }
 
     /// <summary>
+    ///   Applies the current controls to the InputMap.
+    /// </summary>
+    public void ApplyInputSettings()
+    {
+        CurrentControls.Value.ApplyToGodotInputMap();
+    }
+
+    /// <summary>
     ///   Applies current window settings to any applicable engine systems.
     /// </summary>
     public void ApplyWindowSettings()
@@ -347,14 +479,58 @@ public class Settings
     }
 
     /// <summary>
+    ///   Applies current language settings to any applicable engine systems.
+    /// </summary>
+    public void ApplyLanguageSettings()
+    {
+        string language = SelectedLanguage.Value;
+        CultureInfo cultureInfo;
+
+        // Process locale info in case it isn't exactly right
+        if (string.IsNullOrEmpty(language))
+        {
+            language = DefaultLanguage;
+            cultureInfo = DefaultCulture;
+        }
+        else
+        {
+            cultureInfo = GetCultureInfo(language);
+        }
+
+        // Set locale for the game.
+        TranslationServer.SetLocale(language);
+
+        CultureInfo.CurrentCulture = cultureInfo;
+        CultureInfo.CurrentUICulture = cultureInfo;
+
+        SimulationParameters.Instance.ApplyTranslations();
+    }
+
+    /// <summary>
     ///   Loads, initializes and returns the global settings object.
     /// </summary>
     private static Settings InitializeGlobalSettings()
     {
-        Settings settings = LoadSettings();
-        settings.ApplyAll();
+        try
+        {
+            Settings settings = LoadSettings();
 
-        return settings;
+            if (settings == null)
+            {
+                GD.PrintErr("Loading settings from file failed, using default settings");
+                settings = new Settings();
+            }
+
+            settings.ApplyAll(true);
+
+            return settings;
+        }
+        catch (Exception e)
+        {
+            // Godot doesn't seem to catch this nicely so we print the errors ourselves
+            GD.PrintErr("Error initializing global settings: ", e);
+            throw;
+        }
     }
 
     /// <summary>

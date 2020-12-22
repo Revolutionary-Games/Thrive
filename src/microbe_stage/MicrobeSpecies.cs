@@ -33,6 +33,17 @@ public class MicrobeSpecies : Species
         set => throw new NotImplementedException();
     }
 
+    public override void RepositionToOrigin()
+    {
+        var centerOfMass = Organelles.CenterOfMass;
+
+        foreach (var organelle in Organelles)
+        {
+            // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
+            organelle.Position -= centerOfMass;
+        }
+    }
+
     public void SetInitialCompoundsForDefault()
     {
         InitialCompounds.Clear();

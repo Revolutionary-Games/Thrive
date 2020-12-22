@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -114,16 +114,16 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         var modifierInfo = (ModifierInfoLabel)ModifierInfoScene.Instance();
 
-        modifierInfo.ModifierName = name;
+        modifierInfo.DisplayName = name;
         modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
 
         modifierInfoList.AddChild(modifierInfo);
         modifierInfos.Add(modifierInfo);
     }
 
-    public ModifierInfoLabel GetModifierInfo(string name)
+    public ModifierInfoLabel GetModifierInfo(string nodeName)
     {
-        return modifierInfos.Find(found => found.Name == name);
+        return modifierInfos.Find(found => found.Name == nodeName);
     }
 
     /// <summary>
@@ -183,7 +183,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     var amountLabel = new Label();
                     amountLabel.Text = Math.Round(inputCompound.Amount, 3) + " ";
                     processBody.AddChild(amountLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.Name));
+                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.InternalName));
                 }
 
                 // And the arrow
@@ -220,11 +220,11 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 amountLabel.Text = stringBuilder.ToString();
 
                 processBody.AddChild(amountLabel);
-                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.Name));
+                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.InternalName));
             }
 
             var perSecondLabel = new Label();
-            perSecondLabel.Text = "/second";
+            perSecondLabel.Text = TranslationServer.Translate("PER_SECOND_SLASH");
 
             processBody.AddChild(perSecondLabel);
 
@@ -260,7 +260,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     percentageLabel.Text = Math.Round(environmentCompound.AvailableAmount * 100, 1) + "%";
 
                     processBody.AddChild(percentageLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.Name));
+                    processBody.AddChild(
+                        GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.InternalName));
                 }
             }
 
@@ -269,9 +270,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     /// <summary>
-    ///   Used to set the value of all the membrane type modifiers on this tooltip relative
-    ///   to the currently selected membrane type. This currently only reads from the preadded
-    ///   modifier UI elements on this tooltip and doesn't actually create them on runtime.
+    ///   Sets the value of all the membrane type modifiers on this tooltip relative
+    ///   to the referenceMembrane. This currently only reads from the preadded modifier
+    ///   UI elements on this tooltip and doesn't actually create them on runtime.
     /// </summary>
     public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType)
     {
@@ -279,24 +280,24 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             var deltaValue = 0.0f;
 
-            switch (modifier.ModifierName)
+            switch (modifier.Name)
             {
-                case "Mobility":
+                case "mobility":
                     deltaValue = membraneType.MovementFactor - referenceMembrane.MovementFactor;
                     break;
-                case "Osmoregulation Cost":
+                case "osmoregulation_cost":
                     deltaValue = membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor;
                     break;
-                case "Resource Absorption Speed":
+                case "resource_absorption_speed":
                     deltaValue = membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor;
                     break;
-                case "Health":
+                case "health":
                     deltaValue = membraneType.Hitpoints - referenceMembrane.Hitpoints;
                     break;
-                case "Physical Resistance":
+                case "physical_resistance":
                     deltaValue = membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance;
                     break;
-                case "Toxin Resistance":
+                case "toxin_resistance":
                     deltaValue = membraneType.ToxinResistance - referenceMembrane.ToxinResistance;
                     break;
             }
@@ -307,7 +308,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 modifier.Visible = deltaValue != 0;
 
             // Apply the value to the text labels as percentage (except for Health)
-            if (modifier.ModifierName == "Health")
+            if (modifier.Name == "health")
             {
                 modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
                     + deltaValue.ToString("F0", CultureInfo.CurrentCulture);
@@ -318,7 +319,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     + (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture) + "%";
             }
 
-            if (modifier.ModifierName == "Osmoregulation Cost")
+            if (modifier.Name == "osmoregulation_cost")
             {
                 modifier.AdjustValueColor(deltaValue, true);
             }

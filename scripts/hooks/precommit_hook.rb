@@ -6,9 +6,11 @@ require 'English'
 
 CHANGED_FILE = 'files_to_check.txt'
 
-system 'git diff --cached --name-only > files_to_check.txt'
+output = `git diff --cached --name-only`.strip
 
-system './check_formatting.rb'
+File.write CHANGED_FILE, output
+
+system 'ruby ./check_formatting.rb'
 
 File.unlink CHANGED_FILE
 

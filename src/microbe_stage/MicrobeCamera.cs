@@ -1,16 +1,14 @@
-using System.Collections.Generic;
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
 /// </summary>
-public class MicrobeCamera : Camera
+public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 {
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
-    [JsonProperty]
     public Spatial ObjectToFollow;
 
     /// <summary>
@@ -21,9 +19,6 @@ public class MicrobeCamera : Camera
 
     [JsonIgnore]
     public Particles BackgroundParticles;
-
-    [JsonProperty]
-    public float CameraHeight;
 
     /// <summary>
     ///   How fast the camera zooming is
@@ -57,13 +52,33 @@ public class MicrobeCamera : Camera
     [JsonProperty]
     public bool DisableBackgroundParticles;
 
+    [Export]
     [JsonProperty]
     public float InterpolateSpeed = 0.3f;
 
+    [Export]
+    [JsonProperty]
+    public float InterpolateZoomSpeed = 0.3f;
+
     private ShaderMaterial materialToUpdate;
 
-    private Vector3 cursorWorldPos;
+    private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
     private bool cursorDirty = true;
+
+    /// <summary>
+    ///   How high the camera is above the followed object
+    /// </summary>
+    public float CameraHeight { get; set; }
+
+    /// <summary>
+    ///   If true zoom speed is adjusted based on the elapsed time.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     At least in my experience this actually makes the zooming feel more laggy -hhyyrylainen
+    ///   </para>
+    /// </remarks>
+    public bool FramerateAdjustZoomSpeed { get; set; }
 
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
@@ -79,6 +94,10 @@ public class MicrobeCamera : Camera
         }
         private set => cursorWorldPos = value;
     }
+
+    public bool NodeReferencesResolved { get; private set; }
+
+    public bool IsLoadedFromSave { get; set; }
 
     public void ResetHeight()
     {
@@ -96,24 +115,47 @@ public class MicrobeCamera : Camera
 
         materialToUpdate = (ShaderMaterial)material;
 
-        CursorWorldPos = new Vector3(0, 0, 0);
+        ResolveNodeReferences();
+
+        if (!IsLoadedFromSave)
+            ResetHeight();
+    }
+
+    public override void _EnterTree()
+    {
+        InputManager.RegisterReceiver(this);
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        InputManager.UnregisterReceiver(this);
+        base._ExitTree();
+    }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
 
         if (HasNode("BackgroundPlane"))
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
-
-        ResetHeight();
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]
+    public void Zoom(float delta, float value)
     {
-        if (@event.IsActionPressed("g_zoom_in", true))
+        if (FramerateAdjustZoomSpeed)
         {
-            CameraHeight -= ZoomSpeed;
+            // The constant on next line is for converting from delta corrected value to a good zooming speed.
+            // ZoomSpeed was not adjusted because different speeds were already used in different parts of the game.
+            CameraHeight += ZoomSpeed * value * delta * 165;
         }
-
-        if (@event.IsActionPressed("g_zoom_out", true))
+        else
         {
-            CameraHeight += ZoomSpeed;
+            CameraHeight += ZoomSpeed * value;
         }
 
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
@@ -124,17 +166,25 @@ public class MicrobeCamera : Camera
     /// </summary>
     public override void _PhysicsProcess(float delta)
     {
+        var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
+        var currentCameraHeight = new Vector3(0, Translation.y, 0);
+        var newCameraHeight = new Vector3(0, CameraHeight, 0);
+
         if (ObjectToFollow != null)
         {
-            var target = ObjectToFollow.Transform.origin + new Vector3(0, CameraHeight, 0);
+            var newFloorPosition = new Vector3(ObjectToFollow.Transform.origin.x, 0, ObjectToFollow.Transform.origin.z);
 
-            Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
+            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+
+            Translation = target;
         }
         else
         {
-            var target = new Vector3(Translation.x, CameraHeight, Translation.z);
+            var target = new Vector3(Translation.x, 0, Translation.z)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
 
-            Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
+            Translation = target;
         }
 
         if (BackgroundPlane != null)
@@ -142,7 +192,7 @@ public class MicrobeCamera : Camera
             var target = new Vector3(0, 0, -15 - CameraHeight);
 
             BackgroundPlane.Translation = BackgroundPlane.Translation.LinearInterpolate(
-                target, InterpolateSpeed);
+                target, InterpolateZoomSpeed);
         }
 
         cursorDirty = true;
@@ -171,16 +221,19 @@ public class MicrobeCamera : Camera
         }
     }
 
-    public void ApplyPropertiesFromSave(MicrobeCamera camera)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, camera, new List<string> { "ObjectToFollow" });
-    }
-
     private void UpdateCursorWorldPos()
     {
         var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
 
-        var mousePos = GetViewport().GetMousePosition();
+        var viewPort = GetViewport();
+
+        if (viewPort == null)
+        {
+            GD.PrintErr("Camera is not related to a viewport, can't update mouse world position");
+            return;
+        }
+
+        var mousePos = viewPort.GetMousePosition();
 
         var intersection = worldPlane.IntersectRay(ProjectRayOrigin(mousePos),
             ProjectRayNormal(mousePos));

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 ///   positioning info on top of OrganelleDefinition when the layout
 ///   is instantiated in a cell, PlacedOrganelle class is used.
 /// </summary>
+[JsonObject(IsReference = true)]
 public class OrganelleTemplate : IPositionedOrganelle, ICloneable
 {
     [JsonProperty]

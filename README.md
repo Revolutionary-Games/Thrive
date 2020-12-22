@@ -7,8 +7,17 @@ This is the code repository for Thrive. For more information, visit
 ### Build Status [![CircleCI](https://circleci.com/gh/Revolutionary-Games/Thrive.svg?style=svg)](https://circleci.com/gh/Revolutionary-Games/Thrive)
 ### Patreon [![Patreon](https://img.shields.io/badge/Join-Patreon-orange.svg)](https://www.patreon.com/thrivegame)
 
+<a href="https://translate.revolutionarygamesstudio.com/engage/thrive/">
+<img src="https://translate.revolutionarygamesstudio.com/widgets/thrive/-/thrive-game/svg-badge.svg" alt="translation status" />
+</a>
+
+<br>
+<br>
+<img src="https://randomthrivefiles.b-cdn.net/screenshots/github_screenshot_1.png" alt="game screenshot" width="900px">
+
 Overview
-----------------
+--------
+
 Repository structure:
 - assets: This folder contains all the assets such as models and other binaries. The big files in this folder use [Git LFS](https://git-lfs.github.com/) in order to keep this repository from bloating. You need to have Git LFS installed to get the files. Some better editable versions of the assets are stored in a separate [repository](https://github.com/Revolutionary-Games/Thrive-Raw-Assets).
 - [doc: Documentation files.](/doc) Contains style guide, engine overview and other useful documentation.
@@ -22,7 +31,7 @@ Getting Involved
 Depending on what you want to contribute, you need to take different steps
 to get your development environment set up.
 
-Read the [contribution guidelines](CONTRIBUTING.md) first. If you need
+Read the [contribution guidelines](CONTRIBUTING.md) and [code of coduct](code_of_conduct.md) first. If you need
 help please ask [on our
 forums](https://community.revolutionarygamesstudio.com/c/dev-help).
 
@@ -31,8 +40,13 @@ There are also other useful documents in the [doc](doc) folder not mentioned her
 If you have game development skills, you can apply to the team
 [here](https://revolutionarygamesstudio.com/application/).
 
+If you'd like to translate the game to your language, you can find the relevant information [here](doc/working_with_translations.md).
+
 The planning board contains all issues and pull requests grouped
 by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
+
+<br>
+<img src="https://randomthrivefiles.b-cdn.net/screenshots/github_screenshot_2.png" alt="game screenshot" width="900px">
 
 ### Programmers 
 Thrive is written in C# with a few helper scripts written in ruby. In
