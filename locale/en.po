@@ -893,12 +893,13 @@ msgstr "Loading"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Press a key..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
-"There is a conflict with {0}.Do you want to remove the input from {1}?"
+"There is a conflict with {0}.\n"
+"Do you want to remove the input from {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -926,7 +927,7 @@ msgstr "Middle mouse"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr "Wheel down"
+msgstr "Wheel up"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
