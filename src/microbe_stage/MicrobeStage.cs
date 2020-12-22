@@ -310,11 +310,17 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         CompoundsAtMouse = Clouds.GetAllAvailableAt(Camera.CursorWorldPos);
 
-        var aiMicrobes = GetTree().GetNodesInGroup(Constants.AI_GROUP);
+        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
+
+        if (MicrobesAtMouse != null)
+        {
+            foreach (var microbe in MicrobesAtMouse)
+                microbe.IsHoveredOver = false;
+        }
 
         MicrobesAtMouse = new List<Microbe>();
 
-        foreach (Microbe entry in aiMicrobes)
+        foreach (Microbe entry in microbes)
         {
             var distance = (entry.Translation - Camera.CursorWorldPos).Length();
 
@@ -323,6 +329,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
                 continue;
 
+            entry.IsHoveredOver = true;
             MicrobesAtMouse.Add(entry);
         }
     }

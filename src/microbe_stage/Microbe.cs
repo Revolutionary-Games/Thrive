@@ -215,6 +215,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public float MaxHitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
 
+    [JsonIgnore]
+    public bool IsHoveredOver { get; set; }
+
     /// <summary>
     ///   The number of agent vacuoles. Determines the time between
     ///   toxin shots.
@@ -1594,7 +1597,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (MicrobeMode != MicrobeMode.UNBINDING)
             return;
 
-        Flash(1, new Color(255.0f / 255.0f, 127.0f / 255.0f, 39.0f / 255.0f, 0.5f));
+        if (IsHoveredOver)
+            Flash(1, new Color(255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 0.5f));
+        else
+            Flash(1, new Color(255.0f / 255.0f, 127.0f / 255.0f, 39.0f / 255.0f, 0.5f));
     }
 
     /// <summary>
