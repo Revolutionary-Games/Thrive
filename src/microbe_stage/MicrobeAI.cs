@@ -309,6 +309,12 @@ public class MicrobeAI
 
                 break;
             }
+
+            case LifeState.BOUND_STATE:
+            {
+                lifeState = LifeState.NEUTRAL_STATE;
+                break;
+            }
         }
     }
 
