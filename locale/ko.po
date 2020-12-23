@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-23 20:26+0100\n"
+"POT-Creation-Date: 2020-12-24 00:28+0100\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -854,10 +854,6 @@ msgstr "주변 개체 수:"
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "불러오는 중"
-
-#: ../src/engine/input/key_mapping/InputActionItem.cs:165
-msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1762,6 +1758,10 @@ msgstr ""
 "딜 수 있으며 물리적 손상에 매우 강합니다. 또한 형태를 유지하는 데 더 적은 "
 "에너지가 필요합니다. 그러나 이는 세포 속도를 크게 낮추고 자원을 느리게 흡수"
 "합니다."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7308
+msgid "ADD_INPUT_BUTTON_TOOLTIP"
+msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
