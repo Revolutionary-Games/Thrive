@@ -532,11 +532,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
 
-        if (MicrobesAtMouse != null)
-        {
-            foreach (var microbe in MicrobesAtMouse)
-                microbe.IsHoveredOver = false;
-        }
+        foreach (var microbe in MicrobesAtMouse)
+            microbe.IsHoveredOver = false;
 
         MicrobesAtMouse.Clear();
 
