@@ -110,7 +110,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     ///   All microbes the user is hovering over
     /// </summary>
     [JsonIgnore]
-    public List<Microbe> MicrobesAtMouse { get; private set; }
+    public List<Microbe> MicrobesAtMouse { get; private set; } = new List<Microbe>();
 
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
@@ -538,7 +538,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 microbe.IsHoveredOver = false;
         }
 
-        MicrobesAtMouse = new List<Microbe>();
+        MicrobesAtMouse.Clear();
 
         foreach (Microbe entry in microbes)
         {
