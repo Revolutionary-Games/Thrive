@@ -7,13 +7,7 @@
 [ext_resource path="res://assets/models/organelles/BindingAgent_Membrane.mesh" type="ArrayMesh" id=5]
 [ext_resource path="res://assets/models/organelles/BindingAgent_Fibers.mesh" type="ArrayMesh" id=6]
 
-
-
-
-
-
 [sub_resource type="ShaderMaterial" id=1]
-render_priority = 1
 shader = ExtResource( 1 )
 shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
@@ -25,6 +19,7 @@ shader_param/texture = ExtResource( 3 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
 [sub_resource type="SpatialMaterial" id=2]
+render_priority = -1
 flags_transparent = true
 params_depth_draw_mode = 1
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
