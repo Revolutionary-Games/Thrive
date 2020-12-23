@@ -324,7 +324,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
-    public List<string> UniqueOrganellesNamesPlaced => editedMicrobeOrganelles
+    public List<string> PlacedUniqueOrganelleNames => editedMicrobeOrganelles
         .Where(p => p.Definition.Unique)
         .Select(p => p.Definition.InternalName)
         .Distinct().ToList();
@@ -1162,7 +1162,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-        gui.UpdateGuiButtonStatus(UniqueOrganellesNamesPlaced);
+        gui.UpdateGuiButtonStatus(PlacedUniqueOrganelleNames);
 
         // Reset to cytoplasm if nothing is selected
         if (ActiveActionName == null)
@@ -1686,7 +1686,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
-        gui.UpdateGuiButtonStatus(UniqueOrganellesNamesPlaced);
+        gui.UpdateGuiButtonStatus(PlacedUniqueOrganelleNames);
 
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
