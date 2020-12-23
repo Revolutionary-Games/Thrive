@@ -35,8 +35,6 @@ public class InputActionItem : VBoxContainer
     private HBoxContainer inputEventsContainer;
     private Button addInputEvent;
 
-    private ToolTipCallbackData addInputTooltip;
-
     /// <summary>
     ///   The group in which this action is defined.
     /// </summary>
@@ -96,7 +94,6 @@ public class InputActionItem : VBoxContainer
         ToolTipHelper.RegisterToolTipForControl(
             addInputEvent, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("addInputButton", "options"));
 
-        addInputTooltip = tooltipCallbacks[0];
         inputActionHeader.Text = DisplayName;
 
         foreach (var input in Inputs)
@@ -155,14 +152,6 @@ public class InputActionItem : VBoxContainer
         newInput.AssociatedAction = new WeakReference<InputActionItem>(this);
         newInput.JustAdded = true;
         Inputs.Add(newInput);
-    }
-
-    /// <summary>
-    ///   The small + button was hovered over
-    /// </summary>
-    internal void OnAddEventFocusEntered()
-    {
-        addInputTooltip.ToolTip.Description = TranslationServer.Translate("ADD_INPUT_BUTTON_TOOLTIP") + DisplayName;
     }
 
     private void OnInputsChanged(object sender, NotifyCollectionChangedEventArgs e)

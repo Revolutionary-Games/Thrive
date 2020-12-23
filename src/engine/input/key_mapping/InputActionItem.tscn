@@ -57,5 +57,4 @@ text = "+"
 __meta__ = {
 "_editor_description_": ""
 }
-[connection signal="mouse_entered" from="InputEventsContainer/AddEventButton" to="." method="OnAddEventFocusEntered"]
 [connection signal="pressed" from="InputEventsContainer/AddEventButton" to="." method="OnAddEventButtonPressed"]
