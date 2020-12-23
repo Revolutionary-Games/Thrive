@@ -59,9 +59,9 @@ public class ColonyMember
     [JsonIgnore]
     internal List<Microbe> AllMembersCache { get; set; }
 
-    public static explicit operator Microbe(ColonyMember m)
+    public static explicit operator Microbe(ColonyMember member)
     {
-        return m?.Microbe;
+        return member?.Microbe;
     }
 
     public void RemoveFromColony()
@@ -113,9 +113,9 @@ public class ColonyMember
         {
             if (!visitedMicrobes.Contains(currentMicrobeNeighbour))
             {
-                var res = currentMicrobeNeighbour.GetMember(searchedMicrobe, visitedMicrobes);
-                if (res != null)
-                    return res;
+                var member = currentMicrobeNeighbour.GetMember(searchedMicrobe, visitedMicrobes);
+                if (member != null)
+                    return member;
             }
         }
 
