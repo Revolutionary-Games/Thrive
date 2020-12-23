@@ -3067,7 +3067,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+15"
+ModifierValue = "+5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -3105,7 +3105,7 @@ margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
-ModifierValue = "+10"
+ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
 
 [node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/osmoregulation_cost"]
