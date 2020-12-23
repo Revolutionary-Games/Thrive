@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-23 20:10+0100\n"
+"POT-Creation-Date: 2020-12-23 20:26+0100\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -881,6 +881,10 @@ msgstr "arazilerdeki popülasyon:"
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "Yükleniyor"
+
+#: ../src/engine/input/key_mapping/InputActionItem.cs:165
+msgid "ADD_INPUT_BUTTON_TOOLTIP"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1832,10 +1836,6 @@ msgstr ""
 "iyi direnir ve fiziksel hasara karşı çok dirençlidir. Ayrıca formunu "
 "korumak için daha az enerji gerektirir. Ancak hücreyi kat kat yavaşlatır "
 "ve hücre, kaynakları düşük oranda emer."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7308
-msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"

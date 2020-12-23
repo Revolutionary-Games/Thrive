@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-23 20:10+0100\n"
+"POT-Creation-Date: 2020-12-23 20:26+0100\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -872,6 +872,10 @@ msgstr "популация в зоните:"
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "Зареждане"
+
+#: ../src/engine/input/key_mapping/InputActionItem.cs:165
+msgid "ADD_INPUT_BUTTON_TOOLTIP"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1804,10 +1808,6 @@ msgstr ""
 "добрата защита и се нуждае от по-малко енергия за да не се деформира. "
 "Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването "
 "на хранителните вещества."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7308
-msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-23 20:10+0100\n"
+"POT-Creation-Date: 2020-12-23 20:26+0100\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -851,6 +851,10 @@ msgstr "אוכלוסיה באזור:"
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "טוען"
+
+#: ../src/engine/input/key_mapping/InputActionItem.cs:165
+msgid "ADD_INPUT_BUTTON_TOOLTIP"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:293
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1757,10 +1761,6 @@ msgstr ""
 "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי "
 "ועמיד מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. "
 "עם זאת, הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7308
-msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
