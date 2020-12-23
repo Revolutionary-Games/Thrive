@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-20 18:16+0100\n"
-"PO-Revision-Date: 2020-12-22 13:48+0000\n"
+"PO-Revision-Date: 2020-12-24 09:30+0000\n"
 "Last-Translator: Rune Vercauteren <rune.vercauteren@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
 "com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1280,49 +1280,55 @@ msgstr ""
 "of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
+#, fuzzy
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Het opgeslagen bestand heeft een andere versie"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:19
+#, fuzzy
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"De versie van het opgeslagen bestand dat je probeert te laden komt niet "
+"overeen met versie van het spel dat je gebruikt.\n"
+"Laad het opgeslagen bestand handmatig via het menu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:83
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Open het menu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Open help-scherm"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:97
+#, fuzzy
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Zal je gedijen?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:105
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Beëindig het bewerken en keer terug naar de omgeving"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:111
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Verander de symmetrie"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:117
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Maak de laatste handeling ongedaan"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Voer de laatste actie opnieuw uit"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Maak een nieuwe microbe"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:212
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Stijfheid van het Membraan"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5205
@@ -1332,7 +1338,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6297
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6630
 msgid "MOBILITY"
-msgstr ""
+msgstr "Mobiliteit"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:294
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5296
@@ -1342,11 +1348,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6388
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6721
 msgid "HEALTH"
-msgstr ""
+msgstr "Gezondheid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:317
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Een stijvere membraan is beter bestand tegen schade, maar zal het voor de "
+"cel moeilijker maken om te bewegen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:429
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:669
@@ -1358,8 +1366,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3981
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4253
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
+#, fuzzy
 msgid "TURNS"
-msgstr ""
+msgstr "Bochten"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:454
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:694
@@ -1373,7 +1382,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4278
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4772
 msgid "INTO"
-msgstr ""
+msgstr "in"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:508
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:789
@@ -1392,7 +1401,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4586
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4889
 msgid "STORAGE"
-msgstr ""
+msgstr "Opslag"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:539
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:820
@@ -1417,25 +1426,32 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6328
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6661
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Osmoregulatiekosten"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:562
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
+"Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van "
+"ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van "
+"de cel vullen. Een van de functies die het vervult is fermentatie, de "
+"omzetting van glucose in ATP-energie. Voor cellen zonder organellen die "
+"zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor "
+"energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de "
+"cel te vergroten."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:722
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1615
 msgid "DOT_RATE_SCALES"
-msgstr ""
+msgstr ". Beoordeel schalen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:735
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
 msgid "WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "met concentratie van"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:742
 msgid "OXYGEN_DOT"
-msgstr ""
+msgstr "Zuurstof."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:843
 msgid "METABOLOSOMES_DESCRIPTION"
