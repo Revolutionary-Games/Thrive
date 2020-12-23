@@ -587,8 +587,9 @@ public class MicrobeAI
                 microbe.MicrobeMode = Microbe.MicrobeAction.ENGULF;
                 ticksSinceLastToggle = 0;
             }
-            else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f &&
-                microbe.MicrobeMode == Microbe.MicrobeAction.ENGULF && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
+            else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f
+                && microbe.MicrobeMode == Microbe.MicrobeAction.ENGULF
+                && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
             {
                 microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
                 ticksSinceLastToggle = 0;
@@ -669,8 +670,9 @@ public class MicrobeAI
             ticksSinceLastToggle = 0;
         }
         else if ((microbe.Translation - targetPosition).LengthSquared() >=
-            500 + microbe.EngulfSize * 3.0f && microbe.MicrobeMode == Microbe.MicrobeAction.ENGULF && ticksSinceLastToggle >=
-            Constants.AI_ENGULF_INTERVAL)
+            500 + microbe.EngulfSize * 3.0f
+            && microbe.MicrobeMode == Microbe.MicrobeAction.ENGULF
+            && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
         {
             microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
             ticksSinceLastToggle = 0;
