@@ -13,14 +13,6 @@ using Newtonsoft.Json;
 [DeserializedCallbackTarget]
 public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
 {
-    public enum MicrobeAction
-    {
-        NORMAL,
-        BINDING,
-        UNBINDING,
-        ENGULF,
-    }
-
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>
@@ -167,6 +159,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Microbe()
     {
         ColonyCompoundBag = new ColonyCompoundBag(this);
+    }
+
+    public enum MicrobeAction
+    {
+        /// <summary>
+        ///   Not in any special state
+        /// </summary>
+        NORMAL,
+        /// <summary>
+        ///   The microbe is currently in binding mode
+        /// </summary>
+        BINDING,
+        /// <summary>
+        ///   The microbe is currently in unbinding mode and cannot move
+        /// </summary>
+        UNBINDING,
+        /// <summary>
+        ///   The microbe is currently in engulf mode
+        /// </summary>
+        ENGULF,
     }
 
     /// <summary>
