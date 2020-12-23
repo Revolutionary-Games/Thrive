@@ -11,6 +11,10 @@
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 7.0
+content_margin_right = 7.0
+content_margin_top = 0.0
+content_margin_bottom = 2.0
 
 [node name="InputActionItem" type="VBoxContainer"]
 anchor_right = 1.0
@@ -36,13 +40,14 @@ __meta__ = {
 [node name="InputEventsContainer" type="HBoxContainer" parent="."]
 margin_top = 24.0
 margin_right = 1280.0
-margin_bottom = 46.0
+margin_bottom = 48.0
 custom_constants/separation = 10
 
 [node name="AddEventButton" type="Button" parent="InputEventsContainer"]
-margin_right = 22.0
-margin_bottom = 22.0
+margin_right = 24.0
+margin_bottom = 24.0
 focus_mode = 0
+size_flags_stretch_ratio = 0.0
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
