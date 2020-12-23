@@ -28,6 +28,14 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight;
 
+    /// <summary>
+    ///   The seed for the heat map for this biome
+    /// </summary>
+    public int HeatMapSeed;
+
+    [JsonIgnore]
+    public PerlinNoise HeatMap;
+
     [JsonIgnore]
     public Texture LoadedIcon;
 
@@ -78,6 +86,7 @@ public class Biome : IRegistryType
         Conditions.Resolve(parameters);
 
         LoadedIcon = GD.Load<Texture>(Icon);
+        HeatMap = new PerlinNoise(HeatMapSeed);
     }
 
     public void ApplyTranslations()

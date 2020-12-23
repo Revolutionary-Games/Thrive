@@ -66,6 +66,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private Vector3 queuedMovementForce;
 
+    private double previousPositionalHeat = 0;
+
     // variables for engulfing
     [JsonProperty]
     private bool engulfMode;
@@ -1049,6 +1051,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         CheckEngulfShapeSize();
         HandleCompoundAbsorbing(delta);
+        HandleThermalGradient(delta);
 
         // Movement factor is reset here. HandleEngulfing will set the right value
         MovementFactor = 1.0f;
@@ -1195,6 +1198,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
+    }
+
+    private void HandleThermalGradient(float delta)
+    {
+        double currentPositionalHeat = GameWorld.Map.CurrentPatch.BiomeTemplate.HeatMap.Noise(Translation.x, Translation.y, 1.0);
+        double gradient = Math.Abs(currentPositionalHeat - previousPositionalHeat) / delta;
+        previousPositionalHeat = currentPositionalHeat;
+        Compounds.AddCompound(SimulationParameters.Instance.GetCompound("thermalgradient"), (float)gradient);
     }
 
     private void CheckEngulfShapeSize()
