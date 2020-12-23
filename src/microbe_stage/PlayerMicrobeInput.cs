@@ -66,7 +66,7 @@ public class PlayerMicrobeInput : NodeWithInput
             return;
 
         if (stage.Player.MicrobeMode == Microbe.MicrobeAction.ENGULF)
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.NONE;
+            stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
         else if (!stage.Player.Membrane.Type.CellWall)
             stage.Player.MicrobeMode = Microbe.MicrobeAction.ENGULF;
     }
@@ -78,7 +78,7 @@ public class PlayerMicrobeInput : NodeWithInput
             return;
 
         if (stage.Player.MicrobeMode == Microbe.MicrobeAction.BINDING)
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.NONE;
+            stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
         else if (stage.Player.CanBind())
             stage.Player.MicrobeMode = Microbe.MicrobeAction.BINDING;
     }
@@ -90,7 +90,7 @@ public class PlayerMicrobeInput : NodeWithInput
             return;
 
         if (stage.Player.MicrobeMode == Microbe.MicrobeAction.UNBINDING)
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.NONE;
+            stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
         else if (stage.Player.Colony != null)
             stage.Player.MicrobeMode = Microbe.MicrobeAction.UNBINDING;
     }
@@ -108,7 +108,7 @@ public class PlayerMicrobeInput : NodeWithInput
         var target = stage.MicrobesAtMouse[0];
 
         target.Colony.RemoveFromColony();
-        target.MicrobeMode = Microbe.MicrobeAction.NONE;
+        target.MicrobeMode = Microbe.MicrobeAction.NORMAL;
 
         return true;
     }

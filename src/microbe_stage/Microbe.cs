@@ -15,7 +15,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 {
     public enum MicrobeAction
     {
-        NONE,
+        NORMAL,
         BINDING,
         UNBINDING,
         ENGULF,
@@ -453,7 +453,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (Membrane.Type.CellWall)
         {
             // Reset engulf mode if the new membrane doesn't allow it
-            MicrobeMode = MicrobeAction.NONE;
+            MicrobeMode = MicrobeAction.NORMAL;
         }
 
         SetupMicrobeHitpoints();
@@ -695,7 +695,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Colony?.RemoveFromColony();
 
         // Reset some stuff
-        MicrobeMode = MicrobeAction.NONE;
+        MicrobeMode = MicrobeAction.NORMAL;
         MovementDirection = new Vector3(0, 0, 0);
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
@@ -1225,7 +1225,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         if (MicrobeMode == MicrobeAction.UNBINDING)
-            MicrobeMode = MicrobeAction.NONE;
+            MicrobeMode = MicrobeAction.NORMAL;
 
         if (Colony.Master != null)
         {
@@ -1585,7 +1585,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
-                MicrobeMode = MicrobeAction.NONE;
+                MicrobeMode = MicrobeAction.NORMAL;
             }
 
             if (!bindingAudio.Playing)
@@ -1626,7 +1626,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
-                MicrobeMode = MicrobeAction.NONE;
+                MicrobeMode = MicrobeAction.NORMAL;
             }
         }
 
@@ -2110,7 +2110,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (!CanBind())
         {
-            MicrobeMode = MicrobeAction.NONE;
+            MicrobeMode = MicrobeAction.NORMAL;
             return;
         }
 
@@ -2136,7 +2136,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         other.Colony = new ColonyMember(other, Colony);
         Colony.BindingTo.Add(other.Colony);
-        MicrobeMode = MicrobeAction.NONE;
+        MicrobeMode = MicrobeAction.NORMAL;
     }
 
     /// <summary>

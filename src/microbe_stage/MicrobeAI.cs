@@ -561,7 +561,7 @@ public class MicrobeAI
                 preyPegged = true;
             }
 
-            microbe.MicrobeMode = Microbe.MicrobeAction.NONE;
+            microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
 
             // You got a kill, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
@@ -590,7 +590,7 @@ public class MicrobeAI
             else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f &&
                 microbe.MicrobeMode == Microbe.MicrobeAction.ENGULF && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
             {
-                microbe.MicrobeMode = Microbe.MicrobeAction.NONE;
+                microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
                 ticksSinceLastToggle = 0;
             }
         }
@@ -640,7 +640,7 @@ public class MicrobeAI
 
             hasTargetPosition = false;
             targetChunk = GetNearestChunkItem(allChunks);
-            microbe.MicrobeMode = Microbe.MicrobeAction.NONE;
+            microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
 
             // You got a consumption, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
@@ -672,7 +672,7 @@ public class MicrobeAI
             500 + microbe.EngulfSize * 3.0f && microbe.MicrobeMode == Microbe.MicrobeAction.ENGULF && ticksSinceLastToggle >=
             Constants.AI_ENGULF_INTERVAL)
         {
-            microbe.MicrobeMode = Microbe.MicrobeAction.NONE;
+            microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
             ticksSinceLastToggle = 0;
         }
     }
