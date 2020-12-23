@@ -304,37 +304,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     }
 
     /// <summary>
-    ///   Updates CompoundsAtMouse and MicrobesAtMouse
-    /// </summary>
-    public void UpdateMouseHover()
-    {
-        CompoundsAtMouse = Clouds.GetAllAvailableAt(Camera.CursorWorldPos);
-
-        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
-
-        if (MicrobesAtMouse != null)
-        {
-            foreach (var microbe in MicrobesAtMouse)
-                microbe.IsHoveredOver = false;
-        }
-
-        MicrobesAtMouse = new List<Microbe>();
-
-        foreach (Microbe entry in microbes)
-        {
-            var distance = (entry.Translation - Camera.CursorWorldPos).Length();
-
-            // Find only cells that have the mouse
-            // position within their membrane
-            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
-                continue;
-
-            entry.IsHoveredOver = true;
-            MicrobesAtMouse.Add(entry);
-        }
-    }
-
-    /// <summary>
     ///   Spawns the player if there isn't currently a player node existing
     /// </summary>
     public void SpawnPlayer()
@@ -379,6 +348,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
         microbeAISystem.Process(delta);
+
+        UpdateMouseHover();
 
         if (gameOver)
         {
@@ -550,6 +521,37 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         TransitionFinished = true;
         TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+    }
+
+    /// <summary>
+    ///   Updates CompoundsAtMouse and MicrobesAtMouse
+    /// </summary>
+    private void UpdateMouseHover()
+    {
+        CompoundsAtMouse = Clouds.GetAllAvailableAt(Camera.CursorWorldPos);
+
+        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
+
+        if (MicrobesAtMouse != null)
+        {
+            foreach (var microbe in MicrobesAtMouse)
+                microbe.IsHoveredOver = false;
+        }
+
+        MicrobesAtMouse = new List<Microbe>();
+
+        foreach (Microbe entry in microbes)
+        {
+            var distance = (entry.Translation - Camera.CursorWorldPos).Length();
+
+            // Find only cells that have the mouse
+            // position within their membrane
+            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
+                continue;
+
+            entry.IsHoveredOver = true;
+            MicrobesAtMouse.Add(entry);
+        }
     }
 
     [DeserializedCallbackAllowed]
