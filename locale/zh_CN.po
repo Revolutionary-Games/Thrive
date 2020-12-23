@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-21 15:33+0200\n"
+"POT-Creation-Date: 2020-12-23 19:32+0200\n"
 "PO-Revision-Date: 2020-12-19 15:18+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -597,19 +597,19 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1902
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4285
-#: ../src/microbe_stage/MicrobeStage.tscn:1176
+#: ../src/microbe_stage/MicrobeStage.tscn:1177
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1230
+#: ../src/microbe_stage/MicrobeStage.tscn:1231
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3988
-#: ../src/microbe_stage/MicrobeStage.tscn:1284
+#: ../src/microbe_stage/MicrobeStage.tscn:1285
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
@@ -623,18 +623,18 @@ msgstr "硫化氢"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3420
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3708
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4013
-#: ../src/microbe_stage/MicrobeStage.tscn:1122
+#: ../src/microbe_stage/MicrobeStage.tscn:1123
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1445
+#: ../src/microbe_stage/MicrobeStage.tscn:1446
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
-#: ../src/microbe_stage/MicrobeStage.tscn:1338
+#: ../src/microbe_stage/MicrobeStage.tscn:1339
 msgid "IRON"
 msgstr "铁"
 
@@ -899,7 +899,7 @@ msgid "UNKNOWN_MOUSE"
 msgstr "鼠标未知键"
 
 #: ../src/general/HelpScreen.tscn:102
-#: ../src/microbe_stage/ProcessPanel.tscn:54
+#: ../src/microbe_stage/ProcessPanel.tscn:57
 msgid "CLOSE"
 msgstr "关闭"
 
@@ -1149,6 +1149,11 @@ msgstr "返回主菜单"
 #: ../src/general/PauseMenu.tscn:107
 msgid "EXIT"
 msgstr "退出"
+
+#: ../src/gui_common/ChemicalEquation.cs:166
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
+msgid "PER_SECOND_SLASH"
+msgstr "每秒"
 
 #: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
@@ -1407,7 +1412,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1033
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3496
-#: ../src/microbe_stage/MicrobeStage.tscn:900
+#: ../src/microbe_stage/MicrobeStage.tscn:901
 msgid "LIGHT"
 msgstr "光强"
 
@@ -1711,76 +1716,72 @@ msgstr ""
 "这个细胞膜额外配置了一层二氧化硅外壳。各方面都有更好的防御力，尤其是物防高"
 "的惊人。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
-msgid "PER_SECOND_SLASH"
-msgstr "每秒"
-
-#: ../src/microbe_stage/Microbe.cs:1181
+#: ../src/microbe_stage/Microbe.cs:1170
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
-#: ../src/microbe_stage/Microbe.cs:1188
+#: ../src/microbe_stage/Microbe.cs:1177
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.cs:1582
+#: ../src/microbe_stage/Microbe.cs:1571
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:455
+#: ../src/microbe_stage/MicrobeHUD.cs:456
 msgid "MICROBE_PATCH_LABEL"
 msgstr "地区：{0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:631
+#: ../src/microbe_stage/MicrobeHUD.cs:632
 msgid "STUFF_AT"
 msgstr "在{0:F1}, {1:F1}的东西："
 
-#: ../src/microbe_stage/MicrobeStage.cs:451
+#: ../src/microbe_stage/MicrobeStage.cs:446
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
-#: ../src/microbe_stage/MicrobeStage.cs:563
+#: ../src/microbe_stage/MicrobeStage.cs:558
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:416
+#: ../src/microbe_stage/MicrobeStage.tscn:417
 msgid "AT_CURSOR"
 msgstr "鼠标指针处："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:440
+#: ../src/microbe_stage/MicrobeStage.tscn:441
 msgid "NOTHING_HERE"
 msgstr "这里啥都没有"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:464
+#: ../src/microbe_stage/MicrobeStage.tscn:465
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:502
+#: ../src/microbe_stage/MicrobeStage.tscn:503
 msgid "SPECIES_COLON"
 msgstr "物种："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:583
+#: ../src/microbe_stage/MicrobeStage.tscn:584
 msgid "ENVIRONMENT"
 msgstr "环境"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:844
+#: ../src/microbe_stage/MicrobeStage.tscn:845
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:955
+#: ../src/microbe_stage/MicrobeStage.tscn:956
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1031
+#: ../src/microbe_stage/MicrobeStage.tscn:1032
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4819
 msgid "COMPOUNDS"
 msgstr "化合物"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1391
+#: ../src/microbe_stage/MicrobeStage.tscn:1392
 msgid "AGENTS"
 msgstr "物质"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1652
+#: ../src/microbe_stage/MicrobeStage.tscn:1653
 msgid "POPULATION_CAPITAL"
 msgstr "生物数量："
 
@@ -2026,48 +2027,48 @@ msgstr "存在的物种"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:550
 msgid "FREEBUILDING"
 msgstr "自由编辑器"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:604
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "环境中的葡萄糖已减少到原先量的{0}。"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
 msgid "MEGA_YEARS"
 msgstr "百万年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:663
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
 msgid "ATP_PRODUCTION"
 msgstr "ATP产出"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:669
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP产出不足！"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
 msgid "OSMOREGULATION"
 msgstr "渗透调节"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1473
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1475
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1478
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1480
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1518
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1520
 msgid "WITH_POPULATION"
 msgstr "{0} 有生物数： {1}"
 

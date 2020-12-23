@@ -6,10 +6,17 @@ using Godot;
 /// </summary>
 public class ProcessList : VBoxContainer
 {
+    private PackedScene chemicalEquationScene;
+
+    private ChildObjectCache<IProcessDisplayInfo, ChemicalEquation> createdProcessControls;
+
     public List<IProcessDisplayInfo> ProcessesToShow { get; set; }
 
     public override void _Ready()
     {
+        chemicalEquationScene = GD.Load<PackedScene>("res://src/gui_common/ChemicalEquation.tscn");
+
+        createdProcessControls = new ChildObjectCache<IProcessDisplayInfo, ChemicalEquation>(this, CreateEquation);
     }
 
     public override void _Process(float delta)
@@ -19,24 +26,33 @@ public class ProcessList : VBoxContainer
 
         if (ProcessesToShow == null)
         {
-            ClearChildren();
+            createdProcessControls.Clear();
             return;
         }
 
         // Check that all children are up to date
+        createdProcessControls.UnMarkAll();
 
-        // TODO: debug test code
-        ClearChildren();
         foreach (var process in ProcessesToShow)
         {
-            var child = new Label();
-            child.Text = process.Name;
-            AddChild(child);
+            createdProcessControls.GetChild(process);
+
+            // TODO: update the child here?
         }
+
+        createdProcessControls.DeleteUnmarked();
     }
 
     private void ClearChildren()
     {
         this.FreeChildren();
+    }
+
+    private ChemicalEquation CreateEquation(IProcessDisplayInfo process)
+    {
+        var equation = (ChemicalEquation)chemicalEquationScene.Instance();
+        equation.EquationFromProcess = process;
+
+        return equation;
     }
 }

@@ -36,6 +36,8 @@ margin_bottom = 554.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+margin_right = 390.0
+size_flags_horizontal = 3
 
 [node name="ProcessList" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0

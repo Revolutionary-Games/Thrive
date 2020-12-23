@@ -414,6 +414,8 @@ public static class Constants
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 5.0f;
 
+    public const float DEFAULT_PROCESS_SPINNER_SPEED = 0.2f;
+
     /// <summary>
     ///   When checking if the mouse is hovering over a microbe, this increments
     ///   the testing area as an addition to microbe radius, so it's easier to hover

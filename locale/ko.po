@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-21 15:33+0200\n"
+"POT-Creation-Date: 2020-12-23 19:32+0200\n"
 "PO-Revision-Date: 2020-12-17 09:10+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -616,19 +616,19 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1902
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4285
-#: ../src/microbe_stage/MicrobeStage.tscn:1176
+#: ../src/microbe_stage/MicrobeStage.tscn:1177
 msgid "AMMONIA"
 msgstr "암모니아"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1230
+#: ../src/microbe_stage/MicrobeStage.tscn:1231
 msgid "PHOSPHATE"
 msgstr "인산염"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3988
-#: ../src/microbe_stage/MicrobeStage.tscn:1284
+#: ../src/microbe_stage/MicrobeStage.tscn:1285
 msgid "HYDROGEN_SULFIDE"
 msgstr "황화수소"
 
@@ -642,18 +642,18 @@ msgstr "황화수소"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3420
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3708
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4013
-#: ../src/microbe_stage/MicrobeStage.tscn:1122
+#: ../src/microbe_stage/MicrobeStage.tscn:1123
 msgid "GLUCOSE"
 msgstr "포도당"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1445
+#: ../src/microbe_stage/MicrobeStage.tscn:1446
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
-#: ../src/microbe_stage/MicrobeStage.tscn:1338
+#: ../src/microbe_stage/MicrobeStage.tscn:1339
 msgid "IRON"
 msgstr "철"
 
@@ -918,7 +918,7 @@ msgid "UNKNOWN_MOUSE"
 msgstr "마우스 미확인 키"
 
 #: ../src/general/HelpScreen.tscn:102
-#: ../src/microbe_stage/ProcessPanel.tscn:54
+#: ../src/microbe_stage/ProcessPanel.tscn:57
 msgid "CLOSE"
 msgstr "닫기"
 
@@ -1170,6 +1170,11 @@ msgstr "메뉴로 돌아가기"
 #: ../src/general/PauseMenu.tscn:107
 msgid "EXIT"
 msgstr "종료"
+
+#: ../src/gui_common/ChemicalEquation.cs:166
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
+msgid "PER_SECOND_SLASH"
+msgstr "/초"
 
 #: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
@@ -1433,7 +1438,7 @@ msgstr "강도"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1033
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3496
-#: ../src/microbe_stage/MicrobeStage.tscn:900
+#: ../src/microbe_stage/MicrobeStage.tscn:901
 msgid "LIGHT"
 msgstr "빛"
 
@@ -1760,76 +1765,72 @@ msgstr ""
 "에너지가 필요합니다. 그러나 이는 세포 속도를 크게 낮추고 자원을 느리게 흡수"
 "합니다."
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
-msgid "PER_SECOND_SLASH"
-msgstr "/초"
-
-#: ../src/microbe_stage/Microbe.cs:1181
+#: ../src/microbe_stage/Microbe.cs:1170
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1188
+#: ../src/microbe_stage/Microbe.cs:1177
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1582
+#: ../src/microbe_stage/Microbe.cs:1571
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:455
+#: ../src/microbe_stage/MicrobeHUD.cs:456
 msgid "MICROBE_PATCH_LABEL"
 msgstr "파편: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:631
+#: ../src/microbe_stage/MicrobeHUD.cs:632
 msgid "STUFF_AT"
 msgstr "{0:F1}, {1:F1}에 위치함:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:451
+#: ../src/microbe_stage/MicrobeStage.cs:446
 msgid "PLAYER_REPRODUCED"
 msgstr "플레이어 복제됨"
 
-#: ../src/microbe_stage/MicrobeStage.cs:563
+#: ../src/microbe_stage/MicrobeStage.cs:558
 msgid "PLAYER_DIED"
 msgstr "플레이어 사망함"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:416
+#: ../src/microbe_stage/MicrobeStage.tscn:417
 msgid "AT_CURSOR"
 msgstr "커서 위치에서:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:440
+#: ../src/microbe_stage/MicrobeStage.tscn:441
 msgid "NOTHING_HERE"
 msgstr "아무것도 없음"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:464
+#: ../src/microbe_stage/MicrobeStage.tscn:465
 msgid "COMPOUNDS_COLON"
 msgstr "화합물:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:502
+#: ../src/microbe_stage/MicrobeStage.tscn:503
 msgid "SPECIES_COLON"
 msgstr "종:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:583
+#: ../src/microbe_stage/MicrobeStage.tscn:584
 msgid "ENVIRONMENT"
 msgstr "환경"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:844
+#: ../src/microbe_stage/MicrobeStage.tscn:845
 msgid "TEMPERATURE_SHORT"
 msgstr "온도."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:955
+#: ../src/microbe_stage/MicrobeStage.tscn:956
 msgid "PRESSURE_SHORT"
 msgstr "압력."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1031
+#: ../src/microbe_stage/MicrobeStage.tscn:1032
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4819
 msgid "COMPOUNDS"
 msgstr "화합물"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1391
+#: ../src/microbe_stage/MicrobeStage.tscn:1392
 msgid "AGENTS"
 msgstr "물질"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1652
+#: ../src/microbe_stage/MicrobeStage.tscn:1653
 msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
 
@@ -2084,48 +2085,48 @@ msgstr "존재하는 종"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "해당 파편으로 이동"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:550
 msgid "FREEBUILDING"
 msgstr "자유 구성"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:604
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "포도당의 양이 이전 양보다 {0} 만큼 감소되었습니다."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
 msgid "MEGA_YEARS"
 msgstr "백만년"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
 msgid "YEARS"
 msgstr "년"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:663
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
 msgid "ATP_PRODUCTION"
 msgstr "ATP 생산"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:669
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP 생산이 너무 적음!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
 msgid "OSMOREGULATION"
 msgstr "삼투압 조절"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
 msgid "BASE_MOVEMENT"
 msgstr "기초 이동"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1473
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1475
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1478
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1480
 msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1518
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1520
 msgid "WITH_POPULATION"
 msgstr "{0} 의 개체수: {1}"
 

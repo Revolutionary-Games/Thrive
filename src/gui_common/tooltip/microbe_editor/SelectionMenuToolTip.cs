@@ -142,6 +142,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             return;
         }
 
+        // TODO: change this to use ChemicalEquation
         foreach (var process in processes)
         {
             var processContainer = new VBoxContainer();

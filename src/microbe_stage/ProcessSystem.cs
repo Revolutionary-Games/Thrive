@@ -288,6 +288,9 @@ public class ProcessSystem
             return;
         }
 
+        // Used to go from the calculated compound values to per second values for reporting statistics
+        float inverseDelta = 1.0f / delta;
+
         var bag = processor.ProcessCompoundStorage;
 
         // Set all compounds to not be useful, when some compound is
@@ -331,6 +334,10 @@ public class ProcessSystem
 
                 var inputRemoved = entry.Value * process.Rate * delta;
 
+                // This isn't exactly accurate, but this is needed when the process can't run to get some numbers
+                // TODO: improve the situation described above
+                currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
+
                 // TODO: It might be faster to just check if there is any
                 // dissolved amount of this compound or not
                 if (entry.Key.IsEnvironmental)
@@ -369,6 +376,8 @@ public class ProcessSystem
                 // Apply the general modifiers and
                 // apply the environmental modifier
                 var outputAdded = entry.Value * process.Rate * delta * environmentModifier;
+
+                currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded * inverseDelta);
 
                 // If no space we can't do the process, and if environmental
                 // right now this isn't released anywhere
@@ -409,7 +418,7 @@ public class ProcessSystem
                 var inputRemoved = entry.Value * process.Rate * delta *
                     environmentModifier;
 
-                currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
+                currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
 
                 // This should always succeed (due to the earlier check) so
                 // it is always assumed here that the process succeeded
@@ -425,7 +434,7 @@ public class ProcessSystem
                 var outputGenerated = entry.Value * process.Rate * delta *
                     environmentModifier;
 
-                currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated);
+                currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
 
                 bag.AddCompound(entry.Key, outputGenerated);
             }
