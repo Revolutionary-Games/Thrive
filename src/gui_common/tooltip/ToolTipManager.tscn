@@ -2952,7 +2952,7 @@ autowrap = true
 [node name="bindingagent" type="PanelContainer" parent="GroupHolder/organelleSelection"]
 visible = false
 margin_right = 350.0
-margin_bottom = 155.0
+margin_bottom = 507.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
 custom_styles/panel = SubResource( 2 )
@@ -2960,19 +2960,19 @@ script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-DisplayName = "TOXIN_VACUOLE"
-NameLabelPath = NodePath("../oxytoxy/MarginContainer/VBoxContainer/Header/Title")
-MpLabelPath = NodePath("../oxytoxy/MarginContainer/VBoxContainer/Header/MP/Value")
-DescriptionLabelPath = NodePath("../oxytoxy/MarginContainer/VBoxContainer/Description")
-ModifierListPath = NodePath("../oxytoxy/MarginContainer/VBoxContainer/ModifierList")
-ProcessListPath = NodePath("../oxytoxy/MarginContainer/VBoxContainer/ProcessList")
+DisplayName = "BINDING_AGENT"
+NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
+MpLabelPath = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+ModifierListPath = NodePath("MarginContainer/VBoxContainer/ModifierList")
+ProcessListPath = NodePath("MarginContainer/VBoxContainer/ProcessList")
 ModifierInfoScene = ExtResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="GroupHolder/organelleSelection/bindingagent"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
-margin_bottom = 345.0
+margin_bottom = 506.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -2983,7 +2983,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 329.0
+margin_bottom = 490.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -2994,15 +2994,16 @@ mouse_filter = 2
 custom_constants/separation = 10
 
 [node name="MP" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/Header"]
-margin_right = 49.0
-margin_bottom = 20.0
+margin_right = 60.0
+margin_bottom = 22.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/Header/MP"]
+margin_top = 1.0
 margin_right = 20.0
-margin_bottom = 20.0
+margin_bottom = 21.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 size_flags_vertical = 4
@@ -3011,25 +3012,24 @@ expand = true
 
 [node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/Header/MP"]
 margin_left = 24.0
-margin_top = 1.0
-margin_right = 42.0
-margin_bottom = 19.0
-custom_fonts/font = SubResource( 3 )
+margin_right = 60.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 29 )
 text = "55"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/Header"]
-margin_left = 59.0
-margin_right = 259.0
+margin_left = 70.0
+margin_right = 270.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 25 )
 text = "BINDING_AGENT"
 align = 1
 autowrap = true
 
 [node name="Spacer" type="Control" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/Header"]
-margin_left = 269.0
+margin_left = 280.0
 margin_right = 318.0
 margin_bottom = 27.0
 mouse_filter = 2
@@ -3038,7 +3038,7 @@ size_flags_horizontal = 3
 [node name="ProcessDescription" type="VBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 318.0
-margin_bottom = 109.0
+margin_bottom = 59.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ProcessDescription"]
@@ -3046,91 +3046,104 @@ margin_right = 318.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 26 )
 text = "ALLOWS_BINDING"
+autowrap = true
 
 [node name="ProcessList" type="VBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer"]
-margin_top = 124.0
+margin_top = 74.0
 margin_right = 318.0
-margin_bottom = 124.0
+margin_bottom = 74.0
 mouse_filter = 2
-theme = SubResource( 4 )
+theme = SubResource( 3 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer"]
-margin_top = 139.0
+margin_top = 89.0
 margin_right = 318.0
-margin_bottom = 183.0
+margin_bottom = 133.0
 mouse_filter = 2
 
-[node name="Storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList"]
+[node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
+DisplayName = "STORAGE"
+ModifierValue = "+15"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 12 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/Storage"]
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
+margin_right = 26.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+5"
 
-[node name="Name" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/Storage"]
-margin_left = 20.0
-margin_right = 73.0
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 30.0
+margin_right = 100.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
-text = "STORAGE"
+text = "Storage"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/Storage"]
-margin_left = 77.0
-margin_right = 97.0
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 104.0
+margin_right = 124.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 texture = ExtResource( 12 )
 expand = true
 
-[node name="Osmoregulation Cost" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList"]
+[node name="osmoregulation_cost" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList"]
 margin_top = 24.0
 margin_right = 318.0
 margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+10"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/osmoregulation_cost"]
 margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
+margin_right = 26.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+1"
 
-[node name="Name" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
-margin_left = 20.0
-margin_right = 167.0
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/osmoregulation_cost"]
+margin_left = 30.0
+margin_right = 218.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
-text = "OSMOREGULATION_COST"
+text = "Osmoregulation Cost"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
-margin_left = 171.0
-margin_right = 191.0
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/osmoregulation_cost"]
+margin_left = 222.0
+margin_right = 242.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer"]
-margin_top = 198.0
+margin_top = 148.0
 margin_right = 318.0
-margin_bottom = 202.0
+margin_bottom = 152.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer"]
-margin_top = 217.0
+margin_top = 167.0
 margin_right = 318.0
-margin_bottom = 314.0
+margin_bottom = 184.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 26 )
 text = "BINDING_AGENT_DESCRIPTION"
