@@ -1573,7 +1573,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (MicrobeMode == MicrobeMode.BINDING)
         {
             // Drain atp
-            var cost = Constants.BINDING_ATP_COST_SECOND * delta;
+            var cost = Constants.BINDING_ATP_COST_PER_SECOND * delta;
 
             if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
@@ -1614,7 +1614,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (MicrobeMode == MicrobeMode.ENGULF)
         {
             // Drain atp
-            var cost = Constants.ENGULFING_ATP_COST_SECOND * delta;
+            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
 
             if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {

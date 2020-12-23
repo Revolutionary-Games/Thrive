@@ -217,7 +217,7 @@ public static class Constants
     /// <summary>
     ///   How much ATP does engulf mode cost per second
     /// </summary>
-    public const float ENGULFING_ATP_COST_SECOND = 1.5f;
+    public const float ENGULFING_ATP_COST_PER_SECOND = 1.5f;
 
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
@@ -242,7 +242,7 @@ public static class Constants
     /// <summary>
     ///   How much ATP does binding mode cost per second
     /// </summary>
-    public const float BINDING_ATP_COST_SECOND = 2.0f;
+    public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
 
     /// <summary>
     ///   Damage a single pilus stab does
