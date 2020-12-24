@@ -72,7 +72,7 @@
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=71]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=72]
-[ext_resource path="res://assets/textures/gui/bevel/ThermalGradient.png" type="Texture" id=73]
+[ext_resource path="res://assets/textures/gui/bevel/thermalgradient.png" type="Texture" id=73]
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
@@ -340,7 +340,9 @@ ResumeButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Resume")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 GradientLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/GradientValue")
+DataValuePath = NodePath("BottomRight/DataValue")
 PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
+PopulationDataPath = NodePath("BottomRight/PopulationData")
 PatchLabelPath = NodePath("BottomLeft/BottomBar/PatchLabel")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
 EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
@@ -1675,7 +1677,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -124.0
 margin_top = -271.0
-margin_right = -43.9999
+margin_right = -44.0
 margin_bottom = -194.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1695,13 +1697,13 @@ custom_constants/margin_bottom = 5
 [node name="VBox" type="VBoxContainer" parent="MicrobeHUD/BottomRight/DataValue/Margin"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 75.0
+margin_right = 74.0
 margin_bottom = 72.0
 custom_constants/separation = 8
-alignment = 1
+alignment = 2
 
 [node name="GradientValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
-margin_right = 70.0
+margin_right = 69.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 80 )
 text = "Gradient"
@@ -1711,7 +1713,7 @@ __meta__ = {
 
 [node name="HPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_top = 25.0
-margin_right = 70.0
+margin_right = 69.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 80 )
 text = "Hitpoints"
@@ -1721,7 +1723,7 @@ __meta__ = {
 
 [node name="ATPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_top = 50.0
-margin_right = 70.0
+margin_right = 69.0
 margin_bottom = 67.0
 custom_fonts/font = ExtResource( 80 )
 text = "ATP"

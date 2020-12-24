@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/thermalgradient.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/FlagellumIcon.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=7]
@@ -24,6 +25,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=26]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=27]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=29]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
@@ -1881,7 +1883,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
-[node name="ATPIcoon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
+[node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 82.0
 margin_right = 102.0
 margin_bottom = 20.0
@@ -2440,16 +2442,16 @@ margin_left = 79.0
 margin_right = 148.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
-text = "HYDROGEN_SULFIDE"
+text = "THERMAL_GRADIENT"
 
-[node name="HSIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
+[node name="TGIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 152.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 size_flags_vertical = 0
-texture = ExtResource( 10 )
+texture = ExtResource( 3 )
 expand = true
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -2466,7 +2468,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
-[node name="HSIcon2" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
+[node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 152.0
 margin_right = 172.0
 margin_bottom = 20.0
@@ -3983,16 +3985,16 @@ margin_left = 79.0
 margin_right = 148.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
-text = "HYDROGEN_SULFIDE"
+text = "THERMAL_GRADIENT"
 
-[node name="HSIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
+[node name="TGIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 152.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 size_flags_vertical = 0
-texture = ExtResource( 10 )
+texture = ExtResource( 3 )
 expand = true
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
@@ -4009,7 +4011,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
-[node name="HSIcon2" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
+[node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_left = 152.0
 margin_right = 172.0
 margin_bottom = 20.0

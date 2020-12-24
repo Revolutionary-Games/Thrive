@@ -41,20 +41,20 @@
         "name": "THERMOSYNTHESIS",
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 1
+            "thermalgradient": 1
         },
         "outputs": {
-            "atp": 90
+            "atp": 10
         }
     },
     "bacterial_thermosynthesis": {
         "name": "THERMOSYNTHESIS",
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 1
+            "thermalgradient": 1
         },
         "outputs": {
-            "atp": 10
+            "atp": 5
         }
     },
     "oxytoxySynthesis": {
