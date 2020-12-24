@@ -58,6 +58,10 @@ public class DefaultToolTip : Control, ICustomToolTip
         set => Visible = value;
     }
 
+    public ToolTipPositioning Positioning { get; private set; } = ToolTipPositioning.LastMousePosition;
+
+    public bool HideOnMousePress { get; private set; } = true;
+
     public Node ToolTipNode => this;
 
     public override void _Ready()
@@ -74,7 +78,7 @@ public class DefaultToolTip : Control, ICustomToolTip
 
     public void OnDisplay()
     {
-        ToolTipHelper.TooltipFadeIn(tween, this);
+        GUICommon.Instance.ModulateFadeIn(this, Constants.TOOLTIP_FADE_SPEED);
     }
 
     public void OnHide()

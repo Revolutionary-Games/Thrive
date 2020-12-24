@@ -498,36 +498,34 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         foreach (Control organelleSelection in organelleSelectionElements)
         {
-            ToolTipHelper.RegisterToolTipForControl(
-                organelleSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
-                    organelleSelection.Name, "organelleSelection"));
+            organelleSelection.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
+                organelleSelection.Name, "organelleSelection"), tooltipCallbacks);
         }
 
         foreach (Control membraneSelection in membraneSelectionElements)
         {
-            ToolTipHelper.RegisterToolTipForControl(
-                membraneSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
-                    membraneSelection.Name, "membraneSelection"));
+            membraneSelection.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
+                membraneSelection.Name, "membraneSelection"), tooltipCallbacks);
         }
 
-        ToolTipHelper.RegisterToolTipForControl(
-            rigiditySlider, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            helpButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("helpButton"));
-        ToolTipHelper.RegisterToolTipForControl(
-            symmetryButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("symmetryButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            undoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("undoButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            redoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("redoButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            newCellButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("newCellButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            timeIndicator, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("timeIndicator", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            finishButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("finishButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            menuButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("menuButton"));
+        rigiditySlider.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
+        helpButton.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("helpButton"), tooltipCallbacks);
+        symmetryButton.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("symmetryButton", "editor"), tooltipCallbacks);
+        undoButton.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("undoButton", "editor"), tooltipCallbacks);
+        redoButton.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("redoButton", "editor"), tooltipCallbacks);
+        newCellButton.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("newCellButton", "editor"), tooltipCallbacks);
+        timeIndicator.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
+        finishButton.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("finishButton", "editor"), tooltipCallbacks);
+        menuButton.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("menuButton"), tooltipCallbacks);
     }
 
     public override void _Process(float delta)
@@ -692,7 +690,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
 
-            ToolTipHelper.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
+            subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
 
             tooltip.Description =
                 $"{SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name}: " +
@@ -703,7 +701,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesConsumption");
 
-            ToolTipHelper.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
+            subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
 
             string displayName;
 

@@ -82,13 +82,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public float DisplayDelay { get; set; } = 0.3f;
+    public float DisplayDelay { get; set; } = 0.0f;
 
     public bool ToolTipVisible
     {
         get => Visible;
         set => Visible = value;
     }
+
+    public ToolTipPositioning Positioning { get; private set; } = ToolTipPositioning.FollowMousePosition;
+
+    public bool HideOnMousePress { get; private set; } = false;
 
     public Node ToolTipNode => this;
 
@@ -332,7 +336,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public void OnDisplay()
     {
-        ToolTipHelper.TooltipFadeIn(tween, this);
+        Show();
     }
 
     public void OnHide()

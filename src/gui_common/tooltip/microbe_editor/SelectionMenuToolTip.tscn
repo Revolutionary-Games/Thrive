@@ -10,8 +10,8 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=9]
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0, 0.129412, 0.141176, 1 )
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -22,10 +22,10 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="Theme" id=3]
+[sub_resource type="Theme" id=2]
 default_font = ExtResource( 6 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
@@ -35,7 +35,7 @@ margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
 theme = ExtResource( 9 )
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -123,7 +123,7 @@ margin_top = 57.0
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
-theme = SubResource( 3 )
+theme = SubResource( 2 )
 
 [node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 72.0
@@ -136,7 +136,7 @@ margin_top = 87.0
 margin_right = 318.0
 margin_bottom = 91.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 5 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 106.0

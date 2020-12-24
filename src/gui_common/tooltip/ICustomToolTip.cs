@@ -32,6 +32,10 @@ public interface ICustomToolTip
     /// </summary>
     Node ToolTipNode { get; }
 
+    ToolTipPositioning Positioning { get; }
+
+    bool HideOnMousePress { get; }
+
     /// <summary>
     ///   Display the tooltip in a customized way (like fade in or scale tweening)
     /// </summary>
@@ -41,4 +45,20 @@ public interface ICustomToolTip
     ///   Hide the tooltip
     /// </summary>
     void OnHide();
+}
+
+/// <summary>
+///   How the tooltip should be positioned on display.
+/// </summary>
+public enum ToolTipPositioning
+{
+    /// <summary>
+    ///   Tooltip positioned at the last cursor position after entering a tooltipable area.
+    /// </summary>
+    LastMousePosition,
+
+    /// <summary>
+    ///   Tooltip constantly positioned at the same position as the cursor.
+    /// </summary>
+    FollowMousePosition,
 }

@@ -26,7 +26,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=27]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=29]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -38,8 +38,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0.129412, 0.141176, 1 )
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -81,7 +81,7 @@ DescriptionLabelPath = NodePath("../../general/menuButton/MarginContainer/VBoxCo
 
 [node name="helpButton" parent="GroupHolder/general" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 Description = "OPEN_HELP_SCREEN"
 DescriptionLabelPath = NodePath("../../general/helpButton/MarginContainer/VBoxContainer/Description")
 
@@ -103,31 +103,31 @@ DescriptionLabelPath = NodePath("../../../GroupHolder/editor/finishButton/Margin
 
 [node name="symmetryButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 Description = "CHANGE_THE_SYMMETRY"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/symmetryButton/MarginContainer/VBoxContainer/Description")
 
 [node name="undoButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 Description = "UNDO_THE_LAST_ACTION"
 DescriptionLabelPath = NodePath("../undoButton/MarginContainer/VBoxContainer/Description")
 
 [node name="redoButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 Description = "REDO_THE_LAST_ACTION"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/redoButton/MarginContainer/VBoxContainer/Description")
 
 [node name="newCellButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 Description = "CREATE_A_NEW_MICROBE"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/newCellButton/MarginContainer/VBoxContainer/Description")
 
 [node name="timeIndicator" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/timeIndicator/MarginContainer/VBoxContainer/Description")
 
@@ -137,7 +137,7 @@ margin_right = 350.0
 margin_bottom = 238.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -333,7 +333,7 @@ margin_right = 350.0
 margin_bottom = 379.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -585,7 +585,7 @@ margin_right = 350.0
 margin_bottom = 423.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -878,7 +878,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1178,7 +1178,7 @@ margin_right = 350.0
 margin_bottom = 214.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1517,7 +1517,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1834,7 +1834,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2121,7 +2121,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2420,7 +2420,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2703,7 +2703,7 @@ margin_right = 350.0
 margin_bottom = 91.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2829,7 +2829,7 @@ margin_right = 350.0
 margin_bottom = 91.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2955,7 +2955,7 @@ margin_right = 350.0
 margin_bottom = 507.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3157,7 +3157,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3444,7 +3444,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3744,7 +3744,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -4036,7 +4036,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -4320,7 +4320,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -4637,7 +4637,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -4838,7 +4838,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -5153,7 +5153,7 @@ margin_right = 350.0
 margin_bottom = 121.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -5284,7 +5284,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -5544,7 +5544,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -5800,7 +5800,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -6127,7 +6127,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -6454,7 +6454,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -6815,7 +6815,7 @@ margin_right = 350.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 350, 0 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -7177,61 +7177,51 @@ mouse_filter = 2
 
 [node name="cytoplasm" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/cytoplasm/MarginContainer/VBoxContainer/Description")
 
 [node name="metabolosome" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/metabolosome/MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/chromatophore/MarginContainer/VBoxContainer/Description")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="rusticyanin" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/rusticyanin/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/nitrogenase/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxyProteins" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="mitochondrion" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/mitochondrion/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxy" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxy/MarginContainer/VBoxContainer/Description")
 
@@ -7242,60 +7232,50 @@ mouse_filter = 2
 
 [node name="osmoregulation" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/osmoregulation/MarginContainer/VBoxContainer/Description")
 
 [node name="baseMovement" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/baseMovement/MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/chromatophore/MarginContainer/VBoxContainer/Description")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="rusticyanin" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/rusticyanin/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/nitrogenase/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxyProteins" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="flagellum" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/flagellum/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxy" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxy/MarginContainer/VBoxContainer/Description")
