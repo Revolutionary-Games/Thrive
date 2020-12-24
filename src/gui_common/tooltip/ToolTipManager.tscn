@@ -7299,3 +7299,10 @@ visible = false
 custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxy/MarginContainer/VBoxContainer/Description")
+
+[node name="options" type="Control" parent="GroupHolder"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="addInputButton" parent="GroupHolder/options" instance=ExtResource( 1 )]
+Description = "ADD_INPUT_BUTTON_TOOLTIP"
