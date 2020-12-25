@@ -1589,6 +1589,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
+
+    /// <summary>
+    ///   Removes the player the ability to go to the editor.
+    ///   Does nothing when called by the AI.
+    /// </summary>
+    private void UnreadyToReproduce()
+    {
+        if (!IsPlayerMicrobe)
+            return;
+
+        // allOrganellesDivided = false;
+        OnReproductionStatus?.Invoke(this, false);
+    }
+
     /// <summary>
     ///   Handles things related to binding
     /// </summary>
@@ -2153,6 +2167,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         other.Colony = new ColonyMember(other, Colony);
         Colony.BindingTo.Add(other.Colony);
         MicrobeMode = MicrobeAction.NORMAL;
+
+        UnreadyToReproduce();
+        other.UnreadyToReproduce();
     }
 
     /// <summary>
