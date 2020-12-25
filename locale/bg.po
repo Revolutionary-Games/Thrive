@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 18:16+0100\n"
+"POT-Creation-Date: 2020-12-24 00:28+0100\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -401,8 +401,8 @@ msgstr "Отдалечаване"
 msgid "ZOOM_IN"
 msgstr "Приближаване"
 
-#: ../simulation_parameters/common/input_options.json:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:974
+#: ../simulation_parameters/common/input_options.json:67
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:973
 msgid "EDITOR"
 msgstr "Редактор"
 
@@ -633,22 +633,22 @@ msgid "SEA_FLOOR"
 msgstr "Морско дъно"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:461
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:701
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1361
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1597
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1877
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2152
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3359
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4449
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:464
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:716
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1400
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1940
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3288
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4426
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4944
 msgid "ATP"
 msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:15
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1902
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4474
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4451
 #: ../src/microbe_stage/MicrobeStage.tscn:1174
 msgid "AMMONIA"
 msgstr "Амоняк"
@@ -659,22 +659,22 @@ msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1284
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4142
 #: ../src/microbe_stage/MicrobeStage.tscn:1282
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:51
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:436
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:676
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:957
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1270
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1331
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3334
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3609
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3897
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4202
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:691
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:984
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1309
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1370
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3263
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3550
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3850
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4167
 #: ../src/microbe_stage/MicrobeStage.tscn:1120
 msgid "GLUCOSE"
 msgstr "Глюкоза"
@@ -685,33 +685,33 @@ msgid "OXYTOXY_NT"
 msgstr "Окситоксин"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
 #: ../src/microbe_stage/MicrobeStage.tscn:1336
 msgid "IRON"
 msgstr "Желязо"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3397
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4542
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2302
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3326
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5035
 msgid "OXYGEN"
 msgstr "Кислород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:99
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:995
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1306
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3647
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3935
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1345
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1686
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3588
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4202
 msgid "CARBON_DIOXIDE"
 msgstr "Въглероден диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1940
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2003
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4489
 msgid "NITROGEN"
 msgstr "Азот"
 
@@ -720,22 +720,22 @@ msgid "SUNLIGHT"
 msgstr "Слънчева светлина"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2775
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2431
 msgid "PREDATORY_PILUS"
 msgstr "Хищнически пили"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1525
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1589
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2083
 msgid "RUSTICYANIN"
 msgstr "Рустицианин"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1779
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1843
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1842
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1906
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2148
 msgid "NITROGENASE"
 msgstr "Нитрогеназа"
@@ -745,62 +745,62 @@ msgid "PROTOPLASM"
 msgstr "Протоплазма"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1211
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1250
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтезиращи протеини"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2054
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2193
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2213
 msgid "OXYTOXISOME"
 msgstr "Окситоксизома"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:923
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:950
 msgid "THYLAKOIDS"
 msgstr "Тилакоиди"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:249
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:593
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:657
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1886
 msgid "METABOLOSOMES"
 msgstr "Метаболозоми"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4415
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4328
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4392
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2979
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Пластид за азотна фиксация"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4079
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4143
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4044
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2911
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2341
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2428
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2492
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2367
 msgid "FLAGELLUM"
 msgstr "Флагела"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4656
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4720
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4645
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4709
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3046
 msgid "VACUOLE"
 msgstr "Вакуола"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3236
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2779
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3229
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
 msgid "MITOCHONDRION"
 msgstr "Митохондрия"
 
@@ -1272,40 +1272,40 @@ msgstr ""
 "Версията на записа не съвпада с Вашата версия на играта.\n"
 "Моля, заредете записа ръчно от менюто."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:83
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "OPEN_THE_MENU"
 msgstr "Отваряне на менюто"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "OPEN_HELP_SCREEN"
 msgstr "Отваряне на помощта"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:97
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:93
 msgid "WILL_YOU_THRIVE"
 msgstr "Ще процъфтите ли?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Завършване на промените и възобновяване на играта"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Промяна на симтерията"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:117
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отмяна на последното действие"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Възстановяване на последното действие"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:125
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Създаване на нов микроб"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:212
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:208
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Твърдост на мембраната"
 
@@ -1329,7 +1329,7 @@ msgstr "Подвижност"
 msgid "HEALTH"
 msgstr "Здраве"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
 "По-твърдата мембрана е по-устойчива, но същевременно тя забавя движението "
@@ -1408,7 +1408,7 @@ msgstr "Съхранение"
 msgid "OSMOREGULATION_COST"
 msgstr "Осморегулационен разход"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Това е вътрешността на клетката. Цитоплазмата представлява комбинация от "
@@ -1418,21 +1418,21 @@ msgstr ""
 "Също така, цитоплазмата служи за съхранение на молекули в клетката за да "
 "може тя да увеличава размера си."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:722
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1615
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:737
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "DOT_RATE_SCALES"
 msgstr ". Количеството зависи"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1679
 msgid "WITH_CONCENTRATION_OF"
 msgstr "от концентрацията на"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
 msgid "OXYGEN_DOT"
 msgstr "Кислород."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:843
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Метаболозомите представляват струпвания от протеини, увити в протеинови "
@@ -1484,7 +1484,7 @@ msgstr "количеството"
 msgid "LIGHT"
 msgstr "Светлина"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1131
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1170
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "Тилакоидите представляват струпвания от протеини и фоточувствителни "
@@ -1500,11 +1500,11 @@ msgstr ""
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ". Количеството зависи от концентрацията на"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1363
 msgid "ALSO_TURNS"
 msgstr "Също така, превръща"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1458
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Хемосинтезиращите протеини представляват малки струпвания в цитоплазмата, "
@@ -1514,7 +1514,7 @@ msgstr ""
 "Понеже хемосинтезиращите протеини са скачени с цитоплазма, тя извършва "
 "известна ферментация."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "Рустицианинът е протеин, който използва газообразен въглероден диоксид и "
@@ -1535,7 +1535,7 @@ msgstr ". Количеството"
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "зависи от концентрацията на"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2113
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "Нитрогеназата представлява протеин, който използва газообразен въглероден "
@@ -1549,44 +1549,44 @@ msgstr ""
 msgid "OXYTOXY"
 msgstr "Окситокси"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2270
 msgid "DOT_CAN_RELEASE"
 msgstr ". Освобождава"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2207
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
 msgid "TOXINS_BY_PRESSING_E"
 msgstr "токсини с натискане на „Е“. Количеството зависи от"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2412
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "Това е видоизменена метаболозома, която произвежда примитивна форма на "
 "токсичния агент окситоксин."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2519
 msgid "USES"
 msgstr "Използва"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2457
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2544
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr "за да увеличи скоростта"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2556
 msgid "SPEED_OF_THE_CELL"
 msgstr "на движение на клетката."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2577
 msgid "SPEED"
 msgstr "Скорост"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2589
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "Флагелата (мн. ч.: флагели) представлява протеин с формата на камшик, "
 "който се разпростира извън клетъчната мембрана и използва АТФ за да "
 "придвижва клетката, чрез вълнообразни движения."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2715
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Пробожда другите клетки с острия си връх."
 
@@ -1845,6 +1845,10 @@ msgstr ""
 "добрата защита и се нуждае от по-малко енергия за да не се деформира. "
 "Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването "
 "на хранителните вещества."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7308
+msgid "ADD_INPUT_BUTTON_TOOLTIP"
+msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"

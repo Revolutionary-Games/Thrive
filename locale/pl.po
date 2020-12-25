@@ -692,7 +692,7 @@ msgid "OXYTOXY_NT"
 msgstr "OxyToksy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
 #: ../src/microbe_stage/MicrobeStage.tscn:1336
 msgid "IRON"
 msgstr "Żelazo"
@@ -752,8 +752,8 @@ msgid "PROTOPLASM"
 msgstr "Protoplazma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1211
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1250
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Białka Chemosyntezujące"
 
@@ -765,7 +765,7 @@ msgid "OXYTOXISOME"
 msgstr "Oxytoksysoma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:923
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:950
 msgid "THYLAKOIDS"
 msgstr "Tylakoidy"
 
@@ -1281,40 +1281,40 @@ msgstr ""
 "Wersja zapisu który próbujesz wczytać nie zgadza się z wersją gry.\n"
 "Proszę załadować zapis manualnie w menu."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:83
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "OPEN_THE_MENU"
 msgstr "Otwórz menu"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "OPEN_HELP_SCREEN"
 msgstr "Otwórz ekran pomocy"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:97
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:93
 msgid "WILL_YOU_THRIVE"
 msgstr "Czy będziesz prosperować?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Zakończ edycję i wróć do środowiska"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Zmień symetrię"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:117
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Cofnij ostatnią czynność"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Powtórz ostatnią czynność"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:125
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Stwórz nowego mikroba"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:212
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:208
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Sztywność Membrany"
 
@@ -1338,7 +1338,7 @@ msgstr "Mobilność"
 msgid "HEALTH"
 msgstr "Zdrowie"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Sztywniejsza membrana jest bardziej odporna na uszkodzenia, ale utrudnia "
@@ -1417,7 +1417,7 @@ msgstr "Magazyn"
 msgid "OSMOREGULATION_COST"
 msgstr "Koszt Osmoregulacji"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Płynne wnętrze komórki. Cytoplazma to podstawowa mikstura jonów, białek, i "
@@ -1427,21 +1427,21 @@ msgstr ""
 "to na tym polegają dla energii. Jest również używana aby przechowywać "
 "molekuły i zwiększać rozmiar komórki."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:722
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1615
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:737
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "DOT_RATE_SCALES"
 msgstr ". Stosunek się skaluje"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1679
 msgid "WITH_CONCENTRATION_OF"
 msgstr "z koncentracją"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
 msgid "OXYGEN_DOT"
 msgstr "Tlen."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:843
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolosomy to grupy protein zamknięte w proteinowych powłokach. Potrafią "
@@ -1494,7 +1494,7 @@ msgstr "intensywność"
 msgid "LIGHT"
 msgstr "Światło"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1131
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1170
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "Tylakoidy to grupy białek i foto sensytywnych pigmentów. Te pigmenty mogą "
@@ -1510,12 +1510,12 @@ msgstr ""
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ". Szybkość skaluje się ze stężeniem"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1363
 #, fuzzy
 msgid "ALSO_TURNS"
 msgstr "Też obraca [się]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1458
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Białka chemosyntezującę są małymi grupami białek które umieją przemieniać "
@@ -1525,7 +1525,7 @@ msgstr ""
 "chemosyntezującę są zawieszone bez pośrednio w cytoplazmie, otaczający "
 "płyn wykonuje fermentację."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "Rusticyjanina to białko mogące użyć gazowego dwutlenku węgla i tlenu do "
@@ -1545,7 +1545,7 @@ msgstr ". Tempo"
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "skaluje się ze stężeniem"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2113
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "Nitrogenaza to białko mogące użyć gazowego azotu i energii komórkowej w "
@@ -1559,44 +1559,44 @@ msgstr ""
 msgid "OXYTOXY"
 msgstr "OxyToksy"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2270
 msgid "DOT_CAN_RELEASE"
 msgstr ". Może wypuścić"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2207
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
 msgid "TOXINS_BY_PRESSING_E"
 msgstr "toksyny naciskając E. Tempo skaluje się z"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2412
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy "
 "toksycznego czynnika OxyToksy NT."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2519
 msgid "USES"
 msgstr "Używa"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2457
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2544
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr "żeby zwiększyć ruch"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2556
 msgid "SPEED_OF_THE_CELL"
 msgstr "szybkość komórki."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2577
 msgid "SPEED"
 msgstr "Szybkość"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2589
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "Flagellum (l.m. flagella) to wicio-podobny zbiór białek wysunięty z "
 "membrany komórki który używa ATP do falowania i poruszania komórki w danym "
 "kierunku."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2715
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Dźgaj tym inne komórki."
 
@@ -1786,6 +1786,10 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7021
 msgid "SILICA_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7308
+msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227

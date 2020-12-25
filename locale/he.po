@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 18:16+0100\n"
+"POT-Creation-Date: 2020-12-24 00:28+0100\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 "
+"&& n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -664,7 +664,7 @@ msgid "OXYTOXY_NT"
 msgstr "אוקסיטוקסי נ\"ט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
 #: ../src/microbe_stage/MicrobeStage.tscn:1336
 msgid "IRON"
 msgstr "ברזל"
@@ -724,8 +724,8 @@ msgid "PROTOPLASM"
 msgstr "פרוטופלזמה"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1211
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1250
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "חלבונים כימוסינתזיים"
 
@@ -737,7 +737,7 @@ msgid "OXYTOXISOME"
 msgstr "אוקסיטוקסיזום"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:923
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:950
 msgid "THYLAKOIDS"
 msgstr "תילקואידים"
 
@@ -1249,40 +1249,40 @@ msgstr ""
 "הגרסה שאתה מנסה לטעון אינה תואמת את גרסת המשחק.\n"
 "אנא טען את השמירה באופן ידני דרך התפריט."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:83
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "OPEN_THE_MENU"
 msgstr "פתח את התפריט"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "OPEN_HELP_SCREEN"
 msgstr "פתח את מסך העזרה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:97
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:93
 msgid "WILL_YOU_THRIVE"
 msgstr "האם אתה תשגשג (Thrive)?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "סיים עריכה וחזור לסביבה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "שנה סימטריה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:117
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "בטל פעולה אחרונה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "REDO_THE_LAST_ACTION"
 msgstr "בצע מחדש פעולה אחרונה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:125
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "צור מיקרוב חדש"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:212
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:208
 msgid "MEMBRANE_RIGIDITY"
 msgstr "קשיחות הקרום"
 
@@ -1306,7 +1306,7 @@ msgstr "ניידות"
 msgid "HEALTH"
 msgstr "חיים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "קרום נוקשה עמיד יותר בפני נזקים, אך מקשה עליו לנוע."
 
@@ -1383,7 +1383,7 @@ msgstr "אחסון"
 msgid "OSMOREGULATION_COST"
 msgstr "עלות ויסות אוסמטי"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "הקרביים הדביקים של התא. הציטופלזמה היא התערובת בסיסית של יונים, חלבונים "
@@ -1392,21 +1392,21 @@ msgstr ""
 "מתקדמת יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון "
 "מולקולות בתא ולגדילתו."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:722
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1615
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:737
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "DOT_RATE_SCALES"
 msgstr ". קצב צמיחה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1679
 msgid "WITH_CONCENTRATION_OF"
 msgstr "עם ריכוז של"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
 msgid "OXYGEN_DOT"
 msgstr "חמצן."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:843
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר "
@@ -1458,7 +1458,7 @@ msgstr "עוצמת"
 msgid "LIGHT"
 msgstr "אור"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1131
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1170
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "תילקואידים הם מקבצי חלבונים ופיגמנטים רגישים לאור. הפיגמנטים מסוגלים "
@@ -1472,11 +1472,11 @@ msgstr ""
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ". בקנה מידה עם ריכוז של"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1363
 msgid "ALSO_TURNS"
 msgstr "גם הפך ל"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1458
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "חלבונים כימוסינתזיים הם מקבצים קטנים של חלבונים בציטופלזמה המסוגלים להמיר "
@@ -1485,7 +1485,7 @@ msgstr ""
 "שהחלבונים הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים תסיסה ברמה "
 "מסוימת."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "רוסטיצינין הוא חלבון המסוגל להשתמש בפחמן דו חמצני ובחמצן כדי לחמצן ברזל "
@@ -1505,7 +1505,7 @@ msgstr ". קצב"
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "נמדד בריכוז של"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2113
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "ניטרוגנאז הוא חלבון המסוגל להשתמש בחנקן גזי ובאנרגיה תאית בצורת ATP כדי "
@@ -1518,43 +1518,43 @@ msgstr ""
 msgid "OXYTOXY"
 msgstr "אוקסיטוקסי"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2270
 msgid "DOT_CAN_RELEASE"
 msgstr ". יכול לשחרר"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2207
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
 msgid "TOXINS_BY_PRESSING_E"
 msgstr "רעלנים על ידי לחיצה על E. בקנה המידה עם"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2412
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ"
 "\"ט\"."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2519
 msgid "USES"
 msgstr "שימושים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2457
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2544
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr "להגדלת התנועה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2556
 msgid "SPEED_OF_THE_CELL"
 msgstr "מהירות התא."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2577
 msgid "SPEED"
 msgstr "מהירות"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2589
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "השוטון (ברבים: שוטונים) הוא צרור סיבי חלבון דמוי שוט המשתרע מקרום התא אשר "
 "מסוגל להשתמש ב- ATP כדי לגלול ולהניע את התא לכיוון מסויים."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2715
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "דקור תאים אחרים עם זה."
 
@@ -1797,6 +1797,10 @@ msgstr ""
 "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי "
 "ועמיד מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. "
 "עם זאת, הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7308
+msgid "ADD_INPUT_BUTTON_TOOLTIP"
+msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"

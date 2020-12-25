@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 18:16+0100\n"
+"POT-Creation-Date: 2020-12-24 00:28+0100\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -704,7 +704,7 @@ msgid "OXYTOXY_NT"
 msgstr "OxyToxid NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
 #: ../src/microbe_stage/MicrobeStage.tscn:1336
 msgid "IRON"
 msgstr "Eisen"
@@ -764,8 +764,8 @@ msgid "PROTOPLASM"
 msgstr "Protoplasma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1211
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1250
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosynthetisierende Proteine"
 
@@ -777,7 +777,7 @@ msgid "OXYTOXISOME"
 msgstr "Oxytoxisome"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:923
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:950
 msgid "THYLAKOIDS"
 msgstr "Thylakoide"
 
@@ -1298,40 +1298,40 @@ msgstr ""
 "Spielversion überein.\n"
 "Um den Speicherstand trozdem zu laden, laden Sie ihn über das Menü."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:83
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "OPEN_THE_MENU"
 msgstr "Das Menü öffnen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "OPEN_HELP_SCREEN"
 msgstr "Hilfemenü öffnen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:97
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:93
 msgid "WILL_YOU_THRIVE"
 msgstr "Wirst du gedeihen?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Bearbeitung abschließen und zur Umgebung zurückkehren"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändern der Symmetrie"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:117
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Letzte Aktion rückgängig machen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Letzte Aktion wiederholen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:125
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Eine neue Mikrobe erstellen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:212
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:208
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membran-Steifigkeit"
 
@@ -1355,7 +1355,7 @@ msgstr "Mobilität"
 msgid "HEALTH"
 msgstr "Gesundheit"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Eine steifere Membran ist widerstandsfähiger gegen Schaden, erschwert aber "
@@ -1434,7 +1434,7 @@ msgstr "Speicher"
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulierungskosten"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung "
@@ -1445,21 +1445,21 @@ msgstr ""
 "sind sie auf diese Energie angewiesen. Sie wird auch dazu verwendet, "
 "Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:722
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1615
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:737
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "DOT_RATE_SCALES"
 msgstr ". Die Rate skaliert"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1679
 msgid "WITH_CONCENTRATION_OF"
 msgstr "mit der Konzentration von"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
 msgid "OXYGEN_DOT"
 msgstr "Sauerstoff."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:843
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt "
@@ -1514,7 +1514,7 @@ msgstr "Intensität von"
 msgid "LIGHT"
 msgstr "Licht"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1131
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1170
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. "
@@ -1531,11 +1531,11 @@ msgstr ""
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ". Die Rate skaliert mit der Konzentration von"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1363
 msgid "ALSO_TURNS"
 msgstr "Verwandelt außerdem"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1458
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Chemosynthetisierende Proteine sind kleine Proteincluster im Zytoplasma, "
@@ -1546,7 +1546,7 @@ msgstr ""
 "direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit "
 "eine gewisse Fermentation durch."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "Rusticyanin ist ein Protein, das in der Lage ist, gasförmiges Kohlendioxid "
@@ -1567,7 +1567,7 @@ msgstr ". Rate"
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "skaliert sich mit der Konzentration von"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2113
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff "
@@ -1582,37 +1582,37 @@ msgstr ""
 msgid "OXYTOXY"
 msgstr "OxyToxid"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2270
 msgid "DOT_CAN_RELEASE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2207
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
 msgid "TOXINS_BY_PRESSING_E"
 msgstr "Toxine duch Drücken von E. Rate skaliert mit"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2412
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven "
 "Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2519
 msgid "USES"
 msgstr "Verwendet"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2457
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2544
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr "um die Mobilität zu erhöhen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2556
 msgid "SPEED_OF_THE_CELL"
 msgstr "Geschwindigkeit der Zelle."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2577
 msgid "SPEED"
 msgstr "Geschwindigkeit"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2589
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein "
@@ -1620,7 +1620,7 @@ msgstr ""
 "aus erstreckt und mit Hilfe von ATP die Zelle wellenförmig in eine "
 "Richtung treiben kann."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2715
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Stechen Sie damit andere Zellen."
 
@@ -1714,11 +1714,11 @@ msgstr ""
 "Der Thermoplast ist eine Doppelmembranstruktur, in der wärmeempfindliche "
 "Pigmente in Membransäcken gestapelt sind. Es handelt sich um einen "
 "Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt "
-"assimiliert wurde. Die Pigmente im Thermoplast sind in der Lage, die Energie "
-"der Wärmeunterschiede in der Umgebung zu nutzen, um in einem Prozess namens "
-"Thermosynthese aus Wasser und gasförmigem Kohlendioxid Glukose zu "
-"produzieren. Die Geschwindigkeit seiner Glukoseproduktion hängt von der "
-"Konzentration des Kohlendioxids und der Temperatur ab."
+"assimiliert wurde. Die Pigmente im Thermoplast sind in der Lage, die "
+"Energie der Wärmeunterschiede in der Umgebung zu nutzen, um in einem "
+"Prozess namens Thermosynthese aus Wasser und gasförmigem Kohlendioxid "
+"Glukose zu produzieren. Die Geschwindigkeit seiner Glukoseproduktion hängt "
+"von der Konzentration des Kohlendioxids und der Temperatur ab."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4335
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -1894,6 +1894,10 @@ msgstr ""
 "physische Schäden. Sie benötigt auch weniger Energie, um ihre Form zu "
 "erhalten. Allerdings verlangsamt sie die Zelle um einen großen Faktor und "
 "die Zelle absorbiert Ressourcen mit einer reduzierten Geschwindigkeit."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7308
+msgid "ADD_INPUT_BUTTON_TOOLTIP"
+msgstr ""
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
 msgid "PER_SECOND_SLASH"
