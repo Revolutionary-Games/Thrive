@@ -31,7 +31,7 @@ public class Compound : IRegistryType
     /// <summary>
     ///   Whether this compound can be distributed in a colony
     /// </summary>
-    public bool CanBeDistributed = true;
+    public bool CanBeDistributed;
 
     public Color Colour;
 

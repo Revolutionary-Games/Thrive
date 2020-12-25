@@ -1249,6 +1249,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         Colony = null;
+        ai?.ResetAI();
     }
 
     internal void SuccessfulScavenge()
