@@ -15,6 +15,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [Export]
     public NodePath PauseMenuPath;
 
+    [Export]
+    public NodePath OrganelleMenuPath;
+
     /// <summary>
     ///   The new to set on the species after exiting
     /// </summary>
@@ -22,6 +25,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public string NewName;
 
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
+
+    private Hex selectedHex;
 
     /// <summary>
     ///   Object camera is over. Needs to be defined before camera for saving to work
@@ -44,6 +49,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private Node world;
     private MicrobeEditorTutorialGUI tutorialGUI;
     private PauseMenu pauseMenu;
+    private PopupMenu organelleMenu;
 
     /// <summary>
     ///   Where all user actions will  be registered
@@ -371,6 +377,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
+        organelleMenu = GetNode<PopupMenu>(OrganelleMenuPath);
+
+        organelleMenu.Items[0] = TranslationServer.Translate("MOVE");
+        organelleMenu.Items[1] = TranslationServer.Translate("DELETE");
+        organelleMenu.Items[2] = TranslationServer.Translate("MODIFY");
     }
 
     public override void _ExitTree()
@@ -700,12 +711,37 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Removes organelles under the cursor
+    ///   Show options for the organelle under the cursor
     /// </summary>
     [RunOnKeyDown("e_secondary")]
-    public void RemoveOrganelle()
+    public void ShowOrganelleOptions()
     {
         GetMouseHex(out int q, out int r);
+        if (editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r)) == null)
+            return;
+        selectedHex = new Hex(q, r);
+        organelleMenu.RectPosition = GetViewport().GetMousePosition();
+        organelleMenu.Popup_();
+    }
+
+    public void MoveOrganelle()
+    {
+        // var organelleHere = editedMicrobeOrganelles.GetOrganelleAt(selectedHex);
+
+        // // Dont allow deletion of nucleus or the last organelle
+        // if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
+        //     return;
+
+        // var action = new MicrobeEditorAction(this, Constants.ORGANELLE_MOVE_COST,
+        //     DoOrganelleMoveAction, UndoOrganelleMoveAction,
+        //     new MoveActionData(organelleHere));
+
+        // EnqueueAction(action);
+    }
+
+    public void RemoveOrganelle()
+    {
+        int q = selectedHex.Q, r = selectedHex.R;
 
         switch (Symmetry)
         {
@@ -958,6 +994,19 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (!IsLoadedFromSave)
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
+    }
+
+    private void OnOrganellePopupPressed(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                MoveOrganelle();
+                break;
+            case 1:
+                RemoveOrganelle();
+                break;
+        }
     }
 
     private void StartMusic()
@@ -1611,6 +1660,22 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         var data = (RemoveActionData)action.Data;
         editedMicrobeOrganelles.Add(data.Organelle);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoOrganelleMoveAction(MicrobeEditorAction action)
+    {
+        var data = (MoveActionData)action.Data;
+        editedMicrobeOrganelles.Remove(data.OldOrganelle);
+        editedMicrobeOrganelles.Add(data.NewOrganelle);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoOrganelleMoveAction(MicrobeEditorAction action)
+    {
+        var data = (MoveActionData)action.Data;
+        editedMicrobeOrganelles.Add(data.OldOrganelle);
+        editedMicrobeOrganelles.Remove(data.NewOrganelle);
     }
 
     private void RemoveOrganelleAt(Hex location)

@@ -262,14 +262,14 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id=29]
-border_width_top = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-expand_margin_left = 5.0
-expand_margin_right = 5.0
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxEmpty" id=30]
 content_margin_left = 5.0
@@ -581,8 +581,8 @@ PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_accel = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_disabled = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_hover = Color( 1, 1, 1, 1 )
-PopupMenu/constants/hseparation = 2
-PopupMenu/constants/vseparation = 4
+PopupMenu/constants/hseparation = 8
+PopupMenu/constants/vseparation = 8
 PopupMenu/fonts/font = ExtResource( 10 )
 PopupMenu/icons/checked = ExtResource( 5 )
 PopupMenu/icons/radio_checked = ExtResource( 5 )
@@ -594,7 +594,7 @@ PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
 PopupMenu/styles/panel = SubResource( 28 )
 PopupMenu/styles/panel_disabled = null
-PopupMenu/styles/separator = SubResource( 29 )
+PopupMenu/styles/separator = null
 PopupPanel/styles/panel = SubResource( 28 )
 ProgressBar/colors/font_color = Color( 0, 0, 0, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
