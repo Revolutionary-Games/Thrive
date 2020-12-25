@@ -187,7 +187,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// <summary>
     ///   The colony this microbe is currently in
     /// </summary>
-    [JsonProperty]
+    /// <remarks>
+    ///   Order = 1 due to colony values requiring this to be fully initialized.
+    /// </remarks>
+    [JsonProperty(Order = 1)]
     public ColonyMember Colony
     {
         get => colony;

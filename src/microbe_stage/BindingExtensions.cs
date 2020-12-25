@@ -97,7 +97,13 @@ public static class BindingExtensions
                 microbe.Colony?.Master == null ? defaultValue : GetColonyValue(microbe.Colony.Master.Microbe, defaultValue, property);
         }
 
-        return (T)microbe.ColonyValues[property];
+        if (microbe.ColonyValues[property] is T)
+        {
+            return (T)microbe.ColonyValues[property];
+        }
+
+        SetColonyValue(microbe, defaultValue, property);
+        return defaultValue;
     }
 
     /// <summary>
