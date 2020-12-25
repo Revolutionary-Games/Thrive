@@ -1589,7 +1589,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-
     /// <summary>
     ///   Removes the player the ability to go to the editor.
     ///   Does nothing when called by the AI.
