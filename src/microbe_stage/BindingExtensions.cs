@@ -85,15 +85,16 @@ public static class BindingExtensions
     ///   Gets the value from the colony.
     /// </summary>
     /// <param name="microbe">The microbe</param>
+    /// <param name="defaultValue">The default value if the property was not defined before</param>
     /// <param name="property">The property in question</param>
     /// <returns>Returns the value.</returns>
     /// <typeparam name="T">The type of the value</typeparam>
-    public static T GetColonyValue<T>(this Microbe microbe, [CallerMemberName] string property = "")
+    public static T GetColonyValue<T>(this Microbe microbe, T defaultValue = default, [CallerMemberName] string property = "")
     {
         if (!microbe.ColonyValues.ContainsKey(property))
         {
             microbe.ColonyValues[property] =
-                microbe.Colony?.Master == null ? default : GetColonyValue<T>(microbe.Colony.Master.Microbe, property);
+                microbe.Colony?.Master == null ? defaultValue : GetColonyValue(microbe.Colony.Master.Microbe, defaultValue, property);
         }
 
         return (T)microbe.ColonyValues[property];

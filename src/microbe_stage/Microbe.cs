@@ -263,7 +263,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonIgnore]
     public MicrobeAction MicrobeMode
     {
-        get => this.GetColonyValue<MicrobeAction>();
+        get => this.GetColonyValue(MicrobeAction.NORMAL);
         set => this.SetColonyValue(value);
     }
 
