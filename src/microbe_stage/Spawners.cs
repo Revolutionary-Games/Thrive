@@ -322,12 +322,18 @@ public class MicrobeSpawner : Spawner
 
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
-        var speciesMemberCount = worldNode.GetTree()
+        var microbes = worldNode.GetTree()
             .GetNodesInGroup(Constants.AI_TAG_MICROBE)
             .Cast<Microbe>()
-            .Count(p => p.Species == species);
+            .ToList();
 
-        if (speciesMemberCount >= Constants.MAX_CELLS_OF_SPECIES)
+        var microbesCount = microbes.Count;
+        var speciesMemberCount = microbes.Count(p => p.Species == species);
+
+        if (speciesMemberCount >= Constants.MAX_CELLS_OF_SPECIES_ON_SCREEN)
+            yield break;
+
+        if (microbesCount >= Constants.MAX_CELLS_ON_SCREEN)
             yield break;
 
         // The true here is that this is AI controlled

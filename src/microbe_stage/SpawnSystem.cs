@@ -293,8 +293,11 @@ public class SpawnSystem
 
         var spawner = enumerable.GetEnumerator();
 
+        var any = false;
+
         while (spawner.MoveNext())
         {
+            any = true;
             if (spawner.Current == null)
                 throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
@@ -324,7 +327,7 @@ public class SpawnSystem
         }
 
         // Can still spawn more stuff
-        return false;
+        return !any;
     }
 
     /// <summary>
