@@ -24,6 +24,19 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     public string NewName;
 
+    /// <summary>
+    ///   Cost of the organelle that is about to be placed
+    /// </summary>
+    [JsonProperty]
+    public float CurrentOrganelleCost;
+
+    /// <summary>
+    ///   The organelle type that is selected to be used but not necessarily rendered
+    /// </summary>
+    public string SelectedActionName;
+
+    private Vector3 arrowPosition = Vector3.Zero;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     private Hex selectedHex;
@@ -31,7 +44,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   If an organelle is in the process of being moved but a new location hasn't been selected yet
     /// </summary>
-    private bool isMovingOrganelle = false;
+    private bool isMovingOrganelle;
 
     /// <summary>
     ///   Object camera is over. Needs to be defined before camera for saving to work
@@ -179,6 +192,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private Vector3? mousePanningStart;
 
     /// <summary>
+    ///   The organelle type that is selected to be used but not necessarily rendered
+    /// </summary>
+    public string SelectedActionName;
+
+    /// <summary>
     /// The Symmetry setting of the Microbe Editor.
     /// </summary>
     public enum MicrobeSymmetry
@@ -245,11 +263,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             activeActionName = value;
         }
     }
-
-    /// <summary>
-    ///   The organelle type that is selected to be used but not necessarily rendered
-    /// </summary>
-    public string SelectedActionName;
 
     /// <summary>
     ///   The number of mutation points left
@@ -745,6 +758,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         GetMouseHex(out int q, out int r);
         if (editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r)) == null)
             return;
+
         selectedHex = new Hex(q, r);
         organelleMenu.RectPosition = GetViewport().GetMousePosition();
         organelleMenu.Popup_();
@@ -1709,6 +1723,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedMicrobeOrganelles.Remove(data.Organelle);
         data.Organelle.Position = data.NewLocation;
         editedMicrobeOrganelles.Add(data.Organelle);
+        data.Organelle.MovedThisSession = true;
     }
 
     [DeserializedCallbackAllowed]
@@ -1718,9 +1733,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedMicrobeOrganelles.Remove(data.Organelle);
         data.Organelle.Position = data.OldLocation;
         editedMicrobeOrganelles.Add(data.Organelle);
+        data.Organelle.MovedThisSession = false;
     }
 
-    public void MoveOrganelle(Hex oldLocation, Hex newLocation)
+    private void MoveOrganelle(Hex oldLocation, Hex newLocation)
     {
         var organelleHere = editedMicrobeOrganelles.GetOrganelleAt(oldLocation);
 
