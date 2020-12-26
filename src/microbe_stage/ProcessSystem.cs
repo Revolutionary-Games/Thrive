@@ -314,134 +314,134 @@ public class ProcessSystem
             var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process);
             currentProcessStatistics?.Clear();
 
-            // Can your cell do the process
-            bool canDoProcess = true;
-
-            // Loop through to make sure you can follow through with your
-            // whole process so nothing gets wasted as that would be
-            // frustrating, its two more for loops, yes but it should only
-            // really be looping at max two or three times anyway. also make
-            // sure you wont run out of space when you do add the compounds.
-            // Input
-            // Defaults to 1
-            float environmentModifier = 1.0f;
-
-            foreach (var entry in processData.Inputs)
-            {
-                // Set used compounds to be useful, we dont want to purge
-                // those
-                bag.SetUseful(entry.Key);
-
-                var inputRemoved = entry.Value * process.Rate * delta;
-
-                // This isn't exactly accurate, but this is needed when the process can't run to get some numbers
-                // TODO: improve the situation described above
-                currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
-
-                // TODO: It might be faster to just check if there is any
-                // dissolved amount of this compound or not
-                if (entry.Key.IsEnvironmental)
-                {
-                    // do environmental modifier here, and save it for later
-                    environmentModifier *= GetDissolved(entry.Key) / entry.Value;
-
-                    if (environmentModifier <= MathUtils.EPSILON)
-                        currentProcessStatistics?.AddLimitingFactor(entry.Key);
-                }
-                else
-                {
-                    // If not enough compound we can't do the process
-                    if (bag.GetCompoundAmount(entry.Key) < inputRemoved)
-                    {
-                        canDoProcess = false;
-                        currentProcessStatistics?.AddLimitingFactor(entry.Key);
-                    }
-                }
-            }
-
-            if (environmentModifier <= MathUtils.EPSILON)
-            {
-                canDoProcess = false;
-            }
-
-            // Output
-            // This is now always looped (even when we can't do the process)
-            // because the is useful part is needs to be always be done
-            foreach (var entry in processData.Outputs)
-            {
-                // For now lets assume compounds we produce are also
-                // useful
-                bag.SetUseful(entry.Key);
-
-                // Apply the general modifiers and
-                // apply the environmental modifier
-                var outputAdded = entry.Value * process.Rate * delta * environmentModifier;
-
-                currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded * inverseDelta);
-
-                // If no space we can't do the process, and if environmental
-                // right now this isn't released anywhere
-                if (entry.Key.IsEnvironmental)
-                {
-                    continue;
-                }
-
-                if (bag.GetCompoundAmount(entry.Key) + outputAdded > bag.Capacity)
-                {
-                    canDoProcess = false;
-                    currentProcessStatistics?.AddCapacityProblem(entry.Key);
-                }
-            }
-
-            // Only carry out this process if you have all the required
-            // ingredients and enough space for the outputs
-            if (!canDoProcess)
-                continue;
-
-            if (currentProcessStatistics != null)
-                currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier;
-
-            // Inputs.
-            foreach (var entry in processData.Inputs)
-            {
-                // TODO: It might be faster to just check if there is any
-                // dissolved amount of this compound or not
-                if (entry.Key.IsEnvironmental)
-                    continue;
-
-                // Note: the environment modifier is applied here, but not
-                // when checking if we have enough compounds. So sometimes
-                // we might not run a process when we actually would have
-                // enough compounds to run it.
-                // TODO: the reverse is also probably true, ie. we can run a process we shouldn't be able to due to the
-                // environmental modifier boosting its speed
-                var inputRemoved = entry.Value * process.Rate * delta *
-                    environmentModifier;
-
-                currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
-
-                // This should always succeed (due to the earlier check) so
-                // it is always assumed here that the process succeeded
-                bag.TakeCompound(entry.Key, inputRemoved);
-            }
-
-            // Outputs.
-            foreach (var entry in processData.Outputs)
-            {
-                if (entry.Key.IsEnvironmental)
-                    continue;
-
-                var outputGenerated = entry.Value * process.Rate * delta *
-                    environmentModifier;
-
-                currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
-
-                bag.AddCompound(entry.Key, outputGenerated);
-            }
+            RunProcess(delta, processData, bag, process, currentProcessStatistics, inverseDelta);
         }
 
         bag.ClampNegativeCompoundAmounts();
 
         processStatistics?.RemoveUnused();
+    }
+
+    private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
+        ProcessStatistics.SingleProcessStatistics currentProcessStatistics, float inverseDelta)
+    {
+        // Can your cell do the process
+        bool canDoProcess = true;
+
+        // Loop through to make sure you can follow through with your
+        // whole process so nothing gets wasted as that would be
+        // frustrating.
+        float environmentModifier = 1.0f;
+
+        // First check the environmental compounds so that we can build the right environment modifier for accurate
+        // check of normal compound input amounts
+        foreach (var entry in processData.Inputs)
+        {
+            // Set used compounds to be useful, we dont want to purge
+            // those
+            bag.SetUseful(entry.Key);
+
+            if (!entry.Key.IsEnvironmental)
+                continue;
+
+            var dissolved = GetDissolved(entry.Key);
+
+            currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
+
+            // do environmental modifier here, and save it for later
+            environmentModifier *= dissolved / entry.Value;
+
+            if (environmentModifier <= MathUtils.EPSILON)
+                currentProcessStatistics?.AddLimitingFactor(entry.Key);
+        }
+
+        if (environmentModifier <= MathUtils.EPSILON)
+        {
+            canDoProcess = false;
+        }
+
+        foreach (var entry in processData.Inputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            var inputRemoved = entry.Value * process.Rate * delta;
+
+            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
+
+            // If not enough compound we can't do the process
+            if (bag.GetCompoundAmount(entry.Key) < inputRemoved)
+            {
+                canDoProcess = false;
+                currentProcessStatistics?.AddLimitingFactor(entry.Key);
+            }
+        }
+
+        // Output
+        // This is now always looped (even when we can't do the process)
+        // because the is useful part is needs to be always be done
+        foreach (var entry in processData.Outputs)
+        {
+            // For now lets assume compounds we produce are also
+            // useful
+            bag.SetUseful(entry.Key);
+
+            // Apply the general modifiers and
+            // apply the environmental modifier
+            var outputAdded = entry.Value * process.Rate * delta * environmentModifier;
+
+            currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded * inverseDelta);
+
+            // If no space we can't do the process, and if environmental
+            // right now this isn't released anywhere
+            if (entry.Key.IsEnvironmental)
+            {
+                continue;
+            }
+
+            if (bag.GetCompoundAmount(entry.Key) + outputAdded > bag.Capacity)
+            {
+                canDoProcess = false;
+                currentProcessStatistics?.AddCapacityProblem(entry.Key);
+            }
+        }
+
+        // Only carry out this process if you have all the required
+        // ingredients and enough space for the outputs
+        if (!canDoProcess)
+            return;
+
+        if (currentProcessStatistics != null)
+            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier;
+
+        // Consume inputs
+        foreach (var entry in processData.Inputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            var inputRemoved = entry.Value * process.Rate * delta *
+                environmentModifier;
+
+            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
+
+            // This should always succeed (due to the earlier check) so
+            // it is always assumed here that the process succeeded
+            bag.TakeCompound(entry.Key, inputRemoved);
+        }
+
+        // Add outputs
+        foreach (var entry in processData.Outputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            var outputGenerated = entry.Value * process.Rate * delta *
+                environmentModifier;
+
+            currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
+
+            bag.AddCompound(entry.Key, outputGenerated);
+        }
     }
 }
