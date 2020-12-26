@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -321,6 +322,14 @@ public class MicrobeSpawner : Spawner
 
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
+        var speciesMemberCount = worldNode.GetTree()
+            .GetNodesInGroup(Constants.AI_TAG_MICROBE)
+            .Cast<Microbe>()
+            .Count(p => p.Species == species);
+
+        if (speciesMemberCount >= Constants.MAX_CELLS_OF_SPECIES)
+            yield break;
+
         // The true here is that this is AI controlled
         var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
