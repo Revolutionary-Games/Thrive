@@ -25,6 +25,11 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     /// </summary>
     public bool PlacedThisSession { get; set; }
 
+    /// <summary>
+    /// Used to flag whether this Organelle was moved during the current editor session.
+    /// </summary>
+    public bool MovedThisSession { get; set; }
+
     public Hex Position { get; set; }
 
     /// <summary>

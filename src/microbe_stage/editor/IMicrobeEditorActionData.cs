@@ -35,13 +35,15 @@ public class RemoveActionData : IMicrobeEditorActionData
 [JSONAlwaysDynamicType]
 public class MoveActionData : IMicrobeEditorActionData
 {
-    public OrganelleTemplate OldOrganelle;
-    public OrganelleTemplate NewOrganelle;
+    public OrganelleTemplate Organelle;
+    public Hex OldLocation;
+    public Hex NewLocation;
 
-    public MoveActionData(OrganelleTemplate oldOrganelle, OrganelleTemplate newOrganelle)
+    public MoveActionData(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation)
     {
-        OldOrganelle = oldOrganelle;
-        NewOrganelle = newOrganelle;
+        Organelle = organelle;
+        OldLocation = oldLocation;
+        NewLocation = newLocation;
     }
 }
 
