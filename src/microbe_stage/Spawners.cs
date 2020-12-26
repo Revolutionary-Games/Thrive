@@ -46,7 +46,7 @@ public static class SpawnHelpers
     {
         var microbe = (Microbe)microbeScene.Instance();
 
-        // The second parameter is (isPlayer), and we assume that if the
+        // The third parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
         microbe.Init(cloudSystem, currentGame, !aiControlled);
 
