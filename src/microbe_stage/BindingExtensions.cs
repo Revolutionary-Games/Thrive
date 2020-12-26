@@ -1,10 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
 public static class BindingExtensions
 {
+    private static Dictionary<Tuple<Microbe, string>, List<Action<object, object>>> actions =
+        new Dictionary<Tuple<Microbe, string>, List<Action<object, object>>>();
+
+    /// <summary>
+    ///   Hooks up a method to be called whenever the value for a property changed.
+    /// </summary>
+    /// <param name="microbe">The microbe</param>
+    /// <param name="action">
+    ///   The action that should be called.
+    ///   First argument is the old value. Null if this is the first assignment
+    ///   Second argument is the new value.
+    /// </param>
+    /// <param name="property">The name of the property</param>
+    public static void RegisterAction<T>(this Microbe microbe, Action<T, T> action,
+        [CallerMemberName] string property = "")
+    {
+        var tupleValue = new Tuple<Microbe, string>(microbe, property);
+        if (!actions.ContainsKey(tupleValue))
+            actions.Add(tupleValue, new List<Action<object, object>>());
+
+        actions[tupleValue].Add((a, b) => action(a == default ? default : (T)a, (T)b));
+    }
+
+    /// <summary>
+    ///   Unregisters a method from being called when a value changes.
+    /// </summary>
+    /// <param name="microbe">The microbe</param>
+    /// <param name="action">The action to remove</param>
+    /// <param name="property">The name of the property</param>
+    /// <returns>Returns whether the action was registered before</returns>
+    public static bool UnregisterAction(this Microbe microbe, Action<dynamic, dynamic> action,
+        [CallerMemberName] string property = "")
+    {
+        var tupleValue = new Tuple<Microbe, string>(microbe, property);
+        if (!actions.ContainsKey(tupleValue))
+            return false;
+
+        return actions[tupleValue].Remove(action);
+    }
+
     /// <summary>
     ///   Get all the members of the colony.
     /// </summary>
@@ -144,6 +185,18 @@ public static class BindingExtensions
 
     private static void SetColonyValue<T>(this Microbe microbe, T value, string property, bool fromAbove)
     {
+        var tupleValue = new Tuple<Microbe, string>(microbe, property);
+        if (actions.ContainsKey(tupleValue))
+        {
+            foreach (var action in actions[tupleValue])
+            {
+                if (microbe.ColonyValues.ContainsKey(property) && microbe.ColonyValues[property] is T)
+                    action.Invoke((T)microbe.ColonyValues[property], value);
+                else
+                    action.Invoke(null, value);
+            }
+        }
+
         microbe.ColonyValues[property] = value;
 
         if (microbe.Colony == null)

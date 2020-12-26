@@ -129,6 +129,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private Color flashColour = new Color(0, 0, 0, 0);
 
+    [JsonProperty]
+    private int flashPriority;
+
     /// <summary>
     ///   True once all organelles are divided to not continuously run code that is triggered
     ///   when a cell is ready to reproduce.
@@ -159,6 +162,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Microbe()
     {
         ColonyCompoundBag = new ColonyCompoundBag(this);
+        this.RegisterAction<MicrobeAction>((old, @new) => AbortFlash(), nameof(MicrobeMode));
     }
 
     public enum MicrobeAction
@@ -573,14 +577,27 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   flash is not started if currently flashing.
     /// </summary>
     /// <returns>True when a new flash was started, false if already flashing</returns>
-    public bool Flash(float duration, Color colour)
+    public bool Flash(float duration, Color colour, int priority = 0)
     {
-        if (flashDuration > 0)
+        if (colour != flashColour && (priority > flashPriority || flashDuration <= 0))
+        {
+            AbortFlash();
+        }
+        else if (flashDuration > 0)
             return false;
 
         flashDuration = duration;
         flashColour = colour;
+        flashPriority = priority;
         return true;
+    }
+
+    public void AbortFlash()
+    {
+        flashDuration = 0;
+        flashColour = new Color(0, 0, 0, 0);
+        flashPriority = 0;
+        Membrane.Tint = Species.Colour;
     }
 
     /// <summary>
@@ -642,7 +659,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Hitpoints -= amount;
 
         // Flash the microbe red
-        Flash(1.0f, new Color(1, 0, 0, 0.5f));
+        Flash(1.0f, new Color(1, 0, 0, 0.5f), 1);
 
         // Kill if ran out of health
         if (Hitpoints <= 0.0f)
