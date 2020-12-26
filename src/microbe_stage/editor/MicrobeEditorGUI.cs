@@ -1003,6 +1003,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     internal void OnOrganelleToPlaceSelected(string organelle)
     {
         editor.ActiveActionName = organelle;
+        editor.SelectedActionName = organelle;
 
         // Make all buttons unselected except the one that is now selected
         foreach (Control element in organelleSelectionElements)
