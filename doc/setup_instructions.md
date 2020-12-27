@@ -51,7 +51,7 @@ On Windows install Git with the official installer from:
 https://git-scm.com/download/win You can use this installer to also
 install git lfs for you. After installing you need to run `git lfs
 install` in command prompt. You'll probably want to turn autocrlf on
-with the command `git config --global core.autocrlf true` If you don't
+with the command `git config --global core.autocrlf true`. If you don't,
 there is a risk that you accidentally commit Windows-style line
 endings.
 
