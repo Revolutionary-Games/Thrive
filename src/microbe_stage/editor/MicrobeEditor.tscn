@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -844,7 +844,6 @@ __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
 PauseMenuPath = NodePath("PauseMenu")
-OrganelleMenuPath = NodePath("OrganellePopup")
 
 [node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
 DefaultCameraHeight = 10.0
@@ -947,6 +946,7 @@ SizeIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/
 RigiditySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("CellEditor/NegativeAtpWarning")
 IslandErrorPath = NodePath("CellEditor/IslandError")
+OrganelleMenuPath = NodePath("OrganellePopupMenu")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
 CompoundBalancePath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 
@@ -5682,6 +5682,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="OrganellePopupMenu" parent="MicrobeEditorGUI" instance=ExtResource( 55 )]
+anchor_right = 0.15625
+anchor_bottom = 0.183333
+margin_right = 0.0
+margin_bottom = 0.0
+
 [node name="TutorialGUI" parent="." instance=ExtResource( 85 )]
 visible = false
 EditorEntryReportPath = NodePath("../TutorialGUI/EditorEntryReport")
@@ -5801,10 +5807,11 @@ __meta__ = {
 [connection signal="mouse_exited" from="MicrobeEditorGUI/BottomButtons" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/HelpButton" to="MicrobeEditorGUI" method="HelpButtonPressed"]
+[connection signal="DeletePressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="." method="RemoveOrganelle"]
+[connection signal="MovePressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="." method="MovingOrganelle"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]
-[connection signal="id_pressed" from="OrganellePopup" to="." method="OnOrganellePopupPressed"]
 
 [editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation"]
 
