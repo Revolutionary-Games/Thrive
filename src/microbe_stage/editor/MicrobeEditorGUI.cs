@@ -244,6 +244,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath IslandErrorPath;
 
     [Export]
+    public NodePath OrganelleMenuPath;
+
+    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -261,6 +264,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
     private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
     private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
     private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
@@ -384,6 +388,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private ConfirmationDialog negativeAtpPopup;
     private AcceptDialog islandPopup;
+
+    private OrganellePopupMenu organelleMenu;
 
     private TextureButton menuButton;
     private TextureButton helpButton;
@@ -516,6 +522,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
+        organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
@@ -911,6 +918,22 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public void UpdateReportTabPatchName(string patch)
     {
         reportTabPatchNameLabel.Text = patch;
+    }
+
+    public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
+    {
+        organelleMenu.SelectedOrganelle = selectedOrganelle;
+        organelleMenu.ShowPopup = true;
+
+        // Disable delete option for nucleus or the last organelle.
+        if (selectedOrganelle.Definition == nucleus || editor.MicrobeSize < 2)
+        {
+            organelleMenu.EnableDeleteOption = false;
+        }
+        else
+        {
+            organelleMenu.EnableDeleteOption = true;
+        }
     }
 
     /// <summary>
