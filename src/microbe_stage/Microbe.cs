@@ -1202,10 +1202,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void HandleThermalGradient(float delta)
     {
-        double currentPositionalHeat = GameWorld.Map.CurrentPatch.BiomeTemplate.HeatMap.Noise(Translation.x / 100, Translation.y / 100, 1.0);
+        double currentPositionalHeat = GameWorld.Map.CurrentPatch.BiomeTemplate.HeatMap.Noise(Translation.x / 1000, Translation.y / 1000, 1.0);
         double gradient = Math.Abs(currentPositionalHeat - previousPositionalHeat) / delta;
         previousPositionalHeat = currentPositionalHeat;
-        Compounds.AddCompound(SimulationParameters.Instance.GetCompound("thermalgradient"), (float)gradient);
+        Compounds.AddCompound(SimulationParameters.Instance.GetCompound("thermalgradient"), (float)gradient * HexCount);
     }
 
     private void CheckEngulfShapeSize()
