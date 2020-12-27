@@ -79,7 +79,7 @@ public class ToolTipManager : CanvasLayer
         // Adjust position and size
         if (MainToolTip.ToolTipVisible)
         {
-            var mousePos = lastMousePosition;
+            Vector2 mousePos;
 
             switch (MainToolTip.Positioning)
             {

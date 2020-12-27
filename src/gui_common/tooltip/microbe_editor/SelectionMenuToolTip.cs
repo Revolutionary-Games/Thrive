@@ -37,8 +37,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private VBoxContainer modifierInfoList;
     private VBoxContainer processList;
 
-    private Tween tween;
-
     private string displayName;
     private string description;
 
@@ -103,8 +101,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<VBoxContainer>(ProcessListPath);
-
-        tween = GetNode<Tween>("Tween");
 
         UpdateName();
         UpdateDescription();

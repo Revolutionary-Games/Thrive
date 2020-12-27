@@ -13,8 +13,6 @@ public class DefaultToolTip : Control, ICustomToolTip
     /// </summary>
     private Label descriptionLabel;
 
-    private Tween tween;
-
     private string description;
 
     public Vector2 Position
@@ -70,8 +68,6 @@ public class DefaultToolTip : Control, ICustomToolTip
         // a different node name, so this use hard-coded path for now
         // See https://github.com/Revolutionary-Games/Thrive/issues/1855
         descriptionLabel = GetNode<Label>("MarginContainer/VBoxContainer/Description");
-
-        tween = GetNode<Tween>("Tween");
 
         UpdateDescription();
     }
