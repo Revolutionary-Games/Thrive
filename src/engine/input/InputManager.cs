@@ -38,7 +38,6 @@ public class InputManager : Node
         StartTimer();
     }
 
-
     /// <summary>
     ///   A bool indicating whether a rebinding is in progress
     /// </summary>
