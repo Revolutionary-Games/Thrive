@@ -17,11 +17,6 @@ public class InputManager : Node
     private static InputManager staticInstance;
 
     /// <summary>
-    ///   A bool indicating whether a rebinding is in progress
-    /// </summary>
-    public static bool RebindingIsActive { get; set; }
-
-    /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
     /// <remarks>
@@ -42,6 +37,12 @@ public class InputManager : Node
 
         StartTimer();
     }
+
+
+    /// <summary>
+    ///   A bool indicating whether a rebinding is in progress
+    /// </summary>
+    public static bool RebindingIsActive { get; set; }
 
     /// <summary>
     ///   Adds the instance to the list of objects receiving input.
