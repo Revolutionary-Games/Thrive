@@ -265,8 +265,8 @@ public class InputEventItem : Node
         // Consume current input even so it is only used for rebinding
         GetTree().SetInputAsHandled();
 
-        // rebinding is done so we alert the InputManager that he can resume getting input
-        InputManager.SetRebindingActive(false);
+        // Rebinding is done so we alert the InputManager that it can resume getting input
+        InputManager.RebindingIsActive = false;
     }
 
     /// <summary>
@@ -299,7 +299,7 @@ public class InputEventItem : Node
         WaitingForInput = true;
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
-        InputManager.SetRebindingActive(true);
+        InputManager.RebindingIsActive = true;
     }
 
     private void UpdateButtonText()
