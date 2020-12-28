@@ -80,6 +80,24 @@ public class GUICommon : Node
         tween.Start();
     }
 
+    public void ModulateFadeIn(Control control, float duration)
+    {
+        // Make sure the control is visible
+        control.Show();
+        control.Modulate = new Color(1, 1, 1, 0);
+
+        tween.InterpolateProperty(control, "modulate:a", 0, 1, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
+        tween.Start();
+    }
+
+    public void ModulateFadeOut(Control control, float duration)
+    {
+        control.Modulate = new Color(1, 1, 1, 1);
+
+        tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
+        tween.Start();
+    }
+
     /// <summary>
     ///   Creates an icon for the given compound.
     /// </summary>

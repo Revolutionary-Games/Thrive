@@ -124,7 +124,7 @@ public class PauseMenu : ControlWithInput
         // Unpause the game
         GetTree().Paused = false;
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
     }
 
