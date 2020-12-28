@@ -92,8 +92,8 @@ public class InputActionItem : VBoxContainer
         inputEventsContainer = GetNode<HBoxContainer>(InputEventsContainerPath);
         addInputEvent = GetNode<Button>(AddInputEventPath);
 
-        ToolTipHelper.RegisterToolTipForControl(
-            addInputEvent, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("addInputButton", "options"));
+        addInputEvent.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("addInputButton", "options"), tooltipCallbacks);
 
         inputActionHeader.Text = DisplayName;
 
