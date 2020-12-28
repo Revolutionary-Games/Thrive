@@ -306,6 +306,7 @@ public class ProcessSystem
             // If rate is 0 dont do it
             // The rate specifies how fast fraction of the specified process
             // numbers this cell can do
+            // TODO: would be nice still to report these to process statistics
             if (process.Rate <= 0.0f)
                 continue;
 
@@ -346,7 +347,8 @@ public class ProcessSystem
 
             var dissolved = GetDissolved(entry.Key);
 
-            currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
+            // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
+            currentProcessStatistics?.AddInputAmount(entry.Key, dissolved);
 
             // do environmental modifier here, and save it for later
             environmentModifier *= dissolved / entry.Value;
@@ -368,6 +370,8 @@ public class ProcessSystem
             var inputRemoved = entry.Value * process.Rate * delta;
 
             currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
+
+            // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
 
             // If not enough compound we can't do the process
             if (bag.GetCompoundAmount(entry.Key) < inputRemoved)
@@ -391,6 +395,8 @@ public class ProcessSystem
             var outputAdded = entry.Value * process.Rate * delta * environmentModifier;
 
             currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded * inverseDelta);
+
+            // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
 
             // If no space we can't do the process, and if environmental
             // right now this isn't released anywhere

@@ -51,6 +51,7 @@ public class ProcessList : VBoxContainer
     private ChemicalEquation CreateEquation(IProcessDisplayInfo process)
     {
         var equation = (ChemicalEquation)chemicalEquationScene.Instance();
+        equation.ShowSpinner = true;
         equation.EquationFromProcess = process;
 
         return equation;

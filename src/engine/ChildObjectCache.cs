@@ -53,6 +53,8 @@ public class ChildObjectCache<TKey, TNode>
         var node = entry.Node;
         parentObject.RemoveChild(node);
         node.QueueFree();
+
+        createdChildren.Remove(child);
     }
 
     public TNode GetChild(TKey child)

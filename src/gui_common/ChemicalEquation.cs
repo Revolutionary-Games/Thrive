@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Godot;
 
 /// <summary>
@@ -22,7 +21,21 @@ public class ChemicalEquation : VBoxContainer
     private HBoxContainer firstLineContainer;
     private IProcessDisplayInfo equationFromProcess;
     private bool showSpinner;
-    private Texture equationArrow;
+    private Texture equationArrowTexture;
+
+    /// <summary>
+    ///   True when the process has no inputs (or only environmental inputs).
+    ///   If true, a plus sign will be used before the output amounts.
+    /// </summary>
+    private bool hasNoInputs;
+
+    // Dynamically generated controls
+    private CompoundListBox leftSide;
+    private TextureRect equationArrow;
+    private CompoundListBox rightSide;
+    private Label perSecondLabel;
+    private Label environmentSeparator;
+    private CompoundListBox environmentSection;
 
     public IProcessDisplayInfo EquationFromProcess
     {
@@ -51,6 +64,11 @@ public class ChemicalEquation : VBoxContainer
     }
 
     /// <summary>
+    ///   If true then "/ second" is shown after the process inputs and outputs
+    /// </summary>
+    public bool ShowPerSecondLabel { get; set; } = true;
+
+    /// <summary>
     ///   If true this will automatically check the set process for changes
     /// </summary>
     public bool AutoRefreshProcess { get; set; } = true;
@@ -63,7 +81,7 @@ public class ChemicalEquation : VBoxContainer
         spinner = GetNode<TextureRect>(SpinnerPath);
         firstLineContainer = GetNode<HBoxContainer>(FirstLineContainerPath);
 
-        equationArrow = GD.Load<Texture>("res://assets/textures/gui/bevel/WhiteArrow.png");
+        equationArrowTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/WhiteArrow.png");
 
         spinner.Visible = showSpinner;
         UpdateEquation();
@@ -76,8 +94,8 @@ public class ChemicalEquation : VBoxContainer
             spinner.RectRotation += delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
         }
 
-        // if(AutoRefreshProcess)
-        // UpdateEquation();
+        if (AutoRefreshProcess)
+            UpdateEquation();
     }
 
     private void UpdateEquation()
@@ -86,6 +104,12 @@ public class ChemicalEquation : VBoxContainer
         {
             Visible = false;
             firstLineContainer.FreeChildren();
+            leftSide = null;
+            equationArrow = null;
+            rightSide = null;
+            perSecondLabel = null;
+            environmentSeparator = null;
+            environmentSection = null;
             return;
         }
 
@@ -94,115 +118,134 @@ public class ChemicalEquation : VBoxContainer
         // title.AddColorOverride("font_color", new Color(1.0f, 0.84f, 0.0f));
         title.Text = EquationFromProcess.Name;
 
-        // If true, a plus sign will be used before the output amounts
-        bool usePlus;
-
         var normalInputs = EquationFromProcess.Inputs.ToList();
         var environmentalInputs = EquationFromProcess.EnvironmentalInputs.ToList();
 
         // TODO: add detection when this should be intelligently split onto multiple lines
 
+        // Inputs of the process
+        UpdateLeftSide(normalInputs);
+
+        // Outputs of the process
+        UpdateRightSide();
+
+        if (perSecondLabel == null && ShowPerSecondLabel)
+        {
+            perSecondLabel = new Label { Text = TranslationServer.Translate("PER_SECOND_SLASH") };
+            firstLineContainer.AddChild(perSecondLabel);
+        }
+
+        // Environment conditions
+        UpdateEnvironmentPart(environmentalInputs);
+    }
+
+    private void UpdateLeftSide(List<KeyValuePair<Compound, float>> normalInputs)
+    {
         if (normalInputs.Count == 0)
         {
             // Just environmental stuff
-            usePlus = true;
+            hasNoInputs = true;
+
+            if (equationArrow != null)
+                equationArrow.Visible = false;
+
+            if (leftSide != null)
+                leftSide.Visible = false;
         }
         else
         {
             // Something turns into something else, uses the arrow notation
-            usePlus = false;
+            hasNoInputs = false;
 
             // Show the inputs
-            // TODO: add commas or maybe pluses for multiple inputs
-            foreach (var entry in normalInputs)
+            if (leftSide == null)
             {
-                var amountLabel = new Label();
-                amountLabel.Text = Math.Round(entry.Value, 3) + " ";
-                firstLineContainer.AddChild(amountLabel);
-                firstLineContainer.AddChild(GUICommon.Instance.CreateCompoundIcon(entry.Key.InternalName));
+                leftSide = new CompoundListBox();
+                firstLineContainer.AddChild(leftSide);
             }
 
+            leftSide.Visible = true;
+
+            leftSide.UpdateCompounds(normalInputs);
+
             // And the arrow
-            var arrow = new TextureRect();
-            arrow.Expand = true;
-            arrow.RectMinSize = new Vector2(20, 20);
-            arrow.Texture = equationArrow;
-            firstLineContainer.AddChild(arrow);
+            if (equationArrow == null)
+            {
+                equationArrow = new TextureRect
+                {
+                    Expand = true, RectMinSize = new Vector2(20, 20), Texture = equationArrowTexture,
+                };
+                firstLineContainer.AddChild(equationArrow);
+            }
+
+            equationArrow.Visible = true;
+        }
+    }
+
+    private void UpdateRightSide()
+    {
+        if (rightSide == null)
+        {
+            rightSide = new CompoundListBox();
+            firstLineContainer.AddChild(rightSide);
         }
 
-        var stringBuilder = new StringBuilder(string.Empty, 25);
+        rightSide.PrefixPositiveWithPlus = hasNoInputs;
 
-        // Outputs of the process
+        rightSide.UpdateCompounds(EquationFromProcess.Outputs);
+
+        // TODO: colouring for individual amounts
         foreach (var entry in EquationFromProcess.Outputs)
         {
-            stringBuilder.Clear();
-
-            var amountLabel = new Label();
-
             // TODO: add property to control this (also needs default font colour for restoring that)
 #pragma warning disable 162
 
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            // ReSharper disable HeuristicUnreachableCode
+            // ReSharper disable once HeuristicUnreachableCode
             if (entry.Value == 0 && false)
             {
                 // title.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
-                amountLabel.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+                // amountLabel.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
             }
-
-            // ReSharper restore HeuristicUnreachableCode
 #pragma warning restore 162
-
-            if (usePlus)
-            {
-                stringBuilder.Append(entry.Value >= 0 ? "+" : string.Empty);
-            }
-
-            stringBuilder.Append(Math.Round(entry.Value, 3) + " ");
-
-            amountLabel.Text = stringBuilder.ToString();
-
-            firstLineContainer.AddChild(amountLabel);
-            firstLineContainer.AddChild(GUICommon.Instance.CreateCompoundIcon(entry.Key.InternalName));
         }
+    }
 
-        var perSecondLabel = new Label();
-        perSecondLabel.Text = TranslationServer.Translate("PER_SECOND_SLASH");
-
-        firstLineContainer.AddChild(perSecondLabel);
-
-        // Environment conditions
+    private void UpdateEnvironmentPart(List<KeyValuePair<Compound, float>> environmentalInputs)
+    {
         if (environmentalInputs.Count > 0)
         {
-            var atSymbol = new Label();
-
-            atSymbol.Text = "@";
-            atSymbol.RectMinSize = new Vector2(30, 20);
-            atSymbol.Align = Label.AlignEnum.Center;
-            firstLineContainer.AddChild(atSymbol);
-
-            var first = true;
-
-            foreach (var entry in environmentalInputs)
+            if (environmentSeparator == null)
             {
-                if (!first)
+                environmentSeparator = new Label
                 {
-                    var commaLabel = new Label();
-                    commaLabel.Text = ", ";
-                    firstLineContainer.AddChild(commaLabel);
-                }
+                    Text = "@",
+                    RectMinSize = new Vector2(30, 20),
+                    Align = Label.AlignEnum.Center,
+                };
 
-                first = false;
-
-                var percentageLabel = new Label();
-
-                // TODO: show also the maximum speed required environmental compounds
-                percentageLabel.Text = Math.Round(entry.Value * 100, 1) + "%";
-
-                firstLineContainer.AddChild(percentageLabel);
-                firstLineContainer.AddChild(
-                    GUICommon.Instance.CreateCompoundIcon(entry.Key.InternalName));
+                firstLineContainer.AddChild(environmentSeparator);
             }
+
+            environmentSeparator.Visible = true;
+
+            if (environmentSection == null)
+            {
+                environmentSection = new CompoundListBox { PartSeparator = ", ", UsePercentageDisplay = true };
+                firstLineContainer.AddChild(environmentSection);
+            }
+
+            environmentSection.Visible = true;
+
+            environmentSection.UpdateCompounds(environmentalInputs);
+        }
+        else
+        {
+            if (environmentSeparator != null)
+                environmentSeparator.Visible = false;
+
+            if (environmentSection != null)
+                environmentSection.Visible = false;
         }
     }
 }
