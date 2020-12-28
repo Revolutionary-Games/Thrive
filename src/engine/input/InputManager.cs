@@ -15,6 +15,7 @@ using Godot;
 public class InputManager : Node
 {
     private static InputManager staticInstance;
+    private static bool rebindingIsActive = false;
 
     /// <summary>
     ///   A list of all loaded attributes
@@ -93,6 +94,11 @@ public class InputManager : Node
             attribute.Key.FocusLost();
     }
 
+    public static void SetRebindingActive(bool isRebinding)
+    {
+        rebindingIsActive = isRebinding;
+    }
+
     /// <summary>
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
@@ -122,6 +128,8 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _Input(InputEvent @event)
     {
+        if (rebindingIsActive)
+            return;
         OnInput(false, @event);
     }
 

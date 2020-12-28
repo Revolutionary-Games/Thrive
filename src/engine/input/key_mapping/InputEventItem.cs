@@ -223,6 +223,7 @@ public class InputEventItem : Node
 
             // If there are conflicts detected reset the changes and ask the user.
             groupList.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
+            GetTree().SetInputAsHandled();
             return true;
         }
 
@@ -260,6 +261,12 @@ public class InputEventItem : Node
 
         // Update the button text
         UpdateButtonText();
+
+        // Consume current input even so it is only used for rebinding
+        GetTree().SetInputAsHandled();
+
+        // rebinding is done so we alert the InputManager that he can resume getting input
+        InputManager.SetRebindingActive(false);
     }
 
     /// <summary>
@@ -292,6 +299,7 @@ public class InputEventItem : Node
         WaitingForInput = true;
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
+        InputManager.SetRebindingActive(true);
     }
 
     private void UpdateButtonText()
