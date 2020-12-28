@@ -223,6 +223,8 @@ public class InputEventItem : Node
 
             // If there are conflicts detected reset the changes and ask the user.
             groupList.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
+
+            // No other node should react to this input since the rebinding is still active after the dialog is closed
             GetTree().SetInputAsHandled();
             return true;
         }
@@ -299,6 +301,8 @@ public class InputEventItem : Node
         WaitingForInput = true;
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
+
+        // Signal to the input manager that a rebinding has started and it should ignore other input
         InputManager.RebindingIsActive = true;
     }
 

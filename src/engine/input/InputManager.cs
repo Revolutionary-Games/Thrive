@@ -17,10 +17,9 @@ public class InputManager : Node
     private static InputManager staticInstance;
 
     /// <summary>
-    /// A bool indicating whether a rebinding is in progress
+    ///   A bool indicating whether a rebinding is in progress
     /// </summary>
-    public static bool RebindingIsActive
-    { get; set; }
+    public static bool RebindingIsActive { get; set; }
 
     /// <summary>
     ///   A list of all loaded attributes
