@@ -170,6 +170,9 @@ public class ProcessSystem
 
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
 
+        // Used to go from the calculated compound values to per second values for reporting statistics
+        float inverseDelta = 1.0f / delta;
+
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
 
@@ -182,7 +185,7 @@ public class ProcessSystem
                 for (int a = start;
                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
                 {
-                    ProcessNode(nodes[a] as IProcessable, delta);
+                    ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
                 }
             });
 
@@ -197,9 +200,9 @@ public class ProcessSystem
     /// <summary>
     ///   Sets the biome whose environmental values affect processes
     /// </summary>
-    public void SetBiome(BiomeConditions biome)
+    public void SetBiome(BiomeConditions newBiome)
     {
-        this.biome = biome;
+        biome = newBiome;
     }
 
     /// <summary>
@@ -253,7 +256,7 @@ public class ProcessSystem
 
         speedFactor *= process.Rate;
 
-        // So that the speedfactor is available here
+        // So that the speed factor is available here
         foreach (var entry in process.Process.Inputs)
         {
             if (entry.Key.IsEnvironmental)
@@ -279,7 +282,7 @@ public class ProcessSystem
         return result;
     }
 
-    private void ProcessNode(IProcessable processor, float delta)
+    private void ProcessNode(IProcessable processor, float delta, float inverseDelta)
     {
         if (processor == null)
         {
@@ -287,9 +290,6 @@ public class ProcessSystem
                 "but it isn't derived from IProcessable");
             return;
         }
-
-        // Used to go from the calculated compound values to per second values for reporting statistics
-        float inverseDelta = 1.0f / delta;
 
         var bag = processor.ProcessCompoundStorage;
 
