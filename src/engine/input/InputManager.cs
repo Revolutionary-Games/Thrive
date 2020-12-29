@@ -116,9 +116,6 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (RebindingIsActive)
-            return;
-
         OnInput(true, @event);
     }
 
@@ -130,9 +127,6 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _Input(InputEvent @event)
     {
-        if (RebindingIsActive)
-            return;
-
         OnInput(false, @event);
     }
 
@@ -230,6 +224,10 @@ public class InputManager : Node
 
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
+        // Ignore input while rebinding
+        if (RebindingIsActive)
+            return;
+
         // Ignore mouse motion
         // TODO: support mouse movement input as well
         if (@event is InputEventMouseMotion)
