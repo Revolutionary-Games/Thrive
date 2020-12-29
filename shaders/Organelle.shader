@@ -51,9 +51,13 @@ void fragment(){
     ALBEDO = final.rgb;
 
     if (fresnelActive)
+	{
         ALPHA = round(cutoff) * final.a * sqrt(1.0f - dot(NORMAL, VIEW)) * fresnelValue;
+	}
     else
+	{
         ALPHA = round(cutoff) * final.a;
+	}
 
     EMISSION = dissolveOutline;
 }
