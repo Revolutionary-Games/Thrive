@@ -18,41 +18,53 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-ProcessListPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/ProcessList")
+ProcessListPath = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ProcessList")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+pause_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 395.0
-margin_bottom = 595.0
-rect_min_size = Vector2( 390, 590 )
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 390.0
-margin_bottom = 554.0
+margin_bottom = 590.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 390.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
 margin_right = 390.0
 size_flags_horizontal = 3
 
-[node name="ProcessList" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="ProcessList" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_right = 390.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 558.0
 margin_right = 390.0
 margin_bottom = 590.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 160.0
 margin_right = 230.0
 margin_bottom = 32.0
 text = "CLOSE"
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="ClosePressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="ClosePressed"]

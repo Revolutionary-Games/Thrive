@@ -24,6 +24,12 @@ public class ChemicalEquation : VBoxContainer
     private Texture equationArrowTexture;
 
     /// <summary>
+    ///   For some reason resizing the process panel causes the spinner to reset to the initial rotation, so we use
+    ///   this intermediate value to not have that happen.
+    /// </summary>
+    private float currentSpinnerRotation;
+
+    /// <summary>
     ///   True when the process has no inputs (or only environmental inputs).
     ///   If true, a plus sign will be used before the output amounts.
     /// </summary>
@@ -91,7 +97,8 @@ public class ChemicalEquation : VBoxContainer
     {
         if (ShowSpinner && EquationFromProcess != null)
         {
-            spinner.RectRotation += delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
+            currentSpinnerRotation += delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
+            spinner.RectRotation = currentSpinnerRotation;
         }
 
         if (AutoRefreshProcess)
