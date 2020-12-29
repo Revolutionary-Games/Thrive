@@ -313,7 +313,7 @@ public class ProcessSystem
             var processData = process.Process;
 
             var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process);
-            currentProcessStatistics?.Clear();
+            currentProcessStatistics?.BeginFrame(delta);
 
             RunProcess(delta, processData, bag, process, currentProcessStatistics, inverseDelta);
         }
@@ -324,7 +324,7 @@ public class ProcessSystem
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        ProcessStatistics.SingleProcessStatistics currentProcessStatistics, float inverseDelta)
+        SingleProcessStatistics currentProcessStatistics, float inverseDelta)
     {
         // Can your cell do the process
         bool canDoProcess = true;

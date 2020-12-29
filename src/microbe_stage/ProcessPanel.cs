@@ -26,7 +26,7 @@ public class ProcessPanel : WindowDialog
         if (ShownData != null)
         {
             // Update the list object
-            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value).Cast<IProcessDisplayInfo>().ToList();
+            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues()).ToList();
         }
         else
         {
