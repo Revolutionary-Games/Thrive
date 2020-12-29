@@ -42,7 +42,7 @@ public class PlayerMicrobeInput : NodeWithInput
 
         if (stage.Player != null)
         {
-            if (stage.Player.MicrobeMode == Microbe.MicrobeAction.UNBINDING)
+            if (stage.Player.State == Microbe.MicrobeState.UNBINDING)
                 return;
 
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
@@ -65,13 +65,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.MicrobeMode == Microbe.MicrobeAction.ENGULF)
+        if (stage.Player.State == Microbe.MicrobeState.ENGULF)
         {
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+            stage.Player.State = Microbe.MicrobeState.NORMAL;
         }
         else if (!stage.Player.Membrane.Type.CellWall)
         {
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.ENGULF;
+            stage.Player.State = Microbe.MicrobeState.ENGULF;
         }
     }
 
@@ -81,13 +81,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.MicrobeMode == Microbe.MicrobeAction.BINDING)
+        if (stage.Player.State == Microbe.MicrobeState.BINDING)
         {
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+            stage.Player.State = Microbe.MicrobeState.NORMAL;
         }
         else if (stage.Player.CanBind())
         {
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.BINDING;
+            stage.Player.State = Microbe.MicrobeState.BINDING;
         }
     }
 
@@ -97,13 +97,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.MicrobeMode == Microbe.MicrobeAction.UNBINDING)
+        if (stage.Player.State == Microbe.MicrobeState.UNBINDING)
         {
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+            stage.Player.State = Microbe.MicrobeState.NORMAL;
         }
         else if (stage.Player.Colony != null)
         {
-            stage.Player.MicrobeMode = Microbe.MicrobeAction.UNBINDING;
+            stage.Player.State = Microbe.MicrobeState.UNBINDING;
         }
     }
 
@@ -113,7 +113,7 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return false;
 
-        if (stage.Player.MicrobeMode != Microbe.MicrobeAction.UNBINDING)
+        if (stage.Player.State != Microbe.MicrobeState.UNBINDING)
             return false;
 
         if (stage.MicrobesAtMouse.Count == 0)
@@ -122,7 +122,7 @@ public class PlayerMicrobeInput : NodeWithInput
         var target = stage.MicrobesAtMouse[0];
 
         target.Colony.RemoveFromColony();
-        target.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+        target.State = Microbe.MicrobeState.NORMAL;
 
         return true;
     }

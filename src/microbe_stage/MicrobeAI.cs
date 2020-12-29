@@ -555,7 +555,7 @@ public class MicrobeAI
                 preyPegged = true;
             }
 
-            microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+            microbe.State = Microbe.MicrobeState.NORMAL;
 
             // You got a kill, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
@@ -574,18 +574,18 @@ public class MicrobeAI
             // Turn on engulfmode if close
             if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + microbe.EngulfSize * 3.0f
                 && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-                && microbe.MicrobeMode != Microbe.MicrobeAction.ENGULF &&
+                && microbe.State != Microbe.MicrobeState.ENGULF &&
                 microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize
                 && !microbe.Membrane.Type.CellWall)
             {
-                microbe.MicrobeMode = Microbe.MicrobeAction.ENGULF;
+                microbe.State = Microbe.MicrobeState.ENGULF;
                 ticksSinceLastToggle = 0;
             }
             else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f
-                && microbe.MicrobeMode == Microbe.MicrobeAction.ENGULF
+                && microbe.State == Microbe.MicrobeState.ENGULF
                 && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
             {
-                microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+                microbe.State = Microbe.MicrobeState.NORMAL;
                 ticksSinceLastToggle = 0;
             }
         }
@@ -635,7 +635,7 @@ public class MicrobeAI
 
             hasTargetPosition = false;
             targetChunk = GetNearestChunkItem(allChunks);
-            microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+            microbe.State = Microbe.MicrobeState.NORMAL;
 
             // You got a consumption, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
@@ -656,19 +656,19 @@ public class MicrobeAI
         if ((microbe.Translation - targetPosition).LengthSquared() <= 300 +
             microbe.EngulfSize * 3.0f
             && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-            && microbe.MicrobeMode != Microbe.MicrobeAction.ENGULF &&
+            && microbe.State != Microbe.MicrobeState.ENGULF &&
             microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * chunk.Size
             && !microbe.Membrane.Type.CellWall)
         {
-            microbe.MicrobeMode = Microbe.MicrobeAction.ENGULF;
+            microbe.State = Microbe.MicrobeState.ENGULF;
             ticksSinceLastToggle = 0;
         }
         else if ((microbe.Translation - targetPosition).LengthSquared() >=
             500 + microbe.EngulfSize * 3.0f
-            && microbe.MicrobeMode == Microbe.MicrobeAction.ENGULF
+            && microbe.State == Microbe.MicrobeState.ENGULF
             && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
         {
-            microbe.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+            microbe.State = Microbe.MicrobeState.NORMAL;
             ticksSinceLastToggle = 0;
         }
     }
