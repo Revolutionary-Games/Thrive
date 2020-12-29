@@ -584,7 +584,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             AbortFlash();
         }
         else if (flashDuration > 0)
+        {
             return false;
+        }
 
         flashDuration = duration;
         flashColour = colour;
