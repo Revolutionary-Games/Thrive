@@ -1660,9 +1660,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
 
         if (IsHoveredOver)
+        {
             Flash(1, new Color(255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 0.5f));
+        }
         else
+        {
             Flash(1, new Color(255.0f / 255.0f, 127.0f / 255.0f, 39.0f / 255.0f, 0.5f));
+        }
     }
 
     /// <summary>

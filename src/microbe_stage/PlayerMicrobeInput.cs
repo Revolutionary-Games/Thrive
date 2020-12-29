@@ -66,9 +66,13 @@ public class PlayerMicrobeInput : NodeWithInput
             return;
 
         if (stage.Player.MicrobeMode == Microbe.MicrobeAction.ENGULF)
+        {
             stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+        }
         else if (!stage.Player.Membrane.Type.CellWall)
+        {
             stage.Player.MicrobeMode = Microbe.MicrobeAction.ENGULF;
+        }
     }
 
     [RunOnKeyDown("g_toggle_binding")]
@@ -78,9 +82,13 @@ public class PlayerMicrobeInput : NodeWithInput
             return;
 
         if (stage.Player.MicrobeMode == Microbe.MicrobeAction.BINDING)
+        {
             stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+        }
         else if (stage.Player.CanBind())
+        {
             stage.Player.MicrobeMode = Microbe.MicrobeAction.BINDING;
+        }
     }
 
     [RunOnKeyDown("g_toggle_unbinding")]
@@ -90,9 +98,13 @@ public class PlayerMicrobeInput : NodeWithInput
             return;
 
         if (stage.Player.MicrobeMode == Microbe.MicrobeAction.UNBINDING)
+        {
             stage.Player.MicrobeMode = Microbe.MicrobeAction.NORMAL;
+        }
         else if (stage.Player.Colony != null)
+        {
             stage.Player.MicrobeMode = Microbe.MicrobeAction.UNBINDING;
+        }
     }
 
     [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
@@ -100,8 +112,10 @@ public class PlayerMicrobeInput : NodeWithInput
     {
         if (stage.Player == null)
             return false;
+
         if (stage.Player.MicrobeMode != Microbe.MicrobeAction.UNBINDING)
             return false;
+
         if (stage.MicrobesAtMouse.Count == 0)
             return false;
 
