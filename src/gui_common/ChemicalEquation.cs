@@ -48,7 +48,10 @@ public class ChemicalEquation : VBoxContainer
         get => equationFromProcess;
         set
         {
-            if (equationFromProcess == value)
+            if (equationFromProcess == null && value == null)
+                return;
+
+            if (equationFromProcess != null && equationFromProcess.Equals(value))
                 return;
 
             equationFromProcess = value;
