@@ -184,6 +184,9 @@ public class InputEventItem : Node
         var old = AssociatedEvent;
         AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
 
+        // Consume current input event so it is only used for rebinding
+        GetTree().SetInputAsHandled();
+
         // Check conflicts, and don't proceed if there is a conflict
         if (CheckNewKeyConflicts(@event, groupList, old))
             return;
@@ -223,9 +226,6 @@ public class InputEventItem : Node
 
             // If there are conflicts detected reset the changes and ask the user.
             groupList.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
-
-            // No other node should react to this input since the rebinding is still active after the dialog is closed
-            GetTree().SetInputAsHandled();
             return true;
         }
 
@@ -264,9 +264,6 @@ public class InputEventItem : Node
         // Update the button text
         UpdateButtonText();
 
-        // Consume current input event so it is only used for rebinding
-        GetTree().SetInputAsHandled();
-
         // Rebinding is done so we alert the InputManager that it can resume getting input
         InputManager.RebindingIsActive = false;
     }
@@ -302,7 +299,8 @@ public class InputEventItem : Node
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
 
-        // Signal to the input manager that a rebinding has started and it should ignore input untill the rebind is finished
+        // Signal to the input manager that a rebinding has started
+        // and it should ignore input untill the rebind is finished
         InputManager.RebindingIsActive = true;
     }
 
