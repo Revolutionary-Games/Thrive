@@ -39,7 +39,7 @@ public class InputManager : Node
     }
 
     /// <summary>
-    ///   A bool indicating whether a rebinding is in progress
+    ///   Indicates whether a rebinding is in progress
     /// </summary>
     public static bool RebindingIsActive { get; set; }
 
