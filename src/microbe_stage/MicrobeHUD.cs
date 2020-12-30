@@ -120,6 +120,12 @@ public class MicrobeHUD : Node
     public NodePath PhosphateReproductionBarPath;
 
     [Export]
+    public NodePath ProcessPanelPath;
+
+    [Export]
+    public NodePath ProcessPanelButtonPath;
+
+    [Export]
     public PackedScene ExtinctionBoxScene;
 
     [Export]
@@ -139,9 +145,6 @@ public class MicrobeHUD : Node
 
     [Export]
     public Texture PhosphatesInv;
-
-    [Export]
-    public NodePath ProcessPanelPath;
 
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
@@ -205,6 +208,7 @@ public class MicrobeHUD : Node
     private Array compoundBars;
 
     private ProcessPanel processPanel;
+    private TextureButton processPanelButton;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as
@@ -280,6 +284,7 @@ public class MicrobeHUD : Node
         editorButton = GetNode<TextureButton>(EditorButtonPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
+        processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
     }
 
     public void OnEnterStageTransition()
@@ -946,5 +951,10 @@ public class MicrobeHUD : Node
         {
             processPanel.Show();
         }
+    }
+
+    private void OnProcessPanelClosed()
+    {
+        processPanelButton.Pressed = false;
     }
 }

@@ -11,6 +11,9 @@ public class ProcessPanel : WindowDialog
 
     private ProcessList processList;
 
+    [Signal]
+    public delegate void OnClosed();
+
     public ProcessStatistics ShownData { get; set; }
 
     public override void _Ready()
@@ -38,5 +41,10 @@ public class ProcessPanel : WindowDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         Visible = false;
+    }
+
+    private void OnHidden()
+    {
+        EmitSignal(nameof(OnClosed));
     }
 }
