@@ -9,7 +9,15 @@ public class ProcessPanel : WindowDialog
     [Export]
     public NodePath ProcessListPath;
 
+    [Export]
+    public bool ShowCloseButton;
+
+    [Export]
+    public NodePath CloseButtonContainerPath;
+
     private ProcessList processList;
+
+    private Container closeButtonContainer;
 
     [Signal]
     public delegate void OnClosed();
@@ -19,6 +27,9 @@ public class ProcessPanel : WindowDialog
     public override void _Ready()
     {
         processList = GetNode<ProcessList>(ProcessListPath);
+        closeButtonContainer = GetNode<Container>(CloseButtonContainerPath);
+
+        closeButtonContainer.Visible = ShowCloseButton;
     }
 
     public override void _Process(float delta)
