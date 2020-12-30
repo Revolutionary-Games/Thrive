@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -31,13 +32,27 @@ public class CompoundListBox : HBoxContainer
     /// </summary>
     public bool UsePercentageDisplay { get; set; }
 
-    public void UpdateCompounds(IEnumerable<KeyValuePair<Compound, float>> compounds)
+    /// <summary>
+    ///   Updates the shown compounds
+    /// </summary>
+    /// <param name="compounds">The compounds and amounts to show</param>
+    /// <param name="markRed">Compounds that match these will be marked red.</param>
+    public void UpdateCompounds(IEnumerable<KeyValuePair<Compound, float>> compounds,
+        IReadOnlyList<Compound> markRed = null)
     {
         compoundAmountControls.UnMarkAll();
 
         foreach (var entry in compounds)
         {
-            compoundAmountControls.GetChild(entry.Key).Amount = entry.Value;
+            var compoundControl = compoundAmountControls.GetChild(entry.Key);
+            compoundControl.Amount = entry.Value;
+
+            if (markRed != null)
+            {
+                compoundControl.ValueColour = markRed.Contains(entry.Key) ?
+                    CompoundAmount.Colour.Red :
+                    CompoundAmount.Colour.White;
+            }
         }
 
         compoundAmountControls.DeleteUnmarked();

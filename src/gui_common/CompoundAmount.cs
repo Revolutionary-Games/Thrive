@@ -16,6 +16,13 @@ public class CompoundAmount : HBoxContainer
     private float amount = float.NegativeInfinity;
     private bool prefixPositiveWithPlus;
     private bool usePercentageDisplay;
+    private Colour valueColour = Colour.White;
+
+    public enum Colour
+    {
+        White,
+        Red,
+    }
 
     /// <summary>
     ///   The compound to show
@@ -103,12 +110,33 @@ public class CompoundAmount : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Colour of the amount display
+    /// </summary>
+    public Colour ValueColour
+    {
+        get => valueColour;
+        set
+        {
+            if (valueColour == value)
+                return;
+
+            valueColour = value;
+            if (amountLabel != null)
+                UpdateColour();
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
 
         UpdateLabel();
         UpdateIcon();
+
+        // Only apply non-default colour here. If it is later changed, it is then applied
+        if (ValueColour != Colour.White)
+            UpdateColour();
     }
 
     private void UpdateLabel()
@@ -137,6 +165,25 @@ public class CompoundAmount : HBoxContainer
         {
             amountLabel.Text = numberPart;
         }
+    }
+
+    private void UpdateColour()
+    {
+        Color color;
+
+        switch (ValueColour)
+        {
+            case Colour.White:
+                color = new Color(1.0f, 1.0f, 1.0f);
+                break;
+            case Colour.Red:
+                color = new Color(1.0f, 0.3f, 0.3f);
+                break;
+            default:
+                throw new Exception("unhandled colour");
+        }
+
+        amountLabel.AddColorOverride("font_color", color);
     }
 
     private void UpdateIcon()

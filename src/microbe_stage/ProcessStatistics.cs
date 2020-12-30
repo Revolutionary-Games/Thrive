@@ -149,7 +149,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         }
 
         // TODO: probably want to come up with a better way for averaging this
-        int limitorCutoff = entriesProcessed / 3;
+        int limitorCutoff = entriesProcessed / 2;
 
         // It is assumed that the updates have happened at pretty consistent intervals. So we do a rough average
         // based on the entry count. If we wanted to get fancy we could take the delta in each snapshot into account

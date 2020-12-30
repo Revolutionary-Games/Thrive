@@ -176,7 +176,7 @@ public class ChemicalEquation : VBoxContainer
 
             leftSide.Visible = true;
 
-            leftSide.UpdateCompounds(normalInputs);
+            leftSide.UpdateCompounds(normalInputs, EquationFromProcess.LimitingCompounds);
 
             // And the arrow
             if (equationArrow == null)
@@ -202,23 +202,7 @@ public class ChemicalEquation : VBoxContainer
 
         rightSide.PrefixPositiveWithPlus = hasNoInputs;
 
-        rightSide.UpdateCompounds(EquationFromProcess.Outputs);
-
-        // TODO: colouring for individual amounts
-        foreach (var entry in EquationFromProcess.Outputs)
-        {
-            // TODO: add property to control this (also needs default font colour for restoring that)
-#pragma warning disable 162
-
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            // ReSharper disable once HeuristicUnreachableCode
-            if (entry.Value == 0 && false)
-            {
-                // title.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
-                // amountLabel.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
-            }
-#pragma warning restore 162
-        }
+        rightSide.UpdateCompounds(EquationFromProcess.Outputs, EquationFromProcess.LimitingCompounds);
     }
 
     private void UpdateEnvironmentPart(List<KeyValuePair<Compound, float>> environmentalInputs)
@@ -247,7 +231,7 @@ public class ChemicalEquation : VBoxContainer
 
             environmentSection.Visible = true;
 
-            environmentSection.UpdateCompounds(environmentalInputs);
+            environmentSection.UpdateCompounds(environmentalInputs, EquationFromProcess.LimitingCompounds);
         }
         else
         {
