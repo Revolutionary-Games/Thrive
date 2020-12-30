@@ -36,10 +36,9 @@ public class ProcessList : VBoxContainer
         foreach (var process in ProcessesToShow)
         {
             createdProcessControls.GetChild(process);
-
-            // TODO: update the child here?
         }
 
+        createdProcessControls.ApplyOrder();
         createdProcessControls.DeleteUnmarked();
     }
 

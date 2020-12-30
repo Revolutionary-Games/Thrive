@@ -15,6 +15,8 @@ public class ChildObjectCache<TKey, TNode>
 
     private readonly Dictionary<TKey, CreatedNode> createdChildren = new Dictionary<TKey, CreatedNode>();
 
+    private int nextAccessOrder;
+
     public ChildObjectCache(Node parent, CreateNewChildNode childCreator)
     {
         parentObject = parent;
@@ -36,6 +38,8 @@ public class ChildObjectCache<TKey, TNode>
     {
         foreach (var entry in createdChildren)
             entry.Value.Marked = false;
+
+        nextAccessOrder = 0;
     }
 
     public void DeleteUnmarked()
@@ -65,11 +69,12 @@ public class ChildObjectCache<TKey, TNode>
         {
             entry = createdChildren[child];
             entry.Marked = true;
+            entry.AccessOrder = nextAccessOrder++;
             return entry.Node;
         }
 
         var node = childCreator(child);
-        entry = new CreatedNode(node);
+        entry = new CreatedNode(node) { AccessOrder = nextAccessOrder++ };
         createdChildren[child] = entry;
 
         parentObject.AddChild(node);
@@ -77,10 +82,25 @@ public class ChildObjectCache<TKey, TNode>
         return node;
     }
 
+    /// <summary>
+    ///   Makes the children be in the order they were last accessed with GetChild
+    /// </summary>
+    public void ApplyOrder()
+    {
+        foreach (var entry in createdChildren)
+        {
+            if (entry.Value.AccessOrder != entry.Value.Node.GetIndex())
+            {
+                parentObject.MoveChild(entry.Value.Node, entry.Value.AccessOrder);
+            }
+        }
+    }
+
     private class CreatedNode
     {
         public readonly TNode Node;
         public bool Marked = true;
+        public int AccessOrder;
 
         public CreatedNode(TNode node)
         {
