@@ -220,6 +220,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath SymmetryIconPath;
 
     [Export]
+    public NodePath CompoundBalancePath;
+
+    [Export]
     public Texture SymmetryIconDefault;
 
     [Export]
@@ -359,6 +362,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureButton menuButton;
     private TextureButton helpButton;
 
+    private CompoundBalanceDisplay compoundBalance;
+
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
 
@@ -466,6 +471,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
+
+        compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
         menu = GetNode<PauseMenu>(MenuPath);
 
@@ -752,6 +759,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
             tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
         }
+    }
+
+    // Disable this because the cleanup and inspections disagree
+    // ReSharper disable once RedundantNameQualifier
+    public void UpdateCompoundBalances(System.Collections.Generic.Dictionary<Compound, CompoundBalance> balances)
+    {
+        compoundBalance.UpdateBalances(balances);
     }
 
     /// <summary>

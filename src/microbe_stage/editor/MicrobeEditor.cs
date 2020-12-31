@@ -870,6 +870,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdatePlayerPatch(targetPatch);
         UpdatePatchBackgroundImage();
         CalculateOrganelleEffectivenessInPatch(targetPatch);
+        UpdatePatchDependentBalanceData();
     }
 
     /// <summary>
@@ -1010,6 +1011,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome,
             membrane));
+    }
+
+    private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)
+    {
+        patch ??= CurrentPatch;
+
+        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Biome);
+
+        gui.UpdateCompoundBalances(result);
     }
 
     /// <summary>
@@ -1684,11 +1694,18 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateSize(MicrobeHexSize);
         gui.UpdateGuiButtonStatus(HasNucleus);
 
+        UpdatePatchDependentBalanceData();
+
+        gui.UpdateSpeed(CalculateSpeed());
+    }
+
+    private void UpdatePatchDependentBalanceData()
+    {
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
 
-        gui.UpdateSpeed(CalculateSpeed());
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, targetPatch);
     }
 
     /// <summary>
