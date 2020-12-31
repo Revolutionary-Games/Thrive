@@ -1,9 +1,9 @@
 ﻿using Godot;
 
 /// <summary>
-///   Controls the screen fade
+///   Controls the screen fade transition
 /// </summary>
-public class Fade : CanvasLayer, ITransition
+public class ScreenFade : CanvasLayer, ITransition
 {
     public ColorRect Rect;
     public Tween Fader;

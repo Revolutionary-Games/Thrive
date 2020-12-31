@@ -291,7 +291,7 @@ public class MicrobeHUD : Node
     {
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.3f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
@@ -471,7 +471,7 @@ public class MicrobeHUD : Node
             PauseButtonPressed();
         }
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
     }
 

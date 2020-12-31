@@ -6,7 +6,7 @@ using Godot;
 
 /// <summary>
 ///   The main tooltip class for the selections on the microbe editor's selection menu.
-///   Contains list of processes and modifiers info
+///   Contains list of processes and modifiers info.
 /// </summary>
 public class SelectionMenuToolTip : Control, ICustomToolTip
 {
@@ -36,8 +36,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private Label descriptionLabel;
     private VBoxContainer modifierInfoList;
     private VBoxContainer processList;
-
-    private Tween tween;
 
     private string displayName;
     private string description;
@@ -82,13 +80,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public float DisplayDelay { get; set; } = 0.3f;
+    public float DisplayDelay { get; set; } = 0.0f;
 
     public bool ToolTipVisible
     {
         get => Visible;
         set => Visible = value;
     }
+
+    public ToolTipPositioning Positioning { get; private set; } = ToolTipPositioning.FollowMousePosition;
+
+    public bool HideOnMousePress { get; private set; } = false;
 
     public Node ToolTipNode => this;
 
@@ -99,8 +101,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<VBoxContainer>(ProcessListPath);
-
-        tween = GetNode<Tween>("Tween");
 
         UpdateName();
         UpdateDescription();
@@ -114,16 +114,16 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         var modifierInfo = (ModifierInfoLabel)ModifierInfoScene.Instance();
 
-        modifierInfo.ModifierName = name;
+        modifierInfo.DisplayName = name;
         modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
 
         modifierInfoList.AddChild(modifierInfo);
         modifierInfos.Add(modifierInfo);
     }
 
-    public ModifierInfoLabel GetModifierInfo(string name)
+    public ModifierInfoLabel GetModifierInfo(string nodeName)
     {
-        return modifierInfos.Find(found => found.Name == name);
+        return modifierInfos.Find(found => found.Name == nodeName);
     }
 
     /// <summary>
@@ -264,9 +264,70 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    /// <summary>
+    ///   Sets the value of all the membrane type modifiers on this tooltip relative
+    ///   to the referenceMembrane. This currently only reads from the preadded modifier
+    ///   UI elements on this tooltip and doesn't actually create them on runtime.
+    /// </summary>
+    public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType)
+    {
+        foreach (var modifier in modifierInfos)
+        {
+            var deltaValue = 0.0f;
+
+            switch (modifier.Name)
+            {
+                case "mobility":
+                    deltaValue = membraneType.MovementFactor - referenceMembrane.MovementFactor;
+                    break;
+                case "osmoregulation_cost":
+                    deltaValue = membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor;
+                    break;
+                case "resource_absorption_speed":
+                    deltaValue = membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor;
+                    break;
+                case "health":
+                    deltaValue = membraneType.Hitpoints - referenceMembrane.Hitpoints;
+                    break;
+                case "physical_resistance":
+                    deltaValue = membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance;
+                    break;
+                case "toxin_resistance":
+                    deltaValue = membraneType.ToxinResistance - referenceMembrane.ToxinResistance;
+                    break;
+            }
+
+            // All stats with +0 value that are not part of the selected membrane is made hidden
+            // on the tooltip so it'll be easier to digest and compare modifier changes
+            if (Name != referenceMembrane.InternalName && modifier.ShowValue)
+                modifier.Visible = deltaValue != 0;
+
+            // Apply the value to the text labels as percentage (except for Health)
+            if (modifier.Name == "health")
+            {
+                modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
+                    + deltaValue.ToString("F0", CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                modifier.ModifierValue = ((deltaValue >= 0) ? "+" : string.Empty)
+                    + (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture) + "%";
+            }
+
+            if (modifier.Name == "osmoregulation_cost")
+            {
+                modifier.AdjustValueColor(deltaValue, true);
+            }
+            else
+            {
+                modifier.AdjustValueColor(deltaValue);
+            }
+        }
+    }
+
     public void OnDisplay()
     {
-        ToolTipHelper.TooltipFadeIn(tween, this);
+        Show();
     }
 
     public void OnHide()
