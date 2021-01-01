@@ -408,16 +408,18 @@ public class Settings
 
             // These need to be also delay applied, otherwise when debugging these overwrite the default settings
             Invoke.Instance.Queue(ApplySoundSettings);
+
+            // If this is not delay applied, this also causes some errors in godot editor output when running
+            Invoke.Instance.Queue(ApplyInputSettings);
         }
         else
         {
             ApplyGraphicsSettings();
             ApplySoundSettings();
+            ApplyInputSettings();
         }
 
         ApplyLanguageSettings();
-        ApplyWindowSettings();
-        ApplyInputSettings();
         ApplyWindowSettings();
     }
 

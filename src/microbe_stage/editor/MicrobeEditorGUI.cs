@@ -220,6 +220,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath SymmetryIconPath;
 
     [Export]
+    public NodePath CompoundBalancePath;
+
+    [Export]
     public Texture SymmetryIconDefault;
 
     [Export]
@@ -359,6 +362,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureButton menuButton;
     private TextureButton helpButton;
 
+    private CompoundBalanceDisplay compoundBalance;
+
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
 
@@ -467,6 +472,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
 
+        compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
+
         menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
@@ -496,36 +503,38 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     public void RegisterTooltips()
     {
+        var toolTipManager = ToolTipManager.Instance;
+
         foreach (Control organelleSelection in organelleSelectionElements)
         {
-            organelleSelection.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
+            organelleSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
                 organelleSelection.Name, "organelleSelection"), tooltipCallbacks);
         }
 
         foreach (Control membraneSelection in membraneSelectionElements)
         {
-            membraneSelection.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
+            membraneSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
                 membraneSelection.Name, "membraneSelection"), tooltipCallbacks);
         }
 
         rigiditySlider.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
+            toolTipManager.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
         helpButton.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("helpButton"), tooltipCallbacks);
+            toolTipManager.GetToolTip("helpButton"), tooltipCallbacks);
         symmetryButton.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("symmetryButton", "editor"), tooltipCallbacks);
+            toolTipManager.GetToolTip("symmetryButton", "editor"), tooltipCallbacks);
         undoButton.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("undoButton", "editor"), tooltipCallbacks);
+            toolTipManager.GetToolTip("undoButton", "editor"), tooltipCallbacks);
         redoButton.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("redoButton", "editor"), tooltipCallbacks);
+            toolTipManager.GetToolTip("redoButton", "editor"), tooltipCallbacks);
         newCellButton.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("newCellButton", "editor"), tooltipCallbacks);
+            toolTipManager.GetToolTip("newCellButton", "editor"), tooltipCallbacks);
         timeIndicator.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
+            toolTipManager.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
         finishButton.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("finishButton", "editor"), tooltipCallbacks);
+            toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
         menuButton.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("menuButton"), tooltipCallbacks);
+            toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
     }
 
     public override void _Process(float delta)
@@ -748,6 +757,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
             tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
         }
+    }
+
+    // Disable this because the cleanup and inspections disagree
+    // ReSharper disable once RedundantNameQualifier
+    public void UpdateCompoundBalances(System.Collections.Generic.Dictionary<Compound, CompoundBalance> balances)
+    {
+        compoundBalance.UpdateBalances(balances);
     }
 
     public void SetMembraneTooltips(MembraneType referenceMembrane)

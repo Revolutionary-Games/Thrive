@@ -292,6 +292,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public CompoundBag ProcessCompoundStorage => Compounds;
 
     /// <summary>
+    ///   Process running statistics for this cell. For now only computed for the player cell
+    /// </summary>
+    [JsonIgnore]
+    public ProcessStatistics ProcessStatistics { get; private set; }
+
+    /// <summary>
     ///   For checking if the player is in freebuild mode or not
     /// </summary>
     [JsonProperty]
@@ -369,6 +375,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             listener = new Listener();
             AddChild(listener);
             listener.MakeCurrent();
+
+            // Setup tracking running processes
+            ProcessStatistics = new ProcessStatistics();
 
             GD.Print("Player Microbe spawned");
         }

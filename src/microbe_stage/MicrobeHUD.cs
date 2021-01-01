@@ -120,6 +120,12 @@ public class MicrobeHUD : Node
     public NodePath PhosphateReproductionBarPath;
 
     [Export]
+    public NodePath ProcessPanelPath;
+
+    [Export]
+    public NodePath ProcessPanelButtonPath;
+
+    [Export]
     public PackedScene ExtinctionBoxScene;
 
     [Export]
@@ -201,6 +207,9 @@ public class MicrobeHUD : Node
 
     private Array compoundBars;
 
+    private ProcessPanel processPanel;
+    private TextureButton processPanelButton;
+
     /// <summary>
     ///   Access to the stage to retrieve information for display as
     ///   well as call some player initiated actions.
@@ -273,6 +282,9 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+
+        processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
+        processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
     }
 
     public void OnEnterStageTransition()
@@ -304,6 +316,7 @@ public class MicrobeHUD : Node
         }
 
         UpdatePopulation();
+        UpdateProcessPanel();
     }
 
     public void Init(MicrobeStage stage)
@@ -820,6 +833,21 @@ public class MicrobeHUD : Node
         populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString(CultureInfo.InvariantCulture);
     }
 
+    private void UpdateProcessPanel()
+    {
+        if (!processPanel.Visible)
+            return;
+
+        if (stage.Player == null)
+        {
+            processPanel.ShownData = null;
+        }
+        else
+        {
+            processPanel.ShownData = stage.Player.ProcessStatistics;
+        }
+    }
+
     /// <summary>
     ///   Received for button that opens the menu inside the Microbe Stage.
     /// </summary>
@@ -909,5 +937,24 @@ public class MicrobeHUD : Node
 
         editorButton.GetNode<TextureRect>("Highlight").Show();
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
+    }
+
+    private void ProcessPanelButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (processPanel.Visible)
+        {
+            processPanel.Visible = false;
+        }
+        else
+        {
+            processPanel.Show();
+        }
+    }
+
+    private void OnProcessPanelClosed()
+    {
+        processPanelButton.Pressed = false;
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=139 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -54,6 +54,7 @@
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=52]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=53]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=54]
+[ext_resource path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" type="PackedScene" id=55]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=56]
 [ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=57]
 [ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=58]
@@ -882,6 +883,7 @@ RigiditySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/Marg
 NegativeAtpPopupPath = NodePath("CellEditor/NegativeAtpWarning")
 IslandErrorPath = NodePath("CellEditor/IslandError")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
+CompoundBalancePath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/CompoundBalanceDisplay")
 SymmetryIconDefault = ExtResource( 34 )
 SymmetryIcon2x = ExtResource( 39 )
 SymmetryIcon4x = ExtResource( 40 )
@@ -1049,8 +1051,8 @@ custom_constants/margin_bottom = 7
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 253.0
-margin_bottom = 199.0
+margin_right = 258.0
+margin_bottom = 349.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1256,6 +1258,8 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 83 )
 text = "00000"
 align = 2
+
+[node name="CompoundBalanceDisplay" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer" instance=ExtResource( 55 )]
 
 [node name="LeftPanel" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor"]
 anchor_bottom = 1.0
@@ -3794,10 +3798,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 28.0
-margin_top = 51.0
-margin_right = 385.0
-margin_bottom = 500.0
+margin_left = 48.0
+margin_top = 71.0
+margin_right = 405.0
+margin_bottom = 520.0
 theme = SubResource( 30 )
 edit_alpha = false
 
