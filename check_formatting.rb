@@ -32,6 +32,7 @@ MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
 FUZZY_TRANSLATION_REGEX = /^#, fuzzy/.freeze
 PLAIN_QUOTED_MESSAGE = /^"(.*)"/.freeze
 GETTEXT_HEADER_NAME = /^([\w-]+):\s+/.freeze
+TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
 
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
@@ -350,6 +351,15 @@ def handle_po_file(path)
     if is_english && line.match(FUZZY_TRANSLATION_REGEX)
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} has fuzzy (marked needs changes) translation, not allowed for en"
+        errors = true
+      end
+    end
+
+    # Could only check in headers, but checking everywhere just adds
+    # only 200 milliseconds to total runtime so all lines are checked
+    if line.match TRAILING_SPACE
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} has trailing space"
         errors = true
       end
     end
