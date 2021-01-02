@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-31 14:11+0200\n"
-"PO-Revision-Date: 2021-01-01 14:07+0000\n"
+"PO-Revision-Date: 2021-01-02 10:04+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ca/>\n"
@@ -1231,7 +1231,7 @@ msgstr "Sortir"
 #: ../src/gui_common/ChemicalEquation.cs:144
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "/segon"
 
 #: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
@@ -1453,30 +1453,36 @@ msgstr "Oxigen."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
+"Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana. "
+"Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera "
+"més ràpida i eficient que el Citoplasma. No obstant, necessita grans "
+"quantitats d'Oxigen atmosfèric per funcionar amb eficàcia. Com que els "
+"Metabolosomes estan suspesos en el Citoplasma, aquest fluid duu a terme una "
+"certa Fermentació."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:886
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1955
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Tilacoide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3543
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3843
 msgid "PRODUCES"
-msgstr ""
+msgstr "Produeix"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1002
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3568
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3868
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ""
+msgstr ". La velocitat augmenta proporcionalment amb"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2295
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3581
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3881
 msgid "CONCENTRATION_OF"
-msgstr ""
+msgstr "la concentració de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1040
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1709
@@ -1484,185 +1490,275 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3906
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4512
 msgid "AND"
-msgstr ""
+msgstr "i"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1053
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
 msgid "INTENSITY_OF"
-msgstr ""
+msgstr "la intensitat de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1060
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3626
 #: ../src/microbe_stage/MicrobeStage.tscn:902
 msgid "LIGHT"
-msgstr ""
+msgstr "Llum"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1170
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
+"Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests "
+"pigments són capaços de fer servir l'energia provinent d'una font de Llum ("
+"com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i "
+"Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. "
+"Aquests pigments també donen un color característic als Tilacoides. La "
+"velocitat de producció de Glucosa és proporcional a la concentració de "
+"Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan "
+"suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1332
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4190
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr ". La velocitat augmenta proporcionalment amb la concentració de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1363
 msgid "ALSO_TURNS"
-msgstr ""
+msgstr "També transforma"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
+"Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el "
+"Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid de "
+"Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid "
+"Sulfhídric. La velocitat de la producció de Glucosa és proporcional a la "
+"concentració de Diòxid de Carboni. Transformen la Glucosa en ATP mitjançant "
+"la Respiració Aeròbica, de manera més ràpida que el Citoplasma. Com que les "
+"Proteïnes Quimiosintetitzadores estan suspeses en el Citoplasma, aquest "
+"fluid duu a terme una certa Fermentació."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
+"La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, "
+"canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest "
+"procés s'anomena Respiració de Ferro, i allibera una certa quantitat "
+"d'energia que la cèl·lula pot fer servir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1983
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4469
 msgid "DOT_RATE"
-msgstr ""
+msgstr ". La velocitat"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1996
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3319
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4482
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5028
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "augmenta proporcionalment amb la concentració de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2113
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
+"La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per "
+"al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·"
+"lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com "
+"que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme "
+"una certa Fermentació."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2252
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4969
 msgid "OXYTOXY"
-msgstr ""
+msgstr "Oxytoxy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2270
 msgid "DOT_CAN_RELEASE"
-msgstr ""
+msgstr ". Pot alliberar"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
 msgid "TOXINS_BY_PRESSING_E"
 msgstr ""
+"Toxines quan s'apreti el botó E del teclat. La velocitat augmenta "
+"proporcionalment amb"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2412
 msgid "OXYTOXISOME_DESC"
 msgstr ""
+"Un Metabolosoma modificat que és responsable de la producció d'una forma "
+"primitiva de l'agent tòxic OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2519
 msgid "USES"
-msgstr ""
+msgstr "Fa servir"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2544
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr ""
+msgstr "per augmentar la"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2556
 msgid "SPEED_OF_THE_CELL"
-msgstr ""
+msgstr "velocitat de la cèl·lula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2577
 msgid "SPEED"
-msgstr ""
+msgstr "Velocitat"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
+"Els flagels són uns farcells de proteïnes i fibres, com petits tentacles que "
+"sobresurten de la membrana cel·lular. Mitjançant un moviment ondulatori, "
+"permeten propulsar la cèl·lula cap endavant a gran velocitat, mentre "
+"consumeixen ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
+"Amb aquesta estructura punxeguda, pots acoltellar altres cèl·lules fins a "
+"trencar la seva membrana."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2901
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2499
 msgid "CILIA"
-msgstr ""
+msgstr "Cilis"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5271
 msgid "TO_BE_IMPLEMENTED"
-msgstr ""
+msgstr "Encara no s'ha implementat."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3048
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
+"Permet evolucionar orgànuls més complexes,\n"
+" que es poden adherir a la part externa de la\n"
+" membrana. Consumeix una gran quantitat\t\n"
+" d'ATP. Es tracta d'un pas evolutiu irreversible."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3149
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
+"És la característica que defineix les cèl·lules eucariotes. El nucli inclou "
+"el Reticle Endoplasmàtic i l'Aparell de Golgi. Representa un pas evolutiu "
+"important respecte a les cèl·lules procariotes, que permet desenvolupar "
+"orgànuls més complexes, rodejats per una membrana, tot engolint i assimilant "
+"petites cèl·lules procariotes. Això permet dividir clarament l'interior de "
+"la cèl·lula en diversos compartiments separats, cadascun duent a terme un "
+"procés de síntesi de recursos diferents. Així, amb aquests nous orgànuls, la "
+"cèl·lula pot esdevenir molt més complexa, eficient i especialitzada. No "
+"obstant, això també implica que la cèl·lula ha d'esdevenir més gran i "
+"necessita més quantitat de recursos per a viure."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3436
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
+"És el pal de paller de la generació d'energia per la cèl·lula. Els "
+"Mitocondris són una estructura de membrana doble curulla de proteïnes i "
+"enzims. En realitat, és un petit organisme procariota que ha estat engolit i "
+"assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans "
+"quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per "
+"mitjà d'un procés anomenat Respiració Aeròbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3736
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
+"El cloroplast és una estructura de doble membrana que conté pigments "
+"sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit "
+"organisme procariota que ha estat engolit i assimilat per una cèl·lula "
+"eucariota, que actua com a hoste. Els seus pigments, són capaços de fer "
+"servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en "
+"un procés anomenat Fotosíntesi. Aquests pigments també li donen un color "
+"distintiu. La velocitat de producció de Glucosa augmenta proporcionalment "
+"amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3752
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3816
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2849
 msgid "THERMOPLAST"
-msgstr ""
+msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3918
 msgid "TEMPERATURE"
-msgstr ""
+msgstr "Temperatura"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4028
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
+"El termoplast és una estructura de doble membrana que, de manera anàloga al "
+"Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites "
+"membranes. En realitat, és un petit organisme procariota que ha estat "
+"engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. "
+"Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i "
+"les diferències de Temperatura al seu entorn. La velocitat de producció de "
+"la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni "
+"i la Temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4312
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
+"El Quimioplast és una estructura de doble membrana que conté proteïnes que "
+"transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, "
+"mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La "
+"velocitat de producció de Glucosa augmenta proporcionalment a la "
+"concentració d'Aigua i Diòxid de Carboni."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4629
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
+"El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un "
+"component important en el creixement i reproducció de les cèl·lules, "
+"mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena "
+"Fixació de Nitrogen Aeròbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4730
 msgid "INREASE_STORAGE_SPACE"
-msgstr ""
+msgstr "Augmenta l'espai d'emmagatzematge de la cèl·lula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4830
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
+"El Vacúol és un orgànul intern que consisteix en una membrana capaç "
+"d'emmagatzemar una certa quantitat de nutrients. Està format per un cert "
+"nombre de vesícules, que són unes petites estructures membranoses que han "
+"estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota "
+"mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No "
+"són estructures rígides, sinò que la seva forma pot canviar amb el temps."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4987
 msgid "DOT_CAN"
-msgstr ""
+msgstr ". Pot"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5000
 msgid "RELEASE_TOXINS_BY_PRESSING"
-msgstr ""
+msgstr "alliberar toxines quan es premi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5007
 msgid "E_DOT"
-msgstr ""
+msgstr "la tecla E."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5015
 msgid "RATE"
-msgstr ""
+msgstr "La velocitat"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5145
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
+"El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la "
+"producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat "
+"d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes "
+"Toxines."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5225
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Vacúol Bioluminescent"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5292
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5356
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3371
 msgid "NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5462
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5720
@@ -1671,17 +1767,21 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6632
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6993
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Velocitat d'Absorció de Recursos"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5536
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Aquesta és la forma més bàsica de la Membrana cel·lular, que ofereix poca "
+"protecció contra Agents externs i altres cèl·lules. També consumeix una "
+"quantitat important d'energia. Com a avantatge, permet a la cèl·lula moure's "
+"i absorbir nutrients ràpidament."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5552
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5616
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3441
 msgid "DOUBLE"
-msgstr ""
+msgstr "Doble"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5792
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
