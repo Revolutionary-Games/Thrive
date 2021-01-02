@@ -206,6 +206,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (ContainedCompounds != null)
             VentCompounds(delta);
 

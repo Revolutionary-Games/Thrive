@@ -508,6 +508,10 @@ public class MicrobeHUD : Node
     /// </summary>
     public void UpdateNeededBars(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (stage.Player == null)
             return;
 
