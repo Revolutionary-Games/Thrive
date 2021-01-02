@@ -98,6 +98,10 @@ public class ChemicalEquation : VBoxContainer
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (ShowSpinner && EquationFromProcess != null)
         {
             currentSpinnerRotation += delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;

@@ -104,6 +104,10 @@ public class InputManager : Node
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         foreach (var attribute in staticInstance.attributes)
             attribute.Key.OnProcess(delta);
     }

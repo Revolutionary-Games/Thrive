@@ -1057,6 +1057,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         CheckEngulfShapeSize();
+
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         HandleCompoundAbsorbing(delta);
 
         // Movement factor is reset here. HandleEngulfing will set the right value
