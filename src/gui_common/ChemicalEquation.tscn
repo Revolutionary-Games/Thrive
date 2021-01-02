@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/ChemicalEquation.cs" type="Script" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/ProcessProcessing.png" type="Texture" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 4 )
 
 [node name="ChemicalEquation" type="VBoxContainer"]
 process_priority = 7
@@ -32,10 +36,11 @@ expand = true
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 margin_left = 36.0
-margin_top = 5.0
+margin_top = 6.0
 margin_right = 1280.0
-margin_bottom = 27.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
 text = "Process name goes here..."
 autowrap = true
 max_lines_visible = 5
@@ -48,3 +53,4 @@ margin_top = 36.0
 margin_right = 1280.0
 margin_bottom = 36.0
 mouse_filter = 2
+theme = SubResource( 1 )
