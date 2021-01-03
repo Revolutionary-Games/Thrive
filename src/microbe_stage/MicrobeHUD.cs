@@ -491,7 +491,7 @@ public class MicrobeHUD : Node
         if (winBox != null)
         {
             winExtinctBoxHolder.Hide();
-            winBox.QueueFree();
+            winBox.SafeQueueFree();
             return;
         }
 
@@ -606,21 +606,12 @@ public class MicrobeHUD : Node
         hoverInfoTimeElapsed = 0;
 
         // Refresh compounds list
-        foreach (Node children in hoveredCompoundsContainer.GetChildren())
-        {
-            hoveredCompoundsContainer.RemoveChild(children);
 
-            // Using QueueFree leaves a gap at
-            // the bottom of the panel
-            children.Free();
-        }
+        // Using QueueFree leaves a gap at the bottom of the panel
+        hoveredCompoundsContainer.FreeChildren();
 
         // Refresh cells list
-        foreach (Node children in hoveredCellsContainer.GetChildren())
-        {
-            hoveredCellsContainer.RemoveChild(children);
-            children.Free();
-        }
+        hoveredCellsContainer.FreeChildren();
 
         if (mouseHoverPanel.RectSize != new Vector2(240, 80))
             mouseHoverPanel.RectSize = new Vector2(240, 80);

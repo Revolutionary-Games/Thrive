@@ -106,7 +106,7 @@ public class CollapsibleList : VBoxContainer
     public void RemoveItem(string name)
     {
         var found = items.Find(item => item.Name == name);
-        found.QueueFree();
+        found.SafeQueueFree();
         items.Remove(found);
     }
 
