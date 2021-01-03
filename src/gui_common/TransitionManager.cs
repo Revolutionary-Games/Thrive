@@ -127,7 +127,7 @@ public class TransitionManager : NodeWithInput
             TransitionSequence.Add(entry);
         }
 
-        // Begin the first queued transition
+        // Begin the first transition in the queue
         StartNextQueuedTransition();
     }
 
