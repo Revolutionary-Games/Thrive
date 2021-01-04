@@ -13,8 +13,6 @@ public class DefaultToolTip : Control, ICustomToolTip
     /// </summary>
     private Label descriptionLabel;
 
-    private Tween tween;
-
     private string description;
 
     public Vector2 Position
@@ -58,6 +56,10 @@ public class DefaultToolTip : Control, ICustomToolTip
         set => Visible = value;
     }
 
+    public ToolTipPositioning Positioning { get; private set; } = ToolTipPositioning.LastMousePosition;
+
+    public bool HideOnMousePress { get; private set; } = true;
+
     public Node ToolTipNode => this;
 
     public override void _Ready()
@@ -67,14 +69,12 @@ public class DefaultToolTip : Control, ICustomToolTip
         // See https://github.com/Revolutionary-Games/Thrive/issues/1855
         descriptionLabel = GetNode<Label>("MarginContainer/VBoxContainer/Description");
 
-        tween = GetNode<Tween>("Tween");
-
         UpdateDescription();
     }
 
     public void OnDisplay()
     {
-        ToolTipHelper.TooltipFadeIn(tween, this);
+        GUICommon.Instance.ModulateFadeIn(this, Constants.TOOLTIP_FADE_SPEED);
     }
 
     public void OnHide()
