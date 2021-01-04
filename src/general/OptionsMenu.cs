@@ -1039,9 +1039,8 @@ public class OptionsMenu : Control
     private void OnOpenScreenshotFolder()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.OPEN_SCREENSHOT_FOLDER));
         
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.OPEN_SCREENSHOT_FOLDER));
     }
     
     private void OnCustomUsernameEnabledToggled(bool pressed)
@@ -1051,6 +1050,7 @@ public class OptionsMenu : Control
 
         UpdateResetSaveButtonState();
     }
+
     private void OnCustomUsernameTextChanged(string text)
     {
         if (text.Equals(Environment.UserName, StringComparison.CurrentCulture))

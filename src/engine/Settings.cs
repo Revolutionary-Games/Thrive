@@ -216,7 +216,7 @@ public class Settings
             CustomUsername.Value :
             Environment.UserName;
 
-    public SettingValue<bool> OpenScreenshotFolder {get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> OpenScreenshotFolder { get; set; } = new SettingValue<bool>(false);
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
@@ -638,7 +638,7 @@ public class Settings
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
-    public SettingValue<bool> OpenScreenshotFolder {get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> OpenScreenshotFolder { get; set; } = new SettingValue<bool>(false);
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 

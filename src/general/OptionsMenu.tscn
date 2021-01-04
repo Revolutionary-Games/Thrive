@@ -1196,7 +1196,6 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/TutorialsEnabledOnNewGame" to="." method="OnTutorialsOnNewGameToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/TutorialsEnabled" to="." method="OnTutorialsEnabledToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Screeshot Folder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/CustomUsernameEnabled" to="." method="OnCustomUsernameEnabledToggled"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/ScreenShot folder" to="." method="OnOpenScreenshotFolder"]
