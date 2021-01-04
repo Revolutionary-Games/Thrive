@@ -214,10 +214,10 @@ public class Settings
         CustomUsernameEnabled &&
         CustomUsername.Value != null ?
             CustomUsername.Value :
-            Environment.UserName;    
+            Environment.UserName;
+            
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
-
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
     public static bool operator ==(Settings lhs, Settings rhs)
