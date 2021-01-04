@@ -288,7 +288,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
 
-    private PanelContainer statisticsPanel;
     private Label sizeLabel;
     private Label speedLabel;
     private Label hpLabel;
@@ -403,7 +402,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         appearanceTab = GetNode<PanelContainer>(ApperanceTabPath);
         appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
 
-        statisticsPanel = GetNode<PanelContainer>(OrganismStatisticsPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);

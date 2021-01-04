@@ -1700,33 +1700,35 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -121.0
-margin_top = -277.0
-margin_right = -8.0
+margin_left = -127.0
+margin_top = -261.0
+margin_right = -6.0
 margin_bottom = -244.0
 grow_horizontal = 0
 grow_vertical = 0
+rect_min_size = Vector2( 0, 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
-margin_right = 74.0
+margin_right = 82.0
 margin_bottom = 33.0
-rect_min_size = Vector2( 74, 0 )
+rect_min_size = Vector2( 82, 0 )
 size_flags_horizontal = 3
 custom_styles/normal = SubResource( 59 )
 custom_fonts/font = ExtResource( 12 )
 text = "POPULATION_CAPITAL"
+align = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
-margin_left = 78.0
+margin_left = 86.0
 margin_top = 8.0
-margin_right = 113.0
+margin_right = 121.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 35, 0 )
 size_flags_horizontal = 3
