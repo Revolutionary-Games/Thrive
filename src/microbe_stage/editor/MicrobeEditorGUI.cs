@@ -627,12 +627,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         initialCellSize = editor.MicrobeHexSize;
     }
 
-    public void ResetStatisticsPanelSize()
-    {
-        // Resets the statistics panel size to fit with the contents
-        statisticsPanel.RectSize = Vector2.Zero;
-    }
-
     public void UpdateSize(int size)
     {
         sizeLabel.Text = size.ToString(CultureInfo.CurrentCulture);
@@ -684,8 +678,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
         atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
-
-        ResetStatisticsPanelSize();
 
         UpdateEnergyBalanceToolTips(energyBalance);
     }
@@ -1195,7 +1187,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 cellEditor.Show();
                 cellEditorButton.Pressed = true;
-                ResetStatisticsPanelSize();
                 break;
             }
 
@@ -1316,8 +1307,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             hpIndicator.Hide();
         }
-
-        ResetStatisticsPanelSize();
     }
 
     /// <remarks>
