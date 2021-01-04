@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -214,9 +214,7 @@ public class Settings
         CustomUsernameEnabled &&
         CustomUsername.Value != null ?
             CustomUsername.Value :
-            Environment.UserName;
-
-    public SettingValue<bool> OpenScreenshotFolder { get; set; } = new SettingValue<bool>(false);
+            Environment.UserName;    
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 

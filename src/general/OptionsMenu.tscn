@@ -79,7 +79,6 @@ MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Margin
 MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
 BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
 TutorialsEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/TutorialsEnabled")
-ScreenshotFolderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Screeshot Folder")
 DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
 LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
@@ -90,9 +89,9 @@ CustomUsernamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Marg
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -16.9706
+margin_left = -15.4723
 margin_top = 5.65686
-margin_right = -16.9706
+margin_right = -15.4723
 margin_bottom = 5.65686
 __meta__ = {
 "_edit_use_anchors_": false
@@ -194,6 +193,7 @@ custom_constants/margin_left = 15
 custom_constants/margin_bottom = 15
 
 [node name="Graphics" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
+visible = false
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 663.0
@@ -796,7 +796,6 @@ margin_bottom = 32.0
 text = "RESET_INPUTS"
 
 [node name="Misc" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
-visible = false
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 663.0
@@ -805,59 +804,60 @@ margin_bottom = 583.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3.0
+margin_left = -2.99664
+margin_right = 0.00335693
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Intro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_right = 16.0
-margin_bottom = 25.0
+margin_right = 189.0
+margin_bottom = 22.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "PLAY_INTRO_VIDEO"
 
 [node name="MicrobeIntro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 35.0
-margin_right = 16.0
-margin_bottom = 60.0
+margin_top = 32.0
+margin_right = 362.0
+margin_bottom = 54.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 
 [node name="AutoSave" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 70.0
-margin_right = 16.0
-margin_bottom = 95.0
+margin_top = 64.0
+margin_right = 298.0
+margin_bottom = 86.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "AUTOSAVE_DURING_THE_GAME"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 105.0
-margin_right = 520.0
-margin_bottom = 130.0
+margin_top = 96.0
+margin_right = 651.0
+margin_bottom = 123.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
-margin_top = 1.0
-margin_right = 301.0
+margin_top = 2.0
+margin_right = 298.0
 margin_bottom = 24.0
 text = "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
-margin_left = 305.0
-margin_right = 316.0
-margin_bottom = 25.0
+margin_left = 302.0
+margin_right = 447.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="MaxAutoSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
-margin_left = 320.0
-margin_right = 520.0
-margin_bottom = 25.0
+margin_left = 451.0
+margin_right = 651.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
 min_value = 1.0
@@ -865,27 +865,27 @@ max_value = 50.0
 value = 1.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 140.0
-margin_right = 520.0
-margin_bottom = 165.0
+margin_top = 133.0
+margin_right = 651.0
+margin_bottom = 160.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
-margin_top = 1.0
-margin_right = 309.0
+margin_top = 2.0
+margin_right = 304.0
 margin_bottom = 24.0
 text = "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
-margin_left = 313.0
-margin_right = 316.0
-margin_bottom = 25.0
+margin_left = 308.0
+margin_right = 447.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="MaxQuickSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
-margin_left = 320.0
-margin_right = 520.0
-margin_bottom = 25.0
+margin_left = 451.0
+margin_right = 651.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
 min_value = 1.0
@@ -893,18 +893,18 @@ max_value = 50.0
 value = 1.0
 
 [node name="TutorialsEnabledOnNewGame" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 175.0
-margin_right = 349.0
-margin_bottom = 200.0
+margin_top = 170.0
+margin_right = 409.0
+margin_bottom = 192.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 pressed = true
 text = "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 
 [node name="TutorialsEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 210.0
-margin_right = 370.0
-margin_bottom = 235.0
+margin_top = 202.0
+margin_right = 429.0
+margin_bottom = 224.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
@@ -913,14 +913,14 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 245.0
-margin_right = 520.0
-margin_bottom = 249.0
+margin_top = 234.0
+margin_right = 651.0
+margin_bottom = 238.0
 
 [node name="Cheats" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 259.0
-margin_right = 239.0
-margin_bottom = 284.0
+margin_top = 248.0
+margin_right = 230.0
+margin_bottom = 270.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "CHEAT_KEYS_ENABLED"
@@ -930,7 +930,7 @@ __meta__ = {
 
 [node name="CustomUsernameEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 280.0
-margin_right = 260.0
+margin_right = 272.0
 margin_bottom = 302.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
@@ -939,33 +939,32 @@ text = "USE_A_CUSTOM_USERNAME"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 312.0
-margin_right = 511.0
+margin_right = 651.0
 margin_bottom = 339.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer3"]
 margin_top = 2.0
-margin_right = 185.0
+margin_right = 184.0
 margin_bottom = 24.0
 text = "CUSTOM_USERNAME"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer3"]
-margin_left = 189.0
-margin_right = 207.0
+margin_left = 188.0
+margin_right = 347.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="CustomUsername" type="LineEdit" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer3"]
-margin_left = 211.0
-margin_right = 511.0
+margin_left = 351.0
+margin_right = 651.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 300, 0 )
 
-
 [node name="Screeshot Folder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 310.0
+margin_top = 349.0
+margin_right = 651.0
+margin_bottom = 381.0
 action_mode = 0
 text = "OPEN_SCREENSHOT_FOLDER"
 
@@ -1042,9 +1041,9 @@ dialog_text = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 
 [node name="BackConfirm" type="WindowDialog" parent="CenterContainer"]
 margin_left = 340.0
-margin_top = 299.0
+margin_top = 300.0
 margin_right = 940.0
-margin_bottom = 419.0
+margin_bottom = 420.0
 rect_min_size = Vector2( 600, 120 )
 popup_exclusive = true
 window_title = "CLOSE_OPTIONS"
@@ -1133,9 +1132,9 @@ __meta__ = {
 }
 
 [node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
-margin_left = 367.0
+margin_left = 445.0
 margin_top = 321.0
-margin_right = 914.0
+margin_right = 835.0
 margin_bottom = 399.0
 popup_exclusive = true
 window_title = "ERROR"
@@ -1197,8 +1196,8 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/TutorialsEnabled" to="." method="OnTutorialsEnabledToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/CustomUsernameEnabled" to="." method="OnCustomUsernameEnabledToggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Screeshot Folder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/ScreenShot folder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
