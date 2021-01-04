@@ -242,7 +242,7 @@ public class SaveListItem : PanelContainer
             return;
         }
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, true);
         TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
     }
 

@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath PauseMenuPath;
@@ -27,6 +27,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     public float CurrentOrganelleCost;
 
+    private Vector3 arrowPosition = Vector3.Zero;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     /// <summary>
@@ -39,6 +41,9 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeCamera camera;
+
+    [JsonIgnore]
+    private MeshInstance editorArrow;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -163,6 +168,12 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     [JsonProperty]
     private string activeActionName;
+
+    /// <summary>
+    ///   Where the user started panning with the mouse
+    ///   Null if the user is not panning with the mouse
+    /// </summary>
+    private Vector3? mousePanningStart;
 
     [Signal]
     public delegate void InvalidPlacementOfHex();
@@ -368,6 +379,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         NodeReferencesResolved = true;
 
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
+        editorArrow = GetNode<MeshInstance>("EditorArrow");
         cameraFollow = GetNode<Spatial>("CameraLookAt");
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
@@ -377,6 +389,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         // As we will no longer return to the microbe stage we need to free it, if we have it
         // This might be disposed if this was loaded from a save and we loaded another save
         try
@@ -494,45 +508,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         stage.OnReturnFromEditor();
     }
 
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        if (@event.IsActionPressed("e_rotate_right"))
-        {
-            RotateRight();
-        }
-
-        if (@event.IsActionPressed("e_rotate_left"))
-        {
-            RotateLeft();
-        }
-
-        if (@event.IsActionPressed("e_redo"))
-        {
-            Redo();
-        }
-        else if (@event.IsActionPressed("e_undo"))
-        {
-            Undo();
-        }
-
-        if (@event.IsActionPressed("e_primary"))
-        {
-            PlaceOrganelle();
-        }
-
-        if (@event.IsActionPressed("e_secondary"))
-        {
-            RemoveOrganelle();
-        }
-
-        // Can only save once the editor is ready
-        if (@event.IsActionPressed("g_quick_save") && ready)
-        {
-            GD.Print("quick saving microbe editor");
-            SaveHelper.QuickSave(this);
-        }
-    }
-
     public override void _Process(float delta)
     {
         if (!ready)
@@ -580,6 +555,59 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         EnqueueAction(action);
     }
 
+    [RunOnAxisGroup]
+    [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1.0f, 1.0f })]
+    public void PanCameraWithKeys(float delta, float upDown, float leftRight)
+    {
+        if (mousePanningStart != null)
+            return;
+
+        var movement = new Vector3(leftRight, 0, upDown);
+        MoveObjectToFollow(movement.Normalized() * delta * Camera.CameraHeight);
+    }
+
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
+    public bool PanCameraWithMouse(float delta)
+    {
+        if (mousePanningStart == null)
+        {
+            mousePanningStart = Camera.CursorWorldPos;
+        }
+        else
+        {
+            var mousePanDirection = mousePanningStart.Value - Camera.CursorWorldPos;
+            MoveObjectToFollow(mousePanDirection * delta * 10);
+        }
+
+        return false;
+    }
+
+    [RunOnKeyUp("e_pan_mouse")]
+    public void ReleasePanCameraWithMouse()
+    {
+        mousePanningStart = null;
+    }
+
+    [RunOnKeyDown("e_reset_camera")]
+    public void ResetCamera()
+    {
+        camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
+        camera.ResetHeight();
+    }
+
+    [RunOnKeyDown("g_quick_save")]
+    public void QuickSave()
+    {
+        // Can only save once the editor is ready
+        if (ready)
+        {
+            GD.Print("quick saving microbe editor");
+            SaveHelper.QuickSave(this);
+        }
+    }
+
+    [RunOnKeyDown("e_redo")]
     public void Redo()
     {
         if (history.Redo())
@@ -590,6 +618,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         UpdateUndoRedoButtons();
     }
 
+    [RunOnKeyDown("e_undo")]
     public void Undo()
     {
         if (history.Undo())
@@ -600,6 +629,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         UpdateUndoRedoButtons();
     }
 
+    [RunOnKeyDown("e_primary")]
     public void PlaceOrganelle()
     {
         if (ActiveActionName == null)
@@ -612,11 +642,13 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
+    [RunOnKeyDown("e_rotate_right")]
     public void RotateRight()
     {
         organelleRot = (organelleRot + 1) % 6;
     }
 
+    [RunOnKeyDown("e_rotate_left")]
     public void RotateLeft()
     {
         --organelleRot;
@@ -678,6 +710,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     /// <summary>
     ///   Removes organelles under the cursor
     /// </summary>
+    [RunOnKeyDown("e_secondary")]
     public void RemoveOrganelle()
     {
         GetMouseHex(out int q, out int r);
@@ -837,6 +870,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         gui.UpdatePlayerPatch(targetPatch);
         UpdatePatchBackgroundImage();
         CalculateOrganelleEffectivenessInPatch(targetPatch);
+        UpdatePatchDependentBalanceData();
     }
 
     /// <summary>
@@ -848,6 +882,15 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             return;
 
         MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
+    }
+
+    /// <summary>
+    ///   Moves the ObjectToFollow of the camera in a direction
+    /// </summary>
+    /// <param name="vector">The direction to move the camera</param>
+    private void MoveObjectToFollow(Vector3 vector)
+    {
+        cameraFollow.Translation += vector;
     }
 
     /// <summary>
@@ -907,6 +950,37 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     }
 
     /// <summary>
+    ///   Updates the arrowPosition variable to the top most point of the middle 3 rows
+    ///   Should be called on any layout change
+    /// </summary>
+    private void UpdateArrow()
+    {
+        // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
+        var highestPointInMiddleRows = 0.0f;
+
+        // Iterate through all organelles
+        foreach (var organelle in editedMicrobeOrganelles)
+        {
+            // Iterate through all hexes
+            foreach (var relativeHex in organelle.Definition.Hexes)
+            {
+                var absoluteHex = relativeHex + organelle.Position;
+
+                // Only consider the middle 3 rows
+                if (absoluteHex.Q < -1 || absoluteHex.Q > 1)
+                    continue;
+
+                var cartesian = Hex.AxialToCartesian(absoluteHex);
+
+                // Get the min z-axis (highest point in the editor)
+                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
+            }
+        }
+
+        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET);
+    }
+
+    /// <summary>
     ///   Calculates the effectiveness of organelles in the current or
     ///   given patch
     /// </summary>
@@ -939,6 +1013,15 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             membrane));
     }
 
+    private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)
+    {
+        patch ??= CurrentPatch;
+
+        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Biome);
+
+        gui.UpdateCompoundBalances(result);
+    }
+
     /// <summary>
     ///   Combined old editor init and activate method
     /// </summary>
@@ -964,6 +1047,11 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
 
         UpdateUndoRedoButtons();
+
+        UpdateArrow();
+
+        // Force no lerp on init
+        editorArrow.Translation = arrowPosition;
 
         // Send freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
@@ -1208,6 +1296,10 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         {
             CurrentOrganelleCost = 0;
         }
+
+        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(
+            arrowPosition,
+            Constants.EDITOR_ARROW_INTERPOLATE_SPEED * delta);
     }
 
     /// <summary>
@@ -1596,15 +1688,24 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     {
         UpdateAlreadyPlacedVisuals();
 
+        UpdateArrow();
+
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
         gui.UpdateGuiButtonStatus(HasNucleus);
 
+        UpdatePatchDependentBalanceData();
+
+        gui.UpdateSpeed(CalculateSpeed());
+    }
+
+    private void UpdatePatchDependentBalanceData()
+    {
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
 
-        gui.UpdateSpeed(CalculateSpeed());
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, targetPatch);
     }
 
     /// <summary>
@@ -1716,6 +1817,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+        gui.SetMembraneTooltips(Membrane);
     }
 
     [DeserializedCallbackAllowed]
@@ -1729,6 +1831,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+        gui.SetMembraneTooltips(Membrane);
     }
 
     [DeserializedCallbackAllowed]

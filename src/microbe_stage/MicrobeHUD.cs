@@ -120,6 +120,12 @@ public class MicrobeHUD : Node
     public NodePath PhosphateReproductionBarPath;
 
     [Export]
+    public NodePath ProcessPanelPath;
+
+    [Export]
+    public NodePath ProcessPanelButtonPath;
+
+    [Export]
     public PackedScene ExtinctionBoxScene;
 
     [Export]
@@ -201,6 +207,9 @@ public class MicrobeHUD : Node
 
     private Array compoundBars;
 
+    private ProcessPanel processPanel;
+    private TextureButton processPanelButton;
+
     /// <summary>
     ///   Access to the stage to retrieve information for display as
     ///   well as call some player initiated actions.
@@ -273,13 +282,16 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+
+        processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
+        processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
     }
 
     public void OnEnterStageTransition()
     {
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.3f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
@@ -304,6 +316,7 @@ public class MicrobeHUD : Node
         }
 
         UpdatePopulation();
+        UpdateProcessPanel();
     }
 
     public void Init(MicrobeStage stage)
@@ -458,7 +471,7 @@ public class MicrobeHUD : Node
             PauseButtonPressed();
         }
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
     }
 
@@ -495,6 +508,10 @@ public class MicrobeHUD : Node
     /// </summary>
     public void UpdateNeededBars(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (stage.Player == null)
             return;
 
@@ -820,6 +837,21 @@ public class MicrobeHUD : Node
         populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString(CultureInfo.InvariantCulture);
     }
 
+    private void UpdateProcessPanel()
+    {
+        if (!processPanel.Visible)
+            return;
+
+        if (stage.Player == null)
+        {
+            processPanel.ShownData = null;
+        }
+        else
+        {
+            processPanel.ShownData = stage.Player.ProcessStatistics;
+        }
+    }
+
     /// <summary>
     ///   Received for button that opens the menu inside the Microbe Stage.
     /// </summary>
@@ -909,5 +941,24 @@ public class MicrobeHUD : Node
 
         editorButton.GetNode<TextureRect>("Highlight").Show();
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
+    }
+
+    private void ProcessPanelButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (processPanel.Visible)
+        {
+            processPanel.Visible = false;
+        }
+        else
+        {
+            processPanel.Show();
+        }
+    }
+
+    private void OnProcessPanelClosed()
+    {
+        processPanelButton.Pressed = false;
     }
 }

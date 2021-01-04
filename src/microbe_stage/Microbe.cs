@@ -123,7 +123,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private Color flashColour = new Color(0, 0, 0, 0);
 
-    [JsonProperty]
+    /// <summary>
+    ///   True once all organelles are divided to not continuously run code that is triggered
+    ///   when a cell is ready to reproduce.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is not saved so that the player cell can enable the editor when loading a save
+    ///     where the player is ready to reproduce. If more code is added to be ran just once based
+    ///     on this flag, it needs to be made sure that that code re-running after loading a save is
+    ///     not a problem.
+    ///   </para>
+    /// </remarks>
     private bool allOrganellesDivided;
 
     [JsonProperty]
@@ -281,6 +292,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public CompoundBag ProcessCompoundStorage => Compounds;
 
     /// <summary>
+    ///   Process running statistics for this cell. For now only computed for the player cell
+    /// </summary>
+    [JsonIgnore]
+    public ProcessStatistics ProcessStatistics { get; private set; }
+
+    /// <summary>
     ///   For checking if the player is in freebuild mode or not
     /// </summary>
     [JsonProperty]
@@ -358,6 +375,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             listener = new Listener();
             AddChild(listener);
             listener.MakeCurrent();
+
+            // Setup tracking running processes
+            ProcessStatistics = new ProcessStatistics();
 
             GD.Print("Player Microbe spawned");
         }
@@ -1037,6 +1057,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         CheckEngulfShapeSize();
+
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         HandleCompoundAbsorbing(delta);
 
         // Movement factor is reset here. HandleEngulfing will set the right value

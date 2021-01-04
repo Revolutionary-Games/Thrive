@@ -220,6 +220,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath SymmetryIconPath;
 
     [Export]
+    public NodePath CompoundBalancePath;
+
+    [Export]
     public Texture SymmetryIconDefault;
 
     [Export]
@@ -359,6 +362,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureButton menuButton;
     private TextureButton helpButton;
 
+    private CompoundBalanceDisplay compoundBalance;
+
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
 
@@ -467,6 +472,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
 
+        compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
+
         menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
@@ -487,7 +494,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         ApplySelectionMenuTab();
 
         // Fade out for that smooth satisfying transition
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
     }
 
@@ -496,38 +503,38 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     public void RegisterTooltips()
     {
+        var toolTipManager = ToolTipManager.Instance;
+
         foreach (Control organelleSelection in organelleSelectionElements)
         {
-            ToolTipHelper.RegisterToolTipForControl(
-                organelleSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
-                    organelleSelection.Name, "organelleSelection"));
+            organelleSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
+                organelleSelection.Name, "organelleSelection"), tooltipCallbacks);
         }
 
         foreach (Control membraneSelection in membraneSelectionElements)
         {
-            ToolTipHelper.RegisterToolTipForControl(
-                membraneSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
-                    membraneSelection.Name, "membraneSelection"));
+            membraneSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
+                membraneSelection.Name, "membraneSelection"), tooltipCallbacks);
         }
 
-        ToolTipHelper.RegisterToolTipForControl(
-            rigiditySlider, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            helpButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("helpButton"));
-        ToolTipHelper.RegisterToolTipForControl(
-            symmetryButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("symmetryButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            undoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("undoButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            redoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("redoButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            newCellButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("newCellButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            timeIndicator, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("timeIndicator", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            finishButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("finishButton", "editor"));
-        ToolTipHelper.RegisterToolTipForControl(
-            menuButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("menuButton"));
+        rigiditySlider.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
+        helpButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("helpButton"), tooltipCallbacks);
+        symmetryButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("symmetryButton", "editor"), tooltipCallbacks);
+        undoButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("undoButton", "editor"), tooltipCallbacks);
+        redoButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("redoButton", "editor"), tooltipCallbacks);
+        newCellButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("newCellButton", "editor"), tooltipCallbacks);
+        timeIndicator.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
+        finishButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
+        menuButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
     }
 
     public override void _Process(float delta)
@@ -692,7 +699,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
 
-            ToolTipHelper.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
+            subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
 
             tooltip.Description =
                 $"{SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name}: " +
@@ -703,7 +710,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesConsumption");
 
-            ToolTipHelper.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
+            subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
 
             string displayName;
 
@@ -752,6 +759,25 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
+    // Disable this because the cleanup and inspections disagree
+    // ReSharper disable once RedundantNameQualifier
+    public void UpdateCompoundBalances(System.Collections.Generic.Dictionary<Compound, CompoundBalance> balances)
+    {
+        compoundBalance.UpdateBalances(balances);
+    }
+
+    public void SetMembraneTooltips(MembraneType referenceMembrane)
+    {
+        // Pass in a membrane that the values are taken as relative to
+        foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes())
+        {
+            var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
+                membraneType.InternalName, "membraneSelection");
+
+            tooltip?.WriteMembraneModifierList(referenceMembrane, membraneType);
+        }
+    }
+
     /// <summary>
     ///   Updates the fluidity / rigidity slider tooltip
     /// </summary>
@@ -761,8 +787,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         var rigidityTooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor");
 
-        var healthModifier = rigidityTooltip.GetModifierInfo("Health");
-        var mobilityModifier = rigidityTooltip.GetModifierInfo("Mobility");
+        var healthModifier = rigidityTooltip.GetModifierInfo("health");
+        var mobilityModifier = rigidityTooltip.GetModifierInfo("mobility");
 
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
@@ -773,23 +799,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         mobilityModifier.ModifierValue = ((mobilityChange > 0) ? "+" : string.Empty)
             + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
 
-        if (healthChange >= 0)
-        {
-            healthModifier.ModifierValueColor = new Color(0, 1, 0);
-        }
-        else
-        {
-            healthModifier.ModifierValueColor = new Color(1, 0.3f, 0.3f);
-        }
-
-        if (mobilityChange >= 0)
-        {
-            mobilityModifier.ModifierValueColor = new Color(0, 1, 0);
-        }
-        else
-        {
-            mobilityModifier.ModifierValueColor = new Color(1, 0.3f, 0.3f);
-        }
+        healthModifier.AdjustValueColor(healthChange);
+        mobilityModifier.AdjustValueColor(mobilityChange);
     }
 
     public void UpdateAutoEvoResults(string results, string external)
@@ -926,7 +937,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -934,7 +945,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1010,6 +1021,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         OnSpeciesNameTextChanged(name);
 
         UpdateMembraneButtons(membrane.InternalName);
+        SetMembraneTooltips(membrane);
 
         UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
             editor.MutationPoints);

@@ -61,4 +61,18 @@ public static class DictionaryUtils
             items[entry.Key] = entry.Value + existing;
         }
     }
+
+    /// <summary>
+    ///   Divide all values in a dictionary
+    /// </summary>
+    /// <param name="dictionary">Dictionary to divide the values in.</param>
+    /// <param name="divisor">The divisor to use.</param>
+    public static void DivideBy<T>(this Dictionary<T, float> dictionary, float divisor)
+    {
+        // Looks like there isn't really a better way than having to make a copy of the keys
+        foreach (var key in dictionary.Keys.ToList())
+        {
+            dictionary[key] /= divisor;
+        }
+    }
 }
