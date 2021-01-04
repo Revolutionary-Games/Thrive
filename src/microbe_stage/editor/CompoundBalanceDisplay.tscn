@@ -13,20 +13,19 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-CompoundListContainerPath = NodePath("ScrollContainer/VBoxContainer")
+CompoundListContainerPath = NodePath("VBoxContainer")
 
 [node name="Label" type="Label" parent="."]
 margin_right = 1280.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 2 )
 text = "COMPOUND_BALANCE_TITLE"
+autowrap = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_top = 21.0
 margin_right = 1280.0
 margin_bottom = 720.0
-rect_min_size = Vector2( 0, 120 )
+size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 theme = SubResource( 1 )

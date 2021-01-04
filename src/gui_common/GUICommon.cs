@@ -103,11 +103,13 @@ public class GUICommon : Node
     /// </summary>
     public TextureRect CreateCompoundIcon(string compoundName, float sizeX = 20.0f, float sizeY = 20.0f)
     {
-        var element = new TextureRect();
-        element.Expand = true;
-        element.RectMinSize = new Vector2(sizeX, sizeY);
-
-        element.Texture = GetCompoundIcon(compoundName);
+        var element = new TextureRect
+        {
+            Expand = true,
+            RectMinSize = new Vector2(sizeX, sizeY),
+            SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
+            Texture = GetCompoundIcon(compoundName),
+        };
 
         return element;
     }

@@ -1195,6 +1195,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 cellEditor.Show();
                 cellEditorButton.Pressed = true;
+                ResetStatisticsPanelSize();
                 break;
             }
 
