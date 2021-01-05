@@ -1708,7 +1708,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (Membrane.DissolveEffectValue >= 6)
         {
-            QueueFree();
+            this.SafeQueueFree();
         }
     }
 
@@ -1781,7 +1781,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         organelle.OnRemovedFromMicrobe();
 
         // The organelle only detaches but doesn't delete itself, so we delete it here
-        organelle.QueueFree();
+        organelle.SafeQueueFree();
 
         processesDirty = true;
         cachedHexCountDirty = true;

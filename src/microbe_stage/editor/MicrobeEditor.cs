@@ -403,7 +403,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                     SceneManager.Instance.AttachAndDetachScene(ReturnToStage);
             }
 
-            ReturnToStage?.QueueFree();
+            if (ReturnToStage != null)
+            {
+                if (ReturnToStage.GetParent() != null)
+                    GD.PrintErr("ReturnToStage has a parent when editor is wanting to free it");
+
+                ReturnToStage.QueueFree();
+            }
         }
         catch (ObjectDisposedException)
         {
@@ -899,10 +905,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void OnEnterEditor()
     {
         // Clear old stuff in the world
-        foreach (Node node in world.GetChildren())
-        {
-            node.Free();
-        }
+        world.FreeChildren();
 
         hoverHexes = new List<MeshInstance>();
         hoverOrganelles = new List<SceneDisplayer>();
@@ -1785,13 +1788,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Delete excess entities
         while (nextFreeHex < placedHexes.Count)
         {
-            placedHexes[placedHexes.Count - 1].QueueFree();
+            placedHexes[placedHexes.Count - 1].SafeQueueFree();
             placedHexes.RemoveAt(placedHexes.Count - 1);
         }
 
         while (nextFreeOrganelle < placedModels.Count)
         {
-            placedModels[placedModels.Count - 1].QueueFree();
+            placedModels[placedModels.Count - 1].SafeQueueFree();
             placedModels.RemoveAt(placedModels.Count - 1);
         }
     }

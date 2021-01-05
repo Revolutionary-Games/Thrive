@@ -308,28 +308,16 @@ public class LineChart : VBoxContainer
         }
 
         // Clear points
-        foreach (Node child in drawArea.GetChildren())
-        {
-            child.QueueFree();
-        }
+        drawArea.QueueFreeChildren();
 
         // Clear legend
-        foreach (Node child in legendContainer.GetChildren())
-        {
-            child.QueueFree();
-        }
+        legendContainer.QueueFreeChildren();
 
         // Clear abscissas
-        foreach (Node child in horizontalLabelsContainer.GetChildren())
-        {
-            child.QueueFree();
-        }
+        horizontalLabelsContainer.QueueFreeChildren();
 
         // Clear ordinates
-        foreach (Node child in verticalLabelsContainer.GetChildren())
-        {
-            child.QueueFree();
-        }
+        verticalLabelsContainer.QueueFreeChildren();
     }
 
     public void UpdateDataSetVisibility(string name, bool visible)
