@@ -135,7 +135,7 @@ public class PatchMapDrawer : Control
     {
         foreach (var node in nodes)
         {
-            node.Free();
+            node.SafeFree();
         }
 
         nodes.Clear();

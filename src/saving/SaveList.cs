@@ -147,10 +147,7 @@ public class SaveList : ScrollContainer
         refreshing = true;
         refreshedAtLeastOnce = true;
 
-        foreach (var child in savesList.GetChildren())
-        {
-            ((Node)child).QueueFree();
-        }
+        savesList.QueueFreeChildren();
 
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
