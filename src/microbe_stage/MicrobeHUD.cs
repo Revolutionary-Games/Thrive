@@ -163,9 +163,9 @@ public class MicrobeHUD : Node
     private VBoxContainer hoveredCompoundsContainer;
     private HSeparator hoveredCellsSeparator;
     private VBoxContainer hoveredCellsContainer;
-    private NinePatchRect environmentPanel;
+    private Panel environmentPanel;
     private GridContainer environmentPanelBarContainer;
-    private NinePatchRect compoundsPanel;
+    private Panel compoundsPanel;
 
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
@@ -249,7 +249,7 @@ public class MicrobeHUD : Node
         resumeButton = GetNode<TextureButton>(ResumeButtonPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
 
-        environmentPanel = GetNode<NinePatchRect>(EnvironmentPanelPath);
+        environmentPanel = GetNode<Panel>(EnvironmentPanelPath);
         environmentPanelBarContainer = GetNode<GridContainer>(EnvironmentPanelBarContainerPath);
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
@@ -258,7 +258,7 @@ public class MicrobeHUD : Node
         sunlightLabel = GetNode<ProgressBar>(SunlightPath);
         pressure = GetNode<ProgressBar>(PressurePath);
 
-        compoundsPanel = GetNode<NinePatchRect>(CompoundsPanelPath);
+        compoundsPanel = GetNode<Panel>(CompoundsPanelPath);
         compoundsPanelBarContainer = GetNode<GridContainer>(CompoundsPanelBarContainerPath);
         glucoseBar = GetNode<ProgressBar>(GlucoseBarPath);
         ammoniaBar = GetNode<ProgressBar>(AmmoniaBarPath);
@@ -302,7 +302,7 @@ public class MicrobeHUD : Node
 
         if (stage.Player != null)
         {
-            UpdateNeededBars(delta);
+            UpdateNeededBars();
             UpdateCompoundBars();
             UpdateReproductionProgress();
             UpdateATP();
@@ -317,6 +317,7 @@ public class MicrobeHUD : Node
 
         UpdatePopulation();
         UpdateProcessPanel();
+        UpdatePanelSizing(delta);
     }
 
     public void Init(MicrobeStage stage)
@@ -333,13 +334,13 @@ public class MicrobeHUD : Node
         if (mode == "compress" && !environmentCompressed)
         {
             environmentCompressed = true;
-
-            HandleEnvironmentResize(170, 2, 20, 17);
+            environmentPanelBarContainer.Columns = 2;
+            environmentPanelBarContainer.AddConstantOverride("vseparation", 20);
+            environmentPanelBarContainer.AddConstantOverride("hseparation", 17);
 
             foreach (ProgressBar bar in bars)
             {
-                panelsTween.InterpolateProperty(
-                    bar, "rect_min_size", new Vector2(95, 25), new Vector2(73, 25), 0.3f);
+                panelsTween.InterpolateProperty(bar, "rect_min_size:x", 95, 73, 0.3f);
                 panelsTween.Start();
 
                 bar.GetNode<Label>("Label").Hide();
@@ -350,12 +351,13 @@ public class MicrobeHUD : Node
         if (mode == "expand" && environmentCompressed)
         {
             environmentCompressed = false;
-
-            HandleEnvironmentResize(224, 1, 4, 0);
+            environmentPanelBarContainer.Columns = 1;
+            environmentPanelBarContainer.AddConstantOverride("vseparation", 4);
+            environmentPanelBarContainer.AddConstantOverride("hseparation", 0);
 
             foreach (ProgressBar bar in bars)
             {
-                panelsTween.InterpolateProperty(bar, "rect_min_size", bar.RectMinSize, new Vector2(162, 25), 0.3f);
+                panelsTween.InterpolateProperty(bar, "rect_min_size:x", bar.RectMinSize.x, 162, 0.3f);
                 panelsTween.Start();
 
                 bar.GetNode<Label>("Label").Show();
@@ -385,7 +387,7 @@ public class MicrobeHUD : Node
 
             foreach (ProgressBar bar in bars)
             {
-                panelsTween.InterpolateProperty(bar, "rect_min_size", new Vector2(90, 25), new Vector2(64, 25), 0.3f);
+                panelsTween.InterpolateProperty(bar, "rect_min_size:x", 90, 64, 0.3f);
                 panelsTween.Start();
 
                 bar.GetNode<Label>("Label").Hide();
@@ -401,7 +403,7 @@ public class MicrobeHUD : Node
 
             foreach (ProgressBar bar in bars)
             {
-                panelsTween.InterpolateProperty(bar, "rect_min_size", bar.RectMinSize, new Vector2(220, 25), 0.3f);
+                panelsTween.InterpolateProperty(bar, "rect_min_size:x", bar.RectMinSize.x, 220, 0.3f);
                 panelsTween.Start();
 
                 bar.GetNode<Label>("Label").Show();
@@ -506,12 +508,8 @@ public class MicrobeHUD : Node
     /// <summary>
     ///   Updates the GUI bars to show only needed compounds
     /// </summary>
-    public void UpdateNeededBars(float delta)
+    public void UpdateNeededBars()
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         if (stage.Player == null)
             return;
 
@@ -542,17 +540,6 @@ public class MicrobeHUD : Node
                 bar.Hide();
             }
         }
-
-        // Resize the compound panel dynamically
-        var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
-
-        compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
-
-        // Interpolation value is multiplied by delta time to make it not be affected by framerate
-        var targetSize = compoundsPanel.RectMinSize.LinearInterpolate(
-            new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 5 * delta);
-
-        compoundsPanel.RectMinSize = targetSize;
     }
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
@@ -579,18 +566,6 @@ public class MicrobeHUD : Node
         temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
 
         // TODO: pressure?
-    }
-
-    private void HandleEnvironmentResize(int height, int columns, int vseparation, int hseparation)
-    {
-        panelsTween.InterpolateProperty(
-            environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, height), 0.4f,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        panelsTween.Start();
-
-        environmentPanelBarContainer.Columns = columns;
-        environmentPanelBarContainer.AddConstantOverride("vseparation", vseparation);
-        environmentPanelBarContainer.AddConstantOverride("hseparation", hseparation);
     }
 
     /// <summary>
@@ -841,6 +816,29 @@ public class MicrobeHUD : Node
         {
             processPanel.ShownData = stage.Player.ProcessStatistics;
         }
+    }
+
+    private void UpdatePanelSizing(float delta)
+    {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        var environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
+        var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
+
+        environmentPanelVBoxContainer.RectSize = new Vector2(environmentPanelVBoxContainer.RectMinSize.x, 0);
+        compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
+
+        // Multiply interpolation value with delta time to make it not be affected by framerate
+        var environmentPanelSize = environmentPanel.RectMinSize.LinearInterpolate(
+            new Vector2(environmentPanel.RectMinSize.x, environmentPanelVBoxContainer.RectSize.y), 5 * delta);
+
+        var compoundsPanelSize = compoundsPanel.RectMinSize.LinearInterpolate(
+            new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 5 * delta);
+
+        environmentPanel.RectMinSize = environmentPanelSize;
+        compoundsPanel.RectMinSize = compoundsPanelSize;
     }
 
     /// <summary>

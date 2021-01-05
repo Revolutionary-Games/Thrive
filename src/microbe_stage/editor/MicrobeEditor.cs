@@ -1160,7 +1160,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Only when not loaded from save are these properties fetched
         gui.SetInitialCellStats();
-        gui.ResetStatisticsPanelSize();
 
         UpdateGUIAfterLoadingSpecies(species);
     }
@@ -1936,8 +1935,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Make absolutely sure the current game doesn't have an auto-evo run
         CurrentGame.GameWorld.ResetAutoEvoRun();
-
-        gui.ResetStatisticsPanelSize();
     }
 
     private void ApplyAutoEvoResults()
