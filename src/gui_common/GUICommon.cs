@@ -108,6 +108,7 @@ public class GUICommon : Node
             Expand = true,
             RectMinSize = new Vector2(sizeX, sizeY),
             SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             Texture = GetCompoundIcon(compoundName),
         };
 
