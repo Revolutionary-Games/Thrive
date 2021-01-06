@@ -141,7 +141,7 @@ public class SpawnSystem
         foreach (Node entity in spawnedEntities)
         {
             if (!entity.IsQueuedForDeletion())
-                entity.QueueFree();
+                entity.SafeQueueFree();
         }
     }
 
@@ -356,7 +356,7 @@ public class SpawnSystem
             if (squaredDistance > spawned.DespawnRadiusSqr)
             {
                 entitiesDeleted++;
-                entity.QueueFree();
+                entity.SafeQueueFree();
 
                 if (entitiesDeleted >= maxEntitiesToDeletePerStep)
                     break;

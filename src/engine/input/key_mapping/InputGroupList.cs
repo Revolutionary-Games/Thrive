@@ -166,7 +166,7 @@ public class InputGroupList : VBoxContainer
         if (activeInputGroupList != null)
         {
             foreach (var inputGroupItem in activeInputGroupList)
-                inputGroupItem.Free();
+                inputGroupItem.SafeFree();
         }
 
         activeInputGroupList = BuildGUI(SimulationParameters.Instance.InputGroups, data);
@@ -174,12 +174,7 @@ public class InputGroupList : VBoxContainer
 
     public void InitGroupList()
     {
-        foreach (Node child in GetChildren())
-        {
-            RemoveChild(child);
-
-            child.QueueFree();
-        }
+        this.QueueFreeChildren();
 
         LoadFromData(Settings.Instance.CurrentControls);
 

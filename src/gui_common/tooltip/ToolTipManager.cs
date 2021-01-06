@@ -143,7 +143,7 @@ public class ToolTipManager : CanvasLayer
     {
         var tooltip = GetToolTip(name, group);
 
-        tooltip?.ToolTipNode.QueueFree();
+        tooltip?.ToolTipNode.SafeQueueFree();
         tooltips[GetGroup(group)]?.Remove(tooltip);
     }
 
@@ -173,7 +173,7 @@ public class ToolTipManager : CanvasLayer
 
         if (deleteGroup)
         {
-            groupNode.QueueFree();
+            groupNode.SafeQueueFree();
             tooltips.Remove(groupNode);
         }
     }
