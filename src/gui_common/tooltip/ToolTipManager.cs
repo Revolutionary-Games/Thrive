@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -63,6 +64,10 @@ public class ToolTipManager : CanvasLayer
         if (MainToolTip == null)
             return;
 
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         // Wait for duration of the delay and then show the tooltip
         if (displayTimer >= 0 && !MainToolTip.ToolTipVisible)
         {
@@ -78,17 +83,43 @@ public class ToolTipManager : CanvasLayer
         // Adjust position and size
         if (MainToolTip.ToolTipVisible)
         {
+            Vector2 mousePos;
+
+            switch (MainToolTip.Positioning)
+            {
+                case ToolTipPositioning.LastMousePosition:
+                    mousePos = lastMousePosition;
+                    break;
+                case ToolTipPositioning.FollowMousePosition:
+                    mousePos = GetViewport().GetMousePosition();
+                    break;
+                default:
+                    throw new Exception("Invalid tooltip positioning type");
+            }
+
             var screenSize = GetViewport().GetVisibleRect().Size;
 
             // Clamp tooltip position so it doesn't go offscreen
-            var adjustedPosition = new Vector2(
-                Mathf.Clamp(lastMousePosition.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
+            MainToolTip.Position = new Vector2(
+                Mathf.Clamp(mousePos.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
                     MainToolTip.Size.x),
-                Mathf.Clamp(lastMousePosition.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
+                Mathf.Clamp(mousePos.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
                     MainToolTip.Size.y));
 
-            MainToolTip.Position = adjustedPosition;
             MainToolTip.Size = Vector2.Zero;
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (MainToolTip == null)
+            return;
+
+        if (@event is InputEventMouseButton mouseButton &&
+            mouseButton.Pressed && MainToolTip.HideOnMousePress)
+        {
+            MainToolTip.OnHide();
+            displayTimer = MainToolTip.DisplayDelay;
         }
     }
 
@@ -112,7 +143,7 @@ public class ToolTipManager : CanvasLayer
     {
         var tooltip = GetToolTip(name, group);
 
-        tooltip?.ToolTipNode.QueueFree();
+        tooltip?.ToolTipNode.SafeQueueFree();
         tooltips[GetGroup(group)]?.Remove(tooltip);
     }
 
@@ -142,7 +173,7 @@ public class ToolTipManager : CanvasLayer
 
         if (deleteGroup)
         {
-            groupNode.QueueFree();
+            groupNode.SafeQueueFree();
             tooltips.Remove(groupNode);
         }
     }

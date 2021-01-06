@@ -229,7 +229,7 @@ public class LineChart : VBoxContainer
                 toolTip.Description = $"{point.Value.x} {XAxisName}\n{point.Value.y} {YAxisName}";
                 toolTip.DisplayDelay = 0;
 
-                ToolTipHelper.RegisterToolTipForControl(point, toolTipCallbacks, toolTip);
+                point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
             }
         }
@@ -308,28 +308,16 @@ public class LineChart : VBoxContainer
         }
 
         // Clear points
-        foreach (Node child in drawArea.GetChildren())
-        {
-            child.QueueFree();
-        }
+        drawArea.QueueFreeChildren();
 
         // Clear legend
-        foreach (Node child in legendContainer.GetChildren())
-        {
-            child.QueueFree();
-        }
+        legendContainer.QueueFreeChildren();
 
         // Clear abscissas
-        foreach (Node child in horizontalLabelsContainer.GetChildren())
-        {
-            child.QueueFree();
-        }
+        horizontalLabelsContainer.QueueFreeChildren();
 
         // Clear ordinates
-        foreach (Node child in verticalLabelsContainer.GetChildren())
-        {
-            child.QueueFree();
-        }
+        verticalLabelsContainer.QueueFreeChildren();
     }
 
     public void UpdateDataSetVisibility(string name, bool visible)
@@ -396,7 +384,7 @@ public class LineChart : VBoxContainer
             toolTip.DisplayName = data.Key;
             toolTip.Description = data.Key;
 
-            ToolTipHelper.RegisterToolTipForControl(icon, toolTipCallbacks, toolTip);
+            icon.RegisterToolTipForControl(toolTip, toolTipCallbacks);
             ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + ChartName + data.Key);
         }
     }

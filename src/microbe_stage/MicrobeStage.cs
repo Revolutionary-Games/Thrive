@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath GuidanceLinePath;
@@ -165,12 +165,7 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
         set
         {
-            while (rootOfDynamicallySpawned.GetChildCount() > 0)
-            {
-                var child = rootOfDynamicallySpawned.GetChild(0);
-                rootOfDynamicallySpawned.RemoveChild(child);
-                child.Free();
-            }
+            rootOfDynamicallySpawned.FreeChildren();
 
             foreach (var entity in value)
             {
@@ -332,6 +327,10 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
@@ -427,13 +426,17 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyDown("g_quick_save")]
+    public void QuickSave()
     {
-        if (@event.IsActionPressed("g_quick_save"))
+        if (!TransitionFinished)
         {
-            GD.Print("quick saving microbe stage");
-            SaveHelper.QuickSave(this);
+            GD.Print("quick save is disabled while transitioning");
+            return;
         }
+
+        GD.Print("quick saving microbe stage");
+        SaveHelper.QuickSave(this);
     }
 
     /// <summary>
@@ -495,6 +498,11 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         HUD.HideReproductionDialog();
 
         StartMusic();
+
+        // Apply language settings here to be sure the stage doesn't continue to use the wrong language
+        // Because the stage scene tree being unattached during editor,
+        // if language was changed while in the editor, it doesn't properly propagate
+        Settings.Instance.ApplyLanguageSettings();
 
         // Auto save is wanted once possible
         wantsToSave = true;

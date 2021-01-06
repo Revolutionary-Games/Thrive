@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Environment = System.Environment;
@@ -11,6 +12,7 @@ public class Settings
 {
     private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
+    private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
@@ -195,7 +197,7 @@ public class Settings
     ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
+        new SettingValue<InputDataList>(GetDefaultControls());
 
     /// <summary>
     ///   If false username will be set to System username
@@ -226,6 +228,93 @@ public class Settings
     public static bool operator !=(Settings lhs, Settings rhs)
     {
         return !(lhs == rhs);
+    }
+
+    /// <summary>
+    ///   Returns the default controls which never change, unless there is a new release.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This relies on the static member holding the default controls to be initialized before the code has a chance
+    ///     to modify the controls.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The default controls</returns>
+    public static InputDataList GetDefaultControls()
+    {
+        return (InputDataList)DefaultControls.Clone();
+    }
+
+    /// <summary>
+    ///   Returns the currently applied controls. Gathers the data from the godot InputMap.
+    ///   Required to get the default controls.
+    /// </summary>
+    /// <returns>The current inputs</returns>
+    public static InputDataList GetCurrentlyAppliedControls()
+    {
+        return new InputDataList(InputMap.GetActions().OfType<string>()
+            .ToDictionary(p => p,
+                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                    x => new SpecifiedInputKey(x)).ToList()));
+    }
+
+    /// <summary>
+    ///   Tries to return a C# culture info from Godot language name
+    /// </summary>
+    /// <param name="language">The language name to try to understand</param>
+    /// <returns>The culture info</returns>
+    public static CultureInfo GetCultureInfo(string language)
+    {
+        // Perform hard coded translations first
+        var translated = TranslateLocaleToCSharp(language);
+        if (translated != null)
+            language = translated;
+
+        try
+        {
+            return new CultureInfo(language);
+        }
+        catch (CultureNotFoundException)
+        {
+            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
+
+            if (!language.Contains("_"))
+                throw;
+
+            // So we first try converting "_" to "-" and go with that
+            language = language.Replace('_', '-');
+
+            try
+            {
+                return new CultureInfo(language);
+            }
+            catch (CultureNotFoundException)
+            {
+                language = language.Split("-")[0];
+
+                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
+                    language);
+                return new CultureInfo(language);
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Translates a Godot locale to C# locale name
+    /// </summary>
+    /// <param name="godotLocale">Godot locale</param>
+    /// <returns>C# locale name, or null if there is not a premade mapping</returns>
+    public static string TranslateLocaleToCSharp(string godotLocale)
+    {
+        switch (godotLocale)
+        {
+            case "sr_Latn":
+                return "sr-Latn-RS";
+            case "sr_Cyrl":
+                return "sr-Cyrl-RS";
+        }
+
+        return null;
     }
 
     public override bool Equals(object obj)
@@ -342,16 +431,18 @@ public class Settings
 
             // These need to be also delay applied, otherwise when debugging these overwrite the default settings
             Invoke.Instance.Queue(ApplySoundSettings);
+
+            // If this is not delay applied, this also causes some errors in godot editor output when running
+            Invoke.Instance.Queue(ApplyInputSettings);
         }
         else
         {
             ApplyGraphicsSettings();
             ApplySoundSettings();
+            ApplyInputSettings();
         }
 
         ApplyLanguageSettings();
-        ApplyWindowSettings();
-        ApplyInputSettings();
         ApplyWindowSettings();
     }
 
@@ -441,42 +532,6 @@ public class Settings
     }
 
     /// <summary>
-    ///   Tries to return a C# culture info from Godot language name
-    /// </summary>
-    /// <param name="language">The language name to try to understand</param>
-    /// <returns>The culture info</returns>
-    private static CultureInfo GetCultureInfo(string language)
-    {
-        try
-        {
-            return new CultureInfo(language);
-        }
-        catch (CultureNotFoundException)
-        {
-            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
-
-            if (!language.Contains("_"))
-                throw;
-
-            // So we first try converting "_" to "-" and go with that
-            language = language.Replace('_', '-');
-
-            try
-            {
-                return new CultureInfo(language);
-            }
-            catch (CultureNotFoundException)
-            {
-                language = language.Split("-")[0];
-
-                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
-                    language);
-                return new CultureInfo(language);
-            }
-        }
-    }
-
-    /// <summary>
     ///   Loads, initializes and returns the global settings object.
     /// </summary>
     private static Settings InitializeGlobalSettings()
@@ -542,6 +597,21 @@ public class Settings
                 return settings;
             }
         }
+    }
+
+    /// <summary>
+    ///   Debug helper for dumping what C# considers valid locales
+    /// </summary>
+    private static void DumpValidCSharpLocales()
+    {
+        GD.Print("Locales (C#):");
+
+        foreach (var culture in CultureInfo.GetCultures(CultureTypes.AllCultures & ~CultureTypes.NeutralCultures))
+        {
+            GD.Print(culture.DisplayName + " - " + culture.Name);
+        }
+
+        GD.Print(string.Empty);
     }
 
     /// <summary>
