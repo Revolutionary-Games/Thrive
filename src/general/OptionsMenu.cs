@@ -1083,6 +1083,12 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnTranslationSitePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen("https://translate.revolutionarygamesstudio.com/engage/thrive/");
+    }
+
     private void UpdateSelectedLanguage(Settings settings)
     {
         if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
