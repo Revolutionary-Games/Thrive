@@ -21,8 +21,8 @@ public static class ToolTipHelper
     ///   Registers a Control mouse enter/exit event to display a tooltip
     /// </summary>
     /// <param name="control">The Control to register the tooltip to</param>
-    /// <param name="callbackDatas">List to store the callbacks to keep them from unloading</param>
     /// <param name="tooltip">The tooltip to register with</param>
+    /// <param name="callbackDatas">List to store the callbacks to keep them from unloading</param>
     public static void RegisterToolTipForControl(this Control control, ICustomToolTip tooltip,
         List<ToolTipCallbackData> callbackDatas)
     {
