@@ -1036,6 +1036,12 @@ public class OptionsMenu : Control
         inputGroupList.InitGroupList();
     }
 
+    private void OnOpenScreenshotFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
+    }
+
     private void OnCustomUsernameEnabledToggled(bool pressed)
     {
         Settings.Instance.CustomUsernameEnabled.Value = pressed;
