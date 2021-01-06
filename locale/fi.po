@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2020-12-22 09:06+0000\n"
+"PO-Revision-Date: 2021-01-02 20:12+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -74,7 +74,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"Yhdiste pilviä ovat seuraavat:\n"
+"Yhdistepilviä ovat seuraavat:\n"
 "\n"
 "Valkoinen – Glukoosi\n"
 "Keltainen – Rikkivety\n"
@@ -333,7 +333,7 @@ msgstr "Poista soluelin"
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "Vieritä vasemmalle"
 
 #: ../simulation_parameters/common/input_options.json:99
 #, fuzzy
@@ -347,11 +347,11 @@ msgstr "Kamera"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "Vieritä alaspäin"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "Palauta kameran alkusijainti"
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "CHEATS"
@@ -427,11 +427,11 @@ msgstr "Kemosynteesi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Aerobinen typensidonta"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Anaerobinen typensidonta"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
@@ -777,15 +777,15 @@ msgstr "geneettinen koodi:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "levisi alueille:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} lähettämällä: {1} yksikköä populaatiota alueelta: {2}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr ""
+msgstr "populaatio alueilla:"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -798,6 +798,8 @@ msgstr "Paina jotain näppäintä..."
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Syötteellä on conflikti: {0}.\n"
+"Haluatko poistaa syötteen {1}:lta?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -957,6 +959,8 @@ msgstr "Yhdistepilvet"
 #: ../src/general/OptionsMenu.tscn:645
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
+"Pienin pilvien päivitys\n"
+"aikajakso:"
 
 #: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:696
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -964,7 +968,7 @@ msgstr "(suuremmat arvot lisäävät suorituskykyä)"
 
 #: ../src/general/OptionsMenu.tscn:689
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Pilvien resoluutioiden jakaja:"
 
 #: ../src/general/OptionsMenu.tscn:731
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -972,7 +976,7 @@ msgstr "Suorita auto-evo pelin aikana"
 
 #: ../src/general/OptionsMenu.tscn:798
 msgid "RESET_INPUTS"
-msgstr ""
+msgstr "Palauta syötteet oletuksiksi"
 
 #: ../src/general/OptionsMenu.tscn:822
 msgid "PLAY_INTRO_VIDEO"
@@ -1034,11 +1038,11 @@ msgstr "Palauta oletukset"
 
 #: ../src/general/OptionsMenu.tscn:1032
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Palauta oletukset?"
 
 #: ../src/general/OptionsMenu.tscn:1033
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
 
 #: ../src/general/OptionsMenu.tscn:1042
 msgid "RESET_INPUTS_TO_DEFAULTS"
@@ -1046,7 +1050,7 @@ msgstr "Palauta näppäimien oletukset?"
 
 #: ../src/general/OptionsMenu.tscn:1043
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "Haluatko varmasti korvata syötteiden asetukset oletusarvoilla?"
 
 #: ../src/general/OptionsMenu.tscn:1052
 msgid "CLOSE_OPTIONS"
@@ -1055,6 +1059,8 @@ msgstr "Sulje asetukset?"
 #: ../src/general/OptionsMenu.tscn:1076
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
+"Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
+"Haluatko jatkaa?"
 
 #: ../src/general/OptionsMenu.tscn:1107
 msgid "SAVE_AND_CONTINUE"
@@ -1132,7 +1138,7 @@ msgstr "Työkalut"
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Katsele lähdekoodia"
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
@@ -1148,7 +1154,7 @@ msgstr "Lopeta"
 
 #: ../src/gui_common/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Mikrobien vapaa rakentelu"
 
 #: ../src/gui_common/MainMenu.tscn:358
 msgid "GLES2_MODE_WARNING"
@@ -1160,11 +1166,13 @@ msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Tallennus on pelin eri versiosta"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:19
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"Tallennus, jota yrität ladata, ei vastaa pelin nykyistä versiota.\n"
+"Tämä tallennus pitää ladata manuaalisesti valikon kautta."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:81
 msgid "OPEN_THE_MENU"
@@ -1172,7 +1180,7 @@ msgstr "Avaa valikko"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:87
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Avaa apuvalikko"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "WILL_YOU_THRIVE"
@@ -1180,7 +1188,7 @@ msgstr "Tuletko selviämään?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Vahvista muutokset ja palaa ympäristöön"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:114
 msgid "CHANGE_THE_SYMMETRY"
@@ -1226,6 +1234,8 @@ msgstr "Terveys"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun "
+"liikkumista."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:439
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:691
@@ -1310,7 +1320,7 @@ msgstr ". Nopeus skaalautuu"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:757
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
 msgid "WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "konsentraatiosta riippuen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:764
 msgid "OXYGEN_DOT"
@@ -1335,14 +1345,14 @@ msgstr "Tuottaa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3583
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3885
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ""
+msgstr ". Nopeus skaalautuu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1023
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2308
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3596
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3898
 msgid "CONCENTRATION_OF"
-msgstr ""
+msgstr "konsentraatiosta riippuen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1049
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1720
@@ -1355,7 +1365,7 @@ msgstr "ja"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1062
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3635
 msgid "INTENSITY_OF"
-msgstr ""
+msgstr "intensiteetistä riippuen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1069
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3642
@@ -1370,7 +1380,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4209
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr ". Nopeus skaalautuu konsentraation mukaan"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1373
 msgid "ALSO_TURNS"
@@ -1395,7 +1405,7 @@ msgstr ". Nopeus"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4502
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5050
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "skaalautuu konsentraation mukaan"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2126
 msgid "NITROGENASE_DESCRIPTION"
@@ -1522,7 +1532,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5248
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Bioluminesenssivä vakuoli"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5315
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5379
@@ -1537,7 +1547,7 @@ msgstr "Normaali"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7016
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Resurssien imeytymisen nopeus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5559
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -1563,7 +1573,7 @@ msgstr "Selluloosa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6723
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7084
 msgid "PHYSICAL_RESISTANCE"
-msgstr ""
+msgstr "Fyysinen kestävyys"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6103
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6430
@@ -1596,7 +1606,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6549
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3762
 msgid "CALCIUM_CARBONATE"
-msgstr ""
+msgstr "Kalsiumkarbonaatti"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6830
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
@@ -1614,7 +1624,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7312
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Lisää uusi syöte"
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1630,7 +1640,7 @@ msgstr "pakeni nielaisulta"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:463
 msgid "MICROBE_PATCH_LABEL"
-msgstr ""
+msgstr "Alue: {0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:607
 msgid "STUFF_AT"
@@ -1687,7 +1697,7 @@ msgstr "POPULAATIO:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:16
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr ""
+msgstr "Pangonian Syvänmeren tupruttajat"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:24
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
@@ -1711,11 +1721,11 @@ msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:59
 msgid "PATCH_PANGONIAN_COAST"
-msgstr ""
+msgstr "Pangonian Rannikko"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:66
 msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr ""
+msgstr "Pangonian Estuaari"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:73
 msgid "PATCH_CAVE"
@@ -1727,20 +1737,20 @@ msgstr "Jäähylly"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:87
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
+msgstr "Pangonian Merenpohja"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
-msgstr ""
+msgstr "Solun prosessit"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Yhdisteiden tasapainopisteet"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:523
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1088
 msgid "LOADING_MICROBE_EDITOR"
-msgstr ""
+msgstr "Ladataan Mikrobieditoria"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:525
 msgid "WAITING_FOR_AUTO_EVO"
@@ -1748,7 +1758,7 @@ msgstr "Odotetaan auto-evoa:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1907
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "Auto-evon suorittaminen epäonnistui"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1908
 msgid "AUTO_EVO_RUN_STATUS"
@@ -1760,7 +1770,7 @@ msgstr "Raportti"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:983
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "Aluekartta"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1062
 msgid "ORGANISM_STATISTICS"
@@ -1817,6 +1827,8 @@ msgstr "Proteiini"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2091
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
+"Kemosyntetisoivat\n"
+"proteiinit"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
 msgid "EXTERNAL"
@@ -1833,6 +1845,8 @@ msgstr "- MP"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3278
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
+"Biolumisenssivä\n"
+"Vakuoli"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3375
 msgid "MEMBRANE_TYPES"
@@ -1840,7 +1854,7 @@ msgstr "Solukalvotyypit"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3859
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Valuvuus / jäykkyys"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3897
 msgid "COLOUR"
@@ -1856,23 +1870,27 @@ msgstr "VAHVISTA"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4080
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr ""
+msgstr "Negatiivinen ATP:n tasapaino"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4081
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
+"Mikrobi ei tuota tarpeeksi ATP:tä selviytyäkseen!\n"
+"Haluatko varmasti jatkaa?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4089
 msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
+msgstr "Irtonaiset soluelimet"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4090
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
+"Jotkin soluelimistä eivät ole yhtydessä muihin.\n"
+"Yhdistä kaikki soluelimet toisiinsa tai kumoa muutoksesi."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4156
 msgid "PATCH_NAME"
-msgstr ""
+msgstr "Alueen nimi"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4190
 msgid "AUTO_EVO"
@@ -1901,7 +1919,7 @@ msgstr "SEURAAVA"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4470
 msgid "SELECT_A_PATCH"
-msgstr ""
+msgstr "Valitse alue nähdäksesi sen tiedot tässä"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4505
 msgid "CURRENT_LOCATION_CAPITAL"
@@ -1909,7 +1927,7 @@ msgstr "NYKYINEN SIJAINTI"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4588
 msgid "PHYSICAL_CONDITIONS"
-msgstr ""
+msgstr "Olosuhteet"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4771
 msgid "ATMOSPHERIC_GASSES"
@@ -1921,7 +1939,7 @@ msgstr "Läsnäolevat lajit"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5254
 msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
+msgstr "Siirry tälle alueelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:553
 msgid "FREEBUILDING"
@@ -1984,47 +2002,50 @@ msgstr "OLET VOITTANUT!"
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
+"Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit jatkaa "
+"pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden pelin uudessa "
+"maailmassa."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
 #: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "Ladataan peliä"
 
 #: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Luetaan tallennuksen tietoja"
 
 #: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "Luodaan objekteja tallennuksesta"
 
 #: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Poikkeus tapahtui ladattaessa tallennuksen tietoja"
 
 #: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "Tallennus on virheellinen"
 
 #: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr ""
+msgstr "Tallennuksessa on virheellinen pelin tilan skene"
 
 #: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
+msgstr "Prosessoidaan ladattuja objekteja"
 
 #: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr ""
+msgstr "Poikkeus tapahtui prosessoidessa ladattuja objekteja"
 
 #: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
-msgstr ""
+msgstr "Lataus on valmistunut"
 
 #: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Virhe ladattaessa"
 
 #: ../src/saving/InProgressSave.cs:161
 msgid "SAVING"
@@ -2032,11 +2053,11 @@ msgstr "Tallennetaan..."
 
 #: ../src/saving/InProgressSave.cs:191
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "Tallennus epäonnistui"
 
 #: ../src/saving/InProgressSave.cs:192
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Virhe tallennettaessa"
 
 #: ../src/saving/NewSaveMenu.cs:61
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
@@ -2044,7 +2065,7 @@ msgstr "Valittu tiedoston nimi ({0}) on jo olemassa. Ylikirjoita?"
 
 #: ../src/saving/NewSaveMenu.tscn:29
 msgid "CREATE_NEW_SAVE"
-msgstr ""
+msgstr "Luo uusi tallennus"
 
 #: ../src/saving/NewSaveMenu.tscn:46
 msgid "NAME"
@@ -2052,23 +2073,23 @@ msgstr "Nimi:"
 
 #: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Lisäasetukset"
 
 #: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr ""
+msgstr "Korvaa aikaisempi tallennus:"
 
 #: ../src/saving/NewSaveMenu.tscn:118
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr ""
+msgstr "Korvaa aikaisempi tallennus?"
 
 #: ../src/saving/SaveHelper.cs:373
 msgid "SAVING_SUCCEEDED"
-msgstr ""
+msgstr "Tallennus onnistui"
 
 #: ../src/saving/SaveHelper.cs:377
 msgid "SAVING_FAILED"
-msgstr ""
+msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
@@ -2089,6 +2110,8 @@ msgstr "Virheellinen"
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti "
+"poistaa {0}?"
 
 #: ../src/saving/SaveList.tscn:46 ../src/saving/SaveListItem.tscn:103
 msgid "LOADING_DOT"
@@ -2172,6 +2195,8 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
+"Valittujen tallennusten poistamista ei voi kumota, haluatko varmasti "
+"lopullisesti poistaa {0} tallennusta?"
 
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
@@ -2183,7 +2208,7 @@ msgstr "Virkistä"
 
 #: ../src/saving/SaveManagerGUI.tscn:73
 msgid "DELETE_SELECTED"
-msgstr ""
+msgstr "Poista valitut"
 
 #: ../src/saving/SaveManagerGUI.tscn:81
 msgid "CLEAN_UP_OLD_SAVES"
@@ -2199,7 +2224,7 @@ msgstr "Tallennusten määrä:"
 
 #: ../src/saving/SaveManagerGUI.tscn:144
 msgid "SAVE_SPACE_USED"
-msgstr ""
+msgstr "Tilaa käytössä:"
 
 #: ../src/saving/SaveManagerGUI.tscn:164
 msgid "SELECTED_COLON"
@@ -2207,19 +2232,19 @@ msgstr "Valittu:"
 
 #: ../src/saving/SaveManagerGUI.tscn:181
 msgid "DELETE_SELECTED_SAVES"
-msgstr ""
+msgstr "Poista valitut tallennukset?"
 
 #: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES"
-msgstr ""
+msgstr "Poista vanhat tallennukset?"
 
 #: ../src/saving/SaveStatusOverlay.tscn:120
 msgid "SAVING_ERROR"
-msgstr ""
+msgstr "Virhe tallennettaessa"
 
 #: ../src/saving/SaveStatusOverlay.tscn:180
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Kopioi virhe leikepöydälle"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73

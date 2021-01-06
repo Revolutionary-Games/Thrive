@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2021-01-02 09:17+0000\n"
+"PO-Revision-Date: 2021-01-05 09:38+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -246,7 +246,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "HAREKETLİ ŞEYLER!!"
+msgstr "KIMILDAYAN ŞEYLER!!"
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_11"
@@ -414,7 +414,7 @@ msgstr "Geri al"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr "Tekrarla"
+msgstr "Yinele"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "PLACE_ORGANELLE"
@@ -803,7 +803,9 @@ msgstr "Mitokondri"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4932
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3212
 msgid "TOXIN_VACUOLE"
-msgstr "Toksin Kofulu"
+msgstr ""
+"Toksin\n"
+"Kofulu"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3467
@@ -872,7 +874,7 @@ msgstr "yayıldığı araziler:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr "{0}: {1} popülasyonu {2} adlı araziden göndererek"
+msgstr "{0}: {1} popülasyonu {2} adlı araziden göç etti"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
@@ -1488,7 +1490,6 @@ msgstr "şiddeti"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1069
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3642
 #: ../src/microbe_stage/MicrobeStage.tscn:924
-#, fuzzy
 msgid "LIGHT"
 msgstr "Işık"
 
@@ -1853,7 +1854,7 @@ msgstr "Yeni bir kontrol tuşu ekle"
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
-msgstr "başarılı yiyecek bulma"
+msgstr "başarılı yiyecek avı"
 
 #: ../src/microbe_stage/Microbe.cs:1182
 msgid "SUCCESSFUL_KILL"
@@ -1885,7 +1886,7 @@ msgstr "İmleç Üzerinde:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "NOTHING_HERE"
-msgstr "Burada hiçbir şey yok"
+msgstr "Burada bir şey yok"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:480
 msgid "COMPOUNDS_COLON"
@@ -2136,7 +2137,7 @@ msgstr "Oto-evrim sonuçları:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4289
 msgid "EXTERNAL_EFFECTS"
-msgstr "Dış etkiler:"
+msgstr "Dış etkenler:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4357
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5283
@@ -2210,7 +2211,7 @@ msgstr "Deniz seviyesinin {0}-{1}m altı"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1518
 msgid "WITH_POPULATION"
-msgstr "{0}: {1} popülasyon ile"
+msgstr "{0}: {1} popülasyonla"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2257,7 +2258,7 @@ msgstr "Kayıt geçersiz"
 
 #: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "Kayıt geçersiz oyun manzarasına sahip"
+msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
 
 #: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
@@ -2301,7 +2302,7 @@ msgstr "İsim:"
 
 #: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
-msgstr "Ekstra Ayarlar"
+msgstr "Ekstra Seçenekler"
 
 #: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
@@ -2379,7 +2380,7 @@ msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Kayıt bilgisi bu dosyadan yüklenemedi.\n"
 "Bu kayıt büyük ihtimalle bozuk ya da mevcut Thrive sürümü tarafından "
-"bilinmeyen yeni bir formatta yapılmış.\n"
+"bilinmeyen yeni bir formatta yazılmış.\n"
 "Yine de kaydı yüklemeyi denemek istiyor musun?"
 
 #: ../src/saving/SaveList.tscn:97
@@ -2475,7 +2476,7 @@ msgstr "Kullanılan alan:"
 
 #: ../src/saving/SaveManagerGUI.tscn:164
 msgid "SELECTED_COLON"
-msgstr "Seçili:"
+msgstr "Seçilen:"
 
 #: ../src/saving/SaveManagerGUI.tscn:181
 msgid "DELETE_SELECTED_SAVES"
@@ -2514,9 +2515,9 @@ msgstr ""
 "Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman "
 "kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve "
-"popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca "
-"üstte çevresel değişimleri görebilirsin.\n"
+"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının "
+"ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel "
+"değişiklikleri görebilirsin.\n"
 "\n"
 "Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
 
@@ -2525,7 +2526,7 @@ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Bu arazi haritası.\n"
 "Burada mikropların yaşayabileceği farklı arazileri görebilirsin.\n"
-"Mevcut olduğun arazi vurgulanır.\n"
+"Mevcut olduğun arazi vurgulanmış durumda.\n"
 "Farenle arazilere tıklayıp seçerek sağ tarafta detaylarını "
 "görüntüleyebilirsin.\n"
 "\n"
@@ -2620,7 +2621,7 @@ msgstr "İlerlemeye Başla"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Hücreni kontrol etmek için hücrene yanında gösterilen tuşları (ekranın "
+"Hücreni kontrol etmek için hücrenin yanında bulunan tuşları (ekranın "
 "ortasında) ve hücreyi döndürmek için fareyi kullan.\n"
 "\n"
 "Devam etmek için birkaç saniyeliğine ekranda gösterilen tuşları dene."
@@ -2630,7 +2631,7 @@ msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Glukozu (beyaz bulutlar) üzerine gelerek topla.\n"
 "Hücren hayatta kalmak için enerji üretmeye yarayan glukoza ihtiyaç duyar.\n"
-"Hücrenden başlayıp bu civardaki glukoza kadar uzanan çizgiyi takip et."
+"Yakınlardaki glukoza kadar uzanan bu çizgiyi takip et."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
