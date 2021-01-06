@@ -165,12 +165,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
         set
         {
-            while (rootOfDynamicallySpawned.GetChildCount() > 0)
-            {
-                var child = rootOfDynamicallySpawned.GetChild(0);
-                rootOfDynamicallySpawned.RemoveChild(child);
-                child.Free();
-            }
+            rootOfDynamicallySpawned.FreeChildren();
 
             foreach (var entity in value)
             {
