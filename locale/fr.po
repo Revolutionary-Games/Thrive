@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-31 14:12+0200\n"
-"PO-Revision-Date: 2020-12-22 07:32+0000\n"
-"Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
+"PO-Revision-Date: 2021-01-03 09:13+0000\n"
+"Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -244,9 +244,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Les bactéries sont plus dangereuses qu'elles ne le paraissent. Elles "
-"peuvent sembler minuscules, mais certaines d'entre elles peuvent vous "
-"transpercer avec leur pilus pour vous tuer !"
+"Les bactéries sont plus dangereuses qu'elles n'y paraissent. Elles peuvent "
+"sembler minuscules, mais certaines d'entre elles peuvent vous transpercer "
+"avec leur pilus pour vous tuer !"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
@@ -361,7 +361,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "Mouvement"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
@@ -373,39 +373,39 @@ msgstr "Se déplacer vers la droite"
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
-msgstr ""
+msgstr "Avancer"
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr ""
+msgstr "Reculer"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "Avance automatique"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "Capacités"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Tirer des toxines"
 
 #: ../simulation_parameters/common/input_options.json:42
 msgid "TOGGLE_ENGULF"
-msgstr ""
+msgstr "Activer Engloutir"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr ""
+msgstr "Caméra"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Dézoomer"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Zoomer"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:975
@@ -422,48 +422,47 @@ msgstr "Tourner à gauche"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr ""
+msgstr "Annuler"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr ""
+msgstr "Refaire"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "PLACE_ORGANELLE"
-msgstr ""
+msgstr "Place organite"
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "REMOVE_ORGANELLE"
-msgstr ""
+msgstr "Enlever organite"
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "Panoramique gauche"
 
 #: ../simulation_parameters/common/input_options.json:99
-#, fuzzy
 msgid "PAN_CAMERA_RIGHT"
-msgstr "Se déplacer vers la droite"
+msgstr "Panoramique droit"
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "Panoramique vers le haut"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "Panoramique vers le bas"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "Réinitialiser la caméra"
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "CHEATS"
-msgstr ""
+msgstr "Triches"
 
 #: ../simulation_parameters/common/input_options.json:123
 msgid "ENABLE_EDITOR"
-msgstr ""
+msgstr "Activer l'éditeur"
 
 #: ../simulation_parameters/common/input_options.json:127
 msgid "SPAWN_GLUCOSE"
@@ -479,23 +478,23 @@ msgstr "Créer du phosphate"
 
 #: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Divers"
 
 #: ../simulation_parameters/common/input_options.json:148
 msgid "TOGGLE_FPS"
-msgstr ""
+msgstr "Afficher les FPS"
 
 #: ../simulation_parameters/common/input_options.json:152
 msgid "QUICK_SAVE"
-msgstr ""
+msgstr "Sauvegarde rapide"
 
 #: ../simulation_parameters/common/input_options.json:156
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "Chargement rapide"
 
 #: ../simulation_parameters/common/input_options.json:160
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Prendre une capture d'écran"
 
 #: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
@@ -900,12 +899,15 @@ msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Pressez une touche..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
+#, fuzzy
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Il y a un conflit avec {0}.\n"
+"Voulez-vous enlever l'input de {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
@@ -913,27 +915,27 @@ msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Maj"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "Clic gauche"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Clic droit"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Clic molette"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Molette avant"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Molette arrière"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
@@ -944,16 +946,17 @@ msgid "WHEEL_RIGHT"
 msgstr "Roulette droite"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#, fuzzy
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Spécial 1 souris"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Spécial 2 souris"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Souris inconnue"
 
 #: ../src/general/HelpScreen.tscn:102
 #: ../src/microbe_stage/ProcessPanel.tscn:70
@@ -974,7 +977,7 @@ msgstr "Performance"
 
 #: ../src/general/OptionsMenu.tscn:165
 msgid "INPUTS"
-msgstr ""
+msgstr "Entrées"
 
 #: ../src/general/OptionsMenu.tscn:177
 msgid "MISC"
@@ -1074,7 +1077,7 @@ msgstr "Activer l'auto-évolution en jeu"
 
 #: ../src/general/OptionsMenu.tscn:795
 msgid "RESET_INPUTS"
-msgstr ""
+msgstr "Réinitialiser les entrées"
 
 #: ../src/general/OptionsMenu.tscn:818
 msgid "PLAY_INTRO_VIDEO"
@@ -1149,6 +1152,7 @@ msgstr "Remettre les touches à zéro?"
 #: ../src/general/OptionsMenu.tscn:1032
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
+"Êtes-vous sur de vouloir restaurer les entrées à leurs valeurs par défauts ?"
 
 #: ../src/general/OptionsMenu.tscn:1041
 msgid "CLOSE_OPTIONS"
@@ -1238,7 +1242,7 @@ msgstr "Outils"
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Voir le code source"
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
@@ -1851,7 +1855,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7288
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Ajouter un nouveau raccourci clavier"
 
 #: ../src/microbe_stage/Microbe.cs:1170
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1968,11 +1972,12 @@ msgstr "Sol Marin Pangonien"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
-msgstr ""
+msgstr "Processus cellulaires"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:17
+#, fuzzy
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Équilibre des composants"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:517
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1085
@@ -2040,9 +2045,8 @@ msgid "BEHAVIOR"
 msgstr "Comportement"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1577
-#, fuzzy
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Rechercher..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1637
 msgid "STRUCTURAL"
@@ -2089,9 +2093,8 @@ msgid "COLOUR"
 msgstr "Couleur"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3934
-#, fuzzy
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Nom de l’espèce..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3961
 msgid "CONFIRM_CAPITAL"
