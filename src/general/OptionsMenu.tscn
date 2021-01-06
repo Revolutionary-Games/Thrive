@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
 [ext_resource path="res://src/engine/input/key_mapping/InputGroupList.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/TranslationSiteButton.cs" type="Script" id=5]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -612,8 +611,7 @@ __meta__ = {
 margin_top = 380.0
 margin_right = 648.0
 margin_bottom = 412.0
-text = "TRANSLATION_SITE"
-script = ExtResource( 5 )
+text = "OPEN_TRANSLATION_SITE"
 
 [node name="Performance" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
@@ -1183,6 +1181,7 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted" to="." method="OnGUIMutedToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton" to="." method="OnLanguageSettingSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton" to="." method="OnResetLanguagePressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/TranslationSiteButton" to="." method="OnTranslationSitePressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay" to="." method="OnAutoEvoToggled"]
