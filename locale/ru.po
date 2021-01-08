@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2020-11-17 07:36+0000\n"
-"Last-Translator: Viktor <xaad3@disroot.org>\n"
+"PO-Revision-Date: 2021-01-08 15:18+0000\n"
+"Last-Translator: LibreHacker <librehacker@snopyta.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -25,9 +25,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Двигайся, используя клавиши \"W\", \"А\", \"S\" и \"D\" и мышь. Стреляй "
-"токсином, нажимая \"E\" (если есть вакуоль с токсином). Поглощай, нажимая "
-"\"G\"."
+"W,A,S,D и мышь для движения. Е для стрельбы OxyToxy NT если ты имеешь "
+"токсичную вакуоль. G для переключения погрощающего режима."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -73,7 +72,6 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Если число особей упадёт до нуля, то твой вид вымрет."
 
 #: ../simulation_parameters/common/help_texts.json:11
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Различные соединения облаков:\n"
@@ -84,7 +82,7 @@ msgstr ""
 "Фиолетовый - Фосфат\n"
 "Ржаво-коричневый - Железо\n"
 "\n"
-"Глюкоза делает АТФ"
+"Глюкоза даёт АТФ"
 
 #: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:36
@@ -169,23 +167,29 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"С каждым новым поколением тебе будут давать 100 очков мутации (ОМ). Любое "
-"улучшение клетки, любое удаление ненужных органелл стоит ОМ. Бесплатно "
-"можно удалить лишь ту часть клетки, которую ты только что поставил. "
-"Удаляются части клетки нажатием правой кнопки мыши. Органеллы можно "
-"вращать, нажимая \"A\" и \"D\""
+"Каждое поколение, у тебя будет 100 мутационных очков (МО) для "
+"израсходования, и каждое изменение (или мутация) будут стоить некоторое "
+"количество МО. Добавление и удаление органелл стоит МО, однако удаление "
+"органелл которые были размещены в текущей мутационной сессии возвращают МО "
+"за эти органеллы. Ты можешь удалить органеллы нажатием на них правой кнопки "
+"мыши. Ты можешь вращать, нажимая A и D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"Каждый раз размножаясь, ты можешь войти в Микробный Редактор, где ты можешь "
+"делать изменения своего вида (добавляя, передвигая или удаляя органеллы) "
+"повышая успех твоего вида. Каждое посещение редактора в Микробной Фазе "
+"составляют 100 миллионов лет эволюции."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
 
 #: ../simulation_parameters/common/help_texts.json:48
+#, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "Забавный Факт,"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
@@ -202,6 +206,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
+"Забавный Факт, Метаболосма это то, что называется Многогранная органелла."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
@@ -271,6 +276,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
+"Звуковая команда Thrive'а сделала много песен, которые ещё не были добавлены "
+"в игру. Ты можешь услышать их, или посмотреть стримы с их написанием на "
+"YouTube канале, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
@@ -294,22 +302,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "Передвижение"
 
 #: ../simulation_parameters/common/input_options.json:10
-#, fuzzy
 msgid "MOVE_LEFT"
-msgstr "Свет"
+msgstr "Двигаться влево"
 
 #: ../simulation_parameters/common/input_options.json:14
-#, fuzzy
 msgid "MOVE_RIGHT"
-msgstr "Свет"
+msgstr "Двигаться вправо"
 
 #: ../simulation_parameters/common/input_options.json:18
-#, fuzzy
 msgid "MOVE_FORWARD"
-msgstr "Авто-эво не удалось запустить"
+msgstr "Двигаться вперёд"
 
 #: ../simulation_parameters/common/input_options.json:22
 #, fuzzy
@@ -317,33 +322,32 @@ msgid "MOVE_BACKWARDS"
 msgstr "Авто-эво не удалось запустить"
 
 #: ../simulation_parameters/common/input_options.json:26
-#, fuzzy
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "Авто-эво не удалось запустить"
+msgstr "Двигаться назад"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Выстрелить токсином"
 
 #: ../simulation_parameters/common/input_options.json:42
 msgid "TOGGLE_ENGULF"
-msgstr ""
+msgstr "Переключить поглощение"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr ""
+msgstr "Камера"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Уменьшить"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Увеличить"
 
 #: ../simulation_parameters/common/input_options.json:67
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1005
@@ -351,22 +355,20 @@ msgid "EDITOR"
 msgstr "Редактор"
 
 #: ../simulation_parameters/common/input_options.json:71
-#, fuzzy
 msgid "ROTATE_RIGHT"
-msgstr "Свет"
+msgstr "Поворот вправо"
 
 #: ../simulation_parameters/common/input_options.json:75
-#, fuzzy
 msgid "ROTATE_LEFT"
-msgstr "Свет"
+msgstr "Поворот влево"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr ""
+msgstr "Отменить"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr ""
+msgstr "Вернуть"
 
 #: ../simulation_parameters/common/input_options.json:87
 #, fuzzy
@@ -380,7 +382,7 @@ msgstr "Органеллы"
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "Двигать влево"
 
 #: ../simulation_parameters/common/input_options.json:99
 #, fuzzy
@@ -389,66 +391,59 @@ msgstr "Свет"
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "Двигать вверх"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "Двигать вниз"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "Сбросить камеру"
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "CHEATS"
-msgstr ""
+msgstr "Читы"
 
 #: ../simulation_parameters/common/input_options.json:123
-#, fuzzy
 msgid "ENABLE_EDITOR"
-msgstr "Редактор"
+msgstr "Включить редактор"
 
 #: ../simulation_parameters/common/input_options.json:127
-#, fuzzy
 msgid "SPAWN_GLUCOSE"
-msgstr "Глюкоза"
+msgstr "Породить глюкозу"
 
 #: ../simulation_parameters/common/input_options.json:131
-#, fuzzy
 msgid "SPAWN_AMMONIA"
-msgstr "Аммиак"
+msgstr "Породить аммиак"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "SPAWN_PHOSPHATES"
-msgstr "Фосфат"
+msgstr "Породить фосфат"
 
 #: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Разное"
 
 #: ../simulation_parameters/common/input_options.json:148
 msgid "TOGGLE_FPS"
-msgstr ""
+msgstr "Включить показ FPS"
 
 #: ../simulation_parameters/common/input_options.json:152
-#, fuzzy
 msgid "QUICK_SAVE"
-msgstr "Сохранить игру"
+msgstr "Быстрое сохранение"
 
 #: ../simulation_parameters/common/input_options.json:156
-#, fuzzy
 msgid "QUICK_LOAD"
-msgstr "Сохранить игру"
+msgstr "Быстрая загрузка"
 
 #: ../simulation_parameters/common/input_options.json:160
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Сделать изображение экрана"
 
 #: ../simulation_parameters/common/input_options.json:164
-#, fuzzy
 msgid "SHOW_HELP"
-msgstr "Помощь"
+msgstr "Показать помощь"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -460,8 +455,9 @@ msgid "GLYCOLYSIS"
 msgstr "Гликолиз"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
+#, fuzzy
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr ""
+msgstr "Цитоплазматический Гликолиз"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
@@ -471,7 +467,7 @@ msgstr "Фотосинтез"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
+msgstr "OxyToxy Синтез"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
@@ -484,7 +480,7 @@ msgstr "Воздушная азотфиксация"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Анаэробная азотфиксация"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
@@ -505,8 +501,9 @@ msgstr "Эпипелагический"
 #: ../simulation_parameters/microbe_stage/biomes.json:1389
 #: ../simulation_parameters/microbe_stage/biomes.json:1539
 #: ../simulation_parameters/microbe_stage/biomes.json:1671
+#, fuzzy
 msgid "FLOATING_HAZARD"
-msgstr ""
+msgstr "Колебание Опасности"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
 #: ../simulation_parameters/microbe_stage/biomes.json:170
@@ -550,7 +547,7 @@ msgstr "Морской снег"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:354
 msgid "TIDEPOOL"
-msgstr ""
+msgstr "Приточный бассейн"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:486
 msgid "BATHYPELAGIC"
@@ -558,7 +555,7 @@ msgstr "Батиаль"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:698
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Абиссаль"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:906
 msgid "MESOPELAGIC"
@@ -577,16 +574,17 @@ msgid "ICESHELF"
 msgstr "Шельфовый ледник"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1441
+#, fuzzy
 msgid "ICESHARD"
-msgstr ""
+msgstr "Шельфовый ледник"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1528
 msgid "ESTUARY"
-msgstr ""
+msgstr "Устье"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1660
 msgid "SEA_FLOOR"
-msgstr ""
+msgstr "Морское Дно"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:471
@@ -619,7 +617,7 @@ msgstr "Фосфат"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4161
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:51
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:446
@@ -638,7 +636,7 @@ msgstr "Глюкоза"
 #: ../simulation_parameters/microbe_stage/compounds.json:63
 #: ../src/microbe_stage/MicrobeStage.tscn:1510
 msgid "OXYTOXY_NT"
-msgstr ""
+msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
@@ -663,7 +661,7 @@ msgstr "Кислород"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4221
 msgid "CARBON_DIOXIDE"
-msgstr ""
+msgstr "Углекислый Газ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2015
@@ -711,7 +709,7 @@ msgstr "Хемосинтезирующие белки"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2206
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2291
 msgid "OXYTOXISOME"
-msgstr ""
+msgstr "Окситоксисома"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:958
@@ -765,7 +763,9 @@ msgstr "Митохондрия"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4932
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3212
 msgid "TOXIN_VACUOLE"
-msgstr "Токсичная вакуоль"
+msgstr ""
+"Токсичная\n"
+"Вакуоль"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3467
@@ -790,7 +790,7 @@ msgstr "Ядро"
 
 #: ../src/auto-evo/AutoEvoRun.cs:112
 msgid "ABORTED"
-msgstr ""
+msgstr "Отменено."
 
 #: ../src/auto-evo/AutoEvoRun.cs:115
 msgid "FINISHED"
@@ -798,27 +798,27 @@ msgstr "Завершено."
 
 #: ../src/auto-evo/AutoEvoRun.cs:118
 msgid "NOT_RUNNING"
-msgstr ""
+msgstr "Не запущенно."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "AUTOEVO_STEPS_DONE"
-msgstr ""
+msgstr "{0:F1}% завершенно. {1:n0}/{2:n0} шагов."
 
 #: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "STARTING"
-msgstr ""
+msgstr "Запуск"
 
 #: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTOEVO_POPULATION_CHANGED"
-msgstr ""
+msgstr "{0} популяции изменено {1} потому что: {2}"
 
 #: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
-msgstr ""
+msgstr "популяция:"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
-msgstr ""
+msgstr "предыдущее:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
@@ -826,36 +826,37 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
-msgstr ""
+msgstr "генетический код:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "распространяется на участки:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} отправляет: {1} популяции из участка: {2}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr ""
+msgstr "популяции в участках:"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "Загрузка"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:299
-#, fuzzy
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Нажми клавишу..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Это конфликтует с {0}.\n"
+"Ты желаешь удалить клавишу из {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 #, fuzzy
@@ -864,31 +865,32 @@ msgstr "АТФ"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "Левая кнопка мыши"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Правая кнопка мыши"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Средняя кнопка мыши"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Колёсико вверх"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Колёсико вниз"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#, fuzzy
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Колёсико влево"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 #, fuzzy
@@ -897,15 +899,15 @@ msgstr "Свет"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Специальная кнопка мыши 1"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Специальная кнопка мыши 2"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Неизвестная кнопка мыши"
 
 #: ../src/general/HelpScreen.tscn:102
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -926,7 +928,7 @@ msgstr "Производительность"
 
 #: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
-msgstr ""
+msgstr "Клавиши"
 
 #: ../src/general/OptionsMenu.tscn:173
 msgid "MISC"
@@ -942,11 +944,11 @@ msgstr "Полный экран"
 
 #: ../src/general/OptionsMenu.tscn:242
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
+msgstr "Множественная выборка сглаживания:"
 
 #: ../src/general/OptionsMenu.tscn:249
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr ""
+msgstr "(высокие значения ухудшают производительность)"
 
 #: ../src/general/OptionsMenu.tscn:279
 msgid "RESOLUTION"
@@ -961,12 +963,13 @@ msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
 #: ../src/general/OptionsMenu.tscn:328
+#, fuzzy
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Цветовая Коррекция:"
 
 #: ../src/general/OptionsMenu.tscn:360
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Хроматическая Аберрация:"
 
 #: ../src/general/OptionsMenu.tscn:401
 msgid "MASTER_VOLUME"
@@ -976,7 +979,7 @@ msgstr "Основная громкость"
 #: ../src/general/OptionsMenu.tscn:502 ../src/general/OptionsMenu.tscn:535
 #: ../src/general/OptionsMenu.tscn:568
 msgid "MUTE"
-msgstr ""
+msgstr "Заглушить"
 
 #: ../src/general/OptionsMenu.tscn:442
 msgid "MUSIC_VOLUME"
@@ -988,7 +991,7 @@ msgstr "Громкость окружения"
 
 #: ../src/general/OptionsMenu.tscn:508
 msgid "SFX_VOLUME"
-msgstr ""
+msgstr "Громкость звуковых эффектов"
 
 #: ../src/general/OptionsMenu.tscn:541
 msgid "GUI_VOLUME"
@@ -1004,11 +1007,11 @@ msgstr "Сбросить"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Помогите Перевести Игру"
 
 #: ../src/general/OptionsMenu.tscn:630
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Компоненты облаков"
 
 #: ../src/general/OptionsMenu.tscn:645
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
@@ -1018,11 +1021,12 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:696
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
+msgstr "(высокие значения могут ухудшить производительность)"
 
 #: ../src/general/OptionsMenu.tscn:689
+#, fuzzy
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Делитель Облачного Разрешения:"
 
 #: ../src/general/OptionsMenu.tscn:731
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -1031,16 +1035,15 @@ msgstr "Запускать авто-эво во время геймплея"
 #: ../src/general/OptionsMenu.tscn:798
 #, fuzzy
 msgid "RESET_INPUTS"
-msgstr "Сбросить по умолчанию?"
+msgstr "Восстановить Данные"
 
 #: ../src/general/OptionsMenu.tscn:822
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
 #: ../src/general/OptionsMenu.tscn:831
-#, fuzzy
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr "Проигрывать Вступление Микроба при новой игре"
+msgstr "Проигрывать Вступление Микроба при Новой Игре"
 
 #: ../src/general/OptionsMenu.tscn:840
 msgid "AUTOSAVE_DURING_THE_GAME"
@@ -1052,7 +1055,7 @@ msgstr "Количество автосохранений для хранени�
 
 #: ../src/general/OptionsMenu.tscn:879
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Количество быстрых сохранений на хранение:"
 
 #: ../src/general/OptionsMenu.tscn:905
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
@@ -1076,7 +1079,7 @@ msgstr "Имя пользователя:"
 
 #: ../src/general/OptionsMenu.tscn:972
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
+msgstr "Открыть папку с Изображениями экрана"
 
 #: ../src/general/OptionsMenu.tscn:983 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
@@ -1102,9 +1105,8 @@ msgstr ""
 "Ты действительно хочешь сбросить ВСЕ настройки до значений по умолчанию?"
 
 #: ../src/general/OptionsMenu.tscn:1042
-#, fuzzy
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "По умолчанию"
+msgstr "Восстановить по умолчанию?"
 
 #: ../src/general/OptionsMenu.tscn:1043
 #, fuzzy
@@ -1179,15 +1181,15 @@ msgstr "Выход"
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "/секунд"
 
 #: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 #: ../src/gui_common/MainMenu.cs:330
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: ../src/gui_common/MainMenu.tscn:148
 msgid "NEW_GAME"
@@ -1199,7 +1201,7 @@ msgstr "Инструменты"
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Посмотреть Исходный Код"
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
@@ -1214,12 +1216,14 @@ msgid "QUIT"
 msgstr "Выйти"
 
 #: ../src/gui_common/MainMenu.tscn:258
+#, fuzzy
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Микробный Свободностроительный Редактор"
 
 #: ../src/gui_common/MainMenu.tscn:358
+#, fuzzy
 msgid "GLES2_MODE_WARNING"
-msgstr ""
+msgstr "GLES 2 Режим Предупреждений"
 
 #: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING_TEXT"
@@ -1235,6 +1239,9 @@ msgstr "Сохранение отличной версии"
 #: ../src/gui_common/QuickLoadHandler.tscn:19
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"Версия сохранения которое ты пытаешься загрузить, не совпадает с версией "
+"игры.\n"
+"Пожалуйста, загрузи сохранение вручную через меню."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:81
 msgid "OPEN_THE_MENU"
@@ -1246,15 +1253,15 @@ msgstr "Открыть экран помощи"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Будешь выживать?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Закончить редактирование и вернуться в окружающую среду"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:114
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Изменить симметрию"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:120
 msgid "UNDO_THE_LAST_ACTION"
@@ -1296,6 +1303,8 @@ msgstr "Здоровье"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Более жёсткая мембрана более устойчива к повреждениям, но это делает тяжелее "
+"движение клетки."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:439
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:691
@@ -1322,7 +1331,7 @@ msgstr "Включая"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4464
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4984
 msgid "INTO"
-msgstr ""
+msgstr "в"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:504
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:798
@@ -1420,7 +1429,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4533
 msgid "AND"
-msgstr ""
+msgstr "и"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1062
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3635
@@ -1444,7 +1453,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1373
 msgid "ALSO_TURNS"
-msgstr ""
+msgstr "Также включая"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1519
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1575,11 +1584,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5022
 msgid "RELEASE_TOXINS_BY_PRESSING"
-msgstr ""
+msgstr "выпускай токсины нажимая"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5029
 msgid "E_DOT"
-msgstr ""
+msgstr "Д."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5037
 msgid "RATE"
@@ -1607,7 +1616,7 @@ msgstr "Обычная"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7016
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Скорость Поглощения Ресурсов"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5559
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -1640,7 +1649,7 @@ msgstr "Физическое сопротивление"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6791
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7152
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Невозможно поглотить"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6142
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
@@ -1655,8 +1664,9 @@ msgstr "Хитин"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6396
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6757
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7118
+#, fuzzy
 msgid "TOXIN_RESISTANCE"
-msgstr ""
+msgstr "Токсичная Устойчивость"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6469
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -1684,7 +1694,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7312
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Добавить новое назначение клавиши"
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1695,20 +1705,22 @@ msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
 #: ../src/microbe_stage/Microbe.cs:1576
+#, fuzzy
 msgid "ESCAPE_ENGULFING"
-msgstr ""
+msgstr "избегать поглощения"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:463
 msgid "MICROBE_PATCH_LABEL"
-msgstr ""
+msgstr "Участок: {0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:607
 msgid "STUFF_AT"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:451
+#, fuzzy
 msgid "PLAYER_REPRODUCED"
-msgstr ""
+msgstr "игрок воспроизвёл"
 
 #: ../src/microbe_stage/MicrobeStage.cs:563
 msgid "PLAYER_DIED"
@@ -1720,7 +1732,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "NOTHING_HERE"
-msgstr ""
+msgstr "Здесь ничего нет"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:480
 msgid "COMPOUNDS_COLON"
@@ -1789,11 +1801,12 @@ msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:73
 msgid "PATCH_CAVE"
-msgstr ""
+msgstr "Пещера"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:80
+#, fuzzy
 msgid "PATCH_ICE_SHELF"
-msgstr ""
+msgstr "Шельфовый ледник"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:87
 msgid "PATCH_PANGONIAN_SEAFLOOR"
@@ -1801,11 +1814,11 @@ msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
-msgstr ""
+msgstr "Клеточные Процессы"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Компонентный Баланс"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:523
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1088
@@ -1830,11 +1843,11 @@ msgstr "Сообщить"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:983
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "Карта Участка"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1062
 msgid "ORGANISM_STATISTICS"
-msgstr ""
+msgstr "Статистика Организма"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1123
 msgid "SPEED_COLON"
@@ -1842,7 +1855,7 @@ msgstr "Скорость:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1153
 msgid "HP_COLON"
-msgstr ""
+msgstr "ОЗ:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1183
 msgid "SIZE_COLON"
@@ -1893,7 +1906,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
 msgid "EXTERNAL"
-msgstr ""
+msgstr "Внешние"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2644
 msgid "ORGANELLES"
@@ -1937,18 +1950,23 @@ msgstr "Отрицательный АТФ баланс"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4081
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
+"Твой микроб не производит нужное количество АТФ для выживания!\n"
+"Желаешь продолжить?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4089
 msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
+msgstr "Отсоединенные Органеллы"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4090
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
+"Среди размещённых органелл, имеются несоединённые с остальными.\n"
+"Пожалуйста соедини все размещённые органеллы с другими или отмени свои "
+"действия."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4156
 msgid "PATCH_NAME"
-msgstr ""
+msgstr "Название Участка"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4190
 msgid "AUTO_EVO"
@@ -1956,11 +1974,12 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4204
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Пищевая Цепочка"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4218
+#, fuzzy
 msgid "TIMELINE"
-msgstr ""
+msgstr "Срок"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4270
 msgid "AUTO_EVO_RESULTS"
@@ -1977,12 +1996,11 @@ msgstr "ДАЛЕЕ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4470
 msgid "SELECT_A_PATCH"
-msgstr ""
+msgstr "Выбери участок для просмотра деталей"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4505
-#, fuzzy
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "ПОПУЛЯЦИЯ:"
+msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4588
 msgid "PHYSICAL_CONDITIONS"
@@ -1998,23 +2016,26 @@ msgstr "Присутствующие виды"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5254
 msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
+msgstr "Двигаться к этому участку"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:553
+#, fuzzy
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "Свободное строительство"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:607
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
+"Количество глюкозы было уменьшено до {0} по сравнению с предыдущим "
+"количеством."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:614
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "Мегагод"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:618
 msgid "YEARS"
-msgstr ""
+msgstr "лет"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:660
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:665
@@ -2030,8 +2051,9 @@ msgid "OSMOREGULATION"
 msgstr "Осморегуляция"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:717
+#, fuzzy
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Базовое Передвижение"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1473
 msgid "BIOME_LABEL"
@@ -2039,7 +2061,7 @@ msgstr "Биом: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1478
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1}м ниже уровня моря"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1518
 msgid "WITH_POPULATION"
@@ -2077,7 +2099,7 @@ msgstr "Чтение данных сохранения"
 
 #: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "Создание объектов из сохранения"
 
 #: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -2085,7 +2107,7 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "Сохранение недействительно"
 
 #: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
@@ -2093,7 +2115,7 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
+msgstr "Обработка загруженных объектов"
 
 #: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
@@ -2157,9 +2179,8 @@ msgid "SAVE_MANUAL"
 msgstr "Сохранение неудалось"
 
 #: ../src/saving/SaveInformation.cs:22
-#, fuzzy
 msgid "SAVE_AUTOSAVE"
-msgstr "Места используется:"
+msgstr "Автосохранение"
 
 #: ../src/saving/SaveInformation.cs:28
 #, fuzzy
@@ -2174,6 +2195,8 @@ msgstr "Сохранение неудалось"
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
+"Удаление текущего сохранения невозможно отменить, ты действительно желаешь "
+"пермаментно удалить {0}?"
 
 #: ../src/saving/SaveList.tscn:46 ../src/saving/SaveListItem.tscn:103
 msgid "LOADING_DOT"
@@ -2196,10 +2219,15 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:79
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+"Это сохранение из старой версии Thrive и оно может быть несовместимо.\n"
+"Thrive на текущий момент находиться в ранней разработке и совместимость "
+"сохранений не приоритетна.\n"
+"Ты можешь сообщить о проблемах, но они не будут высоко приоритетны сейчас.\n"
+"Ты желаешь попробовать загрузить это сохранение всёравно?"
 
 #: ../src/saving/SaveList.tscn:88
 msgid "LOAD_INVALID_SAVE"
-msgstr ""
+msgstr "Загрузить недействительное сохранение?"
 
 #: ../src/saving/SaveList.tscn:89
 msgid "LOAD_INVALID_SAVE_WARNING"
@@ -2250,10 +2278,14 @@ msgstr "Загрузить"
 #: ../src/saving/SaveListItem.tscn:281
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
+"Удаление этого сохранение будет невозможно отменить, ты действительно хочешь "
+"удалить это пермаментно?"
 
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
+"Удаление выбранного(ых) сохранения(й) будет невозможно отменить, ты "
+"действительно хочешь пермаментно удалить {0} сохранение(ий)?"
 
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
