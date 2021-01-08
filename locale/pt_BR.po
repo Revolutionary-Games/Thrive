@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2021-01-05 09:38+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"PO-Revision-Date: 2021-01-08 08:05+0000\n"
+"Last-Translator: Elrakrez <festerdam@posteo.net>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -170,10 +170,9 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "A cada geração, você tem 100 pontos de mutação (PM) para gastar, e cada "
 "mudança (ou mutação) vai custar uma certa quantidade desses pontos. "
-"Adicionar ou remover organelas custam PM, porém remover organelas que "
-"foram adicionadas na sessão atual devolvem os PM. Você pode remover uma "
-"organela clicando nela com o botão direito. É possível rotacionar as "
-"organelas com A e D."
+"Adicionar ou remover organelas custam PM, porém remover organelas que foram "
+"adicionadas na sessão atual devolvem os PM. Você pode remover uma organela "
+"clicando nela com o botão direito. É possível girar as organelas com A e D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -300,8 +299,8 @@ msgstr "Curiosidade, o Didinum é um ciliado que caça Paramecia."
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Curiosidade, a Amoeba caça e pega suas presas com 'pernas' feitas de "
-"citoplasma chamadas pseudópodes, eventualmente nós queremos implementar "
-"isso no jogo."
+"citoplasma chamadas pseudópodes, no futuro nós queremos implementar isso no "
+"jogo."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -313,7 +312,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "O líder da equipe sonora do jogo já fez várias músicas que ainda não foram "
-"adicionadas no jogo. Você pode ouvi-las, o assistir ele compondo no seu "
+"adicionadas no jogo. Você pode ouvi-las, ou assistir ele compondo no seu "
 "canal do YouTube, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
@@ -802,7 +801,9 @@ msgstr "Mitocôndria"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4932
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3212
 msgid "TOXIN_VACUOLE"
-msgstr "Vacúolo de Toxinas"
+msgstr ""
+"Vacúolo de \n"
+"Toxinas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3467
@@ -1040,7 +1041,7 @@ msgstr "Reiniciar"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Ajude a traduzir o jogo"
 
 #: ../src/general/OptionsMenu.tscn:630
 msgid "COMPOUND_CLOUDS"
@@ -1049,8 +1050,8 @@ msgstr "Nuvens de compostos"
 #: ../src/general/OptionsMenu.tscn:645
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
-"Mínimo da Simulação de Nuvens\n"
-"Intervalo:"
+"Intervalo Mínimo da Simulação\n"
+"de Nuvens:"
 
 #: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:696
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1110,7 +1111,7 @@ msgstr "Nome Personalizado:"
 
 #: ../src/general/OptionsMenu.tscn:972
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
+msgstr "Abrir a pasta de capturas de tela"
 
 #: ../src/general/OptionsMenu.tscn:983 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
@@ -1265,8 +1266,8 @@ msgstr "O arquivo salvo não corresponde à versão atual do jogo"
 #: ../src/gui_common/QuickLoadHandler.tscn:19
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"A arquivo salvo que você está tentando carregar não corresponde à versão "
-"do jogo.\n"
+"A versão do arquivo salvo que você está tentando carregar não corresponde à "
+"versão do jogo.\n"
 "Por favor carregue o salvamento manualmente através do menu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:81
@@ -1487,11 +1488,11 @@ msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "Tilacóides são aglomerações de proteínas e pigmentos fotossensíveis. Os "
 "pigmentos conseguem usar a energia da luz para produzir glicose da água e "
-"dióxido de carbono em um processo chamado Fotossíntese. Esses pigmentos "
-"também são o que os dá uma cor característica. A taxa da sua produção de "
-"glicose aumenta com a concentração de dióxido de carbono e intensidade da "
-"luz. Como os tilacóides estão suspensos diretamente no citoplasma, o fluido "
-"em volta realiza fermentação."
+"gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também "
+"são o que os dá uma cor característica. A taxa da sua produção de glicose "
+"aumenta com a concentração de dióxido de carbono e intensidade da luz. Como "
+"os tilacóides estão suspensos diretamente no citoplasma, o fluido em volta "
+"realiza fermentação."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4209
@@ -1506,11 +1507,11 @@ msgstr "Também transforma"
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Proteínas quimiossintetizantes são pequenas aglomerações de proteínas no "
-"citoplasma que podem converter sulfeto de hidrogênio, água, e gás "
-"carbônico em glicose em um processo chamado Quimiossíntese. A taxa da sua "
-"produção de glicose aumenta com a concentração de dióxido de carbono. Como "
-"as proteínas quimiossintetizantes são suspensas diretamente no citoplasma, "
-"os fluidos em sua volta realiza fermentação."
+"citoplasma que podem converter sulfeto de hidrogênio, água, e gás carbônico "
+"em glicose em um processo chamado Quimiossíntese. A taxa da sua produção de "
+"glicose aumenta com a concentração de dióxido de carbono. Como as proteínas "
+"quimiossintetizantes são suspensas diretamente no citoplasma, os fluidos em "
+"sua volta realizam fermentação."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1838
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2036,7 +2037,8 @@ msgstr "Proteínas"
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
 "Proteínas Qui-\n"
-"miossintetizantes"
+"miossinteti-\n"
+"zantes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
 msgid "EXTERNAL"
