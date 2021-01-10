@@ -9,6 +9,11 @@ using Newtonsoft.Json;
 public class SpawnSystem
 {
     /// <summary>
+    ///   Estimate count of existing spawned entities grouped by the spawner
+    /// </summary>
+    private readonly Dictionary<Type, int> estimateEntityCountPerSpawner = new Dictionary<Type, int>();
+
+    /// <summary>
     ///   Sets how often the spawn system runs and checks things
     /// </summary>
     [JsonProperty]
@@ -68,11 +73,6 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
-    /// <summary>
-    ///   Estimate count of existing spawned entities grouped by the spawner
-    /// </summary>
-    private Dictionary<Spawner, int> estimateEntityCountPerSpawner = new Dictionary<Spawner, int>();
-
     public SpawnSystem(Node root)
     {
         worldRoot = root;
@@ -97,7 +97,6 @@ public class SpawnSystem
     /// </summary>
     public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
     {
-        estimateEntityCountPerSpawner.Add(spawner, 0);
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
         spawner.SpawnRadiusSqr = spawnRadius * spawnRadius;
@@ -115,7 +114,6 @@ public class SpawnSystem
     /// </summary>
     public void RemoveSpawnType(Spawner spawner)
     {
-        estimateEntityCountPerSpawner.Remove(spawner);
         spawnTypes.Remove(spawner);
     }
 
@@ -132,7 +130,6 @@ public class SpawnSystem
     /// </summary>
     public void Clear()
     {
-        estimateEntityCountPerSpawner.Clear();
         spawnTypes.Clear();
         queuedSpawns = null;
         elapsed = 0;
@@ -151,9 +148,6 @@ public class SpawnSystem
             if (!entity.IsQueuedForDeletion())
                 entity.QueueFree();
         }
-
-        foreach (var pair in estimateEntityCountPerSpawner.Keys)
-            estimateEntityCountPerSpawner[pair] = 0;
     }
 
     /// <summary>
@@ -310,7 +304,6 @@ public class SpawnSystem
                 throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
             // Spawned something
-            estimateEntityCountPerSpawner[spawnType]++;
             ProcessSpawnedEntity(spawner.Current, spawnType);
             spawned += 1;
             --spawnsLeftThisFrame;
@@ -350,6 +343,7 @@ public class SpawnSystem
         // Despawn entities
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
+        estimateEntityCountPerSpawner.Clear();
         foreach (Node entity in spawnedEntities)
         {
             var spawned = entity as ISpawned;
@@ -367,12 +361,15 @@ public class SpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (squaredDistance > spawned.DespawnRadiusSqr)
             {
-                estimateEntityCountPerSpawner[spawned.Spawner]--;
                 entitiesDeleted++;
                 entity.QueueFree();
 
                 if (entitiesDeleted >= maxEntitiesToDeletePerStep)
                     break;
+            }
+            else
+            {
+                IncrementEstimateEntityCountPerSpawner(spawned.SpawnerType);
             }
         }
 
@@ -384,6 +381,8 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
+        IncrementEstimateEntityCountPerSpawner(entity.SpawnerType);
+
         // I don't understand why the same
         // value is used for spawning and
         // despawning, but apparently it works
@@ -391,6 +390,13 @@ public class SpawnSystem
         entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
+    }
+
+    private void IncrementEstimateEntityCountPerSpawner(Type type)
+    {
+        if (!estimateEntityCountPerSpawner.ContainsKey(type))
+            estimateEntityCountPerSpawner.Add(type, 0);
+        estimateEntityCountPerSpawner[type]++;
     }
 
     /// <summary>

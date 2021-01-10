@@ -271,6 +271,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonIgnore]
     public Spatial OrganelleParent { get; private set; }
 
+    public Type SpawnerType => typeof(MicrobeSpawner);
+
     [JsonProperty]
     public int DespawnRadiusSqr { get; set; }
 

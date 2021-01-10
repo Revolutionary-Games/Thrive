@@ -1,11 +1,15 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   All nodes that can be spawned with the spawn system must implement this interface
 /// </summary>
 public interface ISpawned
 {
-    Spawner Spawner { get; }
+    /// <summary>
+    ///   The type of the spawner that spawns this type.
+    /// </summary>
+    Type SpawnerType { get; }
 
     /// <summary>
     ///   If the squared distance to the player of this object is
