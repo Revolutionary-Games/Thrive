@@ -327,6 +327,8 @@ public class MicrobeSpawner : Spawner
         var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
 
+        SpawnedEntities.Add(first);
+
         yield return first;
 
         if (first.Species.IsBacteria)
@@ -334,6 +336,7 @@ public class MicrobeSpawner : Spawner
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
                 cloudSystem, currentGame, random))
             {
+                SpawnedEntities.Add(colonyMember);
                 yield return colonyMember;
             }
         }

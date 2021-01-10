@@ -6,6 +6,8 @@ using Godot;
 /// </summary>
 public abstract class Spawner
 {
+    public List<ISpawned> SpawnedEntities { get; } = new List<ISpawned>();
+
     /// <summary>
     ///   The distance at which spawning happens
     /// </summary>

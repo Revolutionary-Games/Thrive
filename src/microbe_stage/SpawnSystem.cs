@@ -355,6 +355,12 @@ public class SpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (squaredDistance > spawned.DespawnRadiusSqr)
             {
+                foreach (var spawnType in spawnTypes)
+                {
+                    if (spawnType.SpawnedEntities.Remove(spawned))
+                        break;
+                }
+
                 entitiesDeleted++;
                 entity.QueueFree();
 
