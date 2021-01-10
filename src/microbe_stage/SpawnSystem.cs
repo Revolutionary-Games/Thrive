@@ -9,11 +9,6 @@ using Newtonsoft.Json;
 public class SpawnSystem
 {
     /// <summary>
-    ///   Estimate count of existing spawned entities grouped by the spawner
-    /// </summary>
-    private readonly Dictionary<Type, int> entityCountPerSpawner = new Dictionary<Type, int>();
-
-    /// <summary>
     ///   Sets how often the spawn system runs and checks things
     /// </summary>
     [JsonProperty]
@@ -308,12 +303,6 @@ public class SpawnSystem
             spawned += 1;
             --spawnsLeftThisFrame;
 
-            // Check if we are out of quota for this spawner
-            if (entityCountPerSpawner[spawnType.GetType()] + spawned > spawnType.MaxOnScreen)
-            {
-                return true;
-            }
-
             // Check if we are out of quota for this frame
 
             // TODO: this is a bit awkward if this
@@ -349,7 +338,6 @@ public class SpawnSystem
         // Despawn entities
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
-        entityCountPerSpawner.Clear();
         foreach (Node entity in spawnedEntities)
         {
             var spawned = entity as ISpawned;
@@ -373,10 +361,6 @@ public class SpawnSystem
                 if (entitiesDeleted >= maxEntitiesToDeletePerStep)
                     break;
             }
-            else
-            {
-                IncrementEstimateEntityCountPerSpawner(spawned.SpawnerType);
-            }
         }
 
         return spawnedEntities.Count - entitiesDeleted;
@@ -387,8 +371,6 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
-        IncrementEstimateEntityCountPerSpawner(entity.SpawnerType);
-
         // I don't understand why the same
         // value is used for spawning and
         // despawning, but apparently it works
@@ -396,13 +378,6 @@ public class SpawnSystem
         entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
-    }
-
-    private void IncrementEstimateEntityCountPerSpawner(Type type)
-    {
-        if (!entityCountPerSpawner.ContainsKey(type))
-            entityCountPerSpawner.Add(type, 0);
-        entityCountPerSpawner[type]++;
     }
 
     /// <summary>
