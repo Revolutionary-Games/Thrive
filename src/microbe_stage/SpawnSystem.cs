@@ -11,7 +11,7 @@ public class SpawnSystem
     /// <summary>
     ///   Estimate count of existing spawned entities grouped by the spawner
     /// </summary>
-    private readonly Dictionary<Type, int> estimateEntityCountPerSpawner = new Dictionary<Type, int>();
+    private readonly Dictionary<Type, int> entityCountPerSpawner = new Dictionary<Type, int>();
 
     /// <summary>
     ///   Sets how often the spawn system runs and checks things
@@ -309,7 +309,7 @@ public class SpawnSystem
             --spawnsLeftThisFrame;
 
             // Check if we are out of quota for this spawner
-            if (estimateEntityCountPerSpawner[spawnType.GetType()] + spawned > spawnType.MaxOnScreen)
+            if (entityCountPerSpawner[spawnType.GetType()] + spawned > spawnType.MaxOnScreen)
             {
                 return true;
             }
@@ -349,7 +349,7 @@ public class SpawnSystem
         // Despawn entities
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
-        estimateEntityCountPerSpawner.Clear();
+        entityCountPerSpawner.Clear();
         foreach (Node entity in spawnedEntities)
         {
             var spawned = entity as ISpawned;
@@ -400,9 +400,9 @@ public class SpawnSystem
 
     private void IncrementEstimateEntityCountPerSpawner(Type type)
     {
-        if (!estimateEntityCountPerSpawner.ContainsKey(type))
-            estimateEntityCountPerSpawner.Add(type, 0);
-        estimateEntityCountPerSpawner[type]++;
+        if (!entityCountPerSpawner.ContainsKey(type))
+            entityCountPerSpawner.Add(type, 0);
+        entityCountPerSpawner[type]++;
     }
 
     /// <summary>
