@@ -319,6 +319,8 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
+    public override int MaxOnScreen => 50;
+
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
         // The true here is that this is AI controlled
@@ -354,6 +356,8 @@ public class CompoundCloudSpawner : Spawner
         this.amount = amount;
     }
 
+    public override int MaxOnScreen => 350;
+
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
@@ -379,6 +383,8 @@ public class ChunkSpawner : Spawner
         this.cloudSystem = cloudSystem;
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
+
+    public override int MaxOnScreen => 60;
 
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {

@@ -36,6 +36,11 @@ public abstract class Spawner
     public bool DestroyQueued { get; set; }
 
     /// <summary>
+    ///   How many spawned entities may be on screen at once
+    /// </summary>
+    public abstract int MaxOnScreen { get; }
+
+    /// <summary>
     ///   Spawns the next thing. This is an enumerator to be able to control how many things to spawn per frame easily
     /// </summary>
     /// <param name="worldNode">The parent node of spawned entities</param>
