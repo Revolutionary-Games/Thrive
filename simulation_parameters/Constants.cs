@@ -17,9 +17,6 @@ public static class Constants
     public const float MIN_SPAWN_DISTANCE = -5000.0f;
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
-    public const short MAX_CELLS_OF_SPECIES_ON_SCREEN = 25;
-    public const short MAX_CELLS_ON_SCREEN = 40;
-
     /// <summary>
     ///   The (default) size of the hexagons, used in
     ///   calculations. Don't change this.
