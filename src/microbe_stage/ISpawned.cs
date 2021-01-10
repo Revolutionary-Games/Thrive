@@ -5,6 +5,8 @@
 /// </summary>
 public interface ISpawned
 {
+    Spawner Spawner { get; }
+
     /// <summary>
     ///   If the squared distance to the player of this object is
     ///   greater than this, it is despawned.

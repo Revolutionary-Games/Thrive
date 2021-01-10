@@ -68,6 +68,11 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
+    /// <summary>
+    ///   Estimate count of existing spawned entities grouped by the spawner
+    /// </summary>
+    private Dictionary<Spawner, int> estimateEntityCountPerSpawner = new Dictionary<Spawner, int>();
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
@@ -92,6 +97,7 @@ public class SpawnSystem
     /// </summary>
     public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
     {
+        estimateEntityCountPerSpawner.Add(spawner, 0);
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
         spawner.SpawnRadiusSqr = spawnRadius * spawnRadius;
@@ -109,6 +115,7 @@ public class SpawnSystem
     /// </summary>
     public void RemoveSpawnType(Spawner spawner)
     {
+        estimateEntityCountPerSpawner.Remove(spawner);
         spawnTypes.Remove(spawner);
     }
 
@@ -125,6 +132,7 @@ public class SpawnSystem
     /// </summary>
     public void Clear()
     {
+        estimateEntityCountPerSpawner.Clear();
         spawnTypes.Clear();
         queuedSpawns = null;
         elapsed = 0;
@@ -143,6 +151,9 @@ public class SpawnSystem
             if (!entity.IsQueuedForDeletion())
                 entity.QueueFree();
         }
+
+        foreach (var pair in estimateEntityCountPerSpawner.Keys)
+            estimateEntityCountPerSpawner[pair] = 0;
     }
 
     /// <summary>
@@ -299,6 +310,7 @@ public class SpawnSystem
                 throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
             // Spawned something
+            estimateEntityCountPerSpawner[spawnType]++;
             ProcessSpawnedEntity(spawner.Current, spawnType);
             spawned += 1;
             --spawnsLeftThisFrame;
@@ -355,6 +367,7 @@ public class SpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (squaredDistance > spawned.DespawnRadiusSqr)
             {
+                estimateEntityCountPerSpawner[spawned.Spawner]--;
                 entitiesDeleted++;
                 entity.QueueFree();
 
