@@ -308,6 +308,12 @@ public class SpawnSystem
             spawned += 1;
             --spawnsLeftThisFrame;
 
+            // Check if we are out of quota for this spawner
+            if (estimateEntityCountPerSpawner[spawnType.GetType()] + spawned > spawnType.MaxOnScreen)
+            {
+                return true;
+            }
+
             // Check if we are out of quota for this frame
 
             // TODO: this is a bit awkward if this

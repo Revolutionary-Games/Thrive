@@ -36,7 +36,8 @@ public abstract class Spawner
     public bool DestroyQueued { get; set; }
 
     /// <summary>
-    ///   How many spawned entities may be on screen at once
+    ///   How many spawned entities may be on screen at once.
+    ///   Not 100% accurate, but a rough limit.
     /// </summary>
     public abstract int MaxOnScreen { get; }
 

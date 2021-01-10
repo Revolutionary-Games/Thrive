@@ -319,7 +319,7 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
-    public override int MaxOnScreen => 50;
+    public override int MaxOnScreen => 45;
 
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
