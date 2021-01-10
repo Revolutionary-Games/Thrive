@@ -182,7 +182,7 @@ public class PatchMap
 
         foreach (var entry in Patches)
         {
-            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
+            foreach (var speciesEntry in entry.Value.Conditions.SpeciesInPatch)
             {
                 Species species = speciesEntry.Key;
 
@@ -215,7 +215,7 @@ public class PatchMap
 
         foreach (var patch in Patches)
         {
-            var toRemove = patch.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
+            var toRemove = patch.Value.Conditions.SpeciesInPatch.Where(v => v.Value <= 0 &&
                 (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
 
             foreach (var speciesEntry in toRemove)
@@ -247,7 +247,7 @@ public class PatchMap
 
         foreach (var entry in Patches)
         {
-            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
+            foreach (var speciesEntry in entry.Value.Conditions.SpeciesInPatch)
             {
                 if (speciesEntry.Value > 0)
                 {

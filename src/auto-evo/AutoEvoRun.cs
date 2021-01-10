@@ -360,7 +360,7 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
+            foreach (var speciesEntry in entry.Value.Conditions.SpeciesInPatch)
             {
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
@@ -400,7 +400,7 @@ public class AutoEvoRun
 
                 foreach (var entry in map.Patches)
                 {
-                    if (!entry.Value.SpeciesInPatch.ContainsKey(species))
+                    if (!entry.Value.Conditions.SpeciesInPatch.ContainsKey(species))
                         continue;
 
                     result.AddPopulationResultForSpecies(species, entry.Value,

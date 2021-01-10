@@ -9,6 +9,11 @@ public class DefaultToolTip : Control, ICustomToolTip
     public NodePath DescriptionLabelPath;
 
     /// <summary>
+    ///   If true, the tooltip fade in smoothly on display.
+    /// </summary>
+    public bool UseFadeIn = true;
+
+    /// <summary>
     ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
     private Label descriptionLabel;
@@ -56,9 +61,11 @@ public class DefaultToolTip : Control, ICustomToolTip
         set => Visible = value;
     }
 
-    public ToolTipPositioning Positioning { get; private set; } = ToolTipPositioning.LastMousePosition;
+    [Export]
+    public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.LastMousePosition;
 
-    public bool HideOnMousePress { get; private set; } = true;
+    [Export]
+    public bool HideOnMousePress { get; set; } = true;
 
     public Node ToolTipNode => this;
 
@@ -74,7 +81,14 @@ public class DefaultToolTip : Control, ICustomToolTip
 
     public void OnDisplay()
     {
-        GUICommon.Instance.ModulateFadeIn(this, Constants.TOOLTIP_FADE_SPEED);
+        if (UseFadeIn)
+        {
+            GUICommon.Instance.ModulateFadeIn(this, Constants.TOOLTIP_FADE_SPEED);
+        }
+        else
+        {
+            Show();
+        }
     }
 
     public void OnHide()

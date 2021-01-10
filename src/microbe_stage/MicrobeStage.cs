@@ -580,7 +580,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
 
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Conditions.Biome);
 
         UpdateBackground();
     }

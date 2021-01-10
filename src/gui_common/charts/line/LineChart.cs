@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -8,7 +7,7 @@ using DataSetDictionary = System.Collections.Generic.Dictionary<string, LineChar
 
 /// <summary>
 ///   A custom widget for multi-line chart with hoverable data points tooltip. Uses <see cref="LineChartData"/>
-///   as dataset; currently only support numerical datas.
+///   as dataset; currently only support numerical datas (with non-negative numbers).
 /// </summary>
 public class LineChart : VBoxContainer
 {
@@ -31,7 +30,7 @@ public class LineChart : VBoxContainer
     public NodePath LegendsContainerPath;
 
     /// <summary>
-    ///   The name identifier for this chart. Each chart instance should have unique name.
+    ///   The name identifier for this chart. Each chart instance should have a unique name.
     /// </summary>
     [Export]
     public string ChartName;
@@ -52,7 +51,7 @@ public class LineChart : VBoxContainer
     public LegendDisplayMode LegendMode = LegendDisplayMode.Icon;
 
     /// <summary>
-    ///   Limits how many icon legend shown
+    ///   Limits how many icon legend should be shown
     /// </summary>
     public int MaxIconLegend = 10;
 
@@ -104,8 +103,14 @@ public class LineChart : VBoxContainer
         DropDown,
     }
 
+    /// <summary>
+    ///   The lowest data point value from all the datasets.
+    /// </summary>
     public Vector2 MinValues { get; private set; }
 
+    /// <summary>
+    ///   The highest data point value from all the datasets.
+    /// </summary>
     public Vector2 MaxValues { get; private set; }
 
     [Export]
@@ -131,7 +136,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Returns true if the number of datasets is more than the allowed maximum amount displayed.
+    ///   Returns true if the number of shown datasets is more than the maximum allowed.
     /// </summary>
     public bool VisibleDataSetLimitReached
     {
@@ -186,6 +191,11 @@ public class LineChart : VBoxContainer
         return dataSets[name];
     }
 
+    public void ClearDataSets()
+    {
+        dataSets.Clear();
+    }
+
     /// <summary>
     ///   Plots the chart from available datasets
     /// </summary>
@@ -208,43 +218,68 @@ public class LineChart : VBoxContainer
 
         var dataSetCount = 0;
 
+        // Used to find min/max value of the data points
+        var totalDataPoints = new List<Vector2>();
+
         foreach (var data in dataSets)
         {
             dataSetCount++;
 
-            // Hide the rest of the dataset if the amount is more than max number to be displayed
+            // Hide the rest if number of shown dataset is more than maximum allowed.
             if (dataSetCount > MaxDisplayedDataSet)
                 UpdateDataSetVisibility(data.Key, false);
 
             foreach (var point in data.Value.DataPoints)
             {
-                // Find out value boundaries
-                MaxValues = new Vector2(Mathf.Max(point.Value.x, MaxValues.x), Mathf.Max(point.Value.y, MaxValues.y));
-                MinValues = new Vector2(Mathf.Min(point.Value.x, MinValues.x), Mathf.Min(point.Value.y, MinValues.y));
+                // Guard against negative values
+                if (point.Value.x <= 0)
+                    point.Value = new Vector2(0, point.Value.y);
+
+                if (point.Value.y <= 0)
+                    point.Value = new Vector2(point.Value.x, 0);
+
+                totalDataPoints.Add(point.Value);
 
                 // Create tooltip for the point markers
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
                 toolTip.DisplayName = data.Key + point.Value;
-                toolTip.Description = $"{point.Value.x} {XAxisName}\n{point.Value.y} {YAxisName}";
+                toolTip.Description = $"{StringUtils.FormatNumber((long)point.Value.x)} {XAxisName}\n" +
+                    $"{StringUtils.FormatNumber((long)point.Value.y)} {YAxisName}";
                 toolTip.DisplayDelay = 0;
+                toolTip.HideOnMousePress = false;
+                toolTip.UseFadeIn = false;
 
                 point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
             }
         }
 
+        // Find out value boundaries
+        MaxValues = new Vector2(totalDataPoints.Max(point => point.x), totalDataPoints.Max(point => point.y));
+        MinValues = new Vector2(totalDataPoints.Min(point => point.x), totalDataPoints.Min(point => point.y));
+
+        // Can't have mininimum value to be greater than max value
+        if (MinValues.x >= MaxValues.x)
+        {
+            MinValues = new Vector2(0, MinValues.y);
+        }
+        else if (MinValues.y >= MaxValues.y)
+        {
+            MinValues = new Vector2(MinValues.x, 0);
+        }
+
         // Populate the rows
-        for (int i = 1; i < XAxisTicks; i++)
+        for (int i = 0; i < XAxisTicks; i++)
         {
             var label = new Label
             {
                 SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Right,
+                Align = Label.AlignEnum.Center,
             };
 
-            label.Text = Mathf.Round(i * (MaxValues.x - MinValues.x) /
-                (XAxisTicks - 1) + MinValues.x).ToString(CultureInfo.CurrentCulture);
+            label.Text = StringUtils.FormatNumber((long)Mathf.Round(
+                i * (MaxValues.x - MinValues.x) / (XAxisTicks - 1) + MinValues.x));
 
             horizontalLabelsContainer.AddChild(label);
         }
@@ -256,16 +291,11 @@ public class LineChart : VBoxContainer
             {
                 SizeFlagsVertical = (int)SizeFlags.ExpandFill,
                 Align = Label.AlignEnum.Center,
-                Valign = Label.VAlign.Bottom,
+                Valign = Label.VAlign.Center,
             };
 
-            // Don't set the text for the 0 scale label, since there's already one on the x axis.
-            // Add the label nevertheless so the vertical ticks spacings will remain consistent
-            if (i > 0)
-            {
-                label.Text = Mathf.Round(i * (MaxValues.y - MinValues.y) /
-                    (YAxisTicks - 1) + MinValues.y).ToString(CultureInfo.CurrentCulture);
-            }
+            label.Text = StringUtils.FormatNumber((long)Mathf.Round(
+                i * (MaxValues.y - MinValues.y) / (YAxisTicks - 1) + MinValues.y));
 
             verticalLabelsContainer.AddChild(label);
         }
@@ -350,6 +380,7 @@ public class LineChart : VBoxContainer
                 Pressed = true,
                 Name = data.Key,
                 TextureNormal = data.Value.IconTexture,
+                StretchMode = TextureButton.StretchModeEnum.KeepAspectCentered,
             };
 
             // Set the default icon's color
@@ -446,13 +477,11 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void DrawOrdinateLines()
     {
-        for (int i = 0; i < YAxisTicks; i++)
+        foreach (Control tick in verticalLabelsContainer.GetChildren())
         {
-            var value = Mathf.Round(i * (MaxValues.y - MinValues.y) /
-                (YAxisTicks - 1) + MinValues.y);
-
             drawArea.DrawTextureRect(hLineTexture, new Rect2(new Vector2(
-                0, ConvertToYCoordinate(value)), RectSize.x, 1), false, new Color(1, 1, 1, 0.3f));
+                    0, tick.RectPosition.y + (tick.RectSize.y / 2)), drawArea.RectSize.x, 1), false,
+                new Color(1, 1, 1, 0.3f));
         }
     }
 
@@ -463,37 +492,29 @@ public class LineChart : VBoxContainer
     {
         foreach (var data in dataSets)
         {
+            var points = data.Value.DataPoints;
+
+            if (points.Count <= 0)
+                continue;
+
             // Setup the points
-            data.Value.DataPoints.ForEach(point =>
+            foreach (var point in points)
             {
+                // Skip if any of the max value is at/below zero, otherwise
+                // the data point marker kind of just glitch out.
+                if (MaxValues.x <= 0 || MaxValues.y <= 0)
+                    continue;
+
                 point.Coordinate = ConvertToCoordinate(point.Value);
 
                 if (!point.IsInsideTree())
                     drawArea.AddChild(point);
+            }
 
-                var pointHasZeroValue = point.Value.x <= 0 || point.Value.y <= 0;
-
-                point.Draw = pointHasZeroValue ? false : true;
-
-                // Let the point at zero coordinates be drawn if this flag is set to true
-                if (point.DrawAtZeroValue)
-                {
-                    point.Draw = true;
-
-                    // Offset the marker position so it doesn't overlap the axes line
-
-                    if (point.Value.x <= 0)
-                        point.Coordinate += new Vector2(point.Size, 0);
-
-                    if (point.Value.y <= 0)
-                        point.Coordinate -= new Vector2(0, point.Size);
-                }
-            });
-
-            var previousPoint = data.Value.DataPoints.First();
+            var previousPoint = points.First();
 
             // Draw the lines
-            foreach (var point in data.Value.DataPoints)
+            foreach (var point in points)
             {
                 if (data.Value.Draw)
                 {
@@ -518,23 +539,19 @@ public class LineChart : VBoxContainer
     private float ConvertToXCoordinate(float value)
     {
         var lineRectX = drawArea.RectSize.x / XAxisTicks;
-
-        var lineRectWidth = lineRectX * XAxisTicks;
-
+        var lineRectWidth = lineRectX * (XAxisTicks - 1);
         var dx = MaxValues.x - MinValues.x;
 
-        return (value - MinValues.x) * lineRectWidth / dx;
+        return ((value - MinValues.x) * lineRectWidth / dx) + lineRectX / 2;
     }
 
     private float ConvertToYCoordinate(float value)
     {
         var lineRectY = drawArea.RectSize.y / YAxisTicks;
-
         var lineRectHeight = lineRectY * (YAxisTicks - 1);
-
         var dy = MaxValues.y - MinValues.y;
 
-        return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY;
+        return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY / 2;
     }
 
     private void UpdateAxesName()

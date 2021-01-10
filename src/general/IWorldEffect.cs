@@ -37,11 +37,11 @@ public class GlucoseReductionEffect : IWorldEffect
         {
             var patch = targetWorld.Map.Patches[key];
 
-            foreach (var compound in patch.Biome.Compounds.Keys)
+            foreach (var compound in patch.Conditions.Biome.Compounds.Keys)
             {
                 if (compound.InternalName == "glucose")
                 {
-                    var data = patch.Biome.Compounds[compound];
+                    var data = patch.Conditions.Biome.Compounds[compound];
 
                     data.Density *= Constants.GLUCOSE_REDUCTION_RATE;
                 }

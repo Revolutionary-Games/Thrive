@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   Dataset to be visualized on the line chart
+///   Dataset to be visualized on the line chart. Contains series of data points.
 /// </summary>
 public class LineChartData
 {

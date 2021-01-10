@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using Nito.Collections;
 
 /// <summary>
 ///   A patch is an instance of a Biome with some species in it
@@ -9,21 +11,16 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class Patch
 {
-    /// <summary>
-    ///   List of all species and their populations in this patch
-    /// </summary>
-    [JsonProperty]
-    public readonly Dictionary<Species, long> SpeciesInPatch =
-        new Dictionary<Species, long>();
-
     [JsonProperty]
     public readonly int ID;
 
-    [JsonProperty]
-    public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
+    /// <summary>
+    ///   TODO: saving.
+    /// </summary>
+    public readonly PatchConditions Conditions = new PatchConditions();
 
     [JsonProperty]
-    public readonly BiomeConditions Biome;
+    public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
     [JsonProperty]
     public readonly Biome BiomeTemplate;
@@ -36,7 +33,7 @@ public class Patch
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
-        Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
+        Conditions.Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
     }
 
     [JsonProperty]
@@ -46,6 +43,14 @@ public class Patch
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
     public Vector2 ScreenCoordinates { get; set; } = new Vector2(0, 0);
+
+    /// <summary>
+    ///   List of all the recorded conditions of this patch.
+    /// </summary>
+    /// <remarks>
+    ///   TODO: saving.
+    /// </remarks>
+    public Deque<PatchConditions> History { get; private set; } = new Deque<PatchConditions>();
 
     /// <summary>
     ///   Adds a connection to patch
@@ -61,7 +66,7 @@ public class Patch
     /// </summary>
     public Species FindSpeciesByID(uint id)
     {
-        foreach (var entry in SpeciesInPatch)
+        foreach (var entry in Conditions.SpeciesInPatch)
         {
             if (entry.Key.ID == id)
                 return entry.Key;
@@ -77,10 +82,10 @@ public class Patch
     public bool AddSpecies(Species species, long population =
         Constants.INITIAL_SPECIES_POPULATION)
     {
-        if (SpeciesInPatch.ContainsKey(species))
+        if (Conditions.SpeciesInPatch.ContainsKey(species))
             return false;
 
-        SpeciesInPatch[species] = population;
+        Conditions.SpeciesInPatch[species] = population;
         return true;
     }
 
@@ -90,7 +95,7 @@ public class Patch
     /// <returns>True when a species was removed</returns>
     public bool RemoveSpecies(Species species)
     {
-        return SpeciesInPatch.Remove(species);
+        return Conditions.SpeciesInPatch.Remove(species);
     }
 
     /// <summary>
@@ -99,28 +104,28 @@ public class Patch
     /// <returns>True on success</returns>
     public bool UpdateSpeciesPopulation(Species species, long newPopulation)
     {
-        if (!SpeciesInPatch.ContainsKey(species))
+        if (!Conditions.SpeciesInPatch.ContainsKey(species))
             return false;
 
-        SpeciesInPatch[species] = newPopulation;
+        Conditions.SpeciesInPatch[species] = newPopulation;
         return true;
     }
 
     public long GetSpeciesPopulation(Species species)
     {
-        if (!SpeciesInPatch.ContainsKey(species))
+        if (!Conditions.SpeciesInPatch.ContainsKey(species))
             return 0;
 
-        return SpeciesInPatch[species];
+        return Conditions.SpeciesInPatch[species];
     }
 
     public float GetTotalChunkCompoundAmount(Compound compound)
     {
         var result = 0.0f;
 
-        foreach (var chunkKey in Biome.Chunks.Keys)
+        foreach (var chunkKey in Conditions.Biome.Chunks.Keys)
         {
-            var chunk = Biome.Chunks[chunkKey];
+            var chunk = Conditions.Biome.Chunks[chunkKey];
 
             if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
             {
@@ -131,8 +136,52 @@ public class Patch
         return result;
     }
 
+    public void RecordConditions(double timePeriod)
+    {
+        if (History.Count >= Constants.MAX_NUM_OF_STORED_PATCH_CONDITIONS)
+            History.RemoveFromBack();
+
+        var snapshot = (PatchConditions)Conditions.Clone();
+        snapshot.TimePeriod = timePeriod;
+        History.AddToFront(snapshot);
+    }
+
     public override string ToString()
     {
         return $"Patch \"{Name}\"";
+    }
+}
+
+/// <summary>
+///   Conditions of a patch at some point in time.
+/// </summary>
+/// <remarks>
+///   TODO: saving.
+/// </remarks>
+public class PatchConditions : ICloneable
+{
+    public double TimePeriod;
+
+    /// <summary>
+    ///   List of all species and their populations in this patch
+    /// </summary>
+    public Dictionary<Species, long> SpeciesInPatch = new Dictionary<Species, long>();
+
+    public BiomeConditions Biome;
+
+    public object Clone()
+    {
+        var result = new PatchConditions
+        {
+            SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch.Count),
+            Biome = (BiomeConditions)Biome.Clone(),
+        };
+
+        foreach (var entry in SpeciesInPatch)
+        {
+            result.SpeciesInPatch.Add(entry.Key, entry.Value);
+        }
+
+        return result;
     }
 }

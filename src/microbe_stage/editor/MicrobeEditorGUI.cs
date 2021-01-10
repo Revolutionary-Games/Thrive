@@ -106,6 +106,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath TimeIndicatorPath;
 
     [Export]
+    public NodePath SpeciesPopulationChartPath;
+
+    [Export]
     public NodePath GlucoseReductionLabelPath;
 
     [Export]
@@ -222,27 +225,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
-    [Export]
-    public Texture SymmetryIconDefault;
-
-    [Export]
-    public Texture SymmetryIcon2x;
-
-    [Export]
-    public Texture SymmetryIcon4x;
-
-    [Export]
-    public Texture SymmetryIcon6x;
-
-    [Export]
-    public Texture IncreaseIcon;
-
-    [Export]
-    public Texture DecreaseIcon;
-
-    [Export]
-    public AudioStream UnableToPlaceHexSound;
-
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
@@ -321,6 +304,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
+    private Label reportTabPatchNameLabel;
+
+    private LineChart speciesPopulationChart;
 
     private PatchMapDrawer mapDrawer;
     private Control patchNothingSelected;
@@ -354,6 +340,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureRect speedIndicator;
     private TextureRect hpIndicator;
     private TextureRect sizeIndicator;
+
+    private Texture symmetryIconDefault;
+    private Texture symmetryIcon2x;
+    private Texture symmetryIcon4x;
+    private Texture symmetryIcon6x;
+    private Texture increaseIcon;
+    private Texture decreaseIcon;
+    private AudioStream unableToPlaceHexSound;
 
     private ConfirmationDialog negativeAtpPopup;
     private AcceptDialog islandPopup;
@@ -429,6 +423,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
 
+        reportTabPatchNameLabel = GetNode<Label>(ReportTabPatchNamePath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
@@ -455,6 +450,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
 
+        speciesPopulationChart = GetNode<LineChart>(SpeciesPopulationChartPath);
+
         patchTemperatureSituation = GetNode<TextureRect>(PatchTemperatureSituationPath);
         patchLightSituation = GetNode<TextureRect>(PatchLightSituationPath);
         patchHydrogenSulfideSituation = GetNode<TextureRect>(PatchHydrogenSulfideSituationPath);
@@ -466,6 +463,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         speedIndicator = GetNode<TextureRect>(SpeedIndicatorPath);
         hpIndicator = GetNode<TextureRect>(HpIndicatorPath);
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
+
+        symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
+        symmetryIcon2x = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
+        symmetryIcon4x = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
+        symmetryIcon6x = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
+        increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
+        decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+        unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
 
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
@@ -494,45 +499,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
-    }
-
-    /// <summary>
-    ///   Registers tooltip for the existing Controls
-    /// </summary>
-    public void RegisterTooltips()
-    {
-        var toolTipManager = ToolTipManager.Instance;
-
-        foreach (Control organelleSelection in organelleSelectionElements)
-        {
-            organelleSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
-                organelleSelection.Name, "organelleSelection"), tooltipCallbacks);
-        }
-
-        foreach (Control membraneSelection in membraneSelectionElements)
-        {
-            membraneSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
-                membraneSelection.Name, "membraneSelection"), tooltipCallbacks);
-        }
-
-        rigiditySlider.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
-        helpButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("helpButton"), tooltipCallbacks);
-        symmetryButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("symmetryButton", "editor"), tooltipCallbacks);
-        undoButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("undoButton", "editor"), tooltipCallbacks);
-        redoButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("redoButton", "editor"), tooltipCallbacks);
-        newCellButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("newCellButton", "editor"), tooltipCallbacks);
-        timeIndicator.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
-        finishButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
-        menuButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
     }
 
     public override void _Process(float delta)
@@ -595,6 +561,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
+
+        UpdateReportTabStatistics();
     }
 
     public void UpdateGlucoseReduction(float value)
@@ -756,6 +724,41 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         compoundBalance.UpdateBalances(balances);
     }
 
+    public void UpdateReportTabStatistics()
+    {
+        speciesPopulationChart.ClearDataSets();
+
+        var patch = editor.CurrentPatch;
+
+        // Initialize datasets
+        foreach (var snapshot in patch.History)
+        {
+            foreach (var entry in snapshot.SpeciesInPatch)
+            {
+                var dataset = new LineChartData { DataColour = entry.Key.Colour };
+                speciesPopulationChart.AddDataSet(entry.Key.FormattedName, dataset);
+            }
+        }
+
+        foreach (var snapshot in patch.History)
+        {
+            foreach (var entry in snapshot.SpeciesInPatch)
+            {
+                var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
+
+                var extinctInPatch = entry.Value <= 0;
+
+                var dataPoint = new DataPoint((float)snapshot.TimePeriod, entry.Value, extinctInPatch ? 13 : 8,
+                    extinctInPatch ? DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle);
+                dataPoint.MarkerColour = dataset.DataColour;
+
+                dataset.DataPoints.Add(dataPoint);
+            }
+        }
+
+        speciesPopulationChart.Plot("Species List");
+    }
+
     public void SetMembraneTooltips(MembraneType referenceMembrane)
     {
         // Pass in a membrane that the values are taken as relative to
@@ -849,7 +852,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
 
-        GUICommon.Instance.PlayCustomSound(UnableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
     internal void OnInsufficientMPToPlaceHex()
@@ -859,7 +862,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         AnimationPlayer animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
-        GUICommon.Instance.PlayCustomSound(UnableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
     /// <summary>
@@ -976,7 +979,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void ResetSymmetryButton()
     {
-        symmetryIcon.Texture = SymmetryIconDefault;
+        symmetryIcon.Texture = symmetryIconDefault;
         symmetry = 0;
     }
 
@@ -1105,16 +1108,16 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         switch (symmetry)
         {
             case MicrobeEditor.MicrobeSymmetry.None:
-                symmetryIcon.Texture = SymmetryIconDefault;
+                symmetryIcon.Texture = symmetryIconDefault;
                 break;
             case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
-                symmetryIcon.Texture = SymmetryIcon2x;
+                symmetryIcon.Texture = symmetryIcon2x;
                 break;
             case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
-                symmetryIcon.Texture = SymmetryIcon4x;
+                symmetryIcon.Texture = symmetryIcon4x;
                 break;
             case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
-                symmetryIcon.Texture = SymmetryIcon6x;
+                symmetryIcon.Texture = symmetryIcon6x;
                 break;
         }
     }
@@ -1265,11 +1268,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (editor.MicrobeHexSize > initialCellSize)
         {
-            sizeIndicator.Texture = IncreaseIcon;
+            sizeIndicator.Texture = increaseIcon;
         }
         else if (editor.MicrobeHexSize < initialCellSize)
         {
-            sizeIndicator.Texture = DecreaseIcon;
+            sizeIndicator.Texture = decreaseIcon;
         }
         else
         {
@@ -1280,11 +1283,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (editor.CalculateSpeed() > initialCellSpeed)
         {
-            speedIndicator.Texture = IncreaseIcon;
+            speedIndicator.Texture = increaseIcon;
         }
         else if (editor.CalculateSpeed() < initialCellSpeed)
         {
-            speedIndicator.Texture = DecreaseIcon;
+            speedIndicator.Texture = decreaseIcon;
         }
         else
         {
@@ -1295,11 +1298,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (editor.CalculateHitpoints() > initialCellHp)
         {
-            hpIndicator.Texture = IncreaseIcon;
+            hpIndicator.Texture = increaseIcon;
         }
         else if (editor.CalculateHitpoints() < initialCellHp)
         {
-            hpIndicator.Texture = DecreaseIcon;
+            hpIndicator.Texture = decreaseIcon;
         }
         else
         {
@@ -1314,72 +1317,72 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </remarks>
     private void UpdateConditionDifferencesBetweenPatches(Patch selectedPatch, Patch currentPatch)
     {
-        var nextCompound = selectedPatch.Biome.AverageTemperature;
+        var nextCompound = selectedPatch.Conditions.Biome.AverageTemperature;
 
-        if (nextCompound > currentPatch.Biome.AverageTemperature)
+        if (nextCompound > currentPatch.Conditions.Biome.AverageTemperature)
         {
-            patchTemperatureSituation.Texture = IncreaseIcon;
+            patchTemperatureSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.AverageTemperature)
+        else if (nextCompound < currentPatch.Conditions.Biome.AverageTemperature)
         {
-            patchTemperatureSituation.Texture = DecreaseIcon;
+            patchTemperatureSituation.Texture = decreaseIcon;
         }
         else
         {
             patchTemperatureSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Biome.Compounds[sunlight].Dissolved;
+        nextCompound = selectedPatch.Conditions.Biome.Compounds[sunlight].Dissolved;
 
-        if (nextCompound > currentPatch.Biome.Compounds[sunlight].Dissolved)
+        if (nextCompound > currentPatch.Conditions.Biome.Compounds[sunlight].Dissolved)
         {
-            patchLightSituation.Texture = IncreaseIcon;
+            patchLightSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.Compounds[sunlight].Dissolved)
+        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[sunlight].Dissolved)
         {
-            patchLightSituation.Texture = DecreaseIcon;
+            patchLightSituation.Texture = decreaseIcon;
         }
         else
         {
             patchLightSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Biome.Compounds[hydrogensulfide].Density *
-            selectedPatch.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
+        nextCompound = selectedPatch.Conditions.Biome.Compounds[hydrogensulfide].Density *
+            selectedPatch.Conditions.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
                 selectedPatch, hydrogensulfide);
 
-        if (nextCompound > currentPatch.Biome.Compounds[hydrogensulfide].Density *
-            currentPatch.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
+        if (nextCompound > currentPatch.Conditions.Biome.Compounds[hydrogensulfide].Density *
+            currentPatch.Conditions.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
                 currentPatch, hydrogensulfide))
         {
-            patchHydrogenSulfideSituation.Texture = IncreaseIcon;
+            patchHydrogenSulfideSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.Compounds[hydrogensulfide].Density *
-            currentPatch.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
+        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[hydrogensulfide].Density *
+            currentPatch.Conditions.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
                 currentPatch, hydrogensulfide))
         {
-            patchHydrogenSulfideSituation.Texture = DecreaseIcon;
+            patchHydrogenSulfideSituation.Texture = decreaseIcon;
         }
         else
         {
             patchHydrogenSulfideSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Biome.Compounds[glucose].Density *
-            selectedPatch.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
+        nextCompound = selectedPatch.Conditions.Biome.Compounds[glucose].Density *
+            selectedPatch.Conditions.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
                 selectedPatch, glucose);
 
-        if (nextCompound > currentPatch.Biome.Compounds[glucose].Density *
-            currentPatch.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
+        if (nextCompound > currentPatch.Conditions.Biome.Compounds[glucose].Density *
+            currentPatch.Conditions.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
                 currentPatch, glucose))
         {
-            patchGlucoseSituation.Texture = IncreaseIcon;
+            patchGlucoseSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.Compounds[glucose].Density *
-            currentPatch.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
+        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[glucose].Density *
+            currentPatch.Conditions.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
                 currentPatch, glucose))
         {
-            patchGlucoseSituation.Texture = DecreaseIcon;
+            patchGlucoseSituation.Texture = decreaseIcon;
         }
         else
         {
@@ -1390,53 +1393,53 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (nextCompound > GetPatchChunkTotalCompoundAmount(currentPatch, iron))
         {
-            patchIronSituation.Texture = IncreaseIcon;
+            patchIronSituation.Texture = increaseIcon;
         }
         else if (nextCompound < GetPatchChunkTotalCompoundAmount(currentPatch, iron))
         {
-            patchIronSituation.Texture = DecreaseIcon;
+            patchIronSituation.Texture = decreaseIcon;
         }
         else
         {
             patchIronSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Biome.Compounds[ammonia].Density *
-            selectedPatch.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
+        nextCompound = selectedPatch.Conditions.Biome.Compounds[ammonia].Density *
+            selectedPatch.Conditions.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
                 selectedPatch, ammonia);
 
-        if (nextCompound > currentPatch.Biome.Compounds[ammonia].Density *
-            currentPatch.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
+        if (nextCompound > currentPatch.Conditions.Biome.Compounds[ammonia].Density *
+            currentPatch.Conditions.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
                 currentPatch, ammonia))
         {
-            patchAmmoniaSituation.Texture = IncreaseIcon;
+            patchAmmoniaSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.Compounds[ammonia].Density *
-            currentPatch.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
+        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[ammonia].Density *
+            currentPatch.Conditions.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
                 currentPatch, ammonia))
         {
-            patchAmmoniaSituation.Texture = DecreaseIcon;
+            patchAmmoniaSituation.Texture = decreaseIcon;
         }
         else
         {
             patchAmmoniaSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Biome.Compounds[phosphates].Density *
-            selectedPatch.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
+        nextCompound = selectedPatch.Conditions.Biome.Compounds[phosphates].Density *
+            selectedPatch.Conditions.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
                 selectedPatch, phosphates);
 
-        if (nextCompound > currentPatch.Biome.Compounds[phosphates].Density *
-            currentPatch.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
+        if (nextCompound > currentPatch.Conditions.Biome.Compounds[phosphates].Density *
+            currentPatch.Conditions.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
                 currentPatch, phosphates))
         {
-            patchPhosphateSituation.Texture = IncreaseIcon;
+            patchPhosphateSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.Compounds[phosphates].Density *
-            currentPatch.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
+        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[phosphates].Density *
+            currentPatch.Conditions.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
                 currentPatch, phosphates))
         {
-            patchPhosphateSituation.Texture = DecreaseIcon;
+            patchPhosphateSituation.Texture = decreaseIcon;
         }
         else
         {
@@ -1480,28 +1483,28 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses
-        patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
+        patchTemperature.Text = patch.Conditions.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
-        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + "% lx";
-        patchOxygen.Text = (patch.Biome.Compounds[oxygen].Dissolved * 100) + "%";
-        patchNitrogen.Text = (patch.Biome.Compounds[nitrogen].Dissolved * 100) + "%";
-        patchCO2.Text = (patch.Biome.Compounds[carbondioxide].Dissolved * 100) + "%";
+        patchLight.Text = (patch.Conditions.Biome.Compounds[sunlight].Dissolved * 100) + "% lx";
+        patchOxygen.Text = (patch.Conditions.Biome.Compounds[oxygen].Dissolved * 100) + "%";
+        patchNitrogen.Text = (patch.Conditions.Biome.Compounds[nitrogen].Dissolved * 100) + "%";
+        patchCO2.Text = (patch.Conditions.Biome.Compounds[carbondioxide].Dissolved * 100) + "%";
 
         // Compounds
-        patchHydrogenSulfide.Text = Math.Round(patch.Biome.Compounds[hydrogensulfide].Density *
-            patch.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
+        patchHydrogenSulfide.Text = Math.Round(patch.Conditions.Biome.Compounds[hydrogensulfide].Density *
+            patch.Conditions.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
                 patch, hydrogensulfide), 3) + "%";
 
-        patchAmmonia.Text = Math.Round(patch.Biome.Compounds[ammonia].Density *
-            patch.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
+        patchAmmonia.Text = Math.Round(patch.Conditions.Biome.Compounds[ammonia].Density *
+            patch.Conditions.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
                 patch, ammonia), 3) + "%";
 
-        patchGlucose.Text = Math.Round(patch.Biome.Compounds[glucose].Density *
-            patch.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
+        patchGlucose.Text = Math.Round(patch.Conditions.Biome.Compounds[glucose].Density *
+            patch.Conditions.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
                 patch, glucose), 3) + "%";
 
-        patchPhosphate.Text = Math.Round(patch.Biome.Compounds[phosphates].Density *
-            patch.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
+        patchPhosphate.Text = Math.Round(patch.Conditions.Biome.Compounds[phosphates].Density *
+            patch.Conditions.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
                 patch, phosphates), 3) + "%";
 
         patchIron.Text = GetPatchChunkTotalCompoundAmount(patch, iron) + "%";
@@ -1509,7 +1512,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Refresh species list
         speciesListBox.ClearItems();
 
-        foreach (var species in patch.SpeciesInPatch.Keys)
+        foreach (var species in patch.Conditions.SpeciesInPatch.Keys)
         {
             var speciesLabel = new Label();
             speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
@@ -1524,6 +1527,45 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
 
         UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
+    }
+
+    /// <summary>
+    ///   Registers tooltip for the existing Controls
+    /// </summary>
+    private void RegisterTooltips()
+    {
+        var toolTipManager = ToolTipManager.Instance;
+
+        foreach (Control organelleSelection in organelleSelectionElements)
+        {
+            organelleSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
+                organelleSelection.Name, "organelleSelection"), tooltipCallbacks);
+        }
+
+        foreach (Control membraneSelection in membraneSelectionElements)
+        {
+            membraneSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
+                membraneSelection.Name, "membraneSelection"), tooltipCallbacks);
+        }
+
+        rigiditySlider.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
+        helpButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("helpButton"), tooltipCallbacks);
+        symmetryButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("symmetryButton", "editor"), tooltipCallbacks);
+        undoButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("undoButton", "editor"), tooltipCallbacks);
+        redoButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("redoButton", "editor"), tooltipCallbacks);
+        newCellButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("newCellButton", "editor"), tooltipCallbacks);
+        timeIndicator.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
+        finishButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
+        menuButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
     }
 
     private void OnSpeciesNameTextChanged(string newText)

@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   Point / marker on a line chart containing a single data value.
+///   Point / marker on a line chart containing a single numerical data value (x, y).
 /// </summary>
 public class DataPoint : Control
 {
@@ -14,13 +14,11 @@ public class DataPoint : Control
     private Vector2 coordinate;
     private float size;
 
-    public DataPoint(float xValue, float yValue, float size = 8f, MarkerIcon shape = MarkerIcon.Circle,
-        bool drawAtZeroValue = false)
+    public DataPoint(float xValue, float yValue, float size = 8f, MarkerIcon shape = MarkerIcon.Circle)
     {
         Value = new Vector2(xValue, yValue);
         Size = size;
         IconType = shape;
-        DrawAtZeroValue = drawAtZeroValue;
     }
 
     public enum MarkerIcon
@@ -40,7 +38,8 @@ public class DataPoint : Control
     public Vector2 Value { get; set; }
 
     /// <summary>
-    ///   Position of the point on the chart, this is different from Value
+    ///   Position of the point on the chart, this is different from Value.
+    ///   This is automatically set in the LineChart class.
     /// </summary>
     public Vector2 Coordinate
     {
@@ -74,15 +73,9 @@ public class DataPoint : Control
     public Color MarkerColour { get; set; }
 
     /// <summary>
-    ///   Used to hide marker visual while still keeping the tooltip for this data point hoverable
+    ///   Used to hide marker visual while still keeping this data point hoverable
     /// </summary>
-    public bool Draw { get; set; }
-
-    /// <summary>
-    ///   The Draw property is set to false if the point has zero value in the LineChart by default,
-    ///   so this is used to flag the marker visual to keep being drawn.
-    /// </summary>
-    public bool DrawAtZeroValue { get; set; }
+    public bool Draw { get; set; } = true;
 
     public override void _Ready()
     {
@@ -123,12 +116,25 @@ public class DataPoint : Control
             }
 
             case MarkerIcon.Cross:
+            {
+                var color = MarkerColour;
+
+                if (isMouseOver)
+                    color = MarkerColour.Lightened(0.5f);
+
                 DrawTextureRect(graphMarkerCross, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColour);
+                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, color);
                 break;
+            }
+
             default:
                 throw new Exception("Invalid marker shape");
         }
+    }
+
+    public override string ToString()
+    {
+        return $"Value: {Value.ToString()} Coord: {Coordinate.ToString()}";
     }
 
     private void OnMouseEnter()

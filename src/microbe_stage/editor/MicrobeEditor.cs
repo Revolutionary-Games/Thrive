@@ -996,7 +996,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
+        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Conditions.Biome);
 
         gui.UpdateOrganelleEfficiencies(result);
     }
@@ -1012,15 +1012,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             patch = CurrentPatch;
         }
 
-        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome,
-            membrane));
+        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(
+            organelles.Select(i => i.Definition), patch.Conditions.Biome, membrane));
     }
 
     private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)
     {
         patch ??= CurrentPatch;
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Biome);
+        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Conditions.Biome);
 
         gui.UpdateCompoundBalances(result);
     }
@@ -1919,6 +1919,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         ApplyAutoEvoResults();
 
+        gui.UpdateReportTabStatistics();
+
         // Auto save after editor entry is complete
         if (!CurrentGame.FreeBuild)
             SaveHelper.AutoSave(this);
@@ -1935,12 +1937,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Make absolutely sure the current game doesn't have an auto-evo run
         CurrentGame.GameWorld.ResetAutoEvoRun();
+
+        gui.UpdateReportTabStatistics();
     }
 
     private void ApplyAutoEvoResults()
     {
         GD.Print("Applying auto-evo results");
         CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
+
+        CurrentPatch.RecordConditions(CurrentGame.GameWorld.TotalPassedTime);
 
         var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
 

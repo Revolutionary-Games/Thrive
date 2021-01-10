@@ -134,7 +134,7 @@
             // This algorithm version is for microbe species
             var species = genericSpecies.Select(s => (MicrobeSpecies)s).ToList();
 
-            var biome = patch.Biome;
+            var biome = patch.Conditions.Biome;
 
             var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT;
 
