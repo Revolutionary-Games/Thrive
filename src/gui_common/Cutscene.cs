@@ -36,6 +36,6 @@ public class Cutscene : CanvasLayer, ITransition
     public void OnFinished()
     {
         EmitSignal(nameof(OnFinishedSignal));
-        this.SafeQueueFree();
+        this.DetachAndQueueFree();
     }
 }

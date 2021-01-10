@@ -82,6 +82,6 @@ public class ScreenFade : CanvasLayer, ITransition
     {
         EmitSignal(nameof(OnFinishedSignal));
 
-        this.SafeQueueFree();
+        this.DetachAndQueueFree();
     }
 }
