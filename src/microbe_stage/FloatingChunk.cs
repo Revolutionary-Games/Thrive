@@ -269,7 +269,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                 }
                 else
                 {
-                    this.SafeQueueFree();
+                    this.DetachAndQueueFree();
                 }
 
                 break;
@@ -335,7 +335,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         if (dissolveEffectValue >= 1)
         {
-            this.SafeQueueFree();
+            this.DetachAndQueueFree();
         }
     }
 

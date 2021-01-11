@@ -83,7 +83,7 @@ public class SegmentedBar : HBoxContainer
 
         foreach (var unusedBar in unusedBars)
         {
-            unusedBar.SafeFree();
+            unusedBar.DetachAndFree();
             SubBars.Remove(unusedBar);
         }
     }

@@ -10,7 +10,13 @@ public static class NodeHelpers
     ///   This should always be preferred over Free, except when multiple children should be deleted.
     ///   For that see <see cref="NodeHelpers.FreeChildren"/>
     /// </summary>
-    public static void SafeFree(this Node node)
+    /// <remarks>
+    ///   <para>
+    ///     TODO: should this be removed now that there is (and Free isn't actually bugged):
+    ///     https://github.com/Revolutionary-Games/Thrive/pull/2028
+    ///   </para>
+    /// </remarks>
+    public static void DetachAndFree(this Node node)
     {
         var parent = node.GetParent();
         parent?.RemoveChild(node);
@@ -23,7 +29,7 @@ public static class NodeHelpers
     ///   This should always be preferred over QueueFree, except when multiple children should be deleted.
     ///   For that see <see cref="NodeHelpers.QueueFreeChildren"/>
     /// </summary>
-    public static void SafeQueueFree(this Node node)
+    public static void DetachAndQueueFree(this Node node)
     {
         var parent = node.GetParent();
         parent?.RemoveChild(node);
@@ -35,7 +41,7 @@ public static class NodeHelpers
     ///   Call QueueFree on all Node children
     /// </summary>
     /// <param name="node">Node to delete children of</param>
-    /// <param name="detach">If true the children are also removed from the parent</param>
+    /// <param name="detach">If true the children are immediately removed from the parent</param>
     public static void QueueFreeChildren(this Node node, bool detach = true)
     {
         while (true)
@@ -58,8 +64,11 @@ public static class NodeHelpers
     ///   Call Free on all Node children
     /// </summary>
     /// <param name="node">Node to delete children of</param>
-    /// <param name="detach">If true the children are also removed from the parent</param>
-    public static void FreeChildren(this Node node, bool detach = true)
+    /// <param name="detach">
+    ///   If true the children are also removed from the parent. Shouldn't actually have an effect.
+    ///   <see cref="DetachAndFree"/>
+    /// </param>
+    public static void FreeChildren(this Node node, bool detach = false)
     {
         while (true)
         {
