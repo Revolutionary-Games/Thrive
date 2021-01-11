@@ -46,7 +46,7 @@ public class TimedLifeSystem
         foreach (Node entity in spawnedEntities)
         {
             if (!entity.IsQueuedForDeletion())
-                entity.SafeQueueFree();
+                entity.DetachAndQueueFree();
         }
     }
 }
