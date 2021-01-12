@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
@@ -147,10 +147,7 @@ public class SaveList : ScrollContainer
         refreshing = true;
         refreshedAtLeastOnce = true;
 
-        foreach (var child in savesList.GetChildren())
-        {
-            ((Node)child).QueueFree();
-        }
+        savesList.QueueFreeChildren();
 
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
@@ -232,7 +229,7 @@ public class SaveList : ScrollContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, true);
         TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
     }
 

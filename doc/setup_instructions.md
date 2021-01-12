@@ -13,7 +13,8 @@ Forums](https://forum.revolutionarygamesstudio.com/c/programming)
 
 You can also join and ask on our [community
 discord](https://discordapp.com/invite/FZxDQ4H) please use the
-#thrive-modding channel for that.
+#modding or #development channels for that, depending on why you are trying to compile the game
+(to make a mod, or to contribute to the development).
 
 Thank you!
 
@@ -48,9 +49,11 @@ manually. After installing remember to run `git lfs install` in terminal.
 
 On Windows install Git with the official installer from:
 https://git-scm.com/download/win You can use this installer to also
-install git lfs for you. After installing you need to run `git lfs install`
-in command prompt. You'll also need to turn autocrlf on with the command
-`git config --global core.autocrlf true`
+install git lfs for you. After installing you need to run `git lfs
+install` in command prompt. You'll probably want to turn autocrlf on
+with the command `git config --global core.autocrlf true`. If you don't,
+there is a risk that you accidentally commit Windows-style line
+endings.
 
 If you previously had Git installed through cygwin, you must uninstall
 that and install the official Windows version of Git. You may also
@@ -530,17 +533,25 @@ the pre-commit hook section for how to speed things up.
 Pre-commit hook
 ---------------
 
-On Linux you can enable a pre-commit hook to automatically run the
+You can enable a pre-commit hook to automatically run the
 formatting checks before each commit to avoid accidentally committing
-code with formatting issues. To install the hook run the following
-script:
+code with formatting issues.
+
+To install pre-commit run `pip install pre-commit`. On Linux you can
+optionally install it with `sudo` or with the `--user` flag as was
+done for the dependencies needed for working with translations. More
+instruction for installing pre-commit can be found
+[here](https://pre-commit.com/#installation).
+
+Then, to install the hook run the following in the Thrive source
+folder:
 
 ```sh
-./install_git_hooks.rb
+pre-commit install
 ```
 
 The hook has the advantage that it will only run the checks on the
-files staged for commit saving many minutes of time. You can manually
+files staged for commit, saving many minutes of time. You can manually
 emulate this by creating a file in the Thrive folder called
 `files_to_check.txt` with one relative path per line specifying which
 files to check.

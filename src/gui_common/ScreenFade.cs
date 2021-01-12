@@ -1,9 +1,9 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
-///   Controls the screen fade
+///   Controls the screen fade transition
 /// </summary>
-public class Fade : CanvasLayer, ITransition
+public class ScreenFade : CanvasLayer, ITransition
 {
     public ColorRect Rect;
     public Tween Fader;
@@ -82,6 +82,6 @@ public class Fade : CanvasLayer, ITransition
     {
         EmitSignal(nameof(OnFinishedSignal));
 
-        QueueFree();
+        this.DetachAndQueueFree();
     }
 }

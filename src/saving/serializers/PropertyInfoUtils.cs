@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 
 /// <summary>
 ///   Extensions for property info

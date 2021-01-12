@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Controls the cutscene
@@ -36,6 +36,6 @@ public class Cutscene : CanvasLayer, ITransition
     public void OnFinished()
     {
         EmitSignal(nameof(OnFinishedSignal));
-        QueueFree();
+        this.DetachAndQueueFree();
     }
 }

@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Object providing access for converters as well as loading finalizing for the current game context
 /// </summary>
 public class SaveContext : ISaveContext

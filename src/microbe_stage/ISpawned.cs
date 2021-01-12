@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   All nodes that can be spawned with the spawn system must implement this interface

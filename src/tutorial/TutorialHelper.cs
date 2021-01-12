@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Helper methods for tutorials
 /// </summary>
 public static class TutorialHelper
@@ -32,6 +32,10 @@ public static class TutorialHelper
     /// </summary>
     public static void ProcessTutorialGUI(ITutorialGUI gui, float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         // Just to make sure this is reset properly
         gui.IsClosingAutomatically = false;
 

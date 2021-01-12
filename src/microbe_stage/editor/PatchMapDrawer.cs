@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -135,7 +135,7 @@ public class PatchMapDrawer : Control
     {
         foreach (var node in nodes)
         {
-            node.Free();
+            node.DetachAndFree();
         }
 
         nodes.Clear();

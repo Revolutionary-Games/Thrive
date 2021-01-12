@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -133,8 +133,8 @@ public class MainMenu : Node
         SwitchMenu();
 
         // Easter egg message
-        ToolTipHelper.RegisterToolTipForControl(
-            thriveLogo, toolTipCallbacks, ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"));
+        thriveLogo.RegisterToolTipForControl(
+            ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"), toolTipCallbacks);
 
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredMinsize();
@@ -191,7 +191,7 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f, false);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
 
         // Start music after the video
@@ -229,13 +229,13 @@ public class MainMenu : Node
 
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
-            TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
             TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
         }
         else
         {
             // People who disable the cutscene are impatient anyway so use a reduced fade time
-            TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.2f);
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.2f);
         }
 
         TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
@@ -254,7 +254,7 @@ public class MainMenu : Node
         // Ignore mouse event on the button to prevent it being clicked twice
         freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 
@@ -262,6 +262,12 @@ public class MainMenu : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
         SetCurrentMenu(0);
+    }
+
+    private void ViewSourceCodePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
     }
 
     private void QuitPressed()

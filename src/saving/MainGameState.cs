@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   The top level active game state (matches which Godot scene is active).
 ///   Menu doesn't have its own state as saving is not possible in the menu
 /// </summary>

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -65,6 +65,12 @@ public class TemporaryLoadedNodeDeleter : Node
         {
             try
             {
+                if (node.GetParent() != null)
+                {
+                    GD.PrintErr("TemporaryLoadedNodeDeleter was given a node with a parent, not deleting it");
+                    continue;
+                }
+
                 node.QueueFree();
             }
             catch (ObjectDisposedException)

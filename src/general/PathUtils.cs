@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Helpers for dealing with paths
 /// </summary>
 public static class PathUtils

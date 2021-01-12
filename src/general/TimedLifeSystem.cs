@@ -1,8 +1,7 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
-///   System that deletes nodes that are in the timed group
-///   after their lifespan expires.
+///   System that deletes nodes that are in the timed group after their lifespan expires.
 /// </summary>
 public class TimedLifeSystem
 {
@@ -47,7 +46,7 @@ public class TimedLifeSystem
         foreach (Node entity in spawnedEntities)
         {
             if (!entity.IsQueuedForDeletion())
-                entity.QueueFree();
+                entity.DetachAndQueueFree();
         }
     }
 }

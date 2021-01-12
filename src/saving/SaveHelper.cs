@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -374,6 +374,12 @@ public static class SaveHelper
         }
         catch (Exception e)
         {
+            // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+            if (!Constants.CATCH_SAVE_ERRORS)
+#pragma warning disable 162
+                throw;
+#pragma warning restore 162
+
             inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED"),
                 e.ToString());
             return;

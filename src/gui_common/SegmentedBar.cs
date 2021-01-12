@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -83,7 +83,7 @@ public class SegmentedBar : HBoxContainer
 
         foreach (var unusedBar in unusedBars)
         {
-            unusedBar.Free();
+            unusedBar.DetachAndFree();
             SubBars.Remove(unusedBar);
         }
     }

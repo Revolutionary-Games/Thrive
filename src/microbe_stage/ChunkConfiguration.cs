@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -120,6 +120,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         public string ScenePath;
 
         /// <summary>
+        ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
+        /// </summary>
+        public string ConvexShapePath;
+
+        /// <summary>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
         /// </summary>
         public string SceneModelPath;
@@ -127,9 +132,15 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         [JsonIgnore]
         public PackedScene LoadedScene;
 
+        [JsonIgnore]
+        public ConvexPolygonShape LoadedConvexShape;
+
         public void LoadScene()
         {
             LoadedScene = GD.Load<PackedScene>(ScenePath);
+
+            if (!string.IsNullOrEmpty(ConvexShapePath))
+                LoadedConvexShape = GD.Load<ConvexPolygonShape>(ConvexShapePath);
         }
 
         public void FinishLoading(ISaveContext context)

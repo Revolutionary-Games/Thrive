@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -45,6 +45,7 @@ public class ThriveJsonConverter : IDisposable
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
             new RandomConverter(),
+            new ConvexPolygonShapeConverter(),
 
             new CompoundCloudPlaneConverter(context),
 
@@ -535,9 +536,17 @@ public abstract class BaseThriveConverter : JsonConverter
                 {
                     memberValue = property.GetValue(value, null);
                 }
-                catch (ObjectDisposedException)
+                catch (TargetInvocationException e)
                 {
-                    // Protection against disposed stuff that happen a lot in godot
+                    // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+                    if (!Constants.CATCH_SAVE_ERRORS)
+#pragma warning disable 162
+                        throw;
+#pragma warning restore 162
+
+                    // Protection against disposed stuff that is very easy to make a mistake about. Seems to be caused
+                    // by carelessly keeping references to other game entities that are saved.
+                    GD.PrintErr("Problem trying to save a property: ", e);
                     writer.WritePropertyName(property.Name);
                     serializer.Serialize(writer, null);
                     continue;

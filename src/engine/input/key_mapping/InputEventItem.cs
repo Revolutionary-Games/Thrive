@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -129,11 +129,19 @@ public class InputEventItem : Node
             return;
 
         // Hacky custom button press detection
-        if ((@event is InputEventMouseButton inputMouse) && inputMouse.ButtonIndex == (int)ButtonList.Left &&
-            xButton.IsHovered())
+        if (@event is InputEventMouseButton mouseEvent)
         {
-            Delete();
-            return;
+            if (xButton.IsHovered())
+            {
+                Delete();
+                return;
+            }
+
+            if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed)
+            {
+                OnButtonPressed(mouseEvent);
+                return;
+            }
         }
 
         if (!WaitingForInput)
@@ -166,10 +174,18 @@ public class InputEventItem : Node
                     return;
             }
         }
+        else if (@event is InputEventMouseButton mouse)
+        {
+            if (!mouse.Pressed)
+                return;
+        }
 
         // The old key input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;
         AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
+
+        // Consume current input event so it is only used for rebinding
+        GetTree().SetInputAsHandled();
 
         // Check conflicts, and don't proceed if there is a conflict
         if (CheckNewKeyConflicts(@event, groupList, old))
@@ -247,12 +263,15 @@ public class InputEventItem : Node
 
         // Update the button text
         UpdateButtonText();
+
+        // Rebinding is done so we alert the InputManager that it can resume getting input
+        InputManager.RebindingIsActive = false;
     }
 
     /// <summary>
     ///   Detect mouse button presses on this input key Control
     /// </summary>
-    private void OnButtonPressed(InputEvent @event)
+    private void OnButtonPressed(InputEventMouseButton @event)
     {
         var groupList = GroupList;
 
@@ -262,10 +281,7 @@ public class InputEventItem : Node
         if (groupList.ListeningForInput)
             return;
 
-        if (!(@event is InputEventMouseButton inputButton))
-            return;
-
-        switch (inputButton.ButtonIndex)
+        switch (@event.ButtonIndex)
         {
             case (int)ButtonList.Left:
                 wasPressingButton = true;
@@ -282,6 +298,10 @@ public class InputEventItem : Node
         WaitingForInput = true;
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
+
+        // Signal to the input manager that a rebinding has started
+        // and it should ignore input untill the rebind is finished
+        InputManager.RebindingIsActive = true;
     }
 
     private void UpdateButtonText()
