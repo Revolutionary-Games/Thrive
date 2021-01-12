@@ -30,9 +30,9 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 [autoload]
 
-StartupActions="*res://src/engine/StartupActions.cs"
-SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
 Invoke="*res://src/engine/Invoke.cs"
+SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
+StartupActions="*res://src/engine/StartupActions.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
 SceneManager="*res://src/engine/SceneManager.cs"
 ScreenOverlays="*res://src/engine/ScreenOverlays.tscn"
@@ -210,7 +210,7 @@ help={
 
 [locale]
 
-translations=PoolStringArray( "res://locale/en.po", "res://locale/fr.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/de.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/pl.po", "res://locale/tr.po", "res://locale/bg.po", "res://locale/ca.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ru.po", "res://locale/he.po" )
+translations=PoolStringArray( "res://locale/en.po", "res://locale/fr.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/de.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/pl.po", "res://locale/tr.po", "res://locale/bg.po", "res://locale/ca.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ru.po", "res://locale/he.po", "res://locale/lt.po", "res://locale/lt.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po" )
 
 [logging]
 

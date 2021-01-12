@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=4]
-
-[sub_resource type="DynamicFont" id=1]
-use_filter = true
-font_data = ExtResource( 4 )
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 
 [node name="MicrobeEditorTutorialGUI" type="Control"]
 pause_mode = 2
@@ -56,7 +52,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="EditorEntryReport/VBoxContainer"]
 margin_right = 330.0
 margin_bottom = 273.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_EDITOR_TEXT"
 autowrap = true
 
@@ -89,7 +85,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="PatchMapTutorial/VBoxContainer"]
 margin_right = 320.0
 margin_bottom = 319.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_PATCH_TEXT"
 autowrap = true
 
@@ -119,7 +115,7 @@ rect_min_size = Vector2( 320, 320 )
 [node name="Label" type="Label" parent="CellEditorIntro/VBoxContainer"]
 margin_right = 320.0
 margin_bottom = 250.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_CELL_TEXT"
 autowrap = true
 
@@ -152,11 +148,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="UndoTutorial/VBoxContainer"]
 margin_right = 260.0
 margin_bottom = 250.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 autowrap = true
 
 [node name="UndoButtonHighlight" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="RedoTutorial" type="WindowDialog" parent="."]
 anchor_left = 0.5
@@ -187,7 +184,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="RedoTutorial/VBoxContainer"]
 margin_right = 340.0
 margin_bottom = 296.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 autowrap = true
 
@@ -220,7 +217,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="CellEditorClosingWords/VBoxContainer"]
 margin_right = 340.0
 margin_bottom = 250.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_ENDING_TEXT"
 autowrap = true
 
