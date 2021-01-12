@@ -15,8 +15,9 @@ public class Patch
     public readonly int ID;
 
     /// <summary>
-    ///   TODO: saving.
+    ///   The current conditions of this patch.
     /// </summary>
+    [JsonProperty]
     public readonly PatchConditions Conditions = new PatchConditions();
 
     [JsonProperty]
@@ -45,11 +46,9 @@ public class Patch
     public Vector2 ScreenCoordinates { get; set; } = new Vector2(0, 0);
 
     /// <summary>
-    ///   List of all the recorded conditions of this patch.
+    ///   List of all the recorded conditions of this patch. Useful for statistics.
     /// </summary>
-    /// <remarks>
-    ///   TODO: saving.
-    /// </remarks>
+    [JsonProperty]
     public Deque<PatchConditions> History { get; private set; } = new Deque<PatchConditions>();
 
     /// <summary>
@@ -155,9 +154,7 @@ public class Patch
 /// <summary>
 ///   Conditions of a patch at some point in time.
 /// </summary>
-/// <remarks>
-///   TODO: saving.
-/// </remarks>
+[UseThriveSerializer]
 public class PatchConditions : ICloneable
 {
     public double TimePeriod;

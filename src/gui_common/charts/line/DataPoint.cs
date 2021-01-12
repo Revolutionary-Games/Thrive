@@ -4,6 +4,11 @@ using Godot;
 /// <summary>
 ///   Point / marker on a line chart containing a single numerical data value (x, y).
 /// </summary>
+/// <remarks>
+///   <para>
+///     Note: Must be freed manually because this inherits Control.
+///   </para>
+/// </remarks>
 public class DataPoint : Control
 {
     private Texture graphMarkerCircle;
@@ -14,11 +19,17 @@ public class DataPoint : Control
     private Vector2 coordinate;
     private float size;
 
-    public DataPoint(float xValue, float yValue, float size = 8f, MarkerIcon shape = MarkerIcon.Circle)
+    public DataPoint()
+    {
+        Size = 8;
+        IconType = MarkerIcon.Circle;
+    }
+
+    public DataPoint(float xValue, float yValue)
     {
         Value = new Vector2(xValue, yValue);
-        Size = size;
-        IconType = shape;
+        Size = 8;
+        IconType = MarkerIcon.Circle;
     }
 
     public enum MarkerIcon
@@ -39,7 +50,7 @@ public class DataPoint : Control
 
     /// <summary>
     ///   Position of the point on the chart, this is different from Value.
-    ///   This is automatically set in the LineChart class.
+    ///   This is automatically set in the chart-specific class.
     /// </summary>
     public Vector2 Coordinate
     {

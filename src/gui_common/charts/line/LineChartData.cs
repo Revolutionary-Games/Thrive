@@ -48,4 +48,17 @@ public class LineChartData
                 point.Visible = value;
         }
     }
+
+    /// <summary>
+    ///   Frees and removes all data point from this dataset. Use this rather than
+    ///   DataPoints.Clear to avoid orphaned nodes.
+    /// </summary>
+    public void ClearPoints()
+    {
+        foreach (var point in DataPoints.ToArray())
+        {
+            point.Free();
+            DataPoints.Remove(point);
+        }
+    }
 }

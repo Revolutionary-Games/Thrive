@@ -46,6 +46,7 @@ public class ThriveJsonConverter : IDisposable
             new SystemVector4ArrayConverter(),
             new RandomConverter(),
             new ConvexPolygonShapeConverter(),
+            new NitoDequeConverter(),
 
             new CompoundCloudPlaneConverter(context),
 

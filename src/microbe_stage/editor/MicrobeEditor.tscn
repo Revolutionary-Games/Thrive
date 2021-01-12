@@ -878,6 +878,10 @@ ATPConsumptionLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer
 ATPProductionBarPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar")
 ATPConsumptionBarPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
 TimeIndicatorPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
+TemperatureChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature")
+SunlightChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Sunlight")
+AtmosphericGassesChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart")
+CompoundsChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart")
 SpeciesPopulationChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart")
 GlucoseReductionLabelPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/GlucoseReduction")
 AutoEvoLabelPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
@@ -3906,10 +3910,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 140.0
-margin_top = 163.0
-margin_right = 443.0
-margin_bottom = 638.0
+margin_left = 156.0
+margin_top = 179.0
+margin_right = 459.0
+margin_bottom = 654.0
 theme = SubResource( 30 )
 edit_alpha = false
 
@@ -4339,13 +4343,184 @@ custom_fonts/font = ExtResource( 56 )
 text = "STATISTICS"
 align = 1
 
-[node name="SpeciesPopulation" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
+[node name="PhysicalConditions" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 45.0
 margin_right = 316.0
-margin_bottom = 103.0
-Title = "Species Population"
+margin_bottom = 125.0
+DisplayName = "PHYSICAL_CONDITIONS"
+TitleLabelPath = NodePath("../PhysicalConditions/HBoxContainer/Title")
+CollapseButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/minusButton")
+ExpandButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/plusButton")
+ClipBoxPath = NodePath("../PhysicalConditions/Clip")
+ItemContainerPath = NodePath("../PhysicalConditions/Clip/GridContainer")
+TweenPath = NodePath("../PhysicalConditions/Tween")
+
+[node name="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" index="0"]
+margin_right = 316.0
+
+[node name="HSeparator" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/HBoxContainer" index="2"]
+margin_right = 316.0
+
+[node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" index="1"]
+margin_right = 316.0
+margin_bottom = 80.0
+
+[node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip" index="0"]
+margin_right = 316.0
+margin_bottom = 56.0
+
+[node name="Legend" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="0"]
+margin_right = 316.0
+margin_bottom = 18.0
+custom_constants/separation = 0
+alignment = 2
+
+[node name="TemperatureIcon" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend"]
+margin_left = 280.0
+margin_right = 298.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 18, 18 )
+action_mode = 0
+texture_normal = ExtResource( 62 )
+expand = true
+stretch_mode = 5
+
+[node name="SunlightIcon" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend"]
+margin_left = 298.0
+margin_right = 316.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 18, 18 )
+action_mode = 0
+texture_normal = ExtResource( 57 )
+expand = true
+stretch_mode = 5
+
+[node name="Temperature" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="1" instance=ExtResource( 103 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 22.0
+margin_right = 316.0
+margin_bottom = 56.0
+YAxisName = "°C"
+XAxisName = "yrs"
+HorizontalLabelPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/xAxisLabel")
+VerticalLabelPath = NodePath("../Temperature/VBoxContainer/yAxisLabel")
+VerticalTicksContainerPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
+HorizontalTicksContainerPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
+DrawAreaPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
+LegendsContainerPath = NodePath("../Temperature/LegendContainer")
+ChartName = "Temperature"
+XAxisTicks = 5
+YAxisTicks = 6
+
+[node name="Sunlight" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="2" instance=ExtResource( 103 )]
+visible = false
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 20.0
+margin_right = 316.0
+margin_bottom = 54.0
+YAxisName = "lx"
+XAxisName = "yrs"
+HorizontalLabelPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/xAxisLabel")
+VerticalLabelPath = NodePath("../Sunlight/VBoxContainer/yAxisLabel")
+VerticalTicksContainerPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
+HorizontalTicksContainerPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
+DrawAreaPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
+LegendsContainerPath = NodePath("../Sunlight/LegendContainer")
+ChartName = "Sunlight"
+XAxisTicks = 5
+YAxisTicks = 6
+
+[node name="AtmosphericGasses" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 140.0
+margin_right = 316.0
+margin_bottom = 198.0
+DisplayName = "ATMOSPHERIC_GASSES"
+TitleLabelPath = NodePath("../AtmosphericGasses/HBoxContainer/Title")
+CollapseButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/minusButton")
+ExpandButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/plusButton")
+ClipBoxPath = NodePath("../AtmosphericGasses/Clip")
+ItemContainerPath = NodePath("../AtmosphericGasses/Clip/GridContainer")
+TweenPath = NodePath("../AtmosphericGasses/Tween")
+
+[node name="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" index="0"]
+margin_right = 316.0
+
+[node name="HSeparator" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/HBoxContainer" index="2"]
+margin_right = 316.0
+
+[node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" index="1"]
+margin_right = 316.0
+margin_bottom = 58.0
+
+[node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip" index="0"]
+margin_right = 316.0
+margin_bottom = 34.0
+
+[node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 316.0
+margin_bottom = 34.0
+YAxisName = "%"
+XAxisName = "yrs"
+ChartName = "Atmospheric Gasses"
+XAxisTicks = 5
+YAxisTicks = 6
+
+[node name="Compounds" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 213.0
+margin_right = 316.0
+margin_bottom = 271.0
+DisplayName = "COMPOUNDS"
+TitleLabelPath = NodePath("../Compounds/HBoxContainer/Title")
+CollapseButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/minusButton")
+ExpandButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/plusButton")
+ClipBoxPath = NodePath("../Compounds/Clip")
+ItemContainerPath = NodePath("../Compounds/Clip/GridContainer")
+TweenPath = NodePath("../Compounds/Tween")
+
+[node name="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" index="0"]
+margin_right = 316.0
+
+[node name="HSeparator" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/HBoxContainer" index="2"]
+margin_right = 316.0
+
+[node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" index="1"]
+margin_right = 316.0
+margin_bottom = 58.0
+
+[node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip" index="0"]
+margin_right = 316.0
+margin_bottom = 34.0
+
+[node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 316.0
+margin_bottom = 34.0
+YAxisName = "ppm"
+XAxisName = "yrs"
+ChartName = "Compounds"
+XAxisTicks = 5
+YAxisTicks = 6
+
+[node name="SpeciesPopulation" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 286.0
+margin_right = 316.0
+margin_bottom = 344.0
+DisplayName = "SPECIES_POPULATION"
 
 [node name="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="0"]
 margin_right = 316.0
@@ -4367,7 +4542,7 @@ anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 316.0
 margin_bottom = 34.0
-XAxisName = "yr"
+XAxisName = "yrs"
 ChartName = "Species Population"
 XAxisTicks = 5
 YAxisTicks = 6
@@ -5510,5 +5685,11 @@ HelpCategory = "MicrobeEditor"
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]
+
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions"]
+
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses"]
+
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds"]
 
 [editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation"]

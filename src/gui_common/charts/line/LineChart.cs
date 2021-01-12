@@ -193,6 +193,11 @@ public class LineChart : VBoxContainer
 
     public void ClearDataSets()
     {
+        foreach (var dataset in dataSets)
+        {
+            dataset.Value.ClearPoints();
+        }
+
         dataSets.Clear();
     }
 
@@ -202,19 +207,19 @@ public class LineChart : VBoxContainer
     /// <param name="legendTitle">Title for the chart legend. If null, the legend will not be created</param>
     public void Plot(string legendTitle = null)
     {
+        ClearChart();
+
         if (dataSets == null || dataSets.Count <= 0)
         {
-            GD.PrintErr("Missing data sets, aborting plotting data");
+            GD.PrintErr(ChartName + " chart missing datasets, aborting plotting data");
             return;
         }
 
         if (XAxisTicks <= 0 || YAxisTicks <= 0)
         {
-            GD.PrintErr("Ticks has to be more than 0, aborting plotting data");
+            GD.PrintErr(ChartName + " chart ticks has to be more than 0, aborting plotting data");
             return;
         }
-
-        ClearChart();
 
         var dataSetCount = 0;
 
@@ -259,12 +264,12 @@ public class LineChart : VBoxContainer
         MaxValues = new Vector2(totalDataPoints.Max(point => point.x), totalDataPoints.Max(point => point.y));
         MinValues = new Vector2(totalDataPoints.Min(point => point.x), totalDataPoints.Min(point => point.y));
 
-        // Can't have mininimum value to be greater than max value
+        // Can't have mininimum value be greater than max value
         if (MinValues.x >= MaxValues.x)
         {
             MinValues = new Vector2(0, MinValues.y);
         }
-        else if (MinValues.y >= MaxValues.y)
+        if (MinValues.y >= MaxValues.y)
         {
             MinValues = new Vector2(MinValues.x, 0);
         }
@@ -330,10 +335,6 @@ public class LineChart : VBoxContainer
         foreach (var data in dataSets)
         {
             ToolTipManager.Instance.ClearToolTips("chartMarkers" + ChartName + data.Key);
-        }
-
-        foreach (var data in dataSets)
-        {
             ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName + data.Key);
         }
 
@@ -494,9 +495,6 @@ public class LineChart : VBoxContainer
         {
             var points = data.Value.DataPoints;
 
-            if (points.Count <= 0)
-                continue;
-
             // Setup the points
             foreach (var point in points)
             {
@@ -571,19 +569,18 @@ public class LineChart : VBoxContainer
     {
         if (icon.Pressed)
         {
-            // Adjust the icon highlight color
-            icon.Modulate = fallbackIconIsUsed ?
-                new Color(
-                    dataColor.r - 0.3f, dataColor.g - 0.3f, dataColor.b - 0.3f) :
-                new Color(0.7f, 0.7f, 0.7f);
+            // Adjust the icon color to be highlighted
+            icon.Modulate = fallbackIconIsUsed ? dataColor.Lightened(0.5f) : new Color(0.7f, 0.7f, 0.7f);
         }
     }
 
     private void IconLegendMouseExit(TextureButton icon, bool fallbackIconIsUsed, Color dataColor)
     {
-        // Adjust the icon color to normal
         if (icon.Pressed)
+        {
+            // Adjust the icon color back to normal
             icon.Modulate = fallbackIconIsUsed ? dataColor : new Color(1, 1, 1);
+        }
     }
 
     private void IconLegendToggled(bool toggled, TextureButton icon, string name, bool fallbackIconIsUsed)
@@ -598,10 +595,7 @@ public class LineChart : VBoxContainer
 
         if (fallbackIconIsUsed)
         {
-            icon.Modulate = toggled ?
-                data.DataColour :
-                new Color(
-                    data.DataColour.r - 0.5f, data.DataColour.g - 0.5f, data.DataColour.b - 0.5f);
+            icon.Modulate = toggled ? data.DataColour : data.DataColour.Darkened(0.5f);
         }
         else
         {

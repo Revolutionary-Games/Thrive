@@ -873,6 +873,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             targetPatch = patch;
         }
 
+        if (targetPatch?.History.Count <= 0)
+            targetPatch?.RecordConditions(CurrentGame.GameWorld.TotalPassedTime);
+
         gui.UpdatePlayerPatch(targetPatch);
         UpdatePatchBackgroundImage();
         CalculateOrganelleEffectivenessInPatch(targetPatch);

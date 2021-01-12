@@ -106,6 +106,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath TimeIndicatorPath;
 
     [Export]
+    public NodePath TemperatureChartPath;
+
+    [Export]
+    public NodePath SunlightChartPath;
+
+    [Export]
+    public NodePath AtmosphericGassesChartPath;
+
+    [Export]
+    public NodePath CompoundsChartPath;
+
+    [Export]
     public NodePath SpeciesPopulationChartPath;
 
     [Export]
@@ -304,8 +316,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
+
+    // ReSharper disable once NotAccessedField.Local
     private Label reportTabPatchNameLabel;
 
+    private LineChart temperatureChart;
+    private LineChart sunlightChart;
+    private LineChart atmosphericGassesChart;
+    private LineChart compoundsChart;
     private LineChart speciesPopulationChart;
 
     private PatchMapDrawer mapDrawer;
@@ -348,6 +366,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private Texture increaseIcon;
     private Texture decreaseIcon;
     private AudioStream unableToPlaceHexSound;
+    private Texture temperatureIcon;
 
     private ConfirmationDialog negativeAtpPopup;
     private AcceptDialog islandPopup;
@@ -450,6 +469,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
 
+        temperatureChart = GetNode<LineChart>(TemperatureChartPath);
+        sunlightChart = GetNode<LineChart>(SunlightChartPath);
+        atmosphericGassesChart = GetNode<LineChart>(AtmosphericGassesChartPath);
+        compoundsChart = GetNode<LineChart>(CompoundsChartPath);
         speciesPopulationChart = GetNode<LineChart>(SpeciesPopulationChartPath);
 
         patchTemperatureSituation = GetNode<TextureRect>(PatchTemperatureSituationPath);
@@ -471,6 +494,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
+        temperatureIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/Temperature.png");
 
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
@@ -726,13 +750,36 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdateReportTabStatistics()
     {
+        temperatureChart.ClearDataSets();
+        sunlightChart.ClearDataSets();
+        atmosphericGassesChart.ClearDataSets();
+        compoundsChart.ClearDataSets();
         speciesPopulationChart.ClearDataSets();
 
         var patch = editor.CurrentPatch;
 
         // Initialize datasets
+        var temperatureData = new LineChartData
+        {
+            IconTexture = temperatureIcon,
+            DataColour = new Color(0.67f, 1, 0.24f),
+        };
+
+        temperatureChart.AddDataSet("Temperature", temperatureData);
+
         foreach (var snapshot in patch.History)
         {
+            foreach (var entry in snapshot.Biome.Compounds)
+            {
+                var dataset = new LineChartData
+                {
+                    IconTexture = GUICommon.Instance.GetCompoundIcon(entry.Key.InternalName),
+                    DataColour = entry.Key.Colour,
+                };
+
+                GetChartForCompound(entry.Key.InternalName)?.AddDataSet(entry.Key.Name, dataset);
+            }
+
             foreach (var entry in snapshot.SpeciesInPatch)
             {
                 var dataset = new LineChartData { DataColour = entry.Key.Colour };
@@ -740,22 +787,50 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
+        // Populate chart with datas from patch history
         foreach (var snapshot in patch.History)
         {
+            temperatureData.DataPoints.Add(new DataPoint
+            {
+                Value = new Vector2((float)snapshot.TimePeriod, snapshot.Biome.AverageTemperature),
+                MarkerColour = temperatureData.DataColour,
+            });
+
+            foreach (var entry in snapshot.Biome.Compounds)
+            {
+                var dataset = GetChartForCompound(entry.Key.InternalName)?.GetDataSet(entry.Key.Name);
+
+                var dataPoint = new DataPoint
+                {
+                    Value = new Vector2((float)snapshot.TimePeriod, entry.Value.Amount),
+                    MarkerColour = dataset.DataColour,
+                };
+
+                dataset.DataPoints.Add(dataPoint);
+            }
+
             foreach (var entry in snapshot.SpeciesInPatch)
             {
                 var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
 
                 var extinctInPatch = entry.Value <= 0;
 
-                var dataPoint = new DataPoint((float)snapshot.TimePeriod, entry.Value, extinctInPatch ? 13 : 8,
-                    extinctInPatch ? DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle);
-                dataPoint.MarkerColour = dataset.DataColour;
+                var dataPoint = new DataPoint
+                {
+                    Value = new Vector2((float)snapshot.TimePeriod, entry.Value),
+                    Size = extinctInPatch ? 13 : 8,
+                    IconType = extinctInPatch ? DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
+                    MarkerColour = dataset.DataColour,
+                };
 
                 dataset.DataPoints.Add(dataPoint);
             }
         }
 
+        temperatureChart.Plot();
+        sunlightChart.Plot();
+        atmosphericGassesChart.Plot("Atmospheric Gasses");
+        compoundsChart.Plot("Compounds");
         speciesPopulationChart.Plot("Species List");
     }
 
@@ -1612,6 +1687,38 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 }
             }
         }
+    }
+
+    /// <summary>
+    ///   Returns the chart which should contain the given compound.
+    /// </summary>
+    private LineChart GetChartForCompound(string compoundName)
+    {
+        var chart = compoundsChart;
+
+        switch (compoundName)
+        {
+            case "atp":
+                chart = null;
+                break;
+            case "oxytoxy":
+                chart = null;
+                break;
+            case "sunlight":
+                chart = sunlightChart;
+                break;
+            case "oxygen":
+                chart = atmosphericGassesChart;
+                break;
+            case "carbondioxide":
+                chart = atmosphericGassesChart;
+                break;
+            case "nitrogen":
+                chart = atmosphericGassesChart;
+                break;
+        }
+
+        return chart;
     }
 
     // ReSharper disable once RedundantNameQualifier

@@ -40,8 +40,11 @@ public class CollapsibleList : VBoxContainer
 
     private int cachedTopMarginValue;
 
+    /// <summary>
+    ///   The title for the collapsible list.
+    /// </summary>
     [Export]
-    public string Title
+    public string DisplayName
     {
         get => title;
         set
