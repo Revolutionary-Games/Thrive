@@ -269,6 +269,7 @@ public class LineChart : VBoxContainer
         {
             MinValues = new Vector2(0, MinValues.y);
         }
+
         if (MinValues.y >= MaxValues.y)
         {
             MinValues = new Vector2(MinValues.x, 0);
@@ -579,7 +580,7 @@ public class LineChart : VBoxContainer
         if (icon.Pressed)
         {
             // Adjust the icon color back to normal
-            icon.Modulate = fallbackIconIsUsed ? dataColor : new Color(1, 1, 1);
+            icon.Modulate = fallbackIconIsUsed ? dataColor : Colors.White;
         }
     }
 
@@ -599,7 +600,7 @@ public class LineChart : VBoxContainer
         }
         else
         {
-            icon.Modulate = toggled ? new Color(1, 1, 1) : new Color(0.5f, 0.5f, 0.5f);
+            icon.Modulate = toggled ? Colors.White : Colors.Gray;
         }
 
         UpdateDataSetVisibility(name, toggled);

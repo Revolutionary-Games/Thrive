@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=2]
+[gd_scene load_steps=136 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -808,10 +808,12 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id=35]
 
-[sub_resource type="Theme" id=36]
+[sub_resource type="ButtonGroup" id=36]
+
+[sub_resource type="Theme" id=37]
 default_font = ExtResource( 81 )
 
-[sub_resource type="StyleBoxTexture" id=37]
+[sub_resource type="StyleBoxTexture" id=38]
 texture = ExtResource( 89 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
@@ -878,6 +880,7 @@ ATPConsumptionLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer
 ATPProductionBarPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar")
 ATPConsumptionBarPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
 TimeIndicatorPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
+PhysicalConditionsIconLegendPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend")
 TemperatureChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature")
 SunlightChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Sunlight")
 AtmosphericGassesChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart")
@@ -3910,10 +3913,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 156.0
-margin_top = 179.0
-margin_right = 459.0
-margin_bottom = 654.0
+margin_left = 160.0
+margin_top = 183.0
+margin_right = 463.0
+margin_bottom = 658.0
 theme = SubResource( 30 )
 edit_alpha = false
 
@@ -4377,22 +4380,27 @@ margin_bottom = 18.0
 custom_constants/separation = 0
 alignment = 2
 
-[node name="TemperatureIcon" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend"]
+[node name="temperature" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend"]
 margin_left = 280.0
 margin_right = 298.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 18, 18 )
+toggle_mode = true
+pressed = true
 action_mode = 0
+group = SubResource( 36 )
 texture_normal = ExtResource( 62 )
 expand = true
 stretch_mode = 5
 
-[node name="SunlightIcon" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend"]
+[node name="sunlight" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend"]
 margin_left = 298.0
 margin_right = 316.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 18, 18 )
+toggle_mode = true
 action_mode = 0
+group = SubResource( 36 )
 texture_normal = ExtResource( 57 )
 expand = true
 stretch_mode = 5
@@ -4422,7 +4430,7 @@ anchor_bottom = 0.0
 margin_top = 20.0
 margin_right = 316.0
 margin_bottom = 54.0
-YAxisName = "lx"
+YAxisName = "% lx"
 XAxisName = "yrs"
 HorizontalLabelPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/xAxisLabel")
 VerticalLabelPath = NodePath("../Sunlight/VBoxContainer/yAxisLabel")
@@ -4508,7 +4516,7 @@ anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 316.0
 margin_bottom = 34.0
-YAxisName = "ppm"
+YAxisName = "%"
 XAxisName = "yrs"
 ChartName = "Compounds"
 XAxisTicks = 5
@@ -5440,7 +5448,7 @@ margin_top = 5.0
 margin_right = 311.0
 margin_bottom = 5.0
 mouse_filter = 2
-theme = SubResource( 36 )
+theme = SubResource( 37 )
 
 [node name="Tween" type="Tween" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 
@@ -5448,7 +5456,7 @@ theme = SubResource( 36 )
 margin_top = 560.0
 margin_right = 346.0
 margin_bottom = 564.0
-custom_styles/separator = SubResource( 37 )
+custom_styles/separator = SubResource( 38 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer"]
 margin_top = 568.0
@@ -5665,6 +5673,12 @@ HelpCategory = "MicrobeEditor"
 [connection signal="confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "temperature", true ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "temperature", false ]]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendPressed" binds= [ "temperature" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "sunlight", true ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "sunlight", false ]]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendPressed" binds= [ "sunlight" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/NextTabButton/Button" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/MapPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/MapPanel" to="MicrobeEditorGUI" method="OnMouseExit"]

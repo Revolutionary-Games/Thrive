@@ -106,6 +106,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath TimeIndicatorPath;
 
     [Export]
+    public NodePath PhysicalConditionsIconLegendPath;
+
+    [Export]
     public NodePath TemperatureChartPath;
 
     [Export]
@@ -320,6 +323,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     // ReSharper disable once NotAccessedField.Local
     private Label reportTabPatchNameLabel;
 
+    private HBoxContainer physicalConditionsIconLegends;
     private LineChart temperatureChart;
     private LineChart sunlightChart;
     private LineChart atmosphericGassesChart;
@@ -469,6 +473,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
 
+        physicalConditionsIconLegends = GetNode<HBoxContainer>(PhysicalConditionsIconLegendPath);
         temperatureChart = GetNode<LineChart>(TemperatureChartPath);
         sunlightChart = GetNode<LineChart>(SunlightChartPath);
         atmosphericGassesChart = GetNode<LineChart>(AtmosphericGassesChartPath);
@@ -800,9 +805,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 var dataset = GetChartForCompound(entry.Key.InternalName)?.GetDataSet(entry.Key.Name);
 
+                if (dataset == null)
+                    continue;
+
                 var dataPoint = new DataPoint
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, entry.Value.Amount),
+                    Value = new Vector2((float)snapshot.TimePeriod, GetCompoundAmount(patch, entry.Key.InternalName)),
                     MarkerColour = dataset.DataColour,
                 };
 
@@ -1422,19 +1430,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             patchLightSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Conditions.Biome.Compounds[hydrogensulfide].Density *
-            selectedPatch.Conditions.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
-                selectedPatch, hydrogensulfide);
+        nextCompound = GetCompoundAmount(selectedPatch, hydrogensulfide.InternalName);
 
-        if (nextCompound > currentPatch.Conditions.Biome.Compounds[hydrogensulfide].Density *
-            currentPatch.Conditions.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
-                currentPatch, hydrogensulfide))
+        if (nextCompound > GetCompoundAmount(currentPatch, hydrogensulfide.InternalName))
         {
             patchHydrogenSulfideSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[hydrogensulfide].Density *
-            currentPatch.Conditions.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
-                currentPatch, hydrogensulfide))
+        else if (nextCompound < GetCompoundAmount(currentPatch, hydrogensulfide.InternalName))
         {
             patchHydrogenSulfideSituation.Texture = decreaseIcon;
         }
@@ -1443,19 +1445,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             patchHydrogenSulfideSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Conditions.Biome.Compounds[glucose].Density *
-            selectedPatch.Conditions.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
-                selectedPatch, glucose);
+        nextCompound = GetCompoundAmount(selectedPatch, glucose.InternalName);
 
-        if (nextCompound > currentPatch.Conditions.Biome.Compounds[glucose].Density *
-            currentPatch.Conditions.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
-                currentPatch, glucose))
+        if (nextCompound > GetCompoundAmount(currentPatch, glucose.InternalName))
         {
             patchGlucoseSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[glucose].Density *
-            currentPatch.Conditions.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
-                currentPatch, glucose))
+        else if (nextCompound < GetCompoundAmount(currentPatch, glucose.InternalName))
         {
             patchGlucoseSituation.Texture = decreaseIcon;
         }
@@ -1464,13 +1460,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             patchGlucoseSituation.Texture = null;
         }
 
-        nextCompound = GetPatchChunkTotalCompoundAmount(selectedPatch, iron);
+        nextCompound = GetCompoundAmount(selectedPatch, iron.InternalName);
 
-        if (nextCompound > GetPatchChunkTotalCompoundAmount(currentPatch, iron))
+        if (nextCompound > GetCompoundAmount(currentPatch, iron.InternalName))
         {
             patchIronSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetPatchChunkTotalCompoundAmount(currentPatch, iron))
+        else if (nextCompound < GetCompoundAmount(currentPatch, iron.InternalName))
         {
             patchIronSituation.Texture = decreaseIcon;
         }
@@ -1479,19 +1475,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             patchIronSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Conditions.Biome.Compounds[ammonia].Density *
-            selectedPatch.Conditions.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
-                selectedPatch, ammonia);
+        nextCompound = GetCompoundAmount(selectedPatch, ammonia.InternalName);
 
-        if (nextCompound > currentPatch.Conditions.Biome.Compounds[ammonia].Density *
-            currentPatch.Conditions.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
-                currentPatch, ammonia))
+        if (nextCompound > GetCompoundAmount(currentPatch, ammonia.InternalName))
         {
             patchAmmoniaSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[ammonia].Density *
-            currentPatch.Conditions.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
-                currentPatch, ammonia))
+        else if (nextCompound < GetCompoundAmount(currentPatch, ammonia.InternalName))
         {
             patchAmmoniaSituation.Texture = decreaseIcon;
         }
@@ -1500,19 +1490,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             patchAmmoniaSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Conditions.Biome.Compounds[phosphates].Density *
-            selectedPatch.Conditions.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
-                selectedPatch, phosphates);
+        nextCompound = GetCompoundAmount(selectedPatch, phosphates.InternalName);
 
-        if (nextCompound > currentPatch.Conditions.Biome.Compounds[phosphates].Density *
-            currentPatch.Conditions.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
-                currentPatch, phosphates))
+        if (nextCompound > GetCompoundAmount(currentPatch, phosphates.InternalName))
         {
             patchPhosphateSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[phosphates].Density *
-            currentPatch.Conditions.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
-                currentPatch, phosphates))
+        else if (nextCompound < GetCompoundAmount(currentPatch, phosphates.InternalName))
         {
             patchPhosphateSituation.Texture = decreaseIcon;
         }
@@ -1520,11 +1504,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             patchPhosphateSituation.Texture = null;
         }
-    }
-
-    private float GetPatchChunkTotalCompoundAmount(Patch patch, Compound compound)
-    {
-        return patch.GetTotalChunkCompoundAmount(compound);
     }
 
     private void UpdateShownPatchDetails()
@@ -1560,29 +1539,17 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Atmospheric gasses
         patchTemperature.Text = patch.Conditions.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
-        patchLight.Text = (patch.Conditions.Biome.Compounds[sunlight].Dissolved * 100) + "% lx";
-        patchOxygen.Text = (patch.Conditions.Biome.Compounds[oxygen].Dissolved * 100) + "%";
-        patchNitrogen.Text = (patch.Conditions.Biome.Compounds[nitrogen].Dissolved * 100) + "%";
-        patchCO2.Text = (patch.Conditions.Biome.Compounds[carbondioxide].Dissolved * 100) + "%";
+        patchLight.Text = GetCompoundAmount(patch, sunlight.InternalName) + "% lx";
+        patchOxygen.Text = GetCompoundAmount(patch, oxygen.InternalName) + "%";
+        patchNitrogen.Text = GetCompoundAmount(patch, nitrogen.InternalName) + "%";
+        patchCO2.Text = GetCompoundAmount(patch, carbondioxide.InternalName) + "%";
 
         // Compounds
-        patchHydrogenSulfide.Text = Math.Round(patch.Conditions.Biome.Compounds[hydrogensulfide].Density *
-            patch.Conditions.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
-                patch, hydrogensulfide), 3) + "%";
-
-        patchAmmonia.Text = Math.Round(patch.Conditions.Biome.Compounds[ammonia].Density *
-            patch.Conditions.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
-                patch, ammonia), 3) + "%";
-
-        patchGlucose.Text = Math.Round(patch.Conditions.Biome.Compounds[glucose].Density *
-            patch.Conditions.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
-                patch, glucose), 3) + "%";
-
-        patchPhosphate.Text = Math.Round(patch.Conditions.Biome.Compounds[phosphates].Density *
-            patch.Conditions.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
-                patch, phosphates), 3) + "%";
-
-        patchIron.Text = GetPatchChunkTotalCompoundAmount(patch, iron) + "%";
+        patchHydrogenSulfide.Text = Math.Round(GetCompoundAmount(patch, hydrogensulfide.InternalName), 3) + "%";
+        patchAmmonia.Text = Math.Round(GetCompoundAmount(patch, ammonia.InternalName), 3) + "%";
+        patchGlucose.Text = Math.Round(GetCompoundAmount(patch, glucose.InternalName), 3) + "%";
+        patchPhosphate.Text = Math.Round(GetCompoundAmount(patch, phosphates.InternalName), 3) + "%";
+        patchIron.Text = GetCompoundAmount(patch, iron.InternalName) + "%";
 
         // Refresh species list
         speciesListBox.ClearItems();
@@ -1689,8 +1656,43 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
+    private void OnPhysCondChartLegendPressed(string name)
+    {
+        var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
+        var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
+
+        if (name == "temperature")
+        {
+            temperatureButton.Modulate = Colors.White;
+            sunlightButton.Modulate = Colors.DarkGray;
+            sunlightChart.Hide();
+            temperatureChart.Show();
+        }
+        else if (name == "sunlight")
+        {
+            temperatureButton.Modulate = Colors.DarkGray;
+            sunlightButton.Modulate = Colors.White;
+            sunlightChart.Show();
+            temperatureChart.Hide();
+        }
+    }
+
+    private void OnPhysCondChartLegendMoused(string name, bool hover)
+    {
+        var button = physicalConditionsIconLegends.GetNode<TextureButton>(name);
+
+        if (hover)
+        {
+            button.Modulate = Colors.LightGray;
+        }
+        else
+        {
+            button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
+        }
+    }
+
     /// <summary>
-    ///   Returns the chart which should contain the given compound.
+    ///   Returns a chart which should contain the given compound.
     /// </summary>
     private LineChart GetChartForCompound(string compoundName)
     {
@@ -1719,6 +1721,45 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         return chart;
+    }
+
+    private float GetCompoundAmount(Patch patch, string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        var amount = 0.0f;
+
+        switch (compoundName)
+        {
+            case "atp":
+                amount = 0.0f;
+                break;
+            case "oxytoxy":
+                amount = 0.0f;
+                break;
+            case "sunlight":
+                amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
+                break;
+            case "oxygen":
+                amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
+                break;
+            case "carbondioxide":
+                amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
+                break;
+            case "nitrogen":
+                amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
+                break;
+            case "iron":
+                amount = patch.GetTotalChunkCompoundAmount(compound);
+                break;
+            default:
+                amount = patch.Conditions.Biome.Compounds[compound].Density *
+                    patch.Conditions.Biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
+                        compound);
+                break;
+        }
+
+        return amount;
     }
 
     // ReSharper disable once RedundantNameQualifier
