@@ -792,7 +792,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
-        // Populate chart with datas from patch history
+        // Populate charts with datas from patch history
         foreach (var snapshot in patch.History)
         {
             temperatureData.DataPoints.Add(new DataPoint
@@ -823,9 +823,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
                 var extinctInPatch = entry.Value <= 0;
 
+                // Clamp population number so it doesn't go into the negatives
+                var population = extinctInPatch ? 0 : entry.Value;
+
                 var dataPoint = new DataPoint
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, entry.Value),
+                    Value = new Vector2((float)snapshot.TimePeriod, population),
                     Size = extinctInPatch ? 13 : 8,
                     IconType = extinctInPatch ? DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
                     MarkerColour = dataset.DataColour,
@@ -835,11 +838,16 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
-        temperatureChart.Plot();
-        sunlightChart.Plot();
-        atmosphericGassesChart.Plot("Atmospheric Gasses");
-        compoundsChart.Plot("Compounds");
-        speciesPopulationChart.Plot("Species List");
+        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C");
+        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx");
+        atmosphericGassesChart.Plot(TranslationServer.Translate("YEARS"),
+            "%", TranslationServer.Translate("ATMOSPHERIC_GASSES"));
+        compoundsChart.Plot(TranslationServer.Translate("YEARS"), "%",
+            TranslationServer.Translate("COMPOUNDS"));
+        speciesPopulationChart.Plot(TranslationServer.Translate("YEARS"),
+            string.Empty, TranslationServer.Translate("SPECIES_LIST"));
+
+        OnPhysCondChartLegendPressed("temperature");
     }
 
     public void SetMembraneTooltips(MembraneType referenceMembrane)
@@ -1731,12 +1739,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         switch (compoundName)
         {
-            case "atp":
-                amount = 0.0f;
-                break;
-            case "oxytoxy":
-                amount = 0.0f;
-                break;
             case "sunlight":
                 amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
                 break;

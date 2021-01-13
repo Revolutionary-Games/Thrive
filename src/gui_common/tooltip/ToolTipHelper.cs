@@ -18,7 +18,7 @@ public static class ToolTipHelper
     }
 
     /// <summary>
-    ///   Registers a Control mouse enter/exit event to display a tooltip
+    ///   Registers a Control mouse enter/exit event to display a custom tooltip
     /// </summary>
     /// <param name="control">The Control to register the tooltip to</param>
     /// <param name="tooltip">The tooltip to register with</param>

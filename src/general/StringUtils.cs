@@ -1,27 +1,33 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
+using Godot;
 
+/// <summary>
+///   Helper for any string related stuff.
+/// </summary>
 public static class StringUtils
 {
    /// <summary>
-   ///   From https://stackoverflow.com/a/30181106 with slight modification.
+   ///   Truncates large numbers with suffix added (e.g. M for million).
+   ///   Adapted from https://stackoverflow.com/a/30181106 to allow negatives.
    /// </summary>
-   public static string FormatNumber(long num)
+   public static string FormatNumber(this double number, bool withSuffix = true)
    {
-      if (num <= 0)
-         return "0";
+      if (number >= 1000000000 || number <= -1000000000)
+      {
+         return number.ToString("0,,,.###", CultureInfo.CurrentCulture) +
+            (withSuffix ? TranslationServer.Translate("BILLION_ABBREVIATION") : string.Empty);
+      }
+      else if (number >= 1000000 || number <= -1000000)
+      {
+         return number.ToString("0,,.##", CultureInfo.CurrentCulture) +
+            (withSuffix ? TranslationServer.Translate("MILLION_ABBREVIATION") : string.Empty);
+      }
+      else if (number >= 1000 || number <= -1000)
+      {
+         return number.ToString("0,.#", CultureInfo.CurrentCulture) +
+            (withSuffix ? TranslationServer.Translate("KILO_ABBREVIATION") : string.Empty);
+      }
 
-      // Ensure number has max 3 significant digits (no rounding up can happen)
-      long i = (long)Math.Pow(10, (int)Math.Max(0, Math.Log10(num) - 2));
-      num = num / i * i;
-
-      if (num >= 1000000000)
-         return (num / 1000000000D).ToString("0.##", CultureInfo.CurrentCulture) + "B";
-      if (num >= 1000000)
-         return (num / 1000000D).ToString("0.##", CultureInfo.CurrentCulture) + "M";
-      if (num >= 1000)
-         return (num / 1000D).ToString("0.##", CultureInfo.CurrentCulture) + "K";
-
-      return num.ToString("#,0", CultureInfo.CurrentCulture);
+      return number.ToString("0.#", CultureInfo.CurrentCulture);
    }
 }

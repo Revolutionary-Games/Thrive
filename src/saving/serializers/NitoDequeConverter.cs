@@ -22,6 +22,9 @@ public class NitoDequeConverter : JsonConverter
     {
         var array = serializer.Deserialize<object[]>(reader);
 
+        if (array == null)
+            return null;
+
         var deque = new Deque<object>();
 
         foreach (var entry in array)

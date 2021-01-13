@@ -33,7 +33,7 @@ public class DefaultToolTip : Control, ICustomToolTip
     }
 
     /// <summary>
-    ///   Only get and sets node name since this tooltip only shows a message
+    ///   Only get and sets the Node name since this tooltip only shows a message
     /// </summary>
     public string DisplayName
     {
