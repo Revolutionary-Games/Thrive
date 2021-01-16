@@ -29,6 +29,12 @@ public class Patch
     [JsonProperty]
     public readonly int[] Depth = new int[2] { -1, -1 };
 
+    /// <summary>
+    ///   List of all the recorded conditions of this patch. Useful for statistics.
+    /// </summary>
+    [JsonProperty]
+    public readonly Deque<PatchConditions> History = new Deque<PatchConditions>();
+
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
@@ -44,12 +50,6 @@ public class Patch
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
     public Vector2 ScreenCoordinates { get; set; } = new Vector2(0, 0);
-
-    /// <summary>
-    ///   List of all the recorded conditions of this patch. Useful for statistics.
-    /// </summary>
-    [JsonProperty]
-    public Deque<PatchConditions> History { get; private set; } = new Deque<PatchConditions>();
 
     /// <summary>
     ///   Adds a connection to patch
@@ -137,12 +137,12 @@ public class Patch
 
     public void RecordConditions(double timePeriod)
     {
-        if (History.Count >= Constants.MAX_NUM_OF_STORED_PATCH_CONDITIONS)
+        if (History.Count >= Constants.MAX_STORED_PATCH_CONDITIONS)
             History.RemoveFromBack();
 
-        var snapshot = (PatchConditions)Conditions.Clone();
-        snapshot.TimePeriod = timePeriod;
-        History.AddToFront(snapshot);
+        var conditions = (PatchConditions)Conditions.Clone();
+        conditions.TimePeriod = timePeriod;
+        History.AddToFront(conditions);
     }
 
     public override string ToString()
@@ -154,7 +154,6 @@ public class Patch
 /// <summary>
 ///   Conditions of a patch at some point in time.
 /// </summary>
-[UseThriveSerializer]
 public class PatchConditions : ICloneable
 {
     public double TimePeriod;

@@ -202,6 +202,8 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Plots the chart from available datasets
     /// </summary>
+    /// <param name="xAxisName">The horizontal axis label title</param>
+    /// <param name="yAxisName">The vertical axis label title</param>
     /// <param name="legendTitle">Title for the chart legend. If null, the legend will not be created</param>
     public void Plot(string xAxisName, string yAxisName, string legendTitle = null)
     {
@@ -252,6 +254,12 @@ public class LineChart : VBoxContainer
                 point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
             }
+        }
+
+        if (totalDataPoints.Count <= 0)
+        {
+            GD.PrintErr("Missing data points to plot");
+            return;
         }
 
         // Find out value boundaries
@@ -503,6 +511,9 @@ public class LineChart : VBoxContainer
         foreach (var data in dataSets)
         {
             var points = data.Value.DataPoints;
+
+            if (points.Count <= 0)
+                continue;
 
             // Setup the points
             foreach (var point in points)

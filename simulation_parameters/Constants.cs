@@ -417,7 +417,7 @@ public static class Constants
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
-    public const int MAX_NUM_OF_STORED_PATCH_CONDITIONS = 10;
+    public const int MAX_STORED_PATCH_CONDITIONS = 10;
 
     /// <summary>
     ///   When checking if the mouse is hovering over a microbe, this increments
