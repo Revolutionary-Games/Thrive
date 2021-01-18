@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2020-12-27 09:23+0000\n"
+"PO-Revision-Date: 2021-01-11 11:46+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -47,9 +47,9 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Um andere Zellen, Bakterien, Eisenbrocken sowie Zellenbrocken, welche "
-"kleiner sind als du, zu Verschlingen, drücken Sie G. Dies kostet mehr ATP "
-"und wird dich verlangsamen. Drücken Sie G ein zweites Mal, um den "
-"Verschlingungsmodus zu beenden."
+"kleiner sind als du, zu Verschlingen, drücke G. Dies kostet mehr ATP und "
+"wird dich verlangsamen. Drücke G ein zweites Mal, um den Verschlingungsmodus "
+"zu beenden."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
@@ -64,13 +64,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"Es gibt viele Organellen im Editor, die Sie weiterentwickeln können und "
-"die ein breites Spektrum an verschiedenen Spielstilen ermöglichen."
+"Es gibt viele Organellen im Editor, mit denen du dich weiterentwickeln "
+"kannst und die ein breites Spektrum an verschiedenen Spielstilen ermöglichen."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Wenn Ihre Population auf Null sinkt, sterben Sie zunächst aus."
+msgstr "Wenn deine Population auf Null sinkt, stirbst du zunächst aus."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -97,7 +97,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Um zu reproduzieren muss jeder Ihrer Organellen in zwei geteilt werden. "
+"Um zu reproduzieren muss jeder deiner Organellen in zwei geteilt werden. "
 "Organellen benötigen Ammoniak und Phosphat um sich zu spalten."
 
 #: ../simulation_parameters/common/help_texts.json:14
@@ -140,7 +140,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Externe Organellen\n"
 "\n"
-"Geißel: Erhöht Ihre Mobilität, verbraucht ATP\n"
+"Geißel: Erhöht deine Mobilität, verbraucht ATP\n"
 "\n"
 "Pilus: Kann im nah Kampf gegen andere Zellen verwendent werden"
 
@@ -170,13 +170,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Für jede Generation kannst du 100 Mutationspunkte ausgeben. Jede Änderung "
-"(oder Mutation) kostet einen bestimmten Betrag von MP. Das Hinzufügen und "
-"Entfernen von Organellen kostet MP, das Entfernen von Organellen, die in "
-"der aktuellen Mutationssitzung platziert wurden, erstattet jedoch MP für "
-"diese Organelle zurück. Du kannst eine Organelle entfernen, indem du mit "
-"der rechten Maustaste darauf drückst. Du kannst Ihre Organellen mit A und "
-"D drehen"
+"Für jede Generation kannst du 100 Mutationspunkte (MP) ausgeben. Jede "
+"Änderung (oder Mutation) kostet einen bestimmten Betrag von MP. Das "
+"Hinzufügen und Entfernen von Organellen kostet MP, das Entfernen von "
+"Organellen, die in der aktuellen Mutationssitzung platziert wurden, "
+"erstattet jedoch MP für diese Organelle zurück. Du kannst eine Organelle "
+"entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst "
+"deine Organellen mit A und D drehen."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -196,10 +196,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Fun Fact: Das Nasentierchen und Pantoffeltierchen sind ein Musterbeispiel "
-"für ein Raubtier-Beute-Verhältnis, das jahrzehntelang untersucht wurde. "
-"Bist du nun das Nasentierchen oder das Pantoffeltierchen? Jäger oder "
-"Gejagter?"
+"Interessanter Fakt: Das Nasentierchen und Pantoffeltierchen sind ein "
+"Musterbeispiel für ein Raubtier-Beute-Verhältnis, das jahrzehntelang "
+"untersucht wurde. Bist du nun das Nasentierchen oder das Pantoffeltierchen? "
+"Jäger oder Gejagter?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
@@ -210,27 +210,29 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Tipp: Osmoregulation kostet 1 ATP pro Sekunde und Feld, das Ihre Zelle "
-"hat. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn Sie "
-"ATP durch Osmoregulation verlieren, fügen Sie einfach ein paar leere "
+"Kleiner Tipp, Osmoregulation kostet 1 ATP pro Sekunde und Feld, das deine "
+"Zelle hat. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn "
+"Sie ATP durch Osmoregulation verlieren, fügen Sie einfach ein paar leere "
 "Felder Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Fun Fact: Im echten Leben haben Prokaryoten etwas, das Zellkompartiment "
-"genannt wird, die sich wie Organellen verhalten und in der Tat "
-"polyedrische Organellen genannt werden"
+"Interessanter Fakt: Im echten Leben haben Prokaryoten etwas, das "
+"Zellkompartiment genannt wird, die sich wie Organellen verhalten und in der "
+"Tat polyedrische Organellen genannt werden."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
-"Fun Fact: Das Metabolosom ist eine so genannte polyedrische Organelle."
+"Interessanter Fakt: Das Metabolosom ist eine so genannte polyedrische "
+"Organelle."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
 msgstr ""
-"Tipp: manchmal ist es am besten, einfach vor anderen Zellen davonzulaufen."
+"Kleiner Tipp, manchmal ist es am besten, einfach vor anderen Zellen "
+"davonzulaufen."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
@@ -241,15 +243,15 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Tipp: Bakterien können stärker sein, als sie erscheinen. Sie sehen "
-"vielleicht klein aus, aber einige von ihnen können sich in Sie eingraben "
-"und Sie auf diese Weise töten!"
+"Kleiner Tipp, Bakterien können stärker sein, als sie erscheinen. Sie sehen "
+"vielleicht klein aus, aber einige von ihnen können sich in Sie eingraben und "
+"Sie auf diese Weise töten!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Tipp: Sie können andere Arten bis zur Ausrottung jagen, wenn Sie nicht "
-"vorsichtig genug sind. Arten können auch von anderen Arten bis zur "
+"Kleiner Tipp, du kannst andere Arten bis zur Ausrottung jagen, wenn du nicht "
+"vorsichtig genug bist. Arten können auch von anderen Arten bis zur "
 "Ausrottung gejagt werden."
 
 #: ../simulation_parameters/common/help_texts.json:57
@@ -267,15 +269,15 @@ msgstr "Diese blauen Zellen jedoch..."
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Tipp: Biome sind mehr als nur unterschiedliche Hintergründe, die "
+"Kleiner Tipp, Biome sind mehr als nur unterschiedliche Hintergründe, die "
 "Verbindungen in verschiedenen Biomen erscheinen manchmal mit "
 "unterschiedlicher Geschwindigkeit."
 
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Hier ein kleiner tipp, je mehr Flagellum du hast, umso schneller bewegst "
-"du dich, vroom vroom, jedoch kostet es mehr ATP"
+"Kleiner Tipp, je mehr Flagellen du hast, umso schneller bewegst du dich, "
+"vroom vroom, jedoch kostet es mehr ATP"
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
@@ -284,33 +286,33 @@ msgstr "Kleiner Tipp, Du kannst Eisenbrocken oder ähnliches verschlingen."
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Tipp: bereiten Sie sich vor, bevor Sie einen Nukleus hinzufügen. Diese "
+"Kleiner Tipp, bereite dich vor, bevor du einen Nukleus hinzufügst. Diese "
 "Dinge sind teuer, im Unterhalt und in Vorauskosten."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
-"Fun Fact: wusstest du, dass es auf der Erde über 8000 Arten von "
+"Interessanter Fakt: wusstest du, dass es auf der Erde über 8000 Arten von "
 "Wimpertierchen gibt?"
 
 #: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"Fun Fact: der Trompetentierchen ist ein Wimpertierchen, das sich strecken "
-"und Beute in einem trompetenartigem Maul fangen kann. Es zieht die Beute "
-"ein, indem es mit den Zilien Wasserströmungen erzeugt."
+"Interessanter Fakt: der Trompetentierchen ist ein Wimpertierchen, das sich "
+"strecken und Beute in einem trompetenartigem Maul fangen kann. Es zieht die "
+"Beute ein, indem es mit den Zilien Wasserströmungen erzeugt."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_19"
 msgstr ""
-"Fun Fact: das Nasentierchen ist ein Wimpertierchen, das Pantoffeltierchen "
-"jagt."
+"Interessanter Fakt: das Nasentierchen ist ein Wimpertierchen, das "
+"Pantoffeltierchen jagt."
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
-"Fun Fact: Amöben jagen und fangen Beute mit \"Beinen\" aus Zytoplasma, "
-"Scheinfüßchen genannt. Eines Tages wollen wir diese in Thrive."
+"Interessanter Fakt: Amöben jagen und fangen Beute mit \"Beinen\" aus "
+"Zytoplasma, Scheinfüßchen genannt. Eines Tages wollen wir diese in Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -323,13 +325,13 @@ msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "Thrive's Sound-Teamleiter hat einige Lieder gemacht, die es noch nicht ins "
 "Spiel geschafft haben. Du kannst sie dir anhören oder Streams von ihm "
-"anschauen, wie er sie komponiert. Du findest alles auf seinem YouTube-"
-"Kanal  Oliver Lugg."
+"anschauen, wie er sie komponiert. Du findest alles auf seinem YouTube-Kanal "
+"Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"Tipp: wenn deine Zelle 150 Felder groß ist, kannst du die großen "
+"Kleiner Tipp, wenn deine Zelle 150 Felder groß ist, kannst du die großen "
 "Eisenbrocken verschlingen."
 
 #: ../simulation_parameters/common/help_texts.json:71
@@ -337,13 +339,14 @@ msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive ist als eine Simulation eines fremden Planeten gedacht, daher macht "
 "es Sinn, dass die meisten Lebewesen, die du findest, mit einer oder zwei "
-"anderen Spezies verwandt sind, da die Evolution um Sie herum stattfindet - "
+"anderen Spezies verwandt sind, da die Evolution um dich herum stattfindet - "
 "versuche, sie zu identifizieren!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"Fun Fact: das Thrive-Team macht ab und zu Podcasts. Hör doch mal hinein!"
+"Interessanter Fakt: das Thrive-Team macht ab und zu Podcasts. Hör doch mal "
+"hinein!"
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
@@ -352,7 +355,7 @@ msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"Fun Fact: einer der ersten spielbaren Prototypen wurde von unserem "
+"Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem "
 "großartigen Programmierer gemacht, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
@@ -811,7 +814,9 @@ msgstr "Mitochondrium"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4932
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3212
 msgid "TOXIN_VACUOLE"
-msgstr "Toxin-Vakuole"
+msgstr ""
+"Toxin-\n"
+"Vakuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3467
@@ -979,7 +984,7 @@ msgstr "Sonstiges"
 
 #: ../src/general/OptionsMenu.tscn:212
 msgid "VSYNC"
-msgstr "V-sync"
+msgstr "VSync"
 
 #: ../src/general/OptionsMenu.tscn:220
 msgid "FULLSCREEN"
@@ -1049,7 +1054,7 @@ msgstr "Zurücksetzen"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Hilf das Spiel zu übersetzen"
 
 #: ../src/general/OptionsMenu.tscn:630
 msgid "COMPOUND_CLOUDS"
@@ -1119,7 +1124,7 @@ msgstr "Eigener Nutzername:"
 
 #: ../src/general/OptionsMenu.tscn:972
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
+msgstr "Bildschirmfoto-Ordner öffnen"
 
 #: ../src/general/OptionsMenu.tscn:983 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
@@ -1152,8 +1157,8 @@ msgstr "Standardeingaben laden?"
 #: ../src/general/OptionsMenu.tscn:1043
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
-"Sind Sie sicher, dass Sie die Eingaben auf ihre Standardwerte zurücksetzen "
-"wollen?"
+"Bist du sicher, dass du die Eingaben auf ihre Standardwerte zurücksetzen "
+"willst?"
 
 #: ../src/general/OptionsMenu.tscn:1052
 msgid "CLOSE_OPTIONS"
@@ -1163,7 +1168,7 @@ msgstr "Optionen schließen?"
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Es wurden ungespeicherte Änderungen vorgenommen.\n"
-"Möchten Sie fortfahren?"
+"Möchtest du fortfahren?"
 
 #: ../src/general/OptionsMenu.tscn:1107
 msgid "SAVE_AND_CONTINUE"
@@ -1268,8 +1273,8 @@ msgstr "GLES2-Modus-Warnung"
 #: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"Sie betreiben Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird "
-"wahrscheinlich Probleme verursachen. Versuchen Sie, Ihre Grafiktreiber zu "
+"Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird "
+"wahrscheinlich Probleme verursachen. Versuche deine Grafiktreiber zu "
 "aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur "
 "Ausführung von Thrive zu erzwingen."
 
@@ -1280,9 +1285,9 @@ msgstr "Speicherstände haben verschiedene Versionen"
 #: ../src/gui_common/QuickLoadHandler.tscn:19
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"Der Speicherstand, welchen Sie zu Laden versuchen passt nicht mit der "
+"Der Speicherstand, welcher zu Laden versucht wird, passt nicht mit der "
 "Spielversion überein.\n"
-"Um den Speicherstand trozdem zu laden, laden Sie ihn über das Menü."
+"Um den Speicherstand trozdem zu laden, lade ihn über das Menü."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:81
 msgid "OPEN_THE_MENU"
@@ -1606,7 +1611,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2835
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Stechen Sie damit andere Zellen."
+msgstr "Steche damit andere Zellen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2915
@@ -1939,31 +1944,31 @@ msgstr "POPULATION:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:16
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr ""
+msgstr "Pangonische Schlote"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:24
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr ""
+msgstr "Pangonisches Mesopelagial"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:31
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr ""
+msgstr "Pangonische Epipelagie"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:38
 msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr ""
+msgstr "Pangonisches Gezeitenbecken"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:45
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr ""
+msgstr "Pangoniosches Bathypelagial"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:52
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr ""
+msgstr "Pangonisches Abyssopelagial"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:59
 msgid "PATCH_PANGONIAN_COAST"
-msgstr ""
+msgstr "Pangonische Küste"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:66
 msgid "PATCH_PANGONIAN_ESTUARY"
@@ -1979,11 +1984,11 @@ msgstr "Schelfeis"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:87
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
+msgstr "Pangonischer Meeresboden"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
-msgstr ""
+msgstr "Zellprozesse"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
@@ -2069,6 +2074,8 @@ msgstr "Proteine"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2091
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
+"Chemosynth-\n"
+"etisierende Proteine"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
 msgid "EXTERNAL"
@@ -2115,8 +2122,8 @@ msgstr "Negativer ATP-Saldo"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4081
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
-"Ihre Mikrobe produziert nicht genug ATP zum überleben!\n"
-"Möchten Sie fortfahren?"
+"Deine Mikrobe produziert nicht genug ATP zum überleben!\n"
+"Möchtest du fortfahren?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4089
 msgid "DISCONNECTED_ORGANELLES"
@@ -2126,8 +2133,8 @@ msgstr "Getrennte Organellen"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Es gibt Organellen, die nicht mit dem Rest verbunden sind.\n"
-"Bitte verbinden Sie alle platzierten Organellen miteinander oder machen "
-"Sie Ihre Änderungen rückgängig."
+"Bitte verbinde alle platzierten Organellen miteinander oder mach deine "
+"Änderungen rückgängig."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4156
 msgid "PATCH_NAME"
@@ -2160,7 +2167,7 @@ msgstr "NÄCHSTE"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4470
 msgid "SELECT_A_PATCH"
-msgstr "Wählen Sie ein Gebiet aus, um hier Details anzuzeigen"
+msgstr "Wähle ein Gebiet aus, um hier Details anzuzeigen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4505
 msgid "CURRENT_LOCATION_CAPITAL"
@@ -2234,21 +2241,21 @@ msgstr "AUSSTERBEN"
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
-"Genau wie 99% aller Arten, die jemals existiert haben, ist auch Ihre Art "
-"ausgestorben. Andere werden weiterhin Ihre Nische ausfüllen und gedeihen, "
-"aber das werden nicht Sie sein. Du wirst vergessen werden, ein "
+"Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art "
+"ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, "
+"aber das wirst nicht du sein. Du wirst vergessen werden, ein "
 "fehlgeschlagenes Experiment der Evolution."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
-msgstr ""
+msgstr "DU SIND GEDEIHT!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
-"Herzlichen Glückwunsch, Sie diese Version von Thrive gewonnen! Wenn Sie "
-"möchten, können Sie das Spiel nach dem Schließen dieses Fensters "
-"fortsetzen oder ein neues Spiel in einer neuen Welt beginnen."
+"Herzlichen Glückwunsch, du hast diese Version von Thrive gewonnen! Wenn du "
+"möchtest, kannst du das Spiel nach dem Schließen dieses Fensters fortsetzen "
+"oder ein neues Spiel in einer neuen Welt beginnen."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
 #: ../src/saving/InProgressLoad.cs:138
@@ -2354,8 +2361,8 @@ msgstr "Ungülig"
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-"Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, sind "
-"Sie sicher, dass Sie {0} dauerhaft löschen wollen?"
+"Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist "
+"du sicher, dass du {0} dauerhaft löschen willst?"
 
 #: ../src/saving/SaveList.tscn:46 ../src/saving/SaveListItem.tscn:103
 msgid "LOADING_DOT"
@@ -2374,7 +2381,7 @@ msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dieser Speicherstand stammt aus einer neueren Version von Thrive und ist "
 "sehr wahrscheinlich inkompatibel.\n"
-"Wollen Sie trotzdem versuchen, den Spielstand zu laden?"
+"Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
 #: ../src/saving/SaveList.tscn:79
 msgid "OLDER_VERSION_LOADING_WARNING"
@@ -2383,9 +2390,9 @@ msgstr ""
 "möglicherweise inkompatibel.\n"
 "Da sich Thrive derzeit noch in einem frühen Entwicklungsstadium befindet, "
 "hat Kompatibilität keine Priorität.\n"
-"Sie können alle Probleme melden, auf die Sie stoßen, aber sie haben im "
-"Moment nicht die höchste Priorität.\n"
-"Wollen Sie trotzdem versuchen, den Spielstand zu laden?"
+"Du kannst alle Probleme melden, auf die du stoßt, aber sie haben im Moment "
+"nicht die höchste Priorität.\n"
+"Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
 #: ../src/saving/SaveList.tscn:88
 msgid "LOAD_INVALID_SAVE"
@@ -2397,7 +2404,7 @@ msgstr ""
 "Aus dieser Datei konnten keine Speicherinformationen geladen werden.\n"
 "Diese Speicherung ist höchstwahrscheinlich korrupt oder hat ein neueres "
 "Format, das von dieser Version von Thrive nicht verstanden wird.\n"
-"Wollen Sie trotzdem versuchen, den Spielstand zu laden?"
+"Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
 #: ../src/saving/SaveList.tscn:97
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
@@ -2450,21 +2457,21 @@ msgstr "Laden"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, "
-"sind Sie sicher, dass Sie diesen dauerhaft löschen wollen?"
+"bist du sicher, dass du ihn dauerhaft löschen willst?"
 
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Das Löschen des/der ausgewählten Spielstandes/Spielständen kann nicht "
-"rückgängig gemacht werden. Sind Sie sicher, dass Sie die {0} "
-"Speicherung(en) dauerhaft löschen möchten?"
+"rückgängig gemacht werden. Bist du sicher, dass du die {0} Speicherung(en) "
+"dauerhaft löschen möchten?"
 
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Das Löschen aller alten Auto- und Schnellspeicherungen kann nicht "
-"rückgängig gemacht werden. Sind Sie sicher, dass Sie Folgendes dauerhaft "
-"löschen möchten?\n"
+"Das Löschen aller alten Auto- und Schnellspeicherungen kann nicht rückgängig "
+"gemacht werden. Bist du sicher, dass du Folgendes dauerhaft löschen möchtest?"
+"\n"
 " - {0} Automatische Speicherung(en)\n"
 " - {1} Schnellspeicherung(en)"
 
@@ -2530,88 +2537,88 @@ msgstr "Tutorial"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Willkommen beim Mikrobeneditor.\n"
-"Hier können Sie nachlesen, was seit dem Start des Spiels geschehen ist "
-"oder wann Sie zuletzt im Editor waren und dann Änderungen an Ihrer Spezies "
+"Hier kannst du nachschauen, was seit dem Start des Spiels geschehen ist oder "
+"wenn du zuletzt im Editor warst und dann Änderungen an deiner Spezies "
 "vornehmen.\n"
 "\n"
-"In dieser Registerkarte können Sie einen Bericht darüber sehen, welche "
-"Arten es wo gibt und was ihre Populationen sind. Oben können Sie auch "
+"In dieser Registerkarte können Sie einen Bericht darüber sehen, welche Arten "
+"es wo gibt und was deine Populationen sind. Oben können Sie auch "
 "Umweltveränderungen sehen.\n"
 "\n"
-"Um zur nächsten Registerkarte des Editors zu gelangen, drücken Sie die "
-"nächste Schaltfläche unten rechts."
+"Um zur nächsten Registerkarte des Editors zu gelangen, drücke die Nächste-"
+"Schaltfläche unten rechts."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Dies ist die Gebietskarte.\n"
-"Hier können Sie die verschiedenen Gebiete sehen, in denen Mikroben leben "
+"Hier kannst du die verschiedenen Gebiete sehen, in denen Mikroben leben "
 "können.\n"
-"Ihr aktuelles Gebiet ist hervorgehoben.\n"
-"Sie können die Gebiete mit der Maus anklicken, um sie auszuwählen und ihre "
+"Dein aktuelles Gebiet ist hervorgehoben.\n"
+"Du kannst Gebiete mit der Maus anklicken, um sie auszuwählen und ihre "
 "Details auf der rechten Seite zu sehen.\n"
 "\n"
-"Wenn Sie ein Gebiet neben dem Gebiet, in dem Sie sich gerade befinden, "
-"auswählen, können Sie den Knopf rechts drücken, um sich dorthin zu "
-"bewegen. Auf diese Weise kann sich Ihre Spezies auf neue Gebiete "
-"ausbreiten.\n"
+"Wenn du ein Gebiet neben dem Gebiet, in dem du dich gerade befindest, "
+"auswählen, kannst du den Knopf rechts drücken, um dich dorthin zu bewegen. "
+"Auf diese Weise kann sich deine Spezies auf neue Gebiete ausbreiten.\n"
 "\n"
-"Wählen Sie ein Gebiet aus, um fortzufahren."
+"Wähle ein Gebiet aus, um fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"Dies ist der Zell-Editor, in dem Sie durch Ausgabe von Mutationspunkten "
-"(MP) Organellen an Ihrer Spezies hinzufügen oder entfernen können.\n"
+"Dies ist der Zell-Editor, in dem du durch Ausgabe von Mutationspunkten (MP) "
+"Organellen an deiner Spezies hinzufügen oder entfernen kannst.\n"
 "\n"
-"Sie können auch andere Eigenschaften Ihrer Spezies in den anderen "
-"Registern des Zelleneditors ändern.\n"
+"Du kannst auch andere Eigenschaften deiner Spezies in den anderen Registern "
+"des Zelleneditors ändern.\n"
 "\n"
-"Um fortzufahren, wählen Sie eine Organelle aus der Palette auf der linken "
-"Seite aus (Zytoplasma ist eine gute Wahl). Klicken Sie dann mit der linken "
-"Maustaste neben das in der Mitte des Bildschirms angezeigte Feld, um diese "
-"Organelle zu Ihrer Spezies hinzuzufügen."
+"Um fortzufahren, wähle eine Organelle aus der Palette auf der linken Seite "
+"aus (Zytoplasma ist eine gute Wahl). Klicke dann mit der linken Maustaste "
+"neben das in der Mitte des Bildschirms angezeigte Feld, um diese Organelle "
+"zu deiner Spezies hinzuzufügen."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Das Entfernen von Organellen kostet auch MP, da es sich um eine Mutation "
-"Ihrer Spezies handelt. Sie können Organellen mit der rechten Maustaste "
+"deiner Spezies handelt. Du kannst Organellen mit der rechten Maustaste "
 "anklicken, um sie zu entfernen.\n"
-"Wenn Sie einen Fehler machen, können Sie jede Änderung, die Sie im Editor "
-"vornehmen, rückgängig machen.\n"
+"Wenn du einen Fehler machst, kannst du jede Änderung, die im Editor "
+"vorgenommen wurde, rückgängig machen.\n"
 "\n"
-"Hinweis: Das Entfernen von Organellen, die Sie in der aktuellen "
-"Editorsitzung platziert haben, ist kostenlos.\n"
+"Hinweis: Das Entfernen von Organellen, die in der aktuellen Editorsitzung "
+"platziert wurden, ist kostenlos.\n"
 "\n"
-"Klicken Sie auf die Schaltfläche Rückgängig, um fortzufahren."
+"Klicken auf die Rückgängig-Schaltfläche um fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Achten Sie bei der Auswahl der hinzuzufügenden Organellen auf die "
-"Tooltipps für die Organellen, welche Prozesse sie ausführen und welche "
-"Verbindungen sie verwenden und herstellen.\n"
+"Achte bei der Auswahl der hinzuzufügenden Organellen auf die Tooltipps der "
+"Organellen, welche Prozesse sie ausführen und welche Verbindungen sie "
+"verwenden und herstellen.\n"
 "\n"
-"Achten Sie auch auf den ATP-Balance-Balken oben rechts, um "
-"sicherzustellen, dass Ihre Zelle überleben kann.\n"
+"Achte auch auf den ATP-Balance-Balken oben rechts, um sicherzustellen, dass "
+"deine Zelle überleben kann.\n"
 "\n"
-"Sie können die Organellen mit A und D (Standardtasten) drehen, bevor Sie "
-"sie platzieren.\n"
+"Du kannst die Organellen mit A und D (Standardtasten) drehen, bevor du sie "
+"platzierst.\n"
 "\n"
-"Drücken Sie die Redo-Taste (in der Nähe der Undo-Taste), um fortzufahren."
+"Drücke die Wiederherstellen-Taste (in der Nähe der Rückgängig-Taste), um "
+"fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Das sind die Grundlagen der Bearbeitung Ihrer Art. In den anderen "
-"Registerkarten des Zelleneditors finden Sie noch mehr Optionen.\n"
+"Das sind die Grundlagen der Bearbeitung deiner Art. In den anderen "
+"Registerkarten des Zelleneditors findest du noch mehr Optionen.\n"
 "\n"
-"Sie können Ihre Spezies umbenennen, indem Sie auf Ihren aktuellen Artnamen "
-"klicken und den Text bearbeiten.\n"
+"Du können deine Spezies umbenennen, indem du auf den aktuellen Artnamen "
+"klickst und den Text bearbeiten.\n"
 "\n"
-"Zu Beginn sollten Sie Ihre Zelle klein halten und auf die "
-"Oberflächenflecken zugehen.\n"
+"Zu Beginn solltest du deine Zelle klein halten und auf die "
+"Oberflächengebiete zugehen.\n"
 "\n"
 "Viel Erfolg!"
 
@@ -2623,17 +2630,17 @@ msgstr "Verstanden"
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Auf einem weit entfernten fremden Planeten haben Äonen vulkanischer "
-"Aktivität und Meteoriteneinschläge zur Entwicklung eines neuen Phänomens "
-"im Universum geführt.\n"
+"Aktivität und Meteoriteneinschläge zur Entwicklung eines neuen Phänomens im "
+"Universum geführt.\n"
 "\n"
 "Leben.\n"
 "\n"
-"Einfache Mikroben leben in den tiefen Regionen des Ozeans. Sie sind der "
+"Einfache Mikroben leben in den tiefen Regionen des Ozeans. Du bist der "
 "Urvorfahr auf diesem Planeten.\n"
 "\n"
-"Um in dieser lebensfeindlichen Welt zu überleben, müssen Sie alle "
-"Verbindungen, die Sie finden können, sammeln und jede Generation "
-"weiterentwickeln, um gegen die anderen Mikrobenarten anzutreten."
+"Um in dieser lebensfeindlichen Welt zu überleben, musst du alle Verbindungen "
+"die du finden kannst sammeln und jede Generation weiterentwickeln, um gegen "
+"die anderen Mikrobenarten anzutreten."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
 msgid "SHOW_TUTORIALS"
@@ -2641,40 +2648,37 @@ msgstr "Tutorials anzeigen"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Gedeihe"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Um Ihre Zelle zu steuern, verwenden Sie die Tasten in der Nähe Ihrer Zelle "
-"(Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu "
-"steuern.\n"
+"Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle ("
+"Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu steuern."
 "\n"
-"Probieren Sie alle Tasten für einige Sekunden aus, um fortzufahren."
+"\n"
+"Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"Sammeln Sie Glukose (weiße Wolken), indem Sie sich über sie bewegen.\n"
-"Ihre Zelle braucht Glukose, um Energie zu produzieren und am Leben zu "
+"Sammel Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
+"Deine Zelle braucht Glukose, um Energie zu produzieren und am Leben zu "
 "bleiben.\n"
-"Folgen Sie der Linie von Ihrer Zelle bis zur einer nahe gelegenen "
-"Glukosewolke."
+"Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Achten Sie auf Ihren Gesundheitsbalken neben dem ATP-Balken (unten "
-"rechts).\n"
-"Ihre Zelle stirbt, wenn ihr die Gesundheit ausgeht.\n"
-"Sie regenerieren die Gesundheit, solange Sie ATP haben.\n"
-"Achten Sie darauf, dass Sie genügend Glukose sammeln, um ATP zu "
-"produzieren."
+"Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
+"Deine Zelle stirbt, wenn die Gesundheit ausgeht.\n"
+"Du regenerierst Gesundheit, solange du ATP hast.\n"
+"Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Um sich zu vermehren, müssen Sie alle Ihre Organellen duplizieren, indem "
+"Um sich zu vermehren, müssen Sie alle deiner Organellen duplizieren, indem "
 "Sie genügend Ammoniak und Phosphat sammeln.\n"
 "Schauen Sie auf den Indikator unten rechts, um zu sehen, wie viel mehr Sie "
 "benötigen."
