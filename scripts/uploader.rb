@@ -192,8 +192,9 @@ class DevBuildUploader
 
   # Does the whole upload process
   def upload(file, url, token)
-    filesize ='%.2f' % (File.size(file).to_f / 2**20)
-    puts "Uploading file #{file} of #{filesize} MiB"
+    file_size ='%.2f' % (File.size(file).to_f / 2**20)
+    puts "Uploading file #{file} " + 
+         "with size of #{file_size} MiB"
     put_file file, url
 
     # Tell the server about upload success
