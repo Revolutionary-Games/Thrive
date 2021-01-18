@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2021-01-08 15:18+0000\n"
+"PO-Revision-Date: 2021-01-10 09:12+0000\n"
 "Last-Translator: LibreHacker <librehacker@snopyta.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
@@ -317,13 +317,12 @@ msgid "MOVE_FORWARD"
 msgstr "Двигаться вперёд"
 
 #: ../simulation_parameters/common/input_options.json:22
-#, fuzzy
 msgid "MOVE_BACKWARDS"
-msgstr "Авто-эво не удалось запустить"
+msgstr "Двигаться назад"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "Двигаться назад"
+msgstr "Авто движение назад"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
@@ -371,23 +370,20 @@ msgid "REDO"
 msgstr "Вернуть"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "PLACE_ORGANELLE"
-msgstr "Органеллы"
+msgstr "Разместить органеллу"
 
 #: ../simulation_parameters/common/input_options.json:91
-#, fuzzy
 msgid "REMOVE_ORGANELLE"
-msgstr "Органеллы"
+msgstr "Убрать органеллу"
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "PAN_CAMERA_LEFT"
 msgstr "Двигать влево"
 
 #: ../simulation_parameters/common/input_options.json:99
-#, fuzzy
 msgid "PAN_CAMERA_RIGHT"
-msgstr "Свет"
+msgstr "Двигать вправо"
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "PAN_CAMERA_UP"
@@ -859,9 +855,8 @@ msgid "CTRL"
 msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
-#, fuzzy
 msgid "ALT"
-msgstr "АТФ"
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
@@ -893,9 +888,8 @@ msgid "WHEEL_LEFT"
 msgstr "Колёсико влево"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
-#, fuzzy
 msgid "WHEEL_RIGHT"
-msgstr "Свет"
+msgstr "Колёсико вправо"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
@@ -1030,12 +1024,11 @@ msgstr "Делитель Облачного Разрешения:"
 
 #: ../src/general/OptionsMenu.tscn:731
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "Запускать авто-эво во время геймплея"
+msgstr "Запускать авто-эво во время игры"
 
 #: ../src/general/OptionsMenu.tscn:798
-#, fuzzy
 msgid "RESET_INPUTS"
-msgstr "Восстановить Данные"
+msgstr "Сбросить Клавиши"
 
 #: ../src/general/OptionsMenu.tscn:822
 msgid "PLAY_INTRO_VIDEO"
@@ -1109,10 +1102,9 @@ msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Восстановить по умолчанию?"
 
 #: ../src/general/OptionsMenu.tscn:1043
-#, fuzzy
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
-"Ты действительно хочешь сбросить ВСЕ настройки до значений по умолчанию?"
+"Ты действительно хочешь сбросить настройки клавиш до значений по умолчанию?"
 
 #: ../src/general/OptionsMenu.tscn:1052
 msgid "CLOSE_OPTIONS"
@@ -1201,7 +1193,7 @@ msgstr "Инструменты"
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr "Посмотреть Исходный Код"
+msgstr "Обзор Исходного Кода"
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
@@ -1503,7 +1495,7 @@ msgstr "Использует"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2558
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr ""
+msgstr "увеличивает передвижение"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2570
 msgid "SPEED_OF_THE_CELL"
@@ -1519,7 +1511,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2835
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr ""
+msgstr "Проткните этим другие клетки."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2915
@@ -1886,9 +1878,8 @@ msgid "BEHAVIOR"
 msgstr "Поведение"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
-#, fuzzy
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Поиск..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1700
 msgid "STRUCTURAL"
@@ -1935,9 +1926,8 @@ msgid "COLOUR"
 msgstr "Окраска"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4042
-#, fuzzy
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Названия видов..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4071
 msgid "CONFIRM_CAPITAL"
@@ -1970,7 +1960,7 @@ msgstr "Название Участка"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4190
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Авто-Эво"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4204
 msgid "FOOD_CHAIN"
@@ -2065,7 +2055,7 @@ msgstr "{0}-{1}м ниже уровня моря"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1518
 msgid "WITH_POPULATION"
-msgstr ""
+msgstr "{0} из популяции: {1}"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2103,7 +2093,7 @@ msgstr "Создание объектов из сохранения"
 
 #: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Случилось отклонение пока загружались данные сохранения"
 
 #: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
@@ -2119,7 +2109,7 @@ msgstr "Обработка загруженных объектов"
 
 #: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr ""
+msgstr "Случилось отклонение обрабатывались загруженные объекты"
 
 #: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
@@ -2174,23 +2164,20 @@ msgid "SAVING_FAILED"
 msgstr "Сохранение неудалось! Случается в исключительных ситуациях"
 
 #: ../src/saving/SaveInformation.cs:16
-#, fuzzy
 msgid "SAVE_MANUAL"
-msgstr "Сохранение неудалось"
+msgstr "Ручное"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
 msgstr "Автосохранение"
 
 #: ../src/saving/SaveInformation.cs:28
-#, fuzzy
 msgid "SAVE_QUICKSAVE"
-msgstr "Сохранить игру"
+msgstr "Быстрое сохранение"
 
 #: ../src/saving/SaveInformation.cs:34
-#, fuzzy
 msgid "SAVE_INVALID"
-msgstr "Сохранение неудалось"
+msgstr "Недействительно"
 
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
@@ -2232,6 +2219,10 @@ msgstr "Загрузить недействительное сохранение
 #: ../src/saving/SaveList.tscn:89
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
+"Сохраненная информация не может быть загружена из этого файла.\n"
+"Это сохранение скорее всего поврежденно или нового формата, который не "
+"понимается текущей версией Thrive.\n"
+"Ты всё равно хочешь попробовать загрузить его?"
 
 #: ../src/saving/SaveList.tscn:97
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
@@ -2240,6 +2231,10 @@ msgstr "Выбранное сохранение несовместимо"
 #: ../src/saving/SaveList.tscn:99
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
+"Выбранное сохранение для загрузки известно как несовместимое с текущей "
+"версий Thrive.\n"
+"Thrive на стадии ранней разработки, совместимость сохранений не высокого "
+"приоритета, она не имеет встроенного преобразователя старых сохранений."
 
 #: ../src/saving/SaveListItem.tscn:129
 msgid "CREATED_AT"
@@ -2290,6 +2285,10 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
+"Удаление всех старых Авто и Быстрых сохранений невозможно отменить, ты "
+"действительно желаешь пермаментно удалить следущие?\n"
+" - {0} Авто сохранение(я)\n"
+" - {1} Быстрое(ые) сохранение(я)"
 
 #: ../src/saving/SaveManagerGUI.tscn:65
 msgid "REFRESH"
@@ -2305,7 +2304,7 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:92
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr ""
+msgstr "Открыть Папку Сохранений"
 
 #: ../src/saving/SaveManagerGUI.tscn:124
 msgid "TOTAL_SAVES"
@@ -2321,7 +2320,7 @@ msgstr "Выбранно:"
 
 #: ../src/saving/SaveManagerGUI.tscn:181
 msgid "DELETE_SELECTED_SAVES"
-msgstr ""
+msgstr "Удалить выбранное(ые) Сохранение(я)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES"
@@ -2352,10 +2351,31 @@ msgstr "Руководство"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+"Добро пожаловать в Микробный Редактор.\n"
+"Здесь ты можешь просмотреть что случилось в начале игры или когда ты "
+"последний раз был в редакторе. И теперь ты можешь делать изменения своего "
+"вида.\n"
+"\n"
+"В этой вкладке ты можешь видеть отчёт о том, какие виды существуют, где и "
+"какова их популяция. Также ты можешь видеть изменения окружающей среды на "
+"верху.\n"
+"\n"
+"Ступай на следующую вкладку редактора, нажми кнопку далее справа внизу."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
+"Это карта участков.\n"
+"Здесь ты можешь видеть различные участки микробов в которых можешь жить.\n"
+"Твой текущий участок подсвечен.\n"
+"Ты можешь нажать на участок своей мышью и выбрать его, чтобы увидеть его "
+"детали справой стороны.\n"
+"\n"
+"Если ты выбрал участок следующий за текущем где ты, можешь нажать кнопку "
+"чтобы двигаться сюда. Это возволяет твоей популяции распространяться на "
+"новые участки.\n"
+"\n"
+"Выберите участок для продолжения."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
@@ -2364,6 +2384,15 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
+"Удаление органелл также стоит МО так как это мутация твоего вида. Нажимай "
+"правой кнопкой по органеллам чтобы удалить их.\n"
+"Если ты допустил ошибку, ты можешь отменить любое изменение сделанное в "
+"редакторе.\n"
+"\n"
+"Примечание: удаление органелл размещённых в текущей сессии редактора "
+"бесплатно.\n"
+"\n"
+"Нажми кнопку отмены для продолжения."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
@@ -2375,7 +2404,7 @@ msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "GOT_IT"
-msgstr ""
+msgstr "Понятно"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
 msgid "MICROBE_STAGE_INITIAL"
@@ -2386,8 +2415,9 @@ msgid "SHOW_TUTORIALS"
 msgstr "Показать руководство"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#, fuzzy
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Начать Выживание"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
@@ -2404,6 +2434,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
+"Присматривай за планкой своего здровья следующая за планкой АТФ (ниже "
+"справа).\n"
+"Твоя клетка умирает, если закончится здоровье.\n"
+"Ты восстанавливаешь здоровье пока имеешь АТФ.\n"
+"Нужно собирать достаточно глюкозы для производства АТФ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
