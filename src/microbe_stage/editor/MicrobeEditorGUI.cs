@@ -763,6 +763,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         var patch = editor.CurrentPatch;
 
+        var patchHistory = patch.GetHistory();
+
         // Initialize datasets
         var temperatureData = new LineChartData
         {
@@ -772,7 +774,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         temperatureChart.AddDataSet("Temperature", temperatureData);
 
-        foreach (var snapshot in patch.History)
+        foreach (var snapshot in patchHistory)
         {
             foreach (var entry in snapshot.Biome.Compounds)
             {
@@ -793,7 +795,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         // Populate charts with datas from patch history
-        foreach (var snapshot in patch.History)
+        foreach (var snapshot in patchHistory)
         {
             temperatureData.DataPoints.Add(new DataPoint
             {
@@ -829,7 +831,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 var dataPoint = new DataPoint
                 {
                     Value = new Vector2((float)snapshot.TimePeriod, population),
-                    Size = extinctInPatch ? 13 : 8,
+                    Size = extinctInPatch ? 12 : 7,
                     IconType = extinctInPatch ? DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
                     MarkerColour = dataset.DataColour,
                 };
@@ -1021,7 +1023,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1735,6 +1737,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 
+        // ReSharper disable once RedundantAssignment
         var amount = 0.0f;
 
         switch (compoundName)

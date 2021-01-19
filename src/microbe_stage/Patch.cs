@@ -33,7 +33,7 @@ public class Patch
     ///   List of all the recorded conditions of this patch. Useful for statistics.
     /// </summary>
     [JsonProperty]
-    public readonly Deque<PatchConditions> History = new Deque<PatchConditions>();
+    private Deque<PatchConditions> history = new Deque<PatchConditions>();
 
     public Patch(string name, int id, Biome biomeTemplate)
     {
@@ -135,14 +135,39 @@ public class Patch
         return result;
     }
 
-    public void RecordConditions(double timePeriod)
+    /// <summary>
+    ///   Returns a new copy of the patch history.
+    /// </summary>
+    public IEnumerable<PatchConditions> GetHistory()
     {
-        if (History.Count >= Constants.MAX_STORED_PATCH_CONDITIONS)
-            History.RemoveFromBack();
+        var result = new List<PatchConditions>(history.Count);
+
+        foreach (var entry in history)
+        {
+            result.Insert(history.IndexOf(entry), entry);
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Returns number of stored patch conditions (without creating a new list copy).
+    /// </summary>
+    public int GetHistoryCount()
+    {
+        return history.Count;
+    }
+
+    /// <summary>
+    ///   Stores the current state of patch conditions into the patch history.
+    /// </summary>
+    public void RecordConditions()
+    {
+        if (history.Count >= Constants.MAX_STORED_PATCH_CONDITIONS)
+            history.RemoveFromBack();
 
         var conditions = (PatchConditions)Conditions.Clone();
-        conditions.TimePeriod = timePeriod;
-        History.AddToFront(conditions);
+        history.AddToFront(conditions);
     }
 
     public override string ToString()
@@ -169,6 +194,7 @@ public class PatchConditions : ICloneable
     {
         var result = new PatchConditions
         {
+            TimePeriod = TimePeriod,
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch.Count),
             Biome = (BiomeConditions)Biome.Clone(),
         };

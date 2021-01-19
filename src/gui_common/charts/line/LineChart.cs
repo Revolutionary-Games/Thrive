@@ -87,6 +87,8 @@ public class LineChart : VBoxContainer
     /// </summary>
     private DataSetDictionary dataSets = new DataSetDictionary();
 
+    private Dictionary<string, DataLine> dataLines = new Dictionary<string, DataLine>();
+
     /// <summary>
     ///   Modes on how the chart legend should be displayed
     /// </summary>
@@ -254,6 +256,13 @@ public class LineChart : VBoxContainer
                 point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
             }
+
+            // Initialize line
+            var dataLine = new DataLine(data.Value);
+
+            dataLines[data.Key] = dataLine;
+
+            drawArea.AddChild(dataLine.VisualNode);
         }
 
         if (totalDataPoints.Count <= 0)
@@ -354,6 +363,23 @@ public class LineChart : VBoxContainer
             ToolTipManager.Instance.ClearToolTips("chartMarkers" + ChartName + data.Key);
             ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName + data.Key);
         }
+
+        foreach (var data in dataSets)
+        {
+            if (!dataLines.ContainsKey(data.Key))
+                continue;
+
+            var dataLine = dataLines[data.Key];
+
+            dataLine.VisualNode.SafeQueueFree();
+
+            foreach (var rect in dataLine.CollisionBoxes)
+            {
+                rect.Value.SafeQueueFree();
+            }
+        }
+
+        dataLines.Clear();
 
         // Clear points
         drawArea.QueueFreeChildren();
@@ -487,7 +513,7 @@ public class LineChart : VBoxContainer
             return;
 
         DrawOrdinateLines();
-        DrawLineSegments();
+        UpdateLineSegments();
     }
 
     /// <summary>
@@ -504,9 +530,9 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Connect the dataset points with line segments
+    ///   Updates the coordinates of the data points and line segments
     /// </summary>
-    private void DrawLineSegments()
+    private void UpdateLineSegments()
     {
         foreach (var data in dataSets)
         {
@@ -515,7 +541,7 @@ public class LineChart : VBoxContainer
             if (points.Count <= 0)
                 continue;
 
-            // Setup the points
+            // Setup the points (applying coordinate)
             foreach (var point in points)
             {
                 // Skip if any of the min and max value is equal, otherwise
@@ -523,26 +549,93 @@ public class LineChart : VBoxContainer
                 if (MinValues.x == MaxValues.x || MinValues.y == MaxValues.y)
                     continue;
 
+                // TODO: Handle overlapping data point markers, will be difficult.
+                // As a workaround, players could instead manually hide the dataset
+                // of one of the overlapping points.
+
                 point.Coordinate = ConvertToCoordinate(point.Value);
 
                 if (!point.IsInsideTree())
                     drawArea.AddChild(point);
             }
 
-            var previousPoint = points.First();
+            if (!dataLines.ContainsKey(data.Key))
+                continue;
 
-            // Draw the lines
+            // This is actually the first point (left-most)
+            var previousPoint = points[points.Count - 1];
+
+            var dataLine = dataLines[data.Key];
+
+            // Refresh set points on the line
+            dataLine.VisualNode.ClearPoints();
+
+            // Setup lines
             foreach (var point in points)
             {
-                if (data.Value.Draw)
-                {
-                    drawArea.DrawLine(previousPoint.Coordinate, point.Coordinate, data.Value.DataColour,
-                        data.Value.LineWidth, true);
-                }
+                dataLine.VisualNode.AddPoint(point.Coordinate);
+
+                // "First" is the last point on the chart (right-most one)
+                if (point != points.First())
+                    UpdateLineColliders(data.Key, previousPoint, point);
 
                 previousPoint = point;
             }
+
+            dataLine.VisualNode.Visible = data.Value.Draw;
         }
+    }
+
+    /// <summary>
+    ///   Generates and updates line "colliders" to detect mouse enter/exit
+    /// </summary>
+    private void UpdateLineColliders(string datasetName, DataPoint firstPoint, DataPoint secondPoint)
+    {
+        var dataLine = dataLines[datasetName];
+
+        // Create a new collision rect if it hasn't been created yet
+        if (!dataLine.CollisionBoxes.ContainsKey(firstPoint))
+        {
+            var newCollisionRect = new Control { RectSize = Vector2.One };
+
+            newCollisionRect.Connect("mouse_entered", dataLine, nameof(dataLine.OnMouseEnter));
+            newCollisionRect.Connect("mouse_exited", dataLine, nameof(dataLine.OnMouseExit));
+
+            // Create tooltip
+            var tooltip = ToolTipHelper.CreateDefaultToolTip();
+
+            tooltip.DisplayName = datasetName + "line" + firstPoint.Coordinate.ToString();
+            tooltip.Description = datasetName;
+            tooltip.DisplayDelay = 0.5f;
+
+            newCollisionRect.RegisterToolTipForControl(tooltip, toolTipCallbacks);
+            ToolTipManager.Instance.AddToolTip(tooltip, "chartMarkers");
+
+            dataLine.CollisionBoxes[firstPoint] = newCollisionRect;
+
+            drawArea.AddChild(newCollisionRect);
+        }
+
+        // Update collider rect scaling and positioning
+
+        var mouseCollider = dataLine.CollisionBoxes[firstPoint];
+
+        // Position the collider at a middle point between two data point coordinates
+        mouseCollider.RectPosition = new Vector2(
+            (firstPoint.Coordinate.x + secondPoint.Coordinate.x) / 2,
+            (firstPoint.Coordinate.y + secondPoint.Coordinate.y) / 2);
+
+        // Set pivot at the center of the rect
+        mouseCollider.RectPivotOffset = mouseCollider.RectSize / 2;
+
+        // Use the distance between two coordinates as the collider's length
+        mouseCollider.RectScale = new Vector2(
+            firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.RectSize.x,
+            dataSets[datasetName].LineWidth + 10);
+
+        mouseCollider.RectRotation = Mathf.Rad2Deg(firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate));
+
+        mouseCollider.Visible = dataSets[datasetName].Draw;
     }
 
     /// <summary>
@@ -635,5 +728,39 @@ public class LineChart : VBoxContainer
         dropDown.Popup.ToggleItemChecked(index);
 
         UpdateDataSetVisibility(name, dropDown.Popup.IsItemChecked(index));
+    }
+
+    /// <summary>
+    ///   Helper class to contain Line2D along with the collider box segments
+    /// </summary>
+    private class DataLine : Reference
+    {
+        public Line2D VisualNode;
+        public Dictionary<DataPoint, Control> CollisionBoxes = new Dictionary<DataPoint, Control>();
+
+        private LineChartData data;
+
+        public DataLine(LineChartData data)
+        {
+            this.data = data;
+
+            VisualNode = new Line2D
+            {
+                Width = data.LineWidth,
+                DefaultColor = data.DataColour,
+                Antialiased = true,
+            };
+        }
+
+        public void OnMouseEnter()
+        {
+            // TODO: Handle if the color to lighten is already light/bright (e.g. white)
+            VisualNode.DefaultColor = data.DataColour.Lightened(0.5f);
+        }
+
+        public void OnMouseExit()
+        {
+            VisualNode.DefaultColor = data.DataColour;
+        }
     }
 }

@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   Point / marker on a line chart containing a single numerical data value (x, y).
+///   Point / marker on a chart containing a single numerical data value (x, y).
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -21,14 +21,14 @@ public class DataPoint : Control
 
     public DataPoint()
     {
-        Size = 8;
+        Size = 7;
         IconType = MarkerIcon.Circle;
     }
 
     public DataPoint(float xValue, float yValue)
     {
         Value = new Vector2(xValue, yValue);
-        Size = 8;
+        Size = 7;
         IconType = MarkerIcon.Circle;
     }
 

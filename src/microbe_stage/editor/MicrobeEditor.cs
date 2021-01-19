@@ -873,8 +873,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             targetPatch = patch;
         }
 
-        if (targetPatch?.History.Count <= 0)
-            targetPatch?.RecordConditions(CurrentGame.GameWorld.TotalPassedTime);
+        if (targetPatch?.GetHistoryCount() <= 0)
+            targetPatch?.RecordConditions();
 
         gui.UpdatePlayerPatch(targetPatch);
         UpdatePatchBackgroundImage();
@@ -1949,7 +1949,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         GD.Print("Applying auto-evo results");
         CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
 
-        CurrentPatch.RecordConditions(CurrentGame.GameWorld.TotalPassedTime);
+        CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
+
+        // Needs to be before the remove extinct species call, so that the extinct species
+        // could still be stored for reference (e.g. displaying it as zero on the species population chart)
+        CurrentPatch.RecordConditions();
 
         var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
 

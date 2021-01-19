@@ -259,6 +259,17 @@ public class PatchMap
         return found.ToList();
     }
 
+    /// <summary>
+    ///   Updates the time period in all of the patches.
+    /// </summary>
+    public void UpdateGlobalTimePeriod(double time)
+    {
+        foreach (var patch in Patches)
+        {
+            patch.Value.Conditions.TimePeriod = time;
+        }
+    }
+
     public Patch GetPatch(int id)
     {
         return Patches[id];

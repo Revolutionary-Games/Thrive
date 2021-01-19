@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public class LineChartData
 {
-    private Color lineColour;
+    private Color dataColour;
     private bool draw = true;
 
     // ReSharper disable once CollectionNeverUpdated.Global
@@ -17,20 +17,20 @@ public class LineChartData
     /// </summary>
     public Texture IconTexture { get; set; }
 
-    public float LineWidth { get; set; } = 1.3f;
+    public float LineWidth { get; set; } = 1.15f;
 
     /// <summary>
     ///   Used to differentiate the data set's visual by color
     /// </summary>
     public Color DataColour
     {
-        get => lineColour;
+        get => dataColour;
         set
         {
-            lineColour = value;
+            dataColour = value;
 
             foreach (var point in DataPoints)
-                point.MarkerColour = lineColour;
+                point.MarkerColour = dataColour;
         }
     }
 
