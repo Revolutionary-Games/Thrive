@@ -68,9 +68,10 @@ public class ThriveJsonConverter : IDisposable
 
     public static ThriveJsonConverter Instance => InstanceValue;
 
-    public string SerializeObject(object o)
+    public string SerializeObject(object o, Type type = null)
     {
-        return PerformWithSettings(settings => JsonConvert.SerializeObject(o, Constants.SAVE_FORMATTING, settings));
+        return PerformWithSettings(
+            settings => JsonConvert.SerializeObject(o, type, Constants.SAVE_FORMATTING, settings));
     }
 
     public T DeserializeObject<T>(string json)

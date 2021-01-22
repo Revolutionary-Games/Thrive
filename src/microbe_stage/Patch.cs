@@ -138,20 +138,13 @@ public class Patch
     /// <summary>
     ///   Returns a new copy of the patch history.
     /// </summary>
-    public IEnumerable<PatchConditions> GetHistory()
+    public List<PatchConditions> GetHistory()
     {
-        var result = new List<PatchConditions>(history.Count);
-
-        foreach (var entry in history)
-        {
-            result.Insert(history.IndexOf(entry), entry);
-        }
-
-        return result;
+        return new List<PatchConditions>(history);
     }
 
     /// <summary>
-    ///   Returns number of stored patch conditions (without creating a new list copy).
+    ///   Returns number of stored patch conditions (without creating a new collection).
     /// </summary>
     public int GetHistoryCount()
     {

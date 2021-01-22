@@ -30,7 +30,7 @@ public class ThriveTypeConverter : TypeConverter
     {
         if (destinationType == typeof(string))
         {
-            return ThriveJsonConverter.Instance.SerializeObject(value);
+            return ThriveJsonConverter.Instance.SerializeObject(value, destinationType);
         }
 
         throw new NotSupportedException();

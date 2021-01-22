@@ -87,6 +87,9 @@ public class LineChart : VBoxContainer
     /// </summary>
     private DataSetDictionary dataSets = new DataSetDictionary();
 
+    /// <summary>
+    ///   Lines for each of the plotted datasets
+    /// </summary>
     private Dictionary<string, DataLine> dataLines = new Dictionary<string, DataLine>();
 
     /// <summary>
@@ -262,7 +265,7 @@ public class LineChart : VBoxContainer
 
             dataLines[data.Key] = dataLine;
 
-            drawArea.AddChild(dataLine.VisualNode);
+            drawArea.AddChild(dataLine);
         }
 
         if (totalDataPoints.Count <= 0)
@@ -371,7 +374,7 @@ public class LineChart : VBoxContainer
 
             var dataLine = dataLines[data.Key];
 
-            dataLine.VisualNode.SafeQueueFree();
+            dataLine.SafeQueueFree();
 
             foreach (var rect in dataLine.CollisionBoxes)
             {
@@ -567,13 +570,13 @@ public class LineChart : VBoxContainer
 
             var dataLine = dataLines[data.Key];
 
-            // Refresh set points on the line
-            dataLine.VisualNode.ClearPoints();
+            // Refresh points set on the line
+            dataLine.ClearPoints();
 
             // Setup lines
             foreach (var point in points)
             {
-                dataLine.VisualNode.AddPoint(point.Coordinate);
+                dataLine.AddPoint(point.Coordinate);
 
                 // "First" is the last point on the chart (right-most one)
                 if (point != points.First())
@@ -582,7 +585,7 @@ public class LineChart : VBoxContainer
                 previousPoint = point;
             }
 
-            dataLine.VisualNode.Visible = data.Value.Draw;
+            dataLine.Visible = data.Value.Draw;
         }
     }
 
@@ -604,7 +607,7 @@ public class LineChart : VBoxContainer
             // Create tooltip
             var tooltip = ToolTipHelper.CreateDefaultToolTip();
 
-            tooltip.DisplayName = datasetName + "line" + firstPoint.Coordinate.ToString();
+            tooltip.DisplayName = datasetName + "line" + firstPoint.Coordinate;
             tooltip.Description = datasetName;
             tooltip.DisplayDelay = 0.5f;
 
@@ -731,11 +734,11 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Helper class to contain Line2D along with the collider box segments
+    ///   Used as the chart's dataset line segments. Contains mouse collision boxes and
+    ///   mouse enter/exit callback to make the line interactable.
     /// </summary>
-    private class DataLine : Reference
+    private class DataLine : Line2D
     {
-        public Line2D VisualNode;
         public Dictionary<DataPoint, Control> CollisionBoxes = new Dictionary<DataPoint, Control>();
 
         private LineChartData data;
@@ -744,23 +747,21 @@ public class LineChart : VBoxContainer
         {
             this.data = data;
 
-            VisualNode = new Line2D
-            {
-                Width = data.LineWidth,
-                DefaultColor = data.DataColour,
-                Antialiased = true,
-            };
+            Width = data.LineWidth;
+            DefaultColor = data.DataColour;
+            Antialiased = true;
         }
 
         public void OnMouseEnter()
         {
-            // TODO: Handle if the color to lighten is already light/bright (e.g. white)
-            VisualNode.DefaultColor = data.DataColour.Lightened(0.5f);
+            DefaultColor = data.DataColour.IsLuminuous() ?
+                data.DataColour.Darkened(0.5f) :
+                data.DataColour.Lightened(0.5f);
         }
 
         public void OnMouseExit()
         {
-            VisualNode.DefaultColor = data.DataColour;
+            DefaultColor = data.DataColour;
         }
     }
 }
