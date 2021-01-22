@@ -1219,3 +1219,10 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
 [connection signal="confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnConflictConfirmed"]
+
+[node name="ScreeshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
+margin_top = 349.0
+margin_right = 651.0
+margin_bottom = 381.0
+action_mode = 0
+text = "OPEN_LOGS_FOLDER"
