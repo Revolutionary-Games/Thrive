@@ -308,6 +308,8 @@ public class Settings
     {
         switch (godotLocale)
         {
+            case "eo":
+                return "en";
             case "sr_Latn":
                 return "sr-Latn-RS";
             case "sr_Cyrl":
