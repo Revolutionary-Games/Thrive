@@ -189,6 +189,7 @@ custom_constants/margin_left = 15
 custom_constants/margin_bottom = 15
 
 [node name="Graphics" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
+visible = false
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 663.0
@@ -798,7 +799,6 @@ margin_bottom = 32.0
 text = "RESET_INPUTS"
 
 [node name="Misc" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
-visible = false
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 663.0
@@ -807,8 +807,8 @@ margin_bottom = 583.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.99664
-margin_right = 0.00335693
+margin_left = -1.31488
+margin_right = 1.68512
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -964,7 +964,7 @@ margin_right = 651.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 300, 0 )
 
-[node name="ScreeshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
+[node name="ScreeshotFolder2" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 349.0
 margin_right = 651.0
 margin_bottom = 381.0
@@ -977,6 +977,7 @@ margin_right = 651.0
 margin_bottom = 423.0
 action_mode = 0
 text = "OPEN_LOGS_FOLDER"
+
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 645.0
@@ -1219,10 +1220,3 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
 [connection signal="confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnConflictConfirmed"]
-
-[node name="ScreeshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 349.0
-margin_right = 651.0
-margin_bottom = 381.0
-action_mode = 0
-text = "OPEN_LOGS_FOLDER"
