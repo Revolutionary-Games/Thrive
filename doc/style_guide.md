@@ -144,6 +144,15 @@ Godot usage
   single place, keep them in a List or Dictionary instead of asking
   Godot for the children and doing a bunch of extra casts.
 
+- When destroying child Nodes or Controls take care to detach them
+  first, in cases that having them hang around for one more frame
+  causes issues, as that doesn't happen if you just call
+  `QueueFree`. You can instead call `DetachAndQueueFree`
+  instead to detach them from parents automatically.
+
+- To remove all children of a Node use `FreeChildren` or
+  `QueueFreeChildren` extension methods.
+
 - Don't use text in the GUI with leading or trailing spaces to add
   padding, see previous bullet instead.
 

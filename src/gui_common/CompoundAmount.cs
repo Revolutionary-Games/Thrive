@@ -188,7 +188,7 @@ public class CompoundAmount : HBoxContainer
 
     private void UpdateIcon()
     {
-        icon?.Free();
+        icon?.DetachAndFree();
 
         icon = GUICommon.Instance.CreateCompoundIcon(compound.InternalName);
         AddChild(icon);

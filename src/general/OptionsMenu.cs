@@ -1039,11 +1039,9 @@ public class OptionsMenu : Control
     private void OnOpenScreenshotFolder()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
         OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
-        UpdateResetSaveButtonState();
     }
-    
+
     private void OnCustomUsernameEnabledToggled(bool pressed)
     {
         Settings.Instance.CustomUsernameEnabled.Value = pressed;
@@ -1084,6 +1082,12 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnTranslationSitePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen("https://translate.revolutionarygamesstudio.com/engage/thrive/");
+    }
+
     private void UpdateSelectedLanguage(Settings settings)
     {
         if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
@@ -1108,13 +1112,5 @@ public class OptionsMenu : Control
         {
             languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
         }
-    }
-
-    private void OnOpenScreenshotFolder()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
-        UpdateResetSaveButtonState();
     }
 }
