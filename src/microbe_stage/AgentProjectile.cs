@@ -41,6 +41,6 @@ public class AgentProjectile : RigidBody, ITimedLife
     private void Destroy()
     {
         // We should probably get some *POP* effect here.
-        this.SafeQueueFree();
+        this.DetachAndQueueFree();
     }
 }

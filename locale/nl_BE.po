@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-13 16:47+0700\n"
-"PO-Revision-Date: 2020-12-29 14:46+0000\n"
-"Last-Translator: Rune Vercauteren <rune.vercauteren@gmail.com>\n"
+"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"PO-Revision-Date: 2021-01-10 09:12+0000\n"
+"Last-Translator: Aquos Goatington <dries.hazenbosch@outlook.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
 "com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
@@ -242,14 +242,14 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "Hier is een tip, bacteriën kunnen sterker zijn dan ze lijken, ze lijken "
-"misschien klein, maar sommigen van hen kunnen in je graven en je op die "
-"manier vermoorden!"
+"misschien klein, maar sommigen van hen kunnen zich in je nestelen en je op "
+"die manier doden!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Hier is een tip, je kan op andere soorten jagen tot hun ondergang als je "
-"niet voozichtig genoeg bent. Ze kunnen ook door andere soorten tot "
+"Hier is een tip, je kan op andere soorten jagen totdat ze uitsterven als je "
+"niet voorzichtig genoeg bent. Ze kunnen ook door andere soorten tot "
 "uitsterven worden bedreigd."
 
 #: ../simulation_parameters/common/help_texts.json:57
@@ -285,8 +285,8 @@ msgstr "Hier is een tip, je kan ijzeren brokjes verzwelgen."
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Hier is een tip, bereid je voor voordat je een celkern toevoegd. Deze "
-"dingen zijn duur! In zowel onderhoud als kosten vooraf."
+"Hier is een tip, bereid je voor voordat je een celkern toevoegt. Die dingen "
+"zijn duur! In zowel onderhoud als kosten vooraf."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
@@ -310,8 +310,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
-"Leuk Weetje, De Amoeben jagen en vangen prooien met 'beentjes' gemaakt van "
-"cytoplasma genaamd pseudopodiën, uiteindelijk willen we die in Thrive."
+"Leuk weetje, De Amoeben jagen en vangen prooien met 'beentjes' gemaakt van "
+"cytoplasma genaamd pseudopodia, uiteindelijk willen we die in Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -385,9 +385,8 @@ msgid "ABILITIES"
 msgstr "Vaardigheden"
 
 #: ../simulation_parameters/common/input_options.json:38
-#, fuzzy
 msgid "FIRE_TOXIN"
-msgstr "Vuur vergif"
+msgstr "Vergif vuren"
 
 #: ../simulation_parameters/common/input_options.json:42
 msgid "TOGGLE_ENGULF"
@@ -463,19 +462,16 @@ msgid "ENABLE_EDITOR"
 msgstr "Schakel de editor in"
 
 #: ../simulation_parameters/common/input_options.json:127
-#, fuzzy
 msgid "SPAWN_GLUCOSE"
-msgstr "Glucose voortbrengen"
+msgstr "Glucose spawnen"
 
 #: ../simulation_parameters/common/input_options.json:131
-#, fuzzy
 msgid "SPAWN_AMMONIA"
-msgstr "Ammoniak voortbrengen"
+msgstr "Ammoniak spawnen"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "SPAWN_PHOSPHATES"
-msgstr "Fosfaat voortbrengen"
+msgstr "Fosfaat spawnen"
 
 #: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
@@ -1059,7 +1055,7 @@ msgstr "Resetten"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Help met het spel te vertalen"
 
 #: ../src/general/OptionsMenu.tscn:630
 msgid "COMPOUND_CLOUDS"
@@ -1117,9 +1113,8 @@ msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Laat instructies zien (in huidig spel)"
 
 #: ../src/general/OptionsMenu.tscn:929
-#, fuzzy
 msgid "CHEAT_KEYS_ENABLED"
-msgstr "Cheat toetsen ingeschakeld"
+msgstr "Cheattoetsen ingeschakeld"
 
 #: ../src/general/OptionsMenu.tscn:941
 #, fuzzy
@@ -1133,7 +1128,7 @@ msgstr "Aangepaste Gebruikersnaam"
 
 #: ../src/general/OptionsMenu.tscn:972
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
+msgstr "Open Screenshotfolder"
 
 #: ../src/general/OptionsMenu.tscn:983 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
@@ -1655,14 +1650,40 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3163
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
+"Het belangrijkste kenmerk van eukaryotische cellen. De celkern bevat ook het "
+"golgi-apparaat en het endoplasmatisch reticulum. Het is een aanpassing van "
+"prokaryotische cellen om een systeem van interne membranen te ontwikkelen, "
+"wat bereikt werd door een andere prokaryoot te absorberen. Dit liet hen toe "
+"om de verschillende processen die binnen in de cel gebeurden op te splitsen, "
+"of om hen af te sluiten, en om ervoor te zorgen dat ze niet konden "
+"overlappen. Dit zorgt ervoor dat hun nieuwe membraangebonden organellen veel "
+"complexer, efficiënter en gespecialiseerder kan zijn dan als ze vrij in het "
+"cytoplasma ronddreven. Dit komt wel met de prijs dat het veel van de cel "
+"zijn energie opneemt en dat de cel veel groter moet zijn."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3451
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
+"De krachtcentrale van de cel. Het mitochondrium (meervoud: mitochondria) is "
+"een door twee membranen omsloten celorganel dat met proteïnen en enzymen "
+"gevuld is. Het is een prokaryoot die werd geabsorbeerd door zijn "
+"eukaryotische gastheer voor het gebruik. Het is in staat om glucose in ATP "
+"om te zetten aan een veel grotere efficiëntie dan in het cytoplasma mogelijk "
+"is, in een proces dat celademhaling heet. Hier komt tegenover dat het "
+"zuurstof nodig heeft om te kunnen werken en dat een lager zuurstoflevel de "
+"ATP-productie vertraagt."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
+"De choloroplast is een door twee membranen omsloten celorganel dat "
+"lichtgevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
+"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
+"diens gebruik. De pigmenten in de chloroplast zijn in staat om lichtenergie "
+"te gebruiken om glucose uit water en gasvormige koolstofdioxide te "
+"produceren in een proces dat fotosynthese heet. Deze pigmenten zijn ook wat "
+"het zijn opmerkelijke kleur geeft. De snelheid van de glucoseproductie hangt "
+"af van de koolstofdioxideconcentratie en de lichtintensiteit."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3833
@@ -1672,15 +1693,27 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3936
 msgid "TEMPERATURE"
-msgstr ""
+msgstr "Temperatuur"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4047
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
+"De thermoplast is een door twee membranen omsloten celorganel  dat "
+"warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
+"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
+"diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie "
+"van hitteverschillen in de omgeving te gebruiken om glucose uit water en "
+"gasvormige koolstofdioxide te produceren in een proces dat thermosyntese "
+"heet. De snelheid van de glucoseproductie hangt af van de "
+"koolstofdioxideconcentratie en de temperatuur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4332
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
+"De chemoplast is een door twee membranen omsloten celorganel die proteïnen "
+"die in staat zijn om waterstofsulfide, water en gasvormige koolstofdioxide "
+"in glucose om te zetten bevat. Dit proces heegt chemosynthese. De snelheid "
+"van de glucoseproductie hangt af van de water- en koolstofconcentratie."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4651
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -1688,11 +1721,17 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4752
 msgid "INREASE_STORAGE_SPACE"
-msgstr ""
+msgstr "Vergroot de opslagruimte van de cel."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4852
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
+"De vacuole is een intern membraanorganel dat gebruikt wordt voor opslag in "
+"de cel. Ze bestaan uit meerdere vesikels, kleinere membraanstructuren vaak "
+"gebruikt in cellen voor opslag, die samengesmolten zijn. Het is gevuld met "
+"water dat gebruikt wordt om moleculen, enzymen, vaste stoffen en andere "
+"substanties op te slaan. Hun vorm is veranderlijk en kan variëren tussen "
+"cellen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5009
 msgid "DOT_CAN"
@@ -1700,7 +1739,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5022
 msgid "RELEASE_TOXINS_BY_PRESSING"
-msgstr ""
+msgstr "Laat gifstoffen los door te drukken"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5029
 msgid "E_DOT"
@@ -1713,17 +1752,21 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5168
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
+"De gifstofvacuole is een vacuole die speciaal aangepast is voor de "
+"specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer "
+"gifstofvacuole's zullen de snelheid waarmee gifstoffen vrijgelaten mee "
+"kunnen worden vergroten."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5248
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Bioluminescente Vacuole"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5315
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5379
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3476
 msgid "NORMAL"
-msgstr ""
+msgstr "Normaal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5485
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5743
@@ -1732,21 +1775,29 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7016
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Grondstofabsorbtiesnelheid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5559
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
+"De simpelste membraanvorm, het heeft weinig bescherming tegen schade. Het "
+"heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel is "
+"dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
+"absorberen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5575
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5639
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3548
 msgid "DOUBLE"
-msgstr ""
+msgstr "Dubbel"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5815
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Een membraan met twee lagen, heft een betere bescherming tegen schade en "
+"heeft minder energie nodig om zijn vorm te behouden. Daar komt tegenin dat "
+"het de cel vertraagt en de snelheid waarmee het grondstoffen absorbeert "
+"verkleint."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5831
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5895
@@ -1758,14 +1809,14 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6723
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7084
 msgid "PHYSICAL_RESISTANCE"
-msgstr ""
+msgstr "Fysieke Weerstand"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6103
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6430
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6791
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7152
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Kan niet verzwelgen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6142
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"

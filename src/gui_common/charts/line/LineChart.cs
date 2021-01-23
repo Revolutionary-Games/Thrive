@@ -374,11 +374,11 @@ public class LineChart : VBoxContainer
 
             var dataLine = dataLines[data.Key];
 
-            dataLine.SafeQueueFree();
+            dataLine.DetachAndQueueFree();
 
             foreach (var rect in dataLine.CollisionBoxes)
             {
-                rect.Value.SafeQueueFree();
+                rect.Value.DetachAndQueueFree();
             }
         }
 

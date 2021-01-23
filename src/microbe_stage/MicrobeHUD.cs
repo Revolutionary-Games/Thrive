@@ -493,7 +493,7 @@ public class MicrobeHUD : Node
         if (winBox != null)
         {
             winExtinctBoxHolder.Hide();
-            winBox.SafeQueueFree();
+            winBox.DetachAndQueueFree();
             return;
         }
 

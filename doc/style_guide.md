@@ -145,8 +145,9 @@ Godot usage
   Godot for the children and doing a bunch of extra casts.
 
 - When destroying child Nodes or Controls take care to detach them
-  first, as that doesn't seem to happen if you just call `Free` or
-  `QueueFree`. You can instead call `SafeFree` or `SafeQueueFree`
+  first, in cases that having them hang around for one more frame
+  causes issues, as that doesn't happen if you just call
+  `QueueFree`. You can instead call `DetachAndQueueFree`
   instead to detach them from parents automatically.
 
 - To remove all children of a Node use `FreeChildren` or

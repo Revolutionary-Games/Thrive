@@ -1791,13 +1791,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Delete excess entities
         while (nextFreeHex < placedHexes.Count)
         {
-            placedHexes[placedHexes.Count - 1].SafeQueueFree();
+            placedHexes[placedHexes.Count - 1].DetachAndQueueFree();
             placedHexes.RemoveAt(placedHexes.Count - 1);
         }
 
         while (nextFreeOrganelle < placedModels.Count)
         {
-            placedModels[placedModels.Count - 1].SafeQueueFree();
+            placedModels[placedModels.Count - 1].DetachAndQueueFree();
             placedModels.RemoveAt(placedModels.Count - 1);
         }
     }

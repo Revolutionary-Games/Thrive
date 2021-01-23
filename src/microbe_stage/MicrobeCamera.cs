@@ -210,7 +210,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
         }
 
-        BackgroundParticles?.SafeQueueFree();
+        BackgroundParticles?.DetachAndQueueFree();
 
         if (!DisableBackgroundParticles)
         {

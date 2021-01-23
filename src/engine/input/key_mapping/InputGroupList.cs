@@ -166,7 +166,7 @@ public class InputGroupList : VBoxContainer
         if (activeInputGroupList != null)
         {
             foreach (var inputGroupItem in activeInputGroupList)
-                inputGroupItem.SafeFree();
+                inputGroupItem.DetachAndFree();
         }
 
         activeInputGroupList = BuildGUI(SimulationParameters.Instance.InputGroups, data);
