@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2021-01-08 08:05+0000\n"
+"PO-Revision-Date: 2021-01-11 11:46+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -108,11 +108,9 @@ msgstr ""
 "\n"
 "代谢体：用葡萄糖生产ATP\n"
 "\n"
-"化学合成蛋白：跟化学质体比同一份硫化氢只能产出半份葡萄糖，但其同时也能进行"
-"糖酵解。占用一个六角格。\n"
+"化学合成蛋白：跟化学质体比同一份硫化氢只能产出半份葡萄糖，但其同时也能进行糖酵解。占用一个六角格。\n"
 "\n"
-"类囊体：跟正常的叶绿体比只能产出1/3的葡萄糖，但其同时也能进行糖酵解。占用一"
-"个六角格。\n"
+"类囊体：跟正常的叶绿体比只能产出1/3的葡萄糖，但其同时也能进行糖酵解。占用一个六角格。\n"
 "\n"
 "铁硫菌蓝蛋白：将铁转换成ATP\n"
 "\n"
@@ -152,16 +150,14 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或"
-"移除细胞器会花费变异点。但是移除在本代放下的细胞器会返还全部那个细胞器消耗"
-"的变异点。你可以通过右键点击移除细胞器，你可以用A和D键旋转你的细胞器。"
+"每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或移除细胞器会花费变异点，但是移除在本代放下的细胞器会返还全部那个细胞器消耗的"
+"变异点。你可以通过右键点击移除细胞器，用A和D键旋转你的细胞器。"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或"
-"删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表一亿年的"
-"进化时间。"
+"你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表一亿年的进化时"
+"间。"
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
@@ -169,9 +165,7 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"逗知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物关系研究了几十年。你是栉"
-"毛虫，还是草履虫呢？捕食者，还是猎物？"
+msgstr "逗知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物关系研究了几十年。你是栉毛虫，还是草履虫呢？捕食者，还是猎物？"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
@@ -1363,7 +1357,7 @@ msgstr ". 产出速率取决于"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:757
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
 msgid "WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr " "
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:764
 msgid "OXYGEN_DOT"
@@ -1399,7 +1393,7 @@ msgstr ". 产出速率取决于"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3596
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3898
 msgid "CONCENTRATION_OF"
-msgstr ""
+msgstr " "
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1049
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1720
@@ -1412,7 +1406,7 @@ msgstr "以及"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1062
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3635
 msgid "INTENSITY_OF"
-msgstr ""
+msgstr " "
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1069
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3642
