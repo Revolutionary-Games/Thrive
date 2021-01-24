@@ -1411,7 +1411,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             }
         }
 
-        if (reproductionStageComplete)
+        if (reproductionStageComplete && !Dead)
         {
             // Nucleus is also now ready to reproduce
             allOrganellesDivided = true;
@@ -1485,8 +1485,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // The player doesn't split automatically
             allOrganellesDivided = true;
 
-            if (!Dead)
-                OnReproductionStatus?.Invoke(this, true);
+            OnReproductionStatus?.Invoke(this, true);
         }
         else
         {
