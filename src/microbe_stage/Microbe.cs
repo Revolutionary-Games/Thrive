@@ -1331,6 +1331,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void HandleReproduction(float delta)
     {
 #pragma warning restore CA1801
+
         // Dead cells can't reproduce
         if (Dead)
             return;
