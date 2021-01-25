@@ -408,10 +408,14 @@ public static class Constants
     public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
 
     public const float TOOLTIP_OFFSET = 20;
-
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
-
     public const float TOOLTIP_FADE_SPEED = 0.1f;
+
+    public const float EDITOR_ARROW_OFFSET = 3.5f;
+    public const float EDITOR_ARROW_INTERPOLATE_SPEED = 5.0f;
+
+    public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
+    public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     /// <summary>
     ///   When checking if the mouse is hovering over a microbe, this increments

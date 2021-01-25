@@ -22,7 +22,7 @@ public class MicrobeAI
     private int boredom;
 
     // ReSharper disable once CollectionNeverQueried.Local
-    [JsonProperty]
+    [JsonIgnore]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
     [JsonProperty]
@@ -42,26 +42,26 @@ public class MicrobeAI
 
     // All of the game entities stored here are probable places where disposed objects come from
     // so they are ignored for now
-    [JsonProperty]
+    [JsonIgnore]
     private Microbe predator;
 
     // Prey and predator lists
-    [JsonProperty]
+    [JsonIgnore]
     private List<Microbe> predatoryMicrobes = new List<Microbe>();
 
     [JsonProperty]
     private float previousAngle;
 
-    [JsonProperty]
+    [JsonIgnore]
     private Microbe prey;
 
-    [JsonProperty]
+    [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
 
-    [JsonProperty]
+    [JsonIgnore]
     private bool preyPegged;
 
-    [JsonProperty]
+    [JsonIgnore]
     private FloatingChunk targetChunk;
 
     [JsonProperty]
