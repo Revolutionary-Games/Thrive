@@ -63,7 +63,7 @@ public class SpecifiedInputKey : ICloneable
             // text += ((KeyList)Code).ToString();
 
             var keyname = ((KeyList)Code).ToString();
-  
+
             if (keyname == "Left")
                 text += TranslationServer.Translate("LEFT");
             else if (keyname == "Right")
