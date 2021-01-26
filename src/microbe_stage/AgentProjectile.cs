@@ -4,13 +4,17 @@
 ///   This is a shot agent projectile, does damage on hitting a cell of different species
 /// </summary>
 [JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
 public class AgentProjectile : RigidBody, ITimedLife
 {
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
     public AgentProperties Properties { get; set; }
     public Node Emitter { get; set; }
+
+    public Timer DespawnTimer;
+    //Delay has to be defined
+    public float Delaydespawn = 250;
+
 
     public void OnTimeOver()
     {
@@ -21,6 +25,13 @@ public class AgentProjectile : RigidBody, ITimedLife
     {
         AddCollisionExceptionWith(Emitter);
         Connect("body_entered", this, "OnBodyEntered");
+
+        // Timer that delay despawn of projectiles
+        DespawnTimer = new Timer();
+        DespawnTimer.OneShot = true;
+        DespawnTimer.WaitTime = Delaydespawn;
+        DespawnTimer.Connect("timeout", this, "OnTimerTimeout");
+        AddChild(DespawnTimer);
     }
 
     public void OnBodyEntered(Node body)
@@ -35,12 +46,30 @@ public class AgentProjectile : RigidBody, ITimedLife
             }
         }
 
+
+        DespawnTimer.Start();
+    }
+
+    public void ApplyPropertiesFromSave(AgentProjectile projectile)
+    {
+        NodeGroupSaveHelper.CopyGroups(this, projectile);
+
+        TimeToLiveRemaining = projectile.TimeToLiveRemaining;
+        Amount = projectile.Amount;
+        Properties = projectile.Properties;
+        Transform = projectile.Transform;
+        LinearVelocity = projectile.LinearVelocity;
+        AngularVelocity = projectile.AngularVelocity;
+    }
+
+    public void OnTimerTimeout()
+    {
         Destroy();
     }
 
     private void Destroy()
     {
         // We should probably get some *POP* effect here.
-        this.DetachAndQueueFree();
+        QueueFree();
     }
 }
