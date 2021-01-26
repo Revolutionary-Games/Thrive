@@ -1118,6 +1118,6 @@ public class OptionsMenu : Control
     private void OnLogButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER_NAME));
+        OS.ShellOpen(ProjectSettings.GlobalizePath("user://" + Constants.LOGS_FOLDER_NAME));
     }
 }
