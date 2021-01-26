@@ -1114,4 +1114,10 @@ public class OptionsMenu : Control
             languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
         }
     }
+
+    private void OnLogButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
+    }
 }
