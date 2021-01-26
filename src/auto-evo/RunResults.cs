@@ -222,7 +222,7 @@
                 else
                 {
                     builder.Append("  ");
-                    builder.Append(TranslationServer.Translate("EXTINCT"));
+                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_IN"));
                     builder.Append(PatchString(patch));
                 }
 
