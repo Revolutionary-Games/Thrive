@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-02 20:12+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -814,42 +814,64 @@ msgid "SHIFT"
 msgstr "Vaihto"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#, fuzzy
+msgid "LEFT"
+msgstr "Liiku vasemmalle"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#, fuzzy
+msgid "RIGHT"
+msgstr "Valo"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "Hiiren vasen painike"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "Hiiren oikea painike"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "Hiiren keskimmäinen painike"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "Hiiren rulla ylös"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "Hiiren rulla alas"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 msgid "WHEEL_LEFT"
 msgstr "Hiiren rulla vasemmalle"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Hiiren rulla oikealle"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "Hiiren erikoispainike 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Hiiren erikoispainike 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Tuntematon hiiren painike"
 
@@ -1634,7 +1656,7 @@ msgstr "onnistunut raadonsyönti"
 msgid "SUCCESSFUL_KILL"
 msgstr "onnistunut tappo"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "pakeni nielaisulta"
 
@@ -2002,9 +2024,9 @@ msgstr "OLET VOITTANUT!"
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
-"Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit jatkaa "
-"pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden pelin uudessa "
-"maailmassa."
+"Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit "
+"jatkaa pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden "
+"pelin uudessa maailmassa."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
 #: ../src/saving/InProgressLoad.cs:138
@@ -2087,7 +2109,7 @@ msgstr "Korvaa aikaisempi tallennus?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Tallennus onnistui"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
@@ -2110,8 +2132,8 @@ msgstr "Virheellinen"
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti "
-"poistaa {0}?"
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti "
+"lopullisesti poistaa {0}?"
 
 #: ../src/saving/SaveList.tscn:46 ../src/saving/SaveListItem.tscn:103
 msgid "LOADING_DOT"

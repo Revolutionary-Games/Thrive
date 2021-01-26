@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-18 17:41+0000\n"
 "Last-Translator: LibreHacker <librehacker@snopyta.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -171,16 +171,16 @@ msgstr ""
 "израсходования, и каждое изменение (или мутация) будут стоить некоторое "
 "количество МО. Добавление и удаление органелл стоит МО, однако удаление "
 "органелл которые были размещены в текущей мутационной сессии возвращают МО "
-"за эти органеллы. Ты можешь удалить органеллы нажатием на них правой кнопки "
-"мыши. Ты можешь вращать, нажимая A и D."
+"за эти органеллы. Ты можешь удалить органеллы нажатием на них правой "
+"кнопки мыши. Ты можешь вращать, нажимая A и D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Каждый раз размножаясь, ты можешь войти в Микробный Редактор, где ты можешь "
-"делать изменения своего вида (добавляя, передвигая или удаляя органеллы) "
-"повышая успех твоего вида. Каждое посещение редактора в Микробной Фазе "
-"составляют 100 миллионов лет эволюции."
+"Каждый раз размножаясь, ты можешь войти в Микробный Редактор, где ты "
+"можешь делать изменения своего вида (добавляя, передвигая или удаляя "
+"органеллы) повышая успех твоего вида. Каждое посещение редактора в "
+"Микробной Фазе составляют 100 миллионов лет эволюции."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
@@ -200,11 +200,11 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Совет: Осморегуляция тратит 1 АТФ в секунду на каждый заполненный гексагон, "
-"который есть у вашей клетки. Каждый пустой гексагон цитоплазмы генерирует 5 "
-"АТФ в секунду, что значит, что если вы теряете АТФ из-за осморегуляции, "
-"просто добавьте пару пустых гексагонов цитоплазмы или удалите некоторые "
-"органеллы."
+"Совет: Осморегуляция тратит 1 АТФ в секунду на каждый заполненный "
+"гексагон, который есть у вашей клетки. Каждый пустой гексагон цитоплазмы "
+"генерирует 5 АТФ в секунду, что значит, что если вы теряете АТФ из-за "
+"осморегуляции, просто добавьте пару пустых гексагонов цитоплазмы или "
+"удалите некоторые органеллы."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
@@ -233,9 +233,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Совет: вы можете охотиться на другие виды до их истребления, если не будете "
-"достаточно осторожны. На них также могут охотиться другие виды тем самым "
-"истребляя их вид."
+"Совет: вы можете охотиться на другие виды до их истребления, если не "
+"будете достаточно осторожны. На них также могут охотиться другие виды тем "
+"самым истребляя их вид."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -299,9 +299,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"Звуковая команда Thrive'а сделала много песен, которые ещё не были добавлены "
-"в игру. Ты можешь услышать их, или посмотреть стримы с их написанием на "
-"YouTube канале, Oliver Lugg."
+"Звуковая команда Thrive'а сделала много песен, которые ещё не были "
+"добавлены в игру. Ты можешь услышать их, или посмотреть стримы с их "
+"написанием на YouTube канале, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
@@ -895,43 +895,65 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#, fuzzy
+msgid "LEFT"
+msgstr "Двигаться влево"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#, fuzzy
+msgid "RIGHT"
+msgstr "Свет"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "Левая кнопка мыши"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "Правая кнопка мыши"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "Средняя кнопка мыши"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "Колёсико вверх"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "Колёсико вниз"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 #, fuzzy
 msgid "WHEEL_LEFT"
 msgstr "Колёсико влево"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Колёсико вправо"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "Специальная кнопка мыши 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Специальная кнопка мыши 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Неизвестная кнопка мыши"
 
@@ -1327,8 +1349,8 @@ msgstr "Здоровье"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Более жёсткая мембрана более устойчива к повреждениям, но это делает тяжелее "
-"движение клетки."
+"Более жёсткая мембрана более устойчива к повреждениям, но это делает "
+"тяжелее движение клетки."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:439
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:691
@@ -1404,12 +1426,12 @@ msgstr "Стоимость осморегуляции"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
-"Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из "
-"смеси белков,ионов и других веществ, которое заполняют внутреннюю часть "
-"клетки. Одна из функций, которую она выполняет - это преобразование глюкозы "
-"в энергию АТФ. Клетки в которых отсутствуют органеллы, чтобы иметь более "
-"продвинутый метаболизм полагаются на энергию АТФ. Она также используется для "
-"хранения молекул в ячейке и увеличения размера клетки."
+"Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки "
+"из смеси белков,ионов и других веществ, которое заполняют внутреннюю часть "
+"клетки. Одна из функций, которую она выполняет - это преобразование "
+"глюкозы в энергию АТФ. Клетки в которых отсутствуют органеллы, чтобы иметь "
+"более продвинутый метаболизм полагаются на энергию АТФ. Она также "
+"используется для хранения молекул в ячейке и увеличения размера клетки."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:744
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1676
@@ -1429,12 +1451,13 @@ msgstr "Кислород."
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они "
-"способны преобразовывать глюкозу в АТФ с гораздо большей скоростью, чем это "
-"может быть сделано в цитоплазме в процессе, называемом аэробным дыханием. "
-"Однако для его функционирования требуется кислород, а более низкий уровень "
-"кислорода в окружающей среде замедлит скорость производства АТФ. Поскольку "
-"метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, "
-"окружающая жидкость выполняет некоторую ферментацию."
+"способны преобразовывать глюкозу в АТФ с гораздо большей скоростью, чем "
+"это может быть сделано в цитоплазме в процессе, называемом аэробным "
+"дыханием. Однако для его функционирования требуется кислород, а более "
+"низкий уровень кислорода в окружающей среде замедлит скорость производства "
+"АТФ. Поскольку метаболосомы находятся во взвешенном состоянии "
+"непосредственно в цитоплазме, окружающая жидкость выполняет некоторую "
+"ферментацию."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:894
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2022
@@ -1741,7 +1764,7 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 #, fuzzy
 msgid "ESCAPE_ENGULFING"
 msgstr "избегать поглощения"
@@ -2204,7 +2227,7 @@ msgstr "Перезаписать существующее сохранение?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Сохранение успешно"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Сохранение неудалось! Случается в исключительных ситуациях"
 
@@ -2254,7 +2277,8 @@ msgstr ""
 "Это сохранение из старой версии Thrive и оно может быть несовместимо.\n"
 "Thrive на текущий момент находиться в ранней разработке и совместимость "
 "сохранений не приоритетна.\n"
-"Ты можешь сообщить о проблемах, но они не будут высоко приоритетны сейчас.\n"
+"Ты можешь сообщить о проблемах, но они не будут высоко приоритетны "
+"сейчас.\n"
 "Ты желаешь попробовать загрузить это сохранение всёравно?"
 
 #: ../src/saving/SaveList.tscn:88
@@ -2318,8 +2342,8 @@ msgstr "Загрузить"
 #: ../src/saving/SaveListItem.tscn:281
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
-"Удаление этого сохранение будет невозможно отменить, ты действительно хочешь "
-"удалить это пермаментно?"
+"Удаление этого сохранение будет невозможно отменить, ты действительно "
+"хочешь удалить это пермаментно?"
 
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
@@ -2493,8 +2517,8 @@ msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для размножения тебе необходимо продублировать все свои органеллы, собрав "
 "достаточное количество аммиака и фосфатов.\n"
-"Посмотрите на индикатор в правом нижнем углу, чтобы узнать, сколько еще вам "
-"нужно."
+"Посмотрите на индикатор в правом нижнем углу, чтобы узнать, сколько еще "
+"вам нужно."
 
 #~ msgid "CARBON"
 #~ msgstr "Углерод"

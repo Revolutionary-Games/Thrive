@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-10 09:12+0000\n"
 "Last-Translator: Aquos Goatington <dries.hazenbosch@outlook.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -248,8 +248,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Hier is een tip, je kan op andere soorten jagen totdat ze uitsterven als je "
-"niet voorzichtig genoeg bent. Ze kunnen ook door andere soorten tot "
+"Hier is een tip, je kan op andere soorten jagen totdat ze uitsterven als "
+"je niet voorzichtig genoeg bent. Ze kunnen ook door andere soorten tot "
 "uitsterven worden bedreigd."
 
 #: ../simulation_parameters/common/help_texts.json:57
@@ -285,8 +285,8 @@ msgstr "Hier is een tip, je kan ijzeren brokjes verzwelgen."
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Hier is een tip, bereid je voor voordat je een celkern toevoegt. Die dingen "
-"zijn duur! In zowel onderhoud als kosten vooraf."
+"Hier is een tip, bereid je voor voordat je een celkern toevoegt. Die "
+"dingen zijn duur! In zowel onderhoud als kosten vooraf."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
@@ -915,44 +915,66 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#, fuzzy
+msgid "LEFT"
+msgstr "Beweeg naar links"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#, fuzzy
+msgid "RIGHT"
+msgstr "Licht"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "Linker muis"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "Rechter muis"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "Midden muis"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "Wiel naar boven"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "Wiel naar beneden"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 msgid "WHEEL_LEFT"
 msgstr "Wiel naar links"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Wiel naar rechts"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 #, fuzzy
 msgid "SPECIAL_MOUSE_1"
 msgstr "Speciaal 1 muis"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 #, fuzzy
 msgid "SPECIAL_MOUSE_2"
 msgstr "Speciaal 2 muis"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Onbekende muis"
 
@@ -1638,40 +1660,42 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3163
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
-"Het belangrijkste kenmerk van eukaryotische cellen. De celkern bevat ook het "
-"golgi-apparaat en het endoplasmatisch reticulum. Het is een aanpassing van "
-"prokaryotische cellen om een systeem van interne membranen te ontwikkelen, "
-"wat bereikt werd door een andere prokaryoot te absorberen. Dit liet hen toe "
-"om de verschillende processen die binnen in de cel gebeurden op te splitsen, "
-"of om hen af te sluiten, en om ervoor te zorgen dat ze niet konden "
-"overlappen. Dit zorgt ervoor dat hun nieuwe membraangebonden organellen veel "
-"complexer, efficiënter en gespecialiseerder kan zijn dan als ze vrij in het "
-"cytoplasma ronddreven. Dit komt wel met de prijs dat het veel van de cel "
-"zijn energie opneemt en dat de cel veel groter moet zijn."
+"Het belangrijkste kenmerk van eukaryotische cellen. De celkern bevat ook "
+"het golgi-apparaat en het endoplasmatisch reticulum. Het is een aanpassing "
+"van prokaryotische cellen om een systeem van interne membranen te "
+"ontwikkelen, wat bereikt werd door een andere prokaryoot te absorberen. "
+"Dit liet hen toe om de verschillende processen die binnen in de cel "
+"gebeurden op te splitsen, of om hen af te sluiten, en om ervoor te zorgen "
+"dat ze niet konden overlappen. Dit zorgt ervoor dat hun nieuwe "
+"membraangebonden organellen veel complexer, efficiënter en "
+"gespecialiseerder kan zijn dan als ze vrij in het cytoplasma ronddreven. "
+"Dit komt wel met de prijs dat het veel van de cel zijn energie opneemt en "
+"dat de cel veel groter moet zijn."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3451
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
-"De krachtcentrale van de cel. Het mitochondrium (meervoud: mitochondria) is "
-"een door twee membranen omsloten celorganel dat met proteïnen en enzymen "
-"gevuld is. Het is een prokaryoot die werd geabsorbeerd door zijn "
+"De krachtcentrale van de cel. Het mitochondrium (meervoud: mitochondria) "
+"is een door twee membranen omsloten celorganel dat met proteïnen en "
+"enzymen gevuld is. Het is een prokaryoot die werd geabsorbeerd door zijn "
 "eukaryotische gastheer voor het gebruik. Het is in staat om glucose in ATP "
-"om te zetten aan een veel grotere efficiëntie dan in het cytoplasma mogelijk "
-"is, in een proces dat celademhaling heet. Hier komt tegenover dat het "
-"zuurstof nodig heeft om te kunnen werken en dat een lager zuurstoflevel de "
-"ATP-productie vertraagt."
+"om te zetten aan een veel grotere efficiëntie dan in het cytoplasma "
+"mogelijk is, in een proces dat celademhaling heet. Hier komt tegenover dat "
+"het zuurstof nodig heeft om te kunnen werken en dat een lager "
+"zuurstoflevel de ATP-productie vertraagt."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "De choloroplast is een door twee membranen omsloten celorganel dat "
-"lichtgevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
-"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
-"diens gebruik. De pigmenten in de chloroplast zijn in staat om lichtenergie "
-"te gebruiken om glucose uit water en gasvormige koolstofdioxide te "
-"produceren in een proces dat fotosynthese heet. Deze pigmenten zijn ook wat "
-"het zijn opmerkelijke kleur geeft. De snelheid van de glucoseproductie hangt "
-"af van de koolstofdioxideconcentratie en de lichtintensiteit."
+"lichtgevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. "
+"Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is "
+"voor diens gebruik. De pigmenten in de chloroplast zijn in staat om "
+"lichtenergie te gebruiken om glucose uit water en gasvormige "
+"koolstofdioxide te produceren in een proces dat fotosynthese heet. Deze "
+"pigmenten zijn ook wat het zijn opmerkelijke kleur geeft. De snelheid van "
+"de glucoseproductie hangt af van de koolstofdioxideconcentratie en de "
+"lichtintensiteit."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3833
@@ -1687,12 +1711,12 @@ msgstr "Temperatuur"
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "De thermoplast is een door twee membranen omsloten celorganel  dat "
-"warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
-"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
-"diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie "
-"van hitteverschillen in de omgeving te gebruiken om glucose uit water en "
-"gasvormige koolstofdioxide te produceren in een proces dat thermosyntese "
-"heet. De snelheid van de glucoseproductie hangt af van de "
+"warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. "
+"Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is "
+"voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de "
+"energie van hitteverschillen in de omgeving te gebruiken om glucose uit "
+"water en gasvormige koolstofdioxide te produceren in een proces dat "
+"thermosyntese heet. De snelheid van de glucoseproductie hangt af van de "
 "koolstofdioxideconcentratie en de temperatuur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4332
@@ -1769,8 +1793,8 @@ msgstr "Grondstofabsorbtiesnelheid"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "De simpelste membraanvorm, het heeft weinig bescherming tegen schade. Het "
-"heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel is "
-"dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
+"heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel "
+"is dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
 "absorberen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5575
@@ -1858,7 +1882,7 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2299,7 +2323,7 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr ""
 

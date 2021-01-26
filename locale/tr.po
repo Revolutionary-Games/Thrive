@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-11 12:45+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -907,42 +907,64 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#, fuzzy
+msgid "LEFT"
+msgstr "Sola doğru git"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#, fuzzy
+msgid "RIGHT"
+msgstr "Işık"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "Sol fare tuşu"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "Sağ fare tuşu"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "Orta fare tuşu"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "Fare tekeri yukarı"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "Fare tekeri aşağı"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 msgid "WHEEL_LEFT"
 msgstr "Fare tekeri sola"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Fare tekeri sağa"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "Özel fare tuşu 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Özel fare tuşu 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Bilinmeyen fare tuşu"
 
@@ -1860,7 +1882,7 @@ msgstr "başarılı yiyecek avı"
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -2316,7 +2338,7 @@ msgstr "Mevcut kaydın üstüne yazılsın mı?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Kaydetme başarılı"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Kaydetme başarısız! Bir sorun oluştu"
 
@@ -2515,9 +2537,9 @@ msgstr ""
 "Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman "
 "kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının "
-"ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel "
-"değişiklikleri görebilirsin.\n"
+"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve "
+"popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca "
+"üstte çevresel değişiklikleri görebilirsin.\n"
 "\n"
 "Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
 

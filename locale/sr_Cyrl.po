@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2020-12-27 09:23+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -900,42 +900,64 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#, fuzzy
+msgid "LEFT"
+msgstr "Помери се лево"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#, fuzzy
+msgid "RIGHT"
+msgstr "Светлост"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "Леви миш"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "Десни миш"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "Средњи миш"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "Померање нагоре"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "Померите надоле"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 msgid "WHEEL_LEFT"
 msgstr "Померите се улево"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Померите се удесно"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "Специјални 1 миш"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Специјални 2 миш"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Непознати миш"
 
@@ -1839,7 +1861,7 @@ msgstr "успешно окупљање"
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убиство"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "побегне од гутања"
 
@@ -2294,7 +2316,7 @@ msgstr "Желите ли да препишете постојеће чувањ�
 msgid "SAVING_SUCCEEDED"
 msgstr "Чување је успело"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Чување није успело! Догоди се изузетак"
 

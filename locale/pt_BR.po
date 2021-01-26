@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-08 08:05+0000\n"
 "Last-Translator: Elrakrez <festerdam@posteo.net>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -170,9 +170,10 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "A cada geração, você tem 100 pontos de mutação (PM) para gastar, e cada "
 "mudança (ou mutação) vai custar uma certa quantidade desses pontos. "
-"Adicionar ou remover organelas custam PM, porém remover organelas que foram "
-"adicionadas na sessão atual devolvem os PM. Você pode remover uma organela "
-"clicando nela com o botão direito. É possível girar as organelas com A e D."
+"Adicionar ou remover organelas custam PM, porém remover organelas que "
+"foram adicionadas na sessão atual devolvem os PM. Você pode remover uma "
+"organela clicando nela com o botão direito. É possível girar as organelas "
+"com A e D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -299,8 +300,8 @@ msgstr "Curiosidade, o Didinum é um ciliado que caça Paramecia."
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Curiosidade, a Amoeba caça e pega suas presas com 'pernas' feitas de "
-"citoplasma chamadas pseudópodes, no futuro nós queremos implementar isso no "
-"jogo."
+"citoplasma chamadas pseudópodes, no futuro nós queremos implementar isso "
+"no jogo."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -905,42 +906,64 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#, fuzzy
+msgid "LEFT"
+msgstr "Mover para a esquerda"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#, fuzzy
+msgid "RIGHT"
+msgstr "Luz"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "Botão esquerdo do mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "Botão direito do mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "Botão do meio do mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "Rolar para cima"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "Rolar para baixo"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 msgid "WHEEL_LEFT"
 msgstr "Rolar para a esquerda"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Rolar para a direita"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "Botão especial 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Botão especial 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Botão do mouse desconhecido"
 
@@ -1266,8 +1289,8 @@ msgstr "O arquivo salvo não corresponde à versão atual do jogo"
 #: ../src/gui_common/QuickLoadHandler.tscn:19
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"A versão do arquivo salvo que você está tentando carregar não corresponde à "
-"versão do jogo.\n"
+"A versão do arquivo salvo que você está tentando carregar não corresponde "
+"à versão do jogo.\n"
 "Por favor carregue o salvamento manualmente através do menu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:81
@@ -1434,11 +1457,11 @@ msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles "
 "conseguem converter glicose em ATP a uma taxa muito maior do que pode ser "
-"feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, "
-"necessita de oxigênio para funcionar, e níveis menores de oxigênio no "
-"ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos "
-"são suspensos diretamente no citoplasma, os fluidos em volta realizarão a "
-"fermentação."
+"feita no citoplasma em um processo chamado Respiração Aeróbica. No "
+"entanto, necessita de oxigênio para funcionar, e níveis menores de "
+"oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os "
+"metabolossomos são suspensos diretamente no citoplasma, os fluidos em "
+"volta realizarão a fermentação."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:894
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2022
@@ -1490,9 +1513,9 @@ msgstr ""
 "pigmentos conseguem usar a energia da luz para produzir glicose da água e "
 "gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também "
 "são o que os dá uma cor característica. A taxa da sua produção de glicose "
-"aumenta com a concentração de dióxido de carbono e intensidade da luz. Como "
-"os tilacóides estão suspensos diretamente no citoplasma, o fluido em volta "
-"realiza fermentação."
+"aumenta com a concentração de dióxido de carbono e intensidade da luz. "
+"Como os tilacóides estão suspensos diretamente no citoplasma, o fluido em "
+"volta realiza fermentação."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4209
@@ -1507,11 +1530,11 @@ msgstr "Também transforma"
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Proteínas quimiossintetizantes são pequenas aglomerações de proteínas no "
-"citoplasma que podem converter sulfeto de hidrogênio, água, e gás carbônico "
-"em glicose em um processo chamado Quimiossíntese. A taxa da sua produção de "
-"glicose aumenta com a concentração de dióxido de carbono. Como as proteínas "
-"quimiossintetizantes são suspensas diretamente no citoplasma, os fluidos em "
-"sua volta realizam fermentação."
+"citoplasma que podem converter sulfeto de hidrogênio, água, e gás "
+"carbônico em glicose em um processo chamado Quimiossíntese. A taxa da sua "
+"produção de glicose aumenta com a concentração de dióxido de carbono. Como "
+"as proteínas quimiossintetizantes são suspensas diretamente no citoplasma, "
+"os fluidos em sua volta realizam fermentação."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1838
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1843,7 +1866,7 @@ msgstr "busca de recursos bem-sucedida"
 msgid "SUCCESSFUL_KILL"
 msgstr "caça bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "escapou de predação"
 
@@ -2300,7 +2323,7 @@ msgstr "Sobrescrever salvamento existente?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvo com êxito"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "O salvamento falhou! Uma exceção aconteceu"
 
@@ -2498,8 +2521,8 @@ msgstr ""
 "Aqui você pode rever o que aconteceu desde o início do jogo ou desde a "
 "última vez que esteve no editor e fazer mudanças para a sua espécie.\n"
 "\n"
-"Nessa aba você pode ver um relatório de quais espécies existem, onde, e qual "
-"é a sua população. Você também pode ver mudanças ambientais no topo.\n"
+"Nessa aba você pode ver um relatório de quais espécies existem, onde, e "
+"qual é a sua população. Você também pode ver mudanças ambientais no topo.\n"
 "\n"
 "Para ir para a próxima aba, aperte o botão “próximo” no canto inferior "
 "direito."
@@ -2540,8 +2563,8 @@ msgstr ""
 "Se você cometer um erro, pode desfazer qualquer alteração que você fez no "
 "editor.\n"
 "\n"
-"Nota: Remover organelas que você colocou na mesma sessão do editor não custa "
-"nada.\n"
+"Nota: Remover organelas que você colocou na mesma sessão do editor não "
+"custa nada.\n"
 "\n"
 "Clique no botão de desfazer para continuar."
 

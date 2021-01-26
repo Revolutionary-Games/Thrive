@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2020-12-27 09:23+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio."
@@ -780,42 +780,62 @@ msgid "SHIFT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
-msgid "LEFT_MOUSE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
-msgid "RIGHT_MOUSE"
+msgid "LEFT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
-msgid "MIDDLE_MOUSE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
-msgid "WHEEL_UP"
+msgid "RIGHT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
-msgid "WHEEL_DOWN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
-msgid "WHEEL_LEFT"
+msgid "UP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
-msgid "WHEEL_RIGHT"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
-msgid "SPECIAL_MOUSE_1"
+msgid "DOWN"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
+msgid "LEFT_MOUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
+msgid "RIGHT_MOUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
+msgid "MIDDLE_MOUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
+msgid "WHEEL_UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
+msgid "WHEEL_DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
+msgid "WHEEL_LEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
+msgid "WHEEL_RIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
+msgid "SPECIAL_MOUSE_1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
@@ -1592,7 +1612,7 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2033,7 +2053,7 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr ""
 

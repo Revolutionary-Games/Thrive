@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2021-01-10 09:19+0000\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
+"PO-Revision-Date: 2021-01-26 04:37+0100\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -129,8 +129,8 @@ msgstr ""
 "Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
 "anaerobically\n"
 "\n"
-"Cytoplasm: Has storage space and performs glycolysis (Produces small amounts "
-"of ATP)"
+"Cytoplasm: Has storage space and performs glycolysis (Produces small "
+"amounts of ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -166,19 +166,19 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Each generation, you have 100 mutation points (MP) to spend, and each change "
-"(or mutation) will cost a certain amount of that MP. Adding and removing "
-"organelles costs MP, however removing organelles that were placed in the "
-"current mutation session refunds MP for that organelle. You can remove an "
-"organelle by right-clicking on it. You can rotate your organelles with A and "
-"D."
+"Each generation, you have 100 mutation points (MP) to spend, and each "
+"change (or mutation) will cost a certain amount of that MP. Adding and "
+"removing organelles costs MP, however removing organelles that were placed "
+"in the current mutation session refunds MP for that organelle. You can "
+"remove an organelle by right-clicking on it. You can rotate your "
+"organelles with A and D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Every time you reproduce, you will enter the Microbe Editor, where you can "
-"make changes to your species (by adding, moving, or removing organelles) to "
-"increase your species' success. Each visit to the editor in the Microbe "
+"make changes to your species (by adding, moving, or removing organelles) "
+"to increase your species' success. Each visit to the editor in the Microbe "
 "Stage represents 100 million years of evolution."
 
 #: ../simulation_parameters/common/help_texts.json:43
@@ -223,8 +223,8 @@ msgstr "Here's a tip, sometimes it's best just to run away from other cells."
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"Here's a tip, if a cell is about half your size, that's when you can engulf "
-"them."
+"Here's a tip, if a cell is about half your size, that's when you can "
+"engulf them."
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
@@ -235,8 +235,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Here's a tip, You can hunt other species to extinction if you aren't careful "
-"enough, they can also be hunted to extinction by other species."
+"Here's a tip, You can hunt other species to extinction if you aren't "
+"careful enough, they can also be hunted to extinction by other species."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -898,42 +898,62 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+msgid "LEFT"
+msgstr "Left"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+msgid "RIGHT"
+msgstr "Right"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr "Up"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr "Down"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr "Print"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "Left mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "Right mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "Wheel up"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "Wheel down"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 msgid "WHEEL_LEFT"
 msgstr "Wheel left"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Wheel right"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "Special 1 mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Special 2 mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Unknown mouse"
 
@@ -1835,7 +1855,7 @@ msgstr "successful scavenge"
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -2291,7 +2311,7 @@ msgstr "Overwrite existing save?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Saving succeeded"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Saving failed! An exception happened"
 

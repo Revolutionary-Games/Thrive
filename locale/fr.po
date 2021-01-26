@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-03 09:13+0000\n"
 "Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -918,43 +918,65 @@ msgid "SHIFT"
 msgstr "Maj"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
-msgid "LEFT_MOUSE"
-msgstr "Clic gauche"
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
-msgid "RIGHT_MOUSE"
-msgstr "Clic droit"
+#, fuzzy
+msgid "LEFT"
+msgstr "Se déplacer vers la gauche"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
-msgid "MIDDLE_MOUSE"
-msgstr "Clic molette"
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
-msgid "WHEEL_UP"
-msgstr "Molette avant"
+#, fuzzy
+msgid "RIGHT"
+msgstr "Lumière"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
-msgid "WHEEL_DOWN"
-msgstr "Molette arrière"
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
-msgid "WHEEL_LEFT"
+msgid "UP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
+msgid "LEFT_MOUSE"
+msgstr "Clic gauche"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
+msgid "RIGHT_MOUSE"
+msgstr "Clic droit"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
+msgid "MIDDLE_MOUSE"
+msgstr "Clic molette"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
+msgid "WHEEL_UP"
+msgstr "Molette avant"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
+msgid "WHEEL_DOWN"
+msgstr "Molette arrière"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
+msgid "WHEEL_LEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Roulette droite"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 #, fuzzy
 msgid "SPECIAL_MOUSE_1"
 msgstr "Spécial 1 souris"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Spécial 2 souris"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Souris inconnue"
 
@@ -1156,7 +1178,8 @@ msgstr "Remettre les touches à zéro?"
 #: ../src/general/OptionsMenu.tscn:1043
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
-"Êtes-vous sur de vouloir restaurer les entrées à leurs valeurs par défauts ?"
+"Êtes-vous sur de vouloir restaurer les entrées à leurs valeurs par "
+"défauts ?"
 
 #: ../src/general/OptionsMenu.tscn:1052
 msgid "CLOSE_OPTIONS"
@@ -1869,7 +1892,7 @@ msgstr "récupération réussie"
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
@@ -2327,7 +2350,7 @@ msgstr "Réécrire la sauvegarde existante?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Sauvegarde échoué! Une exception a eu lieu"
 

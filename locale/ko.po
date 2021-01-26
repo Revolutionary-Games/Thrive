@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-13 08:41+0000\n"
 "Last-Translator: JeongJinwoo <jinuandr110151@gmail.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -219,7 +219,8 @@ msgstr "팁 하나, 당신 크기의 절반 정도인 세포가 있다면, 삼�
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"팁 하나, 박테리아는 보이는 것보다 더 강할 수 있으며, 보이기에는 작지만, 몇몇은 당신에게 파고들어 그대로 죽일 수도 있습니다!"
+"팁 하나, 박테리아는 보이는 것보다 더 강할 수 있으며, 보이기에는 작지만, 몇"
+"몇은 당신에게 파고들어 그대로 죽일 수도 있습니다!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
@@ -256,7 +257,8 @@ msgstr "팁 하나, 철이나 다른 덩어리들을 보면 삼키[지] 않을 �
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "팁 하나, 핵을 추가하려면 준비부터 하세요. 비싸니까요! 유지비와 선행비가요."
+msgstr ""
+"팁 하나, 핵을 추가하려면 준비부터 하세요. 비싸니까요! 유지비와 선행비가요."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
@@ -274,7 +276,9 @@ msgstr "농담 하나, 강섬모충속은 짚신벌레를 사냥하는 섬모충
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠간 Thrive 에서도 보고 싶군요."
+msgstr ""
+"농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠"
+"간 Thrive 에서도 보고 싶군요."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -873,42 +877,64 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#, fuzzy
+msgid "LEFT"
+msgstr "왼쪽으로 이동"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#, fuzzy
+msgid "RIGHT"
+msgstr "빛"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "마우스 왼쪽 버튼"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "마우스 오른쪽 버튼"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "마우스 가운데 버튼"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "휠 위로"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "휠 아래로"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 msgid "WHEEL_LEFT"
 msgstr "휠 왼쪽으로"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "휠 오른쪽으로"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "마우스 특수 키 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "마우스 특수 키 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "마우스 미확인 키"
 
@@ -1780,7 +1806,7 @@ msgstr "사냥 성공"
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
@@ -2244,7 +2270,7 @@ msgstr "덮어쓰겠습니까?"
 msgid "SAVING_SUCCEEDED"
 msgstr "저장 성공"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "저장 실패! 예외 발생"
 

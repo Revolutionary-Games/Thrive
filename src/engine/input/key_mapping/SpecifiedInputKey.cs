@@ -59,6 +59,22 @@ public class SpecifiedInputKey : ICloneable
         {
             // TODO: add translation support for key names like Right, and Left etc.
             // TODO: https://github.com/Revolutionary-Games/Thrive/issues/1895
+
+            // text += ((KeyList)Code).ToString();
+
+            var keyname = ((KeyList)Code).ToString();
+            
+            if (keyname == "Left")
+            text += TranslationServer.Translate("LEFT");
+            else if (keyname == "Right")
+            text += TranslationServer.Translate("RIGHT");
+            else if (keyname == "Up")
+            text += TranslationServer.Translate("UP");
+            else if (keyname == "Down")
+            text += TranslationServer.Translate("DOWN");
+            else if (keyname == "Print")
+            text += TranslationServer.Translate("PRINT");
+            else
             text += ((KeyList)Code).ToString();
         }
         else if (Type == InputType.MouseButton)

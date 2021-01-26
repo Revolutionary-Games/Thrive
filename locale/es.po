@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2020-12-28 17:04+0000\n"
 "Last-Translator: Igmc4 <isragmc@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -903,43 +903,65 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
-msgid "LEFT_MOUSE"
-msgstr "Clic izquierdo"
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
-msgid "RIGHT_MOUSE"
-msgstr "Clic derecho"
+#, fuzzy
+msgid "LEFT"
+msgstr "Movimiento Base"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
-msgid "MIDDLE_MOUSE"
-msgstr "Clic central"
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
-msgid "WHEEL_UP"
-msgstr ""
+#, fuzzy
+msgid "RIGHT"
+msgstr "la luz solar"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
-msgid "WHEEL_DOWN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
-msgid "WHEEL_LEFT"
+msgid "UP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
+msgid "LEFT_MOUSE"
+msgstr "Clic izquierdo"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
+msgid "RIGHT_MOUSE"
+msgstr "Clic derecho"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
+msgid "MIDDLE_MOUSE"
+msgstr "Clic central"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
+msgid "WHEEL_UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
+msgid "WHEEL_DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
+msgid "WHEEL_LEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 #, fuzzy
 msgid "WHEEL_RIGHT"
 msgstr "la luz solar"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "Botón especial 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Botón especial 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Botón desconocido"
 
@@ -1833,7 +1855,7 @@ msgstr "Búsqueda de recursos exitosa"
 msgid "SUCCESSFUL_KILL"
 msgstr "Caza exitosa"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "Engullición evadida"
 
@@ -2293,7 +2315,7 @@ msgstr "Sobreescribir partida existente?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Guardado con éxito"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Guardado fallido! Una excepción ocurrió"
 

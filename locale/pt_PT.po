@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-08 08:05+0000\n"
 "Last-Translator: Elrakrez <festerdam@posteo.net>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -171,10 +171,10 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Para cada geração, tens 100 pontos de mutação (PM) para gastar, e cada "
 "mudança custará uma certa quantia desses pontos. Adicionar e remover "
-"organelos custa PM, porém remover organelos que foram adicionados na sessão "
-"de mutação atual devolve os PM deles. Tu podes remover um organelo clicando "
-"nele com o botão direito do rato. Também é possível rodar organelos com A e "
-"D."
+"organelos custa PM, porém remover organelos que foram adicionados na "
+"sessão de mutação atual devolve os PM deles. Tu podes remover um organelo "
+"clicando nele com o botão direito do rato. Também é possível rodar "
+"organelos com A e D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -257,8 +257,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Eis uma dica, os biomas são mais que fundos diferentes, os compostos noutros "
-"biomas podem aparecer em proporções diferentes."
+"Eis uma dica, os biomas são mais que fundos diferentes, os compostos "
+"noutros biomas podem aparecer em proporções diferentes."
 
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_14"
@@ -876,42 +876,62 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
-msgid "LEFT_MOUSE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
-msgid "RIGHT_MOUSE"
+msgid "LEFT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
-msgid "MIDDLE_MOUSE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
-msgid "WHEEL_UP"
+msgid "RIGHT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
-msgid "WHEEL_DOWN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
-msgid "WHEEL_LEFT"
+msgid "UP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
-msgid "WHEEL_RIGHT"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
-msgid "SPECIAL_MOUSE_1"
+msgid "DOWN"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
+msgid "LEFT_MOUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
+msgid "RIGHT_MOUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
+msgid "MIDDLE_MOUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
+msgid "WHEEL_UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
+msgid "WHEEL_DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
+msgid "WHEEL_LEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
+msgid "WHEEL_RIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
+msgid "SPECIAL_MOUSE_1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
@@ -1688,7 +1708,7 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2129,7 +2149,7 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr ""
 

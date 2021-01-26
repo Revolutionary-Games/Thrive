@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 04:35+0100\n"
 "PO-Revision-Date: 2021-01-10 11:20+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -122,16 +122,16 @@ msgstr ""
 "Хемосинтезиращи протеини: Произвеждат 1/2 от глюкозата чрез хемопласт от "
 "водороден сулфид, извършват процеса гликолиза, заемат 1 шестоъгълник\n"
 "\n"
-"Тилакоиди: Произвеждат 1/3 от глюкозата като обикновен хлоропласт, извършват "
-"процеса гликолиза, заемат 1 шестоъгълник\n"
+"Тилакоиди: Произвеждат 1/3 от глюкозата като обикновен хлоропласт, "
+"извършват процеса гликолиза, заемат 1 шестоъгълник\n"
 "\n"
 "Рустицианин: Превръща желязото в АТФ\n"
 "\n"
 "Нитрогеназа: Превръща атмософерния азот и АТФ в амоняк чрез анаеробен "
 "процес\n"
 "\n"
-"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза ("
-"произвежда малки количества АТФ)"
+"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза "
+"(произвежда малки количества АТФ)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -169,19 +169,19 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Всяко поколение разполага със 100 мутационни точки (МТ), всяка негова "
-"промяна (или мутация) струва определен брой МТ. Добавянето или премахването "
-"на органели струва МТ, но премахването на органели, които са добавени в "
-"текущата сесия на редактора, връща тяхната стойност. Може да премахнете "
-"органел като го натиснете с десния бутон на мишката. Може да завъртите "
-"органел чрез натискане на „A“ или „D“."
+"промяна (или мутация) струва определен брой МТ. Добавянето или "
+"премахването на органели струва МТ, но премахването на органели, които са "
+"добавени в текущата сесия на редактора, връща тяхната стойност. Може да "
+"премахнете органел като го натиснете с десния бутон на мишката. Може да "
+"завъртите органел чрез натискане на „A“ или „D“."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "По време на възпроизвеждане, микробният редактор ще бъде отворен, в него "
-"може да променяте Вашето създание (като добавяте, премествате или премахвате "
-"органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора "
-"е равно на 100 милиона години еволюция."
+"може да променяте Вашето създание (като добавяте, премествате или "
+"премахвате органели) за да увеличите шанса му за оцеляване. Всяко отваряне "
+"на редактора е равно на 100 милиона години еволюция."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
@@ -898,42 +898,64 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#, fuzzy
+msgid "LEFT"
+msgstr "Наляво"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#, fuzzy
+msgid "RIGHT"
+msgstr "Светлина"
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:84
 msgid "LEFT_MOUSE"
 msgstr "Ляв бутон"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:85
 msgid "RIGHT_MOUSE"
 msgstr "Десен бутон"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:86
 msgid "MIDDLE_MOUSE"
 msgstr "Среден бутон"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:87
 msgid "WHEEL_UP"
 msgstr "Колелце нагоре"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:88
 msgid "WHEEL_DOWN"
 msgstr "Колелце надолу"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:89
 msgid "WHEEL_LEFT"
 msgstr "Колелце наляво"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "WHEEL_RIGHT"
 msgstr "Колелце надясно"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "SPECIAL_MOUSE_1"
 msgstr "Специален бутон №1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "SPECIAL_MOUSE_2"
 msgstr "Специален бутон №2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "UNKNOWN_MOUSE"
 msgstr "Неизвестен бутон"
 
@@ -1833,7 +1855,7 @@ msgstr "успешно плячкосване"
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -2289,7 +2311,7 @@ msgstr "Презапишете съществуващия запис?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Запазването е успешно"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Запазването е неуспешно! Отчетена е грешка"
 
@@ -2533,8 +2555,8 @@ msgstr ""
 "Важно е да разберете какви ефекти има даден органел върху Вашата клетка, "
 "преди да го поставите.\n"
 "\n"
-"Обърнете внимание на баланса на АТФ, за да сте сигурни, че Вашата клетка ще "
-"оцелее.\n"
+"Обърнете внимание на баланса на АТФ, за да сте сигурни, че Вашата клетка "
+"ще оцелее.\n"
 "\n"
 "Може да завъртите органелите с „A“ и „D“ (по подразбиране), преди да ги "
 "поставите.\n"
