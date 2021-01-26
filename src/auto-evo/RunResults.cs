@@ -368,7 +368,7 @@
                 if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
                 {
                     builder.Append(" ");
-                    builder.Append(TranslationServer.Translate("WENT_EXTINCT"));
+                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append("\n");
                 }
 
