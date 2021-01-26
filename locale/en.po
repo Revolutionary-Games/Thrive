@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-26 02:56+0100\n"
-"PO-Revision-Date: 2021-01-10 09:19+0000\n"
+"PO-Revision-Date: 2021-01-26 03:20+0100\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -849,7 +849,7 @@ msgstr "population:"
 
 #: ../src/auto-evo/RunResults.cs:225
 msgid "EXTINCT"
-msgstr ""
+msgstr " went extinct in "
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
@@ -877,7 +877,7 @@ msgstr "population in patches:"
 
 #: ../src/auto-evo/RunResults.cs:371
 msgid "WENT_EXTINCT"
-msgstr ""
+msgstr "went extinct from the planet"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1837,7 +1837,7 @@ msgstr "Add a new key binding"
 
 #: ../src/microbe_stage/Microbe.cs:806
 msgid "DEATH"
-msgstr ""
+msgstr "death"
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1848,9 +1848,8 @@ msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
 #: ../src/microbe_stage/Microbe.cs:1501
-#, fuzzy
 msgid "REPRODUCED"
-msgstr "Produces"
+msgstr "reproduced"
 
 #: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
