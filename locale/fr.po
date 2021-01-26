@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-03 09:13+0000\n"
 "Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -866,6 +866,10 @@ msgstr "{0} changement de population de {1} en raison de : {2}"
 msgid "POPULATION"
 msgstr "population :"
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "précédent :"
@@ -889,6 +893,10 @@ msgstr "{0} en envoyant : {1} population de la zone : {2}"
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "population dans les zones :"
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1156,7 +1164,8 @@ msgstr "Remettre les touches à zéro?"
 #: ../src/general/OptionsMenu.tscn:1043
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
-"Êtes-vous sur de vouloir restaurer les entrées à leurs valeurs par défauts ?"
+"Êtes-vous sur de vouloir restaurer les entrées à leurs valeurs par "
+"défauts ?"
 
 #: ../src/general/OptionsMenu.tscn:1052
 msgid "CLOSE_OPTIONS"
@@ -1861,6 +1870,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "récupération réussie"
@@ -1869,7 +1882,12 @@ msgstr "récupération réussie"
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "Produits"
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
@@ -2327,7 +2345,7 @@ msgstr "Réécrire la sauvegarde existante?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Sauvegarde échoué! Une exception a eu lieu"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-08 08:05+0000\n"
 "Last-Translator: Elrakrez <festerdam@posteo.net>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -171,10 +171,10 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Para cada geração, tens 100 pontos de mutação (PM) para gastar, e cada "
 "mudança custará uma certa quantia desses pontos. Adicionar e remover "
-"organelos custa PM, porém remover organelos que foram adicionados na sessão "
-"de mutação atual devolve os PM deles. Tu podes remover um organelo clicando "
-"nele com o botão direito do rato. Também é possível rodar organelos com A e "
-"D."
+"organelos custa PM, porém remover organelos que foram adicionados na "
+"sessão de mutação atual devolve os PM deles. Tu podes remover um organelo "
+"clicando nele com o botão direito do rato. Também é possível rodar "
+"organelos com A e D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -257,8 +257,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Eis uma dica, os biomas são mais que fundos diferentes, os compostos noutros "
-"biomas podem aparecer em proporções diferentes."
+"Eis uma dica, os biomas são mais que fundos diferentes, os compostos "
+"noutros biomas podem aparecer em proporções diferentes."
 
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_14"
@@ -827,6 +827,10 @@ msgstr ""
 msgid "POPULATION"
 msgstr ""
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr ""
@@ -849,6 +853,10 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
 msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
@@ -1680,6 +1688,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
@@ -1688,7 +1700,11 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+msgid "REPRODUCED"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2129,7 +2145,7 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-10 09:12+0000\n"
 "Last-Translator: Aquos Goatington <dries.hazenbosch@outlook.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -248,8 +248,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Hier is een tip, je kan op andere soorten jagen totdat ze uitsterven als je "
-"niet voorzichtig genoeg bent. Ze kunnen ook door andere soorten tot "
+"Hier is een tip, je kan op andere soorten jagen totdat ze uitsterven als "
+"je niet voorzichtig genoeg bent. Ze kunnen ook door andere soorten tot "
 "uitsterven worden bedreigd."
 
 #: ../simulation_parameters/common/help_texts.json:57
@@ -285,8 +285,8 @@ msgstr "Hier is een tip, je kan ijzeren brokjes verzwelgen."
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Hier is een tip, bereid je voor voordat je een celkern toevoegt. Die dingen "
-"zijn duur! In zowel onderhoud als kosten vooraf."
+"Hier is een tip, bereid je voor voordat je een celkern toevoegt. Die "
+"dingen zijn duur! In zowel onderhoud als kosten vooraf."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
@@ -864,6 +864,10 @@ msgstr "{0} bevolking veranderd met {1} door: {2}"
 msgid "POPULATION"
 msgstr "bevolking:"
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "vorige:"
@@ -887,6 +891,10 @@ msgstr "{0} door het versturen van: {1} bevolking van gebied: {2}"
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "bevolking in gebieden:"
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1638,40 +1646,42 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3163
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
-"Het belangrijkste kenmerk van eukaryotische cellen. De celkern bevat ook het "
-"golgi-apparaat en het endoplasmatisch reticulum. Het is een aanpassing van "
-"prokaryotische cellen om een systeem van interne membranen te ontwikkelen, "
-"wat bereikt werd door een andere prokaryoot te absorberen. Dit liet hen toe "
-"om de verschillende processen die binnen in de cel gebeurden op te splitsen, "
-"of om hen af te sluiten, en om ervoor te zorgen dat ze niet konden "
-"overlappen. Dit zorgt ervoor dat hun nieuwe membraangebonden organellen veel "
-"complexer, efficiënter en gespecialiseerder kan zijn dan als ze vrij in het "
-"cytoplasma ronddreven. Dit komt wel met de prijs dat het veel van de cel "
-"zijn energie opneemt en dat de cel veel groter moet zijn."
+"Het belangrijkste kenmerk van eukaryotische cellen. De celkern bevat ook "
+"het golgi-apparaat en het endoplasmatisch reticulum. Het is een aanpassing "
+"van prokaryotische cellen om een systeem van interne membranen te "
+"ontwikkelen, wat bereikt werd door een andere prokaryoot te absorberen. "
+"Dit liet hen toe om de verschillende processen die binnen in de cel "
+"gebeurden op te splitsen, of om hen af te sluiten, en om ervoor te zorgen "
+"dat ze niet konden overlappen. Dit zorgt ervoor dat hun nieuwe "
+"membraangebonden organellen veel complexer, efficiënter en "
+"gespecialiseerder kan zijn dan als ze vrij in het cytoplasma ronddreven. "
+"Dit komt wel met de prijs dat het veel van de cel zijn energie opneemt en "
+"dat de cel veel groter moet zijn."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3451
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
-"De krachtcentrale van de cel. Het mitochondrium (meervoud: mitochondria) is "
-"een door twee membranen omsloten celorganel dat met proteïnen en enzymen "
-"gevuld is. Het is een prokaryoot die werd geabsorbeerd door zijn "
+"De krachtcentrale van de cel. Het mitochondrium (meervoud: mitochondria) "
+"is een door twee membranen omsloten celorganel dat met proteïnen en "
+"enzymen gevuld is. Het is een prokaryoot die werd geabsorbeerd door zijn "
 "eukaryotische gastheer voor het gebruik. Het is in staat om glucose in ATP "
-"om te zetten aan een veel grotere efficiëntie dan in het cytoplasma mogelijk "
-"is, in een proces dat celademhaling heet. Hier komt tegenover dat het "
-"zuurstof nodig heeft om te kunnen werken en dat een lager zuurstoflevel de "
-"ATP-productie vertraagt."
+"om te zetten aan een veel grotere efficiëntie dan in het cytoplasma "
+"mogelijk is, in een proces dat celademhaling heet. Hier komt tegenover dat "
+"het zuurstof nodig heeft om te kunnen werken en dat een lager "
+"zuurstoflevel de ATP-productie vertraagt."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "De choloroplast is een door twee membranen omsloten celorganel dat "
-"lichtgevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
-"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
-"diens gebruik. De pigmenten in de chloroplast zijn in staat om lichtenergie "
-"te gebruiken om glucose uit water en gasvormige koolstofdioxide te "
-"produceren in een proces dat fotosynthese heet. Deze pigmenten zijn ook wat "
-"het zijn opmerkelijke kleur geeft. De snelheid van de glucoseproductie hangt "
-"af van de koolstofdioxideconcentratie en de lichtintensiteit."
+"lichtgevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. "
+"Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is "
+"voor diens gebruik. De pigmenten in de chloroplast zijn in staat om "
+"lichtenergie te gebruiken om glucose uit water en gasvormige "
+"koolstofdioxide te produceren in een proces dat fotosynthese heet. Deze "
+"pigmenten zijn ook wat het zijn opmerkelijke kleur geeft. De snelheid van "
+"de glucoseproductie hangt af van de koolstofdioxideconcentratie en de "
+"lichtintensiteit."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3833
@@ -1687,12 +1697,12 @@ msgstr "Temperatuur"
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "De thermoplast is een door twee membranen omsloten celorganel  dat "
-"warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
-"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
-"diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie "
-"van hitteverschillen in de omgeving te gebruiken om glucose uit water en "
-"gasvormige koolstofdioxide te produceren in een proces dat thermosyntese "
-"heet. De snelheid van de glucoseproductie hangt af van de "
+"warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. "
+"Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is "
+"voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de "
+"energie van hitteverschillen in de omgeving te gebruiken om glucose uit "
+"water en gasvormige koolstofdioxide te produceren in een proces dat "
+"thermosyntese heet. De snelheid van de glucoseproductie hangt af van de "
 "koolstofdioxideconcentratie en de temperatuur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4332
@@ -1769,8 +1779,8 @@ msgstr "Grondstofabsorbtiesnelheid"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "De simpelste membraanvorm, het heeft weinig bescherming tegen schade. Het "
-"heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel is "
-"dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
+"heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel "
+"is dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
 "absorberen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5575
@@ -1850,6 +1860,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
@@ -1858,7 +1872,12 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "Produceert"
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2299,7 +2318,7 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr ""
 

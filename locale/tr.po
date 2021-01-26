@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-11 12:45+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -856,6 +856,10 @@ msgstr "{0} popülasyonu {1} defa değişti çünkü: {2}"
 msgid "POPULATION"
 msgstr "popülasyon:"
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "önceki:"
@@ -879,6 +883,10 @@ msgstr "{0}: {1} popülasyonu {2} adlı araziden göç etti"
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "arazilerdeki popülasyon:"
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1852,6 +1860,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Yeni bir kontrol tuşu ekle"
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
@@ -1860,7 +1872,12 @@ msgstr "başarılı yiyecek avı"
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "Üretir"
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -2316,7 +2333,7 @@ msgstr "Mevcut kaydın üstüne yazılsın mı?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Kaydetme başarılı"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Kaydetme başarısız! Bir sorun oluştu"
 
@@ -2515,9 +2532,9 @@ msgstr ""
 "Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman "
 "kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının "
-"ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel "
-"değişiklikleri görebilirsin.\n"
+"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve "
+"popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca "
+"üstte çevresel değişiklikleri görebilirsin.\n"
 "\n"
 "Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
 

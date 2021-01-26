@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-14 18:41+0000\n"
 "Last-Translator: Federico Pelliccioni <fedpel98@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -32,8 +32,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"La tua cellula sfrutta l'ATP come fonte i energia. Non rimanere mai senza o "
-"la cellula morirà."
+"La tua cellula sfrutta l'ATP come fonte i energia. Non rimanere mai senza "
+"o la cellula morirà."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
@@ -63,8 +63,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"Nell'editor sono presenti molti organelli da evolvere, consentendo una vasta "
-"gamma di stili di ."
+"Nell'editor sono presenti molti organelli da evolvere, consentendo una "
+"vasta gamma di stili di ."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
@@ -88,9 +88,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"L'Idrogeno solforato può essere convertito in glucosio se nella tua cellula "
-"sono presenti chemioplasti o proteine chemiosintetizzanti. Il ferro può "
-"essere convertito in ATP con la ferrosintasi."
+"L'Idrogeno solforato può essere convertito in glucosio se nella tua "
+"cellula sono presenti chemioplasti o proteine chemiosintetizzanti. Il "
+"ferro può essere convertito in ATP con la ferrosintasi."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
@@ -159,8 +159,8 @@ msgstr ""
 "\n"
 "Chemoplasto: Produce glucosio consumando idrogeno solforato\n"
 "\n"
-"Plastide Azotofissatore: Produce Ammoniaca consumando ATP, Azoto e Ossigeno "
-"atmosferico\n"
+"Plastide Azotofissatore: Produce Ammoniaca consumando ATP, Azoto e "
+"Ossigeno atmosferico\n"
 "\n"
 "Vacuolo: Possiede 15 spazi per l'immagazzinamento di composti\n"
 "\n"
@@ -169,8 +169,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Ogni generazione, hai 100 punti mutazione (PM) da spendere, ed ogni cambio ("
-"o mutazione) costerà una certa quantità di PM. Aggiungere e rimuovere "
+"Ogni generazione, hai 100 punti mutazione (PM) da spendere, ed ogni cambio "
+"(o mutazione) costerà una certa quantità di PM. Aggiungere e rimuovere "
 "organelli costa PM, tuttavia rimuovere organelli che erano stati piazzati "
 "nella sessione di mutazione corrente rimborsa i PM per quell' organello. "
 "Puoi rimuovere un organello facendo clic destro su di esso. Puoi ruotare i "
@@ -243,9 +243,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Un suggerimento: puoi cacciare altre specie fino all'estinzione se non stai "
-"abbastanza attento; esse possono anche essere cacciate fino all'estinzione "
-"da altre specie."
+"Un suggerimento: puoi cacciare altre specie fino all'estinzione se non "
+"stai abbastanza attento; esse possono anche essere cacciate fino "
+"all'estinzione da altre specie."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -262,8 +262,8 @@ msgstr "Quelle cellule blu però."
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Un suggerimento: i biomi sono più che soltanto sfondi differenti, i composti "
-"nei differenti biomi qualche volta si generano a ritmi differenti."
+"Un suggerimento: i biomi sono più che soltanto sfondi differenti, i "
+"composti nei differenti biomi qualche volta si generano a ritmi differenti."
 
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_14"
@@ -291,8 +291,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "Una curiosità: Lo Stentor è un ciliato che può allungarsi e catturare la "
-"preda in una specie di bocca a forma di tromba che attira la preda generando "
-"correnti d'acqua con le ciglia."
+"preda in una specie di bocca a forma di tromba che attira la preda "
+"generando correnti d'acqua con le ciglia."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_19"
@@ -326,10 +326,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"Thrive è pensato come una simulazione di un pianeta alieno, quindi ha senso "
-"che la maggior parte delle creature che trovi saranno imparentate a una o "
-"due altre specie a causa dell'evoluzione che avviene intorno a te, vedi se "
-"puoi identificarli!"
+"Thrive è pensato come una simulazione di un pianeta alieno, quindi ha "
+"senso che la maggior parte delle creature che trovi saranno imparentate a "
+"una o due altre specie a causa dell'evoluzione che avviene intorno a te, "
+"vedi se puoi identificarli!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
@@ -857,6 +857,10 @@ msgstr ""
 msgid "POPULATION"
 msgstr "Popolazione:"
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "Precedente:"
@@ -880,6 +884,10 @@ msgstr ""
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "Popolazione nelle zone:"
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1714,6 +1722,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
@@ -1722,7 +1734,11 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+msgid "REPRODUCED"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1974,7 +1990,8 @@ msgstr "Organelli non connessi alla"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Vi sono organelli non connessi al resto della cellula\n"
-"Connetti tutti gli organelli alla cellula o annulla i cambiamenti effettuati."
+"Connetti tutti gli organelli alla cellula o annulla i cambiamenti "
+"effettuati."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4156
 msgid "PATCH_NAME"
@@ -2171,7 +2188,7 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr ""
 

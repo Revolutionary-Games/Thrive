@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-13 08:41+0000\n"
 "Last-Translator: JeongJinwoo <jinuandr110151@gmail.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -219,7 +219,8 @@ msgstr "팁 하나, 당신 크기의 절반 정도인 세포가 있다면, 삼�
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"팁 하나, 박테리아는 보이는 것보다 더 강할 수 있으며, 보이기에는 작지만, 몇몇은 당신에게 파고들어 그대로 죽일 수도 있습니다!"
+"팁 하나, 박테리아는 보이는 것보다 더 강할 수 있으며, 보이기에는 작지만, 몇"
+"몇은 당신에게 파고들어 그대로 죽일 수도 있습니다!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
@@ -256,7 +257,8 @@ msgstr "팁 하나, 철이나 다른 덩어리들을 보면 삼키[지] 않을 �
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "팁 하나, 핵을 추가하려면 준비부터 하세요. 비싸니까요! 유지비와 선행비가요."
+msgstr ""
+"팁 하나, 핵을 추가하려면 준비부터 하세요. 비싸니까요! 유지비와 선행비가요."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
@@ -274,7 +276,9 @@ msgstr "농담 하나, 강섬모충속은 짚신벌레를 사냥하는 섬모충
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠간 Thrive 에서도 보고 싶군요."
+msgstr ""
+"농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠"
+"간 Thrive 에서도 보고 싶군요."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -822,6 +826,10 @@ msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 msgid "POPULATION"
 msgstr "개체수:"
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "이전:"
@@ -845,6 +853,10 @@ msgstr "{0} 으로의: {1} 개체 전송: {2} 로부터"
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "주변 개체 수:"
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1772,6 +1784,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
@@ -1780,7 +1796,12 @@ msgstr "사냥 성공"
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "생산"
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
@@ -2244,7 +2265,7 @@ msgstr "덮어쓰겠습니까?"
 msgid "SAVING_SUCCEEDED"
 msgstr "저장 성공"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "저장 실패! 예외 발생"
 

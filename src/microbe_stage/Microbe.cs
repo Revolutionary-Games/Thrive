@@ -1498,7 +1498,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulation(Species,
-                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCE"));
+                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 
             ResetOrganelleLayout();

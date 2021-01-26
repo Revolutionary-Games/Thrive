@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-18 17:41+0000\n"
 "Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n"
+"%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -853,6 +853,10 @@ msgstr "{0} populacja zmieniła się o {1} z powodu: {2}"
 msgid "POPULATION"
 msgstr "populacja:"
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "poprzedni:"
@@ -876,6 +880,10 @@ msgstr "{0} wysyłając: {1} populacji z biomu: {2}"
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "Populacja w biomie:"
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1695,8 +1703,9 @@ msgstr "Szybkość Absorbcji Zasobów"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Najbardziej podstawowa forma membrany, słabo chroni przed uszkodzeniami. "
-"Potrzebuję też więcej energii żeby się nie zdeformować. Przewagą jest to że "
-"pozwala komórce na szybkie poruszanie się i absorbcję składników odżywczych."
+"Potrzebuję też więcej energii żeby się nie zdeformować. Przewagą jest to "
+"że pozwala komórce na szybkie poruszanie się i absorbcję składników "
+"odżywczych."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5575
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5639
@@ -1708,8 +1717,8 @@ msgstr "Podwójna"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Membrana z dwoma warstwami, lepiej chroni przed uszkodzeniami i potrzebuje "
-"mniej energii żeby się nie deformować. Aczkolwiek, spowalnia trochę komórkę "
-"oraz prędkość absorbcji zasobów."
+"mniej energii żeby się nie deformować. Aczkolwiek, spowalnia trochę "
+"komórkę oraz prędkość absorbcji zasobów."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5831
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5895
@@ -1774,6 +1783,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
@@ -1782,7 +1795,12 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "Produkuje"
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2225,7 +2243,7 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr ""
 

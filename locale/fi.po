@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-02 20:12+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -763,6 +763,10 @@ msgstr "{0} populaatio muuttui {1} syystä: {2}"
 msgid "POPULATION"
 msgstr "populaatio:"
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "edellinen:"
@@ -786,6 +790,10 @@ msgstr "{0} lähettämällä: {1} yksikköä populaatiota alueelta: {2}"
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "populaatio alueilla:"
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1626,6 +1634,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "onnistunut raadonsyönti"
@@ -1634,7 +1646,12 @@ msgstr "onnistunut raadonsyönti"
 msgid "SUCCESSFUL_KILL"
 msgstr "onnistunut tappo"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "Tuottaa"
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "pakeni nielaisulta"
 
@@ -2002,9 +2019,9 @@ msgstr "OLET VOITTANUT!"
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
-"Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit jatkaa "
-"pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden pelin uudessa "
-"maailmassa."
+"Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit "
+"jatkaa pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden "
+"pelin uudessa maailmassa."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
 #: ../src/saving/InProgressLoad.cs:138
@@ -2087,7 +2104,7 @@ msgstr "Korvaa aikaisempi tallennus?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Tallennus onnistui"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
@@ -2110,8 +2127,8 @@ msgstr "Virheellinen"
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti "
-"poistaa {0}?"
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti "
+"lopullisesti poistaa {0}?"
 
 #: ../src/saving/SaveList.tscn:46 ../src/saving/SaveListItem.tscn:103
 msgid "LOADING_DOT"

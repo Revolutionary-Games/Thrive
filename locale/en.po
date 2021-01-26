@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-10 09:19+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -129,8 +129,8 @@ msgstr ""
 "Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
 "anaerobically\n"
 "\n"
-"Cytoplasm: Has storage space and performs glycolysis (Produces small amounts "
-"of ATP)"
+"Cytoplasm: Has storage space and performs glycolysis (Produces small "
+"amounts of ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -166,19 +166,19 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Each generation, you have 100 mutation points (MP) to spend, and each change "
-"(or mutation) will cost a certain amount of that MP. Adding and removing "
-"organelles costs MP, however removing organelles that were placed in the "
-"current mutation session refunds MP for that organelle. You can remove an "
-"organelle by right-clicking on it. You can rotate your organelles with A and "
-"D."
+"Each generation, you have 100 mutation points (MP) to spend, and each "
+"change (or mutation) will cost a certain amount of that MP. Adding and "
+"removing organelles costs MP, however removing organelles that were placed "
+"in the current mutation session refunds MP for that organelle. You can "
+"remove an organelle by right-clicking on it. You can rotate your "
+"organelles with A and D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Every time you reproduce, you will enter the Microbe Editor, where you can "
-"make changes to your species (by adding, moving, or removing organelles) to "
-"increase your species' success. Each visit to the editor in the Microbe "
+"make changes to your species (by adding, moving, or removing organelles) "
+"to increase your species' success. Each visit to the editor in the Microbe "
 "Stage represents 100 million years of evolution."
 
 #: ../simulation_parameters/common/help_texts.json:43
@@ -223,8 +223,8 @@ msgstr "Here's a tip, sometimes it's best just to run away from other cells."
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"Here's a tip, if a cell is about half your size, that's when you can engulf "
-"them."
+"Here's a tip, if a cell is about half your size, that's when you can "
+"engulf them."
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
@@ -235,8 +235,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Here's a tip, You can hunt other species to extinction if you aren't careful "
-"enough, they can also be hunted to extinction by other species."
+"Here's a tip, You can hunt other species to extinction if you aren't "
+"careful enough, they can also be hunted to extinction by other species."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -847,6 +847,10 @@ msgstr "{0} population changed by {1} because of: {2}"
 msgid "POPULATION"
 msgstr "population:"
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "previous:"
@@ -870,6 +874,10 @@ msgstr "{0} by sending: {1} population from patch: {2}"
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "population in patches:"
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1827,6 +1835,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Add a new key binding"
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
@@ -1835,7 +1847,12 @@ msgstr "successful scavenge"
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "Produces"
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -2291,7 +2308,7 @@ msgstr "Overwrite existing save?"
 msgid "SAVING_SUCCEEDED"
 msgstr "Saving succeeded"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "Saving failed! An exception happened"
 

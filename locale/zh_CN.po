@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-01-26 02:56+0100\n"
 "PO-Revision-Date: 2021-01-11 11:46+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -108,9 +108,11 @@ msgstr ""
 "\n"
 "代谢体：用葡萄糖生产ATP\n"
 "\n"
-"化学合成蛋白：跟化学质体比同一份硫化氢只能产出半份葡萄糖，但其同时也能进行糖酵解。占用一个六角格。\n"
+"化学合成蛋白：跟化学质体比同一份硫化氢只能产出半份葡萄糖，但其同时也能进行"
+"糖酵解。占用一个六角格。\n"
 "\n"
-"类囊体：跟正常的叶绿体比只能产出1/3的葡萄糖，但其同时也能进行糖酵解。占用一个六角格。\n"
+"类囊体：跟正常的叶绿体比只能产出1/3的葡萄糖，但其同时也能进行糖酵解。占用一"
+"个六角格。\n"
 "\n"
 "铁硫菌蓝蛋白：将铁转换成ATP\n"
 "\n"
@@ -150,14 +152,16 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或移除细胞器会花费变异点，但是移除在本代放下的细胞器会返还全部那个细胞器消耗的"
-"变异点。你可以通过右键点击移除细胞器，用A和D键旋转你的细胞器。"
+"每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或"
+"移除细胞器会花费变异点，但是移除在本代放下的细胞器会返还全部那个细胞器消耗"
+"的变异点。你可以通过右键点击移除细胞器，用A和D键旋转你的细胞器。"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表一亿年的进化时"
-"间。"
+"你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或"
+"删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表一亿年的"
+"进化时间。"
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
@@ -165,7 +169,9 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "逗知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物关系研究了几十年。你是栉毛虫，还是草履虫呢？捕食者，还是猎物？"
+msgstr ""
+"逗知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物关系研究了几十年。你是栉"
+"毛虫，还是草履虫呢？捕食者，还是猎物？"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
@@ -256,7 +262,9 @@ msgstr "逗知识：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "逗知识：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天我们也能让Thrive能做出这种效果的。"
+msgstr ""
+"逗知识：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天我们也能让Thrive能做出"
+"这种效果的。"
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -798,6 +806,10 @@ msgstr "{0}生物数量变化了{1}，原因：{2}"
 msgid "POPULATION"
 msgstr "生物数量："
 
+#: ../src/auto-evo/RunResults.cs:225
+msgid "EXTINCT"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "先前："
@@ -821,6 +833,10 @@ msgstr "通过由{2}派出的{1}个生物扩散到了：{0}"
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "地区中的生物数量："
+
+#: ../src/auto-evo/RunResults.cs:371
+msgid "WENT_EXTINCT"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1718,6 +1734,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "添加新的绑定键位"
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
@@ -1726,7 +1746,12 @@ msgstr "成功扫荡的细胞器"
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.cs:1576
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "产出"
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -2179,7 +2204,7 @@ msgstr "覆写已有的存档？"
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:383
 msgid "SAVING_FAILED"
 msgstr "保存失败！发生了一个异常"
 
