@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=2]
+[gd_scene load_steps=135 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -90,7 +90,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=94]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=95]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=96]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=97]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=98]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=99]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Big.tres" type="DynamicFont" id=100]
@@ -3913,10 +3912,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 204.0
-margin_top = 227.0
-margin_right = 507.0
-margin_bottom = 702.0
+margin_left = 252.0
+margin_top = 275.0
+margin_right = 555.0
+margin_bottom = 750.0
 theme = SubResource( 30 )
 edit_alpha = false
 
@@ -4156,28 +4155,24 @@ margin_right = 828.0
 margin_bottom = 30.0
 
 [node name="PatchName" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
 margin_right = 256.0
-margin_bottom = 35.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 97 )
+custom_fonts/font = ExtResource( 56 )
 text = "PATCH_NAME"
+autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Control" type="Control" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 256.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-
 [node name="TimeIndicator" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 260.0
-margin_top = 2.0
+margin_top = 4.0
 margin_right = 516.0
-margin_bottom = 28.0
+margin_bottom = 30.0
 mouse_filter = 1
 size_flags_horizontal = 3
+size_flags_vertical = 8
 custom_fonts/font = ExtResource( 100 )
 text = "PASSED_TIME"
 align = 1
@@ -4191,7 +4186,7 @@ margin_left = 520.0
 margin_right = 620.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 100, 30 )
-size_flags_vertical = 4
+size_flags_vertical = 8
 custom_fonts/font = ExtResource( 101 )
 toggle_mode = true
 pressed = true
@@ -4204,7 +4199,7 @@ margin_left = 624.0
 margin_right = 724.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 100, 30 )
-size_flags_vertical = 4
+size_flags_vertical = 8
 custom_fonts/font = ExtResource( 101 )
 disabled = true
 toggle_mode = true
@@ -4217,7 +4212,7 @@ margin_left = 728.0
 margin_right = 828.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 100, 30 )
-size_flags_vertical = 4
+size_flags_vertical = 8
 custom_fonts/font = ExtResource( 101 )
 disabled = true
 toggle_mode = true
@@ -4346,12 +4341,45 @@ custom_fonts/font = ExtResource( 56 )
 text = "STATISTICS"
 align = 1
 
-[node name="PhysicalConditions" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
+[node name="SpeciesPopulation" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 45.0
 margin_right = 321.0
-margin_bottom = 125.0
+margin_bottom = 103.0
+DisplayName = "SPECIES_POPULATION"
+
+[node name="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="0"]
+margin_right = 321.0
+
+[node name="HSeparator" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/HBoxContainer" index="2"]
+margin_right = 321.0
+
+[node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="1"]
+margin_right = 321.0
+margin_bottom = 58.0
+
+[node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip" index="0"]
+margin_right = 321.0
+margin_bottom = 34.0
+
+[node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 321.0
+margin_bottom = 34.0
+ChartName = "Species Population"
+XAxisTicks = 5
+YAxisTicks = 6
+LegendMode = 1
+
+[node name="PhysicalConditions" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 118.0
+margin_right = 321.0
+margin_bottom = 198.0
 DisplayName = "PHYSICAL_CONDITIONS"
 TitleLabelPath = NodePath("../PhysicalConditions/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/minusButton")
@@ -4441,9 +4469,9 @@ YAxisTicks = 6
 [node name="AtmosphericGasses" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 140.0
+margin_top = 213.0
 margin_right = 321.0
-margin_bottom = 198.0
+margin_bottom = 271.0
 DisplayName = "ATMOSPHERIC_GASSES"
 TitleLabelPath = NodePath("../AtmosphericGasses/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/minusButton")
@@ -4479,9 +4507,9 @@ YAxisTicks = 6
 [node name="Compounds" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 213.0
+margin_top = 286.0
 margin_right = 321.0
-margin_bottom = 271.0
+margin_bottom = 344.0
 DisplayName = "COMPOUNDS"
 TitleLabelPath = NodePath("../Compounds/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/minusButton")
@@ -4513,39 +4541,6 @@ margin_bottom = 34.0
 ChartName = "Compounds"
 XAxisTicks = 5
 YAxisTicks = 6
-
-[node name="SpeciesPopulation" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 286.0
-margin_right = 321.0
-margin_bottom = 344.0
-DisplayName = "SPECIES_POPULATION"
-
-[node name="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="0"]
-margin_right = 321.0
-
-[node name="HSeparator" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/HBoxContainer" index="2"]
-margin_right = 321.0
-
-[node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="1"]
-margin_right = 321.0
-margin_bottom = 58.0
-
-[node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip" index="0"]
-margin_right = 321.0
-margin_bottom = 34.0
-
-[node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
-anchor_top = 0.0
-anchor_bottom = 0.0
-margin_top = 0.0
-margin_right = 321.0
-margin_bottom = 34.0
-ChartName = "Species Population"
-XAxisTicks = 5
-YAxisTicks = 6
-LegendMode = 1
 
 [node name="NextTabButton" type="MarginContainer" parent="MicrobeEditorGUI/Report"]
 anchor_left = 1.0
@@ -5691,10 +5686,10 @@ HelpCategory = "MicrobeEditor"
 [connection signal="OnClosed" from="PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]
 
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation"]
+
 [editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions"]
 
 [editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses"]
 
 [editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds"]
-
-[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation"]

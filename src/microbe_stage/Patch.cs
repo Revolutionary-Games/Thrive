@@ -136,19 +136,11 @@ public class Patch
     }
 
     /// <summary>
-    ///   Returns a new copy of the patch history.
+    ///   Returns the patch history.
     /// </summary>
-    public List<PatchConditions> GetHistory()
+    public IReadOnlyList<PatchConditions> GetHistory()
     {
-        return new List<PatchConditions>(history);
-    }
-
-    /// <summary>
-    ///   Returns number of stored patch conditions (without creating a new collection).
-    /// </summary>
-    public int GetHistoryCount()
-    {
-        return history.Count;
+        return history;
     }
 
     /// <summary>

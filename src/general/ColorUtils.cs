@@ -11,9 +11,9 @@ public static class ColorUtils
     /// </summary>
     public static bool IsLuminuous(this Color color)
     {
-        var luminance = (0.299 * color.r8 + 0.587 * color.g8 + 0.114 * color.b8) / 255;
+        var luminance = (0.299f * color.r8 + 0.587f * color.g8 + 0.114f * color.b8) / 255.0f;
 
-        if (luminance > 0.5)
+        if (luminance > 0.5f)
             return true;
 
         return false;

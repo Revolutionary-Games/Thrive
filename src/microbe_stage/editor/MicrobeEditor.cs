@@ -873,7 +873,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             targetPatch = patch;
         }
 
-        if (targetPatch?.GetHistoryCount() <= 0)
+        if (targetPatch?.GetHistory().Count <= 0)
             targetPatch?.RecordConditions();
 
         gui.UpdatePlayerPatch(targetPatch);
@@ -1073,6 +1073,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.SetMap(CurrentGame.GameWorld.Map);
 
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+
+        gui.UpdateReportTabPatchName(CurrentPatch.Name);
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;

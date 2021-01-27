@@ -118,20 +118,22 @@ public class LineChart : VBoxContainer
     /// </summary>
     public Vector2 MaxValues { get; private set; }
 
+    [Export]
     public string YAxisName
     {
         get => yAxisName;
-        private set
+        set
         {
             yAxisName = value;
             UpdateAxesName();
         }
     }
 
+    [Export]
     public string XAxisName
     {
         get => xAxisName;
-        private set
+        set
         {
             xAxisName = value;
             UpdateAxesName();
@@ -175,6 +177,35 @@ public class LineChart : VBoxContainer
         UpdateAxesName();
     }
 
+    public override void _Process(float delta)
+    {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        // Apply coordinates (with interpolation for smooth animations)
+        foreach (var data in dataSets)
+        {
+            foreach (var point in data.Value.DataPoints)
+            {
+                if (!IsInstanceValid(point))
+                    continue;
+
+                var coordinate = ConvertToCoordinate(point.Value);
+
+                if (point.Coordinate == coordinate)
+                    continue;
+
+                // TODO: Handle overlapping data point markers, will be difficult.
+                // As a workaround, players could instead manually hide the dataset
+                // of one of the overlapping points.
+
+                point.Coordinate = point.Coordinate.LinearInterpolate(coordinate, 3.0f * delta);
+                UpdateLineSegments();
+            }
+        }
+    }
+
     /// <summary>
     ///   Add a dataset into this chart (overwrites existing one if the name already existed)
     /// </summary>
@@ -207,8 +238,8 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Plots the chart from available datasets
     /// </summary>
-    /// <param name="xAxisName">The horizontal axis label title</param>
-    /// <param name="yAxisName">The vertical axis label title</param>
+    /// <param name="xAxisName">Overrides the horizontal axis label title</param>
+    /// <param name="yAxisName">Overrides the vertical axis label title</param>
     /// <param name="legendTitle">Title for the chart legend. If null, the legend will not be created</param>
     public void Plot(string xAxisName, string yAxisName, string legendTitle = null)
     {
@@ -226,8 +257,8 @@ public class LineChart : VBoxContainer
             return;
         }
 
-        XAxisName = xAxisName;
-        YAxisName = yAxisName;
+        XAxisName = string.IsNullOrEmpty(xAxisName) ? XAxisName : xAxisName;
+        YAxisName = string.IsNullOrEmpty(yAxisName) ? YAxisName : yAxisName;
 
         var dataSetCount = 0;
 
@@ -262,9 +293,7 @@ public class LineChart : VBoxContainer
 
             // Initialize line
             var dataLine = new DataLine(data.Value);
-
             dataLines[data.Key] = dataLine;
-
             drawArea.AddChild(dataLine);
         }
 
@@ -355,6 +384,11 @@ public class LineChart : VBoxContainer
         }
 
         drawArea.Update();
+
+        foreach (var data in dataSets.Keys)
+        {
+            FlattenLines(data);
+        }
     }
 
     public void ClearChart()
@@ -364,9 +398,11 @@ public class LineChart : VBoxContainer
         foreach (var data in dataSets)
         {
             ToolTipManager.Instance.ClearToolTips("chartMarkers" + ChartName + data.Key);
-            ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName + data.Key);
         }
 
+        ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName);
+
+        // Clear lines
         foreach (var data in dataSets)
         {
             if (!dataLines.ContainsKey(data.Key))
@@ -399,6 +435,12 @@ public class LineChart : VBoxContainer
 
     public void UpdateDataSetVisibility(string name, bool visible)
     {
+        if (!dataSets.ContainsKey(name))
+            return;
+
+        if (dataLines.ContainsKey(name) && !dataSets[name].Draw)
+            FlattenLines(name);
+
         dataSets[name].Draw = visible;
         drawArea.Update();
     }
@@ -463,7 +505,7 @@ public class LineChart : VBoxContainer
             toolTip.Description = data.Key;
 
             icon.RegisterToolTipForControl(toolTip, toolTipCallbacks);
-            ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + ChartName + data.Key);
+            ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + ChartName);
         }
     }
 
@@ -533,7 +575,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Updates the coordinates of the data points and line segments
+    ///   Connects the points with line segments
     /// </summary>
     private void UpdateLineSegments()
     {
@@ -552,12 +594,8 @@ public class LineChart : VBoxContainer
                 if (MinValues.x == MaxValues.x || MinValues.y == MaxValues.y)
                     continue;
 
-                // TODO: Handle overlapping data point markers, will be difficult.
-                // As a workaround, players could instead manually hide the dataset
-                // of one of the overlapping points.
-
-                point.Coordinate = ConvertToCoordinate(point.Value);
-
+                // Add the marker if not yet, this is called here so the node will
+                // be rendered on top of the line segments
                 if (!point.IsInsideTree())
                     drawArea.AddChild(point);
             }
@@ -570,13 +608,22 @@ public class LineChart : VBoxContainer
 
             var dataLine = dataLines[data.Key];
 
-            // Refresh points set on the line
-            dataLine.ClearPoints();
-
             // Setup lines
             foreach (var point in points)
             {
-                dataLine.AddPoint(point.Coordinate);
+                if (!point.IsInsideTree())
+                    continue;
+
+                var index = points.IndexOf(point);
+
+                if (index < dataLine.Points.Length)
+                {
+                    dataLine.SetPointPosition(index, point.Coordinate);
+                }
+                else
+                {
+                    dataLine.AddPoint(point.Coordinate, index);
+                }
 
                 // "First" is the last point on the chart (right-most one)
                 if (point != points.First())
@@ -639,6 +686,31 @@ public class LineChart : VBoxContainer
         mouseCollider.RectRotation = Mathf.Rad2Deg(firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate));
 
         mouseCollider.Visible = dataSets[datasetName].Draw;
+    }
+
+    /// <summary>
+    ///   Sets the y coordinate for all of the given dataset's points at the bottom of the chart.
+    ///   This is used to animate the lines rising from the bottom.
+    /// </summary>
+    private void FlattenLines(string datasetName)
+    {
+        var data = dataSets[datasetName];
+
+        foreach (var point in data.DataPoints)
+        {
+            // Had to apply the coordinate on the next frame to compensate with Godot's UI update delay,
+            // so the coordinates could be correctly calculated (since it depends on the Control container
+            // rect sizes) just after Plot() call. This may result to a subtle glitchy look in the first
+            // few frame where all the points were postioned at the top-left. But this works just fine for now.
+            Invoke.Instance.Queue(() =>
+            {
+                if (!IsInstanceValid(point))
+                    return;
+
+                point.Coordinate = new Vector2(
+                    ConvertToXCoordinate(point.Value.x), drawArea.RectSize.y);
+            });
+        }
     }
 
     /// <summary>

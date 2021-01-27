@@ -319,8 +319,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
-
-    // ReSharper disable once NotAccessedField.Local
     private Label reportTabPatchNameLabel;
 
     private HBoxContainer physicalConditionsIconLegends;
@@ -592,6 +590,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         UpdateShownPatchDetails();
 
         UpdateReportTabStatistics();
+
+        UpdateReportTabPatchName(mapDrawer.PlayerPatch.Name);
     }
 
     public void UpdateGlucoseReduction(float value)
@@ -895,6 +895,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         externalEffectsLabel.Text = external;
     }
 
+    public void UpdateReportTabPatchName(string patch)
+    {
+        reportTabPatchNameLabel.Text = patch;
+    }
+
     /// <summary>
     ///   Called once when the mouse enters the editor GUI.
     /// </summary>
@@ -1023,7 +1028,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.4f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1031,7 +1036,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.4f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1582,7 +1587,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Registers tooltip for the existing Controls
+    ///   Registers tooltip for the already existing Controls
     /// </summary>
     private void RegisterTooltips()
     {
@@ -1618,6 +1623,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
         menuButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
+
+        var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
+        var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
+
+        temperatureButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("temperature", "chartLegendPhysConds"), tooltipCallbacks);
+        sunlightButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("sunlight", "chartLegendPhysConds"), tooltipCallbacks);
     }
 
     private void OnSpeciesNameTextChanged(string newText)
@@ -1677,6 +1690,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.DarkGray;
             sunlightChart.Hide();
             temperatureChart.Show();
+            temperatureChart.UpdateDataSetVisibility("Temperature", true);
+            sunlightChart.UpdateDataSetVisibility("Sunlight", false);
         }
         else if (name == "sunlight")
         {
@@ -1684,6 +1699,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.White;
             sunlightChart.Show();
             temperatureChart.Hide();
+            temperatureChart.UpdateDataSetVisibility("Temperature", false);
+            sunlightChart.UpdateDataSetVisibility("Sunlight", true);
         }
     }
 

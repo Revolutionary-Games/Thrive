@@ -26,7 +26,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=27]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=29]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -83,7 +83,7 @@ DescriptionLabelPath = NodePath("../../general/menuButton/MarginContainer/VBoxCo
 
 [node name="helpButton" parent="GroupHolder/general" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 Description = "OPEN_HELP_SCREEN"
 DescriptionLabelPath = NodePath("../../general/helpButton/MarginContainer/VBoxContainer/Description")
 
@@ -110,31 +110,31 @@ DescriptionLabelPath = NodePath("../../../GroupHolder/editor/finishButton/Margin
 
 [node name="symmetryButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 Description = "CHANGE_THE_SYMMETRY"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/symmetryButton/MarginContainer/VBoxContainer/Description")
 
 [node name="undoButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 Description = "UNDO_THE_LAST_ACTION"
 DescriptionLabelPath = NodePath("../undoButton/MarginContainer/VBoxContainer/Description")
 
 [node name="redoButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 Description = "REDO_THE_LAST_ACTION"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/redoButton/MarginContainer/VBoxContainer/Description")
 
 [node name="newCellButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 Description = "CREATE_A_NEW_MICROBE"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/newCellButton/MarginContainer/VBoxContainer/Description")
 
 [node name="timeIndicator" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/timeIndicator/MarginContainer/VBoxContainer/Description")
 
@@ -7310,3 +7310,17 @@ margin_bottom = 40.0
 [node name="addInputButton" parent="GroupHolder/options" instance=ExtResource( 1 )]
 visible = false
 Description = "ADD_INPUT_BUTTON_TOOLTIP"
+
+[node name="chartLegendPhysConds" type="Control" parent="GroupHolder"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="temperature" parent="GroupHolder/chartLegendPhysConds" instance=ExtResource( 1 )]
+visible = false
+Description = "TEMPERATURE"
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="sunlight" parent="GroupHolder/chartLegendPhysConds" instance=ExtResource( 1 )]
+visible = false
+Description = "SUNLIGHT"
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")

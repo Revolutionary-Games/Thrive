@@ -68,6 +68,16 @@ public class ThriveJsonConverter : IDisposable
 
     public static ThriveJsonConverter Instance => InstanceValue;
 
+    /// <summary>
+    ///   Serializes the specified object to a JSON string using ThriveJsonConverter settings.
+    /// </summary>
+    /// <param name="o">Object to serialize</param>
+    /// <param name="type">
+    ///   <para>
+    ///     To fix (maybe bugs) where the object's type name is sometimes not written with TypeNameHandling.Auto,
+    ///     this is used so we could pass in String as the Type to force the serializer to write out the type name.
+    ///   </para>
+    /// </param>
     public string SerializeObject(object o, Type type = null)
     {
         return PerformWithSettings(
