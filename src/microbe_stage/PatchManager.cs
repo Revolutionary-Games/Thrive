@@ -98,7 +98,7 @@ public class PatchManager
                     spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
                         compoundCloudSystem);
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, (int)entry.Value.Density,
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
