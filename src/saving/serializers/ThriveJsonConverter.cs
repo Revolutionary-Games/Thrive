@@ -74,8 +74,8 @@ public class ThriveJsonConverter : IDisposable
     /// <param name="o">Object to serialize</param>
     /// <param name="type">
     ///   <para>
-    ///     To fix (maybe bugs) where the object's type name is sometimes not written with TypeNameHandling.Auto,
-    ///     this is used so we could pass in String as the Type to force the serializer to write out the type name.
+    ///     This is used so we could pass in String as the Type to force the serializer to write out the type name,
+    ///     to fix (presumably a bug) where the object's type name is sometimes not written with TypeNameHandling.Auto.
     ///   </para>
     /// </param>
     public string SerializeObject(object o, Type type = null)
