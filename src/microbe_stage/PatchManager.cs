@@ -111,7 +111,7 @@ public class PatchManager
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Key.InternalName, entry.Value.Density,
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName);
@@ -144,7 +144,7 @@ public class PatchManager
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
-            HandleSpawnHelper(chunkSpawners, name, density,
+            HandleSpawnHelper(microbeSpawners, name, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(name);
