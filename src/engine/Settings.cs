@@ -308,10 +308,28 @@ public class Settings
     {
         switch (godotLocale)
         {
+            case "eo":
+                return "en";
             case "sr_Latn":
                 return "sr-Latn-RS";
             case "sr_Cyrl":
                 return "sr-Cyrl-RS";
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    ///   Overrides Native name if an override is set
+    /// </summary>
+    /// <param name="godotLocale">Godot locale</param>
+    /// <returns>Native name, or null if there is not a premade mapping</returns>
+    public static string GetLanguageNativeNameOverride(string godotLocale)
+    {
+        switch (godotLocale)
+        {
+            case "eo":
+                return "Esperanto";
         }
 
         return null;

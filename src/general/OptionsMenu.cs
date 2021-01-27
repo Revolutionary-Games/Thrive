@@ -683,7 +683,7 @@ public class OptionsMenu : Control
         foreach (var locale in languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
-            var native = currentCulture.NativeName;
+            var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
             optionButton.AddItem(locale + " - " + native);
         }
     }
@@ -1113,5 +1113,11 @@ public class OptionsMenu : Control
         {
             languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
         }
+    }
+
+    private void OnLogButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
     }
 }
