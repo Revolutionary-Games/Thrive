@@ -772,7 +772,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             DataColour = new Color(0.67f, 1, 0.24f),
         };
 
-        temperatureChart.AddDataSet("Temperature", temperatureData);
+        temperatureChart.AddDataSet(TranslationServer.Translate("TEMPERATURE"), temperatureData);
 
         foreach (var snapshot in patchHistory)
         {
