@@ -68,15 +68,15 @@ public class PatchManager
         GD.Print("Applying patch (", currentPatch.Name, ") settings");
 
         // Update environment for process system
-        processSystem.SetBiome(currentPatch.Conditions.Biome);
+        processSystem.SetBiome(currentPatch.Biome);
 
         // Apply spawn system settings
         UnmarkAllSpawners();
 
         // Cloud spawners should be added first due to the way the
         // total entity count is limited
-        HandleCloudSpawns(currentPatch.Conditions.Biome);
-        HandleChunkSpawns(currentPatch.Conditions.Biome);
+        HandleCloudSpawns(currentPatch.Biome);
+        HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
         RemoveNonMarkedSpawners();
@@ -126,9 +126,9 @@ public class PatchManager
 
     private void HandleCellSpawns(Patch patch)
     {
-        GD.Print("Number of species in this patch = ", patch.Conditions.SpeciesInPatch.Count);
+        GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
-        foreach (var entry in patch.Conditions.SpeciesInPatch)
+        foreach (var entry in patch.SpeciesInPatch)
         {
             var species = entry.Key;
 

@@ -14,6 +14,11 @@ public class DefaultToolTip : Control, ICustomToolTip
     public bool UseFadeIn = true;
 
     /// <summary>
+    ///   If true, the tooltip fade out smoothly on hide.
+    /// </summary>
+    public bool UseFadeOut = false;
+
+    /// <summary>
     ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
     private Label descriptionLabel;
@@ -93,7 +98,14 @@ public class DefaultToolTip : Control, ICustomToolTip
 
     public void OnHide()
     {
-        Hide();
+        if (UseFadeOut)
+        {
+            GUICommon.Instance.ModulateFadeOut(this, Constants.TOOLTIP_FADE_SPEED);
+        }
+        else
+        {
+            Hide();
+        }
     }
 
     private void UpdateDescription()

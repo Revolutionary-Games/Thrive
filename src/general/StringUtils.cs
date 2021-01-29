@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   Helper for any string related stuff.
+///   Helpers for any string related stuff.
 /// </summary>
 public static class StringUtils
 {

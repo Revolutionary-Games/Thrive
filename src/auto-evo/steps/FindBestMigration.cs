@@ -82,7 +82,7 @@
                 --attemptsLeft;
 
                 // Randomly select starting patch
-                var entry = map.Patches.Where(pair => pair.Value.Conditions.SpeciesInPatch.ContainsKey(species))
+                var entry = map.Patches.Where(pair => pair.Value.SpeciesInPatch.ContainsKey(species))
                     .OrderBy(_ => random.Next()).Take(1).ToList();
 
                 if (entry.Count > 0)

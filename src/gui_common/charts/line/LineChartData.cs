@@ -6,11 +6,11 @@ using Godot;
 /// </summary>
 public class LineChartData
 {
+    private List<DataPoint> dataPoints = new List<DataPoint>();
     private Color dataColour;
     private bool draw = true;
 
-    // ReSharper disable once CollectionNeverUpdated.Global
-    public List<DataPoint> DataPoints { get; set; } = new List<DataPoint>();
+    public IReadOnlyList<DataPoint> DataPoints => dataPoints;
 
     /// <summary>
     ///   The icon on the chart legend
@@ -50,15 +50,21 @@ public class LineChartData
     }
 
     /// <summary>
-    ///   Frees and removes all data point from this dataset. Use this rather than
-    ///   DataPoints.Clear to avoid orphaned nodes.
+    ///   Adds a data point to this dataset.
+    /// </summary>
+    public void AddPoint(DataPoint point)
+    {
+        dataPoints.Add(point);
+    }
+
+    /// <summary>
+    ///   Frees and removes all data point from this dataset.
     /// </summary>
     public void ClearPoints()
     {
-        foreach (var point in DataPoints.ToArray())
-        {
+        foreach (var point in dataPoints.ToArray())
             point.Free();
-            DataPoints.Remove(point);
-        }
+
+        dataPoints.Clear();
     }
 }

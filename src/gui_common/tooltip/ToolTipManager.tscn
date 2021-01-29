@@ -68,24 +68,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="general" type="Control" parent="GroupHolder"]
+[node name="default" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
 
-[node name="DefaultTooltip" parent="GroupHolder/general" instance=ExtResource( 1 )]
-visible = false
-
-[node name="menuButton" parent="GroupHolder/general" instance=ExtResource( 1 )]
+[node name="menuButton" parent="GroupHolder/default" instance=ExtResource( 1 )]
 visible = false
 Description = "OPEN_THE_MENU"
-DescriptionLabelPath = NodePath("../../general/menuButton/MarginContainer/VBoxContainer/Description")
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
-[node name="helpButton" parent="GroupHolder/general" instance=ExtResource( 1 )]
+[node name="helpButton" parent="GroupHolder/default" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
 Description = "OPEN_HELP_SCREEN"
-DescriptionLabelPath = NodePath("../../general/helpButton/MarginContainer/VBoxContainer/Description")
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="popup" parent="GroupHolder/default" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="mainMenu" type="Control" parent="GroupHolder"]
 margin_right = 40.0

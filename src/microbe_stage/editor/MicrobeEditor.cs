@@ -873,9 +873,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             targetPatch = patch;
         }
 
-        if (targetPatch?.GetHistory().Count <= 0)
-            targetPatch?.RecordConditions();
-
         gui.UpdatePlayerPatch(targetPatch);
         UpdatePatchBackgroundImage();
         CalculateOrganelleEffectivenessInPatch(targetPatch);
@@ -999,7 +996,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Conditions.Biome);
+        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
 
         gui.UpdateOrganelleEfficiencies(result);
     }
@@ -1016,14 +1013,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(
-            organelles.Select(i => i.Definition), patch.Conditions.Biome, membrane));
+            organelles.Select(i => i.Definition), patch.Biome, membrane));
     }
 
     private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)
     {
         patch ??= CurrentPatch;
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Conditions.Biome);
+        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Biome);
 
         gui.UpdateCompoundBalances(result);
     }
@@ -1924,7 +1921,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         ApplyAutoEvoResults();
 
-        gui.UpdateReportTabStatistics();
+        gui.UpdateReportTabStatistics(CurrentPatch);
 
         // Auto save after editor entry is complete
         if (!CurrentGame.FreeBuild)
@@ -1943,7 +1940,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Make absolutely sure the current game doesn't have an auto-evo run
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
-        gui.UpdateReportTabStatistics();
+        gui.UpdateReportTabStatistics(CurrentPatch);
     }
 
     private void ApplyAutoEvoResults()
@@ -1953,9 +1950,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
 
-        // Needs to be before the remove extinct species call, so that the extinct species
-        // could still be stored for reference (e.g. displaying it as zero on the species population chart)
-        CurrentPatch.RecordConditions();
+        // Needs to be before the remove extinct species call, so that extinct species could still be stored
+        // for reference in patch history (e.g. displaying it as zero on the species population chart)
+        foreach (var entry in CurrentGame.GameWorld.Map.Patches)
+        {
+            entry.Value.RecordConditions();
+        }
 
         var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
 

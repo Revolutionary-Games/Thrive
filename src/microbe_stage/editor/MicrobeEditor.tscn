@@ -879,7 +879,7 @@ ATPConsumptionLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer
 ATPProductionBarPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar")
 ATPConsumptionBarPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
 TimeIndicatorPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
-PhysicalConditionsIconLegendPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend")
+PhysicalConditionsIconLegendPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend")
 TemperatureChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature")
 SunlightChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Sunlight")
 AtmosphericGassesChartPath = NodePath("Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart")
@@ -3912,10 +3912,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 252.0
-margin_top = 275.0
-margin_right = 555.0
-margin_bottom = 750.0
+margin_left = 284.0
+margin_top = 307.0
+margin_right = 587.0
+margin_bottom = 782.0
 theme = SubResource( 30 )
 edit_alpha = false
 
@@ -4155,7 +4155,7 @@ margin_right = 828.0
 margin_bottom = 30.0
 
 [node name="PatchName" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 256.0
+margin_right = 362.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 56 )
@@ -4166,12 +4166,12 @@ __meta__ = {
 }
 
 [node name="TimeIndicator" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 260.0
+margin_left = 366.0
 margin_top = 4.0
 margin_right = 516.0
 margin_bottom = 30.0
+rect_min_size = Vector2( 150, 0 )
 mouse_filter = 1
-size_flags_horizontal = 3
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 100 )
 text = "PASSED_TIME"
@@ -4346,7 +4346,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 45.0
 margin_right = 321.0
-margin_bottom = 103.0
+margin_bottom = 107.0
 DisplayName = "SPECIES_POPULATION"
 
 [node name="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="0"]
@@ -4357,18 +4357,18 @@ margin_right = 321.0
 
 [node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="1"]
 margin_right = 321.0
-margin_bottom = 58.0
+margin_bottom = 62.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip" index="0"]
 margin_right = 321.0
-margin_bottom = 34.0
+margin_bottom = 38.0
 
 [node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 321.0
-margin_bottom = 34.0
+margin_bottom = 38.0
 ChartName = "Species Population"
 XAxisTicks = 5
 YAxisTicks = 6
@@ -4377,9 +4377,9 @@ LegendMode = 1
 [node name="PhysicalConditions" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 118.0
+margin_top = 122.0
 margin_right = 321.0
-margin_bottom = 198.0
+margin_bottom = 210.0
 DisplayName = "PHYSICAL_CONDITIONS"
 TitleLabelPath = NodePath("../PhysicalConditions/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/minusButton")
@@ -4396,23 +4396,34 @@ margin_right = 321.0
 
 [node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" index="1"]
 margin_right = 321.0
-margin_bottom = 80.0
+margin_bottom = 88.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip" index="0"]
 margin_right = 321.0
-margin_bottom = 56.0
+margin_bottom = 64.0
 
-[node name="Legend" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="0"]
 margin_right = 321.0
-margin_bottom = 18.0
+margin_bottom = 22.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+
+[node name="Legend" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 319.0
+margin_bottom = 20.0
 custom_constants/separation = 0
 alignment = 2
 
-[node name="temperature" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend"]
-margin_left = 285.0
-margin_right = 303.0
+[node name="temperature" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend"]
+margin_left = 281.0
+margin_right = 299.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 18, 18 )
+rect_pivot_offset = Vector2( 9, 9 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -4421,11 +4432,12 @@ texture_normal = ExtResource( 62 )
 expand = true
 stretch_mode = 5
 
-[node name="sunlight" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend"]
-margin_left = 303.0
-margin_right = 321.0
+[node name="sunlight" type="TextureButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend"]
+margin_left = 299.0
+margin_right = 317.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 18, 18 )
+rect_pivot_offset = Vector2( 9, 9 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 36 )
@@ -4433,18 +4445,19 @@ texture_normal = ExtResource( 57 )
 expand = true
 stretch_mode = 5
 
+[node name="Tween" type="Tween" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend"]
+
 [node name="Temperature" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="1" instance=ExtResource( 103 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
-margin_top = 22.0
+margin_top = 26.0
 margin_right = 321.0
-margin_bottom = 56.0
+margin_bottom = 64.0
 HorizontalLabelPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/xAxisLabel")
 VerticalLabelPath = NodePath("../Temperature/VBoxContainer/yAxisLabel")
 VerticalTicksContainerPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
 HorizontalTicksContainerPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
 DrawAreaPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
-LegendsContainerPath = NodePath("../Temperature/LegendContainer")
 ChartName = "Temperature"
 XAxisTicks = 5
 YAxisTicks = 6
@@ -4461,7 +4474,6 @@ VerticalLabelPath = NodePath("../Sunlight/VBoxContainer/yAxisLabel")
 VerticalTicksContainerPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
 HorizontalTicksContainerPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
 DrawAreaPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
-LegendsContainerPath = NodePath("../Sunlight/LegendContainer")
 ChartName = "Sunlight"
 XAxisTicks = 5
 YAxisTicks = 6
@@ -4469,9 +4481,9 @@ YAxisTicks = 6
 [node name="AtmosphericGasses" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 213.0
+margin_top = 225.0
 margin_right = 321.0
-margin_bottom = 271.0
+margin_bottom = 287.0
 DisplayName = "ATMOSPHERIC_GASSES"
 TitleLabelPath = NodePath("../AtmosphericGasses/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/minusButton")
@@ -4488,18 +4500,18 @@ margin_right = 321.0
 
 [node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" index="1"]
 margin_right = 321.0
-margin_bottom = 58.0
+margin_bottom = 62.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip" index="0"]
 margin_right = 321.0
-margin_bottom = 34.0
+margin_bottom = 38.0
 
 [node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 321.0
-margin_bottom = 34.0
+margin_bottom = 38.0
 ChartName = "Atmospheric Gasses"
 XAxisTicks = 5
 YAxisTicks = 6
@@ -4507,9 +4519,9 @@ YAxisTicks = 6
 [node name="Compounds" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 286.0
+margin_top = 302.0
 margin_right = 321.0
-margin_bottom = 344.0
+margin_bottom = 364.0
 DisplayName = "COMPOUNDS"
 TitleLabelPath = NodePath("../Compounds/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/minusButton")
@@ -4526,18 +4538,18 @@ margin_right = 321.0
 
 [node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" index="1"]
 margin_right = 321.0
-margin_bottom = 58.0
+margin_bottom = 62.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip" index="0"]
 margin_right = 321.0
-margin_bottom = 34.0
+margin_bottom = 38.0
 
 [node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 321.0
-margin_bottom = 34.0
+margin_bottom = 38.0
 ChartName = "Compounds"
 XAxisTicks = 5
 YAxisTicks = 6
@@ -5659,12 +5671,12 @@ HelpCategory = "MicrobeEditor"
 [connection signal="confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseExit"]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "temperature", true ]]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "temperature", false ]]
-[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendPressed" binds= [ "temperature" ]]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "sunlight", true ]]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "sunlight", false ]]
-[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendPressed" binds= [ "sunlight" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "temperature", true ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "temperature", false ]]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysCondChartLegendPressed" binds= [ "temperature" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "sunlight", true ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendMoused" binds= [ "sunlight", false ]]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysCondChartLegendPressed" binds= [ "sunlight" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/NextTabButton/Button" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/MapPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/MapPanel" to="MicrobeEditorGUI" method="OnMouseExit"]

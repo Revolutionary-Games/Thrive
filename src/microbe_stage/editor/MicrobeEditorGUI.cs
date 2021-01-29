@@ -588,10 +588,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
-
-        UpdateReportTabStatistics();
-
-        UpdateReportTabPatchName(mapDrawer.PlayerPatch.Name);
     }
 
     public void UpdateGlucoseReduction(float value)
@@ -753,17 +749,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         compoundBalance.UpdateBalances(balances);
     }
 
-    public void UpdateReportTabStatistics()
+    public void UpdateReportTabStatistics(Patch patch)
     {
         temperatureChart.ClearDataSets();
         sunlightChart.ClearDataSets();
         atmosphericGassesChart.ClearDataSets();
         compoundsChart.ClearDataSets();
         speciesPopulationChart.ClearDataSets();
-
-        var patch = editor.CurrentPatch;
-
-        var patchHistory = patch.GetHistory();
 
         // Initialize datasets
         var temperatureData = new LineChartData
@@ -774,7 +766,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         temperatureChart.AddDataSet(TranslationServer.Translate("TEMPERATURE"), temperatureData);
 
-        foreach (var snapshot in patchHistory)
+        foreach (var snapshot in patch.History)
         {
             foreach (var entry in snapshot.Biome.Compounds)
             {
@@ -795,9 +787,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         // Populate charts with datas from patch history
-        foreach (var snapshot in patchHistory)
+        foreach (var snapshot in patch.History)
         {
-            temperatureData.DataPoints.Add(new DataPoint
+            temperatureData.AddPoint(new DataPoint
             {
                 Value = new Vector2((float)snapshot.TimePeriod, snapshot.Biome.AverageTemperature),
                 MarkerColour = temperatureData.DataColour,
@@ -816,7 +808,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                     MarkerColour = dataset.DataColour,
                 };
 
-                dataset.DataPoints.Add(dataPoint);
+                dataset.AddPoint(dataPoint);
             }
 
             foreach (var entry in snapshot.SpeciesInPatch)
@@ -836,18 +828,19 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                     MarkerColour = dataset.DataColour,
                 };
 
-                dataset.DataPoints.Add(dataPoint);
+                dataset.AddPoint(dataPoint);
             }
         }
 
-        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C");
-        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx");
-        atmosphericGassesChart.Plot(TranslationServer.Translate("YEARS"),
-            "%", TranslationServer.Translate("ATMOSPHERIC_GASSES"));
-        compoundsChart.Plot(TranslationServer.Translate("YEARS"), "%",
-            TranslationServer.Translate("COMPOUNDS"));
-        speciesPopulationChart.Plot(TranslationServer.Translate("YEARS"),
-            string.Empty, TranslationServer.Translate("SPECIES_LIST"));
+        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 3);
+        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 3);
+        atmosphericGassesChart.Plot(
+            TranslationServer.Translate("YEARS"), "%", 3, TranslationServer.Translate("ATMOSPHERIC_GASSES"));
+        speciesPopulationChart.Plot(
+            TranslationServer.Translate("YEARS"), string.Empty, 3, TranslationServer.Translate("SPECIES_LIST"),
+            editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName);
+        compoundsChart.Plot(
+            TranslationServer.Translate("YEARS"), "%", 3, TranslationServer.Translate("COMPOUNDS"));
 
         OnPhysCondChartLegendPressed("temperature");
     }
@@ -1415,13 +1408,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </remarks>
     private void UpdateConditionDifferencesBetweenPatches(Patch selectedPatch, Patch currentPatch)
     {
-        var nextCompound = selectedPatch.Conditions.Biome.AverageTemperature;
+        var nextCompound = selectedPatch.Biome.AverageTemperature;
 
-        if (nextCompound > currentPatch.Conditions.Biome.AverageTemperature)
+        if (nextCompound > currentPatch.Biome.AverageTemperature)
         {
             patchTemperatureSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Conditions.Biome.AverageTemperature)
+        else if (nextCompound < currentPatch.Biome.AverageTemperature)
         {
             patchTemperatureSituation.Texture = decreaseIcon;
         }
@@ -1430,13 +1423,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             patchTemperatureSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Conditions.Biome.Compounds[sunlight].Dissolved;
+        nextCompound = selectedPatch.Biome.Compounds[sunlight].Dissolved;
 
-        if (nextCompound > currentPatch.Conditions.Biome.Compounds[sunlight].Dissolved)
+        if (nextCompound > currentPatch.Biome.Compounds[sunlight].Dissolved)
         {
             patchLightSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Conditions.Biome.Compounds[sunlight].Dissolved)
+        else if (nextCompound < currentPatch.Biome.Compounds[sunlight].Dissolved)
         {
             patchLightSituation.Texture = decreaseIcon;
         }
@@ -1552,7 +1545,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses
-        patchTemperature.Text = patch.Conditions.Biome.AverageTemperature + " °C";
+        patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
         patchLight.Text = GetCompoundAmount(patch, sunlight.InternalName) + "% lx";
         patchOxygen.Text = GetCompoundAmount(patch, oxygen.InternalName) + "%";
@@ -1569,7 +1562,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Refresh species list
         speciesListBox.ClearItems();
 
-        foreach (var species in patch.Conditions.SpeciesInPatch.Keys)
+        foreach (var species in patch.SpeciesInPatch.Keys)
         {
             var speciesLabel = new Label();
             speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
@@ -1584,6 +1577,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
 
         UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
+
+        UpdateReportTabStatistics(patch);
+
+        UpdateReportTabPatchName(patch.Name);
     }
 
     /// <summary>
@@ -1683,6 +1680,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
+        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
 
         if (name == "temperature")
         {
@@ -1692,6 +1690,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             temperatureChart.Show();
             temperatureChart.UpdateDataSetVisibility("Temperature", true);
             sunlightChart.UpdateDataSetVisibility("Sunlight", false);
+
+            tween.InterpolateProperty(temperatureButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
+            tween.Start();
         }
         else if (name == "sunlight")
         {
@@ -1701,19 +1702,29 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             temperatureChart.Hide();
             temperatureChart.UpdateDataSetVisibility("Temperature", false);
             sunlightChart.UpdateDataSetVisibility("Sunlight", true);
+
+            tween.InterpolateProperty(sunlightButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
+            tween.Start();
         }
     }
 
     private void OnPhysCondChartLegendMoused(string name, bool hover)
     {
         var button = physicalConditionsIconLegends.GetNode<TextureButton>(name);
+        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
 
         if (hover)
         {
+            tween.InterpolateProperty(button, "rect_scale", Vector2.One, new Vector2(1.1f, 1.1f), 0.1f);
+            tween.Start();
+
             button.Modulate = Colors.LightGray;
         }
         else
         {
+            tween.InterpolateProperty(button, "rect_scale", new Vector2(1.1f, 1.1f), Vector2.One, 0.1f);
+            tween.Start();
+
             button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
         }
     }
@@ -1760,23 +1771,23 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         switch (compoundName)
         {
             case "sunlight":
-                amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
+                amount = patch.Biome.Compounds[compound].Dissolved * 100;
                 break;
             case "oxygen":
-                amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
+                amount = patch.Biome.Compounds[compound].Dissolved * 100;
                 break;
             case "carbondioxide":
-                amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
+                amount = patch.Biome.Compounds[compound].Dissolved * 100;
                 break;
             case "nitrogen":
-                amount = patch.Conditions.Biome.Compounds[compound].Dissolved * 100;
+                amount = patch.Biome.Compounds[compound].Dissolved * 100;
                 break;
             case "iron":
                 amount = patch.GetTotalChunkCompoundAmount(compound);
                 break;
             default:
-                amount = patch.Conditions.Biome.Compounds[compound].Density *
-                    patch.Conditions.Biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
+                amount = patch.Biome.Compounds[compound].Density *
+                    patch.Biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
                         compound);
                 break;
         }

@@ -90,12 +90,18 @@ public class GUICommon : Node
         tween.Start();
     }
 
-    public void ModulateFadeOut(Control control, float duration)
+    public async void ModulateFadeOut(Control control, float duration, bool hideOnFinished = true)
     {
         control.Modulate = new Color(1, 1, 1, 1);
 
         tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
         tween.Start();
+
+        if (hideOnFinished)
+        {
+            await ToSignal(tween, "tween_completed");
+            control.Hide();
+        }
     }
 
     /// <summary>
