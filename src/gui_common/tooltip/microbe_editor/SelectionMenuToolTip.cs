@@ -88,9 +88,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         set => Visible = value;
     }
 
-    public ToolTipPositioning Positioning { get; private set; } = ToolTipPositioning.FollowMousePosition;
+    public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.FollowMousePosition;
 
-    public bool HideOnMousePress { get; private set; } = false;
+    public bool HideOnMousePress { get; set; } = false;
 
     public Node ToolTipNode => this;
 
