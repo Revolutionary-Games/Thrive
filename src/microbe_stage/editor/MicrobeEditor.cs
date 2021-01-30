@@ -175,12 +175,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     private Vector3? mousePanningStart;
 
-    [Signal]
-    public delegate void InvalidPlacementOfHex();
-
-    [Signal]
-    public delegate void InsufficientMPToPlaceHex();
-
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.
     /// </summary>
@@ -1498,15 +1492,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (!IsValidPlacement(organelle))
         {
             // Play Sound
-            EmitSignal(nameof(InvalidPlacementOfHex));
-            return;
-        }
-
-        // Skip placing if the player can't afford the organelle
-        if (organelle.Definition.MPCost > MutationPoints && !FreeBuilding)
-        {
-            // Flash the MP bar and play sound
-            EmitSignal(nameof(InsufficientMPToPlaceHex));
+            gui.OnInvalidHexLocationSelected();
             return;
         }
 
@@ -1873,7 +1859,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         // A sanity check to not let an action proceed if we don't have enough mutation points
         if (MutationPoints < action.Cost)
+        {
+            // Flash the MP bar and play sound
+            gui.OnInsufficientMp();
             return;
+        }
 
         history.AddAction(action);
 

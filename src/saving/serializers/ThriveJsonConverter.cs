@@ -74,7 +74,7 @@ public class ThriveJsonConverter : IDisposable
     /// <param name="o">Object to serialize</param>
     /// <param name="type">
     ///   <para>
-    ///     Specifies the type of the object being serialized (optional). The dynamic type would
+    ///     Specifies the type of the object being serialized (optional). The dynamic type will
     ///     get written out if this is set to a base class of the object to serialize.
     ///   </para>
     /// </param>

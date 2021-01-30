@@ -51,7 +51,7 @@ public class LineChart : VBoxContainer
     public LegendDisplayMode LegendMode = LegendDisplayMode.Icon;
 
     /// <summary>
-    ///   Limits how many icon legend should be shown
+    ///   Limits how many icon legends should be shown
     /// </summary>
     public int MaxIconLegend = 10;
 

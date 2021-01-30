@@ -946,13 +946,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
-    internal void OnInsufficientMPToPlaceHex()
+    internal void OnInsufficientMp()
     {
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
 
-        AnimationPlayer animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
+        var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
+
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
