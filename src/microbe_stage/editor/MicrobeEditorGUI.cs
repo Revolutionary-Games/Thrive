@@ -832,17 +832,17 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
-        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 3);
-        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 3);
+        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5);
+        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5);
         atmosphericGassesChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 3, TranslationServer.Translate("ATMOSPHERIC_GASSES"));
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"));
         speciesPopulationChart.Plot(
-            TranslationServer.Translate("YEARS"), string.Empty, 3, TranslationServer.Translate("SPECIES_LIST"),
+            TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
             editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName);
         compoundsChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 3, TranslationServer.Translate("COMPOUNDS"));
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"));
 
-        OnPhysCondChartLegendPressed("temperature");
+        OnPhysicalConditionsChartLegendPressed("temperature");
     }
 
     public void SetMembraneTooltips(MembraneType referenceMembrane)
@@ -1676,7 +1676,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    private void OnPhysCondChartLegendPressed(string name)
+    private void OnPhysicalConditionsChartLegendPressed(string name)
     {
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
@@ -1708,7 +1708,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    private void OnPhysCondChartLegendMoused(string name, bool hover)
+    private void OnPhysicalConditionsChartLegendMoused(string name, bool hover)
     {
         var button = physicalConditionsIconLegends.GetNode<TextureButton>(name);
         var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
@@ -1734,65 +1734,46 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     private LineChart GetChartForCompound(string compoundName)
     {
-        var chart = compoundsChart;
-
         switch (compoundName)
         {
             case "atp":
-                chart = null;
-                break;
+                return null;
             case "oxytoxy":
-                chart = null;
-                break;
+                return null;
             case "sunlight":
-                chart = sunlightChart;
-                break;
+                return sunlightChart;
             case "oxygen":
-                chart = atmosphericGassesChart;
-                break;
+                return atmosphericGassesChart;
             case "carbondioxide":
-                chart = atmosphericGassesChart;
-                break;
+                return atmosphericGassesChart;
             case "nitrogen":
-                chart = atmosphericGassesChart;
-                break;
+                return atmosphericGassesChart;
+            default:
+                return compoundsChart;
         }
-
-        return chart;
     }
 
     private float GetCompoundAmount(Patch patch, string compoundName)
     {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 
-        // ReSharper disable once RedundantAssignment
-        var amount = 0.0f;
-
         switch (compoundName)
         {
             case "sunlight":
-                amount = patch.Biome.Compounds[compound].Dissolved * 100;
-                break;
+                return patch.Biome.Compounds[compound].Dissolved * 100;
             case "oxygen":
-                amount = patch.Biome.Compounds[compound].Dissolved * 100;
-                break;
+                return patch.Biome.Compounds[compound].Dissolved * 100;
             case "carbondioxide":
-                amount = patch.Biome.Compounds[compound].Dissolved * 100;
-                break;
+                return patch.Biome.Compounds[compound].Dissolved * 100;
             case "nitrogen":
-                amount = patch.Biome.Compounds[compound].Dissolved * 100;
-                break;
+                return patch.Biome.Compounds[compound].Dissolved * 100;
             case "iron":
-                amount = patch.GetTotalChunkCompoundAmount(compound);
-                break;
+                return patch.GetTotalChunkCompoundAmount(compound);
             default:
-                amount = patch.Biome.Compounds[compound].Density *
+                return patch.Biome.Compounds[compound].Density *
                     patch.Biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
                         compound);
-                break;
         }
-
-        return amount;
     }
 
     // ReSharper disable once RedundantNameQualifier

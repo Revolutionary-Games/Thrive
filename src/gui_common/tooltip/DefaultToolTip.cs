@@ -9,12 +9,12 @@ public class DefaultToolTip : Control, ICustomToolTip
     public NodePath DescriptionLabelPath;
 
     /// <summary>
-    ///   If true, the tooltip fade in smoothly on display.
+    ///   If true, the tooltip fades in smoothly on display.
     /// </summary>
     public bool UseFadeIn = true;
 
     /// <summary>
-    ///   If true, the tooltip fade out smoothly on hide.
+    ///   If true, the tooltip fades out smoothly on hide.
     /// </summary>
     public bool UseFadeOut = false;
 

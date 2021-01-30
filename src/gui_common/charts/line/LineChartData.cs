@@ -10,14 +10,14 @@ public class LineChartData
     private Color dataColour;
     private bool draw = true;
 
-    public IReadOnlyList<DataPoint> DataPoints => dataPoints;
+    public IReadOnlyCollection<DataPoint> DataPoints => dataPoints;
 
     /// <summary>
     ///   The icon on the chart legend
     /// </summary>
     public Texture IconTexture { get; set; }
 
-    public float LineWidth { get; set; } = 1.15f;
+    public float LineWidth { get; set; } = 1.13f;
 
     /// <summary>
     ///   Used to differentiate the data set's visual by color

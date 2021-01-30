@@ -111,7 +111,7 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   The update result that is returned after calling UpdateDataSetVisibility().
     /// </summary>
-    public enum DatasetVisibilityUpdateResult
+    public enum DataSetVisibilityUpdateResult
     {
         /// <summary>
         ///   The dataset is not present in the collection.
@@ -310,7 +310,7 @@ public class LineChart : VBoxContainer
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
                 toolTip.DisplayName = data.Key + point.Value;
-                toolTip.Description = $"{((double)point.Value.x).FormatNumber()} {XAxisName}\n" +
+                toolTip.Description = $"{data.Key}\n{((double)point.Value.x).FormatNumber()} {XAxisName}\n" +
                     $"{((double)point.Value.y).FormatNumber()} {YAxisName}";
                 toolTip.DisplayDelay = 0;
                 toolTip.HideOnMousePress = false;
@@ -396,7 +396,7 @@ public class LineChart : VBoxContainer
         // Create chart legend
         if (!string.IsNullOrEmpty(legendTitle))
         {
-            // Switch to dropdown if amount of dataset is more than maximum number of icon legends allowed
+            // Switch to dropdown if number of datasets exceeds the max amount of icon legends
             if (dataSets.Count > MaxIconLegend && LegendMode == LegendDisplayMode.Icon)
                 LegendMode = LegendDisplayMode.DropDown;
 
@@ -463,15 +463,15 @@ public class LineChart : VBoxContainer
         verticalLabelsContainer.QueueFreeChildren();
     }
 
-    public DatasetVisibilityUpdateResult UpdateDataSetVisibility(string name, bool visible)
+    public DataSetVisibilityUpdateResult UpdateDataSetVisibility(string name, bool visible)
     {
         if (!dataSets.ContainsKey(name))
-            return DatasetVisibilityUpdateResult.NotFound;
+            return DataSetVisibilityUpdateResult.NotFound;
 
         var data = dataSets[name];
 
         if (visible && VisibleDataSetLimitReached)
-            return DatasetVisibilityUpdateResult.VisibleLimitReached;
+            return DataSetVisibilityUpdateResult.VisibleLimitReached;
 
         if (dataLines.ContainsKey(name) && !data.Draw)
             FlattenLines(name);
@@ -492,7 +492,7 @@ public class LineChart : VBoxContainer
                 throw new Exception("Invalid legend mode");
         }
 
-        return DatasetVisibilityUpdateResult.Success;
+        return DataSetVisibilityUpdateResult.Success;
     }
 
     private void CreateIconLegend(string title)
@@ -631,7 +631,7 @@ public class LineChart : VBoxContainer
                 continue;
 
             // This is actually the first point (left-most)
-            var previousPoint = points[points.Count - 1];
+            var previousPoint = points.Last();
 
             var dataLine = dataLines[data.Key];
 
@@ -831,7 +831,7 @@ public class LineChart : VBoxContainer
     {
         var result = UpdateDataSetVisibility(icon.DataName, toggled);
 
-        if (result == DatasetVisibilityUpdateResult.VisibleLimitReached)
+        if (result == DataSetVisibilityUpdateResult.VisibleLimitReached)
         {
             icon.Pressed = false;
             ToolTipManager.Instance.ShowPopup($"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
@@ -846,7 +846,7 @@ public class LineChart : VBoxContainer
         var result = UpdateDataSetVisibility(
             dropDown.Popup.GetItemText(index), !dropDown.Popup.IsItemChecked(index));
 
-        if (result == DatasetVisibilityUpdateResult.VisibleLimitReached)
+        if (result == DataSetVisibilityUpdateResult.VisibleLimitReached)
         {
             ToolTipManager.Instance.ShowPopup($"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
         }
@@ -874,7 +874,8 @@ public class LineChart : VBoxContainer
 
             Width = data.LineWidth;
             DefaultColor = data.DataColour;
-            Antialiased = true;
+
+            // Antialiasing is turned off as it's a bit unreliable currently
         }
 
         public void OnMouseEnter()

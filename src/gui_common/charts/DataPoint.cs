@@ -4,8 +4,12 @@ using Godot;
 /// <summary>
 ///   Point / marker on a chart containing a single numerical data value (x, y).
 ///   This inherits Control to make this interactable as well as for giving it a visual marker.
-///   Note: Must be freed manually, like all Godot Node types.
 /// </summary>
+/// <remarks>
+///   <para>
+///     Note: Must be freed manually, like all Godot Node types.
+///   </para>
+/// </remarks>
 public class DataPoint : Control
 {
     private Texture graphMarkerCircle;

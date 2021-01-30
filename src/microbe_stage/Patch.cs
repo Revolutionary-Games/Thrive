@@ -51,8 +51,10 @@ public class Patch
     /// <summary>
     ///   List of all the recorded snapshot of this patch. Useful for statistics.
     /// </summary>
-    public IReadOnlyList<PatchSnapshot> History => history;
+    [JsonIgnore]
+    public IReadOnlyCollection<PatchSnapshot> History => history;
 
+    [JsonIgnore]
     public double TimePeriod
     {
         get => currentSnapshot.TimePeriod;
@@ -62,8 +64,10 @@ public class Patch
     /// <summary>
     ///   List of all species and their populations in this patch
     /// </summary>
+    [JsonIgnore]
     public Dictionary<Species, long> SpeciesInPatch => currentSnapshot.SpeciesInPatch;
 
+    [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
 
     /// <summary>
@@ -155,7 +159,7 @@ public class Patch
     /// </summary>
     public void RecordConditions()
     {
-        if (history.Count >= Constants.MAX_STORED_PATCH_CONDITIONS)
+        if (history.Count >= Constants.PATCH_HISTORY_RANGE)
             history.RemoveFromBack();
 
         var conditions = (PatchSnapshot)currentSnapshot.Clone();

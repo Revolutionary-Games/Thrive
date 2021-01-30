@@ -93,7 +93,7 @@ public class CustomDropDown : MenuButton
         foreach (var item in items)
         {
             if (item.Text == name)
-                return item.Id;
+                return Popup.GetItemIndex(item.Id);
         }
 
         return -1;

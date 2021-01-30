@@ -72,7 +72,12 @@ public class ThriveJsonConverter : IDisposable
     ///   Serializes the specified object to a JSON string using ThriveJsonConverter settings.
     /// </summary>
     /// <param name="o">Object to serialize</param>
-    /// <param name="type">Specifies the type of the object being serialized (optional)</param>
+    /// <param name="type">
+    ///   <para>
+    ///     Specifies the type of the object being serialized (optional). The dynamic type would
+    ///     get written out if this is set to a base class of the object to serialize.
+    ///   </para>
+    /// </param>
     public string SerializeObject(object o, Type type = null)
     {
         return PerformWithSettings(
