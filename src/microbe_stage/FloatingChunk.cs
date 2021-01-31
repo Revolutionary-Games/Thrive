@@ -78,7 +78,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// <summary>
     ///   How much time has passed since a toxin has been spawned
     /// </summary>
-    public float ToxinDespawnTimer { get; set; } = 0.0f;
+    public float ToxinDespawnTimer { get; set; }
 
     /// <summary>
     ///   If true this gets deleted when a cell touches this
