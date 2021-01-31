@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using Nito.Collections;
 
 /// <summary>
 ///   A patch is an instance of a Biome with some species in it
@@ -9,13 +11,6 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class Patch
 {
-    /// <summary>
-    ///   List of all species and their populations in this patch
-    /// </summary>
-    [JsonProperty]
-    public readonly Dictionary<Species, long> SpeciesInPatch =
-        new Dictionary<Species, long>();
-
     [JsonProperty]
     public readonly int ID;
 
@@ -23,20 +18,26 @@ public class Patch
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
     [JsonProperty]
-    public readonly BiomeConditions Biome;
-
-    [JsonProperty]
     public readonly Biome BiomeTemplate;
 
     [JsonProperty]
     public readonly int[] Depth = new int[2] { -1, -1 };
+
+    /// <summary>
+    ///   The current snapshot of this patch.
+    /// </summary>
+    [JsonProperty]
+    private readonly PatchSnapshot currentSnapshot = new PatchSnapshot();
+
+    [JsonProperty]
+    private Deque<PatchSnapshot> history = new Deque<PatchSnapshot>();
 
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
-        Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
+        currentSnapshot.Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
     }
 
     [JsonProperty]
@@ -46,6 +47,28 @@ public class Patch
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
     public Vector2 ScreenCoordinates { get; set; } = new Vector2(0, 0);
+
+    /// <summary>
+    ///   List of all the recorded snapshot of this patch. Useful for statistics.
+    /// </summary>
+    [JsonIgnore]
+    public IReadOnlyCollection<PatchSnapshot> History => history;
+
+    [JsonIgnore]
+    public double TimePeriod
+    {
+        get => currentSnapshot.TimePeriod;
+        set => currentSnapshot.TimePeriod = value;
+    }
+
+    /// <summary>
+    ///   List of all species and their populations in this patch
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<Species, long> SpeciesInPatch => currentSnapshot.SpeciesInPatch;
+
+    [JsonIgnore]
+    public BiomeConditions Biome => currentSnapshot.Biome;
 
     /// <summary>
     ///   Adds a connection to patch
@@ -61,7 +84,7 @@ public class Patch
     /// </summary>
     public Species FindSpeciesByID(uint id)
     {
-        foreach (var entry in SpeciesInPatch)
+        foreach (var entry in currentSnapshot.SpeciesInPatch)
         {
             if (entry.Key.ID == id)
                 return entry.Key;
@@ -77,10 +100,10 @@ public class Patch
     public bool AddSpecies(Species species, long population =
         Constants.INITIAL_SPECIES_POPULATION)
     {
-        if (SpeciesInPatch.ContainsKey(species))
+        if (currentSnapshot.SpeciesInPatch.ContainsKey(species))
             return false;
 
-        SpeciesInPatch[species] = population;
+        currentSnapshot.SpeciesInPatch[species] = population;
         return true;
     }
 
@@ -90,7 +113,7 @@ public class Patch
     /// <returns>True when a species was removed</returns>
     public bool RemoveSpecies(Species species)
     {
-        return SpeciesInPatch.Remove(species);
+        return currentSnapshot.SpeciesInPatch.Remove(species);
     }
 
     /// <summary>
@@ -99,19 +122,19 @@ public class Patch
     /// <returns>True on success</returns>
     public bool UpdateSpeciesPopulation(Species species, long newPopulation)
     {
-        if (!SpeciesInPatch.ContainsKey(species))
+        if (!currentSnapshot.SpeciesInPatch.ContainsKey(species))
             return false;
 
-        SpeciesInPatch[species] = newPopulation;
+        currentSnapshot.SpeciesInPatch[species] = newPopulation;
         return true;
     }
 
     public long GetSpeciesPopulation(Species species)
     {
-        if (!SpeciesInPatch.ContainsKey(species))
+        if (!currentSnapshot.SpeciesInPatch.ContainsKey(species))
             return 0;
 
-        return SpeciesInPatch[species];
+        return currentSnapshot.SpeciesInPatch[species];
     }
 
     public float GetTotalChunkCompoundAmount(Compound compound)
@@ -131,8 +154,49 @@ public class Patch
         return result;
     }
 
+    /// <summary>
+    ///   Stores the current state of patch conditions into the patch history.
+    /// </summary>
+    public void RecordConditions()
+    {
+        if (history.Count >= Constants.PATCH_HISTORY_RANGE)
+            history.RemoveFromBack();
+
+        var conditions = (PatchSnapshot)currentSnapshot.Clone();
+        history.AddToFront(conditions);
+    }
+
     public override string ToString()
     {
         return $"Patch \"{Name}\"";
+    }
+}
+
+/// <summary>
+///   Snapshot of a patch at some point in time.
+/// </summary>
+public class PatchSnapshot : ICloneable
+{
+    public double TimePeriod;
+
+    public Dictionary<Species, long> SpeciesInPatch = new Dictionary<Species, long>();
+
+    public BiomeConditions Biome;
+
+    public object Clone()
+    {
+        var result = new PatchSnapshot
+        {
+            TimePeriod = TimePeriod,
+            SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch.Count),
+            Biome = (BiomeConditions)Biome.Clone(),
+        };
+
+        foreach (var entry in SpeciesInPatch)
+        {
+            result.SpeciesInPatch.Add(entry.Key, entry.Value);
+        }
+
+        return result;
     }
 }

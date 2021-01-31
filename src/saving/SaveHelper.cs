@@ -15,7 +15,8 @@ public static class SaveHelper
     /// </summary>
     private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
     {
-        "0.5.3",
+        "0.5.3.0",
+        "0.5.3.1",
     };
 
     public enum SaveOrder
