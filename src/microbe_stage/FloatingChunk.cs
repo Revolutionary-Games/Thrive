@@ -114,7 +114,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
         Damages = chunkType.Damages;
-        UsesDespawnTimer = chunkType.Damages > 0;
+        UsesDespawnTimer = !chunkType.Dissolves;
         DeleteOnTouch = chunkType.DeleteOnTouch;
 
         Mass = chunkType.Mass;
