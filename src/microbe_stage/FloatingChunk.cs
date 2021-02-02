@@ -76,9 +76,14 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public float Damages { get; set; }
 
     /// <summary>
-    ///   How much time has passed since a non-dissolving floating chunk has been spawned
+    ///   When true, the chunk will despawn when the despawn timer finishes
     /// </summary>
-    public float NonDissolvingDespawnTimer { get; private set; }
+    public bool UsesDespawnTimer { get; private set; }
+
+    /// <summary>
+    ///   How much time has passed since a chunk that uses this timer has been spawned
+    /// </summary>
+    public float DespawnTimer { get; private set; }
 
     /// <summary>
     ///   If true this gets deleted when a cell touches this
@@ -109,6 +114,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
         Damages = chunkType.Damages;
+        UsesDespawnTimer = chunkType.Damages > 0;
         DeleteOnTouch = chunkType.DeleteOnTouch;
 
         Mass = chunkType.Mass;
@@ -221,8 +227,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (isDissolving)
             HandleDissolving(delta);
 
-        if (!Dissolves)
-            NonDissolvingDespawnTimer += delta;
+        if (UsesDespawnTimer)
+            DespawnTimer += delta;
 
         // Check contacts
         foreach (var microbe in touchingMicrobes)
@@ -270,22 +276,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             }
 
             if (DeleteOnTouch || disappear)
-            {
-                if (Dissolves)
-                {
-                    isDissolving = true;
-                }
-                else
-                {
-                    this.DetachAndQueueFree();
-                }
-
-                break;
-            }
+                DissolveOrRemove();
         }
 
-        if (NonDissolvingDespawnTimer > 150)
-            this.DetachAndQueueFree();
+        if (DespawnTimer > 150)
+            DissolveOrRemove();
     }
 
     /// <summary>
@@ -401,6 +396,18 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                 return;
 
             touchingMicrobes.Remove(microbe);
+        }
+    }
+
+    private void DissolveOrRemove()
+    {
+        if (Dissolves)
+        {
+            isDissolving = true;
+        }
+        else
+        {
+            this.DetachAndQueueFree();
         }
     }
 }
