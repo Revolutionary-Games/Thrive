@@ -76,9 +76,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public float Damages { get; set; }
 
     /// <summary>
-    ///   How much time has passed since a toxin has been spawned
+    ///   How much time has passed since a non-dissolving floating chunk has been spawned
     /// </summary>
-    public float ToxinDespawnTimer { get; set; }
+    public float NonDissolvingDespawnTimer { get; private set; }
 
     /// <summary>
     ///   If true this gets deleted when a cell touches this
@@ -221,8 +221,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (isDissolving)
             HandleDissolving(delta);
 
-        if (Damages > 0 && DeleteOnTouch)
-            ToxinDespawnTimer += delta;
+        if (!Dissolves)
+            NonDissolvingDespawnTimer += delta;
 
         // Check contacts
         foreach (var microbe in touchingMicrobes)
@@ -284,7 +284,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             }
         }
 
-        if (ToxinDespawnTimer > 150)
+        if (NonDissolvingDespawnTimer > 150)
             this.DetachAndQueueFree();
     }
 
