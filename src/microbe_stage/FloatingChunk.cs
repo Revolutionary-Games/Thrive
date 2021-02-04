@@ -78,7 +78,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// <summary>
     ///   When true, the chunk will despawn when the despawn timer finishes
     /// </summary>
-    public bool UsesDespawnTimer { get; private set; }
+    public bool UsesDespawnTimer { get; set; }
 
     /// <summary>
     ///   How much time has passed since a chunk that uses this timer has been spawned
@@ -114,7 +114,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
         Damages = chunkType.Damages;
-        UsesDespawnTimer = !chunkType.Dissolves;
         DeleteOnTouch = chunkType.DeleteOnTouch;
 
         Mass = chunkType.Mass;
@@ -277,9 +276,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
             if (DeleteOnTouch || disappear)
                 DissolveOrRemove();
+
+            break;
         }
 
-        if (DespawnTimer > 150)
+        if (DespawnTimer > Constants.DESPAWN_CHUNK_LIFETIME)
             DissolveOrRemove();
     }
 

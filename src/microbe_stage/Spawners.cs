@@ -208,6 +208,7 @@ public static class SpawnHelpers
 
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
         chunk.AddToGroup(Constants.AI_TAG_CHUNK);
+        chunk.UsesDespawnTimer = !chunkType.Dissolves;
         return chunk;
     }
 
