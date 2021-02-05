@@ -276,10 +276,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             }
 
             if (DeleteOnTouch || disappear)
-	    {
+            {
                 DissolveOrRemove();
                 break;
-	    }
+            }
         }
 
         if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
