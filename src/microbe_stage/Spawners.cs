@@ -195,6 +195,7 @@ public static class SpawnHelpers
 
         // Pass on the chunk data
         chunk.Init(chunkType, cloudSystem, selectedMesh.SceneModelPath);
+        chunk.UsesDespawnTimer = !chunkType.Dissolves;
 
         worldNode.AddChild(chunk);
 
@@ -208,7 +209,6 @@ public static class SpawnHelpers
 
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
         chunk.AddToGroup(Constants.AI_TAG_CHUNK);
-        chunk.UsesDespawnTimer = !chunkType.Dissolves;
         return chunk;
     }
 

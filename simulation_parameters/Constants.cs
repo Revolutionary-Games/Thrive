@@ -164,7 +164,7 @@ public static class Constants
 
     public const float FLOATING_CHUNKS_DISSOLVE_SPEED = 0.3f;
 
-    public const int DESPAWN_CHUNK_LIFETIME = 150;
+    public const int DESPAWNING_CHUNK_LIFETIME = 150;
 
     public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
 

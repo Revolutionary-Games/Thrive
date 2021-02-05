@@ -83,6 +83,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// <summary>
     ///   How much time has passed since a chunk that uses this timer has been spawned
     /// </summary>
+    [JsonProperty]
     public float DespawnTimer { get; private set; }
 
     /// <summary>
@@ -275,12 +276,13 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             }
 
             if (DeleteOnTouch || disappear)
+	    {
                 DissolveOrRemove();
-
-            break;
+                break;
+	    }
         }
 
-        if (DespawnTimer > Constants.DESPAWN_CHUNK_LIFETIME)
+        if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
             DissolveOrRemove();
     }
 
