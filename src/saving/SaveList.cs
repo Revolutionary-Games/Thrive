@@ -169,7 +169,7 @@ public class SaveList : ScrollContainer
         deleteConfirmDialog.GetNode<Label>("Label2").Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("SAVE_DELETE_WARNING"),
             saveName);
-        deleteConfirmDialog.PopupCentered(deleteConfirmDialog.GetMinimumSize());
+        deleteConfirmDialog.PopupCenteredShrink();
     }
 
     private void OnConfirmDelete()
@@ -187,24 +187,24 @@ public class SaveList : ScrollContainer
     private void OnOldSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-        loadOlderConfirmDialog.PopupCentered(loadOlderConfirmDialog.GetMinimumSize());
+        loadOlderConfirmDialog.PopupCenteredShrink();
     }
 
     private void OnNewSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-        loadNewerConfirmDialog.PopupCentered(loadNewerConfirmDialog.GetMinimumSize());
+        loadNewerConfirmDialog.PopupCenteredShrink();
     }
 
     private void OnInvalidLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-        loadInvalidConfirmDialog.PopupCentered(loadInvalidConfirmDialog.GetMinimumSize());
+        loadInvalidConfirmDialog.PopupCenteredShrink();
     }
 
     private void OnKnownIncompatibleLoaded()
     {
-        loadIncompatibleDialog.PopupCentered(loadIncompatibleDialog.GetMinimumSize());
+        loadIncompatibleDialog.PopupCenteredShrink();
     }
 
     private void OnConfirmLoadOlder()

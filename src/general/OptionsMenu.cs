@@ -704,7 +704,7 @@ public class OptionsMenu : Control
         // discarded.
         if (!CompareSettings())
         {
-            backConfirmationBox.PopupCentered(backConfirmationBox.GetMinimumSize());
+            backConfirmationBox.PopupCenteredShrink();
             return;
         }
 
@@ -737,7 +737,7 @@ public class OptionsMenu : Control
         if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
-            errorAcceptBox.PopupCentered(errorAcceptBox.GetMinimumSize());
+            errorAcceptBox.PopupCenteredShrink();
             return;
         }
 
@@ -754,7 +754,7 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        defaultsConfirmationBox.PopupCentered(defaultsConfirmationBox.GetMinimumSize());
+        defaultsConfirmationBox.PopupCenteredShrink();
     }
 
     private void BackSaveSelected()
@@ -764,7 +764,7 @@ public class OptionsMenu : Control
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
             backConfirmationBox.Hide();
-            errorAcceptBox.PopupCentered(errorAcceptBox.GetMinimumSize());
+            errorAcceptBox.PopupCenteredShrink();
 
             return;
         }

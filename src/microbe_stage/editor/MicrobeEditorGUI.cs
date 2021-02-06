@@ -1011,14 +1011,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Show warning popup if trying to exit with negative atp production
         if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
-            negativeAtpPopup.PopupCentered(negativeAtpPopup.GetMinimumSize());
+            negativeAtpPopup.PopupCenteredShrink();
             return;
         }
 
         // Can't exit the editor with disconnected organelles
         if (editor.HasIslands)
         {
-            islandPopup.PopupCentered(islandPopup.GetMinimumSize());
+            islandPopup.PopupCenteredShrink();
             return;
         }
 

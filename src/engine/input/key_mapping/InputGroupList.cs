@@ -136,12 +136,12 @@ public class InputGroupList : VBoxContainer
             inputActionItem.DisplayName,
             inputActionItem.DisplayName);
 
-        conflictDialog.PopupCentered(conflictDialog.GetMinimumSize());
+        conflictDialog.PopupCenteredShrink();
     }
 
     public void OnResetInputs()
     {
-        resetInputsDialog.PopupCentered(resetInputsDialog.GetMinimumSize());
+        resetInputsDialog.PopupCenteredShrink();
     }
 
     public void OnConflictConfirmed()

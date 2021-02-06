@@ -89,7 +89,7 @@ public class SaveStatusOverlay : Control
         errorDialog.WindowTitle = title;
         extraDescriptionLabel.Text = message;
         exceptionLabel.Text = exception;
-        errorDialog.PopupCentered(errorDialog.GetMinimumSize());
+        errorDialog.PopupCenteredShrink();
 
         onDialogDismissReturnToMenu = returnToMenu;
         onDialogCloseCallback = onClosed;

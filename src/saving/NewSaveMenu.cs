@@ -60,7 +60,7 @@ public class NewSaveMenu : Control
             overwriteConfirm.GetNode<Label>("Label2").Text = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
                 name);
-            overwriteConfirm.PopupCentered(overwriteConfirm.GetMinimumSize());
+            overwriteConfirm.PopupCenteredShrink();
         }
         else
         {

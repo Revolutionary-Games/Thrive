@@ -207,7 +207,7 @@ public class SaveManagerGUI : Control
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
                 Selected.Count);
-        deleteSelectedConfirmDialog.PopupCentered(deleteSelectedConfirmDialog.GetMinimumSize());
+        deleteSelectedConfirmDialog.PopupCenteredShrink();
     }
 
     private void DeleteOldButtonPressed()
@@ -219,7 +219,7 @@ public class SaveManagerGUI : Control
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount);
-        deleteOldConfirmDialog.PopupCentered(deleteOldConfirmDialog.GetMinimumSize());
+        deleteOldConfirmDialog.PopupCenteredShrink();
     }
 
     private void OnConfirmDeleteSelected()
