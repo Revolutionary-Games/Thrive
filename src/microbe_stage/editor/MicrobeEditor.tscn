@@ -1,7 +1,8 @@
-[gd_scene load_steps=135 format=2]
+[gd_scene load_steps=136 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/WhiteArrow.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://assets/models/EditorArrow.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/clockButton.png" type="Texture" id=6]
@@ -861,7 +862,10 @@ OrganismStatisticsPath = NodePath("CellEditor/TopRight/Statistics")
 SpeedLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Value")
 HpLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Value")
 GenerationLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
-MutationPointsLabelPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/Value")
+CurrentMutationPointsLabelPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/CurrentMp")
+MutationPointsArrowPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/MpArrow")
+ResultingMutationPointsLabelPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/ResultingMp")
+BaseMutationPointsLabelPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/BaseMp")
 MutationPointsBarPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain")
 MutationPointsSubtractBarPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarSubtract")
 SpeciesNameEditPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SpeciesName")
@@ -1440,7 +1444,6 @@ percent_visible = false
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = 45
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1466,23 +1469,68 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer"]
-margin_left = 196.0
+margin_left = 155.0
 margin_right = 308.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 15
 
-[node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2"]
-material = ExtResource( 74 )
-margin_right = 97.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2"]
+margin_right = 138.0
 margin_bottom = 20.0
-size_flags_horizontal = 3
-size_flags_vertical = 1
+alignment = 2
+
+[node name="CurrentMp" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+material = ExtResource( 74 )
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 102.0
+margin_bottom = 18.0
+size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 83 )
-text = "100 / 100"
-align = 2
-valign = 1
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="MpArrow" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+visible = false
+material = ExtResource( 74 )
+margin_left = 87.0
+margin_right = 102.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 15, 20 )
+size_flags_vertical = 4
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="ResultingMp" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+visible = false
+material = ExtResource( 74 )
+margin_left = 74.0
+margin_top = 1.0
+margin_right = 102.0
+margin_bottom = 18.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 83 )
+text = "100)"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="BaseMp" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+material = ExtResource( 74 )
+margin_left = 106.0
+margin_top = 1.0
+margin_right = 138.0
+margin_bottom = 18.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 83 )
+text = "/ 100"
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
@@ -3912,10 +3960,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 296.0
-margin_top = 319.0
-margin_right = 599.0
-margin_bottom = 794.0
+margin_left = 300.0
+margin_top = 323.0
+margin_right = 603.0
+margin_bottom = 798.0
 theme = SubResource( 30 )
 edit_alpha = false
 
