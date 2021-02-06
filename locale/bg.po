@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-06 15:33+0200\n"
-"PO-Revision-Date: 2021-01-27 16:24+0000\n"
+"PO-Revision-Date: 2021-02-01 22:41+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -237,8 +237,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Ето един съвет – ако ловувате дадено създание, без да искате може напълно "
-"да го унищожите, защото Вие може да не сте единственият ловец."
+"Ето един съвет – ако ловувате дадени създания, без да искате, може напълно "
+"да ги унищожите, но не само Вие сте способни на това."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -1208,15 +1208,15 @@ msgstr "Изход"
 
 #: ../src/general/StringUtils.cs:18
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "млрд."
 
 #: ../src/general/StringUtils.cs:24
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "млн."
 
 #: ../src/general/StringUtils.cs:30
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "хил."
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
@@ -2129,20 +2129,19 @@ msgid "EXTERNAL_EFFECTS"
 msgstr "Странични ефекти:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4350
-#, fuzzy
 msgid "SPECIES_POPULATION"
-msgstr "Има създания:"
+msgstr "Популация на създанията"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4383
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4800
 msgid "PHYSICAL_CONDITIONS"
-msgstr "Условия"
+msgstr "Физически условия"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4475
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4983
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:846
 msgid "ATMOSPHERIC_GASSES"
-msgstr "Газове"
+msgstr "Атмосферни газове"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4569
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5495
@@ -2159,7 +2158,7 @@ msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5408
 msgid "SPECIES_PRESENT"
-msgstr "Създания"
+msgstr "Настоящи създания"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5466
 msgid "MOVE_TO_THIS_PATCH"
@@ -2175,7 +2174,7 @@ msgstr "Глюкозата се понижи на {0} от предишното 
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
 msgid "MEGA_YEARS"
-msgstr "млн. години"
+msgstr "млн. г."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:843
@@ -2204,9 +2203,8 @@ msgid "BASE_MOVEMENT"
 msgstr "Базово движение"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:850
-#, fuzzy
 msgid "SPECIES_LIST"
-msgstr "Създания"
+msgstr "Списък на създанията"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1545
 msgid "BIOME_LABEL"
