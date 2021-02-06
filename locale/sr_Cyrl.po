@@ -7,18 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-31 14:33+0700\n"
-"PO-Revision-Date: 2020-12-27 09:23+0000\n"
+"POT-Creation-Date: 2021-01-27 20:05+0700\n"
+"PO-Revision-Date: 2021-02-01 22:41+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
-"Language-Team: Serbian (cyrillic) <https://translate."
-"revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
+"Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio"
+".com/projects/thrive/thrive-game/sr_Cyrl/>\n"
 "Language: sr_Cyrl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -267,7 +267,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Ево савета, можете гутати комаде гвожђа."
+msgstr "Ево савета, можете [г]утати комаде гвожђа."
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
@@ -296,7 +296,7 @@ msgstr "Забавна чињеница, Дидинијум је цилијар 
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Забавна чињеница је да амеба лови и хвата плен „ногама“ направљеним од "
-"цитоплазме названих псеудоподи, коначно желимо да буду у Thrive-у."
+"цитоплазме названих псеудоподи, желимо да коначно имамо оне у Thrive-у."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -308,7 +308,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "Вођа звучног тима Thrive-а направио је много песама које још нису додате у "
-"игру. Можете их чути или гледати како он компонује на свом ИоуТубе каналу "
+"игру. Можете их чути или гледати како он компонује на свом YouTube каналу "
 "Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
@@ -348,11 +348,11 @@ msgstr "Покрет"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
-msgstr "Помери се лево"
+msgstr "Померите се лево"
 
 #: ../simulation_parameters/common/input_options.json:14
 msgid "MOVE_RIGHT"
-msgstr "Помери се десно"
+msgstr "Померите се десно"
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
@@ -799,7 +799,9 @@ msgstr "Митохондрија"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4934
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
 msgid "TOXIN_VACUOLE"
-msgstr "Отровна Вацуоле"
+msgstr ""
+"Отровна\n"
+"Вацуоле"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469

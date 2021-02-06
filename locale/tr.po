@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-31 14:33+0700\n"
-"PO-Revision-Date: 2021-01-27 16:24+0000\n"
+"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"PO-Revision-Date: 2021-02-06 08:44+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -241,8 +241,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "İşte sana ipucu. Eğer yeterince dikkatli olmazsan, diğer türleri avlayarak "
-"soylarının tükenmesine neden olabilirsin. Türler ayrıca başka türler "
-"tarafından avlanıp yok olabilir."
+"soylarının tükenmesine neden olabilirsin. Bu duruma ayrıca başka türler de "
+"neden olabilir."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -1217,15 +1217,15 @@ msgstr "Çık"
 
 #: ../src/general/StringUtils.cs:18
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "Milyar"
 
 #: ../src/general/StringUtils.cs:24
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "Milyon"
 
 #: ../src/general/StringUtils.cs:30
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "Kilo"
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
@@ -2162,9 +2162,8 @@ msgid "EXTERNAL_EFFECTS"
 msgstr "Dış etkenler:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4350
-#, fuzzy
 msgid "SPECIES_POPULATION"
-msgstr "Tür:"
+msgstr "Tür Popülasyonu"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4383
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4812
@@ -2244,10 +2243,9 @@ msgstr "Ana Hareket"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
-#, fuzzy
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:850
 msgid "SPECIES_LIST"
-msgstr "Mevcut Türler"
+msgstr "Tür Listesi"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1540
 msgid "BIOME_LABEL"

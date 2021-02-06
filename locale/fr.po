@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-31 14:33+0700\n"
-"PO-Revision-Date: 2021-01-03 09:13+0000\n"
+"POT-Creation-Date: 2021-01-27 20:05+0700\n"
+"PO-Revision-Date: 2021-02-06 08:44+0000\n"
 "Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -177,9 +177,9 @@ msgstr ""
 "À chaque génération, vous avez 100 points de mutation (PM) à dépenser, et "
 "chaque changement (ou mutation) coûtera une certaine quantité de ces PM. "
 "Ajouter ou retirer des organites coûte des PM, mais retirer les organites "
-"placées lors de cette mutation rembourse les PM de cette organite. Vous "
-"pouvez retirer une organite en faisant un clique droit dessus. Vous pouvez "
-"faire tourner vos organites avec A et D."
+"placées lors de cette mutation les rembourse. Vous pouvez retirer une "
+"organite en faisant un clique droit dessus. Vous pouvez faire tourner vos "
+"organites avec A et D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -199,10 +199,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Fait Amusant, les Didiniums et les Paramécies sont des exemples "
-"littéraires de la relation proie/prédateur qui a été étudié pendant des "
-"décennies, maintenant êtes vous le Didinium ou le Paramécie ? Prédateur ou "
-"Proie ?"
+"Fait Amusant, les Didiniums et les Paramécies sont des exemples littéraires "
+"de la relation proie/prédateur qui a été étudié pendant des décennies, "
+"maintenant êtes vous un Didinium ou un Paramécie ? Un Prédateur ou une Proie "
+"?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
@@ -251,8 +251,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Voici un indice, vous pouvez amener d'autres espèces à l'extinction si "
-"vous n'êtes pas prudent, elles peuvent aussi être amenées à l'extinction "
+"Voici un indice, vous pouvez contraindre d'autres espèces à l'extinction si "
+"vous n'êtes pas prudent. Elles peuvent aussi être contraintes à l'extinction "
 "par d'autres espèces."
 
 #: ../simulation_parameters/common/help_texts.json:57
@@ -287,8 +287,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Voici une astuce, préparez-vous avant d'ajouter un noyau. Ces choses "
-"coûtent cher ! En entretien et coût initial."
+"Voici une astuce, préparez vous avant d'ajouter un noyau. Ces choses coûtent "
+"cher ! A la fois en entretien et en coût initial."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
@@ -311,8 +311,8 @@ msgstr "Fait amusant, le Didinium est un cilié qui chasse les paramécies."
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Fait amusant, l'amibe chasse et attrape ses proies à l'aide de \"jambes\" "
-"constituées de cytoplasme qu'on appelle pseudopodes, pour finir on les "
-"veut dans Thrive."
+"constituées de cytoplasme qu'on appelle pseudopodes, nous voulons les avoir "
+"à terme dans Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -381,7 +381,7 @@ msgstr "Reculer"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "Avance automatique"
+msgstr "Avance auto"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
@@ -816,7 +816,9 @@ msgstr "Mitochondrie"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4934
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
 msgid "TOXIN_VACUOLE"
-msgstr "Vacuole à toxine"
+msgstr ""
+"Vacuole\n"
+"à toxine"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
@@ -900,11 +902,10 @@ msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Pressez une touche..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
-#, fuzzy
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Il y a un conflit avec {0}.\n"
-"Voulez-vous enlever l'input de {1}?"
+"Voulez-vous enlever l'entrée de {1} ?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -940,14 +941,13 @@ msgstr "Molette arrière"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Roue gauche"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
 msgstr "Roulette droite"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
-#, fuzzy
 msgid "SPECIAL_MOUSE_1"
 msgstr "Spécial 1 souris"
 
@@ -1056,7 +1056,7 @@ msgstr "Recommencer"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Aidez nous à traduire le jeu"
 
 #: ../src/general/OptionsMenu.tscn:630
 msgid "COMPOUND_CLOUDS"
@@ -1231,15 +1231,15 @@ msgstr "Quitter"
 
 #: ../src/general/StringUtils.cs:18
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "Mrd"
 
 #: ../src/general/StringUtils.cs:24
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "M"
 
 #: ../src/general/StringUtils.cs:30
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "K"
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
@@ -2006,7 +2006,6 @@ msgid "PROCESS_PANEL_TITLE"
 msgstr "Processus cellulaires"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
-#, fuzzy
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
 
@@ -2173,9 +2172,8 @@ msgid "EXTERNAL_EFFECTS"
 msgstr "Effets externes :"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4350
-#, fuzzy
 msgid "SPECIES_POPULATION"
-msgstr "Espèces :"
+msgstr "Espèces"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4383
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4812
@@ -2219,7 +2217,7 @@ msgstr "La quantité de glucose a été réduite a {0} se sa valeur précédente
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:607
 msgid "MEGA_YEARS"
-msgstr "Myr"
+msgstr "Ma"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
@@ -2255,8 +2253,7 @@ msgstr "Mouvement de Base"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
-#, fuzzy
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:850
 msgid "SPECIES_LIST"
 msgstr "Espèces Présentes"
 
