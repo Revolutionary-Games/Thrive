@@ -203,11 +203,11 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        deleteSelectedConfirmDialog.DialogText =
+        deleteSelectedConfirmDialog.GetNode<Label>("Label2").Text =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
                 Selected.Count);
-        deleteSelectedConfirmDialog.PopupCenteredMinsize();
+        deleteSelectedConfirmDialog.PopupCentered(deleteSelectedConfirmDialog.GetMinimumSize());
     }
 
     private void DeleteOldButtonPressed()
@@ -215,11 +215,11 @@ public class SaveManagerGUI : Control
         int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
-        deleteOldConfirmDialog.DialogText =
+        deleteOldConfirmDialog.GetNode<Label>("Label2").Text =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount);
-        deleteOldConfirmDialog.PopupCenteredMinsize();
+        deleteOldConfirmDialog.PopupCentered(deleteOldConfirmDialog.GetMinimumSize());
     }
 
     private void OnConfirmDeleteSelected()

@@ -409,7 +409,7 @@ public static class Constants
 
     public const float TOOLTIP_OFFSET = 20;
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
-    public const float TOOLTIP_FADE_SPEED = 0.1f;
+    public const float TOOLTIP_FADE_SPEED = 0.02f;
 
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 5.0f;

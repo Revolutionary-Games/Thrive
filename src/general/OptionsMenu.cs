@@ -222,7 +222,7 @@ public class OptionsMenu : Control
     private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
-    private WindowDialog backConfirmationBox;
+    private AcceptDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
     private AcceptDialog errorAcceptBox;
 
@@ -327,11 +327,15 @@ public class OptionsMenu : Control
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
-        backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
+        backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
+
+        // We're only utilizing the AcceptDialog's auto resize functionality,
+        // so hide the default Ok button since it's not needed
+        backConfirmationBox.GetOk().Hide();
     }
 
     /// <summary>
@@ -700,7 +704,7 @@ public class OptionsMenu : Control
         // discarded.
         if (!CompareSettings())
         {
-            backConfirmationBox.PopupCenteredMinsize();
+            backConfirmationBox.PopupCentered(backConfirmationBox.GetMinimumSize());
             return;
         }
 
@@ -733,7 +737,7 @@ public class OptionsMenu : Control
         if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
-            errorAcceptBox.PopupCenteredMinsize();
+            errorAcceptBox.PopupCentered(errorAcceptBox.GetMinimumSize());
             return;
         }
 
@@ -750,7 +754,7 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        defaultsConfirmationBox.PopupCenteredMinsize();
+        defaultsConfirmationBox.PopupCentered(defaultsConfirmationBox.GetMinimumSize());
     }
 
     private void BackSaveSelected()
@@ -760,7 +764,7 @@ public class OptionsMenu : Control
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
             backConfirmationBox.Hide();
-            errorAcceptBox.PopupCenteredMinsize();
+            errorAcceptBox.PopupCentered(errorAcceptBox.GetMinimumSize());
 
             return;
         }

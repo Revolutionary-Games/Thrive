@@ -287,11 +287,11 @@ public class MicrobeHUD : Node
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
     }
 
-    public void OnEnterStageTransition()
+    public void OnEnterStageTransition(bool longerDuration)
     {
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, longerDuration ? 1.0f : 0.3f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
@@ -323,8 +323,6 @@ public class MicrobeHUD : Node
     public void Init(MicrobeStage stage)
     {
         this.stage = stage;
-
-        OnEnterStageTransition();
     }
 
     public void ResizeEnvironmentPanel(string mode)
@@ -641,10 +639,10 @@ public class MicrobeHUD : Node
             }
         }
 
-        var aiMicrobes = GetTree().GetNodesInGroup(Constants.AI_GROUP);
+        var allMicrobes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
 
         // Show the species name of hovered cells
-        foreach (Microbe entry in aiMicrobes)
+        foreach (Microbe entry in allMicrobes)
         {
             var distance = (entry.Translation - stage.Camera.CursorWorldPos).Length();
 
@@ -661,6 +659,9 @@ public class MicrobeHUD : Node
             hoveredCellsContainer.AddChild(microbeText);
 
             microbeText.Text = entry.Species.FormattedName;
+
+            if (entry.IsPlayerMicrobe)
+                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&

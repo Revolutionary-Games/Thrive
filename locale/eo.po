@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-30 20:10+0700\n"
+"POT-Creation-Date: 2021-01-31 14:33+0700\n"
 "PO-Revision-Date: 2021-01-30 10:39+0000\n"
 "Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -940,7 +940,7 @@ msgstr ""
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
-#: ../src/general/HelpScreen.tscn:102
+#: ../src/general/HelpScreen.tscn:118
 #: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
 msgstr "Fermu"
@@ -1115,12 +1115,12 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Malfermu Dosierujon de Registroj"
 
 #: ../src/general/OptionsMenu.tscn:997 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:107
 #: ../src/saving/SaveManagerGUI.tscn:112
 msgid "BACK"
 msgstr "Reen"
 
-#: ../src/general/OptionsMenu.tscn:1018 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1018 ../src/saving/NewSaveMenu.tscn:71
 msgid "SAVE"
 msgstr "Konservu"
 
@@ -1654,7 +1654,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7322
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:767
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:768
 msgid "TEMPERATURE"
 msgstr ""
 
@@ -1830,19 +1830,23 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:463
+#: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:607
+#: ../src/microbe_stage/MicrobeHUD.cs:605
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:451
+#: ../src/microbe_stage/MicrobeHUD.cs:664
+msgid "PLAYER_CELL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:453
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:563
+#: ../src/microbe_stage/MicrobeStage.cs:565
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -1877,7 +1881,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4525
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5160
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:843
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -2046,7 +2050,7 @@ msgstr "Membranaj Tipoj"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Flueco / Rigideco"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3903
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3904
 msgid "COLOUR"
 msgstr "Koloro"
 
@@ -2112,7 +2116,7 @@ msgstr "Fizikaj Kondiĉoj"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4487
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4995
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferaj Gasoj"
 
@@ -2150,11 +2154,11 @@ msgid "MEGA_YEARS"
 msgstr "Megajaro"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:835
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:840
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:843
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:837
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
 msgid "YEARS"
 msgstr "jaroj"
 
@@ -2167,27 +2171,35 @@ msgstr "ATP-Produktado"
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTO ESTAS TRE MALALTA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:704
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:688
+msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
 msgid "OSMOREGULATION"
 msgstr "Osmoregado"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:710
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
 msgid "BASE_MOVEMENT"
 msgstr "Baza Movado"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:840
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1539
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1540
 msgid "BIOME_LABEL"
 msgstr "Biomo: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1544
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1545
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sub marnivelo"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1572
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1573
 msgid "WITH_POPULATION"
 msgstr "{0} kun loĝantaro: {1}"
 
@@ -2278,15 +2290,15 @@ msgstr "Kreu Novan Konservadon"
 msgid "NAME"
 msgstr "Nomo:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:64
 msgid "EXTRA_OPTIONS"
 msgstr "Ekstraj Agordoj"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:82
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Anstataŭigi ekzistantan konservadon:"
 
-#: ../src/saving/NewSaveMenu.tscn:118
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Ĉu anstataŭigi ekzistantan konservadon?"
 

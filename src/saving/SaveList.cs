@@ -166,10 +166,10 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = saveName;
 
         // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
-        deleteConfirmDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
+        deleteConfirmDialog.GetNode<Label>("Label2").Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("SAVE_DELETE_WARNING"),
             saveName);
-        deleteConfirmDialog.PopupCenteredMinsize();
+        deleteConfirmDialog.PopupCentered(deleteConfirmDialog.GetMinimumSize());
     }
 
     private void OnConfirmDelete()
@@ -187,24 +187,24 @@ public class SaveList : ScrollContainer
     private void OnOldSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-        loadOlderConfirmDialog.PopupCenteredMinsize();
+        loadOlderConfirmDialog.PopupCentered(loadOlderConfirmDialog.GetMinimumSize());
     }
 
     private void OnNewSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-        loadNewerConfirmDialog.PopupCenteredMinsize();
+        loadNewerConfirmDialog.PopupCentered(loadNewerConfirmDialog.GetMinimumSize());
     }
 
     private void OnInvalidLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-        loadInvalidConfirmDialog.PopupCenteredMinsize();
+        loadInvalidConfirmDialog.PopupCentered(loadInvalidConfirmDialog.GetMinimumSize());
     }
 
     private void OnKnownIncompatibleLoaded()
     {
-        loadIncompatibleDialog.PopupCenteredMinsize();
+        loadIncompatibleDialog.PopupCentered(loadIncompatibleDialog.GetMinimumSize());
     }
 
     private void OnConfirmLoadOlder()

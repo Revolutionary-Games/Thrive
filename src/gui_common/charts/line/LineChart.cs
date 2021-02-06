@@ -781,6 +781,10 @@ public class LineChart : VBoxContainer
         if (LegendMode != LegendDisplayMode.Icon)
             return;
 
+        // To really make sure we aren't accessing empty child
+        if (legendContainer.GetChildCount() <= 0)
+            return;
+
         var icon = legendContainer.GetChildren()
             .Cast<IconLegend>()
             .ToList()
@@ -804,6 +808,10 @@ public class LineChart : VBoxContainer
     private void UpdateDropDownLegendItem(bool toggled, string item)
     {
         if (LegendMode != LegendDisplayMode.DropDown)
+            return;
+
+        // To really make sure we aren't accessing empty child
+        if (legendContainer.GetChildCount() <= 0)
             return;
 
         // It's assumed the child is a dropdown node

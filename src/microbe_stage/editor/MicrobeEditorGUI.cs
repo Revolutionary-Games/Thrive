@@ -684,9 +684,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
             subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
 
-            tooltip.Description =
-                $"{SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name}: " +
-                $"+{energyBalance.Production[subBar.Name]} ATP";
+            tooltip.Description = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION"),
+                SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
+                energyBalance.Production[subBar.Name]);
         }
 
         foreach (var subBar in atpConsumptionBar.SubBars)
@@ -718,7 +719,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 }
             }
 
-            tooltip.Description = $"{displayName}: -{energyBalance.Consumption[subBar.Name]} ATP";
+            tooltip.Description = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION"), displayName,
+                energyBalance.Consumption[subBar.Name]);
         }
     }
 
@@ -1008,14 +1011,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Show warning popup if trying to exit with negative atp production
         if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
-            negativeAtpPopup.PopupCenteredMinsize();
+            negativeAtpPopup.PopupCentered(negativeAtpPopup.GetMinimumSize());
             return;
         }
 
         // Can't exit the editor with disconnected organelles
         if (editor.HasIslands)
         {
-            islandPopup.PopupCenteredMinsize();
+            islandPopup.PopupCentered(islandPopup.GetMinimumSize());
             return;
         }
 
@@ -1643,6 +1646,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         editor.NewName = newText;
+    }
+
+    private void OnSpeciesNameTextEntered(string newText)
+    {
+        // In case the text is not stored
+        editor.NewName = newText;
+
+        speciesNameEdit.ReleaseFocus();
     }
 
     /// <summary>
