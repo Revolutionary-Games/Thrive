@@ -926,7 +926,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         organelleMenu.ShowPopup = true;
 
         // Disable delete option for nucleus or the last organelle.
-        if (selectedOrganelle.Definition == nucleus || editor.MicrobeSize < 2)
+        if (editor.MicrobeSize < 2)
         {
             organelleMenu.EnableDeleteOption = false;
         }
@@ -934,6 +934,21 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             organelleMenu.EnableDeleteOption = true;
         }
+    }
+
+    public void OnMovePressed()
+    {
+        editor.OrganelleInProcessOfMoving(organelleMenu.SelectedOrganelle);
+    }
+
+    public void OnDeletePressed()
+    {
+        editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
+    }
+
+    public void UpdateReportTabPatchName(string patch)
+    {
+        reportTabPatchNameLabel.Text = patch;
     }
 
     /// <summary>
@@ -1005,6 +1020,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
+    internal void BlockActionWhileMoving()
+    {
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+    }
+
     /// <summary>
     ///   Lock / unlock the organelles  that need a nuclues
     /// </summary>
@@ -1026,7 +1046,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     internal void OnOrganelleToPlaceSelected(string organelle)
     {
         editor.ActiveActionName = organelle;
-        editor.SelectedActionName = organelle;
 
         // Make all buttons unselected except the one that is now selected
         foreach (Control element in organelleSelectionElements)
@@ -1052,6 +1071,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void OnFinishEditingClicked()
     {
+        if (editor.MovingOrganelle != null)
+        {
+            BlockActionWhileMoving();
+            return;
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
 
         // Show warning popup if trying to exit with negative atp production
@@ -1189,7 +1214,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void UpdateRigiditySlider(int value, int mutationPoints)
     {
-        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP)
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelle == null)
         {
             rigiditySlider.Editable = true;
         }

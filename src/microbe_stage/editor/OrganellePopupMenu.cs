@@ -39,6 +39,8 @@ public class OrganellePopupMenu : PopupPanel
         {
             showPopup = value;
 
+            // Popups should work with the pause menu
+            // TODO: See #1857
             if (ShowPopup)
             {
                 RectPosition = GetViewport().GetMousePosition();
