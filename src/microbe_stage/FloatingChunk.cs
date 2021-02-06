@@ -76,6 +76,17 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public float Damages { get; set; }
 
     /// <summary>
+    ///   When true, the chunk will despawn when the despawn timer finishes
+    /// </summary>
+    public bool UsesDespawnTimer { get; set; }
+
+    /// <summary>
+    ///   How much time has passed since a chunk that uses this timer has been spawned
+    /// </summary>
+    [JsonProperty]
+    public float DespawnTimer { get; private set; }
+
+    /// <summary>
     ///   If true this gets deleted when a cell touches this
     /// </summary>
     public bool DeleteOnTouch { get; set; }
@@ -216,6 +227,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (isDissolving)
             HandleDissolving(delta);
 
+        if (UsesDespawnTimer)
+            DespawnTimer += delta;
+
         // Check contacts
         foreach (var microbe in touchingMicrobes)
         {
@@ -263,18 +277,13 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
             if (DeleteOnTouch || disappear)
             {
-                if (Dissolves)
-                {
-                    isDissolving = true;
-                }
-                else
-                {
-                    this.DetachAndQueueFree();
-                }
-
+                DissolveOrRemove();
                 break;
             }
         }
+
+        if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
+            DissolveOrRemove();
     }
 
     /// <summary>
@@ -390,6 +399,18 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                 return;
 
             touchingMicrobes.Remove(microbe);
+        }
+    }
+
+    private void DissolveOrRemove()
+    {
+        if (Dissolves)
+        {
+            isDissolving = true;
+        }
+        else
+        {
+            this.DetachAndQueueFree();
         }
     }
 }
