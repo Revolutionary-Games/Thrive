@@ -66,7 +66,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private Vector3 queuedMovementForce;
 
-    private double previousPositionalHeat = 0;
+    private double previousPositionalHeat;
 
     // variables for engulfing
     [JsonProperty]
@@ -1216,7 +1216,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void HandleThermalGradient(float delta)
     {
-        double currentPositionalHeat = GameWorld.Map.CurrentPatch.BiomeTemplate.HeatMap.Noise(Translation.x / 1000, Translation.y / 1000, 1.0);
+        double currentPositionalHeat = 
+            GameWorld.Map.CurrentPatch.BiomeTemplate.HeatMap.Noise(Translation.x / 1000, Translation.y / 1000, 1.0);
         double gradient = Math.Abs(currentPositionalHeat - previousPositionalHeat) / delta;
         previousPositionalHeat = currentPositionalHeat;
         Compounds.AddCompound(SimulationParameters.Instance.GetCompound("thermalgradient"), (float)gradient * HexCount);
