@@ -8,6 +8,8 @@ public class RunOnKeyToggleAttribute : RunOnKeyAttribute
 
     public bool ToggleState { get; set; }
 
+    protected override bool CallMethodInOnInput => false;
+
     public override bool OnInput(InputEvent @event)
     {
         var before = HeldDown;

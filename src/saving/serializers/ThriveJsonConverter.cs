@@ -68,9 +68,20 @@ public class ThriveJsonConverter : IDisposable
 
     public static ThriveJsonConverter Instance => InstanceValue;
 
-    public string SerializeObject(object o)
+    /// <summary>
+    ///   Serializes the specified object to a JSON string using ThriveJsonConverter settings.
+    /// </summary>
+    /// <param name="o">Object to serialize</param>
+    /// <param name="type">
+    ///   <para>
+    ///     Specifies the type of the object being serialized (optional). The dynamic type will
+    ///     get written out if this is set to a base class of the object to serialize.
+    ///   </para>
+    /// </param>
+    public string SerializeObject(object o, Type type = null)
     {
-        return PerformWithSettings(settings => JsonConvert.SerializeObject(o, Constants.SAVE_FORMATTING, settings));
+        return PerformWithSettings(
+            settings => JsonConvert.SerializeObject(o, type, Constants.SAVE_FORMATTING, settings));
     }
 
     public T DeserializeObject<T>(string json)
@@ -536,9 +547,17 @@ public abstract class BaseThriveConverter : JsonConverter
                 {
                     memberValue = property.GetValue(value, null);
                 }
-                catch (ObjectDisposedException)
+                catch (TargetInvocationException e)
                 {
-                    // Protection against disposed stuff that happen a lot in godot
+                    // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+                    if (!Constants.CATCH_SAVE_ERRORS)
+#pragma warning disable 162
+                        throw;
+#pragma warning restore 162
+
+                    // Protection against disposed stuff that is very easy to make a mistake about. Seems to be caused
+                    // by carelessly keeping references to other game entities that are saved.
+                    GD.PrintErr("Problem trying to save a property: ", e);
                     writer.WritePropertyName(property.Name);
                     serializer.Serialize(writer, null);
                     continue;

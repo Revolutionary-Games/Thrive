@@ -294,6 +294,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public CompoundBag ProcessCompoundStorage => Compounds;
 
     /// <summary>
+    ///   Process running statistics for this cell. For now only computed for the player cell
+    /// </summary>
+    [JsonIgnore]
+    public ProcessStatistics ProcessStatistics { get; private set; }
+
+    /// <summary>
     ///   For checking if the player is in freebuild mode or not
     /// </summary>
     [JsonProperty]
@@ -371,6 +377,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             listener = new Listener();
             AddChild(listener);
             listener.MakeCurrent();
+
+            // Setup tracking running processes
+            ProcessStatistics = new ProcessStatistics();
 
             GD.Print("Player Microbe spawned");
         }
@@ -1050,6 +1059,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         CheckEngulfShapeSize();
+
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         HandleCompoundAbsorbing(delta);
         HandleThermalGradient(delta);
 
@@ -1328,6 +1342,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void HandleReproduction(float delta)
     {
 #pragma warning restore CA1801
+
+        // Dead cells can't reproduce
+        if (Dead)
+            return;
+
         if (allOrganellesDivided)
         {
             // Ready to reproduce already. Only the player gets here
@@ -1705,7 +1724,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (Membrane.DissolveEffectValue >= 6)
         {
-            QueueFree();
+            this.DetachAndQueueFree();
         }
     }
 
@@ -1778,7 +1797,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         organelle.OnRemovedFromMicrobe();
 
         // The organelle only detaches but doesn't delete itself, so we delete it here
-        organelle.QueueFree();
+        organelle.DetachAndQueueFree();
 
         processesDirty = true;
         cachedHexCountDirty = true;

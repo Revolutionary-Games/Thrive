@@ -683,8 +683,8 @@ public class OptionsMenu : Control
         foreach (var locale in languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
-            var native = currentCulture.NativeName;
-            optionButton.AddItem(locale + " (" + native + ")");
+            var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
+            optionButton.AddItem(locale + " - " + native);
         }
     }
 
@@ -1036,6 +1036,12 @@ public class OptionsMenu : Control
         inputGroupList.InitGroupList();
     }
 
+    private void OnOpenScreenshotFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
+    }
+
     private void OnCustomUsernameEnabledToggled(bool pressed)
     {
         Settings.Instance.CustomUsernameEnabled.Value = pressed;
@@ -1077,6 +1083,12 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnTranslationSitePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen("https://translate.revolutionarygamesstudio.com/engage/thrive/");
+    }
+
     private void UpdateSelectedLanguage(Settings settings)
     {
         if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
@@ -1101,5 +1113,11 @@ public class OptionsMenu : Control
         {
             languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
         }
+    }
+
+    private void OnLogButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
     }
 }

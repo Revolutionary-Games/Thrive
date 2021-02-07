@@ -265,6 +265,11 @@ public class Settings
     /// <returns>The culture info</returns>
     public static CultureInfo GetCultureInfo(string language)
     {
+        // Perform hard coded translations first
+        var translated = TranslateLocaleToCSharp(language);
+        if (translated != null)
+            language = translated;
+
         try
         {
             return new CultureInfo(language);
@@ -292,6 +297,42 @@ public class Settings
                 return new CultureInfo(language);
             }
         }
+    }
+
+    /// <summary>
+    ///   Translates a Godot locale to C# locale name
+    /// </summary>
+    /// <param name="godotLocale">Godot locale</param>
+    /// <returns>C# locale name, or null if there is not a premade mapping</returns>
+    public static string TranslateLocaleToCSharp(string godotLocale)
+    {
+        switch (godotLocale)
+        {
+            case "eo":
+                return "en";
+            case "sr_Latn":
+                return "sr-Latn-RS";
+            case "sr_Cyrl":
+                return "sr-Cyrl-RS";
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    ///   Overrides Native name if an override is set
+    /// </summary>
+    /// <param name="godotLocale">Godot locale</param>
+    /// <returns>Native name, or null if there is not a premade mapping</returns>
+    public static string GetLanguageNativeNameOverride(string godotLocale)
+    {
+        switch (godotLocale)
+        {
+            case "eo":
+                return "Esperanto";
+        }
+
+        return null;
     }
 
     public override bool Equals(object obj)
@@ -408,16 +449,18 @@ public class Settings
 
             // These need to be also delay applied, otherwise when debugging these overwrite the default settings
             Invoke.Instance.Queue(ApplySoundSettings);
+
+            // If this is not delay applied, this also causes some errors in godot editor output when running
+            Invoke.Instance.Queue(ApplyInputSettings);
         }
         else
         {
             ApplyGraphicsSettings();
             ApplySoundSettings();
+            ApplyInputSettings();
         }
 
         ApplyLanguageSettings();
-        ApplyWindowSettings();
-        ApplyInputSettings();
         ApplyWindowSettings();
     }
 
@@ -572,6 +615,21 @@ public class Settings
                 return settings;
             }
         }
+    }
+
+    /// <summary>
+    ///   Debug helper for dumping what C# considers valid locales
+    /// </summary>
+    private static void DumpValidCSharpLocales()
+    {
+        GD.Print("Locales (C#):");
+
+        foreach (var culture in CultureInfo.GetCultures(CultureTypes.AllCultures & ~CultureTypes.NeutralCultures))
+        {
+            GD.Print(culture.DisplayName + " - " + culture.Name);
+        }
+
+        GD.Print(string.Empty);
     }
 
     /// <summary>

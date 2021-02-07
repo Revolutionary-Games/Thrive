@@ -27,6 +27,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     public float CurrentOrganelleCost;
 
+    private Vector3 arrowPosition = Vector3.Zero;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     /// <summary>
@@ -39,6 +41,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeCamera camera;
+
+    [JsonIgnore]
+    private MeshInstance editorArrow;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -164,11 +169,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     private string activeActionName;
 
-    [Signal]
-    public delegate void InvalidPlacementOfHex();
-
-    [Signal]
-    public delegate void InsufficientMPToPlaceHex();
+    /// <summary>
+    ///   Where the user started panning with the mouse
+    ///   Null if the user is not panning with the mouse
+    /// </summary>
+    private Vector3? mousePanningStart;
 
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.
@@ -368,6 +373,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         NodeReferencesResolved = true;
 
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
+        editorArrow = GetNode<MeshInstance>("EditorArrow");
         cameraFollow = GetNode<Spatial>("CameraLookAt");
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
@@ -391,7 +397,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                     SceneManager.Instance.AttachAndDetachScene(ReturnToStage);
             }
 
-            ReturnToStage?.QueueFree();
+            if (ReturnToStage != null)
+            {
+                if (ReturnToStage.GetParent() != null)
+                    GD.PrintErr("ReturnToStage has a parent when editor is wanting to free it");
+
+                ReturnToStage.QueueFree();
+            }
         }
         catch (ObjectDisposedException)
         {
@@ -541,6 +553,47 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             DoNewMicrobeAction, UndoNewMicrobeAction, data);
 
         EnqueueAction(action);
+    }
+
+    [RunOnAxisGroup]
+    [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1.0f, 1.0f })]
+    public void PanCameraWithKeys(float delta, float upDown, float leftRight)
+    {
+        if (mousePanningStart != null)
+            return;
+
+        var movement = new Vector3(leftRight, 0, upDown);
+        MoveObjectToFollow(movement.Normalized() * delta * Camera.CameraHeight);
+    }
+
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
+    public bool PanCameraWithMouse(float delta)
+    {
+        if (mousePanningStart == null)
+        {
+            mousePanningStart = Camera.CursorWorldPos;
+        }
+        else
+        {
+            var mousePanDirection = mousePanningStart.Value - Camera.CursorWorldPos;
+            MoveObjectToFollow(mousePanDirection * delta * 10);
+        }
+
+        return false;
+    }
+
+    [RunOnKeyUp("e_pan_mouse")]
+    public void ReleasePanCameraWithMouse()
+    {
+        mousePanningStart = null;
+    }
+
+    [RunOnKeyDown("e_reset_camera")]
+    public void ResetCamera()
+    {
+        camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
+        camera.ResetHeight();
     }
 
     [RunOnKeyDown("g_quick_save")]
@@ -817,6 +870,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdatePlayerPatch(targetPatch);
         UpdatePatchBackgroundImage();
         CalculateOrganelleEffectivenessInPatch(targetPatch);
+        UpdatePatchDependentBalanceData();
     }
 
     /// <summary>
@@ -831,15 +885,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
+    ///   Moves the ObjectToFollow of the camera in a direction
+    /// </summary>
+    /// <param name="vector">The direction to move the camera</param>
+    private void MoveObjectToFollow(Vector3 vector)
+    {
+        cameraFollow.Translation += vector;
+    }
+
+    /// <summary>
     ///   Sets up the editor when entering
     /// </summary>
     private void OnEnterEditor()
     {
         // Clear old stuff in the world
-        foreach (Node node in world.GetChildren())
-        {
-            node.Free();
-        }
+        world.FreeChildren();
 
         hoverHexes = new List<MeshInstance>();
         hoverOrganelles = new List<SceneDisplayer>();
@@ -887,6 +947,37 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
+    ///   Updates the arrowPosition variable to the top most point of the middle 3 rows
+    ///   Should be called on any layout change
+    /// </summary>
+    private void UpdateArrow()
+    {
+        // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
+        var highestPointInMiddleRows = 0.0f;
+
+        // Iterate through all organelles
+        foreach (var organelle in editedMicrobeOrganelles)
+        {
+            // Iterate through all hexes
+            foreach (var relativeHex in organelle.Definition.Hexes)
+            {
+                var absoluteHex = relativeHex + organelle.Position;
+
+                // Only consider the middle 3 rows
+                if (absoluteHex.Q < -1 || absoluteHex.Q > 1)
+                    continue;
+
+                var cartesian = Hex.AxialToCartesian(absoluteHex);
+
+                // Get the min z-axis (highest point in the editor)
+                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
+            }
+        }
+
+        arrowPosition = new Vector3(0, 0, highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET);
+    }
+
+    /// <summary>
     ///   Calculates the effectiveness of organelles in the current or
     ///   given patch
     /// </summary>
@@ -915,8 +1006,17 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             patch = CurrentPatch;
         }
 
-        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome,
-            membrane));
+        gui.UpdateEnergyBalance(
+            ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome, membrane));
+    }
+
+    private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)
+    {
+        patch ??= CurrentPatch;
+
+        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Biome);
+
+        gui.UpdateCompoundBalances(result);
     }
 
     /// <summary>
@@ -945,6 +1045,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         UpdateUndoRedoButtons();
 
+        UpdateArrow();
+
+        // Force no lerp on init
+        editorArrow.Translation = arrowPosition;
+
         // Send freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
 
@@ -959,6 +1064,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.SetMap(CurrentGame.GameWorld.Map);
 
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+
+        gui.UpdateReportTabPatchName(CurrentPatch.Name);
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;
@@ -1049,7 +1156,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Only when not loaded from save are these properties fetched
         gui.SetInitialCellStats();
-        gui.ResetStatisticsPanelSize();
 
         UpdateGUIAfterLoadingSpecies(species);
     }
@@ -1188,6 +1294,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             CurrentOrganelleCost = 0;
         }
+
+        editorArrow.Translation = editorArrow.Translation.LinearInterpolate(
+            arrowPosition,
+            Constants.EDITOR_ARROW_INTERPOLATE_SPEED * delta);
     }
 
     /// <summary>
@@ -1382,15 +1492,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (!IsValidPlacement(organelle))
         {
             // Play Sound
-            EmitSignal(nameof(InvalidPlacementOfHex));
-            return;
-        }
-
-        // Skip placing if the player can't afford the organelle
-        if (organelle.Definition.MPCost > MutationPoints && !FreeBuilding)
-        {
-            // Flash the MP bar and play sound
-            EmitSignal(nameof(InsufficientMPToPlaceHex));
+            gui.OnInvalidHexLocationSelected();
             return;
         }
 
@@ -1576,15 +1678,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         UpdateAlreadyPlacedVisuals();
 
+        UpdateArrow();
+
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
         gui.UpdateGuiButtonStatus(HasNucleus);
 
+        UpdatePatchDependentBalanceData();
+
+        gui.UpdateSpeed(CalculateSpeed());
+    }
+
+    private void UpdatePatchDependentBalanceData()
+    {
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
 
-        gui.UpdateSpeed(CalculateSpeed());
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, targetPatch);
     }
 
     /// <summary>
@@ -1665,13 +1776,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Delete excess entities
         while (nextFreeHex < placedHexes.Count)
         {
-            placedHexes[placedHexes.Count - 1].QueueFree();
+            placedHexes[placedHexes.Count - 1].DetachAndQueueFree();
             placedHexes.RemoveAt(placedHexes.Count - 1);
         }
 
         while (nextFreeOrganelle < placedModels.Count)
         {
-            placedModels[placedModels.Count - 1].QueueFree();
+            placedModels[placedModels.Count - 1].DetachAndQueueFree();
             placedModels.RemoveAt(placedModels.Count - 1);
         }
     }
@@ -1696,6 +1807,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+        gui.SetMembraneTooltips(Membrane);
     }
 
     [DeserializedCallbackAllowed]
@@ -1709,6 +1821,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+        gui.SetMembraneTooltips(Membrane);
     }
 
     [DeserializedCallbackAllowed]
@@ -1746,7 +1859,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         // A sanity check to not let an action proceed if we don't have enough mutation points
         if (MutationPoints < action.Cost)
+        {
+            // Flash the MP bar and play sound
+            gui.OnInsufficientMp();
             return;
+        }
 
         history.AddAction(action);
 
@@ -1794,6 +1911,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         ApplyAutoEvoResults();
 
+        gui.UpdateReportTabStatistics(CurrentPatch);
+
         // Auto save after editor entry is complete
         if (!CurrentGame.FreeBuild)
             SaveHelper.AutoSave(this);
@@ -1811,13 +1930,22 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Make absolutely sure the current game doesn't have an auto-evo run
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
-        gui.ResetStatisticsPanelSize();
+        gui.UpdateReportTabStatistics(CurrentPatch);
     }
 
     private void ApplyAutoEvoResults()
     {
         GD.Print("Applying auto-evo results");
         CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
+
+        CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
+
+        // Needs to be before the remove extinct species call, so that extinct species could still be stored
+        // for reference in patch history (e.g. displaying it as zero on the species population chart)
+        foreach (var entry in CurrentGame.GameWorld.Map.Patches)
+        {
+            entry.Value.RecordConditions();
+        }
 
         var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
 

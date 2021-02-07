@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
@@ -80,16 +81,43 @@ public class GUICommon : Node
         tween.Start();
     }
 
+    public void ModulateFadeIn(Control control, float duration)
+    {
+        // Make sure the control is visible
+        control.Show();
+        control.Modulate = new Color(1, 1, 1, 0);
+
+        tween.InterpolateProperty(control, "modulate:a", 0, 1, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
+        tween.Start();
+    }
+
+    public void ModulateFadeOut(Control control, float duration, bool hideOnFinished = true)
+    {
+        control.Modulate = new Color(1, 1, 1, 1);
+
+        tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
+        tween.Start();
+
+        if (!tween.IsConnected("tween_completed", this, nameof(HideControlOnFadeOutComplete)) && hideOnFinished)
+        {
+            tween.Connect("tween_completed", this, nameof(HideControlOnFadeOutComplete),
+                new Array { control }, (int)ConnectFlags.Oneshot);
+        }
+    }
+
     /// <summary>
     ///   Creates an icon for the given compound.
     /// </summary>
     public TextureRect CreateCompoundIcon(string compoundName, float sizeX = 20.0f, float sizeY = 20.0f)
     {
-        var element = new TextureRect();
-        element.Expand = true;
-        element.RectMinSize = new Vector2(sizeX, sizeY);
-
-        element.Texture = GetCompoundIcon(compoundName);
+        var element = new TextureRect
+        {
+            Expand = true,
+            RectMinSize = new Vector2(sizeX, sizeY),
+            SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+            Texture = GetCompoundIcon(compoundName),
+        };
 
         return element;
     }
@@ -106,5 +134,13 @@ public class GUICommon : Node
             icon = GD.Load<Texture>("res://assets/textures/gui/bevel/TestIcon.png");
 
         return icon;
+    }
+
+    private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)
+    {
+        _ = obj;
+        _ = key;
+
+        control.Hide();
     }
 }

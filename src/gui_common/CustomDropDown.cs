@@ -83,6 +83,22 @@ public class CustomDropDown : MenuButton
         Update();
     }
 
+    /// <summary>
+    ///   Returns the index of the item containing the given name/text.
+    /// </summary>
+    /// <param name="name">The item text</param>
+    /// <returns>Item's index. -1 if not found</returns>
+    public int GetItemIndex(string name)
+    {
+        foreach (var item in items)
+        {
+            if (item.Text == name)
+                return Popup.GetItemIndex(item.Id);
+        }
+
+        return -1;
+    }
+
     private void RedrawPopup()
     {
         ReadjustRectSizes();

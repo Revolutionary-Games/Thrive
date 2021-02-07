@@ -15,7 +15,8 @@ public static class SaveHelper
     /// </summary>
     private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
     {
-        "0.5.3",
+        "0.5.3.0",
+        "0.5.3.1",
     };
 
     public enum SaveOrder
@@ -374,6 +375,12 @@ public static class SaveHelper
         }
         catch (Exception e)
         {
+            // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+            if (!Constants.CATCH_SAVE_ERRORS)
+#pragma warning disable 162
+                throw;
+#pragma warning restore 162
+
             inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED"),
                 e.ToString());
             return;

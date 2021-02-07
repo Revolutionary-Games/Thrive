@@ -9,11 +9,19 @@ public class DefaultToolTip : Control, ICustomToolTip
     public NodePath DescriptionLabelPath;
 
     /// <summary>
+    ///   If true, the tooltip fades in smoothly on display.
+    /// </summary>
+    public bool UseFadeIn = true;
+
+    /// <summary>
+    ///   If true, the tooltip fades out smoothly on hide.
+    /// </summary>
+    public bool UseFadeOut = false;
+
+    /// <summary>
     ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
     private Label descriptionLabel;
-
-    private Tween tween;
 
     private string description;
 
@@ -30,7 +38,7 @@ public class DefaultToolTip : Control, ICustomToolTip
     }
 
     /// <summary>
-    ///   Only get and sets node name since this tooltip only shows a message
+    ///   Only gets and sets the Node name since this tooltip only shows a message
     /// </summary>
     public string DisplayName
     {
@@ -58,6 +66,12 @@ public class DefaultToolTip : Control, ICustomToolTip
         set => Visible = value;
     }
 
+    [Export]
+    public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.LastMousePosition;
+
+    [Export]
+    public bool HideOnMousePress { get; set; } = true;
+
     public Node ToolTipNode => this;
 
     public override void _Ready()
@@ -67,19 +81,31 @@ public class DefaultToolTip : Control, ICustomToolTip
         // See https://github.com/Revolutionary-Games/Thrive/issues/1855
         descriptionLabel = GetNode<Label>("MarginContainer/VBoxContainer/Description");
 
-        tween = GetNode<Tween>("Tween");
-
         UpdateDescription();
     }
 
     public void OnDisplay()
     {
-        ToolTipHelper.TooltipFadeIn(tween, this);
+        if (UseFadeIn)
+        {
+            GUICommon.Instance.ModulateFadeIn(this, Constants.TOOLTIP_FADE_SPEED);
+        }
+        else
+        {
+            Show();
+        }
     }
 
     public void OnHide()
     {
-        Hide();
+        if (UseFadeOut)
+        {
+            GUICommon.Instance.ModulateFadeOut(this, Constants.TOOLTIP_FADE_SPEED);
+        }
+        else
+        {
+            Hide();
+        }
     }
 
     private void UpdateDescription()
