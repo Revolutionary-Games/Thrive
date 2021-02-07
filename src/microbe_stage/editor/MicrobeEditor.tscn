@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=2]
+[gd_scene load_steps=137 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -97,7 +97,6 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=101]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=102]
 [ext_resource path="res://src/gui_common/charts/line/LineChart.tscn" type="PackedScene" id=103]
-
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -339,7 +338,23 @@ corner_radius_bottom_left = 10
 texture = ExtResource( 88 )
 region_rect = Rect2( 0, 0, 258, 1 )
 
-[sub_resource type="Theme" id=30]
+[sub_resource type="StyleBoxFlat" id=68]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id=31]
 default_font = ExtResource( 90 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
 Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
@@ -690,8 +705,8 @@ TooltipLabel/colors/font_color = Color( 1, 1, 1, 1 )
 TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 TooltipLabel/constants/shadow_offset_x = 1
 TooltipLabel/constants/shadow_offset_y = 1
-TooltipLabel/fonts/font = null
-TooltipPanel/styles/panel = null
+TooltipLabel/fonts/font = ExtResource( 83 )
+TooltipPanel/styles/panel = SubResource( 68 )
 Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
 Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
 Tree/colors/font_color = Color( 0, 0, 0, 1 )
@@ -761,7 +776,7 @@ WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = null
 
-[sub_resource type="StyleBoxFlat" id=31]
+[sub_resource type="StyleBoxFlat" id=32]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
@@ -777,7 +792,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=32]
+[sub_resource type="StyleBoxFlat" id=33]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
@@ -793,9 +808,9 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ButtonGroup" id=33]
+[sub_resource type="ButtonGroup" id=34]
 
-[sub_resource type="StyleBoxFlat" id=34]
+[sub_resource type="StyleBoxFlat" id=35]
 bg_color = Color( 0, 0, 0, 0.392157 )
 border_width_left = 1
 border_width_top = 1
@@ -807,14 +822,14 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxEmpty" id=35]
+[sub_resource type="StyleBoxEmpty" id=36]
 
-[sub_resource type="ButtonGroup" id=36]
+[sub_resource type="ButtonGroup" id=37]
 
-[sub_resource type="Theme" id=37]
+[sub_resource type="Theme" id=38]
 default_font = ExtResource( 81 )
 
-[sub_resource type="StyleBoxTexture" id=38]
+[sub_resource type="StyleBoxTexture" id=39]
 texture = ExtResource( 89 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
@@ -3913,11 +3928,11 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 84.0
-margin_top = 107.0
-margin_right = 387.0
-margin_bottom = 582.0
-theme = SubResource( 30 )
+margin_left = 88.0
+margin_top = 111.0
+margin_right = 391.0
+margin_bottom = 586.0
+theme = SubResource( 31 )
 edit_alpha = false
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
@@ -4071,8 +4086,8 @@ margin_right = 172.0
 margin_bottom = 40.0
 focus_mode = 0
 mouse_filter = 1
-custom_styles/hover = SubResource( 31 )
-custom_styles/normal = SubResource( 32 )
+custom_styles/hover = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 enabled_focus_mode = 0
 text = "CONFIRM_CAPITAL"
@@ -4219,7 +4234,7 @@ custom_fonts/font = ExtResource( 101 )
 toggle_mode = true
 pressed = true
 action_mode = 0
-group = SubResource( 33 )
+group = SubResource( 34 )
 text = "AUTO_EVO"
 
 [node name="FoodChainButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -4232,7 +4247,7 @@ custom_fonts/font = ExtResource( 101 )
 disabled = true
 toggle_mode = true
 action_mode = 0
-group = SubResource( 33 )
+group = SubResource( 34 )
 text = "FOOD_CHAIN"
 
 [node name="TimelineButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -4245,7 +4260,7 @@ custom_fonts/font = ExtResource( 101 )
 disabled = true
 toggle_mode = true
 action_mode = 0
-group = SubResource( 33 )
+group = SubResource( 34 )
 text = "TIMELINE"
 
 [node name="EvoResultsPanel" type="PanelContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -4254,7 +4269,7 @@ margin_right = 846.0
 margin_bottom = 533.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 34 )
+custom_styles/panel = SubResource( 35 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
 margin_left = 1.0
@@ -4292,7 +4307,7 @@ margin_top = 20.0
 margin_right = 494.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 10 )
-custom_styles/separator = SubResource( 35 )
+custom_styles/separator = SubResource( 36 )
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_top = 30.0
@@ -4455,7 +4470,7 @@ rect_pivot_offset = Vector2( 9, 9 )
 toggle_mode = true
 pressed = true
 action_mode = 0
-group = SubResource( 36 )
+group = SubResource( 37 )
 texture_normal = ExtResource( 62 )
 expand = true
 stretch_mode = 5
@@ -4468,7 +4483,7 @@ rect_min_size = Vector2( 18, 18 )
 rect_pivot_offset = Vector2( 9, 9 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 36 )
+group = SubResource( 37 )
 texture_normal = ExtResource( 57 )
 expand = true
 stretch_mode = 5
@@ -4602,8 +4617,8 @@ margin_right = 140.0
 margin_bottom = 40.0
 focus_mode = 0
 mouse_filter = 1
-custom_styles/hover = SubResource( 31 )
-custom_styles/normal = SubResource( 32 )
+custom_styles/hover = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 enabled_focus_mode = 0
 text = "NEXT_CAPITAL"
@@ -5476,7 +5491,7 @@ margin_top = 5.0
 margin_right = 303.0
 margin_bottom = 5.0
 mouse_filter = 2
-theme = SubResource( 37 )
+theme = SubResource( 38 )
 
 [node name="Tween" type="Tween" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 
@@ -5484,7 +5499,7 @@ theme = SubResource( 37 )
 margin_top = 560.0
 margin_right = 338.0
 margin_bottom = 564.0
-custom_styles/separator = SubResource( 38 )
+custom_styles/separator = SubResource( 39 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer"]
 margin_top = 568.0
@@ -5530,8 +5545,8 @@ margin_right = 140.0
 margin_bottom = 40.0
 focus_mode = 0
 mouse_filter = 1
-custom_styles/hover = SubResource( 31 )
-custom_styles/normal = SubResource( 32 )
+custom_styles/hover = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 enabled_focus_mode = 0
 text = "NEXT_CAPITAL"

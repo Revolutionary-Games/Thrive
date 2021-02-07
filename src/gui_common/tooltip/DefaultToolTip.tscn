@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.cs" type="Script" id=3]
 
-[sub_resource type="StyleBoxFlat" id=38]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
 border_width_left = 1
 border_width_top = 1
@@ -19,7 +19,7 @@ corner_radius_bottom_left = 5
 margin_right = 14.0
 margin_bottom = 14.0
 mouse_filter = 2
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
