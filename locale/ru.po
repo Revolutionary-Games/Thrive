@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-06 15:33+0200\n"
+"POT-Creation-Date: 2021-02-07 20:59+0700\n"
 "PO-Revision-Date: 2021-01-27 16:24+0000\n"
 "Last-Translator: LibreHacker <librehacker@snopyta.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -381,7 +381,7 @@ msgid "ZOOM_IN"
 msgstr "Увеличить"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1015
 msgid "EDITOR"
 msgstr "Редактор"
 
@@ -472,6 +472,11 @@ msgstr "Сделать изображение экрана"
 #: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
 msgstr "Показать помощь"
+
+#: ../simulation_parameters/common/input_options.json:168
+#, fuzzy
+msgid "TOGGLE_FULLSCREEN"
+msgstr "Полный экран"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -615,22 +620,22 @@ msgid "SEA_FLOOR"
 msgstr "Морское Дно"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:471
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:723
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1410
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1658
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1952
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2240
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2540
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3302
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4446
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4966
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:473
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:725
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1412
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1660
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1954
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3304
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4448
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4968
 msgid "ATP"
 msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:15
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4471
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4473
 #: ../src/microbe_stage/MicrobeStage.tscn:1216
 msgid "AMMONIA"
 msgstr "Аммиак"
@@ -641,22 +646,22 @@ msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1294
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4163
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:51
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:446
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:992
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1380
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3277
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3565
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3867
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:448
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:700
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:994
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1321
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1382
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3869
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4188
 #: ../src/microbe_stage/MicrobeStage.tscn:1162
 msgid "GLUCOSE"
 msgstr "Глюкоза"
@@ -667,59 +672,59 @@ msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
 #: ../src/microbe_stage/MicrobeStage.tscn:1378
 msgid "IRON"
 msgstr "Железо"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4540
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5057
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3342
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5059
 msgid "OXYGEN"
 msgstr "Кислород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:99
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1030
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1354
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1696
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3603
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3905
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4221
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1032
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3605
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3907
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4223
 msgid "CARBON_DIOXIDE"
 msgstr "Углекислый Газ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2015
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4509
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2017
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4511
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7327
 msgid "SUNLIGHT"
 msgstr "Солнечный свет"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2727
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2567
 msgid "PREDATORY_PILUS"
 msgstr "Хищная Ворсинка"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1535
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1599
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1601
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2211
 msgid "RUSTICYANIN"
 msgstr "Рустицианин"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1918
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2278
 msgid "NITROGENASE"
 msgstr "Нитрогеназа"
 
@@ -728,92 +733,92 @@ msgid "PROTOPLASM"
 msgstr "Протоплазма"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1198
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1262
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтезирующие белки"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2142
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2206
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2297
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2345
 msgid "OXYTOXISOME"
 msgstr "Окситоксисома"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:958
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:960
 msgid "THYLAKOIDS"
 msgstr "Тилакоиды"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:249
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:600
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:664
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1961
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:666
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2009
 msgid "METABOLOSOMES"
 msgstr "Метаболосомы"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4348
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4412
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3081
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4414
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3129
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Азотфиксация Пластид"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4127
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4129
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3059
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2442
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2506
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2501
 msgid "FLAGELLUM"
 msgstr "Жгутик"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4667
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4731
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4733
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3197
 msgid "VACUOLE"
 msgstr "Вакуоль"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3179
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3243
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2809
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2857
 msgid "MITOCHONDRION"
 msgstr "Митохондрия"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4868
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4932
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4934
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3266
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсичная\n"
 "Вакуоль"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3467
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3531
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2876
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2924
 msgid "CHLOROPLAST"
 msgstr "Хлоропласт"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:348
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:412
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:350
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:414
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1850
 msgid "CYTOPLASM"
 msgstr "Цитоплазма"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3041
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2790
 msgid "NUCLEUS"
 msgstr "Ядро"
 
@@ -1187,7 +1192,7 @@ msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4341
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4389
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -1284,141 +1289,141 @@ msgstr ""
 "игры.\n"
 "Пожалуйста, загрузи сохранение вручную через меню."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:81
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:78
 msgid "OPEN_THE_MENU"
 msgstr "Открыть меню"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:87
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "OPEN_HELP_SCREEN"
 msgstr "Открыть экран помощи"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:96
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:98
 msgid "WILL_YOU_THRIVE"
 msgstr "Будешь выживать?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:110
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Закончить редактирование и вернуться в окружающую среду"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:114
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Изменить симметрию"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:120
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:122
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отменить последнее действие"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Вернуть последнее действие"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:132
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Создать нового микроба"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:152
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:215
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:154
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:217
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Жесткость мембраны"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:252
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5416
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5676
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5932
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6259
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6586
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:254
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5418
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5934
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6261
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6588
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6949
 msgid "MOBILITY"
 msgstr "Мобильность"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5519
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5776
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6035
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6362
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6689
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7050
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:289
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5521
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5778
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6037
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6364
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6691
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7052
 msgid "HEALTH"
 msgstr "Здоровье"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:327
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Более жёсткая мембрана более устойчива к повреждениям, но это делает "
 "тяжелее движение клетки."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1626
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3270
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4154
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4959
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:693
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1289
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4156
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4961
 msgid "TURNS"
 msgstr "Включая"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:464
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1312
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1651
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1970
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3295
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4179
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4464
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4984
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:466
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:718
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3297
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4181
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4466
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4986
 msgid "INTO"
 msgstr "в"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:798
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1758
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2046
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2346
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2629
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3083
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3371
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3673
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3967
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4252
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4772
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5088
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:800
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2348
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3085
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3373
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3969
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4254
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4573
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5090
 msgid "STORAGE"
 msgstr "Хранилище"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1138
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1477
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1796
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2084
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2384
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2667
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3121
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3409
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3711
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4005
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4290
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4609
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4810
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5126
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5451
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5710
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5967
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6294
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6621
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1479
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1798
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2086
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3411
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4007
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4292
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4611
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4812
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5712
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5969
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6623
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6984
 msgid "OSMOREGULATION_COST"
 msgstr "Стоимость осморегуляции"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:586
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки "
@@ -1428,21 +1433,21 @@ msgstr ""
 "более продвинутый метаболизм полагаются на энергию АТФ. Она также "
 "используется для хранения молекул в ячейке и увеличения размера клетки."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:744
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1676
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
 msgid "DOT_RATE_SCALES"
 msgstr ". Шкала оценок"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:759
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
 msgid "WITH_CONCENTRATION_OF"
 msgstr "с концентрацией"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:764
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:766
 msgid "OXYGEN_DOT"
 msgstr "Кислород."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:878
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они "
@@ -1454,302 +1459,302 @@ msgstr ""
 "непосредственно в цитоплазме, окружающая жидкость выполняет некоторую "
 "ферментацию."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2028
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:896
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2076
 msgid "THYLAKOID"
 msgstr "Тилакоид"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:985
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3558
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3860
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:987
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3560
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3862
 msgid "PRODUCES"
 msgstr "Производит"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3583
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3885
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1012
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3887
 msgid "DOT_RATE_SCALES_WITH"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1023
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2308
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3596
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3898
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3598
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3900
 msgid "CONCENTRATION_OF"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1049
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1720
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3622
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3924
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4533
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1051
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1722
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3926
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4535
 msgid "AND"
 msgstr "и"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1062
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3635
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
 msgid "INTENSITY_OF"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1069
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "Свет"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1180
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4211
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1373
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
 msgid "ALSO_TURNS"
 msgstr "Также включая"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1838
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1995
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3320
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4489
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1997
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3322
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4491
 msgid "DOT_RATE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2008
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4502
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5050
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3335
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5052
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4991
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4993
 msgid "OXYTOXY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2285
 msgid "DOT_CAN_RELEASE"
 msgstr ". Может выпустить"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2295
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2297
 msgid "TOXINS_BY_PRESSING_E"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2426
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2428
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2533
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2535
 msgid "USES"
 msgstr "Использует"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2558
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2560
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr "увеличивает передвижение"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2572
 msgid "SPEED_OF_THE_CELL"
 msgstr "скорость клетки."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2591
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2593
 msgid "SPEED"
 msgstr "Скорость"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2709
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2835
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Проткните этим другие клетки."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2915
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2633
 msgid "CILIA"
 msgstr "Ресничка"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2961
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5294
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5296
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Будет реализовано."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3062
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3064
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3453
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3753
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3755
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3833
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3771
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3835
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2991
 msgid "THERMOPLAST"
 msgstr "Термопласт"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3936
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7320
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7322
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:794
 msgid "TEMPERATURE"
 msgstr "Температура"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4047
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4049
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4332
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4334
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4651
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4653
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4752
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4754
 msgid "INREASE_STORAGE_SPACE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4852
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4854
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5009
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5011
 msgid "DOT_CAN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5024
 msgid "RELEASE_TOXINS_BY_PRESSING"
 msgstr "выпускай токсины нажимая"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5029
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5031
 msgid "E_DOT"
 msgstr "Д."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5037
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5039
 msgid "RATE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5168
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5170
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5248
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5250
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Биолюминесцентная вакуоль"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5315
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5379
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3475
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3523
 msgid "NORMAL"
 msgstr "Обычная"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5485
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5743
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6001
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6328
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6655
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7016
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5487
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5745
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6003
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6330
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6657
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7018
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Скорость Поглощения Ресурсов"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5559
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5561
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5575
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5639
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3547
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5641
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3595
 msgid "DOUBLE"
 msgstr "Двойная"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5815
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5817
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5831
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5895
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5897
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3667
 msgid "CELLULOSE"
 msgstr "Целлюлоза"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6069
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6723
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7084
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6071
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6725
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7086
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Физическое сопротивление"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6103
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6430
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6791
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7152
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6793
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7154
 msgid "CANNOT_ENGULF"
 msgstr "Невозможно поглотить"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6142
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6144
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6158
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6224
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3739
 msgid "CHITIN"
 msgstr "Хитин"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6396
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6757
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6398
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6759
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7120
 #, fuzzy
 msgid "TOXIN_RESISTANCE"
 msgstr "Токсичная Устойчивость"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6471
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6485
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6549
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3768
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6487
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6551
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3816
 msgid "CALCIUM_CARBONATE"
 msgstr "Углекислый кальций"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6830
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6832
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6846
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6910
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3841
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6848
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6912
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3889
 msgid "SILICA"
 msgstr "Кремнезём"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7193
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7312
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7314
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Добавить новое назначение клавиши"
 
@@ -1812,9 +1817,9 @@ msgid "PRESSURE_SHORT"
 msgstr "Давл."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4513
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5148
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4573
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5208
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:870
 msgid "COMPOUNDS"
 msgstr "Соединения"
 
@@ -1879,262 +1884,262 @@ msgstr "Клеточные Процессы"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:523
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1093
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:517
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1084
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка редактора микроба"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:525
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:519
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1912
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1899
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1913
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1900
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:967
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
 msgid "REPORT"
 msgstr "Сообщить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:989
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:993
 msgid "PATCH_MAP"
 msgstr "Карта Участка"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1068
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1072
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1129
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1133
 msgid "SPEED_COLON"
 msgstr "Скорость:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1163
 msgid "HP_COLON"
 msgstr "ОЗ:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1193
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1210
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1214
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1252
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1256
 msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1461
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1464
 msgid "MUTATION_POINTS"
 msgstr "Мутационные Очки"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1549
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1597
 msgid "STRUCTURE"
 msgstr "Структура"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1572
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1620
 msgid "APPEARANCE"
 msgstr "Внешний вид"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1595
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1643
 msgid "BEHAVIOR"
 msgstr "Поведение"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1646
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1694
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Поиск..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1706
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1754
 msgid "STRUCTURAL"
 msgstr "Структурный"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1869
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1917
 msgid "PROTEINS"
 msgstr "Белки"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2097
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2145
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
 "Хемосинт-\n"
 "езирующие белки"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2410
 msgid "EXTERNAL"
 msgstr "Внешние"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2650
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2698
 msgid "ORGANELLES"
 msgstr "Органеллы"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3245
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3293
 msgid "N_A_MP"
 msgstr "Н/Д МО"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3284
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3332
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
 "Биолюминесцентная\n"
 "вакуоль"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3429
 msgid "MEMBRANE_TYPES"
 msgstr "Типы мембран"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3913
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Подвижность / Жесткость"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3903
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3951
 msgid "COLOUR"
 msgstr "Окраска"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4048
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4096
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Названия видов..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4077
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4125
 msgid "CONFIRM_CAPITAL"
 msgstr "ПОДТВЕРДИТЬ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4086
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4134
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицательный АТФ баланс"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4087
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4135
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Твой микроб не производит нужное количество АТФ для выживания!\n"
 "Желаешь продолжить?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4095
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4143
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Отсоединенные Органеллы"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4096
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4144
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Среди размещённых органелл, имеются несоединённые с остальными.\n"
 "Пожалуйста соедини все размещённые органеллы с другими или отмени свои "
 "действия."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4243
 msgid "AUTO_EVO"
 msgstr "Авто-Эво"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4256
 msgid "FOOD_CHAIN"
 msgstr "Пищевая Цепочка"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4221
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4269
 #, fuzzy
 msgid "TIMELINE"
 msgstr "Срок"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4322
 msgid "AUTO_EVO_RESULTS"
 msgstr "Результаты авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4293
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4341
 msgid "EXTERNAL_EFFECTS"
 msgstr "Внешние эффекты:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4350
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4398
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "Виды:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4383
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4800
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4431
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4860
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физические условия"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4475
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4983
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:846
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4535
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5043
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:865
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферные газы"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4569
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5495
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5555
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛЕЕ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4682
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4742
 msgid "SELECT_A_PATCH"
 msgstr "Выбери участок для просмотра деталей"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4717
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4777
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5408
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5468
 msgid "SPECIES_PRESENT"
 msgstr "Присутствующие виды"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5466
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5526
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Двигаться к этому участку"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:546
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:561
 #, fuzzy
 msgid "FREEBUILDING"
 msgstr "Свободное строительство"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:627
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим "
 "количеством."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "MEGA_YEARS"
 msgstr "Мегагод"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:843
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:845
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:862
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:863
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:865
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:867
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:870
 msgid "YEARS"
 msgstr "лет"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:657
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:662
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:680
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:685
 msgid "ATP_PRODUCTION"
 msgstr "АТФ производство"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:663
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:686
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "АТФ ПРОИЗВОДСТВО СЛИШКОМ МАЛО!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:708
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:731
 msgid "OSMOREGULATION"
 msgstr "Осморегуляция"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:737
 #, fuzzy
 msgid "BASE_MOVEMENT"
 msgstr "Базовое Передвижение"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:850
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:867
 #, fuzzy
 msgid "SPECIES_LIST"
 msgstr "Присутствующие виды"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1545
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1569
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1550
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1574
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м ниже уровня моря"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1578
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1602
 msgid "WITH_POPULATION"
 msgstr "{0} из популяции: {1}"
 
@@ -2237,11 +2242,11 @@ msgstr "Перезаписать существующие сохранение:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Перезаписать существующее сохранение?"
 
-#: ../src/saving/SaveHelper.cs:373
+#: ../src/saving/SaveHelper.cs:374
 msgid "SAVING_SUCCEEDED"
 msgstr "Сохранение успешно"
 
-#: ../src/saving/SaveHelper.cs:383
+#: ../src/saving/SaveHelper.cs:384
 msgid "SAVING_FAILED"
 msgstr "Сохранение неудалось! Случается в исключительных ситуациях"
 
@@ -2463,8 +2468,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"Это редактор клеток, в котором ты можешь добавлять или удалять органеллы из "
-"своего вида, затрачивая очки мутации (МО).\n"
+"Это редактор клеток, в котором ты можешь добавлять или удалять органеллы "
+"из своего вида, затрачивая очки мутации (МО).\n"
 "\n"
 "Ты также можешь изменить другие параметры своего вида в других вкладках "
 "клеточного редактора.\n"
