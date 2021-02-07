@@ -163,9 +163,10 @@ Godot usage
   (`?`). The content of the popup should give more details and also
   end with a question.
 
-- Popups should be shown with `PopupCentered()` unless there's
-  a good reason why something else is required. To shrink the popup
-  to a minimum size, use the `PopupCenteredShrink()` extension method.
+- Popups should be shown with `PopupCenteredShrink()`. If size shrinking
+  is not desired, `PopupCentered()` should be used instead. Unless there's
+  a good reason why something else is required, prefer to use either of
+  them.
 
 - Don't use `Godot.Color(string)` constructor, unless explicitly
   needed. An explicit need is for example loading from JSON or from

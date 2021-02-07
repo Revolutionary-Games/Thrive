@@ -9,18 +9,21 @@ public static class ControlHelpers
     ///   Shows the popup in the center of the screen and shrinks it to the minimum size,
     ///   alternative to PopupCentered.
     /// </summary>
-    public static void PopupCenteredShrink(this Popup popup)
+    public static void PopupCenteredShrink(this Popup popup, bool runSizeUnstuck = true)
     {
         popup.PopupCentered(popup.GetMinimumSize());
 
         // In case the popup sizing stuck (this happens sometimes)
-        Invoke.Instance.Queue(() =>
+        if (runSizeUnstuck)
         {
-            // "Refresh" the popup to correct its size
-            popup.RectSize = Vector2.Zero;
+            Invoke.Instance.Queue(() =>
+            {
+                // "Refresh" the popup to correct its size
+                popup.RectSize = Vector2.Zero;
 
-            // Re-center it
-            popup.PopupCentered();
-        });
+                // Re-center it
+                popup.PopupCentered();
+            });
+        }
     }
 }

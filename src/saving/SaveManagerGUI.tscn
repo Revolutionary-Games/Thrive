@@ -3,7 +3,7 @@
 [ext_resource path="res://src/saving/SaveManagerGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-SlightlySmall.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=4]
 
 [node name="SaveManagerGUI" type="Control"]
 anchor_right = 1.0
@@ -175,7 +175,7 @@ text = "0"
 margin_top = 516.0
 margin_right = 1000.0
 margin_bottom = 600.0
-rect_min_size = Vector2( 450, 0 )
+rect_min_size = Vector2( 500, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
@@ -198,7 +198,7 @@ __meta__ = {
 margin_top = 516.0
 margin_right = 1000.0
 margin_bottom = 600.0
-rect_min_size = Vector2( 450, 0 )
+rect_min_size = Vector2( 550, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
