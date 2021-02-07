@@ -1046,7 +1046,7 @@ rect_min_size = Vector2( 600, 70 )
 popup_exclusive = true
 window_title = "RESET_TO_DEFAULTS"
 
-[node name="Label2" type="Label" parent="CenterContainer/DefaultsConfirm"]
+[node name="DialogText" type="Label" parent="CenterContainer/DefaultsConfirm"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 590.0
@@ -1069,7 +1069,7 @@ rect_min_size = Vector2( 600, 70 )
 popup_exclusive = true
 window_title = "RESET_INPUTS_TO_DEFAULTS"
 
-[node name="Label2" type="Label" parent="CenterContainer/DefaultsInputsConfirm"]
+[node name="DialogText" type="Label" parent="CenterContainer/DefaultsInputsConfirm"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 590.0
@@ -1171,7 +1171,7 @@ rect_min_size = Vector2( 400, 0 )
 popup_exclusive = true
 window_title = "ERROR"
 
-[node name="Label2" type="Label" parent="CenterContainer/ErrorAccept"]
+[node name="DialogText" type="Label" parent="CenterContainer/ErrorAccept"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 390.0
@@ -1197,7 +1197,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Label2" type="Label" parent="CenterContainer/ConflictDialog"]
+[node name="DialogText" type="Label" parent="CenterContainer/ConflictDialog"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 490.0

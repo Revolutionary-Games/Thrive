@@ -60,9 +60,11 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "DELETE_THIS_SAVE"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog"]
-margin_right = 40.0
-margin_bottom = 22.0
+[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 440.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 align = 1
@@ -81,7 +83,7 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "LOAD_INCOMPATIBLE_SAVE"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/LoadNewerSaveDialog"]
+[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadNewerSaveDialog"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 490.0
@@ -105,7 +107,7 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "LOAD_INCOMPATIBLE_SAVE"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/LoadOlderSaveDialog"]
+[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadOlderSaveDialog"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 590.0
@@ -129,7 +131,7 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "LOAD_INVALID_SAVE"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/LoadInvalidSaveDialog"]
+[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadInvalidSaveDialog"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 590.0
@@ -154,7 +156,7 @@ size_flags_vertical = 5
 window_title = "SELECTED_SAVE_IS_INCOMPATIBLE"
 dialog_autowrap = true
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog"]
+[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 540.0

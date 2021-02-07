@@ -536,10 +536,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             editor.MutationPoints - editor.CurrentOrganelleCost;
 
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsBar.Value = Mathf.Lerp((float)mutationPointsBar.Value, possibleMutationPoints, 0.2f);
+        mutationPointsBar.Value = Mathf.Lerp((float)mutationPointsBar.Value, possibleMutationPoints, 3.0f * delta);
         mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
         mutationPointsSubtractBar.Value = Mathf.Lerp(
-            (float)mutationPointsSubtractBar.Value, editor.MutationPoints, 0.4f);
+            (float)mutationPointsSubtractBar.Value, editor.MutationPoints, 5.0f * delta);
 
         if (editor.FreeBuilding)
         {

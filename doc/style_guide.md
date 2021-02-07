@@ -165,8 +165,7 @@ Godot usage
 
 - Popups should be shown with `PopupCentered()` unless there's
   a good reason why something else is required. To shrink the popup
-  to minimum size, pass in the popup's `GetMinimumSize()` method as
-  the argument or instead use the `PopupCenteredShrink()` extension method.
+  to a minimum size, use the `PopupCenteredShrink()` extension method.
 
 - Don't use `Godot.Color(string)` constructor, unless explicitly
   needed. An explicit need is for example loading from JSON or from

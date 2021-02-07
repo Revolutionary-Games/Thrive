@@ -131,7 +131,7 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.GetNode<Label>("Label2").Text = string.Format(CultureInfo.CurrentCulture,
+        conflictDialog.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
             inputActionItem.DisplayName,
             inputActionItem.DisplayName);

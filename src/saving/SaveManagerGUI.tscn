@@ -181,7 +181,7 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "DELETE_SELECTED_SAVES"
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog"]
+[node name="DialogText" type="Label" parent="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 990.0
@@ -204,7 +204,7 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "DELETE_OLD_SAVES"
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/DeleteOldConfirmDialog"]
+[node name="DialogText" type="Label" parent="CenterContainer/VBoxContainer/DeleteOldConfirmDialog"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 990.0

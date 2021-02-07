@@ -3912,10 +3912,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 72.0
-margin_top = 95.0
-margin_right = 375.0
-margin_bottom = 570.0
+margin_left = 84.0
+margin_top = 107.0
+margin_right = 387.0
+margin_bottom = 582.0
 theme = SubResource( 30 )
 edit_alpha = false
 
@@ -4089,7 +4089,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/NegativeAtpWarning"]
+[node name="DialogText" type="Label" parent="MicrobeEditorGUI/CellEditor/NegativeAtpWarning"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 490.0
@@ -4112,7 +4112,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/IslandError"]
+[node name="DialogText" type="Label" parent="MicrobeEditorGUI/CellEditor/IslandError"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 590.0
