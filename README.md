@@ -15,7 +15,6 @@ This is the code repository for Thrive. For more information, visit
 [![Discord](https://discord.com/api/guilds/228300288023461893/widget.png)](https://discord.gg/FZxDQ4H)
 
 <br>
-<br>
 <img src="https://randomthrivefiles.b-cdn.net/screenshots/github_screenshot_1.png" alt="game screenshot" width="900px">
 
 Overview

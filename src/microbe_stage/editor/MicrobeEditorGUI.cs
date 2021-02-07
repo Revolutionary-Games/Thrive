@@ -52,7 +52,16 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath GenerationLabelPath;
 
     [Export]
-    public NodePath MutationPointsLabelPath;
+    public NodePath CurrentMutationPointsLabelPath;
+
+    [Export]
+    public NodePath MutationPointsArrowPath;
+
+    [Export]
+    public NodePath ResultingMutationPointsLabelPath;
+
+    [Export]
+    public NodePath BaseMutationPointsLabelPath;
 
     [Export]
     public NodePath MutationPointsBarPath;
@@ -291,7 +300,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private Label hpLabel;
     private Label generationLabel;
 
-    private Label mutationPointsLabel;
+    private Label currentMutationPointsLabel;
+    private TextureRect mutationPointsArrow;
+    private Label resultingMutationPointsLabel;
+    private Label baseMutationPointsLabel;
     private ProgressBar mutationPointsBar;
     private ProgressBar mutationPointsSubtractBar;
 
@@ -422,7 +434,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         hpLabel = GetNode<Label>(HpLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
 
-        mutationPointsLabel = GetNode<Label>(MutationPointsLabelPath);
+        currentMutationPointsLabel = GetNode<Label>(CurrentMutationPointsLabelPath);
+        mutationPointsArrow = GetNode<TextureRect>(MutationPointsArrowPath);
+        resultingMutationPointsLabel = GetNode<Label>(ResultingMutationPointsLabelPath);
+        baseMutationPointsLabel = GetNode<Label>(BaseMutationPointsLabelPath);
         mutationPointsBar = GetNode<ProgressBar>(MutationPointsBarPath);
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
 
@@ -547,20 +562,32 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (editor.FreeBuilding)
         {
-            mutationPointsLabel.Text = TranslationServer.Translate("FREEBUILDING");
+            currentMutationPointsLabel.Text = TranslationServer.Translate("FREEBUILDING");
         }
         else
         {
             if (possibleMutationPoints != editor.MutationPoints && editor.MutationPoints > 0)
             {
-                mutationPointsLabel.Text =
-                    $"({editor.MutationPoints:F0} -> {possibleMutationPoints:F0})" +
-                    $" / {Constants.BASE_MUTATION_POINTS:F0}";
+                if (!mutationPointsArrow.Visible)
+                    mutationPointsArrow.Show();
+
+                if (!resultingMutationPointsLabel.Visible)
+                    resultingMutationPointsLabel.Show();
+
+                currentMutationPointsLabel.Text = $"({editor.MutationPoints:F0}";
+                resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
+                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
             }
             else
             {
-                mutationPointsLabel.Text =
-                    $"{editor.MutationPoints:F0} / {Constants.BASE_MUTATION_POINTS:F0}";
+                if (mutationPointsArrow.Visible)
+                    mutationPointsArrow.Hide();
+
+                if (resultingMutationPointsLabel.Visible)
+                    resultingMutationPointsLabel.Hide();
+
+                currentMutationPointsLabel.Text = $"{editor.MutationPoints:F0}";
+                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
             }
         }
 
@@ -931,6 +958,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         if (freebuilding)
         {
             newCellButton.Disabled = false;
+            mutationPointsArrow.Hide();
+            resultingMutationPointsLabel.Hide();
+            baseMutationPointsLabel.Hide();
         }
         else
         {

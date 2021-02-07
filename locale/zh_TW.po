@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-31 14:33+0700\n"
+"POT-Creation-Date: 2021-02-07 23:46+0700\n"
 "PO-Revision-Date: 2020-12-27 09:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -347,7 +347,7 @@ msgid "ZOOM_IN"
 msgstr "放大"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1028
 msgid "EDITOR"
 msgstr "編輯器"
 
@@ -439,6 +439,11 @@ msgstr "截屏"
 #: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
 msgstr "顯示幫助"
+
+#: ../simulation_parameters/common/input_options.json:168
+#, fuzzy
+msgid "TOGGLE_FULLSCREEN"
+msgstr "全螢幕"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -669,21 +674,21 @@ msgstr "陽光"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2791
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2578
 msgid "PREDATORY_PILUS"
 msgstr "掠食性菌毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1601
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2163
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2222
 msgid "RUSTICYANIN"
 msgstr "鐵硫菌藍蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2230
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
 msgid "NITROGENASE"
 msgstr "固氮酶"
 
@@ -700,7 +705,7 @@ msgstr "化學合成蛋白"
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2297
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
 msgid "OXYTOXISOME"
 msgstr "毒素體"
 
@@ -712,70 +717,70 @@ msgstr "類囊體"
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:602
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:666
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1961
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2020
 msgid "METABOLOSOMES"
 msgstr "代謝體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4414
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3081
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3140
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "固氮質體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3070
 msgid "CHEMOPLAST"
 msgstr "化學質體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2453
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2512
 msgid "FLAGELLUM"
 msgstr "鞭毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4669
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4733
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3208
 msgid "VACUOLE"
 msgstr "液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2809
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2868
 msgid "MITOCHONDRION"
 msgstr "線粒體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4934
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3277
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2876
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
 msgid "CHLOROPLAST"
 msgstr "葉綠體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:414
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1861
 msgid "CYTOPLASM"
 msgstr "細胞質"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2742
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2801
 msgid "NUCLEUS"
 msgstr "細胞核"
 
@@ -897,236 +902,237 @@ msgstr "鼠標側鍵2"
 msgid "UNKNOWN_MOUSE"
 msgstr "鼠標未知鍵"
 
-#: ../src/general/HelpScreen.tscn:118
+#: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
 msgstr "關閉"
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.tscn:127
 msgid "GRAPHICS"
 msgstr "圖形"
 
-#: ../src/general/OptionsMenu.tscn:137
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "聲音"
 
-#: ../src/general/OptionsMenu.tscn:149
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "性能"
 
-#: ../src/general/OptionsMenu.tscn:161
+#: ../src/general/OptionsMenu.tscn:163
 msgid "INPUTS"
 msgstr "輸入"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:175
 msgid "MISC"
 msgstr "雜項"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "垂直同步"
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "全螢幕"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重採樣抗鋸齒："
 
-#: ../src/general/OptionsMenu.tscn:249
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（提高設置會降低表現）"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "解析度："
 
-#: ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "自動"
 
-#: ../src/general/OptionsMenu.tscn:302
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "最大FPS："
 
-#: ../src/general/OptionsMenu.tscn:328
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
-#: ../src/general/OptionsMenu.tscn:360
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#: ../src/general/OptionsMenu.tscn:401
+#: ../src/general/OptionsMenu.tscn:403
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
-#: ../src/general/OptionsMenu.tscn:428 ../src/general/OptionsMenu.tscn:469
-#: ../src/general/OptionsMenu.tscn:502 ../src/general/OptionsMenu.tscn:535
-#: ../src/general/OptionsMenu.tscn:568
+#: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:570
 msgid "MUTE"
 msgstr "靜音"
 
-#: ../src/general/OptionsMenu.tscn:442
+#: ../src/general/OptionsMenu.tscn:444
 msgid "MUSIC_VOLUME"
 msgstr "音樂音量"
 
-#: ../src/general/OptionsMenu.tscn:475
+#: ../src/general/OptionsMenu.tscn:477
 msgid "AMBIANCE_VOLUME"
 msgstr "環境音量"
 
-#: ../src/general/OptionsMenu.tscn:508
+#: ../src/general/OptionsMenu.tscn:510
 msgid "SFX_VOLUME"
 msgstr "特效音量"
 
-#: ../src/general/OptionsMenu.tscn:541
+#: ../src/general/OptionsMenu.tscn:543
 msgid "GUI_VOLUME"
 msgstr "界面音量"
 
-#: ../src/general/OptionsMenu.tscn:586
+#: ../src/general/OptionsMenu.tscn:588
 msgid "LANGUAGE"
 msgstr "語言："
 
-#: ../src/general/OptionsMenu.tscn:601 ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:1009
 msgid "RESET"
 msgstr "重置"
 
-#: ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:612
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:630
+#: ../src/general/OptionsMenu.tscn:632
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
 
-#: ../src/general/OptionsMenu.tscn:645
+#: ../src/general/OptionsMenu.tscn:647
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "雲模擬最小\n"
 "間隔："
 
-#: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:696
+#: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "（更高的數值有助於提升性能）"
 
-#: ../src/general/OptionsMenu.tscn:689
+#: ../src/general/OptionsMenu.tscn:691
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "雲解析度除數："
 
-#: ../src/general/OptionsMenu.tscn:731
+#: ../src/general/OptionsMenu.tscn:733
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在遊戲中啟用auto-evo"
 
-#: ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:800
 msgid "RESET_INPUTS"
 msgstr "重置輸入"
 
-#: ../src/general/OptionsMenu.tscn:822
+#: ../src/general/OptionsMenu.tscn:824
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放開場動畫"
 
-#: ../src/general/OptionsMenu.tscn:831
+#: ../src/general/OptionsMenu.tscn:833
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在開啟新遊戲時播放微生物開場動畫"
 
-#: ../src/general/OptionsMenu.tscn:840
+#: ../src/general/OptionsMenu.tscn:842
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "遊戲過程中自動保存"
 
-#: ../src/general/OptionsMenu.tscn:851
+#: ../src/general/OptionsMenu.tscn:853
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "保留的自動存檔數量："
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:881
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "保留的快速存檔數量："
 
-#: ../src/general/OptionsMenu.tscn:905
+#: ../src/general/OptionsMenu.tscn:907
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "顯示教程（在新遊戲中）"
 
-#: ../src/general/OptionsMenu.tscn:913
+#: ../src/general/OptionsMenu.tscn:915
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "顯示教程（在當前遊戲中）"
 
-#: ../src/general/OptionsMenu.tscn:929
+#: ../src/general/OptionsMenu.tscn:931
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "作弊鍵已啟用"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:943
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定義用戶名"
 
-#: ../src/general/OptionsMenu.tscn:952
+#: ../src/general/OptionsMenu.tscn:954
 msgid "CUSTOM_USERNAME"
 msgstr "自定義用戶名："
 
-#: ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:980
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:986
+#: ../src/general/OptionsMenu.tscn:988
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:997 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:107
-#: ../src/saving/SaveManagerGUI.tscn:112
+#: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
+#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/saving/SaveManagerGUI.tscn:113
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/general/OptionsMenu.tscn:1018 ../src/saving/NewSaveMenu.tscn:71
+#: ../src/general/OptionsMenu.tscn:1020 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "存檔"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默認"
 
-#: ../src/general/OptionsMenu.tscn:1046
+#: ../src/general/OptionsMenu.tscn:1048
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置為默認設定？"
 
-#: ../src/general/OptionsMenu.tscn:1047
+#: ../src/general/OptionsMenu.tscn:1057
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你確定要把「所有」設置都重置為默認值嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "將輸入重置為默認？"
 
-#: ../src/general/OptionsMenu.tscn:1057
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "您確定要將輸入設置重置為默認嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "CLOSE_OPTIONS"
 msgstr "關閉選項菜單？"
 
-#: ../src/general/OptionsMenu.tscn:1090
+#: ../src/general/OptionsMenu.tscn:1114
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改將被丟棄。\n"
 "你想繼續嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1136
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存並繼續"
 
-#: ../src/general/OptionsMenu.tscn:1130
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "DISCARD_AND_CONTINUE"
 msgstr "取消並繼續"
 
-#: ../src/general/OptionsMenu.tscn:1146
+#: ../src/general/OptionsMenu.tscn:1161
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/general/OptionsMenu.tscn:1157 ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:1173 ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1220
 msgid "ERROR"
 msgstr "錯誤"
 
-#: ../src/general/OptionsMenu.tscn:1158 ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "錯誤：無法將新設置保存至配置文件。"
 
@@ -1143,7 +1149,7 @@ msgid "LOAD_GAME"
 msgstr "讀取遊戲"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4341
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4428
 msgid "STATISTICS"
 msgstr "統計數據"
 
@@ -1216,11 +1222,11 @@ msgstr "離開"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
-#: ../src/gui_common/MainMenu.tscn:358
+#: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/gui_common/MainMenu.tscn:359
+#: ../src/gui_common/MainMenu.tscn:372
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應"
@@ -1399,7 +1405,7 @@ msgstr ""
 "一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2028
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2087
 msgid "THYLAKOID"
 msgstr "類囊體"
 
@@ -1533,7 +1539,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2585
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2644
 msgid "CILIA"
 msgstr "纖毛"
 
@@ -1564,13 +1570,13 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3771
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3835
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2943
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "THERMOPLAST"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7322
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:768
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:801
 msgid "TEMPERATURE"
 msgstr "溫度"
 
@@ -1626,7 +1632,7 @@ msgstr "生物發光液泡"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5381
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3475
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3534
 msgid "NORMAL"
 msgstr "正常"
 
@@ -1645,7 +1651,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5577
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5641
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3547
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3606
 msgid "DOUBLE"
 msgstr ""
 
@@ -1655,7 +1661,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5833
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5897
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3619
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3678
 msgid "CELLULOSE"
 msgstr "纖維素"
 
@@ -1678,7 +1684,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6160
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6224
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3750
 msgid "CHITIN"
 msgstr "幾丁質"
 
@@ -1694,7 +1700,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6551
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3768
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3827
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸鈣"
 
@@ -1704,7 +1710,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6848
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6912
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3900
 msgid "SILICA"
 msgstr "二氧化矽"
 
@@ -1779,9 +1785,9 @@ msgid "PRESSURE_SHORT"
 msgstr "壓強"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4525
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5160
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4612
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5249
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
 msgid "COMPOUNDS"
 msgstr "化合物"
 
@@ -1862,241 +1868,241 @@ msgstr "自動進化啟動失敗"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:967
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:984
 msgid "REPORT"
 msgstr "報告"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:989
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1006
 msgid "PATCH_MAP"
 msgstr "區域地圖"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1068
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1085
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1129
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1146
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1176
 msgid "HP_COLON"
 msgstr "生命值："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1206
 msgid "SIZE_COLON"
 msgstr "大小："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1210
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1227
 msgid "GENERATION_COLON"
 msgstr "代："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1252
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1269
 msgid "ATP_BALANCE"
 msgstr "ATP平衡"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1461
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1475
 msgid "MUTATION_POINTS"
 msgstr "突變點數"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1549
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1608
 msgid "STRUCTURE"
 msgstr "結構"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1572
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1631
 msgid "APPEARANCE"
 msgstr "出現"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1595
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1654
 msgid "BEHAVIOR"
 msgstr "行為"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1646
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1705
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1706
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1765
 msgid "STRUCTURAL"
 msgstr "結構性"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1869
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1928
 msgid "PROTEINS"
 msgstr "蛋白質"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2097
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr "化學合成蛋白質"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2421
 msgid "EXTERNAL"
 msgstr "外部"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2650
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2709
 msgid "ORGANELLES"
 msgstr "細胞器"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3245
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3304
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3284
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3343
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3440
 msgid "MEMBRANE_TYPES"
 msgstr "膜類型"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3924
 msgid "FLUIDITY_RIGIDITY"
 msgstr "流動性/剛性"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3904
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3963
 msgid "COLOUR"
 msgstr "顏色"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4048
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4108
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4077
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4137
 msgid "CONFIRM_CAPITAL"
 msgstr "確認"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4086
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4147
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "負 ATP平衡"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4087
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4159
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4095
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4170
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4096
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4182
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4282
 msgid "AUTO_EVO"
 msgstr "自動進化"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4295
 msgid "FOOD_CHAIN"
 msgstr "食物鏈"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4221
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4308
 msgid "TIMELINE"
 msgstr "時間線"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4361
 msgid "AUTO_EVO_RESULTS"
 msgstr "自動進化 結果："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4293
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4380
 msgid "EXTERNAL_EFFECTS"
 msgstr "外部影響："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4350
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4437
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "種類："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4383
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4812
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4470
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4901
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4487
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4995
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4574
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5084
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:872
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大氣氣體"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4581
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5507
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4668
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5596
 #, fuzzy
 msgid "NEXT_CAPITAL"
 msgstr "下一頁"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4694
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4783
 msgid "SELECT_A_PATCH"
 msgstr "選擇一個區域以在此處顯示詳細信息"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4729
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4818
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "當前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5420
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5509
 #, fuzzy
 msgid "SPECIES_PRESENT"
 msgstr "存在的物種"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5478
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5567
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移動到這個區域"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:546
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:565
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:600
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:607
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:638
 msgid "MEGA_YEARS"
 msgstr "百萬年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:837
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:642
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:869
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:870
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:872
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:874
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:653
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:658
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
 msgid "ATP_PRODUCTION"
 msgstr "ATP產出"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:659
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:690
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP產出太低！"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:688
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:719
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:736
 msgid "OSMOREGULATION"
 msgstr "滲透壓調節"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:742
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:754
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:874
 #, fuzzy
 msgid "SPECIES_LIST"
 msgstr "存在的物種"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1540
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1576
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1545
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1581
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1573
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1609
 msgid "WITH_POPULATION"
 msgstr ""
 
@@ -2173,31 +2179,31 @@ msgstr "保存時出錯"
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目標文件名({0})已存在。確定要覆蓋嗎？"
 
-#: ../src/saving/NewSaveMenu.tscn:29
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "建立新存檔"
 
-#: ../src/saving/NewSaveMenu.tscn:46
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "名字："
 
-#: ../src/saving/NewSaveMenu.tscn:64
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "額外選項"
 
-#: ../src/saving/NewSaveMenu.tscn:82
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "覆寫現有的存檔："
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:119
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "覆寫現有的存檔？"
 
-#: ../src/saving/SaveHelper.cs:373
+#: ../src/saving/SaveHelper.cs:374
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
-#: ../src/saving/SaveHelper.cs:383
+#: ../src/saving/SaveHelper.cs:384
 msgid "SAVING_FAILED"
 msgstr "保存失敗！發生了一個異常"
 
@@ -2221,77 +2227,77 @@ msgstr "無效"
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:46 ../src/saving/SaveListItem.tscn:103
+#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "加載中..."
 
-#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:280
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "刪除這個存檔嗎?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:93
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:79
+#: ../src/saving/SaveList.tscn:117
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:132
 msgid "LOAD_INVALID_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:89
+#: ../src/saving/SaveList.tscn:141
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:97
+#: ../src/saving/SaveList.tscn:156
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:99
+#: ../src/saving/SaveList.tscn:166
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:129
+#: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:136 ../src/saving/SaveListItem.tscn:155
-#: ../src/saving/SaveListItem.tscn:174 ../src/saving/SaveListItem.tscn:197
-#: ../src/saving/SaveListItem.tscn:226 ../src/saving/SaveListItem.tscn:245
+#: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
+#: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
+#: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
 msgid "DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:148
+#: ../src/saving/SaveListItem.tscn:150
 msgid "TYPE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:167
+#: ../src/saving/SaveListItem.tscn:169
 msgid "DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:190
+#: ../src/saving/SaveListItem.tscn:192
 msgid "VERSION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:219
+#: ../src/saving/SaveListItem.tscn:221
 msgid "BY"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:238
+#: ../src/saving/SaveListItem.tscn:240
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:270 ../src/saving/SaveManagerGUI.tscn:53
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:54
 msgid "LOAD"
 msgstr "加載"
 
-#: ../src/saving/SaveListItem.tscn:281
+#: ../src/saving/SaveListItem.tscn:292
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
@@ -2306,47 +2312,47 @@ msgstr ""
 " - {0} 自動保存\n"
 " - {1} 快速保存"
 
-#: ../src/saving/SaveManagerGUI.tscn:65
+#: ../src/saving/SaveManagerGUI.tscn:66
 msgid "REFRESH"
 msgstr "刷新"
 
-#: ../src/saving/SaveManagerGUI.tscn:73
+#: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:81
+#: ../src/saving/SaveManagerGUI.tscn:82
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:92
+#: ../src/saving/SaveManagerGUI.tscn:93
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:124
+#: ../src/saving/SaveManagerGUI.tscn:125
 msgid "TOTAL_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:144
+#: ../src/saving/SaveManagerGUI.tscn:145
 msgid "SAVE_SPACE_USED"
 msgstr "已被使用的空間："
 
-#: ../src/saving/SaveManagerGUI.tscn:164
+#: ../src/saving/SaveManagerGUI.tscn:165
 msgid "SELECTED_COLON"
 msgstr "已選："
 
-#: ../src/saving/SaveManagerGUI.tscn:181
+#: ../src/saving/SaveManagerGUI.tscn:182
 msgid "DELETE_SELECTED_SAVES"
 msgstr "刪除被選取的存檔嗎？"
 
-#: ../src/saving/SaveManagerGUI.tscn:191
+#: ../src/saving/SaveManagerGUI.tscn:205
 msgid "DELETE_OLD_SAVES"
 msgstr "刪除舊存檔嗎？"
 
-#: ../src/saving/SaveStatusOverlay.tscn:120
+#: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
 msgstr "保存錯誤"
 
-#: ../src/saving/SaveStatusOverlay.tscn:180
+#: ../src/saving/SaveStatusOverlay.tscn:183
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "往粘貼板複製錯誤"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-31 14:33+0700\n"
+"POT-Creation-Date: 2021-02-07 23:46+0700\n"
 "PO-Revision-Date: 2021-01-11 11:46+0000\n"
 "Last-Translator: Radek <radekkostra@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -386,7 +386,7 @@ msgid "ZOOM_IN"
 msgstr "Přiblížit"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1028
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -477,6 +477,11 @@ msgstr "Udělat screenshot"
 #: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
 msgstr "Ukázat pomoc"
+
+#: ../simulation_parameters/common/input_options.json:168
+#, fuzzy
+msgid "TOGGLE_FULLSCREEN"
+msgstr "Celá obrazovka"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -707,21 +712,21 @@ msgstr "Sluneční svit"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2791
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2578
 msgid "PREDATORY_PILUS"
 msgstr "Dravý/útočný Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1601
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2163
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2222
 msgid "RUSTICYANIN"
 msgstr "Rusticyanin"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2230
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
 msgid "NITROGENASE"
 msgstr "Nitrogenáza"
 
@@ -738,7 +743,7 @@ msgstr "Chemosyntetizující proteiny"
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2297
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisom"
 
@@ -750,49 +755,49 @@ msgstr "Tylakoidy"
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:602
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:666
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1961
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2020
 msgid "METABOLOSOMES"
 msgstr "Metabolosomy"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4414
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3081
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3140
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plastid fixující dusík"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3070
 msgid "CHEMOPLAST"
 msgstr "Chemoplasty"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2453
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2512
 msgid "FLAGELLUM"
 msgstr "Bičík"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4669
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4733
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3208
 msgid "VACUOLE"
 msgstr "Vakuola"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2809
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2868
 msgid "MITOCHONDRION"
 msgstr "Mitochondrie"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4934
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3277
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxinová\n"
@@ -801,21 +806,21 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2876
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
 msgid "CHLOROPLAST"
 msgstr "Chloroplasty"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:414
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1861
 msgid "CYTOPLASM"
 msgstr "Cytoplazma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2742
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2801
 msgid "NUCLEUS"
 msgstr "Jádro"
 
@@ -937,236 +942,237 @@ msgstr "Speciální 2 myš"
 msgid "UNKNOWN_MOUSE"
 msgstr "Neznámá myš"
 
-#: ../src/general/HelpScreen.tscn:118
+#: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
 msgstr "Zavřít"
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.tscn:127
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:137
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "Zvuky"
 
-#: ../src/general/OptionsMenu.tscn:149
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "Výkon"
 
-#: ../src/general/OptionsMenu.tscn:161
+#: ../src/general/OptionsMenu.tscn:163
 msgid "INPUTS"
 msgstr "Ovládání"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:175
 msgid "MISC"
 msgstr "Ostatní"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "Celá obrazovka"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Vícevzorové vyhlazování:"
 
-#: ../src/general/OptionsMenu.tscn:249
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(Vyšší hodnota může snížit výkon)"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "Rozlišení:"
 
-#: ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "automaticky"
 
-#: ../src/general/OptionsMenu.tscn:302
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "Maximální FPS:"
 
-#: ../src/general/OptionsMenu.tscn:328
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Barvoslepý filtr:"
 
-#: ../src/general/OptionsMenu.tscn:360
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatická aberace:"
 
-#: ../src/general/OptionsMenu.tscn:401
+#: ../src/general/OptionsMenu.tscn:403
 msgid "MASTER_VOLUME"
 msgstr "Hlavní hlasitost"
 
-#: ../src/general/OptionsMenu.tscn:428 ../src/general/OptionsMenu.tscn:469
-#: ../src/general/OptionsMenu.tscn:502 ../src/general/OptionsMenu.tscn:535
-#: ../src/general/OptionsMenu.tscn:568
+#: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:570
 msgid "MUTE"
 msgstr "Ztišit"
 
-#: ../src/general/OptionsMenu.tscn:442
+#: ../src/general/OptionsMenu.tscn:444
 msgid "MUSIC_VOLUME"
 msgstr "Hlasitost hudby"
 
-#: ../src/general/OptionsMenu.tscn:475
+#: ../src/general/OptionsMenu.tscn:477
 msgid "AMBIANCE_VOLUME"
 msgstr "Hlasitost prostředí"
 
-#: ../src/general/OptionsMenu.tscn:508
+#: ../src/general/OptionsMenu.tscn:510
 msgid "SFX_VOLUME"
 msgstr "Hlasitost SFX"
 
-#: ../src/general/OptionsMenu.tscn:541
+#: ../src/general/OptionsMenu.tscn:543
 msgid "GUI_VOLUME"
 msgstr "Hlasitost GUI"
 
-#: ../src/general/OptionsMenu.tscn:586
+#: ../src/general/OptionsMenu.tscn:588
 msgid "LANGUAGE"
 msgstr "Jazyk:"
 
-#: ../src/general/OptionsMenu.tscn:601 ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:1009
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:612
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Pomocte přeložit hru"
 
-#: ../src/general/OptionsMenu.tscn:630
+#: ../src/general/OptionsMenu.tscn:632
 msgid "COMPOUND_CLOUDS"
 msgstr "mrak sloučenin"
 
-#: ../src/general/OptionsMenu.tscn:645
+#: ../src/general/OptionsMenu.tscn:647
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Simulace mraku minimální\n"
 "Interval:"
 
-#: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:696
+#: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(vyšší hodnoty zvyšují výkon)"
 
-#: ../src/general/OptionsMenu.tscn:689
+#: ../src/general/OptionsMenu.tscn:691
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Rozdělovač rozlišení mraků:"
 
-#: ../src/general/OptionsMenu.tscn:731
+#: ../src/general/OptionsMenu.tscn:733
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Spustit během hry automatickou evoluci"
 
-#: ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:800
 msgid "RESET_INPUTS"
 msgstr "Resetovat ovládání"
 
-#: ../src/general/OptionsMenu.tscn:822
+#: ../src/general/OptionsMenu.tscn:824
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Přehrát úvodní video"
 
-#: ../src/general/OptionsMenu.tscn:831
+#: ../src/general/OptionsMenu.tscn:833
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spustit Úvod do mikrobů v nové hře"
 
-#: ../src/general/OptionsMenu.tscn:840
+#: ../src/general/OptionsMenu.tscn:842
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukládání během hry"
 
-#: ../src/general/OptionsMenu.tscn:851
+#: ../src/general/OptionsMenu.tscn:853
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet automatických uložení, která se mají zachovat:"
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:881
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Množství rychlých uložení, které jsou zachovány:"
 
-#: ../src/general/OptionsMenu.tscn:905
+#: ../src/general/OptionsMenu.tscn:907
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobrazit výukové programy (v nových hrách)"
 
-#: ../src/general/OptionsMenu.tscn:913
+#: ../src/general/OptionsMenu.tscn:915
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobrazit výukové programy (v aktuální hře)"
 
-#: ../src/general/OptionsMenu.tscn:929
+#: ../src/general/OptionsMenu.tscn:931
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "povolení používat podvodné klíče"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:943
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použijte vlastní uživatelské jméno"
 
-#: ../src/general/OptionsMenu.tscn:952
+#: ../src/general/OptionsMenu.tscn:954
 msgid "CUSTOM_USERNAME"
 msgstr "Vlastní uživatelské jméno:"
 
-#: ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:980
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otevřít složku se snímkama obrazovky"
 
-#: ../src/general/OptionsMenu.tscn:986
+#: ../src/general/OptionsMenu.tscn:988
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:997 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:107
-#: ../src/saving/SaveManagerGUI.tscn:112
+#: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
+#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/saving/SaveManagerGUI.tscn:113
 msgid "BACK"
 msgstr "Zpět"
 
-#: ../src/general/OptionsMenu.tscn:1018 ../src/saving/NewSaveMenu.tscn:71
+#: ../src/general/OptionsMenu.tscn:1020 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Uložit"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Výchozí nastavení"
 
-#: ../src/general/OptionsMenu.tscn:1046
+#: ../src/general/OptionsMenu.tscn:1048
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnovit výchozí nastavení?"
 
-#: ../src/general/OptionsMenu.tscn:1047
+#: ../src/general/OptionsMenu.tscn:1057
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Opravdu chcete obnovit VŠECHNA nastavení na výchozí hodnoty?"
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetovat ovládání na základní?"
 
-#: ../src/general/OptionsMenu.tscn:1057
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Jseš si jistý že chceš resetovat ovládání na původní hodnoty?"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
-#: ../src/general/OptionsMenu.tscn:1090
+#: ../src/general/OptionsMenu.tscn:1114
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máte neuložené změny, které budou zahozeny.\n"
 "Chcete pokračovat?"
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1136
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložit a pokračovat"
 
-#: ../src/general/OptionsMenu.tscn:1130
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zlikvidovat a pokračovat"
 
-#: ../src/general/OptionsMenu.tscn:1146
+#: ../src/general/OptionsMenu.tscn:1161
 msgid "CANCEL"
 msgstr "Zrušit"
 
-#: ../src/general/OptionsMenu.tscn:1157 ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:1173 ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1220
 msgid "ERROR"
 msgstr "Chyba"
 
-#: ../src/general/OptionsMenu.tscn:1158 ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Chyba: Nepodařilo se uložit nové nastavení do konfiguračního souboru."
@@ -1184,7 +1190,7 @@ msgid "LOAD_GAME"
 msgstr "Nahrát hru"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4341
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4428
 msgid "STATISTICS"
 msgstr "Statistika"
 
@@ -1257,11 +1263,11 @@ msgstr "Opustit"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Volný editor mikrobů"
 
-#: ../src/gui_common/MainMenu.tscn:358
+#: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
 msgstr "Varování režimu GLES2"
 
-#: ../src/gui_common/MainMenu.tscn:359
+#: ../src/gui_common/MainMenu.tscn:372
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Používáte Thrive s GLES2. Toto je přísně nevyzkoušené a pravděpodobně to "
@@ -1446,7 +1452,7 @@ msgstr ""
 "okolní tekutina provádí určitou fermentaci."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2028
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2087
 msgid "THYLAKOID"
 msgstr "Thylakoidy"
 
@@ -1594,7 +1600,7 @@ msgstr "Tímto bodněte ostatní buňky."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2585
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2644
 msgid "CILIA"
 msgstr "Řasinky"
 
@@ -1647,13 +1653,13 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3771
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3835
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2943
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7322
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:768
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:801
 msgid "TEMPERATURE"
 msgstr "Teplota"
 
@@ -1726,7 +1732,7 @@ msgstr "Bioluminiscenční vakuola"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5381
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3475
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3534
 msgid "NORMAL"
 msgstr "Normální"
 
@@ -1748,7 +1754,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5577
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5641
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3547
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3606
 msgid "DOUBLE"
 msgstr "Dvojitá"
 
@@ -1761,7 +1767,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5833
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5897
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3619
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3678
 msgid "CELLULOSE"
 msgstr "Celulóza"
 
@@ -1787,7 +1793,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6160
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6224
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3750
 msgid "CHITIN"
 msgstr "Chitiny"
 
@@ -1806,7 +1812,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6551
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3768
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3827
 msgid "CALCIUM_CARBONATE"
 msgstr "Uhličitan vápenatý"
 
@@ -1820,7 +1826,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6848
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6912
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3900
 msgid "SILICA"
 msgstr "Oxid křemičitý"
 
@@ -1898,9 +1904,9 @@ msgid "PRESSURE_SHORT"
 msgstr "Zmáčknout."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4525
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5160
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4612
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5249
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
 
@@ -1981,247 +1987,247 @@ msgstr "Automatickou evoluci se nepodařilo spustit"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "stav běhu:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:967
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:984
 msgid "REPORT"
 msgstr "Zpráva"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:989
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1006
 msgid "PATCH_MAP"
 msgstr "Mapa lokací"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1068
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1085
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organismu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1129
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1146
 msgid "SPEED_COLON"
 msgstr "Rychlost:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1176
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1206
 msgid "SIZE_COLON"
 msgstr "Velikost:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1210
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1227
 msgid "GENERATION_COLON"
 msgstr "Generace:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1252
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1269
 msgid "ATP_BALANCE"
 msgstr "ATP Balanc"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1461
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1475
 msgid "MUTATION_POINTS"
 msgstr "Body mutace"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1549
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1608
 msgid "STRUCTURE"
 msgstr "Struktura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1572
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1631
 msgid "APPEARANCE"
 msgstr "Vzhled"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1595
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1654
 msgid "BEHAVIOR"
 msgstr "Chování"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1646
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1705
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Vyhledat..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1706
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1765
 msgid "STRUCTURAL"
 msgstr "Strukturální"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1869
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1928
 msgid "PROTEINS"
 msgstr "Bílkoviny"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2097
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
 "Chemosynt\n"
 "-etizující proteiny"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2421
 msgid "EXTERNAL"
 msgstr "Povrchové"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2650
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2709
 msgid "ORGANELLES"
 msgstr "Organely"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3245
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3304
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3284
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3343
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
 "Bioluminiscenční\n"
 "Vakuola"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3440
 msgid "MEMBRANE_TYPES"
 msgstr "Typy membrán"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3924
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Tekutost / Tuhost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3904
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3963
 msgid "COLOUR"
 msgstr "Barva"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4048
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4108
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Jméno druhu..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4077
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4137
 msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4086
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4147
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Záporný zůstatek ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4087
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4159
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Váš mikrob neprodukuje dostatek ATP, aby přežil!\n"
 "Chcete pokračovat?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4095
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4170
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Odpojené organely"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4096
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4182
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Jsou zde umístěny organely, které nejsou spojeny se zbytkem.\n"
 "Propojte všechny umístěné organely navzájem nebo zrušte změny."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4282
 msgid "AUTO_EVO"
 msgstr "Automatická evoluce"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4295
 msgid "FOOD_CHAIN"
 msgstr "Potravní řetězec"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4221
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4308
 msgid "TIMELINE"
 msgstr "Časová osa"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4361
 msgid "AUTO_EVO_RESULTS"
 msgstr "Výsledky Automatické evoluce:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4293
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4380
 msgid "EXTERNAL_EFFECTS"
 msgstr "Vnější účinky:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4350
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4437
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "Druh:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4383
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4812
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4470
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4901
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fyzické podmínky"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4487
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4995
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4574
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5084
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:872
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosférické plyny"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4581
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5507
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4668
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5596
 msgid "NEXT_CAPITAL"
 msgstr "DALŠÍ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4694
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4783
 msgid "SELECT_A_PATCH"
 msgstr "Vyber si cestu aby jsi viděl detaily zde"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4729
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4818
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "SOUČASNÁ LOKACE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5420
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5509
 msgid "SPECIES_PRESENT"
 msgstr "Přítomné druhy"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5478
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5567
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Přesuň se na tento kousek"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:546
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:565
 msgid "FREEBUILDING"
 msgstr "Volné stavění"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:600
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:607
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:638
 msgid "MEGA_YEARS"
 msgstr "Myry"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:611
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:837
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:642
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:869
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:870
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:872
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:874
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
 msgid "YEARS"
 msgstr "roky"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:653
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:658
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:659
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:690
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP PŘÍLIŠ NÍZKÁ!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:688
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:719
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:736
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:742
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:754
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:874
 #, fuzzy
 msgid "SPECIES_LIST"
 msgstr "Přítomné druhy"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1540
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1576
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1545
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1581
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m pod mořskou hladinou"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1573
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1609
 msgid "WITH_POPULATION"
 msgstr "{0} s populací: {1}"
 
@@ -2304,31 +2310,31 @@ msgstr "Chyba v ukládání"
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Vybraný název ({0}) už existuje.Chcete ho nahradit?"
 
-#: ../src/saving/NewSaveMenu.tscn:29
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "Uložit hru"
 
-#: ../src/saving/NewSaveMenu.tscn:46
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "Jméno:"
 
-#: ../src/saving/NewSaveMenu.tscn:64
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "Extra nastavení"
 
-#: ../src/saving/NewSaveMenu.tscn:82
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Nahradit existující uloženou pozici:"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:119
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Nahradit existující uloženou pozici?"
 
-#: ../src/saving/SaveHelper.cs:373
+#: ../src/saving/SaveHelper.cs:374
 msgid "SAVING_SUCCEEDED"
 msgstr "Ukládání hotovo"
 
-#: ../src/saving/SaveHelper.cs:383
+#: ../src/saving/SaveHelper.cs:384
 msgid "SAVING_FAILED"
 msgstr "Uložení se nezdařilo! Stala se výjimka"
 
@@ -2354,26 +2360,26 @@ msgstr ""
 "Smazání této uložené pozice nemůže být navráce, jsi si jistý že chceš "
 "navždy smazat {0}?"
 
-#: ../src/saving/SaveList.tscn:46 ../src/saving/SaveListItem.tscn:103
+#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "Načítání..."
 
-#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:280
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "Smazat tuto uloženou pozici?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Načíst nekompabilitní uloženou pozici?"
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:93
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Toto uložení pochází z novější verze daří a je velmi pravděpodobně "
 "nekompatibilní.\n"
 "Chcete přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:79
+#: ../src/saving/SaveList.tscn:117
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Toto uložení pochází ze staré verze daří a může být nekompatibilní.\n"
@@ -2383,11 +2389,11 @@ msgstr ""
 "nemají nejvyšší prioritu.\n"
 "Chcete přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:132
 msgid "LOAD_INVALID_SAVE"
 msgstr "Načíst neplatné uložení?"
 
-#: ../src/saving/SaveList.tscn:89
+#: ../src/saving/SaveList.tscn:141
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Z tohoto souboru nelze načíst informace o uložení.\n"
@@ -2395,11 +2401,11 @@ msgstr ""
 "verze nerozumí.\n"
 "Chcete přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:97
+#: ../src/saving/SaveList.tscn:156
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Vybrané uložení je nekompatibilní"
 
-#: ../src/saving/SaveList.tscn:99
+#: ../src/saving/SaveList.tscn:166
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O vybraném uložení, které se má načíst, je známo, že je nekompatibilní s "
@@ -2408,41 +2414,41 @@ msgstr ""
 "vysokou prioritu, protože neexistuje žádný vestavěný převodník ukládání, "
 "který by upgradoval staré uložení."
 
-#: ../src/saving/SaveListItem.tscn:129
+#: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
 msgstr "Vytvořeno v:"
 
-#: ../src/saving/SaveListItem.tscn:136 ../src/saving/SaveListItem.tscn:155
-#: ../src/saving/SaveListItem.tscn:174 ../src/saving/SaveListItem.tscn:197
-#: ../src/saving/SaveListItem.tscn:226 ../src/saving/SaveListItem.tscn:245
+#: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
+#: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
+#: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
 msgid "DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/saving/SaveListItem.tscn:148
+#: ../src/saving/SaveListItem.tscn:150
 msgid "TYPE"
 msgstr "Typ:"
 
-#: ../src/saving/SaveListItem.tscn:167
+#: ../src/saving/SaveListItem.tscn:169
 msgid "DESCRIPTION"
 msgstr "Popis:"
 
-#: ../src/saving/SaveListItem.tscn:190
+#: ../src/saving/SaveListItem.tscn:192
 msgid "VERSION"
 msgstr "Verze:"
 
-#: ../src/saving/SaveListItem.tscn:219
+#: ../src/saving/SaveListItem.tscn:221
 msgid "BY"
 msgstr "Podle:"
 
-#: ../src/saving/SaveListItem.tscn:238
+#: ../src/saving/SaveListItem.tscn:240
 msgid "CREATED_ON_PLATFORM"
 msgstr "Vytvořeno na platformě:"
 
-#: ../src/saving/SaveListItem.tscn:270 ../src/saving/SaveManagerGUI.tscn:53
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:54
 msgid "LOAD"
 msgstr "Načíst"
 
-#: ../src/saving/SaveListItem.tscn:281
+#: ../src/saving/SaveListItem.tscn:292
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 "Smazání tohoto uložení nelze vrátit zpět. Opravdu to chcete trvale smazat?"
@@ -2461,47 +2467,47 @@ msgstr ""
 " - {0} Automatické ukládání\n"
 " - {1} Rychlé uložení"
 
-#: ../src/saving/SaveManagerGUI.tscn:65
+#: ../src/saving/SaveManagerGUI.tscn:66
 msgid "REFRESH"
 msgstr "Obnovit"
 
-#: ../src/saving/SaveManagerGUI.tscn:73
+#: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
 msgstr "Smazat vybrané"
 
-#: ../src/saving/SaveManagerGUI.tscn:81
+#: ../src/saving/SaveManagerGUI.tscn:82
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistěte stará uložení"
 
-#: ../src/saving/SaveManagerGUI.tscn:92
+#: ../src/saving/SaveManagerGUI.tscn:93
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Otevřít adresář uložení"
 
-#: ../src/saving/SaveManagerGUI.tscn:124
+#: ../src/saving/SaveManagerGUI.tscn:125
 msgid "TOTAL_SAVES"
 msgstr "Celkem uložení:"
 
-#: ../src/saving/SaveManagerGUI.tscn:144
+#: ../src/saving/SaveManagerGUI.tscn:145
 msgid "SAVE_SPACE_USED"
 msgstr "Využitý prostor:"
 
-#: ../src/saving/SaveManagerGUI.tscn:164
+#: ../src/saving/SaveManagerGUI.tscn:165
 msgid "SELECTED_COLON"
 msgstr "Vybráno:"
 
-#: ../src/saving/SaveManagerGUI.tscn:181
+#: ../src/saving/SaveManagerGUI.tscn:182
 msgid "DELETE_SELECTED_SAVES"
 msgstr "Smazat vybraná uložení?"
 
-#: ../src/saving/SaveManagerGUI.tscn:191
+#: ../src/saving/SaveManagerGUI.tscn:205
 msgid "DELETE_OLD_SAVES"
 msgstr "Smazat staré uložení?"
 
-#: ../src/saving/SaveStatusOverlay.tscn:120
+#: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
 msgstr "Chyba ukládání"
 
-#: ../src/saving/SaveStatusOverlay.tscn:180
+#: ../src/saving/SaveStatusOverlay.tscn:183
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopírovat chybu do schránky"
 
