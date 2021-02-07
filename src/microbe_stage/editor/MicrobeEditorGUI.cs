@@ -530,6 +530,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
