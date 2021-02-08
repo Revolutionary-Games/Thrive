@@ -164,6 +164,8 @@ public static class Constants
 
     public const float FLOATING_CHUNKS_DISSOLVE_SPEED = 0.3f;
 
+    public const int DESPAWNING_CHUNK_LIFETIME = 150;
+
     public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
 
     /// <summary>
@@ -416,6 +418,11 @@ public static class Constants
 
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
+
+    /// <summary>
+    ///   Maximum amount of snapshots to store in patch history.
+    /// </summary>
+    public const int PATCH_HISTORY_RANGE = 10;
 
     /// <summary>
     ///   When checking if the mouse is hovering over a microbe, this increments
