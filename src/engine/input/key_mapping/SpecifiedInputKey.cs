@@ -62,20 +62,17 @@ public class SpecifiedInputKey : ICloneable
 
             // text += ((KeyList)Code).ToString();
 
-            var keyname = ((KeyList)Code).ToString();
+            var key = (KeyList)Code;
 
-            if (keyname == "Left")
-                text += TranslationServer.Translate("LEFT");
-            else if (keyname == "Right")
-                text += TranslationServer.Translate("RIGHT");
-            else if (keyname == "Up")
-                text += TranslationServer.Translate("UP");
-            else if (keyname == "Down")
-                text += TranslationServer.Translate("DOWN");
-            else if (keyname == "Print")
-                text += TranslationServer.Translate("PRINT");
-            else
-                text += ((KeyList)Code).ToString();
+            text += key switch
+            {
+                KeyList.Left => TranslationServer.Translate("LEFT"),
+                KeyList.Right => TranslationServer.Translate("RIGHT"),
+                KeyList.Up => TranslationServer.Translate("UP"),
+                KeyList.Down => TranslationServer.Translate("DOWN"),
+                KeyList.Print => TranslationServer.Translate("PRINT"),
+                _ => key.ToString(),
+            };
         }
         else if (Type == InputType.MouseButton)
         {
