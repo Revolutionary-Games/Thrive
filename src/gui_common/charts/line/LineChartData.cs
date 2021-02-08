@@ -2,35 +2,35 @@
 using Godot;
 
 /// <summary>
-///   Dataset to be visualized on the line chart
+///   Dataset to be visualized on the line chart. Contains series of data points.
 /// </summary>
 public class LineChartData
 {
-    private Color lineColour;
+    private List<DataPoint> dataPoints = new List<DataPoint>();
+    private Color dataColour;
     private bool draw = true;
 
-    // ReSharper disable once CollectionNeverUpdated.Global
-    public List<DataPoint> DataPoints { get; set; } = new List<DataPoint>();
+    public IReadOnlyCollection<DataPoint> DataPoints => dataPoints;
 
     /// <summary>
     ///   The icon on the chart legend
     /// </summary>
     public Texture IconTexture { get; set; }
 
-    public float LineWidth { get; set; } = 1.3f;
+    public float LineWidth { get; set; } = 1.13f;
 
     /// <summary>
     ///   Used to differentiate the data set's visual by color
     /// </summary>
     public Color DataColour
     {
-        get => lineColour;
+        get => dataColour;
         set
         {
-            lineColour = value;
+            dataColour = value;
 
             foreach (var point in DataPoints)
-                point.MarkerColour = lineColour;
+                point.MarkerColour = dataColour;
         }
     }
 
@@ -47,5 +47,24 @@ public class LineChartData
             foreach (var point in DataPoints)
                 point.Visible = value;
         }
+    }
+
+    /// <summary>
+    ///   Adds a data point to this dataset.
+    /// </summary>
+    public void AddPoint(DataPoint point)
+    {
+        dataPoints.Add(point);
+    }
+
+    /// <summary>
+    ///   Frees and removes all data point from this dataset.
+    /// </summary>
+    public void ClearPoints()
+    {
+        foreach (var point in dataPoints.ToArray())
+            point.Free();
+
+        dataPoints.Clear();
     }
 }

@@ -164,6 +164,8 @@ public static class Constants
 
     public const float FLOATING_CHUNKS_DISSOLVE_SPEED = 0.3f;
 
+    public const int DESPAWNING_CHUNK_LIFETIME = 150;
+
     public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
 
     /// <summary>
@@ -418,6 +420,11 @@ public static class Constants
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     /// <summary>
+    ///   Maximum amount of snapshots to store in patch history.
+    /// </summary>
+    public const int PATCH_HISTORY_RANGE = 10;
+
+    /// <summary>
     ///   When checking if the mouse is hovering over a microbe, this increments
     ///   the testing area as an addition to microbe radius, so it's easier to hover
     ///   over smaller microbes.
@@ -470,6 +477,7 @@ public static class Constants
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
+    public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
 
     /// <summary>
     ///   This is just here to make it easier to debug saves

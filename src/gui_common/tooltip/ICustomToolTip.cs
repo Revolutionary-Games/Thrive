@@ -43,14 +43,14 @@ public interface ICustomToolTip
     /// </summary>
     bool ToolTipVisible { get; set; }
 
+    ToolTipPositioning Positioning { get; set; }
+
+    bool HideOnMousePress { get; set; }
+
     /// <summary>
     ///   Node of the tooltip
     /// </summary>
     Node ToolTipNode { get; }
-
-    ToolTipPositioning Positioning { get; }
-
-    bool HideOnMousePress { get; }
 
     /// <summary>
     ///   Display the tooltip in a customized way (like fade in or scale tweening)
