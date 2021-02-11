@@ -305,9 +305,9 @@ public class MicrobeHUD : Node
             UpdateNeededBars();
             UpdateCompoundBars();
             UpdateReproductionProgress();
-            UpdateATP();
         }
 
+        UpdateATP();
         UpdateHealth();
 
         if (stage.Camera != null)
@@ -767,21 +767,17 @@ public class MicrobeHUD : Node
 
     private void UpdateATP()
     {
-        var atpAmount = stage.Player.Compounds.GetCompoundAmount(atp);
-        var capacity = stage.Player.Compounds.Capacity;
+        var atpAmount = 0.0f;
+        var capacity = 4.0f;
 
-        GUICommon.Instance.TweenBarValue(atpBar, atpAmount, capacity);
-        atpLabel.Text = Mathf.Round(atpAmount) + " / " + capacity;
+        if (stage.Player != null)
+        {
+            atpAmount = Mathf.Round(stage.Player.Compounds.GetCompoundAmount(atp));
+            capacity = stage.Player.Compounds.Capacity;
+        }
 
-        // Hide the progress bar when the atp is less than 1.5
-        if (atpBar.Value < 1.5)
-        {
-            atpBar.TintProgress = new Color(0, 0, 0);
-        }
-        else
-        {
-            atpBar.TintProgress = new Color(0.44f, 0.96f, 0.14f);
-        }
+        GUICommon.Instance.TweenBarValue(atpBar, atpAmount, capacity, 0.3f);
+        atpLabel.Text = atpBar.Value + " / " + capacity;
     }
 
     private void UpdateHealth()
@@ -795,8 +791,8 @@ public class MicrobeHUD : Node
             maxHP = stage.Player.MaxHitpoints;
         }
 
-        GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP);
-        hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
+        GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP, 0.3f);
+        hpLabel.Text = Mathf.Round(hp) + " / " + maxHP;
     }
 
     private void UpdatePopulation()

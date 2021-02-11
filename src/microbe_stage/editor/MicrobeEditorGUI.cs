@@ -538,67 +538,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         ApplyEditorTab();
         ApplySelectionMenuTab();
 
+        UpdateMutationPointsBar();
+
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
-    }
-
-    public override void _Process(float delta)
-    {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        // Update mutation points
-        float possibleMutationPoints = editor.FreeBuilding ?
-            Constants.BASE_MUTATION_POINTS :
-            editor.MutationPoints - editor.CurrentOrganelleCost;
-
-        mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsBar.Value = Mathf.Lerp((float)mutationPointsBar.Value, possibleMutationPoints, 3.0f * delta);
-        mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsSubtractBar.Value = Mathf.Lerp(
-            (float)mutationPointsSubtractBar.Value, editor.MutationPoints, 5.0f * delta);
-
-        if (editor.FreeBuilding)
-        {
-            currentMutationPointsLabel.Text = TranslationServer.Translate("FREEBUILDING");
-        }
-        else
-        {
-            if (possibleMutationPoints != editor.MutationPoints && editor.MutationPoints > 0)
-            {
-                if (!mutationPointsArrow.Visible)
-                    mutationPointsArrow.Show();
-
-                if (!resultingMutationPointsLabel.Visible)
-                    resultingMutationPointsLabel.Show();
-
-                currentMutationPointsLabel.Text = $"({editor.MutationPoints:F0}";
-                resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
-            }
-            else
-            {
-                if (mutationPointsArrow.Visible)
-                    mutationPointsArrow.Hide();
-
-                if (resultingMutationPointsLabel.Visible)
-                    resultingMutationPointsLabel.Hide();
-
-                currentMutationPointsLabel.Text = $"{editor.MutationPoints:F0}";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
-            }
-        }
-
-        if (possibleMutationPoints < 0)
-        {
-            mutationPointsSubtractBar.SelfModulate = new Color(0.72f, 0.19f, 0.19f);
-        }
-        else
-        {
-            mutationPointsSubtractBar.SelfModulate = new Color(0.72f, 0.72f, 0.72f);
-        }
     }
 
     public void SetMap(PatchMap map)
@@ -879,6 +823,48 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         OnPhysicalConditionsChartLegendPressed("temperature");
     }
 
+    public void UpdateMutationPointsBar()
+    {
+        // Update mutation points
+        float possibleMutationPoints = editor.FreeBuilding ?
+            Constants.BASE_MUTATION_POINTS :
+            editor.MutationPoints - editor.CalculateCurrentOrganelleCost();
+
+        GUICommon.Instance.TweenBarValue(
+            mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
+        GUICommon.Instance.TweenBarValue(
+            mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+
+        if (editor.FreeBuilding)
+        {
+            currentMutationPointsLabel.Text = TranslationServer.Translate("FREEBUILDING");
+        }
+        else
+        {
+            if (editor.ShowHover && editor.MutationPoints > 0)
+            {
+                mutationPointsArrow.Show();
+                resultingMutationPointsLabel.Show();
+
+                currentMutationPointsLabel.Text = $"({editor.MutationPoints:F0}";
+                resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
+                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+            }
+            else
+            {
+                mutationPointsArrow.Hide();
+                resultingMutationPointsLabel.Hide();
+
+                currentMutationPointsLabel.Text = $"{editor.MutationPoints:F0}";
+                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+            }
+        }
+
+        mutationPointsSubtractBar.SelfModulate = possibleMutationPoints < 0 ?
+            new Color(0.72f, 0.19f, 0.19f) :
+            new Color(0.72f, 0.72f, 0.72f);
+    }
+
     public void SetMembraneTooltips(MembraneType referenceMembrane)
     {
         // Pass in a membrane that the values are taken as relative to
@@ -933,6 +919,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     internal void OnMouseEnter()
     {
         editor.ShowHover = false;
+        UpdateMutationPointsBar();
     }
 
     /// <summary>
@@ -941,6 +928,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     internal void OnMouseExit()
     {
         editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
+        UpdateMutationPointsBar();
     }
 
     internal void SetUndoButtonStatus(bool enabled)
@@ -1687,7 +1675,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // In case the text is not stored
         editor.NewName = newText;
 
-        speciesNameEdit.ReleaseFocus();
+        // Only defocus if the name is valid to indicate invalid namings to the player
+        if (newText.Split(" ").Length == 2)
+            speciesNameEdit.ReleaseFocus();
     }
 
     /// <summary>

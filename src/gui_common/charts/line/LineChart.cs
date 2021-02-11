@@ -214,9 +214,6 @@ public class LineChart : VBoxContainer
 
                 var coordinate = ConvertToCoordinate(point.Value);
 
-                if (point.Coordinate == coordinate)
-                    continue;
-
                 // TODO: Handle overlapping data point markers, will be difficult.
                 // As a workaround, players could instead manually hide the dataset
                 // of one of the overlapping points.
@@ -698,9 +695,7 @@ public class LineChart : VBoxContainer
         var mouseCollider = dataLine.CollisionBoxes[firstPoint];
 
         // Position the collider at a middle point between two data point coordinates
-        mouseCollider.RectPosition = new Vector2(
-            (firstPoint.Coordinate.x + secondPoint.Coordinate.x) / 2,
-            (firstPoint.Coordinate.y + secondPoint.Coordinate.y) / 2);
+        mouseCollider.RectPosition = firstPoint.Coordinate.LinearInterpolate(secondPoint.Coordinate, 0.5f);
 
         // Set pivot at the center of the rect
         mouseCollider.RectPivotOffset = mouseCollider.RectSize / 2;
