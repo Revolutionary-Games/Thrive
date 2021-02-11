@@ -766,7 +766,7 @@ public class MicrobeAI
                 {
                     lifeState = LifeState.FLEEING_STATE;
                 }
-                else if (SpeciesAggression == SpeciesFear &&
+                else if (SpeciesAggression >= SpeciesFear &&
                     preyMicrobes.Count > 0)
                 {
                     // Prefer predating (makes game more fun)
