@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
 [ext_resource path="res://src/engine/input/key_mapping/InputGroupList.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=5]
+
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -1038,142 +1040,182 @@ __meta__ = {
 
 [node name="DefaultsConfirm" type="ConfirmationDialog" parent="CenterContainer"]
 margin_left = 340.0
-margin_top = 321.0
+margin_top = 318.0
 margin_right = 940.0
-margin_bottom = 399.0
+margin_bottom = 402.0
 rect_min_size = Vector2( 600, 70 )
 popup_exclusive = true
 window_title = "RESET_TO_DEFAULTS"
-dialog_text = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
+
+[node name="DialogText" type="Label" parent="CenterContainer/DefaultsConfirm"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 590.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DefaultsInputsConfirm" type="ConfirmationDialog" parent="CenterContainer"]
 margin_left = 340.0
-margin_top = 321.0
+margin_top = 318.0
 margin_right = 940.0
-margin_bottom = 399.0
+margin_bottom = 402.0
 rect_min_size = Vector2( 600, 70 )
 popup_exclusive = true
 window_title = "RESET_INPUTS_TO_DEFAULTS"
-dialog_text = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 
-[node name="BackConfirm" type="WindowDialog" parent="CenterContainer"]
+[node name="DialogText" type="Label" parent="CenterContainer/DefaultsInputsConfirm"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 590.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackConfirm" type="AcceptDialog" parent="CenterContainer"]
 margin_left = 340.0
-margin_top = 300.0
+margin_top = 296.0
 margin_right = 940.0
-margin_bottom = 420.0
-rect_min_size = Vector2( 600, 120 )
+margin_bottom = 423.0
+rect_min_size = Vector2( 600, 0 )
 popup_exclusive = true
 window_title = "CLOSE_OPTIONS"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/BackConfirm"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -52.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
-margin_right = 600.0
-margin_bottom = 59.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="Label" type="Label" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer"]
-margin_left = 5.0
-margin_top = 18.0
-margin_right = 595.0
-margin_bottom = 40.0
+[node name="Label" type="Label" parent="CenterContainer/BackConfirm/VBoxContainer"]
+margin_right = 580.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
 text = "UNSAVED_CHANGE_WARNING"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+autowrap = true
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/BackConfirm/VBoxContainer"]
-margin_top = 63.0
-margin_right = 600.0
-margin_bottom = 80.0
+margin_top = 26.0
+margin_right = 580.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/separator = SubResource( 7 )
 
-[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
-margin_top = 84.0
-margin_right = 600.0
-margin_bottom = 120.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2"]
-margin_left = 12.0
-margin_right = 588.0
-margin_bottom = 32.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
+margin_top = 33.0
+margin_right = 580.0
+margin_bottom = 65.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SaveButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
-margin_right = 204.0
-margin_bottom = 24.0
+[node name="SaveButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
+margin_right = 205.0
+margin_bottom = 32.0
 text = "SAVE_AND_CONTINUE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DiscardButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
-margin_left = 208.0
-margin_right = 438.0
-margin_bottom = 24.0
+[node name="DiscardButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
+margin_left = 209.0
+margin_right = 445.0
+margin_bottom = 32.0
 text = "DISCARD_AND_CONTINUE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
-margin_left = 442.0
-margin_right = 484.0
-margin_bottom = 24.0
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
+margin_left = 449.0
+margin_right = 494.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 8 )
 
-[node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
-margin_left = 488.0
-margin_right = 576.0
-margin_bottom = 24.0
+[node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
+margin_left = 498.0
+margin_right = 580.0
+margin_bottom = 32.0
 text = "CANCEL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
-margin_left = 445.0
-margin_top = 321.0
-margin_right = 835.0
-margin_bottom = 399.0
+margin_left = 440.0
+margin_top = 318.0
+margin_right = 840.0
+margin_bottom = 402.0
+rect_min_size = Vector2( 400, 0 )
 popup_exclusive = true
 window_title = "ERROR"
-dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+
+[node name="DialogText" type="Label" parent="CenterContainer/ErrorAccept"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 390.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ConflictDialog" type="ConfirmationDialog" parent="CenterContainer"]
-margin_left = 540.0
-margin_top = 321.0
-margin_right = 740.0
-margin_bottom = 399.0
+margin_left = 390.0
+margin_top = 318.0
+margin_right = 890.0
+margin_bottom = 402.0
+rect_min_size = Vector2( 500, 70 )
 popup_exclusive = true
 window_title = "ERROR"
-dialog_text = "PLACEHOLDER"
 __meta__ = {
-"_editor_description_": "If text is left empty babel complains so that text is used (because ERROR needs to be translated)"
+"_editor_description_": ""
+}
+
+[node name="DialogText" type="Label" parent="CenterContainer/ConflictDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 490.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
-margin_left = 445.0
-margin_top = 321.0
-margin_right = 835.0
-margin_bottom = 399.0
+margin_left = 443.0
+margin_top = 318.0
+margin_right = 837.0
+margin_bottom = 402.0
 popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
@@ -1223,7 +1265,7 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Defaults" to="." method="OnDefaultsPressed"]
 [connection signal="confirmed" from="CenterContainer/DefaultsConfirm" to="." method="DefaultsConfirmSelected"]
 [connection signal="confirmed" from="CenterContainer/DefaultsInputsConfirm" to="." method="InputDefaultsConfirm"]
-[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/SaveButton" to="." method="BackSaveSelected"]
-[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
-[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
+[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/SaveButton" to="." method="BackSaveSelected"]
+[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
+[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
 [connection signal="confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnConflictConfirmed"]

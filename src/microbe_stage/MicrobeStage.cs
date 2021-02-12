@@ -251,10 +251,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (IsLoadedFromSave)
         {
+            HUD.OnEnterStageTransition(false);
             UpdatePatchSettings(true);
         }
         else
         {
+            HUD.OnEnterStageTransition(true);
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
         }
     }
@@ -494,7 +496,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // Spawn another cell from the player species
         Player.Divide();
 
-        HUD.OnEnterStageTransition();
+        HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();
 
         StartMusic();
