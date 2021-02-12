@@ -115,13 +115,12 @@ public class MicrobeAI
         preyMicrobes.Clear();
         chunkList.Clear();
 
-        prey = null;
-
         // 30 seconds about
         if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
         {
             // Occasionally you need to reevaluate things
             boredom = 0;
+            prey = null;
             if (RollCheck(SpeciesActivity, 400, random))
             {
                 lifeState = LifeState.PLANTLIKE_STATE;
@@ -766,7 +765,7 @@ public class MicrobeAI
                 {
                     lifeState = LifeState.FLEEING_STATE;
                 }
-                else if (SpeciesAggression == SpeciesFear &&
+                else if (SpeciesAggression >= SpeciesFear &&
                     preyMicrobes.Count > 0)
                 {
                     // Prefer predating (makes game more fun)
