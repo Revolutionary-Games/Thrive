@@ -1839,6 +1839,7 @@ margin_left = -237.756
 margin_top = -201.525
 margin_right = -128.756
 margin_bottom = -45.525
+step = 0.1
 value = 100.0
 texture_under = ExtResource( 63 )
 texture_progress = ExtResource( 63 )
@@ -1901,7 +1902,6 @@ __meta__ = {
 }
 
 [node name="Light2D" type="Light2D" parent="MicrobeHUD/BottomRight/EditorButton/Highlight"]
-visible = false
 position = Vector2( 85, 70 )
 scale = Vector2( 0.980195, 0.980195 )
 texture = ExtResource( 76 )

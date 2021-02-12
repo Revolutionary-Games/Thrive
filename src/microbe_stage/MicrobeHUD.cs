@@ -307,8 +307,8 @@ public class MicrobeHUD : Node
             UpdateReproductionProgress();
         }
 
-        UpdateATP();
-        UpdateHealth();
+        UpdateATP(delta);
+        UpdateHealth(delta);
 
         if (stage.Camera != null)
         {
@@ -765,23 +765,32 @@ public class MicrobeHUD : Node
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
     }
 
-    private void UpdateATP()
+    private void UpdateATP(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         var atpAmount = 0.0f;
         var capacity = 4.0f;
 
         if (stage.Player != null)
         {
-            atpAmount = Mathf.Round(stage.Player.Compounds.GetCompoundAmount(atp));
+            atpAmount = Mathf.Ceil(stage.Player.Compounds.GetCompoundAmount(atp));
             capacity = stage.Player.Compounds.Capacity;
         }
 
-        GUICommon.Instance.TweenBarValue(atpBar, atpAmount, capacity, 0.3f);
-        atpLabel.Text = atpBar.Value + " / " + capacity;
+        atpBar.MaxValue = capacity;
+        atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.1f);
+        atpLabel.Text = atpAmount + " / " + capacity;
     }
 
-    private void UpdateHealth()
+    private void UpdateHealth(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         var hp = 0.0f;
         var maxHP = 100.0f;
 
@@ -791,7 +800,8 @@ public class MicrobeHUD : Node
             maxHP = stage.Player.MaxHitpoints;
         }
 
-        GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP, 0.3f);
+        healthBar.MaxValue = maxHP;
+        healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.1f);
         hpLabel.Text = Mathf.Round(hp) + " / " + maxHP;
     }
 
