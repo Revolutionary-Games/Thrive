@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=2]
+[gd_scene load_steps=142 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -101,6 +101,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/editorButtonDelete.png" type="Texture" id=104]
 [ext_resource path="res://assets/textures/gui/bevel/editorButtonMove.png" type="Texture" id=105]
 [ext_resource path="res://assets/textures/gui/bevel/editorButtonModify.png" type="Texture" id=106]
+[ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=107]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -3980,10 +3981,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 132.0
-margin_top = 155.0
-margin_right = 435.0
-margin_bottom = 630.0
+margin_left = 136.0
+margin_top = 159.0
+margin_right = 439.0
+margin_bottom = 634.0
 theme = SubResource( 31 )
 edit_alpha = false
 
@@ -5682,7 +5683,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OrganellePopupMenu" parent="MicrobeEditorGUI" instance=ExtResource( 55 )]
+[node name="OrganellePopupMenu" parent="MicrobeEditorGUI" instance=ExtResource( 107 )]
 anchor_right = 0.15625
 anchor_bottom = 0.183333
 margin_right = 0.0
@@ -5712,7 +5713,6 @@ hide_on_checkable_item_selection = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/TopLeft" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
