@@ -639,6 +639,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             {
                 // Move succeeded
                 MovingOrganelle = null;
+
+                // Update rigidity slider in case it was disabled
+                // TODO: could come up with a bit nicer design here
+                int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
             }
             else
             {
