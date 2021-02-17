@@ -176,11 +176,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private Vector3? mousePanningStart;
 
     /// <summary>
-    ///   The organelle type that is selected to be used but not necessarily rendered
-    /// </summary>
-    public string SelectedActionName;
-
-    /// <summary>
     /// The Symmetry setting of the Microbe Editor.
     /// </summary>
     public enum MicrobeSymmetry

@@ -949,11 +949,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
-    public void UpdateReportTabPatchName(string patch)
-    {
-        reportTabPatchNameLabel.Text = patch;
-    }
-
     /// <summary>
     ///   Called once when the mouse enters the editor GUI.
     /// </summary>
