@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-11 23:35+0700\n"
-"PO-Revision-Date: 2021-01-30 10:39+0000\n"
+"PO-Revision-Date: 2021-02-15 23:00+0000\n"
 "Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/eo/>\n"
@@ -239,7 +239,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "Jen konsilo: Vi povas ĉasi aliajn speciojn ĝis formorto, se vi ne sufiĉe "
-"zorgas, ili ankaŭ povas esti ĉasitaj de aliaj specioj."
+"zorgas, ili ankaŭ povas fari ĉi tion."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -482,7 +482,6 @@ msgid "SHOW_HELP"
 msgstr "Montru helpon"
 
 #: ../simulation_parameters/common/input_options.json:168
-#, fuzzy
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Ŝaltu FPS-ekranon"
 
@@ -869,7 +868,7 @@ msgstr "genkodo:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "disvastiĝas al flikĵj:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
@@ -877,7 +876,7 @@ msgstr "{0} sendas: {1} loĝantaro de loko: {2}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr ""
+msgstr "loĝantaro en j:"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -894,16 +893,17 @@ msgstr ""
 "Ĉu vi volas forigi la enigon de {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
+#, fuzzy
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
@@ -935,15 +935,15 @@ msgstr "Rado dekstre"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Musa Speciala 1"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Musa Specialaĵo 2"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Nekonata musbutono"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -952,15 +952,15 @@ msgstr "Fermu"
 
 #: ../src/general/OptionsMenu.tscn:127
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Grafikaĵoj"
 
 #: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
-msgstr ""
+msgstr "Sono"
 
 #: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Agado"
 
 #: ../src/general/OptionsMenu.tscn:163
 msgid "INPUTS"
@@ -972,15 +972,15 @@ msgstr "Aliaj"
 
 #: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
-msgstr ""
+msgstr "VSi"
 
 #: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Plenekrane"
 
 #: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
+msgstr "Multekzempla glatigo:"
 
 #: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
@@ -992,7 +992,7 @@ msgstr "Distingivo:"
 
 #: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
-msgstr ""
+msgstr "aŭtomate"
 
 #: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
@@ -1000,15 +1000,15 @@ msgstr "Maks. FPS:"
 
 #: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Kolorblinda o:"
 
 #: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Kromata Aberacio:"
 
 #: ../src/general/OptionsMenu.tscn:403
 msgid "MASTER_VOLUME"
-msgstr ""
+msgstr "Ĉefa laŭ t"
 
 #: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
 #: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
@@ -1059,17 +1059,16 @@ msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(pli altaj valoroj malpliigas rendimenton)"
 
 #: ../src/general/OptionsMenu.tscn:691
-#, fuzzy
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Nuba Rezolucia Divizoro:"
 
 #: ../src/general/OptionsMenu.tscn:733
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
+msgstr "aŭtomatan evolucion dum ludado"
 
 #: ../src/general/OptionsMenu.tscn:800
 msgid "RESET_INPUTS"
-msgstr ""
+msgstr "Restarigu"
 
 #: ../src/general/OptionsMenu.tscn:824
 msgid "PLAY_INTRO_VIDEO"
@@ -1159,14 +1158,16 @@ msgstr "Ĉu fermu agordojn?"
 #: ../src/general/OptionsMenu.tscn:1114
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
+"Vi havas nesavitajn ŝanĝojn kiuj estis forĵetotajn.\n"
+" Ĉu vi volas daŭrigi?"
 
 #: ../src/general/OptionsMenu.tscn:1136
 msgid "SAVE_AND_CONTINUE"
-msgstr ""
+msgstr "Konservu kaj"
 
 #: ../src/general/OptionsMenu.tscn:1145
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Forĵetu kaj"
 
 #: ../src/general/OptionsMenu.tscn:1161
 msgid "CANCEL"
@@ -1179,7 +1180,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Eraro: Malsukcesis konservi novajn agordojn en agorda dosiero."
 
 #: ../src/general/PauseMenu.tscn:57
 msgid "RESUME"
@@ -1187,16 +1188,16 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:64
 msgid "SAVE_GAME"
-msgstr ""
+msgstr "Konservu"
 
 #: ../src/general/PauseMenu.tscn:71 ../src/gui_common/MainMenu.tscn:163
 msgid "LOAD_GAME"
-msgstr ""
+msgstr "Ŝarĝu"
 
 #: ../src/general/PauseMenu.tscn:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4432
 msgid "STATISTICS"
-msgstr ""
+msgstr "Statistiko"
 
 #: ../src/general/PauseMenu.tscn:86
 msgid "HELP"
@@ -1208,7 +1209,7 @@ msgstr "Agordoj"
 
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
-msgstr ""
+msgstr "Revenu al Menuo"
 
 #: ../src/general/PauseMenu.tscn:107
 msgid "EXIT"
@@ -1216,24 +1217,24 @@ msgstr ""
 
 #: ../src/general/StringUtils.cs:18
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "Mrd"
 
 #: ../src/general/StringUtils.cs:24
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "M"
 
 #: ../src/general/StringUtils.cs:30
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "K"
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "/sekundo"
 
 #: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
-msgstr ""
+msgstr "JES"
 
 #: ../src/gui_common/MainMenu.cs:330
 msgid "Cancel"
@@ -1241,15 +1242,15 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:148
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Nova ludo"
 
 #: ../src/gui_common/MainMenu.tscn:187
 msgid "TOOLS"
-msgstr ""
+msgstr "Iloj"
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Rigardi Fontkodon"
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
@@ -1265,11 +1266,11 @@ msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Libra Redaktilo de"
 
 #: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
-msgstr ""
+msgstr "Averto Modo GLES2"
 
 #: ../src/gui_common/MainMenu.tscn:372
 msgid "GLES2_MODE_WARNING_TEXT"
@@ -1280,7 +1281,7 @@ msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Konservo havas malsaman version"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:19
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -1291,15 +1292,15 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:78
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Malfermu la menuon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Malfermu helpekranon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:98
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Ĉu vi prosperos?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:110
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
@@ -1307,24 +1308,24 @@ msgstr "Finu redaktadon kaj revenu al ĉirkaŭa mondo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Ŝanĝu la simetrion"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:122
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Malfaru la lastan agon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Refarui la lastan agon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Kreu novan mikrobon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:154
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:217
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Membrana eco"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:254
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5418
@@ -1334,7 +1335,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6949
 msgid "MOBILITY"
-msgstr ""
+msgstr "Movebleco"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:289
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5521
@@ -1396,7 +1397,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5090
 msgid "STORAGE"
-msgstr ""
+msgstr "Stokado"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:838
@@ -1437,16 +1438,16 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:746
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
 msgid "DOT_RATE_SCALES"
-msgstr ""
+msgstr ". Takso-skalo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:759
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
 msgid "WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "kun koncentriĝo de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:766
 msgid "OXYGEN_DOT"
-msgstr ""
+msgstr "Oksigeno."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1462,26 +1463,26 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2091
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Tilakoido"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:987
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3560
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3862
 msgid "PRODUCES"
-msgstr ""
+msgstr "Produktas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1012
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3887
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ""
+msgstr ". Dependas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3598
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3900
 msgid "CONCENTRATION_OF"
-msgstr ""
+msgstr "koncentriĝo de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1051
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1722
@@ -1494,7 +1495,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
 msgid "INTENSITY_OF"
-msgstr ""
+msgstr "intenseco de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
@@ -1520,7 +1521,7 @@ msgstr ". Asociita kun la koncentriĝo de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
 msgid "ALSO_TURNS"
-msgstr ""
+msgstr "Ankaŭ inkluzivas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1543,14 +1544,14 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3322
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4491
 msgid "DOT_RATE"
-msgstr ""
+msgstr ". Rate"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3335
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4504
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5052
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr "dependas de koncentriĝo de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
@@ -1563,11 +1564,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4993
 msgid "OXYTOXY"
-msgstr ""
+msgstr "xyToxy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2285
 msgid "DOT_CAN_RELEASE"
-msgstr ""
+msgstr ". Povas reali"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2297
 msgid "TOXINS_BY_PRESSING_E"
@@ -1576,6 +1577,8 @@ msgstr "toksinoj premante E-n. Asociita kun"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2428
 msgid "OXYTOXISOME_DESC"
 msgstr ""
+"Modifita metabolosomo, responsanta pri la produktado de primitiva formo de "
+"la toksa agento OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2535
 msgid "USES"
@@ -1583,11 +1586,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2560
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr ""
+msgstr "popliigi la movadon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2572
 msgid "SPEED_OF_THE_CELL"
-msgstr ""
+msgstr "rapideco de la ĉelo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2593
 msgid "SPEED"
@@ -1596,16 +1599,19 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
+"La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la "
+"membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en "
+"direkto."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr ""
+msgstr "Piku aliajn ĉelojn per ĉi tio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2648
 msgid "CILIA"
-msgstr ""
+msgstr "Cilio"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5296
