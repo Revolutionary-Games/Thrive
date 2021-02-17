@@ -935,7 +935,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             organelleMenu.EnableDeleteOption = true;
         }
 
-        // Move enabled only when is more than one organelle
+        // Move enabled only when microbe has more than one organelle
         organelleMenu.EnableMoveOption = editor.MicrobeSize > 1;
     }
 
