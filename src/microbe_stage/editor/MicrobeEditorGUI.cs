@@ -244,6 +244,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath IslandErrorPath;
 
     [Export]
+    public NodePath OrganelleMenuPath;
+
+    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -261,6 +264,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
     private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
     private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
     private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
@@ -384,6 +388,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private ConfirmationDialog negativeAtpPopup;
     private AcceptDialog islandPopup;
+
+    private OrganellePopupMenu organelleMenu;
 
     private TextureButton menuButton;
     private TextureButton helpButton;
@@ -516,6 +522,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
+        organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
@@ -913,6 +920,35 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         reportTabPatchNameLabel.Text = patch;
     }
 
+    public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
+    {
+        organelleMenu.SelectedOrganelle = selectedOrganelle;
+        organelleMenu.ShowPopup = true;
+
+        // Disable delete for nucleus or the last organelle.
+        if (editor.MicrobeSize < 2 || selectedOrganelle.Definition == nucleus)
+        {
+            organelleMenu.EnableDeleteOption = false;
+        }
+        else
+        {
+            organelleMenu.EnableDeleteOption = true;
+        }
+
+        // Move enabled only when microbe has more than one organelle
+        organelleMenu.EnableMoveOption = editor.MicrobeSize > 1;
+    }
+
+    public void OnMovePressed()
+    {
+        editor.StartOrganelleMove(organelleMenu.SelectedOrganelle);
+    }
+
+    public void OnDeletePressed()
+    {
+        editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
+    }
+
     /// <summary>
     ///   Called once when the mouse enters the editor GUI.
     /// </summary>
@@ -979,6 +1015,16 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
 
+        PlayInvalidActionSound();
+    }
+
+    internal void OnActionBlockedWhileMoving()
+    {
+        PlayInvalidActionSound();
+    }
+
+    internal void PlayInvalidActionSound()
+    {
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
@@ -1028,6 +1074,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void OnFinishEditingClicked()
     {
+        if (editor.MovingOrganelle != null)
+        {
+            OnActionBlockedWhileMoving();
+            return;
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
 
         // Show warning popup if trying to exit with negative atp production
@@ -1165,7 +1217,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void UpdateRigiditySlider(int value, int mutationPoints)
     {
-        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP)
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelle == null)
         {
             rigiditySlider.Editable = true;
         }

@@ -38,6 +38,9 @@ public class MicrobeEditorAction : ReversableAction
         Data = data;
     }
 
+    [JsonIgnore]
+    public bool IsMoveAction => Data is MoveActionData;
+
     public override void DoAction()
     {
         editor.ChangeMutationPoints(-Cost);
