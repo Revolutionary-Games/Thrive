@@ -21,8 +21,10 @@ public static class ControlHelpers
                 // "Refresh" the popup to correct its size
                 popup.RectSize = Vector2.Zero;
 
+                var parentRect = popup.GetViewport().GetVisibleRect();
+
                 // Re-center it
-                popup.PopupCentered();
+                popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;
             });
         }
     }
