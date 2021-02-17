@@ -12,9 +12,6 @@ public class MicrobeEditorAction : ReversableAction
     [JsonProperty]
     public readonly int Cost;
 
-    [JsonProperty]
-    public readonly string Name;
-
     /// <summary>
     ///   Action specific data
     /// </summary>
@@ -32,15 +29,17 @@ public class MicrobeEditorAction : ReversableAction
 
     public MicrobeEditorAction(MicrobeEditor editor, int cost,
         Action<MicrobeEditorAction> redo,
-        Action<MicrobeEditorAction> undo, string name, IMicrobeEditorActionData data = null)
+        Action<MicrobeEditorAction> undo, IMicrobeEditorActionData data = null)
     {
         this.editor = editor;
         Cost = cost;
-        Name = name;
         this.redo = redo;
         this.undo = undo;
         Data = data;
     }
+
+    [JsonIgnore]
+    public bool IsMoveAction => Data is MoveActionData;
 
     public override void DoAction()
     {

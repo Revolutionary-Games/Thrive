@@ -925,8 +925,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         organelleMenu.SelectedOrganelle = selectedOrganelle;
         organelleMenu.ShowPopup = true;
 
-        // Disable delete option for nucleus or the last organelle.
-        if (editor.MicrobeSize < 2)
+        // Disable delete for nucleus or the last organelle.
+        if (editor.MicrobeSize < 2 || selectedOrganelle.Definition == nucleus)
         {
             organelleMenu.EnableDeleteOption = false;
         }
@@ -934,11 +934,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             organelleMenu.EnableDeleteOption = true;
         }
+
+        // Move enabled only when is more than one organelle
+        organelleMenu.EnableMoveOption = editor.MicrobeSize > 1;
     }
 
     public void OnMovePressed()
     {
-        editor.OrganelleInProcessOfMoving(organelleMenu.SelectedOrganelle);
+        editor.StartOrganelleMove(organelleMenu.SelectedOrganelle);
     }
 
     public void OnDeletePressed()
@@ -1017,10 +1020,15 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
 
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        PlayInvalidActionSound();
     }
 
-    internal void BlockActionWhileMoving()
+    internal void OnActionBlockedWhileMoving()
+    {
+        PlayInvalidActionSound();
+    }
+
+    internal void PlayInvalidActionSound()
     {
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
@@ -1073,7 +1081,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         if (editor.MovingOrganelle != null)
         {
-            BlockActionWhileMoving();
+            OnActionBlockedWhileMoving();
             return;
         }
 
