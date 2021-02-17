@@ -21,14 +21,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     public string NewName;
 
-    /// <summary>
-    ///   Cost of the organelle that is about to be placed
-    /// </summary>
-    [JsonProperty]
-    public float CurrentOrganelleCost;
-
-    private Vector3 arrowPosition = Vector3.Zero;
-
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     /// <summary>
