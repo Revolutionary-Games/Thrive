@@ -2,6 +2,9 @@ shader_type spatial;
 
 uniform sampler2D texture : hint_albedo;
 
+uniform float fresnelValue : hint_range(0, 1) = 1;
+uniform bool fresnelActive = false;
+
 uniform sampler2D dissolveTexture : hint_albedo;
 uniform float dissolveValue : hint_range(0, 1);
 
@@ -46,6 +49,15 @@ void fragment(){
         growColor.rgb;
 
     ALBEDO = final.rgb;
-    ALPHA = round(cutoff) * final.a;
+    
+    if (fresnelActive)
+	{
+        ALPHA = round(cutoff) * final.a * sqrt(1.0f - dot(NORMAL, VIEW)) * fresnelValue;
+	}
+    else
+	{
+        ALPHA = round(cutoff) * final.a;
+	}
+    
     EMISSION = dissolveOutline;
 }
