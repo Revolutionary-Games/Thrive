@@ -111,11 +111,10 @@ public class ToolTipManager : CanvasLayer
             var screenSize = GetViewport().GetVisibleRect().Size;
 
             // Clamp tooltip position so it doesn't go offscreen
+            // TODO: Take into consideration of viewport (window) resizing for the offsetting.
             MainToolTip.Position = new Vector2(
-                Mathf.Clamp(mousePos.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
-                    MainToolTip.Size.x),
-                Mathf.Clamp(mousePos.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
-                    MainToolTip.Size.y));
+                Mathf.Clamp(mousePos.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x - MainToolTip.Size.x),
+                Mathf.Clamp(mousePos.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y - MainToolTip.Size.y));
 
             MainToolTip.Size = Vector2.Zero;
 

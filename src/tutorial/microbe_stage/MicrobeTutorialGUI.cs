@@ -69,7 +69,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
             if (value)
             {
-                microbeWelcomeMessage.PopupCentered();
+                microbeWelcomeMessage.PopupCenteredShrink();
             }
             else
             {
