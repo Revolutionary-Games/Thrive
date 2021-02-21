@@ -41,6 +41,7 @@ ToolTipManager="*res://src/gui_common/tooltip/ToolTipManager.tscn"
 TransitionManager="*res://src/gui_common/TransitionManager.cs"
 CursorLoader="*res://src/engine/CursorLoader.cs"
 ScreenShotTaker="*res://src/engine/ScreenShotTaker.cs"
+FullScreenToggle="*res://src/engine/FullScreenToggle.cs"
 Jukebox="*res://src/general/Jukebox.cs"
 TemporaryLoadedNodeDeleter="*res://src/saving/TemporaryLoadedNodeDeleter.cs"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
@@ -233,6 +234,12 @@ e_reset_camera={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
  ]
 }
+toggle_fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -241,7 +248,7 @@ e_reset_camera={
 
 [locale]
 
-translations=PoolStringArray( "res://locale/en.po", "res://locale/fr.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/de.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/nl_BE.po", "res://locale/pl.po", "res://locale/tr.po", "res://locale/bg.po", "res://locale/ca.po", "res://locale/ko.po", "res://locale/lb_LU.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ru.po", "res://locale/sr_Cyrl.po", "res://locale/sr_Latn.po", "res://locale/he.po", "res://locale/lt.po", "res://locale/lt.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po" )
+translations=PoolStringArray( "res://locale/en.po", "res://locale/fr.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/de.po", "res://locale/eo.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/nl_BE.po", "res://locale/pl.po", "res://locale/tr.po", "res://locale/bg.po", "res://locale/ca.po", "res://locale/ko.po", "res://locale/lb_LU.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ru.po", "res://locale/sr_Cyrl.po", "res://locale/sr_Latn.po", "res://locale/he.po", "res://locale/lt.po", "res://locale/lt.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po" )
 
 [logging]
 

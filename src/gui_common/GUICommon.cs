@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
@@ -9,18 +10,16 @@ public class GUICommon : Node
 
     private AudioStream buttonPressSound;
 
-    private Tween tween;
-
     private GUICommon()
     {
         instance = this;
 
         AudioSource = new AudioStreamPlayer();
         AudioSource.Bus = "GUI";
-        tween = new Tween();
+        Tween = new Tween();
 
         AddChild(AudioSource);
-        AddChild(tween);
+        AddChild(Tween);
 
         // Keep this node running even while paused
         PauseMode = PauseModeEnum.Process;
@@ -35,6 +34,11 @@ public class GUICommon : Node
     ///   The audio player for UI sound effects.
     /// </summary>
     public AudioStreamPlayer AudioSource { get; }
+
+    /// <summary>
+    ///   General purpose Tween node for use in various places.
+    /// </summary>
+    public Tween Tween { get; }
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
@@ -72,12 +76,23 @@ public class GUICommon : Node
     /// <summary>
     ///   Smoothly interpolates the value of a TextureProgress bar.
     /// </summary>
-    public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue)
+    public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue, float speed)
     {
-        var percentage = (targetValue / maxValue) * 100;
-        tween.InterpolateProperty(bar, "value", bar.Value, percentage, 0.3f,
-            Tween.TransitionType.Linear, Tween.EaseType.Out);
-        tween.Start();
+        bar.MaxValue = maxValue;
+        Tween.InterpolateProperty(bar, "value", bar.Value, targetValue, speed,
+            Tween.TransitionType.Cubic, Tween.EaseType.Out);
+        Tween.Start();
+    }
+
+    /// <summary>
+    ///   Smoothly interpolates the value of a ProgressBar.
+    /// </summary>
+    public void TweenBarValue(ProgressBar bar, float targetValue, float maxValue, float speed)
+    {
+        bar.MaxValue = maxValue;
+        Tween.InterpolateProperty(bar, "value", bar.Value, targetValue, speed,
+            Tween.TransitionType.Cubic, Tween.EaseType.Out);
+        Tween.Start();
     }
 
     public void ModulateFadeIn(Control control, float duration)
@@ -86,16 +101,22 @@ public class GUICommon : Node
         control.Show();
         control.Modulate = new Color(1, 1, 1, 0);
 
-        tween.InterpolateProperty(control, "modulate:a", 0, 1, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
-        tween.Start();
+        Tween.InterpolateProperty(control, "modulate:a", 0, 1, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
+        Tween.Start();
     }
 
-    public void ModulateFadeOut(Control control, float duration)
+    public void ModulateFadeOut(Control control, float duration, bool hideOnFinished = true)
     {
         control.Modulate = new Color(1, 1, 1, 1);
 
-        tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
-        tween.Start();
+        Tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
+        Tween.Start();
+
+        if (!Tween.IsConnected("tween_completed", this, nameof(HideControlOnFadeOutComplete)) && hideOnFinished)
+        {
+            Tween.Connect("tween_completed", this, nameof(HideControlOnFadeOutComplete),
+                new Array { control }, (int)ConnectFlags.Oneshot);
+        }
     }
 
     /// <summary>
@@ -127,5 +148,13 @@ public class GUICommon : Node
             icon = GD.Load<Texture>("res://assets/textures/gui/bevel/TestIcon.png");
 
         return icon;
+    }
+
+    private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)
+    {
+        _ = obj;
+        _ = key;
+
+        control.Hide();
     }
 }

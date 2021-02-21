@@ -222,7 +222,7 @@ public class OptionsMenu : Control
     private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
-    private WindowDialog backConfirmationBox;
+    private AcceptDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
     private AcceptDialog errorAcceptBox;
 
@@ -327,11 +327,15 @@ public class OptionsMenu : Control
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
-        backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
+        backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
+
+        // We're only utilizing the AcceptDialog's auto resize functionality,
+        // so hide the default Ok button since it's not needed
+        backConfirmationBox.GetOk().Hide();
     }
 
     /// <summary>
@@ -683,7 +687,7 @@ public class OptionsMenu : Control
         foreach (var locale in languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
-            var native = currentCulture.NativeName;
+            var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
             optionButton.AddItem(locale + " - " + native);
         }
     }
@@ -700,7 +704,7 @@ public class OptionsMenu : Control
         // discarded.
         if (!CompareSettings())
         {
-            backConfirmationBox.PopupCenteredMinsize();
+            backConfirmationBox.PopupCenteredShrink();
             return;
         }
 
@@ -733,7 +737,7 @@ public class OptionsMenu : Control
         if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
-            errorAcceptBox.PopupCenteredMinsize();
+            errorAcceptBox.PopupCenteredShrink();
             return;
         }
 
@@ -750,7 +754,7 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        defaultsConfirmationBox.PopupCenteredMinsize();
+        defaultsConfirmationBox.PopupCenteredShrink();
     }
 
     private void BackSaveSelected()
@@ -760,7 +764,7 @@ public class OptionsMenu : Control
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
             backConfirmationBox.Hide();
-            errorAcceptBox.PopupCenteredMinsize();
+            errorAcceptBox.PopupCenteredShrink();
 
             return;
         }
@@ -1113,5 +1117,11 @@ public class OptionsMenu : Control
         {
             languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
         }
+    }
+
+    private void OnLogButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
     }
 }

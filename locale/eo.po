@@ -1,573 +1,534 @@
 # Translations template for PROJECT.
-# Copyright (C) 2020 ORGANIZATION
+# Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-11 23:35+0700\n"
-"PO-Revision-Date: 2021-02-07 15:14+0000\n"
-"Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
-"Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/ca/>\n"
-"Language: ca\n"
+"PO-Revision-Date: 2021-01-30 10:39+0000\n"
+"Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
+"Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/eo/>\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-<<<<<<< HEAD
-"Language: ca\n"
-"X-Generator: Poedit 2.4.2\n"
-=======
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.4\n"
-"Generated-By: Babel 2.8.0\n"
->>>>>>> master
+"Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Fes servir les tecles W,A,S,D i el ratolí per moure't per la pantalla. "
-"Clica la tecla E per a disparar la toxina OxyToxy NT; per fer-ho, cal que "
-"tinguis un vacúol de toxines. Clica la tecla G per a activar el mode "
-"d'engolir."
+"W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
+"toksinan vakuolon). G por ŝalti englutan reĝimon."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"La vostra cèl·lula fa servir els nucleòtids ATP com a font d'energia; si "
-"se li n'esgoten totes les reserves, es morirà."
+msgstr "Via ĉelo uzas ATP-on kiel energifonton, se ĝi finiĝos, vi mortos."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Per tal de desbloquejar l'editor i reproduïr-vos, heu de recol·lectar "
-"Amoníac (núvols de color taronja) i Fosfats (núvols de color violeta)."
+"Por malfermi la redaktilon kaj reprodukti, vi devas kolekti Amoniakon "
+"(Oranĝa Nubo) kaj Fosfaton (Purpura Nubo)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"També pots engolir cèl·lules, bocins de cèl·lules i trossos de ferro, "
-"sempre que siguin més petits que la teva cèl·lula. Per fer-ho, clica la "
-"tecla G per a activar el mode d'engolir. Això farà que gastis més ATP i "
-"que et moguis més a poc a poc. No t'oblidis, per tant, de tornar a clicar "
-"la tecla G una altra vegada per a desactivar el mode d'engolir."
+"Vi ankaŭ povas engluti ĉelojn, bakteriojn, ferajn pecojn kaj ĉelajn pecojn "
+"pli malgrandajn ol vi premante G. Ĉi tio kostos aldonan ATP-on kaj "
+"malrapidigos vin. Ne forgesu premi G duan fojon por ĉesi engluti."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"L'osmoregulació consumeix molt ATP. Per tant, com més gran sigui la teva "
-"cèl·lula, més orgànuls (com els Mitocondris) o proteïnes (com el "
-"Metabolosoma i la Rusticianina) o citoplasma necessitaràs per tal de no "
-"perdre ATP quan estigueu quiets."
+"Osmoregado kostas ATP-ojn, kio signifas, ju pli granda estas via ĉelo, des "
+"pli da Mitokondrioj aŭ Metabolosomoj aŭ Rusticianinoj (aŭ citoplasmo, kiu "
+"faras Glikolizon) vi bezonas por eviti perdi ATP-on kiam vi estas senmova."
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; "
-"un munt de possibilitats jugables."
+"Estas multaj Organetoj en la redaktilo por ke vi evoluu, permesante larĝan "
+"gamon de malsamaj ludstiloj."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
-"Per a la versió actual del joc, si la teva població baixa fins a 0 "
-"t'hauràs extingit."
+msgstr "Se la nombro de via loĝantaro iĝos nulo, vi formortos."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"Els núvols que et pots trobar contenen els següents compostos:\n"
+"La diversaj kunmetitaj nuboj estas:\n"
 "\n"
-"Blanc - Glucosa\n"
-"Groc - Àcid Sulfhídric\n"
-"Taronja - Amoníac\n"
-"Violeta - Fosfats\n"
-"Marró bru - Ferro\n"
+"Blanka - Glukozo\n"
+"Flava - Hidrogena Sulfido\n"
+"Oranĝa - Amoniako\n"
+"Purpura - Fosfato\n"
+"Rusta Bruno - Fero\n"
 "\n"
-"La Glucosa produeix ATP"
+"Glukozo produktas ATP-on"
 
 #: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"L'Àcid Sulfhídric pot ser transformat en Glucosa mitjançant Quimioplasts i "
-"Proteïnes Quimiosintetitzadores. El Ferro pot ser transformat en ATP "
-"mitjançant Rusticianina."
+"Hidrogena Sulfido povas esti konvertita je glukozo per kemoplastoj kaj "
+"kemosintezaj proteinoj. Fero povas esti transformita en ATP per "
+"rusticianino."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. "
-"Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
+"Por reproduktiĝi vi devas dividi ĉiun el viaj organetoj en du. Organetoj "
+"bezonas amoniakon kaj fosfaton por duiĝi."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Però si sobrevius durant 20 generacions i la teva població té més de 300 "
-"individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà "
-"una finestreta d'enhorabona i, després, podràs seguir jugant."
+"Sed se vi postvivos dudek generaciojn kun 300 aŭ pli loĝantoj, vi gajnas "
+"la ludon. Post kiam vi gajnas, aperas ŝprucfenestro, sed vi povas ludi "
+"plu, se vi volas."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en "
-"cap moment. Cada vegada que entris a l'editor, ells també faran un salt "
-"evolutiu."
+"Evoluu saĝe ĉar viaj konkurantoj evoluas kune kun vi. Ĉiufoje, kiam vi "
+"uzas la redaktilon, ili evoluas."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"Estructures procariòtiques\n"
+"Prokariotaj Strukturoj\n"
 "\n"
-"Metabolosomes: Produeixen ATP a partir de Glucosa\n"
+"Metabolosomoj: Produktas ATP-ojn el glukozo\n"
 "\n"
-"Proteïnes Quimiosintetitzadores: Produeixen una petita quantitat de "
-"Glucosa, la meitat respecte a un Quimioplast, a partir d'Àcid Sulfhídric. "
-"També duu a terme el procés de Glicòlisi. A l'editor ocupa 1 Hexàgon\n"
+"Kemiosintezaj Proteinoj: Produktas duonon de la tuta glukozo el Hidrogena "
+"Sulfido kiel kemoplasto, sed ankaŭ plenumas glikolizon, plenas 1 "
+"Sesangulon\n"
 "\n"
-"Tilacoide: Produeixen una petita quantitat de Glucosa, una tercera part "
-"respecte a un Cloroplast. També duu a terme el procés de Glicòlisi. A "
-"l'editor ocupa 1 Hexàgon\n"
+"Tilakoidoj: Produktas 1/3 de la kvanto de glukozo kiel normala "
+"kloroplasto, sed ankaŭ plenumas glikolizon, kaj plenas 1 Sesangulon\n"
 "\n"
-"Rusticianina: Produeix ATP a partir de Ferro\n"
+"Rusticyanin: Konvertas feron en ATP-ojn\n"
 "\n"
-"Nitrogenasa: Produeix Amoníac, mitjançant un procés anaeròbic, a partir de "
-"l'ATP i del Nitrogen ambiental\n"
+"Nitrogenazo: Konvertas atmosferan nitrogenon kaj ATP-ojn en amoniakon "
+"malaerobe\n"
 "\n"
-"Citoplasma: Permet, fins a un cert límit, emmagatzemar recursos a "
-"l'interior de la cèl·lula. També duu a terme el procés de Glicòlisi"
+"Citoplasmo: Havas stokan spacon kaj faras glikolizon (Produktas "
+"malgrandajn kvantojn de ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Orgànuls externs\n"
+"Eksteraj Organetoj\n"
 "\n"
-"Flagel: Fa que la teva cèl·lula sigui més ràpida. Consumeix ATP\n"
+"Flagelo: Pli rapide movas vian ĉelon per konsumado de ATP\n"
 "\n"
-"Pilus: Estructura per punxar altres cèl·lules"
+"Pilus: Povas esti uzata por bati aliajn ĉelojn"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Orgànuls adherits a la membrana\n"
+"Membranaj Binditaj Organetoj\n"
 "\n"
-"Nucli: Ocupa 11 hexàgons i permet desbloquejar la resta d'orgànuls "
-"adherits a la membrana. A més a més, fa que la teva cèl·lula es faci més "
-"grossa per un factor de 2. (Només es pot col·locar una vegada)\n"
+"Nukleo: Prenas 11 sesangulojn kaj permesas evoluon de membranligitaj "
+"organetoj. Kaj ankaŭ duobligas la grandecon de via ĉelo. (Evolueblas nur "
+"unufoje)\n"
 "\n"
-"Mitocondri: Produeix ATP a partir de Glucosa i Oxigen (O2) atmosfèric. És "
-"molt més eficient que no pas el Citoplasma\n"
+"Mitokondrio: Produktas ATP-ojn el glukozo kaj atmosfera O2. Multe pli "
+"efika ol citoplasmo\n"
 "\n"
-"Cloroplast: Produeix Glucosa a partir de Llum solar i Diòxid de Carboni "
-"(CO2) atmosfèric\n"
+"Kloroplasto: Faras glukozon el sunlumo kaj atmosfera CO2\n"
 "\n"
-"Quimioplast: Produeix Glucosa a partir d'Àcid Sulfhídric\n"
+"Chememioplasto: Faras glukozon el Hidrogena Sulfido\n"
 "\n"
-"Plastidi de Fixació de Nitrogen: Produeix Amoníac a partir d'ATP i "
-"Nitrogen (N2) i Oxigen (O2) atmosfèric\n"
+"Nitrogenfiksanta plastido: Faras amoniakon de ATP kaj atmosfera Nitrogeno "
+"kaj Oksigeno\n"
 "\n"
-"Vacúol: Emmagatzema 15 unitats de qualsevol compost recol·lectat\n"
+"Vakuolo: Konservas 15 kolektitajn komponaĵojn\n"
 "\n"
-"Vacúol de Toxines: Produeix toxines (anomenades OxyToxy NT)"
+"Toksinaj Vakuoloj: Produktas toksinojn (nomitajn OxyToxy NT-ojn)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"A cada generació pots invertir fins a 100 Punts de Mutació (MP, per les "
-"seves sigles en Anglès). Qualsevol canvi (mutació) que facis a la teva "
-"cèl·lula et costarà una certa quantitat d'aquests MP. Més concretament, "
-"gastaràs Punts de Mutació tant si afegeixes com si elimines qualsevol "
-"orgànul. No obstant, pots eliminar qualsevol orgànul que hagis col·locat "
-"en la sessió d'edició actual sense cap cost. Pots eliminar qualsevol "
-"orgànul tot fent-hi clic dret a sobre amb el ratolí. Pots fer girar els "
-"orgànuls per canviar-ne la orientació mitjançant les tecles A i D."
+"Ĉiun generacion vi havas 100 mutaciajn punktojn (MP) por elspezi, kaj ĉiu "
+"ŝanĝo (aŭ mutacio) kostos certan kvanton de tiu MP. Aldono kaj forigo de "
+"organetoj kostas MP-ojn, tamen forigo de organetoj lokitaj en la nuna "
+"mutacia kunsido repagas MP-ojn por tiu organeto. Vi povas forigi organeton "
+"per dekstra klako sur ĝi. Vi povas turni viajn organetojn per A kaj D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs "
-"fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de "
-"millorar-la. Cada sessió de l'editor de microbi representa 100 milions "
-"d'anys d'evolució."
+"Ĉiufoje, kiam vi reproduktiĝas, vi eniros la Mikroban Redaktilon, kie vi "
+"povas ŝanĝi vian specion (aldonante, movante aŭ forigante organetojn) por "
+"pliigi la sukceson de via specio. Ĉiu vizito al la redaktoro en la Mikroba "
+"Scenejo reprezentas 100 milionojn da jaroj da evoluo."
 
 #: ../simulation_parameters/common/help_texts.json:43
 msgid "LOADING_TIP"
-msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+msgstr "Premu la malfaran butonon en la redaktilo por korekti eraron"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"A mode de curiositat, la relació entre les cèl·lules de l'espècie Didinium "
-"i les cèl·lules Paramecium és un exemple típic i clar, que ha estat "
-"estudiat durant dècades, d'una relació entre depredador i presa. Ara bé, "
-"la teva espècie, és l'equivalent de Didinium o de Paramecium? Ets un "
-"depredador, o bé la presa?"
+"Amuza Fakto, La Didinio kaj Paramecio estas lernolibra ekzemplo de rilato "
+"de predantaj predoj, kiu estis studata de jardekoj, nun, ĉu vi estas la "
+"Didinio aŭ la Paramecio? Ĉu Predanto aŭ Predo?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies "
-"toxines per a bloquejar-ne d'altres."
+"Jen konsilo, toksinoj povas esti uzataj por forpeli aliajn toksinojn de "
+"vi, se vi estas sufiĉe rapida."
 
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Un petit consell, la Osmoregulació consumeix, cada segon, 1 unitat d'ATP "
-"per nombre d'hexàgons de la teva cèl·lula. Alhora, cada hexàgon de "
-"citoplasma produeix 5 unitats d'ATP cada segon. Per tant, si estas perdent "
-"ATP degut a la Osmoregulació, afegeix un parell d'hexàgons de citoplasma o "
-"bé elimina alguns orgànuls."
+"Jen konsilo, ke Osmoregado konsumas 1 ATP-on per sekundo por ĉiu sesangulo "
+"kiun vi havas. Ĉiu malplena sesangulo de citoplasmo generas ankaŭ 5 ATP-"
+"ojn per sekundo, kio signifas, ke se vi perdas ATP-ojn pro osmozregulacio, "
+"nur aldonu kelkajn malplenajn citoplasmajn sesangulojn aŭ forigu iujn "
+"organetojn."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"A mode de curiositat, al planeta Terra, els organismes procariotes tenen "
-"unes estructures anomenades Biocompartiments que actuen com orgànuls. En "
-"realitat, s'anomenen Orgànuls Polihèdrics."
+"Amuza Fakto: En la reala vivo prokariotoj havas ion nomatan "
+"Biokompartmentoj, kiuj funkcias kiel organetoj. Fakte ili nomiĝas "
+"Pluredraj organetoj."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
-"A mode de curiositat, els Metabolosomes són el que s'anomena Orgànuls "
-"Polihèdrics."
+"Amuza Fakto: La metabolosomo estas tio, kion oni nomas Pluredra organeto."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-"Un petit consell, de vegades és millor fugir ràpidament de les altres "
-"cèl·lules."
+msgstr "Jen konsilo, foje plej bone estas nur forkuri de aliaj ĉeloj."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"Recorda que, si et creues amb una cèl·lula almenys dues vegades més petita "
-"que tu, la pots engolir per alimentar-te'n."
+"Jen konsilo, se ĉelo estas ĉirkaŭ duono de via grandeco, tiam vi povas "
+"engluti ĝin."
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Vés amb compte. Els bacteris, malgrat ser molt petits, poden resultar "
-"perillosos. Alguns t'atacaran agressivament per devorar-te sense pensar-"
-"s'ho dues vegades!"
+"Jen konsilo, Bakterioj povas esti pli fortaj ol ili ŝajnas, ili eble "
+"aspektas malgrandaj, sed iuj el ili povas enkaŝiĝi en vin kaj mortigi vin "
+"tiel!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Un petit consell, si caçes altres espècies i no vas amb compte, es poden "
-"extingir. També es poden extingir si són caçades per altres espècies "
-"depredadores."
+"Jen konsilo: Vi povas ĉasi aliajn speciojn ĝis formorto, se vi ne sufiĉe "
+"zorgas, ili ankaŭ povas esti ĉasitaj de aliaj specioj."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "ÉSSERS LLEFISCOSOS!!"
+msgstr "FURIOZAJ AĴOJ!!"
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
-"Smeltal the meltal: frase satírica en anglès, amb un lèxic deformat a "
-"propòsit, que vol dir \"Fondre els metalls\"."
+msgstr "Metala potencialo."
 
 #: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_12"
-msgstr "No obstant, aquestes cèl·lules de color blau."
+msgstr "Tiuj bluaj ĉeloj tamen."
 
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Un petit consell: els diferents Biomes no són tan sols diferents fons, "
-"sinó que en cadascun hi ha diferents proporcions de compostos."
+"Jen konsilo, Biomoj estas pli ol nur malsamaj fonoj, la kunmetaĵoj en "
+"malsamaj biomoj foje generiĝas kun malsamaj rapidecoj."
 
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Un petit consell: com més Flagels tinguis, més ràpid et podràs moure, però "
-"també més ATP consumiràs"
+"Jen konsilo, Ju pli da flageloj vi havas, des pli rapide vi iras, sed ĝi "
+"kostas pli da ATP"
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"Un petit consell: no només et pots empassar cèl·lules, sinó també trossos "
-"de Ferro."
+msgstr "Jen konsilo, vi povas engluti pecojn da fero aŭ da alia."
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Un petit consell: prepara bé la teva cèl·lula abans d'afegir-li un Nucli. "
-"Els Nuclis són cars i consumeixen una gran quantitat d'ATP."
+"Jen konsilo, preparu antaŭ ol aldoni kernon. Tiuj aĵoj estas multekostaj! "
+"En prizorgado kaj antaŭkosto."
 
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
-"A mode de curiositat, sabies que hi ha més de 8000 espècies d'organismes "
-"ciliats al planeta Terra?"
+"Amuza Fakto, ĉu vi sciis, ke ekzistas pli ol 8000 specioj de ciliatoj sur "
+"la planedo Tero?"
 
 #: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"A mode de curiositat, l'Stentor és un ciliat que es pot estendre per tal "
-"d'atrapar preses amb una boca amb forma de trompeta. Mitjançant Cilis, "
-"genera corrents d'aigua que atrapen a les preses."
+"Amuza Fakto: La Stentoro estas ciliato, kiu povas streĉi sin kaj kapti "
+"predon en simila al trumpeto buŝo, kiu allogas predon, generante "
+"akvofluojn kun cilioj."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
+msgstr "Amuza Fakto, La Didinio estas ciliato, kiu ĉasas paramecion."
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
-"A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' "
-"fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran "
-"implementades al joc."
+"Amuza Fakto: La Amebo ĉasas kaj kaptas predojn per 'kruroj' el citoplasmo "
+"nomata pseŭdopodoj, ni volas havi tiujn en Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Un petit consell: vés amb compte amb les cèl·lules més grans que la teva, "
-"no és gens divertit ser engolit per una d'aquestes bestioles."
+"Jen konsilo: gardu sin de pli grandaj ĉeloj kaj grandaj bakterioj, ĉar ne "
+"estas amuze esti digestita, se ili manĝos vin."
 
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"L'equip de so de Thrive ha composat moltes cançons, algunes de les quals "
-"encara no s'han afegit al joc. No obstant, les pots escoltar, i fins i tot "
-"veure emissions en directe al canal de YouTube 'Oliver Lugg'."
+"La teama gvidanto de Thrive kreis multajn kantojn, kiuj ankoraŭ ne estis "
+"aldonitaj al la ludo. Vi povas aŭdi ilin, aŭ spekti fluojn de li "
+"komponanta sur sia jutuba kanalo, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et podràs "
-"empassar fins i tot el trossos de ferro més grans del joc."
+"Jen konsilo, se via ĉelo havas 150 sesangulojn, vi povas engluti la "
+"grandajn ferajn pecojn."
 
 #: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"Thrive representa una simulació d'un planeta alienígena. Per tant, la "
-"majoria de criatures que vagis trobant, estaran emparentades i mostraran "
-"similituds amb d'altres espècies degut al procés d'evolució. Intenta "
-"identificar-les!"
+"Thrive estas simulado de fremda planedo, tial havas sencon, ke plej multaj "
+"bestoj, kiujn vi trovas, rilatos al unu aŭ du aliaj specioj pro evoluo "
+"okazanta ĉirkaŭ vi. Ni vidu, ĉu vi povas identigi ilin!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"A mode de curiositat, l'equip de Thrive fa podcasts en directe cada cert "
-"temps. Estigues amatent i no te'n perdis ni un!"
+"Amuze, La Thrive-teamo faras podkastojn de tempo al tempo, vi devas "
+"kontroli ilin!"
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-"A mode de curiositat, Thrive està essent desenvolupat amb el motor de "
-"videojoc de codi obert anomenat Godot!"
+msgstr "Amuza Fakto, Thrive estas farita per la malfermitkoda Godot engine!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"A mode de curiositat, un dels primers prototips jugables d'aquest joc va "
-"ser desenvolupat pel nostre gran programador untrustedlife!"
+"Amuza Fakto, Unu el la unuaj ludeblaj ludaj prototipoj estis farita per "
+"nia brava programisto, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr "Moviment"
+msgstr "Movado"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
-msgstr "Moure cap a l'esquerra"
+msgstr "Movu maldekstren"
 
 #: ../simulation_parameters/common/input_options.json:14
 msgid "MOVE_RIGHT"
-msgstr "Moure cap a la dreta"
+msgstr "Movu dekstren"
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
-msgstr "Moure cap endavant"
+msgstr "Antaŭeniĝu"
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr "Moure cap endarrere"
+msgstr "Malantaŭeniĝu"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "Moviment automàtic cap endavant"
+msgstr "Antaŭeniĝu aŭtomate"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr "Habilitats"
+msgstr "Kapabloj"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr "Llançar les toxines"
+msgstr "Pafu toksinon"
 
 #: ../simulation_parameters/common/input_options.json:42
 msgid "TOGGLE_ENGULF"
-msgstr "Activar el mode d'engolir"
+msgstr "Ŝaltu engluton"
 
 #: ../simulation_parameters/common/input_options.json:51
 msgid "CAMERA"
-msgstr "Càmera"
+msgstr "Kamerao"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr "Eixamplar la visió de la càmera"
+msgstr "Malzomu"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
-msgstr "Enfocar la visió de la càmera"
+msgstr "Zomu"
 
 #: ../simulation_parameters/common/input_options.json:67
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1088
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1032
->>>>>>> master
 msgid "EDITOR"
-msgstr "Editor"
+msgstr "Redaktilo"
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "ROTATE_RIGHT"
-msgstr "Rotar cap a la dreta"
+msgstr "Rotaciu dekstren"
 
 #: ../simulation_parameters/common/input_options.json:75
 msgid "ROTATE_LEFT"
-msgstr "Rotar cap a l'esquerra"
+msgstr "Rotaciu maldekstren"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "UNDO"
-msgstr "Desfer l'acció"
+msgstr "Malfaru"
 
 #: ../simulation_parameters/common/input_options.json:83
 msgid "REDO"
-msgstr "Refer l'acció"
+msgstr "Refaru"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "PLACE_ORGANELLE"
-msgstr "Col·locar orgànul"
+msgstr "Disloku organeton"
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "REMOVE_ORGANELLE"
-msgstr "Suprimir orgànul"
+msgstr "Forigu organeton"
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "PAN_CAMERA_LEFT"
-msgstr "Desplaçar cap a l'esquerra"
+msgstr "Movigu maldekstren"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "PAN_CAMERA_RIGHT"
-msgstr "Desplaçar cap a la dreta"
+msgstr "Movigu dekstren"
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "PAN_CAMERA_UP"
-msgstr "Desplaçar cap amunt"
+msgstr "Movigu supren"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_DOWN"
-msgstr "Desplaçar cap avall"
+msgstr "Movigu malsupren"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_RESET"
-msgstr "Reinicialitzar càmera"
+msgstr "Restarigu kameraon"
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "CHEATS"
-msgstr "Trucs"
+msgstr "Trompaĵoj"
 
 #: ../simulation_parameters/common/input_options.json:123
 msgid "ENABLE_EDITOR"
-msgstr "Habilitar l'editor"
+msgstr "Ebligu la redaktilon"
 
 #: ../simulation_parameters/common/input_options.json:127
 msgid "SPAWN_GLUCOSE"
-msgstr "Fer aparéixer Glucosa"
+msgstr "Generu glukozon"
 
 #: ../simulation_parameters/common/input_options.json:131
 msgid "SPAWN_AMMONIA"
-msgstr "Fer aparéixer Amoníac"
+msgstr "Generu amoniakon"
 
 #: ../simulation_parameters/common/input_options.json:135
 msgid "SPAWN_PHOSPHATES"
-msgstr "Fer aparéixer Fosfats"
+msgstr "Generu fosfaton"
 
 #: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
-msgstr "Miscel·lània"
+msgstr "Diversaj"
 
 #: ../simulation_parameters/common/input_options.json:148
 msgid "TOGGLE_FPS"
-msgstr "Activar monitor FPS"
+msgstr "Ŝaltu FPS-ekranon"
 
 #: ../simulation_parameters/common/input_options.json:152
 msgid "QUICK_SAVE"
-msgstr "Guardat ràpid"
+msgstr "Rapida konservado"
 
 #: ../simulation_parameters/common/input_options.json:156
 msgid "QUICK_LOAD"
-msgstr "Càrrega ràpida"
+msgstr "Rapida ŝarĝo"
 
 #: ../simulation_parameters/common/input_options.json:160
 msgid "TAKE_SCREENSHOT"
-msgstr "Fer una captura de pantalla"
+msgstr "Prenu ekrankopion"
 
 #: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
-msgstr "Mostrar tauler d'ajuda"
+msgstr "Montru helpon"
 
 #: ../simulation_parameters/common/input_options.json:168
 #, fuzzy
 msgid "TOGGLE_FULLSCREEN"
-msgstr "Pantalla completa"
+msgstr "Ŝaltu FPS-ekranon"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Respiració"
+msgstr "Spirado"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr "Glicòlisi"
+msgstr "Glikolizo"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "Glicòlisi de Citoplasma"
+msgstr "Citoplasma Glikolizo"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr "Fotosíntesi"
+msgstr "Fotosintezo"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "Síntesi de les toxines OxyToxy"
+msgstr "OxyToxy Sintezo"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "Quimiosíntesi"
+msgstr "Kemisintezo"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Fixació Aeròbica de Nitrogen"
+msgstr "Aerobia Nitrogena Riparado"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fixació Anaeròbica de Nitrogen"
+msgstr "Malaerobia Nitrogena Riparado"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Quimiolitoautotròfia basada en Ferro"
+msgstr "Fera Kemolitoaŭtotrofio"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr "Zona epipelàgica"
+msgstr "Epipelagika"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
 #: ../simulation_parameters/microbe_stage/biomes.json:153
@@ -581,7 +542,7 @@ msgstr "Zona epipelàgica"
 #: ../simulation_parameters/microbe_stage/biomes.json:1539
 #: ../simulation_parameters/microbe_stage/biomes.json:1671
 msgid "FLOATING_HAZARD"
-msgstr "Perill flotant"
+msgstr "Ŝveba Danĝero"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
 #: ../simulation_parameters/microbe_stage/biomes.json:170
@@ -595,7 +556,7 @@ msgstr "Perill flotant"
 #: ../simulation_parameters/microbe_stage/biomes.json:1556
 #: ../simulation_parameters/microbe_stage/biomes.json:1688
 msgid "SMALL_IRON_CHUNK"
-msgstr "Petit tros de Ferro"
+msgstr "Malgranda Fera Peco"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
 #: ../simulation_parameters/microbe_stage/biomes.json:285
@@ -609,11 +570,11 @@ msgstr "Petit tros de Ferro"
 #: ../simulation_parameters/microbe_stage/biomes.json:1591
 #: ../simulation_parameters/microbe_stage/biomes.json:1723
 msgid "BIG_IRON_CHUNK"
-msgstr "Gran tros de Ferro"
+msgstr "Granda Fera Peco"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:146
 msgid "VOLCANIC_VENT"
-msgstr "Fissura volcànica"
+msgstr "Vulkana ellastruo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:205
 #: ../simulation_parameters/microbe_stage/biomes.json:572
@@ -621,47 +582,47 @@ msgstr "Fissura volcànica"
 #: ../simulation_parameters/microbe_stage/biomes.json:992
 #: ../simulation_parameters/microbe_stage/biomes.json:1746
 msgid "MARINE_SNOW"
-msgstr "Neu marina"
+msgstr "Mara neĝo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:354
 msgid "TIDEPOOL"
-msgstr "Toll o bassa de marea"
+msgstr "Tajdbaseno"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:486
 msgid "BATHYPELAGIC"
-msgstr "Zona batipelàgica"
+msgstr "Batipelagika"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:698
 msgid "ABYSSOPELAGIC"
-msgstr "Zona abissal"
+msgstr "Abisma zono"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:906
 msgid "MESOPELAGIC"
-msgstr "Zona mesopelàgica"
+msgstr "Mezopelagia zono"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1118
 msgid "COASTAL"
-msgstr "Zona costanera"
+msgstr "Marbordo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1250
 msgid "UNDERWATERCAVE"
-msgstr "Cova submarina"
+msgstr "Subakva Kaverno"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1378
 msgid "ICESHELF"
-msgstr "Plataforma de gel"
+msgstr "Glacia breto"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1441
 msgid "ICESHARD"
-msgstr "Fragment de gel"
+msgstr "Glacia ero"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1528
 msgid "ESTUARY"
-msgstr "Estuari"
+msgstr "Enmariĝo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1660
 msgid "SEA_FLOOR"
-msgstr "Llit marí"
+msgstr "Marfundo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:473
@@ -682,19 +643,19 @@ msgstr "ATP"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4473
 #: ../src/microbe_stage/MicrobeStage.tscn:1216
 msgid "AMMONIA"
-msgstr "Amoníac"
+msgstr "Amoniako"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
 #: ../src/microbe_stage/MicrobeStage.tscn:1270
 msgid "PHOSPHATE"
-msgstr "Fosfat"
+msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4163
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 msgid "HYDROGEN_SULFIDE"
-msgstr "Àcid Sulfhídric"
+msgstr "Hidrogena Sulfido"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:51
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:448
@@ -708,18 +669,18 @@ msgstr "Àcid Sulfhídric"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4188
 #: ../src/microbe_stage/MicrobeStage.tscn:1162
 msgid "GLUCOSE"
-msgstr "Glucosa"
+msgstr "Glukozo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
 #: ../src/microbe_stage/MicrobeStage.tscn:1510
 msgid "OXYTOXY_NT"
-msgstr "OxyToxy NT"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
 #: ../src/microbe_stage/MicrobeStage.tscn:1378
 msgid "IRON"
-msgstr "Ferro"
+msgstr "Fero"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
@@ -728,7 +689,7 @@ msgstr "Ferro"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4542
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5059
 msgid "OXYGEN"
-msgstr "Oxigen"
+msgstr "Oksigeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:99
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1032
@@ -738,717 +699,632 @@ msgstr "Oxigen"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3907
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4223
 msgid "CARBON_DIOXIDE"
-msgstr "Diòxid de Carboni"
+msgstr "Karbona duoksido"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2017
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4511
 msgid "NITROGEN"
-msgstr "Nitrogen"
+msgstr "Nitrogeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7327
 msgid "SUNLIGHT"
-msgstr "Llum solar"
+msgstr "Sunlumo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2610
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2674
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2426
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2791
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2582
->>>>>>> master
 msgid "PREDATORY_PILUS"
-msgstr "Fibló"
+msgstr "Raba Vilo (Pilus)"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1479
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1543
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2078
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1601
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2226
->>>>>>> master
 msgid "RUSTICYANIN"
-msgstr "Rusticianina"
+msgstr "Rusticianino"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1784
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1848
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2293
->>>>>>> master
 msgid "NITROGENASE"
-msgstr "Nitrogenasa"
+msgstr "Nitrogenazo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:117
 msgid "PROTOPLASM"
-msgstr "protoplasma"
+msgstr "Protoplasmo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1198
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1262
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Proteïnes Quimiosintetitzadores"
+msgstr "Kemosintezaj Proteinoj"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2059
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2123
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2208
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2360
->>>>>>> master
 msgid "OXYTOXISOME"
-msgstr "Oxytoxysoma"
+msgstr "Oxytoxisomo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:960
 msgid "THYLAKOIDS"
-msgstr "Tilacoide"
+msgstr "Tilakoidoj"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:249
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1881
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:602
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:666
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2024
->>>>>>> master
 msgid "METABOLOSOMES"
-msgstr "Metabolosomes"
+msgstr "Metabolosomoj"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4414
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3144
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr "Plastidi Fixador de Nitrogen"
+msgstr "Nitrogen-fiksa Plastido"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3895
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3959
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2906
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4129
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3074
->>>>>>> master
 msgid "CHEMOPLAST"
-msgstr "Quimioplast"
+msgstr "Kemoplasto"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2346
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2410
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2516
->>>>>>> master
 msgid "FLAGELLUM"
-msgstr "Flagel"
+msgstr "Flagelo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4472
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4536
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4669
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4733
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3212
->>>>>>> master
 msgid "VACUOLE"
-msgstr "Vacúol"
+msgstr "Vakuolo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3052
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3116
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2710
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2872
->>>>>>> master
 msgid "MITOCHONDRION"
-msgstr "Mitocondri"
+msgstr "Mitokondrio"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4661
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4725
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4934
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3281
->>>>>>> master
 msgid "TOXIN_VACUOLE"
 msgstr ""
-"Toxina\n"
-"Vacúol"
+"Toksa\n"
+"Vakuolo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3327
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3391
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2775
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2939
->>>>>>> master
 msgid "CHLOROPLAST"
-msgstr "Cloroplast"
+msgstr "Kloroplasto"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:337
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:401
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1723
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:414
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1865
->>>>>>> master
 msgid "CYTOPLASM"
-msgstr "Citoplasma"
+msgstr "Citoplasmo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2862
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2926
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2645
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2805
->>>>>>> master
 msgid "NUCLEUS"
-msgstr "Nucli"
+msgstr "Kerno"
 
 #: ../src/auto-evo/AutoEvoRun.cs:112
 msgid "ABORTED"
-msgstr "Avortat."
+msgstr "Nuligita."
 
 #: ../src/auto-evo/AutoEvoRun.cs:115
 msgid "FINISHED"
-msgstr "Acabat."
+msgstr "Finita."
 
 #: ../src/auto-evo/AutoEvoRun.cs:118
 msgid "NOT_RUNNING"
-msgstr "No està en marxa."
+msgstr "Malaktiva."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "AUTOEVO_STEPS_DONE"
-msgstr "{0:F1}% fet. {1:n0}/{2:n0} passos."
+msgstr "{0:F1}% finita. {1:n0}/{2:n0} paŝoj."
 
 #: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "STARTING"
-msgstr "Començant"
+msgstr "Komenco"
 
 #: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTOEVO_POPULATION_CHANGED"
-msgstr ""
-"Població de l'espècie {0} canviada per una quantitat {1} degut a aquest "
-"efecte: {2}"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
-msgstr "població:"
+msgstr "loĝantaro:"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
-msgstr "anterior:"
+msgstr "antaŭa:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr "ha patit una mutació"
+msgstr "havas mutacion"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
-msgstr "codi genètic:"
+msgstr "genkodo:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUNRESULT_SPREAD_TO_PATCHES"
-msgstr "s'ha escampat a les zones:"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr "{0} enviant-hi: {1} membres de l'espècie des de la zona: {2}"
+msgstr "{0} sendas: {1} loĝantaro de loko: {2}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
-msgstr "població a les zones:"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
-msgstr "Carregant"
+msgstr "Ŝarĝante"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:299
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "Prem qualsevol tecla o botó..."
+msgstr "Premu klavon..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
-"Hi ha un conflicte amb {0}\n"
-"Vols eliminar l'input de {1}?"
+"Estas konflikto kun {0}.\n"
+"Ĉu vi volas forigi la enigon de {1}?"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr "CTRL"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr "Alt"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr "Shift"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
-msgstr "Click esquerre del ratolí"
+msgstr "Maldekstra musbutono"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
-msgstr "Clic dret del ratolí"
+msgstr "Dekstra musbutono"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr "Clic del mig del ratolí"
+msgstr "Meza musbutono"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr "Rodeta amunt"
+msgstr "Rado supren"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr "Rodeta avall"
+msgstr "Rado malsupren"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr "Rodeta esquerra"
+msgstr "Rado maldekstre"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
-msgstr "Rodeta dreta"
+msgstr "Rado dekstre"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
-msgstr "Ratolí especial 1"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr "Ratolí especial 2"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr "Desconegut ratolí"
+msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
-msgstr "Tancar"
+msgstr "Fermu"
 
 #: ../src/general/OptionsMenu.tscn:127
 msgid "GRAPHICS"
-msgstr "Gràfics"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
-msgstr "Só"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
-msgstr "Rendiment"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:163
 msgid "INPUTS"
-msgstr "Inputs"
+msgstr "Klavoj"
 
 #: ../src/general/OptionsMenu.tscn:175
 msgid "MISC"
-msgstr "Misc"
+msgstr "Aliaj"
 
 #: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
-msgstr "V-sinc"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
-msgstr "Pantalla completa"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr "Antialiàsing Multimostres (MSAA):"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(valors més alts empitjoren el rendiment)"
+msgstr "(pli altaj valoroj plimalbonigas agadon)"
 
 #: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
-msgstr "Resolució:"
+msgstr "Distingivo:"
 
 #: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
-msgstr "auto"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
-msgstr "Màxim FPS:"
+msgstr "Maks. FPS:"
 
 #: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
-msgstr "Correcció 'Colourblind':"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
-msgstr "Aberració cromàtica:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:403
 msgid "MASTER_VOLUME"
-msgstr "Master del volum"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
 #: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
 #: ../src/general/OptionsMenu.tscn:570
 msgid "MUTE"
-msgstr "Mut"
+msgstr "Silentigi"
 
 #: ../src/general/OptionsMenu.tscn:444
 msgid "MUSIC_VOLUME"
-msgstr "Volum de la música"
+msgstr "Muzika volumo"
 
 #: ../src/general/OptionsMenu.tscn:477
 msgid "AMBIANCE_VOLUME"
-msgstr "Volum de l'ambient"
+msgstr "Media Volumo"
 
 #: ../src/general/OptionsMenu.tscn:510
 msgid "SFX_VOLUME"
-msgstr "Volum SFX"
+msgstr "Volumo de sonefektoj"
 
 #: ../src/general/OptionsMenu.tscn:543
 msgid "GUI_VOLUME"
-msgstr "Volum de la interfície GUI"
+msgstr "Interfaca volumo"
 
 #: ../src/general/OptionsMenu.tscn:588
 msgid "LANGUAGE"
-msgstr "Llengua:"
+msgstr "Lingvo:"
 
 #: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:1009
 msgid "RESET"
-msgstr "Resetejar"
+msgstr "Rekomencu"
 
 #: ../src/general/OptionsMenu.tscn:612
 msgid "OPEN_TRANSLATION_SITE"
-msgstr "Ajuda'ns a traduïr el joc"
+msgstr "Helpu Traduki La Ludon"
 
 #: ../src/general/OptionsMenu.tscn:632
 msgid "COMPOUND_CLOUDS"
-msgstr "Núvols de Compostos"
+msgstr "Kunmetitaj nuboj"
 
 #: ../src/general/OptionsMenu.tscn:647
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
-"Mínim Interval de Simulació\n"
-"de Núvols:"
+"Nuba Simulada Minimumo\n"
+"Intervalo:"
 
 #: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(valors més alts augmenten el rendiment)"
+msgstr "(pli altaj valoroj malpliigas rendimenton)"
 
 #: ../src/general/OptionsMenu.tscn:691
+#, fuzzy
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr "Divisor de Resolució dels Núvols:"
+msgstr "Nuba Rezolucia Divizoro:"
 
 #: ../src/general/OptionsMenu.tscn:733
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "Activa la simulació auto-evo durant el joc"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:800
 msgid "RESET_INPUTS"
-msgstr "Resetejar Inputs"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:824
 msgid "PLAY_INTRO_VIDEO"
-msgstr "Mostra el vídeo introductori"
+msgstr "Ludu enkondukan filmeton"
 
 #: ../src/general/OptionsMenu.tscn:833
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
-"Mostra la cinemàtica d'entrada a l'Estadi de Microbi en començar una nova "
-"partida"
+msgstr "Ludu Mikroban Enkondukon en ĉiu Nova Ludo"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr "Guardat automàtic durant el joc"
+msgstr "Aŭtomata konservado dum la ludo"
 
 #: ../src/general/OptionsMenu.tscn:853
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "Màxim nombre d'arxius d'autoguardat:"
+msgstr "Kvanto da aŭtomataj konservadoj:"
 
 #: ../src/general/OptionsMenu.tscn:881
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Màxim nombre d'arxius de guardat ràpid:"
+msgstr "Kvanto da rapidaj konservadoj:"
 
 #: ../src/general/OptionsMenu.tscn:907
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr "Mostrar tutorials (en noves partides)"
+msgstr "Montru lernilojn (en novaj ludoj)"
 
 #: ../src/general/OptionsMenu.tscn:915
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr "Mostrar tutorials (a la partida actual)"
+msgstr "Montru lernilojn (en ĉi tiu ludo)"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "CHEAT_KEYS_ENABLED"
-msgstr "Trucs activats"
+msgstr "Trompaĵoj estas ebligitaj"
 
 #: ../src/general/OptionsMenu.tscn:943
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr "Fer servir un nom d'usuari propi"
+msgstr "Uzu propran salutnomon"
 
 #: ../src/general/OptionsMenu.tscn:954
 msgid "CUSTOM_USERNAME"
-msgstr "Nom d'usuari:"
+msgstr "Via Salutnomo:"
 
 #: ../src/general/OptionsMenu.tscn:980
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr "Obrir la carpeta de captures de pantalla"
+msgstr "Malfermu Ekrankopian Dosierujon"
 
 #: ../src/general/OptionsMenu.tscn:988
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Obrir Carpeta de Registres"
+msgstr "Malfermu Dosierujon de Registroj"
 
 #: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:113
 msgid "BACK"
-msgstr "Enrere"
+msgstr "Reen"
 
 #: ../src/general/OptionsMenu.tscn:1020 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
-msgstr "Guardar"
+msgstr "Konservu"
 
 #: ../src/general/OptionsMenu.tscn:1036
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "Per defecte"
+msgstr "Defaŭlte"
 
 #: ../src/general/OptionsMenu.tscn:1048
 msgid "RESET_TO_DEFAULTS"
-msgstr "Resetejar als valors per defecte?"
+msgstr "Ĉu restarigu al defaŭltaj?"
 
 #: ../src/general/OptionsMenu.tscn:1057
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
-"Esteu segur que voleu resetejar TOTA la configuració als seus valors per "
-"defecte?"
+"Ĉu vi certas, ke vi volas restarigi ĈIUJN agordojn al defaŭltaj valoroj?"
 
 #: ../src/general/OptionsMenu.tscn:1071
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "Resetejar els inputs a valors per defecte?"
+msgstr "Ĉu restarigu enirojn al defaŭltaj?"
 
 #: ../src/general/OptionsMenu.tscn:1080
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
-"Esteu segur que voleu resetejar els inputs de configuració a valors per "
-"defecte?"
+"Ĉu vi certas, ke vi volas reagordi la enirajn agordojn al defaŭltaj "
+"valoroj?"
 
 #: ../src/general/OptionsMenu.tscn:1094
 msgid "CLOSE_OPTIONS"
-msgstr "Tancar opcions?"
+msgstr "Ĉu fermu agordojn?"
 
 #: ../src/general/OptionsMenu.tscn:1114
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
-"Hi ha canvis no guardats. Si continueu, es perdran tots.\n"
-"Voleu continuar?"
 
 #: ../src/general/OptionsMenu.tscn:1136
 msgid "SAVE_AND_CONTINUE"
-msgstr "Guardar i continuar"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1145
 msgid "DISCARD_AND_CONTINUE"
-msgstr "Descartar i continuar"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1161
 msgid "CANCEL"
-msgstr "Cancel·lar"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1173 ../src/general/OptionsMenu.tscn:1196
 #: ../src/general/OptionsMenu.tscn:1220
 msgid "ERROR"
-msgstr "Error"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Error: No s'ha pogut guardar la nova configuració."
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:57
 msgid "RESUME"
-msgstr "Reprendre"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:64
 msgid "SAVE_GAME"
-msgstr "Guardar la partida"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:71 ../src/gui_common/MainMenu.tscn:163
 msgid "LOAD_GAME"
-msgstr "Carregar una partida"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4432
 msgid "STATISTICS"
-msgstr "Estadístiques"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:86
 msgid "HELP"
-msgstr "Ajuda"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:93 ../src/gui_common/MainMenu.tscn:175
 msgid "OPTIONS"
-msgstr "Opcions"
+msgstr "Agordoj"
 
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
-msgstr "Tornar al Menú"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:107
 msgid "EXIT"
-msgstr "Sortir"
+msgstr ""
 
 #: ../src/general/StringUtils.cs:18
 msgid "BILLION_ABBREVIATION"
-msgstr "B"
+msgstr ""
 
 #: ../src/general/StringUtils.cs:24
 msgid "MILLION_ABBREVIATION"
-msgstr "M"
+msgstr ""
 
 #: ../src/general/StringUtils.cs:30
 msgid "KILO_ABBREVIATION"
-msgstr "K"
+msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
-msgstr "/segon"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
-msgstr "D'acord"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.cs:330
 msgid "Cancel"
-msgstr "Cancel·lar"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:148
 msgid "NEW_GAME"
-msgstr "Nova partida"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:187
 msgid "TOOLS"
-msgstr "Eines"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr "Veure Codi Font"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
-msgstr "Extres"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:223
 msgid "CREDITS"
-msgstr "Crèdits"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:235
 msgid "QUIT"
-msgstr "Sortir"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "Editor Lliure de Microbi"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
-msgstr "Mode d'Alerta GLES2"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:372
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no "
-"ha estat del tot validada i, per tant, pot originar alguns problemes. "
-"Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de "
-"gràfics AMD o Nvidia per executar Thrive."
+"Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas "
+"problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ "
+"Nvidia-grafikaĵojn por ke Thrive funkciu."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr "Aquest arxiu de guardat pertany a una versió diferent del joc"
+msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:19
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"La versió del fitxer de guardat que voleu carregar no coincideix amb la "
-"versió del joc actual.\n"
-"Siusplau, carregueu l'arxiu de guardat manualment a través del menú."
+"La versio de la konservado, kiun vi provas ŝarĝi, ne kongruas kun la "
+"ludversio.\n"
+"Bonvolu ŝargi la konservadon permane per la menuo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:78
 msgid "OPEN_THE_MENU"
-msgstr "Obrir el menú"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "OPEN_HELP_SCREEN"
-msgstr "Obrir pantalla d'ajuda"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:98
 msgid "WILL_YOU_THRIVE"
-msgstr "Podràs prosperar?"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:110
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr "Acabar la sessió d'evolució i tornar al món"
+msgstr "Finu redaktadon kaj revenu al ĉirkaŭa mondo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "CHANGE_THE_SYMMETRY"
-msgstr "Canviar la simetria"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:122
 msgid "UNDO_THE_LAST_ACTION"
-msgstr "Desfer la darrera acció"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "REDO_THE_LAST_ACTION"
-msgstr "Refer la darrera acció"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "CREATE_A_NEW_MICROBE"
-msgstr "Crear un nou microbi"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:154
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:217
 msgid "MEMBRANE_RIGIDITY"
-msgstr "Rigidesa de la membrana"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:254
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5418
@@ -1458,7 +1334,7 @@ msgstr "Rigidesa de la membrana"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6949
 msgid "MOBILITY"
-msgstr "Mobilitat"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:289
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5521
@@ -1468,13 +1344,13 @@ msgstr "Mobilitat"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6691
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7052
 msgid "HEALTH"
-msgstr "Salut"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:329
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Una membrana més rígida protegeix millor, però fa que la cèl·lula sigui "
-"més lenta i menys àgil."
+"Pli malmola membrano pli rezistas damaĝon, sed malfaciligas la movadon de "
+"la ĉelo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:441
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:693
@@ -1487,7 +1363,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4441
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4961
 msgid "TURNS"
-msgstr "Girs"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:466
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:718
@@ -1501,7 +1377,7 @@ msgstr "Girs"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4466
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4986
 msgid "INTO"
-msgstr "dins"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:506
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:800
@@ -1520,7 +1396,7 @@ msgstr "dins"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5090
 msgid "STORAGE"
-msgstr "Emmagatzematge"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:838
@@ -1545,71 +1421,67 @@ msgstr "Emmagatzematge"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6623
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6984
 msgid "OSMOREGULATION_COST"
-msgstr "Cost d'Osmoregulació"
+msgstr "Osmoregada Kosto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:586
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
-"És la substància que forma l'interior de la cèl·lula. El Citoplasma és una "
-"barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de "
-"les seves funcions principals és dur a terme el procés de Fermentació, en "
-"el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que "
-"no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per "
-"tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-"
-"se."
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion "
+"de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi "
+"la grandecon de la ĉelo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:746
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
 msgid "DOT_RATE_SCALES"
-msgstr ". La velocitat augmenta proporcionalment"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:759
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
 msgid "WITH_CONCENTRATION_OF"
-msgstr "amb la concentració de"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:766
 msgid "OXYGEN_DOT"
-msgstr "Oxigen."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
-"Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana. "
-"Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera "
-"més ràpida i eficient que el Citoplasma. No obstant, necessita grans "
-"quantitats d'Oxigen atmosfèric per funcionar amb eficàcia. Com que els "
-"Metabolosomes estan suspesos en el Citoplasma, aquest fluid duu a terme "
-"una certa Fermentació."
+"Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili "
+"povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas "
+"esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi "
+"postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la "
+"medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la "
+"metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo "
+"iom fermentas."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:858
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1946
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2091
->>>>>>> master
 msgid "THYLAKOID"
-msgstr "Tilacoide"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:987
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3560
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3862
 msgid "PRODUCES"
-msgstr "Produeix"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1012
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3887
 msgid "DOT_RATE_SCALES_WITH"
-msgstr ". La velocitat augmenta proporcionalment amb"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3598
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3900
 msgid "CONCENTRATION_OF"
-msgstr "la concentració de"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1051
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1722
@@ -1617,297 +1489,246 @@ msgstr "la concentració de"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3926
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4535
 msgid "AND"
-msgstr "i"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
 msgid "INTENSITY_OF"
-msgstr "la intensitat de"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
-msgstr "Llum"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests "
-"pigments són capaços de fer servir l'energia provinent d'una font de Llum "
-"(com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i "
-"Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. "
-"Aquests pigments també donen un color característic als Tilacoides. La "
-"velocitat de producció de Glucosa és proporcional a la concentració de "
-"Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides "
-"estan suspesos en el Citoplasma, aquest fluid duu a terme una certa "
-"Fermentació."
+"Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La "
+"pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj "
+"gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ "
+"donas al ili distingan koloron. La rapideco de ilia glukozoproduktado "
+"dependas de la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar "
+"la tilakoidoj estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo "
+"iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4211
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ". La velocitat augmenta proporcionalment amb la concentració de"
+msgstr ". Asociita kun la koncentriĝo de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
 msgid "ALSO_TURNS"
-msgstr "També transforma"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el "
-"Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid "
-"de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de "
-"l'Àcid Sulfhídric. La velocitat de la producció de Glucosa és proporcional "
-"a la concentració de Diòxid de Carboni. Transformen la Glucosa en ATP "
-"mitjançant la Respiració Aeròbica, de manera més ràpida que el Citoplasma. "
-"Com que les Proteïnes Quimiosintetitzadores estan suspeses en el "
-"Citoplasma, aquest fluid duu a terme una certa Fermentació."
+"Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo "
+"kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco "
+"de ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. "
+"Ĉar la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la "
+"ĉirkaŭa fluido iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
-"La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, "
-"canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest "
-"procés s'anomena Respiració de Ferro, i allibera una certa quantitat "
-"d'energia que la cèl·lula pot fer servir."
+"Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj "
+"oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, "
+"nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1997
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3322
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4491
 msgid "DOT_RATE"
-msgstr ". La velocitat"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3335
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4504
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5052
 msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr "augmenta proporcionalment amb la concentració de"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic "
-"per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen "
-"i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen "
-"Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest "
-"fluid duu a terme una certa Fermentació."
+"Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
+"en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. "
+"Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo "
+"estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4993
 msgid "OXYTOXY"
-msgstr "Oxytoxy"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2285
 msgid "DOT_CAN_RELEASE"
-msgstr ". Pot alliberar"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2297
 msgid "TOXINS_BY_PRESSING_E"
-msgstr ""
-"Toxines quan s'apreti el botó E del teclat. La velocitat augmenta "
-"proporcionalment amb"
+msgstr "toksinoj premante E-n. Asociita kun"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2428
 msgid "OXYTOXISOME_DESC"
 msgstr ""
-"Un Metabolosoma modificat que és responsable de la producció d'una forma "
-"primitiva de l'agent tòxic OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2535
 msgid "USES"
-msgstr "Fa servir"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2560
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr "per augmentar la"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2572
 msgid "SPEED_OF_THE_CELL"
-msgstr "velocitat de la cèl·lula."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2593
 msgid "SPEED"
-msgstr "Velocitat"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"Els flagels són uns farcells de proteïnes i fibres, com petits tentacles "
-"que sobresurten de la membrana cel·lular. Mitjançant un moviment "
-"ondulatori, permeten propulsar la cèl·lula cap endavant a gran velocitat, "
-"mentre consumeixen ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
-"Amb aquesta estructura punxeguda, pots acoltellar altres cèl·lules fins a "
-"trencar la seva membrana."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2736
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2800
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2490
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2648
->>>>>>> master
 msgid "CILIA"
-msgstr "Cilis"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5296
 msgid "TO_BE_IMPLEMENTED"
-msgstr "Encara no s'ha implementat."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3064
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Permet evolucionar orgànuls més complexes,\n"
-" que es poden adherir a la part externa de la\n"
-" membrana. Consumeix una gran quantitat\t\n"
-" d'ATP. Es tracta d'un pas evolutiu irreversible."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
-"És la característica que defineix les cèl·lules eucariotes. El nucli "
-"inclou el Reticle Endoplasmàtic i l'Aparell de Golgi. Representa un pas "
-"evolutiu important respecte a les cèl·lules procariotes, que permet "
-"desenvolupar orgànuls més complexes, rodejats per una membrana, tot "
-"engolint i assimilant petites cèl·lules procariotes. Això permet dividir "
-"clarament l'interior de la cèl·lula en diversos compartiments separats, "
-"cadascun duent a terme un procés de síntesi de recursos diferents. Així, "
-"amb aquests nous orgànuls, la cèl·lula pot esdevenir molt més complexa, "
-"eficient i especialitzada. No obstant, això també implica que la cèl·lula "
-"ha d'esdevenir més gran i necessita més quantitat de recursos per a viure."
+"La ĉefa eco de eŭkariotaj ĉeloj. La kerno ankaŭ inkluzivas la endoplasman "
+"retikulo kaj la golgi-korpon. Ĉi tio estas evoluado de prokariotaj ĉeloj "
+"por disvolvi sistemon de internaj membranoj, farita per asimilado de alia "
+"prokarioto en si mem. Ĉi tio permesas al ili dividi, aŭ kunestigi la "
+"malsamajn procezojn okazantajn ene de la ĉelo kaj malhelpi ilin "
+"interkovri. Ĉi tio permesas al iliaj novaj membranoligitaj organetoj esti "
+"multe pli kompleksaj, efikaj kaj specialigitaj ol se ili libere flosus en "
+"la citoplasmo. Tamen ĉi tio kostas fari la ĉelon multe pli granda kaj "
+"postuli multan energion por konservi la ĉelon."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3453
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
-"És el pal de paller de la generació d'energia per la cèl·lula. Els "
-"Mitocondris són una estructura de membrana doble curulla de proteïnes i "
-"enzims. En realitat, és un petit organisme procariota que ha estat engolit "
-"i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix "
-"grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran "
-"eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
+"La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas "
+"duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas "
+"prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas "
+"konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari "
+"ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas "
+"oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio "
+"malrapidigos la rapidon de ĝia produktado de ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3755
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
-"El cloroplast és una estructura de doble membrana que conté pigments "
-"sensibles a la Llum, agrupats en petites membranes. En realitat, és un "
-"petit organisme procariota que ha estat engolit i assimilat per una "
-"cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços "
-"de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de "
-"Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li "
-"donen un color distintiu. La velocitat de producció de Glucosa augmenta "
-"proporcionalment amb la concentració de Diòxid de Carboni i la intensitat "
-"de la Llum."
+"La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn "
+"pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto "
+"asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la "
+"kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo "
+"kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj "
+"ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de "
+"glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de "
+"lumo."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3615
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3679
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2840
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3771
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3835
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3006
->>>>>>> master
 msgid "THERMOPLAST"
-msgstr "Termoplast"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7322
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:745
 msgid "TEMPERATURE"
-msgstr "Temperatura"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4049
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
-"El termoplast és una estructura de doble membrana que, de manera anàloga "
-"al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites "
-"membranes. En realitat, és un petit organisme procariota que ha estat "
-"engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. "
-"Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i "
-"les diferències de Temperatura al seu entorn. La velocitat de producció de "
-"la Glucosa augmenta proporcionalment a la concentració de Diòxid de "
-"Carboni i la Temperatura."
+"La termoplasto estas duobla membranstrukturo enhavanta termosentemajn "
+"pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita "
+"por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas "
+"uzi la energion de varmaj diferencoj en la medio por produkti glukozon el "
+"akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco "
+"de ĝia produktado de glukozo dependas de la koncentriĝo de karbona "
+"dioksido kaj temperaturo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4334
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
-"El Quimioplast és una estructura de doble membrana que conté proteïnes que "
-"transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, "
-"mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La "
-"velocitat de producció de Glucosa augmenta proporcionalment a la "
-"concentració d'Aigua i Diòxid de Carboni."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4653
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
-"El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un "
-"component important en el creixement i reproducció de les cèl·lules, "
-"mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena "
-"Fixació de Nitrogen Aeròbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4754
 msgid "INREASE_STORAGE_SPACE"
-msgstr "Augmenta l'espai d'emmagatzematge de la cèl·lula."
+msgstr "Pliigas la stokan spacon de la ĉelo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4854
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"El Vacúol és un orgànul intern que consisteix en una membrana capaç "
-"d'emmagatzemar una certa quantitat de nutrients. Està format per un cert "
-"nombre de vesícules, que són unes petites estructures membranoses que han "
-"estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota "
-"mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No "
-"són estructures rígides, sinò que la seva forma pot canviar amb el temps."
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5011
 msgid "DOT_CAN"
-msgstr ". Pot"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5024
 msgid "RELEASE_TOXINS_BY_PRESSING"
-msgstr "alliberar toxines quan es premi"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5031
 msgid "E_DOT"
-msgstr "la tecla E."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5039
 msgid "RATE"
-msgstr "La velocitat"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5170
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
-"El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la "
-"producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat "
-"d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes "
-"Toxines."
+"La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa "
+"produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj "
+"vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5250
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr "Vacúol Bioluminescent"
+msgstr ""
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5095
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5159
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3362
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5381
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3538
->>>>>>> master
 msgid "NORMAL"
-msgstr "Normal"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5745
@@ -1916,642 +1737,423 @@ msgstr "Normal"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6657
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7018
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr "Velocitat d'Absorció de Recursos"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5561
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Aquesta és la forma més bàsica de la Membrana cel·lular, que ofereix poca "
-"protecció contra Agents externs i altres cèl·lules. També consumeix una "
-"quantitat important d'energia. Com a avantatge, permet a la cèl·lula "
-"moure's i absorbir nutrients ràpidament."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5340
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5404
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3432
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5577
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5641
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3610
->>>>>>> master
 msgid "DOUBLE"
-msgstr "Doble"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5817
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Una membrana cel·lular formada per dues capes, que ofereix millor "
-"protecció i consumeix menys energia. No obstant, fa que la cèl·lula "
-"esdevingui més lenta. També redueix la velocitat a la qual s'absorbeixen "
-"els nutrients en entrar-hi en contacte."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5581
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5645
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3502
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5833
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5897
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3682
->>>>>>> master
 msgid "CELLULOSE"
-msgstr "Cel·lulosa"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6725
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7086
 msgid "PHYSICAL_RESISTANCE"
-msgstr "Resistència física"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6105
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6432
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6793
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7154
 msgid "CANNOT_ENGULF"
-msgstr "No pot engolir"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6144
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Aquesta membrana té una paret, que ofereix una bona protecció, "
-"especialment contra agressions físiques, com ara fiblades. Consumeix poca "
-"energia, però absorbeix els nutrients lentament."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5884
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5948
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3572
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6160
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6224
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3754
->>>>>>> master
 msgid "CHITIN"
-msgstr "Quitina"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6398
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6759
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7120
 msgid "TOXIN_RESISTANCE"
-msgstr "Resistència a les Toxines"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6471
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Aquesta membrana té una paret, de manera que està més ben protegida, "
-"especialment contra agents externs, com ara Toxines. A més a més, "
-"consumeix poca energia. No obstant, la cèl·lula esdevé més lenta i "
-"absorbeix els nutrients més a poc a poc."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6187
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6251
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3647
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6551
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3831
->>>>>>> master
 msgid "CALCIUM_CARBONATE"
-msgstr "Carbonat de Calci"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6832
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Aquesta membrana té una capa dura de Carbonat de Calci. Té una gran "
-"resistència a qualsevol agressió externa, ja sigui de naturalesa física o "
-"química. No consumeix gaire energia. Malgrat tot, la cèl·lula esdevé lenta "
-"i absorbeix els nutrients a poc a poc."
+"Ĉi tiu membrano havas fortan ŝelon el kalcia karbonato. Ĝi povas facile "
+"rezisti damaĝon kaj postulas malpli da energio por ne misformi. La "
+"malavantaĝoj de havi tian pezan ŝelon estas, ke la ĉelo estas multe pli "
+"malrapida kaj bezonas iom da tempo por sorbi resursojn."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6520
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6584
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3719
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6848
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6912
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3904
->>>>>>> master
 msgid "SILICA"
-msgstr "Silici"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7193
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Aquesta membrana té una forta paret de silici. Pot resistir les agressions "
-"externes, sobretot les de naturalesa física. També consumeix poca energia. "
-"No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els "
-"nutrients a poc a poc."
+"Ĉi tiu membrano havas fortan silikan muron. Ĝi povas bone rezisti "
+"ĝeneralan damaĝon kaj tre rezistas al fizika damaĝo. Ĝi ankaŭ postulas "
+"malpli da energio por konservi sian formon. Tamen ĝi malrapidigas la ĉelon "
+"kaj la ĉelo sorbas resurson kun malpli granda rapideco."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7314
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
-msgstr "acció carronyaire exitosa"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1182
 msgid "SUCCESSFUL_KILL"
-msgstr "acció de caça exitosa"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
-msgstr "evasió d'un intent d'engolició"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
-msgstr "Indret: {0}"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:605
 msgid "STUFF_AT"
-msgstr "Matèria a les coordenades {0:F1}, {1:F1}:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:664
-#, fuzzy
 msgid "PLAYER_CELL"
-msgstr "el jugador ha mort"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:453
 msgid "PLAYER_REPRODUCED"
-msgstr "el jugador ha aconseguit reproduïr-se"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:565
 msgid "PLAYER_DIED"
-msgstr "el jugador ha mort"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:430
 msgid "AT_CURSOR"
-msgstr "A sota del Cursor:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "NOTHING_HERE"
-msgstr "No hi ha res a sota del Cursor"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:480
 msgid "COMPOUNDS_COLON"
-msgstr "Compostos:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "SPECIES_COLON"
-msgstr "Espècies:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:599
 msgid "ENVIRONMENT"
-msgstr "Entorn"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
-msgstr "Temperatura"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
-msgstr "Pressió"
+msgstr ""
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/MicrobeStage.tscn:1028
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4814
-=======
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4616
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5253
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
->>>>>>> master
 msgid "COMPOUNDS"
-msgstr "Compostos"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1448
 msgid "AGENTS"
-msgstr "Agents"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1721
 msgid "POPULATION_CAPITAL"
-msgstr "POBLACIÓ:"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:16
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr "Fumeroles volcàniques de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:24
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr "Zona Mesopelàgica de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:31
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr "Zona Epipelàgica de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:38
 msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr "Toll o Bassa de Marea de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:45
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr "Zona Batipelàgica de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:52
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr "Zona Abissopelàgica de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:59
 msgid "PATCH_PANGONIAN_COAST"
-msgstr "Zona Costanera de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:66
 msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr "Estuari de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:73
 msgid "PATCH_CAVE"
-msgstr "Cova submarina"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:80
 msgid "PATCH_ICE_SHELF"
-msgstr "Plataforma de Gel"
+msgstr "Glacia Breto"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:87
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr "Llit Marí de Pangònia"
+msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
-msgstr "Processos de la Cèl·lula"
+msgstr "Ĉelaj Procezoj"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr "Equilibri de Compostos"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:509
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1111
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "S'està carregant l'Editor de Microbi"
+msgstr "Ŝarĝante Mikrobredaktilon"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:511
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr "S'està esperant l'algorisme auto-evo:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1912
 msgid "AUTO_EVO_FAILED"
-msgstr "L'algorisme auto-evo ha tingut un error"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1913
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr "estat d'execució:"
+msgstr ""
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:926
-msgid "REPORT"
-msgstr "Informe"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:947
-msgid "PATCH_MAP"
-msgstr "Mapa d'Indrets del món"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1024
-msgid "ORGANISM_STATISTICS"
-msgstr "Estadístiques de la Cèl·lula"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1070
-msgid "SPEED_COLON"
-msgstr "Velocitat:"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1100
-msgid "HP_COLON"
-msgstr "Punts de salut:"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1130
-msgid "SIZE_COLON"
-msgstr "Mida:"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1151
-msgid "GENERATION_COLON"
-msgstr "Generació:"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1193
-msgid "ATP_BALANCE"
-msgstr "Equilibri d'ATP"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1383
-msgid "MUTATION_POINTS"
-msgstr "Punts de Mutació"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1471
-msgid "STRUCTURE"
-msgstr "Estructura"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1494
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:988
 msgid "REPORT"
-msgstr "Informe"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1010
 msgid "PATCH_MAP"
-msgstr "Mapa d'Indrets del món"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1089
 msgid "ORGANISM_STATISTICS"
-msgstr "Estadístiques de la Cèl·lula"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1150
 msgid "SPEED_COLON"
-msgstr "Velocitat:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1180
 msgid "HP_COLON"
-msgstr "Punts de salut:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1210
 msgid "SIZE_COLON"
-msgstr "Mida:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1231
 msgid "GENERATION_COLON"
-msgstr "Generació:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1273
 msgid "ATP_BALANCE"
-msgstr "Equilibri d'ATP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1479
 msgid "MUTATION_POINTS"
-msgstr "Punts de Mutació"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1612
 msgid "STRUCTURE"
-msgstr "Estructura"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1635
->>>>>>> master
 msgid "APPEARANCE"
 msgstr ""
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1517
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1658
->>>>>>> master
 msgid "BEHAVIOR"
-msgstr "Comportament"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1709
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr "Cerca..."
+msgstr "Serĉado..."
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
-msgid "STRUCTURAL"
-msgstr "Estructural"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1790
-msgid "PROTEINS"
-msgstr "Proteïnes"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1769
 msgid "STRUCTURAL"
-msgstr "Estructural"
+msgstr "Struktura"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1932
 msgid "PROTEINS"
-msgstr "Proteïnes"
+msgstr "Proteinoj"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2160
->>>>>>> master
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
-"Proteïnes\n"
-"Quimiosintetitzadores"
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2272
-msgid "EXTERNAL"
-msgstr "Extern"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2554
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2425
 msgid "EXTERNAL"
-msgstr "Extern"
+msgstr "Ekstera"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2713
->>>>>>> master
 msgid "ORGANELLES"
-msgstr ""
+msgstr "Organetoj"
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2974
-msgid "PLASTID"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3134
-msgid "N_A_MP"
-msgstr "S'han esgotat els Punts de Mutació"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3172
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3308
 msgid "N_A_MP"
-msgstr "S'han esgotat els Punts de Mutació"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3347
->>>>>>> master
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
-"Vacúol\n"
-"Bioluminescent"
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3269
-msgid "MEMBRANE_TYPES"
-msgstr "Tipus de Membrana"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3742
-msgid "FLUIDITY_RIGIDITY"
-msgstr "Fluidesa / Rigidesa"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3780
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3444
 msgid "MEMBRANE_TYPES"
-msgstr "Tipus de Membrana"
+msgstr "Membranaj Tipoj"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3928
 msgid "FLUIDITY_RIGIDITY"
-msgstr "Fluidesa / Rigidesa"
+msgstr "Flueco / Rigideco"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3967
->>>>>>> master
 msgid "COLOUR"
-msgstr "Color"
+msgstr "Koloro"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4112
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Nom de l'Espècie..."
+msgstr "Specia nomo..."
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3952
-msgid "CONFIRM_CAPITAL"
-msgstr "CONFIRMAR"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3961
-msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Equilibri d'ATP Negatiu"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3962
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4141
 msgid "CONFIRM_CAPITAL"
-msgstr "CONFIRMAR"
+msgstr "KONFIRMU"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4151
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Equilibri d'ATP Negatiu"
+msgstr "Negativa ATP-Balanco"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4163
->>>>>>> master
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
-"El teu Microbi no consumeix més ATP que no pas pot arribar a produïr!\n"
-"Vols continuar?"
+"Via mikrobo ne produktas sufiĉe da ATP por ke ĝi travivu!\n"
+"Ĉu vi volas daŭrigi?"
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3970
-msgid "DISCONNECTED_ORGANELLES"
-msgstr "Orgànuls Desconnectats"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3971
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4174
 msgid "DISCONNECTED_ORGANELLES"
-msgstr "Orgànuls Desconnectats"
+msgstr "Malkonektitaj Organetoj"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4186
->>>>>>> master
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
-"Hi ha orgànuls que no han estat físicament connectats a la resta.\n"
-"Siusplau, connecta tots els orgànuls o bé desfés els teus canvis."
+"Inter metitaj organetoj, estas organetoj kiu ne estas ligitaj al la "
+"aliaj.\n"
+"Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn "
+"ŝanĝojn."
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4037
-msgid "PATCH_NAME"
-msgstr "Nom de l'Indret"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4071
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4286
->>>>>>> master
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Aŭto-Evo"
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4085
-msgid "FOOD_CHAIN"
-msgstr "Cadena Alimentària o Tròfica"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4099
-msgid "TIMELINE"
-msgstr "Cronologia"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4152
-msgid "AUTO_EVO_RESULTS"
-msgstr "Resultats de l'algorisme Auto-Evo:"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4171
-msgid "EXTERNAL_EFFECTS"
-msgstr "Efectes externs:"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4237
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5159
-msgid "NEXT_CAPITAL"
-msgstr "SEGÜENT"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4351
-msgid "SELECT_A_PATCH"
-msgstr "Selecciona un Indret per a veure'n els detalls"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4386
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "INDRET ACTUAL"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4466
-msgid "PHYSICAL_CONDITIONS"
-msgstr "Condicions Físiques"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4649
-msgid "ATMOSPHERIC_GASSES"
-msgstr "Gasos Atmosfèrics"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5074
-msgid "SPECIES_PRESENT"
-msgstr "Espècies presents"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5132
-=======
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4299
 msgid "FOOD_CHAIN"
-msgstr "Cadena Alimentària o Tròfica"
+msgstr "Manĝoĉeno"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4312
 msgid "TIMELINE"
-msgstr "Cronologia"
+msgstr "Templinio"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4365
 msgid "AUTO_EVO_RESULTS"
-msgstr "Resultats de l'algorisme Auto-Evo:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4384
 msgid "EXTERNAL_EFFECTS"
-msgstr "Efectes externs:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4441
+#, fuzzy
 msgid "SPECIES_POPULATION"
-msgstr "Població de les Espècies"
+msgstr "loĝantaro:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4474
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4905
 msgid "PHYSICAL_CONDITIONS"
-msgstr "Condicions Físiques"
+msgstr "Fizikaj Kondiĉoj"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4578
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5088
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:816
 msgid "ATMOSPHERIC_GASSES"
-msgstr "Gasos Atmosfèrics"
+msgstr "Atmosferaj Gasoj"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4672
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5600
 msgid "NEXT_CAPITAL"
-msgstr "SEGÜENT"
+msgstr "SEKVA"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4787
 msgid "SELECT_A_PATCH"
-msgstr "Selecciona un Indret per a veure'n els detalls"
+msgstr "Elektu flikaĵon por montri detalojn ĉi tie"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4822
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "INDRET ACTUAL"
+msgstr "NUNA LOKO"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5513
 msgid "SPECIES_PRESENT"
-msgstr "Espècies presents"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5571
->>>>>>> master
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "Moure a aquest Indret"
+msgstr "Moviĝu al ĉi tiu loko"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:575
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-"La quantitat de Glucosa s'ha reduït un percentatge de {0} respecte a la "
-"Generació anterior."
+msgstr "La kvanto de glukozo reduktiĝis al {0} de la antaŭa kvanto."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "MEGA_YEARS"
-msgstr "Milions d'anys"
+msgstr "Megajaro"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:586
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:813
@@ -2560,16 +2162,16 @@ msgstr "Milions d'anys"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "YEARS"
-msgstr "anys"
+msgstr "jaroj"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:628
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:633
 msgid "ATP_PRODUCTION"
-msgstr "Producció d'ATP"
+msgstr "ATP-Produktado"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "LA PRODUCCIÓ D'ATP ÉS MASSA BAIXA!"
+msgstr "ATP-PRODUKTO ESTAS TRE MALALTA!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:663
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
@@ -2577,11 +2179,11 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:680
 msgid "OSMOREGULATION"
-msgstr "Osmoregulació"
+msgstr "Osmoregado"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:686
 msgid "BASE_MOVEMENT"
-msgstr "Capacitat de moviment"
+msgstr "Baza Movado"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:698
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
@@ -2589,239 +2191,229 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
 msgid "SPECIES_LIST"
-msgstr "Espècies presents"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:840
 msgid "FREEBUILDING"
-msgstr "Construcció lliure"
+msgstr "Libera konstruado"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1564
 msgid "BIOME_LABEL"
-msgstr "Bioma: {0}"
+msgstr "Biomo: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1569
 msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}m sota el nivell del mar"
+msgstr "{0}-{1}m sub marnivelo"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1597
 msgid "WITH_POPULATION"
-msgstr "{0} amb població: {1}"
+msgstr "{0} kun loĝantaro: {1}"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
-msgstr "EXTINCIÓ"
+msgstr "FORMORTADO"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
-"Com tantes i tantes altres espècies al llarg dels eons i de les edats "
-"d'aquest planeta, els teus petits organismes s'han extingit. A partir "
-"d'ara, altres espècies ocuparan el seu nínxol en les cadenes tròfiques "
-"dels diferents biomes i, potser, evolucionaran fins a esdevenir éssers "
-"intel·ligents que navegaran conscientment cap a planetes i estrelles "
-"llunyanes. No obstant, la teva línia evolutiva s'ha tallat, ha esdevingut "
-"un experiment fallit en el llarg procés de l'evolució."
+"Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. "
+"Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos "
+"forgesita, malsukcesa eksperimento de evolucio."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
-msgstr "HAS ACONSEGUIT PROSPERAR!"
+msgstr "VI PROSPERIS!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
-"Enhorabona, has guanyat en la versió actual del joc! Si ho vols, un cop "
-"aquesta finestreta es tanqui, pots continuar jugant i fent evolucionar la "
-"teva espècie, o bé començar una nova partida en un nou món."
+"Gratulon, ke vi gajnis ĉi tiun version de Thrive! Vi povas daŭre ludi post "
+"kiam ĉi tiu ekrano fermiĝas, se vi volas, aŭ komenci novan ludon en nova "
+"mondo."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
 #: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
-msgstr "Carregant el joc"
+msgstr "Ŝarĝante la Ludon"
 
 #: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
-msgstr "Llegint les dades guardades"
+msgstr "Legante konservadajn datumojn"
 
 #: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr "Creant objectes a partir de l'arxiu guardat"
+msgstr "Kreante objektojn el konservado"
 
 #: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
-"S'ha esdevingut un problema mentre es carregaven les dades del fitxer "
-"guardat"
+msgstr "Escepto okazis dum ŝarĝo de la konservadaj datumoj"
 
 #: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
-msgstr "El fitxer guardat no és vàlid"
+msgstr "Konservado ne validas"
 
 #: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "L'arxiu guardat té una escena d'estat del joc no vàlida"
+msgstr "Konservado havas malvalidan ludstatan scenon"
 
 #: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr "Processant objectes carregats"
+msgstr "Prilaborado de ŝarĝitaj objektoj"
 
 #: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr ""
-"S'ha produït un problema mentre es processaven els objectes carregats"
+msgstr "Escepto okazis dum prilaborado de ŝarĝitaj objektoj"
 
 #: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
-msgstr "Càrrega completada"
+msgstr "Ŝarĝo estas finita"
 
 #: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
-msgstr "Error durant la càrrega"
+msgstr "Eraro Ŝarĝante"
 
 #: ../src/saving/InProgressSave.cs:161
 msgid "SAVING"
-msgstr "Guardant..."
+msgstr "Ŝarĝante..."
 
 #: ../src/saving/InProgressSave.cs:191
 msgid "SAVE_FAILED"
-msgstr "Acció de guardat fallida"
+msgstr "Konservado malsukcesis"
 
 #: ../src/saving/InProgressSave.cs:192
 msgid "ERROR_SAVING"
-msgstr "Error amb l'acció de guardat"
+msgstr "Eraro de konservado"
 
 #: ../src/saving/NewSaveMenu.cs:61
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
-"El nom de l'arxiu ({0}) coincideix amb el d'un altre ja guardat. Voleu "
-"sobreescriure-ho?"
+msgstr "La elektita dosiernomo ({0}) jam ekzistas. Ĉu anstataŭigi?"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
-msgstr "Crear un nou arxiu de guardat"
+msgstr "Kreu Novan Konservadon"
 
 #: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
-msgstr "Nom:"
+msgstr "Nomo:"
 
 #: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
-msgstr "Opcions Extra"
+msgstr "Ekstraj Agordoj"
 
 #: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr "Sobreescriure l'arxiu de guardat existent:"
+msgstr "Anstataŭigi ekzistantan konservadon:"
 
 #: ../src/saving/NewSaveMenu.tscn:119
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Voleu sobreescriure l'arxiu de guardat actual?"
+msgstr "Ĉu anstataŭigi ekzistantan konservadon?"
 
 #: ../src/saving/SaveHelper.cs:374
 msgid "SAVING_SUCCEEDED"
-msgstr "Acció de guardat exitosa"
+msgstr "Konservado sukcesis"
 
 #: ../src/saving/SaveHelper.cs:384
 msgid "SAVING_FAILED"
-msgstr "Acció de guardat fallida! Hi ha hagut un problema"
+msgstr "Konservado malsukcesis! Escepto okazis"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr "Manual"
+msgstr "Mane"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr "Autoguardat"
+msgstr "Aŭtomata konservado"
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr "Guardat ràpid"
+msgstr "Rapida konservado"
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr "No vàlid"
+msgstr "Nevalide"
 
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-"L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur "
-"que voleu eliminar permanentment l'arxiu {0}?"
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas por ĉiam forigi {0}?"
 
 #: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
-msgstr "Carregant..."
+msgstr "Ŝarĝante..."
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
-msgstr "Eliminar aquest arxiu de guardat?"
+msgstr "Ĉu forigi ĉi tiun Konservadon?"
 
 #: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
 msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "Carregar arxiu de guardat incompatible?"
+msgstr "Ĉu ŝarĝu malkongruan konservadon?"
 
 #: ../src/saving/SaveList.tscn:93
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Aquest arxiu de guardat pertany a una versió de Thrive més nova que "
-"l'actual i, probablement, sigui incompatible.\n"
-"Voleu intentar carregar l'arxiu igualment?"
+"Ĉi tiu konservado estas de pli nova versio de Thrive kaj tre probable ne "
+"kongruas.\n"
+"Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
 
 #: ../src/saving/SaveList.tscn:117
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Aquest arxiu de guardat pertany a una versió de Thrive antiga i, "
-"probablement, sigui incompatible.\n"
-"Com que el joc actualment encara està en una fase primerenca de "
-"desenvolupament, la compatibilitat entre diferents versions encara no és "
-"la major prioritat.\n"
-"Teniu la opció de notificar els problemes que us troben en aquest respecte "
-"però, no obstant, actualment no són de màxima prioritat.\n"
-"Voleu intentar carregar l'arxiu igualment?"
+"Ĉi tiu konservado devenas de malnova versio de Thrive kaj eble ne "
+"kongruas.\n"
+"Ĉar Thrive nuntempe estas en frua disvolviĝo kaj kongruo de konsevadoj ne "
+"estas prioritato.\n"
+"Vi eble raportos iujn ajn problemojn, kiujn vi renkontas, sed ili ne estas "
+"la plej alta prioritato nun.\n"
+"Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
 
 #: ../src/saving/SaveList.tscn:132
 msgid "LOAD_INVALID_SAVE"
-msgstr "Carregar arxiu de guardat no vàlid?"
+msgstr "Ĉu ŝargu nevalidan konservadon?"
 
 #: ../src/saving/SaveList.tscn:141
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
-"La informació de guardat no ha pogut ser carregada des d'aquest arxiu.\n"
-"És probable que aquest arxiu de guardat sigui corrupte, o que pertanyi a "
-"un format nou, no entès per aquesta versió de Thrive.\n"
-"Voleu intentar carregar l'arxiu igualment?"
+"Konservita informo ne povas esti ŝarĝita de ĉi tiu dosiero.\n"
+"Ĉi tiu konservado plej verŝajne estas korupta aŭ kun pli nova formato, kiu "
+"ne estas komprenebla en ĉi tiu versio de Thrive.\n"
+"Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
 
 #: ../src/saving/SaveList.tscn:156
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr "L'arxiu de guardat seleccionat és incompatible"
+msgstr "Elektita konservado ne kongruas"
 
 #: ../src/saving/SaveList.tscn:166
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"L'arxiu de guardat seleccionat no és compatible amb la present versió de "
-"Thrive.\n"
-"Com que Thrive encara està en una fase primerenca de desenvolupament, la "
-"compatibilitat entre versions no és la major prioritat. Per això, encara "
-"no s'ha implementat un programa convertidor d'arxius de guardat."
+"Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio "
+"de Thrive.\n"
+"Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la "
+"plej granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn "
+"konservadojn."
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
-msgstr "Creat a:"
+msgstr "Kreita je:"
 
 #: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
 #: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
 #: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
 msgid "DOT_DOT_DOT"
-msgstr "..."
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:150
 msgid "TYPE"
-msgstr "Tipus:"
+msgstr "Tipo:"
 
 #: ../src/saving/SaveListItem.tscn:169
 msgid "DESCRIPTION"
-msgstr "Descripció:"
+msgstr "Priskribo:"
 
 #: ../src/saving/SaveListItem.tscn:192
 msgid "VERSION"
-msgstr "Versió:"
+msgstr "Versio:"
 
 #: ../src/saving/SaveListItem.tscn:221
 msgid "BY"
@@ -2829,77 +2421,75 @@ msgstr "Per:"
 
 #: ../src/saving/SaveListItem.tscn:240
 msgid "CREATED_ON_PLATFORM"
-msgstr "Creat a la Plataforma:"
+msgstr "Kreita je platfomo:"
 
 #: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:54
 msgid "LOAD"
-msgstr "Carregar"
+msgstr "Ŝarĝu"
 
 #: ../src/saving/SaveListItem.tscn:292
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
-"L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur "
-"que el voleu eliminar permanentment?"
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas forigi ĉi tion por ĉiam?"
 
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
-"L'acció d'eliminar els arxius de guardat seleccionats és irreversible. "
-"Esteu segur que voleu eliminar permanentment el següent nombre d'arxius: "
-"{0}?"
+"Forigi la elektitajn konservojn ne povas esti malfarita, ĉu vi certas, ke "
+"vi volas por ĉiam forigi {0} konservado(j)n?"
 
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"L'acció d'eliminar tots els arxius de guardat automàtic i ràpid és "
-"irreversible. Esteu segur que voleu eliminar permanentment els següents "
-"arxius?\n"
-" - {0} Guardat(s) automàtic(s)\n"
-" - {1} Guardat(s) ràpid(s)"
+"Forigi ĉiujn malnovajn Aŭtomatajn kaj Rapidajn konservdojn ne povas esti "
+"malfarita, ĉu vi certas, ke vi volas forigi ĉi-sekvajn?\n"
+" - {0} Aŭtomataj konservadoj\n"
+" - {1} Rapida konservado(j)"
 
 #: ../src/saving/SaveManagerGUI.tscn:66
 msgid "REFRESH"
-msgstr "Refrescar"
+msgstr "Aktualigu"
 
 #: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
-msgstr "Eliminar tot el que ha estat seleccionat"
+msgstr "Forigi Elektita(j)n"
 
 #: ../src/saving/SaveManagerGUI.tscn:82
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr "Netejar els arxius de guardat antics"
+msgstr "Forigi Malnovajn Konservadojn"
 
 #: ../src/saving/SaveManagerGUI.tscn:93
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr "Obrir el directori de guardats"
+msgstr "Malfermu Konservadan Adresaron"
 
 #: ../src/saving/SaveManagerGUI.tscn:125
 msgid "TOTAL_SAVES"
-msgstr "Nombre total d'arxius guardats:"
+msgstr "Entute konservadoj:"
 
 #: ../src/saving/SaveManagerGUI.tscn:145
 msgid "SAVE_SPACE_USED"
-msgstr "Espai emprat pels arxius:"
+msgstr "Spaco uzata:"
 
 #: ../src/saving/SaveManagerGUI.tscn:165
 msgid "SELECTED_COLON"
-msgstr "Seleccionat:"
+msgstr "Elektita(j):"
 
 #: ../src/saving/SaveManagerGUI.tscn:182
 msgid "DELETE_SELECTED_SAVES"
-msgstr "Eliminar arxiu(s) de guardat seleccionat(s)?"
+msgstr "Ĉu forigu elektitajn Konservadojn?"
 
 #: ../src/saving/SaveManagerGUI.tscn:205
 msgid "DELETE_OLD_SAVES"
-msgstr "Eliminar arxiu(s) de guardat antic(s)?"
+msgstr "Ĉu forigi malnovajn Konservadojn?"
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
-msgstr "Error en l'acció de guardat"
+msgstr "Konservada Eraro"
 
 #: ../src/saving/SaveStatusOverlay.tscn:183
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr "Copiar l'Error al Porta-Retalls"
+msgstr "Kopiu Eraron Al Tondujo"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
@@ -2913,180 +2503,146 @@ msgstr "Copiar l'Error al Porta-Retalls"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:278
 msgid "TUTORIAL"
-msgstr "Tutorial"
+msgstr "Lernilo"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Benvingut a l'Editor de Microbi.\n"
-"Aquí pots revisar tot el que ha passat des del començament del joc o des "
-"de la darrera vegada que vas accedir a l'Editor. Tot seguit, pots fer "
-"canvis (que representen mutacions genètiques generades per un procés "
-"d'evolució).\n"
+"Bonvenon al la Mikrobredaktilo.\n"
+"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi "
+"laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
 "\n"
-"En aquesta pestanya pots examinar un informe que conté les espècies que hi "
-"ha actualment al món, el seu domini territorial i les seves poblacions "
-"fluctuants. També pots apreciar els canvis ambientals.\n"
+"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie "
+"kaj kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn "
+"supre.\n"
 "\n"
-"Per tal d'accedir a la següent pestanya de l'Editor, fes clic al botó "
-"SEGÜENT, a baix a la dreta."
+"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra "
+"fundo."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
-"Aquest és el mapa dels Indrets d'aquest món.\n"
-"Pots examinar els diferents Indrets cap a on la teva espècie pot migrar i "
-"colonitzar.\n"
-"L'Indret on es troba la teva espècie actualment està ressaltada.\n"
-"Pots clicar en els Indrets amb el ratolí per tal de seleccionar-lo i "
-"veure'n els detalls, a la banda dreta de la pestanya.\n"
+"Jen la flikaĵa mapo/karto.\n"
+"Ĉi tie vi povas vidi la malsamajn flikaĵojn en kiuj mikroboj povas vivi.\n"
+"Via nuna diakilo estas reliefigita.\n"
+"Vi povas alklaki la flikaĵojn per via muso por elekti ilin por vidi iliajn "
+"detalojn dekstre.\n"
 "\n"
-"Si selecciones un Indret limítrof amb el teu Indret actual, tens la opció "
-"de clicar el botó a la dreta per a fer-hi migrar la teva espècie.\n"
+"Se vi elektas flikaĵon apud tiu, en kiu vi nun troviĝas, vi povas premi la "
+"butonon dekstre por movi tien. Ĉi tio permesas al via loĝantaro disvastiĝi "
+"al novaj flikaĵoj.\n"
 "\n"
-"Selecciona un Indret per tal de continuar."
+"Elektu flikaĵon por daŭrigi."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"Aquest és l'Editor de Microbi, on pots afegir, treure o modificar "
-"diferents orgànuls, tot invertint-hi una quantitat corresponent de Punts "
-"de Mutació.\n"
+"Jen la ĉela redaktilo, kie vi povas aldoni aŭ forigi organetojn de via "
+"specio elspezante mutaciajn punktojn (MP).\n"
 "\n"
-"També pots canviar altres propietats i elements de la teva cèl·lula, com "
-"ara la membrana, en les altres pestanyes de l'Editor.\n"
+"Vi ankaŭ povas ŝanĝi aliajn ecojn de via specio en la aliaj langetoj de la "
+"ĉela redaktilo.\n"
 "\n"
-"Per continuar, selecciona un orgànul del tauler de l'esquerra (el "
-"Citoplasma és una bona opció). Tot seguit, fes clic esquerre al cantó de "
-"l'Hexàgon mostrat al bell mig de la pantalla (que representa l'interior de "
-"la teva cèl·lula) per tal d'afegir aquest orgànul a la teva espècie."
+"Por daŭrigi, elektu organeton el la maldekstra panelo (citoplasmo estas "
+"bona elekto). Poste maldekstre alklaku apud la sesangulo montrita meze de "
+"la ekrano por aldoni tiun organeton al via specio."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Eliminar orgànuls també costa una certa quantitat de Punts de Mutació, ja "
-"que representa una mutació a la teva espècie. Pots fer clic dret als "
-"orgànuls per tal d'eliminar-los. Si t'equivoques, pots desfer qualsevol "
-"canvi que facis a l'Editor.\n"
+"Forigi organetojn ankaŭ kostas MP, ĉar ĝi estas mutacio por via specio. Vi "
+"povas dekstre alklaki organetojn por forigi ilin.\n"
+"Se vi eraras, vi povas malfari iun ajn ŝanĝon, kiun vi faras en la "
+"redaktilo.\n"
 "\n"
-"Nota: pots eliminar qualsevol orgànul d'entre els que hagis posat en la "
-"sessió d'edició actual, sense cap cost en termes de Punts de Mutació.\n"
+"Noto: forigi organetojn, kiujn vi lokis en la nuna redakta kunsido, estas "
+"senpaga.\n"
 "\n"
-"Clica el botó de desfer per tal de prosseguir."
+"Alklaku la malfaran butonon por daŭrigi."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Quan seleccionis els orgànuls que vulguis afegir, estigues atent als "
-"indicadors de funció ('tooltips', en anglès) per als orgànuls, que "
-"t'informaran dels processos que poden dur a terme i els compostos que "
-"consumeixen.\n"
+"Kiam vi elektas kiujn organetojn vi volas aldoni, atentu la konsiletojn "
+"por la organetoj, ekz. en kiuj procezoj ili partoprenas kaj kiujn "
+"komponaĵojn ili uzas kaj produktas.\n"
 "\n"
-"A més a més, estigues atent a la barra de balanç d'ATP que hi a la part "
-"superior dreta de la pantalla, per assegurar-te que la teva cèl·lula podrà "
-"sobreviure.\n"
+"Atentu ankaŭ la ATP-ekvilibron supre dekstre por certigi, ke via ĉelo "
+"povas travivi.\n"
 "\n"
-"Pots fer rotar els orgànuls amb les tecles A i D (tecles per defecte) "
-"abans de col·locar-los.\n"
+"Vi povas turni organetojn per A kaj D (defaŭltaj klavoj) antaŭ ol disloki "
+"ilin.\n"
 "\n"
-"Prem el botó de refer l'acció (a la vora del botó de desfer l'acció) per "
-"tal de prosseguir."
+"Premu la refaran butonon (proksiman al la malfara butono) por daŭrigi."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Aquests són els fonaments i consells bàsics per tal d'editar la teva "
-"espècie. Pots explorar les altres pestanyes de l'Editor de Microbi per "
-"descobrir totes les opcions que tens disponibles.\n"
+"Tiuj estas la bazoj por redakti vian specion. Vi povas kontroli la aliajn "
+"langetojn de ĉelredaktilo por eĉ pli da agardoj.\n"
 "\n"
-"També pots batejar la teva espècie amb un nom propi, tot clicant en el nom "
-"actual de la teva espècie i editant-ne el text.\n"
+"Vi povas renomi vian specion alklakante la nunan specian nomon kaj "
+"redaktante la tekston.\n"
 "\n"
-"A mode de consell, al principi de cada partida, mentre la teva espècie "
-"sigui jove, hauries d'intentar mantenir-la amb una mida i una complexitat "
-"reduïda, i intentar migrar fins als Indrets propers a la superfície "
-"marina. Aquesta estrategia evolutiva és, en la versió actual del joc, la "
-"més rendible. No obstant, si ets una persona inquieta, pots explorar i "
-"lluitar tot duent a terme altres estrategies!\n"
+"Komence vi devas teni vian ĉelon malgranda kaj direktiĝi al la surfacaj "
+"flikaĵoj.\n"
 "\n"
-"Bona sort!"
+"Bonŝancon!"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "GOT_IT"
-msgstr "Ho he entès tot"
+msgstr "Komprenita"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Fa molt de temps, en un planeta molt i molt llunyà...\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la "
+"disvolviĝo de nova fenomeno en la universo.\n"
 "\n"
-"S'han esdevingut milions d'anys, eons sencers, d'activitat volcànica i "
-"d'impactes de meteorits. Aquesta activitat ha causat l'aparició d'un "
-"fenòmen inaudit a l'univers.\n"
+"Vivo.\n"
 "\n"
-"La vida.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"A les profunditats dels mars i oceans, són a punt d'aparèixer eixams de "
-"Microbis, sopes tupides d'organismes vius. De moment, però, en tot el "
-"planeta, només hi ha un sol organisme, una petita cèl·lula formada per una "
-"fina Membrana plena de Citoplasma i Material Genètic. Aquest primer "
-"organisme serà conegut com a 'darrer avantpassat universal comú'. Ets a "
-"punt de prendre el control d'aquesta minúscula cèl·lula, per tal de guiar-"
-"ne les accions i aconseguir que es pugui reproduïr.\n"
-"\n"
-"Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots "
-"els compostos amb contingut nutritiu que puguis trobar. Al llarg de les "
-"diverses generacions del procés evolutiu, hauràs d'evolucionar per "
-"competir contra altres espècies pels nínxols de la cadena tròfica. Totes "
-"aquestes espècies hauran evolucionat a partir del darrer avantpassat "
-"universal comú."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
 msgid "SHOW_TUTORIALS"
-msgstr "Mostrar els tutorials"
+msgstr "Montru lernilojn"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "BEGIN_THRIVING"
-msgstr "Començar a prosperar"
+msgstr "Komencu Prosperadon(Thriving)"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"La teva cèl·lula, el darrer avantpassat universal comú, és al centre de la "
-"pantalla. Per tal de controlar-la, fes servir les tecles que es mostren al "
-"seu costat.\n"
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo "
+"(centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
-"Prova totes les tecles durant uns instants per tal de continuar."
+"Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"Has de recol·lectar la Glucosa que hi ha dissolta a l'oceà (núvols de "
-"color blanc). Per fer-ho, mou-te en direcció cap al núvol. Un cop hi "
-"entris en contacte, la membrana cel·lular l'absorbirà.\n"
-"La teva cèl·lula necessita aquesta Glucosa per tal d'aconseguir energia, "
-"en forma de mol·lècules d'ATP, i mantenir-se viva.\n"
-"Segueix la línia de la pantalla, que s'estén des de la teva cèl·lula fins "
-"al núvol de Glucosa més proper."
+"Kolektu glukozon (blankajn nubojn) moviĝante super ili.\n"
+"Via ĉelo bezonas glukozon por produkti energion por resti viva.\n"
+"Sekvu la linion de via ĉelo al proksima glukozo."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP "
-"(a la part inferior dreta de la pantalla).\n"
-"Si la teva cèl·lula es queda sense energia, es morirà.\n"
-"Pots recuperar la teva salut (autoregeneració) si tens prou quantitat "
-"d'ATP.\n"
-"Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
+"Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
+"Via ĉelo mortas, se ĝi elĉerpiĝas.\n"
+"Vi regeneras sanon dum vi havas ATP-ojn.\n"
+"Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Per tal de reproduïr-te, has de dividir la teva cèl·lula en dos organismes "
-"diferents. Per fer-ho, abans has de duplicar tots els orgànuls de la teva "
-"cèl·lula recol·lectant prou Amoníac i Fosfats.\n"
-"Estigueu atents a l'indicador a la part inferior dreta per veure quina "
-"quantitat d'Amoníac i Fosfats et falta encara."
-
-#~ msgid "PATCH_NAME"
-#~ msgstr "Nom de l'Indret"
+"Por reproduktiĝi, vi devas duplikati ĉiujn ĝiajn organetojn per kolektado "
+"de sufiĉe da amoniako kaj fosfatoj.\n"
+"Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi "
+"bezonas."

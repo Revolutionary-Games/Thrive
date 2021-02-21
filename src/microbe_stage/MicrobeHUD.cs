@@ -287,11 +287,11 @@ public class MicrobeHUD : Node
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
     }
 
-    public void OnEnterStageTransition()
+    public void OnEnterStageTransition(bool longerDuration)
     {
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, longerDuration ? 1.0f : 0.3f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
@@ -305,10 +305,10 @@ public class MicrobeHUD : Node
             UpdateNeededBars();
             UpdateCompoundBars();
             UpdateReproductionProgress();
-            UpdateATP();
         }
 
-        UpdateHealth();
+        UpdateATP(delta);
+        UpdateHealth(delta);
 
         if (stage.Camera != null)
         {
@@ -323,8 +323,6 @@ public class MicrobeHUD : Node
     public void Init(MicrobeStage stage)
     {
         this.stage = stage;
-
-        OnEnterStageTransition();
     }
 
     public void ResizeEnvironmentPanel(string mode)
@@ -641,10 +639,10 @@ public class MicrobeHUD : Node
             }
         }
 
-        var aiMicrobes = GetTree().GetNodesInGroup(Constants.AI_GROUP);
+        var allMicrobes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
 
         // Show the species name of hovered cells
-        foreach (Microbe entry in aiMicrobes)
+        foreach (Microbe entry in allMicrobes)
         {
             var distance = (entry.Translation - stage.Camera.CursorWorldPos).Length();
 
@@ -661,6 +659,9 @@ public class MicrobeHUD : Node
             hoveredCellsContainer.AddChild(microbeText);
 
             microbeText.Text = entry.Species.FormattedName;
+
+            if (entry.IsPlayerMicrobe)
+                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
@@ -764,27 +765,32 @@ public class MicrobeHUD : Node
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
     }
 
-    private void UpdateATP()
+    private void UpdateATP(float delta)
     {
-        var atpAmount = stage.Player.Compounds.GetCompoundAmount(atp);
-        var capacity = stage.Player.Compounds.Capacity;
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
 
-        GUICommon.Instance.TweenBarValue(atpBar, atpAmount, capacity);
-        atpLabel.Text = Mathf.Round(atpAmount) + " / " + capacity;
+        var atpAmount = 0.0f;
+        var capacity = 4.0f;
 
-        // Hide the progress bar when the atp is less than 1.5
-        if (atpBar.Value < 1.5)
+        if (stage.Player != null)
         {
-            atpBar.TintProgress = new Color(0, 0, 0);
+            atpAmount = Mathf.Ceil(stage.Player.Compounds.GetCompoundAmount(atp));
+            capacity = stage.Player.Compounds.Capacity;
         }
-        else
-        {
-            atpBar.TintProgress = new Color(0.44f, 0.96f, 0.14f);
-        }
+
+        atpBar.MaxValue = capacity;
+        atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.1f);
+        atpLabel.Text = atpAmount + " / " + capacity;
     }
 
-    private void UpdateHealth()
+    private void UpdateHealth(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         var hp = 0.0f;
         var maxHP = 100.0f;
 
@@ -794,8 +800,9 @@ public class MicrobeHUD : Node
             maxHP = stage.Player.MaxHitpoints;
         }
 
-        GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP);
-        hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
+        healthBar.MaxValue = maxHP;
+        healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.1f);
+        hpLabel.Text = Mathf.Round(hp) + " / " + maxHP;
     }
 
     private void UpdatePopulation()

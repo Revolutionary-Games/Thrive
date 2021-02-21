@@ -195,6 +195,7 @@ public static class SpawnHelpers
 
         // Pass on the chunk data
         chunk.Init(chunkType, cloudSystem, selectedMesh.SceneModelPath);
+        chunk.UsesDespawnTimer = !chunkType.Dissolves;
 
         worldNode.AddChild(chunk);
 
