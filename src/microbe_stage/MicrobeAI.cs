@@ -126,11 +126,11 @@ public class MicrobeAI
         {
             
             if (prey != null && RollReverseCheck(SpeciesFocus, 200, random)){
-                previousPrey = prey
+                previousPrey = prey;
             }
             
             if (targetChunk != null && RollReverseCheck(SpeciesFocus, 200, random)){
-                previousChunk = targetChunk
+                previousChunk = targetChunk;
             }
             
             // Occasionally you need to reevaluate things
