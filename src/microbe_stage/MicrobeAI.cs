@@ -57,7 +57,7 @@ public class MicrobeAI
 
     [JsonIgnore]
     private Microbe previousPrey;
-    
+
     [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
 
@@ -69,7 +69,7 @@ public class MicrobeAI
 
     [JsonIgnore]
     private FloatingChunk previousChunk;
-    
+
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
@@ -128,10 +128,12 @@ public class MicrobeAI
             {
                 previousPrey = prey;
             }
+            
             if (targetChunk != null && RollReverseCheck(SpeciesFocus, 200, random))
             {
                 previousChunk = targetChunk;
             }
+            
             // Occasionally you need to reevaluate things
             boredom = 0;
             prey = null;
@@ -364,10 +366,10 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-            
+
             if (chunk == previousChunk)
                 continue;
-            
+
             if ((SpeciesOpportunism == Constants.MAX_SPECIES_OPPORTUNISM) ||
                 ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
                     chunk.Size))
