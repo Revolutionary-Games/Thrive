@@ -124,19 +124,17 @@ public class MicrobeAI
         // 30 seconds about
         if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
         {
-            
-            if (prey != null && RollReverseCheck(SpeciesFocus, 200, random)){
+            if (prey != null && RollReverseCheck(SpeciesFocus, 200, random))
+            {
                 previousPrey = prey;
             }
-            
-            if (targetChunk != null && RollReverseCheck(SpeciesFocus, 200, random)){
+            if (targetChunk != null && RollReverseCheck(SpeciesFocus, 200, random))
+            {
                 previousChunk = targetChunk;
             }
-            
             // Occasionally you need to reevaluate things
             boredom = 0;
             prey = null;
-            
             if (RollCheck(SpeciesActivity, 400, random))
             {
                 lifeState = LifeState.PLANTLIKE_STATE;
@@ -414,7 +412,7 @@ public class MicrobeAI
 
         foreach (var otherMicrobe in allMicrobes)
         {
-            if (otherMicrobe == microbe || otherMicrobe==previousPrey)
+            if (otherMicrobe == microbe || otherMicrobe == previousPrey)
                 continue;
 
             if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
