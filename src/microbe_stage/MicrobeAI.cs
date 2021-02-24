@@ -128,12 +128,12 @@ public class MicrobeAI
             {
                 previousPrey = prey;
             }
-            
+
             if (targetChunk != null && RollReverseCheck(SpeciesFocus, 200, random))
             {
                 previousChunk = targetChunk;
             }
-            
+
             // Occasionally you need to reevaluate things
             boredom = 0;
             prey = null;
@@ -366,7 +366,6 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-
             if (chunk == previousChunk)
                 continue;
 
