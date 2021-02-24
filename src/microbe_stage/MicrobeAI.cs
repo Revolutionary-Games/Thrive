@@ -122,7 +122,7 @@ public class MicrobeAI
         if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
         {
             
-            if (RollCheck(SpeciesFocus, 200, random)){
+            if (RollReverseCheck(SpeciesFocus, 200, random)){
                 previousPrey = prey
             }
             // Occasionally you need to reevaluate things
