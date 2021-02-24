@@ -56,6 +56,9 @@ public class MicrobeAI
     private Microbe prey;
 
     [JsonIgnore]
+    private Microbe previousPrey;
+    
+    [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
 
     [JsonIgnore]
@@ -118,9 +121,14 @@ public class MicrobeAI
         // 30 seconds about
         if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
         {
+            
+            if (RollCheck(SpeciesFocus, 200, random)){
+                previousPrey = prey
+            }
             // Occasionally you need to reevaluate things
             boredom = 0;
             prey = null;
+            
             if (RollCheck(SpeciesActivity, 400, random))
             {
                 lifeState = LifeState.PLANTLIKE_STATE;
@@ -394,7 +402,7 @@ public class MicrobeAI
 
         foreach (var otherMicrobe in allMicrobes)
         {
-            if (otherMicrobe == microbe)
+            if (otherMicrobe == microbe || otherMicrobe==previousPrey)
                 continue;
 
             if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
