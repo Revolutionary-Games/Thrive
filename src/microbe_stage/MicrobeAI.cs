@@ -300,7 +300,7 @@ public class MicrobeAI
 
     private static bool RollReverseCheck(float ourStat, float dc, Random random)
     {
-        return ourStat >= random.Next(0.0f, dc);
+        return ourStat <= random.Next(0.0f, dc);
     }
 
     private void DoReflexes()
