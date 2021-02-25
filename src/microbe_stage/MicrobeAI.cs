@@ -124,12 +124,12 @@ public class MicrobeAI
         // 30 seconds about
         if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
         {
-            if (prey != null && RollReverseCheck(SpeciesFocus, 200, random))
+            if (prey != null && RollReverseCheck(SpeciesFocus, 600, random))
             {
                 previousPrey = prey;
             }
 
-            if (targetChunk != null && RollReverseCheck(SpeciesFocus, 200, random))
+            if (targetChunk != null && RollReverseCheck(SpeciesFocus, 600, random))
             {
                 previousChunk = targetChunk;
             }
