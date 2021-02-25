@@ -122,7 +122,7 @@ public class MicrobeAI
         chunkList.Clear();
 
         // only about 66.6 repeating seconds + or minus a few due to randomness at max focus
-        if (boredom >= (int)random.Next(SpeciesFocus/2, 120+(SpeciesFocus/2)))
+        if (boredom >= (int)random.Next(SpeciesFocus / 2, 120 + (SpeciesFocus / 2)))
         {
             if (prey != null && RollReverseCheck(SpeciesFocus, 600, random))
             {
