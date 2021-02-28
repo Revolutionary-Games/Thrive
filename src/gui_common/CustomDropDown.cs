@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   A custom dropdown implemented through MenuButton, but with extra popup menu functionality
+///   A custom dropdown implemented through MenuButton, with extra popup menu functionality
 ///   such as adjusted custom icon size with tweakable color and some slide down animation.
 ///   (Might need to expand this later)
 /// </summary>
@@ -109,11 +109,11 @@ public class CustomDropDown : MenuButton
     /// </summary>
     private void ReadjustRectSizes()
     {
-        // Set popup to minimum length
-        Popup.RectSize = new Vector2(Popup.GetMinimumSize().x + iconSize.x + 6, 0);
-
         // Adjust the menu button to have the same length as the popup
-        RectMinSize = new Vector2(Popup.RectSize.x, RectMinSize.y);
+        RectMinSize = new Vector2(Popup.GetMinimumSize().x + iconSize.x + 6, RectMinSize.y);
+
+        // Set popup to minimum length
+        Popup.RectSize = new Vector2(RectSize.x, 0);
     }
 
     /// <summary>
@@ -124,7 +124,6 @@ public class CustomDropDown : MenuButton
         if (!Popup.Visible)
             return;
 
-        var contentMinSize = Popup.GetMinimumSize();
         var font = Popup.GetFont("font");
 
         // Offset from the top
@@ -136,11 +135,11 @@ public class CustomDropDown : MenuButton
             if (item.Icon == null)
                 continue;
 
-            var position = new Vector2(contentMinSize.x, height);
+            var position = new Vector2(Popup.RectSize.x - iconSize.x - 6, height);
 
             Popup.DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
 
-            height += font.GetHeight() + cachedPopupVSeparation;
+            height += font.GetHeight() + Popup.GetConstant("vseparation");
         }
     }
 
