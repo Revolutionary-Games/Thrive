@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-17 18:44+0200\n"
+"POT-Creation-Date: 2021-03-02 18:02-0600\n"
 "PO-Revision-Date: 2021-02-19 17:27+0000\n"
 "Last-Translator: Nunez2196 <john.e.nunez2196@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -165,13 +165,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Each generation, you have 100 mutation points (MP) to spend, and each change "
-"(or mutation) will cost a certain amount of that MP. Adding and removing "
-"organelles costs MP, however removing organelles that were placed in the "
-"current mutation session refunds MP for that organelle. You can move or "
-"completely remove an organelle by right-clicking on it and selecting the "
-"appropriate action from the pop-up menu. You can rotate your organelles "
-"while placing them with A and D."
+"Each generation, you have 100 mutation points (MP) to spend, and each "
+"change (or mutation) will cost a certain amount of that MP. Adding and "
+"removing organelles costs MP, however removing organelles that were placed "
+"in the current mutation session refunds MP for that organelle. You can "
+"move or completely remove an organelle by right-clicking on it and "
+"selecting the appropriate action from the pop-up menu. You can rotate your "
+"organelles while placing them with A and D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1189,7 +1189,7 @@ msgid "LOAD_GAME"
 msgstr "Load Game"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4437
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "STATISTICS"
 msgstr "Statistics"
 
@@ -1209,15 +1209,15 @@ msgstr "Return to Menu"
 msgid "EXIT"
 msgstr "Exit"
 
-#: ../src/general/StringUtils.cs:18
+#: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../src/general/StringUtils.cs:24
+#: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:30
+#: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1912,8 +1912,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4621
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5258
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "Compounds"
@@ -1978,20 +1978,20 @@ msgstr "Cell Processes"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:525
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1179
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:517
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1176
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:527
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:519
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2064
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2061
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2065
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2062
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
@@ -2036,8 +2036,9 @@ msgid "STRUCTURE"
 msgstr "Structure"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
-msgid "APPEARANCE"
-msgstr "Appearance"
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "Membrane Types"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1663
 msgid "BEHAVIOR"
@@ -2139,39 +2140,39 @@ msgstr "Auto-evo results:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "External effects:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4446
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
 msgid "SPECIES_POPULATION"
 msgstr "Species Population"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4479
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Physical Conditions"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4583
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmospheric Gasses"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4677
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5605
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
 msgid "NEXT_CAPITAL"
 msgstr "NEXT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
 msgid "SELECT_A_PATCH"
 msgstr "Select a patch to show details here"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4827
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "CURRENT LOCATION"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
 msgid "SPECIES_PRESENT"
 msgstr "Species Present"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Move to This Patch"
 
@@ -2685,6 +2686,9 @@ msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by "
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Appearance"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "Patch Name"

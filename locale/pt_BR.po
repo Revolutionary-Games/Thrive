@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-17 18:44+0200\n"
+"POT-Creation-Date: 2021-03-02 18:02-0600\n"
 "PO-Revision-Date: 2021-02-19 17:13+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -300,8 +300,8 @@ msgstr "Curiosidade, o Didinum é um ciliado que caça Paramecia."
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Curiosidade, a Ameba caça e pega suas presas com 'pernas' feitas de "
-"citoplasma chamadas pseudópodes, eventualmente nós queremos implementar isto "
-"no jogo."
+"citoplasma chamadas pseudópodes, eventualmente nós queremos implementar "
+"isto no jogo."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -1198,7 +1198,7 @@ msgid "LOAD_GAME"
 msgstr "Carregar Jogo"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4437
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "STATISTICS"
 msgstr "Estatísticas"
 
@@ -1218,15 +1218,15 @@ msgstr "Voltar ao Menu"
 msgid "EXIT"
 msgstr "Sair"
 
-#: ../src/general/StringUtils.cs:18
+#: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Bi"
 
-#: ../src/general/StringUtils.cs:24
+#: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mi"
 
-#: ../src/general/StringUtils.cs:30
+#: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1921,8 +1921,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4621
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5258
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "Compostos"
@@ -1987,20 +1987,20 @@ msgstr "Processos"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compostos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:525
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1179
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:517
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1176
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Carregando Editor de Micróbios"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:527
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:519
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Esperando pela auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2064
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2061
 msgid "AUTO_EVO_FAILED"
 msgstr "A auto-evo falhou"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2065
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2062
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estado da auto-evo:"
 
@@ -2045,8 +2045,9 @@ msgid "STRUCTURE"
 msgstr "Estrutura"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
-msgid "APPEARANCE"
-msgstr "Aparência"
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "Tipos de Membranas"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1663
 msgid "BEHAVIOR"
@@ -2148,39 +2149,39 @@ msgstr "Resultados da Auto-evo:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efeitos externos:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4446
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
 msgid "SPECIES_POPULATION"
 msgstr "População da espécie:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4479
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condições Físicas"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4583
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gases Atmosféricos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4677
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5605
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
 msgid "NEXT_CAPITAL"
 msgstr "PRÓXIMO"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
 msgid "SELECT_A_PATCH"
 msgstr "Selecione uma região para mostrar detalhes aqui"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4827
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOCALIZAÇÃO ATUAL"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
 msgid "SPECIES_PRESENT"
 msgstr "Espécies Presentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Mover para esta região"
 
@@ -2697,6 +2698,9 @@ msgstr ""
 "Para reproduzir você precisa duplicar todas as suas organelas coletando "
 "amônia e fosfatos suficientes.\n"
 "Olhe para o indicador no canto inferior esquerdo para ver o quanto precisa."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Aparência"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "Nome da Região"
