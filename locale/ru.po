@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-17 18:44+0200\n"
+"POT-Creation-Date: 2021-03-02 18:02-0600\n"
 "PO-Revision-Date: 2021-01-27 16:24+0000\n"
 "Last-Translator: LibreHacker <librehacker@snopyta.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -1193,7 +1193,7 @@ msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4437
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -1213,15 +1213,15 @@ msgstr "Вернуться в меню"
 msgid "EXIT"
 msgstr "Выход"
 
-#: ../src/general/StringUtils.cs:18
+#: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
 msgstr ""
 
-#: ../src/general/StringUtils.cs:24
+#: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
 msgstr ""
 
-#: ../src/general/StringUtils.cs:30
+#: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
@@ -1823,8 +1823,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Давл."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4621
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5258
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "Соединения"
@@ -1890,20 +1890,20 @@ msgstr "Клеточные Процессы"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:525
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1179
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:517
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1176
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка редактора микроба"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:527
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:519
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2064
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2061
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2065
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2062
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
@@ -1948,8 +1948,9 @@ msgid "STRUCTURE"
 msgstr "Структура"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
-msgid "APPEARANCE"
-msgstr "Внешний вид"
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "Типы мембран"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1663
 msgid "BEHAVIOR"
@@ -2053,40 +2054,40 @@ msgstr "Результаты авто-эво:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Внешние эффекты:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4446
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "Виды:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4479
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физические условия"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4583
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферные газы"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4677
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5605
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛЕЕ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
 msgid "SELECT_A_PATCH"
 msgstr "Выбери участок для просмотра деталей"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4827
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
 msgid "SPECIES_PRESENT"
 msgstr "Присутствующие виды"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Двигаться к этому участку"
 
@@ -2579,6 +2580,9 @@ msgstr ""
 "достаточное количество аммиака и фосфатов.\n"
 "Посмотрите на индикатор в правом нижнем углу, чтобы узнать, сколько еще "
 "вам нужно."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Внешний вид"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "Название Участка"

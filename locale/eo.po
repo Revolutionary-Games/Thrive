@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-17 18:44+0200\n"
+"POT-Creation-Date: 2021-03-02 18:02-0600\n"
 "PO-Revision-Date: 2021-02-19 17:13+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1195,7 +1195,7 @@ msgid "LOAD_GAME"
 msgstr "Ŝarĝu"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4437
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "STATISTICS"
 msgstr "Statistiko"
 
@@ -1215,15 +1215,15 @@ msgstr "Revenu al Menuo"
 msgid "EXIT"
 msgstr "Eliri"
 
-#: ../src/general/StringUtils.cs:18
+#: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mrd"
 
-#: ../src/general/StringUtils.cs:24
+#: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:30
+#: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1689,18 +1689,18 @@ msgstr ""
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
-"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
-"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
-"ĝia glukoza produktado pliigas kun la koncentriĝo de akvo kaj karbona "
-"dioksido."
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon "
+"en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La "
+"rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de akvo kaj "
+"karbona dioksido."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4653
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan "
-"nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti "
-"amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata "
-"Aerobia Nitrogena Fiksado."
+"nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por "
+"produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo "
+"nomata Aerobia Nitrogena Fiksado."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4754
 msgid "INREASE_STORAGE_SPACE"
@@ -1761,9 +1761,9 @@ msgstr "Rimedo-Absorba Rapideo"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5561
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ damaĝo. "
-"Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo estas, ke ĝi "
-"permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
+"La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ "
+"damaĝo. Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo "
+"estas, ke ĝi permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5577
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5641
@@ -1820,10 +1820,10 @@ msgstr "Toksinrezisto"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6471
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Ĉi tiu membrano havas muron, kio signifas, ke ĝi havas pli bonajn protektojn "
-"kontraŭ kutima damaĝo kaj precipe kontraŭ toksina damaĝo. Ankaŭ kostas "
-"malpli da energio konservi sian formon, sed ĝi estas pli malrapida kaj ne "
-"povas absorbi aĵojn rapide."
+"Ĉi tiu membrano havas muron, kio signifas, ke ĝi havas pli bonajn "
+"protektojn kontraŭ kutima damaĝo kaj precipe kontraŭ toksina damaĝo. Ankaŭ "
+"kostas malpli da energio konservi sian formon, sed ĝi estas pli malrapida "
+"kaj ne povas absorbi aĵojn rapide."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6551
@@ -1918,8 +1918,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Premo"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4621
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5258
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "Kunmetaĵoj"
@@ -1984,20 +1984,20 @@ msgstr "Ĉelaj Procezoj"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Kunmetaĵaj Ekvilibro"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:525
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1179
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:517
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1176
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:527
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:519
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Atendante aŭtomata evolucion:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2064
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2061
 msgid "AUTO_EVO_FAILED"
 msgstr "Aŭtomata evolucio malsukcesis"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2065
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2062
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Lanĉa stato:"
 
@@ -2042,8 +2042,9 @@ msgid "STRUCTURE"
 msgstr "Strukturo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
-msgid "APPEARANCE"
-msgstr "Aspekto"
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "Membranaj Tipoj"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1663
 msgid "BEHAVIOR"
@@ -2147,39 +2148,39 @@ msgstr "Resultoj de aŭtomata evoluo:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Eksteraj efikoj:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4446
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
 msgid "SPECIES_POPULATION"
 msgstr "Specio loĝantaro"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4479
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fizikaj Kondiĉoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4583
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferaj Gasoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4677
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5605
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
 msgid "NEXT_CAPITAL"
 msgstr "SEKVA"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
 msgid "SELECT_A_PATCH"
 msgstr "Elektu flikaĵon por montri detalojn ĉi tie"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4827
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUNA LOKO"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
 msgid "SPECIES_PRESENT"
 msgstr "Nunaj specio"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moviĝu al ĉi tiu loko"
 
@@ -2700,3 +2701,6 @@ msgstr ""
 "de sufiĉe da amoniako kaj fosfatoj.\n"
 "Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi "
 "bezonas."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Aspekto"
