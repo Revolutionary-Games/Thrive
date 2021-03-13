@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-02 18:02-0600\n"
-"PO-Revision-Date: 2021-01-27 16:24+0000\n"
-"Last-Translator: Filip Szot <filip.szot08@gmail.com>\n"
+"PO-Revision-Date: 2021-03-09 08:41+0000\n"
+"Last-Translator: Kubagliko_PL <kubagliko333@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n"
-"%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -1120,7 +1120,7 @@ msgstr "Otwórz Folder Zrzutów Ekranu"
 
 #: ../src/general/OptionsMenu.tscn:988
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "Otwórz Folder z Logami"
 
 #: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
@@ -1759,6 +1759,9 @@ msgstr "Nie może połykać"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6144
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Ta membrana posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a "
+"zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale "
+"spowalnia absorpcje zasobów i spowalnia komórkę."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6160
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6224
@@ -1775,6 +1778,9 @@ msgstr "Odporność Na Toksyny"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6471
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Ta membrana posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a "
+"zwłaszcza przed toksynami. Kosztuje też mniej energii, ale spowalnia "
+"absorpcje zasobów."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6551
@@ -1814,11 +1820,11 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
-msgstr ""
+msgstr "Obszar: {0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:605
 msgid "STUFF_AT"
-msgstr ""
+msgstr "Rzecz w {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:664
 #, fuzzy
@@ -1835,7 +1841,7 @@ msgstr "gracz zginął"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:430
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "Pod kursorem:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "NOTHING_HERE"
@@ -1878,7 +1884,7 @@ msgstr "POPULACJA:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:16
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr ""
+msgstr "Paleoceaniczne Kominy Hydrotermalne"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:24
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
@@ -1898,27 +1904,27 @@ msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:52
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr ""
+msgstr "Paleoceaniczna Strefa Głębinowa"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:59
 msgid "PATCH_PANGONIAN_COAST"
-msgstr ""
+msgstr "Paleoceaniczne Wybrzeże"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:66
 msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr ""
+msgstr "Paleoceaniczne Ujście"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:73
 msgid "PATCH_CAVE"
-msgstr ""
+msgstr "Jaskinia"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:80
 msgid "PATCH_ICE_SHELF"
-msgstr ""
+msgstr "Lodowiec szelfowy"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:87
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
+msgstr "Paleoceaniczne Dno Morskie"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -1931,19 +1937,19 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:517
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1176
 msgid "LOADING_MICROBE_EDITOR"
-msgstr ""
+msgstr "Wczytywanie edytora mikrobów"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:519
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr ""
+msgstr "Czekanie na auto-ewolucje:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2061
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "Auto-ewolucja nie może się uruchomić"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2062
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "Status działania:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:993
 msgid "REPORT"
@@ -1951,7 +1957,7 @@ msgstr "Raport"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1015
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "Mapa Obszarów"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1094
 msgid "ORGANISM_STATISTICS"
@@ -2017,11 +2023,11 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
 msgid "ORGANELLES"
-msgstr ""
+msgstr "Organelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3313
 msgid "N_A_MP"
-msgstr ""
+msgstr "N/A MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3352
 msgid "BIOLUMESCENT_VACUOLE"
@@ -2033,7 +2039,7 @@ msgstr "Rodzaje błony komórkowej"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3933
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Płynność / Sztywność"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
 msgid "COLOUR"
@@ -2050,15 +2056,17 @@ msgstr "POTWIERDŹ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4156
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr ""
+msgstr "Negatywny balans ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4168
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
+"Twoja komórka produkuje za mało ATP by przeżyć!\n"
+"Czy chcesz kontynuować?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4179
 msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
+msgstr "Niepołączone Organelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4191
 msgid "DISCONNECTED_ORGANELLES_TEXT"
@@ -2070,19 +2078,19 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4304
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Łańcuch pokarmowy"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4317
 msgid "TIMELINE"
-msgstr ""
+msgstr "Oś czasu"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4370
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Rezultat Auto-Ewolucji:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4389
 msgid "EXTERNAL_EFFECTS"
-msgstr ""
+msgstr "Zewnętrzne efekty:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
 #, fuzzy
@@ -2092,13 +2100,13 @@ msgstr "populacja:"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
 msgid "PHYSICAL_CONDITIONS"
-msgstr ""
+msgstr "Warunki Fizyczne"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "Gazy Atmosferyczne"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
@@ -2107,7 +2115,7 @@ msgstr "NASTĘPNY"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
 msgid "SELECT_A_PATCH"
-msgstr ""
+msgstr "Wybierz obszar by zobaczyć jego szczegóły"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
 msgid "CURRENT_LOCATION_CAPITAL"
@@ -2115,19 +2123,19 @@ msgstr "AKTUALNA LOKALIZACJA"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
 msgid "SPECIES_PRESENT"
-msgstr ""
+msgstr "Obecne Gatunki"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
 msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
+msgstr "Przenieś się do tego obszaru"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
+msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "Milionów Lat"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
@@ -2136,7 +2144,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "YEARS"
-msgstr ""
+msgstr "lata"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
@@ -2149,7 +2157,7 @@ msgstr "PRODUKCJA ATP JEST ZA NISKA!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
+msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
 msgid "OSMOREGULATION"
@@ -2157,40 +2165,40 @@ msgstr "Osmoregulacja"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Bazowa prędkość"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr ""
+msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "SPECIES_LIST"
-msgstr ""
+msgstr "Lista gatunków"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "Wolna Budowa"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1616
 msgid "BIOME_LABEL"
-msgstr ""
+msgstr "Biom: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1621
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1}m pod poziomem morza"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1649
 msgid "WITH_POPULATION"
-msgstr ""
+msgstr "{0} z populacją: {1}"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Usuń"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 #, fuzzy
@@ -2199,11 +2207,11 @@ msgstr "Ruch"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:361
 msgid "MODIFY"
-msgstr ""
+msgstr "Modyfikuj"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "WYMARŁEŚ"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
@@ -2211,64 +2219,67 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
-msgstr ""
+msgstr "PRZETRWAŁEŚ!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
+"Gratulację udało ci się przejść tą wersję Thrive! Jeśli chcesz możesz "
+"kontynuować grę po zamknięciu tego ekranu lub rozpocząć nową grę w nowym "
+"świecie."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
 #: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "Wczytywanie Gry"
 
 #: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Wczytywanie danych zapisu"
 
 #: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "Tworzenie obiektów z pliku zapisu"
 
 #: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Podczas wczytywania pliku zapisu nastąpił wyjątek"
 
 #: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "Nieprawidłowy zapis"
 
 #: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr ""
+msgstr "Plik zapisu ma nieprawidłowy stan sceny gry"
 
 #: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
+msgstr "Przetwarzanie wczytanych obiektów"
 
 #: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr ""
+msgstr "Podczas przetwarzania obiektów nastąpił wyjątek"
 
 #: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
-msgstr ""
+msgstr "Wczytywanie zakończone"
 
 #: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Błąd wczytywania"
 
 #: ../src/saving/InProgressSave.cs:161
 msgid "SAVING"
-msgstr ""
+msgstr "Zapisywanie..."
 
 #: ../src/saving/InProgressSave.cs:191
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "Zapisywanie się nie udało"
 
 #: ../src/saving/InProgressSave.cs:192
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Błąd zapisu"
 
 #: ../src/saving/NewSaveMenu.cs:61
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
