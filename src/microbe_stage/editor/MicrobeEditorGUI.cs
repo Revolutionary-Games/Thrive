@@ -900,10 +900,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
         healthModifier.ModifierValue = ((healthChange > 0) ? "+" : string.Empty)
-            + healthChange.ToString("F2", CultureInfo.CurrentCulture);
+            + healthChange.ToString("F0", CultureInfo.CurrentCulture);
 
         mobilityModifier.ModifierValue = ((mobilityChange > 0) ? "+" : string.Empty)
-            + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
+            + mobilityChange.ToString("P0", CultureInfo.CurrentCulture);
 
         healthModifier.AdjustValueColor(healthChange);
         mobilityModifier.AdjustValueColor(mobilityChange);
