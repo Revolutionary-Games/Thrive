@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-02 18:02-0600\n"
-"PO-Revision-Date: 2021-01-27 16:24+0000\n"
-"Last-Translator: LibreHacker <librehacker@snopyta.org>\n"
+"PO-Revision-Date: 2021-03-15 17:26+0000\n"
+"Last-Translator: Viktor <xaad3@disroot.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если есть "
-"токсичная вакуоль. G - режим поглощения."
+"токсиновая вакуоль. G - режим поглощения."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -46,10 +46,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Нажимая кнопку \"G\", ты входишь в режим поглощения. Ты можешь потреблять "
-"меньшие по размеру клетки, бактерии, а также молекулы железа. Это стоит "
-"дополнительных затрат АТФ, а также замедляет передвижение. Не забудь "
-"нажать \"G\" снова, как закончишь поглощать."
+"Нажимая G, ты также можешь поглощать клетки, бактерии и молекулы железа, "
+"если они меньше тебя. Это будет стоить дополнительной затраты АТФ, а ещё "
+"замедлит тебя. Не забудь нажать G снова, чтобы прекратить поглощение."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
@@ -88,8 +87,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"Сероводород может быть превращён в глюкозу, если есть хемопласты или белки-"
-"хемосинтетики. А железо может стать АТФ с помощью рустицианина."
+"Сероводород может быть превращён в глюкозу с помощью хемопластов или белков-"
+"хемосинтетиков. Железо может стать АТФ с помощью рустицианина."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
@@ -122,7 +121,7 @@ msgstr ""
 "Хемоситнезирующие белки: в составе хемопластов производят 50% всей глюкозы "
 "из сероводорода. Участвуют в гликолизе. Занимают 1 ячейку;\n"
 "\n"
-"Тилакоиды: в составе хлоропластов производят треть всей глюкозы клетки. "
+"Тилакоиды: производит в три раза меньше глюкозы чем обычный хлоропласт. "
 "Участвуют в гликолизе. Занимают 1 ячейку;\n"
 "\n"
 "Рустицианин: превращает железо в АТФ;\n"
@@ -130,8 +129,8 @@ msgstr ""
 "Нитрогеназа: превращает атмосферный азот и АТФ в аммиак в процессе "
 "бескислородного дыхания;\n"
 "\n"
-"Цитоплазма: пространство для хранения веществ и гликолиза. Производит "
-"небольшое количество АТФ"
+"Цитоплазма: пространство для хранения веществ и выполнения гликолиза ("
+"Производит небольшое количество АТФ)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -145,22 +144,24 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Двумембранные органеллы:\n"
+"Мембранные органеллы:\n"
 "\n"
-"Ядро: часть эволюции, необходимо для появления двумембранных органелл в "
-"твоей клетке. Удваивает размер твоей клетки. Занимает 11 ячеек. ;\n"
+"Ядро: Занимает 11 ячеек и позволяет развить мембранные органеллы. Также "
+"значительно увеличивает размер твоей клетки. (можно развить только единожды);"
 "\n"
-"Митохондрия: производит АТФ из глюкозы и кислорода воздуха. В этом плане "
-"гораздо эффективнее цитоплазмы;\n"
 "\n"
-"Хлоропласт: получает глюкозу из энергии света и углекислого газа;\n"
+"Митохондрия: Производит АТФ из глюкозы и атмосферного кислорода. Делает это "
+"намного эффективнее цитоплазмы;\n"
 "\n"
-"Хемопласт: делает глюкозу из сероводорода;\n"
+"Хлоропласт: Создает глюкозу из солнечного света и атмосферного углекислого "
+"газа;\n"
 "\n"
-"Азотфиксирующий пластид: превращает аммиак а АТФ, свободный азот и "
-"свободный кислород;\n"
+"Хемопласт: Создает глюкозу из сероводорода;\n"
 "\n"
-"Вакуоль: хранит до 15 веществ;\n"
+"Азотфиксирующий пластид: Создает аммиак из АТФ и атмосферного азота и "
+"кислорода;\n"
+"\n"
+"Вакуоль: Хранит до 15 соединений;\n"
 "\n"
 "Токсиновая вакуоль: производит токсины (в игре - OxyToxy NT)"
 
@@ -171,8 +172,9 @@ msgstr ""
 "израсходования, и каждое изменение (или мутация) будут стоить некоторое "
 "количество МО. Добавление и удаление органелл стоит МО, однако удаление "
 "органелл которые были размещены в текущей мутационной сессии возвращают МО "
-"за эти органеллы. Ты можешь удалить органеллы нажатием на них правой "
-"кнопки мыши. Ты можешь вращать, нажимая A и D."
+"за эти органеллы. Ты можешь переместить или польностью удалить органеллу, "
+"нажав на неё правой кнопкой мыши и выбрав подходящее действие из "
+"всплывающего меню. Размещая органеллы, ты можешь вращать их, нажимая A и D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -187,15 +189,17 @@ msgid "LOADING_TIP"
 msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
 
 #: ../simulation_parameters/common/help_texts.json:48
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Забавный Факт,"
+msgstr ""
+"Забавный Факт, дидинии и парамеции - наглядный пример взаимоотношений "
+"\"хищник - жертва\", которые изучали на протяжении десятилетий. А что ты - "
+"хищник или жертва?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"Совет: токсины можно выпустить, чтобы оттолкнуть от тебя другие токсины, "
-"если ты будешь быстрым."
+"Совет: токсины можно выпустить, чтобы оттолкнуть от себя другие токсины, "
+"если ты достаточно быстр."
 
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
@@ -217,8 +221,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-"Вот подсказка, иногда лучшее - это просто бежать подальше от других клеток."
+msgstr "Совет: иногда лучшее - это просто бежать подальше от других клеток."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_7"
@@ -233,9 +236,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Совет: вы можете охотиться на другие виды до их истребления, если не "
-"будете достаточно осторожны. На них также могут охотиться другие виды тем "
-"самым истребляя их вид."
+"Совет: вы можете охотиться на другие виды до их истребления, если не будете "
+"достаточно осторожны. Другие виды могут делать то же самое."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -263,7 +265,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "Совет: ты можешь поглощать железные и другие куски."
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
@@ -280,6 +282,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
+"Забавный факт: трубачи - инфузории, способные растягивать себя и ловить "
+"добычу в подобный трубе рот, который засасывает жертву, создавая водные "
+"потоки с помощью ресничек."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_19"
@@ -289,6 +294,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
+"Забавный факт, амёба охотится и ловит добычу с помощью \"ног\", состоящих из "
+"цитоплазмы, которые называются псевдоподиями. В конечном итоге мы хотим, "
+"чтобы они были в Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -331,6 +339,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
+"Забавный факт, один из первых рабочих прототипов игрового процесса был "
+"создан нашим замечательным программистом untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -474,9 +484,8 @@ msgid "SHOW_HELP"
 msgstr "Показать помощь"
 
 #: ../simulation_parameters/common/input_options.json:168
-#, fuzzy
 msgid "TOGGLE_FULLSCREEN"
-msgstr "Полный экран"
+msgstr "Включить полноэкранный режим"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -798,7 +807,7 @@ msgstr "Митохондрия"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3286
 msgid "TOXIN_VACUOLE"
 msgstr ""
-"Токсичная\n"
+"Токсиновая\n"
 "Вакуоль"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:484
@@ -856,7 +865,7 @@ msgstr "предыдущее:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUNRESULT_HAS_A_MUTATION"
-msgstr ""
+msgstr "имеет мутацию"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUNRESULT_GENE_CODE"
@@ -921,7 +930,6 @@ msgid "WHEEL_DOWN"
 msgstr "Колёсико вниз"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
-#, fuzzy
 msgid "WHEEL_LEFT"
 msgstr "Колёсико влево"
 
@@ -995,13 +1003,12 @@ msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
 #: ../src/general/OptionsMenu.tscn:330
-#, fuzzy
 msgid "COLOURBLIND_CORRECTION"
-msgstr "Цветовая Коррекция:"
+msgstr "Цветокоррекция для проблем цветовосприятия:"
 
 #: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
-msgstr "Хроматическая Аберрация:"
+msgstr "Хроматическая аберрация:"
 
 #: ../src/general/OptionsMenu.tscn:403
 msgid "MASTER_VOLUME"
@@ -1056,9 +1063,8 @@ msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(высокие значения могут ухудшить производительность)"
 
 #: ../src/general/OptionsMenu.tscn:691
-#, fuzzy
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr "Делитель Облачного Разрешения:"
+msgstr "Делитель разрешения облаков:"
 
 #: ../src/general/OptionsMenu.tscn:733
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -1114,7 +1120,7 @@ msgstr "Открыть папку с Изображениями экрана"
 
 #: ../src/general/OptionsMenu.tscn:988
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "Открыть папку логов"
 
 #: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
@@ -1268,14 +1274,13 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробный Свободностроительный Редактор"
 
 #: ../src/gui_common/MainMenu.tscn:359
-#, fuzzy
 msgid "GLES2_MODE_WARNING"
-msgstr "GLES 2 Режим Предупреждений"
+msgstr "Предупреждение режима GLES2"
 
 #: ../src/gui_common/MainMenu.tscn:372
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"Ты запустил Thrive через GLES2. Это сильно не проверенно и может вызывать "
+"Ты запустил Thrive через GLES2. Это не проверено и скорее всего вызовет "
 "проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD "
 "или Nvidia графику для запуска Thrive."
 
@@ -1540,6 +1545,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
+"Нитрогеназа - белок, способный использовать газообрызный азот и клеточную "
+"энергию в форме АТФ для производства аммиака, который является ключевым "
+"питательным веществом для роста клеток. Этот процесс известен как анаэробная "
+"азотфиксация. Поскольку нитрогеназа находится в суспензии непосредственно в "
+"цитоплазме, окружающая жидкость выполняет некоторую ферментацию."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4993
@@ -1577,6 +1587,8 @@ msgstr "Скорость"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
+"Жгутик - пучок белковых волокон, отходящих от клеточной мембраны, который "
+"может использовать АТФ для продвижения клетки в нужном направлении."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
 msgid "PREDATORY_PILUS_DESCRIPTION"
@@ -1596,6 +1608,10 @@ msgstr "Будет реализовано."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3064
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
+"Позволяет развить более сложные \n"
+"двумембранные органеллы. Требует\n"
+"много АТФ для поддержания. Эту\n"
+"эволюцию невозможно отменить."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
 msgid "NUCLEUS_DESCRIPTION"
@@ -1628,6 +1644,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4334
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
+"Хемопласт - двумембранная структура из белков, способная превращать "
+"сероводород, воду и углекислый газ в глюкозу в процессе сероводородного "
+"хемосинтеза. Скорость производства глюкозы зависит от концентрации "
+"углекислого газа."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4653
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -1635,7 +1655,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4754
 msgid "INREASE_STORAGE_SPACE"
-msgstr ""
+msgstr "Увеличивает пространство хранения клетки."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4854
 msgid "VACUOLE_DESCRIPTION"
@@ -1660,6 +1680,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5170
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
+"Токсиновая вакуоль - вакуоль, модифицированная для производства, хранения и "
+"секреции токсинов oxytoxy. Больше токсиновых вакуолей увеличат скорость, с "
+"которой токсины могут быть выпущены."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5250
@@ -1727,9 +1750,8 @@ msgstr "Хитин"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6398
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6759
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7120
-#, fuzzy
 msgid "TOXIN_RESISTANCE"
-msgstr "Токсичная Устойчивость"
+msgstr "Устойчивость к токсинам"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6471
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -1781,14 +1803,12 @@ msgid "STUFF_AT"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:664
-#, fuzzy
 msgid "PLAYER_CELL"
-msgstr "игрок умер"
+msgstr "Клетка игрока"
 
 #: ../src/microbe_stage/MicrobeStage.cs:453
-#, fuzzy
 msgid "PLAYER_REPRODUCED"
-msgstr "игрок воспроизвёл"
+msgstr "игрок размножился"
 
 #: ../src/microbe_stage/MicrobeStage.cs:565
 msgid "PLAYER_DIED"
@@ -2042,9 +2062,8 @@ msgid "FOOD_CHAIN"
 msgstr "Пищевая Цепочка"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4317
-#, fuzzy
 msgid "TIMELINE"
-msgstr "Срок"
+msgstr "Временная шкала"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4370
 msgid "AUTO_EVO_RESULTS"
@@ -2055,9 +2074,8 @@ msgid "EXTERNAL_EFFECTS"
 msgstr "Внешние эффекты:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
-#, fuzzy
 msgid "SPECIES_POPULATION"
-msgstr "Виды:"
+msgstr "Популяция вида"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
@@ -2137,9 +2155,8 @@ msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
-#, fuzzy
 msgid "SPECIES_LIST"
-msgstr "Присутствующие виды"
+msgstr "Список видов"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 #, fuzzy
@@ -2219,9 +2236,8 @@ msgid "SAVE_IS_INVALID"
 msgstr "Сохранение недействительно"
 
 #: ../src/saving/InProgressLoad.cs:127
-#, fuzzy
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "Сохрание имеет недействительное состояние игровой сцены"
+msgstr "Файл сохранения имеет недействительную сцену состояния игры"
 
 #: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
@@ -2352,10 +2368,10 @@ msgstr "Выбранное сохранение несовместимо"
 #: ../src/saving/SaveList.tscn:166
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Выбранное сохранение для загрузки известно как несовместимое с текущей "
-"версий Thrive.\n"
-"Thrive на стадии ранней разработки, совместимость сохранений не высокого "
-"приоритета, она не имеет встроенного преобразователя старых сохранений."
+"Выбранный файл сохранения несовместим с текущей версий Thrive.\n"
+"Так как Thrive находится на ранней стадии разработки, совместимость файлов "
+"сохранения не является задачей высокого приоритета, поэтому пока нет "
+"встроенного конвертера для обновления старых файлов сохранения."
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
