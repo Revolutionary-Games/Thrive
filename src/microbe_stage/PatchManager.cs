@@ -39,7 +39,7 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed, Vector3 playerPosition)
     {
         if (previousPatch != currentPatch && despawnAllowed)
         {
@@ -73,7 +73,7 @@ public class PatchManager
         // Apply spawn system settings
         UnmarkAllSpawners();
 
-        HandleCloudSpawns(currentPatch.Biome);
+        HandleCloudSpawns(currentPatch.Biome, playerPosition);
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
@@ -103,8 +103,9 @@ public class PatchManager
         }
     }
 
-    private void HandleCloudSpawns(BiomeConditions biome)
+    private void HandleCloudSpawns(BiomeConditions biome, Vector3 playerPosition)
     {
+        GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
         spawnSystem.ClearBiomeCompounds();
 
@@ -134,6 +135,7 @@ public class PatchManager
             });
 
         spawnSystem.FillCloudBag();
+        spawnSystem.spawnStartClouds(playerPosition);
     }
 
     private void HandleCellSpawns(Patch patch)

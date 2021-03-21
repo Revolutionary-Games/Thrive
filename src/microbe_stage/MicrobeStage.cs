@@ -252,7 +252,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (IsLoadedFromSave)
         {
             HUD.OnEnterStageTransition(false);
-            UpdatePatchSettings(true);
+            UpdatePatchSettings(true, Player.Transform.origin);
         }
         else
         {
@@ -277,7 +277,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         CreatePatchManagerIfNeeded();
 
-        UpdatePatchSettings(false);
+        UpdatePatchSettings(false, new Vector3(0,0,0));
 
         SpawnPlayer();
     }
@@ -472,7 +472,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void OnReturnFromEditor()
     {
-        UpdatePatchSettings(false);
+        UpdatePatchSettings(false, Player.Transform.origin);
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -577,9 +577,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
     }
 
-    private void UpdatePatchSettings(bool isLoading)
+    private void UpdatePatchSettings(bool isLoading, Vector3 playerPosition)
     {
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
+        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading, playerPosition);
 
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);

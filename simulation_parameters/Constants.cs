@@ -49,6 +49,8 @@ public static class Constants
     // length of cloud spawn cycle in seconds.
     public const float CLOUD_SPAWN_TIME = 300f;
 
+    public const int FREE_CLOUDS_IN_NEW_PATCH = 2;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>
