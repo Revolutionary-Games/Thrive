@@ -406,12 +406,23 @@ public class SpawnSystem
             }
     }
 
-    public void spawnPatchStartClouds(Vector3 PlayerPosition)
+    public void spawnPatchStartClouds(Vector3 playerPosition)
     {
         for(int i =0; i< 3; i++)
         {
-            float displacementDistance = random.NextFloat() *cloudSpawner.MinSpawnRadiusSqr;
+            float displacementDistance = random.NextFloat() * (float)Math.Sqrt(cloudSpawner.MinSpawnRadiusSqr);
             float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
+
+            float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
+            float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
+
+            Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
+            Compound compound = BagPop();
+
+            GD.Print("Spawning " + compound + "Cloud with displacement:" + displacement);
+                
+            SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(), 
+            playerPosition + displacement,compound, compoundAmounts[compound]);
         }
     }
 
