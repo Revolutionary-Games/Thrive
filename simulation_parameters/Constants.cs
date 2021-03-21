@@ -46,6 +46,9 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
+    // length of cloud spawn cycle in seconds.
+    public const float CLOUD_SPAWN_TIME = 60f;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>

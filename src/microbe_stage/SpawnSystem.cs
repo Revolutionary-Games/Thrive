@@ -17,12 +17,28 @@ public class SpawnSystem
     [JsonProperty]
     private float elapsed;
 
+    [JsonProperty]
+     private float  cloudSpawnTimer;
+
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
     private Node worldRoot;
 
     private List<Spawner> spawnTypes = new List<Spawner>();
+
+
+    /// <summary>
+    ///   Used for spawning clouds
+    /// </summary>
+    private Dictionary<Compound,int> biomeCompounds = new  Dictionary<Compound,int>();
+
+    /// <summary>
+    ///   Used for a Tetris style random bag. Fill and shuffle the bag,
+    ///   then simply pop one out until empty. Rinse and repeat.
+    /// </summary>
+    private List<Compound> cloudBag = new List<Compound>();
+
 
     [JsonProperty]
     private Random random = new Random();
@@ -103,6 +119,54 @@ public class SpawnSystem
         spawnTypes.Add(spawner);
     }
 
+    public void AddBiomeCompound(Compound compound, int percent)
+    {
+        biomeCompounds.Add(compound, percent);
+    }
+
+    public void ClearBiomeCompounds()
+    {
+        biomeCompounds.Clear();
+    }
+
+    public void FillCloudBag()
+    {   
+        cloudBag.Clear();
+        foreach(Compound key in biomeCompounds.Keys)
+        {
+            //If a compound is set to N%, add N of them to cloudBag
+            //At most this will add 100 to cloudBag.
+            for (int i = 0; i< Math.Min(biomeCompounds[key], 100); i++)
+            {
+                cloudBag.Add(key);
+            }
+        }
+
+        //Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
+        for (int i=0; i<cloudBag.Count -2; i++)
+        {
+            int j = random.Next(i, cloudBag.Count + 1);
+
+            //swap i,j
+            Compound swap = cloudBag[i];
+
+            cloudBag[i] = cloudBag[j];
+            cloudBag[j] = swap;
+        }
+        cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBag.Count;
+    }
+
+    private Compound BagPop()
+    {
+        if(cloudBag.Count == 0)
+            FillCloudBag();
+
+        Compound pop = cloudBag[0];
+        cloudBag.RemoveAt(0);
+
+        return pop;
+    }
+
     /// <summary>
     ///   Removes a spawn type immediately. Note that it's easier to
     ///   just set DestroyQueued to true on an spawner.
@@ -178,7 +242,7 @@ public class SpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
+            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame, delta);
         }
     }
 
@@ -213,9 +277,11 @@ public class SpawnSystem
         return spawnsLeftThisFrame;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
+    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame, float delta)
     {
-        // If  there are already too many entities, don't spawn more
+        spawnClouds(playerPosition,playerRotation, delta);
+        
+        // If  there are already too many entities, don't spawn more (genClouds does not spawn entities)
         if (existing >= maxAliveEntities)
             return;
 
@@ -276,6 +342,16 @@ public class SpawnSystem
                     }
                 }
             }
+        }
+    }
+
+      private void spawnClouds(Vector3 playerPosition, Vector3 playerRotation, float delta)
+    {
+        cloudSpawnTimer -= delta;
+        if(cloudSpawnTimer <= 0)
+        {
+            
+            cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBag.Count;
         }
     }
 

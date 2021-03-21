@@ -73,8 +73,6 @@ public class PatchManager
         // Apply spawn system settings
         UnmarkAllSpawners();
 
-        // Cloud spawners should be added first due to the way the
-        // total entity count is limited
         HandleCloudSpawns(currentPatch.Biome);
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
@@ -109,19 +107,22 @@ public class PatchManager
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
-        foreach (var entry in biome.Compounds)
-        {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Key.InternalName);
-                    spawner.Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount);
+        spawnSystem.ClearBiomeCompounds();
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.CLOUD_SPAWN_RADIUS);
-                    return spawner;
-                });
+        foreach (var compound in biome.Compounds.Keys)
+        {
+            int compoundDensity = (int)biome.Compounds[compound].Density;
+            int compoundAmount = (int)biome.Compounds[compound].Amount;
+            //if density = 0, then do not add to biomeCompounds
+            if(compoundDensity != 0 && compoundAmount != 0)
+            {
+                int percent = compoundAmount / compoundDensity;
+                spawnSystem.AddBiomeCompound(compound, percent);
+            }
+            
         }
+
+        spawnSystem.FillCloudBag();
     }
 
     private void HandleCellSpawns(Patch patch)

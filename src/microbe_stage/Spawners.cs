@@ -27,12 +27,7 @@ public static class Spawners
 
         return new ChunkSpawner(chunkType, cloudSystem);
     }
-
-    public static CompoundCloudSpawner MakeCompoundSpawner(Compound compound,
-        CompoundCloudSystem clouds, float amount)
-    {
-        return new CompoundCloudSpawner(compound, clouds, amount);
-    }
+    
 }
 
 /// <summary>
@@ -347,13 +342,6 @@ public class CompoundCloudSpawner : Spawner
     private readonly Compound compound;
     private readonly CompoundCloudSystem clouds;
     private readonly float amount;
-
-    public CompoundCloudSpawner(Compound compound, CompoundCloudSystem clouds, float amount)
-    {
-        this.compound = compound ?? throw new ArgumentException("compound is null");
-        this.clouds = clouds ?? throw new ArgumentException("clouds is null");
-        this.amount = amount;
-    }
 
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
