@@ -20,7 +20,7 @@ public class SpawnSystem
     [JsonProperty]
      private float  cloudSpawnTimer;
 
-    private CompoundCloudSpawner cloudSpawner;
+    private CloudSpawner cloudSpawner;
 
     /// <summary>
     ///   Root node to parent all spawned things to
@@ -120,10 +120,10 @@ public class SpawnSystem
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
         spawner.MinSpawnRadiusSqr = minSpawnRadius * minSpawnRadius;
 
-        if(spawner is CompoundCloudSpawner)
+        if(spawner is CloudSpawner)
         {
             GD.Print("FOUND CLOUD SPAWNER");
-            cloudSpawner = (CompoundCloudSpawner)spawner;
+            cloudSpawner = (CloudSpawner)spawner;
         }
         else
         {

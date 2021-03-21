@@ -28,9 +28,9 @@ public static class Spawners
         return new ChunkSpawner(chunkType, cloudSystem);
     }
 
-     public static CompoundCloudSpawner MakeCompoundSpawner(CompoundCloudSystem clouds)
+     public static CloudSpawner MakeCompoundSpawner(CompoundCloudSystem clouds)
     {
-        return new CompoundCloudSpawner(clouds);
+        return new CloudSpawner(clouds);
     }
 }
 
@@ -341,12 +341,12 @@ public class MicrobeSpawner : Spawner
 /// <summary>
 ///   Spawns compound clouds of a certain type
 /// </summary>
-public class CompoundCloudSpawner : Spawner
+public class CloudSpawner : Spawner
 {
     private readonly CompoundCloudSystem clouds;
     readonly float amount;
 
-    public CompoundCloudSpawner(CompoundCloudSystem clouds)
+    public CloudSpawner(CompoundCloudSystem clouds)
     {
         this.clouds = clouds ?? throw new ArgumentException("clouds is null");
     }
