@@ -28,6 +28,10 @@ public static class Spawners
         return new ChunkSpawner(chunkType, cloudSystem);
     }
     
+     public static CompoundCloudSpawner MakeCompoundSpawner(CompoundCloudSystem clouds)
+    {
+        return new CompoundCloudSpawner(clouds);
+    }
 }
 
 /// <summary>
@@ -339,13 +343,27 @@ public class MicrobeSpawner : Spawner
 /// </summary>
 public class CompoundCloudSpawner : Spawner
 {
-    private readonly Compound compound;
     private readonly CompoundCloudSystem clouds;
-    private readonly float amount;
+    readonly float amount;
 
-    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
+    public CompoundCloudSpawner(CompoundCloudSystem clouds)
+    {
+        this.clouds = clouds ?? throw new ArgumentException("clouds is null");
+    }
+
+    public CompoundCloudSystem GetCloudSystem()
+    {
+        return clouds;
+    }
+    public void SpawnCloud(Vector3 location, Compound compound, float amount)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
+    }
+    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
+    {
+        //for now, do nothing. I'm probably going to delete this.
+        
+        //SpawnHelpers.SpawnCloud(clouds, location, amount);
 
         // We don't spawn entities
         return null;

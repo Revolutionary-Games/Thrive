@@ -105,22 +105,33 @@ public class PatchManager
 
     private void HandleCloudSpawns(BiomeConditions biome)
     {
-        GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
         spawnSystem.ClearBiomeCompounds();
 
         foreach (var compound in biome.Compounds.Keys)
         {
-            int compoundDensity = (int)biome.Compounds[compound].Density;
-            int compoundAmount = (int)biome.Compounds[compound].Amount;
+            float compoundDensity = biome.Compounds[compound].Density;
+            float compoundAmount = biome.Compounds[compound].Amount;
+
             //if density = 0, then do not add to biomeCompounds
-            if(compoundDensity != 0 && compoundAmount != 0)
+            if(compoundDensity > 0 && compoundAmount > 0)
             {
-                int percent = compoundAmount / compoundDensity;
-                spawnSystem.AddBiomeCompound(compound, percent);
+                int percent = (int)(compoundAmount * compoundDensity);
+                GD.Print(compound.Name + " is at " + percent + ".");
+                spawnSystem.AddBiomeCompound(compound, percent, compoundAmount);
             }
             
         }
+        HandleSpawnHelper(cloudSpawners, "Clouds", 1.0f,
+            () =>
+            {
+                var spawner = new CreatedSpawner("Clouds");
+                spawner.Spawner = Spawners.MakeCompoundSpawner(compoundCloudSystem);
+
+                spawnSystem.AddSpawnType(spawner.Spawner, 1.0f,
+                    Constants.CLOUD_SPAWN_RADIUS);
+                return spawner;
+            });
 
         spawnSystem.FillCloudBag();
     }
