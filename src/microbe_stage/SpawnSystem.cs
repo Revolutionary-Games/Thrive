@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -313,7 +313,8 @@ public class SpawnSystem
         return displacement;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame, float delta)
+    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, 
+        int existing, int spawnsLeftThisFrame, float delta)
     {
         // If  there are already too many entities, don't spawn more (genClouds does not spawn entities)
         if (existing >= maxAliveEntities)
