@@ -28,7 +28,7 @@ public static class Spawners
         return new ChunkSpawner(chunkType, cloudSystem);
     }
 
-     public static CloudSpawner MakeCompoundSpawner(CompoundCloudSystem clouds)
+    public static CloudSpawner MakeCompoundSpawner(CompoundCloudSystem clouds)
     {
         return new CloudSpawner(clouds);
     }
@@ -344,7 +344,6 @@ public class MicrobeSpawner : Spawner
 public class CloudSpawner : Spawner
 {
     private readonly CompoundCloudSystem clouds;
-    readonly float amount;
 
     public CloudSpawner(CompoundCloudSystem clouds)
     {
@@ -355,6 +354,7 @@ public class CloudSpawner : Spawner
     {
         return clouds;
     }
+
     public void SpawnCloud(Vector3 location, Compound compound, float amount)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount);

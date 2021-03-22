@@ -277,7 +277,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         CreatePatchManagerIfNeeded();
 
-        UpdatePatchSettings(false, new Vector3(0,0,0));
+        UpdatePatchSettings(false, new Vector3(0, 0, 0));
 
         SpawnPlayer();
     }
