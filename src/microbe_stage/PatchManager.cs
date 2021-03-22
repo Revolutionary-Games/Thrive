@@ -114,15 +114,15 @@ public class PatchManager
             float compoundDensity = biome.Compounds[compound].Density;
             float compoundAmount = biome.Compounds[compound].Amount;
 
-            //if density = 0, then do not add to biomeCompounds
-            if(compoundDensity > 0 && compoundAmount > 0)
+            // if density = 0, then do not add to biomeCompounds
+            if (compoundDensity > 0 && compoundAmount > 0)
             {
                 int percent = (int)(compoundAmount * compoundDensity);
                 GD.Print(compound.Name + " is at " + percent + ".");
                 spawnSystem.AddBiomeCompound(compound, percent, compoundAmount);
             }
-            
         }
+
         HandleSpawnHelper(cloudSpawners, "Clouds", 1.0f,
             () =>
             {
@@ -135,7 +135,7 @@ public class PatchManager
             });
 
         spawnSystem.FillCloudBag();
-        spawnSystem.spawnStartClouds(playerPosition);
+        spawnSystem.SpawnStartClouds(playerPosition);
     }
 
     private void HandleCellSpawns(Patch patch)
