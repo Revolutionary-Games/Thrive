@@ -18,7 +18,7 @@ public class SpawnSystem
     private float elapsed;
 
     [JsonProperty]
-     private float  cloudSpawnTimer;
+    private float cloudSpawnTimer;
 
     private CloudSpawner cloudSpawner;
 
@@ -33,17 +33,14 @@ public class SpawnSystem
     /// <summary>
     ///   Used for spawning clouds
     /// </summary>
-    private Dictionary<Compound,int> biomeCompounds = new  Dictionary<Compound,int>();
-    private Dictionary<Compound,float> compoundAmounts = new Dictionary<Compound,float>();
+    private Dictionary<Compound, int> biomeCompounds = new Dictionary<Compound, int>();
+    private Dictionary<Compound, float> compoundAmounts = new Dictionary<Compound, float>();
 
     /// <summary>
     ///   Used for a Tetris style random bag. Fill and shuffle the bag,
     ///   then simply pop one out until empty. Rinse and repeat.
     /// </summary>
     private List<Compound> cloudBag = new List<Compound>();
-
-
-
 
     [JsonProperty]
     private Random random = new Random();
@@ -120,7 +117,7 @@ public class SpawnSystem
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
         spawner.MinSpawnRadiusSqr = minSpawnRadius * minSpawnRadius;
 
-        if(spawner is CloudSpawner)
+        if (spawner is CloudSpawner)
         {
             GD.Print("FOUND CLOUD SPAWNER");
             cloudSpawner = (CloudSpawner)spawner;
@@ -149,34 +146,35 @@ public class SpawnSystem
     {
         GD.Print("Filling the Cloud Bag");
         cloudBag.Clear();
-        foreach(Compound key in biomeCompounds.Keys)
+        foreach (Compound key in biomeCompounds.Keys)
         {
-            //If a compound is set to N%, add N of them to cloudBag
-            //At most this will add 100 to cloudBag.
+            // If a compound is set to N%, add N of them to cloudBag
+            // At most this will add 100 to cloudBag.
             GD.Print("Adding " + biomeCompounds[key] + " of " + key.Name);
-            for (int i = 0; i< Math.Min(biomeCompounds[key], 100); i++)
+            for (int i = 0; i < Math.Min(biomeCompounds[key], 100); i++)
             {
                 cloudBag.Add(key);
             }
         }
 
-        //Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
-        for (int i=0; i<cloudBag.Count -2; i++)
+        // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
+        for (int i = 0; i < cloudBag.Count - 2; i++)
         {
             int j = random.Next(i, cloudBag.Count);
 
-            //swap i,j
+            // swap i, j
             Compound swap = cloudBag[i];
 
             cloudBag[i] = cloudBag[j];
             cloudBag[j] = swap;
         }
+
         cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBag.Count;
     }
 
     private Compound BagPop()
     {
-        if(cloudBag.Count == 0)
+        if (cloudBag.Count == 0)
             FillCloudBag();
 
         Compound pop = cloudBag[0];
@@ -260,11 +258,29 @@ public class SpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame, delta);
+            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
         }
 
         // spawnClouds has it's own timer, so run this every frame.
-        spawnClouds(playerPosition,playerRotation, delta);
+        spawnClouds(playerPosition, playerRotation, delta);
+    }
+
+    public void SpawnStartClouds(Vector3 playerPosition)
+    {
+        for (int i = 0; i < Constants.FREE_CLOUDS_IN_NEW_PATCH; i++)
+        {
+            float displacementDistance = random.NextFloat() * (float)Math.Sqrt(cloudSpawner.MinSpawnRadiusSqr);
+            float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
+
+            float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
+            float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
+
+            Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
+            Compound compound = BagPop();
+
+            SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
+            playerPosition + displacement, compound, compoundAmounts[compound] );
+        }
     }
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
@@ -313,7 +329,8 @@ public class SpawnSystem
         return displacement;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame, float delta)
+    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation,
+        int existing, int spawnsLeftThisFrame)
     {
         // If  there are already too many entities, don't spawn more (genClouds does not spawn entities)
         if (existing >= maxAliveEntities)
@@ -360,7 +377,7 @@ public class SpawnSystem
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
-                            ref spawnsLeftThisFrame, ref spawned))
+                            ref spawnsLeftThisFrame, ref spawned) )
                         {
                             return;
                         }
@@ -369,10 +386,11 @@ public class SpawnSystem
             }
         }
     }
-      private void spawnClouds(Vector3 playerPosition, Vector3 playerRotation, float delta)
+
+    private void spawnClouds(Vector3 playerPosition, Vector3 playerRotation, float delta)
     {
         cloudSpawnTimer -= delta;
-        if(cloudSpawnTimer <= 0)
+        if (cloudSpawnTimer <= 0)
         {
             SpawnCloud(playerPosition, playerRotation);
             cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBag.Count;
@@ -381,32 +399,14 @@ public class SpawnSystem
 
     private void SpawnCloud(Vector3 playerPosition, Vector3 playerRotation)
     {
-        if(cloudSpawner != null)
-            {
-                float minRadiusSqr =  cloudSpawner.MinSpawnRadiusSqr;
-                float maxRadiusSqr = cloudSpawner.SpawnRadiusSqr;
-
-                float squaredDistance = random.NextFloat()*(maxRadiusSqr - minRadiusSqr) + minRadiusSqr;
-                float displacementRotation = WeightedRandomRotation(playerRotation.y);
-                float displacementDistance = (float)Math.Sqrt(squaredDistance);
-
-                float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
-                float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
-
-                Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
-                Compound compound = BagPop();
-
-                SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
-                playerPosition + displacement,compound, compoundAmounts[compound]);
-            }
-    }
-
-    public void spawnStartClouds(Vector3 playerPosition)
-    {
-        for(int i =0; i< Constants.FREE_CLOUDS_IN_NEW_PATCH; i++)
+        if (cloudSpawner != null)
         {
-            float displacementDistance = random.NextFloat() * (float)Math.Sqrt(cloudSpawner.MinSpawnRadiusSqr);
-            float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
+            float minRadiusSqr = cloudSpawner.MinSpawnRadiusSqr;
+            float maxRadiusSqr = cloudSpawner.SpawnRadiusSqr;
+
+            float squaredDistance = random.NextFloat() * (maxRadiusSqr - minRadiusSqr) + minRadiusSqr;
+            float displacementRotation = WeightedRandomRotation(playerRotation.y);
+            float displacementDistance = (float)Math.Sqrt(squaredDistance);
 
             float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
             float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
@@ -414,8 +414,8 @@ public class SpawnSystem
             Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
             Compound compound = BagPop();
 
-            SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(), 
-            playerPosition + displacement,compound, compoundAmounts[compound]);
+            SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
+                playerPosition + displacement, compound, compoundAmounts[compound] );
         }
     }
 
@@ -423,8 +423,8 @@ public class SpawnSystem
     ///   Does a single spawn with a spawner
     /// </summary>
     /// <returns>True if we have exceeded the spawn limit and no further spawns should be done this frame</returns>
-    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, int existing, ref int spawnsLeftThisFrame,
-        ref int spawned)
+    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, int existing,
+        ref int spawnsLeftThisFrame, ref int spawned)
     {
         var enumerable = spawnType.Spawn(worldRoot, location);
 
