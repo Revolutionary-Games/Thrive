@@ -172,17 +172,6 @@ public class SpawnSystem
         cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBag.Count;
     }
 
-    private Compound BagPop()
-    {
-        if (cloudBag.Count == 0)
-            FillCloudBag();
-
-        Compound pop = cloudBag[0];
-        cloudBag.RemoveAt(0);
-
-        return pop;
-    }
-
     /// <summary>
     ///   Removes a spawn type immediately. Note that it's easier to
     ///   just set DestroyQueued to true on an spawner.
@@ -272,15 +261,23 @@ public class SpawnSystem
             float displacementDistance = random.NextFloat() * (float)Math.Sqrt(cloudSpawner.MinSpawnRadiusSqr);
             float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
 
-            float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
-            float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
-
-            Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
+            Vector3 displacement = getSpawnDisplacement(displacementRotation,displacementDistance);
             Compound compound = BagPop();
 
             SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
-            playerPosition + displacement, compound, compoundAmounts[compound] );
+                playerPosition + displacement, compound, compoundAmounts[compound] );
         }
+    }
+
+    private Compound BagPop()
+    {
+        if (cloudBag.Count == 0)
+            FillCloudBag();
+
+        Compound pop = cloudBag[0];
+        cloudBag.RemoveAt(0);
+
+        return pop;
     }
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
@@ -316,11 +313,8 @@ public class SpawnSystem
 
     // A random location in the square of side length 2*spawnRadius
     // centered on the player is chosen.
-    private Vector3 getSpawnDisplacement(Vector3 playerRotation, Spawner spawner)
+    private Vector3 getSpawnDisplacement(float displacementRotation, float displacementDistance)
     {
-        float displacementDistance = random.NextFloat() * spawner.SpawnRadius;
-        float displacementRotation = WeightedRandomRotation(playerRotation.y);
-
         float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
         float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
 
@@ -369,7 +363,10 @@ public class SpawnSystem
                     will fail the second condition, so entities still only
                     spawn within the spawning region.
                     */
-                    Vector3 displacement = getSpawnDisplacement(playerRotation, spawnType);
+                    float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
+                    float displacementRotation = WeightedRandomRotation(playerRotation.y);
+
+                    Vector3 displacement = getSpawnDisplacement(displacementRotation, displacementDistance);
                     float squaredDistance = displacement.LengthSquared();
 
                     if (squaredDistance <= spawnType.SpawnRadiusSqr &&
@@ -408,10 +405,7 @@ public class SpawnSystem
             float displacementRotation = WeightedRandomRotation(playerRotation.y);
             float displacementDistance = (float)Math.Sqrt(squaredDistance);
 
-            float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
-            float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
-
-            Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
+            Vector3 displacement = getSpawnDisplacement(displacementRotation,displacementDistance);
             Compound compound = BagPop();
 
             SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
