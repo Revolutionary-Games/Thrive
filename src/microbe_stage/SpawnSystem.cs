@@ -33,6 +33,7 @@ public class SpawnSystem
     ///   Used for spawning clouds
     /// </summary>
     private Dictionary<Compound, int> biomeCompounds = new Dictionary<Compound, int>();
+
     private Dictionary<Compound, float> compoundAmounts = new Dictionary<Compound, float>();
 
     /// <summary>
