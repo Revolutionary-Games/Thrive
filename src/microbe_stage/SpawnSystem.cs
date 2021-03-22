@@ -29,7 +29,6 @@ public class SpawnSystem
 
     private List<Spawner> spawnTypes = new List<Spawner>();
 
-
     /// <summary>
     ///   Used for spawning clouds
     /// </summary>
@@ -251,7 +250,7 @@ public class SpawnSystem
         }
 
         // spawnClouds has it's own timer, so run this every frame.
-        spawnClouds(playerPosition, playerRotation, delta);
+        SpawnClouds(playerPosition, playerRotation, delta);
     }
 
     public void SpawnStartClouds(Vector3 playerPosition)
@@ -261,11 +260,11 @@ public class SpawnSystem
             float displacementDistance = random.NextFloat() * (float)Math.Sqrt(cloudSpawner.MinSpawnRadiusSqr);
             float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
 
-            Vector3 displacement = getSpawnDisplacement(displacementRotation,displacementDistance);
+            Vector3 displacement = GetSpawnDisplacement(displacementRotation,displacementDistance);
             Compound compound = BagPop();
 
             SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
-                playerPosition + displacement, compound, compoundAmounts[compound] );
+                playerPosition + displacement, compound, compoundAmounts[compound]);
         }
     }
 
@@ -313,7 +312,7 @@ public class SpawnSystem
 
     // A random location in the square of side length 2*spawnRadius
     // centered on the player is chosen.
-    private Vector3 getSpawnDisplacement(float displacementRotation, float displacementDistance)
+    private Vector3 GetSpawnDisplacement(float displacementRotation, float displacementDistance)
     {
         float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
         float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
@@ -366,7 +365,7 @@ public class SpawnSystem
                     float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
                     float displacementRotation = WeightedRandomRotation(playerRotation.y);
 
-                    Vector3 displacement = getSpawnDisplacement(displacementRotation, displacementDistance);
+                    Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
                     float squaredDistance = displacement.LengthSquared();
 
                     if (squaredDistance <= spawnType.SpawnRadiusSqr &&
@@ -374,7 +373,7 @@ public class SpawnSystem
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
-                            ref spawnsLeftThisFrame, ref spawned) )
+                            ref spawnsLeftThisFrame, ref spawned))
                         {
                             return;
                         }
@@ -384,7 +383,7 @@ public class SpawnSystem
         }
     }
 
-    private void spawnClouds(Vector3 playerPosition, Vector3 playerRotation, float delta)
+    private void SpawnClouds(Vector3 playerPosition, Vector3 playerRotation, float delta)
     {
         cloudSpawnTimer -= delta;
         if (cloudSpawnTimer <= 0)
@@ -405,11 +404,11 @@ public class SpawnSystem
             float displacementRotation = WeightedRandomRotation(playerRotation.y);
             float displacementDistance = (float)Math.Sqrt(squaredDistance);
 
-            Vector3 displacement = getSpawnDisplacement(displacementRotation,displacementDistance);
+            Vector3 displacement = GetSpawnDisplacement(displacementRotation,displacementDistance);
             Compound compound = BagPop();
 
             SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
-                playerPosition + displacement, compound, compoundAmounts[compound] );
+                playerPosition + displacement, compound, compoundAmounts[compound]);
         }
     }
 
