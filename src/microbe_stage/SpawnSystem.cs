@@ -260,7 +260,7 @@ public class SpawnSystem
             float displacementDistance = random.NextFloat() * (float)Math.Sqrt(cloudSpawner.MinSpawnRadiusSqr);
             float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
 
-            Vector3 displacement = GetSpawnDisplacement(displacementRotation,displacementDistance);
+            Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
             Compound compound = BagPop();
 
             SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
@@ -404,7 +404,7 @@ public class SpawnSystem
             float displacementRotation = WeightedRandomRotation(playerRotation.y);
             float displacementDistance = (float)Math.Sqrt(squaredDistance);
 
-            Vector3 displacement = GetSpawnDisplacement(displacementRotation,displacementDistance);
+            Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
             Compound compound = BagPop();
 
             SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
