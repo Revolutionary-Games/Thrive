@@ -41,6 +41,7 @@ public class SpawnSystem
     ///   then simply pop one out until empty. Rinse and repeat.
     /// </summary>
     private List<Compound> cloudBag = new List<Compound>();
+    private int cloudBagSize;
 
     [JsonProperty]
     private Random random = new Random();
@@ -167,8 +168,8 @@ public class SpawnSystem
             cloudBag[i] = cloudBag[j];
             cloudBag[j] = swap;
         }
-
-        cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBag.Count;
+        cloudBagSize = cloudBag.Count;
+        cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBagSize;
     }
 
     /// <summary>
@@ -387,8 +388,9 @@ public class SpawnSystem
         cloudSpawnTimer -= delta;
         if (cloudSpawnTimer <= 0)
         {
+            GD.Print("Spawning Cloud");
             SpawnCloud(playerPosition, playerRotation);
-            cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBag.Count;
+            cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBagSize;
         }
     }
 
