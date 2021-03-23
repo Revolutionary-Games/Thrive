@@ -99,7 +99,7 @@ public class SpawnSystem
     public static void AddEntityToTrack(ISpawned entity,
         float radius = Constants.MICROBE_SPAWN_RADIUS)
     {
-        entity.DespawnRadiusSqr = (int)(radius * radius);
+        entity.DespawnRadius = (int)radius;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -112,10 +112,9 @@ public class SpawnSystem
     {
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
-        spawner.SpawnRadiusSqr = spawnRadius * spawnRadius;
 
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
-        spawner.MinSpawnRadiusSqr = minSpawnRadius * minSpawnRadius;
+        spawner.MinSpawnRadius = minSpawnRadius;
 
         if (spawner is CloudSpawner)
         {
@@ -258,14 +257,13 @@ public class SpawnSystem
     {
         for (int i = 0; i < Constants.FREE_CLOUDS_IN_NEW_PATCH; i++)
         {
-            float displacementDistance = random.NextFloat() * (float)Math.Sqrt(cloudSpawner.MinSpawnRadiusSqr);
+            float displacementDistance = random.NextFloat() * cloudSpawner.MinSpawnRadius;
             float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
 
             Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
             Compound compound = BagPop();
 
-            SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
-                playerPosition + displacement, compound, compoundAmounts[compound]);
+            cloudSpawner.SpawnCloud(playerPosition + displacement, compound, compoundAmounts[compound]);
         }
     }
 
@@ -367,10 +365,10 @@ public class SpawnSystem
                     float displacementRotation = WeightedRandomRotation(playerRotation.y);
 
                     Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
-                    float squaredDistance = displacement.LengthSquared();
+                    float distance = displacement.Length();
 
-                    if (squaredDistance <= spawnType.SpawnRadiusSqr &&
-                        squaredDistance >= spawnType.MinSpawnRadiusSqr)
+                    if (distance <= spawnType.SpawnRadius &&
+                        distance >= spawnType.MinSpawnRadius)
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
@@ -398,18 +396,16 @@ public class SpawnSystem
     {
         if (cloudSpawner != null)
         {
-            float minRadiusSqr = cloudSpawner.MinSpawnRadiusSqr;
-            float maxRadiusSqr = cloudSpawner.SpawnRadiusSqr;
+            float minRadius = cloudSpawner.MinSpawnRadius;
+            float maxRadius = cloudSpawner.SpawnRadius;
 
-            float squaredDistance = random.NextFloat() * (maxRadiusSqr - minRadiusSqr) + minRadiusSqr;
+            float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
             float displacementRotation = WeightedRandomRotation(playerRotation.y);
-            float displacementDistance = (float)Math.Sqrt(squaredDistance);
 
             Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
             Compound compound = BagPop();
 
-            SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
-                playerPosition + displacement, compound, compoundAmounts[compound]);
+            cloudSpawner.SpawnCloud(playerPosition + displacement, compound, compoundAmounts[compound]);
         }
     }
 
@@ -484,10 +480,10 @@ public class SpawnSystem
             }
 
             var entityPosition = ((Spatial)entity).Translation;
-            var squaredDistance = (playerPosition - entityPosition).LengthSquared();
+            var distance = (playerPosition - entityPosition).Length();
 
             // If the entity is too far away from the player, despawn it.
-            if (squaredDistance > spawned.DespawnRadiusSqr)
+            if (distance > spawned.DespawnRadius)
             {
                 entitiesDeleted++;
                 entity.DetachAndQueueFree();
@@ -509,7 +505,7 @@ public class SpawnSystem
         // value is used for spawning and
         // despawning, but apparently it works
         // just fine
-        entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
+        entity.DespawnRadius = spawnType.SpawnRadius;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }

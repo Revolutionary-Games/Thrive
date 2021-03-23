@@ -93,7 +93,7 @@ public class PatchManager
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name);
-                    spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
+                    spawner.Spawner = new ChunkSpawner(entry.Value,
                         compoundCloudSystem);
 
                     spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
@@ -127,7 +127,7 @@ public class PatchManager
             () =>
             {
                 var spawner = new CreatedSpawner("Clouds");
-                spawner.Spawner = Spawners.MakeCompoundSpawner(compoundCloudSystem);
+                spawner.Spawner = new CloudSpawner(compoundCloudSystem);
 
                 spawnSystem.AddSpawnType(spawner.Spawner, 1.0f,
                     Constants.CLOUD_SPAWN_RADIUS);
@@ -162,7 +162,7 @@ public class PatchManager
                 () =>
                 {
                     var spawner = new CreatedSpawner(name);
-                    spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
+                    spawner.Spawner = new MicrobeSpawner(species,
                         compoundCloudSystem, currentGame);
 
                     spawnSystem.AddSpawnType(spawner.Spawner, density,
