@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -229,8 +229,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (!IsLoadedFromSave)
         {
-            spawner.Init();
-
             if (CurrentGame == null)
             {
                 StartNewGame();

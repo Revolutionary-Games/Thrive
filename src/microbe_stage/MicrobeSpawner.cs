@@ -8,23 +8,21 @@ using Godot;
 public class MicrobeSpawner : Spawner
 {
     private readonly PackedScene microbeScene;
-    private readonly Species species;
     private readonly CompoundCloudSystem cloudSystem;
     private readonly GameProperties currentGame;
     private readonly Random random;
 
-    public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameProperties currentGame)
+    public MicrobeSpawner(CompoundCloudSystem cloudSystem, GameProperties currentGame, int spawnRadius)
     {
-        this.species = species ?? throw new ArgumentException("species is null");
-
         microbeScene = MicrobeSpawner.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
         this.currentGame = currentGame;
+        this.SetSpawnRadius(spawnRadius);
 
         random = new Random();
     }
 
-    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
+    public IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location, Species species)
     {
         // The true here is that this is AI controlled
         var first = MicrobeSpawner.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,

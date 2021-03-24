@@ -128,6 +128,7 @@
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
+    <Compile Include="src\microbe_stage\SpawnItems.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />
@@ -156,7 +157,7 @@
     <Compile Include="src\microbe_stage\FluidSystem.cs" />
     <Compile Include="src\general\PerlinNoise.cs" />
     <Compile Include="src\microbe_stage\Spawner.cs" />
-    <Compile Include="src\microbe_stage\CloudSpawner.cs" />
+    <Compile Include="src\microbe_stage\CompoundCloudSpawner.cs" />
     <Compile Include="src\microbe_stage\ChunkSpawner.cs" />
     <Compile Include="src\microbe_stage\MicrobeSpawner.cs" />
     <Compile Include="src\microbe_stage\ISpawned.cs" />
