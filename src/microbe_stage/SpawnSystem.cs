@@ -197,6 +197,8 @@ public class SpawnSystem
 
     private void Spawn(Vector3 playerPosition, Vector3 playerRotation)
     {
+        DespawnEntities(playerPosition);
+
         SpawnItem spawn = SpawnItemBagPop();
 
         if(spawn is CloudItem)
