@@ -20,9 +20,9 @@ public class SpawnSystem
     [JsonProperty]
     private float spawnItemTimer;
 
-    public CompoundCloudSpawner cloudSpawner {private get; set;}
-    public ChunkSpawner chunkSpawner {private get; set;}
-    public MicrobeSpawner microbeSpawner {private get; set;}
+    private CompoundCloudSpawner cloudSpawner;
+    private ChunkSpawner chunkSpawner;
+    private MicrobeSpawner microbeSpawner;
 
     /// <summary>
     ///   Root node to parent all spawned things to
@@ -58,9 +58,13 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
-    public SpawnSystem(Node root)
+    public SpawnSystem(Node root, CompoundCloudSystem cloudSystem,
+        GameProperties currentGame, int spawnRadius)
     {
         worldRoot = root;
+        cloudSpawner = new CompoundCloudSpawner(cloudSystem, spawnRadius);
+        chunkSpawner = new ChunkSpawner(cloudSystem, spawnRadius);
+        microbeSpawner = new MicrobeSpawner(cloudSystem, currentGame, spawnRadius);
     }
 
     // Needs no params constructor for loading saves?

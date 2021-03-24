@@ -78,7 +78,7 @@ public class PatchManager
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
         // for now, do nothing. This needs to be reworked.
-            spawnSystem.ClearChunkSpawner();
+        spawnSystem.ClearChunkSpawner();
         /*
         foreach (var entry in biome.Chunks)
         {
@@ -99,8 +99,6 @@ public class PatchManager
     private void HandleCloudSpawns(BiomeConditions biome, Vector3 playerPosition)
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
-
-        spawnSystem.cloudSpawner = new CompoundCloudSpawner(compoundCloudSystem, Constants.MICROBE_SPAWN_RADIUS);
 
         spawnSystem.ClearCloudSpawner();
 
@@ -142,8 +140,6 @@ public class PatchManager
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
-            spawnSystem.microbeSpawner = new MicrobeSpawner(compoundCloudSystem,
-                currentGame, Constants.MICROBE_SPAWN_RADIUS);
         }
     }
 

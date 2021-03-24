@@ -210,7 +210,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
-        spawner = new SpawnSystem(rootOfDynamicallySpawned);
+        spawner = new SpawnSystem(rootOfDynamicallySpawned, Clouds,
+            CurrentGame, Constants.MICROBE_SPAWN_RADIUS);
 
         NodeReferencesResolved = true;
     }
