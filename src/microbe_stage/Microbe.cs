@@ -1187,7 +1187,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var targetPos = masterTranslation +
                 Colony.OffsetToMaster !.Value;
 
-            MovementDirection = Translation - targetPos;
+            MovementDirection = masterMicrobe.MovementDirection;
             DoBaseMovementForce(delta);
             Rotation = masterMicrobe.Rotation;
             Translation = masterTranslation + (masterTranslation - targetPos)
