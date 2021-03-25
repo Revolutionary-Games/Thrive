@@ -1,6 +1,22 @@
 ﻿using Godot;
 
 /// <summary>
+///   How the tooltip should be positioned on display.
+/// </summary>
+public enum ToolTipPositioning
+{
+    /// <summary>
+    ///   Tooltip positioned at the last cursor position after entering a tooltipable area.
+    /// </summary>
+    LastMousePosition,
+
+    /// <summary>
+    ///   Tooltip constantly positioned at the same position as the cursor.
+    /// </summary>
+    FollowMousePosition,
+}
+
+/// <summary>
 ///   Interface for all custom tooltip Control nodes
 /// </summary>
 public interface ICustomToolTip
@@ -26,6 +42,10 @@ public interface ICustomToolTip
     ///   If true the tooltip is shown
     /// </summary>
     bool ToolTipVisible { get; set; }
+
+    ToolTipPositioning Positioning { get; set; }
+
+    bool HideOnMousePress { get; set; }
 
     /// <summary>
     ///   Node of the tooltip

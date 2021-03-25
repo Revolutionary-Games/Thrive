@@ -39,6 +39,11 @@ public class InputManager : Node
     }
 
     /// <summary>
+    ///   Indicates whether a rebinding is in progress
+    /// </summary>
+    public static bool RebindingIsActive { get; set; }
+
+    /// <summary>
     ///   Adds the instance to the list of objects receiving input.
     /// </summary>
     /// <param name="instance">The instance to add</param>
@@ -99,6 +104,10 @@ public class InputManager : Node
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         foreach (var attribute in staticInstance.attributes)
             attribute.Key.OnProcess(delta);
     }
@@ -219,6 +228,10 @@ public class InputManager : Node
 
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
+        // Ignore input while rebinding
+        if (RebindingIsActive)
+            return;
+
         // Ignore mouse motion
         // TODO: support mouse movement input as well
         if (@event is InputEventMouseMotion)

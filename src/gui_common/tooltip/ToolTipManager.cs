@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -6,6 +7,11 @@ using Godot;
 /// </summary>
 public class ToolTipManager : CanvasLayer
 {
+    /// <summary>
+    ///   This must be in sync with the name of the default group node in the ToolTipManager scene.
+    /// </summary>
+    public const string DEFAULT_GROUP_NAME = "default";
+
     /// <summary>
     ///   The tooltip to be shown
     /// </summary>
@@ -24,6 +30,12 @@ public class ToolTipManager : CanvasLayer
 
     private bool display;
     private float displayTimer;
+    private float hideTimer;
+
+    /// <summary>
+    ///   Flag if MainToolTip should be shown temporarily (automatically hides once timer reaches threshold).
+    /// </summary>
+    private bool currentIsTemporary;
 
     private Vector2 lastMousePosition;
 
@@ -63,6 +75,10 @@ public class ToolTipManager : CanvasLayer
         if (MainToolTip == null)
             return;
 
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         // Wait for duration of the delay and then show the tooltip
         if (displayTimer >= 0 && !MainToolTip.ToolTipVisible)
         {
@@ -78,24 +94,93 @@ public class ToolTipManager : CanvasLayer
         // Adjust position and size
         if (MainToolTip.ToolTipVisible)
         {
+            Vector2 mousePos;
+
+            switch (MainToolTip.Positioning)
+            {
+                case ToolTipPositioning.LastMousePosition:
+                    mousePos = lastMousePosition;
+                    break;
+                case ToolTipPositioning.FollowMousePosition:
+                    mousePos = GetViewport().GetMousePosition();
+                    break;
+                default:
+                    throw new Exception("Invalid tooltip positioning type");
+            }
+
             var screenSize = GetViewport().GetVisibleRect().Size;
 
             // Clamp tooltip position so it doesn't go offscreen
-            var adjustedPosition = new Vector2(
-                Mathf.Clamp(lastMousePosition.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
-                    MainToolTip.Size.x),
-                Mathf.Clamp(lastMousePosition.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
-                    MainToolTip.Size.y));
+            // TODO: Take into consideration of viewport (window) resizing for the offsetting.
+            MainToolTip.Position = new Vector2(
+                Mathf.Clamp(mousePos.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x - MainToolTip.Size.x),
+                Mathf.Clamp(mousePos.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y - MainToolTip.Size.y));
 
-            MainToolTip.Position = adjustedPosition;
             MainToolTip.Size = Vector2.Zero;
+
+            // Handle temporary tooltips/popup
+            if (currentIsTemporary && hideTimer >= 0)
+            {
+                hideTimer -= delta;
+
+                if (hideTimer < 0)
+                {
+                    currentIsTemporary = false;
+                    MainToolTip.OnHide();
+                }
+            }
         }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (MainToolTip == null)
+            return;
+
+        if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed &&
+            MainToolTip.HideOnMousePress && MainToolTip.ToolTipVisible)
+        {
+            MainToolTip.OnHide();
+            displayTimer = MainToolTip.DisplayDelay;
+
+            if (currentIsTemporary)
+            {
+                currentIsTemporary = false;
+                MainToolTip = null;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Shows a tooltip (popup) with specified message for a given duration.
+    /// </summary>
+    public void ShowPopup(string message, float duration)
+    {
+        var popup = GetToolTip<DefaultToolTip>("popup");
+
+        if (popup == null)
+        {
+            popup = ToolTipHelper.CreateDefaultToolTip();
+            AddToolTip(popup);
+        }
+
+        popup.Description = message;
+        popup.HideOnMousePress = true;
+        popup.UseFadeIn = true;
+        popup.UseFadeOut = true;
+        popup.DisplayDelay = 0;
+
+        MainToolTip = popup;
+        Display = true;
+
+        currentIsTemporary = true;
+        hideTimer = duration;
     }
 
     /// <summary>
     ///   Add tooltip into collection. Creates a new group if group node with the given name doesn't exist
     /// </summary>
-    public void AddToolTip(ICustomToolTip tooltip, string group = "general")
+    public void AddToolTip(ICustomToolTip tooltip, string group = DEFAULT_GROUP_NAME)
     {
         tooltip.ToolTipVisible = false;
 
@@ -108,11 +193,11 @@ public class ToolTipManager : CanvasLayer
         groupNode.AddChild(tooltip.ToolTipNode);
     }
 
-    public void RemoveToolTip(string name, string group = "general")
+    public void RemoveToolTip(string name, string group = DEFAULT_GROUP_NAME)
     {
         var tooltip = GetToolTip(name, group);
 
-        tooltip?.ToolTipNode.QueueFree();
+        tooltip?.ToolTipNode.DetachAndQueueFree();
         tooltips[GetGroup(group)]?.Remove(tooltip);
     }
 
@@ -142,17 +227,17 @@ public class ToolTipManager : CanvasLayer
 
         if (deleteGroup)
         {
-            groupNode.QueueFree();
+            groupNode.DetachAndQueueFree();
             tooltips.Remove(groupNode);
         }
     }
 
     /// <summary>
-    ///   Returns tooltip with the given name and group (default is "general")
+    ///   Returns tooltip with the given name and group.
     /// </summary>
     /// <param name="name">The name of the tooltip's node (not display name)</param>
     /// <param name="group">The name of the group the tooltip belongs to</param>
-    public ICustomToolTip GetToolTip(string name, string group = "general")
+    public ICustomToolTip GetToolTip(string name, string group = DEFAULT_GROUP_NAME)
     {
         var tooltip = tooltips[GetGroup(group)].Find(found => found.ToolTipNode.Name == name);
 
@@ -163,6 +248,15 @@ public class ToolTipManager : CanvasLayer
         }
 
         return tooltip;
+    }
+
+    /// <summary>
+    ///   Generic version of <see cref="GetToolTip"/> method.
+    /// </summary>
+    public T GetToolTip<T>(string name, string group = DEFAULT_GROUP_NAME)
+        where T : ICustomToolTip
+    {
+        return (T)GetToolTip(name, group);
     }
 
     /// <summary>
@@ -234,6 +328,6 @@ public class ToolTipManager : CanvasLayer
     private void HideAllToolTips()
     {
         foreach (var group in tooltips.Keys)
-            tooltips[group].ForEach(tooltip => tooltip.OnHide());
+            tooltips[group].ForEach(tooltip => tooltip.ToolTipVisible = false);
     }
 }

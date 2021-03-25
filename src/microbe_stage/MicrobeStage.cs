@@ -177,12 +177,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
         set
         {
-            while (rootOfDynamicallySpawned.GetChildCount() > 0)
-            {
-                var child = rootOfDynamicallySpawned.GetChild(0);
-                rootOfDynamicallySpawned.RemoveChild(child);
-                child.Free();
-            }
+            rootOfDynamicallySpawned.FreeChildren();
 
             foreach (var entity in value)
             {
@@ -268,10 +263,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (IsLoadedFromSave)
         {
+            HUD.OnEnterStageTransition(false);
             UpdatePatchSettings(true);
         }
         else
         {
+            HUD.OnEnterStageTransition(true);
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
         }
     }
@@ -344,6 +341,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
@@ -444,6 +445,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [RunOnKeyDown("g_quick_save")]
     public void QuickSave()
     {
+        if (!TransitionFinished)
+        {
+            GD.Print("quick save is disabled while transitioning");
+            return;
+        }
+
         GD.Print("quick saving microbe stage");
         SaveHelper.QuickSave(this);
     }
@@ -503,7 +510,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // Spawn another cell from the player species
         Player.Divide();
 
-        HUD.OnEnterStageTransition();
+        HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();
 
         StartMusic();

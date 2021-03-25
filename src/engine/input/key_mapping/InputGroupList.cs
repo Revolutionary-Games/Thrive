@@ -131,17 +131,17 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
+        conflictDialog.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
             inputActionItem.DisplayName,
             inputActionItem.DisplayName);
 
-        conflictDialog.PopupCenteredMinsize();
+        conflictDialog.PopupCenteredShrink();
     }
 
     public void OnResetInputs()
     {
-        resetInputsDialog.PopupCenteredMinsize();
+        resetInputsDialog.PopupCenteredShrink();
     }
 
     public void OnConflictConfirmed()
@@ -166,7 +166,7 @@ public class InputGroupList : VBoxContainer
         if (activeInputGroupList != null)
         {
             foreach (var inputGroupItem in activeInputGroupList)
-                inputGroupItem.Free();
+                inputGroupItem.DetachAndFree();
         }
 
         activeInputGroupList = BuildGUI(SimulationParameters.Instance.InputGroups, data);
@@ -174,12 +174,7 @@ public class InputGroupList : VBoxContainer
 
     public void InitGroupList()
     {
-        foreach (Node child in GetChildren())
-        {
-            RemoveChild(child);
-
-            child.QueueFree();
-        }
+        this.QueueFreeChildren();
 
         LoadFromData(Settings.Instance.CurrentControls);
 

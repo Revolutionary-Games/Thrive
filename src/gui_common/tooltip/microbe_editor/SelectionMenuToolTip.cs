@@ -37,8 +37,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private VBoxContainer modifierInfoList;
     private VBoxContainer processList;
 
-    private Tween tween;
-
     private string displayName;
     private string description;
 
@@ -82,13 +80,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public float DisplayDelay { get; set; } = 0.3f;
+    public float DisplayDelay { get; set; } = 0.0f;
 
     public bool ToolTipVisible
     {
         get => Visible;
         set => Visible = value;
     }
+
+    public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.FollowMousePosition;
+
+    public bool HideOnMousePress { get; set; } = false;
 
     public Node ToolTipNode => this;
 
@@ -99,8 +101,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<VBoxContainer>(ProcessListPath);
-
-        tween = GetNode<Tween>("Tween");
 
         UpdateName();
         UpdateDescription();
@@ -132,13 +132,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     public void WriteOrganelleProcessList(List<ProcessSpeedInformation> processes)
     {
         // Remove previous process list
-        if (processList.GetChildCount() > 0)
-        {
-            foreach (Node children in processList.GetChildren())
-            {
-                children.QueueFree();
-            }
-        }
+        processList.QueueFreeChildren();
 
         if (processes == null)
         {
@@ -148,6 +142,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             return;
         }
 
+        // TODO: change this to use ChemicalEquation
         foreach (var process in processes)
         {
             var processContainer = new VBoxContainer();
@@ -332,7 +327,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public void OnDisplay()
     {
-        ToolTipHelper.TooltipFadeIn(tween, this);
+        Show();
     }
 
     public void OnHide()

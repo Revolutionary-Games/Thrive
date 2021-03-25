@@ -21,7 +21,7 @@ public class TransitionManager : NodeWithInput
     {
         instance = this;
 
-        screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/Fade.tscn");
+        screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/ScreenFade.tscn");
         cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
     }
 
@@ -59,10 +59,10 @@ public class TransitionManager : NodeWithInput
     /// <param name="allowSkipping">
     ///   Allow the user to skip this
     /// </param>
-    public void AddScreenFade(Fade.FadeType type, float fadeDuration, bool allowSkipping = true)
+    public void AddScreenFade(ScreenFade.FadeType type, float fadeDuration, bool allowSkipping = true)
     {
         // Instantiate scene
-        var screenFade = (Fade)screenFadeScene.Instance();
+        var screenFade = (ScreenFade)screenFadeScene.Instance();
         AddChild(screenFade);
 
         screenFade.Skippable = allowSkipping;
@@ -127,7 +127,7 @@ public class TransitionManager : NodeWithInput
             TransitionSequence.Add(entry);
         }
 
-        // Begin the first queued transition
+        // Begin the first transition in the queue
         StartNextQueuedTransition();
     }
 

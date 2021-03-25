@@ -89,7 +89,7 @@ public class SaveStatusOverlay : Control
         errorDialog.WindowTitle = title;
         extraDescriptionLabel.Text = message;
         exceptionLabel.Text = exception;
-        errorDialog.PopupCentered();
+        errorDialog.PopupCenteredShrink();
 
         onDialogDismissReturnToMenu = returnToMenu;
         onDialogCloseCallback = onClosed;
@@ -97,6 +97,10 @@ public class SaveStatusOverlay : Control
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (hideTimer > 0)
         {
             if (skipNextDelta)

@@ -63,4 +63,16 @@ public static class MathUtils
         return new Quat(new Vector3(-1, 0, 0), 90 * DEGREES_TO_RADIANS) *
             new Quat(new Vector3(0, 0, -1), (180 - angle) * DEGREES_TO_RADIANS);
     }
+
+    /// <summary>
+    ///   Returns a Lerped value, and snaps to the target value if current and target
+    ///   value is approximately equal by the specified tolerance value.
+    /// </summary>
+    public static float Lerp(float from, float to, float weight, float tolerance = Mathf.Epsilon)
+    {
+        if (Mathf.IsEqualApprox(from, to, tolerance))
+            return to;
+
+        return Mathf.Lerp(from, to, weight);
+    }
 }

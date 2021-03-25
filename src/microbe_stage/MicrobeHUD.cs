@@ -120,6 +120,12 @@ public class MicrobeHUD : Node
     public NodePath PhosphateReproductionBarPath;
 
     [Export]
+    public NodePath ProcessPanelPath;
+
+    [Export]
+    public NodePath ProcessPanelButtonPath;
+
+    [Export]
     public PackedScene ExtinctionBoxScene;
 
     [Export]
@@ -157,9 +163,9 @@ public class MicrobeHUD : Node
     private VBoxContainer hoveredCompoundsContainer;
     private HSeparator hoveredCellsSeparator;
     private VBoxContainer hoveredCellsContainer;
-    private NinePatchRect environmentPanel;
+    private Panel environmentPanel;
     private GridContainer environmentPanelBarContainer;
-    private NinePatchRect compoundsPanel;
+    private Panel compoundsPanel;
 
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
@@ -201,6 +207,9 @@ public class MicrobeHUD : Node
 
     private Array compoundBars;
 
+    private ProcessPanel processPanel;
+    private TextureButton processPanelButton;
+
     /// <summary>
     ///   Access to the stage to retrieve information for display as
     ///   well as call some player initiated actions.
@@ -240,7 +249,7 @@ public class MicrobeHUD : Node
         resumeButton = GetNode<TextureButton>(ResumeButtonPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
 
-        environmentPanel = GetNode<NinePatchRect>(EnvironmentPanelPath);
+        environmentPanel = GetNode<Panel>(EnvironmentPanelPath);
         environmentPanelBarContainer = GetNode<GridContainer>(EnvironmentPanelBarContainerPath);
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
@@ -249,7 +258,7 @@ public class MicrobeHUD : Node
         sunlightLabel = GetNode<ProgressBar>(SunlightPath);
         pressure = GetNode<ProgressBar>(PressurePath);
 
-        compoundsPanel = GetNode<NinePatchRect>(CompoundsPanelPath);
+        compoundsPanel = GetNode<Panel>(CompoundsPanelPath);
         compoundsPanelBarContainer = GetNode<GridContainer>(CompoundsPanelBarContainerPath);
         glucoseBar = GetNode<ProgressBar>(GlucoseBarPath);
         ammoniaBar = GetNode<ProgressBar>(AmmoniaBarPath);
@@ -273,13 +282,16 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+
+        processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
+        processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
     }
 
-    public void OnEnterStageTransition()
+    public void OnEnterStageTransition(bool longerDuration)
     {
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.3f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, longerDuration ? 1.0f : 0.3f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
@@ -290,13 +302,13 @@ public class MicrobeHUD : Node
 
         if (stage.Player != null)
         {
-            UpdateNeededBars(delta);
+            UpdateNeededBars();
             UpdateCompoundBars();
             UpdateReproductionProgress();
-            UpdateATP();
         }
 
-        UpdateHealth();
+        UpdateATP(delta);
+        UpdateHealth(delta);
 
         if (stage.Camera != null)
         {
@@ -304,13 +316,13 @@ public class MicrobeHUD : Node
         }
 
         UpdatePopulation();
+        UpdateProcessPanel();
+        UpdatePanelSizing(delta);
     }
 
     public void Init(MicrobeStage stage)
     {
         this.stage = stage;
-
-        OnEnterStageTransition();
     }
 
     public void ResizeEnvironmentPanel(string mode)
@@ -320,13 +332,13 @@ public class MicrobeHUD : Node
         if (mode == "compress" && !environmentCompressed)
         {
             environmentCompressed = true;
-
-            HandleEnvironmentResize(170, 2, 20, 17);
+            environmentPanelBarContainer.Columns = 2;
+            environmentPanelBarContainer.AddConstantOverride("vseparation", 20);
+            environmentPanelBarContainer.AddConstantOverride("hseparation", 17);
 
             foreach (ProgressBar bar in bars)
             {
-                panelsTween.InterpolateProperty(
-                    bar, "rect_min_size", new Vector2(95, 25), new Vector2(73, 25), 0.3f);
+                panelsTween.InterpolateProperty(bar, "rect_min_size:x", 95, 73, 0.3f);
                 panelsTween.Start();
 
                 bar.GetNode<Label>("Label").Hide();
@@ -337,12 +349,13 @@ public class MicrobeHUD : Node
         if (mode == "expand" && environmentCompressed)
         {
             environmentCompressed = false;
-
-            HandleEnvironmentResize(224, 1, 4, 0);
+            environmentPanelBarContainer.Columns = 1;
+            environmentPanelBarContainer.AddConstantOverride("vseparation", 4);
+            environmentPanelBarContainer.AddConstantOverride("hseparation", 0);
 
             foreach (ProgressBar bar in bars)
             {
-                panelsTween.InterpolateProperty(bar, "rect_min_size", bar.RectMinSize, new Vector2(162, 25), 0.3f);
+                panelsTween.InterpolateProperty(bar, "rect_min_size:x", bar.RectMinSize.x, 162, 0.3f);
                 panelsTween.Start();
 
                 bar.GetNode<Label>("Label").Show();
@@ -372,7 +385,7 @@ public class MicrobeHUD : Node
 
             foreach (ProgressBar bar in bars)
             {
-                panelsTween.InterpolateProperty(bar, "rect_min_size", new Vector2(90, 25), new Vector2(64, 25), 0.3f);
+                panelsTween.InterpolateProperty(bar, "rect_min_size:x", 90, 64, 0.3f);
                 panelsTween.Start();
 
                 bar.GetNode<Label>("Label").Hide();
@@ -388,7 +401,7 @@ public class MicrobeHUD : Node
 
             foreach (ProgressBar bar in bars)
             {
-                panelsTween.InterpolateProperty(bar, "rect_min_size", bar.RectMinSize, new Vector2(220, 25), 0.3f);
+                panelsTween.InterpolateProperty(bar, "rect_min_size:x", bar.RectMinSize.x, 220, 0.3f);
                 panelsTween.Start();
 
                 bar.GetNode<Label>("Label").Show();
@@ -458,7 +471,7 @@ public class MicrobeHUD : Node
             PauseButtonPressed();
         }
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
     }
 
@@ -478,7 +491,7 @@ public class MicrobeHUD : Node
         if (winBox != null)
         {
             winExtinctBoxHolder.Hide();
-            winBox.QueueFree();
+            winBox.DetachAndQueueFree();
             return;
         }
 
@@ -493,7 +506,7 @@ public class MicrobeHUD : Node
     /// <summary>
     ///   Updates the GUI bars to show only needed compounds
     /// </summary>
-    public void UpdateNeededBars(float delta)
+    public void UpdateNeededBars()
     {
         if (stage.Player == null)
             return;
@@ -525,17 +538,6 @@ public class MicrobeHUD : Node
                 bar.Hide();
             }
         }
-
-        // Resize the compound panel dynamically
-        var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
-
-        compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
-
-        // Interpolation value is multiplied by delta time to make it not be affected by framerate
-        var targetSize = compoundsPanel.RectMinSize.LinearInterpolate(
-            new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 5 * delta);
-
-        compoundsPanel.RectMinSize = targetSize;
     }
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
@@ -564,18 +566,6 @@ public class MicrobeHUD : Node
         // TODO: pressure?
     }
 
-    private void HandleEnvironmentResize(int height, int columns, int vseparation, int hseparation)
-    {
-        panelsTween.InterpolateProperty(
-            environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, height), 0.4f,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        panelsTween.Start();
-
-        environmentPanelBarContainer.Columns = columns;
-        environmentPanelBarContainer.AddConstantOverride("vseparation", vseparation);
-        environmentPanelBarContainer.AddConstantOverride("hseparation", hseparation);
-    }
-
     /// <summary>
     ///   Updates the mouse hover indicator box with stuff.
     /// </summary>
@@ -589,21 +579,12 @@ public class MicrobeHUD : Node
         hoverInfoTimeElapsed = 0;
 
         // Refresh compounds list
-        foreach (Node children in hoveredCompoundsContainer.GetChildren())
-        {
-            hoveredCompoundsContainer.RemoveChild(children);
 
-            // Using QueueFree leaves a gap at
-            // the bottom of the panel
-            children.Free();
-        }
+        // Using QueueFree leaves a gap at the bottom of the panel
+        hoveredCompoundsContainer.FreeChildren();
 
         // Refresh cells list
-        foreach (Node children in hoveredCellsContainer.GetChildren())
-        {
-            hoveredCellsContainer.RemoveChild(children);
-            children.Free();
-        }
+        hoveredCellsContainer.FreeChildren();
 
         if (mouseHoverPanel.RectSize != new Vector2(240, 80))
             mouseHoverPanel.RectSize = new Vector2(240, 80);
@@ -670,6 +651,9 @@ public class MicrobeHUD : Node
             hoveredCellsContainer.AddChild(microbeText);
 
             microbeText.Text = entry.Species.FormattedName;
+
+            if (entry.IsPlayerMicrobe)
+                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
@@ -773,27 +757,32 @@ public class MicrobeHUD : Node
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
     }
 
-    private void UpdateATP()
+    private void UpdateATP(float delta)
     {
-        var atpAmount = stage.Player.Compounds.GetCompoundAmount(atp);
-        var capacity = stage.Player.Compounds.Capacity;
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
 
-        GUICommon.Instance.TweenBarValue(atpBar, atpAmount, capacity);
-        atpLabel.Text = Mathf.Round(atpAmount) + " / " + capacity;
+        var atpAmount = 0.0f;
+        var capacity = 4.0f;
 
-        // Hide the progress bar when the atp is less than 1.5
-        if (atpBar.Value < 1.5)
+        if (stage.Player != null)
         {
-            atpBar.TintProgress = new Color(0, 0, 0);
+            atpAmount = Mathf.Ceil(stage.Player.Compounds.GetCompoundAmount(atp));
+            capacity = stage.Player.Compounds.Capacity;
         }
-        else
-        {
-            atpBar.TintProgress = new Color(0.44f, 0.96f, 0.14f);
-        }
+
+        atpBar.MaxValue = capacity;
+        atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.1f);
+        atpLabel.Text = atpAmount + " / " + capacity;
     }
 
-    private void UpdateHealth()
+    private void UpdateHealth(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         var hp = 0.0f;
         var maxHP = 100.0f;
 
@@ -803,13 +792,52 @@ public class MicrobeHUD : Node
             maxHP = stage.Player.MaxHitpoints;
         }
 
-        GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP);
-        hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
+        healthBar.MaxValue = maxHP;
+        healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.1f);
+        hpLabel.Text = Mathf.Round(hp) + " / " + maxHP;
     }
 
     private void UpdatePopulation()
     {
         populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString(CultureInfo.InvariantCulture);
+    }
+
+    private void UpdateProcessPanel()
+    {
+        if (!processPanel.Visible)
+            return;
+
+        if (stage.Player == null)
+        {
+            processPanel.ShownData = null;
+        }
+        else
+        {
+            processPanel.ShownData = stage.Player.ProcessStatistics;
+        }
+    }
+
+    private void UpdatePanelSizing(float delta)
+    {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        var environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
+        var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
+
+        environmentPanelVBoxContainer.RectSize = new Vector2(environmentPanelVBoxContainer.RectMinSize.x, 0);
+        compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
+
+        // Multiply interpolation value with delta time to make it not be affected by framerate
+        var environmentPanelSize = environmentPanel.RectMinSize.LinearInterpolate(
+            new Vector2(environmentPanel.RectMinSize.x, environmentPanelVBoxContainer.RectSize.y), 5 * delta);
+
+        var compoundsPanelSize = compoundsPanel.RectMinSize.LinearInterpolate(
+            new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 5 * delta);
+
+        environmentPanel.RectMinSize = environmentPanelSize;
+        compoundsPanel.RectMinSize = compoundsPanelSize;
     }
 
     /// <summary>
@@ -901,5 +929,24 @@ public class MicrobeHUD : Node
 
         editorButton.GetNode<TextureRect>("Highlight").Show();
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
+    }
+
+    private void ProcessPanelButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (processPanel.Visible)
+        {
+            processPanel.Visible = false;
+        }
+        else
+        {
+            processPanel.Show();
+        }
+    }
+
+    private void OnProcessPanelClosed()
+    {
+        processPanelButton.Pressed = false;
     }
 }

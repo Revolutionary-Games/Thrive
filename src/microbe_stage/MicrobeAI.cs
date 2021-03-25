@@ -22,7 +22,7 @@ public class MicrobeAI
     private int boredom;
 
     // ReSharper disable once CollectionNeverQueried.Local
-    [JsonProperty]
+    [JsonIgnore]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
     [JsonProperty]
@@ -42,27 +42,33 @@ public class MicrobeAI
 
     // All of the game entities stored here are probable places where disposed objects come from
     // so they are ignored for now
-    [JsonProperty]
+    [JsonIgnore]
     private Microbe predator;
 
     // Prey and predator lists
-    [JsonProperty]
+    [JsonIgnore]
     private List<Microbe> predatoryMicrobes = new List<Microbe>();
 
     [JsonProperty]
     private float previousAngle;
 
-    [JsonProperty]
+    [JsonIgnore]
     private Microbe prey;
 
-    [JsonProperty]
+    [JsonIgnore]
+    private Microbe previousPrey;
+
+    [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
 
-    [JsonProperty]
+    [JsonIgnore]
     private bool preyPegged;
 
-    [JsonProperty]
+    [JsonIgnore]
     private FloatingChunk targetChunk;
+
+    [JsonIgnore]
+    private FloatingChunk previousChunk;
 
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
@@ -148,13 +154,22 @@ public class MicrobeAI
         preyMicrobes.Clear();
         chunkList.Clear();
 
-        prey = null;
-
-        // 30 seconds about
-        if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
+        // only about 76.6 to 86.6 repeating seconds + or minus a few due to randomness at max focus
+        if (boredom >= (int)random.Next(SpeciesFocus / 2, 180 + (SpeciesFocus / 2)))
         {
+            if (prey != null && RollReverseCheck(SpeciesFocus, 600, random))
+            {
+                previousPrey = prey;
+            }
+
+            if (targetChunk != null && RollReverseCheck(SpeciesFocus, 600, random))
+            {
+                previousChunk = targetChunk;
+            }
+
             // Occasionally you need to reevaluate things
             boredom = 0;
+            prey = null;
             if (RollCheck(SpeciesActivity, 400, random))
             {
                 lifeState = LifeState.PLANTLIKE_STATE;
@@ -310,6 +325,9 @@ public class MicrobeAI
                 break;
             }
         }
+
+        // Clear the absorbed compounds for run and rumble
+        microbe.TotalAbsorbedCompounds.Clear();
     }
 
     private void DoReflexes()
@@ -367,6 +385,9 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
+            if (chunk == previousChunk)
+                continue;
+
             if ((SpeciesOpportunism == Constants.MAX_SPECIES_OPPORTUNISM) ||
                 ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
                     chunk.Size))
@@ -411,7 +432,7 @@ public class MicrobeAI
 
         foreach (var otherMicrobe in allMicrobes)
         {
-            if (otherMicrobe == microbe)
+            if (otherMicrobe == microbe || otherMicrobe == previousPrey)
                 continue;
 
             if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
@@ -784,7 +805,7 @@ public class MicrobeAI
                 {
                     lifeState = LifeState.FLEEING_STATE;
                 }
-                else if (SpeciesAggression == SpeciesFear &&
+                else if (SpeciesAggression >= SpeciesFear &&
                     preyMicrobes.Count > 0)
                 {
                     // Prefer predating (makes game more fun)

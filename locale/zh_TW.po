@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-25 13:26+0100\n"
-"PO-Revision-Date: 2020-12-22 07:32+0000\n"
-"Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
+"POT-Creation-Date: 2021-03-25 15:56+0100\n"
+"PO-Revision-Date: 2020-12-27 09:23+0000\n"
+"Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -24,8 +24,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"W，A，S，D和鼠標移動。如果你有一個氧化反應毒素，用E射擊氧化反應毒素。 G可以"
-"切換吞噬模式。"
+"W，A，S，D和鼠標移動。如果你有一個毒素液泡，用E射擊氧化毒素。 G可以切換吞噬"
+"模式。"
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -49,8 +49,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"滲透調節耗費ATP(三磷酸腺苷)，這意味著您的細胞越大，你所需要的線粒體/代謝體/"
-"Rusticyanin（或細胞質-可進行糖酵解）越多，以避免在你靜止時失去ATP。"
+"滲透調節耗費ATP(三磷酸腺苷)，這意味著您的細胞越大，你越需要更多的線粒體/代"
+"謝體/鐵硫菌藍蛋白[Rusticyanin](或細胞質-可進行糖酵解)，以避免在你靜止時失去"
+"ATP。"
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
@@ -79,8 +80,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"硫化氫可以通過化學質體和化學合成蛋白轉化為葡萄糖。鐵可以通過rusticyanin轉化"
-"為ATP。"
+"硫化氫可以通過化學質體和化學合成蛋白轉化為葡萄糖。鐵可以通過鐵硫菌藍蛋白"
+"[Rusticyanin]轉化為ATP。"
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
@@ -112,7 +113,7 @@ msgstr ""
 "\n"
 "類囊體：產生的葡萄糖量是正常葉綠體的1/3，進行糖酵解，佔用1個六角格\n"
 "\n"
-"鐵鏽素：將鐵轉化為ATP\n"
+"鐵硫菌藍蛋白：將鐵轉化為ATP\n"
 "\n"
 "氮化酶：將大氣中的氮和ATP轉化為厭氧氨\n"
 "\n"
@@ -209,10 +210,12 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
+"一點提示，您可以獵殺其他物種到滅絕，但如果您不夠謹慎的話，也會被其他物種獵"
+"殺到滅絕。"
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "扭來扭去的東西！！"
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_11"
@@ -296,55 +299,49 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "移動"
 
 #: ../simulation_parameters/common/input_options.json:10
-#, fuzzy
 msgid "MOVE_LEFT"
-msgstr "光"
+msgstr "左移"
 
 #: ../simulation_parameters/common/input_options.json:14
-#, fuzzy
 msgid "MOVE_RIGHT"
-msgstr "光"
+msgstr "右移"
 
 #: ../simulation_parameters/common/input_options.json:18
-#, fuzzy
 msgid "MOVE_FORWARD"
-msgstr "自動進化啟動失敗"
+msgstr "前進"
 
 #: ../simulation_parameters/common/input_options.json:22
-#, fuzzy
 msgid "MOVE_BACKWARDS"
-msgstr "自動進化啟動失敗"
+msgstr "向後移動"
 
 #: ../simulation_parameters/common/input_options.json:26
-#, fuzzy
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "自動進化啟動失敗"
+msgstr "自動前進"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:38
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "發射毒素"
 
 #: ../simulation_parameters/common/input_options.json:42
-#, fuzzy
 msgid "TOGGLE_ENGULF"
-msgstr "無法吞沒"
+msgstr "切換吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:46
 #, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "無法吞沒"
+msgstr "切換吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:50
 #, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "無法吞沒"
+msgstr "切換吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:54
 #, fuzzy
@@ -352,103 +349,94 @@ msgid "PERFORM_UNBINDING"
 msgstr "錯誤加載"
 
 #: ../simulation_parameters/common/input_options.json:63
+#, fuzzy
 msgid "CAMERA"
-msgstr ""
+msgstr "鏡頭"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "縮小"
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "放大"
 
 #: ../simulation_parameters/common/input_options.json:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:974
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1041
 msgid "EDITOR"
 msgstr "編輯器"
 
 #: ../simulation_parameters/common/input_options.json:83
-#, fuzzy
 msgid "ROTATE_RIGHT"
-msgstr "光"
+msgstr "向右旋轉"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "ROTATE_LEFT"
-msgstr "光"
+msgstr "向左旋轉"
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "UNDO"
-msgstr ""
+msgstr "撤回"
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "REDO"
-msgstr ""
+msgstr "重做"
 
 #: ../simulation_parameters/common/input_options.json:99
-#, fuzzy
 msgid "PLACE_ORGANELLE"
-msgstr "細胞器"
+msgstr "放置細胞器"
 
 #: ../simulation_parameters/common/input_options.json:103
-#, fuzzy
 msgid "REMOVE_ORGANELLE"
-msgstr "細胞器"
+msgstr "移除細胞器"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "向左平移"
 
 #: ../simulation_parameters/common/input_options.json:111
-#, fuzzy
 msgid "PAN_CAMERA_RIGHT"
-msgstr "光"
+msgstr "向右平移"
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "向上平移"
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "向下平移"
 
 #: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "重置相機"
 
 #: ../simulation_parameters/common/input_options.json:131
 msgid "CHEATS"
-msgstr ""
+msgstr "作弊"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "ENABLE_EDITOR"
-msgstr "編輯器"
+msgstr "啟用編輯器"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "SPAWN_GLUCOSE"
-msgstr "葡萄糖"
+msgstr "生成葡萄糖"
 
 #: ../simulation_parameters/common/input_options.json:143
-#, fuzzy
 msgid "SPAWN_AMMONIA"
-msgstr "氨"
+msgstr "生成氨"
 
 #: ../simulation_parameters/common/input_options.json:147
-#, fuzzy
 msgid "SPAWN_PHOSPHATES"
-msgstr "磷酸鹽"
+msgstr "生成磷酸鹽"
 
 #: ../simulation_parameters/common/input_options.json:156
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "雜項"
 
 #: ../simulation_parameters/common/input_options.json:160
-#, fuzzy
 msgid "TOGGLE_FPS"
-msgstr "無法吞沒"
+msgstr "切換FPS顯示"
 
 #: ../simulation_parameters/common/input_options.json:164
 #, fuzzy
@@ -457,16 +445,20 @@ msgstr "快速存檔"
 
 #: ../simulation_parameters/common/input_options.json:168
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "快速加載"
 
 #: ../simulation_parameters/common/input_options.json:172
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "截屏"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "SHOW_HELP"
-msgstr "幫助"
+msgstr "顯示幫助"
+
+#: ../simulation_parameters/common/input_options.json:180
+#, fuzzy
+msgid "TOGGLE_FULLSCREEN"
+msgstr "全螢幕"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -607,110 +599,111 @@ msgid "SEA_FLOOR"
 msgstr "海床"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:464
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1400
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1940
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3490
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4628
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5146
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:473
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:725
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1412
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1660
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1954
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4650
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5170
 msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:16
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1965
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4653
-#: ../src/microbe_stage/MicrobeStage.tscn:1174
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4675
+#: ../src/microbe_stage/MicrobeStage.tscn:1216
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:29
-#: ../src/microbe_stage/MicrobeStage.tscn:1228
+#: ../src/microbe_stage/MicrobeStage.tscn:1270
 msgid "PHOSPHATE"
 msgstr "磷酸鹽"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:42
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1284
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4344
-#: ../src/microbe_stage/MicrobeStage.tscn:1282
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4365
+#: ../src/microbe_stage/MicrobeStage.tscn:1324
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氫"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:55
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:984
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1309
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1370
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3465
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3752
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4052
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4369
-#: ../src/microbe_stage/MicrobeStage.tscn:1120
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:448
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:700
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:994
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1321
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1382
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4071
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4390
+#: ../src/microbe_stage/MicrobeStage.tscn:1162
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:68
-#: ../src/microbe_stage/MicrobeStage.tscn:1443
+#: ../src/microbe_stage/MicrobeStage.tscn:1510
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:81
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
-#: ../src/microbe_stage/MicrobeStage.tscn:1336
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
+#: ../src/microbe_stage/MicrobeStage.tscn:1378
 msgid "IRON"
 msgstr "鐵"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:94
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2302
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3528
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4721
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4744
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5261
 msgid "OXYGEN"
 msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:107
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1022
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1345
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1686
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3790
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4404
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1032
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3807
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4425
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:120
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2003
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4691
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2017
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4713
 msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:133
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7529
 msgid "SUNLIGHT"
 msgstr "陽光"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2775
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2727
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2591
 msgid "PREDATORY_PILUS"
 msgstr "掠食性菌毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1525
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1589
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2084
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1601
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2235
 msgid "RUSTICYANIN"
 msgstr "鐵硫菌藍蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1842
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1906
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2302
 msgid "NITROGENASE"
 msgstr "固氮酶"
 
@@ -719,97 +712,100 @@ msgid "PROTOPLASM"
 msgstr "原生質"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1250
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1198
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1262
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化學合成蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2193
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2214
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2369
 msgid "OXYTOXISOME"
-msgstr ""
+msgstr "毒素體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:950
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:960
 msgid "THYLAKOIDS"
 msgstr "類囊體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:249
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:593
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:657
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:666
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2033
 msgid "METABOLOSOMES"
 msgstr "代謝體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4530
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4594
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3044
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4552
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4616
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3217
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "固氮質體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4246
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4310
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4267
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4331
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3147
 msgid "CHEMOPLAST"
 msgstr "化學質體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2428
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2492
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2368
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2525
 msgid "FLAGELLUM"
 msgstr "鞭毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4847
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4911
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4871
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4935
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3285
 msgid "VACUOLE"
 msgstr "液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3367
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3431
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2780
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3383
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2945
 msgid "MITOCHONDRION"
 msgstr "線粒體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5048
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5112
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3178
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5072
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5136
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3354
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:472
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3027
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2879
+#, fuzzy
 msgid "BINDING_AGENT"
 msgstr ""
+"這會與{0}衝突。\n"
+"您是否要移除{1}的輸入？"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:511
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3654
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3718
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3671
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3735
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3012
 msgid "CHLOROPLAST"
 msgstr "葉綠體"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:540
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:341
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:405
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1729
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:350
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:414
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1874
 msgid "CYTOPLASM"
 msgstr "細胞質"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:605
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3229
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2651
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2814
 msgid "NUCLEUS"
 msgstr "細胞核"
 
@@ -859,7 +855,7 @@ msgstr "傳播到的區域："
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUNRESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "由區域{2}派出{1}個生物的人口：{0}"
 
 #: ../src/auto-evo/RunResults.cs:291
 msgid "RUNRESULT_POP_IN_PATCHES"
@@ -869,288 +865,299 @@ msgstr "區域中的人口："
 msgid "LOADING"
 msgstr "載入中"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:293
+#: ../src/engine/input/key_mapping/InputEventItem.cs:299
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr ""
+msgstr "選擇一個按鍵..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"這會與{0}衝突。\n"
+"您是否要移除{1}的輸入？"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
-#, fuzzy
 msgid "ALT"
-msgstr "ATP"
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "鼠標左鍵"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "鼠標右鍵"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "鼠標中鍵"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "向上滾輪"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "向下滾輪"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "向左滾輪"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
-#, fuzzy
 msgid "WHEEL_RIGHT"
-msgstr "光"
+msgstr "向右滾輪"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "鼠標側鍵1"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "鼠標側鍵2"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "鼠標未知鍵"
 
-#: ../src/general/HelpScreen.tscn:102
+#: ../src/general/HelpScreen.tscn:107
+#: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
 msgstr "關閉"
 
-#: ../src/general/OptionsMenu.tscn:129
+#: ../src/general/OptionsMenu.tscn:127
 msgid "GRAPHICS"
 msgstr "圖形"
 
-#: ../src/general/OptionsMenu.tscn:141
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "聲音"
 
-#: ../src/general/OptionsMenu.tscn:153
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "性能"
 
-#: ../src/general/OptionsMenu.tscn:165
+#: ../src/general/OptionsMenu.tscn:163
 msgid "INPUTS"
-msgstr ""
+msgstr "輸入"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:175
 msgid "MISC"
 msgstr "雜項"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "垂直同步"
 
-#: ../src/general/OptionsMenu.tscn:224
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "全螢幕"
 
-#: ../src/general/OptionsMenu.tscn:246
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重採樣抗鋸齒："
 
-#: ../src/general/OptionsMenu.tscn:253
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（提高設置會降低表現）"
 
-#: ../src/general/OptionsMenu.tscn:283
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "解析度："
 
-#: ../src/general/OptionsMenu.tscn:296
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "自動"
 
-#: ../src/general/OptionsMenu.tscn:306
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "最大FPS："
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
-#: ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#: ../src/general/OptionsMenu.tscn:405
+#: ../src/general/OptionsMenu.tscn:403
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
-#: ../src/general/OptionsMenu.tscn:432 ../src/general/OptionsMenu.tscn:473
-#: ../src/general/OptionsMenu.tscn:506 ../src/general/OptionsMenu.tscn:539
-#: ../src/general/OptionsMenu.tscn:572
+#: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:570
 msgid "MUTE"
 msgstr "靜音"
 
-#: ../src/general/OptionsMenu.tscn:446
+#: ../src/general/OptionsMenu.tscn:444
 msgid "MUSIC_VOLUME"
 msgstr "音樂音量"
 
-#: ../src/general/OptionsMenu.tscn:479
+#: ../src/general/OptionsMenu.tscn:477
 msgid "AMBIANCE_VOLUME"
 msgstr "環境音量"
 
-#: ../src/general/OptionsMenu.tscn:512
+#: ../src/general/OptionsMenu.tscn:510
 msgid "SFX_VOLUME"
 msgstr "特效音量"
 
-#: ../src/general/OptionsMenu.tscn:545
+#: ../src/general/OptionsMenu.tscn:543
 msgid "GUI_VOLUME"
 msgstr "界面音量"
 
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:588
 msgid "LANGUAGE"
 msgstr "語言："
 
-#: ../src/general/OptionsMenu.tscn:605 ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:1009
 msgid "RESET"
 msgstr "重置"
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:612
+msgid "OPEN_TRANSLATION_SITE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:632
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
 
-#: ../src/general/OptionsMenu.tscn:643
+#: ../src/general/OptionsMenu.tscn:647
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "雲模擬最小\n"
 "間隔："
 
-#: ../src/general/OptionsMenu.tscn:650 ../src/general/OptionsMenu.tscn:694
+#: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "（更高的數值有助於提升性能）"
 
-#: ../src/general/OptionsMenu.tscn:687
+#: ../src/general/OptionsMenu.tscn:691
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "雲解析度除數："
 
-#: ../src/general/OptionsMenu.tscn:729
+#: ../src/general/OptionsMenu.tscn:733
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在遊戲中啟用auto-evo"
 
-#: ../src/general/OptionsMenu.tscn:795
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:800
 msgid "RESET_INPUTS"
-msgstr "重置為默認設定？"
+msgstr "重置輸入"
 
-#: ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:824
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放開場動畫"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:833
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在開啟新遊戲時播放微生物開場動畫"
 
-#: ../src/general/OptionsMenu.tscn:836
+#: ../src/general/OptionsMenu.tscn:842
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "遊戲過程中自動保存"
 
-#: ../src/general/OptionsMenu.tscn:847
+#: ../src/general/OptionsMenu.tscn:853
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "保留的自動存檔數量："
 
-#: ../src/general/OptionsMenu.tscn:875
+#: ../src/general/OptionsMenu.tscn:881
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "保留的快速存檔數量："
 
-#: ../src/general/OptionsMenu.tscn:901
+#: ../src/general/OptionsMenu.tscn:907
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "顯示教程（在新遊戲中）"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:915
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "顯示教程（在當前遊戲中）"
 
-#: ../src/general/OptionsMenu.tscn:925
+#: ../src/general/OptionsMenu.tscn:931
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "作弊鍵已啟用"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:943
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定義用戶名"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:954
 msgid "CUSTOM_USERNAME"
 msgstr "自定義用戶名："
 
-#: ../src/general/OptionsMenu.tscn:972 ../src/general/PauseMenu.tscn:133
+#: ../src/general/OptionsMenu.tscn:980
+msgid "OPEN_SCREENSHOT_FOLDER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:988
+msgid "OPEN_LOGS_FOLDER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
-#: ../src/saving/SaveManagerGUI.tscn:112
+#: ../src/saving/SaveManagerGUI.tscn:113
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/general/OptionsMenu.tscn:993 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1020 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "存檔"
 
-#: ../src/general/OptionsMenu.tscn:1009
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默認"
 
-#: ../src/general/OptionsMenu.tscn:1021
+#: ../src/general/OptionsMenu.tscn:1048
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置為默認設定？"
 
-#: ../src/general/OptionsMenu.tscn:1022
+#: ../src/general/OptionsMenu.tscn:1057
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你確定要把「所有」設置都重置為默認值嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1031
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "默認"
+msgstr "將輸入重置為默認？"
 
-#: ../src/general/OptionsMenu.tscn:1032
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "你確定要把「所有」設置都重置為默認值嗎？"
+msgstr "您確定要將輸入設置重置為默認嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1041
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "CLOSE_OPTIONS"
 msgstr "關閉選項菜單？"
 
-#: ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:1114
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改將被丟棄。\n"
 "你想繼續嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1096
+#: ../src/general/OptionsMenu.tscn:1136
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存並繼續"
 
-#: ../src/general/OptionsMenu.tscn:1105
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "DISCARD_AND_CONTINUE"
 msgstr "取消並繼續"
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1161
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/general/OptionsMenu.tscn:1132 ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1173 ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1220
 msgid "ERROR"
 msgstr "錯誤"
 
-#: ../src/general/OptionsMenu.tscn:1133 ../src/general/OptionsMenu.tscn:1154
+#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "錯誤：無法將新設置保存至配置文件。"
 
@@ -1167,7 +1174,7 @@ msgid "LOAD_GAME"
 msgstr "讀取遊戲"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4282
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4506
 msgid "STATISTICS"
 msgstr "統計數據"
 
@@ -1187,6 +1194,23 @@ msgstr "返回目錄"
 msgid "EXIT"
 msgstr "退出"
 
+#: ../src/general/StringUtils.cs:19
+msgid "BILLION_ABBREVIATION"
+msgstr ""
+
+#: ../src/general/StringUtils.cs:28
+msgid "MILLION_ABBREVIATION"
+msgstr ""
+
+#: ../src/general/StringUtils.cs:37
+msgid "KILO_ABBREVIATION"
+msgstr ""
+
+#: ../src/gui_common/ChemicalEquation.cs:148
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
+msgid "PER_SECOND_SLASH"
+msgstr ""
+
 #: ../src/gui_common/MainMenu.cs:329
 msgid "OK"
 msgstr "確認"
@@ -1205,7 +1229,7 @@ msgstr "工具"
 
 #: ../src/gui_common/MainMenu.tscn:199
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "查看源代碼"
 
 #: ../src/gui_common/MainMenu.tscn:211
 msgid "EXTRAS"
@@ -1223,11 +1247,11 @@ msgstr "離開"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
-#: ../src/gui_common/MainMenu.tscn:358
+#: ../src/gui_common/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/gui_common/MainMenu.tscn:359
+#: ../src/gui_common/MainMenu.tscn:372
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應"
@@ -1243,141 +1267,141 @@ msgstr ""
 "您嘗試加載的保存版本與遊戲版本不匹配。\n"
 "請通過目錄手動加載保存。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:78
 msgid "OPEN_THE_MENU"
 msgstr "打開目錄"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "OPEN_HELP_SCREEN"
 msgstr "打開幫助界面"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:93
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:98
 msgid "WILL_YOU_THRIVE"
 msgstr "你能Thrive(繁盛)嗎？"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:110
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "完成編輯並返回環境"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改變對稱"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:122
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤銷上一個動作"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "REDO_THE_LAST_ACTION"
 msgstr "重做上一個動作"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "建立一个新微生物"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:145
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:208
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:154
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:217
 msgid "MEMBRANE_RIGIDITY"
 msgstr "膜剛性"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:245
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5595
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5855
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6111
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6438
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6765
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:254
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5880
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6136
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6463
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6790
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7151
 msgid "MOBILITY"
 msgstr "移動能力"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5698
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5955
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6214
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6541
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6868
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7229
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:289
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5723
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5980
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6239
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6566
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7254
 msgid "HEALTH"
 msgstr "生命值"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "更剛性的細胞膜有助於抵抗擋傷，但是也會讓細胞更難移動。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:432
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:684
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1277
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1933
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2220
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4337
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4621
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5139
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:693
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1289
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3474
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4358
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4643
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5163
 msgid "TURNS"
 msgstr "回合"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:457
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:709
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1302
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1393
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1958
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4362
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4646
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5164
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:466
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:718
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3499
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4383
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4668
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5188
 msgid "INTO"
 msgstr "轉換成"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:497
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:790
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1090
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1746
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2033
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2332
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2615
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3069
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3271
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3558
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3858
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4150
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4434
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4751
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4952
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5267
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:800
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2348
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3085
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3287
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3877
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4456
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4775
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4976
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5292
 msgid "STORAGE"
 msgstr "儲藏"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:535
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:828
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1128
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1467
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1784
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2071
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2370
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3107
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3309
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3596
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3896
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4188
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4472
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4789
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4990
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5305
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5630
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5889
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6146
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6473
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6800
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1479
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1798
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2086
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3613
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3915
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4494
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4813
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5014
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5330
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5655
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5914
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6498
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7186
 msgid "OSMOREGULATION_COST"
 msgstr "滲透調節費用"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:586
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "細胞質的黏稠內臟。細胞質是離子，蛋白質和其他溶解水的物質的基本混合物，填充"
@@ -1385,21 +1409,21 @@ msgstr ""
 "陳代謝的細胞來說，就靠這個方法來獲取能量。它也被用來在細胞中保存分子，以及"
 "用來增加細胞的體積。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:737
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
 msgid "DOT_RATE_SCALES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:759
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
 msgid "WITH_CONCENTRATION_OF"
 msgstr "濃度為"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:766
 msgid "OXYGEN_DOT"
 msgstr "氧。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "代謝體是一大堆被蛋白質殼包裹住的蛋白質。通過有氧呼吸它們可以以比細胞質快得"
@@ -1407,50 +1431,50 @@ msgstr ""
 "致ATP產出減速。由於代謝體是直接懸浮在細胞質中的，所以它周圍的細胞質也能進行"
 "一些糖酵解。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:886
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1952
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:896
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2100
 msgid "THYLAKOID"
 msgstr "類囊體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3745
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4045
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:987
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3762
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4064
 msgid "PRODUCES"
 msgstr "產生"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1002
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3770
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4070
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1012
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3787
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4089
 msgid "DOT_RATE_SCALES_WITH"
 msgstr ". 產出速率取決於"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2295
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3783
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4083
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3800
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "CONCENTRATION_OF"
 msgstr "濃度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1040
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1709
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3808
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4714
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1051
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1722
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4737
 msgid "AND"
 msgstr "和"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1053
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3821
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3839
 msgid "INTENSITY_OF"
 msgstr "強度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1060
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3828
-#: ../src/microbe_stage/MicrobeStage.tscn:898
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3846
+#: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "光"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1170
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "類囊體是一大堆蛋白質和光敏色素的集合體。這些色素可以通過光合作用將陽光中的"
@@ -1458,117 +1482,121 @@ msgstr ""
 "因。它們產出葡萄糖的速度取決於二氧化碳的濃度和光的亮度。由於類囊體是直接懸"
 "浮在細胞質中的，所以它周圍的細胞質也能進行一些糖酵解。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1332
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4392
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4413
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr "速率取決於濃度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1363
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
+#, fuzzy
 msgid "ALSO_TURNS"
-msgstr ""
+msgstr "同時轉"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "化學合成蛋白是一小堆細胞質中的蛋白質，它們可以通過硫化氫化學合成將硫化氫，"
 "水和二氧化碳轉換成葡萄糖。其葡萄糖的產生速率隨二氧化碳的濃度而變化。。由於"
 "化學合成蛋白是直接懸浮在細胞質中的，所以它周圍的細胞質也能進行一些糖酵解。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
+"鐵硫菌藍蛋白[Rusticyanin]能夠利用二氧化碳和氧將鐵從一種化學狀態氧化為另一種"
+"化學狀態。這個過程被稱作鐵呼吸，從中產出可被細胞收集的能量。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1983
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3508
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4671
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1997
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3524
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4693
 msgid "DOT_RATE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1996
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3521
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4684
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4706
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5254
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2252
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5195
 msgid "OXYTOXY"
-msgstr ""
+msgstr "氧化毒素"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2270
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2285
 msgid "DOT_CAN_RELEASE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2297
 msgid "TOXINS_BY_PRESSING_E"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2412
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2428
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
-msgstr ""
+msgstr "一種修飾的代謝體，負責產生原始形式的有毒物質-氧化毒素。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2535
 msgid "USES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2560
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2556
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2572
 msgid "SPEED_OF_THE_CELL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2593
 msgid "SPEED"
 msgstr "速度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2901
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2657
 msgid "CILIA"
 msgstr "纖毛"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2947
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5473
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5498
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3064
 msgid "ALLOWS_BINDING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "更剛性的細胞膜有助於抵抗擋傷，但是也會讓細胞更難移動。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3250
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3266
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3351
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3367
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3638
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3655
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3957
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "葉綠體是一種雙層膜結構，包含在膜囊中堆疊起來的光敏色素。它是一種被其真核宿"
@@ -1576,229 +1604,234 @@ msgstr ""
 "糖。這些色素也是賦予其獨特顏色的原因。產出葡萄糖的速率取決於二氧化碳的濃度"
 "和光的強度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3954
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4018
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2910
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3973
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4037
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3079
 msgid "THERMOPLAST"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4120
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7524
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
 msgid "TEMPERATURE"
 msgstr "溫度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4251
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "它是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種被其真核宿主"
 "同化的原核生物。 熱合成用溫差把水和二氧化碳合成成葡萄糖。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4514
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4536
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "化學質體是一種雙膜結構，其中包含的蛋白質能夠在稱為硫化氫化學合成的過程中將"
 "硫化氫，水和氣態二氧化碳轉化為葡萄糖。 其葡萄糖的產生速率隨水和二氧化碳的濃"
 "度而變化。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4831
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4855
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4932
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4956
 msgid "INREASE_STORAGE_SPACE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5032
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5056
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5189
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5213
 msgid "DOT_CAN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5202
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5226
 msgid "RELEASE_TOXINS_BY_PRESSING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5233
 msgid "E_DOT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5217
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5241
 msgid "RATE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5372
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5363
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5388
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5452
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物發光液泡"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5494
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5558
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5583
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3611
 msgid "NORMAL"
 msgstr "正常"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5664
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5922
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6507
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6834
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6205
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6532
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6859
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7220
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "資源吸收速度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5738
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5763
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5754
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5818
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5779
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5843
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3683
 msgid "DOUBLE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5994
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6019
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6074
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3572
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6035
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6099
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3755
 msgid "CELLULOSE"
 msgstr "纖維素"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6248
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6902
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7263
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6273
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6927
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7288
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6282
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6609
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6970
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6307
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6634
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6995
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7356
 msgid "CANNOT_ENGULF"
 msgstr "無法吞沒"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6321
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6346
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6337
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6401
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6362
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6426
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3827
 msgid "CHITIN"
 msgstr "幾丁質"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6575
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6936
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7297
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6600
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6961
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7322
 msgid "TOXIN_RESISTANCE"
 msgstr "抗毒素"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6648
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6673
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6664
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6728
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3717
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6753
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3904
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸鈣"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7009
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7034
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7025
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7089
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7050
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7114
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3977
 msgid "SILICA"
 msgstr "二氧化矽"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7370
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7395
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7510
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7516
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:227
-msgid "PER_SECOND_SLASH"
-msgstr ""
-
-#: ../src/microbe_stage/Microbe.cs:1259
+#: ../src/microbe_stage/Microbe.cs:1295
 #, fuzzy
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功清除"
 
-#: ../src/microbe_stage/Microbe.cs:1266
+#: ../src/microbe_stage/Microbe.cs:1302
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.cs:1704
+#: ../src/microbe_stage/Microbe.cs:1762
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:448
+#: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:622
+#: ../src/microbe_stage/MicrobeHUD.cs:603
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:460
+#: ../src/microbe_stage/MicrobeHUD.cs:656
+#, fuzzy
+msgid "PLAYER_CELL"
+msgstr "玩家死亡"
+
+#: ../src/microbe_stage/MicrobeStage.cs:467
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:600
+#: ../src/microbe_stage/MicrobeStage.cs:607
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:414
+#: ../src/microbe_stage/MicrobeStage.tscn:430
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:438
+#: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "NOTHING_HERE"
 msgstr "這裡什麼都沒有"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:462
+#: ../src/microbe_stage/MicrobeStage.tscn:480
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:500
+#: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "SPECIES_COLON"
 msgstr "種類："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:581
+#: ../src/microbe_stage/MicrobeStage.tscn:599
 msgid "ENVIRONMENT"
 msgstr "環境"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:842
+#: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "溫度"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:953
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "壓強"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1029
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4884
+#: ../src/microbe_stage/MicrobeStage.tscn:1062
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4690
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5327
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "化合物"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1389
+#: ../src/microbe_stage/MicrobeStage.tscn:1448
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1650
+#: ../src/microbe_stage/MicrobeStage.tscn:1721
 msgid "POPULATION_CAPITAL"
 msgstr "人口："
 
@@ -1846,8 +1879,16 @@ msgstr "冰架"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
+#: ../src/microbe_stage/ProcessPanel.tscn:15
+msgid "PROCESS_PANEL_TITLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
+msgid "COMPOUND_BALANCE_TITLE"
+msgstr ""
+
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:510
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1079
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1180
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "在加載微生物編輯器"
 
@@ -1855,228 +1896,269 @@ msgstr "在加載微生物編輯器"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待自動進化："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1892
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2065
 msgid "AUTO_EVO_FAILED"
 msgstr "自動進化啟動失敗"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1893
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2066
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:932
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:997
 msgid "REPORT"
 msgstr "報告"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:953
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1019
 msgid "PATCH_MAP"
 msgstr "區域地圖"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1030
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1098
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1076
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1106
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1189
 msgid "HP_COLON"
 msgstr "生命值："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1136
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1219
 msgid "SIZE_COLON"
 msgstr "大小："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1157
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1240
 msgid "GENERATION_COLON"
 msgstr "代："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1199
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1282
 msgid "ATP_BALANCE"
 msgstr "ATP平衡"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1389
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1488
 msgid "MUTATION_POINTS"
 msgstr "突變點數"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1477
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1621
 msgid "STRUCTURE"
 msgstr "結構"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1500
-msgid "APPEARANCE"
-msgstr "出現"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1644
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "膜類型"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1523
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1667
 msgid "BEHAVIOR"
 msgstr "行為"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1574
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1718
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1634
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1778
 msgid "STRUCTURAL"
 msgstr "結構性"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1796
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1941
 msgid "PROTEINS"
 msgstr "蛋白質"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2019
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2169
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr "化學合成蛋白質"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2278
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2434
 msgid "EXTERNAL"
 msgstr "外部"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2560
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2722
 msgid "ORGANELLES"
 msgstr "細胞器"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3204
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3381
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3242
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3420
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3339
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3517
 msgid "MEMBRANE_TYPES"
 msgstr "膜類型"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3812
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4001
 msgid "FLUIDITY_RIGIDITY"
 msgstr "流動性/剛性"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3850
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4040
 msgid "COLOUR"
 msgstr "顏色"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4185
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4022
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4214
 msgid "CONFIRM_CAPITAL"
 msgstr "確認"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4031
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4224
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "負 ATP平衡"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4032
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4236
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4040
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4247
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4041
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4259
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4107
-msgid "PATCH_NAME"
-msgstr "區域名字"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4141
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4359
 msgid "AUTO_EVO"
 msgstr "自動進化"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4155
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4372
 msgid "FOOD_CHAIN"
 msgstr "食物鏈"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4169
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4385
 msgid "TIMELINE"
 msgstr "時間線"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4222
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "AUTO_EVO_RESULTS"
 msgstr "自動進化 結果："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4241
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4457
 msgid "EXTERNAL_EFFECTS"
 msgstr "外部影響："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4307
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5229
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4515
+#, fuzzy
+msgid "SPECIES_POPULATION"
+msgstr "種類："
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4548
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4979
+msgid "PHYSICAL_CONDITIONS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4652
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5162
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
+msgid "ATMOSPHERIC_GASSES"
+msgstr "大氣氣體"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4746
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5674
 #, fuzzy
 msgid "NEXT_CAPITAL"
 msgstr "下一頁"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4421
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4861
 msgid "SELECT_A_PATCH"
 msgstr "選擇一個區域以在此處顯示詳細信息"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4456
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4896
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "當前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4536
-msgid "PHYSICAL_CONDITIONS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4719
-msgid "ATMOSPHERIC_GASSES"
-msgstr "大氣氣體"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5144
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5587
 #, fuzzy
 msgid "SPECIES_PRESENT"
 msgstr "存在的物種"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5202
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5645
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移動到這個區域"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:548
-msgid "FREEBUILDING"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
 msgid "MEGA_YEARS"
 msgstr "百萬年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:613
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
 msgid "ATP_PRODUCTION"
 msgstr "ATP產出"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:641
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP產出太低！"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
 msgid "OSMOREGULATION"
 msgstr "滲透壓調節"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1476
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#, fuzzy
+msgid "SPECIES_LIST"
+msgstr "存在的物種"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
+msgid "FREEBUILDING"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1621
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1481
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1626
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1521
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1654
 msgid "WITH_POPULATION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
+msgid "MP_COST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+msgid "DELETE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#, fuzzy
+msgid "MOVE"
+msgstr "移動"
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:361
+msgid "MODIFY"
 msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
@@ -2152,11 +2234,11 @@ msgstr "保存時出錯"
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目標文件名({0})已存在。確定要覆蓋嗎？"
 
-#: ../src/saving/NewSaveMenu.tscn:29
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "建立新存檔"
 
-#: ../src/saving/NewSaveMenu.tscn:46
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "名字："
 
@@ -2168,15 +2250,15 @@ msgstr "額外選項"
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "覆寫現有的存檔："
 
-#: ../src/saving/NewSaveMenu.tscn:118
+#: ../src/saving/NewSaveMenu.tscn:119
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "覆寫現有的存檔？"
 
-#: ../src/saving/SaveHelper.cs:373
+#: ../src/saving/SaveHelper.cs:374
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
-#: ../src/saving/SaveHelper.cs:377
+#: ../src/saving/SaveHelper.cs:384
 msgid "SAVING_FAILED"
 msgstr "保存失敗！發生了一個異常"
 
@@ -2196,81 +2278,81 @@ msgstr "快速存檔"
 msgid "SAVE_INVALID"
 msgstr "無效"
 
-#: ../src/saving/SaveList.cs:173
+#: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:46 ../src/saving/SaveListItem.tscn:103
+#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "加載中..."
 
-#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:280
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "刪除這個存檔嗎?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:93
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:79
+#: ../src/saving/SaveList.tscn:117
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:132
 msgid "LOAD_INVALID_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:89
+#: ../src/saving/SaveList.tscn:141
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:97
+#: ../src/saving/SaveList.tscn:156
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:99
+#: ../src/saving/SaveList.tscn:166
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:129
+#: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:136 ../src/saving/SaveListItem.tscn:155
-#: ../src/saving/SaveListItem.tscn:174 ../src/saving/SaveListItem.tscn:197
-#: ../src/saving/SaveListItem.tscn:226 ../src/saving/SaveListItem.tscn:245
+#: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
+#: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
+#: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
 msgid "DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:148
+#: ../src/saving/SaveListItem.tscn:150
 msgid "TYPE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:167
+#: ../src/saving/SaveListItem.tscn:169
 msgid "DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:190
+#: ../src/saving/SaveListItem.tscn:192
 msgid "VERSION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:219
+#: ../src/saving/SaveListItem.tscn:221
 msgid "BY"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:238
+#: ../src/saving/SaveListItem.tscn:240
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:270 ../src/saving/SaveManagerGUI.tscn:53
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:54
 msgid "LOAD"
 msgstr "加載"
 
-#: ../src/saving/SaveListItem.tscn:281
+#: ../src/saving/SaveListItem.tscn:292
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
@@ -2285,47 +2367,47 @@ msgstr ""
 " - {0} 自動保存\n"
 " - {1} 快速保存"
 
-#: ../src/saving/SaveManagerGUI.tscn:65
+#: ../src/saving/SaveManagerGUI.tscn:66
 msgid "REFRESH"
 msgstr "刷新"
 
-#: ../src/saving/SaveManagerGUI.tscn:73
+#: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:81
+#: ../src/saving/SaveManagerGUI.tscn:82
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:92
+#: ../src/saving/SaveManagerGUI.tscn:93
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:124
+#: ../src/saving/SaveManagerGUI.tscn:125
 msgid "TOTAL_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:144
+#: ../src/saving/SaveManagerGUI.tscn:145
 msgid "SAVE_SPACE_USED"
 msgstr "已被使用的空間："
 
-#: ../src/saving/SaveManagerGUI.tscn:164
+#: ../src/saving/SaveManagerGUI.tscn:165
 msgid "SELECTED_COLON"
 msgstr "已選："
 
-#: ../src/saving/SaveManagerGUI.tscn:181
+#: ../src/saving/SaveManagerGUI.tscn:182
 msgid "DELETE_SELECTED_SAVES"
 msgstr "刪除被選取的存檔嗎？"
 
-#: ../src/saving/SaveManagerGUI.tscn:191
+#: ../src/saving/SaveManagerGUI.tscn:205
 msgid "DELETE_OLD_SAVES"
 msgstr "刪除舊存檔嗎？"
 
-#: ../src/saving/SaveStatusOverlay.tscn:120
+#: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
 msgstr "保存錯誤"
 
-#: ../src/saving/SaveStatusOverlay.tscn:180
+#: ../src/saving/SaveStatusOverlay.tscn:183
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "往粘貼板複製錯誤"
 
@@ -2403,6 +2485,12 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#~ msgid "APPEARANCE"
+#~ msgstr "出現"
+
+#~ msgid "PATCH_NAME"
+#~ msgstr "區域名字"
 
 #~ msgid "CARBON"
 #~ msgstr "碳"
