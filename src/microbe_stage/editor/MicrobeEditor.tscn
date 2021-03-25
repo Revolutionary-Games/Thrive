@@ -97,15 +97,12 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Big.tres" type="DynamicFont" id=100]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=101]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=102]
-<<<<<<< HEAD
-[ext_resource path="res://assets/textures/gui/bevel/BindingAgentIcon.png" type="Texture" id=103]
-=======
 [ext_resource path="res://src/gui_common/charts/line/LineChart.tscn" type="PackedScene" id=103]
 [ext_resource path="res://assets/textures/gui/bevel/editorButtonDelete.png" type="Texture" id=104]
 [ext_resource path="res://assets/textures/gui/bevel/editorButtonMove.png" type="Texture" id=105]
 [ext_resource path="res://assets/textures/gui/bevel/editorButtonModify.png" type="Texture" id=106]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=107]
->>>>>>> master
+[ext_resource path="res://assets/textures/gui/bevel/BindingAgentIcon.png" type="Texture" id=108]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -2864,7 +2861,7 @@ group = SubResource( 22 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 0
-texture = ExtResource( 103 )
+texture = ExtResource( 108 )
 expand = true
 stretch_mode = 6
 __meta__ = {
