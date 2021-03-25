@@ -751,7 +751,7 @@
                 "a": 1
             },
             "energy": 0.01,
-            "specular": 0.4.5,
+            "specular": 0.45,
             "shadows": true,
             "direction": {
                 "x": 0.25,
@@ -1200,7 +1200,7 @@
                 "b": 0.819,
                 "a": 1
             },
-            "energy" 1,
+            "energy": 1,
             "specular": 0.5,
             "shadows": true,
             "direction": {
@@ -1208,7 +1208,7 @@
                 "y": -0.3,
                 "z": 0.75
             },
-		},
+	},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -1483,7 +1483,22 @@
         "name": "ICESHELF",
         "background": "iceshelf",
         "icon": "res://assets/textures/gui/bevel/iceshelf.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "energy": 0.4,
+            "specular": 0.5,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            },
+	},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
