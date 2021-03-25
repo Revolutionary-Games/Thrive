@@ -69,6 +69,9 @@ public class PatchManager
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
+        spawnSystem.FillSpawnItemBag();
+        spawnSystem.NewPatchSpawn(playerPosition);
+
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
     }
@@ -79,9 +82,19 @@ public class PatchManager
 
         // for now, do nothing. This needs to be reworked.
         spawnSystem.ClearChunkSpawner();
-        /*
-        foreach (var entry in biome.Chunks)
+
+        foreach (var chunk in biome.Chunks.Keys)
         {
+            float chunkDensity = biome.Chunks[chunk].Density;
+
+            if(chunkDensity > 0)
+            {
+                int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * chunkDensity);
+                GD.Print(biome.Chunks[chunk].Name + " has " + numOfItems + " items per bag.");
+                spawnSystem.AddBiomeChunk(biome.Chunks[chunk], numOfItems);
+            }
+
+            /*
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
                 () =>
                 {
@@ -92,8 +105,8 @@ public class PatchManager
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
+                */
         }
-        */
     }
 
     private void HandleCloudSpawns(BiomeConditions biome, Vector3 playerPosition)
@@ -110,14 +123,11 @@ public class PatchManager
             // if density = 0, then do not add to biomeCompounds
             if (compoundDensity > 0 && compoundAmount > 0)
             {
-                int percent = (int)(compoundAmount * compoundDensity);
-                GD.Print(compound.Name + " is at " + percent + ".");
-                spawnSystem.AddBiomeCompound(compound, percent, compoundAmount);
+                int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * compoundDensity);
+                GD.Print(compound.Name + " has " + numOfItems + " items per bag.");
+                spawnSystem.AddBiomeCompound(compound, numOfItems, compoundAmount);
             }
         }
-
-        spawnSystem.FillSpawnItemBag();
-        spawnSystem.NewPatchSpawn(playerPosition);
     }
 
     private void HandleCellSpawns(Patch patch)

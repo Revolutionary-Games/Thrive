@@ -81,14 +81,13 @@ public class SpawnSystem
 
     public void FillSpawnItemBag()
     {
-        GD.Print("Filling the Cloud Bag");
+        GD.Print("Filling the Spawn Bag");
         spawnItemBag.Clear();
 
         // Fill compound cloud items
         foreach (Compound key in cloudSpawner.GetCompounds())
         {
-            // If a compound is set to N%, add N CloudItems to the SpawnItemBag
-            // At most this will add 100 to SpawnItemBag.
+            // per each 0.00001 density, add one cloud to bag.
             int cloudCount = cloudSpawner.GetCloudItemCount(key);
             GD.Print("Adding " + cloudCount + " of " + key.Name);
             for (int i = 0; i < Math.Min(cloudCount, 100); i++)
@@ -98,6 +97,15 @@ public class SpawnSystem
         }
 
         // Fill chunk items
+        foreach (ChunkConfiguration key in chunkSpawner.GetChunks())
+        {
+            int chunkCount = chunkSpawner.getChunkCount(key);
+            GD.Print("Adding " + chunkCount + " of " + key.Name);
+            for (int i = 0; i < Math.Min(chunkCount, 100); i++)
+            {
+                spawnItemBag.Add(new ChunkItem(chunkSpawner, key, worldRoot));
+            }
+        }
 
         // Fill microbe items
 
@@ -118,7 +126,7 @@ public class SpawnSystem
             spawnItemBag[j] = swap;
         }
         spawnBagSize = spawnItemBag.Count;
-        spawnItemTimer = Constants.CLOUD_SPAWN_TIME / spawnBagSize;
+        spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
     }
 
     /// <summary>
@@ -145,7 +153,7 @@ public class SpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        SpawnClouds(playerPosition, playerRotation, delta);
+        SpawnItems(playerPosition, playerRotation, delta);
 
     }
 
@@ -185,13 +193,13 @@ public class SpawnSystem
         return displacement;
     }
 
-      private void SpawnClouds(Vector3 playerPosition, Vector3 playerRotation, float delta)
+      private void SpawnItems(Vector3 playerPosition, Vector3 playerRotation, float delta)
     {
         spawnItemTimer -= delta;
         if (spawnItemTimer <= 0)
         {
             Spawn(playerPosition, playerRotation);
-            spawnItemTimer = Constants.CLOUD_SPAWN_TIME / spawnBagSize;
+            spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
         }
     }
 
@@ -213,10 +221,22 @@ public class SpawnSystem
 
             Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
 
-            Compound compound = cloudSpawn.GetCompound();
+            cloudSpawn.Spawn(playerPosition + displacement);
+        }
 
-            cloudSpawner.SpawnCloud(playerPosition + displacement,
-                compound, cloudSpawner.GetCloudAmount(compound));
+        if(spawn is ChunkItem)
+        {
+            ChunkItem chunkSpawn = (ChunkItem)spawn;
+
+            float minRadius = chunkSpawner.MinSpawnRadius;
+            float maxRadius = chunkSpawner.SpawnRadius;
+
+            float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
+            float displacementRotation = WeightedRandomRotation(playerRotation.y);
+
+            Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
+
+            chunkSpawn.Spawn(playerPosition + displacement);
         }
     }
 
@@ -321,8 +341,13 @@ public class SpawnSystem
 
     }
 
-    public void AddBiomeCompound(Compound compound, int percent, float amount)
+    public void AddBiomeCompound(Compound compound, int numOfItems, float amount)
     {
-        cloudSpawner.AddBiomeCompound(compound, percent, amount);
+        cloudSpawner.AddBiomeCompound(compound, numOfItems, amount);
+    }
+
+    public void AddBiomeChunk(ChunkConfiguration chunk, int numOfItems)
+    {
+        chunkSpawner.AddChunk(chunk, numOfItems);
     }
 }

@@ -50,8 +50,10 @@ class ChunkItem : SpawnItem
 
     public override void Spawn(Vector3 location)
     {
-        chunkSpawner.Spawn(worldNode, location, chunkType);
+        chunkSpawner.SpawnChunk(location, chunkType, worldNode);
     }
+
+
 }
 
 // Microbe to be spawned

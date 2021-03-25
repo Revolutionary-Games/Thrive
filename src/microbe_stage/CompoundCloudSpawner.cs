@@ -8,7 +8,7 @@ using Godot;
 public class CompoundCloudSpawner : Spawner
 {
     //number of CloudItems for each compound to put in spawn bag
-    private Dictionary<Compound, int> compoundCloudItems = new Dictionary<Compound, int>();
+    private Dictionary<Compound, int> compoundCloudCounts = new Dictionary<Compound, int>();
 
     //Amount of each compound
     private Dictionary<Compound, float> compoundAmounts = new Dictionary<Compound, float>();
@@ -25,15 +25,15 @@ public class CompoundCloudSpawner : Spawner
         return clouds;
     }
 
-    public void AddBiomeCompound(Compound compound, int percent, float amount)
+    public void AddBiomeCompound(Compound compound, int numOfItems, float amount)
     {
-        compoundCloudItems.Add(compound, percent);
+        compoundCloudCounts.Add(compound, numOfItems);
         compoundAmounts.Add(compound, amount);
     }
 
     public void ClearBiomeCompounds()
     {
-        compoundCloudItems.Clear();
+        compoundCloudCounts.Clear();
         compoundAmounts.Clear();
     }
 
@@ -41,14 +41,14 @@ public class CompoundCloudSpawner : Spawner
     // This won't be slow, as there are very few keys.
     public Compound[] GetCompounds()
     {
-        Compound[] compounds = new Compound[compoundCloudItems.Keys.Count];
-        compoundCloudItems.Keys.CopyTo(compounds, 0);
+        Compound[] compounds = new Compound[compoundCloudCounts.Keys.Count];
+        compoundCloudCounts.Keys.CopyTo(compounds, 0);
         return compounds;
     }
 
     public int GetCloudItemCount(Compound compound)
     {
-        return compoundCloudItems[compound];
+        return compoundCloudCounts[compound];
     }
 
     public float GetCloudAmount(Compound compound)

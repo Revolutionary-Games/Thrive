@@ -47,7 +47,9 @@ public static class Constants
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
     // Length of cloud spawn cycle in seconds.
-    public const float CLOUD_SPAWN_TIME = 120f;
+    public const float SPAWN_BAG_RATE = 10f;
+
+    public const float SPAWN_DENSITY_MULTIPLIER = 100000f;
 
     public const int FREE_CLOUDS_IN_NEW_PATCH = 2;
 
