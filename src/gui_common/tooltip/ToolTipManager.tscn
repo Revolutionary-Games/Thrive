@@ -4049,6 +4049,12 @@ custom_fonts/font = ExtResource( 26 )
 text = "THERMOPLAST_DESCRIPTION"
 autowrap = true
 
+[node name="to be implemented" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
+margin_top = 250.0
+margin_right = 345.0
+margin_bottom = 272.0
+text = "TO_BE_IMPLEMENTED"
+
 [node name="Tween" type="Tween" parent="GroupHolder/organelleSelection/thermoplast"]
 
 [node name="chemoplast" type="PanelContainer" parent="GroupHolder/organelleSelection"]
