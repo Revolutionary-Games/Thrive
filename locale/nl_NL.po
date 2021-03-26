@@ -476,11 +476,11 @@ msgstr "Fosfaat spawnen"
 
 #: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
-msgstr "Varia"
+msgstr "Overig"
 
 #: ../simulation_parameters/common/input_options.json:148
 msgid "TOGGLE_FPS"
-msgstr "Schakel FPS weergave"
+msgstr "FPS weergeven"
 
 #: ../simulation_parameters/common/input_options.json:152
 msgid "QUICK_SAVE"
@@ -572,7 +572,7 @@ msgstr "Drijvend Gevaar"
 #: ../simulation_parameters/microbe_stage/biomes.json:1556
 #: ../simulation_parameters/microbe_stage/biomes.json:1688
 msgid "SMALL_IRON_CHUNK"
-msgstr "Klein Brok Ijzer"
+msgstr "Klein stuk ijzer"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
 #: ../simulation_parameters/microbe_stage/biomes.json:285
@@ -586,7 +586,7 @@ msgstr "Klein Brok Ijzer"
 #: ../simulation_parameters/microbe_stage/biomes.json:1591
 #: ../simulation_parameters/microbe_stage/biomes.json:1723
 msgid "BIG_IRON_CHUNK"
-msgstr "Groot Brok Ijzer"
+msgstr "Groot stuk ijzer"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:146
 msgid "VOLCANIC_VENT"
@@ -602,7 +602,7 @@ msgstr "Mariene sneeuw"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:354
 msgid "TIDEPOOL"
-msgstr "Getijdepoel"
+msgstr "Getijdenmeer"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:486
 msgid "BATHYPELAGIC"
@@ -630,7 +630,7 @@ msgstr "Ijsplateau"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1441
 msgid "ICESHARD"
-msgstr "Ijs Scherf"
+msgstr "Ijsscherf"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1528
 msgid "ESTUARY"
@@ -853,7 +853,7 @@ msgstr "Voltooid."
 
 #: ../src/auto-evo/AutoEvoRun.cs:118
 msgid "NOT_RUNNING"
-msgstr "Niet actief."
+msgstr "Inactief."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "AUTOEVO_STEPS_DONE"
@@ -861,7 +861,7 @@ msgstr "{0:F1}% klaar. {1:n0}/{2:n0} stappen."
 
 #: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "STARTING"
-msgstr "Startend"
+msgstr "Starten..."
 
 #: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTOEVO_POPULATION_CHANGED"
@@ -923,31 +923,31 @@ msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
-msgstr "Linker muis"
+msgstr "Linker muisknop"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "RIGHT_MOUSE"
-msgstr "Rechter muis"
+msgstr "Rechter muisknop"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "MIDDLE_MOUSE"
-msgstr "Midden muis"
+msgstr "Middelste muisknop"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_UP"
-msgstr "Wiel naar boven"
+msgstr "Scroll omhoog"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_DOWN"
-msgstr "Wiel naar beneden"
+msgstr "Scroll omlaag"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_LEFT"
-msgstr "Wiel naar links"
+msgstr "Scroller naar links"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "WHEEL_RIGHT"
-msgstr "Wiel naar rechts"
+msgstr "Scroller naar rechts"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
@@ -984,7 +984,7 @@ msgstr "Invoer"
 
 #: ../src/general/OptionsMenu.tscn:175
 msgid "MISC"
-msgstr "Varia"
+msgstr "Overig"
 
 #: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
@@ -992,7 +992,7 @@ msgstr "VSync"
 
 #: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
-msgstr "VolledigScherm"
+msgstr "Volledig scherm"
 
 #: ../src/general/OptionsMenu.tscn:244
 #, fuzzy
@@ -1009,11 +1009,11 @@ msgstr "Resolutie:"
 
 #: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
-msgstr "auto"
+msgstr "Automatisch"
 
 #: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
-msgstr "Max FPS:"
+msgstr "Maximaal FPS:"
 
 #: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
@@ -1025,21 +1025,21 @@ msgstr "Chromatische Aberratie:"
 
 #: ../src/general/OptionsMenu.tscn:403
 msgid "MASTER_VOLUME"
-msgstr "Meester volume"
+msgstr "Volume"
 
 #: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
 #: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
 #: ../src/general/OptionsMenu.tscn:570
 msgid "MUTE"
-msgstr "Dempen"
+msgstr "Demp"
 
 #: ../src/general/OptionsMenu.tscn:444
 msgid "MUSIC_VOLUME"
-msgstr "Muziek volume"
+msgstr "Volume muziek"
 
 #: ../src/general/OptionsMenu.tscn:477
 msgid "AMBIANCE_VOLUME"
-msgstr "Ambiance Volume"
+msgstr "Volume Omgeving"
 
 #: ../src/general/OptionsMenu.tscn:510
 msgid "SFX_VOLUME"
@@ -1047,7 +1047,7 @@ msgstr "Volume Geluidseffecten"
 
 #: ../src/general/OptionsMenu.tscn:543
 msgid "GUI_VOLUME"
-msgstr "GUI Volume"
+msgstr "Volume GUI"
 
 #: ../src/general/OptionsMenu.tscn:588
 msgid "LANGUAGE"
@@ -1059,7 +1059,7 @@ msgstr "Resetten"
 
 #: ../src/general/OptionsMenu.tscn:612
 msgid "OPEN_TRANSLATION_SITE"
-msgstr "Help met het spel te vertalen"
+msgstr "Help met vertalen!"
 
 #: ../src/general/OptionsMenu.tscn:632
 msgid "COMPOUND_CLOUDS"
@@ -1073,7 +1073,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(hogere waarden verslechteren prestaties)"
+msgstr "(hogere waarden verhogen prestaties)"
 
 #: ../src/general/OptionsMenu.tscn:691
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -1085,7 +1085,7 @@ msgstr "Gebruik auto-evo tijdens gameplay"
 
 #: ../src/general/OptionsMenu.tscn:800
 msgid "RESET_INPUTS"
-msgstr "Reset Invoer"
+msgstr "Reset invoer"
 
 #: ../src/general/OptionsMenu.tscn:824
 msgid "PLAY_INTRO_VIDEO"
@@ -1101,11 +1101,11 @@ msgstr "Autosave tijdens het spelen"
 
 #: ../src/general/OptionsMenu.tscn:853
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "Hoeveelheid autosaves om bij te houden:"
+msgstr "Aantal automtische savegames om op te slaan"
 
 #: ../src/general/OptionsMenu.tscn:881
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Hoeveelheid snel opgeslagen bestanden om bij te houden:"
+msgstr "Aantal savegames om op te slaan"
 
 #: ../src/general/OptionsMenu.tscn:907
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
@@ -1121,15 +1121,15 @@ msgstr "Cheattoetsen ingeschakeld"
 
 #: ../src/general/OptionsMenu.tscn:943
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr "Gebruik een gebruikersnaam naar keuze"
+msgstr "Gebruik een eigen username"
 
 #: ../src/general/OptionsMenu.tscn:954
 msgid "CUSTOM_USERNAME"
-msgstr "Gebruikersnaam naar keuze:"
+msgstr "Gebruikersnaam"
 
 #: ../src/general/OptionsMenu.tscn:980
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr "Open Screenshotfolder"
+msgstr "Open screenshots"
 
 #: ../src/general/OptionsMenu.tscn:988
 #, fuzzy
@@ -1148,7 +1148,7 @@ msgstr "Opslaan"
 
 #: ../src/general/OptionsMenu.tscn:1036
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "Standaardwaarden"
+msgstr "Reset naar standaardwaarden"
 
 #: ../src/general/OptionsMenu.tscn:1048
 msgid "RESET_TO_DEFAULTS"
@@ -1200,8 +1200,7 @@ msgstr "Fout"
 #: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
-"Fout: Het opslaan van nieuwe instellingen in het configuratiebestand is "
-"mislukt."
+"Fout: Het opslaan van je instellingen is mislukt."
 
 #: ../src/general/PauseMenu.tscn:57
 msgid "RESUME"
@@ -1209,7 +1208,7 @@ msgstr "Hervat"
 
 #: ../src/general/PauseMenu.tscn:64
 msgid "SAVE_GAME"
-msgstr "Spel Opslaan"
+msgstr "Opslaan"
 
 #: ../src/general/PauseMenu.tscn:71 ../src/gui_common/MainMenu.tscn:163
 msgid "LOAD_GAME"
@@ -1226,7 +1225,7 @@ msgstr "Help"
 
 #: ../src/general/PauseMenu.tscn:93 ../src/gui_common/MainMenu.tscn:175
 msgid "OPTIONS"
-msgstr "Opties"
+msgstr "Instellingen"
 
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
@@ -1333,11 +1332,11 @@ msgstr "Verander de symmetrie"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:122
 msgid "UNDO_THE_LAST_ACTION"
-msgstr "Maak de laatste handeling ongedaan"
+msgstr "Ongedaan maken"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "REDO_THE_LAST_ACTION"
-msgstr "Voer de laatste actie opnieuw uit"
+msgstr "Opnieuw maken"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "CREATE_A_NEW_MICROBE"
@@ -2032,7 +2031,7 @@ msgstr "loopstatus:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:993
 msgid "REPORT"
-msgstr "Melden"
+msgstr "Rapporteren"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1015
 msgid "PATCH_MAP"
