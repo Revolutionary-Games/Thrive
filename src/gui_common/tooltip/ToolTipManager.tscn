@@ -4041,10 +4041,13 @@ margin_bottom = 203.0
 mouse_filter = 2
 
 [node name="to be implemented" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
-margin_top = 250.0
+margin_top = 218.0
 margin_right = 345.0
-margin_bottom = 272.0
+margin_bottom = 235.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
 text = "TO_BE_IMPLEMENTED"
+autowrap = true
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
 margin_top = 218.0
