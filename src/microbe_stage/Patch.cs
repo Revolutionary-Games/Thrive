@@ -168,7 +168,7 @@ public class Patch
 
     public override string ToString()
     {
-        return $"Patch \"{TranslationServer.Translate(Name)}\"";
+        return $"Patch \"{Name}\"";
     }
 }
 

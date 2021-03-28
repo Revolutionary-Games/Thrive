@@ -85,8 +85,8 @@ public class PatchMap
 
                 if (!ContainsPatch(neighbour))
                 {
-                    GD.PrintErr("Patch ", TranslationServer.Translate(entry.Value.Name), " links to " +
-                        "non-existing patch: ", TranslationServer.Translate(neighbour.Name));
+                    GD.PrintErr("Patch ", entry.Value.Name, " links to non-existing patch: ",
+                        neighbour.Name);
                     result = false;
                 }
 
@@ -106,7 +106,7 @@ public class PatchMap
                 if (Patches.Count == 1 && entry.Key == CurrentPatch)
                     continue;
 
-                GD.PrintErr("no incoming links found for patch: ", TranslationServer.Translate(entry.Key.Name));
+                GD.PrintErr("no incoming links found for patch: ", entry.Key.Name);
                 result = false;
             }
         }
@@ -129,9 +129,8 @@ public class PatchMap
 
             if (!found)
             {
-                GD.PrintErr("link ", TranslationServer.Translate(entry1.Item1.Name), " -> ",
-                    TranslationServer.Translate(entry1.Item2.Name), " is one way. These types " +
-                    "of links are currently not wanted");
+                GD.PrintErr("link ", entry1.Item1.Name, " -> ", entry1.Item2.Name,
+                    " is one way. These types of links are currently not wanted");
                 result = false;
             }
         }
