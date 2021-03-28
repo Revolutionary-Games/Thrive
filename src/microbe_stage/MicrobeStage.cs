@@ -190,6 +190,19 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         SetupStage();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            foreach (var patch in CurrentGame.GameWorld.Map.Patches)
+            {
+                TranslationHelper.ApplyTranslations(patch.Value);
+            }
+
+            HUD.UpdatePatchInfo(CurrentGame.GameWorld.Map.CurrentPatch.Name);
+        }
+    }
+
     public void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)

@@ -530,6 +530,26 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         UpdateEditor(delta);
     }
 
+    public override void _Notification(int what)
+    {
+        // Rebuilds and recalculates all value dependent UI elements on language change
+        if (what == NotificationTranslationChanged)
+        {
+            CalculateOrganelleEffectivenessInPatch(CurrentPatch);
+            UpdatePatchDependentBalanceData();
+            gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
+            gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+
+            // If ReturnToStage is null (starting directly from the MicrobeEditor scene), the patch
+            // names won't be updated on language change
+            ReturnToStage?.PropagateNotification(NotificationTranslationChanged);
+
+            gui.UpdatePatchDetails(CurrentPatch);
+
+            // TODO: AutoEvo run results summary
+        }
+    }
+
     /// <summary>
     ///   Wipes clean the current cell.
     /// </summary>

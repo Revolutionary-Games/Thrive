@@ -85,6 +85,14 @@ public class SimulationParameters : Node
 
     public NameGenerator NameGenerator { get; }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            ApplyTranslations();
+        }
+    }
+
     public OrganelleDefinition GetOrganelleType(string name)
     {
         return organelles[name];
