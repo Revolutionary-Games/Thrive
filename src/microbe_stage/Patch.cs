@@ -9,7 +9,7 @@ using Nito.Collections;
 /// </summary>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public class Patch : ISaveLoadable
+public class Patch
 {
     [JsonProperty]
     public readonly int ID;
@@ -32,28 +32,15 @@ public class Patch : ISaveLoadable
     [JsonProperty]
     private Deque<PatchSnapshot> history = new Deque<PatchSnapshot>();
 
-#pragma warning disable 169 // Used through reflection
-    [JsonProperty]
-    private string untranslatedName;
-#pragma warning restore 169
-
-    public Patch()
-    {
-    }
-
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         currentSnapshot.Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
-
-        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
-        TranslationHelper.ApplyTranslations(this);
     }
 
-    [JsonIgnore]
-    [TranslateFrom("untranslatedName")]
+    [JsonProperty]
     public string Name { get; private set; }
 
     /// <summary>
@@ -82,11 +69,6 @@ public class Patch : ISaveLoadable
 
     [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
-
-    public void FinishLoading(ISaveContext context)
-    {
-        TranslationHelper.ApplyTranslations(this);
-    }
 
     /// <summary>
     ///   Adds a connection to patch
@@ -186,7 +168,7 @@ public class Patch : ISaveLoadable
 
     public override string ToString()
     {
-        return $"Patch \"{Name}\"";
+        return $"Patch \"{TranslationServer.Translate(Name)}\"";
     }
 }
 

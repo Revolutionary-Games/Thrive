@@ -929,7 +929,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     public void UpdatePatchDetails(Patch patch)
     {
-        patchName.Text = patch.Name;
+        patchName.Text = TranslationServer.Translate(patch.Name);
 
         // Biome: {0}
         patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
@@ -975,7 +975,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         UpdateReportTabStatistics(patch);
 
-        UpdateReportTabPatchName(patch.Name);
+        UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
     }
 
     public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)

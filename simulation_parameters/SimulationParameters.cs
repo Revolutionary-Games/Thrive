@@ -195,7 +195,7 @@ public class SimulationParameters : Node
     }
 
     /// <summary>
-    ///   Applies translations to all registry loaded types. Called by Settings whenever the locale is changed
+    ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
     public void ApplyTranslations()
     {

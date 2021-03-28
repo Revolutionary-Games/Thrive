@@ -491,7 +491,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Move patches
         if (targetPatch != null)
         {
-            GD.Print("MicrobeEditor: applying player move to patch: ", targetPatch.Name);
+            GD.Print("MicrobeEditor: applying player move to patch: ", TranslationServer.Translate(targetPatch.Name));
             CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
 
             // Add the edited species to that patch to allow the species to gain population there
@@ -539,11 +539,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             UpdatePatchDependentBalanceData();
             gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
-
-            // If ReturnToStage is null (starting directly from the MicrobeEditor scene), the patch
-            // names won't be updated on language change
-            ReturnToStage?.PropagateNotification(NotificationTranslationChanged);
-
             gui.UpdatePatchDetails(CurrentPatch);
 
             // TODO: AutoEvo run results summary
@@ -1177,7 +1172,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
 
-        gui.UpdateReportTabPatchName(CurrentPatch.Name);
+        gui.UpdateReportTabPatchName(TranslationServer.Translate(CurrentPatch.Name));
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;

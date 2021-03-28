@@ -203,7 +203,7 @@
                 }
 
                 builder2.Append(" ");
-                builder2.Append(patch.Name);
+                builder2.Append(TranslationServer.Translate(patch.Name));
 
                 return builder2.ToString();
             }

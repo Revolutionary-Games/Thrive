@@ -194,12 +194,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         if (what == NotificationTranslationChanged)
         {
-            foreach (var patch in CurrentGame.GameWorld.Map.Patches)
-            {
-                TranslationHelper.ApplyTranslations(patch.Value);
-            }
-
-            HUD.UpdatePatchInfo(CurrentGame.GameWorld.Map.CurrentPatch.Name);
+            HUD.UpdatePatchInfo(TranslationServer.Translate(CurrentGame.GameWorld.Map.CurrentPatch.Name));
         }
     }
 
@@ -514,11 +509,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         StartMusic();
 
-        // Apply language settings here to be sure the stage doesn't continue to use the wrong language
-        // Because the stage scene tree being unattached during editor,
-        // if language was changed while in the editor, it doesn't properly propagate
-        Settings.Instance.ApplyLanguageSettings();
-
         // Auto save is wanted once possible
         wantsToSave = true;
     }
@@ -594,7 +584,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
 
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         UpdateBackground();
