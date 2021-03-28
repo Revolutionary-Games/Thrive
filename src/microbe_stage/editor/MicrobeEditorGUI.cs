@@ -925,7 +925,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///
+    ///   Update the patch details specific to the Patch Map tab
     /// </summary>
     public void UpdatePatchDetails(Patch patch)
     {

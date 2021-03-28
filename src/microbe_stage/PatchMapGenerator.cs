@@ -12,8 +12,6 @@ public static class PatchMapGenerator
 
         var map = new PatchMap();
 
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_VENTS");
-
         // Predefined patches
         Patch patch0 = new Patch("PATCH_PANGONIAN_VENTS", 0,
             GetBiomeTemplate("aavolcanic_vent"));
@@ -23,16 +21,12 @@ public static class PatchMapGenerator
         patch0.ScreenCoordinates = new Vector2(100, 400);
         map.AddPatch(patch0);
 
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_MESOPELAGIC");
-
         Patch patch1 = new Patch("PATCH_PANGONIAN_MESOPELAGIC", 1,
             GetBiomeTemplate("mesopelagic"));
         patch1.Depth[0] = 200;
         patch1.Depth[1] = 1000;
         patch1.ScreenCoordinates = new Vector2(200, 200);
         map.AddPatch(patch1);
-
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_EPIPELAGIC");
 
         Patch patch2 = new Patch("PATCH_PANGONIAN_EPIPELAGIC", 2,
             GetBiomeTemplate("default"));
@@ -41,16 +35,12 @@ public static class PatchMapGenerator
         patch2.ScreenCoordinates = new Vector2(200, 100);
         map.AddPatch(patch2);
 
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_TIDEPOOL");
-
         Patch patch3 = new Patch("PATCH_PANGONIAN_TIDEPOOL", 3,
             GetBiomeTemplate("tidepool"));
         patch3.Depth[0] = 0;
         patch3.Depth[1] = 10;
         patch3.ScreenCoordinates = new Vector2(300, 100);
         map.AddPatch(patch3);
-
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_BATHYPELAGIC");
 
         Patch patch4 = new Patch("PATCH_PANGONIAN_BATHYPELAGIC", 4,
             GetBiomeTemplate("bathypelagic"));
@@ -59,16 +49,12 @@ public static class PatchMapGenerator
         patch4.ScreenCoordinates = new Vector2(200, 300);
         map.AddPatch(patch4);
 
-        _ = TranslationServer.Translate("PATHCH_PANGONIAN_ABYSSOPELAGIC");
-
         Patch patch5 = new Patch("PATHCH_PANGONIAN_ABYSSOPELAGIC", 5,
             GetBiomeTemplate("abyssopelagic"));
         patch5.Depth[0] = 4000;
         patch5.Depth[1] = 6000;
         patch5.ScreenCoordinates = new Vector2(300, 400);
         map.AddPatch(patch5);
-
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_COAST");
 
         Patch patch6 = new Patch("PATCH_PANGONIAN_COAST", 6,
             GetBiomeTemplate("coastal"));
@@ -77,16 +63,12 @@ public static class PatchMapGenerator
         patch6.ScreenCoordinates = new Vector2(100, 100);
         map.AddPatch(patch6);
 
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_ESTUARY");
-
         Patch patch7 = new Patch("PATCH_PANGONIAN_ESTUARY", 7,
             GetBiomeTemplate("estuary"));
         patch7.Depth[0] = 0;
         patch7.Depth[1] = 200;
         patch7.ScreenCoordinates = new Vector2(70, 160);
         map.AddPatch(patch7);
-
-        _ = TranslationServer.Translate("PATCH_CAVE");
 
         Patch patch8 = new Patch("PATCH_CAVE", 8,
             GetBiomeTemplate("underwater_cave"));
@@ -95,16 +77,12 @@ public static class PatchMapGenerator
         patch8.ScreenCoordinates = new Vector2(300, 200);
         map.AddPatch(patch8);
 
-        _ = TranslationServer.Translate("PATCH_ICE_SHELF");
-
         Patch patch9 = new Patch("PATCH_ICE_SHELF", 9,
             GetBiomeTemplate("ice_shelf"));
         patch9.Depth[0] = 0;
         patch9.Depth[1] = 200;
         patch9.ScreenCoordinates = new Vector2(200, 30);
         map.AddPatch(patch9);
-
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
 
         Patch patch10 = new Patch("PATCH_PANGONIAN_SEAFLOOR", 10,
             GetBiomeTemplate("seafloor"));
@@ -154,5 +132,20 @@ public static class PatchMapGenerator
     private static Biome GetBiomeTemplate(string name)
     {
         return SimulationParameters.Instance.GetBiome(name);
+    }
+
+    private static void TranslatePatchNames()
+    {
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_VENTS");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_MESOPELAGIC");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_EPIPELAGIC");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_TIDEPOOL");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_BATHYPELAGIC");
+        _ = TranslationServer.Translate("PATHCH_PANGONIAN_ABYSSOPELAGIC");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_COAST");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_ESTUARY");
+        _ = TranslationServer.Translate("PATCH_CAVE");
+        _ = TranslationServer.Translate("PATCH_ICE_SHELF");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 }
