@@ -32,8 +32,10 @@ public class Patch : ISaveLoadable
     [JsonProperty]
     private Deque<PatchSnapshot> history = new Deque<PatchSnapshot>();
 
+#pragma warning disable 169 // Used through reflection
     [JsonProperty]
     private string untranslatedName;
+#pragma warning restore 169
 
     public Patch()
     {
