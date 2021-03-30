@@ -12,8 +12,16 @@ public class CheatMenu : ControlWithInput
     [Export]
     public NodePath GodmodePath;
 
+    [Export]
+    public NodePath NoAIPath;
+
+    [Export]
+    public NodePath SpeedPath;
+
     private CheckBox infCompounds;
     private CheckBox godmode;
+    private CheckBox noAI;
+    private Slider speed;
 
     public static CheatMenu Instance { get; private set; }
 
@@ -41,6 +49,24 @@ public class CheatMenu : ControlWithInput
     }
 
     /// <summary>
+    ///   Disables the AI
+    /// </summary>
+    public bool NoAI
+    {
+        get => noAI.Pressed;
+        set => noAI.Pressed = value;
+    }
+
+    /// <summary>
+    ///   Speed modifier for the player
+    /// </summary>
+    public double Speed
+    {
+        get => speed.Value;
+        set => speed.Value = value;
+    }
+
+    /// <summary>
     ///   Current visibility of the cheat menu
     /// </summary>
     /// <exception cref="InvalidOperationException">
@@ -65,6 +91,8 @@ public class CheatMenu : ControlWithInput
 
         infCompounds = GetNode<CheckBox>(InfCompoundsPath);
         godmode = GetNode<CheckBox>(GodmodePath);
+        noAI = GetNode<CheckBox>(NoAIPath);
+        speed = GetNode<Slider>(SpeedPath);
 
         IsMenuOpen = false;
     }

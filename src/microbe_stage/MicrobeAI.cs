@@ -114,6 +114,9 @@ public class MicrobeAI
     {
         _ = delta;
 
+        if (CheatMenu.Instance.NoAI)
+            return;
+
         // SetRandomTargetAndSpeed(random);
 
         // Clear the lists

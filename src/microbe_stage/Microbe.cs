@@ -1497,6 +1497,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
         else
         {
+            // Disable reproduction for AI if infinite compounds are enabled.
+            // Otherwise the AI will reproduce as fast as possible and crash the game.
+            if (CheatMenu.Instance.InfCompounds)
+                return;
+
             // Return the first cell to its normal, non duplicated cell arrangement.
             if (!Species.PlayerSpecies)
             {
@@ -1734,6 +1739,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Not enough ATP to move at full speed
             force *= 0.5f;
         }
+
+        if (IsPlayerMicrobe)
+            force *= (float)CheatMenu.Instance.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -

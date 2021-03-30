@@ -36,6 +36,8 @@ __meta__ = {
 }
 InfCompoundsPath = NodePath("../CheatMenu/VBoxContainer/Body/VBoxContainer/InfCompounds")
 GodmodePath = NodePath("VBoxContainer/Body/VBoxContainer/Godmode")
+NoAIPath = NodePath("VBoxContainer/Body/VBoxContainer/DisableAI")
+SpeedPath = NodePath("VBoxContainer/Body/VBoxContainer/Speed/SpeedSlider")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 1.0
@@ -85,7 +87,8 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 47.0
 margin_right = 197.0
-margin_bottom = 110.0
+margin_bottom = 187.0
+custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
@@ -96,16 +99,47 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 197.0
-margin_bottom = 53.0
+margin_right = 187.0
+margin_bottom = 130.0
 
 [node name="InfCompounds" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
-margin_right = 187.0
+margin_right = 177.0
 margin_bottom = 22.0
 text = "Inf Compounds"
 
 [node name="Godmode" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
 margin_top = 26.0
-margin_right = 187.0
+margin_right = 177.0
 margin_bottom = 48.0
 text = "Godmode"
+
+[node name="DisableAI" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
+margin_top = 52.0
+margin_right = 177.0
+margin_bottom = 74.0
+text = "No AI"
+
+[node name="Speed" type="HBoxContainer" parent="VBoxContainer/Body/VBoxContainer"]
+margin_top = 78.0
+margin_right = 177.0
+margin_bottom = 125.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Body/VBoxContainer/Speed"]
+margin_right = 65.0
+margin_bottom = 47.0
+text = "Player
+Speed"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Body/VBoxContainer/Speed"]
+margin_left = 69.0
+margin_right = 177.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 5.0
+step = 0.5
+value = 1.0
