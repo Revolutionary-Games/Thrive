@@ -35,6 +35,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 InfCompoundsPath = NodePath("../CheatMenu/VBoxContainer/Body/VBoxContainer/InfCompounds")
+GodmodePath = NodePath("VBoxContainer/Body/VBoxContainer/Godmode")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 1.0
@@ -84,7 +85,7 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 47.0
 margin_right = 197.0
-margin_bottom = 84.0
+margin_bottom = 110.0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
@@ -96,9 +97,15 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 197.0
-margin_bottom = 27.0
+margin_bottom = 53.0
 
 [node name="InfCompounds" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
 margin_right = 187.0
 margin_bottom = 22.0
 text = "Inf Compounds"
+
+[node name="Godmode" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
+margin_top = 26.0
+margin_right = 187.0
+margin_bottom = 48.0
+text = "Godmode"

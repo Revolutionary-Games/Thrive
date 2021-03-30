@@ -9,7 +9,11 @@ public class CheatMenu : ControlWithInput
     [Export]
     public NodePath InfCompoundsPath;
 
+    [Export]
+    public NodePath GodmodePath;
+
     private CheckBox infCompounds;
+    private CheckBox godmode;
 
     public static CheatMenu Instance { get; private set; }
 
@@ -25,6 +29,15 @@ public class CheatMenu : ControlWithInput
     {
         get => infCompounds.Pressed;
         set => infCompounds.Pressed = value;
+    }
+
+    /// <summary>
+    ///   You cannot take damage
+    /// </summary>
+    public bool Godmode
+    {
+        get => godmode.Pressed;
+        set => godmode.Pressed = value;
     }
 
     /// <summary>
@@ -51,6 +64,7 @@ public class CheatMenu : ControlWithInput
         Instance = this;
 
         infCompounds = GetNode<CheckBox>(InfCompoundsPath);
+        godmode = GetNode<CheckBox>(GodmodePath);
 
         IsMenuOpen = false;
     }

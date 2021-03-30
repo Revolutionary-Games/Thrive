@@ -544,6 +544,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public void Damage(float amount, string source)
     {
+        if (IsPlayerMicrobe && CheatMenu.Instance.Godmode)
+            return;
+
         if (amount == 0 || Dead)
             return;
 
