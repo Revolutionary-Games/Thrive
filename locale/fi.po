@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-30 11:07+0200\n"
+"POT-Creation-Date: 2021-03-30 13:37+0200\n"
 "PO-Revision-Date: 2021-01-02 20:12+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -354,6 +354,7 @@ msgid "PAN_CAMERA_RESET"
 msgstr "Palauta kameran alkusijainti"
 
 #: ../simulation_parameters/common/input_options.json:119
+#: ../src/microbe_stage/CheatMenu.tscn:76
 msgid "CHEATS"
 msgstr "Huijauskoodit"
 
@@ -1657,19 +1658,33 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/microbe_stage/CheatMenu.tscn:18
-msgid "Test"
+#: ../src/microbe_stage/CheatMenu.tscn:108
+msgid "Inf Compounds"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1175
+#: ../src/microbe_stage/CheatMenu.tscn:114
+msgid "Godmode"
+msgstr ""
+
+#: ../src/microbe_stage/CheatMenu.tscn:120
+msgid "No AI"
+msgstr ""
+
+#: ../src/microbe_stage/CheatMenu.tscn:131
+msgid ""
+"Player\n"
+"Speed"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1178
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "onnistunut raadonsyönti"
 
-#: ../src/microbe_stage/Microbe.cs:1182
+#: ../src/microbe_stage/Microbe.cs:1185
 msgid "SUCCESSFUL_KILL"
 msgstr "onnistunut tappo"
 
-#: ../src/microbe_stage/Microbe.cs:1581
+#: ../src/microbe_stage/Microbe.cs:1589
 msgid "ESCAPE_ENGULFING"
 msgstr "pakeni nielaisulta"
 
