@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-02 18:02-0600\n"
+"POT-Creation-Date: 2021-03-30 11:07+0200\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -168,12 +168,12 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Her kuşakta, harcanacak 100 mutasyon puanın var ve her değişim (ya da "
-"mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da kaldırmak "
-"MP'ye mal olur ancak mevcut mutasyon sürecinde yerleştirilen organelleri "
-"kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade eder. Bir "
-"organelin üzerine sağ tıklayarak onu taşıyabilir ya da tamamen "
-"kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi seçebilirsin. "
-"A ve D tuşları ile organellerini döndürebilirsin."
+"mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da "
+"kaldırmak MP'ye mal olur ancak mevcut mutasyon sürecinde yerleştirilen "
+"organelleri kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade "
+"eder. Bir organelin üzerine sağ tıklayarak onu taşıyabilir ya da tamamen "
+"kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi "
+"seçebilirsin. A ve D tuşları ile organellerini döndürebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -465,31 +465,36 @@ msgstr "Amonyak oluştur"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fosfat oluştur"
 
-#: ../simulation_parameters/common/input_options.json:144
+#: ../simulation_parameters/common/input_options.json:139
+#, fuzzy
+msgid "CHEAT_MENU"
+msgstr "Hileler"
+
+#: ../simulation_parameters/common/input_options.json:148
 msgid "MISCELLANEOUS"
 msgstr "Diğer"
 
-#: ../simulation_parameters/common/input_options.json:148
+#: ../simulation_parameters/common/input_options.json:152
 msgid "TOGGLE_FPS"
 msgstr "FPS göstergesini aç"
 
-#: ../simulation_parameters/common/input_options.json:152
+#: ../simulation_parameters/common/input_options.json:156
 msgid "QUICK_SAVE"
 msgstr "Çabuk kayıt"
 
-#: ../simulation_parameters/common/input_options.json:156
+#: ../simulation_parameters/common/input_options.json:160
 msgid "QUICK_LOAD"
 msgstr "Çabuk yükleme"
 
-#: ../simulation_parameters/common/input_options.json:160
+#: ../simulation_parameters/common/input_options.json:164
 msgid "TAKE_SCREENSHOT"
 msgstr "Ekran görüntüsü al"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:168
 msgid "SHOW_HELP"
 msgstr "Yardım menüsünü göster"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Tam Ekranı aç"
 
@@ -640,27 +645,27 @@ msgstr "Deniz Tabanı"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2542
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3304
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4448
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4968
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4457
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4977
 msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4473
-#: ../src/microbe_stage/MicrobeStage.tscn:1216
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4482
+#: ../src/microbe_stage/MicrobeStage.tscn:1217
 msgid "AMMONIA"
 msgstr "Amonyak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1270
+#: ../src/microbe_stage/MicrobeStage.tscn:1271
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4163
-#: ../src/microbe_stage/MicrobeStage.tscn:1324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4172
+#: ../src/microbe_stage/MicrobeStage.tscn:1325
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
@@ -673,19 +678,19 @@ msgstr "Hidrojen Sülfür"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3869
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4188
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4197
+#: ../src/microbe_stage/MicrobeStage.tscn:1163
 msgid "GLUCOSE"
 msgstr "Glukoz"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1510
+#: ../src/microbe_stage/MicrobeStage.tscn:1511
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
-#: ../src/microbe_stage/MicrobeStage.tscn:1378
+#: ../src/microbe_stage/MicrobeStage.tscn:1379
 msgid "IRON"
 msgstr "Demir"
 
@@ -693,8 +698,8 @@ msgstr "Demir"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4542
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5059
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5068
 msgid "OXYGEN"
 msgstr "Oksijen"
 
@@ -704,18 +709,18 @@ msgstr "Oksijen"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3605
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3907
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4223
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4232
 msgid "CARBON_DIOXIDE"
 msgstr "Karbondioksit"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2017
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4511
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4520
 msgid "NITROGEN"
 msgstr "Azot"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7327
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7336
 msgid "SUNLIGHT"
 msgstr "Güneş ışığı"
 
@@ -770,15 +775,15 @@ msgid "METABOLOSOMES"
 msgstr "Metabolozomlar"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4350
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4359
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4423
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Azot Fiksasyon Plastidi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4074
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4138
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3079
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -791,8 +796,8 @@ msgid "FLAGELLUM"
 msgstr "Kamçı"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4669
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4733
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4742
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3217
 msgid "VACUOLE"
 msgstr "Koful"
@@ -805,8 +810,8 @@ msgid "MITOCHONDRION"
 msgstr "Mitokondri"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4870
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4934
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4879
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3286
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -1334,22 +1339,22 @@ msgid "MEMBRANE_RIGIDITY"
 msgstr "Hücre Zarı Sertliği"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:254
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5418
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5678
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5934
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6261
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6588
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6949
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6270
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6597
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6958
 msgid "MOBILITY"
 msgstr "Hareketlilik"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:289
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5521
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5778
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6037
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6364
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7052
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5530
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5787
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6046
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6373
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6700
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7061
 msgid "HEALTH"
 msgstr "Sağlık"
 
@@ -1366,9 +1371,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4441
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4961
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4970
 #, fuzzy
 msgid "TURNS"
 msgstr "Dönüştürür"
@@ -1381,9 +1386,9 @@ msgstr "Dönüştürür"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1972
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2260
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3297
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4181
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4466
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4986
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4190
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4475
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4995
 msgid "INTO"
 msgstr "a/e"
 
@@ -1399,10 +1404,10 @@ msgstr "a/e"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3373
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3969
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4254
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4573
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4774
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5090
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4263
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4582
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4783
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5099
 msgid "STORAGE"
 msgstr "Depo"
 
@@ -1418,16 +1423,16 @@ msgstr "Depo"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3713
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4007
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4611
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4812
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5128
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5453
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5712
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5969
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6296
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6623
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6984
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4301
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4821
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5137
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5462
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5721
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5978
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6632
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6993
 msgid "OSMOREGULATION_COST"
 msgstr "Ozmoregülasyon Maliyeti"
 
@@ -1499,7 +1504,7 @@ msgstr "konsantrasyonu"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1722
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3624
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3926
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4535
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4544
 #, fuzzy
 msgid "AND"
 msgstr "ve"
@@ -1512,7 +1517,7 @@ msgstr "şiddeti"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
-#: ../src/microbe_stage/MicrobeStage.tscn:924
+#: ../src/microbe_stage/MicrobeStage.tscn:925
 msgid "LIGHT"
 msgstr "Işık"
 
@@ -1528,7 +1533,7 @@ msgstr ""
 "akışkan fermentasyon yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4211
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4220
 #, fuzzy
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ". Oran konsantrasyonu ile doğru orantılı"
@@ -1557,15 +1562,15 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1997
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3322
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4500
 #, fuzzy
 msgid "DOT_RATE"
 msgstr ". Oran"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3335
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5052
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4513
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5061
 #, fuzzy
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "konsantrasyonu ile doğru orantılı"
@@ -1580,7 +1585,7 @@ msgstr ""
 "fermentasyon yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4993
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5002
 msgid "OXYTOXY"
 msgstr "OksiToksi"
 
@@ -1634,7 +1639,8 @@ msgid "CILIA"
 msgstr "Sil"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4049
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5305
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Henüz Eklenmedi."
 
@@ -1686,12 +1692,12 @@ msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7322
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7331
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
 msgid "TEMPERATURE"
 msgstr "Sıcaklık"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4049
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4058
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas "
@@ -1702,7 +1708,7 @@ msgstr ""
 "Üretilen glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru "
 "orantılıdır."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4334
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4343
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "Kemoplast, Hidrojen Sülfür Kemosentezi adı verilen bir işlemde, hidrojen "
@@ -1710,18 +1716,18 @@ msgstr ""
 "zarlı bir yapıdır. Üretilen glukoz oranı, karbondioksit konsantrasyonu ile "
 "doğru orantılıdır."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4662
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan amonyağı "
 "üretmek için azot gazı, oksijen ve ATP formundaki hücresel enerjiyi "
 "kullanan bir proteindir. Bu işlem Oksijenli Azot Fiksasyonu olarak anılır."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4763
 msgid "INREASE_STORAGE_SPACE"
 msgstr "Hücrenin depo alanını arttırır."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4863
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 "Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, "
@@ -1730,93 +1736,93 @@ msgstr ""
 "enzimler, katılar ve diğer maddeleri içeren suyla doludur. Şekilleri "
 "değişken ve hücreler arasında değişiklik gösterir."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5011
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5020
 #, fuzzy
 msgid "DOT_CAN"
 msgstr ". Yapabilir"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5024
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5033
 #, fuzzy
 msgid "RELEASE_TOXINS_BY_PRESSING"
 msgstr "basarak toksinleri sal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5031
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5040
 #, fuzzy
 msgid "E_DOT"
 msgstr "E."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5039
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5048
 #, fuzzy
 msgid "RATE"
 msgstr "Oran"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5170
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5179
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Toksin kofulu, oksitoksi toksinlerinin özel üretimi, depolanması ve "
 "salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, "
 "salınabilecek toksin oranını arttırır."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5186
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5250
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5259
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biyolüminesant Koful"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5317
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5381
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5326
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5390
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3543
 msgid "NORMAL"
 msgstr "Normal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5745
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6003
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6330
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6657
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7018
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6012
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6339
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6666
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7027
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Kaynak Emme Hızı"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5570
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Hücre zarının en temel formu. Hasara karşı koruyuculuğu çok azdır. Ayrıca "
 "şeklinin bozulmaması için fazla enerji gerektirir. Avantajı, hücrenin "
 "hareketine izin vermesi ve besinlerin çabuk emilimini sağlaması."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5577
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5641
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5586
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5650
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3615
 msgid "DOUBLE"
 msgstr "Çift katlı"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5817
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5826
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "İki katmanlı bir hücre zarı. Hasara karşı koruyuculuğu daha iyidir ve "
 "şeklinin bozulmaması için daha az enerji harcar. Ancak hücreyi biraz "
 "yavaşlatır ve kaynakların emilim oranını düşürür."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5833
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5897
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5842
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3687
 msgid "CELLULOSE"
 msgstr "Selüloz"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6071
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6725
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7086
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6734
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7095
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fiziksel Direnç"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6105
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6432
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6793
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7154
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6114
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6802
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7163
 msgid "CANNOT_ENGULF"
 msgstr "Yutamaz"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6144
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6153
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Bu hücre zarı toplam hasara, özellikle de fiziksel hasara karşı "
@@ -1824,19 +1830,19 @@ msgstr ""
 "için daha az enerji harcar. Ama kaynakları çabucak ememez ve hücre daha "
 "yavaştır."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6160
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6224
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6169
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6233
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3759
 msgid "CHITIN"
 msgstr "Kitin"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6398
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6759
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7120
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6407
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6768
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7129
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksin Direnci"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6471
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6480
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Bu hücre zarı toplam hasara, özellikle de toksin hasarına karşı "
@@ -1844,13 +1850,13 @@ msgstr ""
 "için daha az enerji harcar. Ama kaynakları çabucak ememez ve hücre daha "
 "yavaştır."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6560
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3836
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsiyum Karbonat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6832
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6841
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Bu hücre zarı kalsiyum karbonattan yapılmış güçlü bir kabuğa sahiptir. "
@@ -1859,13 +1865,13 @@ msgstr ""
 "hücrenin çok daha yavaş olması ve kaynakları emmenin biraz daha zaman "
 "almasıdır."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6848
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6912
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6857
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6921
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3909
 msgid "SILICA"
 msgstr "Silika"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7193
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7202
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Bu hücre zarı silikadan yapılmış güçlü bir duvara sahiptir. Toplam hasara "
@@ -1873,9 +1879,13 @@ msgstr ""
 "korumak için daha az enerji gerektirir. Ancak hücreyi kat kat yavaşlatır "
 "ve hücre, kaynakları düşük oranda emer."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7323
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Yeni bir kontrol tuşu ekle"
+
+#: ../src/microbe_stage/CheatMenu.tscn:18
+msgid "Test"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1909,46 +1919,46 @@ msgstr "oyuncu çoğaldı"
 msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:430
+#: ../src/microbe_stage/MicrobeStage.tscn:431
 msgid "AT_CURSOR"
 msgstr "İmleç Üzerinde:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:455
+#: ../src/microbe_stage/MicrobeStage.tscn:456
 msgid "NOTHING_HERE"
 msgstr "Burada bir şey yok"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:480
+#: ../src/microbe_stage/MicrobeStage.tscn:481
 msgid "COMPOUNDS_COLON"
 msgstr "Bileşikler:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:518
+#: ../src/microbe_stage/MicrobeStage.tscn:519
 msgid "SPECIES_COLON"
 msgstr "Tür:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:599
+#: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "Ortam"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:868
+#: ../src/microbe_stage/MicrobeStage.tscn:869
 msgid "TEMPERATURE_SHORT"
 msgstr "Sıc."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:979
+#: ../src/microbe_stage/MicrobeStage.tscn:980
 msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1062
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1448
+#: ../src/microbe_stage/MicrobeStage.tscn:1449
 msgid "AGENTS"
 msgstr "Maddeler"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1721
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
