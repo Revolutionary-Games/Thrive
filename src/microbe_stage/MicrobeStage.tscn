@@ -2021,6 +2021,9 @@ anims/HideLeftPanels = SubResource( 31 )
 anims/ShowLeftPanels = SubResource( 32 )
 
 [node name="CheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false
