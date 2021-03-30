@@ -21,7 +21,8 @@ corner_radius_bottom_left = 7
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
-[node name="CheatMenu" type="Panel"]
+[node name="CheatMenu" type="WindowDialog"]
+visible = true
 margin_right = 197.0
 margin_bottom = 234.0
 rect_min_size = Vector2( 197, 234 )
