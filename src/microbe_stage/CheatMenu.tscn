@@ -1,131 +1,57 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/microbe_stage/CheatMenu.cs" type="Script" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=3]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=11]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0.129412, 0.141176, 0.784314 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
-
-[sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 429, 1 )
 
 [node name="CheatMenu" type="WindowDialog"]
-visible = true
 margin_right = 197.0
 margin_bottom = 234.0
-rect_min_size = Vector2( 197, 234 )
-rect_clip_content = true
-size_flags_horizontal = 0
-size_flags_vertical = 0
 theme = ExtResource( 1 )
-custom_styles/panel = SubResource( 1 )
+popup_exclusive = true
+window_title = "CHEATS"
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-InfCompoundsPath = NodePath("../CheatMenu/VBoxContainer/Body/VBoxContainer/InfCompounds")
-GodmodePath = NodePath("VBoxContainer/Body/VBoxContainer/Godmode")
-NoAIPath = NodePath("VBoxContainer/Body/VBoxContainer/DisableAI")
-SpeedPath = NodePath("VBoxContainer/Body/VBoxContainer/Speed/SpeedSlider")
+InfCompoundsPath = NodePath("InfCompounds")
+GodmodePath = NodePath("Godmode")
+NoAIPath = NodePath("DisableAI")
+SpeedPath = NodePath("Speed/SpeedSlider")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 196.0
-margin_bottom = 233.0
-rect_min_size = Vector2( 195, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Header" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 197.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 195, 35 )
-mouse_filter = 1
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 184.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 174, 0 )
-size_flags_horizontal = 0
-custom_constants/separation = 6
-
-[node name="Label" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
-margin_top = 5.0
-margin_right = 174.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 11 )
-text = "CHEATS"
-autowrap = true
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 39.0
-margin_right = 197.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 197, 0 )
-size_flags_horizontal = 0
-custom_styles/separator = SubResource( 2 )
-
-[node name="Body" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 47.0
-margin_right = 197.0
-margin_bottom = 162.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 187.0
-margin_bottom = 105.0
-
-[node name="InfCompounds" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
-margin_right = 177.0
-margin_bottom = 22.0
+[node name="InfCompounds" type="CheckBox" parent="."]
+margin_left = 11.0
+margin_top = 6.0
+margin_right = 188.0
+margin_bottom = 30.0
 text = "INF_COMPOUNDS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Godmode" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
-margin_top = 26.0
-margin_right = 177.0
-margin_bottom = 48.0
+[node name="Godmode" type="CheckBox" parent="."]
+margin_left = 11.0
+margin_top = 32.0
+margin_right = 188.0
+margin_bottom = 56.0
 text = "GODMODE"
 
-[node name="DisableAI" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
-margin_top = 52.0
-margin_right = 177.0
-margin_bottom = 74.0
+[node name="DisableAI" type="CheckBox" parent="."]
+margin_left = 11.0
+margin_top = 58.0
+margin_right = 188.0
+margin_bottom = 82.0
 text = "NO_AI"
 
-[node name="Speed" type="HBoxContainer" parent="VBoxContainer/Body/VBoxContainer"]
-margin_top = 78.0
-margin_right = 177.0
-margin_bottom = 100.0
+[node name="Speed" type="HBoxContainer" parent="."]
+margin_left = 11.0
+margin_top = 84.0
+margin_right = 188.0
+margin_bottom = 106.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="VBoxContainer/Body/VBoxContainer/Speed"]
+[node name="Label" type="Label" parent="Speed"]
 margin_right = 139.0
 margin_bottom = 22.0
 text = "PLAYER_SPEED"
@@ -133,7 +59,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Body/VBoxContainer/Speed"]
+[node name="SpeedSlider" type="HSlider" parent="Speed"]
 margin_left = 143.0
 margin_right = 177.0
 margin_bottom = 22.0

@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles the opening, closing and operations of the cheat menu
 /// </summary>
-public class CheatMenu : ControlWithInput
+public class CheatMenu : Popup
 {
     [Export]
     public NodePath InfCompoundsPath;
@@ -81,7 +81,10 @@ public class CheatMenu : ControlWithInput
             if (!CanOpenMenu && value)
                 throw new InvalidOperationException("Cheats must be enabled in the settings to open the cheat menu");
 
-            Visible = value;
+            if (value)
+                Popup_();
+            else
+                Hide();
         }
     }
 
@@ -117,5 +120,17 @@ public class CheatMenu : ControlWithInput
 
         IsMenuOpen = !IsMenuOpen;
         return true;
+    }
+
+    public override void _EnterTree()
+    {
+        InputManager.RegisterReceiver(this);
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        InputManager.UnregisterReceiver(this);
+        base._ExitTree();
     }
 }
