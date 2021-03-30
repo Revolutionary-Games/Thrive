@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=11]
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 0.784314 )
 border_width_left = 1
 border_width_top = 1
@@ -17,7 +17,7 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
@@ -29,7 +29,7 @@ rect_clip_content = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource( 1 )
-custom_styles/panel = SubResource( 15 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,12 +82,12 @@ margin_right = 197.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 197, 0 )
 size_flags_horizontal = 0
-custom_styles/separator = SubResource( 10 )
+custom_styles/separator = SubResource( 2 )
 
 [node name="Body" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 47.0
 margin_right = 197.0
-margin_bottom = 187.0
+margin_bottom = 162.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
@@ -100,43 +100,42 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 187.0
-margin_bottom = 130.0
+margin_bottom = 105.0
 
 [node name="InfCompounds" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
 margin_right = 177.0
 margin_bottom = 22.0
-text = "Inf Compounds"
+text = "INF_COMPOUNDS"
 
 [node name="Godmode" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
 margin_top = 26.0
 margin_right = 177.0
 margin_bottom = 48.0
-text = "Godmode"
+text = "GODMODE"
 
 [node name="DisableAI" type="CheckBox" parent="VBoxContainer/Body/VBoxContainer"]
 margin_top = 52.0
 margin_right = 177.0
 margin_bottom = 74.0
-text = "No AI"
+text = "NO_AI"
 
 [node name="Speed" type="HBoxContainer" parent="VBoxContainer/Body/VBoxContainer"]
 margin_top = 78.0
 margin_right = 177.0
-margin_bottom = 125.0
+margin_bottom = 100.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Body/VBoxContainer/Speed"]
-margin_right = 65.0
-margin_bottom = 47.0
-text = "Player
-Speed"
+margin_right = 139.0
+margin_bottom = 22.0
+text = "PLAYER_SPEED"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Body/VBoxContainer/Speed"]
-margin_left = 69.0
+margin_left = 143.0
 margin_right = 177.0
-margin_bottom = 47.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = 1.0
