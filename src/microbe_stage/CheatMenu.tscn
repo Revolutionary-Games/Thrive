@@ -11,11 +11,12 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+InfCompoundsPath = NodePath("InfCompounds")
 
-[node name="Button" type="Button" parent="."]
-margin_right = 490.0
-margin_bottom = 171.0
-text = "Test"
+[node name="InfCompounds" type="CheckBox" parent="."]
+margin_right = 16.0
+margin_bottom = 22.0
+text = "Infinite Compounds"
 __meta__ = {
 "_edit_use_anchors_": false
 }

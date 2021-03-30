@@ -39,6 +39,9 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     /// </summary>
     public float GetCompoundAmount(Compound compound)
     {
+        if (CheatMenu.Instance.InfCompounds)
+            return Capacity;
+
         if (Compounds.ContainsKey(compound))
             return Compounds[compound];
 

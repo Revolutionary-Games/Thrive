@@ -1,28 +1,45 @@
 using System;
+using Godot;
 
 /// <summary>
 ///   Handles the opening, closing and operations of the cheat menu
 /// </summary>
 public class CheatMenu : ControlWithInput
 {
+    [Export]
+    public NodePath InfCompoundsPath;
+
+    private CheckBox infCompounds;
+
+    public static CheatMenu Instance { get; private set; }
+
     /// <summary>
     ///   Whether the cheat menu may be opened or not
     /// </summary>
-    public static bool CanOpen => Settings.Instance.CheatsEnabled;
+    public static bool CanOpenMenu => Settings.Instance.CheatsEnabled;
+
+    /// <summary>
+    ///   You automatically have 100% of all compounds
+    /// </summary>
+    public bool InfCompounds
+    {
+        get => infCompounds.Pressed;
+        set => infCompounds.Pressed = value;
+    }
 
     /// <summary>
     ///   Current visibility of the cheat menu
     /// </summary>
     /// <exception cref="InvalidOperationException">
-    ///   Thrown when you try to open the cheat menu and <see cref="CanOpen">CanOpen</see> is false
+    ///   Thrown when you try to open the cheat menu and <see cref="CanOpenMenu">CanOpen</see> is false
     /// </exception>
-    public bool IsOpen
+    public bool IsMenuOpen
     {
         get => Visible;
         set
         {
             // Is closed and cheats disabled
-            if (!CanOpen && value)
+            if (!CanOpenMenu && value)
                 throw new InvalidOperationException("Cheats must be enabled in the settings to open the cheat menu");
 
             Visible = value;
@@ -31,18 +48,21 @@ public class CheatMenu : ControlWithInput
 
     public override void _Ready()
     {
-        IsOpen = false;
-        base._Ready();
+        Instance = this;
+
+        infCompounds = GetNode<CheckBox>(InfCompoundsPath);
+
+        IsMenuOpen = false;
     }
 
     [RunOnKeyDown("g_cheat_menu")]
     public bool ToggleCheatMenu()
     {
         // Is closed and cheats disabled
-        if (!CanOpen && !IsOpen)
+        if (!CanOpenMenu && !IsMenuOpen)
             return false;
 
-        IsOpen = !IsOpen;
+        IsMenuOpen = !IsMenuOpen;
         return true;
     }
 }
