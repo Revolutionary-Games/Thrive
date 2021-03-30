@@ -9,19 +9,23 @@ public class MicrobeSpawner : Spawner
 {
     private readonly PackedScene microbeScene;
     private readonly CompoundCloudSystem cloudSystem;
-    private readonly GameProperties currentGame;
+    private GameProperties currentGame;
     private readonly Random random;
 
     private Dictionary<Species,int> speciesCounts = new Dictionary<Species, int>();
 
-    public MicrobeSpawner(CompoundCloudSystem cloudSystem, GameProperties currentGame, int spawnRadius)
+    public MicrobeSpawner(CompoundCloudSystem cloudSystem, int spawnRadius)
     {
         microbeScene = MicrobeSpawner.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
-        this.currentGame = currentGame;
         this.SetSpawnRadius(spawnRadius);
 
         random = new Random();
+    }
+
+    public void SetCurrentGame(GameProperties currentGame)
+    {
+        this.currentGame = currentGame;
     }
 
     public void AddSpecies(Species species, int numOfItems)
@@ -41,7 +45,7 @@ public class MicrobeSpawner : Spawner
         return species;
     }
 
-    public int getSpeciesCount(Species species)
+    public int GetSpeciesCount(Species species)
     {
         return speciesCounts[species];
     }

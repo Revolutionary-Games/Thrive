@@ -58,13 +58,17 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
-    public SpawnSystem(Node root, CompoundCloudSystem cloudSystem,
-        GameProperties currentGame, int spawnRadius)
+    public SpawnSystem(Node root, CompoundCloudSystem cloudSystem, int spawnRadius)
     {
         worldRoot = root;
         cloudSpawner = new CompoundCloudSpawner(cloudSystem, spawnRadius);
         chunkSpawner = new ChunkSpawner(cloudSystem, spawnRadius);
-        microbeSpawner = new MicrobeSpawner(cloudSystem, currentGame, spawnRadius);
+        microbeSpawner = new MicrobeSpawner(cloudSystem, spawnRadius);
+    }
+
+    public void SetCurrentGame(GameProperties currentGame)
+    {
+        microbeSpawner.SetCurrentGame(currentGame);
     }
 
     // Needs no params constructor for loading saves?
@@ -110,7 +114,7 @@ public class SpawnSystem
         // Fill microbe items
         foreach (MicrobeSpecies key in microbeSpawner.GetSpecies())
         {
-            int speciesCount = microbeSpawner.getSpeciesCount(key);
+            int speciesCount = microbeSpawner.GetSpeciesCount(key);
             GD.Print("Adding " + speciesCount + " of " + key.FormattedName);
             for (int i = 0; i < Math.Min(speciesCount, 100); i++)
             {

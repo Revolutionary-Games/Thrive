@@ -210,8 +210,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
-        spawner = new SpawnSystem(rootOfDynamicallySpawned, Clouds,
-            CurrentGame, Constants.MICROBE_SPAWN_RADIUS);
+        spawner = new SpawnSystem(rootOfDynamicallySpawned, Clouds, Constants.MICROBE_SPAWN_RADIUS);
 
         NodeReferencesResolved = true;
     }
@@ -239,6 +238,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (CurrentGame == null)
             throw new InvalidOperationException("current game is not set");
 
+        spawner.SetCurrentGame(CurrentGame);
         tutorialGUI.EventReceiver = TutorialState;
         pauseMenu.GameProperties = CurrentGame;
 
