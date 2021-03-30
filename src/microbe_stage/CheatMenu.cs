@@ -97,6 +97,17 @@ public class CheatMenu : ControlWithInput
         IsMenuOpen = false;
     }
 
+    /// <summary>
+    ///   Disables all cheat effects
+    /// </summary>
+    public void DisableAllCheats()
+    {
+        InfCompounds = false;
+        Godmode = false;
+        NoAI = false;
+        Speed = 1.0f;
+    }
+
     [RunOnKeyDown("g_cheat_menu")]
     public bool ToggleCheatMenu()
     {
