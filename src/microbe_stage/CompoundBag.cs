@@ -54,6 +54,9 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     /// </summary>
     public float TakeCompound(Compound compound, float amount)
     {
+        if (CheatMenu.Instance.InfCompounds)
+            return amount;
+
         if (!Compounds.ContainsKey(compound) || amount <= 0.0f)
             return 0.0f;
 
@@ -69,6 +72,9 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     /// </summary>
     public float AddCompound(Compound compound, float amount)
     {
+        if (CheatMenu.Instance.InfCompounds)
+            return amount;
+
         if (amount <= 0.0f)
             return amount;
 
