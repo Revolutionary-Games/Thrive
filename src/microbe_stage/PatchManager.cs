@@ -80,7 +80,6 @@ public class PatchManager
     {
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
-        // for now, do nothing. This needs to be reworked.
         spawnSystem.ClearChunkSpawner();
 
         foreach (var chunk in biome.Chunks.Keys)
@@ -93,19 +92,6 @@ public class PatchManager
                 GD.Print(biome.Chunks[chunk].Name + " has " + numOfItems + " items per bag.");
                 spawnSystem.AddBiomeChunk(biome.Chunks[chunk], numOfItems);
             }
-
-            /*
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Value.Name);
-                    spawner.Spawner = new ChunkSpawner(compoundCloudSystem);
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                });
-                */
         }
     }
 
@@ -134,6 +120,8 @@ public class PatchManager
     {
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
+        spawnSystem.ClearMicrobeSpawner();
+
         foreach (var entry in patch.SpeciesInPatch)
         {
             var species = entry.Key;
@@ -149,6 +137,10 @@ public class PatchManager
                     species.Population * 5));
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
+
+            int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * density);
+            GD.Print(name + " has " + numOfItems + " items per bag.");
+            spawnSystem.AddPatchSpecies(species, numOfItems);
 
         }
     }

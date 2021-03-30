@@ -60,9 +60,9 @@ class ChunkItem : SpawnItem
 class MicrobeItem : SpawnItem
 {
     MicrobeSpawner microbeSpawner;
-    Species species;
+    MicrobeSpecies species;
     Node worldNode;
-    public MicrobeItem(MicrobeSpawner microbeSpawner, Species species, Node worldNode)
+    public MicrobeItem(MicrobeSpawner microbeSpawner, MicrobeSpecies species, Node worldNode)
     {
         this.microbeSpawner = microbeSpawner;
         this.species = species;

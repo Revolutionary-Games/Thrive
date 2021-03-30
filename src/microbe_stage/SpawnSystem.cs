@@ -108,13 +108,23 @@ public class SpawnSystem
         }
 
         // Fill microbe items
+        foreach (MicrobeSpecies key in microbeSpawner.GetSpecies())
+        {
+            int speciesCount = microbeSpawner.getSpeciesCount(key);
+            GD.Print("Adding " + speciesCount + " of " + key.FormattedName);
+            for (int i = 0; i < Math.Min(speciesCount, 100); i++)
+            {
+                spawnItemBag.Add(new MicrobeItem(microbeSpawner, key, worldRoot));
+            }
+        }
+
 
         shuffleSpawnItemBag();
     }
 
     void shuffleSpawnItemBag()
     {
- // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
+        // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
         for (int i = 0; i < spawnItemBag.Count - 2; i++)
         {
             int j = random.Next(i, spawnItemBag.Count);
@@ -209,35 +219,15 @@ public class SpawnSystem
 
         SpawnItem spawn = SpawnItemBagPop();
 
-        if(spawn is CloudItem)
-        {
-             CloudItem cloudSpawn = (CloudItem)spawn;
+        float minRadius = cloudSpawner.MinSpawnRadius;
+        float maxRadius = cloudSpawner.SpawnRadius;
 
-            float minRadius = cloudSpawner.MinSpawnRadius;
-            float maxRadius = cloudSpawner.SpawnRadius;
+        float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
+        float displacementRotation = WeightedRandomRotation(playerRotation.y);
 
-            float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
-            float displacementRotation = WeightedRandomRotation(playerRotation.y);
+        Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
 
-            Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
-
-            cloudSpawn.Spawn(playerPosition + displacement);
-        }
-
-        if(spawn is ChunkItem)
-        {
-            ChunkItem chunkSpawn = (ChunkItem)spawn;
-
-            float minRadius = chunkSpawner.MinSpawnRadius;
-            float maxRadius = chunkSpawner.SpawnRadius;
-
-            float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
-            float displacementRotation = WeightedRandomRotation(playerRotation.y);
-
-            Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
-
-            chunkSpawn.Spawn(playerPosition + displacement);
-        }
+        spawn.Spawn(playerPosition + displacement);
     }
 
     /// <summary>
@@ -333,12 +323,12 @@ public class SpawnSystem
 
     public void ClearChunkSpawner()
     {
-
+        chunkSpawner.ClearChunks();
     }
 
     public void ClearMicrobeSpawner()
     {
-
+        microbeSpawner.ClearSpecies();
     }
 
     public void AddBiomeCompound(Compound compound, int numOfItems, float amount)
@@ -349,5 +339,10 @@ public class SpawnSystem
     public void AddBiomeChunk(ChunkConfiguration chunk, int numOfItems)
     {
         chunkSpawner.AddChunk(chunk, numOfItems);
+    }
+
+    public void AddPatchSpecies(Species species, int numOfItems)
+    {
+        microbeSpawner.AddSpecies(species, numOfItems);
     }
 }

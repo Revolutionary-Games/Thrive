@@ -11,7 +11,7 @@ public class ChunkSpawner : Spawner
     private readonly Random random = new Random();
     private readonly CompoundCloudSystem cloudSystem;
 
-    private Dictionary<ChunkConfiguration, int> ChunkCounts = new Dictionary<ChunkConfiguration, int>();
+    private Dictionary<ChunkConfiguration, int> chunkCounts = new Dictionary<ChunkConfiguration, int>();
 
     public ChunkSpawner(CompoundCloudSystem cloudSystem, int spawnRadius)
     {
@@ -27,24 +27,24 @@ public class ChunkSpawner : Spawner
             if (mesh.LoadedScene == null)
                 throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
         }
-        ChunkCounts.Add(chunk,numOfItems);
+        chunkCounts.Add(chunk, numOfItems);
     }
 
     public void ClearChunks()
     {
-        ChunkCounts.Clear();
+        chunkCounts.Clear();
     }
 
     public ChunkConfiguration[] GetChunks()
     {
-        ChunkConfiguration[] chunks = new ChunkConfiguration[ChunkCounts.Keys.Count];
-        ChunkCounts.Keys.CopyTo(chunks, 0);
+        ChunkConfiguration[] chunks = new ChunkConfiguration[chunkCounts.Keys.Count];
+        chunkCounts.Keys.CopyTo(chunks, 0);
         return chunks;
     }
 
     public int getChunkCount(ChunkConfiguration chunk)
     {
-        return ChunkCounts[chunk];
+        return chunkCounts[chunk];
     }
 
     public void SpawnChunk(Vector3 location, ChunkConfiguration chunkType, Node worldNode)

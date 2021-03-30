@@ -12,6 +12,8 @@ public class MicrobeSpawner : Spawner
     private readonly GameProperties currentGame;
     private readonly Random random;
 
+    private Dictionary<Species,int> speciesCounts = new Dictionary<Species, int>();
+
     public MicrobeSpawner(CompoundCloudSystem cloudSystem, GameProperties currentGame, int spawnRadius)
     {
         microbeScene = MicrobeSpawner.LoadMicrobeScene();
@@ -22,21 +24,40 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
-    public IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location, Species species)
+    public void AddSpecies(Species species, int numOfItems)
     {
+        speciesCounts.Add(species, numOfItems);
+    }
+
+    public void ClearSpecies()
+    {
+        speciesCounts.Clear();
+    }
+
+    public Species[] GetSpecies()
+    {
+        Species[] species = new Species[speciesCounts.Keys.Count];
+        speciesCounts.Keys.CopyTo(species, 0);
+        return species;
+    }
+
+    public int getSpeciesCount(Species species)
+    {
+        return speciesCounts[species];
+    }
+
+    public void Spawn(Node worldNode, Vector3 location, MicrobeSpecies species)
+    {
+        GD.Print("Spawning a Microbe");
+
         // The true here is that this is AI controlled
-        var first = MicrobeSpawner.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
+        MicrobeSpawner.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
 
-        yield return first;
-
-        if (first.Species.IsBacteria)
+        if (species.IsBacteria)
         {
-            foreach (var colonyMember in MicrobeSpawner.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                cloudSystem, currentGame, random))
-            {
-                yield return colonyMember;
-            }
+            MicrobeSpawner.SpawnBacteriaColony(species, location, worldNode, microbeScene,
+                cloudSystem, currentGame, random);
         }
     }
 
