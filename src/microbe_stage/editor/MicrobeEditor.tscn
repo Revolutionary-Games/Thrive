@@ -1638,7 +1638,7 @@ toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
 group = SubResource( 15 )
-text = "APPEARANCE"
+text = "MEMBRANE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -4046,10 +4046,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 29 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 152.0
-margin_top = 175.0
-margin_right = 455.0
-margin_bottom = 650.0
+margin_left = 160.0
+margin_top = 183.0
+margin_right = 463.0
+margin_bottom = 658.0
 theme = SubResource( 31 )
 edit_alpha = false
 

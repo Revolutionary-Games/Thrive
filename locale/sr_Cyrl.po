@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
-"PO-Revision-Date: 2021-02-01 22:41+0000\n"
+"POT-Creation-Date: 2021-03-30 23:25-0700\n"
+"PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.9.0\n"
 
@@ -536,7 +536,7 @@ msgstr "Хемолитоаутотрофија гвожђа"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr "Епипелагиц"
+msgstr "Епипелагик"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
 #: ../simulation_parameters/microbe_stage/biomes.json:154
@@ -598,15 +598,15 @@ msgstr "Плима и осека"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:497
 msgid "BATHYPELAGIC"
-msgstr "Батхипелагиц"
+msgstr "Батхипелагик"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:718
 msgid "ABYSSOPELAGIC"
-msgstr "Абиссопелагиц"
+msgstr "Абисопелагик"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:935
 msgid "MESOPELAGIC"
-msgstr "Месопелагиц"
+msgstr "Месопелагик"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1156
 msgid "COASTAL"
@@ -1025,7 +1025,7 @@ msgstr "аутоматски"
 
 #: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
-msgstr "Максимум FPS:"
+msgstr "Максимални FPS:"
 
 #: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
@@ -2084,8 +2084,9 @@ msgid "STRUCTURE"
 msgstr "Структура"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr "Изглед"
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "Врсте Мембрана"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
@@ -2741,6 +2742,9 @@ msgstr ""
 "сакупљајући довољно амонијака и фосфата.\n"
 "Погледајте индикатор у доњем десном углу да бисте видели колико вам још "
 "треба."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Изглед"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "Назив Зоне"

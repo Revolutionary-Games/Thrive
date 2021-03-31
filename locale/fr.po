@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
-"PO-Revision-Date: 2021-02-16 17:54+0000\n"
-"Last-Translator: Little Tony <seigneur250596@gmail.com>\n"
+"POT-Creation-Date: 2021-03-30 23:25-0700\n"
+"PO-Revision-Date: 2021-03-15 17:26+0000\n"
+"Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -1265,15 +1265,15 @@ msgstr "Quitter"
 
 #: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Mrd"
 
 #: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} M"
 
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} K"
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
@@ -1759,7 +1759,7 @@ msgstr ""
 "protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde "
 "de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de "
 "Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la "
-"concentration en eau et en dioxyde de carbone."
+"concentration en dioxyde de carbone."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4951
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2113,8 +2113,8 @@ msgid "STRUCTURE"
 msgstr "Structure"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr "Apparence"
+msgid "MEMBRANE"
+msgstr "Membrane"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
@@ -2784,6 +2784,9 @@ msgstr ""
 "Afin de vous reproduire vous devez dupliquer tous vos organites en "
 "collectant assez d'ammoniaque et de phosphates.\n"
 "Regardez l'indicateur en bas à droite pour voir combien il vous en manque."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Apparence"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "Nom de la Parcelle"

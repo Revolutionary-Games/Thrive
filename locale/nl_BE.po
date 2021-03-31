@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
-"PO-Revision-Date: 2021-02-17 14:23+0000\n"
+"POT-Creation-Date: 2021-03-30 23:25-0700\n"
+"PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: Rune Vercauteren <rune.vercauteren@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
 "com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -175,8 +175,10 @@ msgstr ""
 "verandering (of mutatie) zal een bepaalde hoeveelheid MP kosten. Het "
 "toevoegen en verwijderen van organellen kost MP, maar het verwijderen van "
 "organellen die geplaatst werden in de huidige mutatiesessie betalen MP "
-"terug voor dat organel. Je kan een organel verwijderen door erop te "
-"klikken met de rechtermuisknop. Je kan je organellen roteren met A enD."
+"terug voor dat organel. Je kan een organel verplaatsen of volledig "
+"verwijderen door erop te klikken met de rechtermuisknop en de passende "
+"actie te kiezen uit het pop-up menu. Je kan je organellen tijdens het "
+"plaatsen roteren met A enD."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -498,9 +500,8 @@ msgid "SHOW_HELP"
 msgstr "Laat hulp zien"
 
 #: ../simulation_parameters/common/input_options.json:168
-#, fuzzy
 msgid "TOGGLE_FULLSCREEN"
-msgstr "VolledigScherm"
+msgstr "Volledig scherm activeren"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
@@ -1078,7 +1079,6 @@ msgid "SFX_VOLUME"
 msgstr "Volume Geluidseffecten"
 
 #: ../src/general/OptionsMenu.tscn:543
-#, fuzzy
 msgid "GUI_VOLUME"
 msgstr "GUI Volume"
 
@@ -1271,15 +1271,15 @@ msgstr "Verlaten"
 
 #: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} B"
 
 #: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} M"
 
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} K"
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
@@ -1312,7 +1312,6 @@ msgid "EXTRAS"
 msgstr "Extra's"
 
 #: ../src/gui_common/MainMenu.tscn:223
-#, fuzzy
 msgid "CREDITS"
 msgstr "Credits"
 
@@ -1950,7 +1949,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:702
 msgid "PLAYER_CELL"
-msgstr ""
+msgstr "Spelerscel"
 
 #: ../src/microbe_stage/MicrobeStage.cs:453
 msgid "PLAYER_REPRODUCED"
@@ -2113,8 +2112,9 @@ msgid "STRUCTURE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr ""
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "Membraantypes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
@@ -2275,7 +2275,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
+msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
 msgid "OSMOREGULATION"
@@ -2287,7 +2287,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr ""
+msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "SPECIES_LIST"
@@ -2312,20 +2312,19 @@ msgstr ""
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Verwijder"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
-#, fuzzy
 msgid "MOVE"
-msgstr "Beweging"
+msgstr "Verplaats"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:361
 msgid "MODIFY"
-msgstr ""
+msgstr "Pas aan"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2711,3 +2710,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Uiterlijk"

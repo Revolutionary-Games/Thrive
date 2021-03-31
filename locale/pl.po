@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
-"PO-Revision-Date: 2021-01-27 16:24+0000\n"
+"POT-Creation-Date: 2021-03-30 23:25-0700\n"
+"PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: Filip Szot <filip.szot08@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n"
+"%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -171,9 +171,10 @@ msgstr ""
 "Każdej generacji masz 100 punktów mutacji (PM) do wydania, i każda zmiana "
 "(lub mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli "
 "kosztuje PM, jednak usuwanie organelli które były dodane w obecnej "
-"generacji zwraca PM za tą organellę. Możesz usunąć organellę klikając na "
-"nią prawym przyciskiem. Możesz obracać swoje organelle używając klawiszy A "
-"i D."
+"generacji zwraca PM za tą organellę. Możesz przesunąć lub całkowicie "
+"usunąć organellę klikając na nią prawym przyciskiem i wybierając właściwą "
+"czynność z wyskakującego menu. Możesz obracać swoje organelle podczas "
+"dodawania ich używając klawiszy A i D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -242,8 +243,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "Porada, Możesz polować na inne gatunki aż wyginą jeśli nie będziesz "
-"wystarczająco ostrożny, mogą być też polowane do wyginięcia przez inne "
-"gatunki."
+"wystarczająco ostrożny. Inne gatunki też mogą to robić."
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_10"
@@ -486,9 +486,8 @@ msgid "SHOW_HELP"
 msgstr "Pokaż pomoc"
 
 #: ../simulation_parameters/common/input_options.json:168
-#, fuzzy
 msgid "TOGGLE_FULLSCREEN"
-msgstr "Pełny ekran"
+msgstr "Przełącz Pełny Ekran"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
@@ -968,11 +967,11 @@ msgstr "Koło w prawo"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_1"
-msgstr "Specjalny 1 myszy"
+msgstr "Mysz Specjalny 1"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "SPECIAL_MOUSE_2"
-msgstr "Specjalny 2 myszy"
+msgstr "Mysz Specjalny 2"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "UNKNOWN_MOUSE"
@@ -1149,7 +1148,7 @@ msgstr "Otwórz Folder Zrzutów Ekranu"
 
 #: ../src/general/OptionsMenu.tscn:988
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "Otwórz Folder z Logami"
 
 #: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
@@ -1251,15 +1250,15 @@ msgstr "Wyjdź"
 
 #: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} MD"
 
 #: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} MN"
 
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} K"
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
@@ -1678,14 +1677,41 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3439
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
+"Cecha definiująca komórki eukariotyczne. Jądro zawiera również siatkę "
+"endoplazmatyczną i ciało golgiego. Wykształcenie systemu wewnętrznych "
+"membran jest ewolucją prokariotycznych komórek, dokonaną przez "
+"przyswojenie innego prokariota w środku siebie. To pozwala im na "
+"rozdzielanie, lub zatrzymywanie, różnych procesów dziejących się w środku "
+"komórki i zapobiec przed ich nakładaniem się na siebie. To pozwala ich "
+"nowym orgallom membranowym na większą złożoność, efektywność i "
+"wyspecjalizowanie niż gdyby pływały bezpośrednio w cytoplazmie. Aczkolwiek "
+"ma to swoją cenę, bardzo powiększa komórkę i wymaga dużo energii do "
+"utrzymania."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3727
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
+"Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to "
+"stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest "
+"prokariotem ,który został przyswojony do użytku przez eukariotycznego "
+"hosta. Potrafi przekształcać glukozę w ATP znacznie efektywniej niż "
+"cytoplazma w procesie zwanym Oddychaniem Komórkowym. Jednak wymaga tlenu "
+"do funkcjonowania, i niższe poziomy tlenu w otoczeniu spowalniają tempo "
+"produkcji ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4029
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
+"Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne "
+"pigmenty ułożone razem w membranowych workach. Jest prokariotem, który "
+"został przyswojony do użytku przez eukariotycznego hosta.Chloroplast to "
+"struktura z podwójną membraną zawierająca fotosensytywne pigmenty ułożone "
+"razem w membranowych kieszeniach. Jest prokariotem, który został "
+"przyswojony do użytku przez eukariotycznego hosta. Pigmenty w "
+"chloroplaście mogą używać energii światła do produkcji glukozy z wody i "
+"gazowego dwutlenku węgla w procesie zwanym Fotosyntezą. Te pigmenty dają "
+"mu też wyróżniający się kolor. Tempo produkci glukozy skaluje się ze "
+"stężeniem dwutlenku węgla i intensywnością światła."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4236
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7644
@@ -1696,14 +1722,29 @@ msgstr "Temperatura"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4347
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
+"Termoplast jest strukturą z podwójną membraną zawierającą termosensytywne "
+"pigmenty ułożone razem w membranowych workach. Jest prokariotem, który "
+"został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w "
+"termoplaście mogą używać energii z różnic temperatur w otoczeniu do "
+"produkcji glukozy z wody i gazowego dwutlenku węgla w procesie zwanym "
+"Termosyntezą. Tempo produkcji glukozy skaluje się ze stężeniem dwutlenku "
+"węgla i temperaturą."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4632
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
+"Chemoplast to struktura z podwójną membraną zawierająca protieny mogące "
+"przekształcić siarkowoór,wodę i gazowy dwutlenek węgla w glukozę w "
+"procesie zwanym Chemosyntezą Siarkowodoru. Tempo produkcji glukozy skaluje "
+"się ze stężeniem dwutlenku węgla."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4951
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
+"Plastyd Wiążący Azot to białko używające gazowego azotu i tlenu oraz "
+"energii komórkowej w formie ATP do produkcji amoniaku, składnika "
+"kluczowego dla wzrostu komórek. Ten proces nazywa się Tlenowe Wiązanie "
+"Azotu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5052
 msgid "INREASE_STORAGE_SPACE"
@@ -1712,6 +1753,12 @@ msgstr "Zwiększa możliwości magazynowe komórki."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5152
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
+"Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. "
+"Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko "
+"używanych w komórkach do magazynowania, które są ze sobą połączone. "
+"Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i "
+"inne substancje. Ich kształt jest płynny i może się różnić między "
+"komórkami."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5309
 msgid "DOT_CAN"
@@ -1799,6 +1846,9 @@ msgstr "Nie może połykać"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6442
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Ta membrana posiada ścianę która zapewnia lepszą ochronę przed obrażeniami "
+"a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale "
+"spowalnia absorpcje zasobów i spowalnia komórkę."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6458
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6522
@@ -1815,6 +1865,9 @@ msgstr "Odporność Na Toksyny"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6769
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Ta membrana posiada ścianę która zapewnia lepszą ochronę przed obrażeniami "
+"a zwłaszcza przed toksynami. Kosztuje też mniej energii, ale spowalnia "
+"absorpcje zasobów."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6785
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6849
@@ -1825,6 +1878,10 @@ msgstr "Węglanowo-Wapienna"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7130
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Ta membrana ma silną muszlę zrobioną z węglanu wapnia. Może z łatwością "
+"opierać się obrażeniom i wymaga mniej energii do utrzymania kształtu. Wady "
+"posiadania tak ciężkiej muszli są takie, że komórka jest znacznie "
+"wolniejsza i długo zajmuje jej wchłanianie zasobów."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7146
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7210
@@ -1835,10 +1892,14 @@ msgstr "Krzemionkowa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7491
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Ta membrana ma silne ściany z silikonu. Może opierać się ogólnym "
+"obrażeniom i jest szczególnie odporna na uszkodzenia fizyczne. Wymaga też "
+"mniej energii do utrzymania kształtu. Jednak spowalnia mocno komórkę i "
+"zmniejsza tempo wchłaniania zasobów."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7636
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Dodaj nowe powiązanie klawisza"
 
 #: ../src/microbe_stage/Microbe.cs:1178
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1846,7 +1907,7 @@ msgstr ""
 
 #: ../src/microbe_stage/Microbe.cs:1185
 msgid "SUCCESSFUL_KILL"
-msgstr ""
+msgstr "udane zabicie"
 
 #: ../src/microbe_stage/Microbe.cs:1593
 msgid "ESCAPE_ENGULFING"
@@ -1854,20 +1915,19 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:482
 msgid "MICROBE_PATCH_LABEL"
-msgstr ""
+msgstr "Obszar: {0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:643
 msgid "STUFF_AT"
-msgstr ""
+msgstr "Rzecz w {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:702
-#, fuzzy
 msgid "PLAYER_CELL"
-msgstr "gracz zginął"
+msgstr "Komórka Gracza"
 
 #: ../src/microbe_stage/MicrobeStage.cs:453
 msgid "PLAYER_REPRODUCED"
-msgstr ""
+msgstr "gracz się rozmnożył"
 
 #: ../src/microbe_stage/MicrobeStage.cs:565
 msgid "PLAYER_DIED"
@@ -1875,7 +1935,7 @@ msgstr "gracz zginął"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:436
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "Pod kursorem:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:461
 msgid "NOTHING_HERE"
@@ -1910,7 +1970,7 @@ msgstr "Związki"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1454
 msgid "AGENTS"
-msgstr ""
+msgstr "Czynniki"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1727
 msgid "POPULATION_CAPITAL"
@@ -1918,7 +1978,7 @@ msgstr "POPULACJA:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:16
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr ""
+msgstr "Paleoceaniczne Kominy Hydrotermalne"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:24
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
@@ -1938,27 +1998,27 @@ msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:52
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr ""
+msgstr "Paleoceaniczna Strefa Głębinowa"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:59
 msgid "PATCH_PANGONIAN_COAST"
-msgstr ""
+msgstr "Paleoceaniczne Wybrzeże"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:66
 msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr ""
+msgstr "Paleoceaniczne Ujście"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:73
 msgid "PATCH_CAVE"
-msgstr ""
+msgstr "Jaskinia"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:80
 msgid "PATCH_ICE_SHELF"
-msgstr ""
+msgstr "Lodowiec szelfowy"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:87
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
+msgstr "Paleoceaniczne Dno Morskie"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -1966,24 +2026,24 @@ msgstr "Procesy Komórki"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Balans Związków"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:517
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1176
 msgid "LOADING_MICROBE_EDITOR"
-msgstr ""
+msgstr "Wczytywanie edytora mikrobów"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:519
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr ""
+msgstr "Czekanie na auto-ewolucje:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2061
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "Auto-ewolucja nie może się uruchomić"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2062
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "Status działania:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:994
 msgid "REPORT"
@@ -1991,7 +2051,7 @@ msgstr "Raport"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1016
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "Mapa Obszarów"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1095
 msgid "ORGANISM_STATISTICS"
@@ -2026,21 +2086,20 @@ msgid "STRUCTURE"
 msgstr "Struktura"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr "Wygląd"
+msgid "MEMBRANE"
+msgstr "Membrana"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
 msgstr "Zachowanie"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1715
-#, fuzzy
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Wyszukiwanie..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
 msgid "STRUCTURAL"
-msgstr ""
+msgstr "Strukturalne"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1938
 msgid "PROTEINS"
@@ -2049,22 +2108,26 @@ msgstr "Białka"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2166
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
+"Proteiny\n"
+"Chemosyntezujące"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2495
 msgid "EXTERNAL"
-msgstr ""
+msgstr "Zewnętrzne"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "ORGANELLES"
-msgstr ""
+msgstr "Organelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3378
 msgid "N_A_MP"
-msgstr ""
+msgstr "N/A MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3417
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
+"Bioluminescencyjna\n"
+"Wakuola"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3514
 msgid "MEMBRANE_TYPES"
@@ -2072,16 +2135,15 @@ msgstr "Rodzaje błony komórkowej"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3998
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Płynność / Sztywność"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4037
 msgid "COLOUR"
 msgstr "Kolor"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4182
-#, fuzzy
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Nazwa gatunku..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4211
 msgid "CONFIRM_CAPITAL"
@@ -2089,15 +2151,17 @@ msgstr "POTWIERDŹ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4221
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr ""
+msgstr "Negatywny balans ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4233
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
+"Twoja komórka produkuje za mało ATP by przeżyć!\n"
+"Czy chcesz kontynuować?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4244
 msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
+msgstr "Niepołączone Organelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4256
 msgid "DISCONNECTED_ORGANELLES_TEXT"
@@ -2105,39 +2169,38 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4356
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-Ewolucja"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4369
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Łańcuch pokarmowy"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4382
 msgid "TIMELINE"
-msgstr ""
+msgstr "Oś czasu"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4435
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Rezultat Auto-Ewolucji:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4454
 msgid "EXTERNAL_EFFECTS"
-msgstr ""
+msgstr "Zewnętrzne efekty:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4512
-#, fuzzy
 msgid "SPECIES_POPULATION"
-msgstr "populacja:"
+msgstr "Populacja Gatunku"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4545
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4976
 msgid "PHYSICAL_CONDITIONS"
-msgstr ""
+msgstr "Warunki Fizyczne"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4649
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5159
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "Gazy Atmosferyczne"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4743
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5671
@@ -2146,7 +2209,7 @@ msgstr "NASTĘPNY"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4858
 msgid "SELECT_A_PATCH"
-msgstr ""
+msgstr "Wybierz obszar by zobaczyć jego szczegóły"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4893
 msgid "CURRENT_LOCATION_CAPITAL"
@@ -2154,19 +2217,19 @@ msgstr "AKTUALNA LOKALIZACJA"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5584
 msgid "SPECIES_PRESENT"
-msgstr ""
+msgstr "Obecne Gatunki"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:5642
 msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
+msgstr "Przenieś się do tego obszaru"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
+msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "Milionów Lat"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
@@ -2175,7 +2238,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "YEARS"
-msgstr ""
+msgstr "lata"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
@@ -2188,7 +2251,7 @@ msgstr "PRODUKCJA ATP JEST ZA NISKA!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
+msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
 msgid "OSMOREGULATION"
@@ -2196,40 +2259,40 @@ msgstr "Osmoregulacja"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Bazowa prędkość"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr ""
+msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "SPECIES_LIST"
-msgstr ""
+msgstr "Lista gatunków"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "Wolna Budowa"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1620
 msgid "BIOME_LABEL"
-msgstr ""
+msgstr "Biom: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1625
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1}m pod poziomem morza"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1653
 msgid "WITH_POPULATION"
-msgstr ""
+msgstr "{0} z populacją: {1}"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Usuń"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 #, fuzzy
@@ -2238,11 +2301,11 @@ msgstr "Ruch"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:361
 msgid "MODIFY"
-msgstr ""
+msgstr "Modyfikuj"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "WYMARŁEŚ"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
@@ -2250,96 +2313,99 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
-msgstr ""
+msgstr "PRZETRWAŁEŚ!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
+"Gratulację udało ci się przejść tą wersję Thrive! Jeśli chcesz możesz "
+"kontynuować grę po zamknięciu tego ekranu lub rozpocząć nową grę w nowym "
+"świecie."
 
 #: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
 #: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "Wczytywanie Gry"
 
 #: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Wczytywanie danych zapisu"
 
 #: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "Tworzenie obiektów z pliku zapisu"
 
 #: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Podczas wczytywania pliku zapisu nastąpił wyjątek"
 
 #: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "Nieprawidłowy zapis"
 
 #: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr ""
+msgstr "Plik zapisu ma nieprawidłowy stan sceny gry"
 
 #: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
+msgstr "Przetwarzanie wczytanych obiektów"
 
 #: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
-msgstr ""
+msgstr "Podczas przetwarzania obiektów nastąpił wyjątek"
 
 #: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
-msgstr ""
+msgstr "Wczytywanie zakończone"
 
 #: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Błąd wczytywania"
 
 #: ../src/saving/InProgressSave.cs:161
 msgid "SAVING"
-msgstr ""
+msgstr "Zapisywanie..."
 
 #: ../src/saving/InProgressSave.cs:191
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "Zapisywanie się nie udało"
 
 #: ../src/saving/InProgressSave.cs:192
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Błąd zapisu"
 
 #: ../src/saving/NewSaveMenu.cs:61
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
+msgstr "Wybrana nazwa pliku ({0}) już istnieje. Nadpisać?"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
-msgstr ""
+msgstr "Stwórz Nowy Zapis"
 
 #: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
-msgstr ""
+msgstr "Nazwa:"
 
 #: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Dodatkowe Opcje"
 
 #: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr ""
+msgstr "Nadpisz istniejący zapis:"
 
 #: ../src/saving/NewSaveMenu.tscn:119
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr ""
+msgstr "Nadpisać istniejący zapis?"
 
 #: ../src/saving/SaveHelper.cs:374
 msgid "SAVING_SUCCEEDED"
-msgstr ""
+msgstr "Powodzenie zapisu"
 
 #: ../src/saving/SaveHelper.cs:384
 msgid "SAVING_FAILED"
-msgstr ""
+msgstr "Zapis nie zadziałał! Pojawił się błąd"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
@@ -2355,15 +2421,17 @@ msgstr "Zapisz Grę"
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "Nieważny"
 
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
+"Usunięcie tego zapisu nie może zostać odwrócone, czy jesteś pewien że "
+"chcesz permamentnie usunąć {0}?"
 
 #: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
-msgstr ""
+msgstr "Wczytywanie..."
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
@@ -2371,27 +2439,39 @@ msgstr "Usunąć ten zapis?"
 
 #: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
 msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr ""
+msgstr "Załadować niekompatybilny zapis?"
 
 #: ../src/saving/SaveList.tscn:93
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
+"Ten zapis jest z nowszej wersji Thrive i prawdopodobnie niekompatybilny.\n"
+"Czy chcesz spróbować wczytać zapis mimo to?"
 
 #: ../src/saving/SaveList.tscn:117
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+"Ten zapis jest ze starszej wersji Thrive i może być niekompatybilny.\n"
+"Jako że Thrive jest na wczesnym etapie rozwoju kompatybilność zapisów nie "
+"jest priorytetem.\n"
+"Możesz zgłosić wszelkie błędy jakie napotkasz, ale nie mają one teraz "
+"najwyższego priorytetu.\n"
+"Czy chcesz spróbować wczytać zapis mimo to?"
 
 #: ../src/saving/SaveList.tscn:132
 msgid "LOAD_INVALID_SAVE"
-msgstr ""
+msgstr "Wczytać nieważny zapis?"
 
 #: ../src/saving/SaveList.tscn:141
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
+"Informacje zapisu nie mogły być wczytane z tego pliku.\n"
+"Ten zapis jest najpewniej zepsuty lub w nowszym formacie nierozumianym "
+"przez tą wersję Thrive.\n"
+"Czy chcesz spróbować wczytać zapis mimo to?"
 
 #: ../src/saving/SaveList.tscn:156
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr ""
+msgstr "Wybrany zapis jest niekompatybilny"
 
 #: ../src/saving/SaveList.tscn:166
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
@@ -2399,7 +2479,7 @@ msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
-msgstr ""
+msgstr "Stworzone:"
 
 #: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
 #: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
@@ -2421,11 +2501,11 @@ msgstr "Wersja:"
 
 #: ../src/saving/SaveListItem.tscn:221
 msgid "BY"
-msgstr ""
+msgstr "Przez:"
 
 #: ../src/saving/SaveListItem.tscn:240
 msgid "CREATED_ON_PLATFORM"
-msgstr ""
+msgstr "Stworzone na Platformie:"
 
 #: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:54
 msgid "LOAD"
@@ -2542,7 +2622,7 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
 msgid "SHOW_TUTORIALS"
-msgstr ""
+msgstr "Pokaż samouczki"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "BEGIN_THRIVING"
@@ -2567,6 +2647,9 @@ msgstr ""
 "zebranie wystarczająco dużo amoniaku i fosforanów.\n"
 "Patrz na wskaźnik w prawym dolnym rogu żeby sprawdzić ile jeszcze "
 "potrzebujesz."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Wygląd"
 
 #~ msgid "CARBON"
 #~ msgstr "Węgiel"

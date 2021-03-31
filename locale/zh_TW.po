@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
+"POT-Creation-Date: 2021-03-30 23:33-0700\n"
 "PO-Revision-Date: 2020-12-27 09:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -42,8 +42,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"你也可以通過按G鍵吞噬比你小的細胞，細菌，鐵塊和細胞塊，這將會花費額外的ATP"
-"(三磷酸腺苷)，並且會讓你的速度變慢。不要忘記按第二次G來停止吞噬。"
+"你也可以通過按G鍵吞噬比你小的細胞，細菌，鐵塊和細胞塊，這將會花費額外的"
+"ATP(三磷酸腺苷)，並且會讓你的速度變慢。不要忘記按第二次G來停止吞噬。"
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
@@ -1946,8 +1946,9 @@ msgid "STRUCTURE"
 msgstr "結構"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr "出現"
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "膜類型"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
@@ -2485,6 +2486,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#~ msgid "APPEARANCE"
+#~ msgstr "出現"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "區域名字"

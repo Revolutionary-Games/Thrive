@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
-"PO-Revision-Date: 2021-02-16 17:54+0000\n"
-"Last-Translator: Telegina Alexandra <teleginaaleksandra1@gmail.com>\n"
+"POT-Creation-Date: 2021-03-30 23:25-0700\n"
+"PO-Revision-Date: 2021-03-15 17:26+0000\n"
+"Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/eo/>\n"
 "Language: eo\n"
@@ -166,11 +166,12 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Ĉiun generacion vi havas 100 mutaciajn punktojn (MP) por elspezi, kaj ĉiu "
+"Ĉiu generacio, vi havas 100 mutaciajn punktojn (MP) por elspezi, kaj ĉiu "
 "ŝanĝo (aŭ mutacio) kostos certan kvanton de tiu MP. Aldono kaj forigo de "
-"organetoj kostas MP-ojn, tamen forigo de organetoj lokitaj en la nuna "
-"mutacia kunsido repagas MP-ojn por tiu organeto. Vi povas forigi organeton "
-"per dekstra klako sur ĝi. Vi povas turni viajn organetojn per A kaj D."
+"organetoj kostas MP-ojn, tamen forigi organetojn kiu estis lokitaj en la "
+"nuna mutacia kunsido repagas MP-ojn por tiu organeto. Vi povas forigi "
+"organeton per dekstra klako sur ĝi. Vi povas turni viajn organetojn per A "
+"kaj D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1245,15 +1246,15 @@ msgstr "Eliri"
 
 #: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
-msgstr "Mrd"
+msgstr "{0} Mrd"
 
 #: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
-msgstr "M"
+msgstr "{0} M"
 
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
-msgstr "K"
+msgstr "{0} K"
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
@@ -1732,8 +1733,8 @@ msgstr ""
 "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
 "kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon "
 "en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La "
-"rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de akvo kaj "
-"karbona dioksido."
+"rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona "
+"dioksido."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4951
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2083,8 +2084,8 @@ msgid "STRUCTURE"
 msgstr "Strukturo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr "Aspekto"
+msgid "MEMBRANE"
+msgstr "Membrano"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
@@ -2289,20 +2290,19 @@ msgstr "{0} kun loĝantaro: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Elimini"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
-#, fuzzy
 msgid "MOVE"
-msgstr "Movado"
+msgstr "Moviĝi"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:361
 msgid "MODIFY"
-msgstr ""
+msgstr "Modifi"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2741,3 +2741,6 @@ msgstr ""
 "de sufiĉe da amoniako kaj fosfatoj.\n"
 "Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi "
 "bezonas."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Aspekto"

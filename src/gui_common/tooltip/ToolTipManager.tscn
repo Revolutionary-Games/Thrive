@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn" type="PackedScene" id=2]
@@ -26,7 +26,6 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=27]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=29]
 [ext_resource path="res://assets/textures/gui/bevel/thermalgradient.png" type="Texture" id=30]
-
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
@@ -2454,8 +2453,8 @@ ModifierInfoScene = ExtResource( 2 )
 [node name="MarginContainer" type="MarginContainer" parent="GroupHolder/organelleSelection/thermosynthase"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 523.0
-margin_bottom = 267.0
+margin_right = 527.0
+margin_bottom = 268.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -2465,19 +2464,19 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 507.0
-margin_bottom = 251.0
+margin_right = 511.0
+margin_bottom = 252.0
 mouse_filter = 2
 custom_constants/separation = 15
 
 [node name="Header" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer"]
-margin_right = 364.0
+margin_right = 496.0
 margin_bottom = 27.0
 mouse_filter = 2
 custom_constants/separation = 10
 
 [node name="MP" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/Header"]
-margin_right = 72.0
+margin_right = 131.0
 margin_bottom = 22.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -2501,50 +2500,51 @@ custom_fonts/font = ExtResource( 29 )
 text = "40"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/Header"]
-margin_left = 82.0
-margin_right = 282.0
+margin_left = 141.0
+margin_right = 355.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 25 )
 text = "THERMOSYNTHASE"
 align = 1
+autowrap = true
 
 [node name="Spacer" type="Control" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/Header"]
-margin_left = 292.0
-margin_right = 364.0
+margin_left = 365.0
+margin_right = 496.0
 margin_bottom = 27.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="ProcessDescription" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer"]
 margin_top = 42.0
-margin_right = 364.0
-margin_bottom = 110.0
+margin_right = 496.0
+margin_bottom = 112.0
 mouse_filter = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription"]
-margin_right = 364.0
+margin_right = 496.0
 margin_bottom = 20.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_top = 1.0
-margin_right = 75.0
+margin_right = 45.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 79.0
-margin_right = 148.0
+margin_left = 49.0
+margin_right = 204.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "THERMAL_GRADIENT"
 
 [node name="TGIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 152.0
-margin_right = 172.0
+margin_left = 208.0
+margin_right = 228.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -2553,22 +2553,23 @@ texture = ExtResource( 30 )
 expand = true
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
+margin_left = 232.0
 margin_top = 1.0
-margin_right = 75.0
+margin_right = 266.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 text = "INTO"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 79.0
-margin_right = 148.0
+margin_left = 270.0
+margin_right = 299.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 152.0
-margin_right = 172.0
+margin_left = 303.0
+margin_right = 323.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -2577,30 +2578,31 @@ texture = ExtResource( 19 )
 expand = true
 
 [node name="Label6" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 176.0
+margin_left = 327.0
 margin_top = 1.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 text = "DOT_RATE_SCALES_WITH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription"]
 margin_top = 24.0
-margin_right = 364.0
-margin_bottom = 44.0
+margin_right = 496.0
+margin_bottom = 46.0
 mouse_filter = 2
 
 [node name="Label7" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
-margin_top = 1.0
+margin_top = 2.0
 margin_right = 147.0
-margin_bottom = 18.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 26 )
 text = "CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
 margin_left = 151.0
+margin_top = 1.0
 margin_right = 284.0
-margin_bottom = 19.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 27 )
 text = "CARBON_DIOXIDE"
 
@@ -2613,90 +2615,137 @@ mouse_filter = 2
 size_flags_vertical = 0
 texture = ExtResource( 18 )
 expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer"]
+margin_left = 312.0
+margin_right = 350.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 26 )
+text = "AND"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription"]
+margin_top = 50.0
+margin_right = 496.0
+margin_bottom = 70.0
+mouse_filter = 2
+
+[node name="Label4" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer4"]
+margin_right = 110.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "TEMPERATURE"
+
+[node name="TemperatureIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer4"]
+margin_left = 114.0
+margin_right = 134.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+size_flags_vertical = 0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
 
 [node name="ProcessList" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer"]
-margin_top = 125.0
-margin_right = 364.0
-margin_bottom = 125.0
+margin_top = 127.0
+margin_right = 496.0
+margin_bottom = 127.0
 mouse_filter = 2
 theme = SubResource( 3 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer"]
-margin_top = 140.0
-margin_right = 364.0
-margin_bottom = 184.0
+margin_top = 142.0
+margin_right = 496.0
+margin_bottom = 186.0
 mouse_filter = 2
 
-[node name="Storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList"]
-margin_right = 364.0
+[node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList"]
+margin_right = 496.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
+DisplayName = "STORAGE"
+ModifierValue = "+2"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 12 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/Storage"]
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_top = 1.0
-margin_right = 17.0
-margin_bottom = 19.0
+margin_right = 16.0
+margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+2"
 
-[node name="Name" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/Storage"]
-margin_left = 21.0
-margin_right = 91.0
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 20.0
+margin_right = 90.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "STORAGE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/Storage"]
-margin_left = 95.0
-margin_right = 115.0
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 94.0
+margin_right = 114.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 texture = ExtResource( 12 )
 expand = true
 
-[node name="Osmoregulation Cost" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList"]
+[node name="osmoregulation_cost" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList"]
 margin_top = 24.0
-margin_right = 364.0
+margin_right = 496.0
 margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+2"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/osmoregulation_cost"]
 margin_top = 1.0
-margin_right = 17.0
-margin_bottom = 19.0
+margin_right = 16.0
+margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "+2"
 
-[node name="Name" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
-margin_left = 21.0
-margin_right = 209.0
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/osmoregulation_cost"]
+margin_left = 20.0
+margin_right = 208.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/Osmoregulation Cost"]
-margin_left = 213.0
-margin_right = 233.0
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ModifierList/osmoregulation_cost"]
+margin_left = 212.0
+margin_right = 232.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer"]
-margin_top = 199.0
-margin_right = 364.0
-margin_bottom = 203.0
+margin_top = 201.0
+margin_right = 496.0
+margin_bottom = 205.0
 mouse_filter = 2
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer"]
-margin_top = 218.0
-margin_right = 364.0
-margin_bottom = 235.0
+margin_top = 220.0
+margin_right = 496.0
+margin_bottom = 237.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 26 )
 text = "THERMOSYNTHASE_DESCRIPTION"
@@ -4053,7 +4102,7 @@ ModifierInfoScene = ExtResource( 2 )
 [node name="MarginContainer" type="MarginContainer" parent="GroupHolder/organelleSelection/thermoplast"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 376.0
+margin_right = 527.0
 margin_bottom = 266.0
 mouse_filter = 2
 custom_constants/margin_right = 15
@@ -4064,19 +4113,19 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 360.0
+margin_right = 511.0
 margin_bottom = 250.0
 mouse_filter = 2
 custom_constants/separation = 15
 
 [node name="Header" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 27.0
 mouse_filter = 2
 custom_constants/separation = 10
 
 [node name="MP" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/Header"]
-margin_right = 62.0
+margin_right = 138.0
 margin_bottom = 22.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -4100,8 +4149,8 @@ custom_fonts/font = ExtResource( 29 )
 text = "40"
 
 [node name="Title" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/Header"]
-margin_left = 72.0
-margin_right = 272.0
+margin_left = 148.0
+margin_right = 348.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
@@ -4111,40 +4160,40 @@ align = 1
 autowrap = true
 
 [node name="Spacer" type="Control" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/Header"]
-margin_left = 282.0
-margin_right = 345.0
+margin_left = 358.0
+margin_right = 496.0
 margin_bottom = 27.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="ProcessDescription" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
 margin_top = 42.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 110.0
 mouse_filter = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription"]
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 20.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
 margin_top = 1.0
-margin_right = 75.0
+margin_right = 45.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 text = "TURNS"
 
 [node name="Label2" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 79.0
-margin_right = 148.0
+margin_left = 49.0
+margin_right = 204.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "THERMAL_GRADIENT"
 
 [node name="TGIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 152.0
-margin_right = 172.0
+margin_left = 208.0
+margin_right = 228.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -4153,22 +4202,23 @@ texture = ExtResource( 30 )
 expand = true
 
 [node name="Label3" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
+margin_left = 232.0
 margin_top = 1.0
-margin_right = 75.0
+margin_right = 266.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 text = "INTO"
 
 [node name="Label4" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 79.0
-margin_right = 148.0
+margin_left = 270.0
+margin_right = 299.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "ATP"
 
 [node name="ATPIcon" type="TextureRect" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 152.0
-margin_right = 172.0
+margin_left = 303.0
+margin_right = 323.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -4177,16 +4227,16 @@ texture = ExtResource( 19 )
 expand = true
 
 [node name="Label6" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription/HBoxContainer2"]
-margin_left = 176.0
+margin_left = 327.0
 margin_top = 1.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 text = "DOT_RATE_SCALES_WITH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription"]
 margin_top = 24.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 44.0
 mouse_filter = 2
 
@@ -4225,7 +4275,7 @@ text = "AND"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessDescription"]
 margin_top = 48.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 68.0
 mouse_filter = 2
 
@@ -4248,19 +4298,19 @@ stretch_mode = 6
 
 [node name="ProcessList" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
 margin_top = 125.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 125.0
 mouse_filter = 2
 theme = SubResource( 3 )
 
 [node name="ModifierList" type="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
 margin_top = 140.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 184.0
 mouse_filter = 2
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ModifierList"]
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -4298,7 +4348,7 @@ expand = true
 
 [node name="osmoregulation_cost" type="HBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ModifierList"]
 margin_top = 24.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -4334,13 +4384,13 @@ expand = true
 
 [node name="HSeparator" type="HSeparator" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
 margin_top = 199.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 203.0
 mouse_filter = 2
 
 [node name="Description" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer"]
 margin_top = 218.0
-margin_right = 345.0
+margin_right = 496.0
 margin_bottom = 235.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 26 )
