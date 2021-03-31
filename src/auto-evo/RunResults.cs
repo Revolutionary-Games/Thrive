@@ -271,16 +271,17 @@
                             builder.Append("  ");
                             builder.Append(string.Format(CultureInfo.CurrentCulture,
                                 TranslationServer.Translate("RUNRESULT_BY_SENDING_POPULATION"),
-                                spreadEntry.To.Name, spreadEntry.Population, spreadEntry.From.Name));
+                                TranslationServer.Translate(spreadEntry.To.Name), spreadEntry.Population,
+                                TranslationServer.Translate(spreadEntry.From.Name)));
                         }
                         else
                         {
                             builder.Append("  ");
-                            builder.Append(spreadEntry.To.Name);
+                            builder.Append(TranslationServer.Translate(spreadEntry.To.Name));
                             builder.Append(" pop: ");
                             builder.Append(spreadEntry.Population);
                             builder.Append(" from: ");
-                            builder.Append(spreadEntry.From.Name);
+                            builder.Append(TranslationServer.Translate(spreadEntry.From.Name));
                         }
 
                         builder.Append("\n");
