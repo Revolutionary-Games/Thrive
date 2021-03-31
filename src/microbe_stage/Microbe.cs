@@ -1212,6 +1212,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
+
+        if (!CheatMenu.Instance.InfCompounds || !IsPlayerMicrobe)
+            return;
+
+        var usefulComponents = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
+        foreach (var usefulComponent in usefulComponents)
+            Compounds.AddCompound(usefulComponent, Compounds.Capacity - Compounds.GetCompoundAmount(usefulComponent));
     }
 
     private void CheckEngulfShapeSize()

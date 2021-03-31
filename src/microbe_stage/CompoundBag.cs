@@ -39,9 +39,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     /// </summary>
     public float GetCompoundAmount(Compound compound)
     {
-        if (InfCompoundsCheatAndIsUseful(compound))
-            return Capacity;
-
         if (Compounds.ContainsKey(compound))
             return Compounds[compound];
 
@@ -54,9 +51,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     /// </summary>
     public float TakeCompound(Compound compound, float amount)
     {
-        if (InfCompoundsCheatAndIsUseful(compound))
-            return amount;
-
         if (!Compounds.ContainsKey(compound) || amount <= 0.0f)
             return 0.0f;
 
@@ -72,9 +66,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     /// </summary>
     public float AddCompound(Compound compound, float amount)
     {
-        if (InfCompoundsCheatAndIsUseful(compound))
-            return amount;
-
         if (amount <= 0.0f)
             return amount;
 
@@ -158,10 +149,5 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         {
             Compounds[entry.Key] = 0;
         }
-    }
-
-    private bool InfCompoundsCheatAndIsUseful(Compound compound)
-    {
-        return CheatMenu.Instance.InfCompounds && IsUseful(compound);
     }
 }
