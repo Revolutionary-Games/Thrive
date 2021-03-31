@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-02 18:02-0600\n"
+"POT-Creation-Date: 2021-03-30 23:33-0700\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio."
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.9.0\n"
 
@@ -440,18 +440,19 @@ msgstr "Fotosinteza"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
-msgid "OXYTOXY_SYNTHESIS"
-msgstr "Sinteza OksiToksi"
+#, fuzzy
+msgid "THERMOSYNTHESIS"
+msgstr "Hemosinteza"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
-msgid "CHEMO_SYNTHESIS"
-msgstr "Hemosinteza"
+msgid "OXYTOXY_SYNTHESIS"
+msgstr "Sinteza OksiToksi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 #: ../simulation_parameters/microbe_stage/bio_processes.json:91
 msgid "CHEMO_SYNTHESIS"
-msgstr ""
+msgstr "Hemosinteza"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:101
 msgid "AEROBIC_NITROGEN_FIXING"
@@ -772,7 +773,7 @@ msgstr "Hloroplast"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4109
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3076
 msgid "THERMOPLAST"
-msgstr ""
+msgstr "Termoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:585
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:352
@@ -1142,7 +1143,8 @@ msgstr "Greška"
 
 #: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Greška: Nije uspelo čuvanje novih postavki u konfiguracionoj datoteci."
+msgstr ""
+"Greška: Nije uspelo čuvanje novih postavki u konfiguracionoj datoteci."
 
 #: ../src/general/PauseMenu.tscn:57
 msgid "RESUME"
@@ -1157,7 +1159,7 @@ msgid "LOAD_GAME"
 msgstr "Učitajte Igru"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4503
 msgid "STATISTICS"
 msgstr "Statistika"
 
@@ -1238,9 +1240,9 @@ msgstr "Upozorenje u režimu GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će "
-"izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / "
-"ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa "
-"Thrive."
+"izazvati probleme. Pokušajte da ažurirate upravljačke programe za video "
+"i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje "
+"programa Thrive."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1419,12 +1421,13 @@ msgstr "Kiseonik."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:882
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
-"Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju "
-"da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u "
-"citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu "
-"je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće "
-"brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno "
-"u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+"Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u "
+"stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može "
+"učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, "
+"potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u "
+"okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi "
+"suspendovani direktno u citoplazmi, okolna tečnost vrši određenu "
+"fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:898
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2097
@@ -1494,11 +1497,11 @@ msgstr "Takođe pretvara"
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Hemosintetizujući proteini su male grupe proteina u citoplazmi koje su u "
-"stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu "
-"u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. Pošto su "
-"proteini hemosinteze suspendovani direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+"stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
+"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa "
+"njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. "
+"Pošto su proteini hemosinteze suspendovani direktno u citoplazmi, okolna "
+"tečnost vrši fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1842
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1524,11 +1527,11 @@ msgstr "skalira se sa koncentracijom"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2130
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku "
+"energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog "
+"sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija "
+"azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna "
+"tečnost vrši fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2269
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5291
@@ -1603,13 +1606,14 @@ msgstr ""
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 "Definitivna karakteristika eukariotskih ćelija. Jezgro takođe uključuje "
-"endoplazmatski retikulum i telo golgija. Evolucija prokariontskih ćelija je "
-"razviti sistem unutrašnjih membrana, urađen asimilacijom drugog prokariota u "
-"sebi. To im omogućava da razdvoje ili odbace različite procese koji se "
-"dešavaju unutar ćelije i sprečava ih da se preklapaju. To omogućava da "
-"njihovi novi membranski organeli budu mnogo složeniji, efikasniji i "
-"specijalizovaniji nego da slobodno lebde u citoplazmi. Međutim, ovo dolazi "
-"po cenu da ćelija bude mnogo veća i da joj treba puno energije za održavanje."
+"endoplazmatski retikulum i telo golgija. Evolucija prokariontskih ćelija "
+"je razviti sistem unutrašnjih membrana, urađen asimilacijom drugog "
+"prokariota u sebi. To im omogućava da razdvoje ili odbace različite "
+"procese koji se dešavaju unutar ćelije i sprečava ih da se preklapaju. To "
+"omogućava da njihovi novi membranski organeli budu mnogo složeniji, "
+"efikasniji i specijalizovaniji nego da slobodno lebde u citoplazmi. "
+"Međutim, ovo dolazi po cenu da ćelija bude mnogo veća i da joj treba puno "
+"energije za održavanje."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3727
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1619,29 +1623,23 @@ msgstr ""
 "asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da "
 "pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može "
 "učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, "
-"potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini "
-"usporiće brzinu njegove proizvodnje ATP."
+"potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u "
+"okolini usporiće brzinu njegove proizvodnje ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4029
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne "
 "pigmente složene zajedno u opnene vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu "
-"su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i "
-"gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su "
-"takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje "
-"glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom "
-"svetlosti."
+"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u "
+"hloroplastu su sposobni da koriste energiju svetlosti za proizvodnju "
+"glukoze iz vode i gasovitog ugljen-dioksida u procesu nazvanom "
+"Fotosinteza. Ovi pigmenti su takođe ono što mu daje prepoznatljivu boju. "
+"Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-"
+"dioksida i intenzitetom svetlosti."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3771
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3835
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
-msgid "THERMOPLAST"
-msgstr "Termoplast"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7322
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4236
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7644
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
 msgid "TEMPERATURE"
 msgstr "Temperatura"
@@ -1651,27 +1649,28 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne "
 "pigmente složene zajedno u membranske vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu "
-"mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze "
-"iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. "
-"Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-"
-"dioksida i temperaturom."
+"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u "
+"termoplastu mogu da koriste energiju toplotnih razlika u okolini za "
+"proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se "
+"naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa "
+"koncentracijom ugljen-dioksida i temperaturom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4632
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
 "sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
-"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa "
+"njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-"
+"dioksida."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4951
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
-"Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i "
-"kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog "
-"hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna "
-"fiksacija azota."
+"Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot "
+"i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, "
+"ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva "
+"aerobna fiksacija azota."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5052
 msgid "INREASE_STORAGE_SPACE"
@@ -1680,11 +1679,12 @@ msgstr "Povećava prostor za skladištenje ćelije."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5152
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje "
+"u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje "
+"se široko koriste u ćelijama za skladištenje, a koje su se stopile. "
+"Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste "
+"materije i druge supstance. Njihov oblik je tečan i može se razlikovati "
+"između ćelija."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5309
 msgid "DOT_CAN"
@@ -1706,8 +1706,8 @@ msgstr "Stopa"
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, "
-"skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće "
-"brzinu oslobađanja toksina."
+"skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola "
+"povećaće brzinu oslobađanja toksina."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5548
@@ -1745,9 +1745,9 @@ msgstr "Dupli"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6115
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Membrana sa dva sloja, ima bolju zaštitu od oštećenja i uzima manje energije "
-"da se ne deformiše. Međutim, to usporava ćeliju i smanjuje brzinu kojom može "
-"da apsorbuje resurse."
+"Membrana sa dva sloja, ima bolju zaštitu od oštećenja i uzima manje "
+"energije da se ne deformiše. Međutim, to usporava ćeliju i smanjuje brzinu "
+"kojom može da apsorbuje resurse."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6195
@@ -1771,8 +1771,8 @@ msgstr "Ne može da guta"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6442
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, a "
-"posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao "
+"Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, "
+"a posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao "
 "oblik, ali ne može brzo da apsorbuje resurse i sporiji je."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6458
@@ -1791,8 +1791,8 @@ msgstr "Otpornost na toksine"
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ova membrana ima zid, što znači da ima bolju zaštitu od ukupnih oštećenja, "
-"posebno od oštećenja toksinima. Takođe zadržava manje energije da bi zadržao "
-"oblik, ali je sporiji i ne može brzo da apsorbuje resurse."
+"posebno od oštećenja toksinima. Takođe zadržava manje energije da bi "
+"zadržao oblik, ali je sporiji i ne može brzo da apsorbuje resurse."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6785
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6849
@@ -1803,10 +1803,10 @@ msgstr "Kalcijum Karbonat"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7130
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Ova membrana ima jaku ljusku napravljenu od kalcijum-karbonata. Može se lako "
-"odupreti oštećenjima i zahteva manje energije da se ne deformiše. Mane ovako "
-"teške ljuske su u tome što je ćelija mnogo sporija i potrebno joj je neko "
-"vreme da apsorbuje resurse."
+"Ova membrana ima jaku ljusku napravljenu od kalcijum-karbonata. Može se "
+"lako odupreti oštećenjima i zahteva manje energije da se ne deformiše. "
+"Mane ovako teške ljuske su u tome što je ćelija mnogo sporija i potrebno "
+"joj je neko vreme da apsorbuje resurse."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7146
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7210
@@ -1886,9 +1886,9 @@ msgstr "Temp."
 msgid "PRESSURE_SHORT"
 msgstr "Priti."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
+#: ../src/microbe_stage/MicrobeStage.tscn:1068
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4687
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5324
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "Jedinjenje"
@@ -2010,7 +2010,7 @@ msgstr "Mutacije Poeni"
 msgid "STRUCTURE"
 msgstr "Struktura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
 msgid "MEMBRANE"
 msgstr ""
 
@@ -2114,39 +2114,39 @@ msgstr "Rezultati automatske-evolucije:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Spoljni efekti:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4512
 msgid "SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4545
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4976
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4649
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5159
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4743
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5671
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4858
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4893
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5584
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5642
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
