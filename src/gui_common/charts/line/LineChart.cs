@@ -266,6 +266,10 @@ public class LineChart : VBoxContainer
     {
         ClearChart();
 
+        // These are before the parameter checks to apply any possible translation to the axes labels
+        XAxisName = string.IsNullOrEmpty(xAxisName) ? XAxisName : xAxisName;
+        YAxisName = string.IsNullOrEmpty(yAxisName) ? YAxisName : yAxisName;
+
         if (dataSets == null || dataSets.Count <= 0)
         {
             GD.PrintErr($"{ChartName} chart missing datasets, aborting plotting data");
@@ -277,9 +281,6 @@ public class LineChart : VBoxContainer
             GD.PrintErr($"{ChartName} chart ticks has to be more than 0, aborting plotting data");
             return;
         }
-
-        XAxisName = string.IsNullOrEmpty(xAxisName) ? XAxisName : xAxisName;
-        YAxisName = string.IsNullOrEmpty(yAxisName) ? YAxisName : yAxisName;
 
         initialVisibleDataSets = Mathf.Clamp(initialVisibleDataSets, 0, MaxDisplayedDataSet);
 
