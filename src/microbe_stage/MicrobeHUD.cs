@@ -813,13 +813,13 @@ public class MicrobeHUD : Node
         {
             populationLabel.Text = playerPopulation.ToString(CultureInfo.InvariantCulture);
         }
-        else if (playerPopulation < 1000000) 
+        else if (playerPopulation < 1000000)
         {
-            populationLabel.Text = (playerPopulation/1000).ToString(CultureInfo.InvariantCulture) + "K";
-        } 
-        else 
+            populationLabel.Text = (playerPopulation / 1000).ToString(CultureInfo.InvariantCulture) + "K";
+        }
+        else
         {
-            populationLabel.Text = (playerPopulation/1000000).ToString(CultureInfo.InvariantCulture) + "M";
+            populationLabel.Text = (playerPopulation / 1000000).ToString(CultureInfo.InvariantCulture) + "M";
         }
     }
 
