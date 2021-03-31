@@ -158,6 +158,7 @@ public class InputEventItem : Node
             switch (key.Scancode)
             {
                 case (uint)KeyList.Escape:
+                {
                     if (AssociatedEvent == null)
                     {
                         Delete();
@@ -167,7 +168,13 @@ public class InputEventItem : Node
                     InputGroupList.WasListeningForInput = true;
                     WaitingForInput = false;
                     UpdateButtonText();
+
+                    // Rebinding is canceled so we alert the InputManager that it can resume getting input
+                    InputManager.RebindingIsActive = false;
+
                     return;
+                }
+
                 case (uint)KeyList.Alt:
                 case (uint)KeyList.Shift:
                 case (uint)KeyList.Control:
