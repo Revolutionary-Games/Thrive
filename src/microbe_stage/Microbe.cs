@@ -544,7 +544,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public void Damage(float amount, string source)
     {
-        if (IsPlayerMicrobe && CheatMenu.Instance.Godmode)
+        if (IsPlayerMicrobe && CheatManager.Godmode)
             return;
 
         if (amount == 0 || Dead)
@@ -1213,7 +1213,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
-        if (!CheatMenu.Instance.InfCompounds || !IsPlayerMicrobe)
+        if (!CheatManager.InfCompounds || !IsPlayerMicrobe)
             return;
 
         var usefulComponents = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
@@ -1504,11 +1504,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
         else
         {
-            // Disable reproduction for AI if infinite compounds are enabled.
-            // Otherwise the AI will reproduce as fast as possible and crash the game.
-            if (CheatMenu.Instance.InfCompounds)
-                return;
-
             // Return the first cell to its normal, non duplicated cell arrangement.
             if (!Species.PlayerSpecies)
             {
@@ -1748,7 +1743,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         if (IsPlayerMicrobe)
-            force *= (float)CheatMenu.Instance.Speed;
+            force *= (float)CheatManager.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -

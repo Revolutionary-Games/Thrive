@@ -1004,8 +1004,8 @@ public class OptionsMenu : Control
         Settings.Instance.CheatsEnabled.Value = pressed;
         if (!pressed)
         {
-            CheatMenu.Instance.DisableAllCheats();
-            CheatMenu.Instance.IsMenuOpen = false;
+            CheatManager.DisableAllCheats();
+            CheatManager.HideCheatMenus();
         }
 
         UpdateResetSaveButtonState();

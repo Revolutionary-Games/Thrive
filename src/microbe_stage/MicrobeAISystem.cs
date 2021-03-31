@@ -17,7 +17,7 @@ public class MicrobeAISystem
 
     public void Process(float delta)
     {
-        if (CheatMenu.Instance.NoAI)
+        if (CheatManager.NoAI)
             return;
 
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.AI_GROUP);
