@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-02 18:02-0600\n"
-"PO-Revision-Date: 2021-03-23 08:41+0000\n"
-"Last-Translator: Marco Cirelli <Cirellimarcoattilio@gmail.com>\n"
+"PO-Revision-Date: 2021-03-24 16:58+0000\n"
+"Last-Translator: DarkMasterOne <thiellamatteo2.0@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -687,7 +687,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
 #: ../src/microbe_stage/MicrobeStage.tscn:1378
 msgid "IRON"
-msgstr ""
+msgstr "Ferro"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
@@ -696,7 +696,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4542
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5059
 msgid "OXYGEN"
-msgstr ""
+msgstr "Ossigeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:99
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1032
@@ -706,13 +706,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3907
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4223
 msgid "CARBON_DIOXIDE"
-msgstr "Anidride"
+msgstr "Anidride Carbonica"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2017
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4511
 msgid "NITROGEN"
-msgstr ""
+msgstr "Azoto"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7327
@@ -742,7 +742,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:117
 msgid "PROTOPLASM"
-msgstr ""
+msgstr "Protoplasma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:147
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1198
@@ -802,7 +802,7 @@ msgstr "V"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2877
 msgid "MITOCHONDRION"
-msgstr ""
+msgstr "Mitocondrio"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4870
@@ -832,11 +832,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2810
 msgid "NUCLEUS"
-msgstr ""
+msgstr "Nucleo"
 
 #: ../src/auto-evo/AutoEvoRun.cs:112
 msgid "ABORTED"
-msgstr ""
+msgstr "Abortito."
 
 #: ../src/auto-evo/AutoEvoRun.cs:115
 msgid "FINISHED"
@@ -902,15 +902,15 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "LEFT_MOUSE"
@@ -963,11 +963,11 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
-msgstr ""
+msgstr "Suono"
 
 #: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Prestazione"
 
 #: ../src/general/OptionsMenu.tscn:163
 msgid "INPUTS"
@@ -1023,7 +1023,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
 #: ../src/general/OptionsMenu.tscn:570
 msgid "MUTE"
-msgstr ""
+msgstr "Muto"
 
 #: ../src/general/OptionsMenu.tscn:444
 msgid "MUSIC_VOLUME"
@@ -1047,7 +1047,7 @@ msgstr "Lingua:"
 
 #: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:1009
 msgid "RESET"
-msgstr ""
+msgstr "Ripristina"
 
 #: ../src/general/OptionsMenu.tscn:612
 msgid "OPEN_TRANSLATION_SITE"
@@ -1087,7 +1087,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Salvataggio automatico durante il gioco"
 
 #: ../src/general/OptionsMenu.tscn:853
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -1129,23 +1129,24 @@ msgstr ""
 #: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:113
 msgid "BACK"
-msgstr ""
+msgstr "Indietro"
 
 #: ../src/general/OptionsMenu.tscn:1020 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
-msgstr ""
+msgstr "Salva"
 
 #: ../src/general/OptionsMenu.tscn:1036
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
+msgstr "Predefinite"
 
 #: ../src/general/OptionsMenu.tscn:1048
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Ripristinare le impostazioni predefinite?"
 
 #: ../src/general/OptionsMenu.tscn:1057
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
+"Sicuro di voler ripristinare TUTTE le impostazioni ai valori predefiniti?"
 
 #: ../src/general/OptionsMenu.tscn:1071
 msgid "RESET_INPUTS_TO_DEFAULTS"
@@ -1475,13 +1476,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
 msgid "INTENSITY_OF"
-msgstr ""
+msgstr "intensità di"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
-msgstr ""
+msgstr "Luce"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1490,7 +1491,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4211
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-msgstr ""
+msgstr ". Il tasso varia con la concentrazione di"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
 msgid "ALSO_TURNS"
@@ -1508,7 +1509,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3322
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4491
 msgid "DOT_RATE"
-msgstr ""
+msgstr ". Tasso"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3335
@@ -1528,7 +1529,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2285
 msgid "DOT_CAN_RELEASE"
-msgstr ""
+msgstr ". Può rilasciare"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2297
 msgid "TOXINS_BY_PRESSING_E"
@@ -1544,15 +1545,15 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2560
 msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr ""
+msgstr "aumentare la mobilità"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2572
 msgid "SPEED_OF_THE_CELL"
-msgstr ""
+msgstr "velocità della cellula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2593
 msgid "SPEED"
-msgstr ""
+msgstr "Velocità"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1560,18 +1561,18 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr ""
+msgstr "Trafiggi altre cellule con questo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2653
 msgid "CILIA"
-msgstr ""
+msgstr "Ciglia"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5296
 msgid "TO_BE_IMPLEMENTED"
-msgstr ""
+msgstr "Da implementare."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3064
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -1650,7 +1651,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5381
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3543
 msgid "NORMAL"
-msgstr ""
+msgstr "Normale"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5745
@@ -1659,7 +1660,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6657
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7018
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Velocità di assorbimento"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5561
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -1669,7 +1670,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5641
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3615
 msgid "DOUBLE"
-msgstr ""
+msgstr "Doppio"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5817
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
@@ -1728,7 +1729,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6912
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3909
 msgid "SILICA"
-msgstr ""
+msgstr "Silice"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7193
 msgid "SILICA_MEMBRANE_DESCRIPTION"
@@ -2452,6 +2453,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
+"Raccogli glucosio (nuvole bianche) muovendoti sopra di esse.\n"
+"La tua cellula necessita di glucosio per produrre energia per rimanere in "
+"vita.\n"
+"Segui la linea dalla tua cellula fino al glucosio più vicino."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
