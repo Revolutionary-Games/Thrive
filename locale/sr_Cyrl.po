@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
-"PO-Revision-Date: 2021-02-01 22:41+0000\n"
+"POT-Creation-Date: 2021-03-30 23:15-0700\n"
+"PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.9.0\n"
 
@@ -536,7 +536,7 @@ msgstr "Хемолитоаутотрофија гвожђа"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr "Епипелагиц"
+msgstr "Епипелагик"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
 #: ../simulation_parameters/microbe_stage/biomes.json:154
@@ -598,15 +598,15 @@ msgstr "Плима и осека"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:497
 msgid "BATHYPELAGIC"
-msgstr "Батхипелагиц"
+msgstr "Батхипелагик"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:718
 msgid "ABYSSOPELAGIC"
-msgstr "Абиссопелагиц"
+msgstr "Абисопелагик"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:935
 msgid "MESOPELAGIC"
-msgstr "Месопелагиц"
+msgstr "Месопелагик"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1156
 msgid "COASTAL"
@@ -643,14 +643,14 @@ msgstr "Морско Дно"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2816
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4167
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4746
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5266
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5275
 msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1981
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4771
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4780
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
 msgid "AMMONIA"
 msgstr "Амонијак"
@@ -662,7 +662,7 @@ msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4461
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4470
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
 msgid "HYDROGEN_SULFIDE"
 msgstr "Водоник Сулфид"
@@ -675,7 +675,7 @@ msgstr "Водоник Сулфид"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1384
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3553
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3841
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4486
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4495
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
 msgid "GLUCOSE"
 msgstr "Глукоза"
@@ -695,8 +695,8 @@ msgstr "Гвожђе"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1731
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2319
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4840
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5357
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4849
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5366
 msgid "OXYGEN"
 msgstr "Кисеоник"
 
@@ -707,18 +707,18 @@ msgstr "Кисеоник"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3879
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4205
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4521
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4530
 msgid "CARBON_DIOXIDE"
 msgstr "Угљен Диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2019
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4809
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4818
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7649
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7658
 msgid "SUNLIGHT"
 msgstr "Сунчева Светлост"
 
@@ -787,15 +787,15 @@ msgid "METABOLOSOMES"
 msgstr "Метаболосоми"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4648
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4712
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4657
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4721
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3214
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Пластид за Фиксирање Азота"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:357
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4363
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4427
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4372
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4436
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3144
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
@@ -808,8 +808,8 @@ msgid "FLAGELLUM"
 msgstr "Бич"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:414
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4967
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5031
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4976
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5040
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3282
 msgid "VACUOLE"
 msgstr "Вацуоле"
@@ -822,8 +822,8 @@ msgid "MITOCHONDRION"
 msgstr "Митохондрија"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5168
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5232
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5241
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3351
 msgid "TOXIN_VACUOLE"
 msgstr "Отровна Вацуоле"
@@ -1025,7 +1025,7 @@ msgstr "аутоматски"
 
 #: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
-msgstr "Максимум FPS:"
+msgstr "Максимални FPS:"
 
 #: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
@@ -1359,22 +1359,22 @@ msgid "MEMBRANE_RIGIDITY"
 msgstr "Ригидност Мембране"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:256
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5976
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6232
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6559
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6886
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7247
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5725
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5985
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6241
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6568
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6895
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7256
 msgid "MOBILITY"
 msgstr "Мобилност"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:291
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5819
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6076
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6335
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6662
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6989
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7350
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5828
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6085
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6344
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6671
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6998
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7359
 msgid "HEALTH"
 msgstr "Здравље"
 
@@ -1393,9 +1393,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3546
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4136
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4454
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4739
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5259
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4463
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4748
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5268
 msgid "TURNS"
 msgstr "Претвара"
 
@@ -1409,9 +1409,9 @@ msgstr "Претвара"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2560
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3571
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4160
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4479
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4764
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5284
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4488
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4773
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5293
 msgid "INTO"
 msgstr "у"
 
@@ -1428,10 +1428,10 @@ msgstr "у"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3647
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3949
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4267
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4552
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4871
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5072
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5388
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4880
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5081
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5397
 msgid "STORAGE"
 msgstr "Складиште"
 
@@ -1448,16 +1448,16 @@ msgstr "Складиште"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3685
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3987
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4305
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4590
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4909
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5110
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5426
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5751
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6267
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6594
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6921
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7282
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4599
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4918
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5119
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5435
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6019
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6276
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6603
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6930
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7291
 msgid "OSMOREGULATION_COST"
 msgstr "Цена осморегулације"
 
@@ -1524,7 +1524,7 @@ msgstr "концентрацијом"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1724
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3898
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4842
 msgid "AND"
 msgstr "и"
 
@@ -1551,7 +1551,7 @@ msgstr ""
 "ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1346
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4509
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4518
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ". Стопа скалира се са концентрацијом"
 
@@ -1579,14 +1579,14 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1999
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3596
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4798
 msgid "DOT_RATE"
 msgstr ". Стопа"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2012
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3609
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4802
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5350
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4811
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5359
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "скалира се са концентрацијом"
 
@@ -1600,7 +1600,7 @@ msgstr ""
 "врши ферментацију."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2269
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5291
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5300
 msgid "OXYTOXY"
 msgstr "ОксиТокси"
 
@@ -1664,7 +1664,8 @@ msgid "CILIA"
 msgstr "Цилија"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5594
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5603
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Да се имплементира."
 
@@ -1713,12 +1714,12 @@ msgstr ""
 "интензитетом светлости."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4236
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7644
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7653
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
 msgid "TEMPERATURE"
 msgstr "Температура"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4356
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "Термопласт је двострука мембранска структура која садржи термосензибилне "
@@ -1729,7 +1730,7 @@ msgstr ""
 "назива термосинтеза. Стопа његове производње глукозе скалира се са "
 "концентрацијом угљен-диоксида и температуром."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4632
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4641
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "Хемопласт је двострука мембранска структура која садржи протеине који су "
@@ -1737,7 +1738,7 @@ msgstr ""
 "глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове "
 "производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4951
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4960
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "Пластид за фиксирање азота је протеин који може да користи гасовити азот и "
@@ -1745,11 +1746,11 @@ msgstr ""
 "хранљивог састојка за раст ћелија. Ово је процес који се назива аеробна "
 "фиксација азота."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5052
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5061
 msgid "INREASE_STORAGE_SPACE"
 msgstr "Повећава простор за складиштење ћелије."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5152
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5161
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 "Вакуола је унутрашња мембранска органела која се користи за складиштење у "
@@ -1758,121 +1759,121 @@ msgstr ""
 "водом која се користи да садржи молекуле, ензиме, чврсте материје и друге "
 "супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5309
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5318
 msgid "DOT_CAN"
 msgstr ". Може"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5322
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5331
 msgid "RELEASE_TOXINS_BY_PRESSING"
 msgstr "ослободити токсине притиском на"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5338
 msgid "E_DOT"
 msgstr "E."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5346
 msgid "RATE"
 msgstr "Стопа"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5468
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5477
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Отровна вакуола је вакуола која је модификована за специфичну производњу, "
 "складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће "
 "брзину ослобађања токсина."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5548
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5557
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Биолуминисцентна Вакуола"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5615
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5688
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3608
 msgid "NORMAL"
 msgstr "Нормално"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5785
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6043
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6301
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6628
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6955
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7316
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5794
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6052
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6310
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6964
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7325
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Брзина Апсорпције Брзине"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5859
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5868
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Најосновнији облик мембране, има малу заштиту од оштећења. Такође му је "
 "потребно више енергије да се не би деформисао. Предност је у томе што "
 "омогућава ћелији да се брзо креће и апсорбује хранљиве материје."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5875
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5939
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5884
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5948
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3680
 msgid "DOUBLE"
 msgstr "Дупли"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6115
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6124
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Мембрана са два слоја, има бољу заштиту од оштећења и узима мање енергије "
 "да се не деформише. Међутим, то успорава ћелију и смањује брзину којом "
 "може да апсорбује ресурсе."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6131
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6204
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3752
 msgid "CELLULOSE"
 msgstr "Целулоза"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6369
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7023
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7384
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7032
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7393
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Физички Отпор"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6403
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6730
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7091
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7452
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6412
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6739
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7461
 msgid "CANNOT_ENGULF"
 msgstr "Не може да гута"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6442
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6451
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ова мембрана има зид, што резултира бољом заштитом од укупних оштећења, а "
 "посебно од физичких оштећења. Такође кошта мање енергије да би задржао "
 "облик, али не може брзо да апсорбује ресурсе и спорији је."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6458
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6522
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6467
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6531
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3824
 msgid "CHITIN"
 msgstr "Хитин"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6696
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7057
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7418
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6705
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7066
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7427
 msgid "TOXIN_RESISTANCE"
 msgstr "Отпорност на токсине"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6769
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6778
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ова мембрана има зид, што значи да има бољу заштиту од укупних оштећења, "
 "посебно од оштећења токсинима. Такође задржава мање енергије да би задржао "
 "облик, али је спорији и не може брзо да апсорбује ресурсе."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6785
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6849
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6794
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6858
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3901
 msgid "CALCIUM_CARBONATE"
 msgstr "Калцијум Карбонат"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7130
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7139
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ова мембрана има јаку љуску направљену од калцијум-карбоната. Може се лако "
@@ -1880,13 +1881,13 @@ msgstr ""
 "тешке љуске су у томе што је ћелија много спорија и потребно јој је неко "
 "време да апсорбује ресурсе."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7146
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7210
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7155
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7219
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3974
 msgid "SILICA"
 msgstr "Силицијум-Диоксид"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7500
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ова мембрана има јак зид од силицијум диоксида. Може се добро одупрети "
@@ -1894,7 +1895,7 @@ msgstr ""
 "енергије за одржавање форме. Међутим, успорава ћелију великим фактором и "
 "ћелија апсорбује ресурсе смањеном брзином."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7636
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7645
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
@@ -2084,8 +2085,9 @@ msgid "STRUCTURE"
 msgstr "Структура"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr "Изглед"
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "Врсте Мембрана"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
@@ -2741,6 +2743,9 @@ msgstr ""
 "сакупљајући довољно амонијака и фосфата.\n"
 "Погледајте индикатор у доњем десном углу да бисте видели колико вам још "
 "треба."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Изглед"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "Назив Зоне"

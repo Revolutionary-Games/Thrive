@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
+"POT-Creation-Date: 2021-03-02 18:02-0600\n"
 "PO-Revision-Date: 2020-12-27 09:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -1178,7 +1178,7 @@ msgid "LOAD_GAME"
 msgstr "讀取遊戲"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4503
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "STATISTICS"
 msgstr "統計數據"
 
@@ -1821,9 +1821,9 @@ msgstr "溫度"
 msgid "PRESSURE_SHORT"
 msgstr "壓強"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1068
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4687
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5324
+#: ../src/microbe_stage/MicrobeStage.tscn:1062
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "化合物"
@@ -1945,9 +1945,10 @@ msgstr "突變點數"
 msgid "STRUCTURE"
 msgstr "結構"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr "出現"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
+#, fuzzy
+msgid "MEMBRANE"
+msgstr "膜類型"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
@@ -2041,42 +2042,42 @@ msgstr "自動進化 結果："
 msgid "EXTERNAL_EFFECTS"
 msgstr "外部影響："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4512
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "種類："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4545
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4976
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4649
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大氣氣體"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4743
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5671
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
 #, fuzzy
 msgid "NEXT_CAPITAL"
 msgstr "下一頁"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4858
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
 msgid "SELECT_A_PATCH"
 msgstr "選擇一個區域以在此處顯示詳細信息"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4893
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "當前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
 #, fuzzy
 msgid "SPECIES_PRESENT"
 msgstr "存在的物種"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5642
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移動到這個區域"
 
@@ -2485,6 +2486,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#~ msgid "APPEARANCE"
+#~ msgstr "出現"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "區域名字"

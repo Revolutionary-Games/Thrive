@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-18 12:39-0800\n"
-"PO-Revision-Date: 2021-02-16 17:54+0000\n"
+"POT-Creation-Date: 2021-03-02 18:02-0600\n"
+"PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -168,11 +168,12 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Her kuşakta, harcanacak 100 mutasyon puanın var ve her değişim (ya da "
-"mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da "
-"kaldırmak MP'ye mal olur ancak mevcut mutasyon sürecinde yerleştirilen "
-"organelleri kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade "
-"eder. Bir organeli üzerine sağ tıklayarak kaldırabilirsin. A ve D tuşları "
-"ile organellerini döndürebilirsin."
+"mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da kaldırmak "
+"MP'ye mal olur ancak mevcut mutasyon sürecinde yerleştirilen organelleri "
+"kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade eder. Bir "
+"organelin üzerine sağ tıklayarak onu taşıyabilir ya da tamamen "
+"kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi seçebilirsin. "
+"A ve D tuşları ile organellerini döndürebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1229,7 +1230,7 @@ msgid "LOAD_GAME"
 msgstr "Oyun Yükle"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4503
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "STATISTICS"
 msgstr "İstatistikler"
 
@@ -1251,15 +1252,15 @@ msgstr "Çık"
 
 #: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Mlyr."
 
 #: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Mlyn."
 
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} Kilo"
 
 #: ../src/gui_common/ChemicalEquation.cs:148
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
@@ -1748,8 +1749,8 @@ msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "Kemoplast, Hidrojen Sülfür Kemosentezi adı verilen bir işlemde, hidrojen "
 "sülfür, su ve karbondioksit gazını glukoza çeviren proteinler içeren çift "
-"zarlı bir yapıdır. Üretilen glukoz oranı, su ve karbondioksit "
-"konsantrasyonu ile doğru orantılıdır."
+"zarlı bir yapıdır. Üretilen glukoz oranı, karbondioksit konsantrasyonu ile "
+"doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4951
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -1978,9 +1979,9 @@ msgstr "Sıc."
 msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1068
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4687
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5324
+#: ../src/microbe_stage/MicrobeStage.tscn:1062
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
@@ -2102,9 +2103,9 @@ msgstr "Mutasyon Puanı"
 msgid "STRUCTURE"
 msgstr "Yapı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
-msgid "APPEARANCE"
-msgstr "Görünüm"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
+msgid "MEMBRANE"
+msgstr "Hücre Zarı"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
 msgid "BEHAVIOR"
@@ -2207,39 +2208,39 @@ msgstr "Oto-evrim sonuçları:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Dış etkenler:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4512
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
 msgid "SPECIES_POPULATION"
 msgstr "Tür:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4545
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4976
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziksel Koşullar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4649
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4743
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5671
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
 msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4858
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
 msgid "SELECT_A_PATCH"
 msgstr "Detayları görmek için bir arazi seçin"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4893
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
 msgid "SPECIES_PRESENT"
 msgstr "Mevcut Türler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5642
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Bu Araziye Git"
 
@@ -2308,20 +2309,19 @@ msgstr "{0}: {1} popülasyonla"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Sil"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
-#, fuzzy
 msgid "MOVE"
-msgstr "Hareket"
+msgstr "Taşı"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:361
 msgid "MODIFY"
-msgstr ""
+msgstr "Değiştir"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2757,6 +2757,9 @@ msgstr ""
 "Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün "
 "organellerini ikiye katlaman gerekir.\n"
 "Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki göstergeye bak."
+
+#~ msgid "APPEARANCE"
+#~ msgstr "Görünüm"
 
 #~ msgid "PATCH_NAME"
 #~ msgstr "Arazi Adı"
