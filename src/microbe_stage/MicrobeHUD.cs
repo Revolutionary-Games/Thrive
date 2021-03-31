@@ -807,7 +807,20 @@ public class MicrobeHUD : Node
 
     private void UpdatePopulation()
     {
-        populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString(CultureInfo.InvariantCulture);
+        var playerPopulation = stage.GameWorld.PlayerSpecies.Population;
+
+        if (playerPopulation < 1000)
+        {
+            populationLabel.Text = playerPopulation.ToString(CultureInfo.InvariantCulture);
+        }
+        else if (playerPopulation < 1000000) 
+        {
+            populationLabel.Text = (playerPopulation/1000).ToString(CultureInfo.InvariantCulture) + "K";
+        } 
+        else 
+        {
+            populationLabel.Text = (playerPopulation/1000000).ToString(CultureInfo.InvariantCulture) + "M";
+        }
     }
 
     private void UpdateProcessPanel()
