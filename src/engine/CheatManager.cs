@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+///   Static class that holds infos about currently activated cheats
+/// </summary>
 public static class CheatManager
 {
     static CheatManager()
