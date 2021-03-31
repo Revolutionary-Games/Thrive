@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+
+[node name="MicrobeEditorCheatMenu" type="WindowDialog"]
+margin_right = 197.0
+margin_bottom = 234.0
+theme = ExtResource( 1 )
+popup_exclusive = true
+window_title = "CHEATS"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfCompounds" type="CheckBox" parent="."]
+margin_left = 11.0
+margin_top = 6.0
+margin_right = 188.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+text = "INF_MP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="InfCompounds" to="." method="InfMP_toggled"]
