@@ -37,6 +37,26 @@
             "glucose": 0.1
         }
     },
+    "thermosynthesis": {
+        "name": "THERMOSYNTHESIS",
+        "inputs": {
+            "carbondioxide": 0.09,
+            "thermalgradient": 1
+        },
+        "outputs": {
+            "atp": 15
+        }
+    },
+    "bacterial_thermosynthesis": {
+        "name": "THERMOSYNTHESIS",
+        "inputs": {
+            "carbondioxide": 0.09,
+            "thermalgradient": 1
+        },
+        "outputs": {
+            "atp": 10
+        }
+    },
     "oxytoxySynthesis": {
         "name": "OXYTOXY_SYNTHESIS",
         "inputs": {

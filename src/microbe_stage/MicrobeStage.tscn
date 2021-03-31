@@ -72,6 +72,7 @@
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=71]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=72]
+[ext_resource path="res://assets/textures/gui/bevel/thermalgradient.png" type="Texture" id=73]
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
@@ -79,6 +80,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
+[ext_resource path="res://assets/textures/gui/bevel/GradientBar.png" type="Texture" id=81]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -351,7 +353,10 @@ PauseButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Pause")
 ResumeButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Resume")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
+GradientLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/GradientValue")
+DataValuePath = NodePath("BottomRight/DataValue")
 PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
+PopulationDataPath = NodePath("BottomRight/PopulationData")
 PatchLabelPath = NodePath("BottomLeft/BottomBar/PatchLabel")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
 EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
@@ -374,6 +379,7 @@ OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
+GradientBarPath = NodePath("BottomRight/GradientBar")
 AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
 PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
 ProcessPanelPath = NodePath("ProcessPanel")
@@ -1686,8 +1692,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -274.0
-margin_top = -281.0
+margin_left = -290.0
+margin_top = -305.0
 margin_right = 1.0
 margin_bottom = -1.0
 mouse_filter = 2
@@ -1747,9 +1753,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -124.0
-margin_top = -235.0
+margin_top = -271.0
 margin_right = -44.0
-margin_bottom = -185.0
+margin_bottom = -194.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 29 )
@@ -1759,7 +1765,7 @@ __meta__ = {
 
 [node name="Margin" type="MarginContainer" parent="MicrobeHUD/BottomRight/DataValue"]
 margin_right = 80.0
-margin_bottom = 52.0
+margin_bottom = 77.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -1768,14 +1774,24 @@ custom_constants/margin_bottom = 5
 [node name="VBox" type="VBoxContainer" parent="MicrobeHUD/BottomRight/DataValue/Margin"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 75.0
-margin_bottom = 47.0
+margin_right = 74.0
+margin_bottom = 72.0
 custom_constants/separation = 8
-alignment = 1
+alignment = 2
+
+[node name="GradientValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
+margin_right = 69.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 80 )
+text = "Gradient"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
-margin_right = 70.0
-margin_bottom = 17.0
+margin_top = 25.0
+margin_right = 69.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 80 )
 text = "Hitpoints"
 __meta__ = {
@@ -1783,13 +1799,51 @@ __meta__ = {
 }
 
 [node name="ATPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
-margin_top = 25.0
-margin_right = 70.0
-margin_bottom = 42.0
+margin_top = 50.0
+margin_right = 69.0
+margin_bottom = 67.0
 custom_fonts/font = ExtResource( 80 )
 text = "ATP"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
+}
+
+[node name="GradientBar" type="TextureProgress" parent="MicrobeHUD/BottomRight"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -286.331
+margin_top = -261.419
+margin_right = -130.331
+margin_bottom = -29.419
+mouse_filter = 2
+step = 0.1
+value = 100.0
+texture_under = ExtResource( 81 )
+texture_progress = ExtResource( 81 )
+fill_mode = 4
+tint_under = Color( 0, 0, 0, 0.752941 )
+tint_progress = Color( 0.980392, 0.329412, 0.729412, 1 )
+radial_initial_angle = 213.0
+radial_fill_degrees = 194.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GradientIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/GradientBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.4936
+margin_top = 116.895
+margin_right = -36.4936
+margin_bottom = 136.895
+texture = ExtResource( 73 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="HealthBar" type="TextureProgress" parent="MicrobeHUD/BottomRight"]
@@ -1798,9 +1852,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -263.509
-margin_top = -228.78
+margin_top = -238.78
 margin_right = -129.509
-margin_bottom = -31.7796
+margin_bottom = -41.7796
 mouse_filter = 2
 step = 0.1
 value = 100.0
@@ -1836,9 +1890,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -237.756
-margin_top = -201.525
+margin_top = -211.525
 margin_right = -128.756
-margin_bottom = -45.525
+margin_bottom = -55.525
 step = 0.1
 value = 100.0
 texture_under = ExtResource( 63 )
@@ -1873,9 +1927,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -209.0
-margin_top = -181.0
-margin_right = -39.0
-margin_bottom = -11.0
+margin_top = -191.0
+margin_right = -38.9999
+margin_bottom = -21.0
 rect_min_size = Vector2( 170, 170 )
 focus_mode = 0
 disabled = true

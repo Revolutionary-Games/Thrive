@@ -45,7 +45,16 @@ public class MicrobeHUD : Node
     public NodePath HpLabelPath;
 
     [Export]
+    public NodePath GradientLabelPath;
+
+    [Export]
+    public NodePath DataValuePath;
+
+    [Export]
     public NodePath PopulationLabelPath;
+
+    [Export]
+    public NodePath PopulationDataPath;
 
     [Export]
     public NodePath PatchLabelPath;
@@ -114,6 +123,9 @@ public class MicrobeHUD : Node
     public NodePath HealthBarPath;
 
     [Export]
+    public NodePath GradientBarPath;
+
+    [Export]
     public NodePath AmmoniaReproductionBarPath;
 
     [Export]
@@ -157,6 +169,7 @@ public class MicrobeHUD : Node
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    private readonly Compound thermalgradient = SimulationParameters.Instance.GetCompound("thermalgradient");
 
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
@@ -189,6 +202,8 @@ public class MicrobeHUD : Node
 
     private TextureProgress atpBar;
     private TextureProgress healthBar;
+    private TextureProgress gradientBar;
+    private PanelContainer dataValue;
     private TextureProgress ammoniaReproductionBar;
     private TextureProgress phosphateReproductionBar;
 
@@ -197,7 +212,9 @@ public class MicrobeHUD : Node
     private TextureButton resumeButton;
     private Label atpLabel;
     private Label hpLabel;
+    private Label gradientLabel;
     private Label populationLabel;
+    private HBoxContainer populationData;
     private Label patchLabel;
     private TextureButton editorButton;
     private Node extinctionBox;
@@ -269,17 +286,21 @@ public class MicrobeHUD : Node
         oxytoxyBar = GetNode<ProgressBar>(OxytoxyBarPath);
         atpBar = GetNode<TextureProgress>(AtpBarPath);
         healthBar = GetNode<TextureProgress>(HealthBarPath);
+        gradientBar = GetNode<TextureProgress>(GradientBarPath);
+        dataValue = GetNode<PanelContainer>(DataValuePath);
         ammoniaReproductionBar = GetNode<TextureProgress>(AmmoniaReproductionBarPath);
         phosphateReproductionBar = GetNode<TextureProgress>(PhosphateReproductionBarPath);
 
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
+        gradientLabel = GetNode<Label>(GradientLabelPath);
         menu = GetNode<PauseMenu>(MenuPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
         hoveredCompoundsContainer = GetNode<VBoxContainer>(HoveredCompoundsContainerPath);
         hoveredCellsSeparator = GetNode<HSeparator>(HoverPanelSeparatorPath);
         hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
+        populationData = GetNode<HBoxContainer>(PopulationDataPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
 
@@ -538,6 +559,23 @@ public class MicrobeHUD : Node
                 bar.Hide();
             }
         }
+
+        if (compounds.IsUseful(thermalgradient))
+        {
+            dataValue.RectPosition = new Vector2(167, 33);
+            dataValue.RectSize = new Vector2(80, 77);
+            populationData.RectPosition = new Vector2(143, 7);
+            gradientBar.Visible = true;
+            gradientLabel.Visible = true;
+        }
+        else
+        {
+            dataValue.RectPosition = new Vector2(167, 58);
+            dataValue.RectSize = new Vector2(80, 52);
+            populationData.RectPosition = new Vector2(143, 32);
+            gradientBar.Visible = false;
+            gradientLabel.Visible = false;
+        }
     }
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
@@ -710,6 +748,10 @@ public class MicrobeHUD : Node
         oxytoxyBar.MaxValue = compounds.Capacity;
         oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
+
+        gradientBar.MaxValue = compounds.Capacity;
+        gradientBar.Value = compounds.GetCompoundAmount(thermalgradient);
+        gradientLabel.Text = gradientBar.Value + " / " + gradientBar.MaxValue;
     }
 
     private void UpdateReproductionProgress()
