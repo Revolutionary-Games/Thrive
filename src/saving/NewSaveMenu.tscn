@@ -5,7 +5,6 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=4]
 
-
 [node name="NewSaveMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -112,9 +111,9 @@ __meta__ = {
 }
 
 [node name="OverwriteConfirm" type="ConfirmationDialog" parent="."]
-margin_right = 361.0
-margin_bottom = 78.0
-rect_min_size = Vector2( 450, 70 )
+margin_right = 500.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 500, 84 )
 popup_exclusive = true
 window_title = "OVERWRITE_EXISTING_SAVE_TITLE"
 __meta__ = {
@@ -124,10 +123,11 @@ __meta__ = {
 [node name="DialogText" type="Label" parent="OverwriteConfirm"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 440.0
+margin_right = 490.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
+align = 1
 valign = 1
 autowrap = true
 [connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]

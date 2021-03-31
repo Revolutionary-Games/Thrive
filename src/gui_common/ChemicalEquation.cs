@@ -112,6 +112,15 @@ public class ChemicalEquation : VBoxContainer
             UpdateEquation();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            if (perSecondLabel != null)
+                perSecondLabel.Text = TranslationServer.Translate("PER_SECOND_SLASH");
+        }
+    }
+
     private void UpdateEquation()
     {
         if (EquationFromProcess == null)
