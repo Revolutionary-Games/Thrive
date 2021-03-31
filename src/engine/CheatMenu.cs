@@ -1,6 +1,9 @@
 ﻿using System;
 using Godot;
 
+/// <summary>
+///   Handles the opening, closing and operations of the cheat menus
+/// </summary>
 public abstract class CheatMenu : Popup
 {
     /// <summary>

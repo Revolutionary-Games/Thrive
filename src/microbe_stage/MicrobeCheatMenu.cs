@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   Handles the opening, closing and operations of the cheat menu
+///   Handles the microbe cheat menu
 /// </summary>
 public class MicrobeCheatMenu : CheatMenu
 {

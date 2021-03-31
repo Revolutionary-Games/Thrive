@@ -29,12 +29,19 @@ public static class CheatManager
     /// </summary>
     public static double Speed { get; set; }
 
+    /// <summary>
+    ///   Infinite MP in the editor. Obsolete in freebuild
+    /// </summary>
+    public static bool InfMP { get; set; }
+
     public static void DisableAllCheats()
     {
         InfCompounds = false;
         Godmode = false;
         NoAI = false;
         Speed = 1;
+
+        InfMP = false;
     }
 
     public static void HideCheatMenus()
