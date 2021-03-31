@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-28 15:14+0700\n"
+"POT-Creation-Date: 2021-03-31 16:05+0700\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -1279,7 +1279,8 @@ msgstr ""
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:148
+#: ../src/gui_common/ChemicalEquation.cs:120
+#: ../src/gui_common/ChemicalEquation.cs:157
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
 msgstr "/секунду"
@@ -1884,11 +1885,11 @@ msgstr "Ствари у {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "играч је умро"
 
-#: ../src/microbe_stage/MicrobeStage.cs:466
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr "Играч се репродуковао"
 
-#: ../src/microbe_stage/MicrobeStage.cs:578
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr "играч је умро"
 
@@ -1935,47 +1936,47 @@ msgstr "Агенси"
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:15
+#: ../src/microbe_stage/PatchMapGenerator.cs:139
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Пангонски Отвори"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:26
+#: ../src/microbe_stage/PatchMapGenerator.cs:140
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Пангонски Мезопелагијски"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:35
+#: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Пангонски Епипелагијски"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:44
+#: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Пангонски Плима и Осека"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:53
+#: ../src/microbe_stage/PatchMapGenerator.cs:143
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Пангонски Батипелагиц"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:62
+#: ../src/microbe_stage/PatchMapGenerator.cs:144
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Пангонски Абисопелагијски"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:71
+#: ../src/microbe_stage/PatchMapGenerator.cs:145
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Пангонска Обала"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:80
+#: ../src/microbe_stage/PatchMapGenerator.cs:146
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Пангонско Ушће"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:89
+#: ../src/microbe_stage/PatchMapGenerator.cs:147
 msgid "PATCH_CAVE"
 msgstr "Пећина"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:98
+#: ../src/microbe_stage/PatchMapGenerator.cs:148
 msgid "PATCH_ICE_SHELF"
 msgstr "Ледена Полица"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:107
+#: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Дно Пангонског Мора"
 
@@ -1988,7 +1989,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:517
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1196
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1191
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Учитавање Уређивача Микроба"
 
@@ -1996,11 +1997,11 @@ msgstr "Учитавање Уређивача Микроба"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Чека се аутоматска-еволуција:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2081
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2076
 msgid "AUTO_EVO_FAILED"
 msgstr "Аутоматска-еволуција није успела"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2082
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2077
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус покретања:"
 

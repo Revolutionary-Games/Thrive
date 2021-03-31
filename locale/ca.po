@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-28 15:14+0700\n"
+"POT-Creation-Date: 2021-03-31 16:05+0700\n"
 "PO-Revision-Date: 2021-02-19 17:13+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1309,7 +1309,8 @@ msgstr "{0} M"
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
-#: ../src/gui_common/ChemicalEquation.cs:148
+#: ../src/gui_common/ChemicalEquation.cs:120
+#: ../src/gui_common/ChemicalEquation.cs:157
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
 msgstr "/segon"
@@ -1932,11 +1933,11 @@ msgstr "Matèria a les coordenades {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Cèl·lula del jugador"
 
-#: ../src/microbe_stage/MicrobeStage.cs:466
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr "el jugador ha aconseguit reproduïr-se"
 
-#: ../src/microbe_stage/MicrobeStage.cs:578
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr "el jugador ha mort"
 
@@ -1983,47 +1984,47 @@ msgstr "Agents"
 msgid "POPULATION_CAPITAL"
 msgstr "POBLACIÓ:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:15
+#: ../src/microbe_stage/PatchMapGenerator.cs:139
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Fumeroles volcàniques de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:26
+#: ../src/microbe_stage/PatchMapGenerator.cs:140
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Zona Mesopelàgica de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:35
+#: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Zona Epipelàgica de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:44
+#: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Toll o Bassa de Marea de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:53
+#: ../src/microbe_stage/PatchMapGenerator.cs:143
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Zona Batipelàgica de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:62
+#: ../src/microbe_stage/PatchMapGenerator.cs:144
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Zona Abissopelàgica de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:71
+#: ../src/microbe_stage/PatchMapGenerator.cs:145
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Zona Costanera de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:80
+#: ../src/microbe_stage/PatchMapGenerator.cs:146
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Estuari de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:89
+#: ../src/microbe_stage/PatchMapGenerator.cs:147
 msgid "PATCH_CAVE"
 msgstr "Cova submarina"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:98
+#: ../src/microbe_stage/PatchMapGenerator.cs:148
 msgid "PATCH_ICE_SHELF"
 msgstr "Plataforma de Gel"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:107
+#: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Llit Marí de Pangònia"
 
@@ -2036,7 +2037,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Equilibri de Compostos"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:517
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1196
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1191
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "S'està carregant l'Editor de Microbi"
 
@@ -2044,11 +2045,11 @@ msgstr "S'està carregant l'Editor de Microbi"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "S'està esperant l'algorisme auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2081
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2076
 msgid "AUTO_EVO_FAILED"
 msgstr "L'algorisme auto-evo ha tingut un error"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2082
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2077
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "estat d'execució:"
 

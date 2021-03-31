@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-28 15:14+0700\n"
+"POT-Creation-Date: 2021-03-31 16:05+0700\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -1276,7 +1276,8 @@ msgstr "{0} M"
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
-#: ../src/gui_common/ChemicalEquation.cs:148
+#: ../src/gui_common/ChemicalEquation.cs:120
+#: ../src/gui_common/ChemicalEquation.cs:157
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
 msgstr "/segundo"
@@ -1877,11 +1878,11 @@ msgstr "Objetos en {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "El jugador murió"
 
-#: ../src/microbe_stage/MicrobeStage.cs:466
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr "El jugador se reprodujo"
 
-#: ../src/microbe_stage/MicrobeStage.cs:578
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr "El jugador murió"
 
@@ -1928,47 +1929,47 @@ msgstr "Agentes"
 msgid "POPULATION_CAPITAL"
 msgstr "POBLACIÓN:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:15
+#: ../src/microbe_stage/PatchMapGenerator.cs:139
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Aberturas Pangónicas"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:26
+#: ../src/microbe_stage/PatchMapGenerator.cs:140
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Mesopiélago Pangónico"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:35
+#: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Epipiélago Pangónico"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:44
+#: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Poza de Marea Pangónica"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:53
+#: ../src/microbe_stage/PatchMapGenerator.cs:143
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Batipiélago Pangónico"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:62
+#: ../src/microbe_stage/PatchMapGenerator.cs:144
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Abisopiélago Pangónico"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:71
+#: ../src/microbe_stage/PatchMapGenerator.cs:145
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Costa Pangónica"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:80
+#: ../src/microbe_stage/PatchMapGenerator.cs:146
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Estuario Pangónico"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:89
+#: ../src/microbe_stage/PatchMapGenerator.cs:147
 msgid "PATCH_CAVE"
 msgstr "Cueva"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:98
+#: ../src/microbe_stage/PatchMapGenerator.cs:148
 msgid "PATCH_ICE_SHELF"
 msgstr "Plataforma de Hielo"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:107
+#: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Relieve Oceánico Pangónico"
 
@@ -1981,7 +1982,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:517
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1196
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1191
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Cargando Editor de Microbio"
 
@@ -1989,11 +1990,11 @@ msgstr "Cargando Editor de Microbio"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Esperando auto-evolución:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2081
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2076
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evolución falló"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2082
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2077
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estado de auto-evolución:"
 
