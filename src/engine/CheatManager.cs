@@ -49,6 +49,6 @@ public static class CheatManager
 
     public static void HideCheatMenus()
     {
-        OnHideCheatMenus?.Invoke(null, new EventArgs());
+        OnHideCheatMenus?.Invoke(null, EventArgs.Empty);
     }
 }
