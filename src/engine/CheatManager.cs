@@ -51,4 +51,13 @@ public static class CheatManager
     {
         OnHideCheatMenus?.Invoke(null, EventArgs.Empty);
     }
+
+    /// <summary>
+    ///   Turns off all cheats and closes the cheat menus
+    /// </summary>
+    public static void OnCheatsDisabled()
+    {
+        DisableAllCheats();
+        HideCheatMenus();
+    }
 }

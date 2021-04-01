@@ -249,6 +249,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         StartMusic();
 
+        CheatManager.OnCheatsDisabled();
+
         if (IsLoadedFromSave)
         {
             HUD.OnEnterStageTransition(false);
