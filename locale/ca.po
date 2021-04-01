@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-31 16:05+0700\n"
+"POT-Creation-Date: 2021-04-01 18:37+0700\n"
 "PO-Revision-Date: 2021-02-19 17:13+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -886,6 +886,10 @@ msgstr ""
 msgid "POPULATION"
 msgstr "població:"
 
+#: ../src/auto-evo/RunResults.cs:226
+msgid "WENT_EXTINCT_IN"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "anterior:"
@@ -906,15 +910,19 @@ msgstr "s'ha escampat a les zones:"
 msgid "RUNRESULT_BY_SENDING_POPULATION"
 msgstr "{0} enviant-hi: {1} membres de l'espècie des de la zona: {2}"
 
-#: ../src/auto-evo/RunResults.cs:291
+#: ../src/auto-evo/RunResults.cs:292
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "població a les zones:"
+
+#: ../src/auto-evo/RunResults.cs:372
+msgid "WENT_EXTINCT_FROM_PLANET"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "Carregant"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:299
+#: ../src/engine/input/key_mapping/InputEventItem.cs:312
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Prem qualsevol tecla o botó..."
 
@@ -1909,6 +1917,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Afegir una nova vinculació de tecla"
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "acció carronyaire exitosa"
@@ -1916,6 +1928,11 @@ msgstr "acció carronyaire exitosa"
 #: ../src/microbe_stage/Microbe.cs:1182
 msgid "SUCCESSFUL_KILL"
 msgstr "acció de caça exitosa"
+
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "Produeix"
 
 #: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
