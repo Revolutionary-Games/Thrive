@@ -221,9 +221,9 @@
                 }
                 else
                 {
-                    builder.Append("  ");
-                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_IN"));
-                    builder.Append(PatchString(patch));
+                    builder.Append("   ");
+                    builder.Append(string.Format(CultureInfo.CurrentCulture,
+                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString(patch)));
                 }
 
                 if (previousPopulations != null)

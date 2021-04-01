@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-31 16:05+0700\n"
+"POT-Creation-Date: 2021-04-01 18:37+0700\n"
 "PO-Revision-Date: 2021-03-26 17:41+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -812,6 +812,10 @@ msgstr "{0}生物数量变化了{1}，原因：{2}"
 msgid "POPULATION"
 msgstr "生物数量："
 
+#: ../src/auto-evo/RunResults.cs:226
+msgid "WENT_EXTINCT_IN"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "先前："
@@ -832,15 +836,19 @@ msgstr "传播到的地区："
 msgid "RUNRESULT_BY_SENDING_POPULATION"
 msgstr "通过由{2}派出的{1}个生物扩散到了：{0}"
 
-#: ../src/auto-evo/RunResults.cs:291
+#: ../src/auto-evo/RunResults.cs:292
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "地区中的生物数量："
+
+#: ../src/auto-evo/RunResults.cs:372
+msgid "WENT_EXTINCT_FROM_PLANET"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "载入中"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:299
+#: ../src/engine/input/key_mapping/InputEventItem.cs:312
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下你要设置的按钮…"
 
@@ -1753,6 +1761,10 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "添加新的绑定键位"
 
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
@@ -1760,6 +1772,11 @@ msgstr "成功扫荡的细胞器"
 #: ../src/microbe_stage/Microbe.cs:1182
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
+
+#: ../src/microbe_stage/Microbe.cs:1501
+#, fuzzy
+msgid "REPRODUCED"
+msgstr "产出"
 
 #: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
