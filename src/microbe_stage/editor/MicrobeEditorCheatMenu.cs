@@ -3,8 +3,8 @@
 /// </summary>
 public class MicrobeEditorCheatMenu : CheatMenu
 {
-    public void InfMP_toggled(bool button_pressed)
+    public void SetInfiniteMP(bool value)
     {
-        CheatManager.InfMP = button_pressed;
+        CheatManager.InfiniteMP = value;
     }
 }

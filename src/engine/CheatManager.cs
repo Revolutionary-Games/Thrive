@@ -15,12 +15,12 @@ public static class CheatManager
     /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
-    public static bool InfCompounds { get; set; }
+    public static bool InfiniteCompounds { get; set; }
 
     /// <summary>
     ///   You cannot take damage
     /// </summary>
-    public static bool Godmode { get; set; }
+    public static bool GodMode { get; set; }
 
     /// <summary>
     ///   Disables the AI
@@ -30,21 +30,21 @@ public static class CheatManager
     /// <summary>
     ///   Speed modifier for the player
     /// </summary>
-    public static double Speed { get; set; }
+    public static float Speed { get; set; }
 
     /// <summary>
     ///   Infinite MP in the editor. Obsolete in freebuild
     /// </summary>
-    public static bool InfMP { get; set; }
+    public static bool InfiniteMP { get; set; }
 
     public static void DisableAllCheats()
     {
-        InfCompounds = false;
-        Godmode = false;
+        InfiniteCompounds = false;
+        GodMode = false;
         NoAI = false;
-        Speed = 1;
+        Speed = 1f;
 
-        InfMP = false;
+        InfiniteMP = false;
     }
 
     public static void HideCheatMenus()

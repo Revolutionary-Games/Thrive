@@ -544,7 +544,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public void Damage(float amount, string source)
     {
-        if (IsPlayerMicrobe && CheatManager.Godmode)
+        if (IsPlayerMicrobe && CheatManager.GodMode)
             return;
 
         if (amount == 0 || Dead)
@@ -1213,7 +1213,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
-        if (!CheatManager.InfCompounds || !IsPlayerMicrobe)
+        if (!CheatManager.InfiniteCompounds || !IsPlayerMicrobe)
             return;
 
         var usefulComponents = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
@@ -1743,7 +1743,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         if (IsPlayerMicrobe)
-            force *= (float)CheatManager.Speed;
+            force *= CheatManager.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -

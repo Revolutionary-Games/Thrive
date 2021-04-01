@@ -3,22 +3,22 @@
 /// </summary>
 public class MicrobeCheatMenu : CheatMenu
 {
-    public void InfCompounds_toggled(bool button_pressed)
+    public void SetInfiniteCompounds(bool value)
     {
-        CheatManager.InfCompounds = button_pressed;
+        CheatManager.InfiniteCompounds = value;
     }
 
-    public void Godmode_toggled(bool button_pressed)
+    public void SetGodMode(bool value)
     {
-        CheatManager.Godmode = button_pressed;
+        CheatManager.GodMode = value;
     }
 
-    public void DisableAI_toggled(bool button_pressed)
+    public void SetDisableAI(bool value)
     {
-        CheatManager.NoAI = button_pressed;
+        CheatManager.NoAI = value;
     }
 
-    public void SpeedSlider_value_changed(float value)
+    public void SetSpeed(float value)
     {
         CheatManager.Speed = value;
     }

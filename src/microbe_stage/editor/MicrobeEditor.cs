@@ -961,7 +961,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     internal void ChangeMutationPoints(int change)
     {
-        if (FreeBuilding || CheatManager.InfMP)
+        if (FreeBuilding || CheatManager.InfiniteMP)
             return;
 
         MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
