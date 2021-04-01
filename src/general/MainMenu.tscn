@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://src/gui_common/MainMenu.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=3]
-[ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/VersionNumber.cs" type="Script" id=5]
-[ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=8]
-[ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/general/MainMenu.cs" type="Script" id=6]
+[ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -20,7 +21,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -29,36 +30,36 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("MenuContainers/Menus:anchor_top")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 0.5, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
 "update": 0,
-"values": [ 0.4, 0.45, 0.4 ]
+"values": [ 0.368, 0.45, 0.368 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("MenuContainers/Menus:anchor_bottom")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 0.5, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
 "update": 0,
 "values": [ 1.0, 0.45, 1.0 ]
 }
 
 [node name="MainMenu" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": "The root and controller for the main menu"
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
-MenuBackgrounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
+MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
 NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/Freebuild Editor")
 GLES2PopupPath = NodePath("GLES2 Popup")
@@ -97,20 +98,19 @@ margin_left = 556.0
 margin_top = 66.0
 margin_right = 723.0
 margin_bottom = 234.0
-texture = ExtResource( 3 )
+texture = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Menus" type="Control" parent="MenuContainers"]
-anchor_top = 0.35
+anchor_top = 0.368
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 12.8
 rect_clip_content = true
-theme = ExtResource( 2 )
+theme = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuContainers/Menus"]
@@ -119,9 +119,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -640.0
-margin_top = -209.6
+margin_top = -227.5
 margin_right = 640.0
-margin_bottom = 209.4
+margin_bottom = 227.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -130,7 +130,7 @@ __meta__ = {
 "MenuItem",
 ]]
 margin_right = 1280.0
-margin_bottom = 419.0
+margin_bottom = 455.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -239,7 +239,7 @@ text = "QUIT"
 ]]
 visible = false
 margin_right = 1280.0
-margin_bottom = 419.0
+margin_bottom = 455.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -318,10 +318,10 @@ size_flags_vertical = 0
 enabled_focus_mode = 0
 text = "BACK"
 
-[node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
+[node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[node name="SaveManagerGUI" parent="." instance=ExtResource( 9 )]
+[node name="SaveManagerGUI" parent="." instance=ExtResource( 2 )]
 visible = false
 
 [node name="VersionNumber" type="Label" parent="."]
@@ -336,7 +336,7 @@ grow_vertical = 2
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 6
-theme = ExtResource( 2 )
+theme = ExtResource( 1 )
 text = "x.y.z"
 align = 2
 valign = 2
@@ -352,12 +352,28 @@ __meta__ = {
 anims/MenuSlide = SubResource( 1 )
 
 [node name="GLES2 Popup" type="AcceptDialog" parent="."]
-margin_right = 515.0
-margin_bottom = 108.0
-theme = ExtResource( 2 )
+margin_right = 500.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 500, 0 )
+theme = ExtResource( 1 )
 window_title = "GLES2_MODE_WARNING"
-dialog_text = "GLES2_MODE_WARNING_TEXT"
 dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogText" type="Label" parent="GLES2 Popup"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 490.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "GLES2_MODE_WARNING_TEXT"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Options" to="." method="OptionsPressed"]

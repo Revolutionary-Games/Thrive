@@ -85,6 +85,14 @@ public class SimulationParameters : Node
 
     public NameGenerator NameGenerator { get; }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            ApplyTranslations();
+        }
+    }
+
     public OrganelleDefinition GetOrganelleType(string name)
     {
         return organelles[name];
@@ -187,7 +195,7 @@ public class SimulationParameters : Node
     }
 
     /// <summary>
-    ///   Applies translations to all registry loaded types. Called by Settings whenever the locale is changed
+    ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
     public void ApplyTranslations()
     {

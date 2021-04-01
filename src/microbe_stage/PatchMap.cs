@@ -223,7 +223,7 @@ public class PatchMap
                 patch.Value.RemoveSpecies(speciesEntry.Key);
 
                 GD.Print("Species ", speciesEntry.Key.FormattedName, " has gone extinct in ",
-                    patch.Value.Name);
+                    TranslationServer.Translate(patch.Value.Name));
 
                 if (!nonExtinctSpecies.Contains(speciesEntry.Key))
                 {
@@ -257,6 +257,17 @@ public class PatchMap
         }
 
         return found.ToList();
+    }
+
+    /// <summary>
+    ///   Updates the time period in all of the patches.
+    /// </summary>
+    public void UpdateGlobalTimePeriod(double time)
+    {
+        foreach (var patch in Patches)
+        {
+            patch.Value.TimePeriod = time;
+        }
     }
 
     public Patch GetPatch(int id)

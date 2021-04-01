@@ -56,6 +56,9 @@ public class MicrobeAI
     private Microbe prey;
 
     [JsonIgnore]
+    private Microbe previousPrey;
+
+    [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
 
     [JsonIgnore]
@@ -63,6 +66,9 @@ public class MicrobeAI
 
     [JsonIgnore]
     private FloatingChunk targetChunk;
+
+    [JsonIgnore]
+    private FloatingChunk previousChunk;
 
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
@@ -115,13 +121,22 @@ public class MicrobeAI
         preyMicrobes.Clear();
         chunkList.Clear();
 
-        prey = null;
-
-        // 30 seconds about
-        if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
+        // only about 76.6 to 86.6 repeating seconds + or minus a few due to randomness at max focus
+        if (boredom >= (int)random.Next(SpeciesFocus / 2, 180 + (SpeciesFocus / 2)))
         {
+            if (prey != null && RollReverseCheck(SpeciesFocus, 600, random))
+            {
+                previousPrey = prey;
+            }
+
+            if (targetChunk != null && RollReverseCheck(SpeciesFocus, 600, random))
+            {
+                previousChunk = targetChunk;
+            }
+
             // Occasionally you need to reevaluate things
             boredom = 0;
+            prey = null;
             if (RollCheck(SpeciesActivity, 400, random))
             {
                 lifeState = LifeState.PLANTLIKE_STATE;
@@ -293,7 +308,7 @@ public class MicrobeAI
 
     private static bool RollReverseCheck(float ourStat, float dc, Random random)
     {
-        return ourStat >= random.Next(0.0f, dc);
+        return ourStat <= random.Next(0.0f, dc);
     }
 
     private void DoReflexes()
@@ -351,6 +366,9 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
+            if (chunk == previousChunk)
+                continue;
+
             if ((SpeciesOpportunism == Constants.MAX_SPECIES_OPPORTUNISM) ||
                 ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
                     chunk.Size))
@@ -395,7 +413,7 @@ public class MicrobeAI
 
         foreach (var otherMicrobe in allMicrobes)
         {
-            if (otherMicrobe == microbe)
+            if (otherMicrobe == microbe || otherMicrobe == previousPrey)
                 continue;
 
             if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
@@ -766,7 +784,7 @@ public class MicrobeAI
                 {
                     lifeState = LifeState.FLEEING_STATE;
                 }
-                else if (SpeciesAggression == SpeciesFear &&
+                else if (SpeciesAggression >= SpeciesFear &&
                     preyMicrobes.Count > 0)
                 {
                     // Prefer predating (makes game more fun)

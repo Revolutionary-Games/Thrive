@@ -190,6 +190,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         SetupStage();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            HUD.UpdatePatchInfo(TranslationServer.Translate(CurrentGame.GameWorld.Map.CurrentPatch.Name));
+        }
+    }
+
     public void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -251,10 +259,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (IsLoadedFromSave)
         {
+            HUD.OnEnterStageTransition(false);
             UpdatePatchSettings(true);
         }
         else
         {
+            HUD.OnEnterStageTransition(true);
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
         }
     }
@@ -494,7 +504,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // Spawn another cell from the player species
         Player.Divide();
 
-        HUD.OnEnterStageTransition();
+        HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();
 
         StartMusic();
@@ -579,7 +589,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
 
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         UpdateBackground();

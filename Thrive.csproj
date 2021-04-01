@@ -23,7 +23,9 @@
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\ControlHelpers.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
+    <Compile Include="src\engine\FullScreenToggle.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
     <Compile Include="src\engine\GuidanceLine.cs" />
     <Compile Include="src\engine\IAssignableSetting.cs" />
@@ -55,16 +57,18 @@
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
+    <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\general\StringUtils.cs" />
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
-    <Compile Include="src\gui_common\charts\line\DataPoint.cs" />
+    <Compile Include="src\gui_common\charts\DataPoint.cs" />
     <Compile Include="src\gui_common\ChemicalEquation.cs" />
     <Compile Include="src\gui_common\CompoundAmount.cs" />
     <Compile Include="src\gui_common\CompoundListBox.cs" />
@@ -85,7 +89,7 @@
     <Compile Include="src\gui_common\ITransition.cs" />
     <Compile Include="src\gui_common\KeyPrompt.cs" />
     <Compile Include="src\gui_common\KeyPromptHelper.cs" />
-    <Compile Include="src\gui_common\MainMenu.cs" />
+    <Compile Include="src\general\MainMenu.cs" />
     <Compile Include="src\gui_common\QuickLoadHandler.cs" />
     <Compile Include="src\gui_common\SegmentedBar.cs" />
     <Compile Include="src\gui_common\TransitionManager.cs" />
@@ -107,6 +111,7 @@
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorAction.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorGUI.cs" />
+    <Compile Include="src\microbe_stage\editor\OrganellePopupMenu.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapNode.cs" />
     <Compile Include="src\microbe_stage\EnvironmentalCompoundProperties.cs" />
