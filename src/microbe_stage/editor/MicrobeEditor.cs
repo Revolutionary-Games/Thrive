@@ -1388,8 +1388,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 {
                     RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
-                    RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 180) % 6, shownOrganelle);
-                    RenderHighlightedOrganelle(q, -1 * (r + q), 8 + (-1 * organelleRot) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 3) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6, shownOrganelle);
                     break;
                 }
 
@@ -1550,7 +1550,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 {
                     PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot), ref placedSomething);
                     PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6, ref placedSomething);
-                    PlaceIfPossible(organelleType, q, -1 * (r + q), (8 + (-1 * organelleRot)) % 6, ref placedSomething);
+                    PlaceIfPossible(organelleType, q, -1 * (r + q), (9 + (-1 * organelleRot)) % 6, ref placedSomething);
                 }
                 else
                 {
