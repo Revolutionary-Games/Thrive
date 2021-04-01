@@ -221,9 +221,9 @@
                 }
                 else
                 {
-                    builder.Append("  ");
-                    builder.Append(" went extinct in ");
-                    builder.Append(PatchString(patch));
+                    builder.Append("   ");
+                    builder.Append(string.Format(CultureInfo.CurrentCulture,
+                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString(patch)));
                 }
 
                 if (previousPopulations != null)
@@ -369,7 +369,7 @@
                 if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
                 {
                     builder.Append(" ");
-                    builder.Append("went extinct from the planet");
+                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append("\n");
                 }
 
