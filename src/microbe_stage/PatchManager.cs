@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Godot;
@@ -17,11 +17,6 @@ public class PatchManager
 
     private Patch previousPatch;
 
-    // Currently active spawns
-    private List<CreatedSpawner> chunkSpawners = new List<CreatedSpawner>();
-    private List<CreatedSpawner> cloudSpawners = new List<CreatedSpawner>();
-    private List<CreatedSpawner> microbeSpawners = new List<CreatedSpawner>();
-
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
         GameProperties currentGame)
@@ -39,7 +34,8 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed, Vector3 playerPosition)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed,
+        Vector3 playerPosition, bool isNewGame)
     {
         if (previousPatch != currentPatch && despawnAllowed)
         {
@@ -70,14 +66,17 @@ public class PatchManager
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
 
-        // Apply spawn system settings
-        UnmarkAllSpawners();
-
         HandleCloudSpawns(currentPatch.Biome, playerPosition);
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
-        RemoveNonMarkedSpawners();
+        spawnSystem.FillSpawnItemBag();
+
+        //If we just loaded a save file, don't spawn new stuff.
+        if(despawnAllowed && !isNewGame)
+        {
+            spawnSystem.NewPatchSpawn(playerPosition);
+        }
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
@@ -87,19 +86,18 @@ public class PatchManager
     {
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
-        foreach (var entry in biome.Chunks)
-        {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Value.Name);
-                    spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
-                        compoundCloudSystem);
+        spawnSystem.ClearChunkSpawner();
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                });
+        foreach (var chunk in biome.Chunks.Keys)
+        {
+            float chunkDensity = biome.Chunks[chunk].Density;
+
+            if(chunkDensity > 0)
+            {
+                int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * chunkDensity);
+                GD.Print(biome.Chunks[chunk].Name + " has " + numOfItems + " items per bag.");
+                spawnSystem.AddBiomeChunk(biome.Chunks[chunk], numOfItems);
+            }
         }
     }
 
@@ -107,7 +105,7 @@ public class PatchManager
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
-        spawnSystem.ClearBiomeCompounds();
+        spawnSystem.ClearCloudSpawner();
 
         foreach (var compound in biome.Compounds.Keys)
         {
@@ -117,30 +115,18 @@ public class PatchManager
             // if density = 0, then do not add to biomeCompounds
             if (compoundDensity > 0 && compoundAmount > 0)
             {
-                int percent = (int)(compoundAmount * compoundDensity);
-                GD.Print(compound.Name + " is at " + percent + ".");
-                spawnSystem.AddBiomeCompound(compound, percent, compoundAmount);
+                int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * compoundDensity);
+                GD.Print(compound.Name + " has " + numOfItems + " items per bag.");
+                spawnSystem.AddBiomeCompound(compound, numOfItems, compoundAmount);
             }
         }
-
-        HandleSpawnHelper(cloudSpawners, "Clouds", 1.0f,
-            () =>
-            {
-                var spawner = new CreatedSpawner("Clouds");
-                spawner.Spawner = Spawners.MakeCompoundSpawner(compoundCloudSystem);
-
-                spawnSystem.AddSpawnType(spawner.Spawner, 1.0f,
-                    Constants.CLOUD_SPAWN_RADIUS);
-                return spawner;
-            });
-
-        spawnSystem.FillCloudBag();
-        spawnSystem.SpawnStartClouds(playerPosition);
     }
 
     private void HandleCellSpawns(Patch patch)
     {
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
+
+        spawnSystem.ClearMicrobeSpawner();
 
         foreach (var entry in patch.SpeciesInPatch)
         {
@@ -158,50 +144,10 @@ public class PatchManager
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
-            HandleSpawnHelper(microbeSpawners, name, density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(name);
-                    spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                        compoundCloudSystem, currentGame);
+            int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * density);
+            GD.Print(name + " has " + numOfItems + " items per bag.");
+            spawnSystem.AddPatchSpecies(species, numOfItems);
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                });
-        }
-    }
-
-    private void HandleSpawnHelper(List<CreatedSpawner> existingSpawners, string itemName,
-        float density, Func<CreatedSpawner> createNew)
-    {
-        if (density <= 0)
-        {
-            GD.Print(itemName, " spawn density is 0. It won't spawn");
-            return;
-        }
-
-        var existing = existingSpawners.Find(s => s.Name == itemName);
-
-        if (existing != null)
-        {
-            existing.Marked = true;
-
-            float oldFrequency = existing.Spawner.SpawnFrequency;
-            existing.Spawner.SetFrequencyFromDensity(density);
-
-            if (oldFrequency != existing.Spawner.SpawnFrequency)
-            {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
-                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
-            }
-        }
-        else
-        {
-            // New spawner needed
-            GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
-
-            existingSpawners.Add(createNew());
         }
     }
 
@@ -221,56 +167,5 @@ public class PatchManager
         worldLight.LightColor = biome.Sunlight.Colour;
         worldLight.LightEnergy = biome.Sunlight.Energy;
         worldLight.LightSpecular = biome.Sunlight.Specular;
-    }
-
-    private void UnmarkAllSpawners()
-    {
-        UnmarkSingle(chunkSpawners);
-        UnmarkSingle(cloudSpawners);
-        UnmarkSingle(microbeSpawners);
-    }
-
-    private void UnmarkSingle(List<CreatedSpawner> spawners)
-    {
-        foreach (var spawner in spawners)
-            spawner.Marked = false;
-    }
-
-    private void RemoveNonMarkedSpawners()
-    {
-        ClearUnmarkedSingle(chunkSpawners);
-        ClearUnmarkedSingle(cloudSpawners);
-        ClearUnmarkedSingle(microbeSpawners);
-    }
-
-    /// <summary>
-    /// Removes unmarked spawners from List.
-    /// </summary>
-    /// <param name="spawners">Spawner list to act upon</param>
-    private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
-    {
-        spawners.RemoveAll(item =>
-        {
-            if (!item.Marked)
-            {
-                GD.Print("Removed ", item.Name, " spawner.");
-                item.Spawner.DestroyQueued = true;
-                return true;
-            }
-
-            return false;
-        });
-    }
-
-    private class CreatedSpawner
-    {
-        public Spawner Spawner;
-        public string Name;
-        public bool Marked = true;
-
-        public CreatedSpawner(string name)
-        {
-            Name = name;
-        }
     }
 }

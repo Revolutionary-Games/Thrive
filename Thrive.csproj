@@ -128,6 +128,7 @@
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
+    <Compile Include="src\microbe_stage\SpawnItems.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />
@@ -156,8 +157,10 @@
     <Compile Include="src\microbe_stage\FluidSystem.cs" />
     <Compile Include="src\general\PerlinNoise.cs" />
     <Compile Include="src\microbe_stage\Spawner.cs" />
+    <Compile Include="src\microbe_stage\CompoundCloudSpawner.cs" />
+    <Compile Include="src\microbe_stage\ChunkSpawner.cs" />
+    <Compile Include="src\microbe_stage\MicrobeSpawner.cs" />
     <Compile Include="src\microbe_stage\ISpawned.cs" />
-    <Compile Include="src\microbe_stage\Spawners.cs" />
     <Compile Include="src\engine\Settings.cs" />
     <Compile Include="src\general\Int3.cs" />
     <Compile Include="src\general\GameProperties.cs" />
@@ -252,6 +255,7 @@
     <Compile Include="src\saving\serializers\SerializationBinder.cs" />
     <Compile Include="src\saving\serializers\ConvexPolygonShapeConverter.cs" />
     <Compile Include="src\saving\serializers\SingleTypeConverter.cs" />
+    <Compile Include="src\saving\serializers\SpawnItemConverter.cs" />
     <Compile Include="src\saving\serializers\SystemVector4ArrayConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />

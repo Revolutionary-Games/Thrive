@@ -8,40 +8,33 @@ using Newtonsoft.Json;
 /// </summary>
 public class SpawnSystem
 {
-    /// <summary>
-    ///   Sets how often the spawn system runs and checks things
-    /// </summary>
     [JsonProperty]
-    private float interval = 1.0f;
+    private float elapsed = 0;
 
     [JsonProperty]
-    private float elapsed;
+    private float spawnItemTimer;
 
-    [JsonProperty]
-    private float cloudSpawnTimer;
+    [JsonIgnore]
+    private CompoundCloudSpawner cloudSpawner;
 
-    private CloudSpawner cloudSpawner;
+    [JsonIgnore]
+    private ChunkSpawner chunkSpawner;
+
+    [JsonIgnore]
+    private MicrobeSpawner microbeSpawner;
 
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
     private Node worldRoot;
 
-    private List<Spawner> spawnTypes = new List<Spawner>();
+    // Used for a Tetris style random bag. Fill and shuffle the bag,
+    // then simply pop one out until empty. Rinse and repeat.
+    [JsonIgnore]
+    private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
 
-    /// <summary>
-    ///   Used for spawning clouds
-    /// </summary>
-    private Dictionary<Compound, int> biomeCompounds = new Dictionary<Compound, int>();
-
-    private Dictionary<Compound, float> compoundAmounts = new Dictionary<Compound, float>();
-
-    /// <summary>
-    ///   Used for a Tetris style random bag. Fill and shuffle the bag,
-    ///   then simply pop one out until empty. Rinse and repeat.
-    /// </summary>
-    private List<Compound> cloudBag = new List<Compound>();
-    private int cloudBagSize;
+    [JsonIgnore]
+    private int spawnBagSize;
 
     [JsonProperty]
     private Random random = new Random();
@@ -59,37 +52,43 @@ public class SpawnSystem
     [JsonProperty]
     private int maxAliveEntities = 1000;
 
-    /// <summary>
-    ///   Max tries per spawner to avoid very high spawn densities lagging
-    /// </summary>
-    [JsonProperty]
-    private int maxTriesPerSpawner = 500;
-
-    /// <summary>
-    ///   This is used to spawn only a few entities per frame with minimal changes needed to code that wants to
-    ///   spawn a bunch of stuff at once
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This isn't saved but the likelihood that losing out on spawning some things is not super critical.
-    ///     Also it is probably the case that this isn't even used on most frames so it is perhaps uncommon
-    ///     that there are queued things when saving.
-    ///   </para>
-    ///   <para>
-    ///     TODO: it might be nice to use a struct instead and a field indicating if this is valid to not recreate
-    ///     this object so much
-    ///   </para>
-    /// </remarks>
-    private QueuedSpawn queuedSpawns;
-
-    /// <summary>
-    ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
-    /// </summary>
-    private int estimateEntityCount;
-
     public SpawnSystem(Node root)
     {
         worldRoot = root;
+
+    }
+
+    public void Init(CompoundCloudSystem cloudSystem, int spawnRadius)
+    {
+        cloudSpawner = new CompoundCloudSpawner(cloudSystem, spawnRadius);
+        chunkSpawner = new ChunkSpawner(cloudSystem, spawnRadius);
+        microbeSpawner = new MicrobeSpawner(cloudSystem, spawnRadius);
+        if(spawnItemBag.Count > 0)
+        {
+            foreach(SpawnItem item in spawnItemBag)
+            {
+                switch (item.spawnType)
+                {
+                case CloudItem.NAME:
+                        ((CloudItem)item).SetCloudSpawner(cloudSpawner);
+                    break;
+
+                case ChunkItem.NAME:
+                        ((ChunkItem)item).SetChunkSpawner(chunkSpawner);
+
+                    break;
+
+                case MicrobeItem.NAME:
+                        ((MicrobeItem)item).SetMicrobeSpawner(microbeSpawner);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void SetCurrentGame(GameProperties currentGame)
+    {
+        microbeSpawner.SetCurrentGame(currentGame);
     }
 
     // Needs no params constructor for loading saves?
@@ -100,104 +99,65 @@ public class SpawnSystem
     public static void AddEntityToTrack(ISpawned entity,
         float radius = Constants.MICROBE_SPAWN_RADIUS)
     {
-        entity.DespawnRadiusSqr = (int)(radius * radius);
+        entity.DespawnRadius = (int)radius;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
-    /// <summary>
-    ///   Adds a new spawner. Sets up the spawn radius, radius sqr,
-    ///   and frequency fields based on the parameters of this
-    ///   function.
-    /// </summary>
-    public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
+    public void FillSpawnItemBag()
     {
-        spawner.SpawnRadius = spawnRadius;
-        spawner.SpawnFrequency = 122;
-        spawner.SpawnRadiusSqr = spawnRadius * spawnRadius;
+        GD.Print("Filling the Spawn Bag");
+        spawnItemBag.Clear();
 
-        float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
-        spawner.MinSpawnRadiusSqr = minSpawnRadius * minSpawnRadius;
-
-        if (spawner is CloudSpawner)
+        // Fill compound cloud items
+        foreach (Compound key in cloudSpawner.GetCompounds())
         {
-            GD.Print("FOUND CLOUD SPAWNER");
-            cloudSpawner = (CloudSpawner)spawner;
-        }
-        else
-        {
-            spawner.SetFrequencyFromDensity(spawnDensity);
-            GD.Print("NOT CLOUD SPAWNER");
-            spawnTypes.Add(spawner);
-        }
-    }
-
-    public void AddBiomeCompound(Compound compound, int percent, float amount)
-    {
-        biomeCompounds.Add(compound, percent);
-        compoundAmounts.Add(compound, amount);
-    }
-
-    public void ClearBiomeCompounds()
-    {
-        biomeCompounds.Clear();
-        compoundAmounts.Clear();
-    }
-
-    public void FillCloudBag()
-    {
-        GD.Print("Filling the Cloud Bag");
-        cloudBag.Clear();
-        foreach (Compound key in biomeCompounds.Keys)
-        {
-            // If a compound is set to N%, add N of them to cloudBag
-            // At most this will add 100 to cloudBag.
-            GD.Print("Adding " + biomeCompounds[key] + " of " + key.Name);
-            for (int i = 0; i < Math.Min(biomeCompounds[key], 100); i++)
+            // per each 0.00001 density, add one cloud to bag.
+            int cloudCount = cloudSpawner.GetCloudItemCount(key);
+            for (int i = 0; i < Math.Min(cloudCount, 100); i++)
             {
-                cloudBag.Add(key);
+                spawnItemBag.Add(new CloudItem(cloudSpawner, key, cloudSpawner.GetCloudAmount(key)));
             }
         }
 
-        // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
-        for (int i = 0; i < cloudBag.Count - 2; i++)
+        // Fill chunk items
+        foreach (ChunkConfiguration key in chunkSpawner.GetChunks())
         {
-            int j = random.Next(i, cloudBag.Count);
+            int chunkCount = chunkSpawner.getChunkCount(key);
+            for (int i = 0; i < Math.Min(chunkCount, 100); i++)
+            {
+                spawnItemBag.Add(new ChunkItem(chunkSpawner, key, worldRoot));
+            }
+        }
+
+        // Fill microbe items
+        foreach (MicrobeSpecies key in microbeSpawner.GetSpecies())
+        {
+            int speciesCount = microbeSpawner.GetSpeciesCount(key);
+            for (int i = 0; i < Math.Min(speciesCount, 100); i++)
+            {
+                spawnItemBag.Add(new MicrobeItem(microbeSpawner, key, worldRoot));
+            }
+        }
+
+
+        shuffleSpawnItemBag();
+    }
+
+    void shuffleSpawnItemBag()
+    {
+        // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
+        for (int i = 0; i < spawnItemBag.Count - 2; i++)
+        {
+            int j = random.Next(i, spawnItemBag.Count);
 
             // swap i, j
-            Compound swap = cloudBag[i];
+            SpawnItem swap = spawnItemBag[i];
 
-            cloudBag[i] = cloudBag[j];
-            cloudBag[j] = swap;
+            spawnItemBag[i] = spawnItemBag[j];
+            spawnItemBag[j] = swap;
         }
-        cloudBagSize = cloudBag.Count;
-        cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBagSize;
-    }
-
-    /// <summary>
-    ///   Removes a spawn type immediately. Note that it's easier to
-    ///   just set DestroyQueued to true on an spawner.
-    /// </summary>
-    public void RemoveSpawnType(Spawner spawner)
-    {
-        spawnTypes.Remove(spawner);
-    }
-
-    /// <summary>
-    ///   Prepares the spawn system for a new game
-    /// </summary>
-    public void Init()
-    {
-        Clear();
-    }
-
-    /// <summary>
-    ///   Clears the spawners
-    /// </summary>
-    public void Clear()
-    {
-        spawnTypes.Clear();
-        queuedSpawns = null;
-        elapsed = 0;
+        spawnBagSize = spawnItemBag.Count;
+        spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
     }
 
     /// <summary>
@@ -205,7 +165,6 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
-        queuedSpawns = null;
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
         foreach (Node entity in spawnedEntities)
@@ -225,96 +184,74 @@ public class SpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
+        SpawnItems(playerPosition, playerRotation, delta);
 
-        // If we have queued spawns to do spawn those
-        if (queuedSpawns != null)
-        {
-            spawnsLeftThisFrame = HandleQueuedSpawns(spawnsLeftThisFrame);
-
-            if (spawnsLeftThisFrame <= 0)
-                return;
-        }
-
-        // This is now an if to make sure that the spawn system is
-        // only ran once per frame to avoid spawning a bunch of stuff
-        // all at once after a lag spike
-        // NOTE: that as QueueFree is used it's not safe to just switch this to a loop
-        if (elapsed >= interval)
-        {
-            elapsed -= interval;
-
-            estimateEntityCount = DespawnEntities(playerPosition);
-
-            spawnTypes.RemoveAll(entity => entity.DestroyQueued);
-
-            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
-        }
-
-        // spawnClouds has it's own timer, so run this every frame.
-        SpawnClouds(playerPosition, playerRotation, delta);
     }
 
-    public void SpawnStartClouds(Vector3 playerPosition)
+    public void NewPatchSpawn(Vector3 playerPosition)
     {
-        for (int i = 0; i < Constants.FREE_CLOUDS_IN_NEW_PATCH; i++)
+        for (int i = 0; i < Constants.FREE_SPAWNS_IN_NEW_PATCH; i++)
         {
-            float displacementDistance = random.NextFloat() * (float)Math.Sqrt(cloudSpawner.MinSpawnRadiusSqr);
+            float displacementDistance = random.NextFloat() * cloudSpawner.MinSpawnRadius + 3.0f;
             float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
 
-            Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
-            Compound compound = BagPop();
+            Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
+            SpawnItem spawn = SpawnItemBagPop();
 
-            SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
-                playerPosition + displacement, compound, compoundAmounts[compound]);
+            List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
+            if(spawnedList != null)
+            {
+                foreach(ISpawned spawned in spawnedList)
+                {
+                    ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
+                }
+            }
         }
     }
 
-    private Compound BagPop()
+    public void ClearCloudSpawner()
     {
-        if (cloudBag.Count == 0)
-            FillCloudBag();
+        cloudSpawner.ClearBiomeCompounds();
+    }
 
-        Compound pop = cloudBag[0];
-        cloudBag.RemoveAt(0);
+    public void ClearChunkSpawner()
+    {
+        chunkSpawner.ClearChunks();
+    }
+
+    public void ClearMicrobeSpawner()
+    {
+        microbeSpawner.ClearSpecies();
+    }
+
+    public void AddBiomeCompound(Compound compound, int numOfItems, float amount)
+    {
+        cloudSpawner.AddBiomeCompound(compound, numOfItems, amount);
+    }
+
+    public void AddBiomeChunk(ChunkConfiguration chunk, int numOfItems)
+    {
+        chunkSpawner.AddChunk(chunk, numOfItems);
+    }
+
+    public void AddPatchSpecies(Species species, int numOfItems)
+    {
+        microbeSpawner.AddSpecies(species, numOfItems);
+    }
+
+    private SpawnItem SpawnItemBagPop()
+    {
+        if (spawnItemBag.Count == 0)
+            FillSpawnItemBag();
+
+        SpawnItem pop = spawnItemBag[0];
+        spawnItemBag.RemoveAt(0);
 
         return pop;
     }
 
-    private int HandleQueuedSpawns(int spawnsLeftThisFrame)
-    {
-        // If we don't have room, just abandon spawning
-        if (estimateEntityCount >= maxAliveEntities)
-        {
-            queuedSpawns.Spawns.Dispose();
-            queuedSpawns = null;
-            return spawnsLeftThisFrame;
-        }
-
-        // Spawn from the queue
-        while (estimateEntityCount < maxAliveEntities && spawnsLeftThisFrame > 0)
-        {
-            if (!queuedSpawns.Spawns.MoveNext())
-            {
-                // Ended
-                queuedSpawns.Spawns.Dispose();
-                queuedSpawns = null;
-                break;
-            }
-
-            // Next was spawned
-            ProcessSpawnedEntity(queuedSpawns.Spawns.Current, queuedSpawns.SpawnType);
-
-            ++estimateEntityCount;
-            --spawnsLeftThisFrame;
-        }
-
-        return spawnsLeftThisFrame;
-    }
-
-    // A random location in the square of side length 2*spawnRadius
-    // centered on the player is chosen.
-    private Vector3 GetSpawnDisplacement(float displacementRotation, float displacementDistance)
+    // Takes a random rotation and distance, turns into a vector
+    private Vector3 GetDisplacementVector(float displacementRotation, float displacementDistance)
     {
         float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
         float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
@@ -324,143 +261,43 @@ public class SpawnSystem
         return displacement;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation,
-        int existing, int spawnsLeftThisFrame)
+      private void SpawnItems(Vector3 playerPosition, Vector3 playerRotation, float delta)
     {
-        // If  there are already too many entities, don't spawn more (genClouds does not spawn entities)
-        if (existing >= maxAliveEntities)
+        spawnItemTimer -= delta;
+        if (spawnItemTimer <= 0)
+        {
+            Spawn(playerPosition, playerRotation);
+            spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
+        }
+    }
+
+    private void Spawn(Vector3 playerPosition, Vector3 playerRotation)
+    {
+        DespawnEntities(playerPosition);
+
+        SpawnItem spawn = SpawnItemBagPop();
+
+        //If there are too many entities, do not spawn any more.
+        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
+        if(spawnedEntities.Count >= maxAliveEntities)
             return;
 
-        int spawned = 0;
+        float minRadius = spawn.GetMinSpawnRadius();
+        float maxRadius = spawn.GetSpawnRadius();
 
-        foreach (var spawnType in spawnTypes)
+        float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
+        float displacementRotation = WeightedRandomRotation(playerRotation.y);
+
+        Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
+
+        List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
+        if(spawnedList != null)
         {
-            /*
-            To actually spawn a given entity for a given attempt, two
-            conditions should be met. The first condition is a random
-            chance that adjusts the spawn frequency to the appropriate
-            amount. The second condition is whether the entity will
-            spawn in a valid position. It is checked when the first
-            condition is met and a position for the entity has been
-            decided.
-
-            To allow more than one entity of each type to spawn per
-            spawn cycle, the SpawnSystem attempts to spawn each given
-            entity multiple times depending on the spawnFrequency.
-            numAttempts stores how many times the SpawnSystem attempts
-            to spawn the given entity.
-            */
-            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
-                maxTriesPerSpawner);
-
-            for (int i = 0; i < numAttempts; i++)
+            foreach(ISpawned spawned in spawnedList)
             {
-                if (random.Next(0, numAttempts + 1) < spawnType.SpawnFrequency)
-                {
-                    /*
-                    First condition passed. Choose a location for the entity.
-
-                    The corners of the square are outside the spawning region, but they
-                    will fail the second condition, so entities still only
-                    spawn within the spawning region.
-                    */
-                    float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
-                    float displacementRotation = WeightedRandomRotation(playerRotation.y);
-
-                    Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
-                    float squaredDistance = displacement.LengthSquared();
-
-                    if (squaredDistance <= spawnType.SpawnRadiusSqr &&
-                        squaredDistance >= spawnType.MinSpawnRadiusSqr)
-                    {
-                        // Second condition passed. Spawn the entity.
-                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
-                            ref spawnsLeftThisFrame, ref spawned))
-                        {
-                            return;
-                        }
-                    }
-                }
+                ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
             }
         }
-    }
-
-    private void SpawnClouds(Vector3 playerPosition, Vector3 playerRotation, float delta)
-    {
-        cloudSpawnTimer -= delta;
-        if (cloudSpawnTimer <= 0)
-        {
-            GD.Print("Spawning Cloud");
-            SpawnCloud(playerPosition, playerRotation);
-            cloudSpawnTimer = Constants.CLOUD_SPAWN_TIME / cloudBagSize;
-        }
-    }
-
-    private void SpawnCloud(Vector3 playerPosition, Vector3 playerRotation)
-    {
-        if (cloudSpawner != null)
-        {
-            float minRadiusSqr = cloudSpawner.MinSpawnRadiusSqr;
-            float maxRadiusSqr = cloudSpawner.SpawnRadiusSqr;
-
-            float squaredDistance = random.NextFloat() * (maxRadiusSqr - minRadiusSqr) + minRadiusSqr;
-            float displacementRotation = WeightedRandomRotation(playerRotation.y);
-            float displacementDistance = (float)Math.Sqrt(squaredDistance);
-
-            Vector3 displacement = GetSpawnDisplacement(displacementRotation, displacementDistance);
-            Compound compound = BagPop();
-
-            SpawnHelpers.SpawnCloud(cloudSpawner.GetCloudSystem(),
-                playerPosition + displacement, compound, compoundAmounts[compound]);
-        }
-    }
-
-    /// <summary>
-    ///   Does a single spawn with a spawner
-    /// </summary>
-    /// <returns>True if we have exceeded the spawn limit and no further spawns should be done this frame</returns>
-    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, int existing,
-        ref int spawnsLeftThisFrame, ref int spawned)
-    {
-        var enumerable = spawnType.Spawn(worldRoot, location);
-
-        if (enumerable == null)
-            return false;
-
-        var spawner = enumerable.GetEnumerator();
-
-        while (spawner.MoveNext())
-        {
-            if (spawner.Current == null)
-                throw new NullReferenceException("spawn enumerator is not allowed to return null");
-
-            // Spawned something
-            ProcessSpawnedEntity(spawner.Current, spawnType);
-            spawned += 1;
-            --spawnsLeftThisFrame;
-
-            // Check if we are out of quota for this frame
-
-            // TODO: this is a bit awkward if this
-            // stops compound clouds from spawning as
-            // well...
-            if (spawned + existing >= maxAliveEntities)
-            {
-                // We likely couldn't spawn things next frame anyway if we are at the entity limit,
-                // so the spawner is not stored here
-                return true;
-            }
-
-            if (spawnsLeftThisFrame <= 0)
-            {
-                // This spawner might still have something left to spawn next frame, so store it
-                queuedSpawns = new QueuedSpawn(spawner, spawnType);
-                return true;
-            }
-        }
-
-        // Can still spawn more stuff
-        return false;
     }
 
     /// <summary>
@@ -486,10 +323,10 @@ public class SpawnSystem
             }
 
             var entityPosition = ((Spatial)entity).Translation;
-            var squaredDistance = (playerPosition - entityPosition).LengthSquared();
+            var distance = (playerPosition - entityPosition).Length();
 
             // If the entity is too far away from the player, despawn it.
-            if (squaredDistance > spawned.DespawnRadiusSqr)
+            if (distance > spawned.DespawnRadius)
             {
                 entitiesDeleted++;
                 entity.DetachAndQueueFree();
@@ -505,13 +342,13 @@ public class SpawnSystem
     /// <summary>
     ///   Add the entity to the spawned group and add the despawn radius
     /// </summary>
-    private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
+    private void ProcessSpawnedEntity(ISpawned entity, int spawnRadius)
     {
         // I don't understand why the same
         // value is used for spawning and
         // despawning, but apparently it works
         // just fine
-        entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
+        entity.DespawnRadius = spawnRadius;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
@@ -547,17 +384,5 @@ public class SpawnSystem
     {
         float distance = Math.Abs(p1 - p2);
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
-    }
-
-    private class QueuedSpawn
-    {
-        public Spawner SpawnType;
-        public IEnumerator<ISpawned> Spawns;
-
-        public QueuedSpawn(IEnumerator<ISpawned> spawner, Spawner spawnType)
-        {
-            Spawns = spawner;
-            SpawnType = spawnType;
-        }
     }
 }

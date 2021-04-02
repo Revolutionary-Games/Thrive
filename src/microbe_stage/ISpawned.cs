@@ -6,10 +6,10 @@
 public interface ISpawned
 {
     /// <summary>
-    ///   If the squared distance to the player of this object is
+    ///   If the distance to the player of this object is
     ///   greater than this, it is despawned.
     /// </summary>
-    int DespawnRadiusSqr { get; set; }
+    int DespawnRadius { get; set; }
 
     /// <summary>
     ///   The Node that was spawned for this entity, used to tag it
