@@ -162,15 +162,22 @@ public class SpawnSystem
 
     public void NewPatchSpawn(Vector3 playerPosition)
     {
-        for (int i = 0; i < Constants.FREE_CLOUDS_IN_NEW_PATCH; i++)
+        for (int i = 0; i < Constants.FREE_SPAWNS_IN_NEW_PATCH; i++)
         {
-            float displacementDistance = random.NextFloat() * cloudSpawner.MinSpawnRadius;
+            float displacementDistance = random.NextFloat() * cloudSpawner.MinSpawnRadius + 1.0f;
             float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
 
             Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
-            SpawnItem spawnItem = SpawnItemBagPop();
+            SpawnItem spawn = SpawnItemBagPop();
 
-            //do spawns here
+            List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
+            if(spawnedList != null)
+            {
+                foreach(ISpawned spawned in spawnedList)
+                {
+                    ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
+                }
+            }
         }
     }
 
@@ -255,7 +262,7 @@ public class SpawnSystem
 
         Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
 
-        List<ISpawned> spawnedList =  spawn.Spawn(playerPosition + displacement);
+        List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
         if(spawnedList != null)
         {
             foreach(ISpawned spawned in spawnedList)
