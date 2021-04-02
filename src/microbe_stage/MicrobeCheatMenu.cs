@@ -1,25 +1,40 @@
-﻿/// <summary>
+﻿using Godot;
+
+/// <summary>
 ///   Handles the microbe cheat menu
 /// </summary>
 public class MicrobeCheatMenu : CheatMenu
 {
-    public void SetInfiniteCompounds(bool value)
+    [Export]
+    public NodePath InfiniteCompoundsPath;
+
+    [Export]
+    public NodePath GodModePath;
+
+    [Export]
+    public NodePath DisableAIPath;
+
+    [Export]
+    public NodePath SpeedSliderPath;
+
+    private CheckBox infiniteCompounds;
+    private CheckBox godMode;
+    private CheckBox disableAI;
+    private Slider speed;
+
+    public MicrobeCheatMenu()
     {
-        CheatManager.InfiniteCompounds = value;
+        infiniteCompounds = GetNode<CheckBox>(InfiniteCompoundsPath);
+        godMode = GetNode<CheckBox>(GodModePath);
+        disableAI = GetNode<CheckBox>(DisableAIPath);
+        speed = GetNode<Slider>(SpeedSliderPath);
     }
 
-    public void SetGodMode(bool value)
+    public override void ReloadGUI()
     {
-        CheatManager.GodMode = value;
-    }
-
-    public void SetDisableAI(bool value)
-    {
-        CheatManager.NoAI = value;
-    }
-
-    public void SetSpeed(float value)
-    {
-        CheatManager.Speed = value;
+        infiniteCompounds.Pressed = CheatManager.InfiniteCompounds;
+        godMode.Pressed = CheatManager.GodMode;
+        disableAI.Pressed = CheatManager.NoAI;
+        speed.Value = CheatManager.Speed;
     }
 }

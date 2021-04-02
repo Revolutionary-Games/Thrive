@@ -56,6 +56,36 @@ public abstract class CheatMenu : Popup
         CheatManager.OnHideCheatMenus -= OnHideCheatMenus;
     }
 
+    public void SetInfiniteMP(bool value)
+    {
+        CheatManager.InfiniteMP = value;
+    }
+
+    public void SetInfiniteCompounds(bool value)
+    {
+        CheatManager.InfiniteCompounds = value;
+    }
+
+    public void SetGodMode(bool value)
+    {
+        CheatManager.GodMode = value;
+    }
+
+    public void SetDisableAI(bool value)
+    {
+        CheatManager.NoAI = value;
+    }
+
+    public void SetSpeed(float value)
+    {
+        CheatManager.Speed = value;
+    }
+
+    /// <summary>
+    ///   Applies the currently applied cheats to the GUI.
+    /// </summary>
+    public abstract void ReloadGUI();
+
     private void OnHideCheatMenus(object s, EventArgs e)
     {
         Hide();
