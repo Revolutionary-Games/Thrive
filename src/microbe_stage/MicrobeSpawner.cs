@@ -16,7 +16,7 @@ public class MicrobeSpawner : Spawner
 
     public MicrobeSpawner(CompoundCloudSystem cloudSystem, int spawnRadius)
     {
-        microbeScene = MicrobeSpawner.LoadMicrobeScene();
+        microbeScene = LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
         SetSpawnRadius(spawnRadius);
 

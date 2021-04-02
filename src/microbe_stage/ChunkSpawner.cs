@@ -87,6 +87,6 @@ public class ChunkSpawner : Spawner
 
     public ISpawned Spawn(Vector3 location, ChunkConfiguration chunkType, Node worldNode)
     {
-        return ChunkSpawner.SpawnChunk(chunkType, location, worldNode, chunkScene, cloudSystem, random);
+        return SpawnChunk(chunkType, location, worldNode, chunkScene, cloudSystem, random);
     }
 }
