@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles the opening, closing and operations of the cheat menus
 /// </summary>
-public abstract class CheatMenu : Popup
+public class CheatMenu : Popup
 {
     /// <summary>
     ///   Whether the cheat menu may be opened or not
@@ -42,6 +42,31 @@ public abstract class CheatMenu : Popup
 
         IsMenuOpen = !IsMenuOpen;
         return true;
+    }
+
+    public void SetInfiniteMP(bool value)
+    {
+        CheatManager.InfiniteMP = value;
+    }
+
+    public void SetInfiniteCompounds(bool value)
+    {
+        CheatManager.InfiniteCompounds = value;
+    }
+
+    public void SetGodMode(bool value)
+    {
+        CheatManager.GodMode = value;
+    }
+
+    public void SetDisableAI(bool value)
+    {
+        CheatManager.NoAI = value;
+    }
+
+    public void SetSpeed(float value)
+    {
+        CheatManager.Speed = value;
     }
 
     public override void _EnterTree()
