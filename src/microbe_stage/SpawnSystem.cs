@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 public class SpawnSystem
 {
     [JsonProperty]
-    private float elapsed = 0;
+    private float elapsed;
 
     [JsonProperty]
     private float spawnItemTimer;
@@ -58,7 +58,7 @@ public class SpawnSystem
     }
 
     public static void AddEntityToTrack(ISpawned entity,
-    float radius = Constants.MICROBE_SPAWN_RADIUS)
+        float radius = Constants.MICROBE_SPAWN_RADIUS)
     {
         entity.DespawnRadius = (int)radius;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
@@ -112,6 +112,7 @@ public class SpawnSystem
         {
             if (!(key is MicrobeSpecies))
                 continue;
+
             MicrobeSpecies microbeSpecies = (MicrobeSpecies)key;
             int speciesCount = microbeSpawner.GetSpeciesCount(microbeSpecies);
             for (int i = 0; i < Math.Min(speciesCount, 100); i++)
@@ -285,6 +286,8 @@ public class SpawnSystem
     /// </summary>
     private void DespawnEntities(Vector3 playerPosition)
     {
+        int entitiesDeleted = 0;
+
         // Despawn entities
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
@@ -305,7 +308,11 @@ public class SpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (distance > spawned.DespawnRadius)
             {
+                entitiesDeleted++;
                 entity.DetachAndQueueFree();
+
+                if (entitiesDeleted >= maxEntitiesToDeletePerStep)
+                    break;
             }
         }
     }

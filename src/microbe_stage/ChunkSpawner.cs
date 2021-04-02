@@ -17,7 +17,7 @@ public class ChunkSpawner : Spawner
     {
         this.cloudSystem = cloudSystem;
         SetSpawnRadius(spawnRadius);
-        chunkScene = ChunkSpawner.LoadChunkScene();
+        chunkScene = LoadChunkScene();
     }
 
     public static PackedScene LoadChunkScene()
@@ -26,7 +26,7 @@ public class ChunkSpawner : Spawner
     }
 
     public static ISpawned SpawnChunk(ChunkConfiguration chunkType, Vector3 location, Node worldNode,
-               PackedScene chunkScene, CompoundCloudSystem cloudSystem, Random random)
+        PackedScene chunkScene, CompoundCloudSystem cloudSystem, Random random)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 
@@ -87,6 +87,6 @@ public class ChunkSpawner : Spawner
 
     public ISpawned Spawn(Vector3 location, ChunkConfiguration chunkType, Node worldNode)
     {
-       return ChunkSpawner.SpawnChunk(chunkType, location, worldNode, chunkScene, cloudSystem, random);
+        return ChunkSpawner.SpawnChunk(chunkType, location, worldNode, chunkScene, cloudSystem, random);
     }
 }

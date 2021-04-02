@@ -192,12 +192,12 @@ public class MicrobeSpawner : Spawner
         List<ISpawned> spawnedMicrobes = new List<ISpawned>();
 
         // The true here is that this is AI controlled
-        spawnedMicrobes.Add(MicrobeSpawner.SpawnMicrobe(species, location, worldNode,
+        spawnedMicrobes.Add(SpawnMicrobe(species, location, worldNode,
             microbeScene, true, cloudSystem, currentGame));
 
         if (species.IsBacteria)
         {
-            foreach (Microbe microbe in MicrobeSpawner.SpawnBacteriaColony(species, location, worldNode, microbeScene,
+            foreach (Microbe microbe in SpawnBacteriaColony(species, location, worldNode, microbeScene,
                 cloudSystem, currentGame, random))
             {
                 spawnedMicrobes.Add(microbe);

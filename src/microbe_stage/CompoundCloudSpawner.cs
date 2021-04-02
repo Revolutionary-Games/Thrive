@@ -59,13 +59,13 @@ public class CompoundCloudSpawner : Spawner
 
     public void SpawnCloud(Vector3 location, Compound compound, float amount)
     {
-         int resolution = Settings.Instance.CloudResolution;
+        int resolution = Settings.Instance.CloudResolution;
 
-         // This spreads out the cloud spawn a bit
-         clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));
-         clouds.AddCloud(compound, amount, location + new Vector3(0 - resolution, 0, 0));
-         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 + resolution));
-         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 - resolution));
-         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
+        // This spreads out the cloud spawn a bit
+        clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));
+        clouds.AddCloud(compound, amount, location + new Vector3(0 - resolution, 0, 0));
+        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 + resolution));
+        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 - resolution));
+        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
     }
 }
