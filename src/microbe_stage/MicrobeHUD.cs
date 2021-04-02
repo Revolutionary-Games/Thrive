@@ -807,7 +807,7 @@ public class MicrobeHUD : Node
 
     private void UpdatePopulation()
     {
-        populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString(CultureInfo.InvariantCulture);
+        populationLabel.Text = StringUtils.FormatNumber(stage.GameWorld.PlayerSpecies.Population);
     }
 
     private void UpdateProcessPanel()

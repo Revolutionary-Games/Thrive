@@ -803,7 +803,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
         {
             GameWorld.AlterSpeciesPopulation(Species,
-                Constants.CREATURE_DEATH_POPULATION_LOSS, "death");
+                Constants.CREATURE_DEATH_POPULATION_LOSS, TranslationServer.Translate("DEATH"));
         }
 
         if (IsPlayerMicrobe)
@@ -1498,7 +1498,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulation(Species,
-                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
+                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 
             ResetOrganelleLayout();
