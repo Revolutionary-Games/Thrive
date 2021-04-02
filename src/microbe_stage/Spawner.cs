@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Godot;
-
-/// <summary>
+﻿/// <summary>
 ///   Spawner that can be added to a SpawnSystem to be used for spawning things
 /// </summary>
 public abstract class Spawner

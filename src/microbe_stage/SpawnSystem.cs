@@ -108,12 +108,15 @@ public class SpawnSystem
         }
 
         // Fill microbe items
-        foreach (MicrobeSpecies key in microbeSpawner.GetSpecies())
+        foreach (Species key in microbeSpawner.GetSpecies())
         {
-            int speciesCount = microbeSpawner.GetSpeciesCount(key);
+            if (!(key is MicrobeSpecies))
+                continue;
+            MicrobeSpecies microbeSpecies = (MicrobeSpecies)key;
+            int speciesCount = microbeSpawner.GetSpeciesCount(microbeSpecies);
             for (int i = 0; i < Math.Min(speciesCount, 100); i++)
             {
-                spawnItemBag.Add(new MicrobeItem(microbeSpawner, key, worldRoot));
+                spawnItemBag.Add(new MicrobeItem(microbeSpawner, microbeSpecies, worldRoot));
             }
         }
 
@@ -280,11 +283,8 @@ public class SpawnSystem
     /// <summary>
     ///   Despawns entities that are far away from the player
     /// </summary>
-    /// <returns>The number of alive entities, used to limit the total</returns>
-    private int DespawnEntities(Vector3 playerPosition)
+    private void DespawnEntities(Vector3 playerPosition)
     {
-        int entitiesDeleted = 0;
-
         // Despawn entities
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
@@ -305,15 +305,9 @@ public class SpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (distance > spawned.DespawnRadius)
             {
-                entitiesDeleted++;
                 entity.DetachAndQueueFree();
-
-                if (entitiesDeleted >= maxEntitiesToDeletePerStep)
-                    break;
             }
         }
-
-        return spawnedEntities.Count - entitiesDeleted;
     }
 
     /// <summary>

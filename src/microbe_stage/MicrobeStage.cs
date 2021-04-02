@@ -188,7 +188,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
-
     }
 
     public override void _Notification(int what)
@@ -559,7 +558,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
 
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame);
+            worldLight);
     }
 
     /// <summary>

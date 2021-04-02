@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 
@@ -13,20 +12,17 @@ public class PatchManager
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
-    private GameProperties currentGame;
 
     private Patch previousPatch;
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
-        GameProperties currentGame)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
-        this.currentGame = currentGame;
     }
 
     /// <summary>
@@ -66,14 +62,14 @@ public class PatchManager
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
 
-        HandleCloudSpawns(currentPatch.Biome, playerPosition);
+        HandleCloudSpawns(currentPatch.Biome);
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
         spawnSystem.FillSpawnItemBag();
 
-        //If we just loaded a save file, don't spawn new stuff.
-        if(despawnAllowed && !isNewGame)
+        // If we just loaded a save file, don't spawn new stuff.
+        if (despawnAllowed && !isNewGame)
         {
             spawnSystem.NewPatchSpawn(playerPosition);
         }
@@ -92,7 +88,7 @@ public class PatchManager
         {
             float chunkDensity = biome.Chunks[chunk].Density;
 
-            if(chunkDensity > 0)
+            if (chunkDensity > 0)
             {
                 int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * chunkDensity);
                 GD.Print(biome.Chunks[chunk].Name + " has " + numOfItems + " items per bag.");
@@ -101,7 +97,7 @@ public class PatchManager
         }
     }
 
-    private void HandleCloudSpawns(BiomeConditions biome, Vector3 playerPosition)
+    private void HandleCloudSpawns(BiomeConditions biome)
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
@@ -147,7 +143,6 @@ public class PatchManager
             int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * density);
             GD.Print(name + " has " + numOfItems + " items per bag.");
             spawnSystem.AddPatchSpecies(species, numOfItems);
-
         }
     }
 

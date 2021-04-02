@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
 
 // SpawnItems contains the data for one spawn.
 // These items are added to and drawn from the spawnItemsBag
