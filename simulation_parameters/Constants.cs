@@ -276,7 +276,7 @@ public static class Constants
     public const int BASE_MUTATION_POINTS = 100;
 
     public const int ORGANELLE_REMOVE_COST = 10;
-    public const int ORGANELLE_MOVE_COST = 20;
+    public const int ORGANELLE_MOVE_COST = 5;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
