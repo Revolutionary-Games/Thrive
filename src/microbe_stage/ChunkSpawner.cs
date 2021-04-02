@@ -56,11 +56,7 @@ public class ChunkSpawner : Spawner
     public static ISpawned SpawnChunk(ChunkConfiguration chunkType, Vector3 location, Node worldNode,
                 PackedScene chunkScene, CompoundCloudSystem cloudSystem, Random random)
     {
-        GD.Print("Spawning a Chunk");
-
         var chunk = (FloatingChunk)chunkScene.Instance();
-
-        GD.Print(chunkType.Name);
 
         // Settings need to be applied before adding it to the scene
         var selectedMesh = chunkType.Meshes.Random(random);

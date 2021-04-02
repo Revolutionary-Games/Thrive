@@ -113,7 +113,6 @@ public class SpawnSystem
         {
             // per each 0.00001 density, add one cloud to bag.
             int cloudCount = cloudSpawner.GetCloudItemCount(key);
-            GD.Print("Adding " + cloudCount + " of " + key.Name);
             for (int i = 0; i < Math.Min(cloudCount, 100); i++)
             {
                 spawnItemBag.Add(new CloudItem(cloudSpawner, key, cloudSpawner.GetCloudAmount(key)));
@@ -124,7 +123,6 @@ public class SpawnSystem
         foreach (ChunkConfiguration key in chunkSpawner.GetChunks())
         {
             int chunkCount = chunkSpawner.getChunkCount(key);
-            GD.Print("Adding " + chunkCount + " of " + key.Name);
             for (int i = 0; i < Math.Min(chunkCount, 100); i++)
             {
                 spawnItemBag.Add(new ChunkItem(chunkSpawner, key, worldRoot));
@@ -135,7 +133,6 @@ public class SpawnSystem
         foreach (MicrobeSpecies key in microbeSpawner.GetSpecies())
         {
             int speciesCount = microbeSpawner.GetSpeciesCount(key);
-            GD.Print("Adding " + speciesCount + " of " + key.FormattedName);
             for (int i = 0; i < Math.Min(speciesCount, 100); i++)
             {
                 spawnItemBag.Add(new MicrobeItem(microbeSpawner, key, worldRoot));

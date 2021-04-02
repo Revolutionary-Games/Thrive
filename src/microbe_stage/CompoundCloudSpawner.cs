@@ -60,8 +60,6 @@ public class CompoundCloudSpawner : Spawner
     {
          int resolution = Settings.Instance.CloudResolution;
 
-        GD.Print("Spawning a Cloud");
-
         // This spreads out the cloud spawn a bit
         clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));
         clouds.AddCloud(compound, amount, location + new Vector3(0 - resolution, 0, 0));
