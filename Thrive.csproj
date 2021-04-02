@@ -128,7 +128,7 @@
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
-    <Compile Include="src\microbe_stage\SpawnItems.cs" />
+    <Compile Include="src\microbe_stage\SpawnItem.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />
@@ -255,7 +255,6 @@
     <Compile Include="src\saving\serializers\SerializationBinder.cs" />
     <Compile Include="src\saving\serializers\ConvexPolygonShapeConverter.cs" />
     <Compile Include="src\saving\serializers\SingleTypeConverter.cs" />
-    <Compile Include="src\saving\serializers\SpawnItemConverter.cs" />
     <Compile Include="src\saving\serializers\SystemVector4ArrayConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
