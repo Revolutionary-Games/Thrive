@@ -16,45 +16,17 @@ public class ChunkSpawner : Spawner
     public ChunkSpawner(CompoundCloudSystem cloudSystem, int spawnRadius)
     {
         this.cloudSystem = cloudSystem;
-        this.SetSpawnRadius(spawnRadius);
+        SetSpawnRadius(spawnRadius);
         chunkScene = ChunkSpawner.LoadChunkScene();
     }
 
-    public void AddChunk(ChunkConfiguration chunk, int numOfItems)
+    public static PackedScene LoadChunkScene()
     {
-         foreach (var mesh in chunk.Meshes)
-        {
-            if (mesh.LoadedScene == null)
-                throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
-        }
-        chunkCounts.Add(chunk, numOfItems);
+        return GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
     }
-
-    public void ClearChunks()
-    {
-        chunkCounts.Clear();
-    }
-
-    public ChunkConfiguration[] GetChunks()
-    {
-        ChunkConfiguration[] chunks = new ChunkConfiguration[chunkCounts.Keys.Count];
-        chunkCounts.Keys.CopyTo(chunks, 0);
-        return chunks;
-    }
-
-    public int getChunkCount(ChunkConfiguration chunk)
-    {
-        return chunkCounts[chunk];
-    }
-
-    public ISpawned Spawn(Vector3 location, ChunkConfiguration chunkType, Node worldNode)
-    {
-       return ChunkSpawner.SpawnChunk(chunkType, location, worldNode, chunkScene, cloudSystem, random);
-    }
-
 
     public static ISpawned SpawnChunk(ChunkConfiguration chunkType, Vector3 location, Node worldNode,
-                PackedScene chunkScene, CompoundCloudSystem cloudSystem, Random random)
+               PackedScene chunkScene, CompoundCloudSystem cloudSystem, Random random)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 
@@ -83,10 +55,38 @@ public class ChunkSpawner : Spawner
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
         chunk.AddToGroup(Constants.AI_TAG_CHUNK);
         return chunk;
-
     }
-    public static PackedScene LoadChunkScene()
+
+    public void AddChunk(ChunkConfiguration chunk, int numOfItems)
     {
-        return GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
+        foreach (var mesh in chunk.Meshes)
+        {
+            if (mesh.LoadedScene == null)
+                throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
+        }
+
+        chunkCounts.Add(chunk, numOfItems);
+    }
+
+    public void ClearChunks()
+    {
+        chunkCounts.Clear();
+    }
+
+    public ChunkConfiguration[] GetChunks()
+    {
+        ChunkConfiguration[] chunks = new ChunkConfiguration[chunkCounts.Keys.Count];
+        chunkCounts.Keys.CopyTo(chunks, 0);
+        return chunks;
+    }
+
+    public int GetChunkCount(ChunkConfiguration chunk)
+    {
+        return chunkCounts[chunk];
+    }
+
+    public ISpawned Spawn(Vector3 location, ChunkConfiguration chunkType, Node worldNode)
+    {
+       return ChunkSpawner.SpawnChunk(chunkType, location, worldNode, chunkScene, cloudSystem, random);
     }
 }

@@ -9,64 +9,18 @@ public class MicrobeSpawner : Spawner
 {
     private readonly PackedScene microbeScene;
     private readonly CompoundCloudSystem cloudSystem;
-    private GameProperties currentGame;
     private readonly Random random;
+    private GameProperties currentGame;
 
-    private Dictionary<Species,int> speciesCounts = new Dictionary<Species, int>();
+    private Dictionary<Species, int> speciesCounts = new Dictionary<Species, int>();
 
     public MicrobeSpawner(CompoundCloudSystem cloudSystem, int spawnRadius)
     {
         microbeScene = MicrobeSpawner.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
-        this.SetSpawnRadius(spawnRadius);
+        SetSpawnRadius(spawnRadius);
 
         random = new Random();
-    }
-
-    public void SetCurrentGame(GameProperties currentGame)
-    {
-        this.currentGame = currentGame;
-    }
-
-    public void AddSpecies(Species species, int numOfItems)
-    {
-        speciesCounts.Add(species, numOfItems);
-    }
-
-    public void ClearSpecies()
-    {
-        speciesCounts.Clear();
-    }
-
-    public Species[] GetSpecies()
-    {
-        Species[] species = new Species[speciesCounts.Keys.Count];
-        speciesCounts.Keys.CopyTo(species, 0);
-        return species;
-    }
-
-    public int GetSpeciesCount(Species species)
-    {
-        return speciesCounts[species];
-    }
-
-    public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species)
-    {
-        List<ISpawned> spawnedMicrobes = new List<ISpawned>();
-
-        // The true here is that this is AI controlled
-        spawnedMicrobes.Add(MicrobeSpawner.SpawnMicrobe(species, location, worldNode,
-            microbeScene, true, cloudSystem, currentGame));
-
-        if (species.IsBacteria)
-        {
-            foreach (Microbe microbe in MicrobeSpawner.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                cloudSystem, currentGame, random))
-            {
-                spawnedMicrobes.Add(microbe);
-            }
-        }
-        return spawnedMicrobes;
     }
 
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
@@ -201,7 +155,59 @@ public class MicrobeSpawner : Spawner
         }
     }
 
-        private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location)
+    public static PackedScene LoadMicrobeScene()
+    {
+        return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
+    }
+
+    public void SetCurrentGame(GameProperties currentGame)
+    {
+        this.currentGame = currentGame;
+    }
+
+    public void AddSpecies(Species species, int numOfItems)
+    {
+        speciesCounts.Add(species, numOfItems);
+    }
+
+    public void ClearSpecies()
+    {
+        speciesCounts.Clear();
+    }
+
+    public Species[] GetSpecies()
+    {
+        Species[] species = new Species[speciesCounts.Keys.Count];
+        speciesCounts.Keys.CopyTo(species, 0);
+        return species;
+    }
+
+    public int GetSpeciesCount(Species species)
+    {
+        return speciesCounts[species];
+    }
+
+    public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species)
+    {
+        List<ISpawned> spawnedMicrobes = new List<ISpawned>();
+
+        // The true here is that this is AI controlled
+        spawnedMicrobes.Add(MicrobeSpawner.SpawnMicrobe(species, location, worldNode,
+            microbeScene, true, cloudSystem, currentGame));
+
+        if (species.IsBacteria)
+        {
+            foreach (Microbe microbe in MicrobeSpawner.SpawnBacteriaColony(species, location, worldNode, microbeScene,
+                cloudSystem, currentGame, random))
+            {
+                spawnedMicrobes.Add(microbe);
+            }
+        }
+
+        return spawnedMicrobes;
+    }
+
+    private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location)
     {
         for (int c = 0; c < colony.Random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
             Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
@@ -226,7 +232,7 @@ public class MicrobeSpawner : Spawner
         }
     }
 
-        private class ColonySpawnInfo
+    private class ColonySpawnInfo
     {
         public Species Species;
         public Node WorldRoot;
@@ -236,9 +242,5 @@ public class MicrobeSpawner : Spawner
         public Random Random;
         public CompoundCloudSystem CloudSystem;
         public GameProperties CurrentGame;
-    }
-    public static PackedScene LoadMicrobeScene()
-    {
-        return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 }

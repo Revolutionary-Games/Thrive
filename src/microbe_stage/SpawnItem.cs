@@ -1,33 +1,26 @@
-﻿using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 // SpawnItems contains the data for one spawn.
 // These items are added to and drawn from the spawnItemsBag
-[JsonConverter(typeof(SpawnItemConverter))]
-abstract class SpawnItem
+public abstract class SpawnItem
 {
-    public string spawnType = "";
-    abstract public List<ISpawned> Spawn(Vector3 location);
-    abstract public int GetSpawnRadius();
-    abstract public float GetMinSpawnRadius();
+    public abstract List<ISpawned> Spawn(Vector3 location);
+    public abstract int GetSpawnRadius();
+    public abstract float GetMinSpawnRadius();
 }
 
 // Cloud to be spawned
-class CloudItem : SpawnItem
+public class CloudItem : SpawnItem
 {
     private CompoundCloudSpawner cloudSpawner;
-    [JsonProperty]
     private Compound compound;
-    [JsonProperty]
     private float amount;
-
-    public const string NAME = "CLOUD";
 
     public CloudItem(CompoundCloudSpawner cloudSpawner, Compound compound, float amount)
     {
-        spawnType = NAME;
         this.cloudSpawner = cloudSpawner;
         this.compound = compound;
         this.amount = amount;
@@ -39,7 +32,8 @@ class CloudItem : SpawnItem
         return null;
     }
 
-    public override int GetSpawnRadius(){
+    public override int GetSpawnRadius()
+    {
         return cloudSpawner.SpawnRadius;
     }
 
@@ -55,18 +49,14 @@ class CloudItem : SpawnItem
 }
 
 // Chunk to be spawned
-class ChunkItem : SpawnItem
+public class ChunkItem : SpawnItem
 {
-    ChunkSpawner chunkSpawner;
-    [JsonProperty]
-    ChunkConfiguration chunkType;
-    Node worldNode;
-
-    public const string NAME = "CHUNK";
+    private ChunkSpawner chunkSpawner;
+    private ChunkConfiguration chunkType;
+    private Node worldNode;
 
     public ChunkItem(ChunkSpawner chunkSpawner, ChunkConfiguration chunkType, Node worldNode)
     {
-        spawnType = NAME;
         this.chunkSpawner = chunkSpawner;
         this.chunkType = chunkType;
         this.worldNode = worldNode;
@@ -96,17 +86,14 @@ class ChunkItem : SpawnItem
 }
 
 // Microbe to be spawned
-class MicrobeItem : SpawnItem
+public class MicrobeItem : SpawnItem
 {
-    MicrobeSpawner microbeSpawner;
-    [JsonProperty]
-    MicrobeSpecies species;
-    Node worldNode;
+    private MicrobeSpawner microbeSpawner;
+    private MicrobeSpecies species;
+    private Node worldNode;
 
-    public const string NAME =  "MICROBE";
     public MicrobeItem(MicrobeSpawner microbeSpawner, MicrobeSpecies species, Node worldNode)
     {
-        spawnType = NAME;
         this.microbeSpawner = microbeSpawner;
         this.species = species;
         this.worldNode = worldNode;

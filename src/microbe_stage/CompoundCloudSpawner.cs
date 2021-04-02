@@ -7,17 +7,18 @@ using Godot;
 /// </summary>
 public class CompoundCloudSpawner : Spawner
 {
-    //number of CloudItems for each compound to put in spawn bag
+    private readonly CompoundCloudSystem clouds;
+
+    // Number of CloudItems for each compound to put in spawn bag
     private Dictionary<Compound, int> compoundCloudCounts = new Dictionary<Compound, int>();
 
-    //Amount of each compound
+    // Amount of each compound
     private Dictionary<Compound, float> compoundAmounts = new Dictionary<Compound, float>();
-    private readonly CompoundCloudSystem clouds;
 
     public CompoundCloudSpawner(CompoundCloudSystem clouds, int spawnRadius)
     {
         this.clouds = clouds ?? throw new ArgumentException("clouds is null");
-        this.SetSpawnRadius(spawnRadius);
+        SetSpawnRadius(spawnRadius);
     }
 
     public CompoundCloudSystem GetCloudSystem()
@@ -60,11 +61,11 @@ public class CompoundCloudSpawner : Spawner
     {
          int resolution = Settings.Instance.CloudResolution;
 
-        // This spreads out the cloud spawn a bit
-        clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));
-        clouds.AddCloud(compound, amount, location + new Vector3(0 - resolution, 0, 0));
-        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 + resolution));
-        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 - resolution));
-        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
+         // This spreads out the cloud spawn a bit
+         clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));
+         clouds.AddCloud(compound, amount, location + new Vector3(0 - resolution, 0, 0));
+         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 + resolution));
+         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 - resolution));
+         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
     }
 }

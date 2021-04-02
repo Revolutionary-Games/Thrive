@@ -55,7 +55,13 @@ public class SpawnSystem
     public SpawnSystem(Node root)
     {
         worldRoot = root;
+    }
 
+    public static void AddEntityToTrack(ISpawned entity,
+    float radius = Constants.MICROBE_SPAWN_RADIUS)
+    {
+        entity.DespawnRadius = (int)radius;
+        entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
     public void Init(CompoundCloudSystem cloudSystem, int spawnRadius)
@@ -63,27 +69,6 @@ public class SpawnSystem
         cloudSpawner = new CompoundCloudSpawner(cloudSystem, spawnRadius);
         chunkSpawner = new ChunkSpawner(cloudSystem, spawnRadius);
         microbeSpawner = new MicrobeSpawner(cloudSystem, spawnRadius);
-        if(spawnItemBag.Count > 0)
-        {
-            foreach(SpawnItem item in spawnItemBag)
-            {
-                switch (item.spawnType)
-                {
-                case CloudItem.NAME:
-                        ((CloudItem)item).SetCloudSpawner(cloudSpawner);
-                    break;
-
-                case ChunkItem.NAME:
-                        ((ChunkItem)item).SetChunkSpawner(chunkSpawner);
-
-                    break;
-
-                case MicrobeItem.NAME:
-                        ((MicrobeItem)item).SetMicrobeSpawner(microbeSpawner);
-                    break;
-                }
-            }
-        }
     }
 
     public void SetCurrentGame(GameProperties currentGame)
@@ -96,13 +81,6 @@ public class SpawnSystem
     /// <summary>
     ///   Adds an externally spawned entity to be despawned
     /// </summary>
-    public static void AddEntityToTrack(ISpawned entity,
-        float radius = Constants.MICROBE_SPAWN_RADIUS)
-    {
-        entity.DespawnRadius = (int)radius;
-        entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
-    }
-
     public void FillSpawnItemBag()
     {
         GD.Print("Filling the Spawn Bag");
@@ -122,7 +100,7 @@ public class SpawnSystem
         // Fill chunk items
         foreach (ChunkConfiguration key in chunkSpawner.GetChunks())
         {
-            int chunkCount = chunkSpawner.getChunkCount(key);
+            int chunkCount = chunkSpawner.GetChunkCount(key);
             for (int i = 0; i < Math.Min(chunkCount, 100); i++)
             {
                 spawnItemBag.Add(new ChunkItem(chunkSpawner, key, worldRoot));
@@ -139,25 +117,7 @@ public class SpawnSystem
             }
         }
 
-
-        shuffleSpawnItemBag();
-    }
-
-    void shuffleSpawnItemBag()
-    {
-        // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
-        for (int i = 0; i < spawnItemBag.Count - 2; i++)
-        {
-            int j = random.Next(i, spawnItemBag.Count);
-
-            // swap i, j
-            SpawnItem swap = spawnItemBag[i];
-
-            spawnItemBag[i] = spawnItemBag[j];
-            spawnItemBag[j] = swap;
-        }
-        spawnBagSize = spawnItemBag.Count;
-        spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
+        ShuffleSpawnItemBag();
     }
 
     /// <summary>
@@ -185,7 +145,6 @@ public class SpawnSystem
         playerPosition.y = 0;
 
         SpawnItems(playerPosition, playerRotation, delta);
-
     }
 
     public void NewPatchSpawn(Vector3 playerPosition)
@@ -199,9 +158,9 @@ public class SpawnSystem
             SpawnItem spawn = SpawnItemBagPop();
 
             List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
-            if(spawnedList != null)
+            if (spawnedList != null)
             {
-                foreach(ISpawned spawned in spawnedList)
+                foreach (ISpawned spawned in spawnedList)
                 {
                     ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
                 }
@@ -239,6 +198,24 @@ public class SpawnSystem
         microbeSpawner.AddSpecies(species, numOfItems);
     }
 
+    private void ShuffleSpawnItemBag()
+    {
+        // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
+        for (int i = 0; i < spawnItemBag.Count - 2; i++)
+        {
+            int j = random.Next(i, spawnItemBag.Count);
+
+            // swap i, j
+            SpawnItem swap = spawnItemBag[i];
+
+            spawnItemBag[i] = spawnItemBag[j];
+            spawnItemBag[j] = swap;
+        }
+
+        spawnBagSize = spawnItemBag.Count;
+        spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
+    }
+
     private SpawnItem SpawnItemBagPop()
     {
         if (spawnItemBag.Count == 0)
@@ -261,7 +238,7 @@ public class SpawnSystem
         return displacement;
     }
 
-      private void SpawnItems(Vector3 playerPosition, Vector3 playerRotation, float delta)
+    private void SpawnItems(Vector3 playerPosition, Vector3 playerRotation, float delta)
     {
         spawnItemTimer -= delta;
         if (spawnItemTimer <= 0)
@@ -277,9 +254,9 @@ public class SpawnSystem
 
         SpawnItem spawn = SpawnItemBagPop();
 
-        //If there are too many entities, do not spawn any more.
+        // If there are too many entities, do not spawn any more.
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
-        if(spawnedEntities.Count >= maxAliveEntities)
+        if (spawnedEntities.Count >= maxAliveEntities)
             return;
 
         float minRadius = spawn.GetMinSpawnRadius();
@@ -291,9 +268,9 @@ public class SpawnSystem
         Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
 
         List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
-        if(spawnedList != null)
+        if (spawnedList != null)
         {
-            foreach(ISpawned spawned in spawnedList)
+            foreach (ISpawned spawned in spawnedList)
             {
                 ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
             }
