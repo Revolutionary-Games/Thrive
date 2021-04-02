@@ -60,6 +60,8 @@ public class ChunkSpawner : Spawner
 
         var chunk = (FloatingChunk)chunkScene.Instance();
 
+        GD.Print(chunkType.Name);
+
         // Settings need to be applied before adding it to the scene
         var selectedMesh = chunkType.Meshes.Random(random);
         chunk.GraphicsScene = selectedMesh.LoadedScene;

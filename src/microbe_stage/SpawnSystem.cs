@@ -14,8 +14,13 @@ public class SpawnSystem
     [JsonProperty]
     private float spawnItemTimer;
 
+    [JsonIgnore]
     private CompoundCloudSpawner cloudSpawner;
+
+    [JsonIgnore]
     private ChunkSpawner chunkSpawner;
+
+    [JsonIgnore]
     private MicrobeSpawner microbeSpawner;
 
     /// <summary>
@@ -25,10 +30,10 @@ public class SpawnSystem
 
     // Used for a Tetris style random bag. Fill and shuffle the bag,
     // then simply pop one out until empty. Rinse and repeat.
-    [JsonProperty]
+    [JsonIgnore]
     private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
 
-    [JsonProperty]
+    [JsonIgnore]
     private int spawnBagSize;
 
     [JsonProperty]
@@ -47,12 +52,38 @@ public class SpawnSystem
     [JsonProperty]
     private int maxAliveEntities = 1000;
 
-    public SpawnSystem(Node root, CompoundCloudSystem cloudSystem, int spawnRadius)
+    public SpawnSystem(Node root)
     {
         worldRoot = root;
+
+    }
+
+    public void Init(CompoundCloudSystem cloudSystem, int spawnRadius)
+    {
         cloudSpawner = new CompoundCloudSpawner(cloudSystem, spawnRadius);
         chunkSpawner = new ChunkSpawner(cloudSystem, spawnRadius);
         microbeSpawner = new MicrobeSpawner(cloudSystem, spawnRadius);
+        if(spawnItemBag.Count > 0)
+        {
+            foreach(SpawnItem item in spawnItemBag)
+            {
+                switch (item.spawnType)
+                {
+                case CloudItem.NAME:
+                        ((CloudItem)item).SetCloudSpawner(cloudSpawner);
+                    break;
+
+                case ChunkItem.NAME:
+                        ((ChunkItem)item).SetChunkSpawner(chunkSpawner);
+
+                    break;
+
+                case MicrobeItem.NAME:
+                        ((MicrobeItem)item).SetMicrobeSpawner(microbeSpawner);
+                    break;
+                }
+            }
+        }
     }
 
     public void SetCurrentGame(GameProperties currentGame)
@@ -164,7 +195,7 @@ public class SpawnSystem
     {
         for (int i = 0; i < Constants.FREE_SPAWNS_IN_NEW_PATCH; i++)
         {
-            float displacementDistance = random.NextFloat() * cloudSpawner.MinSpawnRadius + 1.0f;
+            float displacementDistance = random.NextFloat() * cloudSpawner.MinSpawnRadius + 3.0f;
             float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
 
             Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);

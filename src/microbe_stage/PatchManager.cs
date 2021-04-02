@@ -34,7 +34,8 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed, Vector3 playerPosition)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed,
+        Vector3 playerPosition, bool isNewGame)
     {
         if (previousPatch != currentPatch && despawnAllowed)
         {
@@ -70,7 +71,12 @@ public class PatchManager
         HandleCellSpawns(currentPatch);
 
         spawnSystem.FillSpawnItemBag();
-        spawnSystem.NewPatchSpawn(playerPosition);
+
+        //If we just loaded a save file, don't spawn new stuff.
+        if(despawnAllowed && !isNewGame)
+        {
+            spawnSystem.NewPatchSpawn(playerPosition);
+        }
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);

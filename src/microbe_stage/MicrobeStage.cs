@@ -188,6 +188,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
+
     }
 
     public void ResolveNodeReferences()
@@ -210,7 +211,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
-        spawner = new SpawnSystem(rootOfDynamicallySpawned, Clouds, Constants.MICROBE_SPAWN_RADIUS);
+        spawner = new SpawnSystem(rootOfDynamicallySpawned);
 
         NodeReferencesResolved = true;
     }
@@ -226,6 +227,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // Make sure settings is loaded
         if (Settings.Instance == null)
             GD.PrintErr("Settings load problem");
+
+        spawner.Init(Clouds, Constants.MICROBE_SPAWN_RADIUS);
 
         if (!IsLoadedFromSave)
         {
@@ -251,7 +254,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (IsLoadedFromSave)
         {
             HUD.OnEnterStageTransition(false);
-            UpdatePatchSettings(true, Player.Transform.origin);
+            UpdatePatchSettings(true, Player.Transform.origin, false);
         }
         else
         {
@@ -276,7 +279,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         CreatePatchManagerIfNeeded();
 
-        UpdatePatchSettings(false, new Vector3(0, 0, 0));
+        UpdatePatchSettings(false, new Vector3(0, 0, 0), true);
 
         SpawnPlayer();
     }
@@ -471,7 +474,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void OnReturnFromEditor()
     {
-        UpdatePatchSettings(false, Player.Transform.origin);
+        UpdatePatchSettings(false, Player.Transform.origin, false);
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -576,9 +579,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
     }
 
-    private void UpdatePatchSettings(bool isLoading, Vector3 playerPosition)
+    private void UpdatePatchSettings(bool isLoading, Vector3 playerPosition, bool isNewGame)
     {
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading, playerPosition);
+        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading, playerPosition, isNewGame);
 
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);

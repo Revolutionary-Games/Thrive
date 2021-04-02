@@ -1,12 +1,14 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 // SpawnItems contains the data for one spawn.
 // These items are added to and drawn from the spawnItemsBag
-
+[JsonConverter(typeof(SpawnItemConverter))]
 abstract class SpawnItem
 {
+    public string spawnType = "";
     abstract public List<ISpawned> Spawn(Vector3 location);
     abstract public int GetSpawnRadius();
     abstract public float GetMinSpawnRadius();
@@ -16,11 +18,16 @@ abstract class SpawnItem
 class CloudItem : SpawnItem
 {
     private CompoundCloudSpawner cloudSpawner;
+    [JsonProperty]
     private Compound compound;
+    [JsonProperty]
     private float amount;
+
+    public const string NAME = "CLOUD";
 
     public CloudItem(CompoundCloudSpawner cloudSpawner, Compound compound, float amount)
     {
+        spawnType = NAME;
         this.cloudSpawner = cloudSpawner;
         this.compound = compound;
         this.amount = amount;
@@ -40,17 +47,26 @@ class CloudItem : SpawnItem
     {
         return cloudSpawner.MinSpawnRadius;
     }
+
+    public void SetCloudSpawner(CompoundCloudSpawner cloudSpawner)
+    {
+        this.cloudSpawner = cloudSpawner;
+    }
 }
 
 // Chunk to be spawned
 class ChunkItem : SpawnItem
 {
     ChunkSpawner chunkSpawner;
+    [JsonProperty]
     ChunkConfiguration chunkType;
     Node worldNode;
 
+    public const string NAME = "CHUNK";
+
     public ChunkItem(ChunkSpawner chunkSpawner, ChunkConfiguration chunkType, Node worldNode)
     {
+        spawnType = NAME;
         this.chunkSpawner = chunkSpawner;
         this.chunkType = chunkType;
         this.worldNode = worldNode;
@@ -72,16 +88,25 @@ class ChunkItem : SpawnItem
     {
         return chunkSpawner.MinSpawnRadius;
     }
+
+    public void SetChunkSpawner(ChunkSpawner chunkSpawner)
+    {
+        this.chunkSpawner = chunkSpawner;
+    }
 }
 
 // Microbe to be spawned
 class MicrobeItem : SpawnItem
 {
     MicrobeSpawner microbeSpawner;
+    [JsonProperty]
     MicrobeSpecies species;
     Node worldNode;
+
+    public const string NAME =  "MICROBE";
     public MicrobeItem(MicrobeSpawner microbeSpawner, MicrobeSpecies species, Node worldNode)
     {
+        spawnType = NAME;
         this.microbeSpawner = microbeSpawner;
         this.species = species;
         this.worldNode = worldNode;
@@ -100,5 +125,10 @@ class MicrobeItem : SpawnItem
     public override float GetMinSpawnRadius()
     {
         return microbeSpawner.MinSpawnRadius;
+    }
+
+    public void SetMicrobeSpawner(MicrobeSpawner microbeSpawner)
+    {
+        this.microbeSpawner = microbeSpawner;
     }
 }
