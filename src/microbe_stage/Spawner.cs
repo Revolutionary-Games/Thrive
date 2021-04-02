@@ -23,17 +23,6 @@ public abstract class Spawner
     /// <value>The spawn frequency.</value>
     public int SpawnFrequency { get; set; }
 
-    /// <summary>
-    ///   If this is queued to be destroyed the spawn system will remove this on next update
-    /// </summary>
-    /// <value><c>true</c> if destroy queued; otherwise, <c>false</c>.</value>
-    public bool DestroyQueued { get; set; }
-
-    public void SetFrequencyFromDensity(float spawnDensity)
-    {
-        SpawnFrequency = (int)(spawnDensity * SpawnRadius * SpawnRadius * 4); //Change This before pushing
-    }
-
     public void SetSpawnRadius(int spawnRadius)
     {
         SpawnRadius = spawnRadius;
@@ -42,5 +31,4 @@ public abstract class Spawner
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
         MinSpawnRadius = minSpawnRadius;
     }
-
 }

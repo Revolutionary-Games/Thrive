@@ -50,19 +50,25 @@ public class MicrobeSpawner : Spawner
         return speciesCounts[species];
     }
 
-    public void Spawn(Node worldNode, Vector3 location, MicrobeSpecies species)
+    public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species)
     {
         GD.Print("Spawning a Microbe");
 
+        List<ISpawned> spawnedMicrobes = new List<ISpawned>();
+
         // The true here is that this is AI controlled
-        MicrobeSpawner.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
-            currentGame);
+        spawnedMicrobes.Add(MicrobeSpawner.SpawnMicrobe(species, location, worldNode,
+            microbeScene, true, cloudSystem, currentGame));
 
         if (species.IsBacteria)
         {
-            MicrobeSpawner.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                cloudSystem, currentGame, random);
+            foreach (Microbe microbe in MicrobeSpawner.SpawnBacteriaColony(species, location, worldNode, microbeScene,
+                cloudSystem, currentGame, random))
+            {
+                spawnedMicrobes.Add(microbe);
+            }
         }
+        return spawnedMicrobes;
     }
 
     public static Microbe SpawnMicrobe(Species species, Vector3 location,

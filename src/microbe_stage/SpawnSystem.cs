@@ -8,12 +8,6 @@ using Newtonsoft.Json;
 /// </summary>
 public class SpawnSystem
 {
-    /// <summary>
-    ///   Sets how often the spawn system runs and checks things
-    /// </summary>
-    [JsonProperty]
-    private float interval = 1.0f;
-
     [JsonProperty]
     private float elapsed = 0;
 
@@ -52,11 +46,6 @@ public class SpawnSystem
     /// </summary>
     [JsonProperty]
     private int maxAliveEntities = 1000;
-
-    /// <summary>
-    ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
-    /// </summary>
-    private int estimateEntityCount;
 
     public SpawnSystem(Node root, CompoundCloudSystem cloudSystem, int spawnRadius)
     {
@@ -185,6 +174,36 @@ public class SpawnSystem
         }
     }
 
+    public void ClearCloudSpawner()
+    {
+        cloudSpawner.ClearBiomeCompounds();
+    }
+
+    public void ClearChunkSpawner()
+    {
+        chunkSpawner.ClearChunks();
+    }
+
+    public void ClearMicrobeSpawner()
+    {
+        microbeSpawner.ClearSpecies();
+    }
+
+    public void AddBiomeCompound(Compound compound, int numOfItems, float amount)
+    {
+        cloudSpawner.AddBiomeCompound(compound, numOfItems, amount);
+    }
+
+    public void AddBiomeChunk(ChunkConfiguration chunk, int numOfItems)
+    {
+        chunkSpawner.AddChunk(chunk, numOfItems);
+    }
+
+    public void AddPatchSpecies(Species species, int numOfItems)
+    {
+        microbeSpawner.AddSpecies(species, numOfItems);
+    }
+
     private SpawnItem SpawnItemBagPop()
     {
         if (spawnItemBag.Count == 0)
@@ -223,15 +242,27 @@ public class SpawnSystem
 
         SpawnItem spawn = SpawnItemBagPop();
 
-        float minRadius = cloudSpawner.MinSpawnRadius;
-        float maxRadius = cloudSpawner.SpawnRadius;
+        //If there are too many entities, do not spawn any more.
+        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
+        if(spawnedEntities.Count >= maxAliveEntities)
+            return;
+
+        float minRadius = spawn.GetMinSpawnRadius();
+        float maxRadius = spawn.GetSpawnRadius();
 
         float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
         float displacementRotation = WeightedRandomRotation(playerRotation.y);
 
         Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
 
-        spawn.Spawn(playerPosition + displacement);
+        List<ISpawned> spawnedList =  spawn.Spawn(playerPosition + displacement);
+        if(spawnedList != null)
+        {
+            foreach(ISpawned spawned in spawnedList)
+            {
+                ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
+            }
+        }
     }
 
     /// <summary>
@@ -276,13 +307,13 @@ public class SpawnSystem
     /// <summary>
     ///   Add the entity to the spawned group and add the despawn radius
     /// </summary>
-    private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
+    private void ProcessSpawnedEntity(ISpawned entity, int spawnRadius)
     {
         // I don't understand why the same
         // value is used for spawning and
         // despawning, but apparently it works
         // just fine
-        entity.DespawnRadius = spawnType.SpawnRadius;
+        entity.DespawnRadius = spawnRadius;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
@@ -318,35 +349,5 @@ public class SpawnSystem
     {
         float distance = Math.Abs(p1 - p2);
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
-    }
-
-    public void ClearCloudSpawner()
-    {
-        cloudSpawner.ClearBiomeCompounds();
-    }
-
-    public void ClearChunkSpawner()
-    {
-        chunkSpawner.ClearChunks();
-    }
-
-    public void ClearMicrobeSpawner()
-    {
-        microbeSpawner.ClearSpecies();
-    }
-
-    public void AddBiomeCompound(Compound compound, int numOfItems, float amount)
-    {
-        cloudSpawner.AddBiomeCompound(compound, numOfItems, amount);
-    }
-
-    public void AddBiomeChunk(ChunkConfiguration chunk, int numOfItems)
-    {
-        chunkSpawner.AddChunk(chunk, numOfItems);
-    }
-
-    public void AddPatchSpecies(Species species, int numOfItems)
-    {
-        microbeSpawner.AddSpecies(species, numOfItems);
     }
 }

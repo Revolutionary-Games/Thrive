@@ -1,12 +1,15 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 // SpawnItems contains the data for one spawn.
 // These items are added to and drawn from the spawnItemsBag
 
 abstract class SpawnItem
 {
-    abstract public void Spawn(Vector3 location);
+    abstract public List<ISpawned> Spawn(Vector3 location);
+    abstract public int GetSpawnRadius();
+    abstract public float GetMinSpawnRadius();
 }
 
 // Cloud to be spawned
@@ -23,14 +26,19 @@ class CloudItem : SpawnItem
         this.amount = amount;
     }
 
-    public override void Spawn(Vector3 location)
+    public override List<ISpawned> Spawn(Vector3 location)
     {
         cloudSpawner.SpawnCloud(location, compound, amount);
+        return null;
     }
 
-    public Compound GetCompound()
+    public override int GetSpawnRadius(){
+        return cloudSpawner.SpawnRadius;
+    }
+
+    public override float GetMinSpawnRadius()
     {
-        return compound;
+        return cloudSpawner.MinSpawnRadius;
     }
 }
 
@@ -48,12 +56,22 @@ class ChunkItem : SpawnItem
         this.worldNode = worldNode;
     }
 
-    public override void Spawn(Vector3 location)
+    public override List<ISpawned> Spawn(Vector3 location)
     {
-        chunkSpawner.SpawnChunk(location, chunkType, worldNode);
+        List<ISpawned> chunks = new List<ISpawned>();
+        chunks.Add(chunkSpawner.Spawn(location, chunkType, worldNode));
+        return chunks;
     }
 
+    public override int GetSpawnRadius()
+    {
+        return chunkSpawner.SpawnRadius;
+    }
 
+    public override float GetMinSpawnRadius()
+    {
+        return chunkSpawner.MinSpawnRadius;
+    }
 }
 
 // Microbe to be spawned
@@ -69,8 +87,18 @@ class MicrobeItem : SpawnItem
         this.worldNode = worldNode;
     }
 
-    public override void Spawn(Vector3 location)
+    public override List<ISpawned> Spawn(Vector3 location)
     {
-        microbeSpawner.Spawn(worldNode, location, species);
+        return microbeSpawner.Spawn(worldNode, location, species);
+    }
+
+    public override int GetSpawnRadius()
+    {
+        return microbeSpawner.SpawnRadius;
+    }
+
+    public override float GetMinSpawnRadius()
+    {
+        return microbeSpawner.MinSpawnRadius;
     }
 }
