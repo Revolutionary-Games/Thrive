@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-01 18:37+0700\n"
-"PO-Revision-Date: 2021-03-26 17:41+0000\n"
+"PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -814,7 +814,7 @@ msgstr "生物数量："
 
 #: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
-msgstr ""
+msgstr "在 {0} 中灭绝"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
@@ -842,7 +842,7 @@ msgstr "地区中的生物数量："
 
 #: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "从这个星球上灭绝了"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1763,7 +1763,7 @@ msgstr "添加新的绑定键位"
 
 #: ../src/microbe_stage/Microbe.cs:806
 msgid "DEATH"
-msgstr ""
+msgstr "死亡数"
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1774,9 +1774,8 @@ msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
 #: ../src/microbe_stage/Microbe.cs:1501
-#, fuzzy
 msgid "REPRODUCED"
-msgstr "产出"
+msgstr "繁殖次数"
 
 #: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"

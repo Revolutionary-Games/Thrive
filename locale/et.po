@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-02 13:43+0300\n"
-"PO-Revision-Date: 2021-03-31 07:21+0000\n"
+"POT-Creation-Date: 2021-03-03 09:37+0200\n"
+"PO-Revision-Date: 2021-03-31 14:40+0000\n"
 "Last-Translator: Thor Andreas Laan <thor.a.laan@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/et/>\n"
@@ -98,6 +98,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Ole teadlik et su konkurendid arenevad sinuga koos. Iga kord kui sa enda "
+"rakku muudad, arenevad nad samuti."
 
 #: ../simulation_parameters/common/help_texts.json:20
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -106,6 +108,11 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Rakuvälised organellid\n"
+"\n"
+"Vibur: paneb su raku kiiremini liikuma, aga kasutab rohkem ATP-d\n"
+"\n"
+"Piil: laseb su rakul teise rakke pussitada"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -1207,7 +1214,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:154
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:217
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Membraani jäikus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:254
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
@@ -1217,7 +1224,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6597
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6958
 msgid "MOBILITY"
-msgstr ""
+msgstr "Liikuvus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:289
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5530
@@ -1227,11 +1234,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6700
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7061
 msgid "HEALTH"
-msgstr ""
+msgstr "Elu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:329
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab "
+"liikumist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:441
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:693
@@ -1244,7 +1253,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4450
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4970
 msgid "TURNS"
-msgstr ""
+msgstr "Keerab"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:466
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:718
@@ -1277,7 +1286,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4783
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5099
 msgid "STORAGE"
-msgstr ""
+msgstr "Varud"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:838
@@ -1320,7 +1329,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:766
 msgid "OXYGEN_DOT"
-msgstr ""
+msgstr "Hapnik."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1335,7 +1344,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3560
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3862
 msgid "PRODUCES"
-msgstr ""
+msgstr "Toodab"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1012
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
@@ -1367,7 +1376,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
-msgstr ""
+msgstr "Valgus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1831,23 +1840,23 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1774
 msgid "STRUCTURAL"
-msgstr ""
+msgstr "Struktuurne"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1937
 msgid "PROTEINS"
-msgstr ""
+msgstr "Valgud"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2165
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
-msgstr ""
+msgstr "Kemo-sünteesivad valgud"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2430
 msgid "EXTERNAL"
-msgstr ""
+msgstr "Väline"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
 msgid "ORGANELLES"
-msgstr ""
+msgstr "Organellid"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3313
 msgid "N_A_MP"
@@ -1859,23 +1868,23 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3449
 msgid "MEMBRANE_TYPES"
-msgstr ""
+msgstr "Membraani liigid"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3933
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Vedelus / Jäikus"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
 msgid "COLOUR"
-msgstr ""
+msgstr "Värv"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4117
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr ""
+msgstr "Liigi nimi"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4146
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "KINNITA"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4156
 msgid "NEGATIVE_ATP_BALANCE"
@@ -1899,7 +1908,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4304
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Toiduahel"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4317
 msgid "TIMELINE"
