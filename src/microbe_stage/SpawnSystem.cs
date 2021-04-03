@@ -303,10 +303,10 @@ public class SpawnSystem
             }
 
             var entityPosition = ((Spatial)entity).Translation;
-            var distance = (playerPosition - entityPosition).Length();
+            var squaredDistance = (playerPosition - entityPosition).LengthSquared();
 
             // If the entity is too far away from the player, despawn it.
-            if (distance > spawned.DespawnRadius)
+            if (squaredDistance > spawned.DespawnRadius * spawned.DespawnRadius)
             {
                 entitiesDeleted++;
                 entity.DetachAndQueueFree();
