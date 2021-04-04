@@ -117,6 +117,7 @@ internal static class KeyNames
         TranslationServer.Translate("SSHARP");
         TranslationServer.Translate("DIVISION");
         TranslationServer.Translate("YDIAERESIS");
+        TranslationServer.Translate("ESCAPE");
         TranslationServer.Translate("TAB");
         TranslationServer.Translate("BACKSPACE");
         TranslationServer.Translate("ENTER");
