@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-01 18:37+0700\n"
-"PO-Revision-Date: 2021-03-23 08:41+0000\n"
+"PO-Revision-Date: 2021-04-04 16:01+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
@@ -1459,12 +1459,12 @@ msgstr "Osmoregulierungskosten"
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung "
-"aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das "
-"Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die "
-"Fermentation, die Umwandlung von Glukose in ATP-Energie. Damit Zellen, "
-"denen Organellen fehlen, einen fortgeschritteneren Stoffwechsel haben, "
-"sind sie auf diese Energie angewiesen. Sie wird auch dazu verwendet, "
-"Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
+"aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere "
+"der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die Glykolyse, "
+"die Umwandlung von Glukose in ATP-Energie. Damit Zellen, denen Organellen "
+"fehlen, einen fortgeschritteneren Stoffwechsel haben, sind sie auf diese "
+"Energie angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu "
+"speichern und die Zelle zu vergrössern."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:746
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
@@ -1485,12 +1485,12 @@ msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt "
 "sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung "
-"genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, "
-"als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch "
-"Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung "
-"verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen "
-"direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit "
-"eine gewisse Fermentation durch."
+"genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, als "
+"dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch "
+"Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung verlangsamt "
+"die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen direkt im "
+"Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse "
+"durch."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2096
@@ -1538,14 +1538,14 @@ msgstr "Licht"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. "
-"Die Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in "
-"einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid "
-"Glukose herzustellen. Diese Pigmente sind es auch, die ihnen eine "
-"unverwechselbare Farbe verleihen. Die Geschwindigkeit ihrer "
-"Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der "
-"Lichtintensität ab. Da die Thylakoide direkt im Zytoplasma untergebracht "
-"sind, führt die umgebende Flüssigkeit eine gewisse Fermentation durch."
+"Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. Die "
+"Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in einem "
+"Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose "
+"herzustellen. Diese Pigmente sind es auch, die ihnen eine unverwechselbare "
+"Farbe verleihen. Die Geschwindigkeit ihrer Glukoseproduktion hängt von der "
+"Konzentration des Kohlendioxids und der Lichtintensität ab. Da die "
+"Thylakoide direkt im Zytoplasma untergebracht sind, führt die umgebende "
+"Flüssigkeit glykolyse durch."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4220
@@ -1559,13 +1559,13 @@ msgstr "Verwandelt außerdem"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"Chemosynthetisierende Proteine sind kleine Proteincluster im Zytoplasma, "
-"die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges "
-"Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in "
-"Glukose umzuwandeln. Die Rate der Glukoseproduktion skaliert mit der "
-"Konzentration von Kohlendioxid. Da die chemosynthetisierenden Proteine "
-"direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit "
-"eine gewisse Fermentation durch."
+"Chemosynthetisierende Proteine sind kleine Proteincluster im Zytoplasma, die "
+"in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid "
+"in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose "
+"umzuwandeln. Die Rate der Glukoseproduktion skaliert mit der Konzentration "
+"von Kohlendioxid. Da die chemosynthetisierenden Proteine direkt im "
+"Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse "
+"durch."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1591,12 +1591,12 @@ msgstr "skaliert sich mit der Konzentration von"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff "
-"und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen "
-"wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein "
-"Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die "
-"Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende "
-"Flüssigkeit eine gewisse Fermentation durch."
+"Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und "
+"zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen "
+"Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als "
+"anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im "
+"Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse "
+"durch."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5002
@@ -1910,7 +1910,7 @@ msgstr "Eingabemethode hinzufügen"
 
 #: ../src/microbe_stage/Microbe.cs:806
 msgid "DEATH"
-msgstr ""
+msgstr "Tot"
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1921,9 +1921,8 @@ msgid "SUCCESSFUL_KILL"
 msgstr "erfolgreiche Tötung"
 
 #: ../src/microbe_stage/Microbe.cs:1501
-#, fuzzy
 msgid "REPRODUCED"
-msgstr "Produziert"
+msgstr "Reproduziert"
 
 #: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
