@@ -5,6 +5,13 @@
 /// </summary>
 public class MembraneType : IRegistryType
 {
+    /// <summary>
+    ///   User readable name
+    /// </summary>
+    [TranslateFrom("untranslatedName")]
+    public string Name;
+
+    public string IconPath;
     public string NormalTexture;
     public string DamagedTexture;
     public float MovementFactor = 1.0f;
@@ -19,6 +26,10 @@ public class MembraneType : IRegistryType
 
     public Texture LoadedNormalTexture;
     public Texture LoadedDamagedTexture;
+
+#pragma warning disable 169 // Used through reflection
+    private string untranslatedName;
+#pragma warning restore 169
 
     public string InternalName { get; set; }
 
@@ -43,6 +54,8 @@ public class MembraneType : IRegistryType
                     "Membrane uses non-existant image: " + resource);
             }
         }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
     /// <summary>
@@ -57,5 +70,6 @@ public class MembraneType : IRegistryType
 
     public void ApplyTranslations()
     {
+        TranslationHelper.ApplyTranslations(this);
     }
 }
