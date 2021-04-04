@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-01 18:37+0700\n"
+"POT-Creation-Date: 2021-04-04 15:21+0200\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -834,15 +834,822 @@ msgstr ""
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
+#: ../src/engine/input/key_mapping/KeyNames.cs:12
+msgid "SPACE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:13
+msgid "EXCLAM"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:14
+msgid "QUOTEDBL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:15
+msgid "NUMBERSIGN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:16
+msgid "DOLLAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:17
+msgid "PERCENT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:18
+msgid "AMPERSAND"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:19
+msgid "APOSTROPHE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:20
+#, fuzzy
+msgid "PARENLEFT"
+msgstr "Pagriezt pa kreisi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:21
+#, fuzzy
+msgid "PARENRIGHT"
+msgstr "Pagriezt pa labi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:22
+msgid "ASTERISK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:23
+msgid "PLUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:24
+msgid "COMMA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:25
+msgid "MINUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:26
+msgid "PERIOD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:27
+msgid "SLASH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:28
+msgid "KEY0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:29
+msgid "KEY1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:30
+msgid "KEY2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:31
+msgid "KEY3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:32
+msgid "KEY4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:33
+msgid "KEY5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:34
+msgid "KEY6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:35
+msgid "KEY7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:36
+msgid "KEY8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:37
+msgid "KEY9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:38
+#, fuzzy
+msgid "COLON"
+msgstr "Krāsa"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:39
+#, fuzzy
+msgid "SEMICOLON"
+msgstr "Izmērs:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:40
+msgid "LESS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:41
+msgid "EQUAL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:42
+msgid "GREATER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:43
+#, fuzzy
+msgid "QUESTION"
+msgstr "Izšķirtspēja:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:44
+#, fuzzy
+msgid "AT"
+msgstr "ATP"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:45
+#, fuzzy
+msgid "BRACKETLEFT"
+msgstr "Pagriezt pa kreisi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:46
+#, fuzzy
+msgid "BACKSLASH"
+msgstr "Atpakaļ"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:47
+#, fuzzy
+msgid "BRACKETRIGHT"
+msgstr "Pagriezt pa labi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:48
+msgid "ASCIICIRCUM"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:49
+msgid "UNDERSCORE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:50
+#, fuzzy
+msgid "QUOTELEFT"
+msgstr "Pagriezt pa kreisi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:51
+#, fuzzy
+msgid "BRACELEFT"
+msgstr "Pagriezt pa kreisi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:52
+msgid "BAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:53
+#, fuzzy
+msgid "BRACERIGHT"
+msgstr "Pagriezt pa labi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:54
+msgid "ASCIITILDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:55
+#, fuzzy
+msgid "EXCLAMDOWN"
+msgstr "Rullīte uz leju"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:56
+msgid "CENT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:57
+msgid "STERLING"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:58
+msgid "CURRENCY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:59
+#, fuzzy
+msgid "YEN"
+msgstr "Skābeklis"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:60
+msgid "BROKENBAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:61
+#, fuzzy
+msgid "SECTION"
+msgstr "Apraksts:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:62
+msgid "DIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:63
+#, fuzzy
+msgid "COPYRIGHT"
+msgstr "Pārvietoties pa labi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:64
+msgid "ORDFEMININE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:65
+msgid "GUILLEMOTLEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:66
+msgid "NOTSIGN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:67
+msgid "HYPHEN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:68
+msgid "REGISTERED"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:69
+msgid "MACRON"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:70
+msgid "DEGREE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:71
+msgid "PLUSMINUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:72
+msgid "TWOSUPERIOR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:73
+msgid "THREESUPERIOR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:74
+msgid "ACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:75
+#, fuzzy
+msgid "MU"
+msgstr "Izslēgt skaņu"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:76
+msgid "PARAGRAPH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:77
+msgid "PERIODCENTERED"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:78
+msgid "CEDILLA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:79
+msgid "ONESUPERIOR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:80
+msgid "MASCULINE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:81
+msgid "GUILLEMOTRIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:82
+msgid "ONEQUARTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:83
+msgid "ONEHALF"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:84
+msgid "THREEQUARTERS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:85
+msgid "QUESTIONDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:86
+msgid "AGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:87
+msgid "AACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:88
+msgid "ACIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:89
+msgid "ATILDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:90
+msgid "ADIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:91
+msgid "ARING"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:92
+#, fuzzy
+msgid "AE"
+msgstr "Saglabāt"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:93
+msgid "CCEDILLA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:94
+msgid "EGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:95
+msgid "EACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:96
+msgid "ECIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:97
+msgid "EDIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:98
+msgid "IGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:99
+msgid "IACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:100
+msgid "ICIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:101
+msgid "IDIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:102
+msgid "ETH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:103
+msgid "NTILDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:104
+msgid "OGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:105
+msgid "OACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:106
+msgid "OCIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:107
+msgid "OTILDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:108
+msgid "ODIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:109
+msgid "MULTIPLY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:110
+msgid "OOBLIQUE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:111
+msgid "UGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:112
+msgid "UACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:113
+msgid "UCIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:114
+msgid "UDIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:115
+msgid "YACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:116
+msgid "THORN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:117
+msgid "SSHARP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:118
+#, fuzzy
+msgid "DIVISION"
+msgstr "Versija:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:119
+msgid "YDIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:120
+msgid "TAB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:121
+#, fuzzy
+msgid "BACKSPACE"
+msgstr "Atpakaļ"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:122
+msgid "ENTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:123
+msgid "KPENTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:124
+msgid "INSERT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:125
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+msgid "DELETE"
+msgstr "Izdzēst"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:126
+msgid "PAUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:127
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:128
+msgid "SYSREQ"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:129
+msgid "CLEAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:130
+msgid "HOME"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:131
+msgid "END"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:132
+#, fuzzy
+msgid "LEFT"
+msgstr "Pārvietoties pa kreisi"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:133
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:134
+#, fuzzy
+msgid "RIGHT"
+msgstr "Gaisma"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:135
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:136
+msgid "PAGEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
+msgid "PAGEDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
+msgid "CAPSLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
+msgid "NUMLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
+msgid "SCROLLLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
+msgid "SUPERL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
+msgid "SUPERR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
+msgid "MENU"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
+msgid "HYPERL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
+msgid "HYPERR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
+#: ../src/general/PauseMenu.tscn:86
+msgid "HELP"
+msgstr "Palīdzība"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:147
+#, fuzzy
+msgid "DIRECTIONL"
+msgstr "Apraksts:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
+#, fuzzy
+msgid "DIRECTIONR"
+msgstr "Apraksts:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
+#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:113
+msgid "BACK"
+msgstr "Atpakaļ"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:150
+#, fuzzy
+msgid "FORWARD"
+msgstr "Pārvietoties uz priekšu"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:151
+msgid "STOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:152
+#: ../src/saving/SaveManagerGUI.tscn:66
+msgid "REFRESH"
+msgstr "Atsvaidzināt"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:153
+#, fuzzy
+msgid "VOLUMEDOWN"
+msgstr "SFX skaļums"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:154
+#, fuzzy
+msgid "VOLUMEMUTE"
+msgstr "SFX skaļums"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:155
+#, fuzzy
+msgid "VOLUMEUP"
+msgstr "SFX skaļums"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:156
+msgid "BASSBOOST"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:157
+msgid "BASSUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:158
+msgid "BASSDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:159
+msgid "TREBLEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:160
+#, fuzzy
+msgid "TREBLEDOWN"
+msgstr "Rullīte uz leju"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:161
+msgid "MEDIAPLAY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:162
+msgid "MEDIASTOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
+msgid "MEDIAPREVIOUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+msgid "MEDIANEXT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
+msgid "MEDIARECORD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
+msgid "HOMEPAGE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
+msgid "FAVORITES"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
+msgid "SEARCH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:169
+msgid "STANDBY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:170
+msgid "OPENURL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:171
+msgid "LAUNCHMAIL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:172
+msgid "LAUNCHMEDIA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:173
+msgid "LAUNCH0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:174
+msgid "LAUNCH1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:175
+msgid "LAUNCH2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:176
+msgid "LAUNCH3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:177
+msgid "LAUNCH4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:178
+msgid "LAUNCH5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:179
+msgid "LAUNCH6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:180
+msgid "LAUNCH7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:181
+msgid "LAUNCH8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:182
+msgid "LAUNCH9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:183
+msgid "LAUNCHA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:184
+msgid "LAUNCHB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:185
+msgid "LAUNCHC"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:186
+msgid "LAUNCHD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:187
+msgid "LAUNCHE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:188
+msgid "LAUNCHF"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:189
+msgid "KPMULTIPLY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:190
+msgid "KPDIVIDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:191
+msgid "KPSUBTRACT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:192
+msgid "KPPERIOD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:193
+msgid "KPADD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:194
+msgid "KP0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:195
+msgid "KP1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:196
+msgid "KP2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:197
+msgid "KP3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:198
+msgid "KP4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:199
+msgid "KP5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:200
+msgid "KP6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:201
+msgid "KP7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:202
+msgid "KP8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:203
+msgid "KP9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
+msgid "UNKNOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:53
 msgid "CTRL"
 msgstr "CTRL"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:55
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:57
 msgid "SHIFT"
 msgstr "Shift"
 
@@ -934,12 +1741,6 @@ msgstr "Iziet"
 #: ../src/general/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
-
-#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:113
-msgid "BACK"
-msgstr "Atpakaļ"
 
 #: ../src/general/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
@@ -1182,10 +1983,6 @@ msgstr "Saglabāt spēli"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "STATISTICS"
 msgstr "Statistika"
-
-#: ../src/general/PauseMenu.tscn:86
-msgid "HELP"
-msgstr "Palīdzība"
 
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
@@ -2071,10 +2868,6 @@ msgstr ""
 msgid "MP_COST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
-msgid "DELETE"
-msgstr "Izdzēst"
-
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
 msgstr "Pārvietot"
@@ -2291,10 +3084,6 @@ msgstr ""
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:66
-msgid "REFRESH"
-msgstr "Atsvaidzināt"
-
 #: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
 msgstr "Dzēst atlasītos failus"
@@ -2404,3 +3193,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "BACKTAB"
+#~ msgstr "Atpakaļ"
