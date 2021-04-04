@@ -1,10 +1,11 @@
 ﻿// NO_DUPLICATE_CHECK
+
 using Godot;
 
+// ReSharper disable once UnusedType.Global
 /// <summary>
 ///   Useless class that only exists to tell the translation system specific strings
 /// </summary>
-// ReSharper disable once UnusedType.Global
 internal static class KeyNames
 {
     // ReSharper disable once UnusedMember.Local
