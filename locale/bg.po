@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-04 19:41+0200\n"
-"PO-Revision-Date: 2021-04-04 16:01+0000\n"
+"POT-Creation-Date: 2021-04-04 21:51+0200\n"
+"PO-Revision-Date: 2021-04-04 17:49+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -902,7 +902,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "SPACE"
-msgstr ""
+msgstr "Интервал"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 #, fuzzy
@@ -1273,55 +1273,55 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "Неизвестен бутон"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:53
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
 msgstr "Ctrl"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:55
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:57
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
 msgstr "Ляв бутон"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
 msgstr "Десен бутон"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
 msgstr "Среден бутон"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
 msgstr "Колелце нагоре"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
 msgstr "Колелце надолу"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
 msgstr "Колелце наляво"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
 msgstr "Колелце надясно"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
 msgstr "Специален бутон №1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_2"
 msgstr "Специален бутон №2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr "Неизвестен бутон"
 
@@ -3053,33 +3053,104 @@ msgstr ""
 "За да го направят те се нуждаят от амоняк и фосфат.\n"
 "Наблюдавайте показателите долу вдясно."
 
-#, fuzzy
+#~ msgid "EXCLAM"
+#~ msgstr "!"
+
+#~ msgid "QUOTEDBL"
+#~ msgstr "\""
+
+#~ msgid "NUMBERSIGN"
+#~ msgstr "№"
+
+#~ msgid "DOLLAR"
+#~ msgstr "$"
+
+#~ msgid "PERCENT"
+#~ msgstr "%"
+
+#~ msgid "AMPERSAND"
+#~ msgstr "&"
+
+#~ msgid "APOSTROPHE"
+#~ msgstr "'"
+
 #~ msgid "PARENLEFT"
-#~ msgstr "Завъртане наляво"
+#~ msgstr "("
 
-#, fuzzy
 #~ msgid "PARENRIGHT"
-#~ msgstr "Завъртане надясно"
+#~ msgstr ")"
 
-#, fuzzy
+#~ msgid "ASTERISK"
+#~ msgstr "*"
+
+#~ msgid "PLUS"
+#~ msgstr "+"
+
+#~ msgid "COMMA"
+#~ msgstr ","
+
+#~ msgid "MINUS"
+#~ msgstr "-"
+
+#~ msgid "PERIOD"
+#~ msgstr "."
+
+#~ msgid "SLASH"
+#~ msgstr "/"
+
+#~ msgid "KEY0"
+#~ msgstr "0"
+
+#~ msgid "KEY1"
+#~ msgstr "1"
+
+#~ msgid "KEY2"
+#~ msgstr "2"
+
+#~ msgid "KEY3"
+#~ msgstr "3"
+
+#~ msgid "KEY4"
+#~ msgstr "4"
+
+#~ msgid "KEY5"
+#~ msgstr "5"
+
+#~ msgid "KEY6"
+#~ msgstr "6"
+
+#~ msgid "KEY7"
+#~ msgstr "7"
+
+#~ msgid "KEY8"
+#~ msgstr "8"
+
+#~ msgid "KEY9"
+#~ msgstr "9"
+
 #~ msgid "COLON"
-#~ msgstr "ТЗ:"
+#~ msgstr ":"
 
-#, fuzzy
 #~ msgid "SEMICOLON"
-#~ msgstr "Размер:"
+#~ msgstr ";"
 
-#, fuzzy
+#~ msgid "LESS"
+#~ msgstr "<"
+
+#~ msgid "EQUAL"
+#~ msgstr "="
+
+#~ msgid "GREATER"
+#~ msgstr ">"
+
 #~ msgid "QUESTION"
-#~ msgstr "Резолюция:"
+#~ msgstr "?"
 
-#, fuzzy
 #~ msgid "AT"
-#~ msgstr "АТФ"
+#~ msgstr "@"
 
-#, fuzzy
 #~ msgid "BRACKETLEFT"
-#~ msgstr "Завъртане наляво"
+#~ msgstr "["
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"
@@ -3105,9 +3176,8 @@ msgstr ""
 #~ msgid "YEN"
 #~ msgstr "Кислород"
 
-#, fuzzy
 #~ msgid "SECTION"
-#~ msgstr "Описание:"
+#~ msgstr "§"
 
 #, fuzzy
 #~ msgid "COPYRIGHT"
@@ -3125,13 +3195,8 @@ msgstr ""
 #~ msgid "ETH"
 #~ msgstr "измиране"
 
-#, fuzzy
 #~ msgid "DIVISION"
-#~ msgstr "Версия:"
-
-#, fuzzy
-#~ msgid "BACKTAB"
-#~ msgstr "Назад"
+#~ msgstr "÷"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Външност"
