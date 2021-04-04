@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-01 18:37+0700\n"
-"PO-Revision-Date: 2021-03-27 09:45+0000\n"
+"PO-Revision-Date: 2021-04-03 07:36+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -864,7 +864,7 @@ msgstr "popülasyon:"
 
 #: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
-msgstr ""
+msgstr "{0} arazisinde nesli tükendi"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
@@ -892,7 +892,7 @@ msgstr "arazilerdeki popülasyon:"
 
 #: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "gezegende nesli tükendi"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
@@ -1279,11 +1279,11 @@ msgstr "Çık"
 
 #: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} Mlyr."
+msgstr "{0} Mlyr"
 
 #: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
-msgstr "{0} Mlyn."
+msgstr "{0} Mlyn"
 
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
@@ -1889,7 +1889,7 @@ msgstr "Yeni bir kontrol tuşu ekle"
 
 #: ../src/microbe_stage/Microbe.cs:806
 msgid "DEATH"
-msgstr ""
+msgstr "ölüm"
 
 #: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
@@ -1900,9 +1900,8 @@ msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
 #: ../src/microbe_stage/Microbe.cs:1501
-#, fuzzy
 msgid "REPRODUCED"
-msgstr "Üretir"
+msgstr "çoğaldı"
 
 #: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
