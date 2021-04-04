@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-04 15:40+0200\n"
-"PO-Revision-Date: 2021-03-15 17:26+0000\n"
+"PO-Revision-Date: 2021-04-03 18:58+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -487,7 +487,7 @@ msgstr "Toggle Fullscreen"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Respiration"
+msgstr "Aerobic Respiration"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -510,11 +510,11 @@ msgstr "OxyToxy Synthesis"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "Chemo Synthesis"
+msgstr "Chemosynthesis"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobic Nitrogen Fixing"
+msgstr "Aerobic Nitrogen Fixation"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
@@ -2204,11 +2204,11 @@ msgstr "Osmoregulation Cost"
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "The gooey innards of a cell. The cytoplasm is the basic mixture of ions, "
-"proteins, and other substances dissolved in water that fill the interior "
-"of the cell. One of the functions it performs is Fermentation, the "
-"conversion of glucose into ATP energy. For cells that lack organelles to "
-"have more advanced metabolisms, this is what they rely on for energy. It "
-"is also used to store molecules in the cell and to grow the cell's size."
+"proteins, and other substances dissolved in water that fill the interior of "
+"the cell. One of the functions it performs is glycolysis, the conversion of "
+"glucose into ATP energy. For cells that lack organelles to have more "
+"advanced metabolisms, this is what they rely on for energy. It is also used "
+"to store molecules in the cell and to grow the cell's size."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:746
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
@@ -2233,7 +2233,7 @@ msgstr ""
 "require oxygen to function, and lower levels of oxygen in the environment "
 "will slow down the rate of its ATP production. Since the metabolosomes are "
 "suspended directly in the cytoplasm, the surrounding fluid performs some "
-"fermentation."
+"glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2096
@@ -2287,7 +2287,7 @@ msgstr ""
 "pigments are also what give them a distinctive colour. The rate of their "
 "glucose production scales with the concentration of carbon dioxide, and "
 "intensity of light. Since the thylakoids are suspended directly in the "
-"cytoplasm, the surrounding fluid performs some fermentation."
+"cytoplasm, the surrounding fluid performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4220
@@ -2302,11 +2302,11 @@ msgstr "Also turns"
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Chemosynthesizing proteins are small clusters of protein in the cytoplasm "
-"that are able to convert hydrogen sulfide, water, and gaseous carbon "
-"dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. "
-"The rate of its glucose production scales with the concentration of carbon "
-"dioxide. Since the chemosynthesizing proteins are suspended directly in "
-"the cytoplasm, the surrounding fluid performs some fermentation."
+"that are able to convert hydrogen sulfide, water, and gaseous carbon dioxide "
+"into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate "
+"of its glucose production scales with the concentration of carbon dioxide. "
+"Since the chemosynthesizing proteins are suspended directly in the "
+"cytoplasm, the surrounding fluid performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2331,11 +2331,11 @@ msgstr "scales with concentration of"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy "
-"in the form of ATP to produce ammonia, a key growth nutrient for cells. "
-"This is a process referred to as Anaerobic Nitrogen Fixation. Since the "
-"nitrogenase is suspended directly in the cytoplasm, the surrounding fluid "
-"performs some fermentation."
+"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in "
+"the form of ATP to produce ammonia, a key growth nutrient for cells. This is "
+"a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase "
+"is suspended directly in the cytoplasm, the surrounding fluid performs some "
+"glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5002
@@ -3373,14 +3373,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Removing organelles also costs MP as it is a mutation to your species. You "
-"can right click organelles to bring up the organelle menu and selecting "
+"Removing organelles also costs MP as it is a mutation to your species, "
+"unless they were placed in the current editor session. \n"
+"\n"
+"You can right click organelles to bring up the organelle menu and selecting "
 "the delete option to remove them. \n"
 "\n"
 "If you make a mistake, you can undo any change you make in the editor.\n"
-"\n"
-"Note: removing organelles you placed in the current editor session is "
-"free.\n"
 "\n"
 "Click the undo button to continue."
 
