@@ -125,10 +125,10 @@ internal static class KeyNames
         };
     }
 
+    // ReSharper disable once UnusedMember.Local
     /// <summary>
     ///   Useless method that only exists to tell the translation system specific strings
     /// </summary>
-    // ReSharper disable once UnusedMember.Local
     private static void Keys()
     {
         TranslationServer.Translate("SPACE");
