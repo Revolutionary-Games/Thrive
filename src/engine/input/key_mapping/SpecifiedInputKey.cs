@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -59,7 +58,7 @@ public class SpecifiedInputKey : ICloneable
         if (Type == InputType.Key)
         {
             // If the key is not defined in KeyNames.cs, the string will just be returned unmodified by Translate()
-            text += TranslationServer.Translate(((KeyList)Code).ToString().ToUpper(CultureInfo.InvariantCulture));
+            text += KeyNames.Translate(Code);
         }
         else if (Type == InputType.MouseButton)
         {

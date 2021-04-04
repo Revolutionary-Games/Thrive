@@ -1,124 +1,138 @@
 ﻿// NO_DUPLICATE_CHECK
 
+using System.Globalization;
 using Godot;
 
-// ReSharper disable once UnusedType.Global
-/// <summary>
-///   Useless class that only exists to tell the translation system specific strings
-/// </summary>
 internal static class KeyNames
 {
+    /// <summary>
+    ///   Translates a KeyCode to a printable string
+    /// </summary>
+    /// <param name="keyCode">The keyCode to translate</param>
+    /// <returns>A human readable string</returns>
+    public static string Translate(uint keyCode)
+    {
+        var key = (KeyList)keyCode;
+        return key switch
+        {
+            KeyList.Exclam => "!",
+            KeyList.Quotedbl => "\"",
+            KeyList.Numbersign => "#",
+            KeyList.Dollar => "$",
+            KeyList.Percent => "%",
+            KeyList.Ampersand => "&",
+            KeyList.Apostrophe => "'",
+            KeyList.Parenleft => "(",
+            KeyList.Parenright => ")",
+            KeyList.Asterisk => "*",
+            KeyList.Plus => "+",
+            KeyList.Comma => ",",
+            KeyList.Minus => "-",
+            KeyList.Period => ".",
+            KeyList.Slash => "/",
+            KeyList.Key0 => "0",
+            KeyList.Key1 => "1",
+            KeyList.Key2 => "2",
+            KeyList.Key3 => "3",
+            KeyList.Key4 => "4",
+            KeyList.Key5 => "5",
+            KeyList.Key6 => "6",
+            KeyList.Key7 => "7",
+            KeyList.Key8 => "8",
+            KeyList.Key9 => "9",
+            KeyList.Colon => ":",
+            KeyList.Semicolon => ";",
+            KeyList.Less => "<",
+            KeyList.Equal => "=",
+            KeyList.Greater => ">",
+            KeyList.Question => "?",
+            KeyList.At => "@",
+            KeyList.Bracketleft => "[",
+            KeyList.Bracketright => "]",
+            KeyList.Asciicircum => "^",
+            KeyList.Underscore => "_",
+            KeyList.Quoteleft => "`",
+            KeyList.Braceleft => "{",
+            KeyList.Bar => "|",
+            KeyList.Braceright => "}",
+            KeyList.Asciitilde => "~",
+            KeyList.Exclamdown => "¡",
+            KeyList.Cent => "¢",
+            KeyList.Sterling => "£",
+            KeyList.Currency => "¤",
+            KeyList.Yen => "¥",
+            KeyList.Brokenbar => "¦",
+            KeyList.Section => "§",
+            KeyList.Diaeresis => "¨",
+            KeyList.Copyright => "©",
+            KeyList.Ordfeminine => "ª",
+            KeyList.Guillemotleft => "«",
+            KeyList.Notsign => "¬",
+            KeyList.Hyphen => "-",
+            KeyList.Registered => "®",
+            KeyList.Macron => "¯",
+            KeyList.Degree => "°",
+            KeyList.Plusminus => "±",
+            KeyList.Twosuperior => "²",
+            KeyList.Threesuperior => "³",
+            KeyList.Acute => "´",
+            KeyList.Mu => "µ",
+            KeyList.Paragraph => "¶",
+            KeyList.Periodcentered => "·",
+            KeyList.Cedilla => "¸",
+            KeyList.Onesuperior => "¹",
+            KeyList.Masculine => "º",
+            KeyList.Guillemotright => "»",
+            KeyList.Onequarter => "¼",
+            KeyList.Onehalf => "½",
+            KeyList.Threequarters => "¾",
+            KeyList.Questiondown => "¿",
+            KeyList.Agrave => "À",
+            KeyList.Aacute => "Á",
+            KeyList.Acircumflex => "Â",
+            KeyList.Atilde => "Ã",
+            KeyList.Adiaeresis => "Ä",
+            KeyList.Aring => "Å",
+            KeyList.Ae => "Æ",
+            KeyList.Ccedilla => "Ç",
+            KeyList.Egrave => "È",
+            KeyList.Eacute => "É",
+            KeyList.Ecircumflex => "Ê",
+            KeyList.Ediaeresis => "Ë",
+            KeyList.Igrave => "Ì",
+            KeyList.Iacute => "Í",
+            KeyList.Icircumflex => "Î",
+            KeyList.Idiaeresis => "Ï",
+            KeyList.Eth => "Ð",
+            KeyList.Ntilde => "Ñ",
+            KeyList.Ograve => "Ò",
+            KeyList.Oacute => "Ó",
+            KeyList.Ocircumflex => "Ô",
+            KeyList.Otilde => "Õ",
+            KeyList.Odiaeresis => "Ö",
+            KeyList.Multiply => "×",
+            KeyList.Ooblique => "Ø",
+            KeyList.Ugrave => "Ù",
+            KeyList.Uacute => "Ú",
+            KeyList.Ucircumflex => "Û",
+            KeyList.Udiaeresis => "Ü",
+            KeyList.Yacute => "Ý",
+            KeyList.Thorn => "Þ",
+            KeyList.Ssharp => "ß",
+            KeyList.Division => "÷",
+            KeyList.Ydiaeresis => "ÿ",
+            _ => TranslationServer.Translate(key.ToString().ToUpper(CultureInfo.InvariantCulture)),
+        };
+    }
+
     // ReSharper disable once UnusedMember.Local
+    /// <summary>
+    ///   Useless method that only exists to tell the translation system specific strings
+    /// </summary>
     private static void Keys()
     {
         TranslationServer.Translate("SPACE");
-        TranslationServer.Translate("EXCLAM");
-        TranslationServer.Translate("QUOTEDBL");
-        TranslationServer.Translate("NUMBERSIGN");
-        TranslationServer.Translate("DOLLAR");
-        TranslationServer.Translate("PERCENT");
-        TranslationServer.Translate("AMPERSAND");
-        TranslationServer.Translate("APOSTROPHE");
-        TranslationServer.Translate("PARENLEFT");
-        TranslationServer.Translate("PARENRIGHT");
-        TranslationServer.Translate("ASTERISK");
-        TranslationServer.Translate("PLUS");
-        TranslationServer.Translate("COMMA");
-        TranslationServer.Translate("MINUS");
-        TranslationServer.Translate("PERIOD");
-        TranslationServer.Translate("SLASH");
-        TranslationServer.Translate("KEY0");
-        TranslationServer.Translate("KEY1");
-        TranslationServer.Translate("KEY2");
-        TranslationServer.Translate("KEY3");
-        TranslationServer.Translate("KEY4");
-        TranslationServer.Translate("KEY5");
-        TranslationServer.Translate("KEY6");
-        TranslationServer.Translate("KEY7");
-        TranslationServer.Translate("KEY8");
-        TranslationServer.Translate("KEY9");
-        TranslationServer.Translate("COLON");
-        TranslationServer.Translate("SEMICOLON");
-        TranslationServer.Translate("LESS");
-        TranslationServer.Translate("EQUAL");
-        TranslationServer.Translate("GREATER");
-        TranslationServer.Translate("QUESTION");
-        TranslationServer.Translate("AT");
-        TranslationServer.Translate("BRACKETLEFT");
         TranslationServer.Translate("BACKSLASH");
-        TranslationServer.Translate("BRACKETRIGHT");
-        TranslationServer.Translate("ASCIICIRCUM");
-        TranslationServer.Translate("UNDERSCORE");
-        TranslationServer.Translate("QUOTELEFT");
-        TranslationServer.Translate("BRACELEFT");
-        TranslationServer.Translate("BAR");
-        TranslationServer.Translate("BRACERIGHT");
-        TranslationServer.Translate("ASCIITILDE");
-        TranslationServer.Translate("EXCLAMDOWN");
-        TranslationServer.Translate("CENT");
-        TranslationServer.Translate("STERLING");
-        TranslationServer.Translate("CURRENCY");
-        TranslationServer.Translate("YEN");
-        TranslationServer.Translate("BROKENBAR");
-        TranslationServer.Translate("SECTION");
-        TranslationServer.Translate("DIAERESIS");
-        TranslationServer.Translate("COPYRIGHT");
-        TranslationServer.Translate("ORDFEMININE");
-        TranslationServer.Translate("GUILLEMOTLEFT");
-        TranslationServer.Translate("NOTSIGN");
-        TranslationServer.Translate("HYPHEN");
-        TranslationServer.Translate("REGISTERED");
-        TranslationServer.Translate("MACRON");
-        TranslationServer.Translate("DEGREE");
-        TranslationServer.Translate("PLUSMINUS");
-        TranslationServer.Translate("TWOSUPERIOR");
-        TranslationServer.Translate("THREESUPERIOR");
-        TranslationServer.Translate("ACUTE");
-        TranslationServer.Translate("MU");
-        TranslationServer.Translate("PARAGRAPH");
-        TranslationServer.Translate("PERIODCENTERED");
-        TranslationServer.Translate("CEDILLA");
-        TranslationServer.Translate("ONESUPERIOR");
-        TranslationServer.Translate("MASCULINE");
-        TranslationServer.Translate("GUILLEMOTRIGHT");
-        TranslationServer.Translate("ONEQUARTER");
-        TranslationServer.Translate("ONEHALF");
-        TranslationServer.Translate("THREEQUARTERS");
-        TranslationServer.Translate("QUESTIONDOWN");
-        TranslationServer.Translate("AGRAVE");
-        TranslationServer.Translate("AACUTE");
-        TranslationServer.Translate("ACIRCUMFLEX");
-        TranslationServer.Translate("ATILDE");
-        TranslationServer.Translate("ADIAERESIS");
-        TranslationServer.Translate("ARING");
-        TranslationServer.Translate("AE");
-        TranslationServer.Translate("CCEDILLA");
-        TranslationServer.Translate("EGRAVE");
-        TranslationServer.Translate("EACUTE");
-        TranslationServer.Translate("ECIRCUMFLEX");
-        TranslationServer.Translate("EDIAERESIS");
-        TranslationServer.Translate("IGRAVE");
-        TranslationServer.Translate("IACUTE");
-        TranslationServer.Translate("ICIRCUMFLEX");
-        TranslationServer.Translate("IDIAERESIS");
-        TranslationServer.Translate("ETH");
-        TranslationServer.Translate("NTILDE");
-        TranslationServer.Translate("OGRAVE");
-        TranslationServer.Translate("OACUTE");
-        TranslationServer.Translate("OCIRCUMFLEX");
-        TranslationServer.Translate("OTILDE");
-        TranslationServer.Translate("ODIAERESIS");
-        TranslationServer.Translate("MULTIPLY");
-        TranslationServer.Translate("OOBLIQUE");
-        TranslationServer.Translate("UGRAVE");
-        TranslationServer.Translate("UACUTE");
-        TranslationServer.Translate("UCIRCUMFLEX");
-        TranslationServer.Translate("UDIAERESIS");
-        TranslationServer.Translate("YACUTE");
-        TranslationServer.Translate("THORN");
-        TranslationServer.Translate("SSHARP");
-        TranslationServer.Translate("DIVISION");
-        TranslationServer.Translate("YDIAERESIS");
         TranslationServer.Translate("ESCAPE");
         TranslationServer.Translate("TAB");
         TranslationServer.Translate("BACKSPACE");
