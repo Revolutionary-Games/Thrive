@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿// NO_DUPLICATE_CHECK
+using Godot;
 
 /// <summary>
 ///   Useless class that only exists to tell the translation system specific strings
