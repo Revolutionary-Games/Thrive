@@ -3,7 +3,6 @@
 /// <summary>
 ///   Useless class that only exists to tell the translation system specific strings
 /// </summary>
-
 // ReSharper disable once UnusedType.Global
 internal static class KeyNames
 {
