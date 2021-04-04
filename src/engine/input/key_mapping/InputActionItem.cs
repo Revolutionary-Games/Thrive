@@ -136,7 +136,7 @@ public class InputActionItem : VBoxContainer
         var inputActionItem = (InputActionItem)target.InputActionItemScene.Instance();
 
         inputActionItem.InputName = data.InputName;
-        inputActionItem.DisplayName = data.Name;
+        inputActionItem.DisplayName = TranslationServer.Translate(data.Name);
         inputActionItem.AssociatedGroup = new WeakReference<InputGroupItem>(associatedGroup);
         inputActionItem.Inputs =
             new ObservableCollection<InputEventItem>(inputs.Select(d => InputEventItem.BuildGUI(inputActionItem, d)));
