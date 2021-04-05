@@ -24,6 +24,11 @@ public static class Constants
     public const float DEFAULT_HEX_SIZE = 0.75f;
 
     /// <summary>
+    ///   How far the perlin noise map for the heatmap is zoomed in
+    /// </summary>
+    public const float HEATMAP_NOISE_ZOOM = 500.0f;
+
+    /// <summary>
     ///   Don't change this, so much stuff will break
     /// </summary>
     public const int CLOUDS_IN_ONE = 4;
