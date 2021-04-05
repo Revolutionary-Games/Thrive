@@ -1133,8 +1133,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         foreach (var organelleItem in placeablePartSelectionElements)
         {
+            // organelleItem could be a non-implemented organelle so check if it really exists.
             if (!SimulationParameters.Instance.HasOrganelle(organelleItem.Name))
+            {
+                organelleItem.Locked = true;
                 continue;
+            }
 
             if (organelleItem.Name == nucleus.InternalName)
             {
