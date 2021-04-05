@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-04 23:25+0300\n"
-"PO-Revision-Date: 2021-04-04 20:21+0000\n"
+"PO-Revision-Date: 2021-04-05 08:38+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -905,64 +905,61 @@ msgid "SPACE"
 msgstr "Интервал"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
-#, fuzzy
 msgid "BACKSLASH"
 msgstr "Обратна наклонена черта"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "TAB"
-msgstr ""
+msgstr "Tab"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Назад"
+msgstr "Backspace"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "ENTER"
-msgstr ""
+msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KPENTER"
-msgstr ""
+msgstr "Num Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "INSERT"
-msgstr ""
+msgstr "Insert"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr "Премахване"
+msgstr "Delete"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "PAUSE"
-msgstr ""
+msgstr "Pause"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "PRINT"
-msgstr ""
+msgstr "Print Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "CLEAR"
-msgstr ""
+msgstr "Clear"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "HOME"
-msgstr ""
+msgstr "Home"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
-#, fuzzy
 msgid "END"
-msgstr "и"
+msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "LEFT"
@@ -982,24 +979,23 @@ msgstr "Стрелка надолу"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:153
 msgid "PAGEUP"
-msgstr ""
+msgstr "Page Up"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:154
-#, fuzzy
 msgid "PAGEDOWN"
-msgstr "Преместване надолу"
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:155
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:156
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:157
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:158
 msgid "SUPERL"
@@ -1047,7 +1043,7 @@ msgstr "Напред"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "STOP"
-msgstr ""
+msgstr "Спиране"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 #: ../src/saving/SaveManagerGUI.tscn:66
@@ -1117,11 +1113,11 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "FAVORITES"
-msgstr ""
+msgstr "Предпочитани"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "SEARCH"
-msgstr ""
+msgstr "Търсене"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "STANDBY"
@@ -1205,68 +1201,67 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Num *"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Num /"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Num -"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Num ."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "KPADD"
-msgstr ""
+msgstr "Num +"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "KP0"
-msgstr ""
+msgstr "Num 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KP1"
-msgstr ""
+msgstr "Num 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KP2"
-msgstr ""
+msgstr "Num 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KP3"
-msgstr ""
+msgstr "Num 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KP4"
-msgstr ""
+msgstr "Num 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KP5"
-msgstr ""
+msgstr "Num 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP6"
-msgstr ""
+msgstr "Num 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP7"
-msgstr ""
+msgstr "Num 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP8"
-msgstr ""
+msgstr "Num 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP9"
-msgstr ""
+msgstr "Num 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
-#, fuzzy
 msgid "UNKNOWN"
-msgstr "Неизвестен бутон"
+msgstr "Неизвестен клавиш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
