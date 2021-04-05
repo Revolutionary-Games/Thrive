@@ -529,7 +529,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         menu = GetNode<PauseMenu>(MenuPath);
 
-        mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = drawer => { UpdatePatchMapDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
@@ -571,7 +571,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
-        UpdateShownPatchDetails();
+        UpdatePatchMapDetails();
     }
 
     public void UpdateGlucoseReduction(float value)
@@ -926,9 +926,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         reportTabPatchNameLabel.Text = patch;
     }
 
-    /// <summary>
-    ///   Update the patch details specific to the Patch Map tab
-    /// </summary>
     public void UpdatePatchDetails(Patch patch)
     {
         patchName.Text = TranslationServer.Translate(patch.Name);
@@ -1130,20 +1127,23 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Lock / unlock the organelles  that need a nuclues
+    ///   Lock / unlock the organelles that need a nucleus
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: rename to something more sensible
-    ///     and maybe also improve how this is implemented
-    ///     to be not cluttered
-    ///   </para>
-    /// </remarks>
-    internal void UpdateGuiButtonStatus(bool hasNucleus)
+    internal void UpdatePartsAvailability(bool hasNucleus)
     {
         foreach (var organelleItem in placeablePartSelectionElements)
         {
-            SetOrganelleButtonStatus(organelleItem, hasNucleus);
+            if (!SimulationParameters.Instance.HasOrganelle(organelleItem.Name))
+                continue;
+
+            if (organelleItem.Name == nucleus.InternalName)
+            {
+                organelleItem.Locked = hasNucleus;
+            }
+            else if (SimulationParameters.Instance.GetOrganelleType(organelleItem.Name).RequireNucleus)
+            {
+                organelleItem.Locked = !hasNucleus;
+            }
         }
     }
 
@@ -1321,38 +1321,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             return;
 
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
-    }
-
-    private static void SetOrganelleButtonStatus(MicrobePartSelection organelleItem, bool nucleus)
-    {
-        if (organelleItem.Name == "nucleus")
-        {
-            organelleItem.Locked = nucleus;
-        }
-        else if (organelleItem.Name == "mitochondrion")
-        {
-            organelleItem.Locked = !nucleus;
-        }
-        else if (organelleItem.Name == "chloroplast")
-        {
-            organelleItem.Locked = !nucleus;
-        }
-        else if (organelleItem.Name == "chemoplast")
-        {
-            organelleItem.Locked = !nucleus;
-        }
-        else if (organelleItem.Name == "nitrogenfixingplastid")
-        {
-            organelleItem.Locked = !nucleus;
-        }
-        else if (organelleItem.Name == "vacuole")
-        {
-            organelleItem.Locked = !nucleus;
-        }
-        else if (organelleItem.Name == "oxytoxy")
-        {
-            organelleItem.Locked = !nucleus;
-        }
     }
 
     private void UpdateSymmetryIcon()
@@ -1675,7 +1643,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    private void UpdateShownPatchDetails()
+    /// <summary>
+    ///   Updates the patch details specific to the Patch Map tab
+    /// </summary>
+    private void UpdatePatchMapDetails()
     {
         var patch = mapDrawer.SelectedPatch;
 

@@ -63,7 +63,7 @@ public class MicrobePartSelection : MarginContainer
     }
 
     /// <summary>
-    ///   Currently only makes the button unselectable.
+    ///   Currently only makes the button unselectable if true.
     /// </summary>
     [Export]
     public bool Locked

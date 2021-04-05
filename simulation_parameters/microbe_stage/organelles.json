@@ -286,7 +286,8 @@
         "name": "NITROGEN_FIXING_PLASTID",
         "productionColour": "#4fc9ff",
         "consumptionColour": "#ffb74f",
-        "iconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
+        "requireNucleus": true
     },
     "chemoplast": {
         "mpCost": 45,
@@ -320,7 +321,8 @@
         "mass": 0.08,
         "displayScene": "res://assets/models/organelles/Chemoplast.tscn",
         "name": "CHEMOPLAST",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
+        "requireNucleus": true
     },
     "flagellum": {
         "mpCost": 55,
@@ -378,7 +380,8 @@
         "mass": 0.4,
         "displayScene": "res://assets/models/organelles/Vacuole.tscn",
         "name": "VACUOLE",
-        "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
+        "requireNucleus": true
     },
     "mitochondrion": {
         "mpCost": 45,
@@ -414,7 +417,8 @@
         "name": "MITOCHONDRION",
         "productionColour": "#26ffce",
         "consumptionColour": "#ff2653",
-        "iconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
+        "requireNucleus": true
     },
     "oxytoxy": {
         "mpCost": 70,
@@ -447,7 +451,8 @@
         "name": "TOXIN_VACUOLE",
         "productionColour": "#624acb",
         "consumptionColour": "#c4307b",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
+        "requireNucleus": true
     },
     "chloroplast": {
         "mpCost": 50,
@@ -485,7 +490,8 @@
         "mass": 0.4,
         "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
         "name": "CHLOROPLAST",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
+        "requireNucleus": true
     },
     "cytoplasm": {
         "mpCost": 22,

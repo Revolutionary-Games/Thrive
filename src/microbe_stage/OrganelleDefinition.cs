@@ -122,6 +122,11 @@ public class OrganelleDefinition : IRegistryType
     public bool ShouldScale = true;
 
     /// <summary>
+    ///   Flags whether this organelle is exclusive for eukaryotes
+    /// </summary>
+    public bool RequireNucleus;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();

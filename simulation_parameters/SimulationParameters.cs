@@ -106,6 +106,11 @@ public class SimulationParameters : Node
         return organelles.Values;
     }
 
+    public bool HasOrganelle(string name)
+    {
+        return organelles.ContainsKey(name);
+    }
+
     public MembraneType GetMembrane(string name)
     {
         return membranes[name];
