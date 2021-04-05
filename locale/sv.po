@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-04 22:13+0700\n"
+"POT-Creation-Date: 2021-04-05 16:03+0700\n"
 "PO-Revision-Date: 2021-03-09 08:41+0000\n"
 "Last-Translator: S1m0n5-him-self <Simonlannoq@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/"
@@ -799,31 +799,31 @@ msgstr "Metabolosomer"
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Kväve-Fixande Plastid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:322
+#: ../simulation_parameters/microbe_stage/organelles.json:323
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4138
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:353
+#: ../simulation_parameters/microbe_stage/organelles.json:355
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
 msgid "FLAGELLUM"
 msgstr "Flagell"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:380
+#: ../simulation_parameters/microbe_stage/organelles.json:382
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4742
 msgid "VACUOLE"
 msgstr "Vakuol"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:414
+#: ../simulation_parameters/microbe_stage/organelles.json:417
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
 msgid "MITOCHONDRION"
 msgstr "Mitochondria"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:447
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4879
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
 msgid "TOXIN_VACUOLE"
@@ -831,19 +831,19 @@ msgstr ""
 "Gift\n"
 "vakuol"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:487
+#: ../simulation_parameters/microbe_stage/organelles.json:492
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:517
+#: ../simulation_parameters/microbe_stage/organelles.json:523
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:414
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:582
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
 msgid "NUCLEUS"
@@ -923,6 +923,379 @@ msgstr ""
 "There is a conflict with {0}.\n"
 "Vill du ta bort inputen från {1}?"
 
+#: ../src/engine/input/key_mapping/KeyNames.cs:134
+msgid "SPACE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:135
+#, fuzzy
+msgid "BACKSLASH"
+msgstr "Backåt"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:136
+msgid "ESCAPE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
+msgid "TAB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
+#, fuzzy
+msgid "BACKSPACE"
+msgstr "Backåt"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
+msgid "ENTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
+msgid "KPENTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
+msgid "INSERT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+msgid "DELETE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
+msgid "PAUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
+msgid "SYSREQ"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
+msgid "CLEAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:147
+msgid "HOME"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
+#, fuzzy
+msgid "END"
+msgstr "och"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
+#, fuzzy
+msgid "LEFT"
+msgstr "Rör dig vänster"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:150
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:151
+#, fuzzy
+msgid "RIGHT"
+msgstr "Ljus"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:152
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:153
+msgid "PAGEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:154
+#, fuzzy
+msgid "PAGEDOWN"
+msgstr "Panorera neråt"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:155
+msgid "CAPSLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:156
+msgid "NUMLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:157
+msgid "SCROLLLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:158
+msgid "SUPERL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:159
+msgid "SUPERR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:160
+msgid "MENU"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:161
+msgid "HYPERL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:162
+msgid "HYPERR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
+#: ../src/general/PauseMenu.tscn:86
+msgid "HELP"
+msgstr "Hjälp"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+#, fuzzy
+msgid "DIRECTIONL"
+msgstr "Upplösning:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
+#, fuzzy
+msgid "DIRECTIONR"
+msgstr "Upplösning:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
+#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:113
+msgid "BACK"
+msgstr "Backåt"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
+#, fuzzy
+msgid "FORWARD"
+msgstr "Rör dig framåt"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
+msgid "STOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:169
+#: ../src/saving/SaveManagerGUI.tscn:66
+msgid "REFRESH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:170
+#, fuzzy
+msgid "VOLUMEDOWN"
+msgstr "SFX Volym"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:171
+#, fuzzy
+msgid "VOLUMEMUTE"
+msgstr "SFX Volym"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:172
+#, fuzzy
+msgid "VOLUMEUP"
+msgstr "SFX Volym"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:173
+msgid "BASSBOOST"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:174
+msgid "BASSUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:175
+msgid "BASSDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:176
+msgid "TREBLEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:177
+#, fuzzy
+msgid "TREBLEDOWN"
+msgstr "Scrolla ner"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:178
+msgid "MEDIAPLAY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:179
+msgid "MEDIASTOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:180
+#, fuzzy
+msgid "MEDIAPREVIOUS"
+msgstr "tidigare:"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:181
+msgid "MEDIANEXT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:182
+msgid "MEDIARECORD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:183
+msgid "HOMEPAGE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:184
+msgid "FAVORITES"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:185
+msgid "SEARCH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:186
+msgid "STANDBY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:187
+msgid "OPENURL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:188
+msgid "LAUNCHMAIL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:189
+msgid "LAUNCHMEDIA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:190
+msgid "LAUNCH0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:191
+msgid "LAUNCH1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:192
+msgid "LAUNCH2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:193
+msgid "LAUNCH3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:194
+msgid "LAUNCH4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:195
+msgid "LAUNCH5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:196
+msgid "LAUNCH6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:197
+msgid "LAUNCH7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:198
+msgid "LAUNCH8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:199
+msgid "LAUNCH9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:200
+msgid "LAUNCHA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:201
+msgid "LAUNCHB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:202
+msgid "LAUNCHC"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:203
+msgid "LAUNCHD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
+msgid "LAUNCHE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:205
+msgid "LAUNCHF"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:206
+msgid "KPMULTIPLY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:207
+msgid "KPDIVIDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:208
+msgid "KPSUBTRACT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:209
+msgid "KPPERIOD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:210
+msgid "KPADD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:211
+msgid "KP0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:212
+msgid "KP1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:213
+msgid "KP2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:214
+msgid "KP3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:215
+msgid "KP4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:216
+msgid "KP5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:217
+msgid "KP6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:218
+msgid "KP7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:219
+msgid "KP8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:220
+msgid "KP9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:221
+#, fuzzy
+msgid "UNKNOWN"
+msgstr "Okänd mus"
+
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
 msgstr "Ctrl"
@@ -935,43 +1308,43 @@ msgstr "ALT"
 msgid "SHIFT"
 msgstr "SHIFT"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
 msgstr "Vänster mus"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
 msgstr "Höger mus"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
 msgstr "Mitten mus"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
 msgstr "Scrolla up"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
 msgstr "Scrolla ner"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
 msgstr "Hjul vänster"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
 msgstr "Hjul höger"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
 msgstr "Mus Special 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_2"
 msgstr "Mus Special 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr "Okänd mus"
 
@@ -1023,12 +1396,6 @@ msgstr "Lämna"
 #: ../src/general/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrob Fri Byggredigerare"
-
-#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:113
-msgid "BACK"
-msgstr "Backåt"
 
 #: ../src/general/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
@@ -1281,10 +1648,6 @@ msgstr "Spara Spel"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2476
 msgid "STATISTICS"
 msgstr "Statistik"
-
-#: ../src/general/PauseMenu.tscn:86
-msgid "HELP"
-msgstr "Hjälp"
 
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
@@ -2164,15 +2527,15 @@ msgstr "Artlista"
 msgid "FREEBUILDING"
 msgstr "Fri byggredigerare"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:935
 msgid "BIOME_LABEL"
 msgstr "Omgivning: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:940
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m under havsnivån"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:971
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:968
 msgid "WITH_POPULATION"
 msgstr "{0} med befolkning: {1}"
 
@@ -2181,10 +2544,6 @@ msgstr "{0} med befolkning: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
 msgstr "{0} MP"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
-msgid "DELETE"
-msgstr ""
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 #, fuzzy
@@ -2398,10 +2757,6 @@ msgstr ""
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:66
-msgid "REFRESH"
-msgstr ""
-
 #: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
 msgstr ""
@@ -2524,6 +2879,82 @@ msgstr ""
 #~ msgstr ""
 #~ "Biolumelisent\n"
 #~ "Vakuol"
+
+#, fuzzy
+#~ msgid "PARENLEFT"
+#~ msgstr "Snurra vänster"
+
+#, fuzzy
+#~ msgid "PARENRIGHT"
+#~ msgstr "Snurra höger"
+
+#, fuzzy
+#~ msgid "COLON"
+#~ msgstr "Hälsa:"
+
+#, fuzzy
+#~ msgid "SEMICOLON"
+#~ msgstr "Storlek:"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Upplösning:"
+
+#, fuzzy
+#~ msgid "AT"
+#~ msgstr "ATP"
+
+#, fuzzy
+#~ msgid "BRACKETLEFT"
+#~ msgstr "Snurra vänster"
+
+#, fuzzy
+#~ msgid "BRACKETRIGHT"
+#~ msgstr "Snurra höger"
+
+#, fuzzy
+#~ msgid "QUOTELEFT"
+#~ msgstr "Snurra vänster"
+
+#, fuzzy
+#~ msgid "BRACELEFT"
+#~ msgstr "Snurra vänster"
+
+#, fuzzy
+#~ msgid "BRACERIGHT"
+#~ msgstr "Snurra höger"
+
+#, fuzzy
+#~ msgid "EXCLAMDOWN"
+#~ msgstr "Scrolla ner"
+
+#, fuzzy
+#~ msgid "YEN"
+#~ msgstr "Syre"
+
+#, fuzzy
+#~ msgid "SECTION"
+#~ msgstr "Stäng inställningar?"
+
+#, fuzzy
+#~ msgid "COPYRIGHT"
+#~ msgstr "Rör dig höger"
+
+#, fuzzy
+#~ msgid "MU"
+#~ msgstr "Tyst"
+
+#, fuzzy
+#~ msgid "AE"
+#~ msgstr "Spara"
+
+#, fuzzy
+#~ msgid "ETH"
+#~ msgstr "Hälsa"
+
+#, fuzzy
+#~ msgid "BACKTAB"
+#~ msgstr "Backåt"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Utseende"

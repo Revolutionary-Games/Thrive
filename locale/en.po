@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-04 22:13+0700\n"
-"PO-Revision-Date: 2021-03-15 17:26+0000\n"
+"POT-Creation-Date: 2021-04-05 16:03+0700\n"
+"PO-Revision-Date: 2021-04-04 17:49+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -487,7 +487,7 @@ msgstr "Toggle Fullscreen"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Respiration"
+msgstr "Aerobic Respiration"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -510,11 +510,11 @@ msgstr "OxyToxy Synthesis"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "Chemo Synthesis"
+msgstr "Chemosynthesis"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobic Nitrogen Fixing"
+msgstr "Aerobic Nitrogen Fixation"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
@@ -797,31 +797,31 @@ msgstr "Metabolosomes"
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Nitrogen-Fixing Plastid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:322
+#: ../simulation_parameters/microbe_stage/organelles.json:323
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4138
 msgid "CHEMOPLAST"
 msgstr "Chemoplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:353
+#: ../simulation_parameters/microbe_stage/organelles.json:355
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
 msgid "FLAGELLUM"
 msgstr "Flagellum"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:380
+#: ../simulation_parameters/microbe_stage/organelles.json:382
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4742
 msgid "VACUOLE"
 msgstr "Vacuole"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:414
+#: ../simulation_parameters/microbe_stage/organelles.json:417
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
 msgid "MITOCHONDRION"
 msgstr "Mitochondrion"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:447
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4879
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
 msgid "TOXIN_VACUOLE"
@@ -829,19 +829,19 @@ msgstr ""
 "Toxin\n"
 "Vacuole"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:487
+#: ../simulation_parameters/microbe_stage/organelles.json:492
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
 msgid "CHLOROPLAST"
 msgstr "Chloroplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:517
+#: ../simulation_parameters/microbe_stage/organelles.json:523
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:414
 msgid "CYTOPLASM"
 msgstr "Cytoplasm"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:582
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
 msgid "NUCLEUS"
@@ -921,6 +921,364 @@ msgstr ""
 "There is a conflict with {0}.\n"
 "Do you want to remove the input from {1}?"
 
+#: ../src/engine/input/key_mapping/KeyNames.cs:134
+msgid "SPACE"
+msgstr "Space"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:135
+msgid "BACKSLASH"
+msgstr "Backslash"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:136
+msgid "ESCAPE"
+msgstr "Esc"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
+msgid "TAB"
+msgstr "Tab"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
+msgid "BACKSPACE"
+msgstr "Backspace"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
+msgid "ENTER"
+msgstr "Enter"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
+msgid "KPENTER"
+msgstr "Num Enter"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
+msgid "INSERT"
+msgstr "Insert"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+msgid "DELETE"
+msgstr "Delete"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
+msgid "PAUSE"
+msgstr "Pause"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
+msgid "PRINT"
+msgstr "Print Screen"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
+msgid "SYSREQ"
+msgstr "SysRq"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
+msgid "CLEAR"
+msgstr "Clear"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:147
+msgid "HOME"
+msgstr "Home"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
+msgid "END"
+msgstr "End"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
+msgid "LEFT"
+msgstr "Left"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:150
+msgid "UP"
+msgstr "Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:151
+msgid "RIGHT"
+msgstr "Right"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:152
+msgid "DOWN"
+msgstr "Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:153
+msgid "PAGEUP"
+msgstr "Page Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:154
+msgid "PAGEDOWN"
+msgstr "Page Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:155
+msgid "CAPSLOCK"
+msgstr "Caps Lock"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:156
+msgid "NUMLOCK"
+msgstr "Num Lock"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:157
+msgid "SCROLLLOCK"
+msgstr "Scroll Lock"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:158
+msgid "SUPERL"
+msgstr "Super Left"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:159
+msgid "SUPERR"
+msgstr "Super Right"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:160
+msgid "MENU"
+msgstr "Menu"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:161
+msgid "HYPERL"
+msgstr "Hyper Left"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:162
+msgid "HYPERR"
+msgstr "Hyper Right"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
+#: ../src/general/PauseMenu.tscn:86
+msgid "HELP"
+msgstr "Help"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+msgid "DIRECTIONL"
+msgstr "Left"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
+msgid "DIRECTIONR"
+msgstr "Right"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
+#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:113
+msgid "BACK"
+msgstr "Back"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
+msgid "FORWARD"
+msgstr "Forward"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
+msgid "STOP"
+msgstr "Stop"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:169
+#: ../src/saving/SaveManagerGUI.tscn:66
+msgid "REFRESH"
+msgstr "Refresh"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:170
+msgid "VOLUMEDOWN"
+msgstr "Volume Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:171
+msgid "VOLUMEMUTE"
+msgstr "Volume Mute"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:172
+msgid "VOLUMEUP"
+msgstr "Volume Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:173
+msgid "BASSBOOST"
+msgstr "Bassboost"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:174
+msgid "BASSUP"
+msgstr "Bass Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:175
+msgid "BASSDOWN"
+msgstr "Bass Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:176
+msgid "TREBLEUP"
+msgstr "Treble Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:177
+msgid "TREBLEDOWN"
+msgstr "Treble Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:178
+msgid "MEDIAPLAY"
+msgstr "Media Play"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:179
+msgid "MEDIASTOP"
+msgstr "Media Stop"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:180
+msgid "MEDIAPREVIOUS"
+msgstr "Media Prev"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:181
+msgid "MEDIANEXT"
+msgstr "Media Next"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:182
+msgid "MEDIARECORD"
+msgstr "Media Rec"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:183
+msgid "HOMEPAGE"
+msgstr "Homepage"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:184
+msgid "FAVORITES"
+msgstr "Favorites"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:185
+msgid "SEARCH"
+msgstr "Search"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:186
+msgid "STANDBY"
+msgstr "Standby"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:187
+msgid "OPENURL"
+msgstr "Open URL"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:188
+msgid "LAUNCHMAIL"
+msgstr "Mail"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:189
+msgid "LAUNCHMEDIA"
+msgstr "Media"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:190
+msgid "LAUNCH0"
+msgstr "Launch 0"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:191
+msgid "LAUNCH1"
+msgstr "Launch 1"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:192
+msgid "LAUNCH2"
+msgstr "Launch 2"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:193
+msgid "LAUNCH3"
+msgstr "Launch 3"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:194
+msgid "LAUNCH4"
+msgstr "Launch 4"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:195
+msgid "LAUNCH5"
+msgstr "Launch 5"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:196
+msgid "LAUNCH6"
+msgstr "Launch 6"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:197
+msgid "LAUNCH7"
+msgstr "Launch 7"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:198
+msgid "LAUNCH8"
+msgstr "Launch 8"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:199
+msgid "LAUNCH9"
+msgstr "Launch 9"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:200
+msgid "LAUNCHA"
+msgstr "Launch A"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:201
+msgid "LAUNCHB"
+msgstr "Launch B"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:202
+msgid "LAUNCHC"
+msgstr "Launch C"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:203
+msgid "LAUNCHD"
+msgstr "Launch D"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
+msgid "LAUNCHE"
+msgstr "Launch E"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:205
+msgid "LAUNCHF"
+msgstr "Launch F"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:206
+msgid "KPMULTIPLY"
+msgstr "Num *"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:207
+msgid "KPDIVIDE"
+msgstr "Num /"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:208
+msgid "KPSUBTRACT"
+msgstr "Num -"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:209
+msgid "KPPERIOD"
+msgstr "Num ."
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:210
+msgid "KPADD"
+msgstr "Num +"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:211
+msgid "KP0"
+msgstr "Num 0"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:212
+msgid "KP1"
+msgstr "Num 1"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:213
+msgid "KP2"
+msgstr "Num 2"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:214
+msgid "KP3"
+msgstr "Num 3"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:215
+msgid "KP4"
+msgstr "Num 4"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:216
+msgid "KP5"
+msgstr "Num 5"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:217
+msgid "KP6"
+msgstr "Num 6"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:218
+msgid "KP7"
+msgstr "Num 7"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:219
+msgid "KP8"
+msgstr "Num 8"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:220
+msgid "KP9"
+msgstr "Num 9"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:221
+msgid "UNKNOWN"
+msgstr "Unknown"
+
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
 msgstr "CTRL"
@@ -933,43 +1291,43 @@ msgstr "Alt"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
 msgstr "Left mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
 msgstr "Right mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
 msgstr "Wheel up"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
 msgstr "Wheel down"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
 msgstr "Wheel left"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
 msgstr "Wheel right"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
 msgstr "Mouse Special 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_2"
 msgstr "Mouse Special 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr "Unknown mouse"
 
@@ -1021,12 +1379,6 @@ msgstr "Quit"
 #: ../src/general/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
-
-#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:113
-msgid "BACK"
-msgstr "Back"
 
 #: ../src/general/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
@@ -1275,10 +1627,6 @@ msgstr "Save Game"
 msgid "STATISTICS"
 msgstr "Statistics"
 
-#: ../src/general/PauseMenu.tscn:86
-msgid "HELP"
-msgstr "Help"
-
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
 msgstr "Return to Menu"
@@ -1455,7 +1803,7 @@ msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "The gooey innards of a cell. The cytoplasm is the basic mixture of ions, "
 "proteins, and other substances dissolved in water that fill the interior "
-"of the cell. One of the functions it performs is Fermentation, the "
+"of the cell. One of the functions it performs is glycolysis, the "
 "conversion of glucose into ATP energy. For cells that lack organelles to "
 "have more advanced metabolisms, this is what they rely on for energy. It "
 "is also used to store molecules in the cell and to grow the cell's size."
@@ -1483,7 +1831,7 @@ msgstr ""
 "require oxygen to function, and lower levels of oxygen in the environment "
 "will slow down the rate of its ATP production. Since the metabolosomes are "
 "suspended directly in the cytoplasm, the surrounding fluid performs some "
-"fermentation."
+"glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 msgid "THYLAKOID"
@@ -1536,7 +1884,7 @@ msgstr ""
 "pigments are also what give them a distinctive colour. The rate of their "
 "glucose production scales with the concentration of carbon dioxide, and "
 "intensity of light. Since the thylakoids are suspended directly in the "
-"cytoplasm, the surrounding fluid performs some fermentation."
+"cytoplasm, the surrounding fluid performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4220
@@ -1555,7 +1903,7 @@ msgstr ""
 "dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. "
 "The rate of its glucose production scales with the concentration of carbon "
 "dioxide. Since the chemosynthesizing proteins are suspended directly in "
-"the cytoplasm, the surrounding fluid performs some fermentation."
+"the cytoplasm, the surrounding fluid performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1584,7 +1932,7 @@ msgstr ""
 "in the form of ATP to produce ammonia, a key growth nutrient for cells. "
 "This is a process referred to as Anaerobic Nitrogen Fixation. Since the "
 "nitrogenase is suspended directly in the cytoplasm, the surrounding fluid "
-"performs some fermentation."
+"performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5002
@@ -2211,15 +2559,15 @@ msgstr "Species List"
 msgid "FREEBUILDING"
 msgstr "Freebuilding"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:935
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:940
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:971
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:968
 msgid "WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
@@ -2228,10 +2576,6 @@ msgstr "{0} with population: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
 msgstr "{0} MP"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
-msgid "DELETE"
-msgstr "Delete"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
@@ -2476,10 +2820,6 @@ msgstr ""
 " - {0} Auto save(s)\n"
 " - {1} Quick save(s)"
 
-#: ../src/saving/SaveManagerGUI.tscn:66
-msgid "REFRESH"
-msgstr "Refresh"
-
 #: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
 msgstr "Delete Selected"
@@ -2577,14 +2917,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Removing organelles also costs MP as it is a mutation to your species. You "
-"can right click organelles to bring up the organelle menu and selecting "
-"the delete option to remove them. \n"
+"Removing organelles also costs MP as it is a mutation to your species, "
+"unless they were placed in the current editor session. \n"
+"\n"
+"You can right click organelles to bring up the organelle menu and "
+"selecting the delete option to remove them. \n"
 "\n"
 "If you make a mistake, you can undo any change you make in the editor.\n"
-"\n"
-"Note: removing organelles you placed in the current editor session is "
-"free.\n"
 "\n"
 "Click the undo button to continue."
 
@@ -2686,6 +3025,324 @@ msgstr ""
 #~ msgstr ""
 #~ "Bioluminescent \n"
 #~ "Vacuole"
+
+#~ msgid "EXCLAM"
+#~ msgstr "!"
+
+#~ msgid "QUOTEDBL"
+#~ msgstr "\""
+
+#~ msgid "NUMBERSIGN"
+#~ msgstr "#"
+
+#~ msgid "DOLLAR"
+#~ msgstr "$"
+
+#~ msgid "PERCENT"
+#~ msgstr "%"
+
+#~ msgid "AMPERSAND"
+#~ msgstr "&"
+
+#~ msgid "APOSTROPHE"
+#~ msgstr "'"
+
+#~ msgid "PARENLEFT"
+#~ msgstr "("
+
+#~ msgid "PARENRIGHT"
+#~ msgstr ")"
+
+#~ msgid "ASTERISK"
+#~ msgstr "*"
+
+#~ msgid "PLUS"
+#~ msgstr "+"
+
+#~ msgid "COMMA"
+#~ msgstr ","
+
+#~ msgid "MINUS"
+#~ msgstr "-"
+
+#~ msgid "PERIOD"
+#~ msgstr "."
+
+#~ msgid "SLASH"
+#~ msgstr "/"
+
+#~ msgid "KEY0"
+#~ msgstr "0"
+
+#~ msgid "KEY1"
+#~ msgstr "1"
+
+#~ msgid "KEY2"
+#~ msgstr "2"
+
+#~ msgid "KEY3"
+#~ msgstr "3"
+
+#~ msgid "KEY4"
+#~ msgstr "4"
+
+#~ msgid "KEY5"
+#~ msgstr "5"
+
+#~ msgid "KEY6"
+#~ msgstr "6"
+
+#~ msgid "KEY7"
+#~ msgstr "7"
+
+#~ msgid "KEY8"
+#~ msgstr "8"
+
+#~ msgid "KEY9"
+#~ msgstr "9"
+
+#~ msgid "COLON"
+#~ msgstr ":"
+
+#~ msgid "SEMICOLON"
+#~ msgstr ";"
+
+#~ msgid "LESS"
+#~ msgstr "<"
+
+#~ msgid "EQUAL"
+#~ msgstr "="
+
+#~ msgid "GREATER"
+#~ msgstr ">"
+
+#~ msgid "QUESTION"
+#~ msgstr "?"
+
+#~ msgid "AT"
+#~ msgstr "@"
+
+#~ msgid "BRACKETLEFT"
+#~ msgstr "["
+
+#~ msgid "BRACKETRIGHT"
+#~ msgstr "]"
+
+#~ msgid "ASCIICIRCUM"
+#~ msgstr "^"
+
+#~ msgid "UNDERSCORE"
+#~ msgstr "_"
+
+#~ msgid "QUOTELEFT"
+#~ msgstr "`"
+
+#~ msgid "BRACELEFT"
+#~ msgstr "{"
+
+#~ msgid "BAR"
+#~ msgstr "|"
+
+#~ msgid "BRACERIGHT"
+#~ msgstr "}"
+
+#~ msgid "ASCIITILDE"
+#~ msgstr "~"
+
+#~ msgid "EXCLAMDOWN"
+#~ msgstr "¡"
+
+#~ msgid "CENT"
+#~ msgstr "¢"
+
+#~ msgid "STERLING"
+#~ msgstr "£"
+
+#~ msgid "CURRENCY"
+#~ msgstr "¤"
+
+#~ msgid "YEN"
+#~ msgstr "¥"
+
+#~ msgid "BROKENBAR"
+#~ msgstr "¦"
+
+#~ msgid "SECTION"
+#~ msgstr "§"
+
+#~ msgid "DIAERESIS"
+#~ msgstr "¨"
+
+#~ msgid "COPYRIGHT"
+#~ msgstr "©"
+
+#~ msgid "ORDFEMININE"
+#~ msgstr "ª"
+
+#~ msgid "GUILLEMOTLEFT"
+#~ msgstr "«"
+
+#~ msgid "NOTSIGN"
+#~ msgstr "¬"
+
+#~ msgid "HYPHEN"
+#~ msgstr "-"
+
+#~ msgid "REGISTERED"
+#~ msgstr "®"
+
+#~ msgid "MACRON"
+#~ msgstr "¯"
+
+#~ msgid "DEGREE"
+#~ msgstr "°"
+
+#~ msgid "PLUSMINUS"
+#~ msgstr "±"
+
+#~ msgid "TWOSUPERIOR"
+#~ msgstr "²"
+
+#~ msgid "THREESUPERIOR"
+#~ msgstr "³"
+
+#~ msgid "ACUTE"
+#~ msgstr "´"
+
+#~ msgid "MU"
+#~ msgstr "µ"
+
+#~ msgid "PARAGRAPH"
+#~ msgstr "¶"
+
+#~ msgid "PERIODCENTERED"
+#~ msgstr "·"
+
+#~ msgid "CEDILLA"
+#~ msgstr "¸"
+
+#~ msgid "ONESUPERIOR"
+#~ msgstr "¹"
+
+#~ msgid "MASCULINE"
+#~ msgstr "º"
+
+#~ msgid "GUILLEMOTRIGHT"
+#~ msgstr "»"
+
+#~ msgid "ONEQUARTER"
+#~ msgstr "¼"
+
+#~ msgid "ONEHALF"
+#~ msgstr "½"
+
+#~ msgid "THREEQUARTERS"
+#~ msgstr "¾"
+
+#~ msgid "QUESTIONDOWN"
+#~ msgstr "¿"
+
+#~ msgid "AGRAVE"
+#~ msgstr "À"
+
+#~ msgid "AACUTE"
+#~ msgstr "Á"
+
+#~ msgid "ACIRCUMFLEX"
+#~ msgstr "Â"
+
+#~ msgid "ATILDE"
+#~ msgstr "Ã"
+
+#~ msgid "ADIAERESIS"
+#~ msgstr "Ä"
+
+#~ msgid "ARING"
+#~ msgstr "Å"
+
+#~ msgid "AE"
+#~ msgstr "Æ"
+
+#~ msgid "CCEDILLA"
+#~ msgstr "Ç"
+
+#~ msgid "EGRAVE"
+#~ msgstr "È"
+
+#~ msgid "EACUTE"
+#~ msgstr "É"
+
+#~ msgid "ECIRCUMFLEX"
+#~ msgstr "Ê"
+
+#~ msgid "EDIAERESIS"
+#~ msgstr "Ë"
+
+#~ msgid "IGRAVE"
+#~ msgstr "Ì"
+
+#~ msgid "IACUTE"
+#~ msgstr "Í"
+
+#~ msgid "ICIRCUMFLEX"
+#~ msgstr "Î"
+
+#~ msgid "IDIAERESIS"
+#~ msgstr "Ï"
+
+#~ msgid "ETH"
+#~ msgstr "Ð"
+
+#~ msgid "NTILDE"
+#~ msgstr "Ñ"
+
+#~ msgid "OGRAVE"
+#~ msgstr "Ò"
+
+#~ msgid "OACUTE"
+#~ msgstr "Ó"
+
+#~ msgid "OCIRCUMFLEX"
+#~ msgstr "Ô"
+
+#~ msgid "OTILDE"
+#~ msgstr "Õ"
+
+#~ msgid "ODIAERESIS"
+#~ msgstr "Ö"
+
+#~ msgid "MULTIPLY"
+#~ msgstr "×"
+
+#~ msgid "OOBLIQUE"
+#~ msgstr "Ø"
+
+#~ msgid "UGRAVE"
+#~ msgstr "Ù"
+
+#~ msgid "UACUTE"
+#~ msgstr "Ú"
+
+#~ msgid "UCIRCUMFLEX"
+#~ msgstr "Û"
+
+#~ msgid "UDIAERESIS"
+#~ msgstr "Ü"
+
+#~ msgid "YACUTE"
+#~ msgstr "Ý"
+
+#~ msgid "THORN"
+#~ msgstr "Þ"
+
+#~ msgid "SSHARP"
+#~ msgstr "ß"
+
+#~ msgid "DIVISION"
+#~ msgstr "÷"
+
+#~ msgid "YDIAERESIS"
+#~ msgstr "ÿ"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Appearance"
