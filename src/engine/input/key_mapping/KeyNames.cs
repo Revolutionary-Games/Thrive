@@ -144,7 +144,6 @@ internal static class KeyNames
             KeyList.Search => TranslationServer.Translate("KEY_SEARCH"),
             KeyList.Standby => TranslationServer.Translate("KEY_STANDBY"),
             KeyList.Openurl => TranslationServer.Translate("KEY_OPENURL"),
-
             KeyList.Homepage => TranslationServer.Translate("KEY_HOMEPAGE"),
             KeyList.Favorites => TranslationServer.Translate("KEY_FAVORITES"),
             KeyList.Print => TranslationServer.Translate("KEY_PRINT"),
