@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-04 22:08+0200\n"
-"PO-Revision-Date: 2021-04-04 16:01+0000\n"
+"PO-Revision-Date: 2021-04-06 13:52+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -321,7 +321,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
 "Un suggerimento: se la tua cellula è grande 150 esagoni, puoi inghiottire "
-"i pezzi di ferro grandi."
+"quei pezzi di ferro grandi."
 
 #: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_24"
@@ -909,37 +909,35 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "SPACE"
-msgstr ""
+msgstr "Barra spaziatrice"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "Indietro"
+msgstr "Tasto Cancella"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "TAB"
-msgstr ""
+msgstr "Tabulazione"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Indietro"
+msgstr "Indietro (backspace)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "ENTER"
-msgstr ""
+msgstr "Invio"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KPENTER"
-msgstr ""
+msgstr "Invio (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "INSERT"
-msgstr ""
+msgstr "Tasto Inserisci"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -948,11 +946,11 @@ msgstr "Rimuovi"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "PAUSE"
-msgstr ""
+msgstr "Tasto Pausa"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "PRINT"
-msgstr ""
+msgstr "Stamp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "SYSREQ"
@@ -971,43 +969,40 @@ msgid "END"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
-#, fuzzy
 msgid "LEFT"
-msgstr "Muove a sinistra"
+msgstr "Freccia sinistra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:150
 msgid "UP"
-msgstr ""
+msgstr "Freccia in alto"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:151
-#, fuzzy
 msgid "RIGHT"
-msgstr "Luce"
+msgstr "Freccia destra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:152
 msgid "DOWN"
-msgstr ""
+msgstr "Freccia in basso"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:153
 msgid "PAGEUP"
-msgstr ""
+msgstr "Pagina Su"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:154
-#, fuzzy
 msgid "PAGEDOWN"
-msgstr "Panoramica sotto"
+msgstr "Pagina Giù"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:155
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Bloc Maiusc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:156
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Bloc Num"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:157
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Bloc Scroll"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:158
 msgid "SUPERL"
@@ -1035,14 +1030,12 @@ msgid "HELP"
 msgstr "Aiuto"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
-#, fuzzy
 msgid "DIRECTIONL"
-msgstr "Risoluzione:"
+msgstr "Sinistra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "DIRECTIONR"
-msgstr "Risoluzione:"
+msgstr "Destra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 #: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
@@ -1052,9 +1045,8 @@ msgid "BACK"
 msgstr "Indietro"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "FORWARD"
-msgstr "Muove avanti"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "STOP"
@@ -1066,19 +1058,16 @@ msgid "REFRESH"
 msgstr "Aggiorna"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "Volume degli"
+msgstr "Tasto Abbassa Volume"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "Volume degli"
+msgstr "Tasto Volume Muto"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "Volume degli"
+msgstr "Tasto Alza Volume"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "BASSBOOST"
@@ -1097,9 +1086,8 @@ msgid "TREBLEUP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Scorri giù"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "MEDIAPLAY"
@@ -1110,9 +1098,8 @@ msgid "MEDIASTOP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "Precedente:"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "MEDIANEXT"
@@ -1128,11 +1115,11 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "FAVORITES"
-msgstr ""
+msgstr "Tasto Preferiti"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "SEARCH"
-msgstr ""
+msgstr "Tasto Cerca"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "STANDBY"
@@ -1140,11 +1127,11 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "OPENURL"
-msgstr ""
+msgstr "Tasto Apri URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "Tasto Posta Elettronica"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "LAUNCHMEDIA"
@@ -1216,66 +1203,65 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "* (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "/ (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "- (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "KPPERIOD"
-msgstr ""
+msgstr ". (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "KPADD"
-msgstr ""
+msgstr "+ (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "KP0"
-msgstr ""
+msgstr "0 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KP1"
-msgstr ""
+msgstr "1 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KP2"
-msgstr ""
+msgstr "2 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KP3"
-msgstr ""
+msgstr "3 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KP4"
-msgstr ""
+msgstr "4 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KP5"
-msgstr ""
+msgstr "5 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP6"
-msgstr ""
+msgstr "6 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP7"
-msgstr ""
+msgstr "7 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP8"
-msgstr ""
+msgstr "8 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP9"
-msgstr ""
+msgstr "9 (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
-#, fuzzy
 msgid "UNKNOWN"
 msgstr "Tasto sconosciuto"
 
@@ -1293,15 +1279,15 @@ msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
-msgstr "Tasto sinistro del"
+msgstr "Clic sinistro"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
-msgstr "Tasto destro del"
+msgstr "Clic destro"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
-msgstr "Tasto centrale del"
+msgstr "Clic centrale"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
@@ -1640,7 +1626,7 @@ msgstr "Esci"
 
 #: ../src/general/StringUtils.cs:19
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} Mlrd"
+msgstr "{0} Mrd"
 
 #: ../src/general/StringUtils.cs:28
 msgid "MILLION_ABBREVIATION"
@@ -2240,7 +2226,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7323
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr "Aggiungi un'associazione tasti"
+msgstr "Aggiungi tasto"
 
 #: ../src/microbe_stage/Microbe.cs:806
 msgid "DEATH"
@@ -3067,7 +3053,7 @@ msgstr ""
 "Raccogli glucosio (nuvole bianche) muovendoti sopra di esse.\n"
 "La tua cellula necessita di glucosio per produrre energia per rimanere in "
 "vita.\n"
-"Segui la linea dalla tua cellula fino al glucosio più vicino."
+"Segui la linea dalla tua cellula fino alla nuvola di glucosio più vicina."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
