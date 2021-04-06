@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-04 23:25+0300\n"
-"PO-Revision-Date: 2021-04-05 08:38+0000\n"
+"PO-Revision-Date: 2021-04-06 13:52+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -892,7 +892,7 @@ msgstr "Зареждане"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:312
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "Натиснете бутон..."
+msgstr "Натиснете клавиш..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
@@ -910,56 +910,56 @@ msgstr "Обратна наклонена черта"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "ESCAPE"
-msgstr "Esc"
+msgstr "Клавиш „Esc“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "TAB"
-msgstr "Tab"
+msgstr "Клавиш „Tab“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "BACKSPACE"
-msgstr "Backspace"
+msgstr "Клавиш „Backspace“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "ENTER"
-msgstr "Enter"
+msgstr "Клавиш „Enter“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KPENTER"
-msgstr "Num Enter"
+msgstr "Клавиш „Num Enter“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "INSERT"
-msgstr "Insert"
+msgstr "Клавиш „Insert“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr "Delete"
+msgstr "Премахване"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "PAUSE"
-msgstr "Pause"
+msgstr "Клавиш „Pause“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "PRINT"
-msgstr "Print Screen"
+msgstr "Клавиш „Print Screen“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "SYSREQ"
-msgstr "SysRq"
+msgstr "Клавиш „SysRq“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "CLEAR"
-msgstr "Clear"
+msgstr "Клавиш „Clear“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "HOME"
-msgstr "Home"
+msgstr "Клавиш „Home“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "END"
-msgstr "End"
+msgstr "Клавиш „End“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "LEFT"
@@ -979,43 +979,43 @@ msgstr "Стрелка надолу"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:153
 msgid "PAGEUP"
-msgstr "Page Up"
+msgstr "Клавиш „Page Up“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:154
 msgid "PAGEDOWN"
-msgstr "Page Down"
+msgstr "Клавиш „Page Down“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:155
 msgid "CAPSLOCK"
-msgstr "Caps Lock"
+msgstr "Клавиш „Caps Lock“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:156
 msgid "NUMLOCK"
-msgstr "Num Lock"
+msgstr "Клавиш „Num Lock“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:157
 msgid "SCROLLLOCK"
-msgstr "Scroll Lock"
+msgstr "Клавиш „Scroll Lock“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:158
 msgid "SUPERL"
-msgstr ""
+msgstr "Клавиш „Super Left“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:159
 msgid "SUPERR"
-msgstr ""
+msgstr "Клавиш „Super Right“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:160
 msgid "MENU"
-msgstr "Меню"
+msgstr "Клавиш „Menu“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:161
 msgid "HYPERL"
-msgstr ""
+msgstr "Клавиш „Hyper Left“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:162
 msgid "HYPERR"
-msgstr ""
+msgstr "Клавиш „Hyper Right“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:163
 #: ../src/general/PauseMenu.tscn:86
@@ -1043,7 +1043,7 @@ msgstr "Напред"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "STOP"
-msgstr "Спиране"
+msgstr "Клавиш „Stop“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 #: ../src/saving/SaveManagerGUI.tscn:66
@@ -1051,153 +1051,148 @@ msgid "REFRESH"
 msgstr "Опресняване"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "Ефекти"
+msgstr "Клавиш „Volume Down“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "Ефекти"
+msgstr "Клавиш „Volume Mute“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "Ефекти"
+msgstr "Клавиш „Volume Up“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "BASSBOOST"
-msgstr ""
+msgstr "Клавиш „Bassboost“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "BASSUP"
-msgstr ""
+msgstr "Клавиш „Bass Up“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "BASSDOWN"
-msgstr ""
+msgstr "Клавиш „Bass Down“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "TREBLEUP"
-msgstr ""
+msgstr "Клавиш „Treble Up“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Колелце надолу"
+msgstr "Клавиш „Treble Down“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Клавиш „Media Play“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Клавиш „Media Stop“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "предишна:"
+msgstr "Клавиш „Media Prev“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Клавиш „Media Next“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "MEDIARECORD"
-msgstr ""
+msgstr "Клавиш „Media Rec“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "HOMEPAGE"
-msgstr ""
+msgstr "Клавиш „Homepage“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "FAVORITES"
-msgstr "Предпочитани"
+msgstr "Клавиш „Favorites“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "SEARCH"
-msgstr "Търсене"
+msgstr "Клавиш „Search“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "STANDBY"
-msgstr ""
+msgstr "Клавиш „Standby“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "OPENURL"
-msgstr ""
+msgstr "Клавиш „Open URL“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "Клавиш „Mail“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "Клавиш „Media“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Клавиш „Launch 0“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Клавиш „Launch 1“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Клавиш „Launch 2“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Клавиш „Launch 3“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Клавиш „Launch 4“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Клавиш „Launch 5“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Клавиш „Launch 6“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Клавиш „Launch 7“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Клавиш „Launch 8“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Клавиш „Launch 9“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Клавиш „Launch A“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Клавиш „Launch B“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Клавиш „Launch C“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Клавиш „Launch D“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Клавиш „Launch E“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Клавиш „Launch F“"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "KPMULTIPLY"
@@ -2211,7 +2206,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:7323
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr "Добавяне на нов бутон"
+msgstr "Добавяне на нов клавиш"
 
 #: ../src/microbe_stage/Microbe.cs:806
 msgid "DEATH"
@@ -3016,10 +3011,10 @@ msgstr "Започнете да процъфтявате"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"За да управлявате Вашата клетка, използвайте бутоните, които са показани "
+"За да управлявате Вашата клетка, използвайте клавишите, които са показани "
 "около нея (в центъра на екрана) и мишката за посоката на движение.\n"
 "\n"
-"Натиснете всеки един бутон за няколко секунди за да продължите."
+"Натиснете всеки един клавиш за няколко секунди за да продължите."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
 msgid "MICROBE_STAGE_COLLECT_TEXT"
