@@ -66,6 +66,11 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public PackedScene LoadedScene;
 
+    /// <summary>
+    ///   Loaded icon for display in GUIs
+    /// </summary>
+    public Texture LoadedIcon;
+
     public float Mass;
 
     /// <summary>
@@ -124,7 +129,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Flags whether this organelle is exclusive for eukaryotes
     /// </summary>
-    public bool RequireNucleus;
+    public bool RequiresNucleus;
 
     /// <summary>
     ///   Caches the rotated hexes
@@ -310,6 +315,11 @@ public class OrganelleDefinition : IRegistryType
         if (!string.IsNullOrEmpty(DisplayScene))
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
+        }
+
+        if (!string.IsNullOrEmpty(IconPath))
+        {
+            LoadedIcon = GD.Load<Texture>(IconPath);
         }
 
         // Resolve process names

@@ -27,6 +27,8 @@ public class MembraneType : IRegistryType
     public Texture LoadedNormalTexture;
     public Texture LoadedDamagedTexture;
 
+    public Texture LoadedIcon;
+
 #pragma warning disable 169 // Used through reflection
     private string untranslatedName;
 #pragma warning restore 169
@@ -66,6 +68,11 @@ public class MembraneType : IRegistryType
     {
         LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
         LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
+
+        if (!string.IsNullOrEmpty(IconPath))
+        {
+            LoadedIcon = GD.Load<Texture>(IconPath);
+        }
     }
 
     public void ApplyTranslations()

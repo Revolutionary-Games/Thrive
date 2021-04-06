@@ -287,7 +287,7 @@
         "productionColour": "#4fc9ff",
         "consumptionColour": "#ffb74f",
         "iconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
-        "requireNucleus": true
+        "requiresNucleus": true
     },
     "chemoplast": {
         "mpCost": 45,
@@ -322,7 +322,7 @@
         "displayScene": "res://assets/models/organelles/Chemoplast.tscn",
         "name": "CHEMOPLAST",
         "iconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
-        "requireNucleus": true
+        "requiresNucleus": true
     },
     "flagellum": {
         "mpCost": 55,
@@ -381,7 +381,7 @@
         "displayScene": "res://assets/models/organelles/Vacuole.tscn",
         "name": "VACUOLE",
         "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
-        "requireNucleus": true
+        "requiresNucleus": true
     },
     "mitochondrion": {
         "mpCost": 45,
@@ -418,7 +418,7 @@
         "productionColour": "#26ffce",
         "consumptionColour": "#ff2653",
         "iconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
-        "requireNucleus": true
+        "requiresNucleus": true
     },
     "oxytoxy": {
         "mpCost": 70,
@@ -452,7 +452,7 @@
         "productionColour": "#624acb",
         "consumptionColour": "#c4307b",
         "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
-        "requireNucleus": true
+        "requiresNucleus": true
     },
     "chloroplast": {
         "mpCost": 50,
@@ -491,7 +491,7 @@
         "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
         "name": "CHLOROPLAST",
         "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
-        "requireNucleus": true
+        "requiresNucleus": true
     },
     "cytoplasm": {
         "mpCost": 22,

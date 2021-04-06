@@ -103,14 +103,6 @@ public class MicrobePartSelection : MarginContainer
         UpdateIcon();
     }
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateLabels();
-        }
-    }
-
     private void UpdateLabels()
     {
         if (mpLabel == null || nameLabel == null)
@@ -140,11 +132,11 @@ public class MicrobePartSelection : MarginContainer
 
         iconRect.Modulate = Colors.White;
 
+        if (Selected)
+            iconRect.Modulate = Colors.Black;
+
         if (Locked)
             iconRect.Modulate = Colors.Gray;
-
-        if (Selected && !Locked)
-            iconRect.Modulate = Colors.Black;
     }
 
     private void UpdateButton()

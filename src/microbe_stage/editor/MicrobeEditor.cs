@@ -540,6 +540,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
             gui.UpdatePatchDetails(CurrentPatch);
+            gui.UpdateMicrobePartSelections();
 
             // TODO: AutoEvo run results summary
         }

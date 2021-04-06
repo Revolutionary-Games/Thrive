@@ -529,7 +529,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         menu = GetNode<PauseMenu>(MenuPath);
 
-        mapDrawer.OnSelectedPatchChanged = drawer => { UpdatePatchMapDetails(); };
+        mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
@@ -571,7 +571,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
-        UpdatePatchMapDetails();
+        UpdateShownPatchDetails();
     }
 
     public void UpdateGlucoseReduction(float value)
@@ -926,6 +926,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         reportTabPatchNameLabel.Text = patch;
     }
 
+    /// <summary>
+    ///   Updates patch-specific GUI elements with data from a patch
+    /// </summary>
     public void UpdatePatchDetails(Patch patch)
     {
         patchName.Text = TranslationServer.Translate(patch.Name);
@@ -978,45 +981,45 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Updates the existing part selection buttons with the correct properties based on their Node names.
+    ///   Setup/updates the existing part selection buttons with the correct properties based on their Node names.
     /// </summary>
     public void UpdateMicrobePartSelections()
     {
-        foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+        foreach (var entry in placeablePartSelectionElements)
         {
-            foreach (var partSelection in placeablePartSelectionElements)
+            if (!SimulationParameters.Instance.DoesOrganelleExist(entry.Name))
+                continue;
+
+            var organelle = SimulationParameters.Instance.GetOrganelleType(entry.Name);
+
+            entry.PartName = organelle.Name;
+            entry.MPCost = organelle.MPCost;
+            entry.PartIcon = organelle.LoadedIcon;
+
+            if (!entry.IsConnected(
+                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected)))
             {
-                if (partSelection.Name == organelle.InternalName)
-                {
-                    partSelection.PartName = organelle.Name;
-                    partSelection.MPCost = organelle.MPCost;
-
-                    partSelection.PartIcon = !string.IsNullOrEmpty(organelle.IconPath) ?
-                        GD.Load<Texture>(organelle.IconPath) :
-                        GD.Load<Texture>("res://assets/textures/gui/bevel/TestIcon.png");
-
-                    partSelection.Connect(
-                        nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
-                }
+                entry.Connect(
+                    nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
             }
         }
 
-        foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes())
+        foreach (var entry in membraneSelectionElements)
         {
-            foreach (var membraneSelection in membraneSelectionElements)
+            if (!SimulationParameters.Instance.DoesMembraneExist(entry.Name))
+                continue;
+
+            var membrane = SimulationParameters.Instance.GetMembrane(entry.Name);
+
+            entry.PartName = membrane.Name;
+            entry.MPCost = membrane.EditorCost;
+            entry.PartIcon = membrane.LoadedIcon;
+
+            if (!entry.IsConnected(
+                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected)))
             {
-                if (membraneSelection.Name == membraneType.InternalName)
-                {
-                    membraneSelection.PartName = membraneType.Name;
-                    membraneSelection.MPCost = membraneType.EditorCost;
-
-                    membraneSelection.PartIcon = !string.IsNullOrEmpty(membraneType.IconPath) ?
-                        GD.Load<Texture>(membraneType.IconPath) :
-                        GD.Load<Texture>("res://assets/textures/gui/bevel/TestIcon.png");
-
-                    membraneSelection.Connect(
-                        nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
-                }
+                entry.Connect(
+                    nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
             }
         }
     }
@@ -1133,21 +1136,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         foreach (var organelleItem in placeablePartSelectionElements)
         {
-            // organelleItem could be a non-implemented organelle so check if it really exist first.
-            if (!SimulationParameters.Instance.HasOrganelle(organelleItem.Name))
-            {
-                organelleItem.Locked = true;
-                continue;
-            }
-
-            if (organelleItem.Name == nucleus.InternalName)
-            {
-                organelleItem.Locked = hasNucleus;
-            }
-            else if (SimulationParameters.Instance.GetOrganelleType(organelleItem.Name).RequireNucleus)
-            {
-                organelleItem.Locked = !hasNucleus;
-            }
+            UpdatePartAvailability(hasNucleus, organelleItem);
         }
     }
 
@@ -1158,14 +1147,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Update the icon highlightings
         foreach (var element in placeablePartSelectionElements)
         {
-            if (element.Name == organelle)
-            {
-                element.Selected = true;
-            }
-            else
-            {
-                element.Selected = false;
-            }
+            element.Selected = element.Name == organelle;
         }
 
         GD.Print("Editor action is now: " + editor.ActiveActionName);
@@ -1293,14 +1275,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Update the icon highlightings
         foreach (var selection in membraneSelectionElements)
         {
-            if (selection.Name == membrane)
-            {
-                selection.Selected = true;
-            }
-            else
-            {
-                selection.Selected = false;
-            }
+            selection.Selected = selection.Name == membrane;
         }
     }
 
@@ -1343,6 +1318,32 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
                 symmetryIcon.Texture = symmetryIcon6x;
                 break;
+        }
+    }
+
+    /// <summary>
+    ///   Lock / unlock a single organelle that need a nucleus
+    /// </summary>
+    private void UpdatePartAvailability(bool hasNucleus, MicrobePartSelection item)
+    {
+        // item could be a non-implemented organelle so check if it really exist first.
+        if (!SimulationParameters.Instance.DoesOrganelleExist(item.Name))
+        {
+            item.Locked = true;
+            return;
+        }
+
+        if (item.Name == nucleus.InternalName)
+        {
+            item.Locked = hasNucleus;
+        }
+        else if (SimulationParameters.Instance.GetOrganelleType(item.Name).RequiresNucleus)
+        {
+            item.Locked = !hasNucleus;
+        }
+        else
+        {
+            item.Locked = false;
         }
     }
 
@@ -1647,10 +1648,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    /// <summary>
-    ///   Updates the patch details specific to the Patch Map tab
-    /// </summary>
-    private void UpdatePatchMapDetails()
+    private void UpdateShownPatchDetails()
     {
         var patch = mapDrawer.SelectedPatch;
 
