@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-04 22:08+0200\n"
-"PO-Revision-Date: 2021-04-02 10:19+0000\n"
+"PO-Revision-Date: 2021-04-06 13:52+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -448,7 +448,7 @@ msgstr "切换全屏"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "呼吸作用"
+msgstr "有氧呼吸作用"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -860,126 +860,120 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "SPACE"
-msgstr ""
+msgstr "空格"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "返回"
+msgstr "反斜杠"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "TAB"
-msgstr ""
+msgstr "Tab"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "返回"
+msgstr "退格键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "ENTER"
-msgstr ""
+msgstr "回车键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KPENTER"
-msgstr ""
+msgstr "小键盘Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "INSERT"
-msgstr ""
+msgstr "插入键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr "删除"
+msgstr "键盘删除键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "PAUSE"
-msgstr ""
+msgstr "暂停键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "PRINT"
-msgstr ""
+msgstr "键盘截屏键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "SYSREQ"
-msgstr ""
+msgstr "键盘SysRq键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "CLEAR"
-msgstr ""
+msgstr "键盘清除键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "HOME"
-msgstr ""
+msgstr "键盘Home键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
-#, fuzzy
 msgid "END"
-msgstr "以及"
+msgstr "键盘End键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
-#, fuzzy
 msgid "LEFT"
-msgstr "左移"
+msgstr "左键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:150
 msgid "UP"
-msgstr ""
+msgstr "上键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:151
-#, fuzzy
 msgid "RIGHT"
-msgstr "光强"
+msgstr "右键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:152
 msgid "DOWN"
-msgstr ""
+msgstr "下键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:153
 msgid "PAGEUP"
-msgstr ""
+msgstr "Page Up"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:154
-#, fuzzy
 msgid "PAGEDOWN"
-msgstr "向下平移"
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:155
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "大写锁定"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:156
 msgid "NUMLOCK"
-msgstr ""
+msgstr "数字锁定"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:157
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "滚卷锁定"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:158
 msgid "SUPERL"
-msgstr ""
+msgstr "Super Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:159
 msgid "SUPERR"
-msgstr ""
+msgstr "Super Right"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:160
 msgid "MENU"
-msgstr ""
+msgstr "Menu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:161
 msgid "HYPERL"
-msgstr ""
+msgstr "Hyper Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:162
 msgid "HYPERR"
-msgstr ""
+msgstr "Hyper Right"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:163
 #: ../src/general/PauseMenu.tscn:86
@@ -987,30 +981,27 @@ msgid "HELP"
 msgstr "帮助"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
-#, fuzzy
 msgid "DIRECTIONL"
-msgstr "介绍："
+msgstr "左"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "DIRECTIONR"
-msgstr "介绍："
+msgstr "右"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 #: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:113
 msgid "BACK"
-msgstr "返回"
+msgstr "后退"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "FORWARD"
 msgstr "前进"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "STOP"
-msgstr ""
+msgstr "停下"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 #: ../src/saving/SaveManagerGUI.tscn:66
@@ -1018,121 +1009,116 @@ msgid "REFRESH"
 msgstr "刷新"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "音效音量"
+msgstr "降低音量"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "音效音量"
+msgstr "静音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "音效音量"
+msgstr "提高音量"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "BASSBOOST"
-msgstr ""
+msgstr "低音增强"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "BASSUP"
-msgstr ""
+msgstr "提高低音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "BASSDOWN"
-msgstr ""
+msgstr "降低低音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "TREBLEUP"
-msgstr ""
+msgstr "提高高音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "向下滚轮"
+msgstr "降低高音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "媒体播放"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "媒体停止"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "先前："
+msgstr "媒体前页"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "媒体后页"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "MEDIARECORD"
-msgstr ""
+msgstr "媒体录制"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "HOMEPAGE"
-msgstr ""
+msgstr "主页"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "FAVORITES"
-msgstr ""
+msgstr "收藏夹"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "SEARCH"
-msgstr ""
+msgstr "搜索"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "STANDBY"
-msgstr ""
+msgstr "待机"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "OPENURL"
-msgstr ""
+msgstr "打开网址"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "邮件"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "媒体"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Launch 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Launch 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Launch 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Launch 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Launch 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Launch 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Launch 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Launch 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH8"
@@ -1227,7 +1213,6 @@ msgid "KP9"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
-#, fuzzy
 msgid "UNKNOWN"
 msgstr "鼠标未知键"
 
@@ -1747,10 +1732,8 @@ msgstr "渗透调节消耗"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:586
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
-"胶质的细胞内容。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，这"
-"些物质充满了细胞内部。它其中一个功能是糖酵解，作用是将葡萄糖转换成ATP能量。"
-"对于那些缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它"
-"同样还能用来储存收集到的化合物以使细胞大小成长。"
+"胶质的细胞内容。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，这些物质充满了细胞内部。它其中一个功能是糖酵解，作用是将葡萄糖转换成ATP能量。对"
+"于那些缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物以使细胞大小成长。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:746
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
@@ -1769,10 +1752,8 @@ msgstr "氧。"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
-"代谢体是一大堆被蛋白质壳包裹住的蛋白质。通过有氧呼吸它们可以以比细胞质快得"
-"多的速度将葡萄糖转换成ATP。不管怎样，它需要氧才能运作，低水平的环境氧会导致"
-"ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一"
-"些糖酵解。"
+"代谢体是一大堆被蛋白质壳包裹住的蛋白质。通过有氧呼吸它们可以以比细胞质快得多的速度将葡萄糖转换成ATP。不管怎样，它需要氧才能运作，低水平的环境氧会导致A"
+"TP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2096
@@ -1820,10 +1801,8 @@ msgstr "光强"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过光合作用将阳光中的"
-"能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原"
-"因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬"
-"浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
+"类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过光合作用将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们"
+"产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4220
@@ -1837,9 +1816,8 @@ msgstr "同时也将"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫"
-"化氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成"
-"蛋白是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
+"化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫化氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成蛋白是"
+"直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1863,9 +1841,8 @@ msgstr "取决于"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被"
-"称作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行"
-"一些糖酵解。"
+"固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一"
+"些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5002
@@ -2846,12 +2823,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"移除细胞器也需要消耗变异点。你可以通过右键点击细胞器打开对应面板，并选择删"
-"除选项来移除它们。\n"
+"移除细胞器也需要消耗变异点，除非这些细胞器是在当代内添加的。\n"
+"\n"
+"你可以通过右键点击细胞器打开对应面板，并选择删除选项来移除它们。\n"
 "\n"
 "如果你犯了个错的话，你可以撤销你在编辑器里做的任何改变。\n"
-"\n"
-"请注意：移除任何在当前世代添加的细胞器都是免费的。\n"
 "\n"
 "按撤销按钮以继续。"
 
