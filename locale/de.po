@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-04 22:08+0200\n"
-"PO-Revision-Date: 2021-04-04 16:01+0000\n"
+"PO-Revision-Date: 2021-04-06 13:52+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -921,7 +921,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "SPACE"
-msgstr ""
+msgstr "Leertaste"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 #, fuzzy
@@ -930,11 +930,11 @@ msgstr "Zurück"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "TAB"
-msgstr ""
+msgstr "Tab"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 #, fuzzy
@@ -943,15 +943,15 @@ msgstr "Zurück"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "ENTER"
-msgstr ""
+msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KPENTER"
-msgstr ""
+msgstr "Num Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "INSERT"
-msgstr ""
+msgstr "Einfg"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -960,15 +960,15 @@ msgstr "Löschen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "PAUSE"
-msgstr ""
+msgstr "Pause"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "PRINT"
-msgstr ""
+msgstr "Druck"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "SYSREQ"
-msgstr ""
+msgstr "S-Abf"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "CLEAR"
@@ -976,7 +976,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "HOME"
-msgstr ""
+msgstr "Pos1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 #, fuzzy
@@ -990,7 +990,7 @@ msgstr "Nach links bewegen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:150
 msgid "UP"
-msgstr ""
+msgstr "Hoch"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:151
 #, fuzzy
@@ -999,11 +999,11 @@ msgstr "Licht"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:152
 msgid "DOWN"
-msgstr ""
+msgstr "Runter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:153
 msgid "PAGEUP"
-msgstr ""
+msgstr "Bild auf"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:154
 #, fuzzy
@@ -1012,35 +1012,35 @@ msgstr "Nach unten schwenken"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:155
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Feststelltaste"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:156
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:157
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Rollen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:158
 msgid "SUPERL"
-msgstr ""
+msgstr "Super Links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:159
 msgid "SUPERR"
-msgstr ""
+msgstr "Super Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:160
 msgid "MENU"
-msgstr ""
+msgstr "Menü"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:161
 msgid "HYPERL"
-msgstr ""
+msgstr "Hyper Links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:162
 msgid "HYPERR"
-msgstr ""
+msgstr "Hyper Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:163
 #: ../src/general/PauseMenu.tscn:86
@@ -1071,7 +1071,7 @@ msgstr "Nach vorne bewegen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "STOP"
-msgstr ""
+msgstr "Stopp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 #: ../src/saving/SaveManagerGUI.tscn:66
@@ -1095,19 +1095,19 @@ msgstr "Effektlautstärke"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "BASSBOOST"
-msgstr ""
+msgstr "Bassboost"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "BASSUP"
-msgstr ""
+msgstr "Bass Hoch"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "BASSDOWN"
-msgstr ""
+msgstr "Bass Runter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "TREBLEUP"
-msgstr ""
+msgstr "Hoch drei"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 #, fuzzy
@@ -1116,11 +1116,11 @@ msgstr "Mausrad runter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Abspielen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Stopp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
 #, fuzzy
@@ -1129,163 +1129,163 @@ msgstr "zuvor:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Nächste"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "MEDIARECORD"
-msgstr ""
+msgstr "Aufnehmen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "HOMEPAGE"
-msgstr ""
+msgstr "Startseite"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "FAVORITES"
-msgstr ""
+msgstr "Favoriten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "SEARCH"
-msgstr ""
+msgstr "Suche"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "STANDBY"
-msgstr ""
+msgstr "Standby"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "OPENURL"
-msgstr ""
+msgstr "URL öffnen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "Mail"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "Medien"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "LAUNCH0"
-msgstr ""
+msgstr "0 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "LAUNCH1"
-msgstr ""
+msgstr "1 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "LAUNCH2"
-msgstr ""
+msgstr "2 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "LAUNCH3"
-msgstr ""
+msgstr "3 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCH4"
-msgstr ""
+msgstr "4 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCH5"
-msgstr ""
+msgstr "5 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH6"
-msgstr ""
+msgstr "6 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH7"
-msgstr ""
+msgstr "7 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH8"
-msgstr ""
+msgstr "8 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH9"
-msgstr ""
+msgstr "9 Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCHA"
-msgstr ""
+msgstr "A Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCHB"
-msgstr ""
+msgstr "B Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCHC"
-msgstr ""
+msgstr "C Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCHD"
-msgstr ""
+msgstr "D Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCHE"
-msgstr ""
+msgstr "E Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCHF"
-msgstr ""
+msgstr "F Starten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Num *"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Num /"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Num -"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Num ."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "KPADD"
-msgstr ""
+msgstr "Num +"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "KP0"
-msgstr ""
+msgstr "Num 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KP1"
-msgstr ""
+msgstr "Num 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KP2"
-msgstr ""
+msgstr "Num 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KP3"
-msgstr ""
+msgstr "Num 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KP4"
-msgstr ""
+msgstr "Num 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KP5"
-msgstr ""
+msgstr "Num 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP6"
-msgstr ""
+msgstr "Num 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP7"
-msgstr ""
+msgstr "Num 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP8"
-msgstr ""
+msgstr "Num 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP9"
-msgstr ""
+msgstr "Num 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 #, fuzzy
