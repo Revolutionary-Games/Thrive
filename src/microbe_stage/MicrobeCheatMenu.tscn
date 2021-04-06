@@ -14,6 +14,10 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+InfiniteCompoundsPath = NodePath("InfiniteCompounds")
+GodModePath = NodePath("GodMode")
+DisableAIPath = NodePath("DisableAI")
+SpeedSliderPath = NodePath("Speed/SpeedSlider")
 
 [node name="InfiniteCompounds" type="CheckBox" parent="."]
 margin_left = 11.0

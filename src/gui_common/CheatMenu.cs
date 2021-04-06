@@ -44,6 +44,12 @@ public abstract class CheatMenu : Popup
         return true;
     }
 
+    public override void _Ready()
+    {
+        ReloadGUI();
+        base._Ready();
+    }
+
     public override void _EnterTree()
     {
         InputManager.RegisterReceiver(this);

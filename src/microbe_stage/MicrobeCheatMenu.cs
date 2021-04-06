@@ -22,12 +22,13 @@ public class MicrobeCheatMenu : CheatMenu
     private CheckBox disableAI;
     private Slider speed;
 
-    public MicrobeCheatMenu()
+    public override void _Ready()
     {
         infiniteCompounds = GetNode<CheckBox>(InfiniteCompoundsPath);
         godMode = GetNode<CheckBox>(GodModePath);
         disableAI = GetNode<CheckBox>(DisableAIPath);
         speed = GetNode<Slider>(SpeedSliderPath);
+        base._Ready();
     }
 
     public override void ReloadGUI()

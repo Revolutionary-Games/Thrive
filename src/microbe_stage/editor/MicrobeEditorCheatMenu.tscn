@@ -14,8 +14,9 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+InfiniteMpPath = NodePath("InfiniteMP")
 
-[node name="InfiniteCompounds" type="CheckBox" parent="."]
+[node name="InfiniteMP" type="CheckBox" parent="."]
 margin_left = 11.0
 margin_top = 6.0
 margin_right = 188.0
@@ -25,4 +26,4 @@ text = "INFINITE_MP"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="toggled" from="InfiniteCompounds" to="." method="SetInfiniteMP"]
+[connection signal="toggled" from="InfiniteMP" to="." method="SetInfiniteMP"]

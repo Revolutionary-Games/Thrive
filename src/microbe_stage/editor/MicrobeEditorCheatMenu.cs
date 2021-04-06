@@ -1,22 +1,20 @@
 ﻿using Godot;
 
-/// <summary>
-///   Handles the microbe editor cheat menu
-/// </summary>
 public class MicrobeEditorCheatMenu : CheatMenu
 {
     [Export]
-    public NodePath InfiniteMPPath;
+    public NodePath InfiniteMpPath;
 
-    private CheckBox infiniteMP;
+    private CheckBox infiniteMp;
 
-    public MicrobeEditorCheatMenu()
+    public override void _Ready()
     {
-        infiniteMP = GetNode<CheckBox>(InfiniteMPPath);
+        infiniteMp = GetNode<CheckBox>(InfiniteMpPath);
+        base._Ready();
     }
 
     public override void ReloadGUI()
     {
-        infiniteMP.Pressed = CheatManager.InfiniteMP;
+        infiniteMp.Pressed = CheatManager.InfiniteMP;
     }
 }
