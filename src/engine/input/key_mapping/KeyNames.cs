@@ -121,6 +121,35 @@ internal static class KeyNames
             KeyList.Ssharp => "ß",
             KeyList.Division => "÷",
             KeyList.Ydiaeresis => "ÿ",
+
+            // Key names that would conflict with simple words in translations
+            KeyList.Forward => TranslationServer.Translate("KEY_FORWARD"),
+            KeyList.Tab => TranslationServer.Translate("KEY_TAB"),
+            KeyList.Enter => TranslationServer.Translate("KEY_ENTER"),
+            KeyList.Insert => TranslationServer.Translate("KEY_INSERT"),
+            KeyList.Delete => TranslationServer.Translate("KEY_DELETE"),
+            KeyList.Pause => TranslationServer.Translate("KEY_PAUSE"),
+            KeyList.Clear => TranslationServer.Translate("KEY_CLEAR"),
+            KeyList.Home => TranslationServer.Translate("KEY_HOME"),
+            KeyList.End => TranslationServer.Translate("KEY_END"),
+            KeyList.Left => TranslationServer.Translate("KEY_LEFT"),
+            KeyList.Up => TranslationServer.Translate("KEY_UP"),
+            KeyList.Right => TranslationServer.Translate("KEY_RIGHT"),
+            KeyList.Down => TranslationServer.Translate("KEY_DOWN"),
+            KeyList.Menu => TranslationServer.Translate("KEY_MENU"),
+            KeyList.Help => TranslationServer.Translate("KEY_HELP"),
+            KeyList.Back => TranslationServer.Translate("KEY_BACK"),
+            KeyList.Stop => TranslationServer.Translate("KEY_STOP"),
+            KeyList.Refresh => TranslationServer.Translate("KEY_REFRESH"),
+            KeyList.Search => TranslationServer.Translate("KEY_SEARCH"),
+            KeyList.Standby => TranslationServer.Translate("KEY_STANDBY"),
+            KeyList.Openurl => TranslationServer.Translate("KEY_OPENURL"),
+
+            KeyList.Homepage => TranslationServer.Translate("KEY_HOMEPAGE"),
+            KeyList.Favorites => TranslationServer.Translate("KEY_FAVORITES"),
+            KeyList.Print => TranslationServer.Translate("KEY_PRINT"),
+
+            // Fallback to using the key name (in upper case) to translate. These must all be defined in Keys method
             _ => TranslationServer.Translate(key.ToString().ToUpper(CultureInfo.InvariantCulture)),
         };
     }
@@ -134,22 +163,9 @@ internal static class KeyNames
         TranslationServer.Translate("SPACE");
         TranslationServer.Translate("BACKSLASH");
         TranslationServer.Translate("ESCAPE");
-        TranslationServer.Translate("TAB");
         TranslationServer.Translate("BACKSPACE");
-        TranslationServer.Translate("ENTER");
         TranslationServer.Translate("KPENTER");
-        TranslationServer.Translate("INSERT");
-        TranslationServer.Translate("DELETE");
-        TranslationServer.Translate("PAUSE");
-        TranslationServer.Translate("PRINT");
         TranslationServer.Translate("SYSREQ");
-        TranslationServer.Translate("CLEAR");
-        TranslationServer.Translate("HOME");
-        TranslationServer.Translate("END");
-        TranslationServer.Translate("LEFT");
-        TranslationServer.Translate("UP");
-        TranslationServer.Translate("RIGHT");
-        TranslationServer.Translate("DOWN");
         TranslationServer.Translate("PAGEUP");
         TranslationServer.Translate("PAGEDOWN");
         TranslationServer.Translate("CAPSLOCK");
@@ -157,16 +173,10 @@ internal static class KeyNames
         TranslationServer.Translate("SCROLLLOCK");
         TranslationServer.Translate("SUPERL");
         TranslationServer.Translate("SUPERR");
-        TranslationServer.Translate("MENU");
         TranslationServer.Translate("HYPERL");
         TranslationServer.Translate("HYPERR");
-        TranslationServer.Translate("HELP");
         TranslationServer.Translate("DIRECTIONL");
         TranslationServer.Translate("DIRECTIONR");
-        TranslationServer.Translate("BACK");
-        TranslationServer.Translate("FORWARD");
-        TranslationServer.Translate("STOP");
-        TranslationServer.Translate("REFRESH");
         TranslationServer.Translate("VOLUMEDOWN");
         TranslationServer.Translate("VOLUMEMUTE");
         TranslationServer.Translate("VOLUMEUP");
@@ -180,11 +190,6 @@ internal static class KeyNames
         TranslationServer.Translate("MEDIAPREVIOUS");
         TranslationServer.Translate("MEDIANEXT");
         TranslationServer.Translate("MEDIARECORD");
-        TranslationServer.Translate("HOMEPAGE");
-        TranslationServer.Translate("FAVORITES");
-        TranslationServer.Translate("SEARCH");
-        TranslationServer.Translate("STANDBY");
-        TranslationServer.Translate("OPENURL");
         TranslationServer.Translate("LAUNCHMAIL");
         TranslationServer.Translate("LAUNCHMEDIA");
         TranslationServer.Translate("LAUNCH0");
