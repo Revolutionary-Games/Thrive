@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-04 15:40+0200\n"
+"POT-Creation-Date: 2021-04-07 12:07+0200\n"
 "PO-Revision-Date: 2021-04-04 16:01+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -626,7 +626,7 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4482
-#: ../src/microbe_stage/MicrobeStage.tscn:1216
+#: ../src/microbe_stage/MicrobeStage.tscn:1217
 msgid "AMMONIA"
 msgstr "אמוניה"
 
@@ -638,7 +638,7 @@ msgstr "פוספט"
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4172
-#: ../src/microbe_stage/MicrobeStage.tscn:1324
+#: ../src/microbe_stage/MicrobeStage.tscn:1325
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
 
@@ -652,7 +652,7 @@ msgstr "מימן גופרתי"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4197
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeStage.tscn:1163
 msgid "GLUCOSE"
 msgstr "גלוקוז"
 
@@ -750,14 +750,14 @@ msgstr "מטבולוזומים"
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4359
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4423
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3150
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "פלסטיד מקבע חנקן"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4138
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3079
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3080
 msgid "CHEMOPLAST"
 msgstr "כימופלסט"
 
@@ -771,7 +771,7 @@ msgstr "שוטון"
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4742
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3217
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
 msgid "VACUOLE"
 msgstr "חלולית"
 
@@ -785,7 +785,7 @@ msgstr "מיטוכונדריון"
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4879
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3286
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3287
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "חלולית\n"
@@ -886,818 +886,818 @@ msgstr ""
 "יש התנגשות עם {0}.\n"
 "האם אתה רוצה להסיר את הקלט {1}?"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:12
+#: ../src/engine/input/key_mapping/KeyNames.cs:14
 msgid "SPACE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:13
+#: ../src/engine/input/key_mapping/KeyNames.cs:15
 msgid "EXCLAM"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:14
+#: ../src/engine/input/key_mapping/KeyNames.cs:16
 msgid "QUOTEDBL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:15
+#: ../src/engine/input/key_mapping/KeyNames.cs:17
 msgid "NUMBERSIGN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:16
+#: ../src/engine/input/key_mapping/KeyNames.cs:18
 msgid "DOLLAR"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:17
+#: ../src/engine/input/key_mapping/KeyNames.cs:19
 msgid "PERCENT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:18
+#: ../src/engine/input/key_mapping/KeyNames.cs:20
 msgid "AMPERSAND"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:19
+#: ../src/engine/input/key_mapping/KeyNames.cs:21
 msgid "APOSTROPHE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:20
+#: ../src/engine/input/key_mapping/KeyNames.cs:22
 #, fuzzy
 msgid "PARENLEFT"
 msgstr "סובב שמאלה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:21
+#: ../src/engine/input/key_mapping/KeyNames.cs:23
 #, fuzzy
 msgid "PARENRIGHT"
 msgstr "סובב ימינה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:22
+#: ../src/engine/input/key_mapping/KeyNames.cs:24
 msgid "ASTERISK"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:23
+#: ../src/engine/input/key_mapping/KeyNames.cs:25
 msgid "PLUS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:24
+#: ../src/engine/input/key_mapping/KeyNames.cs:26
 msgid "COMMA"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:25
+#: ../src/engine/input/key_mapping/KeyNames.cs:27
 msgid "MINUS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:26
+#: ../src/engine/input/key_mapping/KeyNames.cs:28
 msgid "PERIOD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:27
+#: ../src/engine/input/key_mapping/KeyNames.cs:29
 msgid "SLASH"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:28
+#: ../src/engine/input/key_mapping/KeyNames.cs:30
 msgid "KEY0"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:29
+#: ../src/engine/input/key_mapping/KeyNames.cs:31
 msgid "KEY1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:30
+#: ../src/engine/input/key_mapping/KeyNames.cs:32
 msgid "KEY2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:31
+#: ../src/engine/input/key_mapping/KeyNames.cs:33
 msgid "KEY3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:32
+#: ../src/engine/input/key_mapping/KeyNames.cs:34
 msgid "KEY4"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:33
+#: ../src/engine/input/key_mapping/KeyNames.cs:35
 msgid "KEY5"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:34
+#: ../src/engine/input/key_mapping/KeyNames.cs:36
 msgid "KEY6"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:35
+#: ../src/engine/input/key_mapping/KeyNames.cs:37
 msgid "KEY7"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:36
+#: ../src/engine/input/key_mapping/KeyNames.cs:38
 msgid "KEY8"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:37
+#: ../src/engine/input/key_mapping/KeyNames.cs:39
 msgid "KEY9"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:38
+#: ../src/engine/input/key_mapping/KeyNames.cs:40
 #, fuzzy
 msgid "COLON"
 msgstr "חיים:"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:39
+#: ../src/engine/input/key_mapping/KeyNames.cs:41
 #, fuzzy
 msgid "SEMICOLON"
 msgstr "גודל:"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:40
+#: ../src/engine/input/key_mapping/KeyNames.cs:42
 msgid "LESS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:41
+#: ../src/engine/input/key_mapping/KeyNames.cs:43
 msgid "EQUAL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:42
+#: ../src/engine/input/key_mapping/KeyNames.cs:44
 msgid "GREATER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:43
+#: ../src/engine/input/key_mapping/KeyNames.cs:45
 #, fuzzy
 msgid "QUESTION"
 msgstr "רזולוציה:"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:44
+#: ../src/engine/input/key_mapping/KeyNames.cs:46
 #, fuzzy
 msgid "AT"
 msgstr "ATP"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:45
+#: ../src/engine/input/key_mapping/KeyNames.cs:47
 #, fuzzy
 msgid "BRACKETLEFT"
 msgstr "סובב שמאלה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:46
+#: ../src/engine/input/key_mapping/KeyNames.cs:48
 #, fuzzy
 msgid "BACKSLASH"
 msgstr "חזור"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:47
+#: ../src/engine/input/key_mapping/KeyNames.cs:49
 #, fuzzy
 msgid "BRACKETRIGHT"
 msgstr "סובב ימינה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:48
+#: ../src/engine/input/key_mapping/KeyNames.cs:50
 msgid "ASCIICIRCUM"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:49
+#: ../src/engine/input/key_mapping/KeyNames.cs:51
 msgid "UNDERSCORE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:50
+#: ../src/engine/input/key_mapping/KeyNames.cs:52
 #, fuzzy
 msgid "QUOTELEFT"
 msgstr "סובב שמאלה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:51
+#: ../src/engine/input/key_mapping/KeyNames.cs:53
 #, fuzzy
 msgid "BRACELEFT"
 msgstr "סובב שמאלה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:52
-msgid "BAR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:53
-#, fuzzy
-msgid "BRACERIGHT"
-msgstr "סובב ימינה"
-
 #: ../src/engine/input/key_mapping/KeyNames.cs:54
-msgid "ASCIITILDE"
+msgid "BAR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:55
 #, fuzzy
-msgid "EXCLAMDOWN"
-msgstr "גלגל אחורה"
+msgid "BRACERIGHT"
+msgstr "סובב ימינה"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:56
-msgid "CENT"
+msgid "ASCIITILDE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:57
-msgid "STERLING"
-msgstr ""
+#, fuzzy
+msgid "EXCLAMDOWN"
+msgstr "גלגל אחורה"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:58
-msgid "CURRENCY"
+msgid "CENT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:59
-#, fuzzy
-msgid "YEN"
-msgstr "חמצן"
+msgid "STERLING"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:60
-msgid "BROKENBAR"
+msgid "CURRENCY"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:61
 #, fuzzy
-msgid "SECTION"
-msgstr "תיאור:"
+msgid "YEN"
+msgstr "חמצן"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:62
-msgid "DIAERESIS"
+msgid "BROKENBAR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:63
 #, fuzzy
-msgid "COPYRIGHT"
-msgstr "זוז ימינה"
+msgid "SECTION"
+msgstr "תיאור:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:64
-msgid "ORDFEMININE"
+msgid "DIAERESIS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:65
-msgid "GUILLEMOTLEFT"
-msgstr ""
+#, fuzzy
+msgid "COPYRIGHT"
+msgstr "זוז ימינה"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:66
-msgid "NOTSIGN"
+msgid "ORDFEMININE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:67
-msgid "HYPHEN"
+msgid "GUILLEMOTLEFT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:68
-msgid "REGISTERED"
+msgid "NOTSIGN"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:69
-msgid "MACRON"
+msgid "HYPHEN"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:70
-msgid "DEGREE"
+msgid "REGISTERED"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:71
-msgid "PLUSMINUS"
+msgid "MACRON"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:72
-msgid "TWOSUPERIOR"
+msgid "DEGREE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:73
-msgid "THREESUPERIOR"
+msgid "PLUSMINUS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:74
-msgid "ACUTE"
+msgid "TWOSUPERIOR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:75
+msgid "THREESUPERIOR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:76
+msgid "ACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:77
 #, fuzzy
 msgid "MU"
 msgstr "השתק"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:76
+#: ../src/engine/input/key_mapping/KeyNames.cs:78
 msgid "PARAGRAPH"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:77
+#: ../src/engine/input/key_mapping/KeyNames.cs:79
 msgid "PERIODCENTERED"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:78
+#: ../src/engine/input/key_mapping/KeyNames.cs:80
 msgid "CEDILLA"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:79
+#: ../src/engine/input/key_mapping/KeyNames.cs:81
 msgid "ONESUPERIOR"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:80
+#: ../src/engine/input/key_mapping/KeyNames.cs:82
 msgid "MASCULINE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:81
+#: ../src/engine/input/key_mapping/KeyNames.cs:83
 msgid "GUILLEMOTRIGHT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:82
+#: ../src/engine/input/key_mapping/KeyNames.cs:84
 msgid "ONEQUARTER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:83
+#: ../src/engine/input/key_mapping/KeyNames.cs:85
 msgid "ONEHALF"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:84
+#: ../src/engine/input/key_mapping/KeyNames.cs:86
 msgid "THREEQUARTERS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:85
+#: ../src/engine/input/key_mapping/KeyNames.cs:87
 msgid "QUESTIONDOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:86
+#: ../src/engine/input/key_mapping/KeyNames.cs:88
 msgid "AGRAVE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:87
+#: ../src/engine/input/key_mapping/KeyNames.cs:89
 msgid "AACUTE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:88
+#: ../src/engine/input/key_mapping/KeyNames.cs:90
 msgid "ACIRCUMFLEX"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:89
+#: ../src/engine/input/key_mapping/KeyNames.cs:91
 msgid "ATILDE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:90
+#: ../src/engine/input/key_mapping/KeyNames.cs:92
 msgid "ADIAERESIS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:91
+#: ../src/engine/input/key_mapping/KeyNames.cs:93
 msgid "ARING"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:92
+#: ../src/engine/input/key_mapping/KeyNames.cs:94
 #, fuzzy
 msgid "AE"
 msgstr "שמור"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:93
+#: ../src/engine/input/key_mapping/KeyNames.cs:95
 msgid "CCEDILLA"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:94
+#: ../src/engine/input/key_mapping/KeyNames.cs:96
 msgid "EGRAVE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:95
+#: ../src/engine/input/key_mapping/KeyNames.cs:97
 msgid "EACUTE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:96
+#: ../src/engine/input/key_mapping/KeyNames.cs:98
 msgid "ECIRCUMFLEX"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:97
+#: ../src/engine/input/key_mapping/KeyNames.cs:99
 msgid "EDIAERESIS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:98
+#: ../src/engine/input/key_mapping/KeyNames.cs:100
 msgid "IGRAVE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:99
+#: ../src/engine/input/key_mapping/KeyNames.cs:101
 msgid "IACUTE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:100
+#: ../src/engine/input/key_mapping/KeyNames.cs:102
 msgid "ICIRCUMFLEX"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:101
+#: ../src/engine/input/key_mapping/KeyNames.cs:103
 msgid "IDIAERESIS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:102
+#: ../src/engine/input/key_mapping/KeyNames.cs:104
 #, fuzzy
 msgid "ETH"
 msgstr "מוות"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:103
+#: ../src/engine/input/key_mapping/KeyNames.cs:105
 msgid "NTILDE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:104
+#: ../src/engine/input/key_mapping/KeyNames.cs:106
 msgid "OGRAVE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:105
+#: ../src/engine/input/key_mapping/KeyNames.cs:107
 msgid "OACUTE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:106
+#: ../src/engine/input/key_mapping/KeyNames.cs:108
 msgid "OCIRCUMFLEX"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:107
+#: ../src/engine/input/key_mapping/KeyNames.cs:109
 msgid "OTILDE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:108
+#: ../src/engine/input/key_mapping/KeyNames.cs:110
 msgid "ODIAERESIS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:109
+#: ../src/engine/input/key_mapping/KeyNames.cs:111
 msgid "MULTIPLY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:110
+#: ../src/engine/input/key_mapping/KeyNames.cs:112
 msgid "OOBLIQUE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:111
+#: ../src/engine/input/key_mapping/KeyNames.cs:113
 msgid "UGRAVE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:112
+#: ../src/engine/input/key_mapping/KeyNames.cs:114
 msgid "UACUTE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:113
+#: ../src/engine/input/key_mapping/KeyNames.cs:115
 msgid "UCIRCUMFLEX"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:114
+#: ../src/engine/input/key_mapping/KeyNames.cs:116
 msgid "UDIAERESIS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:115
+#: ../src/engine/input/key_mapping/KeyNames.cs:117
 msgid "YACUTE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:116
+#: ../src/engine/input/key_mapping/KeyNames.cs:118
 msgid "THORN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:117
+#: ../src/engine/input/key_mapping/KeyNames.cs:119
 msgid "SSHARP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:118
+#: ../src/engine/input/key_mapping/KeyNames.cs:120
 #, fuzzy
 msgid "DIVISION"
 msgstr "גרסה:"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:119
+#: ../src/engine/input/key_mapping/KeyNames.cs:121
 msgid "YDIAERESIS"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:120
+#: ../src/engine/input/key_mapping/KeyNames.cs:122
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:121
+#: ../src/engine/input/key_mapping/KeyNames.cs:123
 msgid "TAB"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:122
+#: ../src/engine/input/key_mapping/KeyNames.cs:124
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "חזור"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:123
+#: ../src/engine/input/key_mapping/KeyNames.cs:125
 msgid "ENTER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:124
+#: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KPENTER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:125
+#: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "INSERT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:126
+#: ../src/engine/input/key_mapping/KeyNames.cs:128
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "מחק"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:127
+#: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "PAUSE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:128
+#: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "PRINT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:129
+#: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "SYSREQ"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:130
+#: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "CLEAR"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:131
+#: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "HOME"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:132
+#: ../src/engine/input/key_mapping/KeyNames.cs:134
 #, fuzzy
 msgid "END"
 msgstr "ו"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:133
+#: ../src/engine/input/key_mapping/KeyNames.cs:135
 #, fuzzy
 msgid "LEFT"
 msgstr "זוז שמאלה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:134
+#: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "UP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:135
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
 #, fuzzy
 msgid "RIGHT"
 msgstr "אור"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:136
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "DOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:137
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "PAGEUP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:138
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
 #, fuzzy
 msgid "PAGEDOWN"
 msgstr "זוז מטה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:139
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "CAPSLOCK"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:140
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "NUMLOCK"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:141
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "SCROLLLOCK"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:142
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "SUPERL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:143
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "SUPERR"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:144
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "MENU"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:145
+#: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "HYPERL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:146
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "HYPERR"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:147
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
 #: ../src/general/PauseMenu.tscn:86
 msgid "HELP"
 msgstr "עזרה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:148
+#: ../src/engine/input/key_mapping/KeyNames.cs:150
 #, fuzzy
 msgid "DIRECTIONL"
 msgstr "תיאור:"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:149
+#: ../src/engine/input/key_mapping/KeyNames.cs:151
 #, fuzzy
 msgid "DIRECTIONR"
 msgstr "תיאור:"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:150
+#: ../src/engine/input/key_mapping/KeyNames.cs:152
 #: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:113
 msgid "BACK"
 msgstr "חזור"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:151
+#: ../src/engine/input/key_mapping/KeyNames.cs:153
 #, fuzzy
 msgid "FORWARD"
 msgstr "זוז קדימה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:152
+#: ../src/engine/input/key_mapping/KeyNames.cs:154
 msgid "STOP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:153
+#: ../src/engine/input/key_mapping/KeyNames.cs:155
 #: ../src/saving/SaveManagerGUI.tscn:66
 msgid "REFRESH"
 msgstr "רענן"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:154
+#: ../src/engine/input/key_mapping/KeyNames.cs:156
 #, fuzzy
 msgid "VOLUMEDOWN"
 msgstr "עוצמת אפקטים"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:155
+#: ../src/engine/input/key_mapping/KeyNames.cs:157
 #, fuzzy
 msgid "VOLUMEMUTE"
 msgstr "עוצמת אפקטים"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:156
+#: ../src/engine/input/key_mapping/KeyNames.cs:158
 #, fuzzy
 msgid "VOLUMEUP"
 msgstr "עוצמת אפקטים"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:157
+#: ../src/engine/input/key_mapping/KeyNames.cs:159
 msgid "BASSBOOST"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:158
+#: ../src/engine/input/key_mapping/KeyNames.cs:160
 msgid "BASSUP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:159
+#: ../src/engine/input/key_mapping/KeyNames.cs:161
 msgid "BASSDOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:160
+#: ../src/engine/input/key_mapping/KeyNames.cs:162
 msgid "TREBLEUP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:161
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
 #, fuzzy
 msgid "TREBLEDOWN"
 msgstr "גלגל אחורה"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:162
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "MEDIAPLAY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:163
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "MEDIASTOP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:164
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
 #, fuzzy
 msgid "MEDIAPREVIOUS"
 msgstr "קודם:"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:165
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "MEDIANEXT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:166
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "MEDIARECORD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:167
+#: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "HOMEPAGE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:168
+#: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "FAVORITES"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:169
+#: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "SEARCH"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:170
+#: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "STANDBY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:171
+#: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "OPENURL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:172
+#: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "LAUNCHMAIL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:173
+#: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "LAUNCHMEDIA"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:174
+#: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "LAUNCH0"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:175
+#: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "LAUNCH1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:176
+#: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "LAUNCH2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:177
+#: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "LAUNCH3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:178
+#: ../src/engine/input/key_mapping/KeyNames.cs:180
 msgid "LAUNCH4"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:179
+#: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "LAUNCH5"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:180
+#: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "LAUNCH6"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:181
+#: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "LAUNCH7"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:182
+#: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "LAUNCH8"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:183
+#: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "LAUNCH9"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:184
+#: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "LAUNCHA"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:185
+#: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "LAUNCHB"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:186
+#: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "LAUNCHC"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:187
+#: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "LAUNCHD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:188
+#: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "LAUNCHE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:189
+#: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "LAUNCHF"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:190
+#: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "KPMULTIPLY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:191
+#: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "KPDIVIDE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:192
+#: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:193
+#: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "KPPERIOD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:194
+#: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "KPADD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:195
+#: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "KP0"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:196
+#: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "KP1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:197
+#: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "KP2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:198
+#: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "KP3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:199
+#: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "KP4"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:200
+#: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "KP5"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:201
+#: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "KP6"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:202
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "KP7"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:203
+#: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "KP8"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:204
+#: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "KP9"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:205
+#: ../src/engine/input/key_mapping/KeyNames.cs:207
 #, fuzzy
 msgid "UNKNOWN"
 msgstr "לחצן עכבר לא יודע"
@@ -2222,10 +2222,10 @@ msgstr "עלות ויסות אוסמטי"
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "הקרביים הדביקים של התא. הציטופלזמה היא התערובת בסיסית של יונים, חלבונים "
-"ותרכובות אחרות המומסים במים הממלאים את פנים התא. אחד התפקידים שהוא מבצע הוא "
-"גליקליזה, המרת הגלוקוז לאנרגיית ATP. לתאים שחסרים האברונים למטבוליזם מתקדמת "
-"יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון מולקולות בתא "
-"ולגדילתו."
+"ותרכובות אחרות המומסים במים הממלאים את פנים התא. אחד התפקידים שהוא מבצע "
+"הוא גליקליזה, המרת הגלוקוז לאנרגיית ATP. לתאים שחסרים האברונים למטבוליזם "
+"מתקדמת יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון "
+"מולקולות בתא ולגדילתו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:746
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
@@ -2244,11 +2244,11 @@ msgstr "חמצן."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
-"מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר גלוקוז "
-"ל- ATP בקצב גבוה ביותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא נשימה "
-"אירובית. יחד עם זאת, הוא דורש חמצן כדי לתפקד, ורמות חמצן נמוכות יותר בסביבה "
-"יאטו את קצב ייצור שלו. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם "
-"מבצעים גליקליזה ברמה מסוימת."
+"מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר "
+"גלוקוז ל- ATP בקצב גבוה ביותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא "
+"נשימה אירובית. יחד עם זאת, הוא דורש חמצן כדי לתפקד, ורמות חמצן נמוכות יותר "
+"בסביבה יאטו את קצב ייצור שלו. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל "
+"שמסביבם מבצעים גליקליזה ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2097
@@ -2296,11 +2296,11 @@ msgstr "אור"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"תילקואידים הם מקבצי חלבונים ופיגמנטים רגישים לאור. הפיגמנטים מסוגלים להשתמש "
-"באנרגיית האור כדי לייצר גלוקוז ממים ופחמן דו חמצני במצב צבירה גזי בתהליך "
-"שנקרא פוטוסינתזה. פיגמנטים אלו הם גם מה שמעניק להם צבע ייחודי. קצב ייצור "
-"הגלוקוז מתרחש בהתאם לריכוז פחמן הדו חמצני ועוצמת האור. מכיוון שהתילקואידים "
-"צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקליזה ברמה מסוימת."
+"תילקואידים הם מקבצי חלבונים ופיגמנטים רגישים לאור. הפיגמנטים מסוגלים "
+"להשתמש באנרגיית האור כדי לייצר גלוקוז ממים ופחמן דו חמצני במצב צבירה גזי "
+"בתהליך שנקרא פוטוסינתזה. פיגמנטים אלו הם גם מה שמעניק להם צבע ייחודי. קצב "
+"ייצור הגלוקוז מתרחש בהתאם לריכוז פחמן הדו חמצני ועוצמת האור. מכיוון "
+"שהתילקואידים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקליזה ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4220
@@ -2316,8 +2316,9 @@ msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "חלבונים כימוסינתזיים הם מקבצים קטנים של חלבונים בציטופלזמה המסוגלים להמיר "
 "מימן גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא \"כימוסינתזה של מימן "
-"גופרתי\". קצב ייצור הגלוקוז מתאזן עם ריכוז הפחמן הדו חמצני. מכיוון שהחלבונים "
-"הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקוליזה ברמה מסוימת."
+"גופרתי\". קצב ייצור הגלוקוז מתאזן עם ריכוז הפחמן הדו חמצני. מכיוון "
+"שהחלבונים הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקוליזה "
+"ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2518,7 +2519,7 @@ msgstr "חלולית של ביולומינסנציה"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5326
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5390
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3543
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3544
 msgid "NORMAL"
 msgstr "רגיל"
 
@@ -2540,7 +2541,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5586
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5650
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3615
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3616
 msgid "DOUBLE"
 msgstr "כפול"
 
@@ -2553,7 +2554,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5842
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3687
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3688
 msgid "CELLULOSE"
 msgstr "תאית"
 
@@ -2579,7 +2580,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6169
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6233
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3759
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3760
 msgid "CHITIN"
 msgstr "כיטין"
 
@@ -2598,7 +2599,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6496
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6560
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3836
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3837
 msgid "CALCIUM_CARBONATE"
 msgstr "סידן פחמתי"
 
@@ -2611,7 +2612,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6857
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6921
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3909
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3910
 msgid "SILICA"
 msgstr "צורן"
 
@@ -2626,11 +2627,11 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "הוסף מקשר חדש"
 
-#: ../src/microbe_stage/Microbe.cs:806
+#: ../src/microbe_stage/Microbe.cs:809
 msgid "DEATH"
 msgstr "מוות"
 
-#: ../src/microbe_stage/Microbe.cs:1175
+#: ../src/microbe_stage/Microbe.cs:1178
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "ליקוט מוצלח"
 
@@ -2638,28 +2639,28 @@ msgstr "ליקוט מוצלח"
 msgid "SUCCESSFUL_KILL"
 msgstr "הרג מוצלח"
 
-#: ../src/microbe_stage/Microbe.cs:1501
+#: ../src/microbe_stage/Microbe.cs:1512
 msgid "REPRODUCED"
 msgstr "התרבה"
 
-#: ../src/microbe_stage/Microbe.cs:1581
+#: ../src/microbe_stage/Microbe.cs:1592
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:24
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:28
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "תרכובות"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:46
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:62
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "השחקן מת"
@@ -2676,11 +2677,11 @@ msgstr "דברים ב {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
-#: ../src/microbe_stage/MicrobeStage.cs:461
+#: ../src/microbe_stage/MicrobeStage.cs:463
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeStage.cs:573
+#: ../src/microbe_stage/MicrobeStage.cs:575
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
@@ -2976,7 +2977,7 @@ msgstr "מינים נוכחים"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "תעבור לאזור זה"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:24
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 #, fuzzy
 msgid "INFINITE_MP"
 msgstr "תרכובות"
