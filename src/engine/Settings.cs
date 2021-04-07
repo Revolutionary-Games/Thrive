@@ -540,13 +540,12 @@ public class Settings
             cultureInfo = GetCultureInfo(language);
         }
 
-        // Set locale for the game.
-        TranslationServer.SetLocale(language);
-
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.CurrentUICulture = cultureInfo;
 
-        SimulationParameters.Instance.ApplyTranslations();
+        // Set locale for the game. Called after C# locale change so that string
+        // formattings could also get updated properly.
+        TranslationServer.SetLocale(language);
     }
 
     /// <summary>
@@ -565,6 +564,9 @@ public class Settings
             }
 
             settings.ApplyAll(true);
+
+            // Simulation parameters need to apply the initial translation
+            SimulationParameters.Instance.ApplyTranslations();
 
             return settings;
         }

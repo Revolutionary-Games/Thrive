@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-01 13:36+0200\n"
+"POT-Creation-Date: 2021-04-04 15:40+0200\n"
 "PO-Revision-Date: 2021-01-03 09:13+0000\n"
 "Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
 "Language-Team: Latin <https://translate.revolutionarygamesstudio.com/"
@@ -519,7 +519,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4482
-#: ../src/microbe_stage/MicrobeStage.tscn:1217
+#: ../src/microbe_stage/MicrobeStage.tscn:1216
 msgid "AMMONIA"
 msgstr ""
 
@@ -531,7 +531,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4172
-#: ../src/microbe_stage/MicrobeStage.tscn:1325
+#: ../src/microbe_stage/MicrobeStage.tscn:1324
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
@@ -545,7 +545,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4197
-#: ../src/microbe_stage/MicrobeStage.tscn:1163
+#: ../src/microbe_stage/MicrobeStage.tscn:1162
 msgid "GLUCOSE"
 msgstr ""
 
@@ -643,14 +643,14 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4359
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4423
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3150
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4138
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3080
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3079
 msgid "CHEMOPLAST"
 msgstr ""
 
@@ -664,7 +664,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4742
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3217
 msgid "VACUOLE"
 msgstr ""
 
@@ -678,7 +678,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4879
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3287
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3286
 msgid "TOXIN_VACUOLE"
 msgstr ""
 
@@ -731,6 +731,10 @@ msgstr ""
 msgid "POPULATION"
 msgstr ""
 
+#: ../src/auto-evo/RunResults.cs:226
+msgid "WENT_EXTINCT_IN"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr ""
@@ -751,15 +755,19 @@ msgstr ""
 msgid "RUNRESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:291
+#: ../src/auto-evo/RunResults.cs:292
 msgid "RUNRESULT_POP_IN_PATCHES"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:372
+msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:299
+#: ../src/engine/input/key_mapping/InputEventItem.cs:312
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
@@ -767,15 +775,797 @@ msgstr ""
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
+#: ../src/engine/input/key_mapping/KeyNames.cs:12
+msgid "SPACE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:13
+msgid "EXCLAM"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:14
+msgid "QUOTEDBL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:15
+msgid "NUMBERSIGN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:16
+msgid "DOLLAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:17
+msgid "PERCENT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:18
+msgid "AMPERSAND"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:19
+msgid "APOSTROPHE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:20
+msgid "PARENLEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:21
+msgid "PARENRIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:22
+msgid "ASTERISK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:23
+msgid "PLUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:24
+msgid "COMMA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:25
+msgid "MINUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:26
+msgid "PERIOD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:27
+msgid "SLASH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:28
+msgid "KEY0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:29
+msgid "KEY1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:30
+msgid "KEY2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:31
+msgid "KEY3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:32
+msgid "KEY4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:33
+msgid "KEY5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:34
+msgid "KEY6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:35
+msgid "KEY7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:36
+msgid "KEY8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:37
+msgid "KEY9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:38
+msgid "COLON"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:39
+msgid "SEMICOLON"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:40
+msgid "LESS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:41
+msgid "EQUAL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:42
+msgid "GREATER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:43
+msgid "QUESTION"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:44
+msgid "AT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:45
+msgid "BRACKETLEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:46
+msgid "BACKSLASH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:47
+msgid "BRACKETRIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:48
+msgid "ASCIICIRCUM"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:49
+msgid "UNDERSCORE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:50
+msgid "QUOTELEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:51
+msgid "BRACELEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:52
+msgid "BAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:53
+msgid "BRACERIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:54
+msgid "ASCIITILDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:55
+msgid "EXCLAMDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:56
+msgid "CENT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:57
+msgid "STERLING"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:58
+msgid "CURRENCY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:59
+msgid "YEN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:60
+msgid "BROKENBAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:61
+msgid "SECTION"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:62
+msgid "DIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:63
+msgid "COPYRIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:64
+msgid "ORDFEMININE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:65
+msgid "GUILLEMOTLEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:66
+msgid "NOTSIGN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:67
+msgid "HYPHEN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:68
+msgid "REGISTERED"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:69
+msgid "MACRON"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:70
+msgid "DEGREE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:71
+msgid "PLUSMINUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:72
+msgid "TWOSUPERIOR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:73
+msgid "THREESUPERIOR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:74
+msgid "ACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:75
+msgid "MU"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:76
+msgid "PARAGRAPH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:77
+msgid "PERIODCENTERED"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:78
+msgid "CEDILLA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:79
+msgid "ONESUPERIOR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:80
+msgid "MASCULINE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:81
+msgid "GUILLEMOTRIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:82
+msgid "ONEQUARTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:83
+msgid "ONEHALF"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:84
+msgid "THREEQUARTERS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:85
+msgid "QUESTIONDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:86
+msgid "AGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:87
+msgid "AACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:88
+msgid "ACIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:89
+msgid "ATILDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:90
+msgid "ADIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:91
+msgid "ARING"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:92
+msgid "AE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:93
+msgid "CCEDILLA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:94
+msgid "EGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:95
+msgid "EACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:96
+msgid "ECIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:97
+msgid "EDIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:98
+msgid "IGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:99
+msgid "IACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:100
+msgid "ICIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:101
+msgid "IDIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:102
+msgid "ETH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:103
+msgid "NTILDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:104
+msgid "OGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:105
+msgid "OACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:106
+msgid "OCIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:107
+msgid "OTILDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:108
+msgid "ODIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:109
+msgid "MULTIPLY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:110
+msgid "OOBLIQUE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:111
+msgid "UGRAVE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:112
+msgid "UACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:113
+msgid "UCIRCUMFLEX"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:114
+msgid "UDIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:115
+msgid "YACUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:116
+msgid "THORN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:117
+msgid "SSHARP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:118
+msgid "DIVISION"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:119
+msgid "YDIAERESIS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:120
+msgid "ESCAPE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:121
+msgid "TAB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:122
+msgid "BACKSPACE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:123
+msgid "ENTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:124
+msgid "KPENTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:125
+msgid "INSERT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:126
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+msgid "DELETE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:127
+msgid "PAUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:128
+msgid "PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:129
+msgid "SYSREQ"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:130
+msgid "CLEAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:131
+msgid "HOME"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:132
+msgid "END"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:133
+msgid "LEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:134
+msgid "UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:135
+msgid "RIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:136
+msgid "DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
+msgid "PAGEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
+msgid "PAGEDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
+msgid "CAPSLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
+msgid "NUMLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
+msgid "SCROLLLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
+msgid "SUPERL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
+msgid "SUPERR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
+msgid "MENU"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
+msgid "HYPERL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
+msgid "HYPERR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:147
+#: ../src/general/PauseMenu.tscn:86
+msgid "HELP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
+msgid "DIRECTIONL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
+msgid "DIRECTIONR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:150
+#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:113
+msgid "BACK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:151
+msgid "FORWARD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:152
+msgid "STOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:153
+#: ../src/saving/SaveManagerGUI.tscn:66
+msgid "REFRESH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:154
+msgid "VOLUMEDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:155
+msgid "VOLUMEMUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:156
+msgid "VOLUMEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:157
+msgid "BASSBOOST"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:158
+msgid "BASSUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:159
+msgid "BASSDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:160
+msgid "TREBLEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:161
+msgid "TREBLEDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:162
+msgid "MEDIAPLAY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
+msgid "MEDIASTOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+msgid "MEDIAPREVIOUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
+msgid "MEDIANEXT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
+msgid "MEDIARECORD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
+msgid "HOMEPAGE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
+msgid "FAVORITES"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:169
+msgid "SEARCH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:170
+msgid "STANDBY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:171
+msgid "OPENURL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:172
+msgid "LAUNCHMAIL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:173
+msgid "LAUNCHMEDIA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:174
+msgid "LAUNCH0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:175
+msgid "LAUNCH1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:176
+msgid "LAUNCH2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:177
+msgid "LAUNCH3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:178
+msgid "LAUNCH4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:179
+msgid "LAUNCH5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:180
+msgid "LAUNCH6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:181
+msgid "LAUNCH7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:182
+msgid "LAUNCH8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:183
+msgid "LAUNCH9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:184
+msgid "LAUNCHA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:185
+msgid "LAUNCHB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:186
+msgid "LAUNCHC"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:187
+msgid "LAUNCHD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:188
+msgid "LAUNCHE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:189
+msgid "LAUNCHF"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:190
+msgid "KPMULTIPLY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:191
+msgid "KPDIVIDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:192
+msgid "KPSUBTRACT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:193
+msgid "KPPERIOD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:194
+msgid "KPADD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:195
+msgid "KP0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:196
+msgid "KP1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:197
+msgid "KP2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:198
+msgid "KP3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:199
+msgid "KP4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:200
+msgid "KP5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:201
+msgid "KP6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:202
+msgid "KP7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:203
+msgid "KP8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
+msgid "KP9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:205
+msgid "UNKNOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:53
 msgid "CTRL"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:55
 msgid "ALT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:57
 msgid "SHIFT"
 msgstr ""
 
@@ -824,228 +1614,274 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:127
+#: ../src/general/MainMenu.cs:329
+msgid "OK"
+msgstr ""
+
+#: ../src/general/MainMenu.cs:330
+msgid "Cancel"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:148
+msgid "NEW_GAME"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:163 ../src/general/PauseMenu.tscn:71
+msgid "LOAD_GAME"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:93
+msgid "OPTIONS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:187
+msgid "TOOLS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:199
+msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:211
+msgid "EXTRAS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:223
+msgid "CREDITS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:235
+msgid "QUIT"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:258
+msgid "MICROBE_FREEBUILD_EDITOR"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:359
+msgid "GLES2_MODE_WARNING"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:372
+msgid "GLES2_MODE_WARNING_TEXT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:126
 msgid "GRAPHICS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:139
+#: ../src/general/OptionsMenu.tscn:138
 msgid "SOUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:163
+#: ../src/general/OptionsMenu.tscn:162
 msgid "INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:175
+#: ../src/general/OptionsMenu.tscn:174
 msgid "MISC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:213
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:222
+#: ../src/general/OptionsMenu.tscn:221
 msgid "FULLSCREEN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:244
+#: ../src/general/OptionsMenu.tscn:243
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:251
+#: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:281
+#: ../src/general/OptionsMenu.tscn:280
 msgid "RESOLUTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:294
+#: ../src/general/OptionsMenu.tscn:293
 msgid "AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:330
+#: ../src/general/OptionsMenu.tscn:329
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:362
+#: ../src/general/OptionsMenu.tscn:361
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:403
+#: ../src/general/OptionsMenu.tscn:402
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
-#: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
-#: ../src/general/OptionsMenu.tscn:570
+#: ../src/general/OptionsMenu.tscn:429 ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:503 ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:569
 msgid "MUTE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:444
+#: ../src/general/OptionsMenu.tscn:443
 msgid "MUSIC_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:477
+#: ../src/general/OptionsMenu.tscn:476
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:510
+#: ../src/general/OptionsMenu.tscn:509
 msgid "SFX_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:543
+#: ../src/general/OptionsMenu.tscn:542
 msgid "GUI_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:588
+#: ../src/general/OptionsMenu.tscn:587
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:1009
+#: ../src/general/OptionsMenu.tscn:602 ../src/general/OptionsMenu.tscn:1008
 msgid "RESET"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:612
+#: ../src/general/OptionsMenu.tscn:611
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:631
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:647
+#: ../src/general/OptionsMenu.tscn:646
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
+#: ../src/general/OptionsMenu.tscn:653 ../src/general/OptionsMenu.tscn:697
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:691
+#: ../src/general/OptionsMenu.tscn:690
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:733
+#: ../src/general/OptionsMenu.tscn:732
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:800
+#: ../src/general/OptionsMenu.tscn:799
 msgid "RESET_INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:823
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:833
+#: ../src/general/OptionsMenu.tscn:832
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:841
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:853
+#: ../src/general/OptionsMenu.tscn:852
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:880
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:906
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:915
+#: ../src/general/OptionsMenu.tscn:914
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:930
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:943
+#: ../src/general/OptionsMenu.tscn:942
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:954
+#: ../src/general/OptionsMenu.tscn:953
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:979
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:988
+#: ../src/general/OptionsMenu.tscn:987
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
-#: ../src/saving/SaveManagerGUI.tscn:113
-msgid "BACK"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1020 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1019 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1035
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1047
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1057
+#: ../src/general/OptionsMenu.tscn:1056
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1071
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1079
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1093
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1114
+#: ../src/general/OptionsMenu.tscn:1113
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1135
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "CANCEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/OptionsMenu.tscn:1196
-#: ../src/general/OptionsMenu.tscn:1220
+#: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "ERROR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
+#: ../src/general/OptionsMenu.tscn:1181 ../src/general/OptionsMenu.tscn:1220
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
@@ -1057,21 +1893,9 @@ msgstr ""
 msgid "SAVE_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:71 ../src/gui_common/MainMenu.tscn:163
-msgid "LOAD_GAME"
-msgstr ""
-
 #: ../src/general/PauseMenu.tscn:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4439
 msgid "STATISTICS"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:86
-msgid "HELP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:93 ../src/gui_common/MainMenu.tscn:175
-msgid "OPTIONS"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:100
@@ -1094,53 +1918,10 @@ msgstr ""
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:148
+#: ../src/gui_common/ChemicalEquation.cs:120
+#: ../src/gui_common/ChemicalEquation.cs:157
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.cs:329
-msgid "OK"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.cs:330
-msgid "Cancel"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:148
-msgid "NEW_GAME"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:187
-msgid "TOOLS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:199
-msgid "VIEW_SOURCE_CODE"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:211
-msgid "EXTRAS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:223
-msgid "CREDITS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:235
-msgid "QUIT"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:258
-msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:359
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:372
-msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
@@ -1514,7 +2295,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5326
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5390
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3544
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3543
 msgid "NORMAL"
 msgstr ""
 
@@ -1533,7 +2314,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5586
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5650
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3616
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3615
 msgid "DOUBLE"
 msgstr ""
 
@@ -1543,7 +2324,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5842
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3688
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3687
 msgid "CELLULOSE"
 msgstr ""
 
@@ -1566,7 +2347,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6169
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6233
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3760
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3759
 msgid "CHITIN"
 msgstr ""
 
@@ -1582,7 +2363,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6496
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6560
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3837
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3836
 msgid "CALCIUM_CARBONATE"
 msgstr ""
 
@@ -1592,7 +2373,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6857
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6921
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3909
 msgid "SILICA"
 msgstr ""
 
@@ -1604,7 +2385,11 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1178
+#: ../src/microbe_stage/Microbe.cs:806
+msgid "DEATH"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -1612,7 +2397,11 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1591
+#: ../src/microbe_stage/Microbe.cs:1501
+msgid "REPRODUCED"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1644,11 +2433,11 @@ msgstr ""
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:453
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:565
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -1695,47 +2484,47 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:16
+#: ../src/microbe_stage/PatchMapGenerator.cs:139
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:24
+#: ../src/microbe_stage/PatchMapGenerator.cs:140
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:31
+#: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:38
+#: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:45
+#: ../src/microbe_stage/PatchMapGenerator.cs:143
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:52
+#: ../src/microbe_stage/PatchMapGenerator.cs:144
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:59
+#: ../src/microbe_stage/PatchMapGenerator.cs:145
 msgid "PATCH_PANGONIAN_COAST"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:66
+#: ../src/microbe_stage/PatchMapGenerator.cs:146
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:73
+#: ../src/microbe_stage/PatchMapGenerator.cs:147
 msgid "PATCH_CAVE"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:80
+#: ../src/microbe_stage/PatchMapGenerator.cs:148
 msgid "PATCH_ICE_SHELF"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:87
+#: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
@@ -1748,7 +2537,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:517
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1176
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1191
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
@@ -1756,11 +2545,11 @@ msgstr ""
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2061
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2076
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2062
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2077
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -1986,29 +2775,25 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:851
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1616
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:936
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:941
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1649
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
 msgid "WITH_POPULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
-msgstr ""
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
-msgid "DELETE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
@@ -2092,23 +2877,23 @@ msgstr ""
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:30
 msgid "CREATE_NEW_SAVE"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:119
+#: ../src/saving/NewSaveMenu.tscn:118
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
@@ -2220,10 +3005,6 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:66
-msgid "REFRESH"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:74

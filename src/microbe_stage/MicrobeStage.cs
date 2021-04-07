@@ -190,6 +190,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         SetupStage();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            HUD.UpdatePatchInfo(TranslationServer.Translate(CurrentGame.GameWorld.Map.CurrentPatch.Name));
+        }
+    }
+
     public void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -583,7 +591,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
 
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         UpdateBackground();

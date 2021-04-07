@@ -33,6 +33,7 @@
     <Compile Include="src\engine\input\InputAttribute.cs" />
     <Compile Include="src\engine\input\ControlWithInput.cs" />
     <Compile Include="src\engine\input\InputManager.cs" />
+    <Compile Include="src\engine\input\key_mapping\KeyNames.cs" />
     <Compile Include="src\engine\input\NodeWithInput.cs" />
     <Compile Include="src\engine\input\RunOnAxisAttribute.cs" />
     <Compile Include="src\engine\input\RunOnAxisGroupAttribute.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="src\gui_common\ITransition.cs" />
     <Compile Include="src\gui_common\KeyPrompt.cs" />
     <Compile Include="src\gui_common\KeyPromptHelper.cs" />
-    <Compile Include="src\gui_common\MainMenu.cs" />
+    <Compile Include="src\general\MainMenu.cs" />
     <Compile Include="src\gui_common\QuickLoadHandler.cs" />
     <Compile Include="src\gui_common\SegmentedBar.cs" />
     <Compile Include="src\gui_common\TransitionManager.cs" />

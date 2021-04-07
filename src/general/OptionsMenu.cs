@@ -338,6 +338,14 @@ public class OptionsMenu : Control
         backConfirmationBox.GetOk().Hide();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            BuildInputRebindControls();
+        }
+    }
+
     /// <summary>
     ///   Opens the options menu with main menu configuration settings.
     /// </summary>
