@@ -10,17 +10,18 @@ public class AgentProjectile : RigidBody, ITimedLife
 {
     private Particles particles;
 
-    [JsonProperty]
-    private float? FadeTimeRemaining { get; set; }
-
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
     public AgentProperties Properties { get; set; }
     public Node Emitter { get; set; }
 
+    [JsonProperty]
+    private float? FadeTimeRemaining { get; set; }
+
     public void OnTimeOver()
     {
-        BeginDestroy();
+        if (FadeTimeRemaining != null)
+            BeginDestroy();
     }
 
     public override void _Ready()
@@ -37,7 +38,7 @@ public class AgentProjectile : RigidBody, ITimedLife
             return;
 
         FadeTimeRemaining -= delta;
-        if (FadeTimeRemaining < MathUtils.EPSILON)
+        if (FadeTimeRemaining <= 0)
             Destroy();
     }
 
