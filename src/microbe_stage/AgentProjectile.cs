@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   This is a shot agent projectile, does damage on hitting a cell of different species
@@ -10,9 +12,10 @@ public class AgentProjectile : RigidBody, ITimedLife
     [Export]
     public NodePath ParticlesPath;
 
-    private Timer despawnTimer;
     private Particles particles;
 
+    [JsonProperty]
+    public float FadeTimeRemaining { get; set; }
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
     public AgentProperties Properties { get; set; }
@@ -29,13 +32,16 @@ public class AgentProjectile : RigidBody, ITimedLife
 
         AddCollisionExceptionWith(Emitter);
         Connect("body_entered", this, "OnBodyEntered");
+    }
 
-        // Timer that delay despawn of projectiles
-        despawnTimer = new Timer();
-        despawnTimer.OneShot = true;
-        despawnTimer.WaitTime = Constants.PROJECTILE_DESPAWN_DELAY;
-        despawnTimer.Connect("timeout", this, "OnTimerTimeout");
-        AddChild(despawnTimer);
+    public override void _Process(float delta)
+    {
+        if (FadeTimeRemaining < 0.00001)
+            return;
+
+        FadeTimeRemaining -= delta;
+        if (FadeTimeRemaining < 0.00001)
+            Destroy();
     }
 
     public void OnBodyEntered(Node body)
@@ -51,7 +57,9 @@ public class AgentProjectile : RigidBody, ITimedLife
         }
 
         particles.Emitting = false;
-        despawnTimer.Start();
+
+        // Timer that delays despawn of projectiles
+        FadeTimeRemaining = Constants.PROJECTILE_DESPAWN_DELAY;
     }
 
     public void ApplyPropertiesFromSave(AgentProjectile projectile)
@@ -66,14 +74,9 @@ public class AgentProjectile : RigidBody, ITimedLife
         AngularVelocity = projectile.AngularVelocity;
     }
 
-    public void OnTimerTimeout()
-    {
-        Destroy();
-    }
-
     private void Destroy()
     {
         // We should probably get some *POP* effect here.
-        QueueFree();
+        this.DetachAndQueueFree();
     }
 }
