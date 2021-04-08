@@ -385,6 +385,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
+    [JsonProperty]
+    public Action OnUnbindEnabled { get; set; }
+
+    [JsonProperty]
+    public Action OnUnbound { get; set; }
+
     public bool IsLoadedFromSave { get; set; }
 
     /// <summary>

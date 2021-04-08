@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 08:53+0200\n"
+"POT-Creation-Date: 2021-04-08 10:18+0200\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: magicTimon <timon@retzlaff.cc>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -1946,15 +1946,15 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Eingabemethode hinzufügen"
 
-#: ../src/microbe_stage/Microbe.cs:1295
+#: ../src/microbe_stage/Microbe.cs:1301
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "erfolgreiche Plünderung"
 
-#: ../src/microbe_stage/Microbe.cs:1302
+#: ../src/microbe_stage/Microbe.cs:1308
 msgid "SUCCESSFUL_KILL"
 msgstr "erfolgreiche Tötung"
 
-#: ../src/microbe_stage/Microbe.cs:1762
+#: ../src/microbe_stage/Microbe.cs:1768
 msgid "ESCAPE_ENGULFING"
 msgstr "Entfliehe der Verschlingung"
 
@@ -1970,11 +1970,11 @@ msgstr "Sachen bei {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Spielerzelle"
 
-#: ../src/microbe_stage/MicrobeStage.cs:467
+#: ../src/microbe_stage/MicrobeStage.cs:471
 msgid "PLAYER_REPRODUCED"
 msgstr "Spieler reproduziert"
 
-#: ../src/microbe_stage/MicrobeStage.cs:607
+#: ../src/microbe_stage/MicrobeStage.cs:623
 msgid "PLAYER_DIED"
 msgstr "Spieler starb"
 
@@ -2641,11 +2641,12 @@ msgstr "Fehler in die Zwischenablage kopieren"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:41
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:278
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:279
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -2742,7 +2743,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "Verstanden"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Auf einem weit entfernten fremden Planeten haben Äonen vulkanischer "
@@ -2758,15 +2759,15 @@ msgstr ""
 "Verbindungen die du finden kannst sammeln und jede Generation "
 "weiterentwickeln, um gegen die anderen Mikrobenarten anzutreten."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
 msgid "SHOW_TUTORIALS"
 msgstr "Tutorials anzeigen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "BEGIN_THRIVING"
 msgstr "Gedeihe"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle "
@@ -2775,7 +2776,7 @@ msgstr ""
 "\n"
 "Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Sammel Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
@@ -2783,7 +2784,7 @@ msgstr ""
 "bleiben.\n"
 "Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
@@ -2791,13 +2792,23 @@ msgstr ""
 "Du regenerierst Gesundheit, solange du ATP hast.\n"
 "Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Um sich zu vermehren, müssen Sie alle deiner Organellen duplizieren, indem "
 "Sie genügend Ammoniak und Phosphat sammeln.\n"
 "Schauen Sie auf den Indikator unten rechts, um zu sehen, wie viel mehr Sie "
 "benötigen."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#, fuzzy
+msgid "MICROBE_STAGE_UNBIND_TEXT"
+msgstr ""
+"Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle "
+"(Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu "
+"steuern.\n"
+"\n"
+"Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Erscheinungsbild"

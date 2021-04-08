@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 08:53+0200\n"
+"POT-Creation-Date: 2021-04-08 10:18+0200\n"
 "PO-Revision-Date: 2020-12-27 09:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -1763,16 +1763,16 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1295
+#: ../src/microbe_stage/Microbe.cs:1301
 #, fuzzy
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功清除"
 
-#: ../src/microbe_stage/Microbe.cs:1302
+#: ../src/microbe_stage/Microbe.cs:1308
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.cs:1762
+#: ../src/microbe_stage/Microbe.cs:1768
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
@@ -1789,11 +1789,11 @@ msgstr ""
 msgid "PLAYER_CELL"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeStage.cs:467
+#: ../src/microbe_stage/MicrobeStage.cs:471
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:607
+#: ../src/microbe_stage/MicrobeStage.cs:623
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -2422,11 +2422,12 @@ msgstr "往粘貼板複製錯誤"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:41
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:278
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:279
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
 msgid "TUTORIAL"
 msgstr "教學"
 
@@ -2459,19 +2460,19 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "明白了"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
 msgid "SHOW_TUTORIALS"
 msgstr "顯示教學"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "要控制細胞，請使用在細胞附近（屏幕中心）顯示的按鍵和鼠標來控制細胞的方"
@@ -2479,17 +2480,26 @@ msgstr ""
 "\n"
 "請花幾秒時間嘗試所有按鍵以繼續。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#, fuzzy
+msgid "MICROBE_STAGE_UNBIND_TEXT"
+msgstr ""
+"要控制細胞，請使用在細胞附近（屏幕中心）顯示的按鍵和鼠標來控制細胞的方"
+"向。\n"
+"\n"
+"請花幾秒時間嘗試所有按鍵以繼續。"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "出現"

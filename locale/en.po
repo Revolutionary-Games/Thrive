@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 08:53+0200\n"
+"POT-Creation-Date: 2021-04-08 10:18+0200\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1885,15 +1885,15 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Add a new key binding"
 
-#: ../src/microbe_stage/Microbe.cs:1295
+#: ../src/microbe_stage/Microbe.cs:1301
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.cs:1302
+#: ../src/microbe_stage/Microbe.cs:1308
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1762
+#: ../src/microbe_stage/Microbe.cs:1768
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -1909,11 +1909,11 @@ msgstr "Stuff at {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
 
-#: ../src/microbe_stage/MicrobeStage.cs:467
+#: ../src/microbe_stage/MicrobeStage.cs:471
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:607
+#: ../src/microbe_stage/MicrobeStage.cs:623
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -2574,11 +2574,12 @@ msgstr "Copy Error To Clipboard"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:41
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:278
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:279
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -2669,7 +2670,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "Got it"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "On a distant alien planet, eons of volcanic activity and meteor impacts "
@@ -2684,15 +2685,15 @@ msgstr ""
 "that you can find and evolve each generation to compete against the other "
 "species of microbes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:96
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
 msgid "SHOW_TUTORIALS"
 msgstr "Show tutorials"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "BEGIN_THRIVING"
 msgstr "Begin Thriving"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "To control your cell use the keys shown near your cell (center of screen) "
@@ -2700,14 +2701,14 @@ msgstr ""
 "\n"
 "Try all of the keys for a few seconds to continue."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:229
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Collect glucose (white clouds) by moving over them.\n"
 "Your cell needs glucose in order to produce energy to stay alive.\n"
 "Follow the line from your cell to nearby glucose."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Keep an eye on your health bar next to the ATP bar (bottom right).\n"
@@ -2715,12 +2716,17 @@ msgstr ""
 "You regenerate health while you have ATP.\n"
 "Make sure to collect enough glucose to produce ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by "
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+msgid "MICROBE_STAGE_UNBIND_TEXT"
+msgstr ""
+"TODO: Write Tutorial Text"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Appearance"

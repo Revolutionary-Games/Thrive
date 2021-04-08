@@ -104,6 +104,7 @@ public class PlayerMicrobeInput : NodeWithInput
         else if (stage.Player.Colony != null)
         {
             stage.Player.State = Microbe.MicrobeState.UNBINDING;
+            stage.Player.OnUnbindEnabled?.Invoke();
         }
     }
 
@@ -134,6 +135,8 @@ public class PlayerMicrobeInput : NodeWithInput
 
         var target = stage.MicrobesAtMouse[0];
         RemoveCellFromColony(target);
+
+        stage.Player.OnUnbound?.Invoke();
 
         return true;
     }

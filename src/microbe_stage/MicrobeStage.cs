@@ -317,6 +317,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
+        Player.OnUnbound = OnPlayerUnbound;
+
+        Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
+
         Camera.ObjectToFollow = Player;
 
         if (spawnedPlayer)
@@ -583,6 +587,18 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             HUD.HideReproductionDialog();
         }
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerUnbindEnabled()
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerUnbound()
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
     }
 
     private void CreatePatchManagerIfNeeded()
