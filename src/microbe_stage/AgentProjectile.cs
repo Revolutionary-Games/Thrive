@@ -8,13 +8,10 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
 public class AgentProjectile : RigidBody, ITimedLife
 {
-    [Export]
-    public NodePath ParticlesPath;
-
     private Particles particles;
 
     [JsonProperty]
-    public float FadeTimeRemaining { get; set; }
+    private float FadeTimeRemaining { get; set; }
 
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
@@ -23,12 +20,12 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public void OnTimeOver()
     {
-        Destroy();
+        BeginDestroy();
     }
 
     public override void _Ready()
     {
-        particles = GetNode<Particles>(ParticlesPath);
+        particles = GetNode<Particles>("Particles");
 
         AddCollisionExceptionWith(Emitter);
         Connect("body_entered", this, "OnBodyEntered");
@@ -56,6 +53,14 @@ public class AgentProjectile : RigidBody, ITimedLife
             }
         }
 
+        BeginDestroy();
+    }
+
+    /// <summary>
+    ///   Stops particle emission and destroys the object after 5 seconds.
+    /// </summary>
+    private void BeginDestroy()
+    {
         particles.Emitting = false;
 
         // Timer that delays despawn of projectiles

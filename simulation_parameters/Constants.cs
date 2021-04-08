@@ -109,7 +109,7 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 10.0f;
 
-    public const float PROJECTILE_DESPAWN_DELAY = 250;
+    public const float PROJECTILE_DESPAWN_DELAY = 5;
 
     public const float AGENT_EMISSION_DISTANCE_OFFSET = 0.5f;
 
