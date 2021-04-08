@@ -107,6 +107,19 @@ public class PlayerMicrobeInput : NodeWithInput
         }
     }
 
+    [RunOnKeyDown("g_unbind_all")]
+    public void UnbindAll()
+    {
+        if (stage.Player == null)
+            return;
+
+        if (stage.Player.State == Microbe.MicrobeState.UNBINDING)
+            stage.Player.State = Microbe.MicrobeState.NORMAL;
+
+        if (stage.Player.Colony != null)
+            RemoveCellFromColony(stage.Player);
+    }
+
     [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
     public bool AcceptUnbind()
     {
@@ -120,11 +133,15 @@ public class PlayerMicrobeInput : NodeWithInput
             return false;
 
         var target = stage.MicrobesAtMouse[0];
-
-        target.Colony.RemoveFromColony();
-        target.State = Microbe.MicrobeState.NORMAL;
+        RemoveCellFromColony(target);
 
         return true;
+    }
+
+    public void RemoveCellFromColony(Microbe target)
+    {
+        target.Colony.RemoveFromColony();
+        target.State = Microbe.MicrobeState.NORMAL;
     }
 
     [RunOnKeyDown("g_cheat_editor")]
