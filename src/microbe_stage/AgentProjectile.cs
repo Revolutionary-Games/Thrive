@@ -11,7 +11,7 @@ public class AgentProjectile : RigidBody, ITimedLife
     private Particles particles;
 
     [JsonProperty]
-    private float FadeTimeRemaining { get; set; }
+    private float? FadeTimeRemaining { get; set; }
 
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
@@ -33,11 +33,11 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public override void _Process(float delta)
     {
-        if (FadeTimeRemaining < 0.00001)
+        if (FadeTimeRemaining == null)
             return;
 
         FadeTimeRemaining -= delta;
-        if (FadeTimeRemaining < 0.00001)
+        if (FadeTimeRemaining < MathUtils.EPSILON)
             Destroy();
     }
 
