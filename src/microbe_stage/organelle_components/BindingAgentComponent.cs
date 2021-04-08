@@ -1,4 +1,7 @@
-﻿public class BindingAgentComponent : IOrganelleComponent
+﻿/// <summary>
+///   Used to detect if a binding agent is present
+/// </summary>
+public class BindingAgentComponent : IOrganelleComponent
 {
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
