@@ -271,7 +271,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public MicrobeState State
     {
         get => this.GetColonyValue(MicrobeState.NORMAL);
-        set => this.SetColonyValue(value);
+        set
+        {
+            this.SetColonyValue(value);
+            if (value == MicrobeState.UNBINDING && IsPlayerMicrobe)
+                OnUnbindEnabled?.Invoke();
+        }
     }
 
     [JsonIgnore]
