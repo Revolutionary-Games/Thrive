@@ -15,6 +15,7 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     [JsonProperty]
     public float FadeTimeRemaining { get; set; }
+
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
     public AgentProperties Properties { get; set; }
