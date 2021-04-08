@@ -49,7 +49,7 @@ public class MicrobePartSelection : MarginContainer
     }
 
     /// <summary>
-    ///   User readable name. Note that the node Name property should be the "InternalName".
+    ///   User readable name. Note that the node Name property should be an "InternalName".
     /// </summary>
     [Export]
     public string PartName

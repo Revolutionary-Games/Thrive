@@ -758,7 +758,7 @@ ReportTabButtonPath = NodePath("TopLeft/HBoxContainer/ReportButton")
 PatchMapButtonPath = NodePath("TopLeft/HBoxContainer/PatchMapButton")
 CellEditorButtonPath = NodePath("TopLeft/HBoxContainer/CellEditorButton")
 StructureTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure")
-AppearanceTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Appearance")
+AppearanceTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Membrane")
 StructureTabPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 ApperanceTabPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane")
 SizeLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Value")
@@ -1505,7 +1505,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Appearance" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
+[node name="Membrane" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
 margin_left = 107.0
 margin_right = 210.0
 margin_bottom = 30.0
@@ -2019,10 +2019,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 60.0
-margin_top = 83.0
-margin_right = 363.0
-margin_bottom = 558.0
+margin_left = 68.0
+margin_top = 91.0
+margin_right = 371.0
+margin_bottom = 566.0
 theme = SubResource( 22 )
 edit_alpha = false
 
@@ -3768,7 +3768,7 @@ __meta__ = {
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure" to="MicrobeEditorGUI" method="SetSelectionMenuTab" binds= [ "Structure" ]]
-[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Appearance" to="MicrobeEditorGUI" method="SetSelectionMenuTab" binds= [ "Appearance" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Membrane" to="MicrobeEditorGUI" method="SetSelectionMenuTab" binds= [ "Membrane" ]]
 [connection signal="text_changed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/SearchBar" to="MicrobeEditorGUI" method="OnSearchBoxTextChanged"]
 [connection signal="value_changed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="MicrobeEditorGUI" method="OnRigidityChanged"]
 [connection signal="color_changed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/ColorPicker" to="MicrobeEditorGUI" method="OnColorChanged"]

@@ -413,7 +413,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public enum SelectionMenuTab
     {
         Structure,
-        Appearance,
+        Membrane,
         Behaviour,
     }
 
@@ -1326,7 +1326,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     private void UpdatePartAvailability(bool hasNucleus, MicrobePartSelection item)
     {
-        // item could be a non-implemented organelle so check if it really exist first.
+        // item could be a non-implemented organelle so check if it really exists first.
         if (!SimulationParameters.Instance.DoesOrganelleExist(item.Name))
         {
             item.Locked = true;
@@ -1450,7 +1450,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 break;
             }
 
-            case SelectionMenuTab.Appearance:
+            case SelectionMenuTab.Membrane:
             {
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
