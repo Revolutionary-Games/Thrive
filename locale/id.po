@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 10:18+0200\n"
+"POT-Creation-Date: 2021-04-08 10:22+0200\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: Rizky Pramudya <rizkypramudyacj@outlook.co.id>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -21,7 +21,7 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
-#: ../simulation_parameters/common/help_texts.json:29
+#: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "Tekan W,A,S,D dan mouse untuk bergerak. E untuk menembakkan OksiToksi NT "
@@ -29,21 +29,21 @@ msgstr ""
 "(engulf)."
 
 #: ../simulation_parameters/common/help_texts.json:5
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
 "Sel kamu menggunakan ATP sebagai sumber energinya, jika habis maka kamu "
 "akan mati."
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:31
+#: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah "
 "Amonia (Awan Oranye) dan Fosfat (Awan Ungu)."
 
 #: ../simulation_parameters/common/help_texts.json:7
-#: ../simulation_parameters/common/help_texts.json:32
+#: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan "
@@ -52,7 +52,7 @@ msgstr ""
 "lagi G untuk menghentikan penelanan."
 
 #: ../simulation_parameters/common/help_texts.json:8
-#: ../simulation_parameters/common/help_texts.json:33
+#: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Osmoregulasi memerlukan ATP, yang berarti semakin besar sel kamu, semakin "
@@ -61,7 +61,7 @@ msgstr ""
 "kehilangan ATP saat kamu tidak bergerak."
 
 #: ../simulation_parameters/common/help_texts.json:9
-#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:35
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
@@ -69,7 +69,7 @@ msgstr ""
 "permainan yang luas."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:35
+#: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Untuk saat ini jika populasi turun menjadi nol maka kamu akan punah."
 
@@ -87,7 +87,7 @@ msgstr ""
 "Glukosalah yang membuat ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
-#: ../simulation_parameters/common/help_texts.json:36
+#: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "Hidrogen Sulfida dapat dikonversi menjadi glukosa dengan cara melalui "
@@ -95,7 +95,7 @@ msgstr ""
 "dikonversi menjadi ATP melalui rusticyanin."
 
 #: ../simulation_parameters/common/help_texts.json:13
-#: ../simulation_parameters/common/help_texts.json:37
+#: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi "
@@ -109,14 +109,22 @@ msgstr ""
 "menang sebuah popup muncul dan kamu dapat melanjutkan permainan semau kamu."
 
 #: ../simulation_parameters/common/help_texts.json:15
-#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:39
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
 "Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar "
 "kamu. Setiap kamu memasuki sesi editor, para kompetitor juga ikut "
 "berkembang."
 
-#: ../simulation_parameters/common/help_texts.json:20
+#: ../simulation_parameters/common/help_texts.json:16
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"Tekan W,A,S,D dan mouse untuk bergerak. E untuk menembakkan OksiToksi NT "
+"jika kamu punya vakula toksin. G untuk menyalakan/mematikan mode penelanan "
+"(engulf)."
+
+#: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Struktur Prokariotik\n"
@@ -136,7 +144,7 @@ msgstr ""
 "Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis "
 "(Menghasilkan sedikit ATP)"
 
-#: ../simulation_parameters/common/help_texts.json:21
+#: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Organel Eksternal\n"
@@ -145,7 +153,7 @@ msgstr ""
 "\n"
 "Pilus: Dapat digunakan untuk menusuk sel lain"
 
-#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Organel Terikat Membran\n"
@@ -168,7 +176,7 @@ msgstr ""
 "\n"
 "Vakula Toksin: Menghasilkan toksin (Disebut OksiToksi NT)"
 
-#: ../simulation_parameters/common/help_texts.json:23
+#: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untuk "
@@ -179,7 +187,7 @@ msgstr ""
 "melepas sebuah organel dengan cara mengklik kanan pada organel tersebut. "
 "Kamu bisa memutar organelmu dengan cara mengklik A dan D."
 
-#: ../simulation_parameters/common/help_texts.json:24
+#: ../simulation_parameters/common/help_texts.json:25
 #, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
@@ -189,11 +197,11 @@ msgstr ""
 "spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili 100 juta tahun "
 "evolusi."
 
-#: ../simulation_parameters/common/help_texts.json:43
+#: ../simulation_parameters/common/help_texts.json:44
 msgid "LOADING_TIP"
 msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 
-#: ../simulation_parameters/common/help_texts.json:48
+#: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
@@ -201,109 +209,109 @@ msgstr ""
 "sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
 "Mangsa?"
 
-#: ../simulation_parameters/common/help_texts.json:49
+#: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
 "Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
 "sekitarmu jika kamu cepat menangkisnya."
 
-#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:51
+#: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:52
+#: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:53
+#: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_6"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:55
+#: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:56
+#: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:57
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:58
+#: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:59
+#: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_12"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:60
+#: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:61
+#: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:63
+#: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:64
+#: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:65
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:67
+#: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:68
+#: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:69
+#: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:71
+#: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:72
+#: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:73
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:75
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 

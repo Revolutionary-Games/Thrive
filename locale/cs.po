@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 10:18+0200\n"
+"POT-Creation-Date: 2021-04-08 10:22+0200\n"
 "PO-Revision-Date: 2021-01-11 11:46+0000\n"
 "Last-Translator: Radek <radekkostra@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -21,26 +21,26 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
-#: ../simulation_parameters/common/help_texts.json:29
+#: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "Použij klávesy W,A,S,D a myš k pohybu. Klávesu E k vystřelení OxyToxinu "
 "NT, pokud máš toxinovou vakuolu. Klávesu G k zapnutí režimu pohlcení."
 
 #: ../simulation_parameters/common/help_texts.json:5
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "Tvá buňka používá ATP jako zdroj energie, pokud ti dojde zemřeš."
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:31
+#: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "K odemknutí editoru a rozmnožování musíš shromáždit Amoniak (oranžový "
 "mrak) a Fosfát (fialový mrak)."
 
 #: ../simulation_parameters/common/help_texts.json:7
-#: ../simulation_parameters/common/help_texts.json:32
+#: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Můžeš také pohltit buňky, bakterie, železné kousky a kusy buněk, které "
@@ -48,7 +48,7 @@ msgstr ""
 "Nezapoměňte stisknout G podruhé, aby jste zastavili režim pohlcování."
 
 #: ../simulation_parameters/common/help_texts.json:8
-#: ../simulation_parameters/common/help_texts.json:33
+#: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Osmoregulace stojí ATP, což znamená že čím větší bude vaše buňka, tím "
@@ -57,14 +57,14 @@ msgstr ""
 "nehybní."
 
 #: ../simulation_parameters/common/help_texts.json:9
-#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
 "V editoru je spousta Organel, které můžete vyvinout, to umožňuje veliký "
 "rozsah herních stylů."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:35
+#: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Pro teď jestli populace klesne na nulu vyhyneš."
 
@@ -82,7 +82,7 @@ msgstr ""
 "Glukóza tvoří ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
-#: ../simulation_parameters/common/help_texts.json:36
+#: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "Sirovodík může být přeměněn na glukózu pomocí chemoplastů a "
@@ -90,7 +90,7 @@ msgstr ""
 "rusticyaninu na ATP."
 
 #: ../simulation_parameters/common/help_texts.json:13
-#: ../simulation_parameters/common/help_texts.json:37
+#: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "K rozmnožení musíš rozdělit každou organelu na dvě. Organely potřebují k "
@@ -103,13 +103,20 @@ msgstr ""
 "ti vyskočí okénko ale můžeš pokračovat ve hraní jak si přeješ."
 
 #: ../simulation_parameters/common/help_texts.json:15
-#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:39
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
 "Buď opatrný na tvoje konkurenty kteří se vyvinou jako ty.Pokaždé co "
 "vstoupíš do editoru tak se vyvinou též."
 
-#: ../simulation_parameters/common/help_texts.json:20
+#: ../simulation_parameters/common/help_texts.json:16
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"Použij klávesy W,A,S,D a myš k pohybu. Klávesu E k vystřelení OxyToxinu "
+"NT, pokud máš toxinovou vakuolu. Klávesu G k zapnutí režimu pohlcení."
+
+#: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotické struktury\n"
@@ -129,7 +136,7 @@ msgstr ""
 "Cytoplazma: Má úložný prostor a provádí glykolýzu (Produkuje malé množství "
 "ATP)"
 
-#: ../simulation_parameters/common/help_texts.json:21
+#: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Vnější organely\n"
@@ -138,7 +145,7 @@ msgstr ""
 "\n"
 "Pilus: Může být použit k bodnutí ostatních buněk"
 
-#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membránové vázané organely\n"
@@ -160,7 +167,7 @@ msgstr ""
 "\n"
 "Vakuole s toxiny: Produkuje toxiny (nazývané OxyToxy NT)"
 
-#: ../simulation_parameters/common/help_texts.json:23
+#: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Každou generaci dostanete 100 bodů mutace, každá změna (nebo mutace) bude "
@@ -169,7 +176,7 @@ msgstr ""
 "danou organelu vrátí. Organelu můžete odstranit kliknutím pravým "
 "tlačítkem. Můžete otáčet své organely pomocí A a D."
 
-#: ../simulation_parameters/common/help_texts.json:24
+#: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Pokaždé, když se rozmnožíte, vstoupíte do editoru mikrobů, kde můžete "
@@ -177,24 +184,24 @@ msgstr ""
 "organel), abyste zvýšili úspěch svého druhu. Každá návštěva editoru v "
 "mikrobové fázi představuje 100 milionů let evoluce."
 
-#: ../simulation_parameters/common/help_texts.json:43
+#: ../simulation_parameters/common/help_texts.json:44
 msgid "LOADING_TIP"
 msgstr "Chybu opravíte stisknutím tlačítka Zpět v editoru"
 
-#: ../simulation_parameters/common/help_texts.json:48
+#: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Zábavný fakt, Didinium a Paramecium jsou učebnicovým příkladem vztahu "
 "predátora a kořisti, který byl studován po celá desetiletí, jste nyní "
 "Didinium nebo Paramecium? Predátor nebo kořist?"
 
-#: ../simulation_parameters/common/help_texts.json:49
+#: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
 "Zde je tip, toxiny mohou být použity k odražení dalších toxinů od vás, "
 "pokud jste dostatečně rychlí."
 
-#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Tady je tip, Osmoregulace stojí 1 ATP za sekundu na hex, který má vaše "
@@ -202,115 +209,115 @@ msgstr ""
 "znamená, že pokud ztrácíte ATP kvůli osmoregulaci, stačí přidat pár "
 "prázdných cytoplazm nebo odstranit některé organely."
 
-#: ../simulation_parameters/common/help_texts.json:51
+#: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Zábavný fakt, v reálném životě mají prokaryoty něco, čemu se říká "
 "biokomponenty, které fungují jako organely a ve skutečnosti se nazývají "
 "polyhedrální organely(Polyhedral organelles)."
 
-#: ../simulation_parameters/common/help_texts.json:52
+#: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "Zábavný fakt, metabolosom je to, co se nazývá polyhedrální organela."
 
-#: ../simulation_parameters/common/help_texts.json:53
+#: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Tady je rada, někdy je lepší prostě utéct od ostatních buněk."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
 "Zde je tip, pokud je buňka zhruba poloviční velikosti, můžete ji pohltit."
 
-#: ../simulation_parameters/common/help_texts.json:55
+#: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "Tady je rada, Bakterie můžou být silnější více než to vypadá, vypadají "
 "sice maličce ale někteří z nich se do tebe zaboří a zabijou tě tak!"
 
-#: ../simulation_parameters/common/help_texts.json:56
+#: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "Tady je rada, můžeš lovit ostatní druhy k vyhinutí ale pokud nejsi dost "
 "opatrný můžou být loveni k vyhnutí ostatními druhy."
 
-#: ../simulation_parameters/common/help_texts.json:57
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "VRTÍCÍ SE VĚCI!!"
 
-#: ../simulation_parameters/common/help_texts.json:58
+#: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Vypécti to železíčko."
 
-#: ../simulation_parameters/common/help_texts.json:59
+#: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Ty modrý buňky ale."
 
-#: ../simulation_parameters/common/help_texts.json:60
+#: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 "Tady je tip, biomy nejsou jen různá pozadí, sloučeniny se v různých "
 "biomech někdy objevují různou rychlostí."
 
-#: ../simulation_parameters/common/help_texts.json:61
+#: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 "Zde je tip, Čím více bičíků máte, tím rychleji jedete, vroom vroom, ale "
 "stojí to také více ATP"
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Tady je rada, můžete spolknout kousky železa."
 
-#: ../simulation_parameters/common/help_texts.json:63
+#: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
 "Tady je tip, připravte se před přidáním jádra. Ty věci jsou drahé! V "
 "údržbě i v kupní ceně."
 
-#: ../simulation_parameters/common/help_texts.json:64
+#: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
 "Zábavný fakt, věděli jste, že na planetě Zemi existuje více než 8 000 "
 "druhů nálevníků?"
 
-#: ../simulation_parameters/common/help_texts.json:65
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "Zábavný fakt, The Stentor je nálevník, který se dokáže protáhnout a chytit "
 "kořist do úst podobných jakési trubce, která přitahuje kořist generováním "
 "vodních proudů pomocí řasinek."
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Zábavný fakt, Didinum je nálevník, který loví paramecia."
 
-#: ../simulation_parameters/common/help_texts.json:67
+#: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Zábavný fakt, Ameoba loví a chytí kořist s „nohama“ z cytoplazmy zvaných "
 "pseudopody (panožky), nakonec je chceme mít v Thrive."
 
-#: ../simulation_parameters/common/help_texts.json:68
+#: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
 "Tady je tip: Dávejte pozor na větší buňky a velké bakterie, není zábavné "
 "být stráven, a oni vás sní."
 
-#: ../simulation_parameters/common/help_texts.json:69
+#: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "Vedení zvukařského týpu Thrive udělalo hodně písniček, které ještě nebyly "
 "přidány do hry. Můžete si je poslechnout, nebo se podívat na jeho streamy "
 "jak je skládá, na jeho Youtube kanálu Oliver Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
 "Zde je tip, pokud je vaše buňka 150 hexů, můžete pohltit velké železné "
 "kusy."
 
-#: ../simulation_parameters/common/help_texts.json:71
+#: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive je míněno jako simulace mimozemské planety, proto má smysl, že "
@@ -318,12 +325,12 @@ msgstr ""
 "druhům kvůli vývoji, který se děje kolem vás, podívejte se, jestli je "
 "můžete identifikovat!"
 
-#: ../simulation_parameters/common/help_texts.json:72
+#: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
 "Zábavný fakt, tým The Thrive dělá občas podcasty, měli byste je zkouknout!"
 
-#: ../simulation_parameters/common/help_texts.json:73
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
 "Zábavný fakt, Thrive je míněno jako simulace mimozemské planety, proto má "
@@ -331,7 +338,7 @@ msgstr ""
 "dalším druhům kvůli vývoji, který se děje kolem vás, podívejte se, jestli "
 "je můžete identifikovat!"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:75
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "Zábavný fakt, jeden z prvních hratelných prototypů hry vytvořil náš úžasný "

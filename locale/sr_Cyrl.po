@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 10:18+0200\n"
+"POT-Creation-Date: 2021-04-08 10:22+0200\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -22,27 +22,27 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
-#: ../simulation_parameters/common/help_texts.json:29
+#: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "W, A, S, D и миш за кретање. Е да пуцате ОксиТокси НТ ако имате отровна "
 "вацуоле. G за пребацивање режима гутања."
 
 #: ../simulation_parameters/common/help_texts.json:5
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
 "Ваша ћелија користи ATP као извор енергије, ако се потроши, умрећете."
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:31
+#: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Да бисте откључали уређивач и репродуковали ћелију, потребно је да "
 "сакупите амонијак (наранџасти облак) и фосфат (љубичасти облак)."
 
 #: ../simulation_parameters/common/help_texts.json:7
-#: ../simulation_parameters/common/help_texts.json:32
+#: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Такође можете да обузмете ћелије и бактерије и комаде гвожђа и делове "
@@ -51,7 +51,7 @@ msgstr ""
 "прождирете."
 
 #: ../simulation_parameters/common/help_texts.json:8
-#: ../simulation_parameters/common/help_texts.json:33
+#: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Осморегулација кошта ATP, што значи да што је већа ваша ћелија, то вам је "
@@ -60,14 +60,14 @@ msgstr ""
 "мирујете."
 
 #: ../simulation_parameters/common/help_texts.json:9
-#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
 "У уређивачу има много oрганела да бисте могли да се развијате, "
 "омогућавајући широк спектар различитих стилова играња."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:35
+#: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "За сада, ако вам популација падне на нулу, ви сте изумрли."
 
@@ -85,7 +85,7 @@ msgstr ""
 "Глукоза ствара ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
-#: ../simulation_parameters/common/help_texts.json:36
+#: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "Водоник-сулфид се може претворити у глукозу помоћу хемопласта и "
@@ -93,7 +93,7 @@ msgstr ""
 "у ATP."
 
 #: ../simulation_parameters/common/help_texts.json:13
-#: ../simulation_parameters/common/help_texts.json:37
+#: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Да бисте се репродуковали, потребно је да поделите сваки од својих "
@@ -108,13 +108,20 @@ msgstr ""
 "да наставите да играте како желите."
 
 #: ../simulation_parameters/common/help_texts.json:15
-#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:39
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
 "Будите опрезни јер се ваши конкуренти развијају заједно са вама. Сваки пут "
 "када уђете у уредник, они такође еволуирају."
 
-#: ../simulation_parameters/common/help_texts.json:20
+#: ../simulation_parameters/common/help_texts.json:16
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"W, A, S, D и миш за кретање. Е да пуцате ОксиТокси НТ ако имате отровна "
+"вацуоле. G за пребацивање режима гутања."
+
+#: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Прокариотске структуре\n"
@@ -134,7 +141,7 @@ msgstr ""
 "Цитоплазма: Има простор за складиштење и врши гликолизу (производи мале "
 "количине ATP)"
 
-#: ../simulation_parameters/common/help_texts.json:21
+#: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Спољне органеле\n"
@@ -143,7 +150,7 @@ msgstr ""
 "\n"
 "Грабежљива Коса: Може се користити за убадање других ћелија"
 
-#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Мембране везане органеле\n"
@@ -165,7 +172,7 @@ msgstr ""
 "\n"
 "Отровна Вацуоле: Производе токсине (назване ОксиТокси НТ)"
 
-#: ../simulation_parameters/common/help_texts.json:23
+#: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Свака генерација имаш 100 мутациски поени (МП), а свака промена (или "
@@ -174,7 +181,7 @@ msgstr ""
 "мутације рефундира МП за ту органелу. Органелу можете уклонити десним "
 "кликом на њу. Органеле можете ротирати A и D."
 
-#: ../simulation_parameters/common/help_texts.json:24
+#: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Сваки пут када се размножавате, ући ћете у уређивач микроба, где можете да "
@@ -182,24 +189,24 @@ msgstr ""
 "повећали успех своје врсте. Свака посета уреднику на сцени микроба "
 "представља 100 милиона година еволуције."
 
-#: ../simulation_parameters/common/help_texts.json:43
+#: ../simulation_parameters/common/help_texts.json:44
 msgid "LOADING_TIP"
 msgstr "Притисните дугме поништи у уређивачу да бисте исправили грешку"
 
-#: ../simulation_parameters/common/help_texts.json:48
+#: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Забавна чињеница, Дидинијум и Парамецијум су уџбенички пример односа "
 "грабежљивог плена који се проучава деценијама, да ли сте сада Дидинијум "
 "или Парамецијум? Предатор или плен?"
 
-#: ../simulation_parameters/common/help_texts.json:49
+#: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
 "Ево савета, токсини се могу користити за одбацивање других токсина од вас "
 "ако сте довољно брзи."
 
-#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Ево савета, осморегулација кошта 1 ATP по секунди по хеку коју има ваша "
@@ -207,117 +214,117 @@ msgstr ""
 "значи да ако губите ATP услед осморегулације, само додајте неколико "
 "празних хекес цитоплазме или уклоните неке органеле ."
 
-#: ../simulation_parameters/common/help_texts.json:51
+#: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Забавна чињеница, у стварном животу прокарионти имају нешто што се назива "
 "Биокомпаније и делују попут органела, а заправо се називају Полиедричне "
 "органеле."
 
-#: ../simulation_parameters/common/help_texts.json:52
+#: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
 "Забавна чињеница, метаболосом је оно што се назива полиедрична органела."
 
-#: ../simulation_parameters/common/help_texts.json:53
+#: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Ево савета, понекад је најбоље само побећи од других ћелија."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
 "Ево савета, ако је ћелија приближно половине ваше величине, тада је можете "
 "прогутати."
 
-#: ../simulation_parameters/common/help_texts.json:55
+#: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "Ево савета, Бактерије могу бити јаче него што се појаве, можда изгледају "
 "малено, али неке од њих могу да се укопају у вас и тако вас убију!"
 
-#: ../simulation_parameters/common/help_texts.json:56
+#: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "Ево савета: Можете ловити друге врсте до изумирања ако нисте довољно "
 "пажљиви, а друге врсте их могу ловити до изумирања."
 
-#: ../simulation_parameters/common/help_texts.json:57
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "СТВАРИ КОЈЕ СЕ МИГОЉИТИ!!"
 
-#: ../simulation_parameters/common/help_texts.json:58
+#: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Отопитела метела."
 
-#: ../simulation_parameters/common/help_texts.json:59
+#: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Те плаве ћелије ипак."
 
-#: ../simulation_parameters/common/help_texts.json:60
+#: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 "Ево савета, биоми су више него само различито порекло, једињења у "
 "различитим биомима се понекад мрестају различитим брзинама."
 
-#: ../simulation_parameters/common/help_texts.json:61
+#: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 "Ево савета: Што више бичева имате, брже идете, врум врум, али кошта и ATP "
 "више"
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Ево савета, можете [г]утати комаде гвожђа."
 
-#: ../simulation_parameters/common/help_texts.json:63
+#: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
 "Ево савета, припремите се пре додавања језгра. Они су скупе у одржавању и "
 "у авансни трошак."
 
-#: ../simulation_parameters/common/help_texts.json:64
+#: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
 "Забавна чињеница, да ли сте знали да на планети Земљи постоји преко 8000 "
 "врста трепавица?"
 
-#: ../simulation_parameters/common/help_texts.json:65
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "Забавна чињеница, Стентор је цилијар који се може истегнути и ухватити "
 "плен у некој врсти трубе попут уста која увлаче плен генеришући водене "
 "струје цилијама."
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Забавна чињеница, Дидинијум је цилијар који лови Парамецијум."
 
-#: ../simulation_parameters/common/help_texts.json:67
+#: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Забавна чињеница је да амеба лови и хвата плен „ногама“ направљеним од "
 "цитоплазме названих псеудоподи, желимо да коначно имамо оне у Thrive-у."
 
-#: ../simulation_parameters/common/help_texts.json:68
+#: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
 "Ево савета, Пазите на веће ћелије и велике бактерије, није забавно да "
 "будеш пробављајен и они ће вас појести."
 
-#: ../simulation_parameters/common/help_texts.json:69
+#: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "Вођа звучног тима Thrive-а направио је много песама које још нису додате у "
 "игру. Можете их чути или гледати како он компонује на свом YouTube каналу "
 "Oliver Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
 "Ево савета, ако је ваша ћелија 150 хексе, можете прогутати велике гвоздене "
 "комаде."
 
-#: ../simulation_parameters/common/help_texts.json:71
+#: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive је замишљен као симулација ванземаљске планете, стога има смисла да "
@@ -325,18 +332,18 @@ msgstr ""
 "услед еволуције која се дешава око вас, погледајте да ли их можете "
 "препознати!"
 
-#: ../simulation_parameters/common/help_texts.json:72
+#: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
 "Забавна чињеница, Thrive тим свако мало прави подкастове, требало би да их "
 "погледате!"
 
-#: ../simulation_parameters/common/help_texts.json:73
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
 "Забавна чињеница, Thrive је направљен са Godot, што је отвореног кода!"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:75
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "Забавна чињеница, Један од првих прототипова за играње направио је наш "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 10:18+0200\n"
+"POT-Creation-Date: 2021-04-08 10:22+0200\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: Viktor <xaad3@disroot.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -22,28 +22,28 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
-#: ../simulation_parameters/common/help_texts.json:29
+#: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если есть "
 "токсиновая вакуоль. G - режим поглощения."
 
 #: ../simulation_parameters/common/help_texts.json:5
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
 "Твоя клетка использует АТФ как источник энергии, если он заканчивается ты "
 "можешь умереть."
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:31
+#: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Для открытия редактора и размножения тебе нужно собрать Аммиак (Оранжевое "
 "Облако) и Фосфат (Фиолетовое Облако)."
 
 #: ../simulation_parameters/common/help_texts.json:7
-#: ../simulation_parameters/common/help_texts.json:32
+#: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Нажимая G, ты также можешь поглощать клетки, бактерии и молекулы железа, "
@@ -51,7 +51,7 @@ msgstr ""
 "замедлит тебя. Не забудь нажать G снова, чтобы прекратить поглощение."
 
 #: ../simulation_parameters/common/help_texts.json:8
-#: ../simulation_parameters/common/help_texts.json:33
+#: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Осморегуляция стоит затраты АТФ. Чем твоя клетка больше, тем больше тебе "
@@ -59,14 +59,14 @@ msgstr ""
 "нужен объём цитоплазмы, чтобы избежать потери АТФ, когда ты неподвижен."
 
 #: ../simulation_parameters/common/help_texts.json:9
-#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
 "В редакторе тебе доступен обширный ряд органелл, которые ты можешь "
 "развивать. Это позволяет тебе выбрать свой стиль игры."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:35
+#: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Если число особей упадёт до нуля, то твой вид вымрет."
 
@@ -84,14 +84,14 @@ msgstr ""
 "Глюкоза даёт АТФ"
 
 #: ../simulation_parameters/common/help_texts.json:12
-#: ../simulation_parameters/common/help_texts.json:36
+#: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "Сероводород может быть превращён в глюкозу с помощью хемопластов или "
 "белков-хемосинтетиков. Железо может стать АТФ с помощью рустицианина."
 
 #: ../simulation_parameters/common/help_texts.json:13
-#: ../simulation_parameters/common/help_texts.json:37
+#: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Чтобы размножиться, нужно каждую органеллу поделить надвое. Для этого "
@@ -105,13 +105,20 @@ msgstr ""
 "окошко, но ты сможешь продолжить играть."
 
 #: ../simulation_parameters/common/help_texts.json:15
-#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:39
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
 "Развивайся с умом - твои конкуренты не дремлят. Всякий раз, когда ты "
 "пользуешься редактором, они эволюционируют."
 
-#: ../simulation_parameters/common/help_texts.json:20
+#: ../simulation_parameters/common/help_texts.json:16
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если есть "
+"токсиновая вакуоль. G - режим поглощения."
+
+#: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Прокариотические структуры:\n"
@@ -132,7 +139,7 @@ msgstr ""
 "Цитоплазма: пространство для хранения веществ и выполнения гликолиза "
 "(Производит небольшое количество АТФ)"
 
-#: ../simulation_parameters/common/help_texts.json:21
+#: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Внешние органеллы\n"
@@ -141,7 +148,7 @@ msgstr ""
 "\n"
 "Ворсинка: Может использоваться для удара других клеток"
 
-#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Мембранные органеллы:\n"
@@ -165,7 +172,7 @@ msgstr ""
 "\n"
 "Токсиновая вакуоль: производит токсины (в игре - OxyToxy NT)"
 
-#: ../simulation_parameters/common/help_texts.json:23
+#: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Каждое поколение, у тебя будет 100 мутационных очков (МО) для "
@@ -176,7 +183,7 @@ msgstr ""
 "нажав на неё правой кнопкой мыши и выбрав подходящее действие из "
 "всплывающего меню. Размещая органеллы, ты можешь вращать их, нажимая A и D."
 
-#: ../simulation_parameters/common/help_texts.json:24
+#: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Каждый раз размножаясь, ты можешь войти в Микробный Редактор, где ты "
@@ -184,24 +191,24 @@ msgstr ""
 "органеллы) повышая успех твоего вида. Каждое посещение редактора в "
 "Микробной Фазе составляют 100 миллионов лет эволюции."
 
-#: ../simulation_parameters/common/help_texts.json:43
+#: ../simulation_parameters/common/help_texts.json:44
 msgid "LOADING_TIP"
 msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
 
-#: ../simulation_parameters/common/help_texts.json:48
+#: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Забавный Факт, дидинии и парамеции - наглядный пример взаимоотношений "
 "\"хищник - жертва\", которые изучали на протяжении десятилетий. А что ты - "
 "хищник или жертва?"
 
-#: ../simulation_parameters/common/help_texts.json:49
+#: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
 "Совет: токсины можно выпустить, чтобы оттолкнуть от себя другие токсины, "
 "если ты достаточно быстр."
 
-#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Совет: Осморегуляция тратит 1 АТФ в секунду на каждый заполненный "
@@ -210,114 +217,114 @@ msgstr ""
 "осморегуляции, просто добавьте пару пустых гексагонов цитоплазмы или "
 "удалите некоторые органеллы."
 
-#: ../simulation_parameters/common/help_texts.json:51
+#: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:52
+#: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
 "Забавный Факт, Метаболосма это то, что называется Многогранная органелла."
 
-#: ../simulation_parameters/common/help_texts.json:53
+#: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Совет: иногда лучшее - это просто бежать подальше от других клеток."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Совет: если клетка вдвое меньше тебя, ты можешь её поглотить."
 
-#: ../simulation_parameters/common/help_texts.json:55
+#: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "Cовет: бактерии могут быть сильнее, чем кажутся. Они могут казаться "
 "маленькими, но некоторые из них могут зарыться в вас и таким образом убить!"
 
-#: ../simulation_parameters/common/help_texts.json:56
+#: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "Совет: вы можете охотиться на другие виды до их истребления, если не "
 "будете достаточно осторожны. Другие виды могут делать то же самое."
 
-#: ../simulation_parameters/common/help_texts.json:57
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "ВОЛНИСТЫЕ СУЩЕСТВА!!"
 
-#: ../simulation_parameters/common/help_texts.json:58
+#: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:59
+#: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_12"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:60
+#: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 "Совет: биомы - это больше, чем просто разные фоны, соединения в разных "
 "биомах иногда появляются с разной скоростью."
 
-#: ../simulation_parameters/common/help_texts.json:61
+#: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 "Совет: чем больше у вас жгутиков, тем быстрее вы двигаетесь, но на это "
 "требуется больше АТФ"
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Совет: ты можешь поглощать железные и другие куски."
 
-#: ../simulation_parameters/common/help_texts.json:63
+#: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
 "Совет: хорошо подготовьтесь перед добавлением ядра. Эта вещь дорогая! В "
 "содержании и первоначальной стоимости."
 
-#: ../simulation_parameters/common/help_texts.json:64
+#: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
 "Забавный факт: знаете ли вы, что на планете Земля существует более 8000 "
 "видов инфузорий?"
 
-#: ../simulation_parameters/common/help_texts.json:65
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "Забавный факт: трубачи - инфузории, способные растягивать себя и ловить "
 "добычу в подобный трубе рот, который засасывает жертву, создавая водные "
 "потоки с помощью ресничек."
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
 msgstr ""
 "Интересный факт: Дидиниум - это инфузория, которая охотится на парамеции."
 
-#: ../simulation_parameters/common/help_texts.json:67
+#: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Забавный факт, амёба охотится и ловит добычу с помощью \"ног\", состоящих "
 "из цитоплазмы, которые называются псевдоподиями. В конечном итоге мы "
 "хотим, чтобы они были в Thrive."
 
-#: ../simulation_parameters/common/help_texts.json:68
+#: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
 "Совет: опасайтесь более крупных клеток и бактерий, быть переваренным не "
 "весело, если они тебя съедят."
 
-#: ../simulation_parameters/common/help_texts.json:69
+#: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "Звуковая команда Thrive'а сделала много песен, которые ещё не были "
 "добавлены в игру. Ты можешь услышать их, или посмотреть стримы с их "
 "написанием на YouTube канале, Oliver Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
 "Совет: если ваша клетка составляет 150 гексов, вы можете поглотить большие "
 "куски железа."
 
-#: ../simulation_parameters/common/help_texts.json:71
+#: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive - это симуляция эволюции чужой планеты, поэтому имеет смысл, что "
@@ -325,18 +332,18 @@ msgstr ""
 "другими видами из-за эволюции, происходящей вокруг вас. Посмотрим, сможете "
 "ли вы их идентифицировать!"
 
-#: ../simulation_parameters/common/help_texts.json:72
+#: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
 "Интересный факт: команда Thrive время от времени выпускает подкасты, вам "
 "стоит их проверить!"
 
-#: ../simulation_parameters/common/help_texts.json:73
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
 "Интересный факт: Thrive создан на движке Godot с открытым исходным кодом!"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:75
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "Забавный факт, один из первых рабочих прототипов игрового процесса был "

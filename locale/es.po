@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 10:18+0200\n"
+"POT-Creation-Date: 2021-04-08 10:22+0200\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -21,7 +21,7 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
-#: ../simulation_parameters/common/help_texts.json:29
+#: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "Usa W, A, S y D y el ratón para mover tu célula. E para disparar toxinas "
@@ -29,20 +29,20 @@ msgstr ""
 "engullir."
 
 #: ../simulation_parameters/common/help_texts.json:5
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
 "Tu célula usa ATP como su fuente de energía. Si se acaba, la célula muere."
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:31
+#: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Para desbloquear el editor y reproducir tu célula, necesitas conseguir "
 "Amoníaco (Nube Naranja) y Fosfato (Nube Púrpura)."
 
 #: ../simulation_parameters/common/help_texts.json:7
-#: ../simulation_parameters/common/help_texts.json:32
+#: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Puedes engullir células, bacterias, pedazos de hierro y pedazos de células "
@@ -51,7 +51,7 @@ msgstr ""
 "lentamente. Presiona G para parar de engullir."
 
 #: ../simulation_parameters/common/help_texts.json:8
-#: ../simulation_parameters/common/help_texts.json:33
+#: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "La Osmorregulación cuesta ATP, lo que significa que cuan más grande es la "
@@ -60,14 +60,14 @@ msgstr ""
 "estática."
 
 #: ../simulation_parameters/common/help_texts.json:9
-#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
 "Hay varios orgánulos en el editor para evolucionar, permitiendo un amplio "
 "rango de maneras de jugar."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:35
+#: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Por ahora, si la población de tu especia alcanza 0, se extingue."
 
@@ -85,7 +85,7 @@ msgstr ""
 "La Glucosa hace ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
-#: ../simulation_parameters/common/help_texts.json:36
+#: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "El Sulfuro de Hidrógeno puede ser convertido a glucosa con quimioplastos y "
@@ -93,7 +93,7 @@ msgstr ""
 "rusticianinas."
 
 #: ../simulation_parameters/common/help_texts.json:13
-#: ../simulation_parameters/common/help_texts.json:37
+#: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Para que la célula se reproduzca, necesita dividir cada uno de sus "
@@ -107,13 +107,21 @@ msgstr ""
 "emergente. Luego de ganar puedes seguir jugando libremente."
 
 #: ../simulation_parameters/common/help_texts.json:15
-#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:39
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
 "Ten cuidado, tus competidores evolucionan a la par con tu célula. Cada vez "
 "que entres al editor, también evolucionarán."
 
-#: ../simulation_parameters/common/help_texts.json:20
+#: ../simulation_parameters/common/help_texts.json:16
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"Usa W, A, S y D y el ratón para mover tu célula. E para disparar toxinas "
+"si tienes una vacuola de toxinas. G para activar/desactivar el modo "
+"engullir."
+
+#: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estructuras Procarióticas\n"
@@ -133,7 +141,7 @@ msgstr ""
 "\n"
 "Citoplasma: Tiene espacio para almacenar compuestos, y realiza glicólisis"
 
-#: ../simulation_parameters/common/help_texts.json:21
+#: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Orgánulos Externos\n"
@@ -142,7 +150,7 @@ msgstr ""
 "\n"
 "Pilus: Puede usarse para atacar a otras células"
 
-#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Orgánulos con membrana\n"
@@ -165,7 +173,7 @@ msgstr ""
 "\n"
 "Vacuola de Toxinas: Produce toxinas (llamadas OxiToxi NT)"
 
-#: ../simulation_parameters/common/help_texts.json:23
+#: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "En cada generación, tienes 100 puntos de mutación (PM) para gastar, y cada "
@@ -175,7 +183,7 @@ msgstr ""
 "selecciónalo y haz click derecho. Puedes rotar orgánulos antes de "
 "añadirlos con A y D."
 
-#: ../simulation_parameters/common/help_texts.json:24
+#: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Cada vez que tu célula se reproduce, entrarás al editor de microbio, donde "
@@ -183,24 +191,24 @@ msgstr ""
 "incrementar tus chances de éxito. Cada visita al editor en el estadio de "
 "microbio representa 100 millones de años de evolución."
 
-#: ../simulation_parameters/common/help_texts.json:43
+#: ../simulation_parameters/common/help_texts.json:44
 msgid "LOADING_TIP"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
-#: ../simulation_parameters/common/help_texts.json:48
+#: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Dato curioso: El Didinium y el Paramecio son un ejemplo de una relación "
 "depredador-presa que fue estudiado por décadas. Ahora, eres el Didinium, o "
 "el Paramecio? Depredador, o presa?"
 
-#: ../simulation_parameters/common/help_texts.json:49
+#: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
 "Un consejo: Las toxinas pueden ser usadas para bloquear otras toxinas "
 "antes de que te alcancen."
 
-#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Un consejo: la Osmorregulación consume 1 ATP por segundo por espacios que "
@@ -208,113 +216,113 @@ msgstr ""
 "segundo, lo que significa que, si estás perdiendo ATP, añade algunos "
 "espacios de citoplasma o quita algunos orgánulos."
 
-#: ../simulation_parameters/common/help_texts.json:51
+#: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Dato curioso: En la vida real, las células procariotas tienen algo llamado "
 "biocompartimientos, que actúan como orgánulos, y son llamados orgánulos "
 "poliedricos."
 
-#: ../simulation_parameters/common/help_texts.json:52
+#: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
 "Dato curioso: Los metabolosomas son lo que se llama un orgánulo poliédrico."
 
-#: ../simulation_parameters/common/help_texts.json:53
+#: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Un consejo: A veces es mejor huir de otras células."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
 "Un consejo: Si otra célula mide la mitad que tu célula, puedes engullirla."
 
-#: ../simulation_parameters/common/help_texts.json:55
+#: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "Un consejo: Las bacterias pueden ser mas fuertes de lo que aparentan. "
 "Pueden ser pequeñas, pero algunas de ellas pueden enterrarse dentro de tu "
 "célula y matarla!"
 
-#: ../simulation_parameters/common/help_texts.json:56
+#: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "Un consejo: Otras especies pueden ser cazadas hasta la extinción por tí u "
 "otras especies."
 
-#: ../simulation_parameters/common/help_texts.json:57
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "TENTÁCULOS!!"
 
-#: ../simulation_parameters/common/help_texts.json:58
+#: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "¡Derrite el metal!"
 
-#: ../simulation_parameters/common/help_texts.json:59
+#: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Fíjate en esas células azules."
 
-#: ../simulation_parameters/common/help_texts.json:60
+#: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 "Un consejo: Los biomas son más que solo fondos diferentes, los compuestos "
 "en distintos biomas son generados de forma diferente."
 
-#: ../simulation_parameters/common/help_texts.json:61
+#: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 "Un consejo: Mientras más flagelos tengas, mas rápido te mueves, pero "
 "también consumes más ATP."
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Un consejo: Puedes engullir pedazos de hierro."
 
-#: ../simulation_parameters/common/help_texts.json:63
+#: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Un consejo: Prepárate antes de añadir un núcleo, es caro!"
 
-#: ../simulation_parameters/common/help_texts.json:64
+#: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
 "Dato curioso: Sabías que hay mas de 8000 ciliados en el planeta Tierra?"
 
-#: ../simulation_parameters/common/help_texts.json:65
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "Dato curioso: El Stentor es un ciliado que puede estirarse y atrapar "
 "presas en una especie de boca con forma de trompeta que atrae presas "
 "generando corrientes en el agua con sus cilios."
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Dato curioso: El Didinium es un ciliado que caza paramecios."
 
-#: ../simulation_parameters/common/help_texts.json:67
+#: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Dato curioso: La Ameba caza y atrapa presas con 'piernas' hechas de "
 "citoplasma llamadas pseudópodos. Eventualmente los agregaremos a Thrive."
 
-#: ../simulation_parameters/common/help_texts.json:68
+#: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
 "Un consejo: Ten cuidado con células y bacterias grandes, pueden engullirte."
 
-#: ../simulation_parameters/common/help_texts.json:69
+#: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "El líder del equipo de sonido ha hecho varias canciones que no están "
 "todavía añadidas al juego. Puedes escucharlas, o ver vídeos en vivo de el "
 "componiendo en su canal de YouTube, Oliver Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
 "Un consejo: Si tu célula ocupa 150 espacios, puedes engullir pedazos "
 "grandes de hierro."
 
-#: ../simulation_parameters/common/help_texts.json:71
+#: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive está pensado como una simulación en un planeta extraterrestre. Por "
@@ -322,19 +330,19 @@ msgstr ""
 "relacionadas a una o dos especies, debido a la evolución ocurriendo a lo "
 "largo del juego. Puedes identificarlas?"
 
-#: ../simulation_parameters/common/help_texts.json:72
+#: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
 "Dato curioso: El equipo de Thrive hace podcasts de vez en cuando. Échale "
 "un vistazo!"
 
-#: ../simulation_parameters/common/help_texts.json:73
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
 "Dato Curioso: Thrive está hecho con el motor de juegos de código abierto "
 "Godot."
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:75
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "Dato curioso: Uno de los primeros prototipos funcionales en el juego fue "

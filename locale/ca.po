@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 10:18+0200\n"
+"POT-Creation-Date: 2021-04-08 10:22+0200\n"
 "PO-Revision-Date: 2021-02-19 17:13+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
-#: ../simulation_parameters/common/help_texts.json:29
+#: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "Fes servir les tecles W,A,S,D i el ratolí per moure't per la pantalla. "
@@ -31,21 +31,21 @@ msgstr ""
 "d'engolir."
 
 #: ../simulation_parameters/common/help_texts.json:5
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
 "La vostra cèl·lula fa servir els nucleòtids ATP com a font d'energia; si "
 "se li n'esgoten totes les reserves, es morirà."
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:31
+#: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Per tal de desbloquejar l'editor i reproduïr-vos, heu de recol·lectar "
 "Amoníac (núvols de color taronja) i Fosfats (núvols de color violeta)."
 
 #: ../simulation_parameters/common/help_texts.json:7
-#: ../simulation_parameters/common/help_texts.json:32
+#: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "També pots engolir cèl·lules, bocins de cèl·lules i trossos de ferro, "
@@ -55,7 +55,7 @@ msgstr ""
 "la tecla G una altra vegada per a desactivar el mode d'engolir."
 
 #: ../simulation_parameters/common/help_texts.json:8
-#: ../simulation_parameters/common/help_texts.json:33
+#: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "L'osmoregulació consumeix molt ATP. Per tant, com més gran sigui la teva "
@@ -64,14 +64,14 @@ msgstr ""
 "perdre ATP quan estigueu quiets."
 
 #: ../simulation_parameters/common/help_texts.json:9
-#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
 "A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; "
 "un munt de possibilitats jugables."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:35
+#: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr ""
 "Per a la versió actual del joc, si la teva població baixa fins a 0 "
@@ -91,7 +91,7 @@ msgstr ""
 "La Glucosa produeix ATP"
 
 #: ../simulation_parameters/common/help_texts.json:12
-#: ../simulation_parameters/common/help_texts.json:36
+#: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "L'Àcid Sulfhídric pot ser transformat en Glucosa mitjançant Quimioplasts i "
@@ -99,7 +99,7 @@ msgstr ""
 "mitjançant Rusticianina."
 
 #: ../simulation_parameters/common/help_texts.json:13
-#: ../simulation_parameters/common/help_texts.json:37
+#: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. "
@@ -113,14 +113,23 @@ msgstr ""
 "una finestreta d'enhorabona i, després, podràs seguir jugant."
 
 #: ../simulation_parameters/common/help_texts.json:15
-#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:39
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
 "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en "
 "cap moment. Cada vegada que entris a l'editor, ells també faran un salt "
 "evolutiu."
 
-#: ../simulation_parameters/common/help_texts.json:20
+#: ../simulation_parameters/common/help_texts.json:16
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"Fes servir les tecles W,A,S,D i el ratolí per moure't per la pantalla. "
+"Clica la tecla E per a disparar la toxina OxyToxy NT; per fer-ho, cal que "
+"tinguis un vacúol de toxines. Clica la tecla G per a activar el mode "
+"d'engolir."
+
+#: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estructures procariòtiques\n"
@@ -143,7 +152,7 @@ msgstr ""
 "Citoplasma: Permet, fins a un cert límit, emmagatzemar recursos a "
 "l'interior de la cèl·lula. També duu a terme el procés de Glicòlisi"
 
-#: ../simulation_parameters/common/help_texts.json:21
+#: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Orgànuls externs\n"
@@ -152,7 +161,7 @@ msgstr ""
 "\n"
 "Pilus: Estructura per punxar altres cèl·lules"
 
-#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Orgànuls adherits a la membrana\n"
@@ -176,7 +185,7 @@ msgstr ""
 "\n"
 "Vacúol de Toxines: Produeix toxines (anomenades OxyToxy NT)"
 
-#: ../simulation_parameters/common/help_texts.json:23
+#: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "A cada generació pots invertir fins a 100 Punts de Mutació (MP, per les "
@@ -188,7 +197,7 @@ msgstr ""
 "orgànul tot fent-hi clic dret a sobre amb el ratolí. Pots fer girar els "
 "orgànuls per canviar-ne la orientació mitjançant les tecles A i D."
 
-#: ../simulation_parameters/common/help_texts.json:24
+#: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs "
@@ -196,11 +205,11 @@ msgstr ""
 "millorar-la. Cada sessió de l'editor de microbi representa 100 milions "
 "d'anys d'evolució."
 
-#: ../simulation_parameters/common/help_texts.json:43
+#: ../simulation_parameters/common/help_texts.json:44
 msgid "LOADING_TIP"
 msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
-#: ../simulation_parameters/common/help_texts.json:48
+#: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "A mode de curiositat, la relació entre les cèl·lules de l'espècie Didinium "
@@ -209,13 +218,13 @@ msgstr ""
 "la teva espècie, és l'equivalent de Didinium o de Paramecium? Ets un "
 "depredador, o bé la presa?"
 
-#: ../simulation_parameters/common/help_texts.json:49
+#: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
 "Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies "
 "toxines per a bloquejar-ne d'altres."
 
-#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Un petit consell, la Osmoregulació consumeix, cada segon, 1 unitat d'ATP "
@@ -224,127 +233,127 @@ msgstr ""
 "ATP degut a la Osmoregulació, afegeix un parell d'hexàgons de citoplasma o "
 "bé elimina alguns orgànuls."
 
-#: ../simulation_parameters/common/help_texts.json:51
+#: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "A mode de curiositat, al planeta Terra, els organismes procariotes tenen "
 "unes estructures anomenades Biocompartiments que actuen com orgànuls. En "
 "realitat, s'anomenen Orgànuls Polihèdrics."
 
-#: ../simulation_parameters/common/help_texts.json:52
+#: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
 "A mode de curiositat, els Metabolosomes són el que s'anomena Orgànuls "
 "Polihèdrics."
 
-#: ../simulation_parameters/common/help_texts.json:53
+#: ../simulation_parameters/common/help_texts.json:54
 msgid "EASTEREGG_MESSAGE_6"
 msgstr ""
 "Un petit consell, de vegades és millor fugir ràpidament de les altres "
 "cèl·lules."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
 "Recorda que, si et creues amb una cèl·lula almenys dues vegades més petita "
 "que tu, la pots engolir per alimentar-te'n."
 
-#: ../simulation_parameters/common/help_texts.json:55
+#: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "Vés amb compte. Els bacteris, malgrat ser molt petits, poden resultar "
 "perillosos. Alguns t'atacaran agressivament per devorar-te sense pensar-"
 "s'ho dues vegades!"
 
-#: ../simulation_parameters/common/help_texts.json:56
+#: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "Un petit consell, si caçes altres espècies i no vas amb compte, es poden "
 "extingir. També es poden extingir si són caçades per altres espècies "
 "depredadores."
 
-#: ../simulation_parameters/common/help_texts.json:57
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "ÉSSERS LLEFISCOSOS!!"
 
-#: ../simulation_parameters/common/help_texts.json:58
+#: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
 msgstr ""
 "Smeltal the meltal: frase satírica en anglès, amb un lèxic deformat a "
 "propòsit, que vol dir \"Fondre els metalls\"."
 
-#: ../simulation_parameters/common/help_texts.json:59
+#: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "No obstant, aquestes cèl·lules de color blau."
 
-#: ../simulation_parameters/common/help_texts.json:60
+#: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 "Un petit consell: els diferents Biomes no són tan sols diferents fons, "
 "sinó que en cadascun hi ha diferents proporcions de compostos."
 
-#: ../simulation_parameters/common/help_texts.json:61
+#: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 "Un petit consell: com més Flagels tinguis, més ràpid et podràs moure, però "
 "també més ATP consumiràs"
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
 "Un petit consell: no només et pots empassar cèl·lules, sinó també trossos "
 "de Ferro."
 
-#: ../simulation_parameters/common/help_texts.json:63
+#: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
 "Un petit consell: prepara bé la teva cèl·lula abans d'afegir-li un Nucli. "
 "Els Nuclis són cars i consumeixen una gran quantitat d'ATP."
 
-#: ../simulation_parameters/common/help_texts.json:64
+#: ../simulation_parameters/common/help_texts.json:65
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
 "A mode de curiositat, sabies que hi ha més de 8000 espècies d'organismes "
 "ciliats al planeta Terra?"
 
-#: ../simulation_parameters/common/help_texts.json:65
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "A mode de curiositat, l'Stentor és un ciliat que es pot estendre per tal "
 "d'atrapar preses amb una boca amb forma de trompeta. Mitjançant Cilis, "
 "genera corrents d'aigua que atrapen a les preses."
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
 
-#: ../simulation_parameters/common/help_texts.json:67
+#: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' "
 "fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran "
 "implementades al joc."
 
-#: ../simulation_parameters/common/help_texts.json:68
+#: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
 "Un petit consell: vés amb compte amb les cèl·lules més grans que la teva, "
 "no és gens divertit ser engolit per una d'aquestes bestioles."
 
-#: ../simulation_parameters/common/help_texts.json:69
+#: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "L'equip de so de Thrive ha composat moltes cançons, algunes de les quals "
 "encara no s'han afegit al joc. No obstant, les pots escoltar, i fins i tot "
 "veure emissions en directe al canal de YouTube 'Oliver Lugg'."
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
 "Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et podràs "
 "empassar fins i tot el trossos de ferro més grans del joc."
 
-#: ../simulation_parameters/common/help_texts.json:71
+#: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive representa una simulació d'un planeta alienígena. Per tant, la "
@@ -352,19 +361,19 @@ msgstr ""
 "similituds amb d'altres espècies degut al procés d'evolució. Intenta "
 "identificar-les!"
 
-#: ../simulation_parameters/common/help_texts.json:72
+#: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
 "A mode de curiositat, l'equip de Thrive fa podcasts en directe cada cert "
 "temps. Estigues amatent i no te'n perdis ni un!"
 
-#: ../simulation_parameters/common/help_texts.json:73
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
 "A mode de curiositat, Thrive està essent desenvolupat amb el motor de "
 "videojoc de codi obert anomenat Godot!"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:75
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 "A mode de curiositat, un dels primers prototips jugables d'aquest joc va "
