@@ -6,15 +6,16 @@
 [JSONAlwaysDynamicType]
 public class AgentProjectile : RigidBody, ITimedLife
 {
+    [Export]
+    public NodePath ParticlesPath;
+
+    private Timer despawnTimer;
+    private Particles particles;
+
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
     public AgentProperties Properties { get; set; }
     public Node Emitter { get; set; }
-
-    public Timer DespawnTimer;
-    //Delay has to be defined
-    public float Delaydespawn = 250;
-
 
     public void OnTimeOver()
     {
@@ -23,15 +24,17 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public override void _Ready()
     {
+        particles = GetNode<Particles>(ParticlesPath);
+
         AddCollisionExceptionWith(Emitter);
         Connect("body_entered", this, "OnBodyEntered");
 
         // Timer that delay despawn of projectiles
-        DespawnTimer = new Timer();
-        DespawnTimer.OneShot = true;
-        DespawnTimer.WaitTime = Delaydespawn;
-        DespawnTimer.Connect("timeout", this, "OnTimerTimeout");
-        AddChild(DespawnTimer);
+        despawnTimer = new Timer();
+        despawnTimer.OneShot = true;
+        despawnTimer.WaitTime = Constants.PROJECTILE_DESPAWN_DELAY;
+        despawnTimer.Connect("timeout", this, "OnTimerTimeout");
+        AddChild(despawnTimer);
     }
 
     public void OnBodyEntered(Node body)
@@ -46,8 +49,8 @@ public class AgentProjectile : RigidBody, ITimedLife
             }
         }
 
-
-        DespawnTimer.Start();
+        particles.Emitting = false;
+        despawnTimer.Start();
     }
 
     public void ApplyPropertiesFromSave(AgentProjectile projectile)
