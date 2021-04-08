@@ -1,7 +1,7 @@
 ﻿using System;
 
 /// <summary>
-///   Static class that holds infos about currently activated cheats
+///   Static class that holds information about currently activated cheats
 /// </summary>
 public static class CheatManager
 {
@@ -33,7 +33,8 @@ public static class CheatManager
     public static float Speed { get; set; }
 
     /// <summary>
-    ///   Infinite MP in the editor. Obsolete in freebuild
+    ///   Infinite MP in the editor.
+    ///   Freebuild has infinite MP anyway regardless of this variable
     /// </summary>
     public static bool InfiniteMP { get; set; }
 

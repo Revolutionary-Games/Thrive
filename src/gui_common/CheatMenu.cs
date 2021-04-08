@@ -27,9 +27,13 @@ public abstract class CheatMenu : Popup
                 throw new InvalidOperationException("Cheats must be enabled in the settings to open the cheat menu");
 
             if (value)
+            {
                 Show();
+            }
             else
+            {
                 Hide();
+            }
         }
     }
 

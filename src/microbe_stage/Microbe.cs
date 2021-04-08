@@ -1213,8 +1213,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
-        // Not the player or infinite compounds cheat disabled
-        if (!(IsPlayerMicrobe && CheatManager.InfiniteCompounds))
+        // return if both InfCompounds and PlayerMicrobe enabled
+        if (!(CheatManager.InfiniteCompounds && IsPlayerMicrobe))
             return;
 
         var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
