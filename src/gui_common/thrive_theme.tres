@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=47 format=2]
+[gd_resource type="Theme" load_steps=48 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -130,6 +130,7 @@ border_width_bottom = 2
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxTexture" id=16]
+texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 429, 1 )
 expand_margin_left = 10.0
 expand_margin_right = 10.0
