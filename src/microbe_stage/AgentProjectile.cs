@@ -4,6 +4,7 @@
 ///   This is a shot agent projectile, does damage on hitting a cell of different species
 /// </summary>
 [JSONAlwaysDynamicType]
+[SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
 public class AgentProjectile : RigidBody, ITimedLife
 {
     [Export]
