@@ -62,18 +62,6 @@ public class AgentProjectile : RigidBody, ITimedLife
         FadeTimeRemaining = Constants.PROJECTILE_DESPAWN_DELAY;
     }
 
-    public void ApplyPropertiesFromSave(AgentProjectile projectile)
-    {
-        NodeGroupSaveHelper.CopyGroups(this, projectile);
-
-        TimeToLiveRemaining = projectile.TimeToLiveRemaining;
-        Amount = projectile.Amount;
-        Properties = projectile.Properties;
-        Transform = projectile.Transform;
-        LinearVelocity = projectile.LinearVelocity;
-        AngularVelocity = projectile.AngularVelocity;
-    }
-
     private void Destroy()
     {
         // We should probably get some *POP* effect here.
