@@ -34,6 +34,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
 
+    [JsonProperty]
+    private Compound queuedToxinToEmit;
+
     // Child components
     private AudioStreamPlayer3D engulfAudio;
     private AudioStreamPlayer3D movementAudio;
@@ -483,14 +486,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Only shoot if you have an agent vacuole.
         if (AgentVacuoleCount < 1)
-        {
             return;
-        }
 
-        if (agentType == null)
-        {
-            agentType = SimulationParameters.Instance.GetCompound("oxytoxy");
-        }
+        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
@@ -522,6 +520,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             SpawnHelpers.LoadAgentScene(), this);
 
         PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+    }
+
+    /// <summary>
+    ///   Makes this Microbe fire a toxin on the next update. Used by the AI from a background thread.
+    ///   Only one can be queued at once
+    /// </summary>
+    /// <param name="toxinCompound">The toxin type to emit</param>
+    public void QueueEmitToxin(Compound toxinCompound)
+    {
+        queuedToxinToEmit = toxinCompound;
     }
 
     /// <summary>
@@ -1072,6 +1080,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         AgentEmissionCooldown -= delta;
         if (AgentEmissionCooldown < 0)
             AgentEmissionCooldown = 0;
+
+        // Fire queued agents
+        if (queuedToxinToEmit != null)
+        {
+            EmitToxin(queuedToxinToEmit);
+            queuedToxinToEmit = null;
+        }
 
         HandleFlashing(delta);
         HandleHitpointsRegeneration(delta);
