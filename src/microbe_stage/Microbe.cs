@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -48,6 +48,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private AudioStreamPlayer3D movementAudio;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
     private SphereShape engulfShape;
+
+    private Node originalParent;
 
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
@@ -414,6 +416,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         _Ready();
     }
 
+    public override void _EnterTree()
+    {
+        if (Colony == null)
+            originalParent = GetParent();
+    }
+
     public override void _Ready()
     {
         if (cloudSystem == null)
@@ -586,7 +594,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var position = Translation + (direction * ejectionDistance);
 
         SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
-            position, direction, GetParent(),
+            position, direction, originalParent,
             SpawnHelpers.LoadAgentScene(), this);
 
         PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
@@ -781,7 +789,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
                 SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
-                    Translation, direction, GetParent(),
+                    Translation, direction, originalParent,
                     agentScene, this);
 
                 amount -= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
@@ -882,7 +890,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
+            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, originalParent,
                 chunkScene, cloudSystem, random);
         }
 
@@ -958,7 +966,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
+            originalParent, SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);
@@ -1205,19 +1213,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                     movementAudio.Play();
             }
         }
-        else
-        {
-            var masterMicrobe = Colony.Master.Microbe;
-            var masterTranslation = masterMicrobe.Translation;
-            var targetPos = masterTranslation +
-                Colony.OffsetToMaster !.Value;
-
-            MovementDirection = masterMicrobe.MovementDirection;
-            DoBaseMovementForce(delta);
-            Rotation = masterMicrobe.Rotation;
-            Translation = masterTranslation + (masterTranslation - targetPos)
-                .Rotated(Vector3.Up, Mathf.Deg2Rad(masterMicrobe.RotationDegrees.y));
-        }
 
         // Rotation is applied in the physics force callback as that's
         // the place where the body rotation can be directly set
@@ -1296,6 +1291,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         Colony = null;
+        RemoveChildrenLink();
+
         ai?.ResetAI();
     }
 
@@ -2103,6 +2100,33 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         return Translation + (ejectionDirection * ejectionDistance);
     }
 
+    private void MakeChildrenLink(Microbe master)
+    {
+        GetParent().RemoveChild(this);
+        master.AddChild(this);
+    }
+
+    private void RemoveChildrenLink()
+    {
+        var parent = GetParent();
+        Vector3 pos;
+        if (parent is Spatial spatial)
+        {
+            var offset = Translation
+               .Rotated(Vector3.Up, spatial.Rotation.y);
+            pos = spatial.Translation + offset;
+        }
+        else
+        {
+            pos = Translation;
+        }
+
+        GetParent().RemoveChild(this);
+        originalParent.AddChild(this);
+
+        Translation = pos;
+    }
+
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
         _ = bodyID;
@@ -2212,6 +2236,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
+        other.MovementDirection = Vector3.Zero;
+
         // Create a colony if there isn't one yet
         if (Colony == null)
         {
@@ -2222,6 +2248,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         other.Colony = new ColonyMember(other, Colony);
         Colony.BindingTo.Add(other.Colony);
         State = MicrobeState.NORMAL;
+
+        var offset = (other.Translation - Translation)
+           .Rotated(Vector3.Down, Rotation.y);
+        var rotation = other.Rotation - Rotation;
+
+        other.MakeChildrenLink(this);
+
+        other.Translation = offset;
+        other.Rotation = rotation;
 
         UnreadyToReproduce();
         other.UnreadyToReproduce();
@@ -2265,7 +2300,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void StopEngulfingOnTarget(Microbe microbe)
     {
-        RemoveCollisionExceptionWith(microbe);
+        if (microbe.Colony?.AreInSameColony(microbe.Colony) != true)
+            RemoveCollisionExceptionWith(microbe);
         microbe.hostileEngulfer = null;
     }
 }

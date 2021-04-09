@@ -8,11 +8,14 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class ColonyMember
 {
+    private static int nextColonyId;
+
     /// <summary>
     ///   Used for serialization. Should not be used otherwise
     /// </summary>
     public ColonyMember()
     {
+        ColonyId = nextColonyId++;
     }
 
     public ColonyMember(Microbe microbe, ColonyMember master)
@@ -23,9 +26,11 @@ public class ColonyMember
 
         if (master != null)
         {
-            var masterMicrobe = master.Microbe;
-            OffsetToMaster = (masterMicrobe.Translation - microbe.Translation)
-                .Rotated(Vector3.Up, Mathf.Deg2Rad(-masterMicrobe.RotationDegrees.y));
+            ColonyId = master.ColonyId;
+        }
+        else
+        {
+            ColonyId = nextColonyId++;
         }
 
         foreach (var member in Microbe.GetAllColonyMembers().Where(p => p != microbe))
@@ -44,13 +49,13 @@ public class ColonyMember
     public ColonyMember Master { get; set; }
 
     [JsonProperty]
-    public Vector3? OffsetToMaster { get; set; }
-
-    [JsonProperty]
     public List<ColonyMember> BindingTo { get; set; }
 
     [JsonProperty]
     public Microbe Microbe { get; set; }
+
+    [JsonProperty]
+    private int ColonyId { get; set; }
 
     /// <summary>
     ///   Caches all the members of this colony.
@@ -82,7 +87,6 @@ public class ColonyMember
             Master.RemoveFromColony();
 
         Master = null;
-        OffsetToMaster = null;
 
         foreach (var colonyMember in BindingTo)
         {
@@ -134,5 +138,10 @@ public class ColonyMember
         }
 
         return visitedMicrobes;
+    }
+
+    internal bool AreInSameColony(ColonyMember other)
+    {
+        return ColonyId == other.ColonyId;
     }
 }
