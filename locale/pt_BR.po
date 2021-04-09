@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-07 12:07+0200\n"
+"POT-Creation-Date: 2021-04-09 11:12+0200\n"
 "PO-Revision-Date: 2021-03-26 17:41+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -917,12 +917,14 @@ msgid "SPACE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:15
+#, fuzzy
 msgid "EXCLAM"
-msgstr ""
+msgstr "Rolar para baixo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:16
+#, fuzzy
 msgid "QUOTEDBL"
-msgstr ""
+msgstr "Girar à esquerda"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:17
 msgid "NUMBERSIGN"
@@ -975,8 +977,9 @@ msgid "PERIOD"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:29
+#, fuzzy
 msgid "SLASH"
-msgstr ""
+msgstr "Voltar"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:30
 msgid "KEY0"
@@ -1141,8 +1144,9 @@ msgid "ORDFEMININE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:67
+#, fuzzy
 msgid "GUILLEMOTLEFT"
-msgstr ""
+msgstr "Girar à esquerda"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:68
 msgid "NOTSIGN"
@@ -1222,8 +1226,9 @@ msgid "THREEQUARTERS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:87
+#, fuzzy
 msgid "QUESTIONDOWN"
-msgstr ""
+msgstr "Resolução:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:88
 msgid "AGRAVE"
@@ -1271,8 +1276,9 @@ msgid "ECIRCUMFLEX"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:99
+#, fuzzy
 msgid "EDIAERESIS"
-msgstr ""
+msgstr "anterior:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:100
 msgid "IGRAVE"
@@ -1369,8 +1375,9 @@ msgid "ESCAPE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:123
+#, fuzzy
 msgid "TAB"
-msgstr ""
+msgstr "Voltar"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:124
 #, fuzzy
@@ -1434,8 +1441,9 @@ msgid "RIGHT"
 msgstr "Luz"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
+#, fuzzy
 msgid "DOWN"
-msgstr ""
+msgstr "Rolar para baixo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "PAGEUP"
@@ -1785,11 +1793,11 @@ msgstr "Botão do mouse desconhecido"
 msgid "CLOSE"
 msgstr "Fechar"
 
-#: ../src/general/MainMenu.cs:329
+#: ../src/general/MainMenu.cs:338
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:330
+#: ../src/general/MainMenu.cs:339
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -2733,11 +2741,11 @@ msgstr "Coisas em {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Célula do jogador"
 
-#: ../src/microbe_stage/MicrobeStage.cs:463
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduziu"
 
-#: ../src/microbe_stage/MicrobeStage.cs:575
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
@@ -3034,9 +3042,8 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "Mover para esta região"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
-#, fuzzy
 msgid "INFINITE_MP"
-msgstr "Compostos"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3136,44 +3143,44 @@ msgstr ""
 "após esta tela fechar se você quiser, ou pode começar um novo jogo em um "
 "novo mundo."
 
-#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:140
 msgid "LOADING_GAME"
 msgstr "Carregando Jogo"
 
-#: ../src/saving/InProgressLoad.cs:76
+#: ../src/saving/InProgressLoad.cs:78
 msgid "READING_SAVE_DATA"
 msgstr "Lendo dados salvos"
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Criando objetos do jogo salvo"
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Uma exceção aconteceu ao carregar os dados salvos"
 
-#: ../src/saving/InProgressLoad.cs:126
+#: ../src/saving/InProgressLoad.cs:128
 msgid "SAVE_IS_INVALID"
 msgstr "O jogo salvo é inválido"
 
-#: ../src/saving/InProgressLoad.cs:127
+#: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "O jogo salvamento tem uma cena de game state inválida"
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processando objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:155
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Uma exceção ocorreu ao processar objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:161
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
 
-#: ../src/saving/InProgressLoad.cs:182
+#: ../src/saving/InProgressLoad.cs:184
 msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
@@ -3546,8 +3553,32 @@ msgstr ""
 "Olhe para o indicador no canto inferior esquerdo para ver o quanto precisa."
 
 #, fuzzy
-#~ msgid "BACKTAB"
+#~ msgid "KEY_FORWARD"
+#~ msgstr "Mover para a frente"
+
+#, fuzzy
+#~ msgid "KEY_DELETE"
+#~ msgstr "Remover"
+
+#, fuzzy
+#~ msgid "KEY_LEFT"
+#~ msgstr "Mover para a esquerda"
+
+#, fuzzy
+#~ msgid "KEY_RIGHT"
+#~ msgstr "Mover para a direita"
+
+#, fuzzy
+#~ msgid "KEY_HELP"
+#~ msgstr "Ajuda"
+
+#, fuzzy
+#~ msgid "KEY_BACK"
 #~ msgstr "Voltar"
+
+#, fuzzy
+#~ msgid "KEY_REFRESH"
+#~ msgstr "Atualizar"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Aparência"

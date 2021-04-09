@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-07 12:07+0200\n"
+"POT-Creation-Date: 2021-04-09 11:12+0200\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: Viktor <xaad3@disroot.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -917,12 +917,14 @@ msgid "SPACE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:15
+#, fuzzy
 msgid "EXCLAM"
-msgstr ""
+msgstr "Колёсико вниз"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:16
+#, fuzzy
 msgid "QUOTEDBL"
-msgstr ""
+msgstr "Поворот влево"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:17
 msgid "NUMBERSIGN"
@@ -975,8 +977,9 @@ msgid "PERIOD"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:29
+#, fuzzy
 msgid "SLASH"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:30
 msgid "KEY0"
@@ -1141,8 +1144,9 @@ msgid "ORDFEMININE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:67
+#, fuzzy
 msgid "GUILLEMOTLEFT"
-msgstr ""
+msgstr "Поворот влево"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:68
 msgid "NOTSIGN"
@@ -1222,8 +1226,9 @@ msgid "THREEQUARTERS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:87
+#, fuzzy
 msgid "QUESTIONDOWN"
-msgstr ""
+msgstr "Разрешение:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:88
 msgid "AGRAVE"
@@ -1271,8 +1276,9 @@ msgid "ECIRCUMFLEX"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:99
+#, fuzzy
 msgid "EDIAERESIS"
-msgstr ""
+msgstr "предыдущее:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:100
 msgid "IGRAVE"
@@ -1369,8 +1375,9 @@ msgid "ESCAPE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:123
+#, fuzzy
 msgid "TAB"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:124
 #, fuzzy
@@ -1434,8 +1441,9 @@ msgid "RIGHT"
 msgstr "Свет"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
+#, fuzzy
 msgid "DOWN"
-msgstr ""
+msgstr "Колёсико вниз"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "PAGEUP"
@@ -1785,11 +1793,11 @@ msgstr "Неизвестная кнопка мыши"
 msgid "CLOSE"
 msgstr "Закрыть"
 
-#: ../src/general/MainMenu.cs:329
+#: ../src/general/MainMenu.cs:338
 msgid "OK"
 msgstr "ОК"
 
-#: ../src/general/MainMenu.cs:330
+#: ../src/general/MainMenu.cs:339
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -2657,11 +2665,11 @@ msgstr ""
 msgid "PLAYER_CELL"
 msgstr "Клетка игрока"
 
-#: ../src/microbe_stage/MicrobeStage.cs:463
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr "игрок размножился"
 
-#: ../src/microbe_stage/MicrobeStage.cs:575
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr "игрок умер"
 
@@ -2961,9 +2969,8 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "Двигаться к этому участку"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
-#, fuzzy
 msgid "INFINITE_MP"
-msgstr "Соединения"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3066,44 +3073,44 @@ msgstr ""
 "Поздравляю вы выиграли эту версию Thrive! Вы можете продолжить игру после "
 "закрытия этого экрана, если хотите, или начать новую игру в новом мире."
 
-#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:140
 msgid "LOADING_GAME"
 msgstr "Загрузка игры"
 
-#: ../src/saving/InProgressLoad.cs:76
+#: ../src/saving/InProgressLoad.cs:78
 msgid "READING_SAVE_DATA"
 msgstr "Чтение данных сохранения"
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Создание объектов из сохранения"
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Случилось отклонение пока загружались данные сохранения"
 
-#: ../src/saving/InProgressLoad.cs:126
+#: ../src/saving/InProgressLoad.cs:128
 msgid "SAVE_IS_INVALID"
 msgstr "Сохранение недействительно"
 
-#: ../src/saving/InProgressLoad.cs:127
+#: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Файл сохранения имеет недействительную сцену состояния игры"
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обработка загруженных объектов"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:155
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Случилось отклонение обрабатывались загруженные объекты"
 
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:161
 msgid "LOAD_FINISHED"
 msgstr "Загрузка завершенна"
 
-#: ../src/saving/InProgressLoad.cs:182
+#: ../src/saving/InProgressLoad.cs:184
 msgid "ERROR_LOADING"
 msgstr "Ошибка загрузки"
 
@@ -3446,8 +3453,28 @@ msgstr ""
 "вам нужно."
 
 #, fuzzy
-#~ msgid "BACKTAB"
+#~ msgid "KEY_FORWARD"
+#~ msgstr "Двигаться вперёд"
+
+#, fuzzy
+#~ msgid "KEY_LEFT"
+#~ msgstr "Двигаться влево"
+
+#, fuzzy
+#~ msgid "KEY_RIGHT"
+#~ msgstr "Двигаться вправо"
+
+#, fuzzy
+#~ msgid "KEY_HELP"
+#~ msgstr "Помощь"
+
+#, fuzzy
+#~ msgid "KEY_BACK"
 #~ msgstr "Назад"
+
+#, fuzzy
+#~ msgid "KEY_REFRESH"
+#~ msgstr "Обновить"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Внешний вид"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-07 12:07+0200\n"
+"POT-Creation-Date: 2021-04-09 11:12+0200\n"
 "PO-Revision-Date: 2021-04-04 16:01+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -891,12 +891,14 @@ msgid "SPACE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:15
+#, fuzzy
 msgid "EXCLAM"
-msgstr ""
+msgstr "גלגל אחורה"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:16
+#, fuzzy
 msgid "QUOTEDBL"
-msgstr ""
+msgstr "סובב שמאלה"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:17
 msgid "NUMBERSIGN"
@@ -949,8 +951,9 @@ msgid "PERIOD"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:29
+#, fuzzy
 msgid "SLASH"
-msgstr ""
+msgstr "חזור"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:30
 msgid "KEY0"
@@ -1115,8 +1118,9 @@ msgid "ORDFEMININE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:67
+#, fuzzy
 msgid "GUILLEMOTLEFT"
-msgstr ""
+msgstr "סובב שמאלה"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:68
 msgid "NOTSIGN"
@@ -1196,8 +1200,9 @@ msgid "THREEQUARTERS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:87
+#, fuzzy
 msgid "QUESTIONDOWN"
-msgstr ""
+msgstr "רזולוציה:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:88
 msgid "AGRAVE"
@@ -1245,8 +1250,9 @@ msgid "ECIRCUMFLEX"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:99
+#, fuzzy
 msgid "EDIAERESIS"
-msgstr ""
+msgstr "קודם:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:100
 msgid "IGRAVE"
@@ -1343,8 +1349,9 @@ msgid "ESCAPE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:123
+#, fuzzy
 msgid "TAB"
-msgstr ""
+msgstr "חזור"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:124
 #, fuzzy
@@ -1408,8 +1415,9 @@ msgid "RIGHT"
 msgstr "אור"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
+#, fuzzy
 msgid "DOWN"
-msgstr ""
+msgstr "גלגל אחורה"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "PAGEUP"
@@ -1759,11 +1767,11 @@ msgstr "לחצן עכבר לא יודע"
 msgid "CLOSE"
 msgstr "סגור"
 
-#: ../src/general/MainMenu.cs:329
+#: ../src/general/MainMenu.cs:338
 msgid "OK"
 msgstr "בסדר"
 
-#: ../src/general/MainMenu.cs:330
+#: ../src/general/MainMenu.cs:339
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -2677,11 +2685,11 @@ msgstr "דברים ב {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
-#: ../src/microbe_stage/MicrobeStage.cs:463
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeStage.cs:575
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
@@ -2978,9 +2986,8 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "תעבור לאזור זה"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
-#, fuzzy
 msgid "INFINITE_MP"
-msgstr "תרכובות"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3077,44 +3084,44 @@ msgstr ""
 "כל הכבוד על הזכייה בגרסה זו של Thrive! אתה יכול להמשיך לשחק אחרי סגירת מסך "
 "זה אם תרצה, או תוכל להתחיל עולם חדש במשחק חדש."
 
-#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:140
 msgid "LOADING_GAME"
 msgstr "טוען משחק"
 
-#: ../src/saving/InProgressLoad.cs:76
+#: ../src/saving/InProgressLoad.cs:78
 msgid "READING_SAVE_DATA"
 msgstr "קורא שמירה"
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "יוצר אובייקטים משמירה"
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "חריגה קרתה בעת טעינת השמירה"
 
-#: ../src/saving/InProgressLoad.cs:126
+#: ../src/saving/InProgressLoad.cs:128
 msgid "SAVE_IS_INVALID"
 msgstr "השמירה אינו תקפה"
 
-#: ../src/saving/InProgressLoad.cs:127
+#: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "לשמירה סצנת משחק לא תקפה"
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "מעלה אובייקטים"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:155
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "משהו חריג קרה בזמן העלאת אובייקטים"
 
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:161
 msgid "LOAD_FINISHED"
 msgstr "טעינה הסתיימה"
 
-#: ../src/saving/InProgressLoad.cs:182
+#: ../src/saving/InProgressLoad.cs:184
 msgid "ERROR_LOADING"
 msgstr "טוען שגיאה"
 
@@ -3476,8 +3483,32 @@ msgstr ""
 "תסתכל על האינדיקטור שבצד השמאלית התחתונה בשביל לראות כמה עוד צריך."
 
 #, fuzzy
-#~ msgid "BACKTAB"
+#~ msgid "KEY_FORWARD"
+#~ msgstr "זוז קדימה"
+
+#, fuzzy
+#~ msgid "KEY_DELETE"
+#~ msgstr "מחק"
+
+#, fuzzy
+#~ msgid "KEY_LEFT"
+#~ msgstr "זוז שמאלה"
+
+#, fuzzy
+#~ msgid "KEY_RIGHT"
+#~ msgstr "זוז ימינה"
+
+#, fuzzy
+#~ msgid "KEY_HELP"
+#~ msgstr "עזרה"
+
+#, fuzzy
+#~ msgid "KEY_BACK"
 #~ msgstr "חזור"
+
+#, fuzzy
+#~ msgid "KEY_REFRESH"
+#~ msgstr "רענן"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "הופעה"

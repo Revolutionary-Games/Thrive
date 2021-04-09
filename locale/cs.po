@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-07 12:06+0200\n"
+"POT-Creation-Date: 2021-04-09 11:12+0200\n"
 "PO-Revision-Date: 2021-01-11 11:46+0000\n"
 "Last-Translator: Radek <radekkostra@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -910,12 +910,14 @@ msgid "SPACE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:15
+#, fuzzy
 msgid "EXCLAM"
-msgstr ""
+msgstr "Kolečkem dolu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:16
+#, fuzzy
 msgid "QUOTEDBL"
-msgstr ""
+msgstr "Otočit se doleva"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:17
 msgid "NUMBERSIGN"
@@ -968,8 +970,9 @@ msgid "PERIOD"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:29
+#, fuzzy
 msgid "SLASH"
-msgstr ""
+msgstr "Zpět"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:30
 msgid "KEY0"
@@ -1134,8 +1137,9 @@ msgid "ORDFEMININE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:67
+#, fuzzy
 msgid "GUILLEMOTLEFT"
-msgstr ""
+msgstr "Otočit se doleva"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:68
 msgid "NOTSIGN"
@@ -1215,8 +1219,9 @@ msgid "THREEQUARTERS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:87
+#, fuzzy
 msgid "QUESTIONDOWN"
-msgstr ""
+msgstr "Rozlišení:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:88
 msgid "AGRAVE"
@@ -1264,8 +1269,9 @@ msgid "ECIRCUMFLEX"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:99
+#, fuzzy
 msgid "EDIAERESIS"
-msgstr ""
+msgstr "předchozí:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:100
 msgid "IGRAVE"
@@ -1362,8 +1368,9 @@ msgid "ESCAPE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:123
+#, fuzzy
 msgid "TAB"
-msgstr ""
+msgstr "Zpět"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:124
 #, fuzzy
@@ -1427,8 +1434,9 @@ msgid "RIGHT"
 msgstr "Světlo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
+#, fuzzy
 msgid "DOWN"
-msgstr ""
+msgstr "Kolečkem dolu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "PAGEUP"
@@ -1778,11 +1786,11 @@ msgstr "Neznámá myš"
 msgid "CLOSE"
 msgstr "Zavřít"
 
-#: ../src/general/MainMenu.cs:329
+#: ../src/general/MainMenu.cs:338
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:330
+#: ../src/general/MainMenu.cs:339
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -2717,11 +2725,11 @@ msgstr "Věc v {0: F1}, {1: F1}:"
 msgid "PLAYER_CELL"
 msgstr "hráč zemřel"
 
-#: ../src/microbe_stage/MicrobeStage.cs:463
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
-#: ../src/microbe_stage/MicrobeStage.cs:575
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
@@ -3020,9 +3028,8 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "Přesuň se na tento kousek"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
-#, fuzzy
 msgid "INFINITE_MP"
-msgstr "Sloučeniny"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3123,44 +3130,44 @@ msgstr ""
 "co zavřeš tuhle obrazovku pokud si přeješ, nebo začít novou hru v novém "
 "světě."
 
-#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:140
 msgid "LOADING_GAME"
 msgstr "Načítání hry"
 
-#: ../src/saving/InProgressLoad.cs:76
+#: ../src/saving/InProgressLoad.cs:78
 msgid "READING_SAVE_DATA"
 msgstr "Čtení uložených dat"
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Vytváření objektů z uložené pozice"
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Při načítání uložených dat došlo k výjimce"
 
-#: ../src/saving/InProgressLoad.cs:126
+#: ../src/saving/InProgressLoad.cs:128
 msgid "SAVE_IS_INVALID"
 msgstr "Uložená pozice je invalidní"
 
-#: ../src/saving/InProgressLoad.cs:127
+#: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Uložená hra má neplatný stav herní scény"
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Zpracování načtených objektů"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:155
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Při zpracování načtených objektů došlo k výjimce"
 
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:161
 msgid "LOAD_FINISHED"
 msgstr "Načítání dokončeno"
 
-#: ../src/saving/InProgressLoad.cs:182
+#: ../src/saving/InProgressLoad.cs:184
 msgid "ERROR_LOADING"
 msgstr "Chyba v načítání"
 
@@ -3532,8 +3539,28 @@ msgstr ""
 "potřebujete."
 
 #, fuzzy
-#~ msgid "BACKTAB"
+#~ msgid "KEY_FORWARD"
+#~ msgstr "Jít dopředu"
+
+#, fuzzy
+#~ msgid "KEY_LEFT"
+#~ msgstr "Pohnout se doleva"
+
+#, fuzzy
+#~ msgid "KEY_RIGHT"
+#~ msgstr "Pohnout se doprava"
+
+#, fuzzy
+#~ msgid "KEY_HELP"
+#~ msgstr "Pomoc"
+
+#, fuzzy
+#~ msgid "KEY_BACK"
 #~ msgstr "Zpět"
+
+#, fuzzy
+#~ msgid "KEY_REFRESH"
+#~ msgstr "Obnovit"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Vzhled"

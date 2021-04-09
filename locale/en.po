@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-07 12:07+0200\n"
+"POT-Creation-Date: 2021-04-09 11:12+0200\n"
 "PO-Revision-Date: 2021-04-04 17:49+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1532,22 +1532,27 @@ msgid "MEDIARECORD"
 msgstr "Media Rec"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
+#, fuzzy
 msgid "HOMEPAGE"
 msgstr "Homepage"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
+#, fuzzy
 msgid "FAVORITES"
-msgstr "Favorites"
+msgstr "Favourites"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
+#, fuzzy
 msgid "SEARCH"
 msgstr "Search"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
+#, fuzzy
 msgid "STANDBY"
 msgstr "Standby"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
+#, fuzzy
 msgid "OPENURL"
 msgstr "Open URL"
 
@@ -1744,11 +1749,11 @@ msgstr "Unknown mouse"
 msgid "CLOSE"
 msgstr "Close"
 
-#: ../src/general/MainMenu.cs:329
+#: ../src/general/MainMenu.cs:338
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:330
+#: ../src/general/MainMenu.cs:339
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -2689,11 +2694,11 @@ msgstr "Stuff at {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
 
-#: ../src/microbe_stage/MicrobeStage.cs:463
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:575
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -2991,7 +2996,7 @@ msgstr "Move to This Patch"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
-msgstr "Inf MP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3091,44 +3096,44 @@ msgstr ""
 "playing after this screen closes if you wish, or start a new game in a new "
 "world."
 
-#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:140
 msgid "LOADING_GAME"
 msgstr "Loading Game"
 
-#: ../src/saving/InProgressLoad.cs:76
+#: ../src/saving/InProgressLoad.cs:78
 msgid "READING_SAVE_DATA"
 msgstr "Reading save data"
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creating objects from save"
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "An exception happened while loading the save data"
 
-#: ../src/saving/InProgressLoad.cs:126
+#: ../src/saving/InProgressLoad.cs:128
 msgid "SAVE_IS_INVALID"
 msgstr "Save is invalid"
 
-#: ../src/saving/InProgressLoad.cs:127
+#: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Save has invalid game state scene"
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processing loaded objects"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:155
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "An exception happened while processing loaded objects"
 
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:161
 msgid "LOAD_FINISHED"
 msgstr "Load finished"
 
-#: ../src/saving/InProgressLoad.cs:182
+#: ../src/saving/InProgressLoad.cs:184
 msgid "ERROR_LOADING"
 msgstr "Error Loading"
 
@@ -3497,8 +3502,41 @@ msgstr ""
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
 
-#~ msgid "INF_MP"
-#~ msgstr "Inf MP"
+#~ msgid "KEY_FORWARD"
+#~ msgstr "Forward"
+
+#~ msgid "KEY_TAB"
+#~ msgstr "Tab"
+
+#~ msgid "KEY_ENTER"
+#~ msgstr "Enter"
+
+#~ msgid "KEY_DELETE"
+#~ msgstr "Delete"
+
+#~ msgid "KEY_END"
+#~ msgstr "End"
+
+#~ msgid "KEY_LEFT"
+#~ msgstr "Left"
+
+#~ msgid "KEY_UP"
+#~ msgstr "Up"
+
+#~ msgid "KEY_RIGHT"
+#~ msgstr "Right"
+
+#~ msgid "KEY_DOWN"
+#~ msgstr "Down"
+
+#~ msgid "KEY_HELP"
+#~ msgstr "Help"
+
+#~ msgid "KEY_BACK"
+#~ msgstr "Back"
+
+#~ msgid "KEY_REFRESH"
+#~ msgstr "Refresh"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Appearance"

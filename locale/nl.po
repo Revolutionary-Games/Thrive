@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-07 12:07+0200\n"
-"PO-Revision-Date: 2021-04-03 07:36+0000\n"
-"Last-Translator: Jesper Welagen <jesper.welagen@gmail.com>\n"
+"POT-Creation-Date: 2021-04-09 11:12+0200\n"
+"PO-Revision-Date: 2021-04-06 13:52+0000\n"
+"Last-Translator: MrTunaPizza <rickvossebelt@hotmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -307,6 +307,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
+"Thrive is bedoelt als een simulatie van een buitenaardse planeet, waardoor "
+"het logisch is dat de meeste wezens die je vind verwant zijn aan één of "
+"twee andere soorten die zich door evolutie hebben aangepast, kijk of je ze "
+"kan herkennen!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
@@ -476,7 +480,7 @@ msgstr "Fullscreen"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Ademhaling"
+msgstr "aërobe ademhaling"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -499,7 +503,7 @@ msgstr "OxyToxy-synthse"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "Chemocynthese"
+msgstr "Chemosynthese"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
@@ -890,15 +894,17 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:14
 msgid "SPACE"
-msgstr ""
+msgstr "Ruimte"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:15
+#, fuzzy
 msgid "EXCLAM"
-msgstr ""
+msgstr "Scroll omlaag"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:16
+#, fuzzy
 msgid "QUOTEDBL"
-msgstr ""
+msgstr "Draai naar links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:17
 msgid "NUMBERSIGN"
@@ -951,8 +957,9 @@ msgid "PERIOD"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:29
+#, fuzzy
 msgid "SLASH"
-msgstr ""
+msgstr "Terug"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:30
 msgid "KEY0"
@@ -1115,8 +1122,9 @@ msgid "ORDFEMININE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:67
+#, fuzzy
 msgid "GUILLEMOTLEFT"
-msgstr ""
+msgstr "Draai naar links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:68
 msgid "NOTSIGN"
@@ -1196,8 +1204,9 @@ msgid "THREEQUARTERS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:87
+#, fuzzy
 msgid "QUESTIONDOWN"
-msgstr ""
+msgstr "Resolutie:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:88
 msgid "AGRAVE"
@@ -1245,8 +1254,9 @@ msgid "ECIRCUMFLEX"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:99
+#, fuzzy
 msgid "EDIAERESIS"
-msgstr ""
+msgstr "Vorige:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:100
 msgid "IGRAVE"
@@ -1342,8 +1352,9 @@ msgid "ESCAPE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:123
+#, fuzzy
 msgid "TAB"
-msgstr ""
+msgstr "Terug"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:124
 #, fuzzy
@@ -1407,8 +1418,9 @@ msgid "RIGHT"
 msgstr "Licht"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
+#, fuzzy
 msgid "DOWN"
-msgstr ""
+msgstr "Scroll omlaag"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "PAGEUP"
@@ -1758,11 +1770,11 @@ msgstr "Onbekende muisknop"
 msgid "CLOSE"
 msgstr "Sluit"
 
-#: ../src/general/MainMenu.cs:329
+#: ../src/general/MainMenu.cs:338
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:330
+#: ../src/general/MainMenu.cs:339
 msgid "Cancel"
 msgstr "Annuleer"
 
@@ -2594,11 +2606,11 @@ msgstr ""
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:463
+#: ../src/microbe_stage/MicrobeStage.cs:461
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:575
+#: ../src/microbe_stage/MicrobeStage.cs:573
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -2981,44 +2993,44 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:140
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:76
+#: ../src/saving/InProgressLoad.cs:78
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:126
+#: ../src/saving/InProgressLoad.cs:128
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:127
+#: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:155
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:161
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:182
+#: ../src/saving/InProgressLoad.cs:184
 msgid "ERROR_LOADING"
 msgstr ""
 
@@ -3279,5 +3291,21 @@ msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
 #, fuzzy
-#~ msgid "BACKTAB"
+#~ msgid "KEY_FORWARD"
+#~ msgstr "Beweeg naar voren"
+
+#, fuzzy
+#~ msgid "KEY_LEFT"
+#~ msgstr "Beweeg naar links"
+
+#, fuzzy
+#~ msgid "KEY_RIGHT"
+#~ msgstr "Beweeg naar rechts"
+
+#, fuzzy
+#~ msgid "KEY_HELP"
+#~ msgstr "Hulp"
+
+#, fuzzy
+#~ msgid "KEY_BACK"
 #~ msgstr "Terug"
