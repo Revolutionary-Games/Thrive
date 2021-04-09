@@ -20,7 +20,7 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public void OnTimeOver()
     {
-        if (FadeTimeRemaining != null)
+        if (FadeTimeRemaining == null)
             BeginDestroy();
     }
 
@@ -54,7 +54,11 @@ public class AgentProjectile : RigidBody, ITimedLife
             }
         }
 
-        BeginDestroy();
+        if (FadeTimeRemaining == null)
+        {
+            // We should probably get some *POP* effect here.
+            BeginDestroy();
+        }
     }
 
     /// <summary>
@@ -70,7 +74,6 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     private void Destroy()
     {
-        // We should probably get some *POP* effect here.
         this.DetachAndQueueFree();
     }
 }
