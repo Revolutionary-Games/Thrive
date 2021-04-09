@@ -68,6 +68,13 @@ public class AgentProjectile : RigidBody, ITimedLife
     {
         particles.Emitting = false;
 
+        // Disable collisions and stop this entity
+        // This isn't the recommended way (disabling the collision shape), but as we don't have a reference to that here
+        // this should also work for disabling the collisions
+        CollisionLayer = 0;
+        CollisionMask = 0;
+        LinearVelocity = Vector3.Zero;
+
         // Timer that delays despawn of projectiles
         FadeTimeRemaining = Constants.PROJECTILE_DESPAWN_DELAY;
     }
