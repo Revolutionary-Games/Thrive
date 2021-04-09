@@ -552,6 +552,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public void Damage(float amount, string source)
     {
+        if (IsPlayerMicrobe && CheatManager.GodMode)
+            return;
+
         if (amount == 0 || Dead)
             return;
 
@@ -1224,6 +1227,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
+
+        if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
+        {
+            var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
+            foreach (var usefulCompound in usefulCompounds)
+                Compounds.AddCompound(usefulCompound, Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
+        }
     }
 
     private void CheckEngulfShapeSize()
@@ -1746,6 +1756,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Not enough ATP to move at full speed
             force *= 0.5f;
         }
+
+        if (IsPlayerMicrobe)
+            force *= CheatManager.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -

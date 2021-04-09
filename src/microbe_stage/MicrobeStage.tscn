@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=113 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -72,6 +72,7 @@
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=71]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=72]
+[ext_resource path="res://src/microbe_stage/MicrobeCheatMenu.tscn" type="PackedScene" id=73]
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
@@ -2018,6 +2019,11 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideLeftPanels = SubResource( 31 )
 anims/ShowLeftPanels = SubResource( 32 )
+
+[node name="MicrobeCheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 207.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false
