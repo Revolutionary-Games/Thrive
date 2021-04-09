@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-09 11:12+0200\n"
+"POT-Creation-Date: 2021-04-06 16:35+0300\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -390,7 +390,7 @@ msgid "ZOOM_IN"
 msgstr "Zomu"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1038
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1037
 msgid "EDITOR"
 msgstr "Redaktilo"
 
@@ -439,8 +439,6 @@ msgid "PAN_CAMERA_RESET"
 msgstr "Restarigu kameraon"
 
 #: ../simulation_parameters/common/input_options.json:119
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Trompaĵoj"
 
@@ -460,36 +458,31 @@ msgstr "Generu amoniakon"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Generu fosfaton"
 
-#: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
-msgid "CHEAT_MENU"
-msgstr "Trompaĵoj"
-
-#: ../simulation_parameters/common/input_options.json:148
+#: ../simulation_parameters/common/input_options.json:144
 msgid "MISCELLANEOUS"
 msgstr "Diversaj"
 
-#: ../simulation_parameters/common/input_options.json:152
+#: ../simulation_parameters/common/input_options.json:148
 msgid "TOGGLE_FPS"
 msgstr "Ŝaltu FPS-ekranon"
 
-#: ../simulation_parameters/common/input_options.json:156
+#: ../simulation_parameters/common/input_options.json:152
 msgid "QUICK_SAVE"
 msgstr "Rapida konservado"
 
-#: ../simulation_parameters/common/input_options.json:160
+#: ../simulation_parameters/common/input_options.json:156
 msgid "QUICK_LOAD"
 msgstr "Rapida ŝarĝo"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:160
 msgid "TAKE_SCREENSHOT"
 msgstr "Prenu ekrankopion"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:164
 msgid "SHOW_HELP"
 msgstr "Montru helpon"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:168
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Ŝaltu FPS-ekranon"
 
@@ -648,19 +641,19 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4482
-#: ../src/microbe_stage/MicrobeStage.tscn:1217
+#: ../src/microbe_stage/MicrobeStage.tscn:1216
 msgid "AMMONIA"
 msgstr "Amoniako"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1271
+#: ../src/microbe_stage/MicrobeStage.tscn:1270
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4172
-#: ../src/microbe_stage/MicrobeStage.tscn:1325
+#: ../src/microbe_stage/MicrobeStage.tscn:1324
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogena Sulfido"
 
@@ -674,18 +667,18 @@ msgstr "Hidrogena Sulfido"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4197
-#: ../src/microbe_stage/MicrobeStage.tscn:1163
+#: ../src/microbe_stage/MicrobeStage.tscn:1162
 msgid "GLUCOSE"
 msgstr "Glukozo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1511
+#: ../src/microbe_stage/MicrobeStage.tscn:1510
 msgid "OXYTOXY_NT"
 msgstr "OksiToksina NO"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
-#: ../src/microbe_stage/MicrobeStage.tscn:1379
+#: ../src/microbe_stage/MicrobeStage.tscn:1378
 msgid "IRON"
 msgstr "Fero"
 
@@ -722,21 +715,21 @@ msgstr "Sunlumo"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2791
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2588
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2587
 msgid "PREDATORY_PILUS"
 msgstr "Raba Vilo (Pilus)"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:52
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1601
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2232
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2231
 msgid "RUSTICYANIN"
 msgstr "Rusticianino"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:85
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2299
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2298
 msgid "NITROGENASE"
 msgstr "Nitrogenazo"
 
@@ -753,7 +746,7 @@ msgstr "Kemosintezaj Proteinoj"
 #: ../simulation_parameters/microbe_stage/organelles.json:184
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2366
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2365
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisomo"
 
@@ -765,49 +758,49 @@ msgstr "Tilakoidoj"
 #: ../simulation_parameters/microbe_stage/organelles.json:249
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:602
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:666
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2030
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2029
 msgid "METABOLOSOMES"
 msgstr "Metabolosomoj"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4359
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4423
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3150
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Nitrogen-fiksa Plastido"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:321
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4138
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3080
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3079
 msgid "CHEMOPLAST"
 msgstr "Kemoplasto"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2522
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2521
 msgid "FLAGELLUM"
 msgstr "Flagelo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:378
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4742
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3217
 msgid "VACUOLE"
 msgstr "Vakuolo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2878
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2877
 msgid "MITOCHONDRION"
 msgstr "Mitokondrio"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4879
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3287
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3286
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksa\n"
@@ -816,21 +809,21 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:484
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2945
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2944
 msgid "CHLOROPLAST"
 msgstr "Kloroplasto"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:513
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:414
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1871
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1870
 msgid "CYTOPLASM"
 msgstr "Citoplasmo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2810
 msgid "NUCLEUS"
 msgstr "Kerno/Nukleo"
 
@@ -908,879 +901,426 @@ msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:14
-msgid "SPACE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:15
-#, fuzzy
-msgid "EXCLAM"
-msgstr "Rado malsupren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:16
-#, fuzzy
-msgid "QUOTEDBL"
-msgstr "Rotaciu maldekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:17
-msgid "NUMBERSIGN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:18
-msgid "DOLLAR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:19
-msgid "PERCENT"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:20
-msgid "AMPERSAND"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:21
-msgid "APOSTROPHE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:22
-#, fuzzy
-msgid "PARENLEFT"
-msgstr "Rotaciu maldekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:23
-#, fuzzy
-msgid "PARENRIGHT"
-msgstr "Rotaciu dekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:24
-msgid "ASTERISK"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:25
-msgid "PLUS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:26
-msgid "COMMA"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:27
-msgid "MINUS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:28
-msgid "PERIOD"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:29
-#, fuzzy
-msgid "SLASH"
-msgstr "Reen"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:30
-msgid "KEY0"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:31
-msgid "KEY1"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:32
-msgid "KEY2"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:33
-msgid "KEY3"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:34
-msgid "KEY4"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:35
-msgid "KEY5"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:36
-msgid "KEY6"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:37
-msgid "KEY7"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:38
-msgid "KEY8"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:39
-msgid "KEY9"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:40
-#, fuzzy
-msgid "COLON"
-msgstr "SP:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:41
-#, fuzzy
-msgid "SEMICOLON"
-msgstr "Grandeco:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:42
-msgid "LESS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:43
-msgid "EQUAL"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:44
-msgid "GREATER"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:45
-#, fuzzy
-msgid "QUESTION"
-msgstr "Distingivo:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:46
-#, fuzzy
-msgid "AT"
-msgstr "ATP"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:47
-#, fuzzy
-msgid "BRACKETLEFT"
-msgstr "Rotaciu maldekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:48
-#, fuzzy
-msgid "BACKSLASH"
-msgstr "Reen"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:49
-#, fuzzy
-msgid "BRACKETRIGHT"
-msgstr "Rotaciu dekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:50
-msgid "ASCIICIRCUM"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:51
-msgid "UNDERSCORE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:52
-#, fuzzy
-msgid "QUOTELEFT"
-msgstr "Rotaciu maldekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:53
-#, fuzzy
-msgid "BRACELEFT"
-msgstr "Rotaciu maldekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:54
-msgid "BAR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:55
-#, fuzzy
-msgid "BRACERIGHT"
-msgstr "Rotaciu dekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:56
-msgid "ASCIITILDE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:57
-#, fuzzy
-msgid "EXCLAMDOWN"
-msgstr "Rado malsupren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:58
-msgid "CENT"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:59
-msgid "STERLING"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:60
-msgid "CURRENCY"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:61
-#, fuzzy
-msgid "YEN"
-msgstr "Oksigeno"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:62
-msgid "BROKENBAR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:63
-#, fuzzy
-msgid "SECTION"
-msgstr "Priskribo:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:64
-msgid "DIAERESIS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:65
-#, fuzzy
-msgid "COPYRIGHT"
-msgstr "Movu dekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:66
-msgid "ORDFEMININE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:67
-#, fuzzy
-msgid "GUILLEMOTLEFT"
-msgstr "Rotaciu maldekstren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:68
-msgid "NOTSIGN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:69
-msgid "HYPHEN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:70
-msgid "REGISTERED"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:71
-msgid "MACRON"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:72
-msgid "DEGREE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:73
-msgid "PLUSMINUS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:74
-msgid "TWOSUPERIOR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:75
-msgid "THREESUPERIOR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:76
-msgid "ACUTE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:77
-#, fuzzy
-msgid "MU"
-msgstr "Silentigi"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:78
-msgid "PARAGRAPH"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:79
-msgid "PERIODCENTERED"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:80
-msgid "CEDILLA"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:81
-msgid "ONESUPERIOR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:82
-msgid "MASCULINE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:83
-msgid "GUILLEMOTRIGHT"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:84
-msgid "ONEQUARTER"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:85
-msgid "ONEHALF"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:86
-msgid "THREEQUARTERS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:87
-#, fuzzy
-msgid "QUESTIONDOWN"
-msgstr "Distingivo:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:88
-msgid "AGRAVE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:89
-msgid "AACUTE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:90
-msgid "ACIRCUMFLEX"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:91
-msgid "ATILDE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:92
-msgid "ADIAERESIS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:93
-msgid "ARING"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:94
-#, fuzzy
-msgid "AE"
-msgstr "Konservu"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:95
-msgid "CCEDILLA"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:96
-msgid "EGRAVE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:97
-msgid "EACUTE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:98
-msgid "ECIRCUMFLEX"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:99
-#, fuzzy
-msgid "EDIAERESIS"
-msgstr "antaŭa:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:100
-msgid "IGRAVE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:101
-msgid "IACUTE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:102
-msgid "ICIRCUMFLEX"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:103
-msgid "IDIAERESIS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:104
-#, fuzzy
-msgid "ETH"
-msgstr "morto"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:105
-msgid "NTILDE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:106
-msgid "OGRAVE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:107
-msgid "OACUTE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:108
-msgid "OCIRCUMFLEX"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:109
-msgid "OTILDE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:110
-msgid "ODIAERESIS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:111
-msgid "MULTIPLY"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:112
-msgid "OOBLIQUE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:113
-msgid "UGRAVE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:114
-msgid "UACUTE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:115
-msgid "UCIRCUMFLEX"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:116
-msgid "UDIAERESIS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:117
-msgid "YACUTE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:118
-msgid "THORN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:119
-msgid "SSHARP"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:120
-#, fuzzy
-msgid "DIVISION"
-msgstr "Versio:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:121
-msgid "YDIAERESIS"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:122
-msgid "ESCAPE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:123
-#, fuzzy
-msgid "TAB"
-msgstr "Reen"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:124
-#, fuzzy
-msgid "BACKSPACE"
-msgstr "Reen"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:125
-msgid "ENTER"
-msgstr ""
-
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
-msgid "KPENTER"
-msgstr ""
+#, fuzzy
+msgid "KEY_FORWARD"
+msgstr "Antaŭeniĝu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
-msgid "INSERT"
+msgid "KEY_TAB"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
-msgid "DELETE"
-msgstr "Elimini"
+msgid "KEY_ENTER"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
-msgid "PAUSE"
+msgid "KEY_INSERT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
-msgid "PRINT"
-msgstr ""
+#, fuzzy
+msgid "KEY_DELETE"
+msgstr "Elimini"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
-msgid "SYSREQ"
+msgid "KEY_PAUSE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
-msgid "CLEAR"
+msgid "KEY_CLEAR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
-msgid "HOME"
+msgid "KEY_HOME"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
-#, fuzzy
-msgid "END"
-msgstr "kaj"
+msgid "KEY_END"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 #, fuzzy
-msgid "LEFT"
+msgid "KEY_LEFT"
 msgstr "Movu maldekstren"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
-msgid "UP"
+msgid "KEY_UP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 #, fuzzy
-msgid "RIGHT"
-msgstr "Lumo"
+msgid "KEY_RIGHT"
+msgstr "Movu dekstren"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 #, fuzzy
-msgid "DOWN"
+msgid "KEY_DOWN"
 msgstr "Rado malsupren"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
-msgid "PAGEUP"
+msgid "KEY_MENU"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 #, fuzzy
-msgid "PAGEDOWN"
-msgstr "Movigu malsupren"
+msgid "KEY_HELP"
+msgstr "Helpu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
-msgid "CAPSLOCK"
-msgstr ""
+#, fuzzy
+msgid "KEY_BACK"
+msgstr "Reen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
-msgid "NUMLOCK"
+msgid "KEY_STOP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
-msgid "SCROLLLOCK"
-msgstr ""
+#, fuzzy
+msgid "KEY_REFRESH"
+msgstr "Aktualigu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
-msgid "SUPERL"
+msgid "KEY_SEARCH"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
-msgid "SUPERR"
+msgid "KEY_STANDBY"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
-msgid "MENU"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:147
-msgid "HYPERL"
+msgid "KEY_OPENURL"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
-msgid "HYPERR"
+msgid "KEY_HOMEPAGE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
-#: ../src/general/PauseMenu.tscn:86
-msgid "HELP"
-msgstr "Helpu"
+msgid "KEY_FAVORITES"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:150
-#, fuzzy
-msgid "DIRECTIONL"
-msgstr "Priskribo:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:151
-#, fuzzy
-msgid "DIRECTIONR"
-msgstr "Priskribo:"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:152
-#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:113
-msgid "BACK"
-msgstr "Reen"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:153
-#, fuzzy
-msgid "FORWARD"
-msgstr "Antaŭeniĝu"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:154
-msgid "STOP"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:155
-#: ../src/saving/SaveManagerGUI.tscn:66
-msgid "REFRESH"
-msgstr "Aktualigu"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:156
-#, fuzzy
-msgid "VOLUMEDOWN"
-msgstr "Volumo de sonefektoj"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:157
-#, fuzzy
-msgid "VOLUMEMUTE"
-msgstr "Volumo de sonefektoj"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:158
-#, fuzzy
-msgid "VOLUMEUP"
-msgstr "Volumo de sonefektoj"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:159
-msgid "BASSBOOST"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:160
-msgid "BASSUP"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:161
-msgid "BASSDOWN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:162
-msgid "TREBLEUP"
+msgid "KEY_PRINT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:163
-#, fuzzy
-msgid "TREBLEDOWN"
-msgstr "Rado malsupren"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:164
-msgid "MEDIAPLAY"
+msgid "SPACE"
 msgstr ""
 
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+#, fuzzy
+msgid "BACKSLASH"
+msgstr "Reen"
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-msgid "MEDIASTOP"
+msgid "ESCAPE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 #, fuzzy
-msgid "MEDIAPREVIOUS"
-msgstr "antaŭa:"
+msgid "BACKSPACE"
+msgstr "Reen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-msgid "MEDIANEXT"
+msgid "KPENTER"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
-msgid "MEDIARECORD"
+msgid "SYSREQ"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
-msgid "HOMEPAGE"
+msgid "PAGEUP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
-msgid "FAVORITES"
-msgstr ""
+#, fuzzy
+msgid "PAGEDOWN"
+msgstr "Movigu malsupren"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-msgid "SEARCH"
+msgid "CAPSLOCK"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
-msgid "STANDBY"
+msgid "NUMLOCK"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
-msgid "OPENURL"
+msgid "SCROLLLOCK"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
-msgid "LAUNCHMAIL"
+msgid "SUPERL"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
-msgid "LAUNCHMEDIA"
+msgid "SUPERR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
-msgid "LAUNCH0"
+msgid "HYPERL"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
-msgid "LAUNCH1"
+msgid "HYPERR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
-msgid "LAUNCH2"
-msgstr ""
+#, fuzzy
+msgid "DIRECTIONL"
+msgstr "Priskribo:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
-msgid "LAUNCH3"
-msgstr ""
+#, fuzzy
+msgid "DIRECTIONR"
+msgstr "Priskribo:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
-msgid "LAUNCH4"
-msgstr ""
+#, fuzzy
+msgid "VOLUMEDOWN"
+msgstr "Volumo de sonefektoj"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-msgid "LAUNCH5"
-msgstr ""
+#, fuzzy
+msgid "VOLUMEMUTE"
+msgstr "Volumo de sonefektoj"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
-msgid "LAUNCH6"
-msgstr ""
+#, fuzzy
+msgid "VOLUMEUP"
+msgstr "Volumo de sonefektoj"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
-msgid "LAUNCH7"
+msgid "BASSBOOST"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
-msgid "LAUNCH8"
+msgid "BASSUP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
-msgid "LAUNCH9"
+msgid "BASSDOWN"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
-msgid "LAUNCHA"
+msgid "TREBLEUP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
-msgid "LAUNCHB"
-msgstr ""
+#, fuzzy
+msgid "TREBLEDOWN"
+msgstr "Rado malsupren"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
-msgid "LAUNCHC"
+msgid "MEDIAPLAY"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
-msgid "LAUNCHD"
+msgid "MEDIASTOP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
-msgid "LAUNCHE"
-msgstr ""
+#, fuzzy
+msgid "MEDIAPREVIOUS"
+msgstr "antaŭa:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
-msgid "LAUNCHF"
+msgid "MEDIANEXT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
-msgid "KPMULTIPLY"
+msgid "MEDIARECORD"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
-msgid "KPDIVIDE"
+msgid "LAUNCHMAIL"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
-msgid "KPSUBTRACT"
+msgid "LAUNCHMEDIA"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
-msgid "KPPERIOD"
+msgid "LAUNCH0"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
-msgid "KPADD"
+msgid "LAUNCH1"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
-msgid "KP0"
+msgid "LAUNCH2"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
-msgid "KP1"
+msgid "LAUNCH3"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
-msgid "KP2"
+msgid "LAUNCH4"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
-msgid "KP3"
+msgid "LAUNCH5"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
-msgid "KP4"
+msgid "LAUNCH6"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
-msgid "KP5"
+msgid "LAUNCH7"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
-msgid "KP6"
+msgid "LAUNCH8"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
-msgid "KP7"
+msgid "LAUNCH9"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
-msgid "KP8"
+msgid "LAUNCHA"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
-msgid "KP9"
+msgid "LAUNCHB"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
+msgid "LAUNCHC"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:208
+msgid "LAUNCHD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:209
+msgid "LAUNCHE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:210
+msgid "LAUNCHF"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:211
+msgid "KPMULTIPLY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:212
+msgid "KPDIVIDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:213
+msgid "KPSUBTRACT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:214
+msgid "KPPERIOD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:215
+msgid "KPADD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:216
+msgid "KP0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:217
+msgid "KP1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:218
+msgid "KP2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:219
+msgid "KP3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:220
+msgid "KP4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:221
+msgid "KP5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:222
+msgid "KP6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:223
+msgid "KP7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:224
+msgid "KP8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:225
+msgid "KP9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:226
 #, fuzzy
 msgid "UNKNOWN"
 msgstr "Nekonata musbutono"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:53
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
 msgstr "Ctrl"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:55
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:57
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
 msgstr "Maldekstra musbutono"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
 msgstr "Dekstra musbutono"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
 msgstr "Meza musbutono"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
 msgstr "Rado supren"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
 msgstr "Rado malsupren"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
 msgstr "Rado maldekstre"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
 msgstr "Rado dekstre"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
 msgstr "Musa Speciala 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_2"
 msgstr "Musa Specialaĵo 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr "Nekonata musbutono"
 
@@ -1789,11 +1329,11 @@ msgstr "Nekonata musbutono"
 msgid "CLOSE"
 msgstr "Fermu"
 
-#: ../src/general/MainMenu.cs:338
+#: ../src/general/MainMenu.cs:329
 msgid "OK"
 msgstr "JES"
 
-#: ../src/general/MainMenu.cs:339
+#: ../src/general/MainMenu.cs:330
 msgid "Cancel"
 msgstr "Nuligi"
 
@@ -1832,6 +1372,12 @@ msgstr "Forlasu"
 #: ../src/general/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Libra Redaktilo de"
+
+#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:113
+msgid "BACK"
+msgstr "Reen"
 
 #: ../src/general/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
@@ -2079,9 +1625,13 @@ msgid "SAVE_GAME"
 msgstr "Konservu"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4439
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4438
 msgid "STATISTICS"
 msgstr "Statistiko"
+
+#: ../src/general/PauseMenu.tscn:86
+msgid "HELP"
+msgstr "Helpu"
 
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
@@ -2291,7 +1841,7 @@ msgstr ""
 "iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2097
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2096
 msgid "THYLAKOID"
 msgstr "Tilakoido"
 
@@ -2329,7 +1879,7 @@ msgstr "intenseco de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "Lumo"
 
@@ -2439,7 +1989,7 @@ msgstr "Piku aliajn ĉelojn per ĉi tio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2654
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2653
 msgid "CILIA"
 msgstr "Cilio"
 
@@ -2495,7 +2045,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3771
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3835
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3012
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
 msgid "THERMOPLAST"
 msgstr "Termika plasto"
 
@@ -2576,7 +2126,7 @@ msgstr "Biolumineska Vakuolo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5326
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5390
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3544
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3543
 msgid "NORMAL"
 msgstr "Normala"
 
@@ -2598,7 +2148,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5586
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5650
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3616
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3615
 msgid "DOUBLE"
 msgstr "Duobla"
 
@@ -2611,7 +2161,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5842
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3688
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3687
 msgid "CELLULOSE"
 msgstr "Celulozo"
 
@@ -2638,7 +2188,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6169
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6233
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3760
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3759
 msgid "CHITIN"
 msgstr "itino"
 
@@ -2658,7 +2208,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6496
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6560
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3837
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3836
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalcia Karbonato"
 
@@ -2672,7 +2222,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6857
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:6921
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3909
 msgid "SILICA"
 msgstr "Siliko"
 
@@ -2688,43 +2238,25 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/microbe_stage/Microbe.cs:809
+#: ../src/microbe_stage/Microbe.cs:806
 msgid "DEATH"
 msgstr "morto"
 
-#: ../src/microbe_stage/Microbe.cs:1178
+#: ../src/microbe_stage/Microbe.cs:1175
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "sukcesa ordaranĝado"
 
-#: ../src/microbe_stage/Microbe.cs:1185
+#: ../src/microbe_stage/Microbe.cs:1182
 msgid "SUCCESSFUL_KILL"
 msgstr "sukcesa"
 
-#: ../src/microbe_stage/Microbe.cs:1512
+#: ../src/microbe_stage/Microbe.cs:1501
 msgid "REPRODUCED"
 msgstr "reproduktis"
 
-#: ../src/microbe_stage/Microbe.cs:1592
+#: ../src/microbe_stage/Microbe.cs:1581
 msgid "ESCAPE_ENGULFING"
 msgstr "eskapu englutadon"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:28
-#, fuzzy
-msgid "INFINITE_COMPOUNDS"
-msgstr "Kunmetaĵoj"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
-msgid "GODMODE"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
-msgid "NO_AI"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
-#, fuzzy
-msgid "PLAYER_SPEED"
-msgstr "ludanto mortis"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
@@ -2746,46 +2278,46 @@ msgstr "ludanto reproduktita"
 msgid "PLAYER_DIED"
 msgstr "ludanto mortis"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:431
+#: ../src/microbe_stage/MicrobeStage.tscn:430
 msgid "AT_CURSOR"
 msgstr "Ĉe Kursoro(montrilo):"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:456
+#: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "NOTHING_HERE"
 msgstr "Nenio estas ĉi tie"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:481
+#: ../src/microbe_stage/MicrobeStage.tscn:480
 msgid "COMPOUNDS_COLON"
 msgstr "Kunmetaĵoj:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:519
+#: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "SPECIES_COLON"
 msgstr "Specioj:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:600
+#: ../src/microbe_stage/MicrobeStage.tscn:599
 msgid "ENVIRONMENT"
 msgstr "Medio"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "Tеmp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "Premo."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4623
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5260
+#: ../src/microbe_stage/MicrobeStage.tscn:1062
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4622
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5259
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
 msgid "COMPOUNDS"
 msgstr "Kunmetaĵoj"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1448
 msgid "AGENTS"
 msgstr "Agentoj"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1721
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACIO:"
 
@@ -2858,125 +2390,125 @@ msgstr "Aŭtomata evolucio malsukcesis"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Lanĉa stato:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:994
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:993
 msgid "REPORT"
 msgstr "Ra"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1016
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1015
 msgid "PATCH_MAP"
 msgstr "Mapo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1095
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1094
 msgid "ORGANISM_STATISTICS"
 msgstr "Organisma Statistiko"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1156
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1155
 msgid "SPEED_COLON"
 msgstr "Rapideco:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1186
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1185
 msgid "HP_COLON"
 msgstr "SP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1216
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1215
 msgid "SIZE_COLON"
 msgstr "Grandeco:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1237
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1236
 msgid "GENERATION_COLON"
 msgstr "Generacio:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1278
 msgid "ATP_BALANCE"
 msgstr "ATP-bilanco"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1485
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1484
 msgid "MUTATION_POINTS"
 msgstr "Mutaciaj Poentoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1618
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1617
 msgid "STRUCTURE"
 msgstr "Strukturo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1641
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
 msgid "MEMBRANE"
 msgstr "Membrano"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1664
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1663
 msgid "BEHAVIOR"
 msgstr "Konduto"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1715
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1714
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Serĉado..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1774
 msgid "STRUCTURAL"
 msgstr "Struktura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1938
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1937
 msgid "PROTEINS"
 msgstr "Proteinoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2166
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2165
 msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 msgstr ""
 "Kemosin-\n"
 "tezaj Proteinoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2431
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2430
 msgid "EXTERNAL"
 msgstr "Ekstera"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2719
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
 msgid "ORGANELLES"
 msgstr "Organetoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3314
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3313
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3353
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3352
 msgid "BIOLUMESCENT_VACUOLE"
 msgstr ""
 "Biolumineska\n"
 " Vakuolo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3450
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3449
 msgid "MEMBRANE_TYPES"
 msgstr "Membranaj Tipoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3934
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3933
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Flueco / Rigideco"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3973
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
 msgid "COLOUR"
 msgstr "Koloro"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4118
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4117
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Specia nomo..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4147
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4146
 msgid "CONFIRM_CAPITAL"
 msgstr "KONFIRMU"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4157
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4156
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativa ATP-Balanco"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4169
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4168
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Via mikrobo ne produktas sufiĉe da ATP por ke ĝi travivu!\n"
 "Ĉu vi volas daŭrigi?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4180
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4179
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Malkonektitaj Organetoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4192
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4191
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Inter metitaj organetoj, estas organetoj kiu ne estas ligitaj al la "
@@ -2984,65 +2516,61 @@ msgstr ""
 "Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn "
 "ŝanĝojn."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4292
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4291
 msgid "AUTO_EVO"
 msgstr "Aŭto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4305
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4304
 msgid "FOOD_CHAIN"
 msgstr "Manĝoĉeno"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4318
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4317
 msgid "TIMELINE"
 msgstr "Templinio"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4371
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4370
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultoj de aŭtomata evoluo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4390
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4389
 msgid "EXTERNAL_EFFECTS"
 msgstr "Eksteraj efikoj:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4448
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4447
 msgid "SPECIES_POPULATION"
 msgstr "Specio loĝantaro"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4481
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4912
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4911
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fizikaj Kondiĉoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4585
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5095
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5094
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferaj Gasoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4679
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5607
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4678
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5606
 msgid "NEXT_CAPITAL"
 msgstr "SEKVA"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4793
 msgid "SELECT_A_PATCH"
 msgstr "Elektu flikaĵon por montri detalojn ĉi tie"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4829
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4828
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUNA LOKO"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5520
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
 msgid "SPECIES_PRESENT"
 msgstr "Nunaj specio"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5578
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5577
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moviĝu al ĉi tiu loko"
-
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
-msgid "INFINITE_MP"
-msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3111,6 +2639,10 @@ msgstr "{0} kun loĝantaro: {1}"
 msgid "MP_COST"
 msgstr "{0} MP"
 
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+msgid "DELETE"
+msgstr "Elimini"
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
 msgstr "Moviĝi"
@@ -3141,44 +2673,44 @@ msgstr ""
 "kiam ĉi tiu ekrano fermiĝas, se vi volas, aŭ komenci novan ludon en nova "
 "mondo."
 
-#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
+#: ../src/saving/InProgressLoad.cs:138
 msgid "LOADING_GAME"
 msgstr "Ŝarĝante la Ludon"
 
-#: ../src/saving/InProgressLoad.cs:78
+#: ../src/saving/InProgressLoad.cs:76
 msgid "READING_SAVE_DATA"
 msgstr "Legante konservadajn datumojn"
 
-#: ../src/saving/InProgressLoad.cs:97
+#: ../src/saving/InProgressLoad.cs:95
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kreante objektojn el konservado"
 
-#: ../src/saving/InProgressLoad.cs:104
+#: ../src/saving/InProgressLoad.cs:102
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Escepto okazis dum ŝarĝo de la konservadaj datumoj"
 
-#: ../src/saving/InProgressLoad.cs:128
+#: ../src/saving/InProgressLoad.cs:126
 msgid "SAVE_IS_INVALID"
 msgstr "Konservado ne validas"
 
-#: ../src/saving/InProgressLoad.cs:129
+#: ../src/saving/InProgressLoad.cs:127
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Konservado havas malvalidan ludstatan scenon"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:140
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Prilaborado de ŝarĝitaj objektoj"
 
-#: ../src/saving/InProgressLoad.cs:155
+#: ../src/saving/InProgressLoad.cs:153
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Escepto okazis dum prilaborado de ŝarĝitaj objektoj"
 
-#: ../src/saving/InProgressLoad.cs:161
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOAD_FINISHED"
 msgstr "Ŝarĝo estas finita"
 
-#: ../src/saving/InProgressLoad.cs:184
+#: ../src/saving/InProgressLoad.cs:182
 msgid "ERROR_LOADING"
 msgstr "Eraro Ŝarĝante"
 
@@ -3356,6 +2888,10 @@ msgstr ""
 "malfarita, ĉu vi certas, ke vi volas forigi ĉi-sekvajn?\n"
 " - {0} Aŭtomataj konservadoj\n"
 " - {1} Rapida konservado(j)"
+
+#: ../src/saving/SaveManagerGUI.tscn:66
+msgid "REFRESH"
+msgstr "Aktualigu"
 
 #: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
@@ -3556,32 +3092,100 @@ msgstr ""
 "bezonas."
 
 #, fuzzy
-#~ msgid "KEY_FORWARD"
-#~ msgstr "Antaŭeniĝu"
+#~ msgid "END"
+#~ msgstr "kaj"
 
 #, fuzzy
-#~ msgid "KEY_DELETE"
-#~ msgstr "Elimini"
-
-#, fuzzy
-#~ msgid "KEY_LEFT"
+#~ msgid "LEFT"
 #~ msgstr "Movu maldekstren"
 
 #, fuzzy
-#~ msgid "KEY_RIGHT"
+#~ msgid "RIGHT"
+#~ msgstr "Lumo"
+
+#, fuzzy
+#~ msgid "FORWARD"
+#~ msgstr "Antaŭeniĝu"
+
+#, fuzzy
+#~ msgid "PARENLEFT"
+#~ msgstr "Rotaciu maldekstren"
+
+#, fuzzy
+#~ msgid "PARENRIGHT"
+#~ msgstr "Rotaciu dekstren"
+
+#, fuzzy
+#~ msgid "COLON"
+#~ msgstr "SP:"
+
+#, fuzzy
+#~ msgid "SEMICOLON"
+#~ msgstr "Grandeco:"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Distingivo:"
+
+#, fuzzy
+#~ msgid "AT"
+#~ msgstr "ATP"
+
+#, fuzzy
+#~ msgid "BRACKETLEFT"
+#~ msgstr "Rotaciu maldekstren"
+
+#, fuzzy
+#~ msgid "BRACKETRIGHT"
+#~ msgstr "Rotaciu dekstren"
+
+#, fuzzy
+#~ msgid "QUOTELEFT"
+#~ msgstr "Rotaciu maldekstren"
+
+#, fuzzy
+#~ msgid "BRACELEFT"
+#~ msgstr "Rotaciu maldekstren"
+
+#, fuzzy
+#~ msgid "BRACERIGHT"
+#~ msgstr "Rotaciu dekstren"
+
+#, fuzzy
+#~ msgid "EXCLAMDOWN"
+#~ msgstr "Rado malsupren"
+
+#, fuzzy
+#~ msgid "YEN"
+#~ msgstr "Oksigeno"
+
+#, fuzzy
+#~ msgid "SECTION"
+#~ msgstr "Priskribo:"
+
+#, fuzzy
+#~ msgid "COPYRIGHT"
 #~ msgstr "Movu dekstren"
 
 #, fuzzy
-#~ msgid "KEY_HELP"
-#~ msgstr "Helpu"
+#~ msgid "MU"
+#~ msgstr "Silentigi"
 
 #, fuzzy
-#~ msgid "KEY_BACK"
+#~ msgid "AE"
+#~ msgstr "Konservu"
+
+#, fuzzy
+#~ msgid "ETH"
+#~ msgstr "morto"
+
+#, fuzzy
+#~ msgid "DIVISION"
+#~ msgstr "Versio:"
+
+#, fuzzy
+#~ msgid "BACKTAB"
 #~ msgstr "Reen"
-
-#, fuzzy
-#~ msgid "KEY_REFRESH"
-#~ msgstr "Aktualigu"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Aspekto"
