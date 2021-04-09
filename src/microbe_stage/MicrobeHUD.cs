@@ -768,8 +768,8 @@ public class MicrobeHUD : Node
 
         if (stage.Player != null)
         {
-            atpAmount = Mathf.Ceil(stage.Player.Compounds.GetCompoundAmount(atp));
-            capacity = stage.Player.Compounds.Capacity;
+            atpAmount = Mathf.Ceil(stage.Player.ColonyCompoundBag.GetCompoundAmount(atp));
+            capacity = stage.Player.ColonyCompoundBag.Capacity;
         }
 
         atpBar.MaxValue = capacity;
