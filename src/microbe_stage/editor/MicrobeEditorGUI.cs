@@ -1785,8 +1785,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.DarkGray;
             sunlightChart.Hide();
             temperatureChart.Show();
-            temperatureChart.UpdateDataSetVisibility("Temperature", true);
-            sunlightChart.UpdateDataSetVisibility("Sunlight", false);
 
             tween.InterpolateProperty(temperatureButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
             tween.Start();
@@ -1797,8 +1795,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.White;
             sunlightChart.Show();
             temperatureChart.Hide();
-            temperatureChart.UpdateDataSetVisibility("Temperature", false);
-            sunlightChart.UpdateDataSetVisibility("Sunlight", true);
 
             tween.InterpolateProperty(sunlightButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
             tween.Start();
