@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-09 00:12+0700\n"
+"POT-Creation-Date: 2021-04-09 18:41+0700\n"
 "PO-Revision-Date: 2021-03-15 17:26+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -408,7 +408,7 @@ msgid "ZOOM_IN"
 msgstr "Zoomer"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:920
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:925
 msgid "EDITOR"
 msgstr "Éditeur"
 
@@ -457,6 +457,8 @@ msgid "PAN_CAMERA_RESET"
 msgstr "Réinitialiser la caméra"
 
 #: ../simulation_parameters/common/input_options.json:119
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Triches"
 
@@ -476,31 +478,36 @@ msgstr "Créer de l'ammoniaque"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Créer du phosphate"
 
-#: ../simulation_parameters/common/input_options.json:144
+#: ../simulation_parameters/common/input_options.json:139
+#, fuzzy
+msgid "CHEAT_MENU"
+msgstr "Triches"
+
+#: ../simulation_parameters/common/input_options.json:148
 msgid "MISCELLANEOUS"
 msgstr "Divers"
 
-#: ../simulation_parameters/common/input_options.json:148
+#: ../simulation_parameters/common/input_options.json:152
 msgid "TOGGLE_FPS"
 msgstr "Afficher les FPS"
 
-#: ../simulation_parameters/common/input_options.json:152
+#: ../simulation_parameters/common/input_options.json:156
 msgid "QUICK_SAVE"
 msgstr "Sauvegarde rapide"
 
-#: ../simulation_parameters/common/input_options.json:156
+#: ../simulation_parameters/common/input_options.json:160
 msgid "QUICK_LOAD"
 msgstr "Chargement rapide"
 
-#: ../simulation_parameters/common/input_options.json:160
+#: ../simulation_parameters/common/input_options.json:164
 msgid "TAKE_SCREENSHOT"
 msgstr "Prendre une capture d'écran"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:168
 msgid "SHOW_HELP"
 msgstr "Montrer l'aide"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Plein Écran"
 
@@ -659,19 +666,19 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:15
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4482
-#: ../src/microbe_stage/MicrobeStage.tscn:1216
+#: ../src/microbe_stage/MicrobeStage.tscn:1217
 msgid "AMMONIA"
 msgstr "Ammoniaque"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
-#: ../src/microbe_stage/MicrobeStage.tscn:1270
+#: ../src/microbe_stage/MicrobeStage.tscn:1271
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4172
-#: ../src/microbe_stage/MicrobeStage.tscn:1324
+#: ../src/microbe_stage/MicrobeStage.tscn:1325
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfure d'Hydrogène"
 
@@ -685,18 +692,18 @@ msgstr "Sulfure d'Hydrogène"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3869
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4197
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeStage.tscn:1163
 msgid "GLUCOSE"
 msgstr "Glucose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:63
-#: ../src/microbe_stage/MicrobeStage.tscn:1510
+#: ../src/microbe_stage/MicrobeStage.tscn:1511
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
-#: ../src/microbe_stage/MicrobeStage.tscn:1378
+#: ../src/microbe_stage/MicrobeStage.tscn:1379
 msgid "IRON"
 msgstr "Fer"
 
@@ -1368,11 +1375,11 @@ msgstr "Souris inconnue"
 msgid "CLOSE"
 msgstr "Fermer"
 
-#: ../src/general/MainMenu.cs:329
+#: ../src/general/MainMenu.cs:338
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:330
+#: ../src/general/MainMenu.cs:339
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -1665,7 +1672,7 @@ msgid "SAVE_GAME"
 msgstr "Sauvegarder"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2476
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2481
 msgid "STATISTICS"
 msgstr "Statistiques"
 
@@ -1919,7 +1926,7 @@ msgstr "intensité de"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
-#: ../src/microbe_stage/MicrobeStage.tscn:924
+#: ../src/microbe_stage/MicrobeStage.tscn:925
 msgid "LIGHT"
 msgstr "Lumière"
 
@@ -2249,26 +2256,44 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/microbe_stage/Microbe.cs:814
+#: ../src/microbe_stage/Microbe.cs:817
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1190
+#: ../src/microbe_stage/Microbe.cs:1193
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "récupération réussie"
 
-#: ../src/microbe_stage/Microbe.cs:1197
+#: ../src/microbe_stage/Microbe.cs:1200
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.cs:1516
+#: ../src/microbe_stage/Microbe.cs:1526
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Produits"
 
-#: ../src/microbe_stage/Microbe.cs:1596
+#: ../src/microbe_stage/Microbe.cs:1606
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:28
+#, fuzzy
+msgid "INFINITE_COMPOUNDS"
+msgstr "Composés"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+msgid "GODMODE"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
+msgid "NO_AI"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
+#, fuzzy
+msgid "PLAYER_SPEED"
+msgstr "joueur mort"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
@@ -2290,46 +2315,46 @@ msgstr "joueur reproduit"
 msgid "PLAYER_DIED"
 msgstr "joueur mort"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:430
+#: ../src/microbe_stage/MicrobeStage.tscn:431
 msgid "AT_CURSOR"
 msgstr "Au pointeur :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:455
+#: ../src/microbe_stage/MicrobeStage.tscn:456
 msgid "NOTHING_HERE"
 msgstr "Rien ici"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:480
+#: ../src/microbe_stage/MicrobeStage.tscn:481
 msgid "COMPOUNDS_COLON"
 msgstr "Composés :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:518
+#: ../src/microbe_stage/MicrobeStage.tscn:519
 msgid "SPECIES_COLON"
 msgstr "Espèces :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:599
+#: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "Environnement"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:868
+#: ../src/microbe_stage/MicrobeStage.tscn:869
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:979
+#: ../src/microbe_stage/MicrobeStage.tscn:980
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1062
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3297
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3302
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
 msgid "COMPOUNDS"
 msgstr "Composés"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1448
+#: ../src/microbe_stage/MicrobeStage.tscn:1449
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1721
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION :"
 
@@ -2402,170 +2427,174 @@ msgstr "L'Auto-évo n'a pas pu se lancer"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:876
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:881
 msgid "REPORT"
 msgstr "Rapport"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:898
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:903
 msgid "PATCH_MAP"
 msgstr "Carte de Parcelles"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:977
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:982
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiques de l'Organisme"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1038
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1043
 msgid "SPEED_COLON"
 msgstr "Vitesse :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1068
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1073
 msgid "HP_COLON"
 msgstr "PV :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1098
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1103
 msgid "SIZE_COLON"
 msgstr "Taille :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1119
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1124
 msgid "GENERATION_COLON"
 msgstr "Génération :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1161
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1166
 msgid "ATP_BALANCE"
 msgstr "Niveau d'ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1367
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1372
 msgid "MUTATION_POINTS"
 msgstr "Points de mutation"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1503
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1508
 msgid "STRUCTURE"
 msgstr "Structure"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1526
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1531
 msgid "MEMBRANE"
 msgstr "Membrane"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1549
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1554
 msgid "BEHAVIOR"
 msgstr "Comportement"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1601
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1606
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Rechercher..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1608
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1613
 msgid "STRUCTURAL"
 msgstr "Structure"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1644
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1649
 msgid "PROTEINS"
 msgstr "Protéines"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1720
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1725
 msgid "EXTERNAL"
 msgstr "Externe"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1774
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1779
 msgid "ORGANELLES"
 msgstr "Organites"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1911
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1916
 msgid "MEMBRANE_TYPES"
 msgstr "Types de Membranes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1971
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1976
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidité / Rigidité"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2010
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
 msgid "COLOUR"
 msgstr "Couleur"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2155
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2160
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l’espèce..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2184
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2189
 msgid "CONFIRM_CAPITAL"
 msgstr "ACCEPTER"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2194
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2199
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Quantité d'ATP Négative"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2206
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2211
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Votre microbe ne produit pas assez d'ATP pour survivre!\n"
 "Voulez-vous continuer?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2217
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2222
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Organites Déconnectés"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2229
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2234
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Il y a des organites placées qui ne sont pas connectés au reste.\n"
 "Veuillez connecter toutes les organites placées avec les autres ou annulez "
 "vos changements."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2329
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2334
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2342
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2347
 msgid "FOOD_CHAIN"
 msgstr "Chaîne Alimentaire"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2360
 msgid "TIMELINE"
 msgstr "Chronologie"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2408
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2413
 msgid "AUTO_EVO_RESULTS"
 msgstr "Résultats de l'auto-évo :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2427
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2432
 msgid "EXTERNAL_EFFECTS"
 msgstr "Effets externes :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2485
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2490
 msgid "SPECIES_POPULATION"
 msgstr "Espèces"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2518
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2949
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2523
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2954
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Conditions Physique"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2622
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3132
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2627
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3137
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gaz Atmosphériques"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2716
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3644
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2721
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3649
 msgid "NEXT_CAPITAL"
 msgstr "SUIVANT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2831
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2836
 msgid "SELECT_A_PATCH"
 msgstr "Choisir une parcelle pour voir ses détails ici"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2871
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3557
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3562
 msgid "SPECIES_PRESENT"
 msgstr "Espèces Présentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3615
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3620
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Se Déplacer vers Cette Parcelle"
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
+msgid "INFINITE_MP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:584
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -2674,45 +2703,45 @@ msgstr ""
 "jouer après que cet écran se soit fermé si vous le souhaitez, ou démarrer "
 "une nouvelle partie dans un autre monde."
 
-#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:140
 msgid "LOADING_GAME"
 msgstr "Chargement du Jeu"
 
-#: ../src/saving/InProgressLoad.cs:76
+#: ../src/saving/InProgressLoad.cs:78
 msgid "READING_SAVE_DATA"
 msgstr "Lecture des données de sauvegarde"
 
-#: ../src/saving/InProgressLoad.cs:95
+#: ../src/saving/InProgressLoad.cs:97
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Création des objets à partir de la sauvegarde"
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 "Une exception a eu lieu pendant le chargement des données de sauvegarde"
 
-#: ../src/saving/InProgressLoad.cs:126
+#: ../src/saving/InProgressLoad.cs:128
 msgid "SAVE_IS_INVALID"
 msgstr "La sauvegarde est invalide"
 
-#: ../src/saving/InProgressLoad.cs:127
+#: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "La sauvegarde a un état scénique de jeu invalide"
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Compréhension des objets chargés"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:155
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Une exception a eu lieu lors de la compréhension des objets chargés"
 
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:161
 msgid "LOAD_FINISHED"
 msgstr "Chargement terminé"
 
-#: ../src/saving/InProgressLoad.cs:182
+#: ../src/saving/InProgressLoad.cs:184
 msgid "ERROR_LOADING"
 msgstr "Erreur de Chargement"
 

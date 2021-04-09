@@ -55,6 +55,8 @@ public class InProgressLoad
 
     public void Start()
     {
+        CheatManager.OnCheatsDisabled();
+
         IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
         SceneManager.Instance.GetTree().Paused = true;

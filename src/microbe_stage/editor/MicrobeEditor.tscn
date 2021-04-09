@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=2]
+[gd_scene load_steps=143 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/WhiteArrow.png" type="Texture" id=36]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=37]
 [ext_resource path="res://assets/textures/gui/bevel/button.png" type="Texture" id=38]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn" type="PackedScene" id=39]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=41]
 [ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=43]
 [ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=44]
@@ -3727,6 +3728,10 @@ anchor_right = 0.15625
 anchor_bottom = 0.183333
 margin_right = 0.0
 margin_bottom = 0.0
+
+[node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource( 39 )]
+margin_left = 10.0
+margin_top = 30.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 85 )]
 visible = false
