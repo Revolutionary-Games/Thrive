@@ -835,7 +835,7 @@ SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/
 CompoundBalancePath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 
 [node name="TopLeft" type="MarginContainer" parent="MicrobeEditorGUI"]
-margin_right = 350.0
+margin_right = 353.0
 margin_bottom = 45.0
 theme = ExtResource( 53 )
 custom_constants/margin_right = 5
@@ -849,7 +849,7 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/TopLeft"]
 margin_left = 15.0
 margin_top = 10.0
-margin_right = 345.0
+margin_right = 348.0
 margin_bottom = 40.0
 custom_constants/separation = 10
 __meta__ = {
@@ -857,7 +857,7 @@ __meta__ = {
 }
 
 [node name="ReportButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_right = 103.0
+margin_right = 104.0
 margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
@@ -879,8 +879,8 @@ __meta__ = {
 }
 
 [node name="PatchMapButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_left = 113.0
-margin_right = 216.0
+margin_left = 114.0
+margin_right = 218.0
 margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
@@ -901,8 +901,8 @@ __meta__ = {
 }
 
 [node name="CellEditorButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_left = 226.0
-margin_right = 330.0
+margin_left = 228.0
+margin_right = 333.0
 margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
@@ -1918,7 +1918,7 @@ ItemContainerPath = NodePath("../MembraneTypes/Clip/GridContainer")
 TweenPath = NodePath("../MembraneTypes/Tween")
 
 [node name="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip" index="0"]
-margin_right = 248.0
+margin_right = 263.0
 margin_bottom = 210.0
 columns = 3
 
@@ -2019,10 +2019,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 76.0
-margin_top = 99.0
-margin_right = 379.0
-margin_bottom = 574.0
+margin_left = 88.0
+margin_top = 111.0
+margin_right = 391.0
+margin_bottom = 586.0
 theme = SubResource( 22 )
 edit_alpha = false
 

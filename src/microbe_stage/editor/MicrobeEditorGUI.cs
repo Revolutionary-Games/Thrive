@@ -1302,13 +1302,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     private void UpdatePartAvailability(bool hasNucleus, OrganelleDefinition organelle)
     {
-        // Item could be a non-implemented organelle so check if it really exists first.
-        if (!placeablePartSelectionElements.ContainsKey(organelle))
-        {
-            // Given organelle has no part selection associated.
-            return;
-        }
-
         var item = placeablePartSelectionElements[organelle];
 
         if (item.Name == nucleus.InternalName)
@@ -1342,19 +1335,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 entry.Name, "organelleSelection"), tooltipCallbacks);
 
             if (!SimulationParameters.Instance.DoesOrganelleExist(entry.Name))
+            {
+                entry.Locked = true;
                 continue;
+            }
 
             var organelle = SimulationParameters.Instance.GetOrganelleType(entry.Name);
 
             // Only add items with valid organelles to dictionary
             placeablePartSelectionElements.Add(organelle, entry);
 
-            if (!entry.IsConnected(
-                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected)))
-            {
-                entry.Connect(
-                    nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
-            }
+            entry.Connect(
+                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
         }
 
         foreach (var entry in membraneSelections)
@@ -1364,19 +1356,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 entry.Name, "membraneSelection"), tooltipCallbacks);
 
             if (!SimulationParameters.Instance.DoesMembraneExist(entry.Name))
+            {
+                entry.Locked = true;
                 continue;
+            }
 
             var membrane = SimulationParameters.Instance.GetMembrane(entry.Name);
 
             // Only add items with valid membranes to dictionary
             membraneSelectionElements.Add(membrane, entry);
 
-            if (!entry.IsConnected(
-                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected)))
-            {
-                entry.Connect(
-                    nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
-            }
+            entry.Connect(
+                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
         }
     }
 
