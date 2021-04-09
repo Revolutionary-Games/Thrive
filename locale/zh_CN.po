@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-04 22:08+0200\n"
-"PO-Revision-Date: 2021-04-02 10:19+0000\n"
+"POT-Creation-Date: 2021-04-06 16:35+0300\n"
+"PO-Revision-Date: 2021-04-06 13:52+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -448,7 +448,7 @@ msgstr "切换全屏"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "呼吸作用"
+msgstr "有氧呼吸作用"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -858,376 +858,360 @@ msgstr ""
 "这会跟{0}冲突。\n"
 "你想要移除{1}的输入吗？"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:134
-msgid "SPACE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:135
+#: ../src/engine/input/key_mapping/KeyNames.cs:126
 #, fuzzy
-msgid "BACKSLASH"
-msgstr "返回"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:136
-msgid "ESCAPE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:137
-msgid "TAB"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:138
-#, fuzzy
-msgid "BACKSPACE"
-msgstr "返回"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:139
-msgid "ENTER"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:140
-msgid "KPENTER"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:141
-msgid "INSERT"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:142
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
-msgid "DELETE"
-msgstr "删除"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:143
-msgid "PAUSE"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:144
-msgid "PRINT"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:145
-msgid "SYSREQ"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:146
-msgid "CLEAR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:147
-msgid "HOME"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:148
-#, fuzzy
-msgid "END"
-msgstr "以及"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:149
-#, fuzzy
-msgid "LEFT"
-msgstr "左移"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:150
-msgid "UP"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:151
-#, fuzzy
-msgid "RIGHT"
-msgstr "光强"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:152
-msgid "DOWN"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:153
-msgid "PAGEUP"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:154
-#, fuzzy
-msgid "PAGEDOWN"
-msgstr "向下平移"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:155
-msgid "CAPSLOCK"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:156
-msgid "NUMLOCK"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:157
-msgid "SCROLLLOCK"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:158
-msgid "SUPERL"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:159
-msgid "SUPERR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:160
-msgid "MENU"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:161
-msgid "HYPERL"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:162
-msgid "HYPERR"
-msgstr ""
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:163
-#: ../src/general/PauseMenu.tscn:86
-msgid "HELP"
-msgstr "帮助"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:164
-#, fuzzy
-msgid "DIRECTIONL"
-msgstr "介绍："
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
-msgid "DIRECTIONR"
-msgstr "介绍："
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:166
-#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:113
-msgid "BACK"
-msgstr "返回"
-
-#: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
-msgid "FORWARD"
+msgid "KEY_FORWARD"
 msgstr "前进"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:168
-msgid "STOP"
-msgstr ""
+#: ../src/engine/input/key_mapping/KeyNames.cs:127
+msgid "KEY_TAB"
+msgstr "Tab"
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:169
-#: ../src/saving/SaveManagerGUI.tscn:66
-msgid "REFRESH"
+#: ../src/engine/input/key_mapping/KeyNames.cs:128
+msgid "KEY_ENTER"
+msgstr "回车键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:129
+msgid "KEY_INSERT"
+msgstr "插入键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:130
+msgid "KEY_DELETE"
+msgstr "键盘删除键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:131
+msgid "KEY_PAUSE"
+msgstr "暂停键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:132
+msgid "KEY_CLEAR"
+msgstr "键盘清除键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:133
+msgid "KEY_HOME"
+msgstr "键盘Home键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:134
+msgid "KEY_END"
+msgstr "键盘End键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:135
+msgid "KEY_LEFT"
+msgstr "左键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:136
+msgid "KEY_UP"
+msgstr "上键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
+msgid "KEY_RIGHT"
+msgstr "右键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
+msgid "KEY_DOWN"
+msgstr "下键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
+msgid "KEY_MENU"
+msgstr "Menu"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
+#, fuzzy
+msgid "KEY_HELP"
+msgstr "帮助"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
+msgid "KEY_BACK"
+msgstr "后退"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
+msgid "KEY_STOP"
+msgstr "停下"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
+msgid "KEY_REFRESH"
 msgstr "刷新"
 
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
+msgid "KEY_SEARCH"
+msgstr "搜索"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
+msgid "KEY_STANDBY"
+msgstr "待机"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
+msgid "KEY_OPENURL"
+msgstr "打开网址"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
+msgid "KEY_HOMEPAGE"
+msgstr "主页"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
+msgid "KEY_FAVORITES"
+msgstr "收藏夹"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:150
+msgid "KEY_PRINT"
+msgstr "键盘截屏键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
+msgid "SPACE"
+msgstr "空格"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+msgid "BACKSLASH"
+msgstr "反斜杠"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
+msgid "ESCAPE"
+msgstr "Esc"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
+msgid "BACKSPACE"
+msgstr "退格键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
+msgid "KPENTER"
+msgstr "小键盘Enter"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
+msgid "SYSREQ"
+msgstr "键盘SysRq键"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:169
+msgid "PAGEUP"
+msgstr "Page Up"
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
-#, fuzzy
-msgid "VOLUMEDOWN"
-msgstr "音效音量"
+msgid "PAGEDOWN"
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-#, fuzzy
-msgid "VOLUMEMUTE"
-msgstr "音效音量"
+msgid "CAPSLOCK"
+msgstr "大写锁定"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
-#, fuzzy
-msgid "VOLUMEUP"
-msgstr "音效音量"
+msgid "NUMLOCK"
+msgstr "数字锁定"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
-msgid "BASSBOOST"
-msgstr ""
+msgid "SCROLLLOCK"
+msgstr "滚卷锁定"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
-msgid "BASSUP"
-msgstr ""
+msgid "SUPERL"
+msgstr "Super Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
-msgid "BASSDOWN"
-msgstr ""
+msgid "SUPERR"
+msgstr "Super Right"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
-msgid "TREBLEUP"
-msgstr ""
+msgid "HYPERL"
+msgstr "Hyper Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
-#, fuzzy
-msgid "TREBLEDOWN"
-msgstr "向下滚轮"
+msgid "HYPERR"
+msgstr "Hyper Right"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
-msgid "MEDIAPLAY"
-msgstr ""
+#, fuzzy
+msgid "DIRECTIONL"
+msgstr "左"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
-msgid "MEDIASTOP"
-msgstr ""
+#, fuzzy
+msgid "DIRECTIONR"
+msgstr "右"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
 #, fuzzy
-msgid "MEDIAPREVIOUS"
-msgstr "先前："
+msgid "VOLUMEDOWN"
+msgstr "降低音量"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-msgid "MEDIANEXT"
-msgstr ""
+msgid "VOLUMEMUTE"
+msgstr "静音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
-msgid "MEDIARECORD"
-msgstr ""
+msgid "VOLUMEUP"
+msgstr "提高音量"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
-msgid "HOMEPAGE"
-msgstr ""
+msgid "BASSBOOST"
+msgstr "低音增强"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
-msgid "FAVORITES"
-msgstr ""
+msgid "BASSUP"
+msgstr "提高低音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
-msgid "SEARCH"
-msgstr ""
+msgid "BASSDOWN"
+msgstr "降低低音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
-msgid "STANDBY"
-msgstr ""
+msgid "TREBLEUP"
+msgstr "提高高音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
-msgid "OPENURL"
-msgstr ""
+msgid "TREBLEDOWN"
+msgstr "降低高音"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
-msgid "LAUNCHMAIL"
-msgstr ""
+msgid "MEDIAPLAY"
+msgstr "媒体播放"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
-msgid "LAUNCHMEDIA"
-msgstr ""
+msgid "MEDIASTOP"
+msgstr "媒体停止"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
-msgid "LAUNCH0"
-msgstr ""
+msgid "MEDIAPREVIOUS"
+msgstr "媒体前页"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
-msgid "LAUNCH1"
-msgstr ""
+msgid "MEDIANEXT"
+msgstr "媒体后页"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
-msgid "LAUNCH2"
-msgstr ""
+msgid "MEDIARECORD"
+msgstr "媒体录制"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
-msgid "LAUNCH3"
-msgstr ""
+msgid "LAUNCHMAIL"
+msgstr "邮件"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
-msgid "LAUNCH4"
-msgstr ""
+msgid "LAUNCHMEDIA"
+msgstr "媒体"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
-msgid "LAUNCH5"
-msgstr ""
+msgid "LAUNCH0"
+msgstr "Launch 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
-msgid "LAUNCH6"
-msgstr ""
+msgid "LAUNCH1"
+msgstr "Launch 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
-msgid "LAUNCH7"
-msgstr ""
+msgid "LAUNCH2"
+msgstr "Launch 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
+msgid "LAUNCH3"
+msgstr "Launch 3"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:199
+msgid "LAUNCH4"
+msgstr "Launch 4"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:200
+msgid "LAUNCH5"
+msgstr "Launch 5"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:201
+msgid "LAUNCH6"
+msgstr "Launch 6"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:202
+msgid "LAUNCH7"
+msgstr "Launch 7"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH8"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:199
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH9"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:200
+#: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCHA"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:201
+#: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHB"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:202
+#: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHC"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:203
+#: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:204
+#: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:205
+#: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHF"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:206
+#: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "KPMULTIPLY"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:207
+#: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPDIVIDE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:208
+#: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:209
+#: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPPERIOD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:210
+#: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KPADD"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:211
+#: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KP0"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:212
+#: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:213
+#: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:214
+#: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP3"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:215
+#: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP4"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:216
+#: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP5"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:217
+#: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP6"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:218
+#: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP7"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:219
+#: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "KP8"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:220
+#: ../src/engine/input/key_mapping/KeyNames.cs:225
 msgid "KP9"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/KeyNames.cs:221
-#, fuzzy
+#: ../src/engine/input/key_mapping/KeyNames.cs:226
 msgid "UNKNOWN"
 msgstr "鼠标未知键"
 
@@ -1331,6 +1315,12 @@ msgstr "退出"
 #: ../src/general/MainMenu.tscn:258
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
+
+#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:113
+msgid "BACK"
+msgstr "返回"
 
 #: ../src/general/MainMenu.tscn:359
 msgid "GLES2_MODE_WARNING"
@@ -1576,6 +1566,10 @@ msgstr "保存游戏"
 msgid "STATISTICS"
 msgstr "统计数据"
 
+#: ../src/general/PauseMenu.tscn:86
+msgid "HELP"
+msgstr "帮助"
+
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
 msgstr "返回主菜单"
@@ -1747,10 +1741,8 @@ msgstr "渗透调节消耗"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:586
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
-"胶质的细胞内容。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，这"
-"些物质充满了细胞内部。它其中一个功能是糖酵解，作用是将葡萄糖转换成ATP能量。"
-"对于那些缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它"
-"同样还能用来储存收集到的化合物以使细胞大小成长。"
+"胶质的细胞内容。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，这些物质充满了细胞内部。它其中一个功能是糖酵解，作用是将葡萄糖转换成ATP能量。对"
+"于那些缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物以使细胞大小成长。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:746
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
@@ -1769,10 +1761,8 @@ msgstr "氧。"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
-"代谢体是一大堆被蛋白质壳包裹住的蛋白质。通过有氧呼吸它们可以以比细胞质快得"
-"多的速度将葡萄糖转换成ATP。不管怎样，它需要氧才能运作，低水平的环境氧会导致"
-"ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一"
-"些糖酵解。"
+"代谢体是一大堆被蛋白质壳包裹住的蛋白质。通过有氧呼吸它们可以以比细胞质快得多的速度将葡萄糖转换成ATP。不管怎样，它需要氧才能运作，低水平的环境氧会导致A"
+"TP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2096
@@ -1820,10 +1810,8 @@ msgstr "光强"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过光合作用将阳光中的"
-"能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原"
-"因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬"
-"浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
+"类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过光合作用将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们"
+"产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4220
@@ -1837,9 +1825,8 @@ msgstr "同时也将"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫"
-"化氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成"
-"蛋白是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
+"化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫化氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成蛋白是"
+"直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1863,9 +1850,8 @@ msgstr "取决于"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被"
-"称作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行"
-"一些糖酵解。"
+"固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一"
+"些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5002
@@ -2523,6 +2509,10 @@ msgstr "{0} 有生物数： {1}"
 msgid "MP_COST"
 msgstr "{0} 变异点"
 
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+msgid "DELETE"
+msgstr "删除"
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
 msgstr "移动"
@@ -2754,6 +2744,10 @@ msgstr ""
 "- {0} 个自动存档\n"
 "- {1} 个快速存档"
 
+#: ../src/saving/SaveManagerGUI.tscn:66
+msgid "REFRESH"
+msgstr "刷新"
+
 #: ../src/saving/SaveManagerGUI.tscn:74
 msgid "DELETE_SELECTED"
 msgstr "删除选中的"
@@ -2846,12 +2840,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"移除细胞器也需要消耗变异点。你可以通过右键点击细胞器打开对应面板，并选择删"
-"除选项来移除它们。\n"
+"移除细胞器也需要消耗变异点，除非这些细胞器是在当代内添加的。\n"
+"\n"
+"你可以通过右键点击细胞器打开对应面板，并选择删除选项来移除它们。\n"
 "\n"
 "如果你犯了个错的话，你可以撤销你在编辑器里做的任何改变。\n"
-"\n"
-"请注意：移除任何在当前世代添加的细胞器都是免费的。\n"
 "\n"
 "按撤销按钮以继续。"
 
@@ -2930,6 +2923,22 @@ msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
+
+#, fuzzy
+#~ msgid "END"
+#~ msgstr "以及"
+
+#, fuzzy
+#~ msgid "LEFT"
+#~ msgstr "左移"
+
+#, fuzzy
+#~ msgid "RIGHT"
+#~ msgstr "光强"
+
+#, fuzzy
+#~ msgid "FORWARD"
+#~ msgstr "前进"
 
 #, fuzzy
 #~ msgid "PARENLEFT"
