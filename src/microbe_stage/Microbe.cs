@@ -1214,12 +1214,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         // return if both InfCompounds and PlayerMicrobe enabled
-        if (!(CheatManager.InfiniteCompounds && IsPlayerMicrobe))
-            return;
-
-        var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
-        foreach (var usefulCompound in usefulCompounds)
-            Compounds.AddCompound(usefulCompound, Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
+        if (CheatManager.InfiniteCompounds && IsPlayerMicrobe)
+        {
+            var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
+            foreach (var usefulCompound in usefulCompounds)
+                Compounds.AddCompound(usefulCompound, Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
+        }
     }
 
     private void CheckEngulfShapeSize()
