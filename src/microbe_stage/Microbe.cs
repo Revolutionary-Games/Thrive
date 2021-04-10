@@ -418,7 +418,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _EnterTree()
     {
-        if (Colony == null)
+        if (originalParent == null || Colony == null)
             originalParent = GetParent();
     }
 
