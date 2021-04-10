@@ -1,5 +1,6 @@
 {
     "single": {
+        "name": "NORMAL",
         "cellWall": false,
         "normalTexture": "res://assets/textures/FresnelGradient.png",
         "damagedTexture": "res://assets/textures/FresnelGradientDamaged.png",
@@ -10,9 +11,11 @@
         "hitpoints": 60,
         "physicalResistance": 1,
         "toxinResistance": 1,
-        "editorCost": 50
+        "editorCost": 50,
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneStandard.png"
     },
     "double": {
+        "name": "DOUBLE",
         "cellWall": false,
         "normalTexture": "res://assets/textures/DoubleCellMembrane.png",
         "damagedTexture": "res://assets/textures/DoubleCellMembraneDamaged.png",
@@ -23,9 +26,11 @@
         "hitpoints": 100,
         "physicalResistance": 1,
         "toxinResistance": 1,
-        "editorCost": 50
+        "editorCost": 50,
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneDouble.png"
     },
     "cellulose": {
+        "name": "CELLULOSE",
         "cellWall": true,
         "normalTexture": "res://assets/textures/CellWallGradient.png",
         "damagedTexture": "res://assets/textures/CellWallGradientDamaged.png",
@@ -36,9 +41,11 @@
         "hitpoints": 110,
         "physicalResistance": 1.4,
         "toxinResistance": 1,
-        "editorCost": 50
+        "editorCost": 50,
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneCellulose.png"
     },
     "chitin": {
+        "name": "CHITIN",
         "cellWall": true,
         "normalTexture": "res://assets/textures/ChitinCellWallGradient.png",
         "damagedTexture": "res://assets/textures/ChitinCellWallGradientDamaged.png",
@@ -49,9 +56,11 @@
         "hitpoints": 110,
         "physicalResistance": 1,
         "toxinResistance": 1.4,
-        "editorCost": 50
+        "editorCost": 50,
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneChitin.png"
     },
     "calcium_carbonate": {
+        "name": "CALCIUM_CARBONATE",
         "cellWall": true,
         "normalTexture": "res://assets/textures/CalciumCarboMembrane.png",
         "damagedTexture": "res://assets/textures/CalciumCarboMembraneDamaged.png",
@@ -62,9 +71,11 @@
         "hitpoints": 140,
         "physicalResistance": 0.6,
         "toxinResistance": 1.6,
-        "editorCost": 50
+        "editorCost": 50,
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneCalciumCarbo.png"
     },
     "silica": {
+        "name": "SILICA",
         "cellWall": true,
         "normalTexture": "res://assets/textures/SilicaMembrane.png",
         "damagedTexture": "res://assets/textures/SilicaMembraneDamaged.png",
@@ -75,6 +86,7 @@
         "hitpoints": 140,
         "physicalResistance": 1.6,
         "toxinResistance": 0.6,
-        "editorCost": 50
+        "editorCost": 50,
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneSilica.png"
     }
 }
