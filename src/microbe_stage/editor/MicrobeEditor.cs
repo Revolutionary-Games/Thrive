@@ -540,6 +540,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
             gui.UpdatePatchDetails(CurrentPatch);
+            gui.UpdateMicrobePartSelections();
 
             // TODO: AutoEvo run results summary
         }
@@ -1273,7 +1274,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-        gui.UpdateGuiButtonStatus(HasNucleus);
+        gui.UpdatePartsAvailability(HasNucleus);
 
         // Reset to cytoplasm if nothing is selected
         if (ActiveActionName == null)
@@ -1851,7 +1852,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
-        gui.UpdateGuiButtonStatus(HasNucleus);
+        gui.UpdatePartsAvailability(HasNucleus);
 
         UpdatePatchDependentBalanceData();
 
