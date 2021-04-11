@@ -106,6 +106,11 @@ public class SimulationParameters : Node
         return organelles.Values;
     }
 
+    public bool DoesOrganelleExist(string name)
+    {
+        return organelles.ContainsKey(name);
+    }
+
     public MembraneType GetMembrane(string name)
     {
         return membranes[name];
@@ -114,6 +119,11 @@ public class SimulationParameters : Node
     public IEnumerable<MembraneType> GetAllMembranes()
     {
         return membranes.Values;
+    }
+
+    public bool DoesMembraneExist(string name)
+    {
+        return membranes.ContainsKey(name);
     }
 
     public Background GetBackground(string name)
