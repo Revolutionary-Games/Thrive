@@ -320,9 +320,12 @@ public class LineChart : VBoxContainer
             }
 
             // Initialize line
-            var dataLine = new DataLine(data.Value, data.Key == defaultDataSet);
-            dataLines[data.Key] = dataLine;
-            drawArea.AddChild(dataLine);
+            if (!string.IsNullOrEmpty(data.Key))
+            {
+                var dataLine = new DataLine(data.Value, data.Key == defaultDataSet);
+                dataLines[data.Key] = dataLine;
+                drawArea.AddChild(dataLine);
+            }
 
             foreach (var point in data.Value.DataPoints)
             {
