@@ -63,7 +63,7 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Limits how many dataset lines should be hidden.
     /// </summary>
-    public int MinDisplayedDataSet = 0;
+    public int MinDisplayedDataSet;
 
     /// <summary>
     ///   Fallback icon for the legend display mode using icons
@@ -222,11 +222,17 @@ public class LineChart : VBoxContainer
                 if (!IsInstanceValid(point))
                     continue;
 
-                var coordinate = ConvertToCoordinate(point.Value);
+                var coordinate = Vector2.Zero;
 
-                // TODO: Handle overlapping data point markers, will be difficult.
-                // As a workaround, players could instead manually hide the dataset
-                // of one of the overlapping points.
+                if (IsMinMaxValid())
+                {
+                    coordinate = ConvertToCoordinate(point.Value);
+                }
+                else
+                {
+                    // Hide the marker as its positioning won't be pretty at zero coordinate
+                    point.Visible = false;
+                }
 
                 point.Coordinate = point.Coordinate.LinearInterpolate(coordinate, 3.0f * delta);
                 UpdateLineSegments();
@@ -292,9 +298,7 @@ public class LineChart : VBoxContainer
             return;
         }
 
-        // If min/max values are all zero (i.e all datasets hidden), the point markers starts getting messed up.
-        // Need to clamp it from 1 for now. TODO: allow less than 1 minimum shown datasets
-        MinDisplayedDataSet = Mathf.Clamp(MinDisplayedDataSet, 1, MaxDisplayedDataSet);
+        MinDisplayedDataSet = Mathf.Clamp(MinDisplayedDataSet, 0, MaxDisplayedDataSet);
 
         initialVisibleDataSets = Mathf.Clamp(initialVisibleDataSets, 0, MaxDisplayedDataSet);
 
@@ -334,6 +338,8 @@ public class LineChart : VBoxContainer
 
                 point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
+
+                drawArea.AddChild(point);
             }
         }
 
@@ -421,7 +427,8 @@ public class LineChart : VBoxContainer
         {
             return DataSetVisibilityUpdateResult.MaxVisibleLimitReached;
         }
-        else if (!visible && VisibleDataSets <= MinDisplayedDataSet)
+
+        if (!visible && VisibleDataSets <= MinDisplayedDataSet)
         {
             return DataSetVisibilityUpdateResult.MinVisibleLimitReached;
         }
@@ -575,19 +582,8 @@ public class LineChart : VBoxContainer
             // Setup lines
             foreach (var point in points)
             {
-                // To avoid point markers getting wacky with the following conditions true
-                if (MinValues.x == MaxValues.x || MinValues.y == MaxValues.y)
-                {
-                    if (point.IsInsideTree())
-                        drawArea.RemoveChild(point);
-
+                if (!point.IsInsideTree())
                     continue;
-                }
-                else
-                {
-                    if (!point.IsInsideTree())
-                        drawArea.AddChild(point);
-                }
 
                 var index = points.IndexOf(point);
 
@@ -687,7 +683,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Calculates the min/max values for this chart based on shown datasets and generates axes ticks.
+    ///   Calculates the min/max values of this chart based on shown datasets and generates the axes scale ticks.
     /// </summary>
     private void UpdateMinimumAndMaximumValues()
     {
@@ -809,6 +805,14 @@ public class LineChart : VBoxContainer
         return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY / 2;
     }
 
+    /// <summary>
+    ///   If false the coordinate calculations will break, this is used to guard against that.
+    /// </summary>
+    private bool IsMinMaxValid()
+    {
+        return !(MinValues.x == MaxValues.x || MinValues.y == MaxValues.y);
+    }
+
     private void UpdateAxesName()
     {
         if (horizontalLabel == null || verticalLabel == null)
@@ -886,14 +890,16 @@ public class LineChart : VBoxContainer
             case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
             {
                 icon.Pressed = false;
-                ToolTipManager.Instance.ShowPopup($"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
+                ToolTipManager.Instance.ShowPopup(
+                    $"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
                 break;
             }
 
             case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
             {
                 icon.Pressed = true;
-                ToolTipManager.Instance.ShowPopup($"Not allowed to hide less than {MinDisplayedDataSet} dataset(s)!", 1f);
+                ToolTipManager.Instance.ShowPopup(
+                    $"Not allowed to hide less than {MinDisplayedDataSet} dataset(s)!", 1f);
                 break;
             }
         }
@@ -910,10 +916,12 @@ public class LineChart : VBoxContainer
         switch (result)
         {
             case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
-                ToolTipManager.Instance.ShowPopup($"Not allowed to hide less than {MinDisplayedDataSet} dataset(s)!", 1f);
+                ToolTipManager.Instance.ShowPopup(
+                    $"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
                 break;
             case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
-                ToolTipManager.Instance.ShowPopup($"Minimum shown dataset(s) is {MinDisplayedDataSet}", 1f);
+                ToolTipManager.Instance.ShowPopup(
+                    $"Not allowed to hide less than {MinDisplayedDataSet} dataset(s)!", 1f);
                 break;
         }
     }

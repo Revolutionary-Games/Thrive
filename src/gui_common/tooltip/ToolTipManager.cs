@@ -33,7 +33,7 @@ public class ToolTipManager : CanvasLayer
     private float hideTimer;
 
     /// <summary>
-    ///   Flag if MainToolTip should be shown temporarily (automatically hides once timer reaches threshold).
+    ///   Flag whether MainToolTip should be shown temporarily (automatically hides once timer reaches threshold).
     /// </summary>
     private bool currentIsTemporary;
 
