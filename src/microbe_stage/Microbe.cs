@@ -798,8 +798,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // If no organelles have a scene, use mitochondrion as fallback
             if (sceneToUse.LoadedScene == null)
             {
-                sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
-                    "mitochondrion").LoadedScene;
+                sceneToUse.LoadedScene = GD.Load<PackedScene>("res://assets/models/organelles/Cytoplasm.tscn");
                 sceneToUse.SceneModelPath = null;
             }
 
