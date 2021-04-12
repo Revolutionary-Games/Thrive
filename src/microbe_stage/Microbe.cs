@@ -802,8 +802,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             }
 
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once HeuristicUnreachableCode
             if (sceneToUse == null)
-                // ReSharper disable once HeuristicUnreachableCode
                 throw new Exception("sceneToUse is null");
 
             chunkType.Meshes.Add(sceneToUse);
