@@ -793,13 +793,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                     sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
                     break;
                 }
-            }
-
-            // If no organelles have a scene, use mitochondrion as fallback
-            if (sceneToUse.LoadedScene == null)
-            {
-                sceneToUse.LoadedScene = GD.Load<PackedScene>("res://assets/models/organelles/Cytoplasm.tscn");
-                sceneToUse.SceneModelPath = null;
+                else if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
+                {
+                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
+                    break;
+                }
             }
 
             chunkType.Meshes.Add(sceneToUse);

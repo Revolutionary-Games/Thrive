@@ -52,6 +52,12 @@ public class OrganelleDefinition : IRegistryType
     public string DisplayScene;
 
     /// <summary>
+    ///   A path to a scene to display this organelle as a corpse chunk.
+    ///   Not needed if it is the same as DisplayScene.
+    /// </summary>
+    public string CorpseChunkScene;
+
+    /// <summary>
     ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
     /// </summary>
     public string DisplaySceneModelPath;
@@ -65,6 +71,11 @@ public class OrganelleDefinition : IRegistryType
     ///   Loaded scene instance to be used when organelle of this type is placed
     /// </summary>
     public PackedScene LoadedScene;
+
+    /// <summary>
+    ///   Loaded scene instance to be used when organelle of this type needs to be displayed for a dead microbe
+    /// </summary>
+    public PackedScene LoadedCorpseChunkScene;
 
     /// <summary>
     ///   Loaded icon for display in GUIs
@@ -315,6 +326,11 @@ public class OrganelleDefinition : IRegistryType
         if (!string.IsNullOrEmpty(DisplayScene))
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
+        }
+
+        if (!string.IsNullOrEmpty(CorpseChunkScene))
+        {
+            LoadedCorpseChunkScene = GD.Load<PackedScene>(CorpseChunkScene);
         }
 
         if (!string.IsNullOrEmpty(IconPath))
