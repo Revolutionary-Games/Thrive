@@ -290,7 +290,7 @@ public class OrganelleDefinition : IRegistryType
                 "Hexes is empty");
         }
 
-        if (DisplayScene == null && CorpseChunkScene == null)
+        if (string.IsNullOrEmpty(DisplayScene) && string.IsNullOrEmpty(CorpseChunkScene))
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Both DisplayScene and CorpseChunkScene are null");
