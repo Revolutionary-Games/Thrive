@@ -787,19 +787,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Try all organelles in random order and use the first one with a scene for model
             foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
+                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
+                {
+                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
+                    break;
+                }
+
                 if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
                     sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
                     break;
                 }
-
-                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
-                {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
-                    break;
-                }
             }
+
+            if (sceneToUse == null)
+                throw new Exception("sceneToUse is null");
 
             chunkType.Meshes.Add(sceneToUse);
 

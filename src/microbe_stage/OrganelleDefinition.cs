@@ -290,6 +290,12 @@ public class OrganelleDefinition : IRegistryType
                 "Hexes is empty");
         }
 
+        if (DisplayScene == null && CorpseChunkScene == null)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Both DisplayScene and CorpseChunkScene are null");
+        }
+
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)
         {
