@@ -793,7 +793,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                     sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
                     break;
                 }
-                else if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
+
+                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
                     break;
