@@ -787,6 +787,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Try all organelles in random order and use the first one with a scene for model
             foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
+                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
+                {
+                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
+                    break;
+                }
+
                 if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
@@ -795,13 +801,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 }
             }
 
-            // If no organelles have a scene, use mitochondrion as fallback
-            if (sceneToUse.LoadedScene == null)
-            {
-                sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
-                    "mitochondrion").LoadedScene;
-                sceneToUse.SceneModelPath = null;
-            }
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once HeuristicUnreachableCode
+            if (sceneToUse == null)
+                throw new Exception("sceneToUse is null");
 
             chunkType.Meshes.Add(sceneToUse);
 
