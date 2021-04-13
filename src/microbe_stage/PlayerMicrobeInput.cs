@@ -142,7 +142,7 @@ public class PlayerMicrobeInput : NodeWithInput
 
     public void RemoveCellFromColony(Microbe target)
     {
-        target.Colony.RemoveFromColony();
+        target.Colony.RemoveFromColony(target);
         target.State = Microbe.MicrobeState.NORMAL;
     }
 

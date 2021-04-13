@@ -676,7 +676,7 @@ public class MicrobeHUD : Node
     /// </summary>
     private void UpdateCompoundBars()
     {
-        var compounds = stage.Player.ColonyCompoundBag;
+        var compounds = stage.Player.Colony?.ColonyBag ?? (ICompoundStorage)stage.Player.Compounds;
 
         glucoseBar.MaxValue = compounds.Capacity;
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
@@ -768,8 +768,10 @@ public class MicrobeHUD : Node
 
         if (stage.Player != null)
         {
-            atpAmount = Mathf.Ceil(stage.Player.ColonyCompoundBag.GetCompoundAmount(atp));
-            capacity = stage.Player.ColonyCompoundBag.Capacity;
+            var compounds = stage.Player.Colony?.ColonyBag ?? (ICompoundStorage)stage.Player.Compounds;
+
+            atpAmount = Mathf.Ceil(compounds.GetCompoundAmount(atp));
+            capacity = compounds.Capacity;
         }
 
         atpBar.MaxValue = capacity;

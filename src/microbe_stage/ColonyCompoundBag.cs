@@ -1,99 +1,129 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
-public class ColonyCompoundBag : CompoundBag
+[UseThriveSerializer]
+public class ColonyCompoundBag : ICompoundStorage
 {
-    private Microbe microbe;
-
-    public ColonyCompoundBag(Microbe microbe) : base(microbe.GetAllColonyMembers().Sum(p => p.Compounds.Capacity))
+    public ColonyCompoundBag()
     {
-        this.microbe = microbe;
     }
 
-    public override float Capacity =>
-        IsInAColony ? microbe.GetAllColonyMembers().Sum(p => p.Compounds.Capacity) : microbe.Compounds.Capacity;
+    public ColonyCompoundBag(MicrobeColony colony)
+    {
+        Colony = colony;
+    }
 
-    public override Dictionary<Compound, float> Compounds =>
-        IsInAColony ?
-            microbe
-                .GetAllColonyMembers()
-                .SelectMany(p => p.Compounds.Compounds)
-                .GroupBy(p => p.Key)
-                .ToDictionary(p => p.Key, p => p.Sum(x => x.Value)) :
-            microbe.Compounds.Compounds;
+    [JsonProperty]
+    public MicrobeColony Colony { get; set; }
 
-    private bool IsInAColony => microbe.Colony != null;
+    public float Capacity => GetCompoundBags().Sum(p => p.Capacity);
 
     /// <summary>
     ///   Distributes the amount above average compounds to the cells below average compounds.
     /// </summary>
     public void DistributeCompoundSurplus()
     {
-        if (microbe.Colony == null)
-            return;
+        var bags = GetCompoundBags().ToList();
+        using var compounds = GetEnumerator();
 
-        foreach (var compoundPair in Compounds)
+        while (compounds.MoveNext())
         {
-            var compound = compoundPair.Key;
-            if (!compound.CanBeDistributed)
+            var compound = compounds.Current;
+            if (!compound.Key.CanBeDistributed)
                 continue;
 
-            var average = compoundPair.Value / microbe.CountColonyMembers();
+            var average = compound.Value / bags.Count;
 
-            var surplus = Math.Max(0, microbe.Compounds.GetCompoundAmount(compound) - average);
-            foreach (var member in microbe.GetAllColonyMembers())
+            foreach (var bag in bags)
             {
-                if (surplus <= 0.0001)
-                    continue;
-
-                var currValue = member.Compounds.GetCompoundAmount(compound);
-                var toAdd = Math.Min(Math.Max(0, average - currValue), surplus);
-                surplus -= toAdd;
-                member.Compounds.AddCompound(compound, microbe.Compounds.TakeCompound(compound, toAdd));
+                var surplus = bag.GetCompoundAmount(compound.Key) - average;
+                if (surplus > 0)
+                    bag.TakeCompound(compound.Key, surplus);
+                else
+                    bag.AddCompound(compound.Key, -surplus);
             }
         }
     }
 
-    public override float TakeCompound(Compound compound, float amount)
+    public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
     {
-        var took = base.TakeCompound(compound, amount);
-        if (took < 0.0001f)
-            return took;
-
-        // Take equal amount from everyone
-        var takePerCell = took / microbe.CountColonyMembers();
-
-        foreach (var allColonyMember in microbe.GetAllColonyMembers())
-            allColonyMember.Compounds.TakeCompound(compound, takePerCell);
-
-        return took;
+        return GetCompoundBags()
+            .SelectMany(p => p.Compounds)
+            .GroupBy(p => p.Key)
+            .Select(p => new KeyValuePair<Compound, float>(p.Key, p.Sum(x => x.Value)))
+            .GetEnumerator();
     }
 
-    public override float AddCompound(Compound compound, float amount)
+    IEnumerator IEnumerable.GetEnumerator()
     {
-        var addedCompound = base.AddCompound(compound, amount);
-
-        // Add equal amount to everyone
-        var amountPerCell = addedCompound / microbe.CountColonyMembers();
-
-        foreach (var allColonyMember in microbe.GetAllColonyMembers())
-            allColonyMember.Compounds.AddCompound(compound, amountPerCell);
-
-        return addedCompound;
+        return GetEnumerator();
     }
 
-    public override void ClearCompounds()
+    public float GetCompoundAmount(Compound compound)
     {
-        base.ClearCompounds();
-        foreach (var allColonyMember in microbe.GetAllColonyMembers())
-            allColonyMember.Compounds.ClearCompounds();
+        return GetCompoundBags().Sum(p => p.GetCompoundAmount(compound));
     }
 
-    public override void ClampNegativeCompoundAmounts()
+    public float TakeCompound(Compound compound, float amount)
     {
-        base.ClampNegativeCompoundAmounts();
-        foreach (var allColonyMember in microbe.GetAllColonyMembers())
-            allColonyMember.Compounds.ClampNegativeCompoundAmounts();
+        // bags that compound can be taken from
+        var remainingBags = GetCompoundBags().ToList();
+
+        while (amount > MathUtils.EPSILON && remainingBags.Any())
+        {
+            var bagToDrainFrom = remainingBags[0];
+            var couldNotBeDrained = bagToDrainFrom.TakeCompound(compound, amount);
+            var amountDrained = amount - couldNotBeDrained;
+
+            // if bag is dry
+            if (couldNotBeDrained > MathUtils.EPSILON)
+                remainingBags.RemoveAt(0);
+
+            amount -= amountDrained;
+        }
+
+        return amount;
+    }
+
+    public float AddCompound(Compound compound, float amount)
+    {
+        // bags that compound can added to
+        var remainingBags = GetCompoundBags().ToList();
+        var added = 0f;
+
+        while (amount > MathUtils.EPSILON && remainingBags.Any())
+        {
+            var bagToAddTo = remainingBags[0];
+            var amountAdded = bagToAddTo.AddCompound(compound, amount);
+            var amountNotAdded = amount - amountAdded;
+
+            // if bag is full
+            if (amountNotAdded > MathUtils.EPSILON)
+                remainingBags.RemoveAt(0);
+
+            amount -= amountAdded;
+            added += amountAdded;
+        }
+
+        return added;
+    }
+
+    public void ClearCompounds()
+    {
+        foreach (var bag in GetCompoundBags())
+            bag.ClearCompounds();
+    }
+
+    public void ClampNegativeCompoundAmounts()
+    {
+        foreach (var bag in GetCompoundBags())
+            bag.ClampNegativeCompoundAmounts();
+    }
+
+    private IEnumerable<CompoundBag> GetCompoundBags()
+    {
+        return Colony.GetColonyMembers().Select(p => p.Compounds);
     }
 }

@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 ///   Object that stores compound amounts and capacities
 /// </summary>
 [UseThriveSerializer]
-public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
+public class CompoundBag : ICompoundStorage
 {
     [JsonProperty]
     private readonly HashSet<Compound> usefulCompounds = new HashSet<Compound>();
@@ -24,9 +24,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         this.capacity = capacity;
     }
 
-    /// <summary>
-    ///   The max amount of any compound that can be stored
-    /// </summary>
     [JsonProperty]
     public virtual float Capacity
     {
@@ -41,21 +38,13 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     [JsonProperty]
     public virtual Dictionary<Compound, float> Compounds { get; private set; } = new Dictionary<Compound, float>();
 
-    /// <summary>
-    ///   Returns the stored amount of the compound in this
-    /// </summary>
     public float GetCompoundAmount(Compound compound)
     {
         if (Compounds.ContainsKey(compound))
             return Compounds[compound];
-
         return 0.0f;
     }
 
-    /// <summary>
-    ///   Takes some compound out of this bag. Returns the amount
-    ///   taken, which can be less than the requested amount.
-    /// </summary>
     public virtual float TakeCompound(Compound compound, float amount)
     {
         if (!Compounds.ContainsKey(compound) || amount <= 0.0f)
@@ -67,10 +56,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         return amount;
     }
 
-    /// <summary>
-    ///   Adds some compound amount to this. Returns the amount that
-    ///   was added.
-    /// </summary>
     public virtual float AddCompound(Compound compound, float amount)
     {
         if (amount <= 0.0f)
@@ -95,9 +80,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         return GetEnumerator();
     }
 
-    /// <summary>
-    ///   Clears the held compounds
-    /// </summary>
     public virtual void ClearCompounds()
     {
         Compounds.Clear();
@@ -138,9 +120,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         return usefulCompounds.Contains(compound);
     }
 
-    /// <summary>
-    ///   Makes sure no compound amount is negative
-    /// </summary>
     public virtual void ClampNegativeCompoundAmounts()
     {
         var negative = Compounds.Where(c => c.Value < 0.0f);

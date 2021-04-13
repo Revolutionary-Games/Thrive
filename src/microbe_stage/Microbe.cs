@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -19,9 +20,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public readonly CompoundBag Compounds = new CompoundBag(0.0f);
 
-    [JsonIgnore]
-    public readonly ColonyCompoundBag ColonyCompoundBag;
-
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
@@ -37,7 +35,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-    private ColonyMember colony;
+    private MicrobeColony colony;
 
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
@@ -161,11 +159,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private Listener listener;
 
-    public Microbe()
-    {
-        ColonyCompoundBag = new ColonyCompoundBag(this);
-        this.RegisterAction<MicrobeState>((old, @new) => AbortFlash(), nameof(State));
-    }
+    private MicrobeState state;
 
     public enum MicrobeState
     {
@@ -197,14 +191,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   Order = 1 due to colony values requiring this to be fully initialized.
     /// </remarks>
     [JsonProperty(Order = 1)]
-    public ColonyMember Colony
+    public MicrobeColony Colony
     {
         get => colony;
         set
         {
             if (colony != null)
             {
-                colony.OnRemovedFromColony -= RemovedFromColony;
+                colony.OnMembersChanged -= OnColonyMembersChanged;
             }
 
             colony = value;
@@ -212,9 +206,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (colony == null)
                 return;
 
-            colony.OnRemovedFromColony += RemovedFromColony;
+            colony.OnMembersChanged += OnColonyMembersChanged;
         }
     }
+
+    [JsonIgnore]
+    public Microbe ColonyParent { get; set; }
+
+    [JsonProperty]
+    public List<Microbe> ColonyChildren { get; set; }
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
@@ -272,10 +272,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonIgnore]
     public MicrobeState State
     {
-        get => this.GetColonyValue(MicrobeState.NORMAL);
+        get => Colony?.State ?? state;
         set
         {
-            this.SetColonyValue(value);
+            if (state == value)
+                return;
+
+            state = value;
+            if (Colony != null)
+                Colony.State = value;
+
             if (value == MicrobeState.UNBINDING && IsPlayerMicrobe)
                 OnUnbindEnabled?.Invoke();
         }
@@ -546,7 +552,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Unbind if the master removed it's binding agent.
         if (Colony != null && Colony.Master == null && !organelles.Any(p => p.IsBindingAgent))
-            Colony.RemoveFromColony();
+            Colony.RemoveFromColony(this);
     }
 
     /// <summary>
@@ -757,7 +763,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Dead = true;
 
         OnDeath?.Invoke(this);
-        Colony?.RemoveFromColony();
+        Colony?.RemoveFromColony(this);
 
         // Reset some stuff
         State = MicrobeState.NORMAL;
@@ -1191,7 +1197,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Movement
-        if (Colony?.Master == null)
+        if (ColonyParent == null)
         {
             if (MovementDirection != new Vector3(0, 0, 0) ||
                 queuedMovementForce != new Vector3(0, 0, 0))
@@ -1220,7 +1226,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         HandleCompoundVenting(delta);
 
-        ColonyCompoundBag.DistributeCompoundSurplus();
+        Colony?.ColonyBag.DistributeCompoundSurplus();
 
         lastCheckedATPDamage += delta;
 
@@ -1273,27 +1279,39 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
-    internal void RemovedFromColony(object sender, EventArgs e)
+    internal void OnColonyMembersChanged(object sender, CollectionChangeEventArgs e)
     {
-        foreach (var myBindingTarget in Colony.BindingTo)
+        var affectedMicrobe = e.Element as Microbe;
+        if (affectedMicrobe == null)
+            throw new NullReferenceException("Affected microbe is null in OnColonyMembersChanged");
+
+        // A colony member got removed
+        if (e.Action == CollectionChangeAction.Remove)
         {
-            RemoveCollisionExceptionWith(myBindingTarget.Microbe);
-            myBindingTarget.Microbe.RemoveCollisionExceptionWith(this);
+            if (affectedMicrobe == this)
+            {
+                RemoveChildrenLink();
+                ai?.ResetAI();
+            }
+
+            affectedMicrobe.RemoveCollisionExceptionWith(this);
+            RemoveCollisionExceptionWith(affectedMicrobe);
+        }
+
+        // A colony member got added
+        if (e.Action == CollectionChangeAction.Add)
+        {
+            if (affectedMicrobe == this)
+            {
+                MakeChildrenLink(ColonyParent);
+            }
+
+            affectedMicrobe.AddCollisionExceptionWith(this);
+            AddCollisionExceptionWith(affectedMicrobe);
         }
 
         if (State == MicrobeState.UNBINDING)
             State = MicrobeState.NORMAL;
-
-        if (Colony.Master != null)
-        {
-            RemoveCollisionExceptionWith(Colony.Master.Microbe);
-            Colony.Master.Microbe.RemoveCollisionExceptionWith(this);
-        }
-
-        Colony = null;
-        RemoveChildrenLink();
-
-        ai?.ResetAI();
     }
 
     internal void SuccessfulScavenge()
@@ -2100,10 +2118,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         return Translation + (ejectionDirection * ejectionDistance);
     }
 
-    private void MakeChildrenLink(Microbe master)
+    private void MakeChildrenLink(Microbe parent)
     {
         GetParent().RemoveChild(this);
-        master.AddChild(this);
+        parent.AddChild(this);
     }
 
     private void RemoveChildrenLink()
@@ -2134,7 +2152,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (body is Microbe microbe)
         {
             // TODO: does this need to check for disposed exception?
-            if (microbe.Dead || microbe.GetAllColonyMembers().Contains(this))
+            if (microbe.Dead || Colony?.AreInSameColony(this, microbe) == true)
                 return;
 
             bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
@@ -2231,6 +2249,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (other.IsPlayerMicrobe || other.Colony != null || other.Species != Species)
             return;
 
+        BeginBindWith(other);
+    }
+
+    private void BeginBindWith(Microbe other)
+    {
         AddCollisionExceptionWith(other);
         other.AddCollisionExceptionWith(this);
         touchedMicrobes.Remove(other);
@@ -2241,19 +2264,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Create a colony if there isn't one yet
         if (Colony == null)
         {
-            Colony = new ColonyMember(this, null);
+            Colony = new MicrobeColony(this);
             GD.Print("Created a new colony");
         }
 
-        other.Colony = new ColonyMember(other, Colony);
-        Colony.BindingTo.Add(other.Colony);
+        other.Colony = Colony;
+        Colony.AddToColony(other, this);
         State = MicrobeState.NORMAL;
 
         var offset = (other.Translation - Translation)
            .Rotated(Vector3.Down, Rotation.y);
         var rotation = other.Rotation - Rotation;
-
-        other.MakeChildrenLink(this);
 
         other.Translation = offset;
         other.Rotation = rotation;
@@ -2300,7 +2321,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void StopEngulfingOnTarget(Microbe microbe)
     {
-        if (microbe.Colony?.AreInSameColony(microbe.Colony) != true)
+        if (microbe.Colony?.AreInSameColony(this, microbe) != true)
             RemoveCollisionExceptionWith(microbe);
         microbe.hostileEngulfer = null;
     }
