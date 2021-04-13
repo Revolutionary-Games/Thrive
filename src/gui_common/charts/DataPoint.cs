@@ -40,17 +40,17 @@ public class DataPoint : Control
     }
 
     /// <summary>
-    ///   Visual shape of the point
+    ///   Visual shape of this point
     /// </summary>
     public MarkerIcon IconType { get; set; }
 
     /// <summary>
-    ///   Actual data the point represents
+    ///   Actual data this point represents
     /// </summary>
     public Vector2 Value { get; set; }
 
     /// <summary>
-    ///   Position of the point on the chart, this is different from Value.
+    ///   Position of this point on a chart, this is different from Value.
     ///   This is automatically set in the chart-specific class.
     /// </summary>
     public Vector2 Coordinate
@@ -64,7 +64,7 @@ public class DataPoint : Control
     }
 
     /// <summary>
-    ///   Visual size of the point
+    ///   Visual size of this point
     /// </summary>
     public float Size
     {
@@ -85,7 +85,7 @@ public class DataPoint : Control
     public Color MarkerColour { get; set; }
 
     /// <summary>
-    ///   Used to hide marker visual while still keeping this data point hoverable
+    ///   Used to hide marker visual while still keeping it interactable
     /// </summary>
     public bool Draw { get; set; } = true;
 
