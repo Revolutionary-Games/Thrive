@@ -203,7 +203,7 @@
                 }
 
                 builder2.Append(" ");
-                builder2.Append(patch.Name);
+                builder2.Append(TranslationServer.Translate(patch.Name));
 
                 return builder2.ToString();
             }
@@ -221,9 +221,9 @@
                 }
                 else
                 {
-                    builder.Append("  ");
-                    builder.Append(" went extinct in ");
-                    builder.Append(PatchString(patch));
+                    builder.Append("   ");
+                    builder.Append(string.Format(CultureInfo.CurrentCulture,
+                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString(patch)));
                 }
 
                 if (previousPopulations != null)
@@ -271,16 +271,17 @@
                             builder.Append("  ");
                             builder.Append(string.Format(CultureInfo.CurrentCulture,
                                 TranslationServer.Translate("RUNRESULT_BY_SENDING_POPULATION"),
-                                spreadEntry.To.Name, spreadEntry.Population, spreadEntry.From.Name));
+                                TranslationServer.Translate(spreadEntry.To.Name), spreadEntry.Population,
+                                TranslationServer.Translate(spreadEntry.From.Name)));
                         }
                         else
                         {
                             builder.Append("  ");
-                            builder.Append(spreadEntry.To.Name);
+                            builder.Append(TranslationServer.Translate(spreadEntry.To.Name));
                             builder.Append(" pop: ");
                             builder.Append(spreadEntry.Population);
                             builder.Append(" from: ");
-                            builder.Append(spreadEntry.From.Name);
+                            builder.Append(TranslationServer.Translate(spreadEntry.From.Name));
                         }
 
                         builder.Append("\n");
@@ -368,7 +369,7 @@
                 if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
                 {
                     builder.Append(" ");
-                    builder.Append("went extinct from the planet");
+                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append("\n");
                 }
 

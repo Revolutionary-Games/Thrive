@@ -85,6 +85,14 @@ public class SimulationParameters : Node
 
     public NameGenerator NameGenerator { get; }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            ApplyTranslations();
+        }
+    }
+
     public OrganelleDefinition GetOrganelleType(string name)
     {
         return organelles[name];
@@ -98,6 +106,11 @@ public class SimulationParameters : Node
         return organelles.Values;
     }
 
+    public bool DoesOrganelleExist(string name)
+    {
+        return organelles.ContainsKey(name);
+    }
+
     public MembraneType GetMembrane(string name)
     {
         return membranes[name];
@@ -106,6 +119,11 @@ public class SimulationParameters : Node
     public IEnumerable<MembraneType> GetAllMembranes()
     {
         return membranes.Values;
+    }
+
+    public bool DoesMembraneExist(string name)
+    {
+        return membranes.ContainsKey(name);
     }
 
     public Background GetBackground(string name)
@@ -187,7 +205,7 @@ public class SimulationParameters : Node
     }
 
     /// <summary>
-    ///   Applies translations to all registry loaded types. Called by Settings whenever the locale is changed
+    ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
     public void ApplyTranslations()
     {

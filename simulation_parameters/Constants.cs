@@ -109,6 +109,12 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 10.0f;
 
+    /// <summary>
+    ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
+    ///   fade so this must always be at least as long as how long the despawn effect takes visually
+    /// </summary>
+    public const float PROJECTILE_DESPAWN_DELAY = 3;
+
     public const float AGENT_EMISSION_DISTANCE_OFFSET = 0.5f;
 
     public const float EMITTED_AGENT_LIFETIME = 5.0f;
@@ -276,7 +282,7 @@ public static class Constants
     public const int BASE_MUTATION_POINTS = 100;
 
     public const int ORGANELLE_REMOVE_COST = 10;
-    public const int ORGANELLE_MOVE_COST = 20;
+    public const int ORGANELLE_MOVE_COST = 5;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;

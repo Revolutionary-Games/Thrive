@@ -57,7 +57,7 @@ public class InputManager : Node
         // TODO: check if there is some alternative faster approach to registering instances
         foreach (var inputAttribute in staticInstance
             .attributes
-            .Where(p => p.Key.Method.DeclaringType == instance.GetType()))
+            .Where(p => p.Key.Method.DeclaringType?.IsInstanceOfType(instance) == true))
         {
             inputAttribute.Value.Add(reference);
             registered = true;

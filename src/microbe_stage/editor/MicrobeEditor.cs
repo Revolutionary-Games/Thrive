@@ -491,7 +491,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Move patches
         if (targetPatch != null)
         {
-            GD.Print("MicrobeEditor: applying player move to patch: ", targetPatch.Name);
+            GD.Print("MicrobeEditor: applying player move to patch: ", TranslationServer.Translate(targetPatch.Name));
             CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
 
             // Add the edited species to that patch to allow the species to gain population there
@@ -528,6 +528,22 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         UpdateEditor(delta);
+    }
+
+    public override void _Notification(int what)
+    {
+        // Rebuilds and recalculates all value dependent UI elements on language change
+        if (what == NotificationTranslationChanged)
+        {
+            CalculateOrganelleEffectivenessInPatch(CurrentPatch);
+            UpdatePatchDependentBalanceData();
+            gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
+            gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+            gui.UpdatePatchDetails(CurrentPatch);
+            gui.UpdateMicrobePartSelections();
+
+            // TODO: AutoEvo run results summary
+        }
     }
 
     /// <summary>
@@ -961,7 +977,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     internal void ChangeMutationPoints(int change)
     {
-        if (FreeBuilding)
+        if (FreeBuilding || CheatManager.InfiniteMP)
             return;
 
         MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
@@ -1157,7 +1173,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
 
-        gui.UpdateReportTabPatchName(CurrentPatch.Name);
+        gui.UpdateReportTabPatchName(TranslationServer.Translate(CurrentPatch.Name));
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;
@@ -1258,7 +1274,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-        gui.UpdateGuiButtonStatus(HasNucleus);
+        gui.UpdatePartsAvailability(HasNucleus);
 
         // Reset to cytoplasm if nothing is selected
         if (ActiveActionName == null)
@@ -1373,8 +1389,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 {
                     RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
-                    RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 180) % 6, shownOrganelle);
-                    RenderHighlightedOrganelle(q, -1 * (r + q), 8 + (-1 * organelleRot) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 3) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6, shownOrganelle);
                     break;
                 }
 
@@ -1535,7 +1551,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 {
                     PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot), ref placedSomething);
                     PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6, ref placedSomething);
-                    PlaceIfPossible(organelleType, q, -1 * (r + q), (8 + (-1 * organelleRot)) % 6, ref placedSomething);
+                    PlaceIfPossible(organelleType, q, -1 * (r + q), (9 + (-1 * organelleRot)) % 6, ref placedSomething);
                 }
                 else
                 {
@@ -1836,7 +1852,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
-        gui.UpdateGuiButtonStatus(HasNucleus);
+        gui.UpdatePartsAvailability(HasNucleus);
 
         UpdatePatchDependentBalanceData();
 

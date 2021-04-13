@@ -34,6 +34,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
 
+    [JsonProperty]
+    private Compound queuedToxinToEmit;
+
     // Child components
     private AudioStreamPlayer3D engulfAudio;
     private AudioStreamPlayer3D movementAudio;
@@ -483,14 +486,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Only shoot if you have an agent vacuole.
         if (AgentVacuoleCount < 1)
-        {
             return;
-        }
 
-        if (agentType == null)
-        {
-            agentType = SimulationParameters.Instance.GetCompound("oxytoxy");
-        }
+        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
@@ -525,6 +523,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
+    ///   Makes this Microbe fire a toxin on the next update. Used by the AI from a background thread.
+    ///   Only one can be queued at once
+    /// </summary>
+    /// <param name="toxinCompound">The toxin type to emit</param>
+    public void QueueEmitToxin(Compound toxinCompound)
+    {
+        queuedToxinToEmit = toxinCompound;
+    }
+
+    /// <summary>
     ///   Flashes the membrane a specific colour for duration. A new
     ///   flash is not started if currently flashing.
     /// </summary>
@@ -544,6 +552,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public void Damage(float amount, string source)
     {
+        if (IsPlayerMicrobe && CheatManager.GodMode)
+            return;
+
         if (amount == 0 || Dead)
             return;
 
@@ -776,6 +787,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Try all organelles in random order and use the first one with a scene for model
             foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
+                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
+                {
+                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
+                    break;
+                }
+
                 if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
@@ -784,13 +801,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 }
             }
 
-            // If no organelles have a scene, use mitochondrion as fallback
-            if (sceneToUse.LoadedScene == null)
-            {
-                sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
-                    "mitochondrion").LoadedScene;
-                sceneToUse.SceneModelPath = null;
-            }
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once HeuristicUnreachableCode
+            if (sceneToUse == null)
+                throw new Exception("sceneToUse is null");
 
             chunkType.Meshes.Add(sceneToUse);
 
@@ -803,7 +817,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
         {
             GameWorld.AlterSpeciesPopulation(Species,
-                Constants.CREATURE_DEATH_POPULATION_LOSS, "death");
+                Constants.CREATURE_DEATH_POPULATION_LOSS, TranslationServer.Translate("DEATH"));
         }
 
         if (IsPlayerMicrobe)
@@ -1073,6 +1087,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (AgentEmissionCooldown < 0)
             AgentEmissionCooldown = 0;
 
+        // Fire queued agents
+        if (queuedToxinToEmit != null)
+        {
+            EmitToxin(queuedToxinToEmit);
+            queuedToxinToEmit = null;
+        }
+
         HandleFlashing(delta);
         HandleHitpointsRegeneration(delta);
         HandleReproduction(delta);
@@ -1209,6 +1230,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
+
+        if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
+        {
+            var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
+            foreach (var usefulCompound in usefulCompounds)
+                Compounds.AddCompound(usefulCompound, Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
+        }
     }
 
     private void CheckEngulfShapeSize()
@@ -1498,7 +1526,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulation(Species,
-                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
+                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 
             ResetOrganelleLayout();
@@ -1731,6 +1759,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Not enough ATP to move at full speed
             force *= 0.5f;
         }
+
+        if (IsPlayerMicrobe)
+            force *= CheatManager.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -

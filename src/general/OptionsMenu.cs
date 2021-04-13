@@ -338,6 +338,14 @@ public class OptionsMenu : Control
         backConfirmationBox.GetOk().Hide();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            BuildInputRebindControls();
+        }
+    }
+
     /// <summary>
     ///   Opens the options menu with main menu configuration settings.
     /// </summary>
@@ -1002,6 +1010,10 @@ public class OptionsMenu : Control
     private void OnCheatsToggled(bool pressed)
     {
         Settings.Instance.CheatsEnabled.Value = pressed;
+        if (!pressed)
+        {
+            CheatManager.OnCheatsDisabled();
+        }
 
         UpdateResetSaveButtonState();
     }
