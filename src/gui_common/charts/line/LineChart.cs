@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -59,6 +60,11 @@ public class LineChart : VBoxContainer
     ///   Limits how many dataset lines should be allowed to be shown on the chart.
     /// </summary>
     public int MaxDisplayedDataSet = 10;
+
+    /// <summary>
+    ///   Limits how many dataset lines should be hidden.
+    /// </summary>
+    public int MinDisplayedDataSet;
 
     /// <summary>
     ///   Fallback icon for the legend display mode using icons
@@ -121,7 +127,12 @@ public class LineChart : VBoxContainer
         /// <summary>
         ///   Number of shown dataset reaches the maximum limit.
         /// </summary>
-        VisibleLimitReached,
+        MaxVisibleLimitReached,
+
+        /// <summary>
+        ///   Number of shown dataset reaches the minimum limit.
+        /// </summary>
+        MinVisibleLimitReached,
 
         /// <summary>
         ///   The dataset visibility is succesfully changed.
@@ -162,9 +173,9 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Returns true if the number of shown datasets is more than the maximum allowed.
+    ///   Returns the number of shown datasets.
     /// </summary>
-    public bool VisibleDataSetLimitReached
+    public int VisibleDataSets
     {
         get
         {
@@ -176,7 +187,7 @@ public class LineChart : VBoxContainer
                     count++;
             }
 
-            return count >= MaxDisplayedDataSet;
+            return count;
         }
     }
 
@@ -212,11 +223,17 @@ public class LineChart : VBoxContainer
                 if (!IsInstanceValid(point))
                     continue;
 
-                var coordinate = ConvertToCoordinate(point.Value);
+                var coordinate = Vector2.Zero;
 
-                // TODO: Handle overlapping data point markers, will be difficult.
-                // As a workaround, players could instead manually hide the dataset
-                // of one of the overlapping points.
+                if (IsMinMaxValid())
+                {
+                    coordinate = ConvertToCoordinate(point.Value);
+                }
+                else
+                {
+                    // Hide the marker as its positioning won't be pretty at zero coordinate
+                    point.Visible = false;
+                }
 
                 point.Coordinate = point.Coordinate.LinearInterpolate(coordinate, 3.0f * delta);
                 UpdateLineSegments();
@@ -282,13 +299,21 @@ public class LineChart : VBoxContainer
             return;
         }
 
+        MinDisplayedDataSet = Mathf.Clamp(MinDisplayedDataSet, 0, MaxDisplayedDataSet);
+
         initialVisibleDataSets = Mathf.Clamp(initialVisibleDataSets, 0, MaxDisplayedDataSet);
 
         // Start from 1 if defaultDataSet is specified as it's always visible
         var visibleDataSetCount = string.IsNullOrEmpty(defaultDataSet) ? 0 : 1;
 
+        UpdateMinimumAndMaximumValues();
+
         foreach (var data in dataSets)
         {
+            // Null check to suppress ReSharper's warning
+            if (string.IsNullOrEmpty(data.Key))
+                throw new Exception("Dataset dictionary key is null");
+
             // Hide the rest, if number of shown dataset exceeds initialVisibleDataSets
             if (visibleDataSetCount >= initialVisibleDataSets && data.Key != defaultDataSet)
             {
@@ -299,11 +324,13 @@ public class LineChart : VBoxContainer
                 visibleDataSetCount++;
             }
 
+            // Initialize line
+            var dataLine = new DataLine(data.Value, data.Key == defaultDataSet);
+            dataLines[data.Key] = dataLine;
+            drawArea.AddChild(dataLine);
+
             foreach (var point in data.Value.DataPoints)
             {
-                // Find the max values of all the data points first to make finding min values possible
-                MaxValues = new Vector2(Mathf.Max(point.Value.x, MaxValues.x), Mathf.Max(point.Value.y, MaxValues.y));
-
                 // Create tooltip for the point markers
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
@@ -316,79 +343,9 @@ public class LineChart : VBoxContainer
 
                 point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
+
+                drawArea.AddChild(point);
             }
-
-            // Initialize line
-            var dataLine = new DataLine(data.Value, data.Key == defaultDataSet);
-            dataLines[data.Key] = dataLine;
-            drawArea.AddChild(dataLine);
-        }
-
-        MinValues = MaxValues;
-
-        // Find the minimum values of all the data points
-        foreach (var data in dataSets)
-        {
-            foreach (var point in data.Value.DataPoints)
-            {
-                MinValues = new Vector2(Mathf.Min(point.Value.x, MinValues.x), Mathf.Min(point.Value.y, MinValues.y));
-            }
-        }
-
-        // Can't have min/max values to be equal. Set a value to zero as the initial point
-        if (MinValues.x == MaxValues.x)
-        {
-            if (MaxValues.x > 0)
-            {
-                MinValues = new Vector2(0, MinValues.y);
-            }
-            else if (MaxValues.x < 0)
-            {
-                MaxValues = new Vector2(0, MaxValues.y);
-            }
-        }
-
-        if (MinValues.y == MaxValues.y)
-        {
-            if (MaxValues.y > 0)
-            {
-                MinValues = new Vector2(MinValues.x, 0);
-            }
-            else if (MaxValues.y < 0)
-            {
-                MaxValues = new Vector2(MaxValues.x, 0);
-            }
-        }
-
-        // Populate the rows
-        for (int i = 0; i < XAxisTicks; i++)
-        {
-            var label = new Label
-            {
-                SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Center,
-            };
-
-            label.Text = Math.Round(
-                i * (MaxValues.x - MinValues.x) / (XAxisTicks - 1) + MinValues.x, 1).FormatNumber();
-
-            horizontalLabelsContainer.AddChild(label);
-        }
-
-        // Populate the columns (in reverse order)
-        for (int i = YAxisTicks; i-- > 0;)
-        {
-            var label = new Label
-            {
-                SizeFlagsVertical = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Center,
-                Valign = Label.VAlign.Center,
-            };
-
-            label.Text = Math.Round(
-                i * (MaxValues.y - MinValues.y) / (YAxisTicks - 1) + MinValues.y, 1).FormatNumber();
-
-            verticalLabelsContainer.AddChild(label);
         }
 
         // Create chart legend
@@ -419,6 +376,9 @@ public class LineChart : VBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Wipe clean all the stuff on this chart
+    /// </summary>
     public void ClearChart()
     {
         toolTipCallbacks.Clear();
@@ -468,13 +428,21 @@ public class LineChart : VBoxContainer
 
         var data = dataSets[name];
 
-        if (visible && VisibleDataSetLimitReached)
-            return DataSetVisibilityUpdateResult.VisibleLimitReached;
+        if (visible && VisibleDataSets >= MaxDisplayedDataSet)
+        {
+            return DataSetVisibilityUpdateResult.MaxVisibleLimitReached;
+        }
+
+        if (!visible && VisibleDataSets <= MinDisplayedDataSet)
+        {
+            return DataSetVisibilityUpdateResult.MinVisibleLimitReached;
+        }
 
         if (dataLines.ContainsKey(name) && !data.Draw)
             FlattenLines(name);
 
         data.Draw = visible;
+        UpdateMinimumAndMaximumValues();
         drawArea.Update();
 
         // Update the legend
@@ -608,24 +576,7 @@ public class LineChart : VBoxContainer
             // Create into List so we can use IndexOf
             var points = data.Value.DataPoints.ToList();
 
-            if (points.Count <= 0)
-                continue;
-
-            // Setup the points (applying coordinate)
-            foreach (var point in points)
-            {
-                // Skip if any of the min and max value is equal, otherwise
-                // the data point marker kind of just glitch out.
-                if (MinValues.x == MaxValues.x || MinValues.y == MaxValues.y)
-                    continue;
-
-                // Add the marker if not yet, this is called here so the node will
-                // be rendered on top of the line segments
-                if (!point.IsInsideTree())
-                    drawArea.AddChild(point);
-            }
-
-            if (!dataLines.ContainsKey(data.Key))
+            if (points.Count <= 0 || !dataLines.ContainsKey(data.Key))
                 continue;
 
             // This is actually the first point (left-most)
@@ -737,6 +688,102 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
+    ///   Calculates the min/max values of this chart based on shown datasets and generates the axes scale ticks.
+    /// </summary>
+    private void UpdateMinimumAndMaximumValues()
+    {
+        // Default to zeros
+        MaxValues = Vector2.Zero;
+        MinValues = Vector2.Zero;
+
+        // Find the max values of all the data points first to make finding min values possible
+        foreach (var data in dataSets)
+        {
+            if (!data.Value.Draw)
+                continue;
+
+            foreach (var point in data.Value.DataPoints)
+            {
+                MaxValues = new Vector2(Mathf.Max(point.Value.x, MaxValues.x), Mathf.Max(point.Value.y, MaxValues.y));
+            }
+        }
+
+        MinValues = MaxValues;
+
+        // Find the minimum values of all the data points
+        foreach (var data in dataSets)
+        {
+            if (!data.Value.Draw)
+                continue;
+
+            foreach (var point in data.Value.DataPoints)
+            {
+                MinValues = new Vector2(Mathf.Min(point.Value.x, MinValues.x), Mathf.Min(point.Value.y, MinValues.y));
+            }
+        }
+
+        // If min/max turns out to be equal, set one of their point to zero as the initial value
+
+        if (MinValues.x == MaxValues.x)
+        {
+            if (MaxValues.x > 0)
+            {
+                MinValues = new Vector2(0, MinValues.y);
+            }
+            else if (MaxValues.x < 0)
+            {
+                MaxValues = new Vector2(0, MaxValues.y);
+            }
+        }
+
+        if (MinValues.y == MaxValues.y)
+        {
+            if (MaxValues.y > 0)
+            {
+                MinValues = new Vector2(MinValues.x, 0);
+            }
+            else if (MaxValues.y < 0)
+            {
+                MaxValues = new Vector2(MaxValues.x, 0);
+            }
+        }
+
+        horizontalLabelsContainer.QueueFreeChildren();
+        verticalLabelsContainer.QueueFreeChildren();
+
+        // Populate the rows
+        for (int i = 0; i < XAxisTicks; i++)
+        {
+            var label = new Label
+            {
+                SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
+                Align = Label.AlignEnum.Center,
+            };
+
+            label.Text = Math.Round(
+                i * (MaxValues.x - MinValues.x) / (XAxisTicks - 1) + MinValues.x, 1).FormatNumber();
+
+            horizontalLabelsContainer.AddChild(label);
+        }
+
+        // Populate the columns (in reverse order)
+        for (int i = YAxisTicks - 1; i >= 0; i--)
+        {
+            var label = new Label
+            {
+                SizeFlagsVertical = (int)SizeFlags.ExpandFill,
+                Align = Label.AlignEnum.Center,
+                Valign = Label.VAlign.Center,
+            };
+
+            label.Text = Math.Round(
+                i * (MaxValues.y - MinValues.y) / (YAxisTicks - 1) + MinValues.y, 1).FormatNumber();
+
+            verticalLabelsContainer.AddChild(label);
+        }
+    }
+
+    /// <summary>
     ///   Helper method for converting a single point data value into a coordinate.
     /// </summary>
     /// <returns>Position of the given value on the chart</returns>
@@ -761,6 +808,14 @@ public class LineChart : VBoxContainer
         var dy = MaxValues.y - MinValues.y;
 
         return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY / 2;
+    }
+
+    /// <summary>
+    ///   If false the coordinate calculations will break, this is used to guard against that.
+    /// </summary>
+    private bool IsMinMaxValid()
+    {
+        return !(MinValues.x == MaxValues.x || MinValues.y == MaxValues.y);
     }
 
     private void UpdateAxesName()
@@ -835,10 +890,25 @@ public class LineChart : VBoxContainer
     {
         var result = UpdateDataSetVisibility(icon.DataName, toggled);
 
-        if (result == DataSetVisibilityUpdateResult.VisibleLimitReached)
+        switch (result)
         {
-            icon.Pressed = false;
-            ToolTipManager.Instance.ShowPopup($"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
+            case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
+            {
+                icon.Pressed = false;
+                ToolTipManager.Instance.ShowPopup(string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "MAX_VISIBLE_DATASET_WARNING"), MaxDisplayedDataSet), 1f);
+                break;
+            }
+
+            case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
+            {
+                icon.Pressed = true;
+                ToolTipManager.Instance.ShowPopup(string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "MIN_VISIBLE_DATASET_WARNING"), MinDisplayedDataSet), 1f);
+                break;
+            }
         }
     }
 
@@ -850,9 +920,23 @@ public class LineChart : VBoxContainer
         var result = UpdateDataSetVisibility(
             dropDown.Popup.GetItemText(index), !dropDown.Popup.IsItemChecked(index));
 
-        if (result == DataSetVisibilityUpdateResult.VisibleLimitReached)
+        switch (result)
         {
-            ToolTipManager.Instance.ShowPopup($"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
+            case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
+            {
+                ToolTipManager.Instance.ShowPopup(string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "MAX_VISIBLE_DATASET_WARNING"), MaxDisplayedDataSet), 1f);
+                break;
+            }
+
+            case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
+            {
+                ToolTipManager.Instance.ShowPopup(string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "MIN_VISIBLE_DATASET_WARNING"), MinDisplayedDataSet), 1f);
+                break;
+            }
         }
     }
 
@@ -934,11 +1018,8 @@ public class LineChart : VBoxContainer
             tween.InterpolateProperty(this, "rect_scale", Vector2.One, new Vector2(1.1f, 1.1f), 0.1f);
             tween.Start();
 
-            if (Pressed)
-            {
-                // Adjust the icon color to be highlighted
-                Modulate = IsUsingFallbackIcon ? data.DataColour.Lightened(0.5f) : new Color(0.7f, 0.7f, 0.7f);
-            }
+            // Highlight icon
+            Modulate = IsUsingFallbackIcon ? data.DataColour.Lightened(0.5f) : Colors.LightGray;
         }
 
         private void IconLegendMouseExit()
@@ -948,8 +1029,12 @@ public class LineChart : VBoxContainer
 
             if (Pressed)
             {
-                // Adjust the icon color back to normal
+                // Reset icon color
                 Modulate = IsUsingFallbackIcon ? data.DataColour : Colors.White;
+            }
+            else
+            {
+                Modulate = Colors.DarkGray;
             }
         }
 
