@@ -42,6 +42,7 @@ public class CompoundBag : ICompoundStorage
     {
         if (Compounds.ContainsKey(compound))
             return Compounds[compound];
+
         return 0.0f;
     }
 
