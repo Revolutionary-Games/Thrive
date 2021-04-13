@@ -2,13 +2,13 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 10:22+0200\n"
-"PO-Revision-Date: 2021-03-15 17:26+0000\n"
+"POT-Creation-Date: 2021-04-13 21:24+0200\n"
+"PO-Revision-Date: 2021-04-04 17:49+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -113,8 +113,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:16
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"TODO: Write text about binding"
+msgstr "TODO: Write text about binding"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -508,7 +507,7 @@ msgstr "Toggle Fullscreen"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Respiration"
+msgstr "Aerobic Respiration"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -531,11 +530,11 @@ msgstr "OxyToxy Synthesis"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "Chemo Synthesis"
+msgstr "Chemosynthesis"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerobic Nitrogen Fixing"
+msgstr "Aerobic Nitrogen Fixation"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
@@ -881,6 +880,10 @@ msgstr "{0} population changed by {1} because of: {2}"
 msgid "POPULATION"
 msgstr "population:"
 
+#: ../src/auto-evo/RunResults.cs:226
+msgid "WENT_EXTINCT_IN"
+msgstr "went extinct in {0}"
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "previous:"
@@ -901,15 +904,19 @@ msgstr "spread to patches:"
 msgid "RUNRESULT_BY_SENDING_POPULATION"
 msgstr "{0} by sending: {1} population from patch: {2}"
 
-#: ../src/auto-evo/RunResults.cs:291
+#: ../src/auto-evo/RunResults.cs:292
 msgid "RUNRESULT_POP_IN_PATCHES"
 msgstr "population in patches:"
+
+#: ../src/auto-evo/RunResults.cs:372
+msgid "WENT_EXTINCT_FROM_PLANET"
+msgstr "went extinct from the planet"
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr "Loading"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:299
+#: ../src/engine/input/key_mapping/InputEventItem.cs:312
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Press a key..."
 
@@ -918,6 +925,358 @@ msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "There is a conflict with {0}.\n"
 "Do you want to remove the input from {1}?"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:126
+msgid "KEY_FORWARD"
+msgstr "Forward"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:127
+msgid "KEY_TAB"
+msgstr "Tab"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:128
+msgid "KEY_ENTER"
+msgstr "Enter"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:129
+msgid "KEY_INSERT"
+msgstr "Insert"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:130
+msgid "KEY_DELETE"
+msgstr "Delete"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:131
+msgid "KEY_PAUSE"
+msgstr "Pause"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:132
+msgid "KEY_CLEAR"
+msgstr "Clear"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:133
+msgid "KEY_HOME"
+msgstr "Home"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:134
+msgid "KEY_END"
+msgstr "End"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:135
+msgid "KEY_LEFT"
+msgstr "Left"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:136
+msgid "KEY_UP"
+msgstr "Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
+msgid "KEY_RIGHT"
+msgstr "Right"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
+msgid "KEY_DOWN"
+msgstr "Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
+msgid "KEY_MENU"
+msgstr "Menu"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
+msgid "KEY_HELP"
+msgstr "Help"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
+msgid "KEY_BACK"
+msgstr "Back"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
+msgid "KEY_STOP"
+msgstr "Stop"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
+msgid "KEY_REFRESH"
+msgstr "Refresh"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
+msgid "KEY_SEARCH"
+msgstr "Search"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
+msgid "KEY_STANDBY"
+msgstr "Standby"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
+msgid "KEY_OPENURL"
+msgstr "Open URL"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:147
+msgid "KEY_HOMEPAGE"
+msgstr "Homepage"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
+msgid "KEY_FAVORITES"
+msgstr "Favourites"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
+msgid "KEY_PRINT"
+msgstr "Print Screen"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:162
+msgid "SPACE"
+msgstr "Space"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
+msgid "BACKSLASH"
+msgstr "Backslash"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+msgid "ESCAPE"
+msgstr "Esc"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
+msgid "BACKSPACE"
+msgstr "Backspace"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
+msgid "KPENTER"
+msgstr "Num Enter"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
+msgid "SYSREQ"
+msgstr "SysRq"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
+msgid "PAGEUP"
+msgstr "Page Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:169
+msgid "PAGEDOWN"
+msgstr "Page Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:170
+msgid "CAPSLOCK"
+msgstr "Caps Lock"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:171
+msgid "NUMLOCK"
+msgstr "Num Lock"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:172
+msgid "SCROLLLOCK"
+msgstr "Scroll Lock"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:173
+msgid "SUPERL"
+msgstr "Super Left"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:174
+msgid "SUPERR"
+msgstr "Super Right"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:175
+msgid "HYPERL"
+msgstr "Hyper Left"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:176
+msgid "HYPERR"
+msgstr "Hyper Right"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:177
+msgid "DIRECTIONL"
+msgstr "Left"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:178
+msgid "DIRECTIONR"
+msgstr "Right"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:179
+msgid "VOLUMEDOWN"
+msgstr "Volume Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:180
+msgid "VOLUMEMUTE"
+msgstr "Volume Mute"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:181
+msgid "VOLUMEUP"
+msgstr "Volume Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:182
+msgid "BASSBOOST"
+msgstr "Bassboost"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:183
+msgid "BASSUP"
+msgstr "Bass Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:184
+msgid "BASSDOWN"
+msgstr "Bass Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:185
+msgid "TREBLEUP"
+msgstr "Treble Up"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:186
+msgid "TREBLEDOWN"
+msgstr "Treble Down"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:187
+msgid "MEDIAPLAY"
+msgstr "Media Play"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:188
+msgid "MEDIASTOP"
+msgstr "Media Stop"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:189
+msgid "MEDIAPREVIOUS"
+msgstr "Media Prev"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:190
+msgid "MEDIANEXT"
+msgstr "Media Next"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:191
+msgid "MEDIARECORD"
+msgstr "Media Rec"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:192
+msgid "LAUNCHMAIL"
+msgstr "Mail"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:193
+msgid "LAUNCHMEDIA"
+msgstr "Media"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:194
+msgid "LAUNCH0"
+msgstr "Launch 0"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:195
+msgid "LAUNCH1"
+msgstr "Launch 1"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:196
+msgid "LAUNCH2"
+msgstr "Launch 2"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:197
+msgid "LAUNCH3"
+msgstr "Launch 3"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:198
+msgid "LAUNCH4"
+msgstr "Launch 4"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:199
+msgid "LAUNCH5"
+msgstr "Launch 5"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:200
+msgid "LAUNCH6"
+msgstr "Launch 6"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:201
+msgid "LAUNCH7"
+msgstr "Launch 7"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:202
+msgid "LAUNCH8"
+msgstr "Launch 8"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:203
+msgid "LAUNCH9"
+msgstr "Launch 9"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
+msgid "LAUNCHA"
+msgstr "Launch A"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:205
+msgid "LAUNCHB"
+msgstr "Launch B"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:206
+msgid "LAUNCHC"
+msgstr "Launch C"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:207
+msgid "LAUNCHD"
+msgstr "Launch D"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:208
+msgid "LAUNCHE"
+msgstr "Launch E"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:209
+msgid "LAUNCHF"
+msgstr "Launch F"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:210
+msgid "KPMULTIPLY"
+msgstr "Num *"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:211
+msgid "KPDIVIDE"
+msgstr "Num /"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:212
+msgid "KPSUBTRACT"
+msgstr "Num -"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:213
+msgid "KPPERIOD"
+msgstr "Num ."
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:214
+msgid "KPADD"
+msgstr "Num +"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:215
+msgid "KP0"
+msgstr "Num 0"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:216
+msgid "KP1"
+msgstr "Num 1"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:217
+msgid "KP2"
+msgstr "Num 2"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:218
+msgid "KP3"
+msgstr "Num 3"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:219
+msgid "KP4"
+msgstr "Num 4"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:220
+msgid "KP5"
+msgstr "Num 5"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:221
+msgid "KP6"
+msgstr "Num 6"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:222
+msgid "KP7"
+msgstr "Num 7"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:223
+msgid "KP8"
+msgstr "Num 8"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:224
+msgid "KP9"
+msgstr "Num 9"
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:225
+msgid "UNKNOWN"
+msgstr "Unknown"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -931,43 +1290,43 @@ msgstr "Alt"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
 msgstr "Left mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
 msgstr "Right mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
 msgstr "Wheel up"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
 msgstr "Wheel down"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
 msgstr "Wheel left"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
 msgstr "Wheel right"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
 msgstr "Mouse Special 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_2"
 msgstr "Mouse Special 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr "Unknown mouse"
 
@@ -976,232 +1335,287 @@ msgstr "Unknown mouse"
 msgid "CLOSE"
 msgstr "Close"
 
-#: ../src/general/OptionsMenu.tscn:127
+#: ../src/general/MainMenu.cs:329
+msgid "OK"
+msgstr "OK"
+
+#: ../src/general/MainMenu.cs:330
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ../src/general/MainMenu.tscn:148
+msgid "NEW_GAME"
+msgstr "New Game"
+
+#: ../src/general/MainMenu.tscn:163 ../src/general/PauseMenu.tscn:71
+msgid "LOAD_GAME"
+msgstr "Load Game"
+
+#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:93
+msgid "OPTIONS"
+msgstr "Options"
+
+#: ../src/general/MainMenu.tscn:187
+msgid "TOOLS"
+msgstr "Tools"
+
+#: ../src/general/MainMenu.tscn:199
+msgid "VIEW_SOURCE_CODE"
+msgstr "View Source Code"
+
+#: ../src/general/MainMenu.tscn:211
+msgid "EXTRAS"
+msgstr "Extras"
+
+#: ../src/general/MainMenu.tscn:223
+msgid "CREDITS"
+msgstr "Credits"
+
+#: ../src/general/MainMenu.tscn:235
+msgid "QUIT"
+msgstr "Quit"
+
+#: ../src/general/MainMenu.tscn:258
+msgid "MICROBE_FREEBUILD_EDITOR"
+msgstr "Microbe Freebuild Editor"
+
+#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:113
+msgid "BACK"
+msgstr "Back"
+
+#: ../src/general/MainMenu.tscn:359
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2 Mode Warning"
+
+#: ../src/general/MainMenu.tscn:372
+msgid "GLES2_MODE_WARNING_TEXT"
+msgstr ""
+"You are running Thrive with GLES2. This is severely untested and is likely "
+"to cause issues. Try to update your video drivers and/or force AMD or "
+"Nvidia graphics to be used to run Thrive."
+
+#: ../src/general/OptionsMenu.tscn:126
 msgid "GRAPHICS"
 msgstr "Graphics"
 
-#: ../src/general/OptionsMenu.tscn:139
+#: ../src/general/OptionsMenu.tscn:138
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/OptionsMenu.tscn:163
+#: ../src/general/OptionsMenu.tscn:162
 msgid "INPUTS"
 msgstr "Inputs"
 
-#: ../src/general/OptionsMenu.tscn:175
+#: ../src/general/OptionsMenu.tscn:174
 msgid "MISC"
 msgstr "Misc"
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:213
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:222
+#: ../src/general/OptionsMenu.tscn:221
 msgid "FULLSCREEN"
 msgstr "FullScreen"
 
-#: ../src/general/OptionsMenu.tscn:244
+#: ../src/general/OptionsMenu.tscn:243
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:251
+#: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(higher values worsen performance)"
 
-#: ../src/general/OptionsMenu.tscn:281
+#: ../src/general/OptionsMenu.tscn:280
 msgid "RESOLUTION"
 msgstr "Resolution:"
 
-#: ../src/general/OptionsMenu.tscn:294
+#: ../src/general/OptionsMenu.tscn:293
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:330
+#: ../src/general/OptionsMenu.tscn:329
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Colourblind Correction:"
 
-#: ../src/general/OptionsMenu.tscn:362
+#: ../src/general/OptionsMenu.tscn:361
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:403
+#: ../src/general/OptionsMenu.tscn:402
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
 
-#: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
-#: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
-#: ../src/general/OptionsMenu.tscn:570
+#: ../src/general/OptionsMenu.tscn:429 ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:503 ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:569
 msgid "MUTE"
 msgstr "Mute"
 
-#: ../src/general/OptionsMenu.tscn:444
+#: ../src/general/OptionsMenu.tscn:443
 msgid "MUSIC_VOLUME"
 msgstr "Music volume"
 
-#: ../src/general/OptionsMenu.tscn:477
+#: ../src/general/OptionsMenu.tscn:476
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance Volume"
 
-#: ../src/general/OptionsMenu.tscn:510
+#: ../src/general/OptionsMenu.tscn:509
 msgid "SFX_VOLUME"
 msgstr "SFX Volume"
 
-#: ../src/general/OptionsMenu.tscn:543
+#: ../src/general/OptionsMenu.tscn:542
 msgid "GUI_VOLUME"
 msgstr "GUI Volume"
 
-#: ../src/general/OptionsMenu.tscn:588
+#: ../src/general/OptionsMenu.tscn:587
 msgid "LANGUAGE"
 msgstr "Language:"
 
-#: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:1009
+#: ../src/general/OptionsMenu.tscn:602 ../src/general/OptionsMenu.tscn:1008
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:612
+#: ../src/general/OptionsMenu.tscn:611
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help Translate The Game"
 
-#: ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:631
 msgid "COMPOUND_CLOUDS"
 msgstr "Compound clouds"
 
-#: ../src/general/OptionsMenu.tscn:647
+#: ../src/general/OptionsMenu.tscn:646
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Cloud Simulation Minimum\n"
 "Interval:"
 
-#: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
+#: ../src/general/OptionsMenu.tscn:653 ../src/general/OptionsMenu.tscn:697
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(higher values increase performance)"
 
-#: ../src/general/OptionsMenu.tscn:691
+#: ../src/general/OptionsMenu.tscn:690
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Cloud Resolution Divisor:"
 
-#: ../src/general/OptionsMenu.tscn:733
+#: ../src/general/OptionsMenu.tscn:732
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Run auto-evo during gameplay"
 
-#: ../src/general/OptionsMenu.tscn:800
+#: ../src/general/OptionsMenu.tscn:799
 msgid "RESET_INPUTS"
 msgstr "Reset Inputs"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:823
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Play intro video"
 
-#: ../src/general/OptionsMenu.tscn:833
+#: ../src/general/OptionsMenu.tscn:832
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Play Microbe Intro on New Game"
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:841
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave during the game"
 
-#: ../src/general/OptionsMenu.tscn:853
+#: ../src/general/OptionsMenu.tscn:852
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Amount of autosaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:880
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Amount of quicksaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:906
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Show tutorials (in new games)"
 
-#: ../src/general/OptionsMenu.tscn:915
+#: ../src/general/OptionsMenu.tscn:914
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Show tutorials (in current game)"
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:930
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat keys enabled"
 
-#: ../src/general/OptionsMenu.tscn:943
+#: ../src/general/OptionsMenu.tscn:942
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
 
-#: ../src/general/OptionsMenu.tscn:954
+#: ../src/general/OptionsMenu.tscn:953
 msgid "CUSTOM_USERNAME"
 msgstr "Custom Username:"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:979
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open Screenshot Folder"
 
-#: ../src/general/OptionsMenu.tscn:988
+#: ../src/general/OptionsMenu.tscn:987
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open Logs Folder"
 
-#: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
-#: ../src/saving/SaveManagerGUI.tscn:113
-msgid "BACK"
-msgstr "Back"
-
-#: ../src/general/OptionsMenu.tscn:1020 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1019 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Save"
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1035
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaults"
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1047
 msgid "RESET_TO_DEFAULTS"
 msgstr "Reset to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1057
+#: ../src/general/OptionsMenu.tscn:1056
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Are you sure you want to reset ALL settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1071
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Reset inputs to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1079
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Are you sure you want to reset the input settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1093
 msgid "CLOSE_OPTIONS"
 msgstr "Close options?"
 
-#: ../src/general/OptionsMenu.tscn:1114
+#: ../src/general/OptionsMenu.tscn:1113
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "You have unsaved changes that will be discarded.\n"
 "Do you wish to continue?"
 
-#: ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1135
 msgid "SAVE_AND_CONTINUE"
 msgstr "Save and continue"
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Discard and continue"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/OptionsMenu.tscn:1196
-#: ../src/general/OptionsMenu.tscn:1220
+#: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
+#: ../src/general/OptionsMenu.tscn:1181 ../src/general/OptionsMenu.tscn:1220
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Failed to save new settings to configuration file."
 
@@ -1213,10 +1627,6 @@ msgstr "Resume"
 msgid "SAVE_GAME"
 msgstr "Save Game"
 
-#: ../src/general/PauseMenu.tscn:71 ../src/gui_common/MainMenu.tscn:163
-msgid "LOAD_GAME"
-msgstr "Load Game"
-
 #: ../src/general/PauseMenu.tscn:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4503
 msgid "STATISTICS"
@@ -1225,10 +1635,6 @@ msgstr "Statistics"
 #: ../src/general/PauseMenu.tscn:86
 msgid "HELP"
 msgstr "Help"
-
-#: ../src/general/PauseMenu.tscn:93 ../src/gui_common/MainMenu.tscn:175
-msgid "OPTIONS"
-msgstr "Options"
 
 #: ../src/general/PauseMenu.tscn:100
 msgid "RETURN_TO_MENU"
@@ -1250,57 +1656,11 @@ msgstr "{0} M"
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
-#: ../src/gui_common/ChemicalEquation.cs:148
+#: ../src/gui_common/ChemicalEquation.cs:120
+#: ../src/gui_common/ChemicalEquation.cs:157
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
 msgstr "/second"
-
-#: ../src/gui_common/MainMenu.cs:329
-msgid "OK"
-msgstr "OK"
-
-#: ../src/gui_common/MainMenu.cs:330
-msgid "Cancel"
-msgstr "Cancel"
-
-#: ../src/gui_common/MainMenu.tscn:148
-msgid "NEW_GAME"
-msgstr "New Game"
-
-#: ../src/gui_common/MainMenu.tscn:187
-msgid "TOOLS"
-msgstr "Tools"
-
-#: ../src/gui_common/MainMenu.tscn:199
-msgid "VIEW_SOURCE_CODE"
-msgstr "View Source Code"
-
-#: ../src/gui_common/MainMenu.tscn:211
-msgid "EXTRAS"
-msgstr "Extras"
-
-#: ../src/gui_common/MainMenu.tscn:223
-msgid "CREDITS"
-msgstr "Credits"
-
-#: ../src/gui_common/MainMenu.tscn:235
-msgid "QUIT"
-msgstr "Quit"
-
-#: ../src/gui_common/MainMenu.tscn:258
-msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "Microbe Freebuild Editor"
-
-#: ../src/gui_common/MainMenu.tscn:359
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Mode Warning"
-
-#: ../src/gui_common/MainMenu.tscn:372
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-"You are running Thrive with GLES2. This is severely untested and is likely "
-"to cause issues. Try to update your video drivers and/or force AMD or "
-"Nvidia graphics to be used to run Thrive."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1454,7 +1814,7 @@ msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "The gooey innards of a cell. The cytoplasm is the basic mixture of ions, "
 "proteins, and other substances dissolved in water that fill the interior "
-"of the cell. One of the functions it performs is Fermentation, the "
+"of the cell. One of the functions it performs is glycolysis, the "
 "conversion of glucose into ATP energy. For cells that lack organelles to "
 "have more advanced metabolisms, this is what they rely on for energy. It "
 "is also used to store molecules in the cell and to grow the cell's size."
@@ -1482,7 +1842,7 @@ msgstr ""
 "require oxygen to function, and lower levels of oxygen in the environment "
 "will slow down the rate of its ATP production. Since the metabolosomes are "
 "suspended directly in the cytoplasm, the surrounding fluid performs some "
-"fermentation."
+"glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2097
@@ -1536,7 +1896,7 @@ msgstr ""
 "pigments are also what give them a distinctive colour. The rate of their "
 "glucose production scales with the concentration of carbon dioxide, and "
 "intensity of light. Since the thylakoids are suspended directly in the "
-"cytoplasm, the surrounding fluid performs some fermentation."
+"cytoplasm, the surrounding fluid performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4422
@@ -1555,7 +1915,7 @@ msgstr ""
 "dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. "
 "The rate of its glucose production scales with the concentration of carbon "
 "dioxide. Since the chemosynthesizing proteins are suspended directly in "
-"the cytoplasm, the surrounding fluid performs some fermentation."
+"the cytoplasm, the surrounding fluid performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1584,7 +1944,7 @@ msgstr ""
 "in the form of ATP to produce ammonia, a key growth nutrient for cells. "
 "This is a process referred to as Anaerobic Nitrogen Fixation. Since the "
 "nitrogenase is suspended directly in the cytoplasm, the surrounding fluid "
-"performs some fermentation."
+"performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5204
@@ -1890,15 +2250,23 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Add a new key binding"
 
-#: ../src/microbe_stage/Microbe.cs:1301
+#: ../src/microbe_stage/Microbe.cs:915
+msgid "DEATH"
+msgstr "death"
+
+#: ../src/microbe_stage/Microbe.cs:1336
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.cs:1308
+#: ../src/microbe_stage/Microbe.cs:1343
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1768
+#: ../src/microbe_stage/Microbe.cs:1665
+msgid "REPRODUCED"
+msgstr "reproduced"
+
+#: ../src/microbe_stage/Microbe.cs:1803
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -1914,11 +2282,11 @@ msgstr "Stuff at {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
 
-#: ../src/microbe_stage/MicrobeStage.cs:471
+#: ../src/microbe_stage/MicrobeStage.cs:479
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:623
+#: ../src/microbe_stage/MicrobeStage.cs:631
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -1965,47 +2333,47 @@ msgstr "Agents"
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:16
+#: ../src/microbe_stage/PatchMapGenerator.cs:139
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangonian Vents"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:24
+#: ../src/microbe_stage/PatchMapGenerator.cs:140
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Pangonian Mesopelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:31
+#: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Pangonian Epipelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:38
+#: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pangonian Tidepool"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:45
+#: ../src/microbe_stage/PatchMapGenerator.cs:143
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Pangonian Bathypelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:52
+#: ../src/microbe_stage/PatchMapGenerator.cs:144
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Pangonian Abyssopelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:59
+#: ../src/microbe_stage/PatchMapGenerator.cs:145
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangonian Coast"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:66
+#: ../src/microbe_stage/PatchMapGenerator.cs:146
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangonian Estuary"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:73
+#: ../src/microbe_stage/PatchMapGenerator.cs:147
 msgid "PATCH_CAVE"
 msgstr "Cave"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:80
+#: ../src/microbe_stage/PatchMapGenerator.cs:148
 msgid "PATCH_ICE_SHELF"
 msgstr "Ice Shelf"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:87
+#: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian Sea Floor"
 
@@ -2018,7 +2386,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:510
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1180
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1195
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
@@ -2026,11 +2394,11 @@ msgstr "Loading Microbe Editor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2065
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2080
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2066
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2081
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
@@ -2261,19 +2629,19 @@ msgstr "{0}: -{1} ATP"
 msgid "SPECIES_LIST"
 msgstr "Species List"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:851
 msgid "FREEBUILDING"
 msgstr "Freebuilding"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:936
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1626
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:941
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1654
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
 msgid "WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
@@ -2373,23 +2741,23 @@ msgstr "Error Saving"
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "The chosen filename ({0}) already exists. Overwrite?"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:30
 msgid "CREATE_NEW_SAVE"
 msgstr "Create New Save"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
 msgstr "Name:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
 msgstr "Extra Options"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Overwrite existing save:"
 
-#: ../src/saving/NewSaveMenu.tscn:119
+#: ../src/saving/NewSaveMenu.tscn:118
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Overwrite existing save?"
 
@@ -2631,14 +2999,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Removing organelles also costs MP as it is a mutation to your species. You "
-"can right click organelles to bring up the organelle menu and selecting "
-"the delete option to remove them. \n"
+"Removing organelles also costs MP as it is a mutation to your species, "
+"unless they were placed in the current editor session. \n"
+"\n"
+"You can right click organelles to bring up the organelle menu and "
+"selecting the delete option to remove them. \n"
 "\n"
 "If you make a mistake, you can undo any change you make in the editor.\n"
-"\n"
-"Note: removing organelles you placed in the current editor session is "
-"free.\n"
 "\n"
 "Click the undo button to continue."
 
@@ -2729,8 +3096,355 @@ msgstr ""
 "Look at the indicator in the bottom right to see how much more you need."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
-msgstr "TODO: Write Tutorial Text"
+msgstr ""
+"To control your cell use the keys shown near your cell (center of screen) "
+"and the mouse to control the cell orientation.\n"
+"\n"
+"Try all of the keys for a few seconds to continue."
+
+#~ msgid "TAB"
+#~ msgstr "Tab"
+
+#~ msgid "ENTER"
+#~ msgstr "Enter"
+
+#~ msgid "END"
+#~ msgstr "End"
+
+#~ msgid "LEFT"
+#~ msgstr "Left"
+
+#~ msgid "UP"
+#~ msgstr "Up"
+
+#~ msgid "RIGHT"
+#~ msgstr "Right"
+
+#~ msgid "DOWN"
+#~ msgstr "Down"
+
+#~ msgid "FORWARD"
+#~ msgstr "Forward"
+
+#~ msgid "EXCLAM"
+#~ msgstr "!"
+
+#~ msgid "QUOTEDBL"
+#~ msgstr "\""
+
+#~ msgid "NUMBERSIGN"
+#~ msgstr "#"
+
+#~ msgid "DOLLAR"
+#~ msgstr "$"
+
+#~ msgid "PERCENT"
+#~ msgstr "%"
+
+#~ msgid "AMPERSAND"
+#~ msgstr "&"
+
+#~ msgid "APOSTROPHE"
+#~ msgstr "'"
+
+#~ msgid "PARENLEFT"
+#~ msgstr "("
+
+#~ msgid "PARENRIGHT"
+#~ msgstr ")"
+
+#~ msgid "ASTERISK"
+#~ msgstr "*"
+
+#~ msgid "PLUS"
+#~ msgstr "+"
+
+#~ msgid "COMMA"
+#~ msgstr ","
+
+#~ msgid "MINUS"
+#~ msgstr "-"
+
+#~ msgid "PERIOD"
+#~ msgstr "."
+
+#~ msgid "SLASH"
+#~ msgstr "/"
+
+#~ msgid "KEY0"
+#~ msgstr "0"
+
+#~ msgid "KEY1"
+#~ msgstr "1"
+
+#~ msgid "KEY2"
+#~ msgstr "2"
+
+#~ msgid "KEY3"
+#~ msgstr "3"
+
+#~ msgid "KEY4"
+#~ msgstr "4"
+
+#~ msgid "KEY5"
+#~ msgstr "5"
+
+#~ msgid "KEY6"
+#~ msgstr "6"
+
+#~ msgid "KEY7"
+#~ msgstr "7"
+
+#~ msgid "KEY8"
+#~ msgstr "8"
+
+#~ msgid "KEY9"
+#~ msgstr "9"
+
+#~ msgid "COLON"
+#~ msgstr ":"
+
+#~ msgid "SEMICOLON"
+#~ msgstr ";"
+
+#~ msgid "LESS"
+#~ msgstr "<"
+
+#~ msgid "EQUAL"
+#~ msgstr "="
+
+#~ msgid "GREATER"
+#~ msgstr ">"
+
+#~ msgid "QUESTION"
+#~ msgstr "?"
+
+#~ msgid "AT"
+#~ msgstr "@"
+
+#~ msgid "BRACKETLEFT"
+#~ msgstr "["
+
+#~ msgid "BRACKETRIGHT"
+#~ msgstr "]"
+
+#~ msgid "ASCIICIRCUM"
+#~ msgstr "^"
+
+#~ msgid "UNDERSCORE"
+#~ msgstr "_"
+
+#~ msgid "QUOTELEFT"
+#~ msgstr "`"
+
+#~ msgid "BRACELEFT"
+#~ msgstr "{"
+
+#~ msgid "BAR"
+#~ msgstr "|"
+
+#~ msgid "BRACERIGHT"
+#~ msgstr "}"
+
+#~ msgid "ASCIITILDE"
+#~ msgstr "~"
+
+#~ msgid "EXCLAMDOWN"
+#~ msgstr "¡"
+
+#~ msgid "CENT"
+#~ msgstr "¢"
+
+#~ msgid "STERLING"
+#~ msgstr "£"
+
+#~ msgid "CURRENCY"
+#~ msgstr "¤"
+
+#~ msgid "YEN"
+#~ msgstr "¥"
+
+#~ msgid "BROKENBAR"
+#~ msgstr "¦"
+
+#~ msgid "SECTION"
+#~ msgstr "§"
+
+#~ msgid "DIAERESIS"
+#~ msgstr "¨"
+
+#~ msgid "COPYRIGHT"
+#~ msgstr "©"
+
+#~ msgid "ORDFEMININE"
+#~ msgstr "ª"
+
+#~ msgid "GUILLEMOTLEFT"
+#~ msgstr "«"
+
+#~ msgid "NOTSIGN"
+#~ msgstr "¬"
+
+#~ msgid "HYPHEN"
+#~ msgstr "-"
+
+#~ msgid "REGISTERED"
+#~ msgstr "®"
+
+#~ msgid "MACRON"
+#~ msgstr "¯"
+
+#~ msgid "DEGREE"
+#~ msgstr "°"
+
+#~ msgid "PLUSMINUS"
+#~ msgstr "±"
+
+#~ msgid "TWOSUPERIOR"
+#~ msgstr "²"
+
+#~ msgid "THREESUPERIOR"
+#~ msgstr "³"
+
+#~ msgid "ACUTE"
+#~ msgstr "´"
+
+#~ msgid "MU"
+#~ msgstr "µ"
+
+#~ msgid "PARAGRAPH"
+#~ msgstr "¶"
+
+#~ msgid "PERIODCENTERED"
+#~ msgstr "·"
+
+#~ msgid "CEDILLA"
+#~ msgstr "¸"
+
+#~ msgid "ONESUPERIOR"
+#~ msgstr "¹"
+
+#~ msgid "MASCULINE"
+#~ msgstr "º"
+
+#~ msgid "GUILLEMOTRIGHT"
+#~ msgstr "»"
+
+#~ msgid "ONEQUARTER"
+#~ msgstr "¼"
+
+#~ msgid "ONEHALF"
+#~ msgstr "½"
+
+#~ msgid "THREEQUARTERS"
+#~ msgstr "¾"
+
+#~ msgid "QUESTIONDOWN"
+#~ msgstr "¿"
+
+#~ msgid "AGRAVE"
+#~ msgstr "À"
+
+#~ msgid "AACUTE"
+#~ msgstr "Á"
+
+#~ msgid "ACIRCUMFLEX"
+#~ msgstr "Â"
+
+#~ msgid "ATILDE"
+#~ msgstr "Ã"
+
+#~ msgid "ADIAERESIS"
+#~ msgstr "Ä"
+
+#~ msgid "ARING"
+#~ msgstr "Å"
+
+#~ msgid "AE"
+#~ msgstr "Æ"
+
+#~ msgid "CCEDILLA"
+#~ msgstr "Ç"
+
+#~ msgid "EGRAVE"
+#~ msgstr "È"
+
+#~ msgid "EACUTE"
+#~ msgstr "É"
+
+#~ msgid "ECIRCUMFLEX"
+#~ msgstr "Ê"
+
+#~ msgid "EDIAERESIS"
+#~ msgstr "Ë"
+
+#~ msgid "IGRAVE"
+#~ msgstr "Ì"
+
+#~ msgid "IACUTE"
+#~ msgstr "Í"
+
+#~ msgid "ICIRCUMFLEX"
+#~ msgstr "Î"
+
+#~ msgid "IDIAERESIS"
+#~ msgstr "Ï"
+
+#~ msgid "ETH"
+#~ msgstr "Ð"
+
+#~ msgid "NTILDE"
+#~ msgstr "Ñ"
+
+#~ msgid "OGRAVE"
+#~ msgstr "Ò"
+
+#~ msgid "OACUTE"
+#~ msgstr "Ó"
+
+#~ msgid "OCIRCUMFLEX"
+#~ msgstr "Ô"
+
+#~ msgid "OTILDE"
+#~ msgstr "Õ"
+
+#~ msgid "ODIAERESIS"
+#~ msgstr "Ö"
+
+#~ msgid "MULTIPLY"
+#~ msgstr "×"
+
+#~ msgid "OOBLIQUE"
+#~ msgstr "Ø"
+
+#~ msgid "UGRAVE"
+#~ msgstr "Ù"
+
+#~ msgid "UACUTE"
+#~ msgstr "Ú"
+
+#~ msgid "UCIRCUMFLEX"
+#~ msgstr "Û"
+
+#~ msgid "UDIAERESIS"
+#~ msgstr "Ü"
+
+#~ msgid "YACUTE"
+#~ msgstr "Ý"
+
+#~ msgid "THORN"
+#~ msgstr "Þ"
+
+#~ msgid "SSHARP"
+#~ msgstr "ß"
+
+#~ msgid "DIVISION"
+#~ msgstr "÷"
+
+#~ msgid "YDIAERESIS"
+#~ msgstr "ÿ"
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Appearance"

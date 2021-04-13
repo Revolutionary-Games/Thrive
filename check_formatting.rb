@@ -634,7 +634,8 @@ def run_duplicate_finder
   return if skip_jetbrains?
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
-            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=true']
+            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=true',
+            '--exclude-by-comment="NO_DUPLICATE_CHECK"']
 
   params.append "--toolset-path=#{ms_build}" if OS.linux?
 

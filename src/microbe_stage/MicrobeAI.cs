@@ -7,6 +7,11 @@ using Newtonsoft.Json;
 ///   AI for a single Microbe. This is a separate class to contain all the AI status variables as well as make the
 ///   Microbe.cs file cleaner as this AI has a lot of code.
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is ran in a background thread so no state changing or scene spawning methods on Microbe may be called.
+///   </para>
+/// </remarks>
 public class MicrobeAI
 {
     private readonly Compound atp;
@@ -474,7 +479,7 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private void GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
-        // Retrive the nearest predator
+        // Retrieve the nearest predator
         // For our desires lets just say all microbes bigger are potential predators
         // and later extend this to include those with toxins and pilus
         Vector3 testPosition = new Vector3(0, 0, 0);
@@ -623,7 +628,7 @@ public class MicrobeAI
             {
                 if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
                 {
-                    microbe.EmitToxin(oxytoxy);
+                    microbe.QueueEmitToxin(oxytoxy);
                 }
             }
         }
@@ -768,7 +773,7 @@ public class MicrobeAI
             {
                 if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
                 {
-                    microbe.EmitToxin(oxytoxy);
+                    microbe.QueueEmitToxin(oxytoxy);
                 }
             }
         }

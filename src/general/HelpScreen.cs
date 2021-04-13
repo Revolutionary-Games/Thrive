@@ -57,6 +57,16 @@ public class HelpScreen : Control
         }
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            leftColumn.QueueFreeChildren();
+            rightColumn.QueueFreeChildren();
+            BuildHelpTexts(Category);
+        }
+    }
+
     /// <summary>
     ///   Randomizes the easter egg messages
     ///   and its chance of showing up.

@@ -29,8 +29,8 @@ public abstract class Species : ICloneable
     public float Aggression = 100.0f;
     public float Opportunism = 100.0f;
     public float Fear = 100.0f;
-    public float Activity;
-    public float Focus;
+    public float Activity = 100.0f;
+    public float Focus = 100.0f;
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)

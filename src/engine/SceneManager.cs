@@ -63,7 +63,7 @@ public class SceneManager : Node
     /// </summary>
     public void ReturnToMenu()
     {
-        var scene = LoadScene("res://src/gui_common/MainMenu.tscn");
+        var scene = LoadScene("res://src/general/MainMenu.tscn");
 
         var mainMenu = (MainMenu)scene.Instance();
 

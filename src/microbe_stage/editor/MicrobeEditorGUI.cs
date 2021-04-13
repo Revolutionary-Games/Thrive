@@ -844,6 +844,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         if (editor.FreeBuilding)
         {
+            mutationPointsArrow.Hide();
+            resultingMutationPointsLabel.Hide();
+            baseMutationPointsLabel.Hide();
+
             currentMutationPointsLabel.Text = TranslationServer.Translate("FREEBUILDING");
         }
         else
@@ -920,6 +924,60 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         reportTabPatchNameLabel.Text = patch;
     }
 
+    /// <summary>
+    ///   Update the patch details specific to the Patch Map tab
+    /// </summary>
+    public void UpdatePatchDetails(Patch patch)
+    {
+        patchName.Text = TranslationServer.Translate(patch.Name);
+
+        // Biome: {0}
+        patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("BIOME_LABEL"),
+            patch.BiomeTemplate.Name);
+
+        // {0}-{1}m below sea level
+        patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("BELOW_SEA_LEVEL"),
+            patch.Depth[0], patch.Depth[1]);
+        patchPlayerHere.Visible = editor.CurrentPatch == patch;
+
+        // Atmospheric gasses
+        patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
+        patchPressure.Text = "20 bar";
+        patchLight.Text = GetCompoundAmount(patch, sunlight.InternalName) + "% lx";
+        patchOxygen.Text = GetCompoundAmount(patch, oxygen.InternalName) + "%";
+        patchNitrogen.Text = GetCompoundAmount(patch, nitrogen.InternalName) + "%";
+        patchCO2.Text = GetCompoundAmount(patch, carbondioxide.InternalName) + "%";
+
+        // Compounds
+        patchHydrogenSulfide.Text = Math.Round(GetCompoundAmount(patch, hydrogensulfide.InternalName), 3) + "%";
+        patchAmmonia.Text = Math.Round(GetCompoundAmount(patch, ammonia.InternalName), 3) + "%";
+        patchGlucose.Text = Math.Round(GetCompoundAmount(patch, glucose.InternalName), 3) + "%";
+        patchPhosphate.Text = Math.Round(GetCompoundAmount(patch, phosphates.InternalName), 3) + "%";
+        patchIron.Text = GetCompoundAmount(patch, iron.InternalName) + "%";
+
+        // Refresh species list
+        speciesListBox.ClearItems();
+
+        foreach (var species in patch.SpeciesInPatch.Keys)
+        {
+            var speciesLabel = new Label();
+            speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
+            speciesLabel.Autowrap = true;
+            speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
+                patch.GetSpeciesPopulation(species));
+            speciesListBox.AddItem(speciesLabel);
+        }
+
+        UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
+
+        UpdateReportTabStatistics(patch);
+
+        UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
+    }
+
     public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
     {
         organelleMenu.SelectedOrganelle = selectedOrganelle;
@@ -982,9 +1040,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         if (freebuilding)
         {
             newCellButton.Disabled = false;
-            mutationPointsArrow.Hide();
-            resultingMutationPointsLabel.Hide();
-            baseMutationPointsLabel.Hide();
         }
         else
         {
@@ -1614,56 +1669,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         patchDetails.Visible = true;
         patchNothingSelected.Visible = false;
 
-        patchName.Text = patch.Name;
-
-        // Biome: {0}
-        patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("BIOME_LABEL"),
-            patch.BiomeTemplate.Name);
-
-        // {0}-{1}m below sea level
-        patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("BELOW_SEA_LEVEL"),
-            patch.Depth[0], patch.Depth[1]);
-        patchPlayerHere.Visible = editor.CurrentPatch == patch;
-
-        // Atmospheric gasses
-        patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
-        patchPressure.Text = "20 bar";
-        patchLight.Text = GetCompoundAmount(patch, sunlight.InternalName) + "% lx";
-        patchOxygen.Text = GetCompoundAmount(patch, oxygen.InternalName) + "%";
-        patchNitrogen.Text = GetCompoundAmount(patch, nitrogen.InternalName) + "%";
-        patchCO2.Text = GetCompoundAmount(patch, carbondioxide.InternalName) + "%";
-
-        // Compounds
-        patchHydrogenSulfide.Text = Math.Round(GetCompoundAmount(patch, hydrogensulfide.InternalName), 3) + "%";
-        patchAmmonia.Text = Math.Round(GetCompoundAmount(patch, ammonia.InternalName), 3) + "%";
-        patchGlucose.Text = Math.Round(GetCompoundAmount(patch, glucose.InternalName), 3) + "%";
-        patchPhosphate.Text = Math.Round(GetCompoundAmount(patch, phosphates.InternalName), 3) + "%";
-        patchIron.Text = GetCompoundAmount(patch, iron.InternalName) + "%";
-
-        // Refresh species list
-        speciesListBox.ClearItems();
-
-        foreach (var species in patch.SpeciesInPatch.Keys)
-        {
-            var speciesLabel = new Label();
-            speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
-            speciesLabel.Autowrap = true;
-            speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
-                patch.GetSpeciesPopulation(species));
-            speciesListBox.AddItem(speciesLabel);
-        }
+        UpdatePatchDetails(patch);
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
-
-        UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
-
-        UpdateReportTabStatistics(patch);
-
-        UpdateReportTabPatchName(patch.Name);
     }
 
     /// <summary>

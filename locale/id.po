@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-08 10:22+0200\n"
+"POT-Creation-Date: 2021-04-13 21:24+0200\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: Rizky Pramudya <rizkypramudyacj@outlook.co.id>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -850,6 +850,10 @@ msgstr ""
 msgid "POPULATION"
 msgstr ""
 
+#: ../src/auto-evo/RunResults.cs:226
+msgid "WENT_EXTINCT_IN"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr ""
@@ -870,20 +874,376 @@ msgstr ""
 msgid "RUNRESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:291
+#: ../src/auto-evo/RunResults.cs:292
 msgid "RUNRESULT_POP_IN_PATCHES"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:372
+msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
 msgid "LOADING"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:299
+#: ../src/engine/input/key_mapping/InputEventItem.cs:312
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:126
+msgid "KEY_FORWARD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:127
+msgid "KEY_TAB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:128
+msgid "KEY_ENTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:129
+msgid "KEY_INSERT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:130
+msgid "KEY_DELETE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:131
+msgid "KEY_PAUSE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:132
+msgid "KEY_CLEAR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:133
+msgid "KEY_HOME"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:134
+msgid "KEY_END"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:135
+msgid "KEY_LEFT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:136
+msgid "KEY_UP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:137
+msgid "KEY_RIGHT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:138
+msgid "KEY_DOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:139
+msgid "KEY_MENU"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:140
+msgid "KEY_HELP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:141
+msgid "KEY_BACK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:142
+msgid "KEY_STOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:143
+msgid "KEY_REFRESH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:144
+msgid "KEY_SEARCH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:145
+msgid "KEY_STANDBY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:146
+msgid "KEY_OPENURL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:147
+msgid "KEY_HOMEPAGE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:148
+msgid "KEY_FAVORITES"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:149
+msgid "KEY_PRINT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:162
+msgid "SPACE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:163
+msgid "BACKSLASH"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:164
+msgid "ESCAPE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:165
+msgid "BACKSPACE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:166
+msgid "KPENTER"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:167
+msgid "SYSREQ"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:168
+msgid "PAGEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:169
+msgid "PAGEDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:170
+msgid "CAPSLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:171
+msgid "NUMLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:172
+msgid "SCROLLLOCK"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:173
+msgid "SUPERL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:174
+msgid "SUPERR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:175
+msgid "HYPERL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:176
+msgid "HYPERR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:177
+msgid "DIRECTIONL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:178
+msgid "DIRECTIONR"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:179
+msgid "VOLUMEDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:180
+msgid "VOLUMEMUTE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:181
+msgid "VOLUMEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:182
+msgid "BASSBOOST"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:183
+msgid "BASSUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:184
+msgid "BASSDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:185
+msgid "TREBLEUP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:186
+msgid "TREBLEDOWN"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:187
+msgid "MEDIAPLAY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:188
+msgid "MEDIASTOP"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:189
+msgid "MEDIAPREVIOUS"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:190
+msgid "MEDIANEXT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:191
+msgid "MEDIARECORD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:192
+msgid "LAUNCHMAIL"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:193
+msgid "LAUNCHMEDIA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:194
+msgid "LAUNCH0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:195
+msgid "LAUNCH1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:196
+msgid "LAUNCH2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:197
+msgid "LAUNCH3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:198
+msgid "LAUNCH4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:199
+msgid "LAUNCH5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:200
+msgid "LAUNCH6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:201
+msgid "LAUNCH7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:202
+msgid "LAUNCH8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:203
+msgid "LAUNCH9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:204
+msgid "LAUNCHA"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:205
+msgid "LAUNCHB"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:206
+msgid "LAUNCHC"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:207
+msgid "LAUNCHD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:208
+msgid "LAUNCHE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:209
+msgid "LAUNCHF"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:210
+msgid "KPMULTIPLY"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:211
+msgid "KPDIVIDE"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:212
+msgid "KPSUBTRACT"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:213
+msgid "KPPERIOD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:214
+msgid "KPADD"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:215
+msgid "KP0"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:216
+msgid "KP1"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:217
+msgid "KP2"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:218
+msgid "KP3"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:219
+msgid "KP4"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:220
+msgid "KP5"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:221
+msgid "KP6"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:222
+msgid "KP7"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:223
+msgid "KP8"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:224
+msgid "KP9"
+msgstr ""
+
+#: ../src/engine/input/key_mapping/KeyNames.cs:225
+msgid "UNKNOWN"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
@@ -898,43 +1258,43 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
@@ -943,228 +1303,280 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:127
-msgid "GRAPHICS"
+#: ../src/general/MainMenu.cs:329
+msgid "OK"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:139
-msgid "SOUND"
+#: ../src/general/MainMenu.cs:330
+msgid "Cancel"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:151
-msgid "PERFORMANCE"
+#: ../src/general/MainMenu.tscn:148
+msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:163
-msgid "INPUTS"
+#: ../src/general/MainMenu.tscn:163 ../src/general/PauseMenu.tscn:71
+msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:175
-msgid "MISC"
+#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:93
+msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:214
-msgid "VSYNC"
+#: ../src/general/MainMenu.tscn:187
+msgid "TOOLS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:222
-msgid "FULLSCREEN"
+#: ../src/general/MainMenu.tscn:199
+msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:244
-msgid "MULTISAMPLE_ANTI_ALIASING"
+#: ../src/general/MainMenu.tscn:211
+msgid "EXTRAS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:251
-msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
+#: ../src/general/MainMenu.tscn:223
+msgid "CREDITS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:281
-msgid "RESOLUTION"
+#: ../src/general/MainMenu.tscn:235
+msgid "QUIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:294
-msgid "AUTO"
+#: ../src/general/MainMenu.tscn:258
+msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:304
-msgid "MAX_FPS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:330
-msgid "COLOURBLIND_CORRECTION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:362
-msgid "CHROMATIC_ABERRATION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:403
-msgid "MASTER_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:430 ../src/general/OptionsMenu.tscn:471
-#: ../src/general/OptionsMenu.tscn:504 ../src/general/OptionsMenu.tscn:537
-#: ../src/general/OptionsMenu.tscn:570
-msgid "MUTE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:444
-msgid "MUSIC_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:477
-msgid "AMBIANCE_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:510
-msgid "SFX_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:543
-msgid "GUI_VOLUME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:588
-msgid "LANGUAGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:1009
-msgid "RESET"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:612
-msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:632
-msgid "COMPOUND_CLOUDS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:647
-msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:654 ../src/general/OptionsMenu.tscn:698
-msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:691
-msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:733
-msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:800
-msgid "RESET_INPUTS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:824
-msgid "PLAY_INTRO_VIDEO"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:833
-msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:842
-msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:853
-msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:881
-msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:907
-msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:915
-msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:931
-msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:943
-msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:954
-msgid "CUSTOM_USERNAME"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:980
-msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:988
-msgid "OPEN_LOGS_FOLDER"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:999 ../src/general/PauseMenu.tscn:133
-#: ../src/gui_common/MainMenu.tscn:319 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:113
 msgid "BACK"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1020 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/MainMenu.tscn:359
+msgid "GLES2_MODE_WARNING"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:372
+msgid "GLES2_MODE_WARNING_TEXT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:126
+msgid "GRAPHICS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:138
+msgid "SOUND"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:150
+msgid "PERFORMANCE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:162
+msgid "INPUTS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:174
+msgid "MISC"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:213
+msgid "VSYNC"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:221
+msgid "FULLSCREEN"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:243
+msgid "MULTISAMPLE_ANTI_ALIASING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:250
+msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:280
+msgid "RESOLUTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:293
+msgid "AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:303
+msgid "MAX_FPS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:329
+msgid "COLOURBLIND_CORRECTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:361
+msgid "CHROMATIC_ABERRATION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:402
+msgid "MASTER_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:429 ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:503 ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:569
+msgid "MUTE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:443
+msgid "MUSIC_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:476
+msgid "AMBIANCE_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:509
+msgid "SFX_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:542
+msgid "GUI_VOLUME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:587
+msgid "LANGUAGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:602 ../src/general/OptionsMenu.tscn:1008
+msgid "RESET"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:611
+msgid "OPEN_TRANSLATION_SITE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:631
+msgid "COMPOUND_CLOUDS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:646
+msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:653 ../src/general/OptionsMenu.tscn:697
+msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:690
+msgid "CLOUD_RESOLUTION_DIVISOR"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:732
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:799
+msgid "RESET_INPUTS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:823
+msgid "PLAY_INTRO_VIDEO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:832
+msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:841
+msgid "AUTOSAVE_DURING_THE_GAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:852
+msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:880
+msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:906
+msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:914
+msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:930
+msgid "CHEAT_KEYS_ENABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:942
+msgid "USE_A_CUSTOM_USERNAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:953
+msgid "CUSTOM_USERNAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:979
+msgid "OPEN_SCREENSHOT_FOLDER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:987
+msgid "OPEN_LOGS_FOLDER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1019 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1035
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1047
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1057
+#: ../src/general/OptionsMenu.tscn:1056
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1071
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1079
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1093
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1114
+#: ../src/general/OptionsMenu.tscn:1113
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1135
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "CANCEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/OptionsMenu.tscn:1196
-#: ../src/general/OptionsMenu.tscn:1220
+#: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "ERROR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1221
+#: ../src/general/OptionsMenu.tscn:1181 ../src/general/OptionsMenu.tscn:1220
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
@@ -1176,10 +1588,6 @@ msgstr ""
 msgid "SAVE_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:71 ../src/gui_common/MainMenu.tscn:163
-msgid "LOAD_GAME"
-msgstr ""
-
 #: ../src/general/PauseMenu.tscn:79
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4503
 msgid "STATISTICS"
@@ -1187,10 +1595,6 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:86
 msgid "HELP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:93 ../src/gui_common/MainMenu.tscn:175
-msgid "OPTIONS"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:100
@@ -1213,53 +1617,10 @@ msgstr ""
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:148
+#: ../src/gui_common/ChemicalEquation.cs:120
+#: ../src/gui_common/ChemicalEquation.cs:157
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:222
 msgid "PER_SECOND_SLASH"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.cs:329
-msgid "OK"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.cs:330
-msgid "Cancel"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:148
-msgid "NEW_GAME"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:187
-msgid "TOOLS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:199
-msgid "VIEW_SOURCE_CODE"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:211
-msgid "EXTRAS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:223
-msgid "CREDITS"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:235
-msgid "QUIT"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:258
-msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:359
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-#: ../src/gui_common/MainMenu.tscn:372
-msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
@@ -1733,15 +2094,23 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1301
+#: ../src/microbe_stage/Microbe.cs:915
+msgid "DEATH"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1336
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1308
+#: ../src/microbe_stage/Microbe.cs:1343
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1768
+#: ../src/microbe_stage/Microbe.cs:1665
+msgid "REPRODUCED"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1803
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1757,11 +2126,11 @@ msgstr ""
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:471
+#: ../src/microbe_stage/MicrobeStage.cs:479
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:623
+#: ../src/microbe_stage/MicrobeStage.cs:631
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -1808,47 +2177,47 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:16
+#: ../src/microbe_stage/PatchMapGenerator.cs:139
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:24
+#: ../src/microbe_stage/PatchMapGenerator.cs:140
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:31
+#: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:38
+#: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:45
+#: ../src/microbe_stage/PatchMapGenerator.cs:143
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:52
+#: ../src/microbe_stage/PatchMapGenerator.cs:144
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:59
+#: ../src/microbe_stage/PatchMapGenerator.cs:145
 msgid "PATCH_PANGONIAN_COAST"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:66
+#: ../src/microbe_stage/PatchMapGenerator.cs:146
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:73
+#: ../src/microbe_stage/PatchMapGenerator.cs:147
 msgid "PATCH_CAVE"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:80
+#: ../src/microbe_stage/PatchMapGenerator.cs:148
 msgid "PATCH_ICE_SHELF"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:87
+#: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
@@ -1861,7 +2230,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:510
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1180
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1195
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
@@ -1869,11 +2238,11 @@ msgstr ""
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2065
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2080
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2066
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2081
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -2095,19 +2464,19 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:851
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:936
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1626
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:941
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1654
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
 msgid "WITH_POPULATION"
 msgstr ""
 
@@ -2201,23 +2570,23 @@ msgstr ""
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:30
 msgid "CREATE_NEW_SAVE"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:119
+#: ../src/saving/NewSaveMenu.tscn:118
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
