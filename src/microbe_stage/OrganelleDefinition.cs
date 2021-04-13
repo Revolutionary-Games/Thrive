@@ -138,15 +138,14 @@ public class OrganelleDefinition : IRegistryType
     public bool ShouldScale = true;
 
     /// <summary>
-<<<<<<< HEAD
-    ///   If the organelle should only be placeable once per cell.
-    /// </summary>
-    public bool Unique = false;
-=======
     ///   Flags whether this organelle is exclusive for eukaryotes
     /// </summary>
     public bool RequiresNucleus;
->>>>>>> master
+
+    /// <summary>
+    ///   Can this organelle only be places once
+    /// </summary>
+    public bool Unique;
 
     /// <summary>
     ///   Caches the rotated hexes

@@ -479,7 +479,8 @@
         "mass": 0.9,
         "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
         "name": "BINDING_AGENT",
-        "iconPath": "res://assets/textures/gui/bevel/BindingAgentIcon.png",
+        "iconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
+        "requiresNucleus": true,
         "unique": true
     },
     "chloroplast": {
@@ -615,10 +616,7 @@
         "mass": 0.5,
         "displayScene": "res://assets/models/organelles/Nucleus.tscn",
         "name": "NUCLEUS",
-<<<<<<< HEAD
+        "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
         "unique": true
-=======
-        "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png"
->>>>>>> master
     }
 }

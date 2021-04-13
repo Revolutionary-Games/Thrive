@@ -1108,26 +1108,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock the organelles that need a nucleus
     /// </summary>
-<<<<<<< HEAD
-    /// <remarks>
-    ///   <para>
-    ///     TODO: rename to something more sensible
-    ///     and maybe also improve how this is implemented
-    ///     to be not cluttered
-    ///   </para>
-    /// </remarks>
-    internal void UpdateGuiButtonStatus(List<string> uniquesAlreadyPlaced)
-=======
-    internal void UpdatePartsAvailability(bool hasNucleus)
->>>>>>> master
+    internal void UpdatePartsAvailability(List<string> placedUniqueOrganelleNames)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
-<<<<<<< HEAD
-            SetOrganelleButtonStatus(organelleItem, uniquesAlreadyPlaced);
-=======
-            UpdatePartAvailability(hasNucleus, organelle);
->>>>>>> master
+            UpdatePartAvailability(placedUniqueOrganelleNames, organelle);
         }
     }
 
@@ -1293,48 +1278,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
     }
 
-<<<<<<< HEAD
-    private static void SetOrganelleButtonStatus(Control organelleItem, List<string> uniquesAlreadyPlaced)
-    {
-        var nucleus = uniquesAlreadyPlaced.Contains("nucleus");
-        var button = organelleItem.GetNode<Button>("VBoxContainer/Button");
-
-        if (organelleItem.Name == "nucleus")
-        {
-            button.Disabled = nucleus;
-        }
-        else if (organelleItem.Name == "mitochondrion")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "chloroplast")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "chemoplast")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "nitrogenfixingplastid")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "vacuole")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "oxytoxy")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "bindingagent")
-        {
-            button.Disabled = !nucleus || uniquesAlreadyPlaced.Contains("bindingagent");
-        }
-    }
-
-=======
->>>>>>> master
     private void UpdateSymmetryIcon()
     {
         switch (symmetry)
@@ -1357,13 +1300,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock a single organelle that need a nucleus
     /// </summary>
-    private void UpdatePartAvailability(bool hasNucleus, OrganelleDefinition organelle)
+    private void UpdatePartAvailability(List<string> placedUniqueOrganelleNames, OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
+        var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus.InternalName);
 
-        if (item.Name == nucleus.InternalName)
+        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle.InternalName))
         {
-            item.Locked = hasNucleus;
+            item.Locked = true;
         }
         else if (organelle.RequiresNucleus)
         {

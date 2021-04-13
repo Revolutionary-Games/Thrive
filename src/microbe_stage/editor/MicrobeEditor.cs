@@ -1278,11 +1278,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-<<<<<<< HEAD
-        gui.UpdateGuiButtonStatus(PlacedUniqueOrganelleNames);
-=======
-        gui.UpdatePartsAvailability(HasNucleus);
->>>>>>> master
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelleNames);
 
         // Reset to cytoplasm if nothing is selected
         if (ActiveActionName == null)
@@ -1860,11 +1856,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
-<<<<<<< HEAD
-        gui.UpdateGuiButtonStatus(PlacedUniqueOrganelleNames);
-=======
-        gui.UpdatePartsAvailability(HasNucleus);
->>>>>>> master
+
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelleNames);
 
         UpdatePatchDependentBalanceData();
 
