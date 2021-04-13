@@ -52,6 +52,8 @@ public class SpawnSystem
     [JsonProperty]
     private int maxAliveEntities = 1000;
 
+    private Dictionary<Vector3, bool> spawnedGrid = new Dictionary<Vector3, bool>();
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
@@ -244,18 +246,55 @@ public class SpawnSystem
 
     private void SpawnItems(Vector3 playerPosition, Vector3 playerRotation, float delta)
     {
-        spawnItemTimer -= delta;
-        if (spawnItemTimer <= 0)
+        int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
+        int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
+
+        for (int i = -Constants.SPAWN_GRID_WIDTH; i <= Constants.SPAWN_GRID_WIDTH; i++)
         {
-            Spawn(playerPosition, playerRotation);
-            spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
+            for (int j = -Constants.SPAWN_GRID_WIDTH; j <= Constants.SPAWN_GRID_WIDTH; j++)
+            {
+                int spawnGridX = playerGridX + i;
+                int spawnGridZ = playerGridZ + j;
+
+                // Make Random
+                float spawnEventPosX = spawnGridX * Constants.SPAWN_GRID_SIZE;
+                float spawnEventPosZ = spawnGridZ * Constants.SPAWN_GRID_SIZE;
+
+                Vector3 spawnEvent = new Vector3(spawnEventPosX, 0, spawnEventPosZ);
+
+                if (!spawnedGrid.ContainsKey(spawnEvent) || !spawnedGrid[spawnEvent])
+                {
+                    SpawnEvent(spawnEvent, playerPosition);
+
+                    spawnedGrid[spawnEvent] = true;
+                }
+            }
         }
     }
 
-    private void Spawn(Vector3 playerPosition, Vector3 playerRotation)
+    private void SpawnEvent(Vector3 spawnGridPos, Vector3 playerPosition)
     {
+        // Choose random place to spawn
+        Vector3 spawnEventCenter = spawnGridPos +
+            new Vector3(random.NextFloat() * Constants.SPAWN_GRID_SIZE - Constants.SPAWN_GRID_HALFSIZE, 0,
+            (float)random.NextFloat() * Constants.SPAWN_GRID_SIZE - Constants.SPAWN_GRID_HALFSIZE);
+
         DespawnEntities(playerPosition);
 
+        for (int i = 0; i < random.Next(Constants.SPAWN_EVENT_MIN, Constants.SPAWN_EVENT_MAX); i++)
+        {
+            float spawnRadius = (random.NextFloat() + 0.1f) * Constants.SPAWN_EVENT_RADIUS;
+            float spawnAngle = random.NextFloat() * 2 * Mathf.Pi;
+
+            Vector3 spawnModPosition = new Vector3(spawnRadius * Mathf.Sin(spawnAngle),
+                0, spawnRadius * Mathf.Cos(spawnAngle));
+
+            SpawnItem(spawnEventCenter + spawnModPosition);
+        }
+    }
+
+    private void SpawnItem(Vector3 spawnPos)
+    {
         SpawnItem spawn = SpawnItemBagPop();
 
         // If there are too many entities, do not spawn any more.
@@ -263,15 +302,7 @@ public class SpawnSystem
         if (spawnedEntities.Count >= maxAliveEntities)
             return;
 
-        float minRadius = spawn.GetMinSpawnRadius();
-        float maxRadius = spawn.GetSpawnRadius();
-
-        float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
-        float displacementRotation = WeightedRandomRotation(playerRotation.y);
-
-        Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
-
-        List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
+        List<ISpawned> spawnedList = spawn.Spawn(spawnPos);
         if (spawnedList != null)
         {
             foreach (ISpawned spawned in spawnedList)
@@ -303,10 +334,18 @@ public class SpawnSystem
             }
 
             var entityPosition = ((Spatial)entity).Translation;
-            var squaredDistance = (playerPosition - entityPosition).LengthSquared();
+
+            int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
+            int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
+
+            float minSpawnX = (playerGridX - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS;
+            float maxSpawnX = (playerGridX + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE + Constants.SPAWN_EVENT_RADIUS;
+            float minSpawnZ = (playerGridZ - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS;
+            float maxSpawnZ = (playerGridZ + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE + Constants.SPAWN_EVENT_RADIUS;
 
             // If the entity is too far away from the player, despawn it.
-            if (squaredDistance > spawned.DespawnRadius * spawned.DespawnRadius)
+            if (entityPosition.x < minSpawnX || entityPosition.x > maxSpawnX ||
+                entityPosition.z < minSpawnZ || entityPosition.z > maxSpawnZ)
             {
                 entitiesDeleted++;
                 entity.DetachAndQueueFree();

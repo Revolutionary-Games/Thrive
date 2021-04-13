@@ -86,10 +86,11 @@ public class PatchManager
 
         foreach (var chunk in biome.Chunks.Keys)
         {
-            float chunkDensity = biome.Chunks[chunk].Density;
+            float chunkDensity = biome.Chunks[chunk].Density / 3.0f;
 
             if (chunkDensity > 0)
             {
+                // Cheaty divide because there are too many chunks
                 int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * chunkDensity);
                 GD.Print(biome.Chunks[chunk].Name + " has " + numOfItems + " items per bag.");
                 spawnSystem.AddBiomeChunk(biome.Chunks[chunk], numOfItems);
