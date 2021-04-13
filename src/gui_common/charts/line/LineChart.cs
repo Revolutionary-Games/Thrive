@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -309,6 +310,10 @@ public class LineChart : VBoxContainer
 
         foreach (var data in dataSets)
         {
+            // Null check to suppress ReSharper's warning
+            if (string.IsNullOrEmpty(data.Key))
+                throw new Exception("Dataset dictionary key is null");
+
             // Hide the rest, if number of shown dataset exceeds initialVisibleDataSets
             if (visibleDataSetCount >= initialVisibleDataSets && data.Key != defaultDataSet)
             {
@@ -320,12 +325,9 @@ public class LineChart : VBoxContainer
             }
 
             // Initialize line
-            if (!string.IsNullOrEmpty(data.Key))
-            {
-                var dataLine = new DataLine(data.Value, data.Key == defaultDataSet);
-                dataLines[data.Key] = dataLine;
-                drawArea.AddChild(dataLine);
-            }
+            var dataLine = new DataLine(data.Value, data.Key == defaultDataSet);
+            dataLines[data.Key] = dataLine;
+            drawArea.AddChild(dataLine);
 
             foreach (var point in data.Value.DataPoints)
             {
@@ -765,7 +767,7 @@ public class LineChart : VBoxContainer
         }
 
         // Populate the columns (in reverse order)
-        for (int i = YAxisTicks; i-- > 0;)
+        for (int i = YAxisTicks - 1; i >= 0; i--)
         {
             var label = new Label
             {
@@ -893,16 +895,18 @@ public class LineChart : VBoxContainer
             case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
             {
                 icon.Pressed = false;
-                ToolTipManager.Instance.ShowPopup(
-                    $"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
+                ToolTipManager.Instance.ShowPopup(string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "MAX_VISIBLE_DATASET_WARNING"), MaxDisplayedDataSet), 1f);
                 break;
             }
 
             case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
             {
                 icon.Pressed = true;
-                ToolTipManager.Instance.ShowPopup(
-                    $"Not allowed to hide less than {MinDisplayedDataSet} dataset(s)!", 1f);
+                ToolTipManager.Instance.ShowPopup(string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "MIN_VISIBLE_DATASET_WARNING"), MinDisplayedDataSet), 1f);
                 break;
             }
         }
@@ -919,13 +923,20 @@ public class LineChart : VBoxContainer
         switch (result)
         {
             case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
-                ToolTipManager.Instance.ShowPopup(
-                    $"Not allowed to show more than {MaxDisplayedDataSet} datasets!", 1f);
+            {
+                ToolTipManager.Instance.ShowPopup(string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "MAX_VISIBLE_DATASET_WARNING"), MaxDisplayedDataSet), 1f);
                 break;
+            }
+
             case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
-                ToolTipManager.Instance.ShowPopup(
-                    $"Not allowed to hide less than {MinDisplayedDataSet} dataset(s)!", 1f);
+            {
+                ToolTipManager.Instance.ShowPopup(string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "MIN_VISIBLE_DATASET_WARNING"), MinDisplayedDataSet), 1f);
                 break;
+            }
         }
     }
 
@@ -1007,11 +1018,8 @@ public class LineChart : VBoxContainer
             tween.InterpolateProperty(this, "rect_scale", Vector2.One, new Vector2(1.1f, 1.1f), 0.1f);
             tween.Start();
 
-            if (Pressed)
-            {
-                // Adjust the icon color to be highlighted
-                Modulate = IsUsingFallbackIcon ? data.DataColour.Lightened(0.5f) : new Color(0.7f, 0.7f, 0.7f);
-            }
+            // Highlight icon
+            Modulate = IsUsingFallbackIcon ? data.DataColour.Lightened(0.5f) : Colors.LightGray;
         }
 
         private void IconLegendMouseExit()
@@ -1021,8 +1029,12 @@ public class LineChart : VBoxContainer
 
             if (Pressed)
             {
-                // Adjust the icon color back to normal
+                // Reset icon color
                 Modulate = IsUsingFallbackIcon ? data.DataColour : Colors.White;
+            }
+            else
+            {
+                Modulate = Colors.DarkGray;
             }
         }
 
