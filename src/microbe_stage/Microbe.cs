@@ -2131,7 +2131,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (parent is Spatial spatial)
         {
             var offset = Translation
-               .Rotated(Vector3.Up, spatial.Rotation.y);
+                .Rotated(Vector3.Up, spatial.Rotation.y);
             pos = spatial.Translation + offset;
         }
         else
@@ -2273,7 +2273,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         State = MicrobeState.NORMAL;
 
         var offset = (other.Translation - Translation)
-           .Rotated(Vector3.Down, Rotation.y);
+            .Rotated(Vector3.Down, Rotation.y);
         var rotation = other.Rotation - Rotation;
 
         other.Translation = offset;

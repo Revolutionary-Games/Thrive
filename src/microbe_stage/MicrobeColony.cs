@@ -110,7 +110,10 @@ public class MicrobeColony
         return GetColonyMembers().SequenceEqual(other.GetColonyMembers());
     }
 
-    public override int GetHashCode() => GetColonyMembers().Aggregate(23, (a, b) => a ^ b.GetHashCode());
+    public override int GetHashCode()
+    {
+        return GetColonyMembers().Aggregate(23, (a, b) => a ^ b.GetHashCode());
+    }
 
     private List<Microbe> GetColonyMembers(Microbe current, List<Microbe> carry)
     {
