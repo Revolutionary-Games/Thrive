@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-13 21:59+0200\n"
+"POT-Creation-Date: 2021-04-13 22:57+0200\n"
 "PO-Revision-Date: 2021-04-10 12:08+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -424,7 +424,7 @@ msgid "ZOOM_IN"
 msgstr "Yakınlaştır"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:922
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:921
 msgid "EDITOR"
 msgstr "Editör"
 
@@ -791,21 +791,18 @@ msgstr "Silika"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2791
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2328
 msgid "PREDATORY_PILUS"
 msgstr "Yırtıcı Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:53
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1601
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1972
 msgid "RUSTICYANIN"
 msgstr "Rustisiyanin"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:86
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2039
 msgid "NITROGENASE"
 msgstr "Nitrojenaz"
 
@@ -822,7 +819,6 @@ msgstr "Kemosentez Yapan Proteinler"
 #: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2106
 msgid "OXYTOXISOME"
 msgstr "Oksitoksizom"
 
@@ -834,49 +830,42 @@ msgstr "Tilakoidler"
 #: ../simulation_parameters/microbe_stage/organelles.json:251
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:602
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:666
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1770
 msgid "METABOLOSOMES"
 msgstr "Metabolozomlar"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:287
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4561
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4625
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2954
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Azot Fiksasyon Plastidi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:324
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4276
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4340
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2884
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:356
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2262
 msgid "FLAGELLUM"
 msgstr "Kamçı"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:383
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4880
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4944
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3022
 msgid "VACUOLE"
 msgstr "Koful"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:418
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3383
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2682
 msgid "MITOCHONDRION"
 msgstr "Mitokondri"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:452
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5081
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:5145
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3091
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksin\n"
@@ -885,7 +874,6 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2616
 #, fuzzy
 msgid "BINDING_AGENT"
 msgstr ""
@@ -895,23 +883,21 @@ msgstr ""
 "direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan "
 "fermentasyon yapabilir."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:520
+#: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3671
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3735
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2749
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:552
+#: ../simulation_parameters/microbe_stage/organelles.json:553
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:414
 msgid "CYTOPLASM"
 msgstr "Sitoplazma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:617
+#: ../simulation_parameters/microbe_stage/organelles.json:618
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2551
 msgid "NUCLEUS"
 msgstr "Çekirdek"
 
@@ -1769,7 +1755,7 @@ msgid "SAVE_GAME"
 msgstr "Oyunu Kaydet"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4037
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2483
 msgid "STATISTICS"
 msgstr "İstatistikler"
 
@@ -2006,7 +1992,6 @@ msgstr ""
 "akışkan glikoliz yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:896
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1837
 msgid "THYLAKOID"
 msgstr "Tilakoid"
 
@@ -2165,7 +2150,6 @@ msgstr "Bununla diğer hücreleri del."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2394
 msgid "CILIA"
 msgstr "Sil"
 
@@ -2233,7 +2217,6 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3973
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4037
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2816
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
@@ -2480,8 +2463,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4221
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4858
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2667
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3304
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
@@ -2555,196 +2538,176 @@ msgstr "Mikrop Editörü Yükleniyor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Oto-evrim bekleniyor:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2089
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2082
 msgid "AUTO_EVO_FAILED"
 msgstr "Oto-evrim çalıştırılamadı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2090
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2083
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:878
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:877
 msgid "REPORT"
 msgstr "Rapor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:900
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:899
 msgid "PATCH_MAP"
 msgstr "Arazi Haritası"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:979
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:978
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1040
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1039
 msgid "SPEED_COLON"
 msgstr "Hız:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1070
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1069
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1100
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1099
 msgid "SIZE_COLON"
 msgstr "Büyüklük:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1121
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1120
 msgid "GENERATION_COLON"
 msgstr "Kuşak:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1163
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1162
 msgid "ATP_BALANCE"
 msgstr "ATP Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1369
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1368
 msgid "MUTATION_POINTS"
 msgstr "Mutasyon Puanı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1505
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1504
 msgid "STRUCTURE"
 msgstr "Yapı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1528
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1527
 msgid "MEMBRANE"
 msgstr "Hücre Zarı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1551
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1550
 msgid "BEHAVIOR"
 msgstr "Davranış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1603
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1602
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Ara..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1610
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1609
 msgid "STRUCTURAL"
 msgstr "Yapısal"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1646
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1645
 msgid "PROTEINS"
 msgstr "Proteinler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1906
-msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
-msgstr ""
-"Kemosentez\n"
-"Yapan Proteinler"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2171
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3281
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1721
 msgid "EXTERNAL"
 msgstr "Dış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2459
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3335
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
 msgid "ORGANELLES"
 msgstr "Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3118
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:81
-msgid "N_A_MP"
-msgstr "Bilinmeyen MP"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3157
-msgid "BIOLUMESCENT_VACUOLE"
-msgstr ""
-"Biyolüminesant\n"
-"Koful"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3254
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3472
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1918
 msgid "MEMBRANE_TYPES"
 msgstr "Hücre Zarı Türleri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3532
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1978
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Akışkanlık / Sertlik"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3571
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2017
 msgid "COLOUR"
 msgstr "Renk"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3716
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2162
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Tür ismi..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3745
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2191
 msgid "CONFIRM_CAPITAL"
 msgstr "ONAYLA"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3755
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2201
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatif ATP Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3767
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2213
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobun, hayatta kalmak için yeterli ATP üretmiyor!\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3778
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2224
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Bağlı Olmayan Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3790
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2236
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, eklenmiş organeller var.\n"
 "Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya "
 "değişikliklerini geri al."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2336
 msgid "AUTO_EVO"
 msgstr "Oto-Evrim"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3903
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2349
 msgid "FOOD_CHAIN"
 msgstr "Besin Zinciri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3916
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
 msgid "TIMELINE"
 msgstr "Tarih Şeridi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3969
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2415
 msgid "AUTO_EVO_RESULTS"
 msgstr "Oto-evrim sonuçları:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3988
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2434
 msgid "EXTERNAL_EFFECTS"
 msgstr "Dış etkenler:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4046
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2492
 msgid "SPECIES_POPULATION"
 msgstr "Tür Popülasyonu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4079
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4510
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2525
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2956
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziksel Koşullar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4183
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4693
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3139
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4277
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5205
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3651
 msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4392
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
 msgid "SELECT_A_PATCH"
 msgstr "Detayları görmek için bir arazi seçin"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4427
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2873
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5118
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3564
 msgid "SPECIES_PRESENT"
 msgstr "Mevcut Türler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5176
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3622
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Bu Araziye Git"
 
@@ -2819,6 +2782,10 @@ msgstr "{0}: {1} popülasyonla"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
 msgid "MP_COST"
 msgstr "{0} MP"
+
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:81
+msgid "N_A_MP"
+msgstr "Bilinmeyen MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
@@ -3276,6 +3243,16 @@ msgstr ""
 "ortasında) ve hücreyi döndürmek için fareyi kullan.\n"
 "\n"
 "Devam etmek için birkaç saniyeliğine ekranda gösterilen tuşları dene."
+
+#~ msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
+#~ msgstr ""
+#~ "Kemosentez\n"
+#~ "Yapan Proteinler"
+
+#~ msgid "BIOLUMESCENT_VACUOLE"
+#~ msgstr ""
+#~ "Biyolüminesant\n"
+#~ "Koful"
 
 #, fuzzy
 #~ msgid "END"
