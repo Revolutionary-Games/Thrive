@@ -26,6 +26,12 @@ public static class ToolTipHelper
     public static void RegisterToolTipForControl(this Control control, ICustomToolTip tooltip,
         List<ToolTipCallbackData> callbackDatas)
     {
+        if (tooltip == null)
+        {
+            GD.PrintErr($"Can't register Control: '{control.Name}' with a nonexistent tooltip");
+            return;
+        }
+
         // Skip if already registered
         if (callbackDatas.Find(match => match.ToolTip == tooltip) != null)
             return;

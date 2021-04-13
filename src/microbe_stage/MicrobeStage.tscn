@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=113 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -13,8 +13,8 @@
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/VacuoleIcon.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/ToxinVacuoleIcon.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=15]
 [ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=18]
@@ -72,6 +72,7 @@
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=71]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=72]
+[ext_resource path="res://src/microbe_stage/MicrobeCheatMenu.tscn" type="PackedScene" id=73]
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
@@ -1700,8 +1701,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -127.0
-margin_top = -261.0
+margin_left = -131.0
+margin_top = -277.0
 margin_right = -6.0
 margin_bottom = -244.0
 grow_horizontal = 0
@@ -1728,7 +1729,7 @@ __meta__ = {
 [node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
 margin_left = 86.0
 margin_top = 8.0
-margin_right = 121.0
+margin_right = 125.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 35, 0 )
 size_flags_horizontal = 3
@@ -1736,7 +1737,6 @@ custom_styles/normal = SubResource( 28 )
 custom_fonts/font = ExtResource( 12 )
 text = "100"
 align = 1
-autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2018,6 +2018,11 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideLeftPanels = SubResource( 31 )
 anims/ShowLeftPanels = SubResource( 32 )
+
+[node name="MicrobeCheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 207.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false

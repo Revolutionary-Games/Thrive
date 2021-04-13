@@ -52,6 +52,12 @@ public class OrganelleDefinition : IRegistryType
     public string DisplayScene;
 
     /// <summary>
+    ///   A path to a scene to display this organelle as a corpse chunk.
+    ///   Not needed if it is the same as DisplayScene.
+    /// </summary>
+    public string CorpseChunkScene;
+
+    /// <summary>
     ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
     /// </summary>
     public string DisplaySceneModelPath;
@@ -65,6 +71,16 @@ public class OrganelleDefinition : IRegistryType
     ///   Loaded scene instance to be used when organelle of this type is placed
     /// </summary>
     public PackedScene LoadedScene;
+
+    /// <summary>
+    ///   Loaded scene instance to be used when organelle of this type needs to be displayed for a dead microbe
+    /// </summary>
+    public PackedScene LoadedCorpseChunkScene;
+
+    /// <summary>
+    ///   Loaded icon for display in GUIs
+    /// </summary>
+    public Texture LoadedIcon;
 
     public float Mass;
 
@@ -122,9 +138,15 @@ public class OrganelleDefinition : IRegistryType
     public bool ShouldScale = true;
 
     /// <summary>
+<<<<<<< HEAD
     ///   If the organelle should only be placeable once per cell.
     /// </summary>
     public bool Unique = false;
+=======
+    ///   Flags whether this organelle is exclusive for eukaryotes
+    /// </summary>
+    public bool RequiresNucleus;
+>>>>>>> master
 
     /// <summary>
     ///   Caches the rotated hexes
@@ -274,6 +296,12 @@ public class OrganelleDefinition : IRegistryType
                 "Hexes is empty");
         }
 
+        if (string.IsNullOrEmpty(DisplayScene) && string.IsNullOrEmpty(CorpseChunkScene))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Both DisplayScene and CorpseChunkScene are null");
+        }
+
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)
         {
@@ -310,6 +338,16 @@ public class OrganelleDefinition : IRegistryType
         if (!string.IsNullOrEmpty(DisplayScene))
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
+        }
+
+        if (!string.IsNullOrEmpty(CorpseChunkScene))
+        {
+            LoadedCorpseChunkScene = GD.Load<PackedScene>(CorpseChunkScene);
+        }
+
+        if (!string.IsNullOrEmpty(IconPath))
+        {
+            LoadedIcon = GD.Load<Texture>(IconPath);
         }
 
         // Resolve process names

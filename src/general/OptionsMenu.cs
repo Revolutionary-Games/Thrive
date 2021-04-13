@@ -1010,6 +1010,10 @@ public class OptionsMenu : Control
     private void OnCheatsToggled(bool pressed)
     {
         Settings.Instance.CheatsEnabled.Value = pressed;
+        if (!pressed)
+        {
+            CheatManager.OnCheatsDisabled();
+        }
 
         UpdateResetSaveButtonState();
     }
