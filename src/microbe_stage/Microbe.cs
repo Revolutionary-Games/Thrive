@@ -2337,7 +2337,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void StopEngulfingOnTarget(Microbe microbe)
     {
         if (microbe.Colony?.AreInSameColony(this, microbe) != true)
-            RemoveCollisionExceptionWith(microbe);
+        {
+            try
+            {
+                RemoveCollisionExceptionWith(microbe);
+            }
+            catch (ObjectDisposedException ex)
+            {
+                GD.PrintErr(ex.Message);
+            }
+        }
+
         microbe.hostileEngulfer = null;
     }
 }
