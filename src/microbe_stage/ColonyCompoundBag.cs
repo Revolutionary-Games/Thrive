@@ -72,7 +72,7 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public float TakeCompound(Compound compound, float amount)
     {
-        // bags that compound can be taken from
+        // Bags that compound can be taken from
         var remainingBags = GetCompoundBags().ToList();
 
         while (amount > MathUtils.EPSILON && remainingBags.Any())
@@ -81,7 +81,7 @@ public class ColonyCompoundBag : ICompoundStorage
             var couldNotBeDrained = bagToDrainFrom.TakeCompound(compound, amount);
             var amountDrained = amount - couldNotBeDrained;
 
-            // if bag is dry
+            // If bag is dry
             if (couldNotBeDrained > MathUtils.EPSILON)
                 remainingBags.RemoveAt(0);
 
