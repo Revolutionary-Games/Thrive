@@ -13,23 +13,17 @@ public class CompoundBag : ICompoundStorage
     [JsonProperty]
     private readonly HashSet<Compound> usefulCompounds = new HashSet<Compound>();
 
-    private float capacity;
-
     /// <summary>
     ///   Creates a new bag
     /// </summary>
     /// <param name="capacity">Specifies the initial capacity of the compound bag</param>
     public CompoundBag(float capacity)
     {
-        this.capacity = capacity;
+        Capacity = capacity;
     }
 
     [JsonProperty]
-    public virtual float Capacity
-    {
-        get => capacity;
-        set => capacity = value;
-    }
+    public virtual float Capacity { get; set; }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
