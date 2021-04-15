@@ -72,20 +72,15 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public float TakeCompound(Compound compound, float amount)
     {
-        // Bags that compound can be taken from
-        var remainingBags = GetCompoundBags().ToList();
-
-        while (amount > MathUtils.EPSILON && remainingBags.Any())
+        foreach (var bagToDrainFrom in GetCompoundBags())
         {
-            var bagToDrainFrom = remainingBags[0];
             var couldNotBeDrained = bagToDrainFrom.TakeCompound(compound, amount);
             var amountDrained = amount - couldNotBeDrained;
 
-            // If bag is dry
-            if (couldNotBeDrained > MathUtils.EPSILON)
-                remainingBags.RemoveAt(0);
-
             amount -= amountDrained;
+
+            if (amount <= MathUtils.EPSILON)
+                break;
         }
 
         return amount;
@@ -93,25 +88,18 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public float AddCompound(Compound compound, float amount)
     {
-        // Bags that compound can added to
-        var remainingBags = GetCompoundBags().ToList();
-        var added = 0f;
+        var originalAmount = amount;
 
-        while (amount > MathUtils.EPSILON && remainingBags.Any())
+        foreach (var bagToAddTo in GetCompoundBags())
         {
-            var bagToAddTo = remainingBags[0];
             var amountAdded = bagToAddTo.AddCompound(compound, amount);
-            var amountNotAdded = amount - amountAdded;
-
-            // If bag is full
-            if (amountNotAdded > MathUtils.EPSILON)
-                remainingBags.RemoveAt(0);
-
             amount -= amountAdded;
-            added += amountAdded;
+
+            if (amount <= MathUtils.EPSILON)
+                break;
         }
 
-        return added;
+        return originalAmount - amount;
     }
 
     public void ClearCompounds()
