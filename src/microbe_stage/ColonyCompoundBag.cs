@@ -21,7 +21,7 @@ public class ColonyCompoundBag : ICompoundStorage
     public float Capacity => GetCompoundBags().Sum(p => p.Capacity);
 
     /// <summary>
-    ///   Distributes the amount above average compounds to the cells below average compounds.
+    ///   Evenly spreads out the compounds among all microbes
     /// </summary>
     public void DistributeCompoundSurplus()
     {
