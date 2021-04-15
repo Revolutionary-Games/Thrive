@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 
+/// <summary>
+///   Allows storing compounds up to the specified capacity
+/// </summary>
 public interface ICompoundStorage : IEnumerable<KeyValuePair<Compound, float>>
 {
     /// <summary>
