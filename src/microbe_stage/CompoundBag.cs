@@ -23,14 +23,14 @@ public class CompoundBag : ICompoundStorage
     }
 
     [JsonProperty]
-    public virtual float Capacity { get; set; }
+    public float Capacity { get; set; }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
     ///   Except if you want to ignore capacity...
     /// </summary>
     [JsonProperty]
-    public virtual Dictionary<Compound, float> Compounds { get; private set; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> Compounds { get; private set; } = new Dictionary<Compound, float>();
 
     public float GetCompoundAmount(Compound compound)
     {
@@ -40,7 +40,7 @@ public class CompoundBag : ICompoundStorage
         return 0.0f;
     }
 
-    public virtual float TakeCompound(Compound compound, float amount)
+    public float TakeCompound(Compound compound, float amount)
     {
         if (!Compounds.ContainsKey(compound) || amount <= 0.0f)
             return 0.0f;
@@ -51,7 +51,7 @@ public class CompoundBag : ICompoundStorage
         return amount;
     }
 
-    public virtual float AddCompound(Compound compound, float amount)
+    public float AddCompound(Compound compound, float amount)
     {
         if (amount <= 0.0f)
             return amount;
@@ -75,7 +75,7 @@ public class CompoundBag : ICompoundStorage
         return GetEnumerator();
     }
 
-    public virtual void ClearCompounds()
+    public void ClearCompounds()
     {
         Compounds.Clear();
     }
@@ -115,7 +115,7 @@ public class CompoundBag : ICompoundStorage
         return usefulCompounds.Contains(compound);
     }
 
-    public virtual void ClampNegativeCompoundAmounts()
+    public void ClampNegativeCompoundAmounts()
     {
         var negative = Compounds.Where(c => c.Value < 0.0f);
 
