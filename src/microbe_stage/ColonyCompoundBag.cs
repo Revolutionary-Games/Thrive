@@ -93,7 +93,7 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public float AddCompound(Compound compound, float amount)
     {
-        // bags that compound can added to
+        // Bags that compound can added to
         var remainingBags = GetCompoundBags().ToList();
         var added = 0f;
 
@@ -103,7 +103,7 @@ public class ColonyCompoundBag : ICompoundStorage
             var amountAdded = bagToAddTo.AddCompound(compound, amount);
             var amountNotAdded = amount - amountAdded;
 
-            // if bag is full
+            // If bag is full
             if (amountNotAdded > MathUtils.EPSILON)
                 remainingBags.RemoveAt(0);
 
