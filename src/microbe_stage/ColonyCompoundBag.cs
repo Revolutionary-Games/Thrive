@@ -40,9 +40,13 @@ public class ColonyCompoundBag : ICompoundStorage
             {
                 var surplus = bag.GetCompoundAmount(compound.Key) - average;
                 if (surplus > 0)
+                {
                     bag.TakeCompound(compound.Key, surplus);
+                }
                 else
+                {
                     bag.AddCompound(compound.Key, -surplus);
+                }
             }
         }
     }
