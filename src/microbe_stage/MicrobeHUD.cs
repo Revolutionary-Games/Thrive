@@ -651,9 +651,6 @@ public class MicrobeHUD : Node
         // Show the species name of hovered cells
         foreach (var entry in stage.MicrobesAtMouse)
         {
-            if (entry.IsPlayerMicrobe)
-                continue;
-
             // TODO: Combine cells of same species within mouse over
             // into a single line with total number of them
 
@@ -664,7 +661,7 @@ public class MicrobeHUD : Node
             microbeText.Text = entry.Species.FormattedName;
 
             if (entry.IsPlayerMicrobe)
-                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
+                microbeText.Text += "\n(" + TranslationServer.Translate("PLAYER_CELL") + ")";
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
