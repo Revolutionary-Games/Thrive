@@ -86,8 +86,6 @@ public class MicrobeColony
         master.ColonyChildren.Add(microbe);
         microbe.Colony = this;
         microbe.ColonyChildren = new List<Microbe>();
-
-        OnMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, microbe));
     }
 
     public bool AreInSameColony(Microbe a, Microbe b)
