@@ -5,20 +5,17 @@ using Godot;
 /// <summary>
 ///   Spawns microbes of a specific species
 /// </summary>
-public class MicrobeSpawner : Spawner
+public class MicrobeSpawner
 {
     private readonly PackedScene microbeScene;
     private readonly CompoundCloudSystem cloudSystem;
     private readonly Random random;
     private GameProperties currentGame;
 
-    private Dictionary<Species, int> speciesCounts = new Dictionary<Species, int>();
-
-    public MicrobeSpawner(CompoundCloudSystem cloudSystem, int spawnRadius)
+    public MicrobeSpawner(CompoundCloudSystem cloudSystem)
     {
         microbeScene = LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
-        SetSpawnRadius(spawnRadius);
 
         random = new Random();
     }
@@ -163,28 +160,6 @@ public class MicrobeSpawner : Spawner
     public void SetCurrentGame(GameProperties currentGame)
     {
         this.currentGame = currentGame;
-    }
-
-    public void AddSpecies(Species species, int numOfItems)
-    {
-        speciesCounts.Add(species, numOfItems);
-    }
-
-    public void ClearSpecies()
-    {
-        speciesCounts.Clear();
-    }
-
-    public Species[] GetSpecies()
-    {
-        Species[] species = new Species[speciesCounts.Keys.Count];
-        speciesCounts.Keys.CopyTo(species, 0);
-        return species;
-    }
-
-    public int GetSpeciesCount(Species species)
-    {
-        return speciesCounts[species];
     }
 
     public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species)

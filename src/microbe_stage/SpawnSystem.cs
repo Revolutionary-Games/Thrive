@@ -36,6 +36,10 @@ public class SpawnSystem
     [JsonIgnore]
     private int spawnBagSize;
 
+    // Spawn Items to put in Spawn Bag
+    [JsonIgnore]
+    private List<SpawnItem> spawnItems = new List<SpawnItem>();
+
     [JsonProperty]
     private Random random = new Random();
 
@@ -59,18 +63,17 @@ public class SpawnSystem
         worldRoot = root;
     }
 
-    public static void AddEntityToTrack(ISpawned entity,
-        float radius = Constants.MICROBE_SPAWN_RADIUS)
+    public static void AddEntityToTrack(ISpawned entity)
     {
-        entity.DespawnRadius = (int)radius;
+        entity.DespawnRadius = Constants.SPAWN_ITEM_RADIUS;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
-    public void Init(CompoundCloudSystem cloudSystem, int spawnRadius)
+    public void Init(CompoundCloudSystem cloudSystem)
     {
-        cloudSpawner = new CompoundCloudSpawner(cloudSystem, spawnRadius);
-        chunkSpawner = new ChunkSpawner(cloudSystem, spawnRadius);
-        microbeSpawner = new MicrobeSpawner(cloudSystem, spawnRadius);
+        cloudSpawner = new CompoundCloudSpawner(cloudSystem);
+        chunkSpawner = new ChunkSpawner(cloudSystem);
+        microbeSpawner = new MicrobeSpawner(cloudSystem);
     }
 
     public void SetCurrentGame(GameProperties currentGame)
@@ -78,52 +81,24 @@ public class SpawnSystem
         microbeSpawner.SetCurrentGame(currentGame);
     }
 
-    // Needs no params constructor for loading saves?
-
-    /// <summary>
-    ///   Adds an externally spawned entity to be despawned
-    /// </summary>
-    public void FillSpawnItemBag()
+    public void AddSpawnItem(SpawnItem spawnItem)
     {
-        GD.Print("Filling the Spawn Bag");
+        if (spawnItem is CloudItem)
+        {
+            ((CloudItem)spawnItem).SetCloudSpawner(cloudSpawner);
+        }
+
+        spawnItems.Add(spawnItem);
+    }
+
+    public void ClearSpawnItems()
+    {
+        spawnItems.Clear();
+    }
+
+    public void ClearSpawnBag()
+    {
         spawnItemBag.Clear();
-
-        // Fill compound cloud items
-        foreach (Compound key in cloudSpawner.GetCompounds())
-        {
-            // per each 0.00001 density, add one cloud to bag.
-            int cloudCount = cloudSpawner.GetCloudItemCount(key);
-            for (int i = 0; i < Math.Min(cloudCount, 100); i++)
-            {
-                spawnItemBag.Add(new CloudItem(cloudSpawner, key, cloudSpawner.GetCloudAmount(key)));
-            }
-        }
-
-        // Fill chunk items
-        foreach (ChunkConfiguration key in chunkSpawner.GetChunks())
-        {
-            int chunkCount = chunkSpawner.GetChunkCount(key);
-            for (int i = 0; i < Math.Min(chunkCount, 100); i++)
-            {
-                spawnItemBag.Add(new ChunkItem(chunkSpawner, key, worldRoot));
-            }
-        }
-
-        // Fill microbe items
-        foreach (Species key in microbeSpawner.GetSpecies())
-        {
-            if (!(key is MicrobeSpecies))
-                continue;
-
-            MicrobeSpecies microbeSpecies = (MicrobeSpecies)key;
-            int speciesCount = microbeSpawner.GetSpeciesCount(microbeSpecies);
-            for (int i = 0; i < Math.Min(speciesCount, 100); i++)
-            {
-                spawnItemBag.Add(new MicrobeItem(microbeSpawner, microbeSpecies, worldRoot));
-            }
-        }
-
-        ShuffleSpawnItemBag();
     }
 
     /// <summary>
@@ -153,60 +128,27 @@ public class SpawnSystem
         SpawnItems(playerPosition, playerRotation, delta);
     }
 
-    public void NewPatchSpawn(Vector3 playerPosition)
+    private void AddSpawnItemToBag(SpawnItem spawnItem)
     {
-        for (int i = 0; i < Constants.FREE_SPAWNS_IN_NEW_PATCH; i++)
+        spawnItemBag.Add(spawnItem);
+    }
+
+    // Takes SpawnItems list and shuffles them in bag.
+    private void FillSpawnItemBag()
+    {
+        spawnItemBag.Clear();
+
+        foreach (SpawnItem spawnItem in spawnItems)
         {
-            float displacementDistance = random.NextFloat() * cloudSpawner.MinSpawnRadius + 3.0f;
-            float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
-
-            Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
-            SpawnItem spawn = SpawnItemBagPop();
-
-            List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
-            if (spawnedList != null)
-            {
-                foreach (ISpawned spawned in spawnedList)
-                {
-                    ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
-                }
-            }
+            spawnItemBag.Add(spawnItem);
         }
+
+        ShuffleSpawnItemBag();
     }
 
-    public void ClearCloudSpawner()
-    {
-        cloudSpawner.ClearBiomeCompounds();
-    }
-
-    public void ClearChunkSpawner()
-    {
-        chunkSpawner.ClearChunks();
-    }
-
-    public void ClearMicrobeSpawner()
-    {
-        microbeSpawner.ClearSpecies();
-    }
-
-    public void AddBiomeCompound(Compound compound, int numOfItems, float amount)
-    {
-        cloudSpawner.AddBiomeCompound(compound, numOfItems, amount);
-    }
-
-    public void AddBiomeChunk(ChunkConfiguration chunk, int numOfItems)
-    {
-        chunkSpawner.AddChunk(chunk, numOfItems);
-    }
-
-    public void AddPatchSpecies(Species species, int numOfItems)
-    {
-        microbeSpawner.AddSpecies(species, numOfItems);
-    }
-
+    // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
     private void ShuffleSpawnItemBag()
     {
-        // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
         for (int i = 0; i < spawnItemBag.Count - 2; i++)
         {
             int j = random.Next(i, spawnItemBag.Count);
@@ -230,18 +172,22 @@ public class SpawnSystem
         SpawnItem pop = spawnItemBag[0];
         spawnItemBag.RemoveAt(0);
 
+        if (pop is CloudItem)
+        {
+            ((CloudItem)pop).SetCloudSpawner(cloudSpawner);
+        }
+
+        if (pop is ChunkItem)
+        {
+            ((ChunkItem)pop).SetChunkSpawner(chunkSpawner, worldRoot);
+        }
+
+        if (pop is MicrobeItem)
+        {
+            ((MicrobeItem)pop).SetMicrobeSpawner(microbeSpawner, worldRoot);
+        }
+
         return pop;
-    }
-
-    // Takes a random rotation and distance, turns into a vector
-    private Vector3 GetDisplacementVector(float displacementRotation, float displacementDistance)
-    {
-        float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
-        float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
-
-        // Distance from the player.
-        Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
-        return displacement;
     }
 
     private void SpawnItems(Vector3 playerPosition, Vector3 playerRotation, float delta)
@@ -302,12 +248,14 @@ public class SpawnSystem
         if (spawnedEntities.Count >= maxAliveEntities)
             return;
 
-        List<ISpawned> spawnedList = spawn.Spawn(spawnPos);
+        spawn.SetSpawnPosition(spawnPos);
+
+        List<ISpawned> spawnedList = spawn.Spawn();
         if (spawnedList != null)
         {
             foreach (ISpawned spawned in spawnedList)
             {
-                ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
+                ProcessSpawnedEntity(spawned);
             }
         }
     }
@@ -356,50 +304,22 @@ public class SpawnSystem
         }
     }
 
-    /// <summary>
+    /// <summary>IT
     ///   Add the entity to the spawned group and add the despawn radius
     /// </summary>
-    private void ProcessSpawnedEntity(ISpawned entity, int spawnRadius)
+    private void ProcessSpawnedEntity(ISpawned entity)
     {
         // I don't understand why the same
         // value is used for spawning and
         // despawning, but apparently it works
         // just fine
-        entity.DespawnRadius = spawnRadius;
+        entity.DespawnRadius = Constants.SPAWN_ITEM_RADIUS;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
-    }
-
-    /// <summary>
-    ///   Returns a random rotation (in radians)
-    ///   It is more likely to return a rotation closer to the target rotation than not
-    /// </summary>
-    private float WeightedRandomRotation(float targetRotation)
-    {
-        targetRotation = WithNegativesToNormalRadians(targetRotation);
-
-        float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
-        float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
-
-        if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
-            return NormalToWithNegativesRadians(rotation1);
-
-        return NormalToWithNegativesRadians(rotation2);
     }
 
     private float NormalToWithNegativesRadians(float radian)
     {
         return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
-    }
-
-    private float WithNegativesToNormalRadians(float radian)
-    {
-        return radian >= 0 ? radian : (float)(2 * Math.PI) - radian;
-    }
-
-    private float DistanceBetweenRadians(float p1, float p2)
-    {
-        float distance = Math.Abs(p1 - p2);
-        return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 }

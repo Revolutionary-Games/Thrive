@@ -5,18 +5,15 @@ using Godot;
 /// <summary>
 ///   Spawns chunks of a specific type
 /// </summary>
-public class ChunkSpawner : Spawner
+public class ChunkSpawner
 {
     private readonly PackedScene chunkScene;
     private readonly Random random = new Random();
     private readonly CompoundCloudSystem cloudSystem;
 
-    private Dictionary<ChunkConfiguration, int> chunkCounts = new Dictionary<ChunkConfiguration, int>();
-
-    public ChunkSpawner(CompoundCloudSystem cloudSystem, int spawnRadius)
+    public ChunkSpawner(CompoundCloudSystem cloudSystem)
     {
         this.cloudSystem = cloudSystem;
-        SetSpawnRadius(spawnRadius);
         chunkScene = LoadChunkScene();
     }
 
@@ -55,34 +52,6 @@ public class ChunkSpawner : Spawner
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
         chunk.AddToGroup(Constants.AI_TAG_CHUNK);
         return chunk;
-    }
-
-    public void AddChunk(ChunkConfiguration chunk, int numOfItems)
-    {
-        foreach (var mesh in chunk.Meshes)
-        {
-            if (mesh.LoadedScene == null)
-                throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
-        }
-
-        chunkCounts.Add(chunk, numOfItems);
-    }
-
-    public void ClearChunks()
-    {
-        chunkCounts.Clear();
-    }
-
-    public ChunkConfiguration[] GetChunks()
-    {
-        ChunkConfiguration[] chunks = new ChunkConfiguration[chunkCounts.Keys.Count];
-        chunkCounts.Keys.CopyTo(chunks, 0);
-        return chunks;
-    }
-
-    public int GetChunkCount(ChunkConfiguration chunk)
-    {
-        return chunkCounts[chunk];
     }
 
     public ISpawned Spawn(Vector3 location, ChunkConfiguration chunkType, Node worldNode)
