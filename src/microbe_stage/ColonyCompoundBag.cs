@@ -15,10 +15,10 @@ public class ColonyCompoundBag : ICompoundStorage
         Colony = colony;
     }
 
-    [JsonProperty]
-    public MicrobeColony Colony { get; set; }
-
     public float Capacity => GetCompoundBags().Sum(p => p.Capacity);
+
+    [JsonProperty]
+    private MicrobeColony Colony { get; set; }
 
     /// <summary>
     ///   Evenly spreads out the compounds among all microbes
