@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -45,7 +44,10 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player != null)
         {
             if (stage.Player.State == Microbe.MicrobeState.UNBINDING)
+            {
+                stage.Player.MovementDirection = Vector3.Zero;
                 return;
+            }
 
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
