@@ -1247,7 +1247,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         HandleCompoundVenting(delta);
 
-        Colony?.ColonyBag.DistributeCompoundSurplus();
+        Colony?.ColonyCompounds.DistributeCompoundSurplus();
 
         lastCheckedATPDamage += delta;
 

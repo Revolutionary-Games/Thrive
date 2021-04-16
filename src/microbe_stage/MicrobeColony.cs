@@ -17,14 +17,14 @@ public class MicrobeColony
         Master = master;
         master.ColonyChildren = new List<Microbe>();
         colonyMemberCache = new List<Microbe> { master };
-        ColonyBag = new ColonyCompoundBag(this);
+        ColonyCompounds = new ColonyCompoundBag(this);
         OnMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, master));
     }
 
     public event EventHandler<CollectionChangeEventArgs> OnMembersChanged;
 
     [JsonProperty]
-    public ColonyCompoundBag ColonyBag { get; set; }
+    public ColonyCompoundBag ColonyCompounds { get; set; }
 
     [JsonProperty]
     public Microbe.MicrobeState State

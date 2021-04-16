@@ -789,7 +789,7 @@ public class MicrobeHUD : Node
 
     private ICompoundStorage GetPlayerColonyOrPlayerStorage()
     {
-        return stage.Player.Colony?.ColonyBag ?? (ICompoundStorage)stage.Player.Compounds;
+        return stage.Player.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
     }
 
     private void UpdateHealth(float delta)
