@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=2]
+[gd_scene load_steps=114 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -80,6 +80,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=81]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -379,6 +380,7 @@ AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/
 PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
 ProcessPanelPath = NodePath("ProcessPanel")
 ProcessPanelButtonPath = NodePath("BottomLeft/BottomBar/ChemicalButton")
+HelpTextPath = NodePath("HelpText")
 ExtinctionBoxScene = ExtResource( 70 )
 WinBoxScene = ExtResource( 69 )
 MicrobePickupOrganelleSound = ExtResource( 8 )
@@ -2023,6 +2025,17 @@ anims/ShowLeftPanels = SubResource( 32 )
 margin_left = 10.0
 margin_top = 30.0
 margin_right = 207.0
+
+[node name="HelpText" type="Label" parent="MicrobeHUD"]
+anchor_right = 1.0
+margin_top = 12.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 81 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false

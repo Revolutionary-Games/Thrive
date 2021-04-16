@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -99,10 +101,16 @@ public class PlayerMicrobeInput : NodeWithInput
 
         if (stage.Player.State == Microbe.MicrobeState.UNBINDING)
         {
+            stage.HUD.HelpText = string.Empty;
             stage.Player.State = Microbe.MicrobeState.NORMAL;
         }
         else if (stage.Player.Colony != null)
         {
+            var unbindingText = new SpecifiedInputKey(
+                (InputEventWithModifiers)InputMap.GetActionList("g_toggle_unbinding")[0]).ToString();
+
+            stage.HUD.HelpText =
+                string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("UNBIND_HELP_TEXT"), unbindingText);
             stage.Player.State = Microbe.MicrobeState.UNBINDING;
         }
     }
@@ -137,6 +145,7 @@ public class PlayerMicrobeInput : NodeWithInput
 
         stage.Player.OnUnbound?.Invoke();
 
+        stage.HUD.HelpText = string.Empty;
         return true;
     }
 

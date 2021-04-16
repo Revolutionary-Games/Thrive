@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-13 22:57+0200\n"
+"POT-Creation-Date: 2021-04-17 01:11+0200\n"
 "PO-Revision-Date: 2021-04-12 18:03+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -632,19 +632,19 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:16
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4684
-#: ../src/microbe_stage/MicrobeStage.tscn:1217
+#: ../src/microbe_stage/MicrobeStage.tscn:1219
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:29
-#: ../src/microbe_stage/MicrobeStage.tscn:1271
+#: ../src/microbe_stage/MicrobeStage.tscn:1273
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:42
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4374
-#: ../src/microbe_stage/MicrobeStage.tscn:1325
+#: ../src/microbe_stage/MicrobeStage.tscn:1327
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
@@ -658,18 +658,18 @@ msgstr "硫化氢"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4399
-#: ../src/microbe_stage/MicrobeStage.tscn:1163
+#: ../src/microbe_stage/MicrobeStage.tscn:1165
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:68
-#: ../src/microbe_stage/MicrobeStage.tscn:1511
+#: ../src/microbe_stage/MicrobeStage.tscn:1513
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:81
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
-#: ../src/microbe_stage/MicrobeStage.tscn:1379
+#: ../src/microbe_stage/MicrobeStage.tscn:1381
 msgid "IRON"
 msgstr "铁"
 
@@ -1879,7 +1879,7 @@ msgstr " "
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3846
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:927
 msgid "LIGHT"
 msgstr "光强"
 
@@ -2203,15 +2203,15 @@ msgstr ""
 "玩家\n"
 "速度"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:461
+#: ../src/microbe_stage/MicrobeHUD.cs:472
 msgid "MICROBE_PATCH_LABEL"
 msgstr "地区：{0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:603
+#: ../src/microbe_stage/MicrobeHUD.cs:614
 msgid "STUFF_AT"
 msgstr "在{0:F1}, {1:F1}的东西："
 
-#: ../src/microbe_stage/MicrobeHUD.cs:656
+#: ../src/microbe_stage/MicrobeHUD.cs:667
 msgid "PLAYER_CELL"
 msgstr "玩家细胞"
 
@@ -2223,46 +2223,46 @@ msgstr "玩家繁殖"
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:431
+#: ../src/microbe_stage/MicrobeStage.tscn:433
 msgid "AT_CURSOR"
 msgstr "鼠标指针处："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:456
+#: ../src/microbe_stage/MicrobeStage.tscn:458
 msgid "NOTHING_HERE"
 msgstr "这里啥都没有"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:481
+#: ../src/microbe_stage/MicrobeStage.tscn:483
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:519
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "SPECIES_COLON"
 msgstr "物种："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:600
+#: ../src/microbe_stage/MicrobeStage.tscn:602
 msgid "ENVIRONMENT"
 msgstr "环境"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:871
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:982
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1065
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2667
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3304
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
 msgid "COMPOUNDS"
 msgstr "化合物"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1451
 msgid "AGENTS"
 msgstr "物质"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "POPULATION_CAPITAL"
 msgstr "生物数量："
 
@@ -2309,6 +2309,10 @@ msgstr "冰架"
 #: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "远古海床"
+
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:107
+msgid "UNBIND_HELP_TEXT"
+msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"

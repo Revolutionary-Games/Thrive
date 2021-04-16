@@ -126,6 +126,9 @@ public class MicrobeHUD : Node
     public NodePath ProcessPanelButtonPath;
 
     [Export]
+    public NodePath HelpTextPath;
+
+    [Export]
     public PackedScene ExtinctionBoxScene;
 
     [Export]
@@ -204,6 +207,7 @@ public class MicrobeHUD : Node
     private Node winBox;
     private Tween panelsTween;
     private Control winExtinctBoxHolder;
+    private Label helpText;
 
     private Array compoundBars;
 
@@ -236,6 +240,12 @@ public class MicrobeHUD : Node
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
     private float hoverInfoTimeElapsed;
+
+    public string HelpText
+    {
+        get => helpText.Text;
+        set => helpText.Text = value;
+    }
 
     public override void _Ready()
     {
@@ -282,6 +292,7 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+        helpText = GetNode<Label>(HelpTextPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);

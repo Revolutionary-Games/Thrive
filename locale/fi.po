@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-13 22:57+0200\n"
+"POT-Creation-Date: 2021-04-17 01:11+0200\n"
 "PO-Revision-Date: 2021-04-08 13:41+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -586,19 +586,19 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:16
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4684
-#: ../src/microbe_stage/MicrobeStage.tscn:1217
+#: ../src/microbe_stage/MicrobeStage.tscn:1219
 msgid "AMMONIA"
 msgstr "Ammoniakki"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:29
-#: ../src/microbe_stage/MicrobeStage.tscn:1271
+#: ../src/microbe_stage/MicrobeStage.tscn:1273
 msgid "PHOSPHATE"
 msgstr "Fosfaatti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:42
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4374
-#: ../src/microbe_stage/MicrobeStage.tscn:1325
+#: ../src/microbe_stage/MicrobeStage.tscn:1327
 msgid "HYDROGEN_SULFIDE"
 msgstr "Rikkivety"
 
@@ -612,18 +612,18 @@ msgstr "Rikkivety"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4399
-#: ../src/microbe_stage/MicrobeStage.tscn:1163
+#: ../src/microbe_stage/MicrobeStage.tscn:1165
 msgid "GLUCOSE"
 msgstr "Glukoosi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:68
-#: ../src/microbe_stage/MicrobeStage.tscn:1511
+#: ../src/microbe_stage/MicrobeStage.tscn:1513
 msgid "OXYTOXY_NT"
 msgstr "Happimyrkky"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:81
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
-#: ../src/microbe_stage/MicrobeStage.tscn:1379
+#: ../src/microbe_stage/MicrobeStage.tscn:1381
 msgid "IRON"
 msgstr "Rauta"
 
@@ -1837,7 +1837,7 @@ msgstr "intensiteetistä riippuen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3846
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:927
 msgid "LIGHT"
 msgstr "Valo"
 
@@ -2109,15 +2109,15 @@ msgstr ""
 msgid "PLAYER_SPEED"
 msgstr "pelaaja kuoli"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:461
+#: ../src/microbe_stage/MicrobeHUD.cs:472
 msgid "MICROBE_PATCH_LABEL"
 msgstr "Alue: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:603
+#: ../src/microbe_stage/MicrobeHUD.cs:614
 msgid "STUFF_AT"
 msgstr "Juttuja sijainnissa {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:656
+#: ../src/microbe_stage/MicrobeHUD.cs:667
 msgid "PLAYER_CELL"
 msgstr "Pelaajan solu"
 
@@ -2129,46 +2129,46 @@ msgstr "pelaaja jatkoi sukuaan"
 msgid "PLAYER_DIED"
 msgstr "pelaaja kuoli"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:431
+#: ../src/microbe_stage/MicrobeStage.tscn:433
 msgid "AT_CURSOR"
 msgstr "Kursorin alla:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:456
+#: ../src/microbe_stage/MicrobeStage.tscn:458
 msgid "NOTHING_HERE"
 msgstr "Ei mitään täällä"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:481
+#: ../src/microbe_stage/MicrobeStage.tscn:483
 msgid "COMPOUNDS_COLON"
 msgstr "Yhdisteet:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:519
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "SPECIES_COLON"
 msgstr "Lajit:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:600
+#: ../src/microbe_stage/MicrobeStage.tscn:602
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:871
 msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:982
 msgid "PRESSURE_SHORT"
 msgstr "Paine"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1065
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2667
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3304
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
 msgid "COMPOUNDS"
 msgstr "Yhdisteet"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1451
 msgid "AGENTS"
 msgstr "Välittäjäaineet"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAATIO:"
 
@@ -2215,6 +2215,10 @@ msgstr "Jäähylly"
 #: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian Merenpohja"
+
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:107
+msgid "UNBIND_HELP_TEXT"
+msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"

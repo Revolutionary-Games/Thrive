@@ -631,6 +631,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
 
+        HUD.HelpText = string.Empty;
+
         // Respawn if not extinct (or freebuild)
         if (playerSpecies.Population <= 0 && !CurrentGame.FreeBuild)
         {

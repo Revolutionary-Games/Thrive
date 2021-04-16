@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-13 22:57+0200\n"
+"POT-Creation-Date: 2021-04-17 01:11+0200\n"
 "PO-Revision-Date: 2021-03-24 16:58+0000\n"
 "Last-Translator: Szymon Ignaczak <supszym01@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -676,19 +676,19 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:16
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4684
-#: ../src/microbe_stage/MicrobeStage.tscn:1217
+#: ../src/microbe_stage/MicrobeStage.tscn:1219
 msgid "AMMONIA"
 msgstr "Amoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:29
-#: ../src/microbe_stage/MicrobeStage.tscn:1271
+#: ../src/microbe_stage/MicrobeStage.tscn:1273
 msgid "PHOSPHATE"
 msgstr "Fosforan"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:42
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4374
-#: ../src/microbe_stage/MicrobeStage.tscn:1325
+#: ../src/microbe_stage/MicrobeStage.tscn:1327
 msgid "HYDROGEN_SULFIDE"
 msgstr "Siarkowodór"
 
@@ -702,18 +702,18 @@ msgstr "Siarkowodór"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3769
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4399
-#: ../src/microbe_stage/MicrobeStage.tscn:1163
+#: ../src/microbe_stage/MicrobeStage.tscn:1165
 msgid "GLUCOSE"
 msgstr "Glukoza"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:68
-#: ../src/microbe_stage/MicrobeStage.tscn:1511
+#: ../src/microbe_stage/MicrobeStage.tscn:1513
 msgid "OXYTOXY_NT"
 msgstr "OxyToksy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:81
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
-#: ../src/microbe_stage/MicrobeStage.tscn:1379
+#: ../src/microbe_stage/MicrobeStage.tscn:1381
 msgid "IRON"
 msgstr "Żelazo"
 
@@ -1963,7 +1963,7 @@ msgstr "intensywność"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3846
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:927
 msgid "LIGHT"
 msgstr "Światło"
 
@@ -2341,15 +2341,15 @@ msgstr ""
 msgid "PLAYER_SPEED"
 msgstr "gracz zginął"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:461
+#: ../src/microbe_stage/MicrobeHUD.cs:472
 msgid "MICROBE_PATCH_LABEL"
 msgstr "Obszar: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:603
+#: ../src/microbe_stage/MicrobeHUD.cs:614
 msgid "STUFF_AT"
 msgstr "Rzecz w {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:656
+#: ../src/microbe_stage/MicrobeHUD.cs:667
 msgid "PLAYER_CELL"
 msgstr "Komórka Gracza"
 
@@ -2361,46 +2361,46 @@ msgstr "gracz się rozmnożył"
 msgid "PLAYER_DIED"
 msgstr "gracz zginął"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:431
+#: ../src/microbe_stage/MicrobeStage.tscn:433
 msgid "AT_CURSOR"
 msgstr "Pod kursorem:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:456
+#: ../src/microbe_stage/MicrobeStage.tscn:458
 msgid "NOTHING_HERE"
 msgstr "Nic tu nie ma"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:481
+#: ../src/microbe_stage/MicrobeStage.tscn:483
 msgid "COMPOUNDS_COLON"
 msgstr "Związki:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:519
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "SPECIES_COLON"
 msgstr "Gatunek:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:600
+#: ../src/microbe_stage/MicrobeStage.tscn:602
 msgid "ENVIRONMENT"
 msgstr "Środowisko"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:871
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:982
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1065
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2667
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3304
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
 msgid "COMPOUNDS"
 msgstr "Związki"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1451
 msgid "AGENTS"
 msgstr "Czynniki"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
 
@@ -2447,6 +2447,10 @@ msgstr "Lodowiec szelfowy"
 #: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Paleoceaniczne Dno Morskie"
+
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:107
+msgid "UNBIND_HELP_TEXT"
+msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
