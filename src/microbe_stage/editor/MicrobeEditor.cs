@@ -287,7 +287,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public MicrobeStage ReturnToStage { get; set; }
 
     [JsonIgnore]
-    public bool HasNucleus => HasOrganelle("nucleus");
+    public bool HasNucleus => PlacedUniqueOrganelleNames.Contains("nucleus");
 
     [JsonIgnore]
     public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
@@ -978,11 +978,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateMutationPointsBar();
     }
 
-    private bool HasOrganelle(string organelleName)
+    private bool HasOrganelle(OrganelleDefinition organelleDefinition)
     {
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
-            if (organelle.Definition.InternalName == organelleName)
+            if (organelle.Definition == organelleDefinition)
                 return true;
         }
 
@@ -1691,7 +1691,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
-        if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition.InternalName)) ||
+        if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
                 && organelle.Definition.ChanceToCreate != 0))
             return false;
