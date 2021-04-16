@@ -143,7 +143,7 @@ public class OrganelleDefinition : IRegistryType
     public bool RequiresNucleus;
 
     /// <summary>
-    ///   Can this organelle only be places once
+    ///   Can this organelle only be placed once
     /// </summary>
     public bool Unique;
 
