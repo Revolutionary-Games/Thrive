@@ -43,6 +43,13 @@ public class MicrobeColony
     [JsonProperty]
     public Microbe Master { get; set; }
 
+    public void Process(float delta)
+    {
+        _ = delta; // Disable parameter not used suggestion
+
+        ColonyCompounds.DistributeCompoundSurplus();
+    }
+
     public void RemoveFromColony(Microbe microbe)
     {
         if (microbe?.Colony == null)
