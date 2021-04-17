@@ -506,7 +506,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (Membrane.Type.CellWall)
         {
             // Reset engulf mode if the new membrane doesn't allow it
-            State = MicrobeState.NORMAL;
+            if (State == MicrobeState.ENGULF)
+                State = MicrobeState.NORMAL;
         }
 
         SetupMicrobeHitpoints();
