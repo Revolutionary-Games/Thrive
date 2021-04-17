@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Main class managing the microbe editor GUI
@@ -282,8 +281,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private MicrobeEditor editor;
 
-    private Array organelleSelectionElements;
-    private Array membraneSelectionElements;
+    private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements =
+        new Dictionary<OrganelleDefinition, MicrobePartSelection>();
+
+    private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements =
+        new Dictionary<MembraneType, MicrobePartSelection>();
 
     private PauseMenu menu;
 
@@ -414,7 +416,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public enum SelectionMenuTab
     {
         Structure,
-        Appearance,
+        Membrane,
         Behaviour,
     }
 
@@ -422,9 +424,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public override void _Ready()
     {
-        organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
-        membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
-
         reportTabButton = GetNode<Button>(ReportTabButtonPath);
         patchMapButton = GetNode<Button>(PatchMapButtonPath);
         cellEditorButton = GetNode<Button>(CellEditorButtonPath);
@@ -533,6 +532,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        SetupMicrobePartSelections();
+        UpdateMicrobePartSelections();
 
         RegisterTooltips();
     }
@@ -925,7 +927,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Update the patch details specific to the Patch Map tab
+    ///   Updates patch-specific GUI elements with data from a patch
     /// </summary>
     public void UpdatePatchDetails(Patch patch)
     {
@@ -976,6 +978,26 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         UpdateReportTabStatistics(patch);
 
         UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
+    }
+
+    /// <summary>
+    ///   Updates the values of all part selections from their associated part types.
+    /// </summary>
+    public void UpdateMicrobePartSelections()
+    {
+        foreach (var entry in placeablePartSelectionElements)
+        {
+            entry.Value.PartName = entry.Key.Name;
+            entry.Value.MPCost = entry.Key.MPCost;
+            entry.Value.PartIcon = entry.Key.LoadedIcon;
+        }
+
+        foreach (var entry in membraneSelectionElements)
+        {
+            entry.Value.PartName = entry.Key.Name;
+            entry.Value.MPCost = entry.Key.EditorCost;
+            entry.Value.PartIcon = entry.Key.LoadedIcon;
+        }
     }
 
     public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
@@ -1084,20 +1106,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Lock / unlock the organelles  that need a nuclues
+    ///   Lock / unlock the organelles that need a nucleus
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: rename to something more sensible
-    ///     and maybe also improve how this is implemented
-    ///     to be not cluttered
-    ///   </para>
-    /// </remarks>
-    internal void UpdateGuiButtonStatus(bool hasNucleus)
+    internal void UpdatePartsAvailability(bool hasNucleus)
     {
-        foreach (Control organelleItem in organelleSelectionElements)
+        foreach (var organelle in placeablePartSelectionElements.Keys)
         {
-            SetOrganelleButtonStatus(organelleItem, hasNucleus);
+            UpdatePartAvailability(hasNucleus, organelle);
         }
     }
 
@@ -1105,23 +1120,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         editor.ActiveActionName = organelle;
 
-        // Make all buttons unselected except the one that is now selected
-        foreach (Control element in organelleSelectionElements)
+        // Update the icon highlightings
+        foreach (var element in placeablePartSelectionElements.Values)
         {
-            var button = element.GetNode<Button>("VBoxContainer/Button");
-            var icon = button.GetNode<TextureRect>("Icon");
-
-            if (element.Name == organelle)
-            {
-                if (!button.Pressed)
-                    button.Pressed = true;
-
-                icon.Modulate = new Color(0, 0, 0);
-            }
-            else
-            {
-                icon.Modulate = new Color(1, 1, 1);
-            }
+            element.Selected = element.Name == organelle;
         }
 
         GD.Print("Editor action is now: " + editor.ActiveActionName);
@@ -1246,27 +1248,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void UpdateMembraneButtons(string membrane)
     {
-        // Updates the GUI buttons based on current membrane
-        foreach (Control element in membraneSelectionElements)
+        // Update the icon highlightings
+        foreach (var selection in membraneSelectionElements.Values)
         {
-            var button = element.GetNode<Button>("VBoxContainer/Button");
-            var icon = button.GetNode<TextureRect>("Icon");
-
-            // This is required so that the button press state won't be
-            // updated incorrectly when we don't have enough MP to change the membrane
-            button.Pressed = false;
-
-            if (element.Name == membrane)
-            {
-                if (!button.Pressed)
-                    button.Pressed = true;
-
-                icon.Modulate = new Color(0, 0, 0);
-            }
-            else
-            {
-                icon.Modulate = new Color(1, 1, 1);
-            }
+            selection.Selected = selection.Name == membrane;
         }
     }
 
@@ -1293,40 +1278,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
     }
 
-    private static void SetOrganelleButtonStatus(Control organelleItem, bool nucleus)
-    {
-        var button = organelleItem.GetNode<Button>("VBoxContainer/Button");
-
-        if (organelleItem.Name == "nucleus")
-        {
-            button.Disabled = nucleus;
-        }
-        else if (organelleItem.Name == "mitochondrion")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "chloroplast")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "chemoplast")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "nitrogenfixingplastid")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "vacuole")
-        {
-            button.Disabled = !nucleus;
-        }
-        else if (organelleItem.Name == "oxytoxy")
-        {
-            button.Disabled = !nucleus;
-        }
-    }
-
     private void UpdateSymmetryIcon()
     {
         switch (symmetry)
@@ -1343,6 +1294,80 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
                 symmetryIcon.Texture = symmetryIcon6x;
                 break;
+        }
+    }
+
+    /// <summary>
+    ///   Lock / unlock a single organelle that need a nucleus
+    /// </summary>
+    private void UpdatePartAvailability(bool hasNucleus, OrganelleDefinition organelle)
+    {
+        var item = placeablePartSelectionElements[organelle];
+
+        if (item.Name == nucleus.InternalName)
+        {
+            item.Locked = hasNucleus;
+        }
+        else if (organelle.RequiresNucleus)
+        {
+            item.Locked = !hasNucleus;
+        }
+        else
+        {
+            item.Locked = false;
+        }
+    }
+
+    /// <summary>
+    ///   Associates all existing cell part selections with their respective part types based on their Node names.
+    /// </summary>
+    private void SetupMicrobePartSelections()
+    {
+        var organelleSelections = GetTree().GetNodesInGroup(
+            "PlaceablePartSelectionElement").Cast<MicrobePartSelection>().ToList();
+        var membraneSelections = GetTree().GetNodesInGroup(
+            "MembraneSelectionElement").Cast<MicrobePartSelection>().ToList();
+
+        foreach (var entry in organelleSelections)
+        {
+            // Special case with registering the tooltip here for item with no associated organelle
+            entry.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
+                entry.Name, "organelleSelection"), tooltipCallbacks);
+
+            if (!SimulationParameters.Instance.DoesOrganelleExist(entry.Name))
+            {
+                entry.Locked = true;
+                continue;
+            }
+
+            var organelle = SimulationParameters.Instance.GetOrganelleType(entry.Name);
+
+            // Only add items with valid organelles to dictionary
+            placeablePartSelectionElements.Add(organelle, entry);
+
+            entry.Connect(
+                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
+        }
+
+        foreach (var entry in membraneSelections)
+        {
+            // Special case with registering the tooltip here for item with no associated membrane
+            entry.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
+                entry.Name, "membraneSelection"), tooltipCallbacks);
+
+            if (!SimulationParameters.Instance.DoesMembraneExist(entry.Name))
+            {
+                entry.Locked = true;
+                continue;
+            }
+
+            var membrane = SimulationParameters.Instance.GetMembrane(entry.Name);
+
+            // Only add items with valid membranes to dictionary
+            membraneSelectionElements.Add(membrane, entry);
+
+            entry.Connect(
+                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
         }
     }
 
@@ -1449,7 +1474,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 break;
             }
 
-            case SelectionMenuTab.Appearance:
+            case SelectionMenuTab.Membrane:
             {
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
@@ -1677,18 +1702,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         var toolTipManager = ToolTipManager.Instance;
 
-        foreach (Control organelleSelection in organelleSelectionElements)
-        {
-            organelleSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
-                organelleSelection.Name, "organelleSelection"), tooltipCallbacks);
-        }
-
-        foreach (Control membraneSelection in membraneSelectionElements)
-        {
-            membraneSelection.RegisterToolTipForControl(toolTipManager.GetToolTip(
-                membraneSelection.Name, "membraneSelection"), tooltipCallbacks);
-        }
-
         rigiditySlider.RegisterToolTipForControl(
             toolTipManager.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
         helpButton.RegisterToolTipForControl(
@@ -1752,7 +1765,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var organelles = SimulationParameters.Instance.GetAllOrganelles().Where(
             organelle => organelle.Name.ToLower(CultureInfo.CurrentCulture).Contains(input)).ToList();
 
-        foreach (Control node in organelleSelectionElements)
+        foreach (var node in placeablePartSelectionElements.Values)
         {
             // To show back organelles that simulation parameters didn't include
             if (string.IsNullOrEmpty(input))
@@ -1785,8 +1798,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.DarkGray;
             sunlightChart.Hide();
             temperatureChart.Show();
-            temperatureChart.UpdateDataSetVisibility("Temperature", true);
-            sunlightChart.UpdateDataSetVisibility("Sunlight", false);
 
             tween.InterpolateProperty(temperatureButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
             tween.Start();
@@ -1797,8 +1808,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.White;
             sunlightChart.Show();
             temperatureChart.Hide();
-            temperatureChart.UpdateDataSetVisibility("Temperature", false);
-            sunlightChart.UpdateDataSetVisibility("Sunlight", true);
 
             tween.InterpolateProperty(sunlightButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
             tween.Start();

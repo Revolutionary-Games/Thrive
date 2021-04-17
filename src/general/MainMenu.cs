@@ -200,12 +200,16 @@ public class MainMenu : Node
 
     private void OnMicrobeIntroEnded()
     {
+        OnEnteringGame();
+
         // TODO: Add loading screen while changing between scenes
         SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
     }
 
     private void OnFreebuildFadeInEnded()
     {
+        OnEnteringGame();
+
         // Instantiate a new editor scene
         var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
@@ -318,6 +322,11 @@ public class MainMenu : Node
         SetCurrentMenu(0, false);
 
         thriveLogo.Show();
+    }
+
+    private void OnEnteringGame()
+    {
+        CheatManager.OnCheatsDisabled();
     }
 
     /// <summary>
