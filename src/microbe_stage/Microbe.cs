@@ -1306,6 +1306,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             if (affectedMicrobe == this)
             {
+                OnUnbound?.Invoke(this);
+
                 RemoveChildrenLink();
                 ai?.ResetAI();
             }
