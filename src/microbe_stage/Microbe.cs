@@ -199,17 +199,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (colony == value)
                 return;
 
-            if (colony != null)
-            {
-                colony.OnMembersChanged -= OnColonyMembersChanged;
-            }
-
             colony = value;
-
-            if (colony == null)
-                return;
-
-            colony.OnMembersChanged += OnColonyMembersChanged;
         }
     }
 
@@ -1273,6 +1263,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
+    public override void _ExitTree()
+    {
+        Colony?.RemoveFromColony(this);
+    }
+
     public void AIThink(float delta, Random random, MicrobeAICommonData data)
     {
         if (IsPlayerMicrobe)
@@ -1300,41 +1295,32 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
-    internal void OnColonyMembersChanged(object sender, CollectionChangeEventArgs e)
+    internal void OnColonyMemberRemoved(Microbe microbe)
     {
-        var affectedMicrobe = e.Element as Microbe;
-        if (affectedMicrobe == null)
-            throw new NullReferenceException("Affected microbe is null in OnColonyMembersChanged");
-
-        // A colony member got removed
-        if (e.Action == CollectionChangeAction.Remove)
+        if (microbe == this)
         {
-            if (affectedMicrobe == this)
-            {
-                OnUnbound?.Invoke(this);
+            OnUnbound?.Invoke(this);
 
-                RemoveChildrenLink();
-                ai?.ResetAI();
-            }
-
-            affectedMicrobe.RemoveCollisionExceptionWith(this);
-            RemoveCollisionExceptionWith(affectedMicrobe);
+            RemoveChildrenLink();
+            ai?.ResetAI();
         }
 
-        // A colony member got added
-        if (e.Action == CollectionChangeAction.Add)
-        {
-            if (affectedMicrobe == this)
-            {
-                MakeChildrenLink(ColonyParent);
-            }
-
-            affectedMicrobe.AddCollisionExceptionWith(this);
-            AddCollisionExceptionWith(affectedMicrobe);
-        }
+        microbe.RemoveCollisionExceptionWith(this);
+        RemoveCollisionExceptionWith(microbe);
 
         if (State == MicrobeState.Unbinding)
             State = MicrobeState.Normal;
+    }
+
+    internal void OnColonyMemberAdded(Microbe microbe)
+    {
+        if (microbe == this)
+        {
+            MakeChildrenLink(ColonyParent);
+        }
+
+        microbe.AddCollisionExceptionWith(this);
+        AddCollisionExceptionWith(microbe);
     }
 
     internal void SuccessfulScavenge()
@@ -2366,14 +2352,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         if (Colony != null && Colony == microbe.Colony)
         {
-            try
-            {
-                RemoveCollisionExceptionWith(microbe);
-            }
-            catch (ObjectDisposedException ex)
-            {
-                GD.PrintErr(ex.Message);
-            }
+            RemoveCollisionExceptionWith(microbe);
         }
 
         microbe.hostileEngulfer = null;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -16,8 +15,6 @@ public class MicrobeColony
         ColonyMembers = new List<Microbe> { master };
         ColonyCompounds = new ColonyCompoundBag(this);
     }
-
-    public event EventHandler<CollectionChangeEventArgs> OnMembersChanged;
 
     [JsonProperty]
     public List<Microbe> ColonyMembers { get; private set; }
@@ -58,7 +55,7 @@ public class MicrobeColony
         if (!Equals(microbe.Colony, this))
             throw new ArgumentException("Cannot remove a colony member who isn't a member");
 
-        OnMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Remove, microbe));
+        ColonyMembers.ForEach(m => m.OnColonyMemberRemoved(microbe));
 
         ColonyMembers.Remove(microbe);
 
@@ -84,6 +81,6 @@ public class MicrobeColony
         microbe.Colony = this;
         microbe.ColonyChildren = new List<Microbe>();
 
-        OnMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, microbe));
+        ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
     }
 }
