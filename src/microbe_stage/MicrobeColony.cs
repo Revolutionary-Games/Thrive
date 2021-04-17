@@ -7,20 +7,20 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class MicrobeColony
 {
-    [JsonIgnore]
-    private List<Microbe> colonyMemberCache;
-
     private Microbe.MicrobeState state;
 
     public MicrobeColony(Microbe master)
     {
         Master = master;
         master.ColonyChildren = new List<Microbe>();
-        colonyMemberCache = new List<Microbe> { master };
+        ColonyMembers = new List<Microbe> { master };
         ColonyCompounds = new ColonyCompoundBag(this);
     }
 
     public event EventHandler<CollectionChangeEventArgs> OnMembersChanged;
+
+    [JsonProperty]
+    public List<Microbe> ColonyMembers { get; private set; }
 
     [JsonProperty]
     public ColonyCompoundBag ColonyCompounds { get; set; }
@@ -35,22 +35,13 @@ public class MicrobeColony
                 return;
 
             state = value;
-            foreach (var cell in GetColonyMembers())
+            foreach (var cell in ColonyMembers)
                 cell.State = value;
         }
     }
 
     [JsonProperty]
     public Microbe Master { get; set; }
-
-    public List<Microbe> GetColonyMembers()
-    {
-        if (colonyMemberCache != null)
-            return colonyMemberCache;
-
-        colonyMemberCache = GetColonyMembers(Master, new List<Microbe>());
-        return colonyMemberCache;
-    }
 
     public void RemoveFromColony(Microbe microbe)
     {
@@ -62,7 +53,7 @@ public class MicrobeColony
 
         OnMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Remove, microbe));
 
-        colonyMemberCache?.Remove(microbe);
+        ColonyMembers.Remove(microbe);
 
         while (microbe.ColonyChildren.Any())
             RemoveFromColony(microbe.ColonyChildren[0]);
@@ -79,7 +70,7 @@ public class MicrobeColony
         if (microbe == null || master == null)
             throw new ArgumentException("Microbe or master null");
 
-        colonyMemberCache?.Add(microbe);
+        ColonyMembers.Add(microbe);
 
         microbe.ColonyParent = master;
         master.ColonyChildren.Add(microbe);
@@ -106,19 +97,11 @@ public class MicrobeColony
         if (!(obj is MicrobeColony other))
             return false;
 
-        return GetColonyMembers().SequenceEqual(other.GetColonyMembers());
+        return ColonyMembers.SequenceEqual(other.ColonyMembers);
     }
 
     public override int GetHashCode()
     {
-        return GetColonyMembers().Aggregate(23, (a, b) => a ^ b.GetHashCode());
-    }
-
-    private List<Microbe> GetColonyMembers(Microbe current, List<Microbe> carry)
-    {
-        carry.Add(current);
-        foreach (var child in current.ColonyChildren)
-            GetColonyMembers(child, carry);
-        return carry;
+        return ColonyMembers.Aggregate(23, (a, b) => a ^ b.GetHashCode());
     }
 }

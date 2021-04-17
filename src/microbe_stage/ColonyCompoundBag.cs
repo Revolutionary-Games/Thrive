@@ -116,6 +116,6 @@ public class ColonyCompoundBag : ICompoundStorage
 
     private IEnumerable<CompoundBag> GetCompoundBags()
     {
-        return Colony.GetColonyMembers().Select(p => p.Compounds);
+        return Colony.ColonyMembers.Select(p => p.Compounds);
     }
 }
