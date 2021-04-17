@@ -197,6 +197,7 @@ public class PatchManager
         {
             if (!(key is MicrobeSpecies))
                 continue;
+
             MicrobeSpecies species = (MicrobeSpecies)key;
             spawnSystem.AddSpawnItem(new MicrobeItem(species));
         }
