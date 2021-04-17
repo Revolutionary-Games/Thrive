@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -82,6 +81,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     [JsonProperty]
     private bool wasBeingEngulfed;
+
+    private bool justEnteringColony;
 
     // private bool isCurrentlyEngulfing = false;
 
@@ -196,7 +197,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         get => colony;
         set
         {
-            if (colony == value)
+            if (colony != null && colony == value)
                 return;
 
             colony = value;
@@ -1265,6 +1266,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _ExitTree()
     {
+        if (justEnteringColony)
+        {
+            justEnteringColony = false;
+            return;
+        }
+
         Colony?.RemoveFromColony(this);
     }
 
@@ -2146,6 +2153,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void MakeChildrenLink(Microbe parent)
     {
+        justEnteringColony = true;
         GetParent().RemoveChild(this);
         parent.AddChild(this);
     }
