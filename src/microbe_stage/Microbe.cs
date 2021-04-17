@@ -549,7 +549,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         allOrganellesDivided = false;
 
         // Unbind if the master removed it's binding agent.
-        if (Colony != null && Colony.Master == null && !organelles.Any(p => p.IsBindingAgent))
+        if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
             Colony.RemoveFromColony(this);
     }
 
