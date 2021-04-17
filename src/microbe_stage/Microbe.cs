@@ -47,8 +47,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
     private SphereShape engulfShape;
 
-    private Node originalParent;
-
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
     /// </summary>
@@ -422,12 +420,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         _Ready();
     }
 
-    public override void _EnterTree()
-    {
-        if (originalParent == null || Colony == null)
-            originalParent = GetParent();
-    }
-
     public override void _Ready()
     {
         if (cloudSystem == null)
@@ -595,7 +587,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var position = Translation + (direction * ejectionDistance);
 
         SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
-            position, direction, originalParent,
+            position, direction, GetStageAsParent(),
             SpawnHelpers.LoadAgentScene(), this);
 
         PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
@@ -803,7 +795,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
                 SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
-                    Translation, direction, originalParent,
+                    Translation, direction, GetStageAsParent(),
                     agentScene, this);
 
                 amount -= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
@@ -907,7 +899,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, originalParent,
+            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
                 chunkScene, cloudSystem, random);
         }
 
@@ -983,7 +975,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
-            originalParent, SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
+            GetStageAsParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);
@@ -1694,6 +1686,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         OnReproductionStatus?.Invoke(this, false);
     }
 
+    private Node GetStageAsParent()
+    {
+        if (Colony == null)
+            return GetParent();
+
+        return Colony.Master.GetParent();
+    }
+
     /// <summary>
     ///   Handles things related to binding
     /// </summary>
@@ -2167,8 +2167,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             pos = Translation;
         }
 
-        GetParent().RemoveChild(this);
-        originalParent.AddChild(this);
+        if (Colony.Master != this)
+        {
+            GetParent().RemoveChild(this);
+            GetStageAsParent().AddChild(this);
+        }
 
         Translation = pos;
     }
