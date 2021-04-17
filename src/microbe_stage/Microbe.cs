@@ -369,7 +369,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
-        cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
+        cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
         if (IsPlayerMicrobe)
         {
@@ -1716,13 +1716,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             deathParticlesSpawned = true;
 
-            var cellBurstEffectParticles = (Particles)cellBurstEffectScene.Instance();
-            var cellBurstEffectMaterial = (ParticlesMaterial)cellBurstEffectParticles.ProcessMaterial;
+            var cellBurstEffectParticles = (CellBurstEffect)cellBurstEffectScene.Instance();
+            cellBurstEffectParticles.Translation = Translation;
+            cellBurstEffectParticles.Host = this;
+            cellBurstEffectParticles.AddToGroup(Constants.TIMED_GROUP);
 
-            cellBurstEffectMaterial.EmissionSphereRadius = Radius / 2;
-            cellBurstEffectMaterial.LinearAccel = Radius / 2;
-            cellBurstEffectParticles.OneShot = true;
-            AddChild(cellBurstEffectParticles);
+            GetParent().AddChild(cellBurstEffectParticles);
 
             // Hide the particles if being engulfed since they are
             // supposed to be already "absorbed" by the engulfing cell
@@ -1739,7 +1738,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         Membrane.DissolveEffectValue += delta * Constants.MEMBRANE_DISSOLVE_SPEED;
 
-        if (Membrane.DissolveEffectValue >= 6)
+        if (Membrane.DissolveEffectValue >= 1)
         {
             this.DetachAndQueueFree();
         }
