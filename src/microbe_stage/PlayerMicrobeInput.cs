@@ -111,8 +111,11 @@ public class PlayerMicrobeInput : NodeWithInput
             var unbindingText = new SpecifiedInputKey(
                 (InputEventWithModifiers)InputMap.GetActionList("g_toggle_unbinding")[0]).ToString();
 
-            stage.HUD.HelpText =
-                string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("UNBIND_HELP_TEXT"), unbindingText);
+            stage.HUD.HelpText = string.Format(
+                CultureInfo.CurrentCulture,
+                TranslationServer.Translate("UNBIND_HELP_TEXT"),
+                unbindingText);
+
             stage.Player.State = Microbe.MicrobeState.UNBINDING;
         }
     }
@@ -144,8 +147,6 @@ public class PlayerMicrobeInput : NodeWithInput
 
         var target = stage.MicrobesAtMouse[0];
         RemoveCellFromColony(target);
-
-        stage.Player.OnUnbound?.Invoke(stage.Player);
 
         stage.HUD.HelpText = string.Empty;
         return true;
