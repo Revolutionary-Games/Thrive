@@ -270,7 +270,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public float MovementFactor { get; private set; } = 1.0f;
 
     /// <summary>
-    ///   The current mode of the microbe. Shared across the colony
+    ///   The current state of the microbe. Shared across the colony
     /// </summary>
     [JsonIgnore]
     public MicrobeState State
