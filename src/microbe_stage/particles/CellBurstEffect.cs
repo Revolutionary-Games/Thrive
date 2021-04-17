@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 public class CellBurstEffect : Spatial, ITimedLife
 {
     [JsonProperty]
-    public float CellRadius;
+    public float Radius;
 
     private Particles particles;
 
@@ -20,8 +20,8 @@ public class CellBurstEffect : Spatial, ITimedLife
 
         var material = (ParticlesMaterial)particles.ProcessMaterial;
 
-        material.EmissionSphereRadius = CellRadius / 2;
-        material.LinearAccel = CellRadius / 2;
+        material.EmissionSphereRadius = Radius / 2;
+        material.LinearAccel = Radius / 2;
         particles.OneShot = true;
     }
 
