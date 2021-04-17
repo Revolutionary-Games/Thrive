@@ -145,7 +145,7 @@ public class PlayerMicrobeInput : NodeWithInput
         var target = stage.MicrobesAtMouse[0];
         RemoveCellFromColony(target);
 
-        stage.Player.OnUnbound?.Invoke();
+        stage.Player.OnUnbound?.Invoke(stage.Player);
 
         stage.HUD.HelpText = string.Empty;
         return true;

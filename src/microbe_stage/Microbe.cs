@@ -286,7 +286,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 Colony.State = value;
 
             if (value == MicrobeState.UNBINDING && IsPlayerMicrobe)
-                OnUnbindEnabled?.Invoke();
+                OnUnbindEnabled?.Invoke(this);
         }
     }
 
@@ -402,10 +402,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
     [JsonProperty]
-    public Action OnUnbindEnabled { get; set; }
+    public Action<Microbe> OnUnbindEnabled { get; set; }
 
     [JsonProperty]
-    public Action OnUnbound { get; set; }
+    public Action<Microbe> OnUnbound { get; set; }
 
     public bool IsLoadedFromSave { get; set; }
 

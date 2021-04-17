@@ -598,13 +598,13 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerUnbindEnabled()
+    private void OnPlayerUnbindEnabled(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerUnbound()
+    private void OnPlayerUnbound(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
     }
