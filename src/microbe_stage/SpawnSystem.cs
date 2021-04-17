@@ -169,17 +169,17 @@ public class SpawnSystem
 
         if (pop is CloudItem cloudPop)
         {
-            cloudPop?.SetCloudSpawner(cloudSpawner);
+            cloudPop.SetCloudSpawner(cloudSpawner);
         }
 
         if (pop is ChunkItem chunkPop)
         {
-            chunkPop?.SetChunkSpawner(chunkSpawner, worldRoot);
+            chunkPop.SetChunkSpawner(chunkSpawner, worldRoot);
         }
 
         if (pop is MicrobeItem microbePop)
         {
-            microbePop?.SetMicrobeSpawner(microbeSpawner, worldRoot);
+            microbePop.SetMicrobeSpawner(microbeSpawner, worldRoot);
         }
 
         return pop;
@@ -266,7 +266,7 @@ public class SpawnSystem
                     break;
                 }
 
-                List<ISpawned> spawnedList = spawn?.Spawn();
+                List<ISpawned> spawnedList = spawn.Spawn();
                 if (spawnedList != null)
                 {
                     foreach (ISpawned spawned in spawnedList)
