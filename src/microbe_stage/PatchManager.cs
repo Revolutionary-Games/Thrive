@@ -141,7 +141,7 @@ public class PatchManager
 
             var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
                 Math.Min(Constants.MAX_SPAWN_DENSITY,
-                    species.Population * 5));
+                    species.Population * 3));
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 

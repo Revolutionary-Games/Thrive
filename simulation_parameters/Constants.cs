@@ -49,7 +49,7 @@ public static class Constants
     // Length of cloud spawn cycle in seconds.
     public const float SPAWN_BAG_RATE = 150f;
 
-    public const float SPAWN_DENSITY_MULTIPLIER = 200000f;
+    public const float SPAWN_DENSITY_MULTIPLIER = 400000f;
 
     public const int SPAWN_GRID_SIZE = 300;
     public const int SPAWN_GRID_HALFSIZE = SPAWN_GRID_SIZE / 2;
@@ -68,8 +68,6 @@ public static class Constants
 
     public const int MAX_SPAWNS_PER_FRAME = 2;
     public const int MAX_DESPAWNS_PER_FRAME = 2;
-
-    public const int FREE_SPAWNS_IN_NEW_PATCH = 3;
 
     public const int MEMBRANE_RESOLUTION = 10;
 

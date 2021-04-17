@@ -360,7 +360,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (Player != null)
         {
-            spawner.Process(delta, Player.Translation, Player.Rotation);
+            spawner.Process(delta, Player.Translation);
             Clouds.ReportPlayerPosition(Player.Translation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,

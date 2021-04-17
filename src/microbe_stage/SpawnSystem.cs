@@ -117,14 +117,14 @@ public class SpawnSystem
     /// <summary>
     ///   Processes spawning and despawning things
     /// </summary>
-    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
+    public void Process(float delta, Vector3 playerPosition)
     {
         elapsed += delta;
 
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        SpawnItems(playerPosition, playerRotation, delta);
+        SpawnItems(playerPosition);
         SpawnItemsInSpawnList();
     }
 
@@ -185,7 +185,8 @@ public class SpawnSystem
         return pop;
     }
 
-    private void SpawnItems(Vector3 playerPosition, Vector3 playerRotation, float delta)
+    // TODO Re-impliment spawn radius for wandering microbes here
+    private void SpawnItems(Vector3 playerPosition)
     {
         int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
         int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
@@ -216,9 +217,13 @@ public class SpawnSystem
     private void SpawnEvent(Vector3 spawnGridPos, Vector3 playerPosition)
     {
         // Choose random place to spawn
-        Vector3 spawnEventCenter = spawnGridPos +
-            new Vector3(random.NextFloat() * Constants.SPAWN_GRID_SIZE - Constants.SPAWN_GRID_HALFSIZE, 0,
-            (float)random.NextFloat() * Constants.SPAWN_GRID_SIZE - Constants.SPAWN_GRID_HALFSIZE);
+        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
+            + Constants.SPAWN_ITEM_RADIUS;
+
+        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
+            + Constants.SPAWN_ITEM_RADIUS;
+
+        Vector3 spawnEventCenter = spawnGridPos + new Vector3(eventCenterX, 0, eventCenterZ);
 
         DespawnEntities(playerPosition);
 
@@ -294,10 +299,10 @@ public class SpawnSystem
             int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
             int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
 
-            float minSpawnX = (playerGridX - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS;
-            float maxSpawnX = (playerGridX + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE + Constants.SPAWN_EVENT_RADIUS;
-            float minSpawnZ = (playerGridZ - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS;
-            float maxSpawnZ = (playerGridZ + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE + Constants.SPAWN_EVENT_RADIUS;
+            float minSpawnX = (playerGridX - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE;
+            float maxSpawnX = (playerGridX + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE;
+            float minSpawnZ = (playerGridZ - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE;
+            float maxSpawnZ = (playerGridZ + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE;
 
             // If the entity is too far away from the player, despawn it.
             if (entityPosition.x < minSpawnX || entityPosition.x > maxSpawnX ||
