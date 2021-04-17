@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 
@@ -15,6 +16,14 @@ public class PatchManager
 
     private Patch previousPatch;
 
+    // Counts of each Species/Chunk/Compound
+    private Dictionary<Species, int> speciesCounts = new Dictionary<Species, int>();
+    private Dictionary<ChunkConfiguration, int> chunkCounts = new Dictionary<ChunkConfiguration, int>();
+    private Dictionary<Compound, int> compoundCloudCounts = new Dictionary<Compound, int>();
+
+    // Cloud Compound Amounts
+    private Dictionary<Compound, float> compoundAmounts = new Dictionary<Compound, float>();
+
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight)
     {
@@ -30,8 +39,7 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed,
-        Vector3 playerPosition, bool isNewGame)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
     {
         if (previousPatch != currentPatch && despawnAllowed)
         {
@@ -66,13 +74,7 @@ public class PatchManager
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
-        spawnSystem.FillSpawnItemBag();
-
-        // If we just loaded a save file, don't spawn new stuff.
-        if (despawnAllowed && !isNewGame)
-        {
-            spawnSystem.NewPatchSpawn(playerPosition);
-        }
+        SetFullSpawnBag();
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
@@ -82,17 +84,18 @@ public class PatchManager
     {
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
-        spawnSystem.ClearChunkSpawner();
+        chunkCounts.Clear();
 
         foreach (var chunk in biome.Chunks.Keys)
         {
-            float chunkDensity = biome.Chunks[chunk].Density;
+            float chunkDensity = biome.Chunks[chunk].Density / 3.0f;
 
             if (chunkDensity > 0)
             {
+                // Cheaty divide because there are too many chunks
                 int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * chunkDensity);
                 GD.Print(biome.Chunks[chunk].Name + " has " + numOfItems + " items per bag.");
-                spawnSystem.AddBiomeChunk(biome.Chunks[chunk], numOfItems);
+                chunkCounts.Add(biome.Chunks[chunk], numOfItems);
             }
         }
     }
@@ -101,7 +104,8 @@ public class PatchManager
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
-        spawnSystem.ClearCloudSpawner();
+        compoundCloudCounts.Clear();
+        compoundAmounts.Clear();
 
         foreach (var compound in biome.Compounds.Keys)
         {
@@ -113,7 +117,8 @@ public class PatchManager
             {
                 int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * compoundDensity);
                 GD.Print(compound.Name + " has " + numOfItems + " items per bag.");
-                spawnSystem.AddBiomeCompound(compound, numOfItems, compoundAmount);
+                compoundCloudCounts.Add(compound, numOfItems);
+                compoundAmounts.Add(compound, compoundAmount);
             }
         }
     }
@@ -122,7 +127,7 @@ public class PatchManager
     {
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
-        spawnSystem.ClearMicrobeSpawner();
+        speciesCounts.Clear();
 
         foreach (var entry in patch.SpeciesInPatch)
         {
@@ -136,13 +141,13 @@ public class PatchManager
 
             var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
                 Math.Min(Constants.MAX_SPAWN_DENSITY,
-                    species.Population * 5));
+                    species.Population * 3));
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * density);
             GD.Print(name + " has " + numOfItems + " items per bag.");
-            spawnSystem.AddPatchSpecies(species, numOfItems);
+            speciesCounts.Add(species, numOfItems);
         }
     }
 
@@ -162,5 +167,38 @@ public class PatchManager
         worldLight.LightColor = biome.Sunlight.Colour;
         worldLight.LightEnergy = biome.Sunlight.Energy;
         worldLight.LightSpecular = biome.Sunlight.Specular;
+    }
+
+    private void SetFullSpawnBag()
+    {
+        foreach (Compound compound in compoundCloudCounts.Keys)
+        {
+            for (int i = 0; i < compoundCloudCounts[compound]; i++)
+            {
+                spawnSystem.AddSpawnItem(new CloudItem(compound, compoundAmounts[compound]));
+            }
+        }
+
+        foreach (ChunkConfiguration chunk in chunkCounts.Keys)
+        {
+            foreach (var mesh in chunk.Meshes)
+            {
+                if (mesh.LoadedScene == null)
+                    throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
+            }
+
+            for (int i = 0; i < chunkCounts[chunk]; i++)
+            {
+                spawnSystem.AddSpawnItem(new ChunkItem(chunk));
+            }
+        }
+
+        foreach (Species key in speciesCounts.Keys)
+        {
+            if (!(key is MicrobeSpecies))
+                continue;
+            MicrobeSpecies species = (MicrobeSpecies)key;
+            spawnSystem.AddSpawnItem(new MicrobeItem(species));
+        }
     }
 }

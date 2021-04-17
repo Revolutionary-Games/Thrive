@@ -28,10 +28,18 @@ public class SpawnSystem
     /// </summary>
     private Node worldRoot;
 
+    // List of SpawnItems, used to fill the spawnItemBag when it is empty.
+    [JsonIgnore]
+    private List<SpawnItem> spawnItems = new List<SpawnItem>();
+
     // Used for a Tetris style random bag. Fill and shuffle the bag,
     // then simply pop one out until empty. Rinse and repeat.
     [JsonIgnore]
     private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
+
+    // Queue of spawn items to spawn. a few from this list get spawned every frame.
+    [JsonIgnore]
+    private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
 
     [JsonIgnore]
     private int spawnBagSize;
@@ -52,23 +60,24 @@ public class SpawnSystem
     [JsonProperty]
     private int maxAliveEntities = 1000;
 
+    private Dictionary<Vector3, bool> spawnedGrid = new Dictionary<Vector3, bool>();
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
     }
 
-    public static void AddEntityToTrack(ISpawned entity,
-        float radius = Constants.MICROBE_SPAWN_RADIUS)
+    public static void AddEntityToTrack(ISpawned entity)
     {
-        entity.DespawnRadius = (int)radius;
+        entity.DespawnRadius = Constants.SPAWN_ITEM_RADIUS;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
-    public void Init(CompoundCloudSystem cloudSystem, int spawnRadius)
+    public void Init(CompoundCloudSystem cloudSystem)
     {
-        cloudSpawner = new CompoundCloudSpawner(cloudSystem, spawnRadius);
-        chunkSpawner = new ChunkSpawner(cloudSystem, spawnRadius);
-        microbeSpawner = new MicrobeSpawner(cloudSystem, spawnRadius);
+        cloudSpawner = new CompoundCloudSpawner(cloudSystem);
+        chunkSpawner = new ChunkSpawner(cloudSystem);
+        microbeSpawner = new MicrobeSpawner(cloudSystem);
     }
 
     public void SetCurrentGame(GameProperties currentGame)
@@ -76,52 +85,19 @@ public class SpawnSystem
         microbeSpawner.SetCurrentGame(currentGame);
     }
 
-    // Needs no params constructor for loading saves?
-
-    /// <summary>
-    ///   Adds an externally spawned entity to be despawned
-    /// </summary>
-    public void FillSpawnItemBag()
+    public void AddSpawnItem(SpawnItem spawnItem)
     {
-        GD.Print("Filling the Spawn Bag");
+        spawnItems.Add(spawnItem);
+    }
+
+    public void ClearSpawnItems()
+    {
+        spawnItems.Clear();
+    }
+
+    public void ClearSpawnBag()
+    {
         spawnItemBag.Clear();
-
-        // Fill compound cloud items
-        foreach (Compound key in cloudSpawner.GetCompounds())
-        {
-            // per each 0.00001 density, add one cloud to bag.
-            int cloudCount = cloudSpawner.GetCloudItemCount(key);
-            for (int i = 0; i < Math.Min(cloudCount, 100); i++)
-            {
-                spawnItemBag.Add(new CloudItem(cloudSpawner, key, cloudSpawner.GetCloudAmount(key)));
-            }
-        }
-
-        // Fill chunk items
-        foreach (ChunkConfiguration key in chunkSpawner.GetChunks())
-        {
-            int chunkCount = chunkSpawner.GetChunkCount(key);
-            for (int i = 0; i < Math.Min(chunkCount, 100); i++)
-            {
-                spawnItemBag.Add(new ChunkItem(chunkSpawner, key, worldRoot));
-            }
-        }
-
-        // Fill microbe items
-        foreach (Species key in microbeSpawner.GetSpecies())
-        {
-            if (!(key is MicrobeSpecies))
-                continue;
-
-            MicrobeSpecies microbeSpecies = (MicrobeSpecies)key;
-            int speciesCount = microbeSpawner.GetSpeciesCount(microbeSpecies);
-            for (int i = 0; i < Math.Min(speciesCount, 100); i++)
-            {
-                spawnItemBag.Add(new MicrobeItem(microbeSpawner, microbeSpecies, worldRoot));
-            }
-        }
-
-        ShuffleSpawnItemBag();
     }
 
     /// <summary>
@@ -141,70 +117,33 @@ public class SpawnSystem
     /// <summary>
     ///   Processes spawning and despawning things
     /// </summary>
-    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
+    public void Process(float delta, Vector3 playerPosition)
     {
         elapsed += delta;
 
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        SpawnItems(playerPosition, playerRotation, delta);
+        SpawnItems(playerPosition);
+        SpawnItemsInSpawnList();
     }
 
-    public void NewPatchSpawn(Vector3 playerPosition)
+    // Takes SpawnItems list and shuffles them in bag.
+    private void FillSpawnItemBag()
     {
-        for (int i = 0; i < Constants.FREE_SPAWNS_IN_NEW_PATCH; i++)
+        spawnItemBag.Clear();
+
+        foreach (SpawnItem spawnItem in spawnItems)
         {
-            float displacementDistance = random.NextFloat() * cloudSpawner.MinSpawnRadius + 3.0f;
-            float displacementRotation = NormalToWithNegativesRadians(random.NextFloat() * 2 * (float)Math.PI);
-
-            Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
-            SpawnItem spawn = SpawnItemBagPop();
-
-            List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
-            if (spawnedList != null)
-            {
-                foreach (ISpawned spawned in spawnedList)
-                {
-                    ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
-                }
-            }
+            spawnItemBag.Add(spawnItem);
         }
+
+        ShuffleSpawnItemBag();
     }
 
-    public void ClearCloudSpawner()
-    {
-        cloudSpawner.ClearBiomeCompounds();
-    }
-
-    public void ClearChunkSpawner()
-    {
-        chunkSpawner.ClearChunks();
-    }
-
-    public void ClearMicrobeSpawner()
-    {
-        microbeSpawner.ClearSpecies();
-    }
-
-    public void AddBiomeCompound(Compound compound, int numOfItems, float amount)
-    {
-        cloudSpawner.AddBiomeCompound(compound, numOfItems, amount);
-    }
-
-    public void AddBiomeChunk(ChunkConfiguration chunk, int numOfItems)
-    {
-        chunkSpawner.AddChunk(chunk, numOfItems);
-    }
-
-    public void AddPatchSpecies(Species species, int numOfItems)
-    {
-        microbeSpawner.AddSpecies(species, numOfItems);
-    }
-
+    // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
     private void ShuffleSpawnItemBag()
     {
-        // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
         for (int i = 0; i < spawnItemBag.Count - 2; i++)
         {
             int j = random.Next(i, spawnItemBag.Count);
@@ -228,55 +167,108 @@ public class SpawnSystem
         SpawnItem pop = spawnItemBag[0];
         spawnItemBag.RemoveAt(0);
 
+        if (pop is CloudItem)
+        {
+            ((CloudItem)pop).SetCloudSpawner(cloudSpawner);
+        }
+
+        if (pop is ChunkItem)
+        {
+            ((ChunkItem)pop).SetChunkSpawner(chunkSpawner, worldRoot);
+        }
+
+        if (pop is MicrobeItem)
+        {
+            ((MicrobeItem)pop).SetMicrobeSpawner(microbeSpawner, worldRoot);
+        }
+
         return pop;
     }
 
-    // Takes a random rotation and distance, turns into a vector
-    private Vector3 GetDisplacementVector(float displacementRotation, float displacementDistance)
+    // TODO Re-impliment spawn radius for wandering microbes here
+    private void SpawnItems(Vector3 playerPosition)
     {
-        float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
-        float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
+        int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
+        int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
 
-        // Distance from the player.
-        Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
-        return displacement;
-    }
-
-    private void SpawnItems(Vector3 playerPosition, Vector3 playerRotation, float delta)
-    {
-        spawnItemTimer -= delta;
-        if (spawnItemTimer <= 0)
+        for (int i = -Constants.SPAWN_GRID_WIDTH; i <= Constants.SPAWN_GRID_WIDTH; i++)
         {
-            Spawn(playerPosition, playerRotation);
-            spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
+            for (int j = -Constants.SPAWN_GRID_WIDTH; j <= Constants.SPAWN_GRID_WIDTH; j++)
+            {
+                int spawnGridX = playerGridX + i;
+                int spawnGridZ = playerGridZ + j;
+
+                // Make Random
+                float spawnEventPosX = spawnGridX * Constants.SPAWN_GRID_SIZE;
+                float spawnEventPosZ = spawnGridZ * Constants.SPAWN_GRID_SIZE;
+
+                Vector3 spawnEvent = new Vector3(spawnEventPosX, 0, spawnEventPosZ);
+
+                if (!spawnedGrid.ContainsKey(spawnEvent) || !spawnedGrid[spawnEvent])
+                {
+                    SpawnEvent(spawnEvent, playerPosition);
+
+                    spawnedGrid[spawnEvent] = true;
+                }
+            }
         }
     }
 
-    private void Spawn(Vector3 playerPosition, Vector3 playerRotation)
+    private void SpawnEvent(Vector3 spawnGridPos, Vector3 playerPosition)
     {
+        // Choose random place to spawn
+        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
+            + Constants.SPAWN_ITEM_RADIUS;
+
+        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
+            + Constants.SPAWN_ITEM_RADIUS;
+
+        Vector3 spawnEventCenter = spawnGridPos + new Vector3(eventCenterX, 0, eventCenterZ);
+
         DespawnEntities(playerPosition);
 
+        for (int i = 0; i < random.Next(Constants.SPAWN_EVENT_MIN, Constants.SPAWN_EVENT_MAX); i++)
+        {
+            float spawnRadius = (random.NextFloat() + 0.1f) * Constants.SPAWN_EVENT_RADIUS;
+            float spawnAngle = random.NextFloat() * 2 * Mathf.Pi;
+
+            Vector3 spawnModPosition = new Vector3(spawnRadius * Mathf.Sin(spawnAngle),
+                0, spawnRadius * Mathf.Cos(spawnAngle));
+
+            AddSpawnItemInToSpawnList(spawnEventCenter + spawnModPosition);
+        }
+    }
+
+    private void AddSpawnItemInToSpawnList(Vector3 spawnPos)
+    {
         SpawnItem spawn = SpawnItemBagPop();
 
-        // If there are too many entities, do not spawn any more.
+        // If there are too many entities, do not add more to spawn list.
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
         if (spawnedEntities.Count >= maxAliveEntities)
             return;
 
-        float minRadius = spawn.GetMinSpawnRadius();
-        float maxRadius = spawn.GetSpawnRadius();
+        spawn.SetSpawnPosition(spawnPos);
 
-        float displacementDistance = random.NextFloat() * (maxRadius - minRadius) + minRadius;
-        float displacementRotation = WeightedRandomRotation(playerRotation.y);
+        itemsToSpawn.Enqueue(spawn);
+    }
 
-        Vector3 displacement = GetDisplacementVector(displacementRotation, displacementDistance);
-
-        List<ISpawned> spawnedList = spawn.Spawn(playerPosition + displacement);
-        if (spawnedList != null)
+    private void SpawnItemsInSpawnList()
+    {
+        for (int i = 0; i < Constants.MAX_SPAWNS_PER_FRAME; i++)
         {
-            foreach (ISpawned spawned in spawnedList)
+            if (itemsToSpawn.Count > 0)
             {
-                ProcessSpawnedEntity(spawned, spawn.GetSpawnRadius());
+                SpawnItem spawn = itemsToSpawn.Dequeue();
+
+                List<ISpawned> spawnedList = spawn.Spawn();
+                if (spawnedList != null)
+                {
+                    foreach (ISpawned spawned in spawnedList)
+                    {
+                        ProcessSpawnedEntity(spawned);
+                    }
+                }
             }
         }
     }
@@ -303,10 +295,18 @@ public class SpawnSystem
             }
 
             var entityPosition = ((Spatial)entity).Translation;
-            var squaredDistance = (playerPosition - entityPosition).LengthSquared();
+
+            int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
+            int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
+
+            float minSpawnX = (playerGridX - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE;
+            float maxSpawnX = (playerGridX + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE;
+            float minSpawnZ = (playerGridZ - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE;
+            float maxSpawnZ = (playerGridZ + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE;
 
             // If the entity is too far away from the player, despawn it.
-            if (squaredDistance > spawned.DespawnRadius * spawned.DespawnRadius)
+            if (entityPosition.x < minSpawnX || entityPosition.x > maxSpawnX ||
+                entityPosition.z < minSpawnZ || entityPosition.z > maxSpawnZ)
             {
                 entitiesDeleted++;
                 entity.DetachAndQueueFree();
@@ -317,50 +317,22 @@ public class SpawnSystem
         }
     }
 
-    /// <summary>
+    /// <summary>IT
     ///   Add the entity to the spawned group and add the despawn radius
     /// </summary>
-    private void ProcessSpawnedEntity(ISpawned entity, int spawnRadius)
+    private void ProcessSpawnedEntity(ISpawned entity)
     {
         // I don't understand why the same
         // value is used for spawning and
         // despawning, but apparently it works
         // just fine
-        entity.DespawnRadius = spawnRadius;
+        entity.DespawnRadius = Constants.SPAWN_ITEM_RADIUS;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
-    }
-
-    /// <summary>
-    ///   Returns a random rotation (in radians)
-    ///   It is more likely to return a rotation closer to the target rotation than not
-    /// </summary>
-    private float WeightedRandomRotation(float targetRotation)
-    {
-        targetRotation = WithNegativesToNormalRadians(targetRotation);
-
-        float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
-        float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
-
-        if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
-            return NormalToWithNegativesRadians(rotation1);
-
-        return NormalToWithNegativesRadians(rotation2);
     }
 
     private float NormalToWithNegativesRadians(float radian)
     {
         return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
-    }
-
-    private float WithNegativesToNormalRadians(float radian)
-    {
-        return radian >= 0 ? radian : (float)(2 * Math.PI) - radian;
-    }
-
-    private float DistanceBetweenRadians(float p1, float p2)
-    {
-        float distance = Math.Abs(p1 - p2);
-        return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 }

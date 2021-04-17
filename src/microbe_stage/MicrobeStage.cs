@@ -235,7 +235,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Settings.Instance == null)
             GD.PrintErr("Settings load problem");
 
-        spawner.Init(Clouds, Constants.MICROBE_SPAWN_RADIUS);
+        spawner.Init(Clouds);
 
         if (!IsLoadedFromSave)
         {
@@ -261,7 +261,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (IsLoadedFromSave)
         {
             HUD.OnEnterStageTransition(false);
-            UpdatePatchSettings(true, Player.Transform.origin, false);
+            UpdatePatchSettings(true);
         }
         else
         {
@@ -286,7 +286,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         CreatePatchManagerIfNeeded();
 
-        UpdatePatchSettings(false, new Vector3(0, 0, 0), true);
+        UpdatePatchSettings(false);
 
         SpawnPlayer();
     }
@@ -360,7 +360,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (Player != null)
         {
-            spawner.Process(delta, Player.Translation, Player.Rotation);
+            spawner.Process(delta, Player.Translation);
             Clouds.ReportPlayerPosition(Player.Translation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
@@ -481,7 +481,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void OnReturnFromEditor()
     {
-        UpdatePatchSettings(false, Player.Transform.origin, false);
+        UpdatePatchSettings(false);
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -586,10 +586,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
     }
 
-    private void UpdatePatchSettings(bool isLoading, Vector3 playerPosition, bool isNewGame)
+    private void UpdatePatchSettings(bool isLoading)
     {
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading,
-            playerPosition, isNewGame);
+        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
 
         HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);

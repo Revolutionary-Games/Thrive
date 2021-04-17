@@ -49,9 +49,25 @@ public static class Constants
     // Length of cloud spawn cycle in seconds.
     public const float SPAWN_BAG_RATE = 150f;
 
-    public const float SPAWN_DENSITY_MULTIPLIER = 200000f;
+    public const float SPAWN_DENSITY_MULTIPLIER = 400000f;
 
-    public const int FREE_SPAWNS_IN_NEW_PATCH = 3;
+    public const int SPAWN_GRID_SIZE = 300;
+    public const int SPAWN_GRID_HALFSIZE = SPAWN_GRID_SIZE / 2;
+
+    public const float SPAWN_EVENT_RADIUS = 80f;
+
+    public const int SPAWN_EVENT_MIN = 10;
+    public const int SPAWN_EVENT_MAX = 15;
+
+    public const int SPAWN_GRID_WIDTH = 1;
+
+    public const int SPAWN_ITEM_RADIUS = 170;
+
+    public const float STARTING_SPAWN_DENSITY = 70000.0f;
+    public const float MAX_SPAWN_DENSITY = 20000.0f;
+
+    public const int MAX_SPAWNS_PER_FRAME = 2;
+    public const int MAX_DESPAWNS_PER_FRAME = 2;
 
     public const int MEMBRANE_RESOLUTION = 10;
 
@@ -75,13 +91,6 @@ public static class Constants
     public const float CELL_BASE_THRUST = 50.6f;
 
     public const int PROCESS_OBJECTS_PER_TASK = 50;
-
-    public const int MICROBE_SPAWN_RADIUS = 170;
-    public const int CLOUD_SPAWN_RADIUS = 170;
-
-    public const float STARTING_SPAWN_DENSITY = 70000.0f;
-    public const float MAX_SPAWN_DENSITY = 20000.0f;
-    public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
 
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
@@ -403,9 +412,6 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
-
-    public const int MAX_SPAWNS_PER_FRAME = 2;
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
