@@ -15,6 +15,9 @@ public class AgentProjectile : RigidBody, ITimedLife
     public AgentProperties Properties { get; set; }
     public Node Emitter { get; set; }
 
+    [JsonProperty]
+    private float? FadeTimeRemaining { get; set; }
+
     public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
         float lifetime, Vector3 location, Vector3 direction,
         Node worldRoot, PackedScene agentScene, Node emitter)
@@ -42,8 +45,6 @@ public class AgentProjectile : RigidBody, ITimedLife
         return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
     }
 
-    [JsonProperty]
-    private float? FadeTimeRemaining { get; set; }
     public void OnTimeOver()
     {
         if (FadeTimeRemaining == null)
