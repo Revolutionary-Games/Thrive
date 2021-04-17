@@ -2299,8 +2299,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             GD.Print("Created a new colony");
         }
 
-        other.Colony = Colony;
         Colony.AddToColony(other, this);
+        other.Colony = Colony;
         State = MicrobeState.NORMAL;
 
         var offset = (other.Translation - Translation)

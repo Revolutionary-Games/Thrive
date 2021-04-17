@@ -67,7 +67,7 @@ public class MicrobeColony
 
     public void AddToColony(Microbe microbe, Microbe master)
     {
-        if (microbe == null || master == null)
+        if (microbe == null || master == null || microbe.Colony != null)
             throw new ArgumentException("Microbe or master null");
 
         ColonyMembers.Add(microbe);
