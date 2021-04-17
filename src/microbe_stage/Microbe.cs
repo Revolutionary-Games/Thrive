@@ -196,6 +196,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         get => colony;
         set
         {
+            if (colony == value)
+                return;
+
             if (colony != null)
             {
                 colony.OnMembersChanged -= OnColonyMembersChanged;
