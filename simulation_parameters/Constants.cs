@@ -66,7 +66,7 @@ public static class Constants
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
 
-    public const int MAX_SPAWNS_PER_FRAME = 2;
+    public const int MAX_SPAWNS_PER_FRAME = 3;
     public const int MAX_DESPAWNS_PER_FRAME = 2;
 
     public const int MEMBRANE_RESOLUTION = 10;

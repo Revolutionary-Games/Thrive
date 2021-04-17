@@ -60,7 +60,7 @@ public class SpawnSystem
     [JsonProperty]
     private int maxAliveEntities = 1000;
 
-    private Dictionary<Vector3, bool> spawnedGrid = new Dictionary<Vector3, bool>();
+    private Queue<Vector3> spawnedGrid = new Queue<Vector3>();
 
     public SpawnSystem(Node root)
     {
@@ -204,11 +204,17 @@ public class SpawnSystem
 
                 Vector3 spawnEvent = new Vector3(spawnEventPosX, 0, spawnEventPosZ);
 
-                if (!spawnedGrid.ContainsKey(spawnEvent) || !spawnedGrid[spawnEvent])
+                if (!spawnedGrid.Contains(spawnEvent))
                 {
                     SpawnEvent(spawnEvent, playerPosition);
 
-                    spawnedGrid[spawnEvent] = true;
+                    spawnedGrid.Enqueue(spawnEvent);
+
+                    // In case player wanders forever without evolving, toss old spawnEvents.
+                    if (spawnedGrid.Count > 50)
+                    {
+                        spawnedGrid.Dequeue();
+                    }
                 }
             }
         }
@@ -216,14 +222,7 @@ public class SpawnSystem
 
     private void SpawnEvent(Vector3 spawnGridPos, Vector3 playerPosition)
     {
-        // Choose random place to spawn
-        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
-            + Constants.SPAWN_ITEM_RADIUS;
-
-        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
-            + Constants.SPAWN_ITEM_RADIUS;
-
-        Vector3 spawnEventCenter = spawnGridPos + new Vector3(eventCenterX, 0, eventCenterZ);
+        Vector3 spawnEventCenter = GetRandomEventPosition(spawnGridPos, playerPosition);
 
         DespawnEntities(playerPosition);
 
@@ -237,6 +236,33 @@ public class SpawnSystem
 
             AddSpawnItemInToSpawnList(spawnEventCenter + spawnModPosition);
         }
+    }
+
+    private Vector3 GetRandomEventPosition(Vector3 spawnGridPos, Vector3 playerPos)
+    {
+        // Choose random place to spawn
+        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
+            + Constants.SPAWN_ITEM_RADIUS;
+
+        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
+            + Constants.SPAWN_ITEM_RADIUS;
+
+        // Flip X or Z if they are too close to the player
+        if (Math.Abs(playerPos.x - eventCenterX) - Constants.SPAWN_EVENT_RADIUS < Constants.SPAWN_ITEM_RADIUS)
+        {
+            float subGridX = eventCenterX % Constants.SPAWN_GRID_SIZE;
+            subGridX = -subGridX + Constants.SPAWN_GRID_SIZE;
+            eventCenterX = (eventCenterX / Constants.SPAWN_GRID_SIZE) + subGridX;
+        }
+
+        if (Math.Abs(playerPos.z - eventCenterZ) - Constants.SPAWN_EVENT_RADIUS < Constants.SPAWN_ITEM_RADIUS)
+        {
+            float subGridZ = eventCenterZ % Constants.SPAWN_GRID_SIZE;
+            subGridZ = -subGridZ + Constants.SPAWN_GRID_SIZE;
+            eventCenterZ = (eventCenterZ / Constants.SPAWN_GRID_SIZE) + subGridZ;
+        }
+
+        return spawnGridPos + new Vector3(eventCenterX, 0, eventCenterZ);
     }
 
     private void AddSpawnItemInToSpawnList(Vector3 spawnPos)
