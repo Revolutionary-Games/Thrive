@@ -30,9 +30,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
-    [JsonProperty]
-    internal Dictionary<string, object> ColonyValues = new Dictionary<string, object>();
-
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private MicrobeColony colony;
