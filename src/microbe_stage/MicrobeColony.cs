@@ -18,7 +18,6 @@ public class MicrobeColony
         master.ColonyChildren = new List<Microbe>();
         colonyMemberCache = new List<Microbe> { master };
         ColonyCompounds = new ColonyCompoundBag(this);
-        OnMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, master));
     }
 
     public event EventHandler<CollectionChangeEventArgs> OnMembersChanged;
@@ -86,6 +85,8 @@ public class MicrobeColony
         master.ColonyChildren.Add(microbe);
         microbe.Colony = this;
         microbe.ColonyChildren = new List<Microbe>();
+
+        OnMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, microbe));
     }
 
     public bool AreInSameColony(Microbe a, Microbe b)
