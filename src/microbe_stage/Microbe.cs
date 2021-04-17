@@ -1718,7 +1718,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             var cellBurstEffectParticles = (CellBurstEffect)cellBurstEffectScene.Instance();
             cellBurstEffectParticles.Translation = Translation;
-            cellBurstEffectParticles.Host = this;
+            cellBurstEffectParticles.CellRadius = Radius;
             cellBurstEffectParticles.AddToGroup(Constants.TIMED_GROUP);
 
             GetParent().AddChild(cellBurstEffectParticles);

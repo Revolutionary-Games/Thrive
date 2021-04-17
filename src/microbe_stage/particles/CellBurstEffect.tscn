@@ -55,7 +55,10 @@ albedo_texture = ExtResource( 1 )
 [sub_resource type="QuadMesh" id=9]
 material = SubResource( 8 )
 
-[node name="CellBurstEffect" type="Particles"]
+[node name="CellBurstEffect" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Particles" type="Particles" parent="."]
 amount = 300
 lifetime = 5.0
 explosiveness = 1.0
@@ -63,4 +66,3 @@ randomness = 1.0
 local_coords = false
 process_material = SubResource( 7 )
 draw_pass_1 = SubResource( 9 )
-script = ExtResource( 2 )
