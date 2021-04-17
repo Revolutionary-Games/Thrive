@@ -1705,26 +1705,25 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void HandleBinding(float delta)
     {
-        if (State == MicrobeState.Binding)
-        {
-            // Drain atp
-            var cost = Constants.BINDING_ATP_COST_PER_SECOND * delta;
-
-            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
-            {
-                State = MicrobeState.Normal;
-            }
-
-            if (!bindingAudio.Playing)
-                bindingAudio.Play();
-
-            Flash(1, new Color(45.0f / 255.0f, 132.0f / 255.0f, 12.0f / 255.0f, 0.5f));
-        }
-        else
+        if (State != MicrobeState.Binding)
         {
             if (bindingAudio.Playing)
                 bindingAudio.Stop();
+            return;
         }
+
+        // Drain atp
+        var cost = Constants.BINDING_ATP_COST_PER_SECOND * delta;
+
+        if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
+        {
+            State = MicrobeState.Normal;
+        }
+
+        if (!bindingAudio.Playing)
+            bindingAudio.Play();
+
+        Flash(1, new Color(45.0f / 255.0f, 132.0f / 255.0f, 12.0f / 255.0f, 0.5f));
     }
 
     /// <summary>
