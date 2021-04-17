@@ -2,9 +2,9 @@
 
 public class CellBurstEffect : Particles, ITimedLife
 {
-    public float TimeToLiveRemaining { get; set; }
-
     public Microbe Host;
+
+    public float TimeToLiveRemaining { get; set; }
 
     public override void _Ready()
     {
