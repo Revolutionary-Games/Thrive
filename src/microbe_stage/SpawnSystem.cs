@@ -28,17 +28,20 @@ public class SpawnSystem
     /// </summary>
     private Node worldRoot;
 
+    // List of SpawnItems, used to fill the spawnItemBag when it is empty.
+    [JsonIgnore]
+    private List<SpawnItem> spawnItems = new List<SpawnItem>();
+
     // Used for a Tetris style random bag. Fill and shuffle the bag,
     // then simply pop one out until empty. Rinse and repeat.
     [JsonIgnore]
     private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
 
     [JsonIgnore]
-    private int spawnBagSize;
+    private List<SpawnItem> itemsToSpawn = new List<SpawnItem>();
 
-    // Spawn Items to put in Spawn Bag
     [JsonIgnore]
-    private List<SpawnItem> spawnItems = new List<SpawnItem>();
+    private int spawnBagSize;
 
     [JsonProperty]
     private Random random = new Random();
@@ -83,11 +86,6 @@ public class SpawnSystem
 
     public void AddSpawnItem(SpawnItem spawnItem)
     {
-        if (spawnItem is CloudItem)
-        {
-            ((CloudItem)spawnItem).SetCloudSpawner(cloudSpawner);
-        }
-
         spawnItems.Add(spawnItem);
     }
 
@@ -126,11 +124,7 @@ public class SpawnSystem
         playerPosition.y = 0;
 
         SpawnItems(playerPosition, playerRotation, delta);
-    }
-
-    private void AddSpawnItemToBag(SpawnItem spawnItem)
-    {
-        spawnItemBag.Add(spawnItem);
+        SpawnItemsInSpawnList();
     }
 
     // Takes SpawnItems list and shuffles them in bag.
@@ -235,27 +229,41 @@ public class SpawnSystem
             Vector3 spawnModPosition = new Vector3(spawnRadius * Mathf.Sin(spawnAngle),
                 0, spawnRadius * Mathf.Cos(spawnAngle));
 
-            SpawnItem(spawnEventCenter + spawnModPosition);
+            AddSpawnItemInToSpawnList(spawnEventCenter + spawnModPosition);
         }
     }
 
-    private void SpawnItem(Vector3 spawnPos)
+    private void AddSpawnItemInToSpawnList(Vector3 spawnPos)
     {
         SpawnItem spawn = SpawnItemBagPop();
 
-        // If there are too many entities, do not spawn any more.
+        // If there are too many entities, do not add more to spawn list.
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
         if (spawnedEntities.Count >= maxAliveEntities)
             return;
 
         spawn.SetSpawnPosition(spawnPos);
 
-        List<ISpawned> spawnedList = spawn.Spawn();
-        if (spawnedList != null)
+        itemsToSpawn.Add(spawn);
+    }
+
+    private void SpawnItemsInSpawnList()
+    {
+        for (int i = 0; i < Constants.MAX_SPAWNS_PER_FRAME; i++)
         {
-            foreach (ISpawned spawned in spawnedList)
+            if (itemsToSpawn.Count > 0)
             {
-                ProcessSpawnedEntity(spawned);
+                SpawnItem spawn = itemsToSpawn[0];
+                itemsToSpawn.RemoveAt(0);
+
+                List<ISpawned> spawnedList = spawn.Spawn();
+                if (spawnedList != null)
+                {
+                    foreach (ISpawned spawned in spawnedList)
+                    {
+                        ProcessSpawnedEntity(spawned);
+                    }
+                }
             }
         }
     }
