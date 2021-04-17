@@ -67,7 +67,7 @@ public class MicrobeColony
 
     public void AddToColony(Microbe microbe, Microbe master)
     {
-        if (microbe == null || master == null || microbe.Colony != null)
+        if (microbe == null || master == null)
             throw new ArgumentException("Microbe or master null");
 
         ColonyMembers.Add(microbe);
@@ -78,30 +78,5 @@ public class MicrobeColony
         microbe.ColonyChildren = new List<Microbe>();
 
         OnMembersChanged?.Invoke(this, new CollectionChangeEventArgs(CollectionChangeAction.Add, microbe));
-    }
-
-    public bool AreInSameColony(Microbe a, Microbe b)
-    {
-        if (a.Colony == null || b.Colony == null)
-            return false;
-
-        return Equals(a.Colony, b.Colony);
-    }
-
-    public override bool Equals(object obj)
-    {
-        if (ReferenceEquals(null, obj))
-            return false;
-        if (ReferenceEquals(this, obj))
-            return true;
-        if (!(obj is MicrobeColony other))
-            return false;
-
-        return ColonyMembers.SequenceEqual(other.ColonyMembers);
-    }
-
-    public override int GetHashCode()
-    {
-        return ColonyMembers.Aggregate(23, (a, b) => a ^ b.GetHashCode());
     }
 }

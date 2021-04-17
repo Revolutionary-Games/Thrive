@@ -2183,7 +2183,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (body is Microbe microbe)
         {
             // TODO: does this need to check for disposed exception?
-            if (microbe.Dead || Colony?.AreInSameColony(this, microbe) == true)
+            if (microbe.Dead || (Colony != null && Colony == microbe.Colony))
                 return;
 
             bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
@@ -2352,7 +2352,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void StopEngulfingOnTarget(Microbe microbe)
     {
-        if (microbe.Colony?.AreInSameColony(this, microbe) != true)
+        if (Colony != null && Colony == microbe.Colony)
         {
             try
             {
