@@ -37,8 +37,9 @@ public class SpawnSystem
     [JsonIgnore]
     private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
 
+    // Queue of spawn items to spawn. a few from this list get spawned every frame.
     [JsonIgnore]
-    private List<SpawnItem> itemsToSpawn = new List<SpawnItem>();
+    private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
 
     [JsonIgnore]
     private int spawnBagSize;
@@ -244,7 +245,7 @@ public class SpawnSystem
 
         spawn.SetSpawnPosition(spawnPos);
 
-        itemsToSpawn.Add(spawn);
+        itemsToSpawn.Enqueue(spawn);
     }
 
     private void SpawnItemsInSpawnList()
@@ -253,8 +254,7 @@ public class SpawnSystem
         {
             if (itemsToSpawn.Count > 0)
             {
-                SpawnItem spawn = itemsToSpawn[0];
-                itemsToSpawn.RemoveAt(0);
+                SpawnItem spawn = itemsToSpawn.Dequeue();
 
                 List<ISpawned> spawnedList = spawn.Spawn();
                 if (spawnedList != null)
