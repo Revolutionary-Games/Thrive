@@ -24,9 +24,11 @@ public interface ICompoundStorage : IEnumerable<KeyValuePair<Compound, float>>
     float TakeCompound(Compound compound, float amount);
 
     /// <summary>
-    ///   Adds some compound amount to this. Returns the amount that
-    ///   was added.
+    ///   Adds some compound to this bag.
     /// </summary>
+    /// <returns>
+    ///   Returns the amount that was added, which can be less than the given amount.
+    /// </returns>
     float AddCompound(Compound compound, float amount);
 
     /// <summary>
