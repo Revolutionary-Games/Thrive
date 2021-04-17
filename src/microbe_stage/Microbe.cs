@@ -164,22 +164,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         /// <summary>
         ///   Not in any special state
         /// </summary>
-        NORMAL,
+        Normal,
 
         /// <summary>
         ///   The microbe is currently in binding mode
         /// </summary>
-        BINDING,
+        Binding,
 
         /// <summary>
         ///   The microbe is currently in unbinding mode and cannot move
         /// </summary>
-        UNBINDING,
+        Unbinding,
 
         /// <summary>
         ///   The microbe is currently in engulf mode
         /// </summary>
-        ENGULF,
+        Engulf,
     }
 
     /// <summary>
@@ -285,7 +285,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (Colony != null)
                 Colony.State = value;
 
-            if (value == MicrobeState.UNBINDING && IsPlayerMicrobe)
+            if (value == MicrobeState.Unbinding && IsPlayerMicrobe)
                 OnUnbindEnabled?.Invoke(this);
         }
     }
@@ -506,8 +506,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (Membrane.Type.CellWall)
         {
             // Reset engulf mode if the new membrane doesn't allow it
-            if (State == MicrobeState.ENGULF)
-                State = MicrobeState.NORMAL;
+            if (State == MicrobeState.Engulf)
+                State = MicrobeState.Normal;
         }
 
         SetupMicrobeHitpoints();
@@ -772,7 +772,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Colony?.RemoveFromColony(this);
 
         // Reset some stuff
-        State = MicrobeState.NORMAL;
+        State = MicrobeState.Normal;
         MovementDirection = new Vector3(0, 0, 0);
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
@@ -1326,8 +1326,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             AddCollisionExceptionWith(affectedMicrobe);
         }
 
-        if (State == MicrobeState.UNBINDING)
-            State = MicrobeState.NORMAL;
+        if (State == MicrobeState.Unbinding)
+            State = MicrobeState.Normal;
     }
 
     internal void SuccessfulScavenge()
@@ -1705,14 +1705,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void HandleBinding(float delta)
     {
-        if (State == MicrobeState.BINDING)
+        if (State == MicrobeState.Binding)
         {
             // Drain atp
             var cost = Constants.BINDING_ATP_COST_PER_SECOND * delta;
 
             if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
-                State = MicrobeState.NORMAL;
+                State = MicrobeState.Normal;
             }
 
             if (!bindingAudio.Playing)
@@ -1732,7 +1732,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void HandleUnbinding()
     {
-        if (State != MicrobeState.UNBINDING)
+        if (State != MicrobeState.Unbinding)
             return;
 
         if (IsHoveredOver)
@@ -1750,21 +1750,21 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void HandleEngulfing(float delta)
     {
-        if (State == MicrobeState.ENGULF)
+        if (State == MicrobeState.Engulf)
         {
             // Drain atp
             var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
 
             if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
-                State = MicrobeState.NORMAL;
+                State = MicrobeState.Normal;
             }
         }
 
         ProcessPhysicsForEngulfing();
 
         // Play sound
-        if (State == MicrobeState.ENGULF)
+        if (State == MicrobeState.Engulf)
         {
             if (!engulfAudio.Playing)
                 engulfAudio.Play();
@@ -1779,7 +1779,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Movement modifier
-        if (State == MicrobeState.ENGULF)
+        if (State == MicrobeState.Engulf)
         {
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
@@ -1844,12 +1844,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             IsBeingEngulfed = false;
         }
 
-        previousEngulfMode = State == MicrobeState.ENGULF;
+        previousEngulfMode = State == MicrobeState.Engulf;
     }
 
     private void ProcessPhysicsForEngulfing()
     {
-        if (State != MicrobeState.ENGULF)
+        if (State != MicrobeState.Engulf)
         {
             // Reset the engulfing ignores and potential targets
             foreach (var body in attemptingToEngulf)
@@ -2269,12 +2269,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void CheckBinding()
     {
-        if (State != MicrobeState.BINDING)
+        if (State != MicrobeState.Binding)
             return;
 
         if (!CanBind())
         {
-            State = MicrobeState.NORMAL;
+            State = MicrobeState.Normal;
             return;
         }
 
@@ -2307,7 +2307,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         Colony.AddToColony(other, this);
         other.Colony = Colony;
-        State = MicrobeState.NORMAL;
+        State = MicrobeState.Normal;
 
         var offset = (other.Translation - Translation)
             .Rotated(Vector3.Down, Rotation.y);
@@ -2325,7 +2325,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void CheckStartEngulfingOnCandidates()
     {
-        if (State != MicrobeState.ENGULF)
+        if (State != MicrobeState.Engulf)
             return;
 
         // In the case that the microbe first comes into engulf range, we don't want to start engulfing yet

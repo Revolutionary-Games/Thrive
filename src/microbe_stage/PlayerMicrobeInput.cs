@@ -43,7 +43,7 @@ public class PlayerMicrobeInput : NodeWithInput
 
         if (stage.Player != null)
         {
-            if (stage.Player.State == Microbe.MicrobeState.UNBINDING)
+            if (stage.Player.State == Microbe.MicrobeState.Unbinding)
             {
                 stage.Player.MovementDirection = Vector3.Zero;
                 return;
@@ -69,13 +69,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.ENGULF)
+        if (stage.Player.State == Microbe.MicrobeState.Engulf)
         {
-            stage.Player.State = Microbe.MicrobeState.NORMAL;
+            stage.Player.State = Microbe.MicrobeState.Normal;
         }
         else if (!stage.Player.Membrane.Type.CellWall)
         {
-            stage.Player.State = Microbe.MicrobeState.ENGULF;
+            stage.Player.State = Microbe.MicrobeState.Engulf;
         }
     }
 
@@ -85,13 +85,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.BINDING)
+        if (stage.Player.State == Microbe.MicrobeState.Binding)
         {
-            stage.Player.State = Microbe.MicrobeState.NORMAL;
+            stage.Player.State = Microbe.MicrobeState.Normal;
         }
         else if (stage.Player.CanBind())
         {
-            stage.Player.State = Microbe.MicrobeState.BINDING;
+            stage.Player.State = Microbe.MicrobeState.Binding;
         }
     }
 
@@ -101,10 +101,10 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.UNBINDING)
+        if (stage.Player.State == Microbe.MicrobeState.Unbinding)
         {
             stage.HUD.HelpText = string.Empty;
-            stage.Player.State = Microbe.MicrobeState.NORMAL;
+            stage.Player.State = Microbe.MicrobeState.Normal;
         }
         else if (stage.Player.Colony != null)
         {
@@ -116,7 +116,7 @@ public class PlayerMicrobeInput : NodeWithInput
                 TranslationServer.Translate("UNBIND_HELP_TEXT"),
                 unbindingText);
 
-            stage.Player.State = Microbe.MicrobeState.UNBINDING;
+            stage.Player.State = Microbe.MicrobeState.Unbinding;
         }
     }
 
@@ -126,8 +126,8 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.UNBINDING)
-            stage.Player.State = Microbe.MicrobeState.NORMAL;
+        if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+            stage.Player.State = Microbe.MicrobeState.Normal;
 
         if (stage.Player.Colony != null)
             RemoveCellFromColony(stage.Player);
@@ -139,7 +139,7 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return false;
 
-        if (stage.Player.State != Microbe.MicrobeState.UNBINDING)
+        if (stage.Player.State != Microbe.MicrobeState.Unbinding)
             return false;
 
         if (stage.MicrobesAtMouse.Count == 0)
@@ -155,7 +155,7 @@ public class PlayerMicrobeInput : NodeWithInput
     public void RemoveCellFromColony(Microbe target)
     {
         target.Colony.RemoveFromColony(target);
-        target.State = Microbe.MicrobeState.NORMAL;
+        target.State = Microbe.MicrobeState.Normal;
     }
 
     [RunOnKeyDown("g_cheat_editor")]

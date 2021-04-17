@@ -254,7 +254,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             bool disappear = false;
 
             // Engulfing
-            if (Size > 0 && microbe.State == Microbe.MicrobeState.ENGULF)
+            if (Size > 0 && microbe.State == Microbe.MicrobeState.Engulf)
             {
                 // Check can engulf based on the size of the chunk compared to the cell size
                 if (microbe.EngulfSize >= Size * Constants.ENGULF_SIZE_RATIO_REQ)
