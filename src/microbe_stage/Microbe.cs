@@ -1035,9 +1035,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 // Non-reproductive compounds just always get split evenly to both cells.
                 Compounds.TakeCompound(compound, amount * 0.5f);
 
-                var didntFit = copyEntity.Compounds.AddCompound(compound, amount * 0.5f);
+                var amountAdded = copyEntity.Compounds.AddCompound(compound, amount * 0.5f);
 
-                if (didntFit > 0)
+                if (amountAdded < amount)
                 {
                     // TODO: handle the excess compound that didn't fit in the other cell
                 }
