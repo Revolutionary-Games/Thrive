@@ -167,6 +167,11 @@ public class SpawnSystem
         SpawnItem pop = spawnItemBag[0];
         spawnItemBag.RemoveAt(0);
 
+        if (pop == null)
+        {
+            return null;
+        }
+
         if (pop is CloudItem)
         {
             ((CloudItem)pop).SetCloudSpawner(cloudSpawner);
@@ -248,7 +253,7 @@ public class SpawnSystem
         if (spawnedEntities.Count >= maxAliveEntities)
             return;
 
-        spawn.SetSpawnPosition(spawnPos);
+        spawn?.SetSpawnPosition(spawnPos);
 
         itemsToSpawn.Enqueue(spawn);
     }
@@ -260,6 +265,11 @@ public class SpawnSystem
             if (itemsToSpawn.Count > 0)
             {
                 SpawnItem spawn = itemsToSpawn.Dequeue();
+
+                if (spawn == null)
+                {
+                    break;
+                }
 
                 List<ISpawned> spawnedList = spawn.Spawn();
                 if (spawnedList != null)
