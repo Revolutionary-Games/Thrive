@@ -974,14 +974,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// <summary>
     ///   Triggers reproduction on this cell (even if not ready)
     /// </summary>
+    /// <exception cref="NotSupportedException">Thrown when this microbe is in a colony</exception>
     public void Divide()
     {
+        if (Colony != null)
+            throw new NotSupportedException("Cannot divide a microbe while in a colony");
+
         // Separate the two cells.
         var separation = new Vector3(Radius, 0, 0);
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
-            GetStageAsParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);
