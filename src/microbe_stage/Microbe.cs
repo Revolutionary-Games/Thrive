@@ -1320,9 +1320,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         if (microbe == this)
         {
-            AddCollisionExceptionWith(microbe);
-            microbe.AddCollisionExceptionWith(this);
-
             ChangeNodeParent(ColonyParent);
 
             State = MicrobeState.Normal;
