@@ -67,6 +67,9 @@ public class MicrobeColony
         microbe.Colony = null;
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
+
+        if (State == Microbe.MicrobeState.Unbinding)
+            State = Microbe.MicrobeState.Normal;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)

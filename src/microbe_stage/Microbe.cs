@@ -1314,9 +1314,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         microbe.RemoveCollisionExceptionWith(this);
         RemoveCollisionExceptionWith(microbe);
-
-        if (State == MicrobeState.Unbinding)
-            State = MicrobeState.Normal;
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
