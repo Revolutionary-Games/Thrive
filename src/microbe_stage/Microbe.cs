@@ -1310,6 +1310,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             RevertNodeParent();
             ai?.ResetAI();
+
+            return;
         }
 
         microbe.RemoveCollisionExceptionWith(this);
@@ -1320,18 +1322,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         if (microbe == this)
         {
-            ChangeNodeParent(ColonyParent);
-
-            State = MicrobeState.Normal;
-
-            var offset = (Translation - ColonyParent.Translation)
-               .Rotated(Vector3.Down, ColonyParent.Rotation.y);
-            var rotation = Rotation - ColonyParent.Rotation;
-
-            Translation = offset;
-            Rotation = rotation;
-
-            UnreadyToReproduce();
+            OnIGotAddedToColony();
         }
     }
 
@@ -1347,6 +1338,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_KILL"));
+    }
+
+    private void OnIGotAddedToColony()
+    {
+        ChangeNodeParent(ColonyParent);
+
+        State = MicrobeState.Normal;
+
+        var offset = (Translation - ColonyParent.Translation)
+           .Rotated(Vector3.Down, ColonyParent.Rotation.y);
+        var rotation = Rotation - ColonyParent.Rotation;
+
+        Translation = offset;
+        Rotation = rotation;
+
+        UnreadyToReproduce();
     }
 
     private void SetScaleFromSpecies()
