@@ -101,7 +101,7 @@ public class Gallery : IRegistryType
             if (string.IsNullOrEmpty(ResourcePath))
             {
                 throw new InvalidRegistryDataException(
-                    "conceptArt", GetType().Name, "ResourcePath missing for art texture");
+                    "artwork", GetType().Name, "ResourcePath missing for art texture");
             }
 
             TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
