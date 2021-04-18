@@ -1682,10 +1682,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void UnreadyToReproduce()
     {
-        if (!IsPlayerMicrobe)
-            return;
-
-        // allOrganellesDivided = false;
         OnReproductionStatus?.Invoke(this, false);
     }
 
