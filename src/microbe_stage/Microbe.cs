@@ -1308,7 +1308,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             OnUnbound?.Invoke(this);
 
-            RemoveChildrenLink();
+            RevertNodeParent();
             ai?.ResetAI();
         }
 
@@ -1320,7 +1320,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         if (microbe == this)
         {
-            MakeChildrenLink(ColonyParent);
+            ChangeNodeParent(ColonyParent);
         }
 
         microbe.AddCollisionExceptionWith(this);
@@ -2144,14 +2144,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         return Translation + (ejectionDirection * ejectionDistance);
     }
 
-    private void MakeChildrenLink(Microbe parent)
+    private void ChangeNodeParent(Microbe parent)
     {
         justEnteringColony = true;
         GetParent().RemoveChild(this);
         parent.AddChild(this);
     }
 
-    private void RemoveChildrenLink()
+    private void RevertNodeParent()
     {
         var parent = GetParent();
         Vector3 pos;
