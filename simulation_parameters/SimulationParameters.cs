@@ -226,6 +226,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(musicCategories);
         ApplyRegistryObjectTranslations(helpTexts);
         ApplyRegistryObjectTranslations(inputGroups);
+        ApplyRegistryObjectTranslations(gallery);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)

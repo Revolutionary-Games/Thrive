@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-12 17:42+0700\n"
+"POT-Creation-Date: 2021-04-18 20:32+0700\n"
 "PO-Revision-Date: 2021-04-10 12:08+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -779,64 +779,64 @@ msgstr "Rustisiyanin"
 msgid "NITROGENASE"
 msgstr "Nitrojenaz"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:118
+#: ../simulation_parameters/microbe_stage/organelles.json:119
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:148
+#: ../simulation_parameters/microbe_stage/organelles.json:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1198
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1262
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosentez Yapan Proteinler"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:185
+#: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
 msgid "OXYTOXISOME"
 msgstr "Oksitoksizom"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:218
+#: ../simulation_parameters/microbe_stage/organelles.json:219
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:960
 msgid "THYLAKOIDS"
 msgstr "Tilakoidler"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:250
+#: ../simulation_parameters/microbe_stage/organelles.json:251
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:602
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:666
 msgid "METABOLOSOMES"
 msgstr "Metabolozomlar"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:286
+#: ../simulation_parameters/microbe_stage/organelles.json:287
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4359
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4423
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Azot Fiksasyon Plastidi"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:323
+#: ../simulation_parameters/microbe_stage/organelles.json:324
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4138
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:355
+#: ../simulation_parameters/microbe_stage/organelles.json:356
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
 msgid "FLAGELLUM"
 msgstr "Kamçı"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:382
+#: ../simulation_parameters/microbe_stage/organelles.json:383
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4742
 msgid "VACUOLE"
 msgstr "Koful"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:417
+#: ../simulation_parameters/microbe_stage/organelles.json:418
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
 msgid "MITOCHONDRION"
 msgstr "Mitokondri"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:451
+#: ../simulation_parameters/microbe_stage/organelles.json:452
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4879
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
 msgid "TOXIN_VACUOLE"
@@ -844,19 +844,19 @@ msgstr ""
 "Toksin\n"
 "Kofulu"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:492
+#: ../simulation_parameters/microbe_stage/organelles.json:493
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:523
+#: ../simulation_parameters/microbe_stage/organelles.json:525
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:414
 msgid "CYTOPLASM"
 msgstr "Sitoplazma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:588
+#: ../simulation_parameters/microbe_stage/organelles.json:590
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
 msgid "NUCLEUS"
@@ -922,7 +922,7 @@ msgstr "arazilerdeki popülasyon:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "gezegende nesli tükendi"
 
-#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
+#: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:142
 msgid "LOADING"
 msgstr "Yükleniyor"
 
@@ -1414,6 +1414,15 @@ msgstr "Özel fare tuşu 2"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr "Bilinmeyen fare tuşu"
+
+#: ../src/general/Gallery.cs:82
+#, fuzzy
+msgid "ARTWORK_TITLE"
+msgstr "BAŞARDIN!"
+
+#: ../src/general/Gallery.cs:86
+msgid "ART_BY"
+msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -2320,23 +2329,23 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Yeni bir kontrol tuşu ekle"
 
-#: ../src/microbe_stage/Microbe.cs:817
+#: ../src/microbe_stage/Microbe.cs:820
 msgid "DEATH"
 msgstr "ölüm"
 
-#: ../src/microbe_stage/Microbe.cs:1193
+#: ../src/microbe_stage/Microbe.cs:1196
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
-#: ../src/microbe_stage/Microbe.cs:1200
+#: ../src/microbe_stage/Microbe.cs:1203
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.cs:1526
+#: ../src/microbe_stage/Microbe.cs:1529
 msgid "REPRODUCED"
 msgstr "çoğaldı"
 
-#: ../src/microbe_stage/Microbe.cs:1606
+#: ../src/microbe_stage/Microbe.cs:1609
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 

@@ -83,7 +83,7 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -240.0
+margin_top = -181.0
 margin_bottom = -81.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -94,9 +94,9 @@ __meta__ = {
 [node name="ArtDescription" type="Label" parent="CenterContainer"]
 material = SubResource( 5 )
 margin_left = 240.0
-margin_top = 68.0
+margin_top = 39.0
 margin_right = 1040.0
-margin_bottom = 90.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 800, 0 )
 text = "Shown image description goes here"
 align = 1
@@ -185,6 +185,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "TIP: not set"
 valign = 2
 autowrap = true
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"

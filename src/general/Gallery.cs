@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -7,13 +8,13 @@ using Newtonsoft.Json;
 /// </summary>
 public class Gallery : IRegistryType
 {
-    public List<ConceptArt> ConceptArts;
+    public List<Artwork> Artworks;
 
     public string InternalName { get; set; }
 
     public void Check(string name)
     {
-        foreach (var entry in ConceptArts)
+        foreach (var entry in Artworks)
         {
             entry.Check();
         }
@@ -21,7 +22,7 @@ public class Gallery : IRegistryType
 
     public void Resolve()
     {
-        foreach (var entry in ConceptArts)
+        foreach (var entry in Artworks)
         {
             entry.Resolve();
         }
@@ -29,23 +30,44 @@ public class Gallery : IRegistryType
 
     public void ApplyTranslations()
     {
+        foreach (var entry in Artworks)
+        {
+            entry.ApplyTranslations();
+        }
     }
 
-    public class ConceptArt
+    /// <summary>
+    ///   A piece of concept art or any artworks for Thrive.
+    /// </summary>
+    public class Artwork
     {
         [JsonIgnore]
         public Texture LoadedImage;
 
+#pragma warning disable 169 // Used through reflection
+        private string untranslatedDescription;
+#pragma warning restore 169
+
         public string ResourcePath { get; set; }
 
+        /// <summary>
+        ///   The name of this artwork.
+        /// </summary>
         public string Title { get; set; }
 
+        /// <summary>
+        ///   The name of the artist behind this art.
+        /// </summary>
         public string Artist { get; set; }
 
+        /// <summary>
+        ///   Extended description of this artwork.
+        /// </summary>
+        [TranslateFrom("untranslatedDescription")]
         public string Description { get; set; }
 
         /// <summary>
-        ///   Builds the description string for this artwork
+        ///   Combines artwork title, artist name and extended description.
         /// </summary>
         /// <param name="extended">
         ///     Includes the extended description if true (and it's not empty).
@@ -56,11 +78,12 @@ public class Gallery : IRegistryType
 
             if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
             {
-                result += $"\"{Title}\" - {Artist}";
+                result += string.Format(
+                    CultureInfo.CurrentCulture, TranslationServer.Translate("ARTWORK_TITLE"), Title, Artist);
             }
             else if (string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
             {
-                result += $"Art by {Artist}";
+                result += string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("ART_BY"), Artist);
             }
             else if (!string.IsNullOrEmpty(Title) && string.IsNullOrEmpty(Artist))
             {
@@ -80,6 +103,13 @@ public class Gallery : IRegistryType
                 throw new InvalidRegistryDataException(
                     "conceptArt", GetType().Name, "ResourcePath missing for art texture");
             }
+
+            TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+        }
+
+        public void ApplyTranslations()
+        {
+            TranslationHelper.ApplyTranslations(this);
         }
 
         public void Resolve()
