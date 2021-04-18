@@ -1320,11 +1320,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         if (microbe == this)
         {
-            ChangeNodeParent(ColonyParent);
-        }
+            AddCollisionExceptionWith(microbe);
+            microbe.AddCollisionExceptionWith(this);
 
-        microbe.AddCollisionExceptionWith(this);
-        AddCollisionExceptionWith(microbe);
+            ChangeNodeParent(ColonyParent);
+
+            State = MicrobeState.Normal;
+
+            var offset = (Translation - ColonyParent.Translation)
+               .Rotated(Vector3.Down, ColonyParent.Rotation.y);
+            var rotation = Rotation - ColonyParent.Rotation;
+
+            Translation = offset;
+            Rotation = rotation;
+
+            UnreadyToReproduce();
+        }
     }
 
     internal void SuccessfulScavenge()
@@ -2297,18 +2308,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         Colony.AddToColony(other, this);
-        other.Colony = Colony;
-        State = MicrobeState.Normal;
-
-        var offset = (other.Translation - Translation)
-            .Rotated(Vector3.Down, Rotation.y);
-        var rotation = other.Rotation - Rotation;
-
-        other.Translation = offset;
-        other.Rotation = rotation;
-
-        UnreadyToReproduce();
-        other.UnreadyToReproduce();
     }
 
     /// <summary>
