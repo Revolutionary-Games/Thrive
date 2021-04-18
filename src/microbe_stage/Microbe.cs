@@ -1716,7 +1716,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (!bindingAudio.Playing)
             bindingAudio.Play();
 
-        Flash(1, new Color(45.0f / 255.0f, 132.0f / 255.0f, 12.0f / 255.0f, 0.5f));
+        Flash(1, new Color(0.2f, 0.5f, 0.0f, 0.5f));
     }
 
     /// <summary>
@@ -1729,11 +1729,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (IsHoveredOver)
         {
-            Flash(1, new Color(255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 0.5f));
+            Flash(1, new Color(1.0f, 0.0f, 0.0f, 0.5f));
         }
         else
         {
-            Flash(1, new Color(255.0f / 255.0f, 127.0f / 255.0f, 39.0f / 255.0f, 0.5f));
+            Flash(1, new Color(1.0f, 0.5f, 0.2f, 0.5f));
         }
     }
 
