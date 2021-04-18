@@ -2284,8 +2284,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void BeginBindWith(Microbe other)
     {
-        AddCollisionExceptionWith(other);
-        other.AddCollisionExceptionWith(this);
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
