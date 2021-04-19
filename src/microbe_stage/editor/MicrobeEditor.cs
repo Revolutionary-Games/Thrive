@@ -653,8 +653,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             if (MoveOrganelle(MovingOrganelle, MovingOrganelle.Position, new Hex(q, r), MovingOrganelle.Orientation,
                 organelleRot))
             {
-                // Move succeeded
+                // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
                 MovingOrganelle = null;
+                gui.UpdateCancelButtonVisibility();
 
                 // Update rigidity slider in case it was disabled
                 // TODO: could come up with a bit nicer design here
@@ -781,6 +782,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         MovingOrganelle = selectedOrganelle;
         editedMicrobeOrganelles.Remove(MovingOrganelle);
+    }
+
+    /// <summary>
+    ///   Cancel moving an organelle
+    /// </summary>
+    /// <returns>True when the input is consumed</returns>
+    [RunOnKeyDown("e_cancel_move", Priority = 1)]
+    public bool CancelOrganelleMove()
+    {
+        if (MovingOrganelle == null)
+        {
+            return false;
+        }
+
+        editedMicrobeOrganelles.Add(MovingOrganelle);
+        MovingOrganelle = null;
+        gui.UpdateCancelButtonVisibility();
+        return true;
     }
 
     public void RemoveOrganelle(Hex hex)
