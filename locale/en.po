@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-12 17:42+0700\n"
-"PO-Revision-Date: 2021-04-04 17:49+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
-"com>\n"
+"PO-Revision-Date: 2021-04-16 06:40+0000\n"
+"Last-Translator: EzraZebra <ezra.zebra@protonmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -18,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -31,8 +30,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"Your cell uses ATP as it's energy source, if it runs out you will die."
+msgstr "Your cell uses ATP as its energy source, if it runs out you will die."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
@@ -45,17 +43,16 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"You can also engulf cells and bacteria and iron chunks and cell chunks "
-"that are smaller than you by pressing G. This will cost additional ATP and "
-"will slow you down. Don't forget to press G a second time to stop "
-"engulfing."
+"You can also engulf cells, bacteria, iron chunks and cell chunks that are "
+"smaller than you by pressing G. This will cost additional ATP and will slow "
+"you down. Don't forget to press G a second time to stop engulfing."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Osmoregulation costs ATP, which means the bigger your cell is, the more "
-"Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does "
+"Mitochondria, Metabolosomes or Rusticyanin (or cytoplasm, which does "
 "Glycolysis) you need to avoid losing ATP when you are stationary."
 
 #: ../simulation_parameters/common/help_texts.json:9
@@ -68,7 +65,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "For now if your population drops to zero you go extinct."
+msgstr "For now, if your population drops to zero, you go extinct."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -101,7 +98,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
 "But if you survive for twenty generations with 300 population, you are "
-"considered to have won the current game, after winning you get a popup and "
+"considered to have won the current game. After winning you get a popup and "
 "can continue playing as you wish."
 
 #: ../simulation_parameters/common/help_texts.json:15
@@ -119,7 +116,7 @@ msgstr ""
 "Metabolosomes: Produces ATP from glucose\n"
 "\n"
 "Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen "
-"Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex\n"
+"Sulfide as a chemoplast, but also performs glycolysis, and takes up 1 Hex\n"
 "\n"
 "Thylakoids: Produces 1/3rd the amount of glucose as a normal chloroplast, "
 "but also performs glycolysis, and takes up 1 Hex\n"
@@ -129,8 +126,8 @@ msgstr ""
 "Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
 "anaerobically\n"
 "\n"
-"Cytoplasm: Has storage space and performs glycolysis (Produces small "
-"amounts of ATP)"
+"Cytoplasm: Has storage space and performs glycolysis (Produces small amounts "
+"of ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -147,17 +144,17 @@ msgstr ""
 "Membrane Bound Organelles\n"
 "\n"
 "Nucleus: Takes up 11 hexes and allows for evolution of membrane bound "
-"organelles. And also doubles your cell's size. (Can only be evolved once)\n"
+"organelles, and also doubles your cell's size (can only be evolved once)\n"
 "\n"
-"Mitochondrion: Produces ATP out of glucose and atmospheric O2. Much more "
+"Mitochondrion: Produces ATP out of glucose and atmospheric O2 much more "
 "efficiently than cytoplasm\n"
 "\n"
 "Chloroplast: Makes glucose out of sunlight and atmospheric CO2\n"
 "\n"
 "Chemoplast: Makes glucose out of Hydrogen Sulfide\n"
 "\n"
-"Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen "
-"and Oxygen\n"
+"Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and "
+"Oxygen\n"
 "\n"
 "Vacuole: Stores 15 collected compounds\n"
 "\n"
@@ -189,8 +186,8 @@ msgstr "Press the undo button in the editor to correct a mistake"
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Fun Fact, The Didinium and Paramecium are a textbook example of a predator "
-"prey relationship that has been studied for decades, now, are you the "
+"Fun Fact: the Didinium and Paramecium are a textbook example of a predator-"
+"prey relationship that has been studied for decades. Now, are you the "
 "Didinium or the Paramecium? Predator or Prey?"
 
 #: ../simulation_parameters/common/help_texts.json:49
@@ -203,9 +200,9 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Here's a tip, Osmoregulation costs 1 ATP per second per hex your cell has, "
-"each empty hex of cytoplasm generates 5 ATP per second as well, which "
-"means if you are losing ATP due to osmoregulation just add a couple empty "
-"hexes cytoplasm or remove some organelles."
+"each empty hex of cytoplasm generates 5 ATP per second as well, which means "
+"if you are losing ATP due to osmoregulation just add a couple of empty hexes "
+"of cytoplasm or remove some organelles."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
@@ -265,7 +262,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Here's a tip, you can en[g]ulf chunks iron or otherwise."
+msgstr "Here's a tip, you can en[g]ulf chunks, iron or otherwise."
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
@@ -381,7 +378,7 @@ msgstr "Camera"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr "Zoom Out"
+msgstr "Zoom out"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
