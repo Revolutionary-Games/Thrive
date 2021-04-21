@@ -56,6 +56,9 @@ public class PatchManager
             // Despawn old entities
             spawnSystem.DespawnAll();
 
+            // Clear SpawnBags
+            spawnSystem.ClearBags();
+
             // And also all timed entities
             timedLife.DespawnAll();
 
@@ -74,7 +77,7 @@ public class PatchManager
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
-        SetFullSpawnBag();
+        SetFullSpawnBags();
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
@@ -143,7 +146,7 @@ public class PatchManager
                 Math.Min(Constants.MAX_SPAWN_DENSITY,
                     species.Population * 3));
 
-            var name = species.ID.ToString(CultureInfo.InvariantCulture);
+            var name = species.FormattedName.ToString(CultureInfo.InvariantCulture);
 
             int numOfItems = (int)(Constants.SPAWN_DENSITY_MULTIPLIER * density);
             GD.Print(name + " has " + numOfItems + " items per bag.");
@@ -169,7 +172,7 @@ public class PatchManager
         worldLight.LightSpecular = biome.Sunlight.Specular;
     }
 
-    private void SetFullSpawnBag()
+    private void SetFullSpawnBags()
     {
         foreach (Compound compound in compoundCloudCounts.Keys)
         {
@@ -199,7 +202,16 @@ public class PatchManager
                 continue;
 
             MicrobeSpecies species = (MicrobeSpecies)key;
-            spawnSystem.AddSpawnItem(new MicrobeItem(species));
+
+            MicrobeItem microbeItem = new MicrobeItem(species);
+            microbeItem.IsWanderer = false;
+            spawnSystem.AddSpawnItem(microbeItem);
+
+            MicrobeItem wanderMicrobeItem = new MicrobeItem(species);
+            wanderMicrobeItem.IsWanderer = true;
+            spawnSystem.AddMicrobeItem(wanderMicrobeItem);
         }
+
+        spawnSystem.SetMicrobeBagSize();
     }
 }

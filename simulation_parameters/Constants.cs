@@ -46,12 +46,12 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
-    // Length of cloud spawn cycle in seconds.
-    public const float SPAWN_BAG_RATE = 150f;
+    // Length of wanderer microbe spawn cycle in seconds.
+    public const float WANDERER_SPAWN_RATE = 60f;
 
     public const float SPAWN_DENSITY_MULTIPLIER = 400000f;
 
-    public const int SPAWN_GRID_SIZE = 300;
+    public const int SPAWN_GRID_SIZE = 400;
     public const int SPAWN_GRID_HALFSIZE = SPAWN_GRID_SIZE / 2;
 
     public const float SPAWN_EVENT_RADIUS = 80f;
@@ -61,7 +61,8 @@ public static class Constants
 
     public const int SPAWN_GRID_WIDTH = 1;
 
-    public const int SPAWN_ITEM_RADIUS = 170;
+    public const int DESPAWN_ITEM_RADIUS = 170;
+    public const int SPAWN_WANDERER_RADIUS = (int)(0.95 * DESPAWN_ITEM_RADIUS);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;

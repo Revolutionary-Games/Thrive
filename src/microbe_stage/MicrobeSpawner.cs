@@ -162,7 +162,7 @@ public class MicrobeSpawner
         this.currentGame = currentGame;
     }
 
-    public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species)
+    public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species, bool isWanderer)
     {
         List<ISpawned> spawnedMicrobes = new List<ISpawned>();
 
@@ -170,7 +170,7 @@ public class MicrobeSpawner
         spawnedMicrobes.Add(SpawnMicrobe(species, location, worldNode,
             microbeScene, true, cloudSystem, currentGame));
 
-        if (species.IsBacteria)
+        if (species.IsBacteria && !isWanderer)
         {
             foreach (Microbe microbe in SpawnBacteriaColony(species, location, worldNode, microbeScene,
                 cloudSystem, currentGame, random))

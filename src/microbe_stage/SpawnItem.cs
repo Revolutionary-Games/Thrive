@@ -73,6 +73,7 @@ public class MicrobeItem : SpawnItem
     private MicrobeSpecies species;
     private MicrobeSpawner microbeSpawner;
     private Node worldNode;
+    public bool IsWanderer;
 
     public MicrobeItem(MicrobeSpecies species)
     {
@@ -87,6 +88,6 @@ public class MicrobeItem : SpawnItem
 
     public override List<ISpawned> Spawn()
     {
-        return microbeSpawner.Spawn(worldNode, position, species);
+        return microbeSpawner.Spawn(worldNode, position, species, IsWanderer);
     }
 }

@@ -12,7 +12,7 @@ public class SpawnSystem
     private float elapsed;
 
     [JsonProperty]
-    private float spawnItemTimer;
+    private float spawnWandererTimer = 0;
 
     [JsonIgnore]
     private CompoundCloudSpawner cloudSpawner;
@@ -37,12 +37,20 @@ public class SpawnSystem
     [JsonIgnore]
     private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
 
+    // List of MicrobeItems, used to fill the wanderMicrobeBag.
+    [JsonIgnore]
+    private List<SpawnItem> microbeItems = new List<SpawnItem>();
+
+    // Used to spawn wandering random microbes when sitting still.
+    [JsonIgnore]
+    private List<SpawnItem> wanderMicrobeBag = new List<SpawnItem>();
+
     // Queue of spawn items to spawn. a few from this list get spawned every frame.
     [JsonIgnore]
     private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
 
     [JsonIgnore]
-    private int spawnBagSize;
+    private int microbeBagSize;
 
     [JsonProperty]
     private Random random = new Random();
@@ -69,7 +77,7 @@ public class SpawnSystem
 
     public static void AddEntityToTrack(ISpawned entity)
     {
-        entity.DespawnRadius = Constants.SPAWN_ITEM_RADIUS;
+        entity.DespawnRadius = Constants.DESPAWN_ITEM_RADIUS;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -90,14 +98,37 @@ public class SpawnSystem
         spawnItems.Add(spawnItem);
     }
 
-    public void ClearSpawnItems()
+    public void AddMicrobeItem(MicrobeItem microbeItem)
     {
-        spawnItems.Clear();
+        microbeItems.Add(microbeItem);
     }
 
-    public void ClearSpawnBag()
+    public void SetMicrobeBagSize()
     {
+        microbeBagSize = microbeItems.Count;
+        spawnWandererTimer = Constants.WANDERER_SPAWN_RATE / microbeBagSize;
+    }
+
+    // Adds this spot to SpawnedGrid, so that respawning is less likely to give spawn event.
+    public void RespawningPlayer(Vector3 newPlayerPos)
+    {
+        int spawnGridX = (int)newPlayerPos.x / Constants.SPAWN_GRID_SIZE;
+        int spawnGridZ = (int)newPlayerPos.z / Constants.SPAWN_GRID_SIZE;
+
+        float respawnGridPosX = spawnGridX * Constants.SPAWN_GRID_SIZE;
+        float respawnGridPosZ = spawnGridZ * Constants.SPAWN_GRID_SIZE;
+
+        Vector3 respawnGridPos = new Vector3(respawnGridPosX, 0, respawnGridPosZ);
+        GD.Print("RESPAWN GRID: " + respawnGridPos);
+        spawnedGrid.Enqueue(respawnGridPos);
+    }
+
+    public void ClearBags()
+    {
+        spawnItems.Clear();
         spawnItemBag.Clear();
+        microbeItems.Clear();
+        wanderMicrobeBag.Clear();
     }
 
     /// <summary>
@@ -124,48 +155,48 @@ public class SpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        SpawnItems(playerPosition);
+        SpawnEventGrid(playerPosition);
+        SpawnWanderingMicrobes(playerPosition);
         SpawnItemsInSpawnList();
     }
 
     // Takes SpawnItems list and shuffles them in bag.
-    private void FillSpawnItemBag()
+    private void FillBag(List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
-        spawnItemBag.Clear();
+        bag.Clear();
 
-        foreach (SpawnItem spawnItem in spawnItems)
+        foreach (SpawnItem spawnItem in fullBag)
         {
-            spawnItemBag.Add(spawnItem);
+            bag.Add(spawnItem);
         }
 
-        ShuffleSpawnItemBag();
+        ShuffleBag(bag);
     }
 
     // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
-    private void ShuffleSpawnItemBag()
+    private void ShuffleBag(List<SpawnItem> bag)
     {
-        for (int i = 0; i < spawnItemBag.Count - 2; i++)
+        for (int i = 0; i < bag.Count - 2; i++)
         {
-            int j = random.Next(i, spawnItemBag.Count);
+            int j = random.Next(i, bag.Count);
 
             // swap i, j
-            SpawnItem swap = spawnItemBag[i];
+            SpawnItem swap = bag[i];
 
-            spawnItemBag[i] = spawnItemBag[j];
-            spawnItemBag[j] = swap;
+            bag[i] = bag[j];
+            bag[j] = swap;
         }
-
-        spawnBagSize = spawnItemBag.Count;
-        spawnItemTimer = Constants.SPAWN_BAG_RATE / spawnBagSize;
     }
 
-    private SpawnItem SpawnItemBagPop()
+    private SpawnItem BagPop(List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
-        if (spawnItemBag.Count == 0)
-            FillSpawnItemBag();
+        if (bag.Count == 0)
+        {
+            FillBag(bag, fullBag);
+        }
 
-        SpawnItem pop = spawnItemBag[0];
-        spawnItemBag.RemoveAt(0);
+        SpawnItem pop = bag[0];
+        bag.RemoveAt(0);
 
         if (pop is CloudItem cloudPop)
         {
@@ -185,8 +216,7 @@ public class SpawnSystem
         return pop;
     }
 
-    // TODO Re-impliment spawn radius for wandering microbes here
-    private void SpawnItems(Vector3 playerPosition)
+    private void SpawnEventGrid(Vector3 playerPosition)
     {
         int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
         int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
@@ -198,7 +228,6 @@ public class SpawnSystem
                 int spawnGridX = playerGridX + i;
                 int spawnGridZ = playerGridZ + j;
 
-                // Make Random
                 float spawnEventPosX = spawnGridX * Constants.SPAWN_GRID_SIZE;
                 float spawnEventPosZ = spawnGridZ * Constants.SPAWN_GRID_SIZE;
 
@@ -206,9 +235,13 @@ public class SpawnSystem
 
                 if (!spawnedGrid.Contains(spawnEvent))
                 {
+                    GD.Print("SPAWN EVENT: " + spawnEvent + "  player pos: "+ playerPosition);
+
                     SpawnEvent(spawnEvent, playerPosition);
 
                     spawnedGrid.Enqueue(spawnEvent);
+
+                    DespawnEntities(playerPosition);
 
                     // In case player wanders forever without evolving, toss old spawnEvents.
                     if (spawnedGrid.Count > 50)
@@ -220,11 +253,27 @@ public class SpawnSystem
         }
     }
 
+    private void SpawnWanderingMicrobes(Vector3 playerPosition)
+    {
+        if (elapsed > spawnWandererTimer)
+        {
+            elapsed = 0;
+            float spawnDistance = Constants.SPAWN_WANDERER_RADIUS;
+            float spawnAngle = random.NextFloat() * 2 * Mathf.Pi;
+
+            Vector3 spawnWanderer = new Vector3(spawnDistance * Mathf.Sin(spawnAngle),
+                0, spawnDistance * Mathf.Cos(spawnAngle));
+
+            GD.Print("SPAWNING WANDERER: " + spawnWandererTimer);
+            AddSpawnItemInToSpawnList(spawnWanderer + playerPosition, wanderMicrobeBag, microbeItems);
+
+            DespawnEntities(playerPosition);
+        }
+    }
+
     private void SpawnEvent(Vector3 spawnGridPos, Vector3 playerPosition)
     {
         Vector3 spawnEventCenter = GetRandomEventPosition(spawnGridPos, playerPosition);
-
-        DespawnEntities(playerPosition);
 
         for (int i = 0; i < random.Next(Constants.SPAWN_EVENT_MIN, Constants.SPAWN_EVENT_MAX); i++)
         {
@@ -234,28 +283,28 @@ public class SpawnSystem
             Vector3 spawnModPosition = new Vector3(spawnRadius * Mathf.Sin(spawnAngle),
                 0, spawnRadius * Mathf.Cos(spawnAngle));
 
-            AddSpawnItemInToSpawnList(spawnEventCenter + spawnModPosition);
+            AddSpawnItemInToSpawnList(spawnEventCenter + spawnModPosition, spawnItemBag, spawnItems);
         }
     }
 
     private Vector3 GetRandomEventPosition(Vector3 spawnGridPos, Vector3 playerPos)
     {
         // Choose random place to spawn
-        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
-            + Constants.SPAWN_ITEM_RADIUS;
+        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.DESPAWN_ITEM_RADIUS * 2)
+            + Constants.DESPAWN_ITEM_RADIUS;
 
-        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_ITEM_RADIUS * 2)
-            + Constants.SPAWN_ITEM_RADIUS;
+        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.DESPAWN_ITEM_RADIUS * 2)
+            + Constants.DESPAWN_ITEM_RADIUS;
 
         // Flip X or Z if they are too close to the player
-        if (Math.Abs(playerPos.x - eventCenterX) - Constants.SPAWN_EVENT_RADIUS < Constants.SPAWN_ITEM_RADIUS)
+        if (Math.Abs(playerPos.x - eventCenterX) - Constants.SPAWN_EVENT_RADIUS < Constants.DESPAWN_ITEM_RADIUS)
         {
             float subGridX = eventCenterX % Constants.SPAWN_GRID_SIZE;
             subGridX = -subGridX + Constants.SPAWN_GRID_SIZE;
             eventCenterX = (eventCenterX / Constants.SPAWN_GRID_SIZE) + subGridX;
         }
 
-        if (Math.Abs(playerPos.z - eventCenterZ) - Constants.SPAWN_EVENT_RADIUS < Constants.SPAWN_ITEM_RADIUS)
+        if (Math.Abs(playerPos.z - eventCenterZ) - Constants.SPAWN_EVENT_RADIUS < Constants.DESPAWN_ITEM_RADIUS)
         {
             float subGridZ = eventCenterZ % Constants.SPAWN_GRID_SIZE;
             subGridZ = -subGridZ + Constants.SPAWN_GRID_SIZE;
@@ -265,9 +314,10 @@ public class SpawnSystem
         return spawnGridPos + new Vector3(eventCenterX, 0, eventCenterZ);
     }
 
-    private void AddSpawnItemInToSpawnList(Vector3 spawnPos)
+    private void AddSpawnItemInToSpawnList(Vector3 spawnPos,
+        List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
-        SpawnItem spawn = SpawnItemBagPop();
+        SpawnItem spawn = BagPop(bag, fullBag);
 
         // If there are too many entities, do not add more to spawn list.
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
@@ -357,13 +407,8 @@ public class SpawnSystem
         // value is used for spawning and
         // despawning, but apparently it works
         // just fine
-        entity.DespawnRadius = Constants.SPAWN_ITEM_RADIUS;
+        entity.DespawnRadius = Constants.DESPAWN_ITEM_RADIUS;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
-    }
-
-    private float NormalToWithNegativesRadians(float radian)
-    {
-        return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
     }
 }
