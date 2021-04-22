@@ -1604,7 +1604,7 @@ placeholder_text = "SEARCH_DOT_DOT_DOT"
 [node name="Structural" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 127.0
 DisplayName = "STRUCTURAL"
 Columns = 3
@@ -1616,31 +1616,31 @@ ItemContainerPath = NodePath("../Structural/Clip/GridContainer")
 TweenPath = NodePath("../Structural/Tween")
 
 [node name="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural" index="0"]
-margin_right = 303.0
+margin_right = 302.0
 
 [node name="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/HBoxContainer" index="2"]
-margin_right = 303.0
+margin_right = 302.0
 
 [node name="Clip" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural" index="1"]
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 127.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip" index="0"]
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 103.0
 columns = 3
 
 [node name="cytoplasm" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer" index="0" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
-margin_right = 101.0
+margin_right = 100.0
 SelectionGroup = SubResource( 17 )
 
 [node name="Protein" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 137.0
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 371.0
 DisplayName = "PROTEINS"
 Columns = 3
@@ -1652,17 +1652,17 @@ ItemContainerPath = NodePath("../Protein/Clip/GridContainer")
 TweenPath = NodePath("../Protein/Tween")
 
 [node name="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein" index="0"]
-margin_right = 303.0
+margin_right = 302.0
 
 [node name="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/HBoxContainer" index="2"]
-margin_right = 303.0
+margin_right = 302.0
 
 [node name="Clip" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein" index="1"]
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 234.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip" index="0"]
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 210.0
 columns = 3
 
@@ -1716,7 +1716,7 @@ SelectionGroup = SubResource( 17 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 381.0
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 508.0
 DisplayName = "EXTERNAL"
 Columns = 3
@@ -1728,17 +1728,17 @@ ItemContainerPath = NodePath("../External/Clip/GridContainer")
 TweenPath = NodePath("../External/Tween")
 
 [node name="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External" index="0"]
-margin_right = 303.0
+margin_right = 302.0
 
 [node name="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/HBoxContainer" index="2"]
-margin_right = 303.0
+margin_right = 302.0
 
 [node name="Clip" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External" index="1"]
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 127.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip" index="0"]
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 103.0
 columns = 3
 
@@ -1770,7 +1770,7 @@ SelectionGroup = SubResource( 17 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 518.0
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 859.0
 DisplayName = "ORGANELLES"
 Columns = 3
@@ -1782,17 +1782,17 @@ ItemContainerPath = NodePath("../Organelle/Clip/GridContainer")
 TweenPath = NodePath("../Organelle/Tween")
 
 [node name="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle" index="0"]
-margin_right = 303.0
+margin_right = 302.0
 
 [node name="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/HBoxContainer" index="2"]
-margin_right = 303.0
+margin_right = 302.0
 
 [node name="Clip" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle" index="1"]
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 341.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip" index="0"]
-margin_right = 303.0
+margin_right = 302.0
 margin_bottom = 317.0
 columns = 3
 
@@ -2020,10 +2020,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 88.0
-margin_top = 111.0
-margin_right = 391.0
-margin_bottom = 586.0
+margin_left = 92.0
+margin_top = 115.0
+margin_right = 395.0
+margin_bottom = 590.0
 theme = SubResource( 22 )
 edit_alpha = false
 
