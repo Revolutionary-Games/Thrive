@@ -5,7 +5,7 @@ using Godot;
 // These items are added to and drawn from the spawnItemsBag
 public abstract class SpawnItem
 {
-    protected Vector3 position;
+    public Vector3 position;
 
     public void SetSpawnPosition(Vector3 position)
     {

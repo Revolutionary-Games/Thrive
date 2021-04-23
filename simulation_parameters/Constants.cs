@@ -51,23 +51,30 @@ public static class Constants
 
     public const float SPAWN_DENSITY_MULTIPLIER = 400000f;
 
-    public const int SPAWN_GRID_SIZE = 400;
+    // Keep this number small, or far away cloud spawns will spawn close to player instead.
+    public const int SPAWN_GRID_SIZE = 300;
     public const int SPAWN_GRID_HALFSIZE = SPAWN_GRID_SIZE / 2;
-
-    public const float SPAWN_EVENT_RADIUS = 80f;
 
     public const int SPAWN_EVENT_MIN = 10;
     public const int SPAWN_EVENT_MAX = 15;
 
-    public const int SPAWN_GRID_WIDTH = 1;
+    public const int SPAWN_GRID_WIDTH = 2;
+
+    public const float SPAWN_EVENT_RADIUS = 80f;
+    public const float SPAWN_EVENT_RADIUS_SQR = SPAWN_EVENT_RADIUS * SPAWN_EVENT_RADIUS;
 
     public const int DESPAWN_ITEM_RADIUS = 170;
+    public const int DESPAWN_ITEM_RADIUS_SQR = DESPAWN_ITEM_RADIUS * DESPAWN_ITEM_RADIUS;
     public const int SPAWN_WANDERER_RADIUS = (int)(0.95 * DESPAWN_ITEM_RADIUS);
+
+    // (Spawn Event Radius + Despawn Item Radius + 10) ^ 2
+    public const float EVENT_DISTANCE_FROM_PLAYER_SQR =
+        (SPAWN_EVENT_RADIUS + DESPAWN_ITEM_RADIUS + 10) * (SPAWN_EVENT_RADIUS + DESPAWN_ITEM_RADIUS + 10);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
 
-    public const int MAX_SPAWNS_PER_FRAME = 3;
+    public const int MAX_SPAWNS_PER_FRAME = 2;
     public const int MAX_DESPAWNS_PER_FRAME = 2;
 
     public const int MEMBRANE_RESOLUTION = 10;

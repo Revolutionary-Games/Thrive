@@ -55,6 +55,12 @@ public class SpawnSystem
     [JsonProperty]
     private Random random = new Random();
 
+    [JsonIgnore]
+    private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
+
+    [JsonIgnore]
+    private IVector3 oldPlayerGrid = new IVector3(1, 1, 1);
+
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag
     ///   from deleting tons of entities at once.
@@ -67,8 +73,6 @@ public class SpawnSystem
     /// </summary>
     [JsonProperty]
     private int maxAliveEntities = 1000;
-
-    private Queue<Vector3> spawnedGrid = new Queue<Vector3>();
 
     public SpawnSystem(Node root)
     {
@@ -115,12 +119,11 @@ public class SpawnSystem
         int spawnGridX = (int)newPlayerPos.x / Constants.SPAWN_GRID_SIZE;
         int spawnGridZ = (int)newPlayerPos.z / Constants.SPAWN_GRID_SIZE;
 
-        float respawnGridPosX = spawnGridX * Constants.SPAWN_GRID_SIZE;
-        float respawnGridPosZ = spawnGridZ * Constants.SPAWN_GRID_SIZE;
-
-        Vector3 respawnGridPos = new Vector3(respawnGridPosX, 0, respawnGridPosZ);
-        GD.Print("RESPAWN GRID: " + respawnGridPos);
-        spawnedGrid.Enqueue(respawnGridPos);
+        IVector3 respawnGridPos = new IVector3(spawnGridX, 0, spawnGridZ);
+        spawnGrid[respawnGridPos] = new SpawnEvent(respawnGridPos)
+        {
+            IsSpawned = true,
+        };
     }
 
     public void ClearBags()
@@ -157,7 +160,7 @@ public class SpawnSystem
 
         SpawnEventGrid(playerPosition);
         SpawnWanderingMicrobes(playerPosition);
-        SpawnItemsInSpawnList();
+        SpawnItemsInSpawnList(playerPosition);
     }
 
     // Takes SpawnItems list and shuffles them in bag.
@@ -221,34 +224,57 @@ public class SpawnSystem
         int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
         int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
 
-        for (int i = -Constants.SPAWN_GRID_WIDTH; i <= Constants.SPAWN_GRID_WIDTH; i++)
+        IVector3 playerCurrentGrid = new IVector3(playerGridX, 0, playerGridZ);
+
+        if (oldPlayerGrid != playerCurrentGrid)
         {
-            for (int j = -Constants.SPAWN_GRID_WIDTH; j <= Constants.SPAWN_GRID_WIDTH; j++)
+            GD.Print("Moved Grid");
+            oldPlayerGrid = playerCurrentGrid;
+            for (int i = -Constants.SPAWN_GRID_WIDTH; i <= Constants.SPAWN_GRID_WIDTH; i++)
             {
-                int spawnGridX = playerGridX + i;
-                int spawnGridZ = playerGridZ + j;
-
-                float spawnEventPosX = spawnGridX * Constants.SPAWN_GRID_SIZE;
-                float spawnEventPosZ = spawnGridZ * Constants.SPAWN_GRID_SIZE;
-
-                Vector3 spawnEvent = new Vector3(spawnEventPosX, 0, spawnEventPosZ);
-
-                if (!spawnedGrid.Contains(spawnEvent))
+                for (int j = -Constants.SPAWN_GRID_WIDTH; j <= Constants.SPAWN_GRID_WIDTH; j++)
                 {
-                    GD.Print("SPAWN EVENT: " + spawnEvent + "  player pos: "+ playerPosition);
+                    int spawnGridX = playerGridX + i;
+                    int spawnGridZ = playerGridZ + j;
 
-                    SpawnEvent(spawnEvent, playerPosition);
+                    IVector3 spawnEventGrid = new IVector3(spawnGridX, 0, spawnGridZ);
 
-                    spawnedGrid.Enqueue(spawnEvent);
-
-                    DespawnEntities(playerPosition);
-
-                    // In case player wanders forever without evolving, toss old spawnEvents.
-                    if (spawnedGrid.Count > 50)
+                    if (!spawnGrid.ContainsKey(spawnEventGrid))
                     {
-                        spawnedGrid.Dequeue();
+                        Vector3 spawnPos = GetRandomEventPosition(spawnEventGrid.ToGameSpace(), playerPosition);
+                        spawnGrid[spawnEventGrid] = new SpawnEvent(spawnPos, spawnEventGrid);
+                        DespawnEntities(playerPosition);
+                        GD.Print("Added SpawnEvent: " + spawnEventGrid);
                     }
                 }
+            }
+        }
+        else
+        {
+            List<IVector3> eventsToRemove = new List<IVector3>();
+            foreach (IVector3 key in spawnGrid.Keys)
+            {
+                SpawnEvent spawnEvent = spawnGrid[key];
+                if (spawnEvent.GridPos.X > playerGridX + Constants.SPAWN_GRID_WIDTH
+                    || spawnEvent.GridPos.X < playerGridX - Constants.SPAWN_GRID_WIDTH
+                    || spawnEvent.GridPos.Z > playerGridZ + Constants.SPAWN_GRID_WIDTH
+                    || spawnEvent.GridPos.Z < playerGridZ - Constants.SPAWN_GRID_WIDTH)
+                {
+                    eventsToRemove.Add(key);
+                    GD.Print("Removing: " + key);
+                }
+
+                if (!spawnEvent.IsSpawned &&
+                    (spawnEvent.Position - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
+                {
+                    SpawnNewEvent(spawnEvent, playerPosition);
+                    GD.Print("Spawning: " + spawnEvent.GridPos);
+                }
+            }
+
+            foreach (IVector3 key in eventsToRemove)
+            {
+                spawnGrid.Remove(key);
             }
         }
     }
@@ -271,13 +297,16 @@ public class SpawnSystem
         }
     }
 
-    private void SpawnEvent(Vector3 spawnGridPos, Vector3 playerPosition)
+    private void SpawnNewEvent(SpawnEvent spawnEvent, Vector3 playerPosition)
     {
-        Vector3 spawnEventCenter = GetRandomEventPosition(spawnGridPos, playerPosition);
+        spawnEvent.IsSpawned = true;
+
+        Vector3 spawnEventCenter = GetRandomEventPosition(spawnEvent.Position, playerPosition);
 
         for (int i = 0; i < random.Next(Constants.SPAWN_EVENT_MIN, Constants.SPAWN_EVENT_MAX); i++)
         {
-            float spawnRadius = (random.NextFloat() + 0.1f) * Constants.SPAWN_EVENT_RADIUS;
+            float weightedRandom = Mathf.Clamp(random.NextFloat() * 0.9f + 0.1f, 0, 1);
+            float spawnRadius = weightedRandom * Constants.SPAWN_EVENT_RADIUS;
             float spawnAngle = random.NextFloat() * 2 * Mathf.Pi;
 
             Vector3 spawnModPosition = new Vector3(spawnRadius * Mathf.Sin(spawnAngle),
@@ -287,31 +316,25 @@ public class SpawnSystem
         }
     }
 
-    private Vector3 GetRandomEventPosition(Vector3 spawnGridPos, Vector3 playerPos)
+    private Vector3 GetRandomEventPosition(Vector3 spawnGridPos, Vector3 playerPosition)
     {
         // Choose random place to spawn
-        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.DESPAWN_ITEM_RADIUS * 2)
-            + Constants.DESPAWN_ITEM_RADIUS;
+        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS * 2)
+            + Constants.SPAWN_EVENT_RADIUS;
 
-        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.DESPAWN_ITEM_RADIUS * 2)
-            + Constants.DESPAWN_ITEM_RADIUS;
+        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS * 2)
+            + Constants.SPAWN_EVENT_RADIUS;
 
-        // Flip X or Z if they are too close to the player
-        if (Math.Abs(playerPos.x - eventCenterX) - Constants.SPAWN_EVENT_RADIUS < Constants.DESPAWN_ITEM_RADIUS)
+        Vector3 eventPos = new Vector3(eventCenterX, 0, eventCenterZ);
+
+        // If too close to player, flip spawn location
+        if ((spawnGridPos + eventPos - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
         {
-            float subGridX = eventCenterX % Constants.SPAWN_GRID_SIZE;
-            subGridX = -subGridX + Constants.SPAWN_GRID_SIZE;
-            eventCenterX = (eventCenterX / Constants.SPAWN_GRID_SIZE) + subGridX;
+            eventPos.x = -eventCenterX + Constants.SPAWN_GRID_SIZE;
+            eventPos.z = -eventCenterZ + Constants.SPAWN_GRID_SIZE;
         }
 
-        if (Math.Abs(playerPos.z - eventCenterZ) - Constants.SPAWN_EVENT_RADIUS < Constants.DESPAWN_ITEM_RADIUS)
-        {
-            float subGridZ = eventCenterZ % Constants.SPAWN_GRID_SIZE;
-            subGridZ = -subGridZ + Constants.SPAWN_GRID_SIZE;
-            eventCenterZ = (eventCenterZ / Constants.SPAWN_GRID_SIZE) + subGridZ;
-        }
-
-        return spawnGridPos + new Vector3(eventCenterX, 0, eventCenterZ);
+        return spawnGridPos + eventPos;
     }
 
     private void AddSpawnItemInToSpawnList(Vector3 spawnPos,
@@ -329,7 +352,7 @@ public class SpawnSystem
         itemsToSpawn.Enqueue(spawn);
     }
 
-    private void SpawnItemsInSpawnList()
+    private void SpawnItemsInSpawnList(Vector3 playerPosition)
     {
         for (int i = 0; i < Constants.MAX_SPAWNS_PER_FRAME; i++)
         {
@@ -410,5 +433,98 @@ public class SpawnSystem
         entity.DespawnRadius = Constants.DESPAWN_ITEM_RADIUS;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
+    }
+
+    private class SpawnEvent
+    {
+        public bool IsSpawned = false;
+        public SpawnEvent(Vector3 position, IVector3 gridPos)
+        {
+            Position = position;
+            GridPos = gridPos;
+        }
+
+        public SpawnEvent(IVector3 gridPos)
+        {
+            GridPos = gridPos;
+        }
+
+        public Vector3 Position { get; private set; }
+        public IVector3 GridPos { get; private set; }
+    }
+
+    private class IVector3
+    {
+        public int X;
+        public int Y;
+        public int Z;
+        public IVector3() { }
+
+        public IVector3(int x, int y, int z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+
+        public static bool operator ==(IVector3 iVecA, IVector3 iVecB)
+        {
+            if (ReferenceEquals(iVecA, iVecB))
+            {
+                return true;
+            }
+
+            // Ensure that "numberA" isn't null
+            if (ReferenceEquals(null, iVecA))
+            {
+                return false;
+            }
+
+            return iVecA.Equals(iVecB);
+        }
+
+        public static bool operator !=(IVector3 iVecA, IVector3 iVecB)
+        {
+            return !(iVecA == iVecB);
+        }
+
+        public Vector3 ToGameSpace()
+        {
+            float scale = Constants.SPAWN_GRID_SIZE;
+            return new Vector3(X * scale, Y * scale, Z * scale);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IVector3);
+        }
+
+        public bool Equals(IVector3 other)
+        {
+            return other != null &&
+                   X == other.X &&
+                   Y == other.Y &&
+                   Z == other.Z;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + ": " + "(" + X + ", " + Y + ", " + Z + ")";
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                const int HashingBase = (int)2166136261;
+                const int HashingMultiplier = 16777619;
+
+                int hash = HashingBase;
+                hash = (hash * HashingMultiplier) ^ X.GetHashCode();
+                hash = (hash * HashingMultiplier) ^ Y.GetHashCode();
+                hash = (hash * HashingMultiplier) ^ Z.GetHashCode();
+                return hash;
+            }
+        }
     }
 }
