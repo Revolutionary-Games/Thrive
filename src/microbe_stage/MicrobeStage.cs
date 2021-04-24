@@ -324,7 +324,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
-            spawner.RespawningPlayer(respawnPos);
+            spawner.RespawningPlayer();
             Player.Translation = respawnPos;
         }
 

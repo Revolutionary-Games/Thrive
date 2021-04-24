@@ -57,7 +57,7 @@ public class PatchManager
             spawnSystem.DespawnAll();
 
             // Clear SpawnBags
-            spawnSystem.ClearBags();
+            spawnSystem.ClearSpawnSystem();
 
             // And also all timed entities
             timedLife.DespawnAll();

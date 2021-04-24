@@ -59,7 +59,7 @@ public class SpawnSystem
     private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
 
     [JsonIgnore]
-    private IVector3 oldPlayerGrid = new IVector3(1, 1, 1);
+    private IVector3 oldPlayerGrid = null;
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag
@@ -114,24 +114,23 @@ public class SpawnSystem
     }
 
     // Adds this spot to SpawnedGrid, so that respawning is less likely to give spawn event.
-    public void RespawningPlayer(Vector3 newPlayerPos)
+    public void RespawningPlayer()
     {
-        int spawnGridX = (int)newPlayerPos.x / Constants.SPAWN_GRID_SIZE;
-        int spawnGridZ = (int)newPlayerPos.z / Constants.SPAWN_GRID_SIZE;
-
-        IVector3 respawnGridPos = new IVector3(spawnGridX, 0, spawnGridZ);
-        spawnGrid[respawnGridPos] = new SpawnEvent(respawnGridPos)
-        {
-            IsSpawned = true,
-        };
+        oldPlayerGrid = null;
+        itemsToSpawn.Clear();
+        spawnGrid.Clear();
     }
 
-    public void ClearBags()
+    public void ClearSpawnSystem()
     {
         spawnItems.Clear();
         spawnItemBag.Clear();
         microbeItems.Clear();
         wanderMicrobeBag.Clear();
+        itemsToSpawn.Clear();
+        spawnGrid.Clear();
+
+        oldPlayerGrid = null;
     }
 
     /// <summary>
@@ -160,7 +159,7 @@ public class SpawnSystem
 
         SpawnEventGrid(playerPosition);
         SpawnWanderingMicrobes(playerPosition);
-        SpawnItemsInSpawnList(playerPosition);
+        SpawnItemsInSpawnList();
     }
 
     // Takes SpawnItems list and shuffles them in bag.
@@ -228,8 +227,6 @@ public class SpawnSystem
 
         if (oldPlayerGrid != playerCurrentGrid)
         {
-            GD.Print("Moved Grid");
-            oldPlayerGrid = playerCurrentGrid;
             for (int i = -Constants.SPAWN_GRID_WIDTH; i <= Constants.SPAWN_GRID_WIDTH; i++)
             {
                 for (int j = -Constants.SPAWN_GRID_WIDTH; j <= Constants.SPAWN_GRID_WIDTH; j++)
@@ -241,13 +238,22 @@ public class SpawnSystem
 
                     if (!spawnGrid.ContainsKey(spawnEventGrid))
                     {
-                        Vector3 spawnPos = GetRandomEventPosition(spawnEventGrid.ToGameSpace(), playerPosition);
-                        spawnGrid[spawnEventGrid] = new SpawnEvent(spawnPos, spawnEventGrid);
+                        Vector3 spawnPos = GetRandomEventPosition(spawnEventGrid.ToGameSpace());
+                        SpawnEvent spawnEvent = new SpawnEvent(spawnPos, spawnEventGrid);
+
+                        if (oldPlayerGrid == null &&
+                            (spawnEvent.Position - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
+                        {
+                            spawnEvent.IsSpawned = true;
+                        }
+
+                        spawnGrid[spawnEventGrid] = spawnEvent;
                         DespawnEntities(playerPosition);
-                        GD.Print("Added SpawnEvent: " + spawnEventGrid);
                     }
                 }
             }
+
+            oldPlayerGrid = playerCurrentGrid;
         }
         else
         {
@@ -261,14 +267,12 @@ public class SpawnSystem
                     || spawnEvent.GridPos.Z < playerGridZ - Constants.SPAWN_GRID_WIDTH)
                 {
                     eventsToRemove.Add(key);
-                    GD.Print("Removing: " + key);
                 }
 
                 if (!spawnEvent.IsSpawned &&
                     (spawnEvent.Position - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
                 {
                     SpawnNewEvent(spawnEvent, playerPosition);
-                    GD.Print("Spawning: " + spawnEvent.GridPos);
                 }
             }
 
@@ -301,8 +305,6 @@ public class SpawnSystem
     {
         spawnEvent.IsSpawned = true;
 
-        Vector3 spawnEventCenter = GetRandomEventPosition(spawnEvent.Position, playerPosition);
-
         for (int i = 0; i < random.Next(Constants.SPAWN_EVENT_MIN, Constants.SPAWN_EVENT_MAX); i++)
         {
             float weightedRandom = Mathf.Clamp(random.NextFloat() * 0.9f + 0.1f, 0, 1);
@@ -312,11 +314,11 @@ public class SpawnSystem
             Vector3 spawnModPosition = new Vector3(spawnRadius * Mathf.Sin(spawnAngle),
                 0, spawnRadius * Mathf.Cos(spawnAngle));
 
-            AddSpawnItemInToSpawnList(spawnEventCenter + spawnModPosition, spawnItemBag, spawnItems);
+            AddSpawnItemInToSpawnList(spawnEvent.Position + spawnModPosition, spawnItemBag, spawnItems);
         }
     }
 
-    private Vector3 GetRandomEventPosition(Vector3 spawnGridPos, Vector3 playerPosition)
+    private Vector3 GetRandomEventPosition(Vector3 spawnGridPos)
     {
         // Choose random place to spawn
         float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS * 2)
@@ -326,13 +328,6 @@ public class SpawnSystem
             + Constants.SPAWN_EVENT_RADIUS;
 
         Vector3 eventPos = new Vector3(eventCenterX, 0, eventCenterZ);
-
-        // If too close to player, flip spawn location
-        if ((spawnGridPos + eventPos - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
-        {
-            eventPos.x = -eventCenterX + Constants.SPAWN_GRID_SIZE;
-            eventPos.z = -eventCenterZ + Constants.SPAWN_GRID_SIZE;
-        }
 
         return spawnGridPos + eventPos;
     }
@@ -352,7 +347,7 @@ public class SpawnSystem
         itemsToSpawn.Enqueue(spawn);
     }
 
-    private void SpawnItemsInSpawnList(Vector3 playerPosition)
+    private void SpawnItemsInSpawnList()
     {
         for (int i = 0; i < Constants.MAX_SPAWNS_PER_FRAME; i++)
         {

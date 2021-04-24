@@ -51,7 +51,6 @@ public static class Constants
 
     public const float SPAWN_DENSITY_MULTIPLIER = 400000f;
 
-    // Keep this number small, or far away cloud spawns will spawn close to player instead.
     public const int SPAWN_GRID_SIZE = 300;
     public const int SPAWN_GRID_HALFSIZE = SPAWN_GRID_SIZE / 2;
 
@@ -67,9 +66,9 @@ public static class Constants
     public const int DESPAWN_ITEM_RADIUS_SQR = DESPAWN_ITEM_RADIUS * DESPAWN_ITEM_RADIUS;
     public const int SPAWN_WANDERER_RADIUS = (int)(0.95 * DESPAWN_ITEM_RADIUS);
 
-    // (Spawn Event Radius + Despawn Item Radius + 10) ^ 2
+    // (Spawn Event Radius + Despawn Item Radius + constant) ^ 2
     public const float EVENT_DISTANCE_FROM_PLAYER_SQR =
-        (SPAWN_EVENT_RADIUS + DESPAWN_ITEM_RADIUS + 10) * (SPAWN_EVENT_RADIUS + DESPAWN_ITEM_RADIUS + 10);
+        (SPAWN_EVENT_RADIUS + DESPAWN_ITEM_RADIUS + 20) * (SPAWN_EVENT_RADIUS + DESPAWN_ITEM_RADIUS + 20);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
