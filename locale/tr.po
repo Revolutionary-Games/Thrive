@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-12 17:42+0700\n"
-"PO-Revision-Date: 2021-04-10 12:08+0000\n"
+"PO-Revision-Date: 2021-04-18 08:40+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -963,7 +963,6 @@ msgid "KEY_PAUSE"
 msgstr "Pause"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
-#, fuzzy
 msgid "KEY_CLEAR"
 msgstr "Clear"
 
@@ -976,9 +975,8 @@ msgid "KEY_END"
 msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
-#, fuzzy
 msgid "KEY_LEFT"
-msgstr "Sola doğru git"
+msgstr "Sol yön tuşu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 #, fuzzy
@@ -986,9 +984,8 @@ msgid "KEY_UP"
 msgstr "Yukarı doğru git"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
-#, fuzzy
 msgid "KEY_RIGHT"
-msgstr "Sağa doğru git"
+msgstr "Sağ yön tuşu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 #, fuzzy
@@ -996,7 +993,6 @@ msgid "KEY_DOWN"
 msgstr "Aşağı doğru git"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
-#, fuzzy
 msgid "KEY_MENU"
 msgstr "Menu"
 
@@ -1021,14 +1017,12 @@ msgid "KEY_REFRESH"
 msgstr "Yenile"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
-#, fuzzy
 msgid "KEY_SEARCH"
-msgstr "Ara"
+msgstr "Search"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
-#, fuzzy
 msgid "KEY_STANDBY"
-msgstr "Hazır"
+msgstr "Standby"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 #, fuzzy
@@ -1046,9 +1040,8 @@ msgid "KEY_FAVORITES"
 msgstr "Favoriler"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
-#, fuzzy
 msgid "KEY_PRINT"
-msgstr "Ekran Görüntüsü Al"
+msgstr "Print Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:162
 msgid "SPACE"
@@ -1064,19 +1057,16 @@ msgid "ESCAPE"
 msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Geri"
+msgstr "Backspace"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
-#, fuzzy
 msgid "KPENTER"
-msgstr "Num Enter"
+msgstr "Sayısal tuş Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "SYSREQ"
-msgstr "Sistem Gereksinimleri"
+msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "PAGEUP"
@@ -1131,7 +1121,7 @@ msgstr "Sağ"
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 #, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "Ses Seviyesi Azalt"
+msgstr "Ses Seviyesini Azalt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
 #, fuzzy
@@ -1284,82 +1274,66 @@ msgid "LAUNCHF"
 msgstr "Launch F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
-#, fuzzy
 msgid "KPMULTIPLY"
-msgstr "Num *"
+msgstr "Sayısal tuş *"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
-#, fuzzy
 msgid "KPDIVIDE"
-msgstr "Num /"
+msgstr "Sayısal tuş /"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
-#, fuzzy
 msgid "KPSUBTRACT"
-msgstr "Num -"
+msgstr "Sayısal tuş -"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
-#, fuzzy
 msgid "KPPERIOD"
-msgstr "Num ."
+msgstr "Sayısal tuş ."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
-#, fuzzy
 msgid "KPADD"
-msgstr "Num +"
+msgstr "Sayısal tuş +"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
-#, fuzzy
 msgid "KP0"
-msgstr "Num 0"
+msgstr "Sayısal tuş 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
-#, fuzzy
 msgid "KP1"
-msgstr "Num 1"
+msgstr "Sayısal tuş 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
-#, fuzzy
 msgid "KP2"
-msgstr "Num 2"
+msgstr "Sayısal tuş 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
-#, fuzzy
 msgid "KP3"
-msgstr "Num 3"
+msgstr "Sayısal tuş 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
-#, fuzzy
 msgid "KP4"
-msgstr "Num 4"
+msgstr "Sayısal tuş 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
-#, fuzzy
 msgid "KP5"
-msgstr "Num 5"
+msgstr "Sayısal tuş 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
-#, fuzzy
 msgid "KP6"
-msgstr "Num 6"
+msgstr "Sayısal tuş 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
-#, fuzzy
 msgid "KP7"
-msgstr "Num 7"
+msgstr "Sayısal tuş 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
-#, fuzzy
 msgid "KP8"
-msgstr "Num 8"
+msgstr "Sayısal tuş 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:224
-#, fuzzy
 msgid "KP9"
-msgstr "Num 9"
+msgstr "Sayısal tuş 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:225
-#, fuzzy
 msgid "UNKNOWN"
 msgstr "Bilinmeyen"
 
@@ -1762,19 +1736,13 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:900
 #: ../src/gui_common/charts/line/LineChart.cs:929
-#, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek "
-"istediğinden emin misin?"
+msgstr "{0} veri kümesinden daha fazla gösterilemez!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:909
 #: ../src/gui_common/charts/line/LineChart.cs:937
-#, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek "
-"istediğinden emin misin?"
+msgstr "{0} veri kümesinden daha az gösterilemez!"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:78
 msgid "OPEN_THE_MENU"
@@ -2343,7 +2311,7 @@ msgstr "yutulmaktan kurtulma"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:28
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
-msgstr "Bileşikler"
+msgstr "Sonsuz Bileşik"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "GODMODE"
@@ -2354,9 +2322,10 @@ msgid "NO_AI"
 msgstr "AI Yok"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
-#, fuzzy
 msgid "PLAYER_SPEED"
-msgstr "oyuncu öldü"
+msgstr ""
+"Oyuncu\n"
+"Hızı"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
