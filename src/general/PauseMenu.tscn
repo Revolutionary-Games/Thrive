@@ -147,7 +147,7 @@ Category = "MicrobeStage"
 [node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
 visible = false
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ExitConfirmation" type="ConfirmationDialog" parent="."]
 margin_left = 468.478
 margin_top = 311.492
 margin_right = 813.478
@@ -172,4 +172,4 @@ one_shot = true
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="CloseOptionsPressed"]
-[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
+[connection signal="confirmed" from="ExitConfirmation" to="." method="_on_ConfirmationDialog_confirmed"]
