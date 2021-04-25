@@ -20,7 +20,7 @@ public class MicrobeColony
     public List<Microbe> ColonyMembers { get; private set; }
 
     [JsonProperty]
-    public ColonyCompoundBag ColonyCompounds { get; set; }
+    public ColonyCompoundBag ColonyCompounds { get; private set; }
 
     [JsonProperty]
     public Microbe.MicrobeState State
@@ -38,7 +38,7 @@ public class MicrobeColony
     }
 
     [JsonProperty]
-    public Microbe Master { get; set; }
+    public Microbe Master { get; private set; }
 
     public void Process(float delta)
     {
