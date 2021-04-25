@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -6,235 +6,282 @@ using Godot;
 /// </summary>
 public class PauseMenu : ControlWithInput
 {
-    [Export]
-    public string HelpCategory;
+	[Export]
+	public string HelpCategory;
+	
+	[Export]
+	public bool RecentSave;
 
-    [Export]
-    public NodePath PrimaryMenuPath;
+	[Export]
+	public NodePath PrimaryMenuPath;
 
-    [Export]
-    public NodePath HelpScreenPath;
+	[Export]
+	public NodePath HelpScreenPath;
 
-    [Export]
-    public NodePath LoadMenuPath;
+	[Export]
+	public NodePath LoadMenuPath;
 
-    [Export]
-    public NodePath OptionsMenuPath;
+	[Export]
+	public NodePath OptionsMenuPath;
 
-    [Export]
-    public NodePath SaveMenuPath;
+	[Export]
+	public NodePath SaveMenuPath;
 
-    [Export]
-    public NodePath LoadSaveListPath;
+	[Export]
+	public NodePath LoadSaveListPath;
+	
+	[Export]
+	public NodePath ExitConfirmationPath;
+	
+	[Export]
+	public NodePath SaveTimerPath;
 
-    private Control primaryMenu;
-    private HelpScreen helpScreen;
-    private Control loadMenu;
-    private OptionsMenu optionsMenu;
-    private NewSaveMenu saveMenu;
+	private Control primaryMenu;
+	private HelpScreen helpScreen;
+	private Control loadMenu;
+	private OptionsMenu optionsMenu;
+	private NewSaveMenu saveMenu;
+	private ConfirmationDialog ExitConfirmation;
+	private Timer SaveTimer;
+	
+	[Signal]
+	public delegate void OnClosed();
 
-    [Signal]
-    public delegate void OnClosed();
+	/// <summary>
+	///   Triggered when the user hits ESC to open the pause menu
+	/// </summary>
+	[Signal]
+	public delegate void OnOpenWithKeyPress();
 
-    /// <summary>
-    ///   Triggered when the user hits ESC to open the pause menu
-    /// </summary>
-    [Signal]
-    public delegate void OnOpenWithKeyPress();
+	/// <summary>
+	///   Called when a save needs to be made
+	/// </summary>
+	/// <param name="name">Name of the save to make or empty string</param>
+	[Signal]
+	public delegate void MakeSave(string name);
 
-    /// <summary>
-    ///   Called when a save needs to be made
-    /// </summary>
-    /// <param name="name">Name of the save to make or empty string</param>
-    [Signal]
-    public delegate void MakeSave(string name);
+	/// <summary>
+	///   The GameProperties object holding settings and state for the current game session.
+	/// </summary>
+	public GameProperties GameProperties { get; set; }
 
-    /// <summary>
-    ///   The GameProperties object holding settings and state for the current game session.
-    /// </summary>
-    public GameProperties GameProperties { get; set; }
+	public override void _EnterTree()
+	{
+		// This needs to be done early here to make sure the help screen loads the right text
+		helpScreen = GetNode<HelpScreen>(HelpScreenPath);
+		helpScreen.Category = HelpCategory;
+		base._EnterTree();
+	}
 
-    public override void _EnterTree()
-    {
-        // This needs to be done early here to make sure the help screen loads the right text
-        helpScreen = GetNode<HelpScreen>(HelpScreenPath);
-        helpScreen.Category = HelpCategory;
-        base._EnterTree();
-    }
+	public override void _Ready()
+	{
+		primaryMenu = GetNode<Control>(PrimaryMenuPath);
+		loadMenu = GetNode<Control>(LoadMenuPath);
+		ExitConfirmation = GetNode<ConfirmationDialog>(ExitConfirmationPath);
+		optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
+		saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
+		SaveTimer = GetNode<Timer>(SaveTimerPath);
+		SaveTimer.Connect("timeout", this, "OnSaveTimerTimeout");
+	}
 
-    public override void _Ready()
-    {
-        primaryMenu = GetNode<Control>(PrimaryMenuPath);
-        loadMenu = GetNode<Control>(LoadMenuPath);
-        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
-        saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
-    }
+	[RunOnKeyDown("ui_cancel")]
+	public void EscapeKeyPressed()
+	{
+		if (Visible)
+		{
+			// Do not close the window if the user is rebinding the input keys
+			// TODO: https://github.com/Revolutionary-Games/Thrive/issues/1888
+			if (InputGroupList.WasListeningForInput)
+				return;
 
-    [RunOnKeyDown("ui_cancel")]
-    public void EscapeKeyPressed()
-    {
-        if (Visible)
-        {
-            // Do not close the window if the user is rebinding the input keys
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/1888
-            if (InputGroupList.WasListeningForInput)
-                return;
+			SetActiveMenu("primary");
 
-            SetActiveMenu("primary");
+			EmitSignal(nameof(OnClosed));
+		}
+		else if (NoExclusiveTutorialActive())
+		{
+			EmitSignal(nameof(OnOpenWithKeyPress));
+		}
+	}
 
-            EmitSignal(nameof(OnClosed));
-        }
-        else if (NoExclusiveTutorialActive())
-        {
-            EmitSignal(nameof(OnOpenWithKeyPress));
-        }
-    }
+	[RunOnKeyDown("help")]
+	public void ShowHelpPressed()
+	{
+		if (NoExclusiveTutorialActive())
+		{
+			EmitSignal(nameof(OnOpenWithKeyPress));
+			ShowHelpScreen();
+		}
+	}
 
-    [RunOnKeyDown("help")]
-    public void ShowHelpPressed()
-    {
-        if (NoExclusiveTutorialActive())
-        {
-            EmitSignal(nameof(OnOpenWithKeyPress));
-            ShowHelpScreen();
-        }
-    }
+	public void ShowHelpScreen()
+	{
+		SetActiveMenu("help");
+		helpScreen.RandomizeEasterEgg();
+	}
 
-    public void ShowHelpScreen()
-    {
-        SetActiveMenu("help");
-        helpScreen.RandomizeEasterEgg();
-    }
+	private bool NoExclusiveTutorialActive()
+	{
+		return GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive();
+	}
 
-    private bool NoExclusiveTutorialActive()
-    {
-        return GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive();
-    }
+	private void ClosePressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
+		EmitSignal(nameof(OnClosed));
+	}
 
-    private void ClosePressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnClosed));
-    }
+	private void ReturnToMenuPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
+		
+		if(RecentSave == false)
+		{
+			ExitConfirmation.Show();
+		}
+		else
+		{
+			// Unpause the game
+			GetTree().Paused = false;
 
-    private void ReturnToMenuPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+			TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
+			TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+		}
+	
+	}
 
-        // Unpause the game
-        GetTree().Paused = false;
+	private void ExitPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
+		GetTree().Quit();
+	}
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
-    }
+	private void OpenHelpPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-    private void ExitPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        GetTree().Quit();
-    }
+		SetActiveMenu("help");
+		helpScreen.RandomizeEasterEgg();
+	}
 
-    private void OpenHelpPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void CloseHelpPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("help");
-        helpScreen.RandomizeEasterEgg();
-    }
+		SetActiveMenu("primary");
+	}
 
-    private void CloseHelpPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void OpenLoadPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
-    }
+		SetActiveMenu("load");
+	}
 
-    private void OpenLoadPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void CloseLoadPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("load");
-    }
+		SetActiveMenu("primary");
+	}
 
-    private void CloseLoadPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void OpenOptionsPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
-    }
+		SetActiveMenu("options");
+	}
 
-    private void OpenOptionsPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void CloseOptionsPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("options");
-    }
+		SetActiveMenu("primary");
+	}
 
-    private void CloseOptionsPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void OpenSavePressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
-    }
+		SaveTimer.Start(10);
 
-    private void OpenSavePressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+		RecentSave = true;
 
-        SetActiveMenu("save");
-    }
+		SetActiveMenu("save");
+	}
 
-    private void CloseSavePressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void CloseSavePressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
-    }
+		SetActiveMenu("primary");
+	}
 
-    private void ForwardSaveAction(string name)
-    {
-        SetActiveMenu("primary");
+	private void ForwardSaveAction(string name)
+	{
+		SetActiveMenu("primary");
 
-        // Close this first to get the menus out of the way to capture the save screenshot
-        EmitSignal(nameof(OnClosed));
-        EmitSignal(nameof(MakeSave), name);
-    }
+		// Close this first to get the menus out of the way to capture the save screenshot
+		EmitSignal(nameof(OnClosed));
+		EmitSignal(nameof(MakeSave), name);
+	}
 
-    private void SetActiveMenu(string menu)
-    {
-        helpScreen.Hide();
-        primaryMenu.Hide();
-        loadMenu.Hide();
-        optionsMenu.Hide();
-        saveMenu.Hide();
+	private void SetActiveMenu(string menu)
+	{
+		helpScreen.Hide();
+		primaryMenu.Hide();
+		loadMenu.Hide();
+		optionsMenu.Hide();
+		saveMenu.Hide();
 
-        switch (menu)
-        {
-            case "primary":
-                primaryMenu.Show();
-                break;
-            case "help":
-                helpScreen.Show();
-                break;
-            case "load":
-                loadMenu.Show();
-                break;
-            case "options":
-                optionsMenu.OpenFromInGame(GameProperties);
-                break;
-            case "save":
-                saveMenu.Show();
-                break;
-            default:
-                throw new ArgumentException("unknown menu", nameof(menu));
-        }
-    }
+		switch (menu)
+		{
+			case "primary":
+				primaryMenu.Show();
+				break;
+			case "help":
+				helpScreen.Show();
+				break;
+			case "load":
+				loadMenu.Show();
+				break;
+			case "options":
+				optionsMenu.OpenFromInGame(GameProperties);
+				break;
+			case "save":
+				saveMenu.Show();
+				break;
+			default:
+				throw new ArgumentException("unknown menu", nameof(menu));
+		}
+	}
 
-    /// <summary>
-    ///   Finishes the transition back to the main menu
-    /// </summary>
-    private void OnSwitchToMenu()
-    {
-        SceneManager.Instance.ReturnToMenu();
-    }
+	/// <summary>
+	///   Finishes the transition back to the main menu
+	/// </summary>
+	private void OnSwitchToMenu()
+	{
+		SceneManager.Instance.ReturnToMenu();
+	}
+	
+	
+	/// <summary>
+	///   Confirms the Return To Menu
+	/// </summary>
+	private void _on_ConfirmationDialog_confirmed()
+	{
+		// Unpause the game
+		GetTree().Paused = false;
+
+		TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
+		TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+
+	}
+
+	void OnSaveTimerTimeout() 
+	{
+		RecentSave = false;
+	}
+
 }
+
