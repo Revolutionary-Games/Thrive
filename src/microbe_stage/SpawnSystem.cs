@@ -29,35 +29,17 @@ public class SpawnSystem
     [JsonIgnore]
     private Node worldRoot;
 
-    // List of SpawnItems, used to fill the spawnItemBag when it is empty.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    private List<SpawnItem> spawnItems = new List<SpawnItem>();
-
-    // Used for a Tetris style random bag. Fill and shuffle the bag,
-    // then simply pop one out until empty. Rinse and repeat.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
-
-    // List of MicrobeItems, used to fill the wanderMicrobeBag.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    private List<SpawnItem> microbeItems = new List<SpawnItem>();
-
-    // Used to spawn wandering random microbes when sitting still.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    private List<SpawnItem> wanderMicrobeBag = new List<SpawnItem>();
-
-    // Queue of spawn items to spawn. a few from this list get spawned every frame.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
-
     [JsonProperty]
     private int microbeBagSize;
 
     [JsonProperty]
     private Random random = new Random();
 
-    [JsonConverter(typeof(SpawnEventConverter))]
-    private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
+    /// <summary>
+    ///   This limits the total number of things that can be spawned.
+    /// </summary>
+    [JsonProperty]
+    private int maxAliveEntities = 1000;
 
     [JsonProperty]
     private IVector3 oldPlayerGrid = null;
@@ -69,11 +51,35 @@ public class SpawnSystem
     [JsonProperty]
     private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
 
-    /// <summary>
-    ///   This limits the total number of things that can be spawned.
-    /// </summary>
+    [JsonConverter(typeof(SpawnEventConverter))]
     [JsonProperty]
-    private int maxAliveEntities = 1000;
+    private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
+
+    // List of SpawnItems, used to fill the spawnItemBag when it is empty.
+    [JsonConverter(typeof(SpawnItemConverter))]
+    [JsonProperty]
+    private List<SpawnItem> spawnItems = new List<SpawnItem>();
+
+    // Used for a Tetris style random bag. Fill and shuffle the bag,
+    // then simply pop one out until empty. Rinse and repeat.
+    [JsonConverter(typeof(SpawnItemConverter))]
+    [JsonProperty]
+    private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
+
+    // List of MicrobeItems, used to fill the wanderMicrobeBag.
+    [JsonConverter(typeof(SpawnItemConverter))]
+    [JsonProperty]
+    private List<SpawnItem> microbeItems = new List<SpawnItem>();
+
+    // Used to spawn wandering random microbes when sitting still.
+    [JsonConverter(typeof(SpawnItemConverter))]
+    [JsonProperty]
+    private List<SpawnItem> wanderMicrobeBag = new List<SpawnItem>();
+
+    // Queue of spawn items to spawn. a few from this list get spawned every frame.
+    [JsonConverter(typeof(SpawnItemConverter))]
+    [JsonProperty]
+    private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
 
     public SpawnSystem(Node root)
     {
@@ -193,6 +199,8 @@ public class SpawnSystem
 
     private SpawnItem BagPop(List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
+        GD.Print(bag.Count);
+
         if (bag.Count == 0)
         {
             FillBag(bag, fullBag);

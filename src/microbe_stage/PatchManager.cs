@@ -56,14 +56,20 @@ public class PatchManager
             // Despawn old entities
             spawnSystem.DespawnAll();
 
-            // Clear SpawnBags
-            spawnSystem.ClearSpawnSystem();
-
             // And also all timed entities
             timedLife.DespawnAll();
 
+            // Clear SpawnBags
+            spawnSystem.ClearSpawnSystem();
+
             // Clear compounds
             compoundCloudSystem.EmptyAllClouds();
+
+            HandleCloudSpawns(currentPatch.Biome);
+            HandleChunkSpawns(currentPatch.Biome);
+            HandleCellSpawns(currentPatch);
+
+            SetFullSpawnBags();
         }
 
         previousPatch = currentPatch;
@@ -72,12 +78,6 @@ public class PatchManager
 
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
-
-        HandleCloudSpawns(currentPatch.Biome);
-        HandleChunkSpawns(currentPatch.Biome);
-        HandleCellSpawns(currentPatch);
-
-        SetFullSpawnBags();
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
