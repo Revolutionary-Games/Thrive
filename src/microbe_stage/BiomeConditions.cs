@@ -8,6 +8,8 @@ using System.Collections.Generic;
 public class BiomeConditions : ICloneable, ISaveLoadable
 {
     public float AverageTemperature;
+    public float SpawnChunkiness;
+    public float SpawnRateMultiplier;
     public Dictionary<Compound, EnvironmentalCompoundProperties> Compounds;
     public Dictionary<string, ChunkConfiguration> Chunks;
 
@@ -38,6 +40,8 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         var result = new BiomeConditions
         {
             AverageTemperature = AverageTemperature,
+            SpawnChunkiness = SpawnChunkiness,
+            SpawnRateMultiplier = SpawnRateMultiplier,
             Compounds = new Dictionary<Compound, EnvironmentalCompoundProperties>(Compounds.Count),
             Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
         };

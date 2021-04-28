@@ -55,7 +55,7 @@ public static class Constants
     public const int SPAWN_EVENT_MIN = 10;
     public const int SPAWN_EVENT_MAX = 15;
 
-    public const int SPAWN_GRID_WIDTH = 2;
+    public const int SPAWN_GRID_WIDTH = 3;
 
     public const float SPAWN_EVENT_RADIUS = 80f;
     public const float SPAWN_EVENT_RADIUS_SQR = SPAWN_EVENT_RADIUS * SPAWN_EVENT_RADIUS;

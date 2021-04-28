@@ -8,6 +8,8 @@ using Godot;
 /// </summary>
 public class PatchManager
 {
+    private int spawnBagSize;
+
     private SpawnSystem spawnSystem;
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
@@ -78,9 +80,26 @@ public class PatchManager
         HandleCellSpawns(currentPatch);
 
         SetFullSpawnBags();
+        SetSpawnGridSize(currentPatch.Biome);
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
+    }
+
+    private void SetSpawnGridSize(BiomeConditions biome)
+    {
+        // SpawnChunkiness of 0 means one item per spawn event,
+        // SpawnChunkiness of 1 means one spawnBagSize per spawn event,
+        int spawnEventCount = (int)(1 + (biome.SpawnChunkiness * (spawnBagSize - 1)));
+
+        // Assuming constant SpawnRateMultiplier, then SpawnChunkiness will not change overall density
+        // Increase in SpawnRateMultiplier lowers the gridSize, which increases density
+        // SpawnRateMultiplier of 2.0 will double the spawn density.
+        int spawnGridSize = (int)(Constants.SPAWN_GRID_SIZE * Math.Sqrt(spawnEventCount)
+            / Math.Sqrt(biome.SpawnRateMultiplier));
+
+        spawnSystem.SetSpawnEventCount(spawnEventCount);
+        spawnSystem.SetSpawnGridSize(spawnGridSize);
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)
@@ -174,8 +193,11 @@ public class PatchManager
 
     private void SetFullSpawnBags()
     {
+        spawnBagSize = 0;
+
         foreach (Compound compound in compoundCloudCounts.Keys)
         {
+            spawnBagSize += compoundCloudCounts[compound];
             for (int i = 0; i < compoundCloudCounts[compound]; i++)
             {
                 spawnSystem.AddSpawnItem(new CloudItem(compound, compoundAmounts[compound]));
@@ -184,6 +206,7 @@ public class PatchManager
 
         foreach (ChunkConfiguration chunk in chunkCounts.Keys)
         {
+            spawnBagSize += chunkCounts[chunk];
             foreach (var mesh in chunk.Meshes)
             {
                 if (mesh.LoadedScene == null)
@@ -202,14 +225,18 @@ public class PatchManager
                 continue;
 
             MicrobeSpecies species = (MicrobeSpecies)key;
+            spawnBagSize += speciesCounts[key];
 
-            MicrobeItem microbeItem = new MicrobeItem(species);
-            microbeItem.IsWanderer = false;
-            spawnSystem.AddSpawnItem(microbeItem);
+            for (int i = 0; i < speciesCounts[key]; i++)
+            {
+                MicrobeItem microbeItem = new MicrobeItem(species);
+                microbeItem.IsWanderer = false;
+                spawnSystem.AddSpawnItem(microbeItem);
 
-            MicrobeItem wanderMicrobeItem = new MicrobeItem(species);
-            wanderMicrobeItem.IsWanderer = true;
-            spawnSystem.AddMicrobeItem(wanderMicrobeItem);
+                MicrobeItem wanderMicrobeItem = new MicrobeItem(species);
+                wanderMicrobeItem.IsWanderer = true;
+                spawnSystem.AddMicrobeItem(wanderMicrobeItem);
+            }
         }
 
         spawnSystem.SetMicrobeBagSize();

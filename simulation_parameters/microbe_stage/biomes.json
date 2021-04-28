@@ -20,6 +20,8 @@
             }
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -148,6 +150,8 @@
         "icon": "res://assets/textures/gui/bevel/vents.png",
         "sunlight": {},
         "conditions": {
+            "spawnChunkiness": 0.1,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -156,7 +160,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 40,
+                    "density": 20,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -360,6 +364,8 @@
             "max": 2
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -492,6 +498,8 @@
             "max": 1.5
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -700,6 +708,8 @@
         "icon": "res://assets/textures/gui/bevel/abyss.png",
         "sunlight": {},
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -912,6 +922,8 @@
             "max": 1.7
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1124,6 +1136,8 @@
             "max": 2
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1252,6 +1266,8 @@
         "icon": "res://assets/textures/gui/bevel/cave.png",
         "sunlight": {},
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1384,6 +1400,8 @@
             "max": 2
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1534,6 +1552,8 @@
             "max": 2
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1666,6 +1686,8 @@
             "max": 1
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1.0,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",

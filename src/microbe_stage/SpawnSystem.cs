@@ -9,6 +9,12 @@ using Newtonsoft.Json;
 public class SpawnSystem
 {
     [JsonProperty]
+    private int spawnEventCount;
+
+    [JsonProperty]
+    private int spawnGridSize;
+
+    [JsonProperty]
     private float elapsed;
 
     [JsonProperty]
@@ -111,6 +117,16 @@ public class SpawnSystem
     {
         microbeBagSize = microbeItems.Count;
         spawnWandererTimer = Constants.WANDERER_SPAWN_RATE / microbeBagSize;
+    }
+
+    public void SetSpawnEventCount(int spawnEventCount)
+    {
+        this.spawnEventCount = spawnEventCount;
+    }
+
+    public void SetSpawnGridSize(int spawnGridSize)
+    {
+        this.spawnGridSize = spawnGridSize;
     }
 
     // Adds this spot to SpawnedGrid, so that respawning is less likely to give spawn event.
@@ -220,8 +236,8 @@ public class SpawnSystem
 
     private void SpawnEventGrid(Vector3 playerPosition)
     {
-        int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
-        int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
+        int playerGridX = (int)playerPosition.x / spawnGridSize;
+        int playerGridZ = (int)playerPosition.z / spawnGridSize;
 
         IVector3 playerCurrentGrid = new IVector3(playerGridX, 0, playerGridZ);
 
@@ -305,7 +321,7 @@ public class SpawnSystem
     {
         spawnEvent.IsSpawned = true;
 
-        for (int i = 0; i < random.Next(Constants.SPAWN_EVENT_MIN, Constants.SPAWN_EVENT_MAX); i++)
+        for (int i = 0; i < spawnEventCount; i++)
         {
             float weightedRandom = Mathf.Clamp(random.NextFloat() * 0.9f + 0.1f, 0, 1);
             float spawnRadius = weightedRandom * Constants.SPAWN_EVENT_RADIUS;
