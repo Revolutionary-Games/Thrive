@@ -100,6 +100,7 @@ public class PatchManager
 
         spawnSystem.SetSpawnEventCount(spawnEventCount);
         spawnSystem.SetSpawnGridSize(spawnGridSize);
+        spawnSystem.SetSpawnPatchMultiplier(biome.SpawnRateMultiplier);
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)

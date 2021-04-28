@@ -9,10 +9,19 @@ using Newtonsoft.Json;
 public class SpawnSystem
 {
     [JsonProperty]
+    private float spawnPatchMultiplier;
+    
+    [JsonProperty]
     private int spawnEventCount;
 
     [JsonProperty]
     private int spawnGridSize;
+
+    [JsonProperty]
+    private int spawnEventRadius;
+
+    [JsonProperty]
+    private float eventDistanceFromPlayerSqr;
 
     [JsonProperty]
     private float elapsed;
@@ -127,6 +136,15 @@ public class SpawnSystem
     public void SetSpawnGridSize(int spawnGridSize)
     {
         this.spawnGridSize = spawnGridSize;
+        spawnEventRadius = spawnGridSize / 4;
+
+        eventDistanceFromPlayerSqr = (spawnEventRadius + Constants.DESPAWN_ITEM_RADIUS + 20)
+            * (spawnEventRadius + Constants.DESPAWN_ITEM_RADIUS + 20);
+    }
+
+    public void SetSpawnPatchMultiplier(float spawnPatchMultiplier)
+    {
+        this.spawnPatchMultiplier = spawnPatchMultiplier;
     }
 
     // Adds this spot to SpawnedGrid, so that respawning is less likely to give spawn event.
@@ -254,11 +272,12 @@ public class SpawnSystem
 
                     if (!spawnGrid.ContainsKey(spawnEventGrid))
                     {
-                        Vector3 spawnPos = GetRandomEventPosition(spawnEventGrid.ToGameSpace());
-                        SpawnEvent spawnEvent = new SpawnEvent(spawnPos, spawnEventGrid);
+                        Vector3 eventGamePos = new Vector3(spawnEventGrid.X * spawnGridSize,
+                            spawnEventGrid.Y * spawnGridSize, spawnEventGrid.Z * spawnGridSize);
+                        SpawnEvent spawnEvent = new SpawnEvent(eventGamePos, spawnEventGrid);
 
                         if (oldPlayerGrid == null &&
-                            (spawnEvent.Position - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
+                            (spawnEvent.Position - playerPosition).LengthSquared() < eventDistanceFromPlayerSqr)
                         {
                             spawnEvent.IsSpawned = true;
                         }
@@ -286,7 +305,7 @@ public class SpawnSystem
                 }
 
                 if (!spawnEvent.IsSpawned &&
-                    (spawnEvent.Position - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
+                    (spawnEvent.Position - playerPosition).LengthSquared() < eventDistanceFromPlayerSqr)
                 {
                     SpawnNewEvent(spawnEvent);
                 }
@@ -321,10 +340,12 @@ public class SpawnSystem
     {
         spawnEvent.IsSpawned = true;
 
-        for (int i = 0; i < spawnEventCount; i++)
+        int spawnCount = (int)(spawnEventCount * spawnPatchMultiplier) + random.Next(-2, 3);
+
+        for (int i = 0; i < spawnCount; i++)
         {
             float weightedRandom = Mathf.Clamp(random.NextFloat() * 0.9f + 0.1f, 0, 1);
-            float spawnRadius = weightedRandom * Constants.SPAWN_EVENT_RADIUS;
+            float spawnRadius = weightedRandom * spawnEventRadius;
             float spawnAngle = random.NextFloat() * 2 * Mathf.Pi;
 
             Vector3 spawnModPosition = new Vector3(spawnRadius * Mathf.Sin(spawnAngle),
@@ -337,11 +358,11 @@ public class SpawnSystem
     private Vector3 GetRandomEventPosition(Vector3 spawnGridPos)
     {
         // Choose random place to spawn
-        float eventCenterX = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS * 2)
-            + Constants.SPAWN_EVENT_RADIUS;
+        float eventCenterX = random.NextFloat() * (spawnGridSize - spawnEventRadius * 2)
+            + spawnEventRadius;
 
-        float eventCenterZ = random.NextFloat() * (Constants.SPAWN_GRID_SIZE - Constants.SPAWN_EVENT_RADIUS * 2)
-            + Constants.SPAWN_EVENT_RADIUS;
+        float eventCenterZ = random.NextFloat() * (spawnGridSize - spawnEventRadius * 2)
+            + spawnEventRadius;
 
         Vector3 eventPos = new Vector3(eventCenterX, 0, eventCenterZ);
 
@@ -411,13 +432,13 @@ public class SpawnSystem
 
             var entityPosition = ((Spatial)entity).Translation;
 
-            int playerGridX = (int)playerPosition.x / Constants.SPAWN_GRID_SIZE;
-            int playerGridZ = (int)playerPosition.z / Constants.SPAWN_GRID_SIZE;
+            int playerGridX = (int)playerPosition.x / spawnGridSize;
+            int playerGridZ = (int)playerPosition.z / spawnGridSize;
 
-            float minSpawnX = (playerGridX - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE;
-            float maxSpawnX = (playerGridX + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE;
-            float minSpawnZ = (playerGridZ - Constants.SPAWN_GRID_WIDTH) * Constants.SPAWN_GRID_SIZE;
-            float maxSpawnZ = (playerGridZ + Constants.SPAWN_GRID_WIDTH + 1) * Constants.SPAWN_GRID_SIZE;
+            float minSpawnX = (playerGridX - Constants.SPAWN_GRID_WIDTH) * spawnGridSize;
+            float maxSpawnX = (playerGridX + Constants.SPAWN_GRID_WIDTH + 1) * spawnGridSize;
+            float minSpawnZ = (playerGridZ - Constants.SPAWN_GRID_WIDTH) * spawnGridSize;
+            float maxSpawnZ = (playerGridZ + Constants.SPAWN_GRID_WIDTH + 1) * spawnGridSize;
 
             // If the entity is too far away from the player, despawn it.
             if (entityPosition.x < minSpawnX || entityPosition.x > maxSpawnX ||
@@ -497,12 +518,6 @@ public class SpawnSystem
         public static bool operator !=(IVector3 iVecA, IVector3 iVecB)
         {
             return !(iVecA == iVecB);
-        }
-
-        public Vector3 ToGameSpace()
-        {
-            float scale = Constants.SPAWN_GRID_SIZE;
-            return new Vector3(X * scale, Y * scale, Z * scale);
         }
 
         public override bool Equals(object obj)

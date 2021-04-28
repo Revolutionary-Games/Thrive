@@ -49,24 +49,17 @@ public static class Constants
     // Length of wanderer microbe spawn cycle in seconds.
     public const float WANDERER_SPAWN_RATE = 60f;
 
-    public const int SPAWN_GRID_SIZE = 300;
+    public const int SPAWN_GRID_SIZE = 100;
     public const int SPAWN_GRID_HALFSIZE = SPAWN_GRID_SIZE / 2;
 
     public const int SPAWN_EVENT_MIN = 10;
     public const int SPAWN_EVENT_MAX = 15;
 
-    public const int SPAWN_GRID_WIDTH = 3;
-
-    public const float SPAWN_EVENT_RADIUS = 80f;
-    public const float SPAWN_EVENT_RADIUS_SQR = SPAWN_EVENT_RADIUS * SPAWN_EVENT_RADIUS;
+    public const int SPAWN_GRID_WIDTH = 2;
 
     public const int DESPAWN_ITEM_RADIUS = 170;
     public const int DESPAWN_ITEM_RADIUS_SQR = DESPAWN_ITEM_RADIUS * DESPAWN_ITEM_RADIUS;
     public const int SPAWN_WANDERER_RADIUS = (int)(0.95 * DESPAWN_ITEM_RADIUS);
-
-    // (Spawn Event Radius + Despawn Item Radius + constant) ^ 2
-    public const float EVENT_DISTANCE_FROM_PLAYER_SQR =
-        (SPAWN_EVENT_RADIUS + DESPAWN_ITEM_RADIUS + 20) * (SPAWN_EVENT_RADIUS + DESPAWN_ITEM_RADIUS + 20);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
