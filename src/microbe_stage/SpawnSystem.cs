@@ -272,7 +272,7 @@ public class SpawnSystem
                 if (!spawnEvent.IsSpawned &&
                     (spawnEvent.Position - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
                 {
-                    SpawnNewEvent(spawnEvent, playerPosition);
+                    SpawnNewEvent(spawnEvent);
                 }
             }
 
@@ -301,7 +301,7 @@ public class SpawnSystem
         }
     }
 
-    private void SpawnNewEvent(SpawnEvent spawnEvent, Vector3 playerPosition)
+    private void SpawnNewEvent(SpawnEvent spawnEvent)
     {
         spawnEvent.IsSpawned = true;
 
