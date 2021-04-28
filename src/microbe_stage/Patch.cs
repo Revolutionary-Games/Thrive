@@ -147,7 +147,7 @@ public class Patch
 
             if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
             {
-                result += chunk.Density * chunk.Compounds[compound].Amount;
+                result += chunk.Density;
             }
         }
 

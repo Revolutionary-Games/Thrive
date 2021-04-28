@@ -49,8 +49,6 @@ public static class Constants
     // Length of wanderer microbe spawn cycle in seconds.
     public const float WANDERER_SPAWN_RATE = 60f;
 
-    public const float SPAWN_DENSITY_MULTIPLIER = 400000f;
-
     public const int SPAWN_GRID_SIZE = 300;
     public const int SPAWN_GRID_HALFSIZE = SPAWN_GRID_SIZE / 2;
 
