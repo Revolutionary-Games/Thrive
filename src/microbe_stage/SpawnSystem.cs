@@ -26,22 +26,39 @@ public class SpawnSystem
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
-    [JsonIgnore]
     private Node worldRoot;
 
-    [JsonProperty]
+    // List of SpawnItems, used to fill the spawnItemBag when it is empty.
+    [JsonIgnore]
+    private List<SpawnItem> spawnItems = new List<SpawnItem>();
+
+    // Used for a Tetris style random bag. Fill and shuffle the bag,
+    // then simply pop one out until empty. Rinse and repeat.
+    [JsonIgnore]
+    private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
+
+    // List of MicrobeItems, used to fill the wanderMicrobeBag.
+    [JsonIgnore]
+    private List<SpawnItem> microbeItems = new List<SpawnItem>();
+
+    // Used to spawn wandering random microbes when sitting still.
+    [JsonIgnore]
+    private List<SpawnItem> wanderMicrobeBag = new List<SpawnItem>();
+
+    // Queue of spawn items to spawn. a few from this list get spawned every frame.
+    [JsonIgnore]
+    private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
+
+    [JsonIgnore]
     private int microbeBagSize;
 
     [JsonProperty]
     private Random random = new Random();
 
-    /// <summary>
-    ///   This limits the total number of things that can be spawned.
-    /// </summary>
-    [JsonProperty]
-    private int maxAliveEntities = 1000;
+    [JsonIgnore]
+    private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
 
-    [JsonProperty]
+    [JsonIgnore]
     private IVector3 oldPlayerGrid = null;
 
     /// <summary>
@@ -51,35 +68,11 @@ public class SpawnSystem
     [JsonProperty]
     private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
 
-    [JsonConverter(typeof(SpawnEventConverter))]
+    /// <summary>
+    ///   This limits the total number of things that can be spawned.
+    /// </summary>
     [JsonProperty]
-    private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
-
-    // List of SpawnItems, used to fill the spawnItemBag when it is empty.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    [JsonProperty]
-    private List<SpawnItem> spawnItems = new List<SpawnItem>();
-
-    // Used for a Tetris style random bag. Fill and shuffle the bag,
-    // then simply pop one out until empty. Rinse and repeat.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    [JsonProperty]
-    private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
-
-    // List of MicrobeItems, used to fill the wanderMicrobeBag.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    [JsonProperty]
-    private List<SpawnItem> microbeItems = new List<SpawnItem>();
-
-    // Used to spawn wandering random microbes when sitting still.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    [JsonProperty]
-    private List<SpawnItem> wanderMicrobeBag = new List<SpawnItem>();
-
-    // Queue of spawn items to spawn. a few from this list get spawned every frame.
-    [JsonConverter(typeof(SpawnItemConverter))]
-    [JsonProperty]
-    private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
+    private int maxAliveEntities = 1000;
 
     public SpawnSystem(Node root)
     {
@@ -199,8 +192,6 @@ public class SpawnSystem
 
     private SpawnItem BagPop(List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
-        GD.Print(bag.Count);
-
         if (bag.Count == 0)
         {
             FillBag(bag, fullBag);
@@ -281,7 +272,7 @@ public class SpawnSystem
                 if (!spawnEvent.IsSpawned &&
                     (spawnEvent.Position - playerPosition).LengthSquared() < Constants.EVENT_DISTANCE_FROM_PLAYER_SQR)
                 {
-                    SpawnNewEvent(spawnEvent);
+                    SpawnNewEvent(spawnEvent, playerPosition);
                 }
             }
 
@@ -310,7 +301,7 @@ public class SpawnSystem
         }
     }
 
-    private void SpawnNewEvent(SpawnEvent spawnEvent)
+    private void SpawnNewEvent(SpawnEvent spawnEvent, Vector3 playerPosition)
     {
         spawnEvent.IsSpawned = true;
 
@@ -439,7 +430,7 @@ public class SpawnSystem
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
-    public class SpawnEvent
+    private class SpawnEvent
     {
         public bool IsSpawned = false;
         public SpawnEvent(Vector3 position, IVector3 gridPos)
@@ -457,7 +448,7 @@ public class SpawnSystem
         public IVector3 GridPos { get; private set; }
     }
 
-    public class IVector3
+    private class IVector3
     {
         public int X;
         public int Y;
