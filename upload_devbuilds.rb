@@ -26,7 +26,7 @@ OptionParser.new do |opts|
   opts.on('--url devcenterurl', 'Custom URL to upload to') do |url|
     @options[:url] = url
   end
-  opts.on('-j', '--parallel count', 'How many parallel uploads to do') do |p|
+  opts.on('-j', '--parallel count', Integer, 'How many parallel uploads to do') do |p|
     @options[:parallel_upload] = p
   end
 end.parse!
