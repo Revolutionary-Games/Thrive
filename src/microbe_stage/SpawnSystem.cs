@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -10,7 +12,7 @@ public class SpawnSystem
 {
     [JsonProperty]
     private float spawnPatchMultiplier;
-    
+
     [JsonProperty]
     private int spawnEventCount;
 
@@ -70,10 +72,10 @@ public class SpawnSystem
     [JsonProperty]
     private Random random = new Random();
 
-    [JsonIgnore]
+    [JsonProperty]
     private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
 
-    [JsonIgnore]
+    [JsonProperty]
     private IVector3 oldPlayerGrid = null;
 
     /// <summary>
@@ -340,7 +342,7 @@ public class SpawnSystem
     {
         spawnEvent.IsSpawned = true;
 
-        int spawnCount = (int)(spawnEventCount * spawnPatchMultiplier) + random.Next(-2, 3);
+        int spawnCount = (int)(spawnEventCount * spawnPatchMultiplier) + random.Next(-1, 2);
 
         for (int i = 0; i < spawnCount; i++)
         {
@@ -470,21 +472,19 @@ public class SpawnSystem
     private class SpawnEvent
     {
         public bool IsSpawned = false;
-        public SpawnEvent(Vector3 position, IVector3 gridPos)
-        {
-            Position = position;
-            GridPos = gridPos;
-        }
 
-        public SpawnEvent(IVector3 gridPos)
+        public SpawnEvent(Vector3 position, IVector3 gridPos, bool isSpawned = false)
         {
             GridPos = gridPos;
+            Position = position;
+            IsSpawned = isSpawned;
         }
 
         public Vector3 Position { get; private set; }
         public IVector3 GridPos { get; private set; }
     }
 
+    [TypeConverter(typeof(IVector3TypeConverter))]
     private class IVector3
     {
         public int X;
@@ -535,7 +535,7 @@ public class SpawnSystem
 
         public override string ToString()
         {
-            return base.ToString() + ": " + "(" + X + ", " + Y + ", " + Z + ")";
+            return X + ", " + Y + ", " + Z;
         }
 
         public override int GetHashCode()
@@ -551,6 +551,48 @@ public class SpawnSystem
                 hash = (hash * HashingMultiplier) ^ Z.GetHashCode();
                 return hash;
             }
+        }
+    }
+
+    private class IVector3TypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        {
+            if (sourceType == typeof(string))
+                return true;
+
+            return base.CanConvertFrom(context, sourceType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context,
+         CultureInfo culture, object value)
+        {
+            if (value is string)
+            {
+                string[] coords = ((string)value).Split(", ");
+
+                int x, y, z;
+                bool p = int.TryParse(coords[0], out x);
+                bool q = int.TryParse(coords[1], out y);
+                bool r = int.TryParse(coords[2], out z);
+                if (p && q && r)
+                {
+                    return new IVector3(x, y, z);
+                }
+            }
+
+            return base.ConvertFrom(context, culture, value);
+        }
+
+        public override object ConvertTo(ITypeDescriptorContext context,
+        CultureInfo culture, object value, Type destinationType)
+        {
+            if (destinationType == typeof(string))
+            {
+                return value.ToString();
+            }
+
+            return base.ConvertTo(context, culture, value, destinationType);
         }
     }
 }
