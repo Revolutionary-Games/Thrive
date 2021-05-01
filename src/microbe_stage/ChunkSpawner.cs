@@ -7,12 +7,13 @@ using Godot;
 public class ChunkSpawner
 {
     private readonly PackedScene chunkScene;
-    private readonly Random random = new Random();
+    private readonly Random random;
     private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(CompoundCloudSystem cloudSystem)
+    public ChunkSpawner(CompoundCloudSystem cloudSystem, Random random)
     {
         this.cloudSystem = cloudSystem;
+        this.random = random;
         chunkScene = LoadChunkScene();
     }
 

@@ -12,12 +12,11 @@ public class MicrobeSpawner
     private readonly Random random;
     private GameProperties currentGame;
 
-    public MicrobeSpawner(CompoundCloudSystem cloudSystem)
+    public MicrobeSpawner(CompoundCloudSystem cloudSystem, Random random)
     {
-        microbeScene = LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
-
-        random = new Random();
+        this.random = random;
+        microbeScene = LoadMicrobeScene();
     }
 
     public static Microbe SpawnMicrobe(Species species, Vector3 location,

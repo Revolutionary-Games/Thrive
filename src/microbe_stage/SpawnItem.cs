@@ -5,11 +5,11 @@ using Godot;
 // These items are added to and drawn from the spawnItemsBag
 public abstract class SpawnItem
 {
-    public Vector3 position;
+    public Vector3 Position;
 
     public void SetSpawnPosition(Vector3 position)
     {
-        this.position = position;
+        Position = position;
     }
 
     public abstract List<ISpawned> Spawn();
@@ -35,7 +35,7 @@ public class CloudItem : SpawnItem
 
     public override List<ISpawned> Spawn()
     {
-        cloudSpawner.SpawnCloud(position, compound, amount);
+        cloudSpawner.SpawnCloud(Position, compound, amount);
         return null;
     }
 }
@@ -62,7 +62,7 @@ public class ChunkItem : SpawnItem
     public override List<ISpawned> Spawn()
     {
         List<ISpawned> chunks = new List<ISpawned>();
-        chunks.Add(chunkSpawner.Spawn(position, chunkType, worldNode));
+        chunks.Add(chunkSpawner.Spawn(Position, chunkType, worldNode));
         return chunks;
     }
 }
@@ -70,10 +70,10 @@ public class ChunkItem : SpawnItem
 // Microbe to be spawned
 public class MicrobeItem : SpawnItem
 {
+    public bool IsWanderer;
     private MicrobeSpecies species;
     private MicrobeSpawner microbeSpawner;
     private Node worldNode;
-    public bool IsWanderer;
 
     public MicrobeItem(MicrobeSpecies species)
     {
@@ -88,6 +88,6 @@ public class MicrobeItem : SpawnItem
 
     public override List<ISpawned> Spawn()
     {
-        return microbeSpawner.Spawn(worldNode, position, species, IsWanderer);
+        return microbeSpawner.Spawn(worldNode, Position, species, IsWanderer);
     }
 }

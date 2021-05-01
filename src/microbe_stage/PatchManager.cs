@@ -58,10 +58,7 @@ public class PatchManager
             // Despawn old entities
             spawnSystem.DespawnAll();
 
-            // Clear SpawnBags
-            spawnSystem.ClearSpawnSystem();
-
-            // And also all timed entities
+            // And also all timed entities and clear SpawnBags
             timedLife.DespawnAll();
 
             // Clear compounds
@@ -98,9 +95,7 @@ public class PatchManager
         int spawnGridSize = (int)(Constants.SPAWN_GRID_SIZE * Math.Sqrt(spawnEventCount)
             / Math.Sqrt(biome.SpawnRateMultiplier));
 
-        spawnSystem.SetSpawnEventCount(spawnEventCount);
-        spawnSystem.SetSpawnGridSize(spawnGridSize);
-        spawnSystem.SetSpawnPatchMultiplier(biome.SpawnRateMultiplier);
+        spawnSystem.SetSpawnData(spawnEventCount, spawnGridSize, biome.SpawnRateMultiplier);
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)

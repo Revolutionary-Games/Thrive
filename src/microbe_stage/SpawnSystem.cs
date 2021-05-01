@@ -11,9 +11,6 @@ using Newtonsoft.Json;
 public class SpawnSystem
 {
     [JsonProperty]
-    private float spawnPatchMultiplier;
-
-    [JsonProperty]
     private int spawnEventCount;
 
     [JsonProperty]
@@ -21,6 +18,22 @@ public class SpawnSystem
 
     [JsonProperty]
     private int spawnEventRadius;
+
+    /// <summary>
+    ///   Delete a max of this many entities per step to reduce lag
+    ///   from deleting tons of entities at once.
+    /// </summary>
+    [JsonProperty]
+    private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
+
+    /// <summary>
+    ///   This limits the total number of things that can be spawned.
+    /// </summary>
+    [JsonProperty]
+    private int maxAliveEntities = 1000;
+
+    [JsonProperty]
+    private float spawnPatchMultiplier;
 
     [JsonProperty]
     private float eventDistanceFromPlayerSqr;
@@ -31,6 +44,9 @@ public class SpawnSystem
     [JsonProperty]
     private float spawnWandererTimer = 0;
 
+    [JsonProperty]
+    private Random random = new Random();
+
     [JsonIgnore]
     private CompoundCloudSpawner cloudSpawner;
 
@@ -39,6 +55,9 @@ public class SpawnSystem
 
     [JsonIgnore]
     private MicrobeSpawner microbeSpawner;
+
+    [JsonIgnore]
+    private int microbeBagSize;
 
     /// <summary>
     ///   Root node to parent all spawned things to
@@ -66,30 +85,11 @@ public class SpawnSystem
     [JsonIgnore]
     private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
 
-    [JsonIgnore]
-    private int microbeBagSize;
-
-    [JsonProperty]
-    private Random random = new Random();
-
     [JsonProperty]
     private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
 
     [JsonProperty]
     private IVector3 oldPlayerGrid = null;
-
-    /// <summary>
-    ///   Delete a max of this many entities per step to reduce lag
-    ///   from deleting tons of entities at once.
-    /// </summary>
-    [JsonProperty]
-    private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
-
-    /// <summary>
-    ///   This limits the total number of things that can be spawned.
-    /// </summary>
-    [JsonProperty]
-    private int maxAliveEntities = 1000;
 
     public SpawnSystem(Node root)
     {
@@ -105,8 +105,8 @@ public class SpawnSystem
     public void Init(CompoundCloudSystem cloudSystem)
     {
         cloudSpawner = new CompoundCloudSpawner(cloudSystem);
-        chunkSpawner = new ChunkSpawner(cloudSystem);
-        microbeSpawner = new MicrobeSpawner(cloudSystem);
+        chunkSpawner = new ChunkSpawner(cloudSystem, random);
+        microbeSpawner = new MicrobeSpawner(cloudSystem, random);
     }
 
     public void SetCurrentGame(GameProperties currentGame)
@@ -130,23 +130,15 @@ public class SpawnSystem
         spawnWandererTimer = Constants.WANDERER_SPAWN_RATE / microbeBagSize;
     }
 
-    public void SetSpawnEventCount(int spawnEventCount)
+    public void SetSpawnData(int spawnEventCount, int spawnGridSize, float spawnPatchMultiplier)
     {
         this.spawnEventCount = spawnEventCount;
-    }
-
-    public void SetSpawnGridSize(int spawnGridSize)
-    {
+        this.spawnPatchMultiplier = spawnPatchMultiplier;
         this.spawnGridSize = spawnGridSize;
         spawnEventRadius = spawnGridSize / 4;
 
         eventDistanceFromPlayerSqr = (spawnEventRadius + Constants.DESPAWN_ITEM_RADIUS + 20)
             * (spawnEventRadius + Constants.DESPAWN_ITEM_RADIUS + 20);
-    }
-
-    public void SetSpawnPatchMultiplier(float spawnPatchMultiplier)
-    {
-        this.spawnPatchMultiplier = spawnPatchMultiplier;
     }
 
     // Adds this spot to SpawnedGrid, so that respawning is less likely to give spawn event.
@@ -155,18 +147,6 @@ public class SpawnSystem
         oldPlayerGrid = null;
         itemsToSpawn.Clear();
         spawnGrid.Clear();
-    }
-
-    public void ClearSpawnSystem()
-    {
-        spawnItems.Clear();
-        spawnItemBag.Clear();
-        microbeItems.Clear();
-        wanderMicrobeBag.Clear();
-        itemsToSpawn.Clear();
-        spawnGrid.Clear();
-
-        oldPlayerGrid = null;
     }
 
     /// <summary>
@@ -181,6 +161,15 @@ public class SpawnSystem
             if (!entity.IsQueuedForDeletion())
                 entity.DetachAndQueueFree();
         }
+
+        spawnItems.Clear();
+        spawnItemBag.Clear();
+        microbeItems.Clear();
+        wanderMicrobeBag.Clear();
+        itemsToSpawn.Clear();
+        spawnGrid.Clear();
+
+        oldPlayerGrid = null;
     }
 
     /// <summary>
@@ -218,9 +207,7 @@ public class SpawnSystem
         {
             int j = random.Next(i, bag.Count);
 
-            // swap i, j
             SpawnItem swap = bag[i];
-
             bag[i] = bag[j];
             bag[j] = swap;
         }
@@ -229,26 +216,24 @@ public class SpawnSystem
     private SpawnItem BagPop(List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
         if (bag.Count == 0)
-        {
             FillBag(bag, fullBag);
-        }
 
         SpawnItem pop = bag[0];
         bag.RemoveAt(0);
 
-        if (pop is CloudItem cloudPop)
+        switch (pop)
         {
-            cloudPop.SetCloudSpawner(cloudSpawner);
-        }
+            case CloudItem cloudPop:
+                cloudPop.SetCloudSpawner(cloudSpawner);
+                break;
 
-        if (pop is ChunkItem chunkPop)
-        {
-            chunkPop.SetChunkSpawner(chunkSpawner, worldRoot);
-        }
+            case ChunkItem chunkPop:
+                chunkPop.SetChunkSpawner(chunkSpawner, worldRoot);
+                break;
 
-        if (pop is MicrobeItem microbePop)
-        {
-            microbePop.SetMicrobeSpawner(microbeSpawner, worldRoot);
+            case MicrobeItem microbePop:
+                microbePop.SetMicrobeSpawner(microbeSpawner, worldRoot);
+                break;
         }
 
         return pop;
@@ -258,7 +243,6 @@ public class SpawnSystem
     {
         int playerGridX = (int)playerPosition.x / spawnGridSize;
         int playerGridZ = (int)playerPosition.z / spawnGridSize;
-
         IVector3 playerCurrentGrid = new IVector3(playerGridX, 0, playerGridZ);
 
         if (oldPlayerGrid != playerCurrentGrid)
@@ -276,7 +260,8 @@ public class SpawnSystem
                     {
                         Vector3 eventGamePos = new Vector3(spawnEventGrid.X * spawnGridSize,
                             spawnEventGrid.Y * spawnGridSize, spawnEventGrid.Z * spawnGridSize);
-                        SpawnEvent spawnEvent = new SpawnEvent(eventGamePos, spawnEventGrid);
+                        SpawnEvent spawnEvent = new SpawnEvent(GetRandomEventPosition(eventGamePos),
+                            spawnEventGrid);
 
                         if (oldPlayerGrid == null &&
                             (spawnEvent.Position - playerPosition).LengthSquared() < eventDistanceFromPlayerSqr)
@@ -331,9 +316,7 @@ public class SpawnSystem
             Vector3 spawnWanderer = new Vector3(spawnDistance * Mathf.Sin(spawnAngle),
                 0, spawnDistance * Mathf.Cos(spawnAngle));
 
-            GD.Print("SPAWNING WANDERER: " + spawnWandererTimer);
             AddSpawnItemInToSpawnList(spawnWanderer + playerPosition, wanderMicrobeBag, microbeItems);
-
             DespawnEntities(playerPosition);
         }
     }
@@ -341,7 +324,6 @@ public class SpawnSystem
     private void SpawnNewEvent(SpawnEvent spawnEvent)
     {
         spawnEvent.IsSpawned = true;
-
         int spawnCount = (int)(spawnEventCount * spawnPatchMultiplier) + random.Next(-1, 2);
 
         for (int i = 0; i < spawnCount; i++)
@@ -371,8 +353,8 @@ public class SpawnSystem
         return spawnGridPos + eventPos;
     }
 
-    private void AddSpawnItemInToSpawnList(Vector3 spawnPos,
-        List<SpawnItem> bag, List<SpawnItem> fullBag)
+    private void AddSpawnItemInToSpawnList(Vector3 spawnPos, List<SpawnItem> bag,
+        List<SpawnItem> fullBag)
     {
         SpawnItem spawn = BagPop(bag, fullBag);
 
@@ -455,7 +437,7 @@ public class SpawnSystem
         }
     }
 
-    /// <summary>IT
+    /// <summary>
     ///   Add the entity to the spawned group and add the despawn radius
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity)
@@ -484,6 +466,8 @@ public class SpawnSystem
         public IVector3 GridPos { get; private set; }
     }
 
+    // Other classes should not use IVector3
+    // The spawn grid needs an integer Vector3 to avoid floating point errors.
     [TypeConverter(typeof(IVector3TypeConverter))]
     private class IVector3
     {
