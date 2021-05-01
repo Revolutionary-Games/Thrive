@@ -512,9 +512,9 @@ public class SpawnSystem
         public bool Equals(IVector3 other)
         {
             return other != null &&
-                   X == other.X &&
-                   Y == other.Y &&
-                   Z == other.Z;
+               X == other.X &&
+               Y == other.Y &&
+               Z == other.Z;
         }
 
         public override string ToString()
@@ -549,7 +549,7 @@ public class SpawnSystem
         }
 
         public override object ConvertFrom(ITypeDescriptorContext context,
-         CultureInfo culture, object value)
+            CultureInfo culture, object value)
         {
             if (value is string)
             {
@@ -569,7 +569,7 @@ public class SpawnSystem
         }
 
         public override object ConvertTo(ITypeDescriptorContext context,
-        CultureInfo culture, object value, Type destinationType)
+            CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(string))
             {
