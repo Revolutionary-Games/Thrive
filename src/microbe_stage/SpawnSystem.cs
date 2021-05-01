@@ -42,7 +42,7 @@ public class SpawnSystem
     private float elapsed;
 
     [JsonProperty]
-    private float spawnWandererTimer = 0;
+    private float spawnWandererTimer;
 
     [JsonProperty]
     private Random random = new Random();
@@ -89,7 +89,7 @@ public class SpawnSystem
     private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
 
     [JsonProperty]
-    private IVector3 oldPlayerGrid = null;
+    private IVector3 oldPlayerGrid;
 
     public SpawnSystem(Node root)
     {
@@ -453,7 +453,7 @@ public class SpawnSystem
 
     private class SpawnEvent
     {
-        public bool IsSpawned = false;
+        public bool IsSpawned;
 
         public SpawnEvent(Vector3 position, IVector3 gridPos, bool isSpawned = false)
         {
@@ -512,9 +512,9 @@ public class SpawnSystem
         public bool Equals(IVector3 other)
         {
             return other != null &&
-               X == other.X &&
-               Y == other.Y &&
-               Z == other.Z;
+                X == other.X &&
+                Y == other.Y &&
+                Z == other.Z;
         }
 
         public override string ToString()
