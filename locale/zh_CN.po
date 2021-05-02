@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-18 20:32+0700\n"
-"PO-Revision-Date: 2021-04-12 18:03+0000\n"
+"POT-Creation-Date: 2021-04-12 17:42+0700\n"
+"PO-Revision-Date: 2021-04-18 08:40+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -30,8 +30,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"你的细胞使用ATP（三磷酸腺苷）作为能量来源，如果耗尽的话你的细胞将会死亡。"
+msgstr "你的细胞使用ATP（三磷酸腺苷）作为能量来源，如果耗尽的话你的细胞将会死亡。"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
@@ -43,16 +42,14 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"按G键会启动吞噬模式，你的细胞将可以吞噬比你小的细胞，细菌，铁块和细胞器。吞"
-"噬模式会花费额外的ATP并使你减速。不要忘记再按一次G键来退出吞噬模式。"
+"按G键会启动吞噬模式，你的细胞将可以吞噬比你小的细胞，细菌，铁块和细胞器。吞噬模式会花费额外的ATP并使你减速。不要忘记再按一次G键来退出吞噬模式。"
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"渗透调节消耗ATP（三磷酸腺苷），这意味着你的细胞越大，你所需要的线粒体/代谢"
-"体/铁硫菌蓝蛋白（或细胞质-其可进行糖酵解）就越多，以避免你在静止时都损失"
-"ATP。"
+"渗透调节消耗ATP（三磷酸腺苷），这意味着你的细胞越大，你所需要的线粒体/代谢体/铁硫菌蓝蛋白（或细胞质-其可进行糖酵解）就越多，以避免你在静止时都损失A"
+"TP。"
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
@@ -62,7 +59,7 @@ msgstr "编辑器里有很多细胞器可供你进化，提供多种不同的玩
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "目前版本只要你的细胞数量降到零，你就会灭绝。"
+msgstr "目前版本，只要你的细胞数量降到零，你就会灭绝。"
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -91,9 +88,7 @@ msgstr "繁殖需要你将每个细胞器都一分为二。细胞器需要氨和
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"但是，如果你能成功的以最少300细胞数量生存了二十代，你将被视为赢得了当前游"
-"戏，获胜后会弹出一个窗口并可以选择继续玩。"
+msgstr "但是，如果你能成功的以最少300的生物数量生存了二十代，你将被视为赢得了当前游戏。获胜后会弹出一个窗口并可以选择继续游玩。"
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
@@ -108,11 +103,9 @@ msgstr ""
 "\n"
 "代谢体：用葡萄糖生产ATP\n"
 "\n"
-"化学合成蛋白：跟化学质体比同一份硫化氢只能产出半份葡萄糖，但其同时也能进行"
-"糖酵解。占用一个六角格。\n"
+"化学合成蛋白：跟化学质体比同一份硫化氢只能产出半份葡萄糖，但其同时也能进行糖酵解。占用一个六角格。\n"
 "\n"
-"类囊体：跟正常的叶绿体比只能产出1/3的葡萄糖，但其同时也能进行糖酵解。占用一"
-"个六角格。\n"
+"类囊体：跟正常的叶绿体比只能产出1/3的葡萄糖，但其同时也能进行糖酵解。占用一个六角格。\n"
 "\n"
 "铁硫菌蓝蛋白：将铁转换成ATP\n"
 "\n"
@@ -134,10 +127,9 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "膜细胞器\n"
 "\n"
-"细胞核：占用十一个六角格并允许你进化膜细胞器。同时使你的细胞大小翻倍。（只"
-"能被进化一次）\n"
+"细胞核：占用十一个六角格并允许你进化膜细胞器，同时使你的细胞大小翻倍。（只能被进化一次）\n"
 "\n"
-"线粒体：用葡萄糖和大气中的氧气生产ATP。比细胞质的效率高很多\n"
+"线粒体：用葡萄糖和大气中的氧气生产ATP，比细胞质的效率高很多\n"
 "\n"
 "叶绿体：用阳光和大气中的二氧化碳生产葡萄糖。\n"
 "\n"
@@ -152,10 +144,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或"
-"移除细胞器会花费变异点，但是移除在本代放下的细胞器会返还全部那个细胞器消耗"
-"的变异点。你可以通过右键点击并在弹出的菜单中选择移除或移动细胞器。你还可以"
-"用A键和D键旋转你的细胞器。"
+"每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或移除细胞器会花费变异点，但是移除在本代放下的细胞器会返还全部那个细胞器消耗的"
+"变异点。你可以通过右键点击并在弹出的菜单中选择移除或移动细胞器。你还可以用A键和D键旋转你的细胞器。"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -170,9 +160,7 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 
 #: ../simulation_parameters/common/help_texts.json:48
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"逗知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物关系研究了几十年。你是栉"
-"毛虫，还是草履虫呢？捕食者，还是猎物？"
+msgstr "逗知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物关系研究了几十年。你是栉毛虫，还是草履虫呢？捕食者，还是猎物？"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
@@ -181,9 +169,8 @@ msgstr "小提示：如果你手速够快，你可以用自己的毒素把其它
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"小提示：每一个六角格每秒需消耗一个ATP来进行渗透调节，而单格细胞质每秒产生5"
-"个ATP。这意味着如果你因为渗透调节在损失ATP的话，你只要多加几格细胞质或移除"
-"一些细胞器就行了。"
+"小提示：每一个六角格每秒需消耗一个ATP来进行渗透调节，而单格细胞质每秒产生5个ATP。这意味着如果你因为渗透调节在损失ATP的话，你只要多加几格细胞质或"
+"移除一些细胞器就行了。"
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
@@ -1152,87 +1139,87 @@ msgstr "Launch 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Launch A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Launch B"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Launch C"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Launch D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Launch E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Launch F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "小键盘*键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "小键盘/键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "小键盘-键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPPERIOD"
-msgstr ""
+msgstr "小键盘.键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPADD"
-msgstr ""
+msgstr "小键盘+键"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KP0"
-msgstr ""
+msgstr "小键盘0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KP1"
-msgstr ""
+msgstr "小键盘1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP2"
-msgstr ""
+msgstr "小键盘2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP3"
-msgstr ""
+msgstr "小键盘3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP4"
-msgstr ""
+msgstr "小键盘4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP5"
-msgstr ""
+msgstr "小键盘5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP6"
-msgstr ""
+msgstr "小键盘6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP7"
-msgstr ""
+msgstr "小键盘7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP8"
-msgstr ""
+msgstr "小键盘8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "KP9"
-msgstr ""
+msgstr "小键盘9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:225
 msgid "UNKNOWN"
@@ -1640,15 +1627,13 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:900
 #: ../src/gui_common/charts/line/LineChart.cs:929
-#, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
+msgstr "不允许显示超过{0}个数据集！"
 
 #: ../src/gui_common/charts/line/LineChart.cs:909
 #: ../src/gui_common/charts/line/LineChart.cs:937
-#, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
+msgstr "不允许显示少于{0}个数据集！"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:78
 msgid "OPEN_THE_MENU"

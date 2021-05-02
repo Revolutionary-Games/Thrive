@@ -67,7 +67,7 @@ public class Gallery : IRegistryType
         public string Description { get; set; }
 
         /// <summary>
-        ///   Combines artwork title, artist name and extended description.
+        ///   Combines artwork title, artist name and extended description into one structured string.
         /// </summary>
         /// <param name="extended">
         ///     Includes the extended description if true (and it's not empty).
