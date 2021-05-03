@@ -110,8 +110,8 @@ public class PatchManager
 
             if (chunkDensity > 0)
             {
-                // Cheaty divide because there are too many chunks
-                int numOfItems = Math.Min((int)chunkDensity, 100);
+                int numOfItems = Math.Min(
+                    (int)(chunkDensity * Constants.SPAWN_DENSITY_MULTIPLIER), 100);
                 GD.Print(biome.Chunks[chunk].Name + " has " + numOfItems + " items per bag.");
                 chunkCounts.Add(biome.Chunks[chunk], numOfItems);
             }
@@ -130,10 +130,10 @@ public class PatchManager
             float compoundDensity = biome.Compounds[compound].Density;
             float compoundAmount = biome.Compounds[compound].Amount;
 
-            // if density = 0, then do not add to biomeCompounds
             if (compoundDensity > 0 && compoundAmount > 0)
             {
-                int numOfItems = (int)compoundDensity;
+                int numOfItems = Math.Min(
+                    (int)(compoundDensity * Constants.SPAWN_DENSITY_MULTIPLIER), 100);
                 GD.Print(compound.Name + " has " + numOfItems + " items per bag.");
                 compoundCloudCounts.Add(compound, numOfItems);
                 compoundAmounts.Add(compound, compoundAmount);
@@ -157,7 +157,7 @@ public class PatchManager
                 continue;
             }
 
-            float density = 400000f / (Constants.STARTING_SPAWN_DENSITY -
+            float density = Constants.SPAWN_DENSITY_MULTIPLIER / (Constants.STARTING_SPAWN_DENSITY -
                 Math.Min(Constants.MAX_SPAWN_DENSITY,
                     species.Population * 3));
 

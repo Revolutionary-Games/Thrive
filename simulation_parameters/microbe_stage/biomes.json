@@ -30,7 +30,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 20,
+                    "density": 0.00005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -103,17 +103,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -160,7 +160,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 20,
+                    "density": 0.00005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -190,7 +190,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 10,
+                    "density": 0.000025,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -293,7 +293,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 10,
+                    "density": 0.000025,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -313,22 +313,22 @@
             "compounds": {
                 "ammonia": {
                     "amount": 300000,
-                    "density": 16,
+                    "density": 0.00004,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 300000,
-                    "density": 16,
+                    "density": 0.00004,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
                     "amount": 300000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "oxygen": {
@@ -374,7 +374,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 30,
+                    "density": 0.000075,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -404,7 +404,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 15,
+                    "density": 0.0000375,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -427,7 +427,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 5,
+                    "density": 0.0000175,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -447,17 +447,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -508,7 +508,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 28,
+                    "density": 0.00007,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -538,7 +538,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 12,
+                    "density": 0.00003,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -561,7 +561,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 12,
+                    "density": 0.00003,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -635,7 +635,7 @@
                             "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
                         }
                     ],
-                    "density": 30,
+                    "density": 0.000075,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -661,17 +661,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 4,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 4,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 4,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -718,7 +718,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 5,
+                    "density": 0.0000175,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -845,7 +845,7 @@
                             "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
                         }
                     ],
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -871,22 +871,22 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
                     "amount": 300000,
-                    "density": 16,
+                    "density": 0.00004,
                     "dissolved": 0
                 },
                 "oxygen": {
@@ -932,7 +932,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 15,
+                    "density": 0.0000375,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -962,7 +962,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 30,
+                    "density": 0.000075,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -985,7 +985,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 15,
+                    "density": 0.0000375,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1059,7 +1059,7 @@
                             "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
                         }
                     ],
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1085,17 +1085,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 4,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 12,
+                    "density": 0.00003,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -1146,7 +1146,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 25,
+                    "density": 0.0000625,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1176,7 +1176,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 20,
+                    "density": 0.00005,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1199,7 +1199,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 7,
+                    "density": 0.0000175,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1219,17 +1219,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -1276,7 +1276,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 2,
+                    "density": 0.000005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1306,7 +1306,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 35,
+                    "density": 0.0000875,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1329,7 +1329,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 40,
+                    "density": 0.0001,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1349,22 +1349,22 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
                     "amount": 225000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "oxygen": {
@@ -1410,7 +1410,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 10,
+                    "density": 0.000025,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1440,7 +1440,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 20,
+                    "density": 0.00005,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1463,7 +1463,7 @@
                             "convexShapePath": "res://assets/models/Iceshard1.shape"
                         }
                     ],
-                    "density": 40,
+                    "density": 0.0001,
                     "dissolves": false,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1481,7 +1481,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 10,
+                    "density": 0.000025,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1501,17 +1501,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -1562,7 +1562,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 20,
+                    "density": 0.00005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1592,7 +1592,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 10,
+                    "density": 0.000025,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1615,7 +1615,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 7,
+                    "density": 0.0000175,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1635,17 +1635,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 8,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -1696,7 +1696,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 5,
+                    "density": 0.0000175,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1726,7 +1726,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 20,
+                    "density": 0.00005,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1749,7 +1749,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 15,
+                    "density": 0.0000375,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1823,7 +1823,7 @@
                             "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
                         }
                     ],
-                    "density": 16,
+                    "density": 0.00004,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1849,17 +1849,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 10,
+                    "density": 0.000025,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 4,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 10,
+                    "density": 0.000025,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
