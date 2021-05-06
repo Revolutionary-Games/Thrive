@@ -116,6 +116,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [JsonIgnore]
     public bool TransitionFinished { get; internal set; }
 
+    /// <summary>
+    ///   True when transitioning to the editor
+    /// </summary>
+    [JsonIgnore]
+    public bool MovingToEditor { get; internal set; }
+
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
@@ -473,6 +479,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             throw new Exception("failed to keep the current scene root");
         }
+
+        MovingToEditor = false;
     }
 
     /// <summary>
@@ -543,7 +551,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (ready)
         {
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
-            HUD.ShowReproductionDialog();
+
+            // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
+            if (!MovingToEditor)
+                HUD.ShowReproductionDialog();
         }
         else
         {
