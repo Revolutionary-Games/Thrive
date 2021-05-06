@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-07 00:12+0700\n"
-"PO-Revision-Date: 2021-05-06 05:45+0000\n"
+"PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -276,7 +276,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Hauska fakta, Thrive on tehty avoimen lähdekoodin Godot engienillä!"
+msgstr ""
+"Hauska fakta, Thrive on tehty avoimen lähdekoodin Godot-pelimoottorilla!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
@@ -883,11 +884,11 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
-msgstr "eteenpäin"
+msgstr "Eteenpäin"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
-msgstr "tabulaattori"
+msgstr "Tabulaattori"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
 msgid "KEY_ENTER"
@@ -895,7 +896,7 @@ msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr "sijoita"
+msgstr "Insert"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
@@ -907,7 +908,7 @@ msgstr "Tauko"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr "Puhdista"
+msgstr "Tyhjennä"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
@@ -919,7 +920,7 @@ msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
-msgstr "Liiku vasemmalle"
+msgstr "Vasemmalle"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
@@ -927,11 +928,11 @@ msgstr "Ylös"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "KEY_RIGHT"
-msgstr "Liiku oikealle"
+msgstr "Oikealle"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr "Hiiren rulla alas"
+msgstr "Alas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
@@ -2139,7 +2140,7 @@ msgstr "Lämpö."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:980
 msgid "PRESSURE_SHORT"
-msgstr "Paine."
+msgstr "Paine"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2662
@@ -2700,10 +2701,10 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:220
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Kaikkien Automaattisten- ja pikatallennuksien poistamista ei voida "
-"peruttaa, oletko varma, että haluatko pysyvästi poistaa seuraavat?\n"
-"-{0} Automaattiset tallennukset\n"
-"-{1} Pikatallennukset"
+"Kaikkien Automaattisten- ja pikatallennuksien poistamista ei voida peruttaa, "
+"oletko varma, että haluatko pysyvästi poistaa seuraavat?\n"
+"- {0} Automaattiset tallennukset\n"
+"- {1} Pikatallennukset"
 
 #: ../src/saving/SaveManagerGUI.tscn:66
 msgid "REFRESH"
