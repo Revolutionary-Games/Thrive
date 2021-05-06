@@ -476,6 +476,8 @@ public class MicrobeHUD : Node
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+
+        stage.MovingToEditor = true;
     }
 
     public void ShowExtinctionBox()
