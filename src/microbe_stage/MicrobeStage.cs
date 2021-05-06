@@ -552,8 +552,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
 
-            // This is to prevent the editor button being able to be clicked
-            // multiple times in freebuild mode
+            // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
             if (!MovingToEditor)
                 HUD.ShowReproductionDialog();
         }
