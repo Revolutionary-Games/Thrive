@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-12 17:42+0700\n"
 "PO-Revision-Date: 2021-05-05 01:23+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1504,7 +1504,9 @@ msgstr "Nuvens de compostos"
 
 #: ../src/general/OptionsMenu.tscn:646
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr "Intervalo Mínimo da Simulação de Nuvens:"
+msgstr ""
+"Simulação de Nuvens\n"
+"Intervalo Mínimo:"
 
 #: ../src/general/OptionsMenu.tscn:653 ../src/general/OptionsMenu.tscn:697
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1684,15 +1686,13 @@ msgstr ""
 #: ../src/gui_common/charts/line/LineChart.cs:929
 #, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
+msgstr "Não é permitido mostrar mais de {0} datasets!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:909
 #: ../src/gui_common/charts/line/LineChart.cs:937
 #, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
+msgstr "Não é permitido mostrar mais de {0} datasets!"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:78
 msgid "OPEN_THE_MENU"
@@ -2250,7 +2250,6 @@ msgid "INFINITE_COMPOUNDS"
 msgstr "Compostos"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
-#, fuzzy
 msgid "GODMODE"
 msgstr "Godmode"
 
@@ -2997,9 +2996,6 @@ msgstr ""
 "\n"
 "Se você cometer um erro, pode desfazer qualquer alteração que você fez no "
 "editor.\n"
-"\n"
-"Nota: Remover organelas que você colocou na mesma sessão do editor não custa "
-"nada.\n"
 "\n"
 "Clique no botão de desfazer para continuar."
 
