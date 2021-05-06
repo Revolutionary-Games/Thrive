@@ -627,11 +627,11 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_right = 648.0
-margin_bottom = 23.0
+margin_bottom = 22.0
 text = "COMPOUND_CLOUDS"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
-margin_top = 33.0
+margin_top = 32.0
 margin_right = 648.0
 margin_bottom = 74.0
 size_flags_horizontal = 3
@@ -684,13 +684,13 @@ margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_right = 274.0
-margin_bottom = 23.0
-hint_tooltip = "This value only applies to new games started after changing this option"
+margin_bottom = 22.0
+hint_tooltip = "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 mouse_filter = 0
 text = "CLOUD_RESOLUTION_DIVISOR"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 27.0
+margin_top = 26.0
 margin_right = 274.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 4 )
