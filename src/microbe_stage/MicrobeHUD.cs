@@ -414,20 +414,20 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        if (editorButton.Disabled)
-        {
-            GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
+        if (!editorButton.Disabled)
+            return;
 
-            editorButton.Disabled = false;
-            editorButton.GetNode<TextureRect>("Highlight").Show();
-            editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
-                new Color(1, 1, 1, 1);
-            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
-                new Color(1, 1, 1, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
-            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
-            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
-        }
+        GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
+
+        editorButton.Disabled = false;
+        editorButton.GetNode<TextureRect>("Highlight").Show();
+        editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
+            new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
+            new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
     }
 
     /// <summary>
@@ -465,6 +465,9 @@ public class MicrobeHUD : Node
     {
         GD.Print("Move to editor pressed");
 
+        // To prevent being clicked twice
+        editorButton.Disabled = true;
+
         // Make sure the game is unpaused
         if (GetTree().Paused)
         {
@@ -473,6 +476,8 @@ public class MicrobeHUD : Node
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+
+        stage.MovingToEditor = true;
     }
 
     public void ShowExtinctionBox()
