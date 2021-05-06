@@ -428,8 +428,6 @@ public class MicrobeHUD : Node
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
         editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
-
-        editorButton.MouseFilter = Control.MouseFilterEnum.Stop;
     }
 
     /// <summary>
@@ -468,7 +466,7 @@ public class MicrobeHUD : Node
         GD.Print("Move to editor pressed");
 
         // To prevent being clicked twice
-        editorButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+        editorButton.Disabled = true;
 
         // Make sure the game is unpaused
         if (GetTree().Paused)
