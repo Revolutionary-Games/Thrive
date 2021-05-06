@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-12 17:42+0700\n"
-"PO-Revision-Date: 2021-04-06 13:52+0000\n"
-"Last-Translator: Jan <jan_fue@icloud.com>\n"
+"PO-Revision-Date: 2021-04-27 08:41+0000\n"
+"Last-Translator: GitHubUser-GER-ENG <tegue@outlook.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -904,7 +904,7 @@ msgstr "Population:"
 
 #: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
-msgstr ""
+msgstr "ausgestorben in {0}"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
@@ -1115,14 +1115,12 @@ msgid "HYPERR"
 msgstr "Hyper Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
-#, fuzzy
 msgid "DIRECTIONL"
-msgstr "Beschreibung:"
+msgstr "Links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
-#, fuzzy
 msgid "DIRECTIONR"
-msgstr "Beschreibung:"
+msgstr "Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 #, fuzzy
@@ -1169,9 +1167,8 @@ msgid "MEDIASTOP"
 msgstr "Stopp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "zuvor:"
+msgstr "Medienvorschau"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIANEXT"
@@ -1722,11 +1719,8 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:900
 #: ../src/gui_common/charts/line/LineChart.cs:929
-#, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist "
-"du sicher, dass du {0} dauerhaft löschen willst?"
+msgstr "Darf nicht mehr als {0} Datensets zeigen!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:909
 #: ../src/gui_common/charts/line/LineChart.cs:937
@@ -2318,9 +2312,8 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
-#, fuzzy
 msgid "PLAYER_SPEED"
-msgstr "Spieler starb"
+msgstr "Spielergeschwindigkeit"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
