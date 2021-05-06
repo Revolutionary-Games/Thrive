@@ -414,20 +414,22 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        if (editorButton.Disabled)
-        {
-            GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
+        if (!editorButton.Disabled)
+            return;
 
-            editorButton.Disabled = false;
-            editorButton.GetNode<TextureRect>("Highlight").Show();
-            editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
-                new Color(1, 1, 1, 1);
-            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
-                new Color(1, 1, 1, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
-            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
-            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
-        }
+        GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
+
+        editorButton.Disabled = false;
+        editorButton.GetNode<TextureRect>("Highlight").Show();
+        editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
+            new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
+            new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
+
+        editorButton.MouseFilter = Control.MouseFilterEnum.Stop;
     }
 
     /// <summary>
@@ -464,6 +466,9 @@ public class MicrobeHUD : Node
     public void EditorButtonPressed()
     {
         GD.Print("Move to editor pressed");
+
+        // To prevent being clicked twice
+        editorButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
         // Make sure the game is unpaused
         if (GetTree().Paused)
