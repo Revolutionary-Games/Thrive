@@ -47,7 +47,7 @@ public static class Constants
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
     // Length of wanderer microbe spawn cycle in seconds.
-    public const float WANDERER_SPAWN_RATE = 60f;
+    public const float WANDERER_SPAWN_RATE = 60.0f;
 
     public const int SPAWN_DENSITY_MULTIPLIER = 400000;
 
