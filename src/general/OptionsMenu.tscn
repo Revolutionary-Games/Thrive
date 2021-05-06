@@ -121,7 +121,6 @@ focus_mode = 0
 toggle_mode = true
 pressed = true
 action_mode = 0
-enabled_focus_mode = 0
 group = SubResource( 1 )
 text = "GRAPHICS"
 
@@ -133,7 +132,6 @@ rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
-enabled_focus_mode = 0
 group = SubResource( 1 )
 text = "SOUND"
 
@@ -145,7 +143,6 @@ rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
-enabled_focus_mode = 0
 group = SubResource( 1 )
 text = "PERFORMANCE"
 
@@ -157,7 +154,6 @@ rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
-enabled_focus_mode = 0
 group = SubResource( 1 )
 text = "INPUTS"
 
@@ -169,7 +165,6 @@ rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
-enabled_focus_mode = 0
 group = SubResource( 1 )
 text = "MISC"
 
@@ -995,6 +990,7 @@ margin_bottom = 680.0
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
+focus_mode = 0
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1004,6 +1000,7 @@ __meta__ = {
 margin_left = 104.0
 margin_right = 173.0
 margin_bottom = 35.0
+focus_mode = 0
 disabled = true
 text = "RESET"
 __meta__ = {
@@ -1015,6 +1012,7 @@ margin_left = 177.0
 margin_right = 277.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
+focus_mode = 0
 disabled = true
 text = "SAVE"
 __meta__ = {
@@ -1032,6 +1030,7 @@ custom_styles/separator = SubResource( 6 )
 margin_left = 377.0
 margin_right = 680.0
 margin_bottom = 35.0
+focus_mode = 0
 text = "RESET_SETTINGS_TO_DEFAULTS"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1218,6 +1217,7 @@ margin_bottom = 402.0
 popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= [ "Performance" ]]

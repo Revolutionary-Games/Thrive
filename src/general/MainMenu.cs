@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -147,10 +146,7 @@ public class MainMenu : Node
     {
         Random rand = new Random();
 
-        // Exported lists will crash the game, so as a workaround ToList() is added
-        // https://github.com/godotengine/godot/issues/37934
-        // This is a Godot issue that may get fixed in 4.0
-        var chosenBackground = MenuBackgrounds.ToList().Random(rand);
+        var chosenBackground = MenuBackgrounds.Random(rand);
 
         SetBackground(chosenBackground);
     }

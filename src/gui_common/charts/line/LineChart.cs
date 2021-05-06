@@ -506,7 +506,7 @@ public class LineChart : VBoxContainer
         {
             Flat = false,
             Text = title,
-            EnabledFocusMode = FocusModeEnum.None,
+            FocusMode = FocusModeEnum.None,
         };
 
         var itemId = 0;
@@ -994,7 +994,7 @@ public class LineChart : VBoxContainer
             IsUsingFallbackIcon = isUsingFallbackIcon;
             Expand = true;
             RectMinSize = new Vector2(18, 18);
-            EnabledFocusMode = FocusModeEnum.None;
+            FocusMode = FocusModeEnum.None;
             ToggleMode = true;
             Pressed = true;
             TextureNormal = data.IconTexture;
