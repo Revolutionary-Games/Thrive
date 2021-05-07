@@ -35,7 +35,7 @@ public class CloudItem : SpawnItem
 
     public override List<ISpawned> Spawn()
     {
-        cloudSpawner.SpawnCloud(Position, compound, amount);
+        cloudSpawner.Spawn(Position, compound, amount);
         return null;
     }
 }

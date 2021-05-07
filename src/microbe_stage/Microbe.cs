@@ -809,7 +809,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            ChunkSpawner.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
+            ChunkSpawner.Spawn(chunkType, Translation + positionAdded, GetParent(),
                 chunkScene, cloudSystem, random);
         }
 
@@ -884,7 +884,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var separation = new Vector3(Radius, 0, 0);
 
         // Create the one daughter cell.
-        var copyEntity = MicrobeSpawner.SpawnMicrobe(Species, Translation + separation,
+        var copyEntity = MicrobeSpawner.Spawn(Species, Translation + separation,
             GetParent(), MicrobeSpawner.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal

@@ -18,7 +18,7 @@ public class CompoundCloudSpawner
         return clouds;
     }
 
-    public void SpawnCloud(Vector3 location, Compound compound, float amount)
+    public void Spawn(Vector3 location, Compound compound, float amount)
     {
         int resolution = Settings.Instance.CloudResolution;
 

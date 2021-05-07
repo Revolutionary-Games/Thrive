@@ -19,7 +19,7 @@ public class MicrobeSpawner
         microbeScene = LoadMicrobeScene();
     }
 
-    public static Microbe SpawnMicrobe(Species species, Vector3 location,
+    public static Microbe Spawn(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
         CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
@@ -58,7 +58,7 @@ public class MicrobeSpawner
             {
                 // Dont spawn them on top of each other because it
                 // causes them to bounce around and lag
-                yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                yield return Spawn(species, location + curSpawn, worldRoot, microbeScene, true,
                     cloudSystem, currentGame);
 
                 curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
@@ -76,7 +76,7 @@ public class MicrobeSpawner
             {
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
-                yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                yield return Spawn(species, location + curSpawn, worldRoot, microbeScene, true,
                     cloudSystem, currentGame);
 
                 curSpawn = curSpawn + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
@@ -166,7 +166,7 @@ public class MicrobeSpawner
         List<ISpawned> spawnedMicrobes = new List<ISpawned>();
 
         // The true here is that this is AI controlled
-        spawnedMicrobes.Add(SpawnMicrobe(species, location, worldNode,
+        spawnedMicrobes.Add(Spawn(species, location, worldNode,
             microbeScene, true, cloudSystem, currentGame));
 
         if (species.IsBacteria && !isWanderer)
@@ -201,7 +201,7 @@ public class MicrobeSpawner
                 colony.CurSpawn.x += colony.Random.Next(-2, 3);
             }
 
-            yield return SpawnMicrobe(colony.Species, location + colony.CurSpawn, colony.WorldRoot,
+            yield return Spawn(colony.Species, location + colony.CurSpawn, colony.WorldRoot,
                 colony.MicrobeScene, true, colony.CloudSystem, colony.CurrentGame);
         }
     }

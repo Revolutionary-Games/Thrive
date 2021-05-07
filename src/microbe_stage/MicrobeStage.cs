@@ -305,7 +305,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Player != null)
             return;
 
-        Player = MicrobeSpawner.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
+        Player = MicrobeSpawner.Spawn(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
             rootOfDynamicallySpawned, MicrobeSpawner.LoadMicrobeScene(), false, Clouds,
             CurrentGame);
         Player.AddToGroup("player");
