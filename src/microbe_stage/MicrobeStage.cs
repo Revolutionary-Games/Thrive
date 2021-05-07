@@ -320,12 +320,11 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             // Random location on respawn
             var random = new Random();
-            Vector3 respawnPos = new Vector3(
+            Player.Translation = new Vector3(
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
             spawner.RespawningPlayer();
-            Player.Translation = respawnPos;
         }
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
