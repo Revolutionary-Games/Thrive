@@ -102,6 +102,28 @@ public class SpawnSystem
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
+    public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
+        float lifetime, Vector3 location, Vector3 direction,
+        Node worldRoot, PackedScene agentScene, Node emitter)
+    {
+        var normalizedDirection = direction.Normalized();
+
+        var agent = (AgentProjectile)agentScene.Instance();
+        agent.Properties = properties;
+        agent.Amount = amount;
+        agent.TimeToLiveRemaining = lifetime;
+        agent.Emitter = emitter;
+
+        worldRoot.AddChild(agent);
+        agent.Translation = location + (direction * 1.5f);
+
+        agent.ApplyCentralImpulse(normalizedDirection *
+            Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
+
+        agent.AddToGroup(Constants.TIMED_GROUP);
+        return agent;
+    }
+
     public void Init(CompoundCloudSystem cloudSystem)
     {
         cloudSpawner = new CompoundCloudSpawner(cloudSystem);
