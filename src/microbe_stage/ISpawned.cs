@@ -9,7 +9,7 @@ public interface ISpawned
     ///   If the distance to the player of this object is
     ///   greater than this, it is despawned.
     /// </summary>
-    int DespawnRadius { get; set; }
+    float DespawnRadius { get; set; }
 
     /// <summary>
     ///   The Node that was spawned for this entity, used to tag it

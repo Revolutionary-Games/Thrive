@@ -59,9 +59,9 @@ public static class Constants
 
     public const int SPAWN_GRID_WIDTH = 2;
 
-    public const int DESPAWN_ITEM_RADIUS = 170;
-    public const int DESPAWN_ITEM_RADIUS_SQR = DESPAWN_ITEM_RADIUS * DESPAWN_ITEM_RADIUS;
-    public const int SPAWN_WANDERER_RADIUS = (int)(0.95 * DESPAWN_ITEM_RADIUS);
+    public const float DESPAWN_ITEM_RADIUS = 170;
+    public const float DESPAWN_ITEM_RADIUS_SQR = DESPAWN_ITEM_RADIUS * DESPAWN_ITEM_RADIUS;
+    public const float SPAWN_WANDERER_RADIUS = (int)(0.95 * DESPAWN_ITEM_RADIUS);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
