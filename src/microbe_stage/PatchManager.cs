@@ -81,6 +81,7 @@ public class PatchManager
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
 
+        // Apply spawn system settings
         HandleCloudSpawns(currentPatch.Biome);
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
