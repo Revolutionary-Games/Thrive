@@ -515,7 +515,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var position = Translation + (direction * ejectionDistance);
 
-        SpawnSystem.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+        MicrobeSpawner.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetParent(),
             AgentProjectile.LoadAgentScene(), this);
 
@@ -704,7 +704,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                SpawnSystem.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+                MicrobeSpawner.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetParent(),
                     agentScene, this);
 
