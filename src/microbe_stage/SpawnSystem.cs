@@ -86,6 +86,8 @@ public class SpawnSystem
     [JsonIgnore]
     private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
 
+    private IEnumerable<ISpawned> queuedSpawn;
+
     /// <summary>
     /// Used to store SpawnEvents and which grid coordinate the SpawnEvent is in
     /// Generally, this forms a square of grid coordinates around the player.
@@ -411,7 +413,11 @@ public class SpawnSystem
 
     private void SpawnItemsInSpawnList()
     {
-        if (itemsToSpawn.Count > 0)
+        if (queuedSpawn != null)
+        {
+            SpawnQueuedSpawn();
+        }
+        else if (itemsToSpawn.Count > 0)
         {
             SpawnItem spawn = itemsToSpawn.Dequeue();
 
@@ -420,14 +426,21 @@ public class SpawnSystem
                 return;
             }
 
-            IEnumerable<ISpawned> spawnedList = spawn.Spawn();
-            if (spawnedList != null)
+            queuedSpawn = spawn.Spawn();
+            if (queuedSpawn != null)
             {
-                foreach (ISpawned spawned in spawnedList)
-                {
-                    ProcessSpawnedEntity(spawned);
-                }
+                SpawnQueuedSpawn();
             }
+        }
+    }
+
+    private void SpawnQueuedSpawn()
+    {
+        IEnumerator<ISpawned> queuedEnumerator = queuedSpawn.GetEnumerator();
+        for (int i = 0; i < Constants.MAX_SPAWNS_PER_FRAME; i++)
+        {
+            if (queuedEnumerator.MoveNext())
+                ProcessSpawnedEntity(queuedEnumerator.Current);
         }
     }
 
