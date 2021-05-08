@@ -93,6 +93,10 @@ public class PatchManager
         UpdateLight(currentPatch.BiomeTemplate);
     }
 
+    /// <summary>
+    /// Calculates number of SpawnItems per SpawnEvent, and the spawn grid size.
+    /// Then give this information to the Spawn System.
+    /// </summary>
     private void SetSpawnGridSize(BiomeConditions biome)
     {
         // SpawnChunkiness of 0 means one item per spawn event,
@@ -108,6 +112,9 @@ public class PatchManager
         spawnSystem.SetSpawnData(spawnEventCount, spawnGridSize, biome.SpawnRateMultiplier);
     }
 
+    /// <summary>
+    /// Adds the chunk counts of each chunk from the biome into chunkCounts
+    /// </summary>
     private void HandleChunkSpawns(BiomeConditions biome)
     {
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
@@ -128,6 +135,10 @@ public class PatchManager
         }
     }
 
+    /// <summary>
+    /// Adds the compound cloud counts and amount of each cloud
+    /// from the biome into cloudCounts and CloudAmounts.
+    /// </summary>
     private void HandleCloudSpawns(BiomeConditions biome)
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
@@ -151,6 +162,9 @@ public class PatchManager
         }
     }
 
+    /// <summary>
+    /// Adds the species counts of each microbe from the biome into speciesCounts
+    /// </summary>
     private void HandleCellSpawns(Patch patch)
     {
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
@@ -197,6 +211,9 @@ public class PatchManager
         worldLight.LightSpecular = biome.Sunlight.Specular;
     }
 
+    /// <summary>
+    /// Set up full SpawnItems and MicrobeItems bags in the spawnSystem based on the counts dictionaries.
+    /// </summary>
     private void SetFullSpawnBags()
     {
         spawnBagSize = 0;

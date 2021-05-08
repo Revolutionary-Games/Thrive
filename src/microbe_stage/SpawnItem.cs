@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-// SpawnItems contains the data for one spawn.
-// These items are added to and drawn from the spawnItemsBag
+/// <summary>
+/// SpawnItems contains the data for one spawn.
+/// These items are added to and drawn from the spawnItemsBag
+/// </summary>
 public abstract class SpawnItem
 {
     public Vector3 Position { get; set; }
@@ -15,7 +17,9 @@ public abstract class SpawnItem
     public abstract List<ISpawned> Spawn();
 }
 
-// Cloud to be spawned
+/// <summary>
+/// Cloud to be spawned in a Spawn Event
+/// </summary>
 public class CloudItem : SpawnItem
 {
     private Compound compound;
@@ -37,7 +41,9 @@ public class CloudItem : SpawnItem
     }
 }
 
-// Chunk to be spawned
+/// <summary>
+/// Chunk to be Spawned in a Spawn Event
+/// </summary>
 public class ChunkItem : SpawnItem
 {
     private ChunkConfiguration chunkType;
@@ -60,7 +66,9 @@ public class ChunkItem : SpawnItem
     }
 }
 
-// Microbe to be spawned
+/// <summary>
+/// Microbe to be spawned in a Spawn Event or as a wandering microbe.
+/// </summary>
 public class MicrobeItem : SpawnItem
 {
     public bool IsWanderer;

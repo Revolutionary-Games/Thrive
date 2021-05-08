@@ -55,27 +55,41 @@ public class SpawnSystem
     /// </summary>
     private Node worldRoot;
 
-    // List of SpawnItems, used to fill the spawnItemBag when it is empty.
+    /// <summary>
+    /// List of SpawnItems, used to fill the spawnItemBag when it is empty.
+    /// </summary>
     [JsonIgnore]
     private List<SpawnItem> spawnItems = new List<SpawnItem>();
 
-    // Used for a Tetris style random bag. Fill and shuffle the bag,
-    // then simply pop one out until empty. Rinse and repeat.
+    /// <summary>
+    /// Used for a Tetris style random bag. Fill and shuffle the bag,
+    /// then simply pop one out until empty. Rinse and repeat.
+    /// </summary>
     [JsonIgnore]
     private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
 
-    // List of MicrobeItems, used to fill the wanderMicrobeBag.
+    /// <summary>
+    /// List of MicrobeItems, used to fill the wanderMicrobeBag.
+    /// </summary>
     [JsonIgnore]
     private List<SpawnItem> microbeItems = new List<SpawnItem>();
 
-    // Used to spawn wandering random microbes when sitting still.
+    /// <summary>
+    /// Used to spawn wandering random microbes when sitting still.
+    /// </summary>
     [JsonIgnore]
     private List<SpawnItem> wanderMicrobeBag = new List<SpawnItem>();
 
-    // Queue of spawn items to spawn. a few from this list get spawned every frame.
+    /// <summary>
+    /// Queue of spawn items to spawn. a few from this list get spawned every frame.
+    /// </summary>
     [JsonIgnore]
     private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
 
+    /// <summary>
+    /// Used to store SpawnEvents and which grid coordinate the SpawnEvent is in
+    /// Generally, this forms a square of grid coordinates around the player.
+    /// </summary>
     [JsonProperty]
     private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
 
@@ -87,28 +101,44 @@ public class SpawnSystem
         worldRoot = root;
     }
 
+    /// <summary>
+    /// Sets Despawn radius and adds entity to SPAWNED_GROUP
+    /// </summary>
     public static void AddEntityToTrack(ISpawned entity)
     {
         entity.DespawnRadius = Constants.DESPAWN_ITEM_RADIUS;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
+    /// <summary>
+    /// Adds item to spawnItems, which is used for spawning Spawn Events
+    /// </summary>
     public void AddSpawnItem(SpawnItem spawnItem)
     {
         spawnItems.Add(spawnItem);
     }
 
+    /// <summary>
+    /// Adds Microbe to microbeItems, which is used for spawning wandering microbes.
+    /// </summary>
+    /// <param name="microbeItem">Microbe Item</param>
     public void AddMicrobeItem(MicrobeItem microbeItem)
     {
         microbeItems.Add(microbeItem);
     }
 
+    /// <summary>
+    /// Call once microbeItems is full. stores microbeBagSize and sets the spawnWanderTimer.
+    /// </summary>
     public void SetMicrobeBagSize()
     {
         microbeBagSize = microbeItems.Count;
         spawnWandererTimer = Constants.WANDERER_SPAWN_RATE / microbeBagSize;
     }
 
+    /// <summary>
+    /// Set spawn data that changes per patch and calculates other variables from that data.
+    /// </summary>
     public void SetSpawnData(int spawnEventCount, int spawnGridSize, float spawnPatchMultiplier)
     {
         this.spawnEventCount = spawnEventCount;
@@ -120,7 +150,11 @@ public class SpawnSystem
             * (spawnEventRadius + Constants.DESPAWN_ITEM_RADIUS + 20);
     }
 
-    // Adds this spot to SpawnedGrid, so that respawning is less likely to give spawn event.
+    /// <summary>
+    /// Clears spawnGrid and itemsToSpawn.
+    /// Also sets oldPlayerGrid to null, meaning the player has jumped to a new possition.
+    /// This makes it so spawns do not happen on screen after the jump.
+    /// </summary>
     public void RespawningPlayer()
     {
         oldPlayerGrid = null;
@@ -166,7 +200,11 @@ public class SpawnSystem
         SpawnItemsInSpawnList();
     }
 
-    // Takes SpawnItems list and shuffles them in bag.
+    /// <summary>
+    /// Takes SpawnItems list and shuffles them in bag.
+    /// </summary>
+    /// <param name="bag">Bag to be shuffled</param>
+    /// <param name="fullBag">Full bag to get SpawnItems from</param>
     private void FillBag(List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
         bag.Clear();
@@ -179,7 +217,9 @@ public class SpawnSystem
         ShuffleBag(bag);
     }
 
-    // Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
+    /// <summary>
+    /// Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
+    /// </summary>
     private void ShuffleBag(List<SpawnItem> bag)
     {
         for (int i = 0; i < bag.Count - 2; i++)
@@ -192,6 +232,13 @@ public class SpawnSystem
         }
     }
 
+    /// <summary>
+    /// "Pops" 0th item out of shuffled bag.
+    /// If bag is empty, shuffle bag.
+    /// </summary>
+    /// <param name="bag">Bag to pop from</param>
+    /// <param name="fullBag">Full bag needed to fill other bag if it runs out</param>
+    /// <returns>Next Spawn Item</returns>
     private SpawnItem BagPop(List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
         if (bag.Count == 0)
@@ -214,6 +261,12 @@ public class SpawnSystem
         return pop;
     }
 
+    /// <summary>
+    /// If entered a new grid, create new SpawnEvents for the new close by grids
+    /// and despawn far away entities .
+    /// Else, remove SpawnEvents that are too far away,
+    /// and spawn SpawnEvents that are close enough to player.
+    /// </summary>
     private void SpawnEventGrid(Vector3 playerPosition)
     {
         int playerGridX = (int)playerPosition.x / spawnGridSize;
@@ -280,6 +333,10 @@ public class SpawnSystem
         }
     }
 
+    /// <summary>
+    /// If it is time to spawn a wandering microbe, spawn one in a random spot around the player.
+    /// Also Despawn far away entities.
+    /// </summary>
     private void SpawnWanderingMicrobes(Vector3 playerPosition)
     {
         if (elapsed > spawnWandererTimer)
@@ -303,6 +360,8 @@ public class SpawnSystem
 
         for (int i = 0; i < spawnCount; i++)
         {
+            // Weighted random will avoid the dead center of the spawn event to discourage
+            // SpawnItems spawning on top of eachother.
             float weightedRandom = Mathf.Clamp(random.NextFloat() * 0.9f + 0.1f, 0, 1);
             float spawnRadius = weightedRandom * spawnEventRadius;
             float spawnAngle = random.NextFloat() * 2 * Mathf.Pi;
@@ -314,6 +373,13 @@ public class SpawnSystem
         }
     }
 
+    /// <summary>
+    /// Chooses a random place inside of a spawnGrid such that the resulting
+    /// Spawn Event's spawn radius will not extend into another grid cell.
+    /// This means 2 Spawn Events can not overlap.
+    /// </summary>
+    /// <param name="spawnGridPos">Spawn Grid Position</param>
+    /// <returns>Spawn Event Position</returns>
     private Vector3 GetRandomEventPosition(Vector3 spawnGridPos)
     {
         // Choose random place to spawn
@@ -369,7 +435,7 @@ public class SpawnSystem
     }
 
     /// <summary>
-    ///   Despawns entities that are far away from the player
+    /// Despawns entities that are far away from the player
     /// </summary>
     private void DespawnEntities(Vector3 playerPosition)
     {
@@ -417,15 +483,13 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity)
     {
-        // I don't understand why the same
-        // value is used for spawning and
-        // despawning, but apparently it works
-        // just fine
         entity.DespawnRadius = Constants.DESPAWN_ITEM_RADIUS;
-
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
+    /// <summary>
+    /// Contains all the data needed to spawn a cluster of SpawnItems.
+    /// </summary>
     private class SpawnEvent
     {
         public bool IsSpawned;
@@ -441,8 +505,11 @@ public class SpawnSystem
         public IVector3 GridPos { get; private set; }
     }
 
-    // Other classes should not use IVector3
-    // The spawn grid needs an integer Vector3 to avoid floating point errors.
+    /// <summary>
+    /// An Integer equivelant of Vector3.
+    /// This is used for storing spawn grid coordinates and
+    /// to easily check if 2 spawn grid coordinates are the same.
+    /// </summary>
     [TypeConverter(typeof(IVector3TypeConverter))]
     private class IVector3
     {
@@ -492,6 +559,9 @@ public class SpawnSystem
                 Z == other.Z;
         }
 
+        /// <summary>
+        /// Used by IVector3TypeConverter to deseralize IVector3
+        /// </summary>
         public override string ToString()
         {
             return X + ", " + Y + ", " + Z;
@@ -513,6 +583,9 @@ public class SpawnSystem
         }
     }
 
+    /// <summary>
+    /// TypeConverter for IVector3
+    /// </summary>
     private class IVector3TypeConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
