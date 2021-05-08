@@ -14,7 +14,7 @@ public abstract class SpawnItem
         Position = position;
     }
 
-    public abstract List<ISpawned> Spawn();
+    public abstract IEnumerable<ISpawned> Spawn();
 }
 
 /// <summary>
@@ -34,7 +34,7 @@ public class CloudItem : SpawnItem
 
     public CompoundCloudSpawner CloudSpawner { get; set; }
 
-    public override List<ISpawned> Spawn()
+    public override IEnumerable<ISpawned> Spawn()
     {
         CloudSpawner.Spawn(Position, compound, amount);
         return null;
@@ -58,11 +58,9 @@ public class ChunkItem : SpawnItem
 
     public Node WorldNode { get; set; }
 
-    public override List<ISpawned> Spawn()
+    public override IEnumerable<ISpawned> Spawn()
     {
-        List<ISpawned> chunks = new List<ISpawned>();
-        chunks.Add(ChunkSpawner.Spawn(Position, chunkType, WorldNode));
-        return chunks;
+       yield return ChunkSpawner.Spawn(Position, chunkType, WorldNode);
     }
 }
 
@@ -83,7 +81,7 @@ public class MicrobeItem : SpawnItem
     public MicrobeSpawner MicrobeSpawner { get; set; }
     public Node WorldNode { get; set; }
 
-    public override List<ISpawned> Spawn()
+    public override IEnumerable<ISpawned> Spawn()
     {
         return MicrobeSpawner.Spawn(WorldNode, Position, species, IsWanderer);
     }

@@ -411,24 +411,21 @@ public class SpawnSystem
 
     private void SpawnItemsInSpawnList()
     {
-        for (int i = 0; i < Constants.MAX_SPAWNS_PER_FRAME; i++)
+        if (itemsToSpawn.Count > 0)
         {
-            if (itemsToSpawn.Count > 0)
+            SpawnItem spawn = itemsToSpawn.Dequeue();
+
+            if (spawn == null)
             {
-                SpawnItem spawn = itemsToSpawn.Dequeue();
+                return;
+            }
 
-                if (spawn == null)
+            IEnumerable<ISpawned> spawnedList = spawn.Spawn();
+            if (spawnedList != null)
+            {
+                foreach (ISpawned spawned in spawnedList)
                 {
-                    break;
-                }
-
-                List<ISpawned> spawnedList = spawn.Spawn();
-                if (spawnedList != null)
-                {
-                    foreach (ISpawned spawned in spawnedList)
-                    {
-                        ProcessSpawnedEntity(spawned);
-                    }
+                    ProcessSpawnedEntity(spawned);
                 }
             }
         }

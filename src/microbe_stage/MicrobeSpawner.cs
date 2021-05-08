@@ -179,24 +179,21 @@ public class MicrobeSpawner
         return agent;
     }
 
-    public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species, bool isWanderer)
+    public IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species, bool isWanderer)
     {
-        List<ISpawned> spawnedMicrobes = new List<ISpawned>();
-
         // The true here is that this is AI controlled
-        spawnedMicrobes.Add(Spawn(species, location, worldNode,
-            microbeScene, true, cloudSystem, CurrentGame));
+        ISpawned first = Spawn(species, location, worldNode,
+            microbeScene, true, cloudSystem, CurrentGame);
+        yield return first;
 
         if (species.IsBacteria && !isWanderer)
         {
             foreach (Microbe microbe in SpawnBacteriaColony(species, location, worldNode, microbeScene,
                 cloudSystem, CurrentGame, random))
             {
-                spawnedMicrobes.Add(microbe);
+                yield return microbe;
             }
         }
-
-        return spawnedMicrobes;
     }
 
     private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location)
