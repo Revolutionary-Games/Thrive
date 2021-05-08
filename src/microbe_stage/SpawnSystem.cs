@@ -86,6 +86,10 @@ public class SpawnSystem
     [JsonIgnore]
     private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
 
+    /// <summary>
+    /// IEnumerator of ISpawned entities to be spawned.
+    /// </summary>
+    [JsonIgnore]
     private IEnumerator<ISpawned> queuedSpawn;
 
     /// <summary>
