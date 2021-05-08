@@ -158,8 +158,8 @@ public class MicrobeSpawner
     }
 
     public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
-       float lifetime, Vector3 location, Vector3 direction,
-       Node worldRoot, PackedScene agentScene, Node emitter)
+        float lifetime, Vector3 location, Vector3 direction,
+        Node worldRoot, PackedScene agentScene, Node emitter)
     {
         var normalizedDirection = direction.Normalized();
 

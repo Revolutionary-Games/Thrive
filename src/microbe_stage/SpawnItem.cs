@@ -60,7 +60,7 @@ public class ChunkItem : SpawnItem
 
     public override IEnumerable<ISpawned> Spawn()
     {
-       yield return ChunkSpawner.Spawn(Position, chunkType, WorldNode);
+        yield return ChunkSpawner.Spawn(Position, chunkType, WorldNode);
     }
 }
 
