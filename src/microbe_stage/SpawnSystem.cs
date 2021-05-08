@@ -48,15 +48,6 @@ public class SpawnSystem
     private Random random = new Random();
 
     [JsonIgnore]
-    private CompoundCloudSpawner cloudSpawner;
-
-    [JsonIgnore]
-    private ChunkSpawner chunkSpawner;
-
-    [JsonIgnore]
-    private MicrobeSpawner microbeSpawner;
-
-    [JsonIgnore]
     private int microbeBagSize;
 
     /// <summary>
@@ -122,13 +113,6 @@ public class SpawnSystem
 
         agent.AddToGroup(Constants.TIMED_GROUP);
         return agent;
-    }
-
-    public void Init(CompoundCloudSystem cloudSystem, GameProperties currentGame)
-    {
-        cloudSpawner = new CompoundCloudSpawner(cloudSystem);
-        chunkSpawner = new ChunkSpawner(cloudSystem, random);
-        microbeSpawner = new MicrobeSpawner(cloudSystem, random, currentGame);
     }
 
     public void AddSpawnItem(SpawnItem spawnItem)
@@ -240,17 +224,11 @@ public class SpawnSystem
 
         switch (pop)
         {
-            case CloudItem cloudPop:
-                cloudPop.CloudSpawner = cloudSpawner;
-                break;
-
             case ChunkItem chunkPop:
-                chunkPop.ChunkSpawner = chunkSpawner;
                 chunkPop.WorldNode = worldRoot;
                 break;
 
             case MicrobeItem microbePop:
-                microbePop.MicrobeSpawner = microbeSpawner;
                 microbePop.WorldNode = worldRoot;
                 break;
         }

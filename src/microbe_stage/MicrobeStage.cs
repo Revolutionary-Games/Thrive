@@ -246,7 +246,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (CurrentGame == null)
             throw new InvalidOperationException("current game is not set");
 
-        spawner.Init(Clouds, CurrentGame);
         tutorialGUI.EventReceiver = TutorialState;
         pauseMenu.GameProperties = CurrentGame;
 
@@ -558,7 +557,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
 
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight);
+            worldLight, CurrentGame);
     }
 
     /// <summary>

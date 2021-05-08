@@ -21,10 +21,11 @@ public class CloudItem : SpawnItem
     private Compound compound;
     private float amount;
 
-    public CloudItem(Compound compound, float amount)
+    public CloudItem(Compound compound, float amount, CompoundCloudSpawner cloudSpawner)
     {
         this.compound = compound;
         this.amount = amount;
+        CloudSpawner = cloudSpawner;
     }
 
     public CompoundCloudSpawner CloudSpawner { get; set; }
@@ -41,9 +42,10 @@ public class ChunkItem : SpawnItem
 {
     private ChunkConfiguration chunkType;
 
-    public ChunkItem(ChunkConfiguration chunkType)
+    public ChunkItem(ChunkConfiguration chunkType, ChunkSpawner chunkSpawner)
     {
         this.chunkType = chunkType;
+        ChunkSpawner = chunkSpawner;
     }
 
     public ChunkSpawner ChunkSpawner { get; set; }
@@ -64,9 +66,10 @@ public class MicrobeItem : SpawnItem
     public bool IsWanderer;
     private MicrobeSpecies species;
 
-    public MicrobeItem(MicrobeSpecies species)
+    public MicrobeItem(MicrobeSpecies species, MicrobeSpawner microbeSpawner)
     {
         this.species = species;
+        MicrobeSpawner = microbeSpawner;
     }
 
     public MicrobeSpawner MicrobeSpawner { get; set; }

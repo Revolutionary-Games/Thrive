@@ -27,14 +27,23 @@ public class PatchManager
     private Dictionary<Compound, float> compoundAmounts = new Dictionary<Compound, float>();
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife,
+        DirectionalLight worldLight, GameProperties currentGame)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
+
+        CloudSpawner = new CompoundCloudSpawner(compoundCloudSystem);
+        ChunkSpawner = new ChunkSpawner(compoundCloudSystem);
+        MicrobeSpawner = new MicrobeSpawner(compoundCloudSystem, currentGame);
     }
+
+    public CompoundCloudSpawner CloudSpawner { get; private set; }
+    public ChunkSpawner ChunkSpawner { get; private set; }
+    public MicrobeSpawner MicrobeSpawner { get; private set; }
 
     /// <summary>
     ///   Applies all patch related settings that are needed to be
@@ -196,7 +205,7 @@ public class PatchManager
             spawnBagSize += compoundCloudCounts[compound];
             for (int i = 0; i < compoundCloudCounts[compound]; i++)
             {
-                spawnSystem.AddSpawnItem(new CloudItem(compound, compoundAmounts[compound]));
+                spawnSystem.AddSpawnItem(new CloudItem(compound, compoundAmounts[compound], CloudSpawner));
             }
         }
 
@@ -211,7 +220,7 @@ public class PatchManager
 
             for (int i = 0; i < chunkCounts[chunk]; i++)
             {
-                spawnSystem.AddSpawnItem(new ChunkItem(chunk));
+                spawnSystem.AddSpawnItem(new ChunkItem(chunk, ChunkSpawner));
             }
         }
 
@@ -225,11 +234,11 @@ public class PatchManager
 
             for (int i = 0; i < speciesCounts[key]; i++)
             {
-                MicrobeItem microbeItem = new MicrobeItem(species);
+                MicrobeItem microbeItem = new MicrobeItem(species, MicrobeSpawner);
                 microbeItem.IsWanderer = false;
                 spawnSystem.AddSpawnItem(microbeItem);
 
-                MicrobeItem wanderMicrobeItem = new MicrobeItem(species);
+                MicrobeItem wanderMicrobeItem = new MicrobeItem(species, MicrobeSpawner);
                 wanderMicrobeItem.IsWanderer = true;
                 spawnSystem.AddMicrobeItem(wanderMicrobeItem);
             }
