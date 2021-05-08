@@ -13,12 +13,7 @@ public class CompoundCloudSpawner
         this.clouds = clouds ?? throw new ArgumentException("clouds is null");
     }
 
-    public CompoundCloudSystem GetCloudSystem()
-    {
-        return clouds;
-    }
-
-    public void SpawnCloud(Vector3 location, Compound compound, float amount)
+    public void Spawn(Vector3 location, Compound compound, float amount)
     {
         int resolution = Settings.Instance.CloudResolution;
 

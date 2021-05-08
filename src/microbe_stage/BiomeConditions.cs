@@ -8,8 +8,8 @@ using System.Collections.Generic;
 public class BiomeConditions : ICloneable, ISaveLoadable
 {
     public float AverageTemperature;
-    public float SpawnChunkiness;
-    public float SpawnRateMultiplier;
+    public float SpawnChunkiness = 0.25f; // 1/4 of a spawn bag in each encounter by default
+    public float SpawnRateMultiplier = 1.0f;
     public Dictionary<Compound, EnvironmentalCompoundProperties> Compounds;
     public Dictionary<string, ChunkConfiguration> Chunks;
 

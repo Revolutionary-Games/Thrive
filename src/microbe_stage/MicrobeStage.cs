@@ -241,8 +241,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Settings.Instance == null)
             GD.PrintErr("Settings load problem");
 
-        spawner.Init(Clouds);
-
         if (!IsLoadedFromSave)
         {
             if (CurrentGame == null)
@@ -254,7 +252,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (CurrentGame == null)
             throw new InvalidOperationException("current game is not set");
 
-        spawner.SetCurrentGame(CurrentGame);
         tutorialGUI.EventReceiver = TutorialState;
         pauseMenu.GameProperties = CurrentGame;
 
@@ -311,7 +308,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Player != null)
             return;
 
-        Player = MicrobeSpawner.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
+        Player = MicrobeSpawner.Spawn(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
             rootOfDynamicallySpawned, MicrobeSpawner.LoadMicrobeScene(), false, Clouds,
             CurrentGame);
         Player.AddToGroup("player");
@@ -571,7 +568,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
 
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight);
+            worldLight, CurrentGame);
     }
 
     /// <summary>

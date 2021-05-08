@@ -1,93 +1,88 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-// SpawnItems contains the data for one spawn.
-// These items are added to and drawn from the spawnItemsBag
+/// <summary>
+/// SpawnItems contains the data for one spawn.
+/// These items are added to and drawn from the spawnItemsBag
+/// </summary>
 public abstract class SpawnItem
 {
-    public Vector3 Position;
+    public Vector3 Position { get; set; }
 
     public void SetSpawnPosition(Vector3 position)
     {
         Position = position;
     }
 
-    public abstract List<ISpawned> Spawn();
+    public abstract IEnumerable<ISpawned> Spawn();
 }
 
-// Cloud to be spawned
+/// <summary>
+/// Cloud to be spawned in a Spawn Event
+/// </summary>
 public class CloudItem : SpawnItem
 {
     private Compound compound;
     private float amount;
-    private CompoundCloudSpawner cloudSpawner;
 
-    public CloudItem(Compound compound, float amount)
+    public CloudItem(Compound compound, float amount, CompoundCloudSpawner cloudSpawner)
     {
         this.compound = compound;
         this.amount = amount;
+        CloudSpawner = cloudSpawner;
     }
 
-    public void SetCloudSpawner(CompoundCloudSpawner cloudSpawner)
-    {
-        this.cloudSpawner = cloudSpawner;
-    }
+    public CompoundCloudSpawner CloudSpawner { get; set; }
 
-    public override List<ISpawned> Spawn()
+    public override IEnumerable<ISpawned> Spawn()
     {
-        cloudSpawner.SpawnCloud(Position, compound, amount);
+        CloudSpawner.Spawn(Position, compound, amount);
         return null;
     }
 }
 
-// Chunk to be spawned
+/// <summary>
+/// Chunk to be Spawned in a Spawn Event
+/// </summary>
 public class ChunkItem : SpawnItem
 {
     private ChunkConfiguration chunkType;
 
-    private ChunkSpawner chunkSpawner;
-    private Node worldNode;
-
-    public ChunkItem(ChunkConfiguration chunkType)
+    public ChunkItem(ChunkConfiguration chunkType, ChunkSpawner chunkSpawner)
     {
         this.chunkType = chunkType;
+        ChunkSpawner = chunkSpawner;
     }
 
-    public void SetChunkSpawner(ChunkSpawner chunkSpawner, Node worldNode)
-    {
-        this.chunkSpawner = chunkSpawner;
-        this.worldNode = worldNode;
-    }
+    public ChunkSpawner ChunkSpawner { get; set; }
 
-    public override List<ISpawned> Spawn()
+    public Node WorldNode { get; set; }
+
+    public override IEnumerable<ISpawned> Spawn()
     {
-        List<ISpawned> chunks = new List<ISpawned>();
-        chunks.Add(chunkSpawner.Spawn(Position, chunkType, worldNode));
-        return chunks;
+       yield return ChunkSpawner.Spawn(Position, chunkType, WorldNode);
     }
 }
 
-// Microbe to be spawned
+/// <summary>
+/// Microbe to be spawned in a Spawn Event or as a wandering microbe.
+/// </summary>
 public class MicrobeItem : SpawnItem
 {
     public bool IsWanderer;
     private MicrobeSpecies species;
-    private MicrobeSpawner microbeSpawner;
-    private Node worldNode;
 
-    public MicrobeItem(MicrobeSpecies species)
+    public MicrobeItem(MicrobeSpecies species, MicrobeSpawner microbeSpawner)
     {
         this.species = species;
+        MicrobeSpawner = microbeSpawner;
     }
 
-    public void SetMicrobeSpawner(MicrobeSpawner microbeSpawner, Node worldNode)
-    {
-        this.microbeSpawner = microbeSpawner;
-        this.worldNode = worldNode;
-    }
+    public MicrobeSpawner MicrobeSpawner { get; set; }
+    public Node WorldNode { get; set; }
 
-    public override List<ISpawned> Spawn()
+    public override IEnumerable<ISpawned> Spawn()
     {
-        return microbeSpawner.Spawn(worldNode, Position, species, IsWanderer);
+        return MicrobeSpawner.Spawn(WorldNode, Position, species, IsWanderer);
     }
 }

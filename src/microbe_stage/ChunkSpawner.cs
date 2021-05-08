@@ -7,13 +7,12 @@ using Godot;
 public class ChunkSpawner
 {
     private readonly PackedScene chunkScene;
-    private readonly Random random;
+    private readonly Random random = new Random();
     private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(CompoundCloudSystem cloudSystem, Random random)
+    public ChunkSpawner(CompoundCloudSystem cloudSystem)
     {
         this.cloudSystem = cloudSystem;
-        this.random = random;
         chunkScene = LoadChunkScene();
     }
 
@@ -22,7 +21,7 @@ public class ChunkSpawner
         return GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
     }
 
-    public static ISpawned SpawnChunk(ChunkConfiguration chunkType, Vector3 location, Node worldNode,
+    public static ISpawned Spawn(ChunkConfiguration chunkType, Vector3 location, Node worldNode,
         PackedScene chunkScene, CompoundCloudSystem cloudSystem, Random random)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
@@ -56,6 +55,6 @@ public class ChunkSpawner
 
     public ISpawned Spawn(Vector3 location, ChunkConfiguration chunkType, Node worldNode)
     {
-        return SpawnChunk(chunkType, location, worldNode, chunkScene, cloudSystem, random);
+        return Spawn(chunkType, location, worldNode, chunkScene, cloudSystem, random);
     }
 }

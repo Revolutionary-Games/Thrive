@@ -1876,7 +1876,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             case "iron":
                 return patch.GetTotalChunkCompoundAmount(compound) * patch.Biome.SpawnRateMultiplier;
             default:
-                return patch.Biome.Compounds[compound].Density * patch.Biome.SpawnRateMultiplier;
+                return patch.Biome.Compounds[compound].Density *
+                    patch.Biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
+                        compound);
         }
     }
 

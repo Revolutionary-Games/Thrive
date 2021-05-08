@@ -275,7 +275,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Spatial OrganelleParent { get; private set; }
 
     [JsonProperty]
-    public int DespawnRadius { get; set; }
+    public float DespawnRadius { get; set; }
 
     [JsonIgnore]
     public Node SpawnedNode => this;
@@ -515,7 +515,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var position = Translation + (direction * ejectionDistance);
 
-        AgentProjectile.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+        MicrobeSpawner.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetParent(),
             AgentProjectile.LoadAgentScene(), this);
 
@@ -704,7 +704,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                AgentProjectile.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+                MicrobeSpawner.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetParent(),
                     agentScene, this);
 
@@ -809,7 +809,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            ChunkSpawner.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
+            ChunkSpawner.Spawn(chunkType, Translation + positionAdded, GetParent(),
                 chunkScene, cloudSystem, random);
         }
 
@@ -884,7 +884,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var separation = new Vector3(Radius, 0, 0);
 
         // Create the one daughter cell.
-        var copyEntity = MicrobeSpawner.SpawnMicrobe(Species, Translation + separation,
+        var copyEntity = MicrobeSpawner.Spawn(Species, Translation + separation,
             GetParent(), MicrobeSpawner.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal

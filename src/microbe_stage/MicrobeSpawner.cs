@@ -9,17 +9,18 @@ public class MicrobeSpawner
 {
     private readonly PackedScene microbeScene;
     private readonly CompoundCloudSystem cloudSystem;
-    private readonly Random random;
-    private GameProperties currentGame;
+    private readonly Random random = new Random();
 
-    public MicrobeSpawner(CompoundCloudSystem cloudSystem, Random random)
+    public MicrobeSpawner(CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
         this.cloudSystem = cloudSystem;
-        this.random = random;
         microbeScene = LoadMicrobeScene();
+        CurrentGame = currentGame;
     }
 
-    public static Microbe SpawnMicrobe(Species species, Vector3 location,
+    public GameProperties CurrentGame { get; set; }
+
+    public static Microbe Spawn(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
         CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
@@ -58,7 +59,7 @@ public class MicrobeSpawner
             {
                 // Dont spawn them on top of each other because it
                 // causes them to bounce around and lag
-                yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                yield return Spawn(species, location + curSpawn, worldRoot, microbeScene, true,
                     cloudSystem, currentGame);
 
                 curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
@@ -76,7 +77,7 @@ public class MicrobeSpawner
             {
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
-                yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                yield return Spawn(species, location + curSpawn, worldRoot, microbeScene, true,
                     cloudSystem, currentGame);
 
                 curSpawn = curSpawn + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
@@ -156,29 +157,43 @@ public class MicrobeSpawner
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
-    public void SetCurrentGame(GameProperties currentGame)
+    public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
+       float lifetime, Vector3 location, Vector3 direction,
+       Node worldRoot, PackedScene agentScene, Node emitter)
     {
-        this.currentGame = currentGame;
+        var normalizedDirection = direction.Normalized();
+
+        var agent = (AgentProjectile)agentScene.Instance();
+        agent.Properties = properties;
+        agent.Amount = amount;
+        agent.TimeToLiveRemaining = lifetime;
+        agent.Emitter = emitter;
+
+        worldRoot.AddChild(agent);
+        agent.Translation = location + (direction * 1.5f);
+
+        agent.ApplyCentralImpulse(normalizedDirection *
+            Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
+
+        agent.AddToGroup(Constants.TIMED_GROUP);
+        return agent;
     }
 
-    public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species, bool isWanderer)
+    public IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species, bool isWanderer)
     {
-        List<ISpawned> spawnedMicrobes = new List<ISpawned>();
-
         // The true here is that this is AI controlled
-        spawnedMicrobes.Add(SpawnMicrobe(species, location, worldNode,
-            microbeScene, true, cloudSystem, currentGame));
+        ISpawned first = Spawn(species, location, worldNode,
+            microbeScene, true, cloudSystem, CurrentGame);
+        yield return first;
 
         if (species.IsBacteria && !isWanderer)
         {
             foreach (Microbe microbe in SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                cloudSystem, currentGame, random))
+                cloudSystem, CurrentGame, random))
             {
-                spawnedMicrobes.Add(microbe);
+                yield return microbe;
             }
         }
-
-        return spawnedMicrobes;
     }
 
     private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location)
@@ -201,7 +216,7 @@ public class MicrobeSpawner
                 colony.CurSpawn.x += colony.Random.Next(-2, 3);
             }
 
-            yield return SpawnMicrobe(colony.Species, location + colony.CurSpawn, colony.WorldRoot,
+            yield return Spawn(colony.Species, location + colony.CurSpawn, colony.WorldRoot,
                 colony.MicrobeScene, true, colony.CloudSystem, colony.CurrentGame);
         }
     }
