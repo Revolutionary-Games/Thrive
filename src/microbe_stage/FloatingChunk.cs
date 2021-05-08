@@ -40,6 +40,12 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     private bool isDissolving;
 
     [JsonProperty]
+    private bool isFadingParticles;
+
+    [JsonProperty]
+    private float particleFadeTimer;
+
+    [JsonProperty]
     private float dissolveEffectValue;
 
     [JsonProperty]
@@ -284,6 +290,14 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
             DissolveOrRemove();
+
+        if (isFadingParticles)
+        {
+            particleFadeTimer -= delta;
+
+            if (particleFadeTimer <= 0)
+                this.DetachAndFree();
+        }
     }
 
     /// <summary>
@@ -408,7 +422,20 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         {
             isDissolving = true;
         }
-        else
+        else if (isParticles && !isFadingParticles)
+        {
+            isFadingParticles = true;
+
+            var particles = GetNode("NodeToScale").GetChild<Particles>(0);
+
+            // Disable collisions
+            CollisionLayer = 0;
+            CollisionMask = 0;
+
+            particles.Emitting = false;
+            particleFadeTimer = particles.Lifetime;
+        }
+        else if (!isParticles)
         {
             this.DetachAndQueueFree();
         }

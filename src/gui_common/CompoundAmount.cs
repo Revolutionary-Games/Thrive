@@ -38,7 +38,10 @@ public class CompoundAmount : HBoxContainer
             compound = value;
 
             if (icon != null)
+            {
                 UpdateIcon();
+                UpdateTooltip();
+            }
         }
     }
 
@@ -133,10 +136,20 @@ public class CompoundAmount : HBoxContainer
 
         UpdateLabel();
         UpdateIcon();
+        UpdateTooltip();
 
         // Only apply non-default colour here. If it is later changed, it is then applied
         if (ValueColour != Colour.White)
             UpdateColour();
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            if (icon != null)
+                UpdateTooltip();
+        }
     }
 
     private void UpdateLabel()
@@ -192,5 +205,10 @@ public class CompoundAmount : HBoxContainer
 
         icon = GUICommon.Instance.CreateCompoundIcon(compound.InternalName);
         AddChild(icon);
+    }
+
+    private void UpdateTooltip()
+    {
+        icon.HintTooltip = compound.Name;
     }
 }
