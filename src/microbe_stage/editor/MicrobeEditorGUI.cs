@@ -1471,6 +1471,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 structureTab.Show();
                 structureTabButton.Pressed = true;
+                editor.MembranePreviewMode = false;
                 break;
             }
 
@@ -1478,6 +1479,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
+                editor.MembranePreviewMode = true;
                 break;
             }
 
