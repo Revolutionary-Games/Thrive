@@ -10,14 +10,16 @@ public class MicrobeSpawner
     private readonly PackedScene microbeScene;
     private readonly CompoundCloudSystem cloudSystem;
     private readonly Random random;
-    private GameProperties currentGame;
 
-    public MicrobeSpawner(CompoundCloudSystem cloudSystem, Random random)
+    public MicrobeSpawner(CompoundCloudSystem cloudSystem, Random random, GameProperties currentGame)
     {
         this.cloudSystem = cloudSystem;
         this.random = random;
         microbeScene = LoadMicrobeScene();
+        CurrentGame = currentGame;
     }
+
+    public GameProperties CurrentGame { get; set; }
 
     public static Microbe Spawn(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
@@ -156,23 +158,18 @@ public class MicrobeSpawner
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
-    public void SetCurrentGame(GameProperties currentGame)
-    {
-        this.currentGame = currentGame;
-    }
-
     public List<ISpawned> Spawn(Node worldNode, Vector3 location, MicrobeSpecies species, bool isWanderer)
     {
         List<ISpawned> spawnedMicrobes = new List<ISpawned>();
 
         // The true here is that this is AI controlled
         spawnedMicrobes.Add(Spawn(species, location, worldNode,
-            microbeScene, true, cloudSystem, currentGame));
+            microbeScene, true, cloudSystem, CurrentGame));
 
         if (species.IsBacteria && !isWanderer)
         {
             foreach (Microbe microbe in SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                cloudSystem, currentGame, random))
+                cloudSystem, CurrentGame, random))
             {
                 spawnedMicrobes.Add(microbe);
             }

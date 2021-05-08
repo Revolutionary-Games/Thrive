@@ -235,8 +235,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Settings.Instance == null)
             GD.PrintErr("Settings load problem");
 
-        spawner.Init(Clouds);
-
         if (!IsLoadedFromSave)
         {
             if (CurrentGame == null)
@@ -248,7 +246,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (CurrentGame == null)
             throw new InvalidOperationException("current game is not set");
 
-        spawner.SetCurrentGame(CurrentGame);
+        spawner.Init(Clouds, CurrentGame);
         tutorialGUI.EventReceiver = TutorialState;
         pauseMenu.GameProperties = CurrentGame;
 

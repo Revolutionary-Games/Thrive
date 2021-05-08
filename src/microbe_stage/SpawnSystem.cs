@@ -124,16 +124,11 @@ public class SpawnSystem
         return agent;
     }
 
-    public void Init(CompoundCloudSystem cloudSystem)
+    public void Init(CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
         cloudSpawner = new CompoundCloudSpawner(cloudSystem);
         chunkSpawner = new ChunkSpawner(cloudSystem, random);
-        microbeSpawner = new MicrobeSpawner(cloudSystem, random);
-    }
-
-    public void SetCurrentGame(GameProperties currentGame)
-    {
-        microbeSpawner.SetCurrentGame(currentGame);
+        microbeSpawner = new MicrobeSpawner(cloudSystem, random, currentGame);
     }
 
     public void AddSpawnItem(SpawnItem spawnItem)
@@ -246,15 +241,17 @@ public class SpawnSystem
         switch (pop)
         {
             case CloudItem cloudPop:
-                cloudPop.SetCloudSpawner(cloudSpawner);
+                cloudPop.CloudSpawner = cloudSpawner;
                 break;
 
             case ChunkItem chunkPop:
-                chunkPop.SetChunkSpawner(chunkSpawner, worldRoot);
+                chunkPop.ChunkSpawner = chunkSpawner;
+                chunkPop.WorldNode = worldRoot;
                 break;
 
             case MicrobeItem microbePop:
-                microbePop.SetMicrobeSpawner(microbeSpawner, worldRoot);
+                microbePop.MicrobeSpawner = microbeSpawner;
+                microbePop.WorldNode = worldRoot;
                 break;
         }
 
@@ -385,7 +382,7 @@ public class SpawnSystem
         if (spawnedEntities.Count >= maxAliveEntities)
             return;
 
-        spawn?.SetSpawnPosition(spawnPos);
+        spawn.Position = spawnPos;
 
         itemsToSpawn.Enqueue(spawn);
     }
