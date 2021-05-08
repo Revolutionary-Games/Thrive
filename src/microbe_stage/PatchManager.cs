@@ -67,7 +67,7 @@ public class PatchManager
             // Despawn old entities
             spawnSystem.DespawnAll();
 
-            // And also all timed entities and clear SpawnBags
+            // And also all timed entities
             timedLife.DespawnAll();
 
             // Clear compounds
