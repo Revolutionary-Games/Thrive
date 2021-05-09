@@ -37,7 +37,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonIgnore]
     private MeshInstance editorArrow;
 
-    private Membrane membraneMesh;
+    /// <summary>
+    ///   We're taking advantage of the available membrane and organelle system already present in
+    ///   the microbe class for the cell preview.
+    /// </summary>
+    private Microbe previewMicrobe;
+
     private MeshInstance editorGrid;
 
     [JsonProperty]
@@ -61,6 +66,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private PackedScene hexScene;
     private PackedScene modelScene;
+    private PackedScene microbeScene;
 
     [JsonProperty]
     private Color colour;
@@ -175,7 +181,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private string activeActionName;
 
     [JsonProperty]
-    private bool membranePreviewMode;
+    private bool microbePreviewMode;
 
     /// <summary>
     ///   Where the user started panning with the mouse
@@ -237,8 +243,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             colour = value;
 
-            if (membraneMesh != null)
-                membraneMesh.Tint = value;
+            if (previewMicrobe != null)
+            {
+                previewMicrobe.Membrane.Tint = value;
+                previewMicrobe.ForceChangeOrganellesColour(value);
+            }
         }
     }
 
@@ -297,24 +306,33 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public bool ShowHover { get; set; }
 
     /// <summary>
-    ///   Toggles whether membrane preview should be enabled. If true replaces placed
+    ///   If true a hex grid is shown around the cursor on the editing plane.
+    /// </summary>
+    public bool ShowHexGrid
+    {
+        get => editorGrid.Visible;
+        set => editorGrid.Visible = value;
+    }
+
+    /// <summary>
+    ///   Toggles whether microbe preview should be enabled. If true the editor will replace placed
     ///   hexes with a membrane around the cell.
     /// </summary>
     [JsonIgnore]
-    public bool MembranePreviewMode
+    public bool MicrobePreviewMode
     {
-        get => membranePreviewMode;
+        get => microbePreviewMode;
         set
         {
-            membranePreviewMode = value;
+            microbePreviewMode = value;
 
-            if (value)
-                UpdateMembranePreview();
+            UpdateCellVisualization();
 
-            membraneMesh.Visible = value;
-            editorGrid.Visible = !value;
+            if (previewMicrobe != null)
+                previewMicrobe.Visible = value;
 
-            placedHexes?.ForEach(entry => entry.Visible = !value);
+            placedHexes?.ForEach(entry => entry.Visible = !MicrobePreviewMode);
+            placedModels?.ForEach(entry => entry.Visible = !MicrobePreviewMode);
         }
     }
 
@@ -400,6 +418,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
+        microbeScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
 
         if (!IsLoadedFromSave)
             camera.ObjectToFollow = cameraFollow;
@@ -426,7 +445,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
-        membraneMesh = GetNode<Membrane>("Membrane");
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
     }
 
@@ -804,7 +822,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_secondary")]
     public void ShowOrganelleOptions()
     {
-        if (MembranePreviewMode)
+        if (MicrobePreviewMode)
             return;
 
         // Can't open organelle popup menu while moving something
@@ -1217,8 +1235,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(CurrentPatch);
 
-        // Reset this, GUI will tell us to enable it again
+        // Reset these, GUI will tell us to enable them again
         ShowHover = false;
+        ShowHexGrid = false;
 
         UpdatePatchBackgroundImage();
 
@@ -1402,7 +1421,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editorGrid.Translation = Camera.CursorWorldPos;
 
         // Show the organelle that is about to be placed
-        if (ActiveActionName != null && ShowHover && !MembranePreviewMode)
+        if (ActiveActionName != null && ShowHover && !MicrobePreviewMode)
         {
             GetMouseHex(out int q, out int r);
 
@@ -1568,23 +1587,39 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Recalculates and rebuilds the membrane mesh
+    ///   Updates the preview of how the microbe would like ingame.
     /// </summary>
-    private void UpdateMembranePreview()
+    private void UpdateCellVisualization()
     {
-        if (!membraneOrganellePositionsAreDirty)
+        // Don't redo the membrane when not in the preview mode to avoid possible lag spikes
+        // while editing cell structure in the structure tab
+        if (!MicrobePreviewMode || !membraneOrganellePositionsAreDirty)
             return;
 
-        var organellePositions = new List<Vector2>();
-
-        foreach (var entry in editedMicrobeOrganelles.Organelles)
+        // Create a new one if not yet exist
+        if (previewMicrobe == null)
         {
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+            previewMicrobe = (Microbe)microbeScene.Instance();
+            previewMicrobe.IsAPreviewMicrobe = true;
+
+            // Set the initial preview cell's visibility
+            previewMicrobe.Visible = MicrobePreviewMode;
+
+            world.AddChild(previewMicrobe);
         }
 
-        membraneMesh.OrganellePositions = organellePositions;
-        membraneMesh.Dirty = true;
+        // A bit hacky but this is needed to properly visualize the cell completely
+        var species = (MicrobeSpecies)editedSpecies.Clone();
+        species.IsBacteria = !HasNucleus;
+        species.Colour = Colour;
+        species.MembraneType = Membrane;
+
+        species.Organelles.Clear();
+
+        foreach (var entry in editedMicrobeOrganelles.Organelles)
+            species.Organelles.Add(entry);
+
+        previewMicrobe.ApplySpecies(species);
         membraneOrganellePositionsAreDirty = false;
     }
 
@@ -1669,7 +1704,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
             new Hex(q, r), rotation);
 
-        if (MembranePreviewMode)
+        if (MicrobePreviewMode)
             return;
 
         if (!IsValidPlacement(organelle))
@@ -1938,6 +1973,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         UpdatePatchDependentBalanceData();
 
         gui.UpdateSpeed(CalculateSpeed());
+
+        UpdateCellVisualization();
     }
 
     private void UpdatePatchDependentBalanceData()
@@ -1994,7 +2031,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
                 hexNode.Translation = pos;
 
-                hexNode.Visible = !MembranePreviewMode;
+                hexNode.Visible = !MicrobePreviewMode;
             }
 
             // Model of the organelle
@@ -2017,7 +2054,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
                     Constants.DEFAULT_HEX_SIZE);
 
-                organelleModel.Visible = true;
+                organelleModel.Visible = !MicrobePreviewMode;
 
                 UpdateOrganellePlaceHolderScene(organelleModel,
                     organelle.Definition.DisplayScene);
@@ -2060,8 +2097,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
         gui.SetMembraneTooltips(Membrane);
 
-        membraneMesh.Type = membrane;
-        membraneMesh.Dirty = true;
+        previewMicrobe.Membrane.Type = membrane;
+        previewMicrobe.Membrane.Dirty = true;
     }
 
     [DeserializedCallbackAllowed]
@@ -2077,8 +2114,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
         gui.SetMembraneTooltips(Membrane);
 
-        membraneMesh.Type = Membrane;
-        membraneMesh.Dirty = true;
+        previewMicrobe.Membrane.Type = Membrane;
+        previewMicrobe.Membrane.Dirty = true;
     }
 
     [DeserializedCallbackAllowed]

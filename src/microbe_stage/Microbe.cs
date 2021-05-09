@@ -29,6 +29,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
+    /// <summary>
+    ///   If true shifts the purpose of this cell to a visualizations-only
+    ///   (stops the normal functioning of the cell).
+    /// </summary>
+    [JsonIgnore]
+    public bool IsAPreviewMicrobe;
+
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     [JsonProperty]
@@ -356,7 +363,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _Ready()
     {
-        if (cloudSystem == null)
+        if (cloudSystem == null && !IsAPreviewMicrobe)
         {
             throw new Exception("Microbe not initialized");
         }
@@ -474,6 +481,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Reproduction progress is lost
         allOrganellesDivided = false;
+    }
+
+    /// <summary>
+    ///   Focefully change all the organelles color in this microbe independent of the set species' color
+    /// </summary>
+    public void ForceChangeOrganellesColour(Color colour)
+    {
+        foreach (var entry in organelles.Organelles)
+        {
+            entry.Colour = colour;
+            entry.Update(0);
+        }
     }
 
     /// <summary>
@@ -1068,7 +1087,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // Redo the cell membrane.
             SendOrganellePositionsToMembrane();
+
+            if (IsAPreviewMicrobe)
+            {
+                // Update once for the positioning of external organelles
+                foreach (var organelle in organelles.Organelles)
+                {
+                    organelle.Update(0);
+                }
+            }
         }
+
+        // The code below starting from here is not very needed for a model cell
+        if (IsAPreviewMicrobe)
+            return;
 
         CheckEngulfShapeSize();
 

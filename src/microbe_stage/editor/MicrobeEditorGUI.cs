@@ -1035,6 +1035,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     internal void OnMouseEnter()
     {
         editor.ShowHover = false;
+        editor.ShowHexGrid = false;
         UpdateMutationPointsBar();
     }
 
@@ -1044,6 +1045,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     internal void OnMouseExit()
     {
         editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
+        editor.ShowHexGrid = selectedEditorTab == EditorTab.CellEditor &&
+            selectedSelectionMenuTab == SelectionMenuTab.Structure;
         UpdateMutationPointsBar();
     }
 
@@ -1471,7 +1474,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 structureTab.Show();
                 structureTabButton.Pressed = true;
-                editor.MembranePreviewMode = false;
+                editor.MicrobePreviewMode = false;
                 break;
             }
 
@@ -1479,7 +1482,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
-                editor.MembranePreviewMode = true;
+                editor.MicrobePreviewMode = true;
                 break;
             }
 
