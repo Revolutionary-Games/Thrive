@@ -135,8 +135,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     /// <summary>
     ///   Similar to organelleDataDirty but with the exception that this is only set false when the editor
-    ///   membrane has been recalculated. Used so the membrane doesn't have to be rebuild everytime when
-    ///   switching back and forth between structure and membrane tab (wihout adding/removing organelles).
+    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild everytime when
+    ///   switching back and forth between structure and membrane tab (wihout editing organelle placements).
     /// </summary>
     private bool membraneOrganellePositionsAreDirty;
 
@@ -315,8 +315,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Toggles whether microbe preview should be enabled. If true the editor will replace placed
-    ///   hexes with a membrane around the cell.
+    ///   If this is enabled the editor will show how the edited cell would look like in the environment with
+    ///   parameters set in the editor. Editing hexes is disabled during this (with the exception of undo/redo).
     /// </summary>
     [JsonIgnore]
     public bool MicrobePreviewMode
@@ -1587,7 +1587,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Updates the preview of how the microbe would like ingame.
+    ///   Updates the membrane and organelle placement of the preview cell.
     /// </summary>
     private void UpdateCellVisualization()
     {
@@ -1600,7 +1600,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (previewMicrobe == null)
         {
             previewMicrobe = (Microbe)microbeScene.Instance();
-            previewMicrobe.IsAPreviewMicrobe = true;
+            previewMicrobe.IsForPreviewOnly = true;
 
             // Set the initial preview cell's visibility
             previewMicrobe.Visible = MicrobePreviewMode;
@@ -1608,7 +1608,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             world.AddChild(previewMicrobe);
         }
 
-        // A bit hacky but this is needed to properly visualize the cell completely
+        // A bit hacky but this is needed to properly visualize the edited cell completely
         var species = (MicrobeSpecies)editedSpecies.Clone();
         species.IsBacteria = !HasNucleus;
         species.Colour = Colour;

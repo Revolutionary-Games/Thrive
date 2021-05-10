@@ -30,11 +30,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
     /// <summary>
-    ///   If true shifts the purpose of this cell to a visualizations-only
+    ///   If true this shifts the purpose of this cell for visualizations-only
     ///   (stops the normal functioning of the cell).
     /// </summary>
     [JsonIgnore]
-    public bool IsAPreviewMicrobe;
+    public bool IsForPreviewOnly;
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
@@ -363,7 +363,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _Ready()
     {
-        if (cloudSystem == null && !IsAPreviewMicrobe)
+        if (cloudSystem == null && !IsForPreviewOnly)
         {
             throw new Exception("Microbe not initialized");
         }
@@ -1088,18 +1088,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Redo the cell membrane.
             SendOrganellePositionsToMembrane();
 
-            if (IsAPreviewMicrobe)
+            if (IsForPreviewOnly)
             {
                 // Update once for the positioning of external organelles
                 foreach (var organelle in organelles.Organelles)
-                {
                     organelle.Update(0);
-                }
             }
         }
 
         // The code below starting from here is not very needed for a model cell
-        if (IsAPreviewMicrobe)
+        if (IsForPreviewOnly)
             return;
 
         CheckEngulfShapeSize();
