@@ -1035,7 +1035,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     internal void OnMouseEnter()
     {
         editor.ShowHover = false;
-        editor.ShowHexGrid = false;
         UpdateMutationPointsBar();
     }
 
@@ -1045,8 +1044,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     internal void OnMouseExit()
     {
         editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
-        editor.ShowHexGrid = selectedEditorTab == EditorTab.CellEditor &&
-            selectedSelectionMenuTab == SelectionMenuTab.Structure;
         UpdateMutationPointsBar();
     }
 

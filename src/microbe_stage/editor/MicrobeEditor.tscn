@@ -13,8 +13,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/ThermoplastIcon.png" type="Texture" id=11]
 [ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.tscn" type="PackedScene" id=12]
 [ext_resource path="res://shaders/EditorHexGrid.shader" type="Shader" id=13]
+[ext_resource path="res://assets/textures/editor_grid.png" type="Texture" id=15]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=18]
-[ext_resource path="res://assets/textures/editor_grid.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=27]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=28]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=29]
@@ -92,10 +92,9 @@ size = Vector2( 15, 15 )
 [sub_resource type="ShaderMaterial" id=2]
 render_priority = -2
 shader = ExtResource( 13 )
-shader_param/useTexture = false
-shader_param/color = Color( 0.745098, 0.745098, 0.745098, 1 )
+shader_param/color = Color( 0.74902, 0.74902, 0.74902, 1 )
 shader_param/gridSize = Vector2( 25, 25 )
-shader_param/gridTexture = ExtResource( 19 )
+shader_param/gridTexture = ExtResource( 15 )
 shader_param/maskTexture = ExtResource( 18 )
 
 [sub_resource type="StyleBoxFlat" id=3]

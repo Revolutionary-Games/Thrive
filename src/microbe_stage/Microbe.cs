@@ -29,13 +29,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
-    /// <summary>
-    ///   If true this shifts the purpose of this cell for visualizations-only
-    ///   (stops the normal functioning of the cell).
-    /// </summary>
-    [JsonIgnore]
-    public bool IsForPreviewOnly;
-
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     [JsonProperty]
@@ -284,6 +277,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public int DespawnRadiusSqr { get; set; }
 
+    /// <summary>
+    ///   If true this shifts the purpose of this cell for visualizations-only
+    ///   (stops the normal functioning of the cell).
+    /// </summary>
+    [JsonIgnore]
+    public bool IsForPreviewOnly { get; set; }
+
     [JsonIgnore]
     public Node SpawnedNode => this;
 
@@ -484,13 +484,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
-    ///   Focefully change all the organelles color in this microbe independent of the set species' color
+    ///   Applies the set species' color to all of this microbe's organelles
     /// </summary>
-    public void ForceChangeOrganellesColour(Color colour)
+    public void ApplyOrganelleColours()
     {
         foreach (var entry in organelles.Organelles)
         {
-            entry.Colour = colour;
+            entry.Colour = Species.Colour;
             entry.Update(0);
         }
     }
@@ -1092,11 +1092,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             {
                 // Update once for the positioning of external organelles
                 foreach (var organelle in organelles.Organelles)
-                    organelle.Update(0);
+                    organelle.Update(delta);
             }
         }
 
-        // The code below starting from here is not very needed for a model cell
+        // The code below starting from here is not needed for a display-only cell
         if (IsForPreviewOnly)
             return;
 
