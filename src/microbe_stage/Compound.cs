@@ -20,6 +20,8 @@ public class Compound : IRegistryType
 
     public bool IsCloud;
 
+    public string IconPath;
+
     /// <summary>
     ///   When this is true the compound is always considered to be
     ///   useful and is not dumped.
@@ -29,6 +31,11 @@ public class Compound : IRegistryType
     public bool IsEnvironmental;
 
     public Color Colour;
+
+    /// <summary>
+    ///   Loaded icon for display in GUIs
+    /// </summary>
+    public Texture LoadedIcon;
 
 #pragma warning disable 169 // Used through reflection
     private string untranslatedName;
@@ -70,6 +77,14 @@ public class Compound : IRegistryType
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+    }
+
+    public void Resolve()
+    {
+        if (!string.IsNullOrEmpty(IconPath))
+        {
+            LoadedIcon = GD.Load<Texture>(IconPath);
+        }
     }
 
     public void ApplyTranslations()

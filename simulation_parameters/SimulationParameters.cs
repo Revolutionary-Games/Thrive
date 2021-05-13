@@ -146,6 +146,11 @@ public class SimulationParameters : Node
         return compounds[name];
     }
 
+    public bool DoesCompoundExist(string name)
+    {
+        return compounds.ContainsKey(name);
+    }
+
     /// <summary>
     ///   Returns all compounds that are clouds
     /// </summary>
@@ -347,6 +352,11 @@ public class SimulationParameters : Node
         }
 
         foreach (var entry in membranes)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in compounds)
         {
             entry.Value.Resolve();
         }

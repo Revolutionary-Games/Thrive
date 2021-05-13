@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 using Godot;
 
 /// <summary>
@@ -20,25 +21,28 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     public NodePath DescriptionLabelPath;
 
     [Export]
+    public NodePath ProcessesDescriptionLabelPath;
+
+    [Export]
     public NodePath ModifierListPath;
 
     [Export]
     public NodePath ProcessListPath;
 
-    [Export]
-    public PackedScene ModifierInfoScene;
+    private PackedScene modifierInfoScene;
 
     private Label nameLabel;
-
-    // ReSharper disable once NotAccessedField.Local
     private Label mpLabel;
 
     private Label descriptionLabel;
+    private RichTextLabel processesDescriptionLabel;
     private VBoxContainer modifierInfoList;
     private VBoxContainer processList;
 
     private string displayName;
     private string description;
+    private string processesDescription;
+    private int mpCost;
 
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
@@ -68,6 +72,29 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    /// <summary>
+    ///   Description of processes an organelle does if any.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This supports custom format (for example: "Turns [glucose] into [atp]") where strings inside
+    ///     the square brackets will be parsed and replaced with a matching compound name and icon. This
+    ///     is done to make translating feasible.
+    ///     NOTE: description string should only be set here and not directly on the rich text label node
+    ///     as it will be overidden otherwise.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public string ProcessesDescription
+    {
+        get => processesDescription;
+        set
+        {
+            processesDescription = value;
+            UpdateProcessesDescription();
+        }
+    }
+
     [Export]
     public string Description
     {
@@ -76,6 +103,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             description = value;
             UpdateDescription();
+        }
+    }
+
+    [Export]
+    public int MutationPointCost
+    {
+        get => mpCost;
+        set
+        {
+            mpCost = value;
+            UpdateMpCost();
         }
     }
 
@@ -99,12 +137,25 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
+        processesDescriptionLabel = GetNode<RichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<VBoxContainer>(ProcessListPath);
 
+        modifierInfoScene = GD.Load<PackedScene>("res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn");
+
         UpdateName();
         UpdateDescription();
+        UpdateProcessesDescription();
+        UpdateMpCost();
         UpdateLists();
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateProcessesDescription();
+        }
     }
 
     /// <summary>
@@ -112,7 +163,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     public void AddModifierInfo(string name, float value)
     {
-        var modifierInfo = (ModifierInfoLabel)ModifierInfoScene.Instance();
+        var modifierInfo = (ModifierInfoLabel)modifierInfoScene.Instance();
 
         modifierInfo.DisplayName = name;
         modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
@@ -335,6 +386,27 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         Hide();
     }
 
+    private string ParseProcessesDescription()
+    {
+        if (string.IsNullOrEmpty(ProcessesDescription))
+            return string.Empty;
+
+        // Parse compound names
+        var result = Regex.Replace(TranslationServer.Translate(ProcessesDescription), @"\[(.*?)\]", found =>
+        {
+            // Just return the string as is if compound is not valid
+            if (!SimulationParameters.Instance.DoesCompoundExist(found.Groups[1].Value))
+                return found.Value;
+
+            var compound = SimulationParameters.Instance.GetCompound(found.Groups[1].Value);
+
+            return $"[b]{compound.Name}[/b] [font=res://src/gui_common/fonts/" +
+                $"BBCode-Image-VerticalCenterAlign.tres] [img=25]{compound.IconPath}[/img][/font]";
+        });
+
+        return result;
+    }
+
     private void UpdateName()
     {
         if (nameLabel == null)
@@ -363,6 +435,22 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             descriptionLabel.Text = description;
         }
+    }
+
+    private void UpdateProcessesDescription()
+    {
+        if (processesDescriptionLabel == null)
+            return;
+
+        processesDescriptionLabel.BbcodeText = ParseProcessesDescription();
+    }
+
+    private void UpdateMpCost()
+    {
+        if (mpLabel == null)
+            return;
+
+        mpLabel.Text = MutationPointCost.ToString();
     }
 
     private void UpdateLists()
