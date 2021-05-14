@@ -22,6 +22,7 @@ public class ChemicalEquation : VBoxContainer
     private IProcessDisplayInfo equationFromProcess;
     private bool showSpinner;
     private Texture equationArrowTexture;
+    private Color defaultTitleColour;
 
     /// <summary>
     ///   For some reason resizing the process panel causes the spinner to reset to the initial rotation, so we use
@@ -68,7 +69,7 @@ public class ChemicalEquation : VBoxContainer
         {
             showSpinner = value;
             if (spinner != null)
-                spinner.Visible = showSpinner;
+                UpdateHeader();
         }
     }
 
@@ -84,6 +85,22 @@ public class ChemicalEquation : VBoxContainer
 
     public float SpinnerBaseSpeed { get; set; } = Constants.DEFAULT_PROCESS_SPINNER_SPEED;
 
+    public Color DefaultTitleColour
+    {
+        get => defaultTitleColour;
+        set
+        {
+            defaultTitleColour = value;
+            if (title != null)
+                UpdateHeader();
+        }
+    }
+
+    /// <summary>
+    ///   If true the title color will be changed to red if EquationFromProcess has any limiting compounds.
+    /// </summary>
+    public bool MarkRedOnLimitingCompounds { get; set; }
+
     public override void _Ready()
     {
         title = GetNode<Label>(TitlePath);
@@ -92,7 +109,6 @@ public class ChemicalEquation : VBoxContainer
 
         equationArrowTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/WhiteArrow.png");
 
-        spinner.Visible = showSpinner;
         UpdateEquation();
     }
 
@@ -138,8 +154,8 @@ public class ChemicalEquation : VBoxContainer
 
         Visible = true;
 
-        // title.AddColorOverride("font_color", new Color(1.0f, 0.84f, 0.0f));
-        title.Text = EquationFromProcess.Name;
+        // Title and spinner
+        UpdateHeader();
 
         var normalInputs = EquationFromProcess.Inputs.ToList();
         var environmentalInputs = EquationFromProcess.EnvironmentalInputs.ToList();
@@ -160,6 +176,19 @@ public class ChemicalEquation : VBoxContainer
 
         // Environment conditions
         UpdateEnvironmentPart(environmentalInputs);
+    }
+
+    private void UpdateHeader()
+    {
+        spinner.Visible = ShowSpinner;
+        title.Text = EquationFromProcess.Name;
+
+        var colour = DefaultTitleColour;
+
+        if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds.Count > 0)
+            colour = new Color(1.0f, 0.3f, 0.3f);
+
+        title.AddColorOverride("font_color", colour);
     }
 
     private void UpdateLeftSide(List<KeyValuePair<Compound, float>> normalInputs)

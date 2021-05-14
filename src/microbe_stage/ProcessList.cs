@@ -12,6 +12,19 @@ public class ProcessList : VBoxContainer
 
     public List<IProcessDisplayInfo> ProcessesToShow { get; set; }
 
+    public bool ShowSpinners { get; set; } = true;
+
+    /// <summary>
+    ///   The default color for all the processes title in this list.
+    /// </summary>
+    public Color ProcessesTitleColour { get; set; } = Colors.White;
+
+    /// <summary>
+    ///   Controls whether the color of all processes title in this list should be turned
+    ///   to red if the processes has any limiting compounds.
+    /// </summary>
+    public bool MarkRedOnLimitingCompounds { get; set; }
+
     public override void _Ready()
     {
         chemicalEquationScene = GD.Load<PackedScene>("res://src/gui_common/ChemicalEquation.tscn");
@@ -50,8 +63,10 @@ public class ProcessList : VBoxContainer
     private ChemicalEquation CreateEquation(IProcessDisplayInfo process)
     {
         var equation = (ChemicalEquation)chemicalEquationScene.Instance();
-        equation.ShowSpinner = true;
+        equation.ShowSpinner = ShowSpinners;
         equation.EquationFromProcess = process;
+        equation.DefaultTitleColour = ProcessesTitleColour;
+        equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
 
         return equation;
     }

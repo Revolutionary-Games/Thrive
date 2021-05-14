@@ -65,18 +65,18 @@ public class ProcessSystem
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
 
-                if (processData.OtherInputs.ContainsKey(ATP))
+                if (processData.WritableInputs.ContainsKey(ATP))
                 {
-                    var amount = processData.OtherInputs[ATP].Amount;
+                    var amount = processData.WritableInputs[ATP];
 
                     processATPConsumption += amount;
 
                     result.AddConsumption(organelle.InternalName, amount);
                 }
 
-                if (processData.Outputs.ContainsKey(ATP))
+                if (processData.WritableOutputs.ContainsKey(ATP))
                 {
-                    var amount = processData.Outputs[ATP].Amount;
+                    var amount = processData.WritableOutputs[ATP];
 
                     processATPProduction += amount;
 
@@ -143,16 +143,16 @@ public class ProcessSystem
             {
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
 
-                foreach (var input in speedAdjusted.OtherInputs)
+                foreach (var input in speedAdjusted.Inputs)
                 {
                     MakeSureResultExists(input.Key);
-                    result[input.Key].AddConsumption(organelle.InternalName, input.Value.Amount);
+                    result[input.Key].AddConsumption(organelle.InternalName, input.Value);
                 }
 
                 foreach (var output in speedAdjusted.Outputs)
                 {
                     MakeSureResultExists(output.Key);
-                    result[output.Key].AddProduction(organelle.InternalName, output.Value.Amount);
+                    result[output.Key].AddProduction(organelle.InternalName, output.Value);
                 }
             }
         }
@@ -244,18 +244,15 @@ public class ProcessSystem
 
             // Environmental compound that can limit the rate
 
-            var input = new ProcessSpeedInformation.EnvironmentalInput(entry.Key, entry.Value);
-
             var availableInEnvironment = GetDissolvedInBiome(entry.Key, biome);
 
-            input.AvailableAmount = availableInEnvironment;
-
             // More than needed environment value boosts the effectiveness
-            input.AvailableRate = availableInEnvironment / entry.Value;
+            result.AvailableRates[entry.Key] = availableInEnvironment / entry.Value;
 
-            speedFactor *= input.AvailableRate;
+            speedFactor *= result.AvailableRates[entry.Key];
 
-            result.EnvironmentInputs[entry.Key] = input;
+            result.AvailableAmounts[entry.Key] = availableInEnvironment;
+            result.WritableInputs[entry.Key] = entry.Value;
         }
 
         speedFactor *= process.Rate;
@@ -268,20 +265,20 @@ public class ProcessSystem
 
             // Normal, cloud input
 
-            var input = new ProcessSpeedInformation.CompoundAmount(entry.Key, entry.Value * speedFactor);
-
-            result.OtherInputs.Add(entry.Key, input);
+            result.WritableInputs.Add(entry.Key, entry.Value * speedFactor);
         }
 
         foreach (var entry in process.Process.Outputs)
         {
-            var output = new ProcessSpeedInformation.CompoundAmount(entry.Key,
-                entry.Value * speedFactor);
+            var amount = entry.Value * speedFactor;
 
-            result.Outputs[entry.Key] = output;
+            result.WritableOutputs[entry.Key] = amount;
+
+            if (amount <= 0)
+                result.WritableLimitingCompounds.Add(entry.Key);
         }
 
-        result.SpeedFactor = speedFactor;
+        result.CurrentSpeed = speedFactor;
 
         return result;
     }
