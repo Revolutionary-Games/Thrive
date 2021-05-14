@@ -539,16 +539,16 @@ public class MicrobeAI
         {
             if (moveFocused)
             {
-                microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_FOCUSED_MOVEMENT);
+                SetMoveSpeed(Constants.AI_FOCUSED_MOVEMENT);
             }
             else
             {
-                microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
+                SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
             }
         }
         else
         {
-            microbe.MovementDirection = new Vector3(0, 0, 0);
+            SetMoveSpeed(0.0f);
         }
 
         // Turn off engulf if prey is Dead
@@ -892,7 +892,7 @@ public class MicrobeAI
         // TODO: do something with this
         // var vec = targetPosition - microbe.Translation;
         microbe.LookAtPoint = targetPosition;
-        microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
+        SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;
     }
 
@@ -905,16 +905,8 @@ public class MicrobeAI
         return randAngle;
     }
 
-    /// <summary>
-    ///   This makes the microbe to do some random movement, used by the AI when nothing else should be done
-    /// </summary>
-    private void SetRandomTargetAndSpeed(Random random)
+    private void SetMoveSpeed(float speed)
     {
-        // Set a random nearby look at location
-        microbe.LookAtPoint = microbe.Translation + new Vector3(
-            random.Next(-200, 201), 0, random.Next(-200, 201));
-
-        // And random movement speed
-        microbe.MovementDirection = new Vector3(0, 0, (float)(-1 * random.NextDouble()));
+        microbe.MovementDirection = new Vector3(0, 0, -speed);
     }
 }
