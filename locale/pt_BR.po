@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-07 00:12+0700\n"
-"PO-Revision-Date: 2021-05-06 17:54+0000\n"
+"PO-Revision-Date: 2021-05-09 17:45+0000\n"
 "Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -235,9 +235,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Aqui vai uma dica, as bactérias podem ser mais fortes do que elas "
-"aparentam, eles parecem pequenas, mas algumas delas podem se enterrar "
-"dentro de você e matar você assim!"
+"Aqui vai uma dica, as bactérias podem ser mais fortes do que elas aparentam, "
+"elas parecem pequenas, mas algumas delas podem se enterrar dentro de você e "
+"te matar você assim!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
@@ -328,7 +328,7 @@ msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive foi feito com o objetivo de ser uma simulação de um planeta "
 "alienígena, por isso faz sentido que a maioria das criaturas que você "
-"encontra serão relacionadas com uma ou duas espécies por causa de evolução "
+"encontra serão relacionadas com uma ou duas espécies por conta da evolução "
 "acontecendo em sua volta, veja se você consegue identificá-las!"
 
 #: ../simulation_parameters/common/help_texts.json:72
@@ -1448,7 +1448,7 @@ msgstr "Multisample anti-aliasing:"
 
 #: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(valores mais altos pioram a performance)"
+msgstr "(valores mais altos diminuem a performance)"
 
 #: ../src/general/OptionsMenu.tscn:280
 msgid "RESOLUTION"
@@ -1515,16 +1515,17 @@ msgstr "Nuvens de compostos"
 #: ../src/general/OptionsMenu.tscn:646
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
-"Simulação de Nuvens\n"
-"Intervalo Mínimo:"
+"Intervalo Mínimo da Simulação \n"
+"de Nuvens:"
 
 #: ../src/general/OptionsMenu.tscn:653 ../src/general/OptionsMenu.tscn:697
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(valores mais altos aumentam a performance)"
+msgstr "(valores mais altos melhoram a performance)"
 
 #: ../src/general/OptionsMenu.tscn:688
+#, fuzzy
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
+msgstr "Esse valor só é aplicado à novos jogos criados após alterar essa opção"
 
 #: ../src/general/OptionsMenu.tscn:690
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -1698,15 +1699,13 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:900
 #: ../src/gui_common/charts/line/LineChart.cs:929
-#, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Não é permitido mostrar mais de {0} datasets!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:909
 #: ../src/gui_common/charts/line/LineChart.cs:937
-#, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr "Não é permitido mostrar mais de {0} datasets!"
+msgstr "Não é permitido mostrar menos de {0} datasets!"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:78
 msgid "OPEN_THE_MENU"
@@ -2251,18 +2250,16 @@ msgid "SUCCESSFUL_KILL"
 msgstr "caça bem-sucedida"
 
 #: ../src/microbe_stage/Microbe.cs:1529
-#, fuzzy
 msgid "REPRODUCED"
-msgstr "Produz"
+msgstr "reproduziu"
 
 #: ../src/microbe_stage/Microbe.cs:1609
 msgid "ESCAPE_ENGULFING"
 msgstr "escapou de predação"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:28
-#, fuzzy
 msgid "INFINITE_COMPOUNDS"
-msgstr "Compostos"
+msgstr "Compostos infinitos"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "GODMODE"
@@ -2273,7 +2270,6 @@ msgid "NO_AI"
 msgstr "Sem IA"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
-#, fuzzy
 msgid "PLAYER_SPEED"
 msgstr ""
 "Jogador\n"
@@ -2301,7 +2297,7 @@ msgstr "jogador morreu"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:431
 msgid "AT_CURSOR"
-msgstr "No ponteiro:"
+msgstr "No cursor:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:456
 msgid "NOTHING_HERE"
@@ -2561,7 +2557,7 @@ msgstr "PRÓXIMO"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2833
 msgid "SELECT_A_PATCH"
-msgstr "Selecione uma região para mostrar detalhes aqui"
+msgstr "Selecione uma região para mostrar seus detalhes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2868
 msgid "CURRENT_LOCATION_CAPITAL"
@@ -2570,7 +2566,7 @@ msgstr "LOCALIZAÇÃO ATUAL"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3028
 #, fuzzy
 msgid "PRESSURE"
-msgstr "Press."
+msgstr "Pressão"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3559
 msgid "SPECIES_PRESENT"
@@ -2967,11 +2963,11 @@ msgstr "Tutorial"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Bem-vindo ao Editor de Micróbios.\n"
-"Aqui você pode rever o que aconteceu desde o início do jogo ou desde a "
-"última vez que esteve no editor e fazer mudanças para a sua espécie.\n"
+"Aqui você poderá rever o que aconteceu desde o início do jogo ou desde a "
+"última vez que esteve no editor, e fazer mudanças á sua espécie.\n"
 "\n"
-"Nessa aba você pode ver um relatório de quais espécies existem, onde, e "
-"qual é a sua população. Você também pode ver mudanças ambientais no topo.\n"
+"Nessa aba você pode ver um relatório de quais espécies existem, onde, e qual "
+"são suas populações. Você também pode ver mudanças ambientais no topo.\n"
 "\n"
 "Para ir para a próxima aba, aperte o botão “próximo” no canto inferior "
 "direito."
@@ -2980,13 +2976,13 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Este é o mapa de regiões.\n"
-"Você pode ver as diferentes regiões em que os micróbios podem viver aqui.\n"
+"Você pode ver as diferentes regiões em que os micróbios vivem.\n"
 "A região em que você está é destacada.\n"
 "Você também pode clicar nas regiões com seu mouse para selecioná-las e ver "
 "os seus detalhes no lado direito.\n"
 "\n"
-"Caso selecionar uma região próxima a que você atualmente está, você pode "
-"apertar o botão na direita para mover para lá. Isso permite que sua "
+"Caso selecione uma região próxima a que você está atualmente, você poderá "
+"apertar o botão na direita para se mover até lá. Isso permite que sua "
 "espécie se espalhe pelas novas regiões.\n"
 "\n"
 "Selecione uma região para continuar."
@@ -3005,17 +3001,16 @@ msgstr ""
 "hexágono no meio da tela para adicionar a organela na sua espécie."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
-#, fuzzy
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Remover organelas também custa MP, já que também conta como uma mutação. A "
+"Remover organelas também custa PM, já que também conta como uma mutação. A "
 "menos que tenha colocado na mesma seção de edição. \n"
 "\n"
 "Você pode clicar com o botão direito para abrir o menu de organelas para "
 "removê-las.\n"
 "\n"
-"Se você cometer um erro, pode desfazer qualquer alteração que você fez no "
-"editor.\n"
+"Se você cometer um erro, pode desfazer qualquer alteração que fez no editor."
+"\n"
 "\n"
 "Clique no botão de desfazer para continuar."
 
@@ -3042,7 +3037,7 @@ msgstr ""
 "\n"
 "Você pode renomear sua espécie clicando no nome dela e editando o texto.\n"
 "\n"
-"Inicialmente você deve manter sua célula pequena e ir para as regiões da "
+"Inicialmente, você deve manter sua célula pequena e ir para as regiões da "
 "superfície.\n"
 "\n"
 "Boa sorte!"
@@ -3054,10 +3049,10 @@ msgstr "Entendi"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:72
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Em um planeta distante, éons de atividades vulcânicas e impactos de "
-"meteoros causaram o desenvolvimento de um novo fenômeno no universo.\n"
+"Em um planeta distante, éons de atividades vulcânicas e impactos de meteoros "
+"causaram o desenvolvimento de um novo fenômeno no universo.\n"
 "\n"
-"Vida.\n"
+"A vida.\n"
 "\n"
 "Micróbios simples moram nas regiões mais profundas do oceano. Você é o "
 "último ancestral comum (LUCA) no planeta.\n"
@@ -3085,8 +3080,8 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Colete glicose (nuvens brancas) movendo-se na direção delas.\n"
-"Sua célula precisa de glicose para produzir energia para ficar viva.\n"
-"Siga a linha da sua célula até a glicose."
+"Sua célula precisa de glicose para produzir energia e sobreviver.\n"
+"Siga a linha, da sua célula até a glicose."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
 msgid "MICROBE_STAGE_HEALTH_TEXT"
