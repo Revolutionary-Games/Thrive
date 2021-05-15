@@ -176,12 +176,19 @@ public class MicrobeAI
 			}
 		}
 
-		if (targetChunk == null)
+		targetChunk = GetNearestChunkItem(data.AllChunks);
+
+		//Look for a nearby chunk to eat
+		if (targetChunk != null && (targetChunk.Translation - microbe.Translation).LengthSquared() <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
 		{
-			targetChunk = GetNearestChunkItem(data.AllChunks);
+			PursueAndConsumeChunks(targetChunk, data.AllChunks, random);
+		}
+		else
+		{
+			RunAndTumble(random);
 		}
 
-		DoRunAndTumble(random);
+
 		EvaluateEnvironment(random);
 
 		/*switch (lifeState)
@@ -629,7 +636,7 @@ public class MicrobeAI
 	/// </summary>
 	/// <param name="chunk">Chunk.</param>
 	/// <param name="allChunks">All chunks.</param>
-	private void DealWithChunks(FloatingChunk chunk, List<FloatingChunk> allChunks)
+	private void PursueAndConsumeChunks(FloatingChunk chunk, List<FloatingChunk> allChunks, Random random)
 	{
 		// Tick the engulf tick
 		ticksSinceLastToggle += 1;
@@ -640,9 +647,10 @@ public class MicrobeAI
 
 		try
 		{
-			// ReSharper disable once RedundantAssignment
 			compounds = chunk.ContainedCompounds;
-			targetPosition = chunk.Translation;
+			targetPosition = chunk.Translation + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
+			
+			microbe.LookAtPoint = targetPosition;
 			SetEngulfIfClose();
 		}
 		catch (ObjectDisposedException)
@@ -839,13 +847,16 @@ public class MicrobeAI
 	}
 
 	// For doing run and tumble
-	private void DoRunAndTumble(Random random)
+	private void RunAndTumble(Random random)
 	{
 		// Run and tumble
 		// A biased random walk, they turn more if they are picking up less compounds.
 		// The scientifically accurate algorithm has been flipped to account for the compound
 		// deposits being a lot smaller compared to the microbes
 		// https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
+
+		//If we are still engulfing for some reason, stop
+		microbe.EngulfMode = false;
 
 		var randAngle = previousAngle;
 		float randDist;
@@ -872,8 +883,9 @@ public class MicrobeAI
 			{
 				MoveWithRandomTurn(0.0f, 3.0f, random);
 			}
-			//There's a smaller chance to stop for a bit and letting nutrients soak in
-			if(random.Next(0, 15) < 2)
+			//There's a chance to stop for a bit and letting nutrients soak in
+			//More opportunistic species will do this less. 
+			if(random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM) > SpeciesOpportunism)
 			{
 				SetMoveSpeed(0.0f);
 			}
@@ -892,19 +904,9 @@ public class MicrobeAI
 	private void SetEngulfIfClose()
 	{
 		// Turn on engulfmode if close
-		if ((microbe.Translation - targetPosition).LengthSquared() <= 100 + microbe.EngulfSize * 3.0f
-			&& microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-			&& !microbe.EngulfMode &&
-			microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize
-			&& !microbe.Membrane.Type.CellWall)
+		if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + (microbe.EngulfSize * 3.0f))
 		{
 			microbe.EngulfMode = true;
-			ticksSinceLastToggle = 0;
-		}
-		else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f &&
-			microbe.EngulfMode && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
-		{
-			//microbe.EngulfMode = false;
 			ticksSinceLastToggle = 0;
 		}
 	}
