@@ -160,10 +160,9 @@ public class MicrobeAI
 		boredom = 0;
 		preyPegged = false;
 		prey = null;
-		if (predator == null)
-		{
-			GetNearestPredatorItem(data.AllMicrobes);
-		}
+		
+		GetNearestPredatorItem(data.AllMicrobes);
+		
 
 		// Peg your prey
 		if (!preyPegged)
@@ -178,8 +177,12 @@ public class MicrobeAI
 
 		targetChunk = GetNearestChunkItem(data.AllChunks);
 
+		if (predator != null && DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
+		{
+			PreyFlee(random);
+		}
 		//Look for a nearby chunk to eat
-		if (targetChunk != null && (targetChunk.Translation - microbe.Translation).LengthSquared() <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+		else if (targetChunk != null && (targetChunk.Translation - microbe.Translation).LengthSquared() <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
 		{
 			PursueAndConsumeChunks(targetChunk, data.AllChunks, random);
 		}
@@ -495,8 +498,6 @@ public class MicrobeAI
 		// Retrieve the nearest predator
 		// For our desires lets just say all microbes bigger are potential predators
 		// and later extend this to include those with toxins and pilus
-		Vector3 testPosition = new Vector3(0, 0, 0);
-		bool setPosition = true;
 
 		foreach (var otherMicrobe in allMicrobes)
 		{
@@ -508,20 +509,10 @@ public class MicrobeAI
 			{
 				// You are bigger then me and i am afraid of that
 				predatoryMicrobes.Add(otherMicrobe);
-				var thisPosition = otherMicrobe.Translation;
 
-				// At max aggression add them all
-				if (setPosition)
+				if (predator == null || DistanceFromMe(predator.Translation) >
+					DistanceFromMe(otherMicrobe.Translation))
 				{
-					testPosition = thisPosition;
-					setPosition = false;
-					predator = otherMicrobe;
-				}
-
-				if ((testPosition - microbe.Translation).LengthSquared() >
-					(thisPosition - microbe.Translation).LengthSquared())
-				{
-					testPosition = thisPosition;
 					predator = otherMicrobe;
 				}
 			}
@@ -707,30 +698,24 @@ public class MicrobeAI
 
 	private void PreyFlee(Random random)
 	{
-		// If focused you can run away more specifically, if not you freak out and scatter
-		if (predator == null || !RollCheck(SpeciesFocus, 500.0f, random))
+		microbe.EngulfMode = false;
+		// Run specifically away
+		try
 		{
-			// Scatter
-			var randAngle = random.Next(-2 * Mathf.Pi, 2 * Mathf.Pi);
-			var randDist = random.Next(200.0f, movementRadius * 10.0f);
-			targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
-		}
-		else if (predator != null)
-		{
-			// Run specifically away
-			try
+			if ((predator.Translation - targetPosition).LengthSquared() < 1500.0)
 			{
 				targetPosition = new Vector3(random.Next(-5000.0f, 5000.0f), 1.0f,
 						random.Next(-5000.0f, 5000.0f)) *
 					predator.Translation;
 			}
-			catch (ObjectDisposedException)
-			{
-				// Our predator is dead
-				predator = null;
-				return;
-			}
 		}
+		catch (ObjectDisposedException)
+		{
+			// Our predator is dead
+			predator = null;
+			return;
+		}
+		
 
 		// TODO: do something with this
 		// var vec = microbe.Translation - targetPosition;
