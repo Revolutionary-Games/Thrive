@@ -939,4 +939,10 @@ public class MicrobeAI
 			|| ((microbe.EngulfSize / targetMicrobe.EngulfSize) >= Constants.ENGULF_SIZE_RATIO_REQ)
 		);
 	}
+
+	private float DistanceFromMe(Vector3 target)
+	{
+		return (target - microbe.Translation).LengthSquared();
+
+	}
 }
