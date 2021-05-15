@@ -781,6 +781,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         MovingOrganelle = selectedOrganelle;
         editedMicrobeOrganelles.Remove(MovingOrganelle);
+
+        // disable undo button while moving(enable when placing)
+        gui.SetUndoButtonStatus(false);
     }
 
     public void RemoveOrganelle(Hex hex)
