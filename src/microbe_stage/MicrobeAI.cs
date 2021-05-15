@@ -123,36 +123,6 @@ public class MicrobeAI
 		predatoryMicrobes.Clear();
 		preyMicrobes.Clear();
 		chunkList.Clear();
-
-		// only about 76.6 to 86.6 repeating seconds + or minus a few due to randomness at max focus
-		if (boredom >= (int)random.Next(SpeciesFocus / 2, 180 + (SpeciesFocus / 2)))
-		{
-			if (prey != null && RollReverseCheck(SpeciesFocus, 600, random))
-			{
-				previousPrey = prey;
-			}
-
-			if (targetChunk != null && RollReverseCheck(SpeciesFocus, 600, random))
-			{
-				previousChunk = targetChunk;
-			}
-
-			// Occasionally you need to reevaluate things
-			boredom = 0;
-			prey = null;
-			if (RollCheck(SpeciesActivity, 400, random))
-			{
-				lifeState = LifeState.PLANTLIKE_STATE;
-			}
-			else
-			{
-				lifeState = LifeState.NEUTRAL_STATE;
-			}
-		}
-		else
-		{
-			boredom++;
-		}
 				
 		GetNearestPredatorItem(data.AllMicrobes);
 		targetChunk = GetNearestChunkItem(data.AllChunks);
