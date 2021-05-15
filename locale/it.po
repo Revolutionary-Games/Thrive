@@ -239,8 +239,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "Un suggerimento: i batteri possono essere più forti di quanto appaiono; "
-"possono sembrare piccoli, ma alcuni di essi possono scavare dentro di te, "
-"e ucciderti in tal modo!"
+"sembrano piccoli, ma alcuni di essi possono scavare dentro di te, e "
+"ucciderti così!"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
@@ -1467,6 +1467,7 @@ msgstr "(valori più elevati migliorano le prestazioni)"
 #: ../src/general/OptionsMenu.tscn:688
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
+"Se modifichi questo valore, l'effetto si applica solo alle nuove partite"
 
 #: ../src/general/OptionsMenu.tscn:690
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -2539,9 +2540,8 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ZONA ATTUALE"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3028
-#, fuzzy
 msgid "PRESSURE"
-msgstr "Press."
+msgstr "Pressione"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3559
 msgid "SPECIES_PRESENT"

@@ -87,7 +87,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "你需要将每个细胞器都一分为二以繁殖；这需要氨和硫酸盐"
+msgstr "你需要将每个细胞器都一分为二以繁殖；这需要氨和硫酸盐。"
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -205,9 +205,7 @@ msgstr "小提示：如果目标细胞大概只有你一半大，你就可以吞
 
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"小提示：细菌可能比它们看上去要强。它们或许体型很小，但它们中有一些可以钻进"
-"你并把你杀掉！"
+msgstr "小提示：细菌可能比它们看上去要强。它们或许体型很小，但它们中有一些可以钻进你并把你杀掉！"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
@@ -1413,7 +1411,7 @@ msgstr "（更高的数值有助于提升性能）"
 
 #: ../src/general/OptionsMenu.tscn:688
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
+msgstr "这个数值只对你改变选项后新开的存档有效"
 
 #: ../src/general/OptionsMenu.tscn:690
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -2373,7 +2371,6 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3028
-#, fuzzy
 msgid "PRESSURE"
 msgstr "压力"
 
