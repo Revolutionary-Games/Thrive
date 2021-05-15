@@ -191,7 +191,9 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f, false);
+        var duration = IsReturningToMenu ? 0.3f : 0.5f;
+
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, duration, false);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
 
         // Start music after the video
@@ -258,7 +260,7 @@ public class MainMenu : Node
         // Ignore mouse event on the button to prevent it being clicked twice
         freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.2f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.15f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 

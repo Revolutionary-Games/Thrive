@@ -22,7 +22,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
@@ -117,6 +117,7 @@ margin_bottom = 64.0
 custom_fonts/bold_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_constants/line_separation = 5
 bbcode_enabled = true
 fit_content_height = true
@@ -139,7 +140,7 @@ margin_top = 109.0
 margin_right = 318.0
 margin_bottom = 113.0
 mouse_filter = 2
-custom_styles/separator = SubResource( 3 )
+custom_styles/separator = SubResource( 2 )
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 128.0

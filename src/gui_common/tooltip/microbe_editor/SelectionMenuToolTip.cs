@@ -279,8 +279,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     /// <summary>
-    ///   Searches the processes description string for "keys" of compound names and input actions
-    ///   and turns them into a BBCode string with matching values.
+    ///   Searches the processes description string for compound name and input action
+    ///   "keys" and turns them into a BBCode string with matching values.
     /// </summary>
     private string ParseProcessesDescription()
     {
@@ -314,7 +314,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     parsed += $"[b][{KeyNames.Translate(events[i].Code)}][/b]";
 
                     if (events.Count > 1 && i < events.Count - 1)
-                        parsed += ", ";
+                        parsed += " / ";
                 }
             }
 
