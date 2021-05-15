@@ -125,7 +125,7 @@ public class MicrobeAI
 		chunkList.Clear();
 				
 		GetNearestPredatorItem(data.AllMicrobes);
-		targetChunk = GetNearestChunkItem(data.AllChunks);
+		targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes);
 		var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
 
 		if (predator != null && DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
@@ -155,7 +155,7 @@ public class MicrobeAI
 	/// </summary>
 	/// <returns>The nearest chunk item.</returns>
 	/// <param name="allChunks">All chunks the AI knows of.</param>
-	private FloatingChunk GetNearestChunkItem(List<FloatingChunk> allChunks)
+	private FloatingChunk GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes)
 	{
 		FloatingChunk chosenChunk = null;
 
@@ -189,6 +189,24 @@ public class MicrobeAI
 					chosenChunk = chunk;
 				}
 			}
+		}
+
+		//Don't bother with chunks when there's a lot of microbes to compete with
+		var numRivals = 0;
+		foreach (var rival in allMicrobes)
+		{
+			if (rival != microbe)
+			{
+				var rivalDistance = (rival.Translation - chosenChunk.Translation).LengthSquared();
+				if (rivalDistance < 500.0f && rivalDistance < (microbe.Translation - chosenChunk.Translation).LengthSquared())
+				{
+					numRivals++;
+				}
+			}
+		}
+		if (numRivals > 3)
+		{
+			chosenChunk = null;
 		}
 
 		return chosenChunk;
@@ -303,7 +321,6 @@ public class MicrobeAI
 			targetChunk = null;
 
 			hasTargetPosition = false;
-			targetChunk = GetNearestChunkItem(allChunks);
 
 			// You got a consumption, good job
 			if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
