@@ -191,159 +191,10 @@ public class MicrobeAI
 			RunAndTumble(random);
 		}
 
-
-		EvaluateEnvironment(random);
-
-		/*switch (lifeState)
-		{
-			case LifeState.PLANTLIKE_STATE:
-				// This ai would ideally just sit there, until it sees a nice opportunity pop-up unlike neutral,
-				// which wanders randomly (has a gather chance) until something interesting pops up
-				break;
-			case LifeState.NEUTRAL_STATE:
-			{
-				// Before these would run every time, now they just run for the states that need them.
-				boredom = 0;
-				preyPegged = false;
-				prey = null;
-				if (predator == null)
-				{
-					GetNearestPredatorItem(data.AllMicrobes);
-				}
-
-				// Peg your prey
-				if (!preyPegged)
-				{
-					prey = null;
-					prey = GetNearestPreyItem(data.AllMicrobes);
-					if (prey != null)
-					{
-						preyPegged = true;
-					}
-				}
-
-				if (targetChunk == null)
-				{
-					targetChunk = GetNearestChunkItem(data.AllChunks);
-				}
-
-				EvaluateEnvironment(random);
-				break;
-			}
-
-			case LifeState.GATHERING_STATE:
-			{
-				// In this state you gather compounds
-				if (RollCheck(SpeciesOpportunism, 400.0f, random))
-				{
-					lifeState = LifeState.SCAVENGING_STATE;
-					boredom = 0;
-				}
-				else
-				{
-					DoRunAndTumble(random);
-				}
-
-				break;
-			}
-
-			case LifeState.FLEEING_STATE:
-			{
-				if (predator == null)
-				{
-					GetNearestPredatorItem(data.AllMicrobes);
-				}
-
-				// In this state you run from predatory microbes
-				if (predator != null)
-				{
-					DealWithPredators(random);
-				}
-				else
-				{
-					if (RollCheck(SpeciesActivity, 400, random))
-					{
-						lifeState = LifeState.PLANTLIKE_STATE;
-						boredom = 0;
-					}
-					else
-					{
-						lifeState = LifeState.NEUTRAL_STATE;
-					}
-				}
-
-				break;
-			}
-
-			case LifeState.PREDATING_STATE:
-			{
-				// Peg your prey
-				if (!preyPegged)
-				{
-					prey = null;
-					prey = GetNearestPreyItem(data.AllMicrobes);
-					if (prey != null)
-					{
-						preyPegged = true;
-					}
-				}
-
-				if (preyPegged && prey != null)
-				{
-					DealWithPrey(data.AllMicrobes, random);
-				}
-				else
-				{
-					if (RollCheck(SpeciesActivity, 400, random))
-					{
-						lifeState = LifeState.PLANTLIKE_STATE;
-						boredom = 0;
-					}
-					else
-					{
-						lifeState = LifeState.NEUTRAL_STATE;
-					}
-				}
-
-				break;
-			}
-
-			case LifeState.SCAVENGING_STATE:
-			{
-				if (targetChunk == null)
-				{
-					targetChunk = GetNearestChunkItem(data.AllChunks);
-				}
-
-				if (targetChunk != null)
-				{
-					DealWithChunks(targetChunk, data.AllChunks);
-				}
-				else
-				{
-					if (!RollCheck(SpeciesOpportunism, 400, random))
-					{
-						lifeState = LifeState.NEUTRAL_STATE;
-						boredom = 0;
-					}
-					else
-					{
-						lifeState = LifeState.SCAVENGING_STATE;
-					}
-				}
-
-				break;
-			}
-		}*/
-
-		// Run reflexes
-		DoReflexes();
-
 		// Clear the absorbed compounds for run and rumble
 		microbe.TotalAbsorbedCompounds.Clear();
 	}
 
-	// There are cases when we want either ||, so here's two state rolls
 	private static bool RollCheck(float ourStat, float dc, Random random)
 	{
 		return random.Next(0.0f, dc) <= ourStat;
@@ -352,46 +203,6 @@ public class MicrobeAI
 	private static bool RollReverseCheck(float ourStat, float dc, Random random)
 	{
 		return ourStat <= random.Next(0.0f, dc);
-	}
-
-	private void DoReflexes()
-	{
-		// For times when its best to tell the microbe directly what to do (Life threatening, attaching to things etc);
-		/* Check if we are willing to run, and there is a predator nearby, if so, flee for your life
-		   If it was ran in evaluate environment, it would only work if the microbe was in the neutral state.
-		   because we may need more of these very specific things in the future for things like latching onto rocks */
-		// If you are predating and not being engulfed, don't run away until you switch state (keeps predators chasing
-		// you even when their predators are nearby) Its not a good survival strategy but it makes the game more fun.
-		if (predator != null && (lifeState != LifeState.PREDATING_STATE || microbe.IsBeingEngulfed))
-		{
-			try
-			{
-				if (!predator.Dead)
-				{
-					if ((microbe.Translation - predator.Translation).LengthSquared() <=
-						(2000 + ((predator.HexCount * 8.0f) * 2)))
-					{
-						if (lifeState != LifeState.FLEEING_STATE)
-						{
-							// Reset target position for faster fleeing
-							hasTargetPosition = false;
-						}
-
-						boredom = 0;
-						lifeState = LifeState.FLEEING_STATE;
-					}
-				}
-				else
-				{
-					predator = null;
-				}
-			}
-			catch (ObjectDisposedException)
-			{
-				// Our predator might be already disposed
-				predator = null;
-			}
-		}
 	}
 
 	/// <summary>
@@ -645,7 +456,6 @@ public class MicrobeAI
 
 			hasTargetPosition = false;
 			targetChunk = GetNearestChunkItem(allChunks);
-			//microbe.EngulfMode = false;
 
 			// You got a consumption, good job
 			if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
@@ -733,94 +543,6 @@ public class MicrobeAI
 				{
 					microbe.QueueEmitToxin(oxytoxy);
 				}
-			}
-		}
-	}
-
-	// For for figuring out which state to enter
-	private void EvaluateEnvironment(Random random)
-	{
-		if (RollCheck(SpeciesOpportunism, 500.0f, random))
-		{
-			lifeState = LifeState.SCAVENGING_STATE;
-			boredom = 0;
-		}
-		else
-		{
-			if (prey != null && predator != null)
-			{
-				if (random.Next(0.0f, SpeciesAggression) >
-					random.Next(0.0f, SpeciesFear) &&
-					preyMicrobes.Count > 0)
-				{
-					moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);
-
-					if (microbe.AgentVacuoleCount > 0)
-					{
-						moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
-					}
-
-					lifeState = LifeState.PREDATING_STATE;
-				}
-				else if (random.Next(0.0f, SpeciesAggression) <
-					random.Next(0.0f, SpeciesFear) &&
-					predatoryMicrobes.Count > 0)
-				{
-					lifeState = LifeState.FLEEING_STATE;
-				}
-				else if (SpeciesAggression >= SpeciesFear &&
-					preyMicrobes.Count > 0)
-				{
-					// Prefer predating (makes game more fun)
-					moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);
-
-					if (microbe.AgentVacuoleCount > 0)
-					{
-						moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
-					}
-
-					lifeState = LifeState.PREDATING_STATE;
-				}
-				else if (RollCheck(SpeciesFocus, 500.0f, random) && random.Next(0, 10) <= 2)
-				{
-					lifeState = LifeState.GATHERING_STATE;
-				}
-			}
-			else if (prey != null)
-			{
-				moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);
-
-				if (microbe.AgentVacuoleCount > 0)
-				{
-					moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
-				}
-
-				lifeState = LifeState.PREDATING_STATE;
-			}
-			else if (predator != null)
-			{
-				lifeState = LifeState.FLEEING_STATE;
-
-				// I want gathering to trigger more often so i added this here.
-				// Because even with predators around you should still graze
-				if (RollCheck(SpeciesFocus, 500.0f, random) && random.Next(0, 10) <= 5)
-				{
-					lifeState = LifeState.GATHERING_STATE;
-				}
-			}
-			else if (targetChunk != null)
-			{
-				lifeState = LifeState.SCAVENGING_STATE;
-			}
-			else if (random.Next(0, 10) < 8)
-			{
-				// Every 2 intervals || so
-				lifeState = LifeState.GATHERING_STATE;
-			}
-			else if (RollCheck(SpeciesActivity, 400.0f, random))
-			{
-				// Every 10 intervals || so
-				lifeState = LifeState.PLANTLIKE_STATE;
 			}
 		}
 	}
