@@ -119,8 +119,6 @@ public class MicrobeAI
 	{
 		_ = delta;
 
-		// SetRandomTargetAndSpeed(random);
-
 		// Clear the lists
 		predatoryMicrobes.Clear();
 		preyMicrobes.Clear();
@@ -155,26 +153,8 @@ public class MicrobeAI
 		{
 			boredom++;
 		}
-
-		
-		boredom = 0;
-		preyPegged = false;
-		prey = null;
-		
+				
 		GetNearestPredatorItem(data.AllMicrobes);
-		
-
-		// Peg your prey
-		if (!preyPegged)
-		{
-			prey = null;
-			prey = GetNearestPreyItem(data.AllMicrobes);
-			if (prey != null)
-			{
-				preyPegged = true;
-			}
-		}
-
 		targetChunk = GetNearestChunkItem(data.AllChunks);
 
 		if (predator != null && DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
@@ -315,8 +295,8 @@ public class MicrobeAI
 			if (otherMicrobe == microbe)
 				continue;
 
-			// At max fear add them all
-			if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead && otherMicrobe.EngulfSize > microbe.EngulfSize)
+			// Based on species fear, threshold to be afraid ranged from 0.8 to 1.8 microbe size.
+			if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead && otherMicrobe.EngulfSize > microbe.EngulfSize * (1.8f - ((float)SpeciesFear) / Constants.MAX_SPECIES_FEAR))
 			{
 				// You are bigger then me and i am afraid of that
 				predatoryMicrobes.Add(otherMicrobe);
@@ -415,21 +395,22 @@ public class MicrobeAI
 		// Run specifically away
 		try
 		{
-			//A lazy algorithm for running away. Microbe picks a random point around itself to flee to,
-			//but will repick if that point ends up too close to the attacker.
+			//A lazy algorithm for running away semi-randomly. Microbe picks a random point around
+			//itself to flee to, but will repick if that point ends up too close to the attacker.
 			if ((predator.Translation - targetPosition).LengthSquared() < 2500.0)
 			{
-				var fleeSize = 2000.0f;
+				var fleeSize = 1500.0f;
 				targetPosition = new Vector3(random.Next(-fleeSize, fleeSize), 1.0f,
 						random.Next(-fleeSize, fleeSize)) * microbe.Translation;
 				microbe.LookAtPoint = targetPosition;
-				SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
 			}
 			//If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
-			if (DistanceFromMe(predator.Translation) < 150.0f && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION / 2, random))
+			if (DistanceFromMe(predator.Translation) < 100.0f && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
 			{
 				MoveWithRandomTurn(2.5f, 3.0f, random);
 			}
+			//No matter what, I want to make sure I'm moving
+			SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
 		}
 		catch (ObjectDisposedException)
 		{
@@ -553,7 +534,7 @@ public class MicrobeAI
 	}
 
 	private void DebugFlash()
-    {
+	{
 		microbe.Flash(1.0f, new Color(255.0f, 0.0f, 0.0f));
 	}
 }
