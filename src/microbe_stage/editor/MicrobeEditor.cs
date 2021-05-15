@@ -788,7 +788,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Cancel moving an organelle
     /// </summary>
     /// <returns>True when the input is consumed</returns>
-    [RunOnKeyDown("e_cancel_move", Priority = 1)]
+    [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
     public bool CancelOrganelleMove()
     {
         if (MovingOrganelle == null)
