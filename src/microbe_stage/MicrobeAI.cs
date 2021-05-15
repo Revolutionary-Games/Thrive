@@ -395,7 +395,8 @@ public class MicrobeAI
 
     private void PursuePrey(Microbe target, Random random)
     {
-        microbe.EngulfMode = target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <= microbe.EngulfSize && DistanceFromMe(target.Translation) < 50.0f;
+        microbe.EngulfMode = target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
+            microbe.EngulfSize && DistanceFromMe(target.Translation) < 50.0f;
         targetPosition = target.Translation;
         microbe.LookAtPoint = targetPosition;
     }
