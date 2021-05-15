@@ -34,9 +34,6 @@ public class MicrobeAI
     private bool hasTargetPosition;
 
     [JsonProperty]
-    private LifeState lifeState = LifeState.NEUTRAL_STATE;
-
-    [JsonProperty]
     private bool moveFocused;
 
     [JsonProperty]
@@ -92,19 +89,6 @@ public class MicrobeAI
         iron = SimulationParameters.Instance.GetCompound("iron");
     }
 
-    /// <summary>
-    ///   Enum for state machine
-    /// </summary>
-    private enum LifeState
-    {
-        NEUTRAL_STATE,
-        GATHERING_STATE,
-        FLEEING_STATE,
-        PREDATING_STATE,
-        PLANTLIKE_STATE,
-        SCAVENGING_STATE,
-    }
-
     private float SpeciesAggression => microbe.Species.Aggression;
 
     private float SpeciesFear => microbe.Species.Fear;
@@ -133,16 +117,15 @@ public class MicrobeAI
         {
             PreyFlee(random);
         }
-        //Look for a nearby chunk to eat
         else if (targetChunk != null && 
             (targetChunk.Translation - microbe.Translation).LengthSquared() 
             <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
         {
-            PursueAndConsumeChunks(targetChunk, data.AllChunks, random);
+            PursueAndConsumeChunks(targetChunk, random);
         }
         else if (possiblePrey != null)
         {
-            PursuePrey(possiblePrey, random);
+            PursuePrey(possiblePrey);
         }
         else
         {
@@ -302,7 +285,7 @@ public class MicrobeAI
         }
     }
 
-    private void PursueAndConsumeChunks(FloatingChunk chunk, List<FloatingChunk> allChunks, Random random)
+    private void PursueAndConsumeChunks(FloatingChunk chunk, Random random)
     {
         // Tick the engulf tick
         ticksSinceLastToggle += 1;
