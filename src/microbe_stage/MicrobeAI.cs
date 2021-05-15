@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -302,11 +302,6 @@ public class MicrobeAI
         }
     }
 
-    /// <summary>
-    ///   For chasing down and eating chunks in various ways
-    /// </summary>
-    /// <param name="chunk">Chunk.</param>
-    /// <param name="allChunks">All chunks.</param>
     private void PursueAndConsumeChunks(FloatingChunk chunk, List<FloatingChunk> allChunks, Random random)
     {
         // Tick the engulf tick
@@ -321,7 +316,6 @@ public class MicrobeAI
             compounds = chunk.ContainedCompounds;
             targetPosition = chunk.Translation 
                 + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
-            
             microbe.LookAtPoint = targetPosition;
             SetEngulfIfClose();
         }
@@ -393,7 +387,7 @@ public class MicrobeAI
         }
     }
 
-    private void PursuePrey(Microbe target, Random random)
+    private void PursuePrey(Microbe target)
     {
         microbe.EngulfMode = target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
             microbe.EngulfSize && DistanceFromMe(target.Translation) < 50.0f;
@@ -412,9 +406,6 @@ public class MicrobeAI
 
         //If we are still engulfing for some reason, stop
         microbe.EngulfMode = false;
-
-        var randAngle = previousAngle;
-        float randDist;
 
         float compoundDifference = microbe.TotalAbsorbedCompounds.SumValues();
 
