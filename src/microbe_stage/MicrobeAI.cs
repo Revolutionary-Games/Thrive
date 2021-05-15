@@ -128,12 +128,15 @@ public class MicrobeAI
         targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes);
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
 
-        if (predator != null && DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
+        if (predator != null && 
+            DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
         {
             PreyFlee(random);
         }
         //Look for a nearby chunk to eat
-        else if (targetChunk != null && (targetChunk.Translation - microbe.Translation).LengthSquared() <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+        else if (targetChunk != null && 
+            (targetChunk.Translation - microbe.Translation).LengthSquared() 
+            <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
         {
             PursueAndConsumeChunks(targetChunk, data.AllChunks, random);
         }
@@ -198,7 +201,8 @@ public class MicrobeAI
             if (rival != microbe)
             {
                 var rivalDistance = (rival.Translation - chosenChunk.Translation).LengthSquared();
-                if (rivalDistance < 500.0f && rivalDistance < (microbe.Translation - chosenChunk.Translation).LengthSquared())
+                if (rivalDistance < 500.0f && 
+                    rivalDistance < (microbe.Translation - chosenChunk.Translation).LengthSquared())
                 {
                     numRivals++;
                 }
@@ -235,7 +239,9 @@ public class MicrobeAI
 
             if (!otherMicrobe.Dead)
             {
-                if (DistanceFromMe(otherMicrobe.Translation) < (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION) && ICanTryToEatMicrobe(otherMicrobe))
+                if (DistanceFromMe(otherMicrobe.Translation) < 
+                    (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION) 
+                    && ICanTryToEatMicrobe(otherMicrobe))
                 {
                     preyMicrobes.Add(otherMicrobe);
 
@@ -279,7 +285,10 @@ public class MicrobeAI
                 continue;
 
             // Based on species fear, threshold to be afraid ranged from 0.8 to 1.8 microbe size.
-            if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead && otherMicrobe.EngulfSize > microbe.EngulfSize * (1.8f - ((float)SpeciesFear) / Constants.MAX_SPECIES_FEAR))
+            if (otherMicrobe.Species != microbe.Species 
+                && !otherMicrobe.Dead 
+                && otherMicrobe.EngulfSize > microbe.EngulfSize 
+                * (1.8f - ((float)SpeciesFear) / Constants.MAX_SPECIES_FEAR))
             {
                 // You are bigger then me and i am afraid of that
                 predatoryMicrobes.Add(otherMicrobe);
@@ -310,7 +319,8 @@ public class MicrobeAI
         try
         {
             compounds = chunk.ContainedCompounds;
-            targetPosition = chunk.Translation + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
+            targetPosition = chunk.Translation 
+                + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
             
             microbe.LookAtPoint = targetPosition;
             SetEngulfIfClose();
@@ -354,7 +364,8 @@ public class MicrobeAI
                 microbe.LookAtPoint = targetPosition;
             }
             //If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
-            if (DistanceFromMe(predator.Translation) < 100.0f && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
+            if (DistanceFromMe(predator.Translation) < 100.0f && 
+                RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
             {
                 MoveWithRandomTurn(2.5f, 3.0f, random);
             }
@@ -428,7 +439,8 @@ public class MicrobeAI
             }
             //There's a chance to stop for a bit and letting nutrients soak in
             //More opportunistic species will do this less. 
-            if(random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM) > SpeciesOpportunism)
+            if(random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM) 
+                > SpeciesOpportunism)
             {
                 SetMoveSpeed(0.0f);
             }
@@ -463,7 +475,10 @@ public class MicrobeAI
         }
         
         var randDist = random.Next(2.0f * SpeciesFear, movementRadius);
-        targetPosition = microbe.Translation + new Vector3((Mathf.Cos(previousAngle + turn) * randDist), 0, (Mathf.Sin(previousAngle + turn) * randDist));
+        targetPosition = microbe.Translation 
+            + new Vector3((Mathf.Cos(previousAngle + turn) * randDist), 
+            0, 
+            (Mathf.Sin(previousAngle + turn) * randDist));
         previousAngle = previousAngle + turn;
         microbe.LookAtPoint = targetPosition;
         hasTargetPosition = true;
