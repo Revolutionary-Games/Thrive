@@ -331,103 +331,6 @@ public class MicrobeAI
 	}
 
 	/// <summary>
-	/// For chasing down and killing prey in various ways
-	/// </summary>
-	private void DealWithPrey(List<Microbe> allMicrobes, Random random)
-	{
-		// Tick the engulf tick
-		ticksSinceLastToggle += 1;
-
-		bool lostPrey = false;
-
-		try
-		{
-			targetPosition = prey.Translation;
-		}
-		catch (ObjectDisposedException)
-		{
-			lostPrey = true;
-		}
-
-		if (lostPrey)
-		{
-			preyPegged = false;
-			prey = null;
-			return;
-		}
-
-		// Chase your prey if you dont like acting like a plant
-		// Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
-		// Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
-		microbe.LookAtPoint = targetPosition;
-		hasTargetPosition = true;
-
-		// Always set target Position, for use later in AI
-		if (moveThisHunt)
-		{
-			if (moveFocused)
-			{
-				SetMoveSpeed(Constants.AI_FOCUSED_MOVEMENT);
-			}
-			else
-			{
-				SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
-			}
-		}
-		else
-		{
-			SetMoveSpeed(0.0f);
-		}
-
-		// Turn off engulf if prey is Dead
-		// This is probabbly not working. This is almost certainly not working in the Godot version
-		if (prey.Dead)
-		{
-			hasTargetPosition = false;
-			prey = GetNearestPreyItem(allMicrobes);
-			if (prey != null)
-			{
-				preyPegged = true;
-			}
-
-			microbe.EngulfMode = false;
-
-			// You got a kill, good job
-			if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
-			{
-				microbe.SuccessfulKill();
-			}
-
-			if (RollCheck(SpeciesOpportunism, 400.0f, random))
-			{
-				lifeState = LifeState.SCAVENGING_STATE;
-				boredom = 0;
-			}
-		}
-		else
-		{
-			SetEngulfIfClose();
-		}
-
-		// Shoot toxins if able There should be AI that prefers shooting over engulfing, etc, not sure how to model that
-		// without a million and one variables perhaps its a mix? Maybe a creature with a focus less then a certain
-		// amount simply never attacks that way?  Maybe a creature with a specific focus, only ever shoots and never
-		// engulfs? Maybe their lethargicness impacts that? I just dont want each enemy to feel the same you know.  For
-		// now creatures with a focus under 100 will never shoot.
-		if (SpeciesFocus >= 100.0f)
-		{
-			if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-				(microbe.Translation - targetPosition).LengthSquared() <= SpeciesFocus * 10.0f)
-			{
-				if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
-				{
-					microbe.QueueEmitToxin(oxytoxy);
-				}
-			}
-		}
-	}
-
-	/// <summary>
 	///   For chasing down and eating chunks in various ways
 	/// </summary>
 	/// <param name="chunk">Chunk.</param>
@@ -512,11 +415,20 @@ public class MicrobeAI
 		// Run specifically away
 		try
 		{
-			if ((predator.Translation - targetPosition).LengthSquared() < 1500.0)
+			//A lazy algorithm for running away. Microbe picks a random point around itself to flee to,
+			//but will repick if that point ends up too close to the attacker.
+			if ((predator.Translation - targetPosition).LengthSquared() < 2500.0)
 			{
-				targetPosition = new Vector3(random.Next(-5000.0f, 5000.0f), 1.0f,
-						random.Next(-5000.0f, 5000.0f)) *
-					predator.Translation;
+				var fleeSize = 2000.0f;
+				targetPosition = new Vector3(random.Next(-fleeSize, fleeSize), 1.0f,
+						random.Next(-fleeSize, fleeSize)) * microbe.Translation;
+				microbe.LookAtPoint = targetPosition;
+				SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+			}
+			//If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
+			if (DistanceFromMe(predator.Translation) < 150.0f && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION / 2, random))
+			{
+				MoveWithRandomTurn(2.5f, 3.0f, random);
 			}
 		}
 		catch (ObjectDisposedException)
@@ -526,13 +438,6 @@ public class MicrobeAI
 			return;
 		}
 		
-
-		// TODO: do something with this
-		// var vec = microbe.Translation - targetPosition;
-		microbe.LookAtPoint = -targetPosition;
-		microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
-		hasTargetPosition = true;
-
 		// Freak out and fire toxins everywhere
 		if (SpeciesAggression > SpeciesFear && RollReverseCheck(SpeciesFocus, 400.0f, random))
 		{
@@ -645,5 +550,10 @@ public class MicrobeAI
 	{
 		return (target - microbe.Translation).LengthSquared();
 
+	}
+
+	private void DebugFlash()
+    {
+		microbe.Flash(1.0f, new Color(255.0f, 0.0f, 0.0f));
 	}
 }
