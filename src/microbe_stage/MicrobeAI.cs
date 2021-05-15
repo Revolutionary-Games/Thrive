@@ -126,6 +126,7 @@ public class MicrobeAI
 				
 		GetNearestPredatorItem(data.AllMicrobes);
 		targetChunk = GetNearestChunkItem(data.AllChunks);
+		var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
 
 		if (predator != null && DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
 		{
@@ -136,6 +137,10 @@ public class MicrobeAI
 		{
 			PursueAndConsumeChunks(targetChunk, data.AllChunks, random);
 		}
+		else if (possiblePrey != null)
+		{
+			PursuePrey(possiblePrey, random);
+		}
 		else
 		{
 			RunAndTumble(random);
@@ -143,16 +148,6 @@ public class MicrobeAI
 
 		// Clear the absorbed compounds for run and rumble
 		microbe.TotalAbsorbedCompounds.Clear();
-	}
-
-	private static bool RollCheck(float ourStat, float dc, Random random)
-	{
-		return random.Next(0.0f, dc) <= ourStat;
-	}
-
-	private static bool RollReverseCheck(float ourStat, float dc, Random random)
-	{
-		return ourStat <= random.Next(0.0f, dc);
 	}
 
 	/// <summary>
@@ -222,7 +217,7 @@ public class MicrobeAI
 
 			if (!otherMicrobe.Dead)
 			{
-				if (ICanTryToEatMicrobe(otherMicrobe))
+				if (DistanceFromMe(otherMicrobe.Translation) < (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION) && ICanTryToEatMicrobe(otherMicrobe))
 				{
 					preyMicrobes.Add(otherMicrobe);
 
@@ -326,39 +321,6 @@ public class MicrobeAI
 		microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
 	}
 
-	// For self defense (not necessarily fleeing)
-	private void DealWithPredators(Random random)
-	{
-		if (random.Next(0, 50) <= 10)
-		{
-			hasTargetPosition = false;
-		}
-
-		// Run From Predator
-		if (hasTargetPosition == false)
-		{
-			// check if predator is legit
-			bool hasPredator = false;
-
-			try
-			{
-				if (predator != null && !predator.Dead)
-					hasPredator = true;
-			}
-			catch (ObjectDisposedException)
-			{
-				hasPredator = false;
-			}
-
-			if (!hasPredator)
-			{
-				predator = null;
-			}
-
-			PreyFlee(random);
-		}
-	}
-
 	private void PreyFlee(Random random)
 	{
 		microbe.EngulfMode = false;
@@ -401,6 +363,13 @@ public class MicrobeAI
 				}
 			}
 		}
+	}
+
+	private void PursuePrey(Microbe target, Random random)
+	{
+		microbe.EngulfMode = target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <= microbe.EngulfSize && DistanceFromMe(target.Translation) < 50.0f;
+		targetPosition = target.Translation;
+		microbe.LookAtPoint = targetPosition;
 	}
 
 	// For doing run and tumble
@@ -461,7 +430,7 @@ public class MicrobeAI
 	private void SetEngulfIfClose()
 	{
 		// Turn on engulfmode if close
-		if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + (microbe.EngulfSize * 3.0f))
+		if ((microbe.Translation - targetPosition).LengthSquared() <= 100 + (microbe.EngulfSize * 3.0f))
 		{
 			microbe.EngulfMode = true;
 			ticksSinceLastToggle = 0;
@@ -501,6 +470,16 @@ public class MicrobeAI
 	{
 		return (target - microbe.Translation).LengthSquared();
 
+	}
+
+	private static bool RollCheck(float ourStat, float dc, Random random)
+	{
+		return random.Next(0.0f, dc) <= ourStat;
+	}
+
+	private static bool RollReverseCheck(float ourStat, float dc, Random random)
+	{
+		return ourStat <= random.Next(0.0f, dc);
 	}
 
 	private void DebugFlash()
