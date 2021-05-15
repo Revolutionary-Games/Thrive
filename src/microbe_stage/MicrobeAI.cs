@@ -504,31 +504,25 @@ public class MicrobeAI
 				continue;
 
 			// At max fear add them all
-			if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
+			if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead && otherMicrobe.EngulfSize > microbe.EngulfSize)
 			{
-				if ((SpeciesFear == Constants.MAX_SPECIES_FEAR) ||
-					((((microbe.AgentVacuoleCount + otherMicrobe.EngulfSize) * 1.0f) *
-							(SpeciesFear / Constants.FEAR_DIVISOR)) >
-						(microbe.EngulfSize * 1.0f)))
+				// You are bigger then me and i am afraid of that
+				predatoryMicrobes.Add(otherMicrobe);
+				var thisPosition = otherMicrobe.Translation;
+
+				// At max aggression add them all
+				if (setPosition)
 				{
-					// You are bigger then me and i am afraid of that
-					predatoryMicrobes.Add(otherMicrobe);
-					var thisPosition = otherMicrobe.Translation;
+					testPosition = thisPosition;
+					setPosition = false;
+					predator = otherMicrobe;
+				}
 
-					// At max aggression add them all
-					if (setPosition)
-					{
-						testPosition = thisPosition;
-						setPosition = false;
-						predator = otherMicrobe;
-					}
-
-					if ((testPosition - microbe.Translation).LengthSquared() >
-						(thisPosition - microbe.Translation).LengthSquared())
-					{
-						testPosition = thisPosition;
-						predator = otherMicrobe;
-					}
+				if ((testPosition - microbe.Translation).LengthSquared() >
+					(thisPosition - microbe.Translation).LengthSquared())
+				{
+					testPosition = thisPosition;
+					predator = otherMicrobe;
 				}
 			}
 		}
