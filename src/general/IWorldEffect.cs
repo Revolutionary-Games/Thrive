@@ -35,6 +35,7 @@ public class GlucoseReductionEffect : IWorldEffect
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
         var glucose = SimulationParameters.Instance.GetCompound("glucose");
+
         foreach (var key in targetWorld.Map.Patches.Keys)
         {
             var patch = targetWorld.Map.Patches[key];
