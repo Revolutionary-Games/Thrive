@@ -55,6 +55,11 @@ with the command `git config --global core.autocrlf true`. If you don't,
 there is a risk that you accidentally commit Windows-style line
 endings.
 
+If `autocrlf` is not used on Windows, then nearly all of the game
+files will get marked as changed when Godot editor is opened. So it is
+strongly recommended that you follow the configuration instructions
+regarding that in the previous paragraph.
+
 If you previously had Git installed through cygwin, you must uninstall
 that and install the official Windows version of Git. You may also
 have to deleted all your cloned folders to avoid errors, and reboot
@@ -601,3 +606,10 @@ You can find information about how to translate the game on the
 If you get errors like `cannot load such file -- os (LoadError)` when
 running the ruby scripts, reinstall the ruby gems mentioned earlier in
 this file.
+
+### All files are marked as changed
+
+If you are on Windows and you see that most game files are marked as
+changed after opening the Godot editor, then check your `autocrlf`
+setting (instructions are in this file), and reclone or recheckout all
+of the game files (while Godot is closed).
