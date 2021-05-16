@@ -1140,7 +1140,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayButtonPressSound();
 
         // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        if (energyBalanceInfo != null && energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredShrink();
             return;
