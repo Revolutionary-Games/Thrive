@@ -167,6 +167,7 @@ public class MicrobeAI
                     }
                 }
             }
+
             if (numRivals > 3)
             {
                 chosenChunk = null;
@@ -196,8 +197,8 @@ public class MicrobeAI
         {
             if (!otherMicrobe.Dead)
             {
-                if (DistanceFromMe(otherMicrobe.Translation) < 
-                    (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION) 
+                if (DistanceFromMe(otherMicrobe.Translation) <
+                    (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION)
                     && ICanTryToEatMicrobe(otherMicrobe))
                 {
                     var thisPosition = otherMicrobe.Translation;
@@ -240,9 +241,9 @@ public class MicrobeAI
                 continue;
 
             // Based on species fear, threshold to be afraid ranged from 0.8 to 1.8 microbe size.
-            if (otherMicrobe.Species != microbe.Species 
-                && !otherMicrobe.Dead 
-                && otherMicrobe.EngulfSize > microbe.EngulfSize 
+            if (otherMicrobe.Species != microbe.Species
+                && !otherMicrobe.Dead
+                && otherMicrobe.EngulfSize > microbe.EngulfSize
                 * (1.8f - (SpeciesFear) / Constants.MAX_SPECIES_FEAR))
             {
                 if (predator == null || DistanceFromMe(predator.Translation) >
@@ -265,10 +266,9 @@ public class MicrobeAI
 
         try
         {
-
             // ReSharper disable once RedundantAssignment
             compounds = chunk.ContainedCompounds;
-            targetPosition = chunk.Translation 
+            targetPosition = chunk.Translation
                 + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
             microbe.LookAtPoint = targetPosition;
             SetEngulfIfClose();
@@ -298,6 +298,7 @@ public class MicrobeAI
     private void PreyFlee(Random random)
     {
         microbe.EngulfMode = false;
+
         // Run specifically away
         try
         {
@@ -307,15 +308,17 @@ public class MicrobeAI
             {
                 var fleeSize = 1500.0f;
                 targetPosition = new Vector3(random.Next(-fleeSize, fleeSize), 1.0f,
-                        random.Next(-fleeSize, fleeSize)) * microbe.Translation;
+                    random.Next(-fleeSize, fleeSize)) * microbe.Translation;
                 microbe.LookAtPoint = targetPosition;
             }
+
             // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
-            if (DistanceFromMe(predator.Translation) < 100.0f && 
+            if (DistanceFromMe(predator.Translation) < 100.0f &&
                 RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
             {
                 MoveWithRandomTurn(2.5f, 3.0f, random);
             }
+
             // No matter what, I want to make sure I'm moving
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
@@ -382,6 +385,7 @@ public class MicrobeAI
             {
                 MoveWithRandomTurn(0.0f, 3.0f, random);
             }
+
             // There's a chance to stop for a bit and letting nutrients soak in
             // More opportunistic species will do this less. 
             if (random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM)
@@ -418,12 +422,12 @@ public class MicrobeAI
         {
             turn = -turn;
         }
-        
+
         var randDist = random.Next(2.0f * SpeciesFear, movementRadius);
         targetPosition = microbe.Translation 
             + new Vector3((Mathf.Cos(previousAngle + turn) * randDist),
-            0,
-            (Mathf.Sin(previousAngle + turn) * randDist));
+                0,
+                (Mathf.Sin(previousAngle + turn) * randDist));
         previousAngle = previousAngle + turn;
         microbe.LookAtPoint = targetPosition;
         hasTargetPosition = true;
@@ -435,7 +439,7 @@ public class MicrobeAI
         microbe.MovementDirection = new Vector3(0, 0, -speed);
     }
 
-    private Boolean ICanTryToEatMicrobe(Microbe targetMicrobe)
+    private bool ICanTryToEatMicrobe(Microbe targetMicrobe)
     {
         return (
             (SpeciesAggression == Constants.MAX_SPECIES_AGRESSION)
@@ -446,7 +450,6 @@ public class MicrobeAI
     private float DistanceFromMe(Vector3 target)
     {
         return (target - microbe.Translation).LengthSquared();
-
     }
 
     private static bool RollCheck(float ourStat, float dc, Random random)
