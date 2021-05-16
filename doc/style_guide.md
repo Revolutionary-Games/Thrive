@@ -406,6 +406,11 @@ Git
   some cases where someone does a small fix to get things ready for a
   merge.
 
+- An exception to the above rule are the automatic PRs from weblate,
+  those must be merged normally, otherwise weblate won't detect that
+  correctly and fixing that requires a lot of manual merging. So merge
+  weblate PRs as separate commits, not squashed.
+
 - You should not leave the co-authored-by line in a squashed commit if
   all you did was merge master into the branch to make the merge show
   up as green on Github.
