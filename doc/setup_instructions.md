@@ -582,3 +582,9 @@ Your locally cloned Thrive version may get messed up from time to time.
 
 You can find information about how to translate the game on the 
 [Working with translation page](working_with_translations.md).
+
+### Ruby running errors
+
+If you get errors like `cannot load such file -- os (LoadError)` when
+running the ruby scripts, reinstall the ruby gems mentioned earlier in
+this file.
