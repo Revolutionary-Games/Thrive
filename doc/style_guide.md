@@ -72,6 +72,31 @@ Code style rules
   XML style. You can use these types of comments to section of files
   or put labels in methods to mark what different parts are for.
 
+- In XML comments each nesting level is intended 2 spaces more than
+  the previous level.
+
+- In XML comments the following elements should be on a single line:
+  param, returns, template param, exception. If the text is so long
+  that it doesn't fit within a single line, then those previously
+  mentioned elements should also be split on multiple lines. The
+  following should always be on multiple lines: summary,
+  remarks. Additionally remarks should contain individual `para`
+  elements that have the actual text in them. For example:
+  ```xml
+  <remarks>
+    <para>
+      This is a remark.
+    </para>
+  </remarks>
+  ```
+
+- The `returns` section of an XML can be omitted if it adds nothing
+  valuable. For example a method like `public List<Organelle>
+  GetOrganelles()` having documentation that it "returns a list of
+  organelles" doesn't provide any useful information to the person
+  reading the code that they couldn't see directly from the method
+  signature.
+
 - Empty lines are encouraged between blocks of code to improve
   readability. Blank space is your friend, not your enemy. Separate
   out logically different parts of a method with blank lines.
