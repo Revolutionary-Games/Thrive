@@ -265,8 +265,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     /// <summary>
     ///   Hover hexes and models are only shown if this is true. This is saved to make this work better when the player
-    ///   was in the cell editor tab and saved, though that doesn't seem to work:
-    ///   https://github.com/Revolutionary-Games/Thrive/issues/1750
+    ///   was in the cell editor tab and saved.
     /// </summary>
     public bool ShowHover { get; set; }
 
@@ -334,6 +333,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
+
+    /// <summary>
+    ///   If true an editor action is active and can be cancelled. Currently only checks for organelle move.
+    /// </summary>
+    [JsonIgnore]
+    public bool CanCancelAction => MovingOrganelle != null;
 
     [JsonIgnore]
     public Node GameStateRoot => this;
@@ -653,8 +658,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             if (MoveOrganelle(MovingOrganelle, MovingOrganelle.Position, new Hex(q, r), MovingOrganelle.Orientation,
                 organelleRot))
             {
-                // Move succeeded
+                // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
                 MovingOrganelle = null;
+                gui.UpdateCancelButtonVisibility();
 
                 // Update rigidity slider in case it was disabled
                 // TODO: could come up with a bit nicer design here
@@ -781,6 +787,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         MovingOrganelle = selectedOrganelle;
         editedMicrobeOrganelles.Remove(MovingOrganelle);
+    }
+
+    /// <summary>
+    ///   Cancels the current editor action
+    /// </summary>
+    /// <returns>True when the input is consumed</returns>
+    [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
+    public bool CancelCurrentAction()
+    {
+        if (MovingOrganelle != null)
+        {
+            editedMicrobeOrganelles.Add(MovingOrganelle);
+            MovingOrganelle = null;
+            gui.UpdateCancelButtonVisibility();
+            return true;
+        }
+
+        return false;
     }
 
     public void RemoveOrganelle(Hex hex)
@@ -1181,6 +1205,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send undo button to the tutorial system
         gui.SendUndoToTutorial(TutorialState);
+
+        gui.UpdateCancelButtonVisibility();
     }
 
     private void InitEditorFresh()
