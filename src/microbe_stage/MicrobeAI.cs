@@ -21,24 +21,12 @@ public class MicrobeAI
     [JsonProperty]
     private Microbe microbe;
 
-    [JsonProperty]
-    private int boredom;
-
     // ReSharper disable once CollectionNeverQueried.Local
     [JsonIgnore]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
     [JsonProperty]
-    private bool hasTargetPosition;
-
-    [JsonProperty]
-    private bool moveFocused;
-
-    [JsonProperty]
     private float movementRadius = 2000;
-
-    [JsonProperty]
-    private bool moveThisHunt = true;
 
     // All of the game entities stored here are probable places where disposed objects come from
     // so they are ignored for now
@@ -244,7 +232,7 @@ public class MicrobeAI
             if (otherMicrobe.Species != microbe.Species
                 && !otherMicrobe.Dead
                 && otherMicrobe.EngulfSize > microbe.EngulfSize
-                * (1.8f - (SpeciesFear) / Constants.MAX_SPECIES_FEAR))
+                * (1.8f - SpeciesFear / Constants.MAX_SPECIES_FEAR))
             {
                 if (predator == null || DistanceFromMe(predator.Translation) >
                     DistanceFromMe(otherMicrobe.Translation))
@@ -278,8 +266,6 @@ public class MicrobeAI
             // Turn off engulf if chunk is gone
             targetChunk = null;
 
-            hasTargetPosition = false;
-
             // You got a consumption, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
             {
@@ -288,8 +274,6 @@ public class MicrobeAI
 
             return;
         }
-
-        hasTargetPosition = true;
 
         // Always set target Position, for use later in AI
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
@@ -360,7 +344,7 @@ public class MicrobeAI
         // deposits being a lot smaller compared to the microbes
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
 
-        //If we are still engulfing for some reason, stop
+        // If we are still engulfing for some reason, stop
         microbe.EngulfMode = false;
 
         float compoundDifference = microbe.TotalAbsorbedCompounds.SumValues();
@@ -387,7 +371,7 @@ public class MicrobeAI
             }
 
             // There's a chance to stop for a bit and letting nutrients soak in
-            // More opportunistic species will do this less. 
+            // More opportunistic species will do this less.
             if (random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM)
                 > SpeciesOpportunism)
             {
@@ -425,12 +409,11 @@ public class MicrobeAI
 
         var randDist = random.Next(2.0f * SpeciesFear, movementRadius);
         targetPosition = microbe.Translation
-            + new Vector3((Mathf.Cos(previousAngle + turn) * randDist),
+            + new Vector3(Mathf.Cos(previousAngle + turn) * randDist,
                 0,
-                (Mathf.Sin(previousAngle + turn) * randDist));
+                Mathf.Sin(previousAngle + turn) * randDist);
         previousAngle = previousAngle + turn;
         microbe.LookAtPoint = targetPosition;
-        hasTargetPosition = true;
         SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
     }
 
@@ -443,7 +426,7 @@ public class MicrobeAI
     {
         return (
             (SpeciesAggression == Constants.MAX_SPECIES_AGRESSION)
-            || ((microbe.EngulfSize / targetMicrobe.EngulfSize) >= Constants.ENGULF_SIZE_RATIO_REQ)
+            || (microbe.EngulfSize / targetMicrobe.EngulfSize >= Constants.ENGULF_SIZE_RATIO_REQ )
         );
     }
 
@@ -452,12 +435,12 @@ public class MicrobeAI
         return (target - microbe.Translation).LengthSquared();
     }
 
-    private static bool RollCheck(float ourStat, float dc, Random random)
+    private bool RollCheck(float ourStat, float dc, Random random)
     {
         return random.Next(0.0f, dc) <= ourStat;
     }
 
-    private static bool RollReverseCheck(float ourStat, float dc, Random random)
+    private bool RollReverseCheck(float ourStat, float dc, Random random)
     {
         return ourStat <= random.Next(0.0f, dc);
     }
