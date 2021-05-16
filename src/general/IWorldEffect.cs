@@ -34,29 +34,17 @@ public class GlucoseReductionEffect : IWorldEffect
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
+        var glucose = SimulationParameters.Instance.GetCompound("glucose");
         foreach (var key in targetWorld.Map.Patches.Keys)
         {
             var patch = targetWorld.Map.Patches[key];
 
             // If there are microbes to be eating up the primordial soup, reduce the milk
-            if (patch.SpeciesInPatch.Keys.Count > 0)
+            if (patch.SpeciesInPatch.Count > 0)
             {
-                Compound glucose = null;
-
-                foreach (var compound in patch.Biome.Compounds.Keys)
-                {
-                    if (compound.InternalName == "glucose")
-                    {
-                        glucose = compound;
-                    }
-                }
-
-                if (glucose != null)
-                {
-                    var toMod = patch.Biome.Compounds[glucose];
-                    toMod.Density = Math.Max(toMod.Density * Constants.GLUCOSE_REDUCTION_RATE, Constants.GLUCOSE_MIN);
-                    patch.Biome.Compounds[glucose] = toMod;
-                }
+                var glucoseValue = patch.Biome.Compounds[glucose];
+                glucoseValue.Density = Math.Max(glucoseValue.Density * Constants.GLUCOSE_REDUCTION_RATE, Constants.GLUCOSE_MIN);
+                patch.Biome.Compounds[glucose] = glucoseValue;
             }
         }
     }
