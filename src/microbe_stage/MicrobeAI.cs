@@ -107,27 +107,33 @@ public class MicrobeAI
         predatoryMicrobes.Clear();
         preyMicrobes.Clear();
         chunkList.Clear();
-                
-        GetNearestPredatorItem(data.AllMicrobes);
-        targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes);
-        var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
+        try
+        {
+            GetNearestPredatorItem(data.AllMicrobes);
+            targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes);
+            var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
 
-        if (predator != null && 
-            DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
-        {
-            PreyFlee(random);
+            if (predator != null &&
+                DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
+            {
+                PreyFlee(random);
+            }
+            else if (targetChunk != null &&
+                (targetChunk.Translation - microbe.Translation).LengthSquared()
+                <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+            {
+                PursueAndConsumeChunks(targetChunk, random);
+            }
+            else if (possiblePrey != null)
+            {
+                PursuePrey(possiblePrey);
+            }
+            else
+            {
+                RunAndTumble(random);
+            }
         }
-        else if (targetChunk != null && 
-            (targetChunk.Translation - microbe.Translation).LengthSquared() 
-            <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
-        {
-            PursueAndConsumeChunks(targetChunk, random);
-        }
-        else if (possiblePrey != null)
-        {
-            PursuePrey(possiblePrey);
-        }
-        else
+        catch
         {
             RunAndTumble(random);
         }
