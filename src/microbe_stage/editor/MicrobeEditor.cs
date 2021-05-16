@@ -265,8 +265,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     /// <summary>
     ///   Hover hexes and models are only shown if this is true. This is saved to make this work better when the player
-    ///   was in the cell editor tab and saved, though that doesn't seem to work:
-    ///   https://github.com/Revolutionary-Games/Thrive/issues/1750
+    ///   was in the cell editor tab and saved.
     /// </summary>
     public bool ShowHover { get; set; }
 
