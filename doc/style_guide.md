@@ -329,7 +329,7 @@ Other files
 - For translations see the specific instructions in
   [working_with_translations.md](working_with_translations.md)
 
-- For PRs don't don't run / include locale `.po` file changes if there
+- For PRs don't run / include locale `.po` file changes if there
   are only changes to the reference line numbers. This is done to
   reduce the amount of changes PRs contain, but also means that the
   reference line numbers are sometimes slightly out of date.
