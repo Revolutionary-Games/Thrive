@@ -796,7 +796,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
                 var dataPoint = new DataPoint
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, GetCompoundAmount(patch, entry.Key.InternalName)),
+                    Value = new Vector2((float)snapshot.TimePeriod, GetCompoundAmount(
+                        patch, snapshot.Biome, entry.Key.InternalName)),
                     MarkerColour = dataset.DataColour,
                 };
 
@@ -1886,23 +1887,28 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private float GetCompoundAmount(Patch patch, string compoundName)
     {
+        return GetCompoundAmount(patch, patch.Biome, compoundName);
+    }
+
+    private float GetCompoundAmount(Patch patch, BiomeConditions biome, string compoundName)
+    {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 
         switch (compoundName)
         {
             case "sunlight":
-                return patch.Biome.Compounds[compound].Dissolved * 100;
+                return biome.Compounds[compound].Dissolved * 100;
             case "oxygen":
-                return patch.Biome.Compounds[compound].Dissolved * 100;
+                return biome.Compounds[compound].Dissolved * 100;
             case "carbondioxide":
-                return patch.Biome.Compounds[compound].Dissolved * 100;
+                return biome.Compounds[compound].Dissolved * 100;
             case "nitrogen":
-                return patch.Biome.Compounds[compound].Dissolved * 100;
+                return biome.Compounds[compound].Dissolved * 100;
             case "iron":
                 return patch.GetTotalChunkCompoundAmount(compound);
             default:
-                return patch.Biome.Compounds[compound].Density *
-                    patch.Biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
+                return biome.Compounds[compound].Density *
+                    biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
                         compound);
         }
     }
