@@ -196,6 +196,9 @@ Other files
 - New JSON files should prefer PascalCase keys. Existing JSON files
   should stick to what other parts of that file use.
 
+- For translations see the specific instructions in
+  [working_with_translations.md](working_with_translations.md)
+
 Git
 ---
 
