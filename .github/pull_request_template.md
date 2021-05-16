@@ -13,10 +13,11 @@ If this is not related to an issue, it should be described in more detail why th
 
 Note: before starting this checklist the issue should be marked as non-draft.
 
-- [ ] PR author has checked that this PR works as intended:
+- [ ] PR author has checked that this PR works as intended and doesn't
+      break existing features:
       https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
       (this is important as to not waste the time of Thrive team
-      members)
+      members reviewing this PR)
 - [ ] Initial code review passed
 - [ ] Functionality is confirmed working by another person (see above checklist link)
 - [ ] Final code review is passed and code conforms to the 
