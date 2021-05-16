@@ -785,21 +785,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Cancel moving an organelle
+    ///   Cancel the current editor action
     /// </summary>
     /// <returns>True when the input is consumed</returns>
     [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
-    public bool CancelOrganelleMove()
+    public bool CancelCurrentAction()
     {
-        if (MovingOrganelle == null)
+        if (MovingOrganelle != null)
         {
-            return false;
+            editedMicrobeOrganelles.Add(MovingOrganelle);
+            MovingOrganelle = null;
+            gui.UpdateCancelButtonVisibility();
+            return true;
         }
 
-        editedMicrobeOrganelles.Add(MovingOrganelle);
-        MovingOrganelle = null;
-        gui.UpdateCancelButtonVisibility();
-        return true;
+        return false;
     }
 
     public void RemoveOrganelle(Hex hex)
@@ -1183,9 +1183,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(CurrentPatch);
 
-        // Reset this, GUI will tell us to enable it again
-        ShowHover = false;
-
         UpdatePatchBackgroundImage();
 
         gui.SetMap(CurrentGame.GameWorld.Map);
@@ -1200,6 +1197,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send undo button to the tutorial system
         gui.SendUndoToTutorial(TutorialState);
+
+        gui.UpdateCancelButtonVisibility();
     }
 
     private void InitEditorFresh()

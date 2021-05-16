@@ -1006,18 +1006,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Updates the visibility of the move cancel button.
+    ///   Updates the visibility of the current action cancel button.
     /// </summary>
     public void UpdateCancelButtonVisibility()
     {
-        if (editor.MovingOrganelle == null)
-        {
-            cancelButton.Hide();
-        }
-        else
-        {
+        cancelButton.Hide();
+
+        if (editor.MovingOrganelle != null)
             cancelButton.Show();
-        }
     }
 
     public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
@@ -1152,10 +1148,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GD.Print("Editor action is now: " + editor.ActiveActionName);
     }
 
-    internal void OnCancelMoveClicked()
+    internal void OnCancelActionClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        editor.CancelOrganelleMove();
+        editor.CancelCurrentAction();
     }
 
     internal void OnFinishEditingClicked()

@@ -107,7 +107,7 @@ __meta__ = {
 
 [node name="cancelButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
-Description = "CANCEL_ORGANELLE_MOVE"
+Description = "CANCEL_CURRENT_ACTION"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/finishButton/MarginContainer/VBoxContainer/Description")
 
 [node name="finishButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]

@@ -2230,7 +2230,7 @@ alignment = 2
 
 [node name="CancelButton" type="Button" parent="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer"]
 visible = false
-margin_right = 223.0
+margin_right = 237.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 focus_mode = 0
@@ -2242,7 +2242,7 @@ custom_colors/font_color_disabled = Color( 0.498039, 0.529412, 0.541176, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 shortcut_in_tooltip = false
 enabled_focus_mode = 0
-text = "CANCEL_MOVE_CAPITAL"
+text = "CANCEL_ACTION_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3864,7 +3864,7 @@ __meta__ = {
 [connection signal="text_entered" from="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer/SpeciesName" to="MicrobeEditorGUI" method="OnSpeciesNameTextEntered"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/BottomRight" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/BottomRight" to="MicrobeEditorGUI" method="OnMouseExit"]
-[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/CancelButton" to="MicrobeEditorGUI" method="OnCancelMoveClicked"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/CancelButton" to="MicrobeEditorGUI" method="OnCancelActionClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/ConfirmButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
 [connection signal="confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseEnter"]
