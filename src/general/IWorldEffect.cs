@@ -43,8 +43,7 @@ public class GlucoseReductionEffect : IWorldEffect
             // If there are microbes to be eating up the primordial soup, reduce the milk
             if (patch.SpeciesInPatch.Count > 0)
             {
-                EnvironmentalCompoundProperties glucoseValue;
-                if (patch.Biome.Compounds.TryGetValue(glucose, out glucoseValue))
+                if (patch.Biome.Compounds.TryGetValue(glucose, out EnvironmentalCompoundProperties glucoseValue))
                 {
                     glucoseValue.Density = Math.Max(glucoseValue.Density * Constants.GLUCOSE_REDUCTION_RATE,
                         Constants.GLUCOSE_MIN);
