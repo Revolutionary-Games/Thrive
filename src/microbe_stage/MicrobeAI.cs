@@ -14,8 +14,6 @@ using Newtonsoft.Json;
 /// </remarks>
 public class MicrobeAI
 {
-    private readonly Compound atp;
-
     // ReSharper disable once NotAccessedField.Local
     private readonly Compound iron;
     private readonly Compound oxytoxy;
@@ -47,30 +45,11 @@ public class MicrobeAI
     [JsonIgnore]
     private Microbe predator;
 
-    // Prey and predator lists
-    [JsonIgnore]
-    private List<Microbe> predatoryMicrobes = new List<Microbe>();
-
     [JsonProperty]
     private float previousAngle;
 
     [JsonIgnore]
-    private Microbe prey;
-
-    [JsonIgnore]
-    private Microbe previousPrey;
-
-    [JsonIgnore]
-    private List<Microbe> preyMicrobes = new List<Microbe>();
-
-    [JsonIgnore]
-    private bool preyPegged;
-
-    [JsonIgnore]
     private FloatingChunk targetChunk;
-
-    [JsonIgnore]
-    private FloatingChunk previousChunk;
 
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
@@ -85,7 +64,6 @@ public class MicrobeAI
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-        atp = SimulationParameters.Instance.GetCompound("atp");
         iron = SimulationParameters.Instance.GetCompound("iron");
     }
 
@@ -104,7 +82,6 @@ public class MicrobeAI
         _ = delta;
 
         // Clear the lists
-        predatoryMicrobes.Clear();
         preyMicrobes.Clear();
         chunkList.Clear();
         try
@@ -142,11 +119,6 @@ public class MicrobeAI
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
-    /// <summary>
-    /// Gets the nearest chunk. And builds a list on chunkList
-    /// </summary>
-    /// <returns>The nearest chunk item.</returns>
-    /// <param name="allChunks">All chunks the AI knows of.</param>
     private FloatingChunk GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes)
     {
         FloatingChunk chosenChunk = null;
@@ -183,7 +155,7 @@ public class MicrobeAI
             }
         }
 
-        //Don't bother with chunks when there's a lot of microbes to compete with
+        // Don't bother with chunks when there's a lot of microbes to compete with
         var numRivals = 0;
         foreach (var rival in allMicrobes)
         {
@@ -277,7 +249,7 @@ public class MicrobeAI
             if (otherMicrobe.Species != microbe.Species 
                 && !otherMicrobe.Dead 
                 && otherMicrobe.EngulfSize > microbe.EngulfSize 
-                * (1.8f - ((float)SpeciesFear) / Constants.MAX_SPECIES_FEAR))
+                * (1.8f - (SpeciesFear) / Constants.MAX_SPECIES_FEAR))
             {
                 // You are bigger then me and i am afraid of that
                 predatoryMicrobes.Add(otherMicrobe);
@@ -324,7 +296,6 @@ public class MicrobeAI
             return;
         }
 
-        //microbe.LookAtPoint = targetPosition;
         hasTargetPosition = true;
 
         // Always set target Position, for use later in AI
@@ -337,8 +308,8 @@ public class MicrobeAI
         // Run specifically away
         try
         {
-            //A lazy algorithm for running away semi-randomly. Microbe picks a random point around
-            //itself to flee to, but will repick if that point ends up too close to the attacker.
+            // A lazy algorithm for running away semi-randomly. Microbe picks a random point around
+            // itself to flee to, but will repick if that point ends up too close to the attacker.
             if ((predator.Translation - targetPosition).LengthSquared() < 2500.0)
             {
                 var fleeSize = 1500.0f;
@@ -346,13 +317,13 @@ public class MicrobeAI
                         random.Next(-fleeSize, fleeSize)) * microbe.Translation;
                 microbe.LookAtPoint = targetPosition;
             }
-            //If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
+            // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
             if (DistanceFromMe(predator.Translation) < 100.0f && 
                 RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
             {
                 MoveWithRandomTurn(2.5f, 3.0f, random);
             }
-            //No matter what, I want to make sure I'm moving
+            // No matter what, I want to make sure I'm moving
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
         catch (ObjectDisposedException)
@@ -413,14 +384,14 @@ public class MicrobeAI
         // If positive last step you gained compounds, so let's stick around
         if (compoundDifference > 0)
         {
-            //There's a decent chance to turn most of the way around
+            // There's a decent chance to turn most of the way around
             if (random.Next(0, 10) < 4)
             {
                 MoveWithRandomTurn(0.0f, 3.0f, random);
             }
-            //There's a chance to stop for a bit and letting nutrients soak in
-            //More opportunistic species will do this less. 
-            if(random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM) 
+            // There's a chance to stop for a bit and letting nutrients soak in
+            // More opportunistic species will do this less. 
+            if(random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM)
                 > SpeciesOpportunism)
             {
                 SetMoveSpeed(0.0f);
@@ -457,8 +428,8 @@ public class MicrobeAI
         
         var randDist = random.Next(2.0f * SpeciesFear, movementRadius);
         targetPosition = microbe.Translation 
-            + new Vector3((Mathf.Cos(previousAngle + turn) * randDist), 
-            0, 
+            + new Vector3((Mathf.Cos(previousAngle + turn) * randDist),
+            0,
             (Mathf.Sin(previousAngle + turn) * randDist));
         previousAngle = previousAngle + turn;
         microbe.LookAtPoint = targetPosition;
@@ -474,7 +445,7 @@ public class MicrobeAI
     private Boolean ICanTryToEatMicrobe(Microbe targetMicrobe)
     {
         return (
-            (SpeciesAggression == Constants.MAX_SPECIES_AGRESSION) 
+            (SpeciesAggression == Constants.MAX_SPECIES_AGRESSION)
             || ((microbe.EngulfSize / targetMicrobe.EngulfSize) >= Constants.ENGULF_SIZE_RATIO_REQ)
         );
     }
