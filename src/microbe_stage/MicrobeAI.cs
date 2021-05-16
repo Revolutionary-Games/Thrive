@@ -82,7 +82,6 @@ public class MicrobeAI
         _ = delta;
 
         // Clear the lists
-        preyMicrobes.Clear();
         chunkList.Clear();
         try
         {
@@ -129,9 +128,6 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-            if (chunk == previousChunk)
-                continue;
-
             if ((SpeciesOpportunism == Constants.MAX_SPECIES_OPPORTUNISM) ||
                 ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
                     chunk.Size))
@@ -156,22 +152,25 @@ public class MicrobeAI
         }
 
         // Don't bother with chunks when there's a lot of microbes to compete with
-        var numRivals = 0;
-        foreach (var rival in allMicrobes)
+        if (chosenChunk != null)
         {
-            if (rival != microbe)
+            var numRivals = 0;
+            foreach (var rival in allMicrobes)
             {
-                var rivalDistance = (rival.Translation - chosenChunk.Translation).LengthSquared();
-                if (rivalDistance < 500.0f && 
-                    rivalDistance < (microbe.Translation - chosenChunk.Translation).LengthSquared())
+                if (rival != microbe)
                 {
-                    numRivals++;
+                    var rivalDistance = (rival.Translation - chosenChunk.Translation).LengthSquared();
+                    if (rivalDistance < 500.0f &&
+                        rivalDistance < (microbe.Translation - chosenChunk.Translation).LengthSquared())
+                    {
+                        numRivals++;
+                    }
                 }
             }
-        }
-        if (numRivals > 3)
-        {
-            chosenChunk = null;
+            if (numRivals > 3)
+            {
+                chosenChunk = null;
+            }
         }
 
         return chosenChunk;
@@ -195,17 +194,12 @@ public class MicrobeAI
 
         foreach (var otherMicrobe in allMicrobes)
         {
-            if (otherMicrobe == microbe || otherMicrobe == previousPrey)
-                continue;
-
             if (!otherMicrobe.Dead)
             {
                 if (DistanceFromMe(otherMicrobe.Translation) < 
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION) 
                     && ICanTryToEatMicrobe(otherMicrobe))
                 {
-                    preyMicrobes.Add(otherMicrobe);
-
                     var thisPosition = otherMicrobe.Translation;
 
                     if (setPosition)
@@ -251,9 +245,6 @@ public class MicrobeAI
                 && otherMicrobe.EngulfSize > microbe.EngulfSize 
                 * (1.8f - (SpeciesFear) / Constants.MAX_SPECIES_FEAR))
             {
-                // You are bigger then me and i am afraid of that
-                predatoryMicrobes.Add(otherMicrobe);
-
                 if (predator == null || DistanceFromMe(predator.Translation) >
                     DistanceFromMe(otherMicrobe.Translation))
                 {
@@ -274,6 +265,8 @@ public class MicrobeAI
 
         try
         {
+
+            // ReSharper disable once RedundantAssignment
             compounds = chunk.ContainedCompounds;
             targetPosition = chunk.Translation 
                 + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
@@ -332,7 +325,7 @@ public class MicrobeAI
             predator = null;
             return;
         }
-        
+
         // Freak out and fire toxins everywhere
         if (SpeciesAggression > SpeciesFear && RollReverseCheck(SpeciesFocus, 400.0f, random))
         {
@@ -391,7 +384,7 @@ public class MicrobeAI
             }
             // There's a chance to stop for a bit and letting nutrients soak in
             // More opportunistic species will do this less. 
-            if(random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM)
+            if (random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM)
                 > SpeciesOpportunism)
             {
                 SetMoveSpeed(0.0f);
@@ -421,7 +414,7 @@ public class MicrobeAI
     private void MoveWithRandomTurn(float minTurn, float maxTurn, Random random)
     {
         var turn = random.Next(minTurn, maxTurn);
-        if(random.Next(2) == 1)
+        if (random.Next(2) == 1)
         {
             turn = -turn;
         }
