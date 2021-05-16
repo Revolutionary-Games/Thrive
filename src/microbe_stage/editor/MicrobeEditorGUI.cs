@@ -1010,10 +1010,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     public void UpdateCancelButtonVisibility()
     {
-        cancelButton.Hide();
-
-        if (editor.MovingOrganelle != null)
-            cancelButton.Show();
+        cancelButton.Visible = editor.CanCancelAction;
     }
 
     public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)

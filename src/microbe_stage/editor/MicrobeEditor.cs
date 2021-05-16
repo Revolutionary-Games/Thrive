@@ -334,6 +334,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
+    /// <summary>
+    ///   If true an editor action is active and can be cancelled. Currently only checks for organelle move.
+    /// </summary>
+    [JsonIgnore]
+    public bool CanCancelAction => MovingOrganelle != null;
+
     [JsonIgnore]
     public Node GameStateRoot => this;
 
@@ -784,7 +790,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Cancel the current editor action
+    ///   Cancels the current editor action
     /// </summary>
     /// <returns>True when the input is consumed</returns>
     [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
@@ -1181,6 +1187,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(CurrentPatch);
+
+        // Reset this, GUI will tell us to enable it again
+        ShowHover = false;
 
         UpdatePatchBackgroundImage();
 
