@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 
 /// <summary>
 ///   Time dependent effects running on a world
