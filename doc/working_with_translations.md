@@ -55,6 +55,27 @@ Always call `TranslationServer.Translate()` for strings that should be localized
 Other than that, it is the same principle has for the scene files:
 once you are done, write down your strings somewhere And change them in the code into keys.
 
+Note that due to the way the text extraction works, only string
+literals work in the `Translate` call, using variables or string
+concatenation, won't extract things properly. For example this is the
+correct usage: `TranslationServer.Translate("A_TRANSLATION_KEY");`
+
+The translation keys need to be named all uppercase with underscores
+(`_`) used to separate words. If a general name (that may be used in
+multiple places) is used in a translation key, and there is
+punctuation after it, the key should have a `_DOT` or `_COLON` or
+whatever the punctuation is as a suffix.
+
+Generally, general translation keys should be used so that they can be
+used in many different contexts to reduce the required translation
+effort. Note that some languages can't use the same word as in English
+in different context, so the translation keys should be context
+specific. For example different keys should be used for the word
+"play" when used in music playing context and when used in game
+playing context. In contexts where general names are not good, for
+example in the previous example, the context should be included in the
+translation key like `PLAY_MUSIC`.
+
 ### Updating the localizations
 
 Once you are done adding content into the game, go into the scripts folder and

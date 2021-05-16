@@ -93,6 +93,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath FinishButtonPath;
 
     [Export]
+    public NodePath CancelButtonPath;
+
+    [Export]
     public NodePath SymmetryButtonPath;
 
     [Export]
@@ -322,6 +325,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private LineEdit speciesNameEdit;
 
     private Button finishButton;
+    private Button cancelButton;
 
     // ReSharper disable once NotAccessedField.Local
     private TextureButton symmetryButton;
@@ -457,6 +461,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         newCellButton = GetNode<TextureButton>(NewCellButtonPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         finishButton = GetNode<Button>(FinishButtonPath);
+        cancelButton = GetNode<Button>(CancelButtonPath);
 
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
@@ -1000,6 +1005,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
+    /// <summary>
+    ///   Updates the visibility of the current action cancel button.
+    /// </summary>
+    public void UpdateCancelButtonVisibility()
+    {
+        cancelButton.Visible = editor.CanCancelAction;
+    }
+
     public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
     {
         organelleMenu.SelectedOrganelle = selectedOrganelle;
@@ -1022,6 +1035,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public void OnMovePressed()
     {
         editor.StartOrganelleMove(organelleMenu.SelectedOrganelle);
+
+        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
+        UpdateCancelButtonVisibility();
     }
 
     public void OnDeletePressed()
@@ -1129,8 +1145,15 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GD.Print("Editor action is now: " + editor.ActiveActionName);
     }
 
+    internal void OnCancelActionClicked()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        editor.CancelCurrentAction();
+    }
+
     internal void OnFinishEditingClicked()
     {
+        // Can't finish an organism edit if an organelle is being moved
         if (editor.MovingOrganelle != null)
         {
             OnActionBlockedWhileMoving();
@@ -1718,6 +1741,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             toolTipManager.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
         finishButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
+        cancelButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("cancelButton", "editor"), tooltipCallbacks);
         menuButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
 
