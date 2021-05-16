@@ -424,7 +424,7 @@ public class MicrobeAI
         }
 
         var randDist = random.Next(2.0f * SpeciesFear, movementRadius);
-        targetPosition = microbe.Translation 
+        targetPosition = microbe.Translation
             + new Vector3((Mathf.Cos(previousAngle + turn) * randDist),
                 0,
                 (Mathf.Sin(previousAngle + turn) * randDist));
