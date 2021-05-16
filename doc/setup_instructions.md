@@ -558,6 +558,19 @@ files to check.
 
 ## Additional Tips
 
+### Troubleshooting regarding Godot automatically breaking
+
+Godot sometimes likes to break your files for no reason. If you keep
+the Godot editor open while pulling new changes or changing branches,
+it's very likely to break so it is recommended to close Godot when
+doing such operations that change files outside the Godot editor, and
+then reopening the editor afterwards.
+
+Because Godot sometimes just breaks files, before reporting an issue
+building the game please check that `git status` returns no
+changes. If there are changes reported that you didn't make manually,
+then see the section below about cleaning Godot.
+
 ### Troubleshooting (Windows)
 
 If Godot still can't build the full game after following the
