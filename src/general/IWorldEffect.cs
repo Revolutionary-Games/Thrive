@@ -50,7 +50,7 @@ public class GlucoseReductionEffect : IWorldEffect
             if (glucose != null)
             {
                 var toMod = patch.Biome.Compounds[glucose];
-                toMod.Density *= Constants.GLUCOSE_REDUCTION_RATE;
+                toMod.Density = Math.Max(toMod.Density * Constants.GLUCOSE_REDUCTION_RATE, Constants.GLUCOSE_MIN);
                 patch.Biome.Compounds[glucose] = toMod;
             }
         }

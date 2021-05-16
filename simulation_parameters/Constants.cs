@@ -396,6 +396,7 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
+    public const float GLUCOSE_MIN = 0.00000f;
 
     public const int MAX_SPAWNS_PER_FRAME = 2;
     public const int MAX_DESPAWNS_PER_FRAME = 2;
