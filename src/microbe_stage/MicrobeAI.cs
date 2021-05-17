@@ -135,7 +135,7 @@ public class MicrobeAI
                 ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
                     chunk.Size))
             {
-                if(chunk.ContainedCompounds.Compounds.Where(x => microbe.Compounds.IsUseful(x.Key)).Any())
+                if (chunk.ContainedCompounds.Compounds.Where(x => microbe.Compounds.IsUseful(x.Key)).Any())
                 {
                     chunkList.Add(chunk);
                     var thisPosition = chunk.Translation;
