@@ -16,6 +16,7 @@ public class MicrobeAI
 {
     // ReSharper disable once NotAccessedField.Local
     private readonly Compound atp;
+
     // ReSharper disable once NotAccessedField.Local
     private readonly Compound iron;
     private readonly Compound oxytoxy;
@@ -317,7 +318,7 @@ public class MicrobeAI
                 RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
             {
                 LaunchToxin(predator);
-            } 
+            }
 
             // No matter what, I want to make sure I'm moving
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
@@ -326,7 +327,6 @@ public class MicrobeAI
         {
             // Our predator is dead
             predator = null;
-            return;
         }
     }
 
@@ -412,7 +412,7 @@ public class MicrobeAI
             {
                 microbe.LookAtPoint = target.Translation;
                 microbe.QueueEmitToxin(oxytoxy);
-            } 
+            }
             else
             {
                 DebugFlash();
