@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -90,7 +91,7 @@ public class MicrobeAI
             {
                 PreyFlee(random);
             }
-            else if (!microbe.Membrane.Type.CellWall && targetChunk != null &&
+            else if (targetChunk != null &&
                 (targetChunk.Translation - microbe.Translation).LengthSquared()
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
             {
@@ -118,6 +119,12 @@ public class MicrobeAI
     {
         FloatingChunk chosenChunk = null;
 
+        // If the microbe cannot absorb, no need for this
+        if (microbe.Membrane.Type.CellWall)
+        {
+            return null;
+        }
+
         Vector3 testPosition = new Vector3(0, 0, 0);
         bool setPosition = true;
 
@@ -128,21 +135,24 @@ public class MicrobeAI
                 ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
                     chunk.Size))
             {
-                chunkList.Add(chunk);
-                var thisPosition = chunk.Translation;
-
-                if (setPosition)
+                if(chunk.ContainedCompounds.Compounds.Where(x => microbe.Compounds.IsUseful(x.Key)).Any())
                 {
-                    testPosition = thisPosition;
-                    setPosition = false;
-                    chosenChunk = chunk;
-                }
+                    chunkList.Add(chunk);
+                    var thisPosition = chunk.Translation;
 
-                if ((testPosition - microbe.Translation).LengthSquared() >
-                    (thisPosition - microbe.Translation).LengthSquared())
-                {
-                    testPosition = thisPosition;
-                    chosenChunk = chunk;
+                    if (setPosition)
+                    {
+                        testPosition = thisPosition;
+                        setPosition = false;
+                        chosenChunk = chunk;
+                    }
+
+                    if ((testPosition - microbe.Translation).LengthSquared() >
+                        (thisPosition - microbe.Translation).LengthSquared())
+                    {
+                        testPosition = thisPosition;
+                        chosenChunk = chunk;
+                    }
                 }
             }
         }
@@ -351,7 +361,12 @@ public class MicrobeAI
         // If we are still engulfing for some reason, stop
         microbe.EngulfMode = false;
 
-        float compoundDifference = microbe.TotalAbsorbedCompounds.SumValues();
+        var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
+        float compoundDifference = 0.0f;
+        foreach (KeyValuePair<Compound, float> compound in usefulCompounds)
+        {
+            compoundDifference += compound.Value;
+        }
 
         // If food density is going down, back up and see if there's some more
         if (compoundDifference < 0 && random.Next(0, 10) < 9)
