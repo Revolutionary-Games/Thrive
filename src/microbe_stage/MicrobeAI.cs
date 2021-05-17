@@ -406,7 +406,7 @@ public class MicrobeAI
     private void LaunchToxin(Microbe target)
     {
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-                (microbe.Translation - target.Translation).LengthSquared() <= SpeciesFocus * 10.0f)
+            (microbe.Translation - target.Translation).LengthSquared() <= SpeciesFocus * 10.0f)
         {
             if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
             {
