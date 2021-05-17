@@ -77,7 +77,11 @@ public class MicrobeAI
             targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes);
             var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
 
-            if (predator != null &&
+            if (microbe.IsBeingEngulfed)
+            {
+                SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            }
+            else if (predator != null &&
                 DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
             {
                 PreyFlee(random);
