@@ -94,7 +94,7 @@ public class MicrobeAI
             }
             else if (possiblePrey != null)
             {
-                PursuePrey(possiblePrey);
+                EngagePrey(possiblePrey);
             }
             else
             {
@@ -307,6 +307,11 @@ public class MicrobeAI
                 MoveWithRandomTurn(2.5f, 3.0f, random);
             }
 
+            if (SpeciesAggression > SpeciesFear && RollReverseCheck(SpeciesFocus, 400.0f, random))
+            {
+                LaunchToxin(predator);
+            }
+
             // No matter what, I want to make sure I'm moving
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
@@ -316,27 +321,15 @@ public class MicrobeAI
             predator = null;
             return;
         }
-
-        // Freak out and fire toxins everywhere
-        if (SpeciesAggression > SpeciesFear && RollReverseCheck(SpeciesFocus, 400.0f, random))
-        {
-            if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-                (microbe.Translation - targetPosition).LengthSquared() <= SpeciesFocus * 10.0f)
-            {
-                if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
-                {
-                    microbe.QueueEmitToxin(oxytoxy);
-                }
-            }
-        }
     }
 
-    private void PursuePrey(Microbe target)
+    private void EngagePrey(Microbe target)
     {
         microbe.EngulfMode = target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
             microbe.EngulfSize && DistanceFromMe(target.Translation) < 50.0f;
         targetPosition = target.Translation;
         microbe.LookAtPoint = targetPosition;
+        LaunchToxin(target);
     }
 
     // For doing run and tumble
@@ -400,6 +393,18 @@ public class MicrobeAI
         {
             microbe.EngulfMode = true;
             ticksSinceLastToggle = 0;
+        }
+    }
+
+    private void LaunchToxin(Microbe target)
+    {
+        if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
+                (microbe.Translation - target.Translation).LengthSquared() <= SpeciesFocus * 10.0f)
+        {
+            if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+            {
+                microbe.QueueEmitToxin(oxytoxy);
+            }
         }
     }
 
