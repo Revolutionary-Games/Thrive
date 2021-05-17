@@ -105,6 +105,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="cancelButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+Description = "CANCEL_CURRENT_ACTION"
+DescriptionLabelPath = NodePath("../../../GroupHolder/editor/finishButton/MarginContainer/VBoxContainer/Description")
+
 [node name="finishButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
 Description = "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
@@ -3791,7 +3796,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 360.0
-margin_bottom = 250.0
+margin_bottom = 282.0
 mouse_filter = 2
 custom_constants/separation = 15
 
