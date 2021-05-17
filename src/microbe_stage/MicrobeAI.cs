@@ -89,7 +89,7 @@ public class MicrobeAI
 			{
 				PreyFlee(random);
 			}
-			else if (targetChunk != null &&
+			else if (!microbe.Membrane.Type.CellWall && targetChunk != null &&
 				(targetChunk.Translation - microbe.Translation).LengthSquared()
 				<= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
 			{
