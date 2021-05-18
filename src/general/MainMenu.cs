@@ -191,9 +191,9 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        var duration = IsReturningToMenu ? 0.3f : 0.5f;
-
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, duration, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, IsReturningToMenu ?
+            0.3f :
+            0.5f, false);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
 
         // Start music after the video

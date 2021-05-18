@@ -28,6 +28,7 @@ layer = 3
 script = ExtResource( 23 )
 
 [node name="GroupHolder" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -120,7 +121,7 @@ margin_bottom = 168.0
 [node name="VBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer" index="0"]
 margin_bottom = 152.0
 
-[node name="ProcessesDescription" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="2"]
@@ -539,13 +540,18 @@ ProcessesDescription = "RUSTICYANIN_PROCESSES_DESCRIPTION"
 Description = "RUSTICYANIN_DESCRIPTION"
 MutationPointCost = 45
 
+[node name="MarginContainer" parent="GroupHolder/organelleSelection/rusticyanin" index="0"]
+margin_bottom = 220.0
+
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer" index="0"]
 margin_bottom = 204.0
 
+[node name="ModifierList" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="3"]
+margin_bottom = 138.0
+
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_top = 50.0
-margin_right = 351.0
-margin_bottom = 70.0
+margin_right = 318.0
+margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
@@ -581,9 +587,9 @@ texture = ExtResource( 12 )
 expand = true
 
 [node name="osmoregulation_cost" type="HBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ModifierList" index="1"]
-margin_top = 74.0
-margin_right = 351.0
-margin_bottom = 94.0
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
@@ -615,6 +621,14 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="4"]
+margin_top = 153.0
+margin_bottom = 157.0
+
+[node name="Description" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="5"]
+margin_top = 172.0
+margin_bottom = 189.0
 
 [node name="nitrogenase" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -952,7 +966,7 @@ DisplayName = "PREDATORY_PILUS"
 Description = "PREDATORY_PILUS_DESCRIPTION"
 MutationPointCost = 30
 
-[node name="ProcessesDescription" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="2"]
@@ -973,7 +987,7 @@ visible = false
 DisplayName = "CILIA"
 Description = "TO_BE_IMPLEMENTED"
 
-[node name="ProcessesDescription" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="2"]
@@ -1251,6 +1265,7 @@ mouse_filter = 2
 expand = true
 
 [node name="thermoplast" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
 DisplayName = "THERMOPLAST"
 ProcessesDescription = "THERMOPLAST_PROCESSES_DESCRIPTION"
 Description = "THERMOPLAST_DESCRIPTION"
@@ -1746,7 +1761,7 @@ margin_bottom = 173.0
 DisplayName = "BIOLUMINESCENT_VACUOLE"
 Description = "TO_BE_IMPLEMENTED"
 
-[node name="ProcessesDescription" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="2"]
@@ -1779,7 +1794,7 @@ margin_bottom = 264.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer" index="0"]
 margin_bottom = 248.0
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="2"]
@@ -1947,7 +1962,7 @@ margin_bottom = 264.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer" index="0"]
 margin_bottom = 248.0
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="2"]
@@ -2111,7 +2126,7 @@ margin_bottom = 312.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer" index="0"]
 margin_bottom = 296.0
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="2"]
@@ -2346,7 +2361,7 @@ margin_bottom = 264.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer" index="0"]
 margin_bottom = 248.0
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="2"]
@@ -2581,7 +2596,7 @@ margin_bottom = 288.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer" index="0"]
 margin_bottom = 272.0
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer" index="2"]
@@ -2849,7 +2864,7 @@ margin_bottom = 288.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer" index="0"]
 margin_bottom = 272.0
 
-[node name="ProcessesDescription" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="1"]
 visible = false
 
 [node name="ProcessList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="2"]

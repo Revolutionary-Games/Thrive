@@ -51,6 +51,12 @@ public class Compound : IRegistryType
                 "Compound has no name");
         }
 
+        if (string.IsNullOrEmpty(IconPath))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Compound must be provided an icon");
+        }
+
         // Guards against uninitialized alpha
 #pragma warning disable RECS0018
         if (Colour.a == 0.0f)

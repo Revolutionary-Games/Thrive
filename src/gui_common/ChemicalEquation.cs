@@ -22,7 +22,7 @@ public class ChemicalEquation : VBoxContainer
     private IProcessDisplayInfo equationFromProcess;
     private bool showSpinner;
     private Texture equationArrowTexture;
-    private Color defaultTitleColour;
+    private Color defaultTitleColour = Colors.White;
 
     /// <summary>
     ///   For some reason resizing the process panel causes the spinner to reset to the initial rotation, so we use
@@ -90,6 +90,9 @@ public class ChemicalEquation : VBoxContainer
         get => defaultTitleColour;
         set
         {
+            if (defaultTitleColour == value)
+                return;
+
             defaultTitleColour = value;
             if (title != null)
                 UpdateHeader();
@@ -183,12 +186,14 @@ public class ChemicalEquation : VBoxContainer
         spinner.Visible = ShowSpinner;
         title.Text = EquationFromProcess.Name;
 
-        var colour = DefaultTitleColour;
-
         if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds.Count > 0)
-            colour = new Color(1.0f, 0.3f, 0.3f);
-
-        title.AddColorOverride("font_color", colour);
+        {
+            title.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+        }
+        else
+        {
+            title.AddColorOverride("font_color", DefaultTitleColour);
+        }
     }
 
     private void UpdateLeftSide(List<KeyValuePair<Compound, float>> normalInputs)

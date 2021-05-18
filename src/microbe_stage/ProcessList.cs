@@ -15,13 +15,13 @@ public class ProcessList : VBoxContainer
     public bool ShowSpinners { get; set; } = true;
 
     /// <summary>
-    ///   The default color for all the processes title in this list.
+    ///   The default color for all the process titles in this list.
     /// </summary>
     public Color ProcessesTitleColour { get; set; } = Colors.White;
 
     /// <summary>
-    ///   Controls whether the color of all processes title in this list should be turned
-    ///   to red if the processes has any limiting compounds.
+    ///   If true the color of one of the process titles in this list will be changed to red
+    ///   if it has any limiting compounds.
     /// </summary>
     public bool MarkRedOnLimitingCompounds { get; set; }
 

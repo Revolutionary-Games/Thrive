@@ -246,12 +246,14 @@ public class ProcessSystem
 
             var availableInEnvironment = GetDissolvedInBiome(entry.Key, biome);
 
+            var availableRate = availableInEnvironment / entry.Value;
+
             result.AvailableAmounts[entry.Key] = availableInEnvironment;
 
             // More than needed environment value boosts the effectiveness
-            result.AvailableRates[entry.Key] = availableInEnvironment / entry.Value;
+            result.AvailableRates[entry.Key] = availableRate;
 
-            speedFactor *= result.AvailableRates[entry.Key];
+            speedFactor *= availableRate;
 
             result.WritableInputs[entry.Key] = entry.Value;
         }

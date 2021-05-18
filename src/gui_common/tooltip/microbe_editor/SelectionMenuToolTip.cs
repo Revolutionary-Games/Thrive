@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Godot;
 
 /// <summary>
@@ -35,7 +34,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private Label mpLabel;
 
     private Label descriptionLabel;
-    private RichTextLabel processesDescriptionLabel;
+    private CustomRichTextLabel processesDescriptionLabel;
     private VBoxContainer modifierInfoList;
     private ProcessList processList;
 
@@ -77,9 +76,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This supports custom format (for example: "Turns [glucose] into [atp]") where strings inside
-    ///     the square brackets will be parsed and replaced with a predefined template. This is done to
-    ///     make translating feasible.
     ///     NOTE: description string should only be set here and not directly on the rich text label node
     ///     as it will be overidden otherwise.
     ///   </para>
@@ -137,7 +133,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
-        processesDescriptionLabel = GetNode<RichTextLabel>(ProcessesDescriptionLabelPath);
+        processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<ProcessList>(ProcessListPath);
 
@@ -160,7 +156,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
         if (what == NotificationResized)
         {
-            // A workaround to get RichTextLabel's height properly updated on size change
+            // A workaround to get RichTextLabel's height properly update on tooltip size change
+            // See https://github.com/Revolutionary-Games/Thrive/issues/2236
             if (processesDescriptionLabel != null)
                 processesDescriptionLabel.BbcodeText = processesDescriptionLabel.BbcodeText;
         }
@@ -278,52 +275,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         Hide();
     }
 
-    /// <summary>
-    ///   Searches the processes description string for compound name and input action
-    ///   "keys" and turns them into a BBCode string with matching values.
-    /// </summary>
-    private string ParseProcessesDescription()
-    {
-        if (string.IsNullOrEmpty(ProcessesDescription))
-            return string.Empty;
-
-        var inputEvents = Settings.GetCurrentlyAppliedControls();
-
-        var result = Regex.Replace(TranslationServer.Translate(ProcessesDescription), @"\[(.*?)\]", found =>
-        {
-            var parsed = string.Empty;
-
-            var value = found.Groups[1].Value;
-
-            // Parse compound names
-            if (SimulationParameters.Instance.DoesCompoundExist(value))
-            {
-                var compound = SimulationParameters.Instance.GetCompound(value);
-
-                parsed = $"[b]{compound.Name}[/b] [font=res://src/gui_common/fonts/" +
-                    $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
-            }
-
-            // Parse input actions
-            if (InputMap.HasAction(value))
-            {
-                var events = inputEvents.Data[value];
-
-                for (int i = 0; i < events.Count; i++)
-                {
-                    parsed += $"[b][{KeyNames.Translate(events[i].Code)}][/b]";
-
-                    if (events.Count > 1 && i < events.Count - 1)
-                        parsed += " / ";
-                }
-            }
-
-            return parsed;
-        });
-
-        return result;
-    }
-
     private void UpdateName()
     {
         if (nameLabel == null)
@@ -359,8 +310,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (processesDescriptionLabel == null)
             return;
 
-        // Need to delay this so we can get the correct input controls from settings.
-        Invoke.Instance.Queue(() => processesDescriptionLabel.BbcodeText = ParseProcessesDescription());
+        // The text will not be changed if the translated description is exactly the same as the previous one
+        // e.g Switching from English to another language with the string marked as fuzzy in locale file
+        processesDescriptionLabel.ExtendedBbcode = TranslationServer.Translate(ProcessesDescription);
     }
 
     private void UpdateMpCost()

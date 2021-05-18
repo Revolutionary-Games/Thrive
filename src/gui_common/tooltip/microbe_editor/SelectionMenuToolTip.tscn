@@ -5,10 +5,10 @@
 [ext_resource path="res://src/microbe_stage/ProcessList.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=5]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=9]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
@@ -35,12 +35,13 @@ theme = ExtResource( 9 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 7 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "NOTE: processes description string should only be set here on the ProcessesDescription property and not directly on the rich text label node as it will be overidden otherwise."
 }
 NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
 MpLabelPath = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
-ProcessesDescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/ProcessesDescription")
+ProcessesDescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/CustomRichTextLabel")
 ModifierListPath = NodePath("MarginContainer/VBoxContainer/ModifierList")
 ProcessListPath = NodePath("MarginContainer/VBoxContainer/ProcessList")
 
@@ -110,17 +111,10 @@ margin_bottom = 27.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
-[node name="ProcessesDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="CustomRichTextLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
 margin_top = 42.0
 margin_right = 318.0
 margin_bottom = 64.0
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 2 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_constants/line_separation = 5
-bbcode_enabled = true
-fit_content_height = true
 
 [node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0

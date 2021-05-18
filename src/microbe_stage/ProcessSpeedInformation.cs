@@ -7,14 +7,17 @@ using System.Linq;
 /// </summary>
 public class ProcessSpeedInformation : IProcessDisplayInfo
 {
-    public readonly Dictionary<Compound, float> WritableInputs = new Dictionary<Compound, float>();
-    public readonly Dictionary<Compound, float> WritableOutputs = new Dictionary<Compound, float>();
-    public readonly List<Compound> WritableLimitingCompounds = new List<Compound>();
+    public Dictionary<Compound, float> WritableInputs { get; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> WritableOutputs { get; } = new Dictionary<Compound, float>();
+    public List<Compound> WritableLimitingCompounds { get; } = new List<Compound>();
 
-    public readonly Dictionary<Compound, float> AvailableAmounts = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> WritableFullSpeedRequiredEnvironmentalInputs { get; } =
+        new Dictionary<Compound, float>();
+
+    public Dictionary<Compound, float> AvailableAmounts { get; } = new Dictionary<Compound, float>();
 
     // ReSharper disable once CollectionNeverQueried.Global
-    public readonly Dictionary<Compound, float> AvailableRates = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> AvailableRates { get; } = new Dictionary<Compound, float>();
 
     public ProcessSpeedInformation(BioProcess process)
     {
@@ -31,8 +34,8 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
         AvailableAmounts.Where(p => p.Key.IsEnvironmental);
 
-    // ReSharper disable once UnassignedGetOnlyAutoProperty
-    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs { get; }
+    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
+        WritableFullSpeedRequiredEnvironmentalInputs;
 
     public IEnumerable<KeyValuePair<Compound, float>> Outputs => WritableOutputs;
 
