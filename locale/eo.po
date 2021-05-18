@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-19 00:22+0700\n"
+"POT-Creation-Date: 2021-05-19 00:46+0700\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -637,9 +637,6 @@ msgid "SEA_FLOOR"
 msgstr "Marfundo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1618
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2380
 msgid "ATP"
 msgstr "ATP"
 
@@ -662,9 +659,6 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogena Sulfido"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:55
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2355
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2643
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2945
 #: ../src/microbe_stage/MicrobeStage.tscn:1163
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3483
 msgid "GLUCOSE"
@@ -682,15 +676,11 @@ msgid "IRON"
 msgstr "Fero"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:94
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1393
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2418
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3249
 msgid "OXYGEN"
 msgstr "Oksigeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:107
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2681
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2983
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3303
 msgid "CARBON_DIOXIDE"
 msgstr "Karbona duoksido"
@@ -701,45 +691,43 @@ msgid "NITROGEN"
 msgstr "Nitrogeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:133
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3129
 msgid "SUNLIGHT"
 msgstr "Sunlumo"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3627
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1792
 msgid "NORMAL"
 msgstr "Normala"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:18
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1960
 msgid "DOUBLE"
 msgstr "Duobla"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:33
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3959
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2124
 msgid "CELLULOSE"
 msgstr "Celulozo"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:48
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4194
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
 msgid "CHITIN"
 msgstr "itino"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:63
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2594
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalcia Karbonato"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:78
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4697
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2862
 msgid "SILICA"
 msgstr "Siliko"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:970
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1803
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1867
 msgid "PREDATORY_PILUS"
 msgstr "Raba Vilo (Pilus)"
 
@@ -764,8 +752,6 @@ msgstr "Kemosintezaj Proteinoj"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:738
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1220
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1284
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisomo"
 
@@ -779,45 +765,39 @@ msgid "METABOLOSOMES"
 msgstr "Metabolosomoj"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3308
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1473
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Nitrogen-fiksa Plastido"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1389
 msgid "CHEMOPLAST"
 msgstr "Kemoplasto"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:356
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:835
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1520
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
 msgid "FLAGELLUM"
 msgstr "Flagelo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3406
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1571
 msgid "VACUOLE"
 msgstr "Vakuolo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:418
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2257
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2321
 msgid "MITOCHONDRION"
 msgstr "Mitokondrio"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1668
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksa\n"
 "Vakuolo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:493
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2545
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2609
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1190
 msgid "CHLOROPLAST"
 msgstr "Kloroplasto"
 
@@ -828,8 +808,6 @@ msgstr "Citoplasmo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:590
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2055
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
 msgid "NUCLEUS"
 msgstr "Kerno/Nukleo"
 
@@ -1738,22 +1716,22 @@ msgstr ""
 "la ĉelo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:146
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3654
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3822
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3986
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4221
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4454
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4724
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1819
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1987
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2151
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2889
 msgid "MOBILITY"
 msgstr "Movebleco"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:181
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3922
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4089
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4557
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4827
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1922
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2087
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2254
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2489
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2722
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2992
 msgid "HEALTH"
 msgstr "Sano"
 
@@ -1789,17 +1767,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:892
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1028
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1120
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1424
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1707
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2449
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2751
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3039
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3327
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3425
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3522
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1204
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1303
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1590
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1687
 msgid "STORAGE"
 msgstr "Stokado"
 
@@ -1812,23 +1785,18 @@ msgstr "Stokado"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:930
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1066
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1158
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1462
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1745
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2199
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3077
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3176
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3276
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3365
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3463
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3560
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3689
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3856
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4021
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4256
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4489
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4759
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1242
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1341
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1530
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1725
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2421
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2654
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregada Kosto"
 
@@ -1927,7 +1895,6 @@ msgstr ""
 "estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1204
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
@@ -1948,7 +1915,6 @@ msgstr ""
 "iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1504
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "Modifita metabolosomo, responsanta pri la produktado de primitiva formo de "
@@ -1963,7 +1929,6 @@ msgstr ""
 "direkto."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1787
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la "
@@ -1971,30 +1936,24 @@ msgstr ""
 "direkto."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 msgid "SPEED"
 msgstr "Rapideco"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:971
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1913
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Piku aliajn ĉelojn per ĉi tio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:992
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1929
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1993
 msgid "CILIA"
 msgstr "Cilio"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:993
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2039
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3215
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1767
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Devos ankoraŭ esti farita."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "Permesas la evoluon de pli kompleksaj,\n"
@@ -2003,7 +1962,6 @@ msgstr ""
 "evoluo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2241
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 "La ĉefa eco de eŭkariotaj ĉeloj. La kerno ankaŭ inkluzivas la endoplasman "
@@ -2029,7 +1987,6 @@ msgstr ""
 "malrapidigos la rapidon de ĝia produktado de ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2529
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas "
@@ -2040,97 +1997,7 @@ msgstr ""
 "oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio "
 "malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1311
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2348
-msgid "TURNS"
-msgstr "Turniĝi"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1336
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2373
-msgid "INTO"
-msgstr "Al en"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1343
-msgid "OXYTOXY"
-msgstr "xyToxy"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1361
-msgid "DOT_CAN_RELEASE"
-msgstr ". Povas reali"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1373
-msgid "TOXINS_BY_PRESSING_E"
-msgstr "toksinoj premante E-n. Asociita kun"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2674
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2976
-msgid "CONCENTRATION_OF"
-msgstr "koncentriĝo de"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1611
-msgid "USES"
-msgstr "Uzoj"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1636
-msgid "TO_INCREASE_THE_MOVEMENT"
-msgstr "popliigi la movadon"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
-msgid "SPEED_OF_THE_CELL"
-msgstr "rapideco de la ĉelo."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2398
-msgid "DOT_RATE"
-msgstr ". Rate"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2411
-msgid "SCALES_WITH_CONCENTRATION_OF"
-msgstr "dependas de koncentriĝo de"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2636
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2938
-msgid "PRODUCES"
-msgstr "Produktas"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2661
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
-msgid "DOT_RATE_SCALES_WITH"
-msgstr ". Dependas"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2700
-msgid "AND"
-msgstr "kaj"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2713
-msgid "INTENSITY_OF"
-msgstr "intenseco de"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2720
-#: ../src/microbe_stage/MicrobeStage.tscn:925
-msgid "LIGHT"
-msgstr "Lumo"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2831
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3027
-msgid "CHLOROPLAST_DESCRIPTION"
-msgstr ""
-"La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn "
-"pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto "
-"asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la "
-"kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo "
-"kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj "
-"ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de "
-"glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de "
-"lumo."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2847
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2911
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3109
-msgid "THERMOPLAST"
-msgstr "Termika plasto"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3026
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2143,7 +2010,23 @@ msgstr ""
 "glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de "
 "lumo."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
+msgid "CHLOROPLAST_DESCRIPTION"
+msgstr ""
+"La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn "
+"pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto "
+"asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la "
+"kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo "
+"kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj "
+"ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de "
+"glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de "
+"lumo."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+msgid "THERMOPLAST"
+msgstr "Termika plasto"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2155,7 +2038,7 @@ msgstr ""
 "de ĝia produktado de glukozo dependas de la koncentriĝo de karbona "
 "dioksido kaj temperaturo."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1276
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn "
@@ -2166,13 +2049,13 @@ msgstr ""
 "de ĝia produktado de glukozo dependas de la koncentriĝo de karbona "
 "dioksido kaj temperaturo."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3127
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Disloku organeton"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3225
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2182,7 +2065,7 @@ msgstr ""
 "rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona "
 "dioksido."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1391
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
@@ -2191,7 +2074,7 @@ msgstr ""
 "rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona "
 "dioksido."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3309
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2200,7 +2083,7 @@ msgstr ""
 "produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo "
 "nomata Aerobia Nitrogena Fiksado."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3310
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1475
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan "
@@ -2208,7 +2091,7 @@ msgstr ""
 "produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo "
 "nomata Aerobia Nitrogena Fiksado."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3407
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2218,7 +2101,7 @@ msgstr ""
 "per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
 "substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3408
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
@@ -2227,7 +2110,7 @@ msgstr ""
 "per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
 "substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2235,41 +2118,41 @@ msgstr ""
 "produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj "
 "vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa "
 "produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj "
 "vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3601
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1766
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineska Vakuolo"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1793
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ "
 "damaĝo. Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo "
 "estas, ke ĝi permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3889
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4055
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4290
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4523
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4793
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2220
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2688
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2958
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rimedo-Absorba Rapideo"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3796
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1961
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Membrano kun du tavoloj, ĝi havas pli bonan protekton kontraŭ damaĝo kaj "
 "bezonas malpli da energio por ne misformi. Tamen ĝi iom malrapidigas la "
 "ĉelon kaj malpliigas la rapidon, per kiu ĝi povas sorbi rimedojn."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3960
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2125
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ĉi tiu membrano havas muron, kio rezultigas pli bonan protekton kontraŭ "
@@ -2277,20 +2160,20 @@ msgstr ""
 "energio konservi sian formon, sed ne povas absorbi aĵojn rapide kaj estas "
 "pli malrapida."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4591
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4861
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2288
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2756
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3026
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fizika Rezisto"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4157
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4392
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4659
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4929
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2322
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2824
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3094
 msgid "CANNOT_ENGULF"
 msgstr "Ne povas engluti"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ĉi tiu membrano havas muron, kio signifas, ke ĝi havas pli bonajn "
@@ -2298,13 +2181,13 @@ msgstr ""
 "kostas malpli da energio konservi sian formon, sed ĝi estas pli malrapida "
 "kaj ne povas absorbi aĵojn rapide."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4358
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4625
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4895
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2523
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2790
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3060
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksinrezisto"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4430
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2595
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ĉi tiu membrano havas fortan ŝelon el kalcia karbonato. Ĝi povas facile "
@@ -2312,7 +2195,7 @@ msgstr ""
 "malavantaĝoj de havi tian pezan ŝelon estas, ke la ĉelo estas multe pli "
 "malrapida kaj bezonas iom da tempo por sorbi resursojn."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2863
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ĉi tiu membrano havas fortan silikan muron. Ĝi povas bone rezisti "
@@ -2320,11 +2203,11 @@ msgstr ""
 "malpli da energio por konservi sian formon. Tamen ĝi malrapidigas la ĉelon "
 "kaj la ĉelo sorbas resurson kun malpli granda rapideco."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5088
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3253
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3066
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:759
 msgid "TEMPERATURE"
@@ -2416,6 +2299,10 @@ msgstr "Medio"
 #: ../src/microbe_stage/MicrobeStage.tscn:869
 msgid "TEMPERATURE_SHORT"
 msgstr "Tеmp."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:925
+msgid "LIGHT"
+msgstr "Lumo"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:980
 msgid "PRESSURE_SHORT"
@@ -3204,6 +3091,51 @@ msgstr ""
 "de sufiĉe da amoniako kaj fosfatoj.\n"
 "Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi "
 "bezonas."
+
+#~ msgid "TURNS"
+#~ msgstr "Turniĝi"
+
+#~ msgid "INTO"
+#~ msgstr "Al en"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "xyToxy"
+
+#~ msgid "DOT_CAN_RELEASE"
+#~ msgstr ". Povas reali"
+
+#~ msgid "TOXINS_BY_PRESSING_E"
+#~ msgstr "toksinoj premante E-n. Asociita kun"
+
+#~ msgid "CONCENTRATION_OF"
+#~ msgstr "koncentriĝo de"
+
+#~ msgid "USES"
+#~ msgstr "Uzoj"
+
+#~ msgid "TO_INCREASE_THE_MOVEMENT"
+#~ msgstr "popliigi la movadon"
+
+#~ msgid "SPEED_OF_THE_CELL"
+#~ msgstr "rapideco de la ĉelo."
+
+#~ msgid "DOT_RATE"
+#~ msgstr ". Rate"
+
+#~ msgid "SCALES_WITH_CONCENTRATION_OF"
+#~ msgstr "dependas de koncentriĝo de"
+
+#~ msgid "PRODUCES"
+#~ msgstr "Produktas"
+
+#~ msgid "DOT_RATE_SCALES_WITH"
+#~ msgstr ". Dependas"
+
+#~ msgid "AND"
+#~ msgstr "kaj"
+
+#~ msgid "INTENSITY_OF"
+#~ msgstr "intenseco de"
 
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". Takso-skalo"
