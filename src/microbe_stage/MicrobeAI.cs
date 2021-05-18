@@ -50,9 +50,7 @@ public class MicrobeAI
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
-        atp = SimulationParameters.Instance.GetCompound("atp");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-        iron = SimulationParameters.Instance.GetCompound("iron");
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;
@@ -172,7 +170,7 @@ public class MicrobeAI
             var rivalThreshold = SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3 ? 1 :
                 SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM * 2 / 3 ? 3 :
                 5;
-            if (rivalThreshold > 3)
+            if (numRivals > rivalThreshold)
             {
                 chosenChunk = null;
             }
