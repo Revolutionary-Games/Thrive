@@ -169,7 +169,10 @@ public class MicrobeAI
                 }
             }
 
-            if (numRivals > 3)
+            var rivalThreshold = SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3 ? 1 :
+                SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM * 2 / 3 ? 3 :
+                5;
+            if (rivalThreshold > 3)
             {
                 chosenChunk = null;
             }
