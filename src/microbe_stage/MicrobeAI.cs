@@ -423,10 +423,6 @@ public class MicrobeAI
                 microbe.LookAtPoint = target.Translation;
                 microbe.QueueEmitToxin(oxytoxy);
             }
-            else
-            {
-                DebugFlash();
-            }
         }
     }
 
