@@ -15,11 +15,6 @@ using Newtonsoft.Json;
 /// </remarks>
 public class MicrobeAI
 {
-    // ReSharper disable once NotAccessedField.Local
-    private readonly Compound atp;
-
-    // ReSharper disable once NotAccessedField.Local
-    private readonly Compound iron;
     private readonly Compound oxytoxy;
 
     [JsonProperty]
