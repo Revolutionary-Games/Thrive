@@ -96,7 +96,14 @@ public class MicrobeAI
             }
             else
             {
-                RunAndTumble(random);
+                if(SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
+                {
+                    RunAndTumble(random);
+                }
+                else
+                {
+                    // This organism is sessile, and will not act until the environment changes
+                }
             }
         }
         catch
