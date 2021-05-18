@@ -72,7 +72,7 @@ public class MicrobeAI
         chunkList.Clear();
 
         GetNearestPredatorItem(data.AllMicrobes);
-        targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes);
+        targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
 
         if (microbe.IsBeingEngulfed)
@@ -96,7 +96,7 @@ public class MicrobeAI
         }
         else
         {
-            if(SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
+            if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
             {
                 RunAndTumble(random);
             }
