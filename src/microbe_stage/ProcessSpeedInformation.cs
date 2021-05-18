@@ -7,6 +7,15 @@ using System.Linq;
 /// </summary>
 public class ProcessSpeedInformation : IProcessDisplayInfo
 {
+    public ProcessSpeedInformation(BioProcess process)
+    {
+        Process = process;
+    }
+
+    public BioProcess Process { get; }
+
+    public string Name => Process.Name;
+
     public Dictionary<Compound, float> WritableInputs { get; } = new Dictionary<Compound, float>();
     public Dictionary<Compound, float> WritableOutputs { get; } = new Dictionary<Compound, float>();
     public List<Compound> WritableLimitingCompounds { get; } = new List<Compound>();
@@ -18,15 +27,6 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
     // ReSharper disable once CollectionNeverQueried.Global
     public Dictionary<Compound, float> AvailableRates { get; } = new Dictionary<Compound, float>();
-
-    public ProcessSpeedInformation(BioProcess process)
-    {
-        Process = process;
-    }
-
-    public BioProcess Process { get; }
-
-    public string Name => Process.Name;
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
         WritableInputs.Where(p => !p.Key.IsEnvironmental);
