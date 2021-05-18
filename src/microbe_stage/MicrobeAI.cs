@@ -121,7 +121,7 @@ public class MicrobeAI
         }
 
         Vector3 testPosition = new Vector3(0, 0, 0);
-        bool setPosition = true;
+        bool hasTestPosition = true;
 
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
@@ -135,10 +135,10 @@ public class MicrobeAI
                     chunkList.Add(chunk);
                     var thisPosition = chunk.Translation;
 
-                    if (setPosition)
+                    if (hasTestPosition)
                     {
                         testPosition = thisPosition;
-                        setPosition = false;
+                        hasTestPosition = false;
                         chosenChunk = chunk;
                     }
 
