@@ -56,15 +56,43 @@ public class MovementComponent : ExternallyPositionedComponent
     }
 
     /// <summary>
-    ///   Calculate the momentum of the movement organelle based on
-    ///   angle towards middle of cell
+    ///   Calculate the vector of the thrust force provided by the movement organelle (flagellum) based on its orientation.
     /// </summary>
-    private static Vector3 CalculateForce(Hex pos, float momentum)
+    private Vector3 CalculateForce(Hex pos, float momentum)
     {
-        Vector3 organelle = Hex.AxialToCartesian(pos);
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organelle;
-        return delta.Normalized() * momentum;
+        Vector3 forceVector = new Vector3(0, 0, 0);
+
+        // orientation 0 is flagellum tail pointed up (this is the default); every +1 corresponds to turning counterclockwise by 1 stage
+        if (organelle.Orientation == 0)
+        {
+            forceVector = new Vector3(0, 0, 50);
+        }
+        else if (organelle.Orientation == 1)
+        {
+            forceVector = new Vector3(-43, 0, 25);
+        }
+        else if (organelle.Orientation == 2)
+        {
+            forceVector = new Vector3(-43, 0, -25);
+        }
+        else if (organelle.Orientation == 3)
+        {
+            forceVector = new Vector3(0, 0, -50);
+        }
+        else if (organelle.Orientation == 4)
+        {
+            forceVector = new Vector3(43, 0, -25);
+        }
+        else if (organelle.Orientation == 5)
+        {
+            forceVector = new Vector3(43, 0, 25);
+        }
+
+        forceVector = forceVector.Normalized();
+
+        // scale the force based on the flagellum's stats (as noted in Constants.cs)
+        forceVector = forceVector * Constants.FLAGELLA_BASE_FORCE;
+        return forceVector;
     }
 
     private void SetSpeedFactor(float speed)
