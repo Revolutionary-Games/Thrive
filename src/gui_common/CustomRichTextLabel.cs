@@ -78,8 +78,11 @@ public class CustomRichTextLabel : RichTextLabel
         {
             var character = ExtendedBbcode[index];
 
+            var validNextCharacter = index + 1 < ExtendedBbcode.Length && ExtendedBbcode[index + 1] != '[';
+
             // Opening bracket found, try to parse it
-            if (character == '[' && ExtendedBbcode[index + 1] != '[' && !isIteratingTag)
+            if (character == '[' && validNextCharacter && !isIteratingTag &&
+                index < ExtendedBbcode.Length)
             {
                 // Clear previous tag
                 currentTagBlock.Clear();
@@ -98,10 +101,19 @@ public class CustomRichTextLabel : RichTextLabel
 
             if (isIteratingTag)
             {
-                // Keep iterating until we hit closing bracket
+                // Keep iterating until we hit a closing bracket
                 if (character != ']')
                 {
                     currentTagBlock.Append(character);
+
+                    // No closing bracket found, just write normally to the final string and abort trying to parse
+                    if (character == '[' || index == ExtendedBbcode.Length - 1)
+                    {
+                        result.Append($"[{currentTagBlock.ToString()}");
+                        isIteratingTag = false;
+                        continue;
+                    }
+
                     continue;
                 }
 
@@ -140,9 +152,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                 // Tag seems okay, next step is to try parse the tagged substring and closing tag
 
-                var isClosingTag = tagNamespace.BeginsWith("/");
-
-                if (isClosingTag)
+                // Is a closing tag
+                if (tagNamespace.BeginsWith("/"))
                 {
                     // Closing tag doesn't match opening tag or vice versa, aborting parsing
                     if (tagStack.Count == 0 || tagStack.Peek() != tagIdentifier)
@@ -176,7 +187,7 @@ public class CustomRichTextLabel : RichTextLabel
                     isIteratingContent = false;
                     tagStack.Pop();
                 }
-                else if (!isClosingTag)
+                else
                 {
                     isIteratingContent = true;
                     tagStack.Push(tagIdentifier);
