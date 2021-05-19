@@ -880,10 +880,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                // base the direction on which way the organelle is facing. The less this direction is forward-facing, the less it contributes to the displayed speed.
+                // base the direction on which way the organelle is facing.
+                // The less this direction is forward-facing, the less it contributes to the displayed speed.
                 Vector3 forceVector = new Vector3(0, 0, 0);
 
-                // orientation 0 is flagellum tail pointed up (this is the default); every +1 corresponds to turning counterclockwise by 1 stage
+                // orientation 0 is flagellum tail pointed up (this is the default)
+                // every +1 corresponds to turning counterclockwise by 1 stage
                 if (organelle.Orientation == 0)
                 {
                     forceVector = new Vector3(0, 0, 50);

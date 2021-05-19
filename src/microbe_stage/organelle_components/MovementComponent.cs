@@ -37,7 +37,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
-        force = CalculateForce(organelle.Position, Momentum);
+        force = CalculateForce();
 
         animation = organelle.OrganelleAnimation;
 
@@ -56,13 +56,14 @@ public class MovementComponent : ExternallyPositionedComponent
     }
 
     /// <summary>
-    ///   Calculate the vector of the thrust force provided by the movement organelle (flagellum) based on its orientation.
+    ///   Calculate the vector of the thrust force provided by the flagellum based on its orientation.
     /// </summary>
-    private Vector3 CalculateForce(Hex pos, float momentum)
+    private Vector3 CalculateForce()
     {
         Vector3 forceVector = new Vector3(0, 0, 0);
 
-        // orientation 0 is flagellum tail pointed up (this is the default); every +1 corresponds to turning counterclockwise by 1 stage
+        // orientation 0 is flagellum tail pointed up (this is the default)
+        // every +1 corresponds to turning counterclockwise by 1 stage
         if (organelle.Orientation == 0)
         {
             forceVector = new Vector3(0, 0, 50);
