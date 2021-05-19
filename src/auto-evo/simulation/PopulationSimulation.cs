@@ -138,8 +138,6 @@
                 energyBySpecies[currentSpecies] = 0.0f;
             }
 
-            var biome = patch.Biome;
-
             var niches = new List<Niche>()
             {
                 new PhotosyntheticNiche(patch),
@@ -150,6 +148,7 @@
 
             foreach (var niche in niches)
             {
+                // If this isn't a source of energy here, no need for more calculations
                 if (niche.TotalEnergyAvailable() == 0.0f)
                 {
                     continue;
@@ -160,11 +159,12 @@
                 foreach (var currentSpecies in species)
                 {
                     // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle by exagurating fitness differences
-                    var thisSpeciesFitness = (float)Math.Pow(niche.FitnessScore(currentSpecies), 2);
+                    var thisSpeciesFitness = Math.Max((float)Math.Pow(niche.FitnessScore(currentSpecies), 2), 0.0f);
                     fitnessBySpecies[currentSpecies] = thisSpeciesFitness;
                     totalNicheFitness += thisSpeciesFitness;
                 }
 
+                // If no species can get energy this way, no need for more calculations
                 if (totalNicheFitness == 0.0f)
                 {
                     continue;
@@ -173,13 +173,12 @@
                 foreach (var currentSpecies in species)
                 {
                     energyBySpecies[currentSpecies] += fitnessBySpecies[currentSpecies] * niche.TotalEnergyAvailable() / totalNicheFitness;
-                    Console.Error.WriteLine("<><><><><><><><><> Species " + currentSpecies.FormattedName + " energy: " + energyBySpecies[currentSpecies] + "/" + niche.TotalEnergyAvailable());
                 }
             }
 
             foreach (var currentSpecies in species)
             {
-                //MODIFY POP
+                // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
                 / currentSpecies.BaseOsmoregulationCost());
 
