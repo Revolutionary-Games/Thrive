@@ -11,6 +11,7 @@
     /// </summary>
     public static class PopulationSimulation
     {
+        private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
         private static readonly Compound HydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
         private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
 
@@ -142,23 +143,37 @@
             var niches = new List<Niche>()
             {
                 new PhotosyntheticNiche(patch),
+                new ChemosyntheticNiche(patch, Glucose),
                 new ChemosyntheticNiche(patch, HydrogenSulfide),
                 new ChemosyntheticNiche(patch, Iron),
             };
 
             foreach (var niche in niches)
             {
+                if (niche.TotalEnergyAvailable() == 0.0f)
+                {
+                    continue;
+                }
+
                 var fitnessBySpecies = new Dictionary<MicrobeSpecies, float>();
                 var totalNicheFitness = 0.0f;
                 foreach (var currentSpecies in species)
                 {
                     // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle by exagurating fitness differences
-                    fitnessBySpecies[currentSpecies] = (float)Math.Pow(niche.FitnessScore(currentSpecies), 2);
+                    var thisSpeciesFitness = (float)Math.Pow(niche.FitnessScore(currentSpecies), 2);
+                    fitnessBySpecies[currentSpecies] = thisSpeciesFitness;
+                    totalNicheFitness += thisSpeciesFitness;
+                }
+
+                if (totalNicheFitness == 0.0f)
+                {
+                    continue;
                 }
 
                 foreach (var currentSpecies in species)
                 {
                     energyBySpecies[currentSpecies] += fitnessBySpecies[currentSpecies] * niche.TotalEnergyAvailable() / totalNicheFitness;
+                    Console.Error.WriteLine("<><><><><><><><><> Species " + currentSpecies.FormattedName + " energy: " + energyBySpecies[currentSpecies] + "/" + niche.TotalEnergyAvailable());
                 }
             }
 
