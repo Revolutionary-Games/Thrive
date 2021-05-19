@@ -880,10 +880,37 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
-                    - Hex.AxialToCartesian(organelle.Position)).Normalized();
+                // base the direction on which way the organelle is facing. The less this direction is forward-facing, the less it contributes to the displayed speed.
+                Vector3 forceVector = new Vector3(0, 0, 0);
 
-                float directionFactor = organelleDirection.Dot(forwardsDirection);
+                // orientation 0 is flagellum tail pointed up (this is the default); every +1 corresponds to turning counterclockwise by 1 stage
+                if (organelle.Orientation == 0)
+                {
+                    forceVector = new Vector3(0, 0, 50);
+                }
+                else if (organelle.Orientation == 1)
+                {
+                    forceVector = new Vector3(43, 0, 25);
+                }
+                else if (organelle.Orientation == 2)
+                {
+                    forceVector = new Vector3(43, 0, -25);
+                }
+                else if (organelle.Orientation == 3)
+                {
+                    forceVector = new Vector3(0, 0, -50);
+                }
+                else if (organelle.Orientation == 4)
+                {
+                    forceVector = new Vector3(-43, 0, -25);
+                }
+                else if (organelle.Orientation == 5)
+                {
+                    forceVector = new Vector3(-43, 0, 25);
+                }
+
+                forceVector = forceVector.Normalized();
+                float directionFactor = forceVector.Dot(forwardsDirection);
 
                 // Flagella pointing backwards don't slow you down
                 directionFactor = Math.Max(directionFactor, 0);
