@@ -175,11 +175,12 @@ public class OrganellePopupMenu : PopupPanel
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
+        // The organelle is free to move if it was added (placed) this session or already moved this session
+        bool isFreeToMove = SelectedOrganelle != null && (SelectedOrganelle.MovedThisSession ||
+            SelectedOrganelle.PlacedThisSession);
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("MP_COST"),
-            (SelectedOrganelle != null && SelectedOrganelle.MovedThisSession) ?
-                "-0" :
-                "-" + Constants.ORGANELLE_MOVE_COST.ToString(CultureInfo.CurrentCulture));
+            isFreeToMove ? "-0" : "-" + Constants.ORGANELLE_MOVE_COST.ToString(CultureInfo.CurrentCulture));
 
         moveButton.Disabled = !EnableMoveOption;
     }
