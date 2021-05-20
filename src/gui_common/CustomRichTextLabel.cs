@@ -227,7 +227,7 @@ public class CustomRichTextLabel : RichTextLabel
                 }
                 else
                 {
-                    GD.Print($"Compound: \"{input}\" is not found while templating bbcodes");
+                    GD.Print($"Compound: \"{input}\" doesn't exist, referenced in bbcode");
                 }
 
                 break;
@@ -242,7 +242,7 @@ public class CustomRichTextLabel : RichTextLabel
                 }
                 else
                 {
-                    GD.Print($"Input action: \"{input}\" is not found while templating bbcodes");
+                    GD.Print($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
                 }
 
                 break;
