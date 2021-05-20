@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-16 17:45+0300\n"
+"POT-Creation-Date: 2021-05-20 13:51+0700\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -906,7 +906,7 @@ msgstr "주변 개체 수:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
+#: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:142
 msgid "LOADING"
 msgstr "불러오는 중"
 
@@ -1341,6 +1341,15 @@ msgstr "마우스 특수 키 2"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr "마우스 미확인 키"
+
+#: ../src/general/Gallery.cs:73
+#, fuzzy
+msgid "ARTWORK_TITLE"
+msgstr "번영했습니다!"
+
+#: ../src/general/Gallery.cs:77
+msgid "ART_BY"
+msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -2295,7 +2304,7 @@ msgstr "압력."
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2736
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3373
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:835
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
 msgid "COMPOUNDS"
 msgstr "화합물"
 
@@ -2369,7 +2378,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:522
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1218
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1215
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
@@ -2377,11 +2386,11 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2103
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2101
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2104
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2102
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
@@ -2531,7 +2540,7 @@ msgstr "물리적 상태"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2698
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3208
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:831
 msgid "ATMOSPHERIC_GASSES"
 msgstr "대기 가스"
 
@@ -2574,11 +2583,11 @@ msgid "MEGA_YEARS"
 msgstr "백만년"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:600
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:835
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:831
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:833
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
 msgid "YEARS"
 msgstr "년"
 
@@ -2607,30 +2616,30 @@ msgstr "기초 이동"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:833
 #, fuzzy
 msgid "SPECIES_LIST"
 msgstr "존재하는 종"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:858
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:859
 msgid "FREEBUILDING"
 msgstr "자유 구성"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:944
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:948
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:949
 msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:976
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "WITH_POPULATION"
 msgstr "{0} 의 개체수: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
 msgid "MP_COST"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-16 17:45+0300\n"
+"POT-Creation-Date: 2021-05-20 13:51+0700\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -887,7 +887,7 @@ msgstr "區域中的人口："
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:60 ../src/engine/LoadingScreen.tscn:125
+#: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:142
 msgid "LOADING"
 msgstr "載入中"
 
@@ -1322,6 +1322,14 @@ msgstr "鼠標側鍵2"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
 msgstr "鼠標未知鍵"
+
+#: ../src/general/Gallery.cs:73
+msgid "ARTWORK_TITLE"
+msgstr ""
+
+#: ../src/general/Gallery.cs:77
+msgid "ART_BY"
+msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -2213,7 +2221,7 @@ msgstr "壓強"
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2736
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3373
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:835
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
 msgid "COMPOUNDS"
 msgstr "化合物"
 
@@ -2278,7 +2286,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:522
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1218
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1215
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "在加載微生物編輯器"
 
@@ -2286,11 +2294,11 @@ msgstr "在加載微生物編輯器"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待自動進化："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2103
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2101
 msgid "AUTO_EVO_FAILED"
 msgstr "自動進化啟動失敗"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2104
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2102
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
 
@@ -2436,7 +2444,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2698
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3208
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:831
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大氣氣體"
 
@@ -2481,11 +2489,11 @@ msgid "MEGA_YEARS"
 msgstr "百萬年"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:600
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:835
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:831
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:833
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
 msgid "YEARS"
 msgstr "年"
 
@@ -2514,30 +2522,30 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:833
 #, fuzzy
 msgid "SPECIES_LIST"
 msgstr "存在的物種"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:858
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:859
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:944
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:948
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:949
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:976
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "WITH_POPULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
 msgid "MP_COST"
 msgstr ""
 
