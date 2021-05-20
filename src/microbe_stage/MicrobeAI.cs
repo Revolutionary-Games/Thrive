@@ -80,7 +80,7 @@ public class MicrobeAI
         }
         else if (possiblePrey != null)
         {
-            EngagePrey(possiblePrey);
+            EngagePrey(possiblePrey, random);
         }
         else
         {
@@ -305,13 +305,25 @@ public class MicrobeAI
         }
     }
 
-    private void EngagePrey(Microbe target)
+    private void EngagePrey(Microbe target, Random random)
     {
         microbe.EngulfMode = target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
             microbe.EngulfSize && DistanceFromMe(target.Translation) < 50.0f;
         targetPosition = target.Translation;
         microbe.LookAtPoint = targetPosition;
-        LaunchToxin(target);
+        if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+        {
+            LaunchToxin(target);
+
+            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION/5, random))
+            {
+                SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            }
+        }
+        else
+        {
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+        }
     }
 
     // For doing run and tumble
