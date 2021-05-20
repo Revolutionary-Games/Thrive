@@ -242,11 +242,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             colour = value;
 
-            if (previewMicrobe != null && previewMicrobe.Species != null)
+            if (previewMicrobe?.Species != null)
             {
                 previewMicrobe.Species.Colour = value;
                 previewMicrobe.Membrane.Tint = value;
-                previewMicrobe.ApplyOrganelleColours();
+                previewMicrobe.ApplyPreviewOrganelleColours();
             }
         }
     }
@@ -1218,7 +1218,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Setup the display cell
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
-        AddChild(previewMicrobe);
+        world.AddChild(previewMicrobe);
         previewMicrobe.ApplySpecies((MicrobeSpecies)editedSpecies.Clone());
 
         // Set its initial visibility

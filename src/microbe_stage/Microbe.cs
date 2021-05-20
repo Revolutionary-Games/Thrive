@@ -486,8 +486,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// <summary>
     ///   Applies the set species' color to all of this microbe's organelles
     /// </summary>
-    public void ApplyOrganelleColours()
+    public void ApplyPreviewOrganelleColours()
     {
+        if (!IsForPreviewOnly)
+            throw new Exception("Microbe must be a preview-only type");
+
         foreach (var entry in organelles.Organelles)
         {
             entry.Colour = Species.Colour;

@@ -756,6 +756,7 @@ __meta__ = {
 }
 
 [node name="EditorArrow" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0 )
 
 [node name="Grid" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
