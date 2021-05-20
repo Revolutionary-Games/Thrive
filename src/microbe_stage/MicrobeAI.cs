@@ -154,7 +154,7 @@ public class MicrobeAI
                 {
                     chunkList.Add(chunk);
 
-                    if (chosenChunk != null ||
+                    if (chosenChunk == null ||
                         (chosenChunk.Translation - microbe.Translation).LengthSquared() >
                         (chunk.Translation - microbe.Translation).LengthSquared())
                     {
