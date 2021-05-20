@@ -143,9 +143,6 @@ public class MicrobeAI
             return null;
         }
 
-        Vector3 testPosition = new Vector3(0, 0, 0);
-        bool hasTestPosition = true;
-
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
@@ -156,19 +153,11 @@ public class MicrobeAI
                 if (chunk.ContainedCompounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
                     chunkList.Add(chunk);
-                    var thisPosition = chunk.Translation;
 
-                    if (hasTestPosition)
+                    if (chosenChunk != null ||
+                        (chosenChunk.Translation - microbe.Translation).LengthSquared() >
+                        (chunk.Translation - microbe.Translation).LengthSquared())
                     {
-                        testPosition = thisPosition;
-                        hasTestPosition = false;
-                        chosenChunk = chunk;
-                    }
-
-                    if ((testPosition - microbe.Translation).LengthSquared() >
-                        (thisPosition - microbe.Translation).LengthSquared())
-                    {
-                        testPosition = thisPosition;
                         chosenChunk = chunk;
                     }
                 }
