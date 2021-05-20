@@ -430,7 +430,7 @@ public class MicrobeAI
             turn = -turn;
         }
 
-        var randDist = random.Next(2.0f * SpeciesFear, movementRadius);
+        var randDist = random.Next(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY);
         targetPosition = microbe.Translation
             + new Vector3(Mathf.Cos(previousAngle + turn) * randDist,
                 0,
