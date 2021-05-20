@@ -5,18 +5,11 @@
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://shaders/UvFlipper.shader" type="Shader" id=6]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=7]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-void fragment(){
-    COLOR = texture(TEXTURE, vec2(1.0f - UV.y, UV.x));
-}
-"
-
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = ExtResource( 6 )
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.401316, 1 )

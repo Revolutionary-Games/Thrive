@@ -198,7 +198,7 @@ public class LoadingScreen : Control
         var gallery = SimulationParameters.Instance.GetGallery(galleryName);
         var artwork = gallery.Artworks.Random(random);
 
-        artworkRect.Texture = artwork.LoadedImage;
+        artworkRect.Texture = GD.Load<Texture>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
     }
 

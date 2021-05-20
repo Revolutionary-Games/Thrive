@@ -100,7 +100,7 @@ public class TransitionManager : NodeWithInput
 
     /// <summary>
     ///   Executes queued transitions.
-    ///   Calls specified method when all transitions finished.
+    ///   Calls the specified method when all transitions are finished.
     /// </summary>
     /// <param name="target">The target object to connect to</param>
     /// <param name="onFinishedMethod">The name of the method on the target object</param>

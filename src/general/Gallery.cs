@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Collection of stage-specific concept arts and artworks
@@ -37,9 +37,6 @@ public class Gallery : IRegistryType
     /// </summary>
     public class Artwork
     {
-        [JsonIgnore]
-        public Texture LoadedImage;
-
         public string ResourcePath { get; set; }
 
         /// <summary>
@@ -98,7 +95,8 @@ public class Gallery : IRegistryType
 
         public void Resolve()
         {
-            LoadedImage = GD.Load<Texture>(ResourcePath);
+            if (!FileHelpers.Exists(ResourcePath))
+                throw new FileNotFoundException("The given image file in ResourcePath doesn't exist");
         }
     }
 }
