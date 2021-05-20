@@ -43,6 +43,11 @@ When creating a pull request, include the "closes" or "fixes" keyword followed
 by the issue number that will be closed when the pull request is
 accepted. Example: `closes #1234`.
 
+Before marking your PR as ready for review (not a draft) please work
+through the PR testing checklist to not waste the reviewer's time if
+they have to find basic issues in your PR:
+https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
+
 If you need to alter code for an issue, don't create a new pull request.
 Existing pull requests can be updated. Simply push further commits to
 the same branch.

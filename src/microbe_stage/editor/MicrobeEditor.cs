@@ -300,8 +300,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     /// <summary>
     ///   Hover hexes and models are only shown if this is true. This is saved to make this work better when the player
-    ///   was in the cell editor tab and saved, though that doesn't seem to work:
-    ///   https://github.com/Revolutionary-Games/Thrive/issues/1750
+    ///   was in the cell editor tab and saved.
     /// </summary>
     public bool ShowHover { get; set; }
 
@@ -390,6 +389,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
+
+    /// <summary>
+    ///   If true an editor action is active and can be cancelled. Currently only checks for organelle move.
+    /// </summary>
+    [JsonIgnore]
+    public bool CanCancelAction => MovingOrganelle != null;
 
     [JsonIgnore]
     public Node GameStateRoot => this;
@@ -711,8 +716,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             if (MoveOrganelle(MovingOrganelle, MovingOrganelle.Position, new Hex(q, r), MovingOrganelle.Orientation,
                 organelleRot))
             {
-                // Move succeeded
+                // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
                 MovingOrganelle = null;
+                gui.UpdateCancelButtonVisibility();
 
                 // Update rigidity slider in case it was disabled
                 // TODO: could come up with a bit nicer design here
@@ -732,7 +738,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (AddOrganelle(ActiveActionName))
         {
-            // Only trigger tutorial if something was really placed
+            // Only trigger tutorial if an organelle was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
     }
@@ -842,6 +848,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         MovingOrganelle = selectedOrganelle;
         editedMicrobeOrganelles.Remove(MovingOrganelle);
+    }
+
+    /// <summary>
+    ///   Cancels the current editor action
+    /// </summary>
+    /// <returns>True when the input is consumed</returns>
+    [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
+    public bool CancelCurrentAction()
+    {
+        if (MovingOrganelle != null)
+        {
+            editedMicrobeOrganelles.Add(MovingOrganelle);
+            MovingOrganelle = null;
+            gui.UpdateCancelButtonVisibility();
+            return true;
+        }
+
+        return false;
     }
 
     public void RemoveOrganelle(Hex hex)
@@ -1234,9 +1258,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(CurrentPatch);
 
-        // Reset this, GUI will tell us to enable it again
-        ShowHover = false;
-
         UpdatePatchBackgroundImage();
 
         gui.SetMap(CurrentGame.GameWorld.Map);
@@ -1251,6 +1272,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send undo button to the tutorial system
         gui.SendUndoToTutorial(TutorialState);
+
+        gui.UpdateCancelButtonVisibility();
     }
 
     private void InitEditorFresh()
@@ -1879,9 +1902,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
             return false;
 
-        // If it was already moved this session, it is free to move again
-        // Also free if not moved (but can be rotated)
-        int cost = (organelle.MovedThisSession || oldLocation == newLocation) ? 0 : Constants.ORGANELLE_MOVE_COST;
+        // If the organelle was already moved this session, added (placed) this session,
+        // or not moved (but can be rotated), then moving it is free
+        bool isFreeToMove = organelle.MovedThisSession || oldLocation == newLocation || organelle.PlacedThisSession;
+        int cost = isFreeToMove ? 0 : Constants.ORGANELLE_MOVE_COST;
 
         var action = new MicrobeEditorAction(this, cost,
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
