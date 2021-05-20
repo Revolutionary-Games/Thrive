@@ -109,9 +109,8 @@ public class CustomRichTextLabel : RichTextLabel
                     // No closing bracket found, just write normally to the final string and abort trying to parse
                     if (character == '[' || index == ExtendedBbcode.Length - 1)
                     {
-                        result.Append($"[{currentTagBlock.ToString()}");
+                        result.Append($"[{currentTagBlock}");
                         isIteratingTag = false;
-                        continue;
                     }
 
                     continue;
