@@ -310,7 +310,7 @@ public class MicrobeAI
         // Run specifically away
         try
         {
-            targetPosition = (2 * microbe.Translation - predator.Translation) + microbe.Translation;
+            targetPosition = (2 * predator.Translation - microbe.Translation) + microbe.Translation;
             microbe.LookAtPoint = targetPosition;
 
             // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
