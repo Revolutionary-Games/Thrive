@@ -59,28 +59,56 @@ public class MicrobeAI
         // Clear the lists
         chunkList.Clear();
 
-        var predator = GetNearestPredatorItem(data.AllMicrobes);
-        var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
-        var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
+        Vector3? predator = null;
+        try
+        {
+            predator = GetNearestPredatorItem(data.AllMicrobes).Translation;
+        } catch (ObjectDisposedException ex)
+        {
+            // Do nothing; the predator must already be dead
+        }
+
+        Vector3? targetChunk = null;
+        try
+        {
+            targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random).Translation;
+        }
+        catch (ObjectDisposedException ex)
+        {
+            // Do nothing; the chunk must be gone
+        }
+
+        Vector3? prey = null;
+        bool engulfPrey = false;
+        try
+        {
+            var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
+            engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
+            microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f;
+            prey = possiblePrey.Translation;
+        }
+        catch
+        {
+            // Do nothing; the prey must have died
+        }
+
 
         if (microbe.IsBeingEngulfed)
         {
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
         else if (predator != null &&
-            DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
+            DistanceFromMe((Vector3)predator) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
         {
-            PreyFlee(random, predator);
+            FleeFromPredators(random, (Vector3)predator);
         }
-        else if (targetChunk != null &&
-            (targetChunk.Translation - microbe.Translation).LengthSquared()
-            <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+        else if (targetChunk != null)
         {
-            PursueAndConsumeChunks(targetChunk, random);
+            PursueAndConsumeChunks((Vector3)targetChunk, random);
         }
-        else if (possiblePrey != null)
+        else if (prey != null)
         {
-            EngagePrey(possiblePrey, random);
+            EngagePrey((Vector3)prey, random, engulfPrey);
         }
         else
         {
@@ -115,7 +143,9 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-            if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+            if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
+                && (chunk.Translation - microbe.Translation).LengthSquared()
+                <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
             {
                 if (chunk.ContainedCompounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
@@ -252,11 +282,10 @@ public class MicrobeAI
         return predator;
     }
 
-    private void PursueAndConsumeChunks(FloatingChunk chunk, Random random)
+    private void PursueAndConsumeChunks(Vector3 chunk, Random random)
     {
         // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
-        targetPosition = chunk.Translation
-            + new Vector3(0.5f, 0.0f, 0.5f);
+        targetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
         microbe.LookAtPoint = targetPosition;
         SetEngulfIfClose();
 
@@ -270,46 +299,37 @@ public class MicrobeAI
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
     }
 
-    private void PreyFlee(Random random, Microbe predator)
+    private void FleeFromPredators(Random random, Vector3 predatorLocation)
     {
         microbe.EngulfMode = false;
 
-        try
+        targetPosition = (2 * predatorLocation - microbe.Translation) + microbe.Translation;
+        microbe.LookAtPoint = targetPosition;
+
+        // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
+        if (DistanceFromMe(predatorLocation) < 100.0f &&
+            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
         {
-            targetPosition = (2 * predator.Translation - microbe.Translation) + microbe.Translation;
-            microbe.LookAtPoint = targetPosition;
-
-            // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
-            if (DistanceFromMe(predator.Translation) < 100.0f &&
-                RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
-            {
-                MoveWithRandomTurn(2.5f, 3.0f, random);
-            }
-
-            // If prey is confident enough, it will try and launch toxin at the predator
-            if (SpeciesAggression > SpeciesFear &&
-                DistanceFromMe(predator.Translation) >
-                300.0f - (5.0f * SpeciesAggression) + (6.0f * SpeciesFear) &&
-                RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
-            {
-                LaunchToxin(predator);
-            }
-
-            // No matter what, I want to make sure I'm moving
-            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            MoveWithRandomTurn(2.5f, 3.0f, random);
         }
-        catch (ObjectDisposedException)
+
+        // If prey is confident enough, it will try and launch toxin at the predator
+        if (SpeciesAggression > SpeciesFear &&
+            DistanceFromMe(predatorLocation) >
+            300.0f - (5.0f * SpeciesAggression) + (6.0f * SpeciesFear) &&
+            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
         {
-            // Our predator is dead
-            predator = null;
+            LaunchToxin(predatorLocation);
         }
+
+        // No matter what, I want to make sure I'm moving
+        SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
     }
 
-    private void EngagePrey(Microbe target, Random random)
+    private void EngagePrey(Vector3 target, Random random, bool engulf)
     {
-        microbe.EngulfMode = target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-            microbe.EngulfSize && DistanceFromMe(target.Translation) < 50.0f;
-        targetPosition = target.Translation;
+        microbe.EngulfMode = engulf;
+        targetPosition = target;
         microbe.LookAtPoint = targetPosition;
         if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
         {
@@ -386,14 +406,14 @@ public class MicrobeAI
         }
     }
 
-    private void LaunchToxin(Microbe target)
+    private void LaunchToxin(Vector3 target)
     {
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-            (microbe.Translation - target.Translation).LengthSquared() <= SpeciesFocus * 10.0f)
+            (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
         {
             if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
             {
-                microbe.LookAtPoint = target.Translation;
+                microbe.LookAtPoint = target;
                 microbe.QueueEmitToxin(oxytoxy);
             }
         }
