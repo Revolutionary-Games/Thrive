@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-18 20:32+0700\n"
+"POT-Creation-Date: 2021-05-20 13:51+0700\n"
 "PO-Revision-Date: 2021-04-09 05:04+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -418,7 +418,7 @@ msgid "ZOOM_IN"
 msgstr "Enfocar la visió de la càmera"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:921
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:971
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -466,58 +466,63 @@ msgstr "Desplaçar cap avall"
 msgid "PAN_CAMERA_RESET"
 msgstr "Reinicialitzar càmera"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:115
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:110
+msgid "CANCEL_CURRENT_ACTION"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:123
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Trucs"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "ENABLE_EDITOR"
 msgstr "Habilitar l'editor"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "SPAWN_GLUCOSE"
 msgstr "Fer aparéixer Glucosa"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 msgid "SPAWN_AMMONIA"
 msgstr "Fer aparéixer Amoníac"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fer aparéixer Fosfats"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 #, fuzzy
 msgid "CHEAT_MENU"
 msgstr "Trucs"
 
-#: ../simulation_parameters/common/input_options.json:148
+#: ../simulation_parameters/common/input_options.json:152
 msgid "MISCELLANEOUS"
 msgstr "Miscel·lània"
 
-#: ../simulation_parameters/common/input_options.json:152
+#: ../simulation_parameters/common/input_options.json:156
 msgid "TOGGLE_FPS"
 msgstr "Activar monitor FPS"
 
-#: ../simulation_parameters/common/input_options.json:156
+#: ../simulation_parameters/common/input_options.json:160
 msgid "QUICK_SAVE"
 msgstr "Guardat ràpid"
 
-#: ../simulation_parameters/common/input_options.json:160
+#: ../simulation_parameters/common/input_options.json:164
 msgid "QUICK_LOAD"
 msgstr "Càrrega ràpida"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:168
 msgid "TAKE_SCREENSHOT"
 msgstr "Fer una captura de pantalla"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "SHOW_HELP"
 msgstr "Mostrar tauler d'ajuda"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:176
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Activar pantalla completa"
 
@@ -660,49 +665,53 @@ msgid "SEA_FLOOR"
 msgstr "Llit marí"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:473
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:725
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1412
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1660
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1954
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2542
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3304
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4457
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4977
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:478
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:730
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1417
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1959
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2247
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2547
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3309
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4462
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4982
 msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:15
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4482
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1984
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4487
 #: ../src/microbe_stage/MicrobeStage.tscn:1217
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3448
 msgid "AMMONIA"
 msgstr "Amoníac"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:27
 #: ../src/microbe_stage/MicrobeStage.tscn:1271
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3519
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4172
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1301
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4177
 #: ../src/microbe_stage/MicrobeStage.tscn:1325
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3413
 msgid "HYDROGEN_SULFIDE"
 msgstr "Àcid Sulfhídric"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:51
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:448
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:700
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:994
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1382
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3869
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4197
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:705
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1326
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3284
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3572
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4202
 #: ../src/microbe_stage/MicrobeStage.tscn:1163
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3483
 msgid "GLUCOSE"
 msgstr "Glucosa"
 
@@ -712,92 +721,97 @@ msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1635
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1640
 #: ../src/microbe_stage/MicrobeStage.tscn:1379
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3554
 msgid "IRON"
 msgstr "Ferro"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2317
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5068
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1734
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2322
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4556
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5073
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3249
 msgid "OXYGEN"
 msgstr "Oxigen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:99
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1032
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3605
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3907
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4232
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1037
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1361
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1703
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3610
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3912
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4237
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3303
 msgid "CARBON_DIOXIDE"
 msgstr "Diòxid de Carboni"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:111
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2017
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4520
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4525
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3276
 msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:123
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7336
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7341
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3129
 msgid "SUNLIGHT"
 msgstr "Llum solar"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5326
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5390
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5395
 msgid "NORMAL"
 msgstr "Normal"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:18
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5586
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5650
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5591
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5655
 msgid "DOUBLE"
 msgstr "Doble"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:33
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5842
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5906
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5847
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5911
 msgid "CELLULOSE"
 msgstr "Cel·lulosa"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:48
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6169
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6233
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6174
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6238
 msgid "CHITIN"
 msgstr "Quitina"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:63
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6496
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6560
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6501
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6565
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonat de Calci"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:78
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6857
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6921
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6862
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6926
 msgid "SILICA"
 msgstr "Silici"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2791
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2732
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2796
 msgid "PREDATORY_PILUS"
 msgstr "Fibló"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:53
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1601
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1606
 msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:86
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1861
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
 msgid "NITROGENASE"
 msgstr "Nitrogenasa"
 
@@ -806,81 +820,81 @@ msgid "PROTOPLASM"
 msgstr "protoplasma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1198
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1262
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1203
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1267
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteïnes Quimiosintetitzadores"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:186
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2144
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2213
 msgid "OXYTOXISOME"
 msgstr "Oxytoxysoma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:219
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:960
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "THYLAKOIDS"
 msgstr "Tilacoide"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:251
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:602
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:666
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:607
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:671
 msgid "METABOLOSOMES"
 msgstr "Metabolosomes"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4359
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4423
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4364
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4428
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plastidi Fixador de Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4074
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4138
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4079
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4143
 msgid "CHEMOPLAST"
 msgstr "Quimioplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:356
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2508
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2513
 msgid "FLAGELLUM"
 msgstr "Flagel"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4678
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4683
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4747
 msgid "VACUOLE"
 msgstr "Vacúol"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:418
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3181
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3250
 msgid "MITOCHONDRION"
 msgstr "Mitocondri"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4879
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4884
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4948
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxina\n"
 "Vacúol"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:493
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3533
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3474
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3538
 msgid "CHLOROPLAST"
 msgstr "Cloroplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:525
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:350
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:355
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:419
 msgid "CYTOPLASM"
 msgstr "Citoplasma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:590
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2979
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2984
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3048
 msgid "NUCLEUS"
 msgstr "Nucli"
 
@@ -1367,12 +1381,12 @@ msgstr "Ratolí especial 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Desconegut ratolí"
 
-#: ../src/general/Gallery.cs:82
+#: ../src/general/Gallery.cs:73
 #, fuzzy
 msgid "ARTWORK_TITLE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
-#: ../src/general/Gallery.cs:86
+#: ../src/general/Gallery.cs:77
 msgid "ART_BY"
 msgstr ""
 
@@ -1551,6 +1565,10 @@ msgstr ""
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valors més alts augmenten el rendiment)"
 
+#: ../src/general/OptionsMenu.tscn:688
+msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:690
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor de Resolució dels Núvols:"
@@ -1681,7 +1699,7 @@ msgid "SAVE_GAME"
 msgstr "Guardar la partida"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2477
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2552
 msgid "STATISTICS"
 msgstr "Estadístiques"
 
@@ -1726,16 +1744,16 @@ msgstr ""
 "versió del joc actual.\n"
 "Siusplau, carregueu l'arxiu de guardat manualment a través del menú."
 
-#: ../src/gui_common/charts/line/LineChart.cs:900
-#: ../src/gui_common/charts/line/LineChart.cs:929
+#: ../src/gui_common/charts/line/LineChart.cs:901
+#: ../src/gui_common/charts/line/LineChart.cs:930
 #, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur "
 "que voleu eliminar permanentment l'arxiu {0}?"
 
-#: ../src/gui_common/charts/line/LineChart.cs:909
-#: ../src/gui_common/charts/line/LineChart.cs:937
+#: ../src/gui_common/charts/line/LineChart.cs:910
+#: ../src/gui_common/charts/line/LineChart.cs:938
 #, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
@@ -1754,129 +1772,129 @@ msgstr "Obrir pantalla d'ajuda"
 msgid "WILL_YOU_THRIVE"
 msgstr "Podràs prosperar?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:115
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Acabar la sessió d'evolució i tornar al món"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:121
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Canviar la simetria"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:122
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:127
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfer la darrera acció"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:133
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Refer la darrera acció"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:139
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Crear un nou microbi"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:154
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:217
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:222
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Rigidesa de la membrana"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:254
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5427
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5687
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6270
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6597
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6958
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:259
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5692
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5948
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6275
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6963
 msgid "MOBILITY"
 msgstr "Mobilitat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:289
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5530
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5787
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6046
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6373
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6700
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7061
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:294
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5535
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5792
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6051
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6705
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7066
 msgid "HEALTH"
 msgstr "Salut"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:334
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Una membrana més rígida protegeix millor, però fa que la cèl·lula sigui "
 "més lenta i menys àgil."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:441
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:693
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1289
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1947
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4165
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4450
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4970
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1294
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1952
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3277
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4170
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4975
 msgid "TURNS"
 msgstr "Girs"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:466
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:718
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1972
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2260
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3297
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4475
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4995
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:471
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:723
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1410
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1658
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1977
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2265
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3302
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5000
 msgid "INTO"
 msgstr "dins"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:506
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:800
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1760
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2048
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2348
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2631
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3085
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3373
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3969
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4263
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4582
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4783
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5099
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:511
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:805
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2053
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2353
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2636
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3090
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3974
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4268
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4587
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4788
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5104
 msgid "STORAGE"
 msgstr "Emmagatzematge"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1140
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1479
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1798
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2086
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2386
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3123
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3411
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3713
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4007
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4301
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4620
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4821
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5137
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5462
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5721
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5978
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6305
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6632
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6993
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:549
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:843
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1803
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2391
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2674
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3718
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4012
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5142
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5467
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5726
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5983
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6310
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6998
 msgid "OSMOREGULATION_COST"
 msgstr "Cost d'Osmoregulació"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:586
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:591
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una "
@@ -1887,21 +1905,21 @@ msgstr ""
 "tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-"
 "se."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:751
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1683
 msgid "DOT_RATE_SCALES"
 msgstr ". La velocitat augmenta proporcionalment"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:759
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:764
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1696
 msgid "WITH_CONCENTRATION_OF"
 msgstr "amb la concentració de"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:766
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:771
 msgid "OXYGEN_DOT"
 msgstr "Oxigen."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana. "
@@ -1911,49 +1929,49 @@ msgstr ""
 "Metabolosomes estan suspesos en el Citoplasma, aquest fluid duu a terme "
 "una certa Fermentació."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:896
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:901
 msgid "THYLAKOID"
 msgstr "Tilacoide"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:987
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3560
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3862
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:992
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3565
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3867
 msgid "PRODUCES"
 msgstr "Produeix"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1012
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3887
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1017
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3590
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3892
 msgid "DOT_RATE_SCALES_WITH"
 msgstr ". La velocitat augmenta proporcionalment amb"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3598
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3900
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1030
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3603
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3905
 msgid "CONCENTRATION_OF"
 msgstr "la concentració de"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1051
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1722
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3624
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3926
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1056
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1727
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3629
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3931
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4549
 msgid "AND"
 msgstr "i"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1069
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3642
 msgid "INTENSITY_OF"
 msgstr "la intensitat de"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1071
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3644
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1076
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3649
 #: ../src/microbe_stage/MicrobeStage.tscn:925
 msgid "LIGHT"
 msgstr "Llum"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1187
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests "
@@ -1966,16 +1984,16 @@ msgstr ""
 "estan suspesos en el Citoplasma, aquest fluid duu a terme una certa "
 "Fermentació."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1344
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4220
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1349
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4225
 msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 msgstr ". La velocitat augmenta proporcionalment amb la concentració de"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1380
 msgid "ALSO_TURNS"
 msgstr "També transforma"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1526
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el "
@@ -1987,7 +2005,7 @@ msgstr ""
 "Com que les Proteïnes Quimiosintetitzadores estan suspeses en el "
 "Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1845
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, "
@@ -1995,20 +2013,20 @@ msgstr ""
 "procés s'anomena Respiració de Ferro, i allibera una certa quantitat "
 "d'energia que la cèl·lula pot fer servir."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1997
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3322
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4500
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2002
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3327
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4505
 msgid "DOT_RATE"
 msgstr ". La velocitat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3335
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4513
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5061
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2015
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4518
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5066
 msgid "SCALES_WITH_CONCENTRATION_OF"
 msgstr "augmenta proporcionalment amb la concentració de"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2133
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic "
@@ -2017,44 +2035,44 @@ msgstr ""
 "Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest "
 "fluid duu a terme una certa Fermentació."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5002
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5007
 msgid "OXYTOXY"
 msgstr "Oxytoxy"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2285
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2290
 msgid "DOT_CAN_RELEASE"
 msgstr ". Pot alliberar"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2297
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2302
 msgid "TOXINS_BY_PRESSING_E"
 msgstr ""
 "Toxines quan s'apreti el botó E del teclat. La velocitat augmenta "
 "proporcionalment amb"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2428
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2433
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "Un Metabolosoma modificat que és responsable de la producció d'una forma "
 "primitiva de l'agent tòxic OxyToxy NT."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2535
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2540
 msgid "USES"
 msgstr "Fa servir"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2560
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2565
 msgid "TO_INCREASE_THE_MOVEMENT"
 msgstr "per augmentar la"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2572
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2577
 msgid "SPEED_OF_THE_CELL"
 msgstr "velocitat de la cèl·lula."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2593
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2598
 msgid "SPEED"
 msgstr "Velocitat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2711
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2716
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "Els flagels són uns farcells de proteïnes i fibres, com petits tentacles "
@@ -2062,24 +2080,24 @@ msgstr ""
 "ondulatori, permeten propulsar la cèl·lula cap endavant a gran velocitat, "
 "mentre consumeixen ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2837
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2842
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
 "Amb aquesta estructura punxeguda, pots acoltellar altres cèl·lules fins a "
 "trencar la seva membrana."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2853
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2858
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
 msgid "CILIA"
 msgstr "Cilis"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2963
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4049
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2968
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5310
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Encara no s'ha implementat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3064
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3069
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "Permet evolucionar orgànuls més complexes,\n"
@@ -2087,7 +2105,7 @@ msgstr ""
 " membrana. Consumeix una gran quantitat\t\n"
 " d'ATP. Es tracta d'un pas evolutiu irreversible."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3170
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 "És la característica que defineix les cèl·lules eucariotes. El nucli "
@@ -2101,7 +2119,7 @@ msgstr ""
 "eficient i especialitzada. No obstant, això també implica que la cèl·lula "
 "ha d'esdevenir més gran i necessita més quantitat de recursos per a viure."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 "És el pal de paller de la generació d'energia per la cèl·lula. Els "
@@ -2111,7 +2129,7 @@ msgstr ""
 "grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran "
 "eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3760
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "El cloroplast és una estructura de doble membrana que conté pigments "
@@ -2124,18 +2142,19 @@ msgstr ""
 "proporcionalment amb la concentració de Diòxid de Carboni i la intensitat "
 "de la Llum."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3771
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3835
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3776
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3840
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3938
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7331
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7336
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3066
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:759
 msgid "TEMPERATURE"
 msgstr "Temperatura"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4058
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4063
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "El termoplast és una estructura de doble membrana que, de manera anàloga "
@@ -2147,7 +2166,7 @@ msgstr ""
 "la Glucosa augmenta proporcionalment a la concentració de Diòxid de "
 "Carboni i la Temperatura."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4343
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4348
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "El Quimioplast és una estructura de doble membrana que conté proteïnes que "
@@ -2156,7 +2175,7 @@ msgstr ""
 "velocitat de producció de Glucosa augmenta proporcionalment a la "
 "concentració de Diòxid de Carboni."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4662
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4667
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un "
@@ -2164,11 +2183,11 @@ msgstr ""
 "mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena "
 "Fixació de Nitrogen Aeròbica."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4768
 msgid "INREASE_STORAGE_SPACE"
 msgstr "Augmenta l'espai d'emmagatzematge de la cèl·lula."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4863
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4868
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 "El Vacúol és un orgànul intern que consisteix en una membrana capaç "
@@ -2178,23 +2197,23 @@ msgstr ""
 "mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No "
 "són estructures rígides, sinò que la seva forma pot canviar amb el temps."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5020
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5025
 msgid "DOT_CAN"
 msgstr ". Pot"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5033
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5038
 msgid "RELEASE_TOXINS_BY_PRESSING"
 msgstr "alliberar toxines quan es premi"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5040
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5045
 msgid "E_DOT"
 msgstr "la tecla E."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5053
 msgid "RATE"
 msgstr "La velocitat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5179
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5184
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la "
@@ -2202,21 +2221,21 @@ msgstr ""
 "d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes "
 "Toxines."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5195
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5259
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5200
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5264
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacúol Bioluminescent"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5496
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5754
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6012
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6339
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6666
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7027
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5501
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5759
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6017
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6344
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6671
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7032
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Velocitat d'Absorció de Recursos"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5575
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Aquesta és la forma més bàsica de la Membrana cel·lular, que ofereix poca "
@@ -2224,7 +2243,7 @@ msgstr ""
 "quantitat important d'energia. Com a avantatge, permet a la cèl·lula "
 "moure's i absorbir nutrients ràpidament."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:5826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:5831
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Una membrana cel·lular formada per dues capes, que ofereix millor "
@@ -2232,33 +2251,33 @@ msgstr ""
 "esdevingui més lenta. També redueix la velocitat a la qual s'absorbeixen "
 "els nutrients en entrar-hi en contacte."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6080
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6734
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7095
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6085
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6739
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7100
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistència física"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6114
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6441
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6802
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6119
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6807
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7168
 msgid "CANNOT_ENGULF"
 msgstr "No pot engolir"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6153
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6158
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Aquesta membrana té una paret, que ofereix una bona protecció, "
 "especialment contra agressions físiques, com ara fiblades. Consumeix poca "
 "energia, però absorbeix els nutrients lentament."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6407
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6768
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6412
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6773
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7134
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistència a les Toxines"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6485
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Aquesta membrana té una paret, de manera que està més ben protegida, "
@@ -2266,7 +2285,7 @@ msgstr ""
 "consumeix poca energia. No obstant, la cèl·lula esdevé més lenta i "
 "absorbeix els nutrients més a poc a poc."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:6841
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:6846
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Aquesta membrana té una capa dura de Carbonat de Calci. Té una gran "
@@ -2274,7 +2293,7 @@ msgstr ""
 "química. No consumeix gaire energia. Malgrat tot, la cèl·lula esdevé lenta "
 "i absorbeix els nutrients a poc a poc."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7202
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7207
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Aquesta membrana té una forta paret de silici. Pot resistir les agressions "
@@ -2282,7 +2301,7 @@ msgstr ""
 "No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els "
 "nutrients a poc a poc."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:7323
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:7328
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Afegir una nova vinculació de tecla"
 
@@ -2329,19 +2348,19 @@ msgstr "el jugador ha mort"
 msgid "MICROBE_PATCH_LABEL"
 msgstr "Indret: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:605
+#: ../src/microbe_stage/MicrobeHUD.cs:610
 msgid "STUFF_AT"
 msgstr "Matèria a les coordenades {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:664
+#: ../src/microbe_stage/MicrobeHUD.cs:669
 msgid "PLAYER_CELL"
 msgstr "Cèl·lula del jugador"
 
-#: ../src/microbe_stage/MicrobeStage.cs:461
+#: ../src/microbe_stage/MicrobeStage.cs:467
 msgid "PLAYER_REPRODUCED"
 msgstr "el jugador ha aconseguit reproduïr-se"
 
-#: ../src/microbe_stage/MicrobeStage.cs:573
+#: ../src/microbe_stage/MicrobeStage.cs:584
 msgid "PLAYER_DIED"
 msgstr "el jugador ha mort"
 
@@ -2374,9 +2393,9 @@ msgid "PRESSURE_SHORT"
 msgstr "Pressió"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2661
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3298
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2736
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3373
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
@@ -2440,184 +2459,194 @@ msgstr "Processos de la Cèl·lula"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Equilibri de Compostos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:517
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1192
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:522
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1215
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "S'està carregant l'Editor de Microbi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:519
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:524
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "S'està esperant l'algorisme auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2077
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2101
 msgid "AUTO_EVO_FAILED"
 msgstr "L'algorisme auto-evo ha tingut un error"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2078
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2102
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "estat d'execució:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:877
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:927
 msgid "REPORT"
 msgstr "Informe"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:899
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:949
 msgid "PATCH_MAP"
 msgstr "Mapa d'Indrets del món"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:978
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1030
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1039
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1091
 msgid "SPEED_COLON"
 msgstr "Velocitat:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1069
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1121
 msgid "HP_COLON"
 msgstr "Punts de salut:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1099
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1151
 msgid "SIZE_COLON"
 msgstr "Mida:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1120
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1172
 msgid "GENERATION_COLON"
 msgstr "Generació:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1162
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1214
 msgid "ATP_BALANCE"
 msgstr "Equilibri d'ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1368
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1420
 msgid "MUTATION_POINTS"
 msgstr "Punts de Mutació"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1504
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
 msgid "STRUCTURE"
 msgstr "Estructura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1527
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1579
 msgid "MEMBRANE"
 msgstr "Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1550
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1602
 msgid "BEHAVIOR"
 msgstr "Comportament"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1602
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1654
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Cerca..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1609
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1661
 msgid "STRUCTURAL"
 msgstr "Estructural"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1645
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1697
 msgid "PROTEINS"
 msgstr "Proteïnes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1721
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1773
 msgid "EXTERNAL"
 msgstr "Extern"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1827
 msgid "ORGANELLES"
 msgstr "Orgànuls"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1912
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
 msgid "MEMBRANE_TYPES"
 msgstr "Tipus de Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1972
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2024
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidesa / Rigidesa"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2063
 msgid "COLOUR"
 msgstr "Color"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2208
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l'Espècie..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2185
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2245
+#, fuzzy
+msgid "CANCEL_ACTION_CAPITAL"
+msgstr "CONFIRMAR"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2260
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRMAR"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2195
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2270
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Equilibri d'ATP Negatiu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2207
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2282
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "El teu Microbi no consumeix més ATP que no pas pot arribar a produïr!\n"
 "Vols continuar?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2218
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2293
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Orgànuls Desconnectats"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2230
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2305
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Hi ha orgànuls que no han estat físicament connectats a la resta.\n"
 "Siusplau, connecta tots els orgànuls o bé desfés els teus canvis."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2330
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2405
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2343
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2418
 msgid "FOOD_CHAIN"
 msgstr "Cadena Alimentària o Tròfica"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2431
 msgid "TIMELINE"
 msgstr "Cronologia"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2409
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2484
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultats de l'algorisme Auto-Evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2503
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efectes externs:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2486
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2561
 msgid "SPECIES_POPULATION"
 msgstr "Població de les Espècies"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2519
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2950
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2594
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3025
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condicions Físiques"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2623
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3133
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2698
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3208
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:831
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gasos Atmosfèrics"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2717
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3645
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3720
 msgid "NEXT_CAPITAL"
 msgstr "SEGÜENT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2832
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2907
 msgid "SELECT_A_PATCH"
 msgstr "Selecciona un Indret per a veure'n els detalls"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2867
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2942
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "INDRET ACTUAL"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3558
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3102
+#, fuzzy
+msgid "PRESSURE"
+msgstr "Pressió"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3633
 msgid "SPECIES_PRESENT"
 msgstr "Espècies presents"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3616
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moure a aquest Indret"
 
@@ -2625,73 +2654,73 @@ msgstr "Moure a aquest Indret"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:584
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 "La quantitat de Glucosa s'ha reduït un percentatge de {0} respecte a la "
 "Generació anterior."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:596
 msgid "MEGA_YEARS"
 msgstr "Milions d'anys"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:595
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:600
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:831
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:833
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
 msgid "YEARS"
 msgstr "anys"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:642
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:647
 msgid "ATP_PRODUCTION"
 msgstr "Producció d'ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:643
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:648
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCCIÓ D'ATP ÉS MASSA BAIXA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:677
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:694
 msgid "OSMOREGULATION"
 msgstr "Osmoregulació"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:695
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:700
 msgid "BASE_MOVEMENT"
 msgstr "Capacitat de moviment"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:707
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:712
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:833
 msgid "SPECIES_LIST"
 msgstr "Espècies presents"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:853
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:859
 msgid "FREEBUILDING"
 msgstr "Construcció lliure"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:944
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:949
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sota el nivell del mar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:971
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "WITH_POPULATION"
 msgstr "{0} amb població: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:179
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -3191,6 +3220,10 @@ msgstr ""
 "cèl·lula recol·lectant prou Amoníac i Fosfats.\n"
 "Estigueu atents a l'indicador a la part inferior dreta per veure quina "
 "quantitat d'Amoníac i Fosfats et falta encara."
+
+#, fuzzy
+#~ msgid "CANCEL_ORGANELLE_MOVE"
+#~ msgstr "Col·locar orgànul"
 
 #~ msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
 #~ msgstr ""
