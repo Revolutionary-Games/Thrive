@@ -115,9 +115,7 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-            if ((SpeciesOpportunism == Constants.MAX_SPECIES_OPPORTUNISM) ||
-                ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
-                    chunk.Size))
+            if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
             {
                 if (chunk.ContainedCompounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
@@ -258,7 +256,7 @@ public class MicrobeAI
     {
         // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
         targetPosition = chunk.Translation
-            + new Vector3(5.0f, 0.0f, 5.0f);
+            + new Vector3(0.5f, 0.0f, 0.5f);
         microbe.LookAtPoint = targetPosition;
         SetEngulfIfClose();
 
