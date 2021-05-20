@@ -5,20 +5,20 @@
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=5]
-[ext_resource path="res://shaders/UvFlipper.shader" type="Shader" id=6]
+[ext_resource path="res://shaders/UVFlipper.shader" type="Shader" id=6]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=7]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.401316, 1 )
 colors = PoolColorArray( 0.0117647, 0.027451, 0.0392157, 1, 0, 0, 0.00392157, 0, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=4]
 
 [node name="LoadingScreen" type="Control"]
 pause_mode = 2
@@ -63,10 +63,10 @@ __meta__ = {
 }
 
 [node name="FadeGradient" type="TextureRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 4 )
+texture = SubResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -85,7 +85,7 @@ __meta__ = {
 }
 
 [node name="ArtDescription" type="Label" parent="CenterContainer"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 margin_left = 240.0
 margin_top = 39.0
 margin_right = 1040.0
