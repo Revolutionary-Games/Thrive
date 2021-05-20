@@ -62,8 +62,8 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     private void ParseCustomTags()
     {
-        var result = new StringBuilder();
-        var currentTagBlock = new StringBuilder();
+        var result = new StringBuilder(extendedBbcode.Length);
+        var currentTagBlock = new StringBuilder(50);
 
         var tagStack = new Stack<string>();
 
@@ -74,15 +74,15 @@ public class CustomRichTextLabel : RichTextLabel
         // to retrieve the tagged substring
         var lastStartingTagEndIndex = 0;
 
-        for (int index = 0; index < ExtendedBbcode.Length; index++)
+        for (int index = 0; index < extendedBbcode.Length; ++index)
         {
-            var character = ExtendedBbcode[index];
+            var character = extendedBbcode[index];
 
-            var validNextCharacter = index + 1 < ExtendedBbcode.Length && ExtendedBbcode[index + 1] != '[';
+            var validNextCharacter = index + 1 < extendedBbcode.Length && extendedBbcode[index + 1] != '[';
 
             // Opening bracket found, try to parse it
             if (character == '[' && validNextCharacter && !isIteratingTag &&
-                index < ExtendedBbcode.Length)
+                index < extendedBbcode.Length)
             {
                 // Clear previous tag
                 currentTagBlock.Clear();
@@ -96,6 +96,7 @@ public class CustomRichTextLabel : RichTextLabel
             // Character is not a tag, write it normally into the final string
             if (!isIteratingTag && !isIteratingContent)
             {
+                // TODO: made this try to add entire substrings at once instead of appending per character
                 result.Append(character);
             }
 
@@ -106,9 +107,9 @@ public class CustomRichTextLabel : RichTextLabel
                 {
                     currentTagBlock.Append(character);
 
-                    // No closing bracket found, just write normally to the final string and abort trying to parse
-                    if (character == '[' || index == ExtendedBbcode.Length - 1)
+                    if (character == '[' || index == extendedBbcode.Length - 1)
                     {
+                        // No closing bracket found, just write normally to the final string and abort trying to parse
                         result.Append($"[{currentTagBlock}");
                         isIteratingTag = false;
                     }
@@ -164,9 +165,9 @@ public class CustomRichTextLabel : RichTextLabel
 
                     // Finally try building the bbcode template for the tagged substring
 
-                    var closingTagStartIndex = ExtendedBbcode.Find("[", lastStartingTagEndIndex);
+                    var closingTagStartIndex = extendedBbcode.Find("[", lastStartingTagEndIndex);
 
-                    var input = ExtendedBbcode.Substr(
+                    var input = extendedBbcode.Substr(
                         lastStartingTagEndIndex + 1, closingTagStartIndex - lastStartingTagEndIndex - 1);
 
                     ThriveBbCodeTag parsedTag;
@@ -224,6 +225,10 @@ public class CustomRichTextLabel : RichTextLabel
                     output = $"[b]{compound.Name}[/b] [font=res://src/gui_common/fonts/" +
                         $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
                 }
+                else
+                {
+                    GD.Print($"Compound: \"{input}\" is not found while templating bbcodes");
+                }
 
                 break;
             }
@@ -234,6 +239,10 @@ public class CustomRichTextLabel : RichTextLabel
                 {
                     output = "[font=res://src/gui_common/fonts/BBCode-Image-VerticalCenterAlign-9.tres]" +
                         $"[img=30]{KeyPromptHelper.GetPathForAction(input)}[/img][/font]";
+                }
+                else
+                {
+                    GD.Print($"Input action: \"{input}\" is not found while templating bbcodes");
                 }
 
                 break;

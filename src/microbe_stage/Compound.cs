@@ -87,10 +87,7 @@ public class Compound : IRegistryType
 
     public void Resolve()
     {
-        if (!string.IsNullOrEmpty(IconPath))
-        {
-            LoadedIcon = GD.Load<Texture>(IconPath);
-        }
+        LoadedIcon = GD.Load<Texture>(IconPath);
     }
 
     public void ApplyTranslations()
