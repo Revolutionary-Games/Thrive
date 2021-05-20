@@ -256,10 +256,17 @@ public class MicrobeAI
 
     private void PursueAndConsumeChunks(FloatingChunk chunk, Random random)
     {
+        // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
         targetPosition = chunk.Translation
-            + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
+            + new Vector3(5.0f, 0.0f, 5.0f);
         microbe.LookAtPoint = targetPosition;
         SetEngulfIfClose();
+
+        // Just in case something is obstructing chunk engulfing, wiggle a little sometimes
+        if (random.NextDouble() < 0.05)
+        {
+            MoveWithRandomTurn(0.1f, 0.2f, random);
+        }
 
         // Always set target Position, for use later in AI
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
