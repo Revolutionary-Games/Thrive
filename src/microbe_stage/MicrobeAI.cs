@@ -367,7 +367,7 @@ public class MicrobeAI
     private void SetEngulfIfClose()
     {
         // Turn on engulfmode if close
-        if ((microbe.Translation - targetPosition).LengthSquared() <= 100 + (microbe.EngulfSize * 3.0f))
+        if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize / 3.14f)
         {
             microbe.EngulfMode = true;
             ticksSinceLastToggle = 0;
