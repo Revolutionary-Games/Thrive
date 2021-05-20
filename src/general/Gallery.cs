@@ -95,7 +95,8 @@ public class Gallery : IRegistryType
 
         public void Resolve()
         {
-            if (!FileHelpers.Exists(ResourcePath))
+            // When exported only the .import files exist, so this check is done accordingly
+            if (!FileHelpers.Exists(ResourcePath + ".import"))
                 throw new FileNotFoundException("The given image file in ResourcePath doesn't exist");
         }
     }
