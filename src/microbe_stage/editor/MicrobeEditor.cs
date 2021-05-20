@@ -680,7 +680,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (AddOrganelle(ActiveActionName))
         {
-            // Only trigger tutorial if something was really placed
+            // Only trigger tutorial if an organelle was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
     }
@@ -1799,9 +1799,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
             return false;
 
-        // If it was already moved this session, it is free to move again
-        // Also free if not moved (but can be rotated)
-        int cost = (organelle.MovedThisSession || oldLocation == newLocation) ? 0 : Constants.ORGANELLE_MOVE_COST;
+        // If the organelle was already moved this session, added (placed) this session,
+        // or not moved (but can be rotated), then moving it is free
+        bool isFreeToMove = organelle.MovedThisSession || oldLocation == newLocation || organelle.PlacedThisSession;
+        int cost = isFreeToMove ? 0 : Constants.ORGANELLE_MOVE_COST;
 
         var action = new MicrobeEditorAction(this, cost,
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
