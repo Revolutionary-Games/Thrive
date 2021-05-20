@@ -424,8 +424,8 @@ public class MicrobeAI
 
     private bool ICanTryToEatMicrobe(Microbe targetMicrobe)
     {
-        return (SpeciesAggression == Constants.MAX_SPECIES_AGRESSION)
-            || (microbe.EngulfSize / targetMicrobe.EngulfSize >= Constants.ENGULF_SIZE_RATIO_REQ);
+        return targetMicrobe.Species != microbe.Species && ((SpeciesAggression == Constants.MAX_SPECIES_AGRESSION)
+            || (microbe.EngulfSize / targetMicrobe.EngulfSize >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
     private float DistanceFromMe(Vector3 target)
