@@ -234,7 +234,8 @@ public class MicrobeAI
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION)
                     && ICanTryToEatMicrobe(otherMicrobe))
                 {
-                    if ((chosenPrey.Translation - microbe.Translation).LengthSquared() >
+                    if (chosenPrey == null ||
+                        (chosenPrey.Translation - microbe.Translation).LengthSquared() >
                         (otherMicrobe.Translation - microbe.Translation).LengthSquared())
                     {
                         chosenPrey = otherMicrobe;
