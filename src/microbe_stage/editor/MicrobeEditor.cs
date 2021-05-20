@@ -1620,7 +1620,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (!MicrobePreviewMode || !membraneOrganellePositionsAreDirty)
             return;
 
-        previewMicrobe.Species.IsBacteria = !HasNucleus;
+        previewMicrobe.Species.IsBacteria = false;
         previewMicrobe.Species.Colour = Colour;
         previewMicrobe.Species.MembraneType = Membrane;
 
