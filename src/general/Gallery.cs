@@ -30,10 +30,6 @@ public class Gallery : IRegistryType
 
     public void ApplyTranslations()
     {
-        foreach (var entry in Artworks)
-        {
-            entry.ApplyTranslations();
-        }
     }
 
     /// <summary>
@@ -43,10 +39,6 @@ public class Gallery : IRegistryType
     {
         [JsonIgnore]
         public Texture LoadedImage;
-
-#pragma warning disable 169 // Used through reflection
-        private string untranslatedDescription;
-#pragma warning restore 169
 
         public string ResourcePath { get; set; }
 
@@ -63,7 +55,6 @@ public class Gallery : IRegistryType
         /// <summary>
         ///   Extended description of this artwork.
         /// </summary>
-        [TranslateFrom("untranslatedDescription")]
         public string Description { get; set; }
 
         /// <summary>
@@ -103,13 +94,6 @@ public class Gallery : IRegistryType
                 throw new InvalidRegistryDataException(
                     "artwork", GetType().Name, "ResourcePath missing for art texture");
             }
-
-            TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
-        }
-
-        public void ApplyTranslations()
-        {
-            TranslationHelper.ApplyTranslations(this);
         }
 
         public void Resolve()
