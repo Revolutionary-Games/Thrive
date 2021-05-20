@@ -516,6 +516,14 @@ public static class Constants
 
 #pragma warning disable CA1823 // unused fields
 
+    // Defines the thrust vectors given by the flagella, based on the flagella's orientation
+    public static readonly Vector3 VectorDown = GetVector(0);
+    public static readonly Vector3 VectorDownLeft = GetVector(1);
+    public static readonly Vector3 VectorUpLeft = GetVector(2);
+    public static readonly Vector3 VectorUp = GetVector(3);
+    public static readonly Vector3 VectorUpRight = GetVector(4);
+    public static readonly Vector3 VectorDownRight = GetVector(5);
+
     // ReSharper disable UnreachableCode
     private const uint MinimumMovePopIsHigherThanMinimumViable =
         (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
@@ -535,6 +543,46 @@ public static class Constants
     ///   Game version
     /// </summary>
     public static string Version => GameVersion;
+
+    public static Vector3 GetVector(int orientation)
+    {
+        Hex hex0 = new Hex(0, 0);
+        Hex hex1 = new Hex(0, 0);
+
+        if (orientation == 0)
+        {
+            hex1 = new Hex(0, 1);
+        }
+        else if (orientation == 5)
+        {
+            hex1 = new Hex(1, 0);
+        }
+        else if (orientation == 4)
+        {
+            hex1 = new Hex(1, -1);
+        }
+        else if (orientation == 3)
+        {
+            hex1 = new Hex(0, -1);
+        }
+        else if (orientation == 2)
+        {
+            hex1 = new Hex(-1, 0);
+        }
+        else if (orientation == 1)
+        {
+            hex1 = new Hex(-1, 1);
+        }
+
+        Vector3 hex0v = Hex.AxialToCartesian(hex0);
+        Vector3 hex1v = Hex.AxialToCartesian(hex1);
+        Vector3 hexdif = hex1v - hex0v;
+        hexdif = hexdif.Normalized();
+
+        GD.Print("hex dif: (", hexdif.x, ", ", hexdif.y, ", ", hexdif.z, ")");
+
+        return hexdif;
+    }
 
     private static string FetchVersion()
     {

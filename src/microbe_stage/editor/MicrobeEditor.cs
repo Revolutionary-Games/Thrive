@@ -868,8 +868,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     /// <summary>
     ///   Calculate the forward speed of the microbe. It is merely displayed in the microbe editor.
-    ///   The code here should be kept consistent with the code in MovementComponent.CalculateForce,
-    ///   which handles the actual (in-game) speed.
+    ///   The code in MovementComponent.CalculateForce handles the actual (in-game) speed.
     /// </summary>
     public float CalculateSpeed()
     {
@@ -885,37 +884,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                // base the direction on which way the organelle is facing.
-                // The less this direction is forward-facing, the less it contributes to the displayed speed.
-                Vector3 forceVector = new Vector3(0.0f, 0.0f, 0.0f);
-
-                // orientation 0 is flagellum tail pointed up (this is the default)
-                // every +1 corresponds to turning counterclockwise by 1 stage
-                if (organelle.Orientation == 0)
-                {
-                    forceVector = new Vector3(0.0f, 0.0f, 1.0f);
-                }
-                else if (organelle.Orientation == 1)
-                {
-                    forceVector = new Vector3(0.8645072f, 0.0f, 0.5026205f);
-                }
-                else if (organelle.Orientation == 2)
-                {
-                    forceVector = new Vector3(0.8645072f, 0.0f, -0.5026205f);
-                }
-                else if (organelle.Orientation == 3)
-                {
-                    forceVector = new Vector3(0.0f, 0.0f, -1.0f);
-                }
-                else if (organelle.Orientation == 4)
-                {
-                    forceVector = new Vector3(-0.8645072f, 0.0f, -0.5026205f);
-                }
-                else if (organelle.Orientation == 5)
-                {
-                    forceVector = new Vector3(-0.8645072f, 0.0f, 0.5026205f);
-                }
-
+                Vector3 forceVector = MovementComponent.GetForceVector(organelle.Orientation);
                 float directionFactor = forceVector.Dot(forwardsDirection);
 
                 // Flagella pointing backwards don't slow you down

@@ -21,6 +21,34 @@ public class MovementComponent : ExternallyPositionedComponent
         Torque = torque;
     }
 
+    public static Vector3 GetForceVector(int orientation)
+    {
+        if (orientation == 0)
+        {
+            return Constants.VectorDown;
+        }
+        else if (orientation == 1)
+        {
+            return Constants.VectorDownLeft;
+        }
+        else if (orientation == 2)
+        {
+            return Constants.VectorUpLeft;
+        }
+        else if (orientation == 3)
+        {
+            return Constants.VectorUp;
+        }
+        else if (orientation == 4)
+        {
+            return Constants.VectorUpRight;
+        }
+        else
+        {
+            return Constants.VectorDownRight;
+        }
+    }
+
     public override void Update(float elapsed)
     {
         // Visual positioning code
@@ -60,35 +88,7 @@ public class MovementComponent : ExternallyPositionedComponent
     /// </summary>
     private Vector3 CalculateForce(float momentum)
     {
-        Vector3 forceVector = new Vector3(0.0f, 0.0f, 0.0f);
-
-        // orientation 0 is flagellum tail pointed up (this is the default)
-        // every +1 corresponds to turning counterclockwise by 1 stage
-        if (organelle.Orientation == 0)
-        {
-            forceVector = new Vector3(0.0f, 0.0f, 1.0f);
-        }
-        else if (organelle.Orientation == 1)
-        {
-            forceVector = new Vector3(-0.8645072f, 0.0f, 0.5026205f);
-        }
-        else if (organelle.Orientation == 2)
-        {
-            forceVector = new Vector3(-0.8645072f, 0.0f, -0.5026205f);
-        }
-        else if (organelle.Orientation == 3)
-        {
-            forceVector = new Vector3(0.0f, 0.0f, -1.0f);
-        }
-        else if (organelle.Orientation == 4)
-        {
-            forceVector = new Vector3(0.8645072f, 0.0f, -0.5026205f);
-        }
-        else if (organelle.Orientation == 5)
-        {
-            forceVector = new Vector3(0.8645072f, 0.0f, 0.5026205f);
-        }
-
+        Vector3 forceVector = GetForceVector(organelle.Orientation);
         forceVector = forceVector * momentum;
         return forceVector;
     }
