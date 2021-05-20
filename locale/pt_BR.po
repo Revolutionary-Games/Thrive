@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-20 13:51+0700\n"
-"PO-Revision-Date: 2021-05-16 07:36+0000\n"
+"POT-Creation-Date: 2021-05-16 17:45+0300\n"
+"PO-Revision-Date: 2021-05-20 16:34+0000\n"
 "Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -446,7 +446,7 @@ msgstr "Redefinir câmera"
 #: ../simulation_parameters/common/input_options.json:115
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:110
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Cancelar ação atual"
 
 #: ../simulation_parameters/common/input_options.json:123
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -1162,7 +1162,7 @@ msgstr "Próximo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIARECORD"
-msgstr "Media Rec"
+msgstr "Mídia Rec"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "LAUNCHMAIL"
@@ -1353,13 +1353,12 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Botão do mouse desconhecido"
 
 #: ../src/general/Gallery.cs:73
-#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "VOCÊ PROSPEROU!"
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:77
 msgid "ART_BY"
-msgstr ""
+msgstr "Arte por {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -2505,9 +2504,8 @@ msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nome da espécie…"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2245
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "CONFIRMAR"
+msgstr "CANCELAR AÇÃO"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2260
 msgid "CONFIRM_CAPITAL"
@@ -2783,7 +2781,7 @@ msgstr "Sobrescrever salvamento existente?"
 
 #: ../src/saving/SaveHelper.cs:374
 msgid "SAVING_SUCCEEDED"
-msgstr "Salvo com êxito"
+msgstr "Salvo com sucesso"
 
 #: ../src/saving/SaveHelper.cs:384
 msgid "SAVING_FAILED"
