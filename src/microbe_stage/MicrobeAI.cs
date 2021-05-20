@@ -209,7 +209,7 @@ public class MicrobeAI
     {
         if (focusedPrey != null)
         {
-            if (DistanceFromMe(focusedPrey.Translation) <
+            if (!focusedPrey.Dead && DistanceFromMe(focusedPrey.Translation) <
                     (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
                 return focusedPrey;
