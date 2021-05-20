@@ -89,7 +89,7 @@ public class MicrobeAI
             if (possiblePrey != null)
             {
                 engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-                microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f;
+                microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
                 prey = possiblePrey.Translation;
             }
         }
