@@ -22,6 +22,7 @@ public class SimulationParameters : Node
     private readonly Dictionary<string, HelpTexts> helpTexts;
     private readonly AutoEvoConfiguration autoEvoConfiguration;
     private readonly List<NamedInputGroup> inputGroups;
+    private readonly Dictionary<string, Gallery> gallery;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -68,6 +69,8 @@ public class SimulationParameters : Node
 
         autoEvoConfiguration =
             LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/autoevo_parameters.json");
+
+        gallery = LoadRegistry<Gallery>("res://simulation_parameters/common/gallery.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -179,6 +182,11 @@ public class SimulationParameters : Node
         return helpTexts[name];
     }
 
+    public Gallery GetGallery(string name)
+    {
+        return gallery[name];
+    }
+
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
@@ -223,6 +231,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(musicCategories);
         ApplyRegistryObjectTranslations(helpTexts);
         ApplyRegistryObjectTranslations(inputGroups);
+        ApplyRegistryObjectTranslations(gallery);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -329,6 +338,7 @@ public class SimulationParameters : Node
         CheckRegistryType(musicCategories);
         CheckRegistryType(helpTexts);
         CheckRegistryType(inputGroups);
+        CheckRegistryType(gallery);
 
         NameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
@@ -357,6 +367,11 @@ public class SimulationParameters : Node
         }
 
         foreach (var entry in compounds)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in gallery)
         {
             entry.Value.Resolve();
         }
