@@ -96,7 +96,7 @@ public class CustomRichTextLabel : RichTextLabel
             // Character is not a tag, write it normally into the final string
             if (!isIteratingTag && !isIteratingContent)
             {
-                // TODO: made this try to add entire substrings at once instead of appending per character
+                // TODO: make this try to add entire substrings at once instead of appending per character
                 result.Append(character);
             }
 
