@@ -37,7 +37,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
-        force = CalculateForce();
+        force = CalculateForce(Momentum);
 
         animation = organelle.OrganelleAnimation;
 
@@ -58,41 +58,38 @@ public class MovementComponent : ExternallyPositionedComponent
     /// <summary>
     ///   Calculate the vector of the thrust force provided by the flagellum based on its orientation.
     /// </summary>
-    private Vector3 CalculateForce()
+    private Vector3 CalculateForce(float momentum)
     {
-        Vector3 forceVector = new Vector3(0, 0, 0);
+        Vector3 forceVector = new Vector3(0.0f, 0.0f, 0.0f);
 
         // orientation 0 is flagellum tail pointed up (this is the default)
         // every +1 corresponds to turning counterclockwise by 1 stage
         if (organelle.Orientation == 0)
         {
-            forceVector = new Vector3(0, 0, 50);
+            forceVector = new Vector3(0.0f, 0.0f, 1.0f);
         }
         else if (organelle.Orientation == 1)
         {
-            forceVector = new Vector3(-43, 0, 25);
+            forceVector = new Vector3(-0.8645072f, 0.0f, 0.5026205f);
         }
         else if (organelle.Orientation == 2)
         {
-            forceVector = new Vector3(-43, 0, -25);
+            forceVector = new Vector3(-0.8645072f, 0.0f, -0.5026205f);
         }
         else if (organelle.Orientation == 3)
         {
-            forceVector = new Vector3(0, 0, -50);
+            forceVector = new Vector3(0.0f, 0.0f, -1.0f);
         }
         else if (organelle.Orientation == 4)
         {
-            forceVector = new Vector3(43, 0, -25);
+            forceVector = new Vector3(0.8645072f, 0.0f, -0.5026205f);
         }
         else if (organelle.Orientation == 5)
         {
-            forceVector = new Vector3(43, 0, 25);
+            forceVector = new Vector3(0.8645072f, 0.0f, 0.5026205f);
         }
 
-        forceVector = forceVector.Normalized();
-
-        // scale the force based on the flagellum's stats (as noted in Constants.cs)
-        forceVector = forceVector * Constants.FLAGELLA_BASE_FORCE;
+        forceVector = forceVector * momentum;
         return forceVector;
     }
 
