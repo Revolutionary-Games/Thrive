@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     This is ran in a background thread so no state changing or scene spawning methods on Microbe may be called.
+///     This is run in a background thread so no state changing or scene spawning methods on Microbe may be called.
 ///   </para>
 /// </remarks>
 public class MicrobeAI
@@ -27,16 +27,8 @@ public class MicrobeAI
     [JsonProperty]
     private float movementRadius = 2000;
 
-    // All of the game entities stored here are probable places where disposed objects come from
-    // so they are ignored for now
-    [JsonIgnore]
-    private Microbe predator;
-
     [JsonProperty]
     private float previousAngle;
-
-    [JsonIgnore]
-    private FloatingChunk targetChunk;
 
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
@@ -55,13 +47,9 @@ public class MicrobeAI
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;
-
     private float SpeciesFear => microbe.Species.Fear;
-
     private float SpeciesActivity => microbe.Species.Activity;
-
     private float SpeciesFocus => microbe.Species.Focus;
-
     private float SpeciesOpportunism => microbe.Species.Opportunism;
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
@@ -71,8 +59,8 @@ public class MicrobeAI
         // Clear the lists
         chunkList.Clear();
 
-        GetNearestPredatorItem(data.AllMicrobes);
-        targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
+        var predator = GetNearestPredatorItem(data.AllMicrobes);
+        var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
 
         if (microbe.IsBeingEngulfed)
@@ -82,7 +70,7 @@ public class MicrobeAI
         else if (predator != null &&
             DistanceFromMe(predator.Translation) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
         {
-            PreyFlee(random);
+            PreyFlee(random, predator);
         }
         else if (targetChunk != null &&
             (targetChunk.Translation - microbe.Translation).LengthSquared()
@@ -241,18 +229,15 @@ public class MicrobeAI
     ///   Building the predator list and setting the scariest one to be predator
     /// </summary>
     /// <param name="allMicrobes">All microbes.</param>
-    private void GetNearestPredatorItem(List<Microbe> allMicrobes)
+    private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
-        // Retrieve the nearest predator
-        // For our desires lets just say all microbes bigger are potential predators
-        // and later extend this to include those with toxins and pilus
-
+        Microbe predator = null;
         foreach (var otherMicrobe in allMicrobes)
         {
             if (otherMicrobe == microbe)
                 continue;
 
-            // Based on species fear, threshold to be afraid ranged from 0.8 to 1.8 microbe size.
+            // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
             if (otherMicrobe.Species != microbe.Species
                 && !otherMicrobe.Dead
                 && otherMicrobe.EngulfSize > microbe.EngulfSize
@@ -265,49 +250,25 @@ public class MicrobeAI
                 }
             }
         }
+
+        return predator;
     }
 
     private void PursueAndConsumeChunks(FloatingChunk chunk, Random random)
     {
-        // Tick the engulf tick
-        ticksSinceLastToggle += 1;
-
-        // TODO: do something with the chunk compounds
-        // ReSharper disable once NotAccessedVariable
-        CompoundBag compounds;
-
-        try
-        {
-            // ReSharper disable once RedundantAssignment
-            compounds = chunk.ContainedCompounds;
-            targetPosition = chunk.Translation
-                + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
-            microbe.LookAtPoint = targetPosition;
-            SetEngulfIfClose();
-        }
-        catch (ObjectDisposedException)
-        {
-            // Turn off engulf if chunk is gone
-            targetChunk = null;
-
-            // You got a consumption, good job
-            if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
-            {
-                microbe.SuccessfulScavenge();
-            }
-
-            return;
-        }
+        targetPosition = chunk.Translation
+            + new Vector3(random.NextFloat() * 10.0f - 5.0f, 0.0f, random.NextFloat() * 10.0f - 5.0f);
+        microbe.LookAtPoint = targetPosition;
+        SetEngulfIfClose();
 
         // Always set target Position, for use later in AI
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
     }
 
-    private void PreyFlee(Random random)
+    private void PreyFlee(Random random, Microbe predator)
     {
         microbe.EngulfMode = false;
 
-        // Run specifically away
         try
         {
             targetPosition = (2 * predator.Translation - microbe.Translation) + microbe.Translation;
@@ -396,15 +357,6 @@ public class MicrobeAI
                 SetMoveSpeed(0.0f);
             }
         }
-    }
-
-    private float SelectRandomTargetPosition(Random random)
-    {
-        var randAngle = previousAngle + random.Next(0.1f, 1.0f);
-        previousAngle = randAngle;
-        var randDist = random.Next(200.0f, movementRadius);
-        targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
-        return randAngle;
     }
 
     private void SetEngulfIfClose()
