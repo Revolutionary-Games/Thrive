@@ -39,6 +39,9 @@ public class MicrobeAI
     [JsonProperty]
     private float ticksSinceLastToggle = 600;
 
+    [JsonProperty]
+    private Microbe focusedPrey = null;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -215,14 +218,13 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPreyItem(List<Microbe> allMicrobes)
     {
+        if (focusedPrey != null && DistanceFromMe(focusedPrey.Translation) <
+                    (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
+        {
+            return focusedPrey;
+        }
+
         Microbe chosenPrey = null;
-
-        // Use the agent amounts so a small cell with a lot of toxins has the courage to attack.
-
-        // Retrieve nearest potential prey
-        // Max position
-        Vector3 testPosition = new Vector3(0, 0, 0);
-        bool setPosition = true;
 
         foreach (var otherMicrobe in allMicrobes)
         {
@@ -232,19 +234,9 @@ public class MicrobeAI
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION)
                     && ICanTryToEatMicrobe(otherMicrobe))
                 {
-                    var thisPosition = otherMicrobe.Translation;
-
-                    if (setPosition)
+                    if ((chosenPrey.Translation - microbe.Translation).LengthSquared() >
+                        (otherMicrobe.Translation - microbe.Translation).LengthSquared())
                     {
-                        testPosition = otherMicrobe.Translation;
-                        setPosition = false;
-                        chosenPrey = otherMicrobe;
-                    }
-
-                    if ((testPosition - microbe.Translation).LengthSquared() >
-                        (thisPosition - microbe.Translation).LengthSquared())
-                    {
-                        testPosition = thisPosition;
                         chosenPrey = otherMicrobe;
                     }
                 }
@@ -253,6 +245,7 @@ public class MicrobeAI
 
         // It might be interesting to prioritize weakened prey (Maybe add a variable for opportunisticness to each
         // species?)
+        focusedPrey = chosenPrey;
         return chosenPrey;
     }
 
