@@ -207,10 +207,17 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPreyItem(List<Microbe> allMicrobes)
     {
-        if (focusedPrey != null && DistanceFromMe(focusedPrey.Translation) <
-                    (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
+        if (focusedPrey != null)
         {
-            return focusedPrey;
+            if (DistanceFromMe(focusedPrey.Translation) <
+                    (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
+            {
+                return focusedPrey;
+            }
+            else
+            {
+                focusedPrey = null;
+            }
         }
 
         Microbe chosenPrey = null;
