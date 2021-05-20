@@ -27,26 +27,28 @@ public class MovementComponent : ExternallyPositionedComponent
         {
             return Constants.VectorDown;
         }
-        else if (orientation == 1)
+
+        if (orientation == 1)
         {
             return Constants.VectorDownLeft;
         }
-        else if (orientation == 2)
+
+        if (orientation == 2)
         {
             return Constants.VectorUpLeft;
         }
-        else if (orientation == 3)
+
+        if (orientation == 3)
         {
             return Constants.VectorUp;
         }
-        else if (orientation == 4)
+
+        if (orientation == 4)
         {
             return Constants.VectorUpRight;
         }
-        else
-        {
-            return Constants.VectorDownRight;
-        }
+
+        return Constants.VectorDownRight;
     }
 
     public override void Update(float elapsed)
