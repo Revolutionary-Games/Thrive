@@ -310,15 +310,8 @@ public class MicrobeAI
         // Run specifically away
         try
         {
-            // A lazy algorithm for running away semi-randomly. Microbe picks a random point around
-            // itself to flee to, but will repick if that point ends up too close to the attacker.
-            if ((predator.Translation - targetPosition).LengthSquared() < 2500.0)
-            {
-                var fleeSize = 1500.0f;
-                targetPosition = new Vector3(random.Next(-fleeSize, fleeSize), 1.0f,
-                    random.Next(-fleeSize, fleeSize)) * microbe.Translation;
-                microbe.LookAtPoint = targetPosition;
-            }
+            targetPosition = (2 * microbe.Translation - predator.Translation) + microbe.Translation;
+            microbe.LookAtPoint = targetPosition;
 
             // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
             if (DistanceFromMe(predator.Translation) < 100.0f &&
