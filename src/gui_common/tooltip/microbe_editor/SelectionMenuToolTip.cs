@@ -310,8 +310,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (processesDescriptionLabel == null)
             return;
 
-        // The text will not be changed if the translated description is exactly the same as the previous one
-        // e.g Switching from English to another language with the string marked as fuzzy in locale file
         processesDescriptionLabel.ExtendedBbcode = TranslationServer.Translate(ProcessesDescription);
     }
 

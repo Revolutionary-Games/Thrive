@@ -41,13 +41,12 @@ public class CustomRichTextLabel : RichTextLabel
         get => extendedBbcode;
         set
         {
-            if (extendedBbcode == value)
-                return;
-
+            // Value is always changed here even if the text didn't change, as translations may have changed
+            // the compound names anyway
             extendedBbcode = value;
 
             // Need to delay this so we can get the correct input controls from settings.
-            Invoke.Instance.Queue(() => ParseCustomTags());
+            Invoke.Instance.Queue(ParseCustomTags);
         }
     }
 
