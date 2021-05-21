@@ -15,7 +15,10 @@ using Newtonsoft.Json;
 /// </remarks>
 public class MicrobeAI
 {
+    private readonly Compound glucose;
     private readonly Compound oxytoxy;
+    private readonly Compound ammonia;
+    private readonly Compound phosphates;
 
     [JsonProperty]
     private Microbe microbe;
@@ -39,7 +42,10 @@ public class MicrobeAI
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;
@@ -356,6 +362,14 @@ public class MicrobeAI
         microbe.EngulfMode = false;
 
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
+
+        // If this microbe lacks glucose, don't bother with ammonia and phosphorous
+        // This algorithm doesn't try to determine if iron and sulfuric acid is usefull to this microbe
+        if (microbe.Compounds.GetCompoundAmount(glucose) < 0.5f)
+        {
+            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
+        }
+
         float compoundDifference = 0.0f;
         foreach (KeyValuePair<Compound, float> compound in usefulCompounds)
         {
