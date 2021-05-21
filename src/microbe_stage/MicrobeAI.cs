@@ -65,7 +65,8 @@ public class MicrobeAI
         try
         {
             predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
-        } catch (ObjectDisposedException ex)
+        } 
+        catch (ObjectDisposedException)
         {
             // Do nothing; the predator must already be dead
         }
@@ -75,7 +76,7 @@ public class MicrobeAI
         {
             targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
         }
-        catch (ObjectDisposedException ex)
+        catch (ObjectDisposedException)
         {
             // Do nothing; the chunk must be gone
         }
@@ -96,7 +97,6 @@ public class MicrobeAI
         {
             // Do nothing; the prey must have died
         }
-
 
         if (microbe.IsBeingEngulfed)
         {
@@ -338,7 +338,7 @@ public class MicrobeAI
         {
             LaunchToxin(target);
 
-            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION/5, random))
+            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION / 5, random))
             {
                 SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
             }
