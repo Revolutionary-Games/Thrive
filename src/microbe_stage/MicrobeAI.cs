@@ -25,19 +25,10 @@ public class MicrobeAI
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
     [JsonProperty]
-    private float movementRadius = 2000;
-
-    [JsonProperty]
     private float previousAngle;
 
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
-
-    /// <summary>
-    ///   TODO: change to be the elapsed time instead of AI update count
-    /// </summary>
-    [JsonProperty]
-    private float ticksSinceLastToggle = 600;
 
     [JsonProperty]
     private Microbe focusedPrey = null;
