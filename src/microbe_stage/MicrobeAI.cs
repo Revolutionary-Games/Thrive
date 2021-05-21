@@ -252,7 +252,7 @@ public class MicrobeAI
         }
 
         focusedPrey = chosenPrey;
-        pursuitThreshold = DistanceFromMe(chosenPrey.Translation) * 3.0f;
+        pursuitThreshold = chosenPrey != null ? DistanceFromMe(chosenPrey.Translation) * 3.0f : 0.0f;
         return chosenPrey;
     }
 
