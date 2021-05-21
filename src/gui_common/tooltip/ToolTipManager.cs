@@ -264,8 +264,6 @@ public class ToolTipManager : CanvasLayer
     /// </summary>
     public Control AddGroup(string name)
     {
-        GD.Print("Creating new tooltip group: '" + name + "'");
-
         var groupNode = new Control();
         groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;
