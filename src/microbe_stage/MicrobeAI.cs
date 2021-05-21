@@ -33,6 +33,9 @@ public class MicrobeAI
     [JsonProperty]
     private Microbe focusedPrey = null;
 
+    [JsonProperty]
+    private float pursuitThreshold;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -200,10 +203,22 @@ public class MicrobeAI
     {
         if (focusedPrey != null)
         {
-            if (!focusedPrey.Dead && DistanceFromMe(focusedPrey.Translation) <
+            var distanceToFocusedPrey = DistanceFromMe(focusedPrey.Translation);
+            if (!focusedPrey.Dead && distanceToFocusedPrey <
                     (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
-                return focusedPrey;
+                if (distanceToFocusedPrey < pursuitThreshold)
+                {
+                    // Keep chasing, but expect to keep getting closer
+                    pursuitThreshold *= 0.95f;
+                    return focusedPrey;
+                }
+                else
+                {
+                    // If prey hasn't gotten closer by now, it's probably too fast, or juking you
+                    // Remember who focused prey is, so that you don't fall for this again
+                    return null;
+                }
             }
             else
             {
@@ -231,9 +246,8 @@ public class MicrobeAI
             }
         }
 
-        // It might be interesting to prioritize weakened prey (Maybe add a variable for opportunisticness to each
-        // species?)
         focusedPrey = chosenPrey;
+        pursuitThreshold = DistanceFromMe(chosenPrey.Translation) * 1.5f;
         return chosenPrey;
     }
 
