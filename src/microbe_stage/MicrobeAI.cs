@@ -40,7 +40,6 @@ public class MicrobeAI
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-        SetMoveSpeed(0.0f);
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;
