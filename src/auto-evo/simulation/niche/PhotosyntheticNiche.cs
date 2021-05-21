@@ -4,11 +4,11 @@
 
     public class PhotosyntheticNiche : Niche
     {
-        private float totalSunlight;
-
         private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+
+        private float totalSunlight;
 
         public PhotosyntheticNiche(Patch patch)
         {
