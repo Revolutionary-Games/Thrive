@@ -34,7 +34,7 @@ public class MicrobeAI
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
     [JsonProperty]
-    private Microbe focusedPrey = null;
+    private Microbe focusedPrey;
 
     [JsonProperty]
     private float pursuitThreshold;
@@ -89,7 +89,7 @@ public class MicrobeAI
             if (possiblePrey != null)
             {
                 engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-                microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
+                    microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
                 prey = possiblePrey.Translation;
             }
         }
@@ -210,7 +210,7 @@ public class MicrobeAI
         {
             var distanceToFocusedPrey = DistanceFromMe(focusedPrey.Translation);
             if (!focusedPrey.Dead && distanceToFocusedPrey <
-                    (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
+                (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
                 if (distanceToFocusedPrey < pursuitThreshold)
                 {
@@ -218,17 +218,13 @@ public class MicrobeAI
                     pursuitThreshold *= 0.95f;
                     return focusedPrey;
                 }
-                else
-                {
-                    // If prey hasn't gotten closer by now, it's probably too fast, or juking you
-                    // Remember who focused prey is, so that you don't fall for this again
-                    return null;
-                }
+
+                // If prey hasn't gotten closer by now, it's probably too fast, or juking you
+                // Remember who focused prey is, so that you don't fall for this again
+                return null;
             }
-            else
-            {
-                focusedPrey = null;
-            }
+
+            focusedPrey = null;
         }
 
         Microbe chosenPrey = null;
