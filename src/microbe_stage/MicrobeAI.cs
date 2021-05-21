@@ -410,7 +410,8 @@ public class MicrobeAI
     private void SetEngulfIfClose()
     {
         // Turn on engulfmode if close
-        if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize / 3.14f)
+        // Sometimes "close" is hard to decern since microbes can range from straight lines to circles
+        if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
         {
             microbe.EngulfMode = true;
         }
