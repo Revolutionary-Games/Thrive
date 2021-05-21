@@ -400,7 +400,10 @@ public class MicrobeAI
         if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize / 3.14f)
         {
             microbe.EngulfMode = true;
-            ticksSinceLastToggle = 0;
+        }
+        else
+        {
+            microbe.EngulfMode = false;
         }
     }
 
