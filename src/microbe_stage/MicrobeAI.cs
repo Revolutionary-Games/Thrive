@@ -65,7 +65,7 @@ public class MicrobeAI
         try
         {
             predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
-        } 
+        }
         catch (ObjectDisposedException)
         {
             // Do nothing; the predator must already be dead
