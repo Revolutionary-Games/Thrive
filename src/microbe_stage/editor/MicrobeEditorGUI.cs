@@ -764,7 +764,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 var dataset = new LineChartData
                 {
-                    IconTexture = GUICommon.Instance.GetCompoundIcon(entry.Key.InternalName),
+                    IconTexture = entry.Key.LoadedIcon,
                     DataColour = entry.Key.Colour,
                 };
 
