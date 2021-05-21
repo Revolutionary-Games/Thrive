@@ -40,7 +40,9 @@
                 }
             }
 
-            return compoundUseScore;
+            var energyCost = species.BaseOsmoregulationCost();
+
+            return compoundUseScore / energyCost;
         }
 
         public float TotalEnergyAvailable()
