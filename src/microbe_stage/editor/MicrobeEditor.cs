@@ -71,6 +71,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     private Color colour;
 
+    [JsonProperty]
+    private float rigidity;
+
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -222,8 +225,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   The selected membrane rigidity
     /// </summary>
-    [JsonProperty]
-    public float Rigidity { get; private set; }
+    [JsonIgnore]
+    public float Rigidity
+    {
+        get => rigidity;
+        set
+        {
+            rigidity = value;
+
+            if (previewMicrobe?.Species != null)
+            {
+                previewMicrobe.Species.MembraneRigidity = value;
+                previewMicrobe.ApplyMembraneWigglyness();
+            }
+        }
+    }
 
     /// <summary>
     ///   Selected membrane type for the species
@@ -1623,6 +1639,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         previewMicrobe.Species.IsBacteria = false;
         previewMicrobe.Species.Colour = Colour;
         previewMicrobe.Species.MembraneType = Membrane;
+        previewMicrobe.Species.MembraneRigidity = Rigidity;
 
         previewMicrobe.Species.Organelles.Clear();
 
@@ -2114,6 +2131,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             previewMicrobe.Membrane.Type = membrane;
             previewMicrobe.Membrane.Dirty = true;
+            previewMicrobe.ApplyMembraneWigglyness();
         }
     }
 
@@ -2134,6 +2152,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             previewMicrobe.Membrane.Type = Membrane;
             previewMicrobe.Membrane.Dirty = true;
+            previewMicrobe.ApplyMembraneWigglyness();
         }
     }
 
