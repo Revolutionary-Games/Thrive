@@ -101,7 +101,7 @@ public class Membrane : MeshInstance
         get => wigglyNess;
         set
         {
-            wigglyNess = value;
+            wigglyNess = Mathf.Clamp(value, 0.0f, 1.0f);
             if (MaterialToEdit != null)
                 ApplyWiggly();
         }
@@ -112,7 +112,7 @@ public class Membrane : MeshInstance
         get => movementWigglyNess;
         set
         {
-            movementWigglyNess = value;
+            movementWigglyNess = Mathf.Clamp(value, 0.0f, 1.0f);
             if (MaterialToEdit != null)
                 ApplyMovementWiggly();
         }
@@ -524,8 +524,6 @@ public class Membrane : MeshInstance
         float height = 0.1f;
         float multiplier = 2.0f * Mathf.Pi;
         var center = new Vector2(0.5f, 0.5f);
-
-        movementWigglyNess = Type.MovementWigglyness;
 
         // cell walls need obvious inner/outer membranes (we can worry
         // about chitin later)
