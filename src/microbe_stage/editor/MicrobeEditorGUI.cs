@@ -1131,6 +1131,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void OnFinishEditingClicked()
     {
+        // Prevent exiting when the transition hasn't finished
+        if (energyBalanceInfo == null)
+        {
+            return;
+        }
+
         if (editor.MovingOrganelle != null)
         {
             OnActionBlockedWhileMoving();
