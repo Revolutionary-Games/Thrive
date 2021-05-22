@@ -1159,7 +1159,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             return;
         }
-        
+
         // Can't finish an organism edit if an organelle is being moved
         if (editor.MovingOrganelle != null)
         {
