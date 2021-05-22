@@ -499,6 +499,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
+    ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
+    ///   membrane rigidity into account.
+    /// </summary>
+    public void ApplyMembraneWigglyness()
+    {
+        Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (Species.MembraneRigidity /
+            Membrane.Type.BaseWigglyness) * 0.2f;
+        Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (Species.MembraneRigidity /
+            Membrane.Type.MovementWigglyness) * 0.2f;
+    }
+
+    /// <summary>
     ///   Tries to fire a toxin if possible
     /// </summary>
     public void EmitToxin(Compound agentType = null)
@@ -1254,6 +1266,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Membrane.Type = Species.MembraneType;
         Membrane.Tint = Species.Colour;
         Membrane.Dirty = true;
+        ApplyMembraneWigglyness();
     }
 
     private void HandleCompoundAbsorbing(float delta)
