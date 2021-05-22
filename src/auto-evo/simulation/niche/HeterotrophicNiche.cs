@@ -14,7 +14,8 @@
         public HeterotrophicNiche(Patch patch, MicrobeSpecies prey)
         {
             this.prey = prey;
-            totalEnergy = patch.SpeciesInPatch[prey] * prey.BaseOsmoregulationCost() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+            patch.SpeciesInPatch.TryGetValue(prey, out long population);
+            totalEnergy = population * prey.BaseOsmoregulationCost() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
         }
 
         public float FitnessScore(MicrobeSpecies species)
@@ -45,7 +46,10 @@
                     }
                 }
 
-                totalSpeedBonuses += organelle.Definition.Components.Movement.Momentum;
+                if (organelle.Definition.Components?.Movement?.Momentum != null)
+                {
+                    totalSpeedBonuses += organelle.Definition.Components.Movement.Momentum;
+                }
             }
 
             pilusScore *= totalSpeedBonuses + 0.5f;
