@@ -1154,6 +1154,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void OnFinishEditingClicked()
     {
+        // Prevent exiting when the transition hasn't finished
+        if (!editor.TransitionFinished)
+        {
+            return;
+        }
+
         // Can't finish an organism edit if an organelle is being moved
         if (editor.MovingOrganelle != null)
         {
@@ -1164,7 +1170,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayButtonPressSound();
 
         // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        if (energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredShrink();
             return;
