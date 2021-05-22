@@ -12,7 +12,7 @@
 
         public PhotosyntheticNiche(Patch patch)
         {
-            totalSunlight = patch.Biome.Compounds[SimulationParameters.Instance.GetCompound("sunlight")].Dissolved;
+            totalSunlight = patch.Biome.Compounds[Sunlight].Dissolved * Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT;
         }
 
         public float FitnessScore(MicrobeSpecies species)
