@@ -764,7 +764,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 var dataset = new LineChartData
                 {
-                    IconTexture = GUICommon.Instance.GetCompoundIcon(entry.Key.InternalName),
+                    IconTexture = entry.Key.LoadedIcon,
                     DataColour = entry.Key.Colour,
                 };
 
@@ -1154,6 +1154,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void OnFinishEditingClicked()
     {
+        // Prevent exiting when the transition hasn't finished
+        if (!editor.TransitionFinished)
+        {
+            return;
+        }
+
         // Can't finish an organism edit if an organelle is being moved
         if (editor.MovingOrganelle != null)
         {
@@ -1164,7 +1170,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayButtonPressSound();
 
         // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        if (energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredShrink();
             return;
@@ -1495,6 +1502,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 structureTab.Show();
                 structureTabButton.Pressed = true;
+                editor.MicrobePreviewMode = false;
                 break;
             }
 
@@ -1502,6 +1510,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
+                editor.MicrobePreviewMode = true;
                 break;
             }
 
