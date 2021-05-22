@@ -161,11 +161,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private List<SceneDisplayer> placedModels;
 
     /// <summary>
-    ///   True once fade transition is finished when entering editor
-    /// </summary>
-    private bool transitionFinished;
-
-    /// <summary>
     ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
     /// </summary>
     [JsonProperty]
@@ -216,6 +211,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         /// </summary>
         SixWaySymmetry,
     }
+
+    /// <summary>
+    ///   True once fade transition is finished when entering editor
+    /// </summary>
+    [JsonIgnore]
+    public bool TransitionFinished { get; private set; }
 
     public bool NodeReferencesResolved { get; private set; }
 
@@ -437,7 +438,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         tutorialGUI.Visible = true;
         gui.Init(this);
 
-        transitionFinished = false;
+        TransitionFinished = false;
 
         OnEnterEditor();
     }
@@ -504,7 +505,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public void OnFinishTransitioning()
     {
-        transitionFinished = true;
+        TransitionFinished = true;
     }
 
     /// <summary>
@@ -600,7 +601,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 return;
             }
 
-            if (!transitionFinished)
+            if (!TransitionFinished)
                 return;
 
             OnEditorReady();
@@ -1302,7 +1303,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
         }
-        else if (!transitionFinished)
+        else if (!TransitionFinished)
         {
             ready = false;
         }
