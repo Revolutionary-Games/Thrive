@@ -191,6 +191,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   True once fade transition is finished when entering editor
     /// </summary>
+    [JsonIgnore]
     public bool TransitionFinished { get; private set; }
 
     public bool NodeReferencesResolved { get; private set; }
