@@ -20,6 +20,12 @@
 
         public float FitnessScore(MicrobeSpecies species)
         {
+            // No canibalism
+            if (species == prey)
+            {
+                return 0.0f;
+            }
+
             var predatorSize = species.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
             var preySize = species.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
 
