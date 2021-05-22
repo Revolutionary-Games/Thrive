@@ -61,6 +61,8 @@ public class MicrobeAI
         // Clear the lists
         chunkList.Clear();
 
+        // Try to get locations of predators, prey, and chunks
+        // This uses try/catch to just ignore objects that have been disposed, until issue 2029 is resolved
         Vector3? predator = null;
         try
         {
