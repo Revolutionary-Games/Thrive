@@ -389,9 +389,10 @@ public static class Constants
     // Auto evo population algorithm tweak variables
     public const float AUTO_EVO_ATP_USE_SCORE_DIVISOR = 300;
     public const float AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR = 1;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 1;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 1;
-    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.5f;
+    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 10;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 1.5f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 6000;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
 

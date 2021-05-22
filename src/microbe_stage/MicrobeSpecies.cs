@@ -121,6 +121,7 @@ public class MicrobeSpecies : Species
 
         return result;
     }
+
     public float BaseOsmoregulationCost()
     {
         return Organelles.Sum(organelle => organelle.Definition.HexCount)

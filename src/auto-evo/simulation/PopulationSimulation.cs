@@ -146,6 +146,11 @@
                 new ChemosyntheticNiche(patch, Iron),
             };
 
+            foreach (var currentSpecies in species)
+            {
+                niches.Add(new HeterotrophicNiche(patch, currentSpecies));
+            }
+
             foreach (var niche in niches)
             {
                 // If this isn't a source of energy here, no need for more calculations
