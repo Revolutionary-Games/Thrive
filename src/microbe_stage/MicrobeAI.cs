@@ -114,21 +114,11 @@ public class MicrobeAI
     ///   Anything held between calls of the think() method has a chance of having been disposed elsewhere.
     ///   This sets anything disposed to null to prevent errors. This can probably be removed when issue 2029 is fixed
     /// </summary>
-    private void ClearDisposedReferences()
+    private void ClearDisposedReferences(MicrobeAICommonData data)
     {
-        if (focusedPrey != null)
+        if (!data.AllMicrobes.Contains(focusedPrey))
         {
-            try
-            {
-                // ReSharper disable once UnusedVariable
-                var x = focusedPrey.Transform;
-
-                // Do nothing; this reference is still good.
-            }
-            catch (ObjectDisposedException)
-            {
-                focusedPrey = null;
-            }
+            focusedPrey = null;
         }
     }
 
