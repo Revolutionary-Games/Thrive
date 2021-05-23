@@ -1402,9 +1402,22 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    private void OnRigidityChanged(int value)
+    private void OnRigiditySliderValueChanged(int value)
     {
-        editor.SetRigidity(value);
+        SetRigiditySliderTooltip(value);
+        editor.SetPreviewRigidity(value / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+    }
+
+    private void OnRigiditySliderInput(InputEvent @event)
+    {
+        // Only perform the rigidity change action once slider is released
+        if (@event is InputEventMouseButton mouseButton && !mouseButton.Pressed)
+        {
+            var value = (int)rigiditySlider.Value;
+
+            if (editor.Rigidity != value)
+                editor.SetRigidity(value);
+        }
     }
 
     private void OnColorChanged(Color color)

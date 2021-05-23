@@ -233,12 +233,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         set
         {
             rigidity = value;
-
-            if (previewMicrobe?.Species != null)
-            {
-                previewMicrobe.Species.MembraneRigidity = value;
-                previewMicrobe.ApplyMembraneWigglyness();
-            }
+            SetPreviewRigidity(value);
         }
     }
 
@@ -827,6 +822,19 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
+    }
+
+    /// <summary>
+    ///   This is useful to set the wigglyness of preview membrane every rigidity slider's step,
+    ///   without having to change the actual Rigidity value in the editor.
+    /// </summary>
+    public void SetPreviewRigidity(float rigidity)
+    {
+        if (previewMicrobe?.Species != null && previewMicrobe.Species.MembraneRigidity != rigidity)
+        {
+            previewMicrobe.Species.MembraneRigidity = rigidity;
+            previewMicrobe.ApplyMembraneWigglyness();
+        }
     }
 
     /// <summary>
