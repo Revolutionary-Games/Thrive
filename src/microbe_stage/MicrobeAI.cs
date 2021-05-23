@@ -61,7 +61,7 @@ public class MicrobeAI
         // Clear the lists
         chunkList.Clear();
 
-        ClearDisposedReferences();
+        ClearDisposedReferences(data);
 
         Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
         Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
