@@ -120,6 +120,7 @@ public class MicrobeAI
         {
             try
             {
+                // ReSharper disable once UnusedVariable
                 var x = focusedPrey.Transform;
 
                 // Do nothing; this reference is still good.
