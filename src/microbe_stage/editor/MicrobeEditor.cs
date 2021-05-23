@@ -830,6 +830,18 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
+    ///   This is useful to set the wigglyness of preview membrane every rigidity slider's step.
+    /// </summary>
+    public void SetPreviewRigidity(float rigidity)
+    {
+        if (previewMicrobe?.Species != null)
+        {
+            previewMicrobe.Species.MembraneRigidity = rigidity;
+            previewMicrobe.ApplyMembraneWigglyness();
+        }
+    }
+
+    /// <summary>
     ///   Show options for the organelle under the cursor
     /// </summary>
     [RunOnKeyDown("e_secondary")]
