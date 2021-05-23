@@ -116,15 +116,18 @@ public class MicrobeAI
     /// </summary>
     private void ClearDisposedReferences()
     {
-        try
+        if (focusedPrey != null)
         {
-            var x = focusedPrey.Transform;
+            try
+            {
+                var x = focusedPrey.Transform;
 
-            // Do nothing; this reference is still good.
-        }
-        catch (ObjectDisposedException)
-        {
-            focusedPrey = null;
+                // Do nothing; this reference is still good.
+            }
+            catch (ObjectDisposedException)
+            {
+                focusedPrey = null;
+            }
         }
     }
 
