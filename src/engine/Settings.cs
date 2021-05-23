@@ -28,6 +28,7 @@ public class Settings
         // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
         if (DefaultLanguage.Length < 1)
             GD.PrintErr("Default locale is empty");
+        SelectedLanguage.OnChanged += HandleLanguageChanged;
     }
 
     public static Settings Instance => SingletonInstance;
@@ -652,5 +653,16 @@ public class Settings
 
             setting.AssignFrom(property.GetValue(settings));
         }
+    }
+
+    /// <summary>
+    /// Handle updates to the game language setting
+    /// </summary>
+    /// <param name="language">The new language value</param>
+    private void HandleLanguageChanged(string language)
+    {
+        var culture = GetCultureInfo(language);
+        var message = $"Using language '{language}' with culture '{culture.Name}'";
+        GD.Print(message);
     }
 }
