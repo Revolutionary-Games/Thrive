@@ -61,43 +61,19 @@ public class MicrobeAI
         // Clear the lists
         chunkList.Clear();
 
-        // Try to get locations of predators, prey, and chunks
-        // This uses try/catch to just ignore objects that have been disposed, until issue 2029 is resolved
-        Vector3? predator = null;
-        try
-        {
-            predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
-        }
-        catch (ObjectDisposedException)
-        {
-            // Do nothing; the predator must already be dead
-        }
+        ClearDisposedReferences();
 
-        Vector3? targetChunk = null;
-        try
-        {
-            targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
-        }
-        catch (ObjectDisposedException)
-        {
-            // Do nothing; the chunk must be gone
-        }
+        Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
+        Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
 
         Vector3? prey = null;
         bool engulfPrey = false;
-        try
+        var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
+        if (possiblePrey != null)
         {
-            var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
-            if (possiblePrey != null)
-            {
-                engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-                    microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
-                prey = possiblePrey.Translation;
-            }
-        }
-        catch
-        {
-            // Do nothing; the prey must have died
+            engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
+                microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
+            prey = possiblePrey.Translation;
         }
 
         if (microbe.IsBeingEngulfed)
@@ -132,6 +108,24 @@ public class MicrobeAI
 
         // Clear the absorbed compounds for run and rumble
         microbe.TotalAbsorbedCompounds.Clear();
+    }
+
+    /// <summary>
+    ///   Anything held between calls of the think() method has a chance of having been disposed elsewhere.
+    ///   This sets anything disposed to null to prevent errors. This can probably be removed when issue 2029 is fixed
+    /// </summary>
+    private void ClearDisposedReferences()
+    {
+        try
+        {
+            var x = focusedPrey.Transform;
+
+            // Do nothing; this reference is still good.
+        }
+        catch (ObjectDisposedException)
+        {
+            focusedPrey = null;
+        }
     }
 
     private FloatingChunk GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes, Random random)
