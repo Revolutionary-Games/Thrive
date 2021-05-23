@@ -274,7 +274,7 @@ public class MicrobeAI
     private void PursueAndConsumeChunks(Vector3 chunk, Random random)
     {
         // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
-        targetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
+        targetPosition = chunk + new Vector3(0.2f * microbe.EngulfSize, 0.0f, 0.2f * microbe.EngulfSize);
         microbe.LookAtPoint = targetPosition;
         SetEngulfIfClose();
 
