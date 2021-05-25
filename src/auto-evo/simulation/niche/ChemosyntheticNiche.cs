@@ -27,8 +27,8 @@
         public float FitnessScore(Species species)
         {
             var microbeSpecies = (MicrobeSpecies)species;
-            var compoundUseScore = 0.0f;
 
+            var compoundUseScore = 0.0f;
             foreach (var organelle in microbeSpecies.Organelles)
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)

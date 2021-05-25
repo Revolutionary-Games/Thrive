@@ -19,8 +19,7 @@
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var compoundUseScore = 0.0f;
-
+            var photosynthesisingScore = 0.0f;
             foreach (var organelle in microbeSpecies.Organelles)
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)
@@ -29,22 +28,24 @@
                     {
                         if (process.Process.Outputs.ContainsKey(Glucose))
                         {
-                            compoundUseScore += process.Process.Outputs[Glucose]
+                            photosynthesisingScore += process.Process.Outputs[Glucose]
                                 / process.Process.Inputs[Sunlight] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
                         }
 
                         if (process.Process.Outputs.ContainsKey(ATP))
                         {
-                            compoundUseScore += process.Process.Outputs[ATP]
+                            photosynthesisingScore += process.Process.Outputs[ATP]
                                 / process.Process.Inputs[Sunlight] / Constants.AUTO_EVO_ATP_USE_SCORE_DIVISOR;
                         }
                     }
                 }
             }
 
+            // Moving too much can be harmfull
             var energyCost = microbeSpecies.BaseOsmoregulationCost();
+            energyCost *= 1 + (microbeSpecies.Activity / Constants.MAX_SPECIES_ACTIVITY);
 
-            return compoundUseScore / energyCost;
+            return photosynthesisingScore / energyCost;
         }
 
         public float TotalEnergyAvailable()

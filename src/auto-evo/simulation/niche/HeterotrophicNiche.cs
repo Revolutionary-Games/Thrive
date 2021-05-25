@@ -30,16 +30,18 @@
                 return 0.0f;
             }
 
+            var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGRESSION;
+
             var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
             var predatorSpeed = microbeSpecies.BaseSpeed();
             var preySize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
 
+            // It's great if you can engulf this prey, but only if you can catch it
             var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ ? Constants.AUTO_EVO_ENGULF_PREDATION_SCORE : 0.0f;
             engulfScore *= predatorSpeed > preySpeed ? 1.0f : 0.1f;
 
             var pilusScore = 0.0f;
             var oxytoxyScore = 0.0f;
-
             foreach (var organelle in microbeSpecies.Organelles)
             {
                 if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
@@ -57,10 +59,11 @@
                 }
             }
 
+            // Piluses are much more usefull if the microbe can close to melee
             pilusScore *= predatorSpeed;
 
-            // Intentionally don't penalize for osmoregulation cost to encourage monsters
-            return pilusScore + engulfScore + predatorSize + oxytoxyScore;
+            // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
+            return behaviorScore * (pilusScore + engulfScore + predatorSize + oxytoxyScore);
         }
 
         public float TotalEnergyAvailable()
