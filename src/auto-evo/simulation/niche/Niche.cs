@@ -4,6 +4,6 @@
     {
         public float TotalEnergyAvailable();
 
-        public float FitnessScore(MicrobeSpecies microbe);
+        public float FitnessScore(Species microbe);
     }
 }

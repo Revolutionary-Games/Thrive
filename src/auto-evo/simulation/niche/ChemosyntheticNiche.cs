@@ -24,11 +24,12 @@
             }
         }
 
-        public float FitnessScore(MicrobeSpecies species)
+        public float FitnessScore(Species species)
         {
+            var microbeSpecies = (MicrobeSpecies)species;
             var compoundUseScore = 0.0f;
 
-            foreach (var organelle in species.Organelles)
+            foreach (var organelle in microbeSpecies.Organelles)
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
@@ -49,7 +50,7 @@
                 }
             }
 
-            var energyCost = species.BaseOsmoregulationCost();
+            var energyCost = microbeSpecies.BaseOsmoregulationCost();
 
             return compoundUseScore / energyCost;
         }

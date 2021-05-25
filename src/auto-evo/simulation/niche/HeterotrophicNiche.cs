@@ -18,16 +18,18 @@
             totalEnergy = population * prey.BaseOsmoregulationCost() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
         }
 
-        public float FitnessScore(MicrobeSpecies species)
+        public float FitnessScore(Species species)
         {
+            var microbeSpecies = (MicrobeSpecies)species;
+
             // No canibalism
             if (species == prey)
             {
                 return 0.0f;
             }
 
-            var predatorSize = species.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
-            var preySize = species.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
+            var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
+            var preySize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
 
             var sizeScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ ? Constants.AUTO_EVO_ENGULF_PREDATION_SCORE : 0.0f;
 
@@ -36,7 +38,7 @@
 
             // TODO: replace this with a more accurate speed calculation
             var totalSpeedBonuses = 0.0f;
-            foreach (var organelle in species.Organelles)
+            foreach (var organelle in microbeSpecies.Organelles)
             {
                 if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
                 {
@@ -60,7 +62,7 @@
 
             pilusScore *= totalSpeedBonuses + 0.5f;
 
-            var energyCost = species.BaseOsmoregulationCost();
+            var energyCost = microbeSpecies.BaseOsmoregulationCost();
 
             return pilusScore + sizeScore + oxytoxyScore + totalSpeedBonuses;
         }
