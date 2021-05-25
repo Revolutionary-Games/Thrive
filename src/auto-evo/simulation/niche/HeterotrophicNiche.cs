@@ -37,7 +37,8 @@
             var preySize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
 
             // It's great if you can engulf this prey, but only if you can catch it
-            var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ ? Constants.AUTO_EVO_ENGULF_PREDATION_SCORE : 0.0f;
+            var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ ?
+                Constants.AUTO_EVO_ENGULF_PREDATION_SCORE : 0.0f;
             engulfScore *= predatorSpeed > preySpeed ? 1.0f : 0.1f;
 
             var pilusScore = 0.0f;

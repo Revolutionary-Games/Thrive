@@ -163,7 +163,8 @@
                 var totalNicheFitness = 0.0f;
                 foreach (var currentSpecies in species)
                 {
-                    // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle by exagurating fitness differences
+                    // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
+                    // by exagurating fitness differences
                     var thisSpeciesFitness = Math.Max((float)Math.Pow(niche.FitnessScore(currentSpecies), 2), 0.0f);
                     fitnessBySpecies[currentSpecies] = thisSpeciesFitness;
                     totalNicheFitness += thisSpeciesFitness;
@@ -177,7 +178,8 @@
 
                 foreach (var currentSpecies in species)
                 {
-                    energyBySpecies[currentSpecies] += fitnessBySpecies[currentSpecies] * niche.TotalEnergyAvailable() / totalNicheFitness;
+                    energyBySpecies[currentSpecies] += 
+                        fitnessBySpecies[currentSpecies] * niche.TotalEnergyAvailable() / totalNicheFitness;
                 }
             }
 
