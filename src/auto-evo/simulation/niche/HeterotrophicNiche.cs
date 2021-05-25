@@ -9,11 +9,13 @@
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
 
         private MicrobeSpecies prey;
+        float preySpeed;
         private float totalEnergy;
 
         public HeterotrophicNiche(Patch patch, MicrobeSpecies prey)
         {
             this.prey = prey;
+            preySpeed = prey.BaseSpeed();
             patch.SpeciesInPatch.TryGetValue(prey, out long population);
             totalEnergy = population * prey.BaseOsmoregulationCost() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
         }
@@ -29,16 +31,15 @@
             }
 
             var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
+            var predatorSpeed = microbeSpecies.BaseSpeed();
             var preySize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
 
             var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ ? Constants.AUTO_EVO_ENGULF_PREDATION_SCORE : 0.0f;
-            engulfScore *= microbeSpecies.BaseSpeed() / prey.BaseSpeed();
+            engulfScore *= predatorSpeed > preySpeed ? 1.0f : 0.1f;
 
             var pilusScore = 0.0f;
             var oxytoxyScore = 0.0f;
 
-            // TODO: replace this with a more accurate speed calculation
-            var speedFactor = 1.0f;
             foreach (var organelle in microbeSpecies.Organelles)
             {
                 if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
@@ -54,17 +55,12 @@
                         oxytoxyScore += Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                     }
                 }
-
-                if (organelle.Definition.Components?.Movement?.Momentum != null)
-                {
-                    speedFactor += organelle.Definition.Components.Movement.Momentum;
-                }
             }
 
-            pilusScore *= speedFactor + 0.5f;
+            pilusScore *= predatorSpeed;
 
-            // Intentionally don't penalize for osmoregulation cost to get encourage monsters
-            return pilusScore + engulfScore + predatorSize + oxytoxyScore + speedFactor;
+            // Intentionally don't penalize for osmoregulation cost to encourage monsters
+            return pilusScore + engulfScore + predatorSize + oxytoxyScore;
         }
 
         public float TotalEnergyAvailable()
