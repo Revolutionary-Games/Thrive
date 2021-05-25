@@ -1,7 +1,5 @@
 ﻿namespace Thrive.src.auto_evo.simulation.niche
 {
-    using System;
-
     public class PhotosyntheticNiche : Niche
     {
         private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
