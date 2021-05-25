@@ -32,6 +32,7 @@
             var preySize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
 
             var sizeScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ ? Constants.AUTO_EVO_ENGULF_PREDATION_SCORE : 0.0f;
+            sizeScore += predatorSize;
 
             var pilusScore = 0.0f;
             var oxytoxyScore = 0.0f;
