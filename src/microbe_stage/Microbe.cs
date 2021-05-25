@@ -277,6 +277,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public int DespawnRadiusSqr { get; set; }
 
+    /// <summary>
+    ///   If true this shifts the purpose of this cell for visualizations-only
+    ///   (stops the normal functioning of the cell).
+    /// </summary>
+    [JsonIgnore]
+    public bool IsForPreviewOnly { get; set; }
+
     [JsonIgnore]
     public Node SpawnedNode => this;
 
@@ -356,7 +363,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _Ready()
     {
-        if (cloudSystem == null)
+        if (cloudSystem == null && !IsForPreviewOnly)
         {
             throw new Exception("Microbe not initialized");
         }
@@ -474,6 +481,33 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Reproduction progress is lost
         allOrganellesDivided = false;
+    }
+
+    /// <summary>
+    ///   Applies the set species' color to all of this microbe's organelles
+    /// </summary>
+    public void ApplyPreviewOrganelleColours()
+    {
+        if (!IsForPreviewOnly)
+            throw new InvalidOperationException("Microbe must be a preview-only type");
+
+        foreach (var entry in organelles.Organelles)
+        {
+            entry.Colour = Species.Colour;
+            entry.Update(0);
+        }
+    }
+
+    /// <summary>
+    ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
+    ///   membrane rigidity into account.
+    /// </summary>
+    public void ApplyMembraneWigglyness()
+    {
+        Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (Species.MembraneRigidity /
+            Membrane.Type.BaseWigglyness) * 0.2f;
+        Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (Species.MembraneRigidity /
+            Membrane.Type.MovementWigglyness) * 0.2f;
     }
 
     /// <summary>
@@ -1068,7 +1102,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // Redo the cell membrane.
             SendOrganellePositionsToMembrane();
+
+            if (IsForPreviewOnly)
+            {
+                // Update once for the positioning of external organelles
+                foreach (var organelle in organelles.Organelles)
+                    organelle.Update(delta);
+            }
         }
+
+        // The code below starting from here is not needed for a display-only cell
+        if (IsForPreviewOnly)
+            return;
 
         CheckEngulfShapeSize();
 
@@ -1221,6 +1266,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Membrane.Type = Species.MembraneType;
         Membrane.Tint = Species.Colour;
         Membrane.Dirty = true;
+        ApplyMembraneWigglyness();
     }
 
     private void HandleCompoundAbsorbing(float delta)
