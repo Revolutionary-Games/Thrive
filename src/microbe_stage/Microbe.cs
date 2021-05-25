@@ -275,7 +275,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Spatial OrganelleParent { get; private set; }
 
     [JsonProperty]
-    public int DespawnRadiusSqr { get; set; }
+    public float DespawnRadius { get; set; }
 
     /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
@@ -549,9 +549,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var position = Translation + (direction * ejectionDistance);
 
-        SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+        MicrobeSpawner.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetParent(),
-            SpawnHelpers.LoadAgentScene(), this);
+            AgentProjectile.LoadAgentScene(), this);
 
         PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
     }
@@ -731,14 +731,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             props.Compound = oxytoxy;
             props.Species = Species;
 
-            var agentScene = SpawnHelpers.LoadAgentScene();
+            var agentScene = AgentProjectile.LoadAgentScene();
 
             while (amount > Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
             {
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+                MicrobeSpawner.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetParent(),
                     agentScene, this);
 
@@ -778,7 +778,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISER);
 
-        var chunkScene = SpawnHelpers.LoadChunkScene();
+        var chunkScene = ChunkSpawner.LoadChunkScene();
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
@@ -843,7 +843,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
+            ChunkSpawner.Spawn(chunkType, Translation + positionAdded, GetParent(),
                 chunkScene, cloudSystem, random);
         }
 
@@ -918,8 +918,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var separation = new Vector3(Radius, 0, 0);
 
         // Create the one daughter cell.
-        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
+        var copyEntity = MicrobeSpawner.Spawn(Species, Translation + separation,
+            GetParent(), MicrobeSpawner.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);

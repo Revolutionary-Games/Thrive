@@ -20,6 +20,8 @@
             }
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -28,7 +30,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.00005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -148,6 +150,8 @@
         "icon": "res://assets/textures/gui/bevel/vents.png",
         "sunlight": {},
         "conditions": {
+            "spawnChunkiness": 0.05,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -156,7 +160,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.00005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -186,7 +190,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.000025,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -289,7 +293,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.000025,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -324,7 +328,7 @@
                 },
                 "hydrogensulfide": {
                     "amount": 300000,
-                    "density": 0.00004,
+                    "density": 0.00002,
                     "dissolved": 0
                 },
                 "oxygen": {
@@ -360,6 +364,8 @@
             "max": 2
         },
         "conditions": {
+            "spawnChunkiness": 0.3,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -368,7 +374,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.000075,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -398,7 +404,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.0000375,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -421,7 +427,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.0000175,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -492,6 +498,8 @@
             "max": 1.5
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -627,7 +635,7 @@
                             "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
                         }
                     ],
-                    "density": 0.0002,
+                    "density": 0.000075,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -653,17 +661,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 0.00002,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 0.00002,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -700,6 +708,8 @@
         "icon": "res://assets/textures/gui/bevel/abyss.png",
         "sunlight": {},
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -708,7 +718,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.0000175,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -875,8 +885,8 @@
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
-                    "amount": 0,
-                    "density": 0,
+                    "amount": 300000,
+                    "density": 0.00004,
                     "dissolved": 0
                 },
                 "oxygen": {
@@ -912,6 +922,8 @@
             "max": 1.7
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -920,7 +932,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.0000375,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -950,7 +962,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.0005,
+                    "density": 0.000075,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -973,7 +985,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.0000375,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1073,7 +1085,7 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "glucose": {
@@ -1083,7 +1095,7 @@
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 0.00002,
+                    "density": 0.00003,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {
@@ -1124,6 +1136,8 @@
             "max": 2
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1132,7 +1146,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.0000625,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1185,7 +1199,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.0000175,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1252,6 +1266,8 @@
         "icon": "res://assets/textures/gui/bevel/cave.png",
         "sunlight": {},
         "conditions": {
+            "spawnChunkiness": 0.35,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1260,7 +1276,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.001,
+                    "density": 0.000005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1290,7 +1306,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.0000875,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1384,6 +1400,8 @@
             "max": 2
         },
         "conditions": {
+            "spawnChunkiness": 0.1,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1392,7 +1410,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0005,
+                    "density": 0.000025,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1422,7 +1440,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.0002,
+                    "density": 0.00005,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1445,7 +1463,7 @@
                             "convexShapePath": "res://assets/models/Iceshard1.shape"
                         }
                     ],
-                    "density": 0.002,
+                    "density": 0.0001,
                     "dissolves": false,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1463,7 +1481,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.0002,
+                    "density": 0.000025,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1534,6 +1552,8 @@
             "max": 2
         },
         "conditions": {
+            "spawnChunkiness": 0.15,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1542,7 +1562,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.00005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1572,7 +1592,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.000025,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1595,7 +1615,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.0000175,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1666,6 +1686,8 @@
             "max": 1
         },
         "conditions": {
+            "spawnChunkiness": 0.25,
+            "spawnRateMultiplier": 1,
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
@@ -1674,7 +1696,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0001,
+                    "density": 0.0000175,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1727,7 +1749,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.0000375,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1827,17 +1849,17 @@
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
+                    "density": 0.000025,
                     "dissolved": 0
                 },
                 "glucose": {
                     "amount": 250000,
-                    "density": 0.00002,
+                    "density": 0.00001,
                     "dissolved": 0
                 },
                 "phosphates": {
                     "amount": 200000,
-                    "density": 0.00002,
+                    "density": 0.000025,
                     "dissolved": 0
                 },
                 "hydrogensulfide": {

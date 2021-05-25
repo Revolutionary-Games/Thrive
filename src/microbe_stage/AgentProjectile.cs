@@ -18,6 +18,11 @@ public class AgentProjectile : RigidBody, ITimedLife
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
 
+    public static PackedScene LoadAgentScene()
+    {
+        return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
+    }
+
     public void OnTimeOver()
     {
         if (FadeTimeRemaining == null)

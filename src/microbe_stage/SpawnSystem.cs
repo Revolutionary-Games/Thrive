@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -8,24 +10,14 @@ using Newtonsoft.Json;
 /// </summary>
 public class SpawnSystem
 {
-    /// <summary>
-    ///   Sets how often the spawn system runs and checks things
-    /// </summary>
     [JsonProperty]
-    private float interval = 1.0f;
+    private int spawnEventCount;
 
     [JsonProperty]
-    private float elapsed;
-
-    /// <summary>
-    ///   Root node to parent all spawned things to
-    /// </summary>
-    private Node worldRoot;
-
-    private List<Spawner> spawnTypes = new List<Spawner>();
+    private int spawnGridSize;
 
     [JsonProperty]
-    private Random random = new Random();
+    private int spawnEventRadius;
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag
@@ -40,94 +32,140 @@ public class SpawnSystem
     [JsonProperty]
     private int maxAliveEntities = 1000;
 
+    [JsonProperty]
+    private float spawnPatchMultiplier;
+
+    [JsonProperty]
+    private float eventDistanceFromPlayerSqr;
+
+    [JsonProperty]
+    private float elapsed;
+
+    [JsonProperty]
+    private float spawnWandererTimer;
+
+    [JsonProperty]
+    private Random random = new Random();
+
+    [JsonIgnore]
+    private int microbeBagSize;
+
     /// <summary>
-    ///   Max tries per spawner to avoid very high spawn densities lagging
+    ///   Root node to parent all spawned things to
+    /// </summary>
+    private Node worldRoot;
+
+    /// <summary>
+    /// List of SpawnItems, used to fill the spawnItemBag when it is empty.
+    /// </summary>
+    [JsonIgnore]
+    private List<SpawnItem> spawnItems = new List<SpawnItem>();
+
+    /// <summary>
+    /// Used for a Tetris style random bag. Fill and shuffle the bag,
+    /// then simply pop one out until empty. Rinse and repeat.
+    /// </summary>
+    [JsonIgnore]
+    private List<SpawnItem> spawnItemBag = new List<SpawnItem>();
+
+    /// <summary>
+    /// List of MicrobeItems, used to fill the wanderMicrobeBag.
+    /// </summary>
+    [JsonIgnore]
+    private List<SpawnItem> microbeItems = new List<SpawnItem>();
+
+    /// <summary>
+    /// Used to spawn wandering random microbes when sitting still.
+    /// </summary>
+    [JsonIgnore]
+    private List<SpawnItem> wanderMicrobeBag = new List<SpawnItem>();
+
+    /// <summary>
+    /// Queue of spawn items to spawn. a few from this list get spawned every frame.
+    /// </summary>
+    [JsonIgnore]
+    private Queue<SpawnItem> itemsToSpawn = new Queue<SpawnItem>();
+
+    /// <summary>
+    /// IEnumerator of ISpawned entities to be spawned.
+    /// </summary>
+    [JsonIgnore]
+    private IEnumerator<ISpawned> queuedSpawn;
+
+    /// <summary>
+    /// Used to store SpawnEvents and which grid coordinate the SpawnEvent is in
+    /// Generally, this forms a square of grid coordinates around the player.
     /// </summary>
     [JsonProperty]
-    private int maxTriesPerSpawner = 500;
+    private Dictionary<IVector3, SpawnEvent> spawnGrid = new Dictionary<IVector3, SpawnEvent>();
 
-    /// <summary>
-    ///   This is used to spawn only a few entities per frame with minimal changes needed to code that wants to
-    ///   spawn a bunch of stuff at once
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This isn't saved but the likelihood that losing out on spawning some things is not super critical.
-    ///     Also it is probably the case that this isn't even used on most frames so it is perhaps uncommon
-    ///     that there are queued things when saving.
-    ///   </para>
-    ///   <para>
-    ///     TODO: it might be nice to use a struct instead and a field indicating if this is valid to not recreate
-    ///     this object so much
-    ///   </para>
-    /// </remarks>
-    private QueuedSpawn queuedSpawns;
-
-    /// <summary>
-    ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
-    /// </summary>
-    private int estimateEntityCount;
+    [JsonProperty]
+    private IVector3 oldPlayerGrid;
 
     public SpawnSystem(Node root)
     {
         worldRoot = root;
     }
 
-    // Needs no params constructor for loading saves?
-
     /// <summary>
-    ///   Adds an externally spawned entity to be despawned
+    /// Sets Despawn radius and adds entity to SPAWNED_GROUP
     /// </summary>
-    public static void AddEntityToTrack(ISpawned entity,
-        float radius = Constants.MICROBE_SPAWN_RADIUS)
+    public static void AddEntityToTrack(ISpawned entity)
     {
-        entity.DespawnRadiusSqr = (int)(radius * radius);
+        entity.DespawnRadius = Constants.DESPAWN_ITEM_RADIUS;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
     /// <summary>
-    ///   Adds a new spawner. Sets up the spawn radius, radius sqr,
-    ///   and frequency fields based on the parameters of this
-    ///   function.
+    /// Adds item to spawnItems, which is used for spawning Spawn Events
     /// </summary>
-    public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
+    public void AddSpawnItem(SpawnItem spawnItem)
     {
-        spawner.SpawnRadius = spawnRadius;
-        spawner.SpawnFrequency = 122;
-        spawner.SpawnRadiusSqr = spawnRadius * spawnRadius;
-
-        float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
-        spawner.MinSpawnRadiusSqr = minSpawnRadius * minSpawnRadius;
-
-        spawner.SetFrequencyFromDensity(spawnDensity);
-        spawnTypes.Add(spawner);
+        spawnItems.Add(spawnItem);
     }
 
     /// <summary>
-    ///   Removes a spawn type immediately. Note that it's easier to
-    ///   just set DestroyQueued to true on an spawner.
+    /// Adds Microbe to microbeItems, which is used for spawning wandering microbes.
     /// </summary>
-    public void RemoveSpawnType(Spawner spawner)
+    /// <param name="microbeItem">Microbe Item</param>
+    public void AddMicrobeItem(MicrobeItem microbeItem)
     {
-        spawnTypes.Remove(spawner);
+        microbeItems.Add(microbeItem);
     }
 
     /// <summary>
-    ///   Prepares the spawn system for a new game
+    /// Call once microbeItems is full. stores microbeBagSize and sets the spawnWanderTimer.
     /// </summary>
-    public void Init()
+    public void SetMicrobeBagSize()
     {
-        Clear();
+        microbeBagSize = microbeItems.Count;
+        spawnWandererTimer = Constants.WANDERER_SPAWN_RATE / microbeBagSize;
     }
 
     /// <summary>
-    ///   Clears the spawners
+    /// Set spawn data that changes per patch and calculates other variables from that data.
     /// </summary>
-    public void Clear()
+    public void SetSpawnData(int spawnEventCount, int spawnGridSize, float spawnPatchMultiplier)
     {
-        spawnTypes.Clear();
-        queuedSpawns = null;
-        elapsed = 0;
+        this.spawnEventCount = spawnEventCount;
+        this.spawnPatchMultiplier = spawnPatchMultiplier;
+        this.spawnGridSize = spawnGridSize;
+        spawnEventRadius = spawnGridSize / 4;
+
+        eventDistanceFromPlayerSqr = (spawnEventRadius + Constants.DESPAWN_ITEM_RADIUS + 20)
+            * (spawnEventRadius + Constants.DESPAWN_ITEM_RADIUS + 20);
+    }
+
+    /// <summary>
+    /// Clears spawnGrid and itemsToSpawn.
+    /// Also sets oldPlayerGrid to null, meaning the player has jumped to a new possition.
+    /// This makes it so spawns do not happen on screen after the jump.
+    /// </summary>
+    public void RespawningPlayer()
+    {
+        oldPlayerGrid = null;
+        itemsToSpawn.Clear();
+        spawnGrid.Clear();
     }
 
     /// <summary>
@@ -135,7 +173,6 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
-        queuedSpawns = null;
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
         foreach (Node entity in spawnedEntities)
@@ -143,195 +180,284 @@ public class SpawnSystem
             if (!entity.IsQueuedForDeletion())
                 entity.DetachAndQueueFree();
         }
+
+        spawnItems.Clear();
+        spawnItemBag.Clear();
+        microbeItems.Clear();
+        wanderMicrobeBag.Clear();
+        itemsToSpawn.Clear();
+        spawnGrid.Clear();
+
+        oldPlayerGrid = null;
     }
 
     /// <summary>
     ///   Processes spawning and despawning things
     /// </summary>
-    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
+    public void Process(float delta, Vector3 playerPosition)
     {
         elapsed += delta;
 
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
+        SpawnEventGrid(playerPosition);
+        SpawnWanderingMicrobes(playerPosition);
+        SpawnItemsInSpawnList();
+    }
 
-        // If we have queued spawns to do spawn those
-        if (queuedSpawns != null)
+    /// <summary>
+    /// Takes SpawnItems list and shuffles them in bag.
+    /// </summary>
+    /// <param name="bag">Bag to be shuffled</param>
+    /// <param name="fullBag">Full bag to get SpawnItems from</param>
+    private void FillBag(List<SpawnItem> bag, List<SpawnItem> fullBag)
+    {
+        bag.Clear();
+
+        foreach (SpawnItem spawnItem in fullBag)
         {
-            spawnsLeftThisFrame = HandleQueuedSpawns(spawnsLeftThisFrame);
-
-            if (spawnsLeftThisFrame <= 0)
-                return;
+            bag.Add(spawnItem);
         }
 
-        // This is now an if to make sure that the spawn system is
-        // only ran once per frame to avoid spawning a bunch of stuff
-        // all at once after a lag spike
-        // NOTE: that as QueueFree is used it's not safe to just switch this to a loop
-        if (elapsed >= interval)
+        ShuffleBag(bag);
+    }
+
+    /// <summary>
+    /// Fisher–Yates Shuffle Alg. Perfectly Random shuffle, O(n)
+    /// </summary>
+    private void ShuffleBag(List<SpawnItem> bag)
+    {
+        for (int i = 0; i < bag.Count - 2; i++)
         {
-            elapsed -= interval;
+            int j = random.Next(i, bag.Count);
 
-            estimateEntityCount = DespawnEntities(playerPosition);
-
-            spawnTypes.RemoveAll(entity => entity.DestroyQueued);
-
-            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
+            SpawnItem swap = bag[i];
+            bag[i] = bag[j];
+            bag[j] = swap;
         }
     }
 
-    private int HandleQueuedSpawns(int spawnsLeftThisFrame)
+    /// <summary>
+    /// "Pops" 0th item out of shuffled bag.
+    /// If bag is empty, shuffle bag.
+    /// </summary>
+    /// <param name="bag">Bag to pop from</param>
+    /// <param name="fullBag">Full bag needed to fill other bag if it runs out</param>
+    /// <returns>Next Spawn Item</returns>
+    private SpawnItem BagPop(List<SpawnItem> bag, List<SpawnItem> fullBag)
     {
-        // If we don't have room, just abandon spawning
-        if (estimateEntityCount >= maxAliveEntities)
-        {
-            queuedSpawns.Spawns.Dispose();
-            queuedSpawns = null;
-            return spawnsLeftThisFrame;
-        }
+        if (bag.Count == 0)
+            FillBag(bag, fullBag);
 
-        // Spawn from the queue
-        while (estimateEntityCount < maxAliveEntities && spawnsLeftThisFrame > 0)
+        SpawnItem pop = bag[0];
+        bag.RemoveAt(0);
+
+        switch (pop)
         {
-            if (!queuedSpawns.Spawns.MoveNext())
-            {
-                // Ended
-                queuedSpawns.Spawns.Dispose();
-                queuedSpawns = null;
+            case ChunkItem chunkPop:
+                chunkPop.WorldNode = worldRoot;
                 break;
-            }
 
-            // Next was spawned
-            ProcessSpawnedEntity(queuedSpawns.Spawns.Current, queuedSpawns.SpawnType);
-
-            ++estimateEntityCount;
-            --spawnsLeftThisFrame;
+            case MicrobeItem microbePop:
+                microbePop.WorldNode = worldRoot;
+                break;
         }
 
-        return spawnsLeftThisFrame;
+        return pop;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
+    /// <summary>
+    /// If entered a new grid, create new SpawnEvents for the new close by grids
+    /// and despawn far away entities .
+    /// Else, remove SpawnEvents that are too far away,
+    /// and spawn SpawnEvents that are close enough to player.
+    /// </summary>
+    private void SpawnEventGrid(Vector3 playerPosition)
     {
-        // If  there are already too many entities, don't spawn more
-        if (existing >= maxAliveEntities)
-            return;
+        int playerGridX = (int)playerPosition.x / spawnGridSize;
+        int playerGridZ = (int)playerPosition.z / spawnGridSize;
+        IVector3 playerCurrentGrid = new IVector3(playerGridX, 0, playerGridZ);
 
-        int spawned = 0;
-
-        foreach (var spawnType in spawnTypes)
+        if (oldPlayerGrid != playerCurrentGrid)
         {
-            /*
-            To actually spawn a given entity for a given attempt, two
-            conditions should be met. The first condition is a random
-            chance that adjusts the spawn frequency to the appropriate
-            amount. The second condition is whether the entity will
-            spawn in a valid position. It is checked when the first
-            condition is met and a position for the entity has been
-            decided.
-
-            To allow more than one entity of each type to spawn per
-            spawn cycle, the SpawnSystem attempts to spawn each given
-            entity multiple times depending on the spawnFrequency.
-            numAttempts stores how many times the SpawnSystem attempts
-            to spawn the given entity.
-            */
-            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
-                maxTriesPerSpawner);
-
-            for (int i = 0; i < numAttempts; i++)
+            for (int i = -Constants.SPAWN_GRID_WIDTH; i <= Constants.SPAWN_GRID_WIDTH; i++)
             {
-                if (random.Next(0, numAttempts + 1) < spawnType.SpawnFrequency)
+                for (int j = -Constants.SPAWN_GRID_WIDTH; j <= Constants.SPAWN_GRID_WIDTH; j++)
                 {
-                    /*
-                    First condition passed. Choose a location for the entity.
+                    int spawnGridX = playerGridX + i;
+                    int spawnGridZ = playerGridZ + j;
 
-                    A random location in the square of side length 2*spawnRadius
-                    centered on the player is chosen. The corners
-                    of the square are outside the spawning region, but they
-                    will fail the second condition, so entities still only
-                    spawn within the spawning region.
-                    */
-                    float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
-                    float displacementRotation = WeightedRandomRotation(playerRotation.y);
+                    IVector3 spawnEventGrid = new IVector3(spawnGridX, 0, spawnGridZ);
 
-                    float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
-                    float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
-
-                    // Distance from the player.
-                    Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
-                    float squaredDistance = displacement.LengthSquared();
-
-                    if (squaredDistance <= spawnType.SpawnRadiusSqr &&
-                        squaredDistance >= spawnType.MinSpawnRadiusSqr)
+                    if (!spawnGrid.ContainsKey(spawnEventGrid))
                     {
-                        // Second condition passed. Spawn the entity.
-                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
-                            ref spawnsLeftThisFrame, ref spawned))
+                        Vector3 eventGamePos = new Vector3(spawnEventGrid.X * spawnGridSize,
+                            spawnEventGrid.Y * spawnGridSize, spawnEventGrid.Z * spawnGridSize);
+                        SpawnEvent spawnEvent = new SpawnEvent(GetRandomEventPosition(eventGamePos),
+                            spawnEventGrid);
+
+                        if (oldPlayerGrid == null &&
+                            (spawnEvent.Position - playerPosition).LengthSquared() < eventDistanceFromPlayerSqr)
                         {
-                            return;
+                            spawnEvent.IsSpawned = true;
                         }
+
+                        spawnGrid[spawnEventGrid] = spawnEvent;
+                        DespawnEntities(playerPosition);
                     }
                 }
             }
+
+            oldPlayerGrid = playerCurrentGrid;
         }
-    }
-
-    /// <summary>
-    ///   Does a single spawn with a spawner
-    /// </summary>
-    /// <returns>True if we have exceeded the spawn limit and no further spawns should be done this frame</returns>
-    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, int existing, ref int spawnsLeftThisFrame,
-        ref int spawned)
-    {
-        var enumerable = spawnType.Spawn(worldRoot, location);
-
-        if (enumerable == null)
-            return false;
-
-        var spawner = enumerable.GetEnumerator();
-
-        while (spawner.MoveNext())
+        else
         {
-            if (spawner.Current == null)
-                throw new NullReferenceException("spawn enumerator is not allowed to return null");
-
-            // Spawned something
-            ProcessSpawnedEntity(spawner.Current, spawnType);
-            spawned += 1;
-            --spawnsLeftThisFrame;
-
-            // Check if we are out of quota for this frame
-
-            // TODO: this is a bit awkward if this
-            // stops compound clouds from spawning as
-            // well...
-            if (spawned + existing >= maxAliveEntities)
+            List<IVector3> eventsToRemove = new List<IVector3>();
+            foreach (IVector3 key in spawnGrid.Keys)
             {
-                // We likely couldn't spawn things next frame anyway if we are at the entity limit,
-                // so the spawner is not stored here
-                return true;
+                SpawnEvent spawnEvent = spawnGrid[key];
+                if (spawnEvent.GridPos.X > playerGridX + Constants.SPAWN_GRID_WIDTH
+                    || spawnEvent.GridPos.X < playerGridX - Constants.SPAWN_GRID_WIDTH
+                    || spawnEvent.GridPos.Z > playerGridZ + Constants.SPAWN_GRID_WIDTH
+                    || spawnEvent.GridPos.Z < playerGridZ - Constants.SPAWN_GRID_WIDTH)
+                {
+                    eventsToRemove.Add(key);
+                }
+
+                if (!spawnEvent.IsSpawned &&
+                    (spawnEvent.Position - playerPosition).LengthSquared() < eventDistanceFromPlayerSqr)
+                {
+                    SpawnNewEvent(spawnEvent);
+                }
             }
 
-            if (spawnsLeftThisFrame <= 0)
+            foreach (IVector3 key in eventsToRemove)
             {
-                // This spawner might still have something left to spawn next frame, so store it
-                queuedSpawns = new QueuedSpawn(spawner, spawnType);
-                return true;
+                spawnGrid.Remove(key);
             }
         }
-
-        // Can still spawn more stuff
-        return false;
     }
 
     /// <summary>
-    ///   Despawns entities that are far away from the player
+    /// If it is time to spawn a wandering microbe, spawn one in a random spot around the player.
+    /// Also Despawn far away entities.
     /// </summary>
-    /// <returns>The number of alive entities, used to limit the total</returns>
-    private int DespawnEntities(Vector3 playerPosition)
+    private void SpawnWanderingMicrobes(Vector3 playerPosition)
+    {
+        if (elapsed > spawnWandererTimer)
+        {
+            elapsed = 0;
+            float spawnDistance = Constants.SPAWN_WANDERER_RADIUS;
+            float spawnAngle = random.NextFloat() * 2 * Mathf.Pi;
+
+            Vector3 spawnWanderer = new Vector3(spawnDistance * Mathf.Sin(spawnAngle),
+                0, spawnDistance * Mathf.Cos(spawnAngle));
+
+            AddSpawnItemInToSpawnList(spawnWanderer + playerPosition, wanderMicrobeBag, microbeItems);
+            DespawnEntities(playerPosition);
+        }
+    }
+
+    private void SpawnNewEvent(SpawnEvent spawnEvent)
+    {
+        spawnEvent.IsSpawned = true;
+        int spawnCount = (int)(spawnEventCount * spawnPatchMultiplier) + random.Next(-1, 2);
+
+        for (int i = 0; i < spawnCount; i++)
+        {
+            // Weighted random will avoid the dead center of the spawn event to discourage
+            // SpawnItems spawning on top of eachother.
+            float weightedRandom = Mathf.Clamp(random.NextFloat() * 0.9f + 0.1f, 0, 1);
+            float spawnRadius = weightedRandom * spawnEventRadius;
+            float spawnAngle = random.NextFloat() * 2 * Mathf.Pi;
+
+            Vector3 spawnModPosition = new Vector3(spawnRadius * Mathf.Sin(spawnAngle),
+                0, spawnRadius * Mathf.Cos(spawnAngle));
+
+            AddSpawnItemInToSpawnList(spawnEvent.Position + spawnModPosition, spawnItemBag, spawnItems);
+        }
+    }
+
+    /// <summary>
+    /// Chooses a random place inside of a spawnGrid such that the resulting
+    /// Spawn Event's spawn radius will not extend into another grid cell.
+    /// This means 2 Spawn Events can not overlap.
+    /// </summary>
+    /// <param name="spawnGridPos">Spawn Grid Position</param>
+    /// <returns>Spawn Event Position</returns>
+    private Vector3 GetRandomEventPosition(Vector3 spawnGridPos)
+    {
+        // Choose random place to spawn
+        float eventCenterX = random.NextFloat() * (spawnGridSize - spawnEventRadius * 2)
+            + spawnEventRadius;
+
+        float eventCenterZ = random.NextFloat() * (spawnGridSize - spawnEventRadius * 2)
+            + spawnEventRadius;
+
+        Vector3 eventPos = new Vector3(eventCenterX, 0, eventCenterZ);
+
+        return spawnGridPos + eventPos;
+    }
+
+    private void AddSpawnItemInToSpawnList(Vector3 spawnPos, List<SpawnItem> bag,
+        List<SpawnItem> fullBag)
+    {
+        SpawnItem spawn = BagPop(bag, fullBag);
+
+        // If there are too many entities, do not add more to spawn list.
+        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
+        if (spawnedEntities.Count >= maxAliveEntities)
+            return;
+
+        spawn.Position = spawnPos;
+
+        itemsToSpawn.Enqueue(spawn);
+    }
+
+    private void SpawnItemsInSpawnList()
+    {
+        if (queuedSpawn != null)
+        {
+            SpawnQueuedSpawn();
+        }
+        else if (itemsToSpawn.Count > 0)
+        {
+            SpawnItem spawn = itemsToSpawn.Dequeue();
+
+            if (spawn == null)
+            {
+                return;
+            }
+
+            var enumeraable = spawn.Spawn();
+            if (enumeraable != null)
+            {
+                queuedSpawn = enumeraable.GetEnumerator();
+                SpawnQueuedSpawn();
+            }
+        }
+    }
+
+    private void SpawnQueuedSpawn()
+    {
+        for (int i = 0; i < Constants.MAX_SPAWNS_PER_FRAME; i++)
+        {
+            if (!queuedSpawn.MoveNext())
+            {
+                queuedSpawn.Dispose();
+                queuedSpawn = null;
+                return;
+            }
+
+            ProcessSpawnedEntity(queuedSpawn.Current);
+        }
+    }
+
+    /// <summary>
+    /// Despawns entities that are far away from the player
+    /// </summary>
+    private void DespawnEntities(Vector3 playerPosition)
     {
         int entitiesDeleted = 0;
 
@@ -350,10 +476,18 @@ public class SpawnSystem
             }
 
             var entityPosition = ((Spatial)entity).Translation;
-            var squaredDistance = (playerPosition - entityPosition).LengthSquared();
+
+            int playerGridX = (int)playerPosition.x / spawnGridSize;
+            int playerGridZ = (int)playerPosition.z / spawnGridSize;
+
+            float minSpawnX = (playerGridX - Constants.SPAWN_GRID_WIDTH) * spawnGridSize;
+            float maxSpawnX = (playerGridX + Constants.SPAWN_GRID_WIDTH + 1) * spawnGridSize;
+            float minSpawnZ = (playerGridZ - Constants.SPAWN_GRID_WIDTH) * spawnGridSize;
+            float maxSpawnZ = (playerGridZ + Constants.SPAWN_GRID_WIDTH + 1) * spawnGridSize;
 
             // If the entity is too far away from the player, despawn it.
-            if (squaredDistance > spawned.DespawnRadiusSqr)
+            if (entityPosition.x < minSpawnX || entityPosition.x > maxSpawnX ||
+                entityPosition.z < minSpawnZ || entityPosition.z > maxSpawnZ)
             {
                 entitiesDeleted++;
                 entity.DetachAndQueueFree();
@@ -362,66 +496,155 @@ public class SpawnSystem
                     break;
             }
         }
-
-        return spawnedEntities.Count - entitiesDeleted;
     }
 
     /// <summary>
     ///   Add the entity to the spawned group and add the despawn radius
     /// </summary>
-    private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
+    private void ProcessSpawnedEntity(ISpawned entity)
     {
-        // I don't understand why the same
-        // value is used for spawning and
-        // despawning, but apparently it works
-        // just fine
-        entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
-
+        entity.DespawnRadius = Constants.DESPAWN_ITEM_RADIUS;
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
     /// <summary>
-    ///   Returns a random rotation (in radians)
-    ///   It is more likely to return a rotation closer to the target rotation than not
+    /// Contains all the data needed to spawn a cluster of SpawnItems.
     /// </summary>
-    private float WeightedRandomRotation(float targetRotation)
+    private class SpawnEvent
     {
-        targetRotation = WithNegativesToNormalRadians(targetRotation);
+        public bool IsSpawned;
 
-        float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
-        float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
-
-        if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
-            return NormalToWithNegativesRadians(rotation1);
-
-        return NormalToWithNegativesRadians(rotation2);
-    }
-
-    private float NormalToWithNegativesRadians(float radian)
-    {
-        return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
-    }
-
-    private float WithNegativesToNormalRadians(float radian)
-    {
-        return radian >= 0 ? radian : (float)(2 * Math.PI) - radian;
-    }
-
-    private float DistanceBetweenRadians(float p1, float p2)
-    {
-        float distance = Math.Abs(p1 - p2);
-        return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
-    }
-
-    private class QueuedSpawn
-    {
-        public Spawner SpawnType;
-        public IEnumerator<ISpawned> Spawns;
-
-        public QueuedSpawn(IEnumerator<ISpawned> spawner, Spawner spawnType)
+        public SpawnEvent(Vector3 position, IVector3 gridPos, bool isSpawned = false)
         {
-            Spawns = spawner;
-            SpawnType = spawnType;
+            GridPos = gridPos;
+            Position = position;
+            IsSpawned = isSpawned;
+        }
+
+        public Vector3 Position { get; private set; }
+        public IVector3 GridPos { get; private set; }
+    }
+
+    /// <summary>
+    /// An Integer equivelant of Vector3.
+    /// This is used for storing spawn grid coordinates and
+    /// to easily check if 2 spawn grid coordinates are the same.
+    /// </summary>
+    [TypeConverter(typeof(IVector3TypeConverter))]
+    private class IVector3
+    {
+        public int X;
+        public int Y;
+        public int Z;
+        public IVector3() { }
+
+        public IVector3(int x, int y, int z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+
+        public static bool operator ==(IVector3 iVecA, IVector3 iVecB)
+        {
+            if (ReferenceEquals(iVecA, iVecB))
+            {
+                return true;
+            }
+
+            // Ensure that "numberA" isn't null
+            if (ReferenceEquals(null, iVecA))
+            {
+                return false;
+            }
+
+            return iVecA.Equals(iVecB);
+        }
+
+        public static bool operator !=(IVector3 iVecA, IVector3 iVecB)
+        {
+            return !(iVecA == iVecB);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IVector3);
+        }
+
+        public bool Equals(IVector3 other)
+        {
+            return other != null &&
+                X == other.X &&
+                Y == other.Y &&
+                Z == other.Z;
+        }
+
+        /// <summary>
+        /// Used by IVector3TypeConverter to deseralize IVector3
+        /// </summary>
+        public override string ToString()
+        {
+            return X + ", " + Y + ", " + Z;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                const int HashingBase = (int)2166136261;
+                const int HashingMultiplier = 16777619;
+
+                int hash = HashingBase;
+                hash = (hash * HashingMultiplier) ^ X.GetHashCode();
+                hash = (hash * HashingMultiplier) ^ Y.GetHashCode();
+                hash = (hash * HashingMultiplier) ^ Z.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// TypeConverter for IVector3
+    /// </summary>
+    private class IVector3TypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        {
+            if (sourceType == typeof(string))
+                return true;
+
+            return base.CanConvertFrom(context, sourceType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context,
+            CultureInfo culture, object value)
+        {
+            if (value is string)
+            {
+                string[] coords = ((string)value).Split(", ");
+
+                int x, y, z;
+                bool p = int.TryParse(coords[0], out x);
+                bool q = int.TryParse(coords[1], out y);
+                bool r = int.TryParse(coords[2], out z);
+                if (p && q && r)
+                {
+                    return new IVector3(x, y, z);
+                }
+            }
+
+            return base.ConvertFrom(context, culture, value);
+        }
+
+        public override object ConvertTo(ITypeDescriptorContext context,
+            CultureInfo culture, object value, Type destinationType)
+        {
+            if (destinationType == typeof(string))
+            {
+                return value.ToString();
+            }
+
+            return base.ConvertTo(context, culture, value, destinationType);
         }
     }
 }

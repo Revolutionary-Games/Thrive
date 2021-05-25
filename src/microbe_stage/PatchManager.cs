@@ -8,31 +8,42 @@ using Godot;
 /// </summary>
 public class PatchManager
 {
+    private int spawnBagSize;
+
     private SpawnSystem spawnSystem;
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
-    private GameProperties currentGame;
 
     private Patch previousPatch;
 
-    // Currently active spawns
-    private List<CreatedSpawner> chunkSpawners = new List<CreatedSpawner>();
-    private List<CreatedSpawner> cloudSpawners = new List<CreatedSpawner>();
-    private List<CreatedSpawner> microbeSpawners = new List<CreatedSpawner>();
+    // Counts of each Species/Chunk/Compound
+    private Dictionary<Species, int> speciesCounts = new Dictionary<Species, int>();
+    private Dictionary<ChunkConfiguration, int> chunkCounts = new Dictionary<ChunkConfiguration, int>();
+    private Dictionary<Compound, int> compoundCloudCounts = new Dictionary<Compound, int>();
+
+    // Cloud Compound Amounts
+    private Dictionary<Compound, float> compoundAmounts = new Dictionary<Compound, float>();
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
-        GameProperties currentGame)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife,
+        DirectionalLight worldLight, GameProperties currentGame)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
-        this.currentGame = currentGame;
+
+        CloudSpawner = new CompoundCloudSpawner(compoundCloudSystem);
+        ChunkSpawner = new ChunkSpawner(compoundCloudSystem);
+        MicrobeSpawner = new MicrobeSpawner(compoundCloudSystem, currentGame);
     }
+
+    public CompoundCloudSpawner CloudSpawner { get; private set; }
+    public ChunkSpawner ChunkSpawner { get; private set; }
+    public MicrobeSpawner MicrobeSpawner { get; private set; }
 
     /// <summary>
     ///   Applies all patch related settings that are needed to be
@@ -71,62 +82,94 @@ public class PatchManager
         processSystem.SetBiome(currentPatch.Biome);
 
         // Apply spawn system settings
-        UnmarkAllSpawners();
-
-        // Cloud spawners should be added first due to the way the
-        // total entity count is limited
         HandleCloudSpawns(currentPatch.Biome);
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
-        RemoveNonMarkedSpawners();
+        SetFullSpawnBags();
+        SetSpawnGridSize(currentPatch.Biome);
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
     }
 
+    /// <summary>
+    /// Calculates number of SpawnItems per SpawnEvent, and the spawn grid size.
+    /// Then give this information to the Spawn System.
+    /// </summary>
+    private void SetSpawnGridSize(BiomeConditions biome)
+    {
+        // SpawnChunkiness of 0 means one item per spawn event,
+        // SpawnChunkiness of 1 means one spawnBagSize per spawn event,
+        int spawnEventCount = (int)(1 + (biome.SpawnChunkiness * (spawnBagSize - 1)));
+
+        // Assuming constant SpawnRateMultiplier, then SpawnChunkiness will not change overall density
+        // Increase in SpawnRateMultiplier lowers the gridSize, which increases density
+        // SpawnRateMultiplier of 2.0 will double the spawn density.
+        int spawnGridSize = (int)(Constants.SPAWN_GRID_SIZE * Math.Sqrt(spawnEventCount)
+            / Math.Sqrt(biome.SpawnRateMultiplier));
+
+        spawnSystem.SetSpawnData(spawnEventCount, spawnGridSize, biome.SpawnRateMultiplier);
+    }
+
+    /// <summary>
+    /// Adds the chunk counts of each chunk from the biome into chunkCounts
+    /// </summary>
     private void HandleChunkSpawns(BiomeConditions biome)
     {
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
-        foreach (var entry in biome.Chunks)
-        {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Value.Name);
-                    spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
-                        compoundCloudSystem);
+        chunkCounts.Clear();
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                });
+        foreach (var chunk in biome.Chunks.Keys)
+        {
+            float chunkDensity = biome.Chunks[chunk].Density;
+
+            if (chunkDensity > 0)
+            {
+                int numOfItems = Math.Min(
+                    (int)(chunkDensity * Constants.SPAWN_DENSITY_MULTIPLIER), 100);
+                GD.Print(biome.Chunks[chunk].Name + " has " + numOfItems + " items per bag.");
+                chunkCounts.Add(biome.Chunks[chunk], numOfItems);
+            }
         }
     }
 
+    /// <summary>
+    /// Adds the compound cloud counts and amount of each cloud
+    /// from the biome into cloudCounts and CloudAmounts.
+    /// </summary>
     private void HandleCloudSpawns(BiomeConditions biome)
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
-        foreach (var entry in biome.Compounds)
-        {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Key.InternalName);
-                    spawner.Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount);
+        compoundCloudCounts.Clear();
+        compoundAmounts.Clear();
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.CLOUD_SPAWN_RADIUS);
-                    return spawner;
-                });
+        foreach (var compound in biome.Compounds.Keys)
+        {
+            float compoundDensity = biome.Compounds[compound].Density;
+            float compoundAmount = biome.Compounds[compound].Amount;
+
+            if (compoundDensity > 0 && compoundAmount > 0)
+            {
+                int numOfItems = Math.Min(
+                    (int)(compoundDensity * Constants.SPAWN_DENSITY_MULTIPLIER), 100);
+                GD.Print(compound.Name + " has " + numOfItems + " items per bag.");
+                compoundCloudCounts.Add(compound, numOfItems);
+                compoundAmounts.Add(compound, compoundAmount);
+            }
         }
     }
 
+    /// <summary>
+    /// Adds the species counts of each microbe from the biome into speciesCounts
+    /// </summary>
     private void HandleCellSpawns(Patch patch)
     {
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
+
+        speciesCounts.Clear();
 
         foreach (var entry in patch.SpeciesInPatch)
         {
@@ -138,56 +181,15 @@ public class PatchManager
                 continue;
             }
 
-            var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
+            float density = Constants.SPAWN_DENSITY_MULTIPLIER / (Constants.STARTING_SPAWN_DENSITY -
                 Math.Min(Constants.MAX_SPAWN_DENSITY,
-                    species.Population * 5));
+                    species.Population * 3));
 
-            var name = species.ID.ToString(CultureInfo.InvariantCulture);
+            var name = species.FormattedName.ToString(CultureInfo.InvariantCulture);
 
-            HandleSpawnHelper(microbeSpawners, name, density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(name);
-                    spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                        compoundCloudSystem, currentGame);
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                });
-        }
-    }
-
-    private void HandleSpawnHelper(List<CreatedSpawner> existingSpawners, string itemName,
-        float density, Func<CreatedSpawner> createNew)
-    {
-        if (density <= 0)
-        {
-            GD.Print(itemName, " spawn density is 0. It won't spawn");
-            return;
-        }
-
-        var existing = existingSpawners.Find(s => s.Name == itemName);
-
-        if (existing != null)
-        {
-            existing.Marked = true;
-
-            float oldFrequency = existing.Spawner.SpawnFrequency;
-            existing.Spawner.SetFrequencyFromDensity(density);
-
-            if (oldFrequency != existing.Spawner.SpawnFrequency)
-            {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
-                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
-            }
-        }
-        else
-        {
-            // New spawner needed
-            GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
-
-            existingSpawners.Add(createNew());
+            int numOfItems = (int)density;
+            GD.Print(name + " has " + numOfItems + " items per bag.");
+            speciesCounts.Add(species, numOfItems);
         }
     }
 
@@ -209,54 +211,57 @@ public class PatchManager
         worldLight.LightSpecular = biome.Sunlight.Specular;
     }
 
-    private void UnmarkAllSpawners()
-    {
-        UnmarkSingle(chunkSpawners);
-        UnmarkSingle(cloudSpawners);
-        UnmarkSingle(microbeSpawners);
-    }
-
-    private void UnmarkSingle(List<CreatedSpawner> spawners)
-    {
-        foreach (var spawner in spawners)
-            spawner.Marked = false;
-    }
-
-    private void RemoveNonMarkedSpawners()
-    {
-        ClearUnmarkedSingle(chunkSpawners);
-        ClearUnmarkedSingle(cloudSpawners);
-        ClearUnmarkedSingle(microbeSpawners);
-    }
-
     /// <summary>
-    /// Removes unmarked spawners from List.
+    /// Set up full SpawnItems and MicrobeItems bags in the spawnSystem based on the counts dictionaries.
     /// </summary>
-    /// <param name="spawners">Spawner list to act upon</param>
-    private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
+    private void SetFullSpawnBags()
     {
-        spawners.RemoveAll(item =>
+        spawnBagSize = 0;
+
+        foreach (Compound compound in compoundCloudCounts.Keys)
         {
-            if (!item.Marked)
+            spawnBagSize += compoundCloudCounts[compound];
+            for (int i = 0; i < compoundCloudCounts[compound]; i++)
             {
-                GD.Print("Removed ", item.Name, " spawner.");
-                item.Spawner.DestroyQueued = true;
-                return true;
+                spawnSystem.AddSpawnItem(new CloudItem(compound, compoundAmounts[compound], CloudSpawner));
+            }
+        }
+
+        foreach (ChunkConfiguration chunk in chunkCounts.Keys)
+        {
+            spawnBagSize += chunkCounts[chunk];
+            foreach (var mesh in chunk.Meshes)
+            {
+                if (mesh.LoadedScene == null)
+                    throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
             }
 
-            return false;
-        });
-    }
-
-    private class CreatedSpawner
-    {
-        public Spawner Spawner;
-        public string Name;
-        public bool Marked = true;
-
-        public CreatedSpawner(string name)
-        {
-            Name = name;
+            for (int i = 0; i < chunkCounts[chunk]; i++)
+            {
+                spawnSystem.AddSpawnItem(new ChunkItem(chunk, ChunkSpawner));
+            }
         }
+
+        foreach (Species key in speciesCounts.Keys)
+        {
+            if (!(key is MicrobeSpecies))
+                continue;
+
+            MicrobeSpecies species = (MicrobeSpecies)key;
+            spawnBagSize += speciesCounts[key];
+
+            for (int i = 0; i < speciesCounts[key]; i++)
+            {
+                MicrobeItem microbeItem = new MicrobeItem(species, MicrobeSpawner);
+                microbeItem.IsWanderer = false;
+                spawnSystem.AddSpawnItem(microbeItem);
+
+                MicrobeItem wanderMicrobeItem = new MicrobeItem(species, MicrobeSpawner);
+                wanderMicrobeItem.IsWanderer = true;
+                spawnSystem.AddMicrobeItem(wanderMicrobeItem);
+            }
+        }
+
+        spawnSystem.SetMicrobeBagSize();
     }
 }
