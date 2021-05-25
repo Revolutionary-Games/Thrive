@@ -392,7 +392,7 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 10;
-    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.2f;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 6000;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
 
