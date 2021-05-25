@@ -38,7 +38,7 @@
             var oxytoxyScore = 0.0f;
 
             // TODO: replace this with a more accurate speed calculation
-            var totalSpeedBonuses = 0.0f;
+            var speedFactor = 1.0f;
             foreach (var organelle in microbeSpecies.Organelles)
             {
                 if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
@@ -57,15 +57,15 @@
 
                 if (organelle.Definition.Components?.Movement?.Momentum != null)
                 {
-                    totalSpeedBonuses += organelle.Definition.Components.Movement.Momentum;
+                    speedFactor += organelle.Definition.Components.Movement.Momentum;
                 }
             }
 
-            pilusScore *= totalSpeedBonuses + 0.5f;
+            pilusScore *= speedFactor + 0.5f;
 
             var energyCost = microbeSpecies.BaseOsmoregulationCost();
 
-            return pilusScore + sizeScore + oxytoxyScore + totalSpeedBonuses;
+            return pilusScore + sizeScore + oxytoxyScore + speedFactor - energyCost;
         }
 
         public float TotalEnergyAvailable()
