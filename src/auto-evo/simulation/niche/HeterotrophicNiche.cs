@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Thrive.src.auto_evo.simulation.niche;
 
 public class HeterotrophicNiche : INiche
 {

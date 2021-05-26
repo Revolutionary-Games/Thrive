@@ -1,6 +1,4 @@
-﻿using Thrive.src.auto_evo.simulation.niche;
-
-public class PhotosyntheticNiche : INiche
+﻿public class PhotosyntheticNiche : INiche
 {
     private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
