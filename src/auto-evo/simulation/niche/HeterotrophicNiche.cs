@@ -1,74 +1,73 @@
-﻿namespace Thrive.src.auto_evo.simulation.niche
+﻿using System.Linq;
+using Thrive.src.auto_evo.simulation.niche;
+
+public class HeterotrophicNiche : INiche
 {
-    using System.Linq;
+    private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
 
-    public class HeterotrophicNiche : Niche
+    private MicrobeSpecies prey;
+    private float preySpeed;
+    private float totalEnergy;
+
+    public HeterotrophicNiche(Patch patch, MicrobeSpecies prey)
     {
-        private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-        private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+        this.prey = prey;
+        preySpeed = prey.BaseSpeed();
+        patch.SpeciesInPatch.TryGetValue(prey, out long population);
+        totalEnergy = population * prey.BaseOsmoregulationCost() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+    }
 
-        private MicrobeSpecies prey;
-        float preySpeed;
-        private float totalEnergy;
+    public float FitnessScore(Species species)
+    {
+        var microbeSpecies = (MicrobeSpecies)species;
 
-        public HeterotrophicNiche(Patch patch, MicrobeSpecies prey)
+        // No canibalism
+        if (species == prey)
         {
-            this.prey = prey;
-            preySpeed = prey.BaseSpeed();
-            patch.SpeciesInPatch.TryGetValue(prey, out long population);
-            totalEnergy = population * prey.BaseOsmoregulationCost() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+            return 0.0f;
         }
 
-        public float FitnessScore(Species species)
-        {
-            var microbeSpecies = (MicrobeSpecies)species;
+        var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGRESSION;
 
-            // No canibalism
-            if (species == prey)
+        var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
+        var predatorSpeed = microbeSpecies.BaseSpeed();
+        var preySize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
+
+        // It's great if you can engulf this prey, but only if you can catch it
+        var engulfScore = (float)predatorSize / (float)preySize > Constants.ENGULF_SIZE_RATIO_REQ ?
+            Constants.AUTO_EVO_ENGULF_PREDATION_SCORE : 
+            0.0f;
+        engulfScore *= predatorSpeed > preySpeed ? 1.0f : 0.1f;
+
+        var pilusScore = 0.0f;
+        var oxytoxyScore = 0.0f;
+        foreach (var organelle in microbeSpecies.Organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
             {
-                return 0.0f;
+                pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+                continue;
             }
 
-            var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGRESSION;
-
-            var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
-            var predatorSpeed = microbeSpecies.BaseSpeed();
-            var preySize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
-
-            // It's great if you can engulf this prey, but only if you can catch it
-            var engulfScore = (float)predatorSize / (float)preySize > Constants.ENGULF_SIZE_RATIO_REQ ?
-                Constants.AUTO_EVO_ENGULF_PREDATION_SCORE : 0.0f;
-            engulfScore *= predatorSpeed > preySpeed ? 1.0f : 0.1f;
-
-            var pilusScore = 0.0f;
-            var oxytoxyScore = 0.0f;
-            foreach (var organelle in microbeSpecies.Organelles)
+            foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
+                if (process.Process.Outputs.ContainsKey(Oxytoxy))
                 {
-                    pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-                    continue;
-                }
-
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
-                    if (process.Process.Outputs.ContainsKey(Oxytoxy))
-                    {
-                        oxytoxyScore += Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
-                    }
+                    oxytoxyScore += Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
             }
-
-            // Piluses are much more usefull if the microbe can close to melee
-            pilusScore *= predatorSpeed;
-
-            // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-            return behaviorScore * (pilusScore + engulfScore + predatorSize + oxytoxyScore);
         }
 
-        public float TotalEnergyAvailable()
-        {
-            return totalEnergy;
-        }
+        // Piluses are much more usefull if the microbe can close to melee
+        pilusScore *= predatorSpeed;
+
+        // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
+        return behaviorScore * (pilusScore + engulfScore + predatorSize + oxytoxyScore);
+    }
+
+    public float TotalEnergyAvailable()
+    {
+        return totalEnergy;
     }
 }
