@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-20 23:54+0700\n"
-"PO-Revision-Date: 2021-05-20 11:41+0000\n"
+"PO-Revision-Date: 2021-05-28 16:55+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -25,15 +25,14 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "Usa W, A, S, D e il mouse per muoverti. Se possiedi un vacuolo tossina, "
-"premi E per rilasciare OssiTossina NT. Premi G per attivare e disattivare "
-"la modalità di fagocitosi."
+"premi E per rilasciare OssiTossi NT. Premi G per attivare e disattivare la "
+"modalità di fagocitosi."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"La tua cellula usa l'ATP come fonte di energia; se la finisci, la tua "
-"cellula morirà."
+"La tua cellula usa l'ATP come fonte di energia; se la finisci, essa morirà."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
@@ -55,9 +54,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"L'osmoregolazione costa ATP: più grande sarà la tua cellula, più "
-"Mitocondri, Metabolosomi, Rusticianina (o citoplasma, per fare la "
-"glicolisi) serviranno per evitare la perdita di ATP mentre sei fermo."
+"L'osmoregolazione costa ATP: più grande è la tua cellula, più Mitocondri, "
+"Metabolosomi, Rusticianina (o citoplasma, per fare la glicolisi) servono per "
+"evitare la perdita di ATP mentre sei fermo."
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:34
@@ -147,11 +146,11 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Organuli legati alla membrana\n"
+"Organuli membranosi\n"
 "\n"
-"Nucleo: Occupa 11 esagoni; permette l'evoluzione degli organuli legati "
-"alla membrana. Inoltre, raddoppia le dimensioni della tua cellula (può "
-"essere evoluto solo una volta)\n"
+"Nucleo: Occupa 11 esagoni; permette l'evoluzione degli organuli membranosi. "
+"Inoltre, raddoppia le dimensioni della tua cellula (può essere evoluto solo "
+"una volta)\n"
 "\n"
 "Mitocondrio: Produce ATP consumando glucosio e O2 atmosferico, molto più "
 "efficientemente rispetto al citoplasma\n"
@@ -161,12 +160,12 @@ msgstr ""
 "\n"
 "Chemioplasto: Produce glucosio consumando Idrogeno Solforato\n"
 "\n"
-"Plastidio Azotofissante: Produce Ammoniaca consumando ATP, Azoto e "
-"Ossigeno atmosferico\n"
+"Plastidio Azotofissante: Produce Ammoniaca consumando ATP, Azoto e Ossigeno "
+"atmosferico\n"
 "\n"
 "Vacuolo: Può conservare fino a 15 composti raccolti\n"
 "\n"
-"Vacuolo Tossina: Produce tossine (ovvero OssiTossina NT)"
+"Vacuolo Tossina: Produce tossine (ovvero OssiTossi NT)"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -525,7 +524,7 @@ msgstr "Fotosintesi"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "Sintesi dell'OssiTossina"
+msgstr "Sintesi dell'OssiTossi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
@@ -673,7 +672,7 @@ msgstr "Glucosio"
 #: ../simulation_parameters/microbe_stage/compounds.json:68
 #: ../src/microbe_stage/MicrobeStage.tscn:1511
 msgid "OXYTOXY_NT"
-msgstr "OssiTossina NT"
+msgstr "OssiTossi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:81
 #: ../src/microbe_stage/MicrobeStage.tscn:1379
@@ -1009,7 +1008,7 @@ msgstr "Invio (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "SYSREQ"
-msgstr "SysRq"
+msgstr "R Sist"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "PAGEUP"
@@ -1296,13 +1295,12 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Tasto sconosciuto del mouse"
 
 #: ../src/general/Gallery.cs:70
-#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "HAI PROSPERATO!"
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Di {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1400,7 +1398,7 @@ msgstr "Schermo intero"
 
 #: ../src/general/OptionsMenu.tscn:243
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr "Multisample anti-aliasing:"
+msgstr "Anti-aliasing multicampionamento (MSAA):"
 
 #: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
@@ -1727,15 +1725,10 @@ msgid "HEALTH"
 msgstr "Salute"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le interiora gelatinose della cellula. Il citoplasma è la soluzione di "
-"ioni, proteine e altre sostanze disciolte nell'acqua al suo interno. Una "
-"delle sue funzioni è la glicolisi, cioè la conversione del glucosio in "
-"ATP. Per le cellule prive di organuli (in favore di metabolismi più "
-"avanzati) questa è la fonte di energia. Il citoplasma è anche usato per "
-"immagazzinare molecole nella cellula e accrescere le sue dimensioni."
+"Trasforma il [thrive:compound]glucose[/thrive:compound] in "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1790,16 +1783,11 @@ msgid "OSMOREGULATION_COST"
 msgstr "Costo di osmoregolazione"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"I metabolosomi sono ammassi di proteine avvolti in involucri proteici. "
-"Sono in grado di convertire il glucosio in ATP a un tasso molto più alto "
-"rispetto a quello del citoplasma. Tale processo è chiamato Respirazione "
-"Aerobica. Tuttavia, richiedono ossigeno per funzionare: livelli più bassi "
-"rallenteranno il loro tasso di produzione di ATP. Siccome i metabolosomi "
-"sono sospesi direttamente nel citoplasma, il fluido circostante fa una "
-"piccola quantità di glicolisi."
+"Trasforma il [thrive:compound]glucose[/thrive:compound] in "
+"[thrive:compound]atp[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1817,16 +1805,11 @@ msgid "THYLAKOID"
 msgstr "Tilacoide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le proteine chemiosintetizzanti sono piccoli gruppi di proteine presenti "
-"nel citoplasma. Sono in grado di convertire l'idrogeno solforato, l'acqua, "
-"e il diossido di carbonio gassoso in glucosio. Tale processo è chiamato "
-"Chemiosintesi dell'Idrogeno Solforato. Il tasso di produzione aumenta con "
-"la concentrazione di diossido di carbonio. Siccome le proteine "
-"chemiosintetizzanti sono sospese direttamente nel citoplasma, il fluido "
-"circostante fa una piccola quantità di glicolisi."
+"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e con "
+"l'intensità di [thrive:compound]sunlight[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1841,16 +1824,13 @@ msgstr ""
 "circostante fa una piccola quantità di glicolisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le proteine chemiosintetizzanti sono piccoli gruppi di proteine presenti "
-"nel citoplasma. Sono in grado di convertire l'idrogeno solforato, l'acqua, "
-"e il diossido di carbonio gassoso in glucosio. Tale processo è chiamato "
-"Chemiosintesi dell'Idrogeno Solforato. Il tasso di produzione aumenta con "
-"la concentrazione di diossido di carbonio. Siccome le proteine "
-"chemiosintetizzanti sono sospese direttamente nel citoplasma, il fluido "
-"circostante fa una piccola quantità di glicolisi."
+"Trasforma l'[thrive:compound]hydrogensulfide[/thrive:compound] in "
+"[thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]carbondioxide[/thrive:compound]. Inoltre, "
+"trasforma il [thrive:compound]glucose[/thrive:compound] in "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1864,13 +1844,12 @@ msgstr ""
 "circostante fa una piccola quantità di glicolisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"La rusticianina è una proteina capace di usare il diossido di carbonio "
-"gassoso e l'ossigeno per ossidare il ferro da uno stato chimico all'altro. "
-"Questo processo, chiamato Respirazione Ferrica, rilascia energia che la "
-"cellula può immagazzinare."
+"Trasforma il [thrive:compound]iron[/thrive:compound] in "
+"[thrive:compound]atp[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e di "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1881,14 +1860,11 @@ msgstr ""
 "cellula può immagazzinare."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"La nitrogenasi è una proteina in grado di convertire l'azoto gassoso e "
-"l'energia della cellula (in forma di ATP) in ammoniaca, un nutriente "
-"essenziale per la crescita delle cellule. Questo processo si chiama "
-"Azotofissazione Anaerobica. Siccome la nitrogenasi è sospesa direttamente "
-"nel citoplasma, il fluido circostante fa una piccola quantità di glicolisi."
+"Trasforma l'[thrive:compound]atp[/thrive:compound] in "
+"[thrive:compound]ammonia[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]nitrogen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1900,30 +1876,24 @@ msgstr ""
 "nel citoplasma, il fluido circostante fa una piccola quantità di glicolisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"I metabolosomi sono ammassi di proteine avvolti in involucri proteici. "
-"Sono in grado di convertire il glucosio in ATP a un tasso molto più alto "
-"rispetto a quello del citoplasma. Tale processo è chiamato Respirazione "
-"Aerobica. Tuttavia, richiedono ossigeno per funzionare: livelli più bassi "
-"rallenteranno il loro tasso di produzione di ATP. Siccome i metabolosomi "
-"sono sospesi direttamente nel citoplasma, il fluido circostante fa una "
-"piccola quantità di glicolisi."
+"Trasforma l'[thrive:compound]atp[/thrive:compound] in "
+"[thrive:compound]oxytoxy[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]oxygen[/thrive:compound]. Puoi rilasciare "
+"le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
 msgstr ""
-"Un metabolosoma modificato. Produce una forma primitiva dell'agente "
-"tossico OssiTossina NT."
+"Un metabolosoma modificato. Produce una forma primitiva dell'agente tossico "
+"OssiTossi NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Il flagello è un fascio di proteine simile a una frusta che si estende a "
-"partire dalla membrana cellulare. Può usare ATP per ondulare, e di "
-"conseguenza propellere la cellula in una direzione."
+"Utilizza l'[thrive:compound]atp[/thrive:compound] per aumentare la velocità "
+"di movimento della cellula"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1953,35 +1923,27 @@ msgstr "Da implementare."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Permette l'evoluzione di più complessi\n"
-"organuli legati alla membrana. Consuma\n"
-"molta ATP per mantenersi. Questa è\n"
-"un'evoluzione irreversibile."
+"Permette l'evoluzione degli organuli membranosi. Consuma molta ATP. Questa "
+"evoluzione è irreversibile."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
-"La caratteristica distintiva delle cellule eucariote. Il nucleo racchiude "
-"anche il reticolo endoplasmatico e l'apparato del Golgi. Si tratta di "
-"un'evoluzione per i procarioti, ottenuta assimilando un'altro procariote. "
-"Esso permette alla cellula di dividere in scomparti i vari processi che "
-"avvengono al suo interno, prevenendo così che si sovrappongano; ciò "
-"permette agli organuli collegati alla membrana di essere molto più "
-"complessi, efficienti e specializzati di quanto lo potrebbero essere se "
-"vagassero liberamente nel citoplasma. Tuttavia, avere un nucleo rende la "
-"cellula molto più grande e consuma molta della sua energia."
+"La caratteristica distintiva delle cellule eucariote, ottenuta assimilando "
+"una cellula procariote. Il nucleo racchiude anche il reticolo endoplasmatico "
+"e l'apparato del Golgi. Esso permette alla cellula di dividere in scomparti "
+"i vari processi che avvengono al suo interno, prevenendo così che si "
+"sovrappongano; ciò permette ai suoi nuovi organuli membranosi di essere "
+"molto più complessi, efficienti e specializzati di quanto lo potrebbero "
+"essere se vagassero liberamente nel citoplasma. Tuttavia, avere un nucleo "
+"rende la cellula molto più grande e consuma molta della sua energia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
-#, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"La centrale energetica della cellula. Il mitocondrio è una struttura a "
-"doppia membrana piena di proteine ed enzimi. Si tratta di un procariote "
-"che è stato assimilato, e vive all'interno di un eucariote. È in grado di "
-"convertire il glucosio in ATP con un'efficienza di gran lunga superiore a "
-"quella del citoplasma. Tale processo è detto Respirazione Aerobica. "
-"Tuttavia, ha bisogno di ossigeno per funzionare, e livelli inferiori "
-"nell'ambiente rallentano il suo tasso di produzione di ATP."
+"Trasforma il [thrive:compound]glucose[/thrive:compound] in "
+"[thrive:compound]atp[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1995,18 +1957,11 @@ msgstr ""
 "nell'ambiente rallentano il suo tasso di produzione di ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Il cloroplasto è una struttura a doppia membrana, contenente pigmenti "
-"fotosensibili impilati assieme in sacche membranose. Si tratta di un "
-"procariote che è stato assimilato, e vive all'interno di un eucariote. I "
-"pigmenti al suo interno sono in grado di sfruttare l'energia luminosa per "
-"produrre glucosio, a partire dall'acqua e dal diossido di carbonio "
-"gassoso. Tale processo è chiamato Fotosintesi; inoltre, tali pigmenti "
-"danno al cloroplasto un colore distintivo. Il tasso di produzione del "
-"glucosio aumenta con la concentrazione di diossido di carbonio e con "
-"l'intensità luminosa."
+"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e con "
+"l'intensità della [thrive:compound]sunlight[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2026,17 +1981,11 @@ msgid "THERMOPLAST"
 msgstr "Termoplasto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Il termoplasto è una struttura a doppia membrana che contiene pigmenti "
-"termosensibili, impilati insieme in sacchetti membranosi. Si tratta di un "
-"procariota, assimilato per l'uso da parte di un eucariota. I pigmenti al "
-"suo interno sono in grado di sfruttare l'energia delle differenze di "
-"calore vicine per produrre glucosio a partire dall'acqua e dal diossido di "
-"carbonio gassoso. Tale processo è chiamato Termosintesi. Il tasso di "
-"produzione di glucosio aumenta all'aumentare della concentrazione di "
-"diossido di carbonio e della temperatura."
+"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e con la "
+"temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1276
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2052,19 +2001,15 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Posiziona organulo"
+msgstr "Nessun processo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Il chemioplasto è una struttura a doppia membrana, che contiene proteine "
-"capaci di convertire l'idrogeno solforato, l'acqua, e il diossido di "
-"carbonio gassoso in glucosio. Tale processo è chiamato Chemiosintesi "
-"dell'Idrogeno Solforato. Il tasso di produzione aumenta con la "
-"concentrazione di diossido di carbonio."
+"Trasforma l'[thrive:compound]hydrogensulfide[/thrive:compound] in "
+"[thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]carbondioxide[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1391
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2076,13 +2021,12 @@ msgstr ""
 "concentrazione di diossido di carbonio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
-#, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Il Plastidio Azotofissante è una proteina capace di convertire l'azoto "
-"gassoso, l'ossigeno, e l'energia della cellula (in forma di ATP) in "
-"ammoniaca, un elemento nutritivo fondamentale per le cellule. Tale "
-"processo è chiamato Azotofissazione Aerobica."
+"Trasforma l'[thrive:compound]atp[/thrive:compound] in "
+"[thrive:compound]ammonia[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]nitrogen[/thrive:compound] e di "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1475
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2093,15 +2037,8 @@ msgstr ""
 "processo è chiamato Azotofissazione Aerobica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
-#, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Il vacuolo è un organulo interno membranoso utilizzato per lo stoccaggio "
-"di sostanze. È composto di diverse vesciche, cioè strutture membranose più "
-"piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono "
-"fuse insieme. Il vacuolo contiene acqua, usata per contenere molecole, "
-"enzimi, solidi e altre sostanze. La sua forma è fluida e può variare da "
-"cellula a cellula."
+msgstr "Aumenta lo spazio di stoccaggio della cellula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "VACUOLE_DESCRIPTION"
@@ -2114,19 +2051,19 @@ msgstr ""
 "cellula a cellula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Il vacuolo tossina è un vacuolo che è stato modificato per la produzione, "
-"l'immagazzinamento e la secrezione di OssiTossina. Avere più vacuoli "
-"tossina aumenterà la rapidità di secrezione delle tossine."
+"Trasforma l'[thrive:compound]atp[/thrive:compound] in "
+"[thrive:compound]oxytoxy[/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound]oxygen[/thrive:compound]. Puoi rilasciare "
+"le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Il vacuolo tossina è un vacuolo che è stato modificato per la produzione, "
-"l'immagazzinamento e la secrezione di OssiTossina. Avere più vacuoli "
-"tossina aumenterà la rapidità di secrezione delle tossine."
+"l'immagazzinamento e la secrezione di OssiTossi. Avere più vacuoli tossina "
+"aumenterà la rapidità di secrezione delle tossine."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1766
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -3072,8 +3009,8 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Raccogli glucosio (nuvole bianche) muovendoti sopra di esse.\n"
-"La tua cellula necessita di glucosio per produrre energia per rimanere in "
-"vita.\n"
+"La tua cellula necessita di glucosio per produrre energia e rimanere in vita."
+"\n"
 "Segui la linea dalla tua cellula fino alla nuvola di glucosio più vicina."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:264
