@@ -1,52 +1,5 @@
 version: 2.1
 jobs:
-   build:
-     working_directory: ~/Thrive
-     docker:
-       - image: hhyyrylainen/godot-ci:v6
-     environment:
-       GIT_LFS_SKIP_SMUDGE: 1
-     steps:
-       - checkout
-       - restore_cache:
-           keys:
-             - v7-lfs-{{ .Branch }}
-             - v7-lfs-master
-       - run:
-           name: Pull Git LFS files, retry up to 5 times
-           command: |
-             for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
-       - save_cache:
-          key: v7-lfs-{{ .Branch }}
-          paths:
-            - .git/lfs
-       - restore_cache:
-           keys:
-             - v8-import-{{ .Branch }}
-             - v8-import-master
-       - run: mkdir -p builds
-       # This is here to reimport assets, but this build would fail due to missing nuget packages
-       # if C# was compiled here
-       - run: godot --export "Linux/X11" "builds/a.x86_64"
-       # - run: ./headless_project_refresh.rb
-       - save_cache:
-           key: v8-import-{{ .Branch }}
-           paths:
-             - .import
-       - restore_cache:
-           keys:
-             - v3-nuget-{{ .Branch }}
-       - run: nuget restore Thrive.sln
-       - save_cache:
-          key: v3-nuget-{{ .Branch }}
-          paths:
-            - ~/.nuget/packages
-       # Format check before making final packages
-       - run: ./check_formatting.rb -c compile
-       # Proper packages
-       - run: ./make_release.rb --dehydrated
-       # Upload devbuilds
-       - run: ./upload_devbuilds.rb
    jetbrains:
      working_directory: ~/Thrive
      docker:
@@ -64,6 +17,10 @@ jobs:
            name: Pull Git LFS files, retry up to 5 times
            command: |
              for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
+       - save_cache:
+          key: v7-lfs-{{ .Branch }}
+          paths:
+            - .git/lfs
        - run:
            name: Detect changed files (since last commit and against master)
            command: |
@@ -80,10 +37,18 @@ jobs:
            name: Just make C# project valid; don't care if asset import fails
            command: |
              godot --export "Linux/X11" "builds/a.x86_64" || true
+       - save_cache:
+           key: v8-import-{{ .Branch }}
+           paths:
+             - .import
        - restore_cache:
            keys:
              - v3-nuget-{{ .Branch }}
        - run: nuget restore Thrive.sln
+       - save_cache:
+          key: v3-nuget-{{ .Branch }}
+          paths:
+            - ~/.nuget/packages
        # Makes sure that there aren't any changes at this point to not make the CI trip up on them
        - run:
            name: Make sure no changes to git tracked files at this point
@@ -139,10 +104,9 @@ jobs:
 
 workflows:
   version: 2
-  build_and_format:
+  format:
     # Unfortunately godot is setup so that a build can't happen without having all the assets processed
     # so the format script can't check C# files
     jobs:
-      - build
       - format_script
       - jetbrains
