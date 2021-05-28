@@ -20,14 +20,14 @@ jobs:
           command: godot --export "Linux/X11" "builds/a.x86_64"
       - run:
            command: nuget restore Thrive.sln
-      # Format check before making final packages
       - run:
+          name: Compile with checks
           command: ./check_formatting.rb -c compile
-      # Proper packages
       - run:
+          name: Create builds
           command: ./make_release.rb --dehydrated
-      # Upload devbuilds
       - run:
+          name: Upload devbuilds
           command: ./upload_devbuilds.rb
   jetbrains:
     image: thrive/godot-ci:v8
