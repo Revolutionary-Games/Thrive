@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-20 23:54+0700\n"
-"PO-Revision-Date: 2021-05-21 08:12+0000\n"
+"PO-Revision-Date: 2021-05-27 01:42+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1666,13 +1666,10 @@ msgid "HEALTH"
 msgstr "生命上限"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"胶质的细胞内容。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，这"
-"些物质充满了细胞内部。它其中一个功能是糖酵解，作用是将葡萄糖转换成ATP能量。"
-"对于那些缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它"
-"同样还能用来储存收集到的化合物以使细胞大小成长。"
+"将[thrive:compound]葡萄糖[/thrive:compound]转换成[thrive:compound]ATP[/thrive:compou"
+"nd]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1725,13 +1722,10 @@ msgid "OSMOREGULATION_COST"
 msgstr "渗透调节消耗"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"代谢体是一大堆被蛋白质壳包裹住的蛋白质。通过有氧呼吸它们可以以比细胞质快得"
-"多的速度将葡萄糖转换成ATP。不管怎样，它需要氧才能运作，低水平的环境氧会导致"
-"ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一"
-"些糖酵解。"
+"将[thrive:compound]葡萄糖[/thrive:compound]转换成[thrive:compound]ATP[/thrive:compou"
+"nd]。速率取决于[thrive:compound]氧气[/thrive:compound]浓度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1746,12 +1740,10 @@ msgid "THYLAKOID"
 msgstr "类囊体"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫"
-"化氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成"
-"蛋白是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
+"产出[thrive:compound]葡萄糖[/thrive:compound]。速率取决于[thrive:compound]二氧化碳[/thrive:c"
+"ompound]的浓度与[thrive:compound]光照[/thrive:compound]强度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1762,12 +1754,11 @@ msgstr ""
 "浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫"
-"化氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成"
-"蛋白是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
+"将[thrive:compound]硫化氢[/thrive:compound]转换成[thrive:compound]葡萄糖[/thrive:compou"
+"nd]。速率取决于[thrive:compound]二氧化碳[/thrive:compound]的浓度。同时也会将[thrive:compound]葡萄糖"
+"[/thrive:compound]转换成[thrive:compound]ATP[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1777,11 +1768,11 @@ msgstr ""
 "蛋白是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"铁硫菌蓝蛋白能够利用二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这"
-"个过程被称作铁呼吸，从中产出可被细胞收集的能量。"
+"将[thrive:compound]铁[/thrive:compound]转换成[thrive:compound]ATP[/thrive:compound"
+"]。速率取决于[thrive:compound]二氧化碳[/thrive:compound]和[thrive:compound]氧气[/thrive:co"
+"mpound]的浓度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1790,12 +1781,10 @@ msgstr ""
 "个过程被称作铁呼吸，从中产出可被细胞收集的能量。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被"
-"称作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行"
-"一些糖酵解。"
+"将[thrive:compound]ATP[/thrive:compound]转换成[thrive:compound]氨[/thrive:compound"
+"]。速率取决于[thrive:compound]氮[/thrive:compound]的浓度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1805,23 +1794,19 @@ msgstr ""
 "一些糖酵解。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"代谢体是一大堆被蛋白质壳包裹住的蛋白质。通过有氧呼吸它们可以以比细胞质快得"
-"多的速度将葡萄糖转换成ATP。不管怎样，它需要氧才能运作，低水平的环境氧会导致"
-"ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一"
-"些糖酵解。"
+"将[thrive:compound]ATP[/thrive:compound]转换成[thrive:compound]氧化毒素[/thrive:compo"
+"und]。速率取决于[thrive:compound]氧[/thrive:compound]浓度。可以通过按下[thrive:input]g_fire_t"
+"oxin[/thrive:input]来释放毒素。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
-"鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，可使用ATP沿一个方向起伏并推动细胞。"
+msgstr "使用[thrive:compound]ATP[/thrive:compound]来增加细胞的移动速度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1862,12 +1847,10 @@ msgstr ""
 "让细胞变得更大并需要消耗超多的ATP维护。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
-#, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿"
-"主同化的原核生物。能够通过有氧呼吸以比细胞质高得多的效率将葡萄糖转换成ATP。"
-"不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
+"将[thrive:compound]葡萄糖[/thrive:compound]转换成[thrive:compound]ATP[/thrive:compou"
+"nd]。速率取决于[thrive:compound]氧[/thrive:compound]的浓度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1877,13 +1860,10 @@ msgstr ""
 "不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿"
-"主同化的原核生物。叶绿体中的色素可以通过光合作用把水和二氧化碳转换成葡萄"
-"糖。这些色素也是赋予其独特颜色的原因。产出葡萄糖的速率取决于二氧化碳的浓度"
-"和光的强度。"
+"产出[thrive:compound]葡萄糖[/thrive:compound]。速率取决于[thrive:compound]二氧化碳[/thrive:c"
+"ompound]和[thrive:compound]光照[/thrive:compound]强度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -1898,12 +1878,10 @@ msgid "THERMOPLAST"
 msgstr "热能体"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主"
-"同化的原核生物。热能体中的色素可以通过热合成用温差把水和二氧化碳合成成葡萄"
-"糖。合成葡萄糖的速率取决于二氧化碳的浓度与温度。"
+"产出[thrive:compound]葡萄糖[/thrive:compound]。速率取决于[thrive:compound]二氧化碳[/thrive:c"
+"ompound]的浓度与温度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1276
 msgid "THERMOPLAST_DESCRIPTION"
@@ -1914,16 +1892,14 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "放置细胞器"
+msgstr "无功能"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"化学质体是一种双层膜结构，其中包含的蛋白质可以通过硫化氢化学合成将硫化氢，"
-"水和二氧化碳转换成葡萄糖。葡萄糖的产出速率取决于二氧化碳的浓度。"
+"将[thrive:compound]硫化氢[/thrive:compound]转换成[thrive:compound]葡萄糖[/thrive:compou"
+"nd]。速率取决于[thrive:compound]二氧化碳[/thrive:compound]的浓度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1391
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -1932,11 +1908,11 @@ msgstr ""
 "水和二氧化碳转换成葡萄糖。葡萄糖的产出速率取决于二氧化碳的浓度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
-#, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，氨对细胞生长至关重要。这个"
-"过程被称为有氧固氮。"
+"将[thrive:compound]ATP[/thrive:compound]转换成[thrive:compound]氨[/thrive:compound"
+"]。速率取决于[thrive:compound]氮[/thrive:compound]和[thrive:compound]氧[/thrive:compou"
+"nd]的浓度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1475
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -1945,12 +1921,8 @@ msgstr ""
 "过程被称为有氧固氮。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
-#, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"液泡是一种用于存储的内膜细胞器。它由好几个通常用于储存的，被固定在一起的囊"
-"泡组成。它装满了水，用于容纳分子，酶，固体和其他物质。它的形状是流性的，所"
-"以不同细胞间形状可以不同。"
+msgstr "增加细胞的存储空间。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "VACUOLE_DESCRIPTION"
@@ -1960,11 +1932,11 @@ msgstr ""
 "以不同细胞间形状可以不同。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快"
-"释放毒素的速度。"
+"将[thrive:compound]ATP[/thrive:compound]转换成[thrive:compound]氧化毒素[/thrive:compo"
+"und]。速率取决于[thrive:compound]氧气[/thrive:compound]的浓度。按[thrive:input]g_fire_toxi"
+"n[/thrive:input]以释放毒素。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "TOXIN_VACUOLE_DESCRIPTION"

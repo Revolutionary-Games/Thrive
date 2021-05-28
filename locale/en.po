@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-20 23:54+0700\n"
-"PO-Revision-Date: 2021-05-20 11:41+0000\n"
+"PO-Revision-Date: 2021-05-26 00:56+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -1715,8 +1715,8 @@ msgstr "Health"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]"
+"Turns [thrive:compound]glucose[/thrive:compound] into "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1773,9 +1773,9 @@ msgstr "Osmoregulation Cost"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Turns [thrive:compound]glucose[/thrive:compound] into "
+"[thrive:compound]atp[/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1813,11 +1813,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]hydrogensulfide[/thrive:compound] into [thrive:"
-"compound]glucose[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]carbondioxide[/thrive:compound]. Also turns [thrive:"
-"compound]glucose[/thrive:compound] into [thrive:compound]atp[/thrive:"
-"compound]"
+"Turns [thrive:compound]hydrogensulfide[/thrive:compound] into "
+"[thrive:compound]glucose[/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound]carbondioxide[/thrive:compound]. Also turns "
+"[thrive:compound]glucose[/thrive:compound] into "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1832,10 +1832,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]iron[/thrive:compound] into [thrive:compound]atp[/"
-"thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]carbondioxide[/thrive:compound] and [thrive:compound]oxygen[/"
-"thrive:compound]"
+"Turns [thrive:compound]iron[/thrive:compound] into "
+"[thrive:compound]atp[/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound]carbondioxide[/thrive:compound] and "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1847,9 +1847,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]ammonia[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]nitrogen[/thrive:compound]"
+"Turns [thrive:compound]atp[/thrive:compound] into "
+"[thrive:compound]ammonia[/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound]nitrogen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1863,10 +1863,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]oxytoxy[/thrive:compound]. Can release toxins by pressing [thrive:"
-"input]g_fire_toxin[/thrive:input]. Rate scales with concentration of "
-"[thrive:compound]oxygen[/thrive:compound]"
+"Turns [thrive:compound]atp[/thrive:compound] into "
+"[thrive:compound]oxytoxy[/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound]oxygen[/thrive:compound]. Can release toxins by pressing "
+"[thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1928,9 +1928,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Turns [thrive:compound]glucose[/thrive:compound] into "
+"[thrive:compound]atp[/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1992,9 +1992,9 @@ msgstr "No processes"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]hydrogensulfide[/thrive:compound] into [thrive:"
-"compound]glucose[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]carbondioxide[/thrive:compound]"
+"Turns [thrive:compound]hydrogensulfide[/thrive:compound] into "
+"[thrive:compound]glucose[/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound]carbondioxide[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1391
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2007,10 +2007,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]ammonia[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]nitrogen[/thrive:compound] and [thrive:compound]oxygen[/"
-"thrive:compound]"
+"Turns [thrive:compound]atp[/thrive:compound] into "
+"[thrive:compound]ammonia[/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound]nitrogen[/thrive:compound] and "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1475
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2036,10 +2036,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]oxytoxy[/thrive:compound]. Can release toxins by pressing [thrive:"
-"input]g_fire_toxin[/thrive:input]. Rate scales with concentration of "
-"[thrive:compound]oxygen[/thrive:compound]"
+"Turns [thrive:compound]atp[/thrive:compound] into "
+"[thrive:compound]oxytoxy[/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound]oxygen[/thrive:compound]. Can release toxins by pressing "
+"[thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "TOXIN_VACUOLE_DESCRIPTION"
