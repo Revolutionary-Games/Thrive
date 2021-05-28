@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-20 23:54+0700\n"
-"PO-Revision-Date: 2021-05-20 11:42+0000\n"
+"PO-Revision-Date: 2021-05-27 01:42+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/he/>\n"
@@ -1267,13 +1267,12 @@ msgid "UNKNOWN_MOUSE"
 msgstr "לחצן עכבר לא יודע"
 
 #: ../src/general/Gallery.cs:70
-#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "אתה שגשגת!"
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "ציור מאת {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1691,14 +1690,10 @@ msgid "HEALTH"
 msgstr "חיים"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"הקרביים הדביקים של התא. הציטופלזמה היא התערובת בסיסית של יונים, חלבונים "
-"ותרכובות אחרות המומסים במים הממלאים את פנים התא. אחד התפקידים שהוא מבצע "
-"הוא גליקליזה, המרת הגלוקוז לאנרגיית ATP. לתאים שחסרים האברונים למטבוליזם "
-"מתקדמת יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון "
-"מולקולות בתא ולגדילתו."
+"הופך [thrive:compound]גלוקוז[/thrive:compound] "
+"ל[thrive:compound]ATP[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1752,14 +1747,11 @@ msgid "OSMOREGULATION_COST"
 msgstr "עלות ויסות אוסמטי"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר "
-"גלוקוז ל- ATP בקצב גבוה ביותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא "
-"נשימה אירובית. יחד עם זאת, הוא דורש חמצן כדי לתפקד, ורמות חמצן נמוכות יותר "
-"בסביבה יאטו את קצב ייצור שלו. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל "
-"שמסביבם מבצעים גליקליזה ברמה מסוימת."
+"הופך [thrive:compound]גלוקוז[/thrive:compound] "
+"ל[thrive:compound]ATP[/thrive:compound]. בהתאם לריכוז של "
+"ה[thrive:compound]חמצן[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1775,14 +1767,11 @@ msgid "THYLAKOID"
 msgstr "תילקואיד"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"חלבונים כימוסינתזיים הם מקבצים קטנים של חלבונים בציטופלזמה המסוגלים להמיר "
-"מימן גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא \"כימוסינתזה של מימן "
-"גופרתי\". קצב ייצור הגלוקוז מתאזן עם ריכוז הפחמן הדו חמצני. מכיוון "
-"שהחלבונים הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקוליזה "
-"ברמה מסוימת."
+"מייצר [thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוז של "
+"[thrive:compound]פחמן דו חמצני[/thrive:compound] ועוצמת "
+"ה[thrive:compound]אור[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1794,14 +1783,13 @@ msgstr ""
 "שהתילקואידים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקליזה ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"חלבונים כימוסינתזיים הם מקבצים קטנים של חלבונים בציטופלזמה המסוגלים להמיר "
-"מימן גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא \"כימוסינתזה של מימן "
-"גופרתי\". קצב ייצור הגלוקוז מתאזן עם ריכוז הפחמן הדו חמצני. מכיוון "
-"שהחלבונים הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקוליזה "
-"ברמה מסוימת."
+"הופך [thrive:compound]מימן גופרתי[/thrive:compound] "
+"ל[thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוז של [thrive:compound]"
+"פחמן דו חמצני[/thrive:compound]. בנוסף הופך "
+"[thrive:compound]גלוקוז[/thrive:compound] "
+"ל[thrive:compound]ATP[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1813,12 +1801,11 @@ msgstr ""
 "ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"רוסטיצינין הוא חלבון המסוגל להשתמש בפחמן דו חמצני ובחמצן כדי לחמצן ברזל "
-"ממצב כימי אחד למשנהו. תהליך זה, הנקרא נשימת ברזל, משחרר אנרגיה שהתא מסוגל "
-"לקצור."
+"הופך [thrive:compound]ברזל[/thrive:compound] "
+"ל[thrive:compound]ATP[/thrive:compound]. בהתאם לריכוזם של [thrive:compound]"
+"פחמן דו חמצני[/thrive:compound] ו[thrive:compound]חמצן[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1828,13 +1815,11 @@ msgstr ""
 "לקצור."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"ניטרוגנאז הוא חלבון המסוגל להשתמש בחנקן גזי ובאנרגיה תאית בצורת ATP כדי "
-"לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע חנקן "
-"אנאירובי. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע גליקוליזה "
-"ברמה מסוימת."
+"הופך [thrive:compound]ATP[/thrive:compound] "
+"ל[thrive:compound]אמוניה[/thrive:compound]. בהתאם לריכוזו של "
+"ה[thrive:compound]חנקן[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1845,14 +1830,12 @@ msgstr ""
 "ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר "
-"גלוקוז ל- ATP בקצב גבוה ביותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא "
-"נשימה אירובית. יחד עם זאת, הוא דורש חמצן כדי לתפקד, ורמות חמצן נמוכות יותר "
-"בסביבה יאטו את קצב ייצור שלו. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל "
-"שמסביבם מבצעים גליקליזה ברמה מסוימת."
+"הופך [thrive:compound]ATP[/thrive:compound] "
+"ל[thrive:compound]רעלן[/thrive:compound]. בהתאם לריכוזו של "
+"ה[thrive:compound]חמצן[/thrive:compound].ניתן לשחררו על ידי "
+"[thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1861,11 +1844,9 @@ msgstr ""
 "\"ט\"."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"השוטון (ברבים: שוטונים) הוא צרור סיבי חלבון דמוי שוט המשתרע מקרום התא אשר "
-"מסוגל להשתמש ב- ATP כדי לגלול ולהניע את התא לכיוון מסוים."
+"משתמש ב[thrive:compound]ATP[/thrive:compound] על מנת להגביר את מהירותו של התא"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1894,10 +1875,8 @@ msgstr "יושם בקרוב."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"מאפשר התפתחות מורכבת יותר,\n"
-"אברונים בעלי קרום. עולה הרבה\n"
-"של ATP לשמור. \n"
-"זה בלתי הפיך."
+"מאפשר התפתחות מורכבת יותר של אברונים בעלי קרום. זהו עולה הרבה ATP על מנת "
+"לתחזק. זהו בלתי הפיך לאחר התפתחותו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "NUCLEUS_DESCRIPTION"
@@ -1911,14 +1890,11 @@ msgstr ""
 "יותר גדול ולדרישה רבה יותר אנרגיה להחזקתו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
-#, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"תחנת הכוח של התא. המיטוכונדריון (ברבים: מיטוכונדריה) הוא אברון בעל קרום "
-"כפול שמלא בחלבונים ואנזימים. זהו פרוקריוט שהוטמע לשימוש על ידי המארח "
-"האוקריוטי שלו. הוא מסוגל להמיר גלוקוז ל- ATP ביעילות גבוהה בהרבה ממה שניתן "
-"לעשות בציטופלזמה בתהליך הנקרא נשימה אירובית. עם זאת, הוא דורש חמצן כדי "
-"לתפקד, ורמות חמצן נמוכות יותר בסביבה יאטו את קצב ייצור ה- ATP שלו."
+"הופך [thrive:compound]גלוקוז[/thrive:compound] "
+"ל[thrive:compound]ATP[/thrive:compound]. בהתאם לריכוזו של "
+"ה[thrive:compound]חמצן[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1930,15 +1906,11 @@ msgstr ""
 "לתפקד, ורמות חמצן נמוכות יותר בסביבה יאטו את קצב ייצור ה- ATP שלו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"הכלורופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לאור הנערמים "
-"בשקיות קרומיות. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי שלו. "
-"הפיגמנטים בכלורופלסט מסוגלים להשתמש באנרגיית האור כדי לייצר גלוקוז ממים "
-"ופחמן דו חמצני בתהליך הנקרא פוטוסינתזה. הפיגמנטים הללו הם גם מה שמעניקים "
-"לו את הצבע ייחודי. קצב ייצור הגלוקוז שלו משתנה עם ריכוז הפחמן הדו חמצני "
-"ועוצמת האור."
+"מייצר[thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של "
+"[thrive:compound]פחמן דו חמצני[/thrive:compound] ושל עוצמת "
+"ה[thrive:compound]אור[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -1955,14 +1927,10 @@ msgid "THERMOPLAST"
 msgstr "תרמופלסט"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"התרמופלסט עדיין לא מיושם. התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים "
-"רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. הפיגמנטים בתרמופלסט "
-"מסוגלים להשתמש באנרגיה של הבדלי חום בסביבה כדי לייצר גלוקוז ממים ופחמן דו "
-"חמצני בתהליך שנקרא תרמו-סינתזה. קצב ייצור הגלוקוז שלו משתנה עם ריכוז הפחמן "
-"הדו חמצני והטמפרטורה."
+"מייצר [thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של "
+"[thrive:compound]פחמן דו חמצני[/thrive:compound] ושל הטמפרטורה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1276
 msgid "THERMOPLAST_DESCRIPTION"
@@ -1975,17 +1943,15 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "הוסף אברון"
+msgstr "אין תהליכים"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר מימן "
-"גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא כימוסינתזה מימן גופרתי. "
-"קצב ייצור הגלוקוז שלו משתנה עם ריכוז פחמן הדו חמצני."
+"הופך [thrive:compound]מימן גופרתי[/thrive:compound] "
+"ל[thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של "
+"[thrive:compound]פחמן דו חמצני[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1391
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -1995,12 +1961,12 @@ msgstr ""
 "קצב ייצור הגלוקוז שלו משתנה עם ריכוז פחמן הדו חמצני."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
-#, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש בחנקן ,חמצן ובאנרגיה תאית בצורת "
-"ATP כדי לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע "
-"חנקן אירובי."
+"הופך [thrive:compound]ATP[/thrive:compound] "
+"ל[thrive:compound]אמוניה[/thrive:compound]. בהתאם לריכוזם של "
+"ה[thrive:compound]חנקן[/thrive:compound] "
+"וה[thrive:compound]חמצן[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1475
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2010,13 +1976,8 @@ msgstr ""
 "חנקן אירובי."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
-#, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"החלולית היא אברון קרום פנימי המשמש לאחסון בתא. הם מורכבים מכמה שלפוחיות, "
-"מבנים קרומים קטנים יותר שנמצאים בשימוש נרחב בתאים לאחסון, שהתמזגו יחד. היא "
-"מלאה במים המסוגלים להכיל מולקולות, אנזימים, מוצקים וחומרים אחרים. צורתם "
-"נוזלית ויכולה להשתנות בין התאים."
+msgstr "מגדיל את שטח האחסון של התא."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "VACUOLE_DESCRIPTION"
@@ -2027,11 +1988,12 @@ msgstr ""
 "נוזלית ויכולה להשתנות בין התאים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים "
-"אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
+"הופך[thrive:compound]ATP[/thrive:compound] "
+"ל[thrive:compound]רעלן[/thrive:compound]. בהתאם לריכוזו של "
+"ה[thrive:compound]חמצן[/thrive:compound]. ניתן לשחרר את הרעלן על ידי לחיצה "
+"על [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "TOXIN_VACUOLE_DESCRIPTION"
