@@ -14,6 +14,8 @@ def git_commit
 end
 
 def git_branch
+  return ENV['CI_BRANCH'] if ENV['CI_BRANCH']
+
   `git rev-parse --symbolic-full-name --abbrev-ref HEAD`.strip
 end
 

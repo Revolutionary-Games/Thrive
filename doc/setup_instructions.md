@@ -55,6 +55,11 @@ with the command `git config --global core.autocrlf true`. If you don't,
 there is a risk that you accidentally commit Windows-style line
 endings.
 
+If `autocrlf` is not used on Windows, then nearly all of the game
+files will get marked as changed when Godot editor is opened. So it is
+strongly recommended that you follow the configuration instructions
+regarding that in the previous paragraph.
+
 If you previously had Git installed through cygwin, you must uninstall
 that and install the official Windows version of Git. You may also
 have to deleted all your cloned folders to avoid errors, and reboot
@@ -558,6 +563,19 @@ files to check.
 
 ## Additional Tips
 
+### Troubleshooting regarding Godot automatically breaking
+
+Godot sometimes likes to break your files for no reason. If you keep
+the Godot editor open while pulling new changes or changing branches,
+it's very likely to break so it is recommended to close Godot when
+doing such operations that change files outside the Godot editor, and
+then reopening the editor afterwards.
+
+Because Godot sometimes just breaks files, before reporting an issue
+building the game please check that `git status` returns no
+changes. If there are changes reported that you didn't make manually,
+then see the section below about cleaning Godot.
+
 ### Troubleshooting (Windows)
 
 If Godot still can't build the full game after following the
@@ -582,3 +600,16 @@ Your locally cloned Thrive version may get messed up from time to time.
 
 You can find information about how to translate the game on the 
 [Working with translation page](working_with_translations.md).
+
+### Ruby running errors
+
+If you get errors like `cannot load such file -- os (LoadError)` when
+running the ruby scripts, reinstall the ruby gems mentioned earlier in
+this file.
+
+### All files are marked as changed
+
+If you are on Windows and you see that most game files are marked as
+changed after opening the Godot editor, then check your `autocrlf`
+setting (instructions are in this file), and reclone or recheckout all
+of the game files (while Godot is closed).

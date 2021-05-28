@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -20,25 +19,29 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     public NodePath DescriptionLabelPath;
 
     [Export]
+    public NodePath ProcessesDescriptionLabelPath;
+
+    [Export]
     public NodePath ModifierListPath;
 
     [Export]
     public NodePath ProcessListPath;
 
-    [Export]
-    public PackedScene ModifierInfoScene;
+    private PackedScene modifierInfoScene;
+    private Font latoBoldFont;
 
     private Label nameLabel;
-
-    // ReSharper disable once NotAccessedField.Local
     private Label mpLabel;
 
     private Label descriptionLabel;
+    private CustomRichTextLabel processesDescriptionLabel;
     private VBoxContainer modifierInfoList;
-    private VBoxContainer processList;
+    private ProcessList processList;
 
     private string displayName;
     private string description;
+    private string processesDescription;
+    private int mpCost;
 
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
@@ -68,6 +71,26 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    /// <summary>
+    ///   Description of processes an organelle does if any.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: description string should only be set here and not directly on the rich text label node
+    ///     as it will be overidden otherwise.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public string ProcessesDescription
+    {
+        get => processesDescription;
+        set
+        {
+            processesDescription = value;
+            UpdateProcessesDescription();
+        }
+    }
+
     [Export]
     public string Description
     {
@@ -76,6 +99,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             description = value;
             UpdateDescription();
+        }
+    }
+
+    [Export]
+    public int MutationPointCost
+    {
+        get => mpCost;
+        set
+        {
+            mpCost = value;
+            UpdateMpCost();
         }
     }
 
@@ -99,12 +133,34 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
+        processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
-        processList = GetNode<VBoxContainer>(ProcessListPath);
+        processList = GetNode<ProcessList>(ProcessListPath);
+
+        modifierInfoScene = GD.Load<PackedScene>("res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn");
+        latoBoldFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Bold-Smaller.tres");
 
         UpdateName();
         UpdateDescription();
+        UpdateProcessesDescription();
+        UpdateMpCost();
         UpdateLists();
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateProcessesDescription();
+        }
+
+        if (what == NotificationResized)
+        {
+            // A workaround to get RichTextLabel's height properly update on tooltip size change
+            // See https://github.com/Revolutionary-Games/Thrive/issues/2236
+            if (processesDescriptionLabel != null)
+                processesDescriptionLabel.BbcodeText = processesDescriptionLabel.BbcodeText;
+        }
     }
 
     /// <summary>
@@ -112,7 +168,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     public void AddModifierInfo(string name, float value)
     {
-        var modifierInfo = (ModifierInfoLabel)ModifierInfoScene.Instance();
+        var modifierInfo = (ModifierInfoLabel)modifierInfoScene.Instance();
 
         modifierInfo.DisplayName = name;
         modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
@@ -131,137 +187,21 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     public void WriteOrganelleProcessList(List<ProcessSpeedInformation> processes)
     {
-        // Remove previous process list
-        processList.QueueFreeChildren();
-
-        if (processes == null)
+        if (processes == null || processes.Count <= 0)
         {
+            processList.QueueFreeChildren();
+
             var noProcesslabel = new Label();
-            noProcesslabel.Text = "No processes";
+            noProcesslabel.AddFontOverride("font", latoBoldFont);
+            noProcesslabel.Text = TranslationServer.Translate("NO_ORGANELLE_PROCESSES");
             processList.AddChild(noProcesslabel);
             return;
         }
 
-        // TODO: change this to use ChemicalEquation
-        foreach (var process in processes)
-        {
-            var processContainer = new VBoxContainer();
-            processContainer.MouseFilter = MouseFilterEnum.Ignore;
-            processList.AddChild(processContainer);
-
-            var processTitle = new Label();
-            processTitle.AddColorOverride("font_color", new Color(1.0f, 0.84f, 0.0f));
-            processTitle.Text = process.Process.Name;
-            processContainer.AddChild(processTitle);
-
-            var processBody = new HBoxContainer();
-            processBody.MouseFilter = MouseFilterEnum.Ignore;
-
-            bool usePlus;
-
-            if (process.OtherInputs.Count == 0)
-            {
-                // Just environmental stuff
-                usePlus = true;
-            }
-            else
-            {
-                // Something turns into something else, uses the arrow notation
-                usePlus = false;
-
-                // Show the inputs
-                // TODO: add commas or maybe pluses for multiple inputs
-                foreach (var key in process.OtherInputs.Keys)
-                {
-                    var inputCompound = process.OtherInputs[key];
-
-                    var amountLabel = new Label();
-                    amountLabel.Text = Math.Round(inputCompound.Amount, 3) + " ";
-                    processBody.AddChild(amountLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.InternalName));
-                }
-
-                // And the arrow
-                var arrow = new TextureRect();
-                arrow.Expand = true;
-                arrow.RectMinSize = new Vector2(20, 20);
-                arrow.Texture = GD.Load<Texture>("res://assets/textures/gui/bevel/WhiteArrow.png");
-                processBody.AddChild(arrow);
-            }
-
-            // Outputs of the process. It's assumed that every process has outputs
-            foreach (var key in process.Outputs.Keys)
-            {
-                var outputCompound = process.Outputs[key];
-
-                var amountLabel = new Label();
-
-                var stringBuilder = new StringBuilder(string.Empty, 150);
-
-                // Changes process title and process# to red if process has 0 output
-                if (outputCompound.Amount == 0)
-                {
-                    processTitle.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
-                    amountLabel.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
-                }
-
-                if (usePlus)
-                {
-                    stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : string.Empty);
-                }
-
-                stringBuilder.Append(Math.Round(outputCompound.Amount, 3) + " ");
-
-                amountLabel.Text = stringBuilder.ToString();
-
-                processBody.AddChild(amountLabel);
-                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.InternalName));
-            }
-
-            var perSecondLabel = new Label();
-            perSecondLabel.Text = TranslationServer.Translate("PER_SECOND_SLASH");
-
-            processBody.AddChild(perSecondLabel);
-
-            // Environment conditions
-            if (process.EnvironmentInputs.Count > 0)
-            {
-                var atSymbol = new Label();
-
-                atSymbol.Text = "@";
-                atSymbol.RectMinSize = new Vector2(30, 20);
-                atSymbol.Align = Label.AlignEnum.Center;
-                processBody.AddChild(atSymbol);
-
-                var first = true;
-
-                foreach (var key in process.EnvironmentInputs.Keys)
-                {
-                    if (!first)
-                    {
-                        var commaLabel = new Label();
-                        commaLabel.Text = ", ";
-                        processBody.AddChild(commaLabel);
-                    }
-
-                    first = false;
-
-                    var environmentCompound = process.EnvironmentInputs[key];
-
-                    // To percentage
-                    var percentageLabel = new Label();
-
-                    // TODO: sunlight needs some special handling (it used to say the lux amount)
-                    percentageLabel.Text = Math.Round(environmentCompound.AvailableAmount * 100, 1) + "%";
-
-                    processBody.AddChild(percentageLabel);
-                    processBody.AddChild(
-                        GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.InternalName));
-                }
-            }
-
-            processContainer.AddChild(processBody);
-        }
+        processList.ShowSpinners = false;
+        processList.ProcessesTitleColour = new Color(1.0f, 0.83f, 0.0f);
+        processList.MarkRedOnLimitingCompounds = true;
+        processList.ProcessesToShow = processes.Cast<IProcessDisplayInfo>().ToList();
     }
 
     /// <summary>
@@ -363,6 +303,22 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             descriptionLabel.Text = description;
         }
+    }
+
+    private void UpdateProcessesDescription()
+    {
+        if (processesDescriptionLabel == null)
+            return;
+
+        processesDescriptionLabel.ExtendedBbcode = TranslationServer.Translate(ProcessesDescription);
+    }
+
+    private void UpdateMpCost()
+    {
+        if (mpLabel == null)
+            return;
+
+        mpLabel.Text = MutationPointCost.ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateLists()

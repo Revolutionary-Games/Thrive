@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Time dependent effects running on a world
@@ -33,17 +34,20 @@ public class GlucoseReductionEffect : IWorldEffect
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
+        var glucose = SimulationParameters.Instance.GetCompound("glucose");
+
         foreach (var key in targetWorld.Map.Patches.Keys)
         {
             var patch = targetWorld.Map.Patches[key];
 
-            foreach (var compound in patch.Biome.Compounds.Keys)
+            // If there are microbes to be eating up the primordial soup, reduce the milk
+            if (patch.SpeciesInPatch.Count > 0)
             {
-                if (compound.InternalName == "glucose")
+                if (patch.Biome.Compounds.TryGetValue(glucose, out EnvironmentalCompoundProperties glucoseValue))
                 {
-                    var data = patch.Biome.Compounds[compound];
-
-                    data.Density *= Constants.GLUCOSE_REDUCTION_RATE;
+                    glucoseValue.Density = Math.Max(glucoseValue.Density * Constants.GLUCOSE_REDUCTION_RATE,
+                        Constants.GLUCOSE_MIN);
+                    patch.Biome.Compounds[glucose] = glucoseValue;
                 }
             }
         }

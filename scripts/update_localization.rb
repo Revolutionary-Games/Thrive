@@ -3,7 +3,7 @@
 
 # List of locales, edit this to add new ones:
 LOCALES = %w[bg ca cs de en eo es_AR es et fi fr he id ko la lb_LU it nl nl_BE
-             pl pt_BR pt_PT ru sr_Cyrl sr_Latn sv tr lt lv zh_CN zh_TW].freeze
+             pl pt_BR pt_PT ru sr_Cyrl sr_Latn sv th_TH tr lt lv zh_CN zh_TW].freeze
 
 # Weblate doesn't let you configure this so we need the same here
 LINE_WIDTH = 77
@@ -41,8 +41,9 @@ Dir.chdir(LOCALE_FOLDER) do
 
   runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
                   'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'Description', '-k',
-                  'window_title', '-k', 'dialog_text', '-k', 'placeholder_text',
-                  '-k', 'TranslationServer.Translate', '-o',
+                  'ProcessesDescription', '-k', 'window_title', '-k', 'dialog_text', '-k',
+                  'placeholder_text', '-k', 'hint_tooltip', '-k', 'TranslationServer.Translate',
+                  '-o',
                   File.join(LOCALE_FOLDER, 'messages' + @options[:pot_suffix]),
                   '../simulation_parameters', '../assets', '../src'
 

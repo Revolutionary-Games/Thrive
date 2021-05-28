@@ -233,6 +233,7 @@ public class LineChart : VBoxContainer
                 {
                     // Hide the marker as its positioning won't be pretty at zero coordinate
                     point.Visible = false;
+                    data.Value.Draw = false;
                 }
 
                 point.Coordinate = point.Coordinate.LinearInterpolate(coordinate, 3.0f * delta);
