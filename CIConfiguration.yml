@@ -75,6 +75,7 @@ jobs:
           command: ./check_formatting.rb -c cleanupcode
       - run:
           when: always
+          name: Check cleanup changes
           command: |
             git diff > cleanup_diff.patch
             if grep -q '[^[:space:]]' < cleanup_diff.patch; then
@@ -105,6 +106,7 @@ jobs:
            command: ./check_formatting.rb -c files,localization
        - run:
            when: always
+          name: Check format changes
            command: |
              git diff > format_diff.patch
              if grep -q '[^[:space:]]' < format_diff.patch; then
