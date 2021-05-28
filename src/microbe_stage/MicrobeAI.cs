@@ -382,14 +382,6 @@ public class MicrobeAI
             {
                 MoveWithRandomTurn(0.0f, 3.0f, random);
             }
-
-            // There's a chance to stop for a bit and letting nutrients soak in
-            // More opportunistic species will do this less.
-            if (random.Next(-Constants.MAX_SPECIES_OPPORTUNISM, Constants.MAX_SPECIES_OPPORTUNISM)
-                > SpeciesOpportunism)
-            {
-                SetMoveSpeed(0.0f);
-            }
         }
     }
 
