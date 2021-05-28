@@ -2,7 +2,7 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v8
+    image: thrive/godot-ci:v9
     cache:
       loadFrom:
         - v1-{Branch}-build
@@ -19,7 +19,7 @@ jobs:
           name: Export to make project valid
           command: godot --export "Linux/X11" "builds/a.x86_64"
       - run:
-           command: nuget restore Thrive.sln
+           command: dotnet restore Thrive.sln
       - run:
           name: Compile with checks
           command: ./check_formatting.rb -c compile
@@ -30,7 +30,7 @@ jobs:
           name: Upload devbuilds
           command: ./upload_devbuilds.rb
   jetbrains:
-    image: thrive/godot-ci:v8
+    image: thrive/godot-ci:v9
     cache:
       loadFrom:
         - v1-{Branch}-jetbrains
@@ -61,7 +61,7 @@ jobs:
           command: |
             godot --export "Linux/X11" "builds/a.x86_64" || true
       - run:
-          command: nuget restore Thrive.sln
+          command: dotnet restore Thrive.sln
       # Makes sure that there aren't any changes at this point to not make the CI trip up on them
       - run:
           name: Make sure no changes to git tracked files at this point
