@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-20 23:54+0700\n"
-"PO-Revision-Date: 2021-05-22 09:27+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"PO-Revision-Date: 2021-05-27 01:42+0000\n"
+"Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1071,11 +1071,11 @@ msgstr "Bassboost"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "BASSUP"
-msgstr "Aumentar baixo"
+msgstr "Aumentar Grave"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSDOWN"
-msgstr "Diminuir baixo"
+msgstr "Diminuir Grave"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "TREBLEUP"
@@ -1724,7 +1724,7 @@ msgstr "Saúde"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]glicose[/thrive:compound] em "
+"Transforma [thrive:compound]glucose[/thrive:compound] em "
 "[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
@@ -1754,7 +1754,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1590
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1687
 msgid "STORAGE"
-msgstr "Armazenamento"
+msgstr "Armazena"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:284
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:382
@@ -1783,9 +1783,9 @@ msgstr "Custo da Osmorregulação"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]glicose[/thrive:compound] em "
+"Transforma [thrive:compound]glucose[/thrive:compound] em "
 "[thrive:compound]atp[/thrive:compound]. Quantidade escala com a concentração "
-"de [thrive:compound]oxigênio[/thrive:compound]"
+"de [thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1805,9 +1805,9 @@ msgstr "Tilacóide"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produz [thrive:compound]glicose[/thrive:compound]. Quantidade escala com a "
-"concentração de [thrive:compound]dióxido de carbono[/thrive:compound] e "
-"intensidade de [thrive:compound]luz solar[/thrive:compound]"
+"Produz [thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound] e a "
+"intensidade de [thrive:compound]sunlight[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1823,10 +1823,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]sulfato de hidrogênio[/thrive:compound] em "
-"[thrive:compound]glicose[/thrive:compound]. Quantidade escala com "
-"concentração de [thrive:compound]dióxido de carbono[/thrive:compound]. "
-"Também transforma [thrive:compound]glicose[/thrive:compound] em "
+"Transforma [thrive:compound]hydrogensulfide[/thrive:compound] em "
+"[thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound]. Também "
+"transforma [thrive:compound]glucose[/thrive:compound] em "
 "[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
@@ -1842,10 +1842,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]ferro[/thrive:compound] em "
-"[thrive:compound]atp[/thrive:compound]. Quantidade escala com concentração "
-"de [thrive:compound]dióxido de carbono[/thrive:compound] e "
-"[thrive:compound]oxigênio[/thrive:compound]"
+"Transforma [thrive:compound]iron[/thrive:compound] em "
+"[thrive:compound]atp[/thrive:compound]. Quantidade escala com a concentração "
+"de [thrive:compound]carbondioxide[/thrive:compound] e "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1858,8 +1858,8 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound]atp[/thrive:compound] em "
-"[thrive:compound]amônia[/thrive:compound]. Quantidade escala com "
-"concentração de [thrive:compound]nitrogênio[/thrive:compound]"
+"[thrive:compound]ammonia[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]nitrogen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1874,9 +1874,9 @@ msgstr ""
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound]atp[/thrive:compound] em "
-"[thrive:compound]oxitoxina[/thrive:compound]. Pode liberar toxina apertando "
-"[thrive:input]g_fire_toxin[/thrive:input]. Quantidade escala com "
-"concentração de [thrive:compound]oxigênio[/thrive:compound]"
+"[thrive:compound]oxytoxy[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]oxygen[/thrive:compound]. Pode liberar "
+"toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1938,9 +1938,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]glicose[/thrive:compound] em "
+"Transforma [thrive:compound]glucose[/thrive:compound] em "
 "[thrive:compound]atp[/thrive:compound]. Quantidade escala com concentração "
-"de [thrive:compound]oxigênio[/thrive:compound]"
+"de [thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1956,9 +1956,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produz [thrive:compound]glicose[/thrive:compound]. Quantidade escala com "
-"concentração de [thrive:compound]dióxido de carbono[/thrive:compound] e "
-"intensidade de [thrive:compound]luz solar[/thrive:compound]"
+"Produz [thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound] e "
+"intensidade de [thrive:compound]sunlight[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -1978,8 +1978,8 @@ msgstr "Termoplasto"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produz [thrive:compound]glicose[/thrive:compound]. Quantidade escala com "
-"concentração de [thrive:compound]dióxido de carbono[/thrive:compound] e "
+"Produz [thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound] e "
 "temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1276
@@ -2001,9 +2001,9 @@ msgstr "Nenhum processo"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]sulfato de hidrogênio[/thrive:compound] em "
-"[thrive:compound]glicose[/thrive:compound]. Quantidade escala com "
-"concentração de [thrive:compound]dióxido de carbono[/thrive:compound]"
+"Transforma [thrive:compound]hydrogensulfide[/thrive:compound] em "
+"[thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1391
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2018,9 +2018,9 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound]atp[/thrive:compound] em "
-"[thrive:compound]amônia[/thrive:compound]. Quantidade escala com "
-"concentração de [thrive:compound]nitrogênio[/thrive:compound] e "
-"[thrive:compound]oxigênio[/thrive:compound]"
+"[thrive:compound]ammonia[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]nitrogen[/thrive:compound] e "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1475
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2032,7 +2032,12 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Aumenta o espaço de armazenamento da célula."
+msgstr ""
+"O vacúolo é uma organela membranosa interna usada para o armazenamento da "
+"célula. Composta de várias vesículas, estruturas membranosas menores "
+"amplamente usadas nas células para o armazenamento que se fundiram. É "
+"preenchida com água usada para conter moléculas, enzimas, sólidos, e outras "
+"substâncias. Sua forma é fluida e pode variar em cada célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "VACUOLE_DESCRIPTION"
@@ -2044,13 +2049,12 @@ msgstr ""
 "outras substâncias. Sua forma é fluida e pode variar em cada célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound]atp[/thrive:compound] em "
-"[thrive:compound]oxitoxina[/thrive:compound]. Pode liberar toxinas apertando "
-"[thrive:input]g_fire_toxin[/thrive:input]. Quantidade escala com "
-"concentração de [thrive:compound]oxigênio[/thrive:compound]"
+"[thrive:compound]oxytoxy[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]oxygen[/thrive:compound]. Pode liberar "
+"toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "TOXIN_VACUOLE_DESCRIPTION"
