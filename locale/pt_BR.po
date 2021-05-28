@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-20 23:54+0700\n"
-"PO-Revision-Date: 2021-05-20 16:34+0000\n"
+"PO-Revision-Date: 2021-05-27 01:42+0000\n"
 "Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1722,16 +1722,10 @@ msgid "HEALTH"
 msgstr "Saúde"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de "
-"íons, proteínas, e outras substâncias dissolvidas na água que preenchem o "
-"interior da célula. Uma das funções que realiza é a Fermentação, a "
-"conversão de glicose em ATP. Para as células que carecem de organelas para "
-"ter metabolismos avançados, é disso que elas dependem para produzir "
-"energia. Também é usado para armazenar moléculas na célula para aumentar o "
-"tamanho dela."
+"Transforma [thrive:compound]glucose[/thrive:compound] em "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1787,16 +1781,11 @@ msgid "OSMOREGULATION_COST"
 msgstr "Custo da Osmorregulação"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles "
-"conseguem converter glicose em ATP a uma taxa muito maior do que pode ser "
-"feita no citoplasma em um processo chamado Respiração Aeróbica. No "
-"entanto, necessita de oxigênio para funcionar, e níveis menores de "
-"oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os "
-"metabolossomos são suspensos diretamente no citoplasma, os fluidos em "
-"volta realizarão a fermentação."
+"Transforma [thrive:compound]glucose[/thrive:compound] em "
+"[thrive:compound]atp[/thrive:compound]. Quantidade escala com a concentração "
+"de [thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1814,15 +1803,11 @@ msgid "THYLAKOID"
 msgstr "Tilacóide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Proteínas quimiossintetizantes são pequenas aglomerações de proteínas no "
-"citoplasma que podem converter sulfeto de hidrogênio, água, e gás "
-"carbônico em glicose em um processo chamado Quimiossíntese. A taxa da sua "
-"produção de glicose aumenta com a concentração de dióxido de carbono. Como "
-"as proteínas quimiossintetizantes são suspensas diretamente no citoplasma, "
-"os fluidos em sua volta realizam glicólise."
+"Produz [thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound] e a "
+"intensidade de [thrive:compound]sunlight[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1836,15 +1821,13 @@ msgstr ""
 "volta realiza fermentação."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Proteínas quimiossintetizantes são pequenas aglomerações de proteínas no "
-"citoplasma que podem converter sulfeto de hidrogênio, água, e gás "
-"carbônico em glicose em um processo chamado Quimiossíntese. A taxa da sua "
-"produção de glicose aumenta com a concentração de dióxido de carbono. Como "
-"as proteínas quimiossintetizantes são suspensas diretamente no citoplasma, "
-"os fluidos em sua volta realizam glicólise."
+"Transforma [thrive:compound]hydrogensulfide[/thrive:compound] em "
+"[thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound]. Também "
+"transforma [thrive:compound]glucose[/thrive:compound] em "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1857,12 +1840,12 @@ msgstr ""
 "os fluidos em sua volta realizam glicólise."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Rusticianina é uma proteína que consegue usar o gás carbônico e oxigênio "
-"para oxidar ferro de um estado físico para outro. O processo, chamado "
-"Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
+"Transforma [thrive:compound]iron[/thrive:compound] em "
+"[thrive:compound]atp[/thrive:compound]. Quantidade escala com a concentração "
+"de [thrive:compound]carbondioxide[/thrive:compound] e "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1872,14 +1855,11 @@ msgstr ""
 "Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia "
-"celular na forma de ATP para sintetizar amônia, um nutriente essencial "
-"para o crescimento das células. Esse processo é chamado de Fixação de "
-"Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os "
-"fluidos em volta realizam a Fermentação."
+"Transforma [thrive:compound]atp[/thrive:compound] em "
+"[thrive:compound]ammonia[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]nitrogen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1891,16 +1871,12 @@ msgstr ""
 "fluidos em volta realizam a Fermentação."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles "
-"conseguem converter glicose em ATP a uma taxa muito maior do que pode ser "
-"feita no citoplasma em um processo chamado Respiração Aeróbica. No "
-"entanto, necessita de oxigênio para funcionar, e níveis menores de "
-"oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os "
-"metabolossomos são suspensos diretamente no citoplasma, os fluidos em "
-"volta realizarão a fermentação."
+"Transforma [thrive:compound]atp[/thrive:compound] em "
+"[thrive:compound]oxytoxy[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]oxygen[/thrive:compound]. Pode liberar "
+"toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1909,12 +1885,10 @@ msgstr ""
 "primitiva do agente tóxico Oxitoxina."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"O flagelo é um apêndice de fibras proteicas semelhante a um chicote, "
-"estendendo-se da membrana da célula que pode usar ATP para ondular e "
-"impulsionar a célula em uma direção."
+"Usa [thrive:compound]atp[/thrive:compound] para aumentar a velocidade de "
+"movimento da célula"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1944,9 +1918,8 @@ msgstr "A ser implementado."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Permite a evolução de organelas mais complexas. \n"
-"Custa muito ATP para manter.\n"
-"Essa é uma evolução irreversível."
+"Permite a evolução de mais complexas, organelas com membrana. Custa muito "
+"ATP para manter. Essa é uma evolução irreversível."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "NUCLEUS_DESCRIPTION"
@@ -1963,16 +1936,11 @@ msgstr ""
 "para se manter."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
-#, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"A usina de energia da célula. A mitocôndria é uma estrutura de membrana "
-"dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado "
-"pelo seu hospedeiro eucariótico para seu uso. É capaz de converter Glicose "
-"em ATP com maior eficiência do que feito no citoplasma em um processo "
-"chamado Respiração Aeróbica. No entanto, precisa de oxigênio para "
-"funcionar, e níveis menores de oxigênio no ambiente irá diminuir a taxa da "
-"produção de ATP."
+"Transforma [thrive:compound]glucose[/thrive:compound] em "
+"[thrive:compound]atp[/thrive:compound]. Quantidade escala com concentração "
+"de [thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1986,16 +1954,11 @@ msgstr ""
 "produção de ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"O cloroplasto é uma estrutura de membrana dupla contendo pigmentos "
-"fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro "
-"eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz "
-"para produzir glicose da água e gás carbônico em um processo chamado "
-"Fotossíntese. Esses pigmentos também são o que os dá uma cor "
-"característica. A proporção de sua produção de glicose aumenta com a "
-"concentração de dióxido de carbono, e intensidade da luz."
+"Produz [thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound] e "
+"intensidade de [thrive:compound]sunlight[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2013,15 +1976,10 @@ msgid "THERMOPLAST"
 msgstr "Termoplasto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"O termoplasto é uma estrutura de membrana dupla contendo pigmentos "
-"termossensíveis. É um procarionte que foi assimilado para uso do seu "
-"hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a "
-"energia das diferenças de calor no ambiente para produzir glicose da água "
-"e gás carbônico em um processo chamado Termossíntese. A proporção da sua "
-"produção de glicose aumenta com a concentração de dióxido de carbono e "
+"Produz [thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound] e "
 "temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1276
@@ -2037,19 +1995,15 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Colocar organela"
+msgstr "Nenhum processo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"O quimioplasto é uma estrutura de membrana dupla contendo proteínas "
-"capazes de converter sulfeto de hidrogênio, água, e gás carbônico em "
-"glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A "
-"proporção de sua produção de glicose aumenta com a concentração de dióxido "
-"de carbono."
+"Transforma [thrive:compound]hydrogensulfide[/thrive:compound] em "
+"[thrive:compound]glucose[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]carbondioxide[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1391
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2061,13 +2015,12 @@ msgstr ""
 "de carbono."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
-#, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"O Plastídeo de Fixação de Nitrogênio é uma proteína capaz de usar "
-"nitrogênio gasoso, oxigênio e energia celular em forma de ATP para "
-"produzir amônia, um nutriente essencial para o crescimento das células. "
-"Este é um processo chamado Fixação de Nitrogênio."
+"Transforma [thrive:compound]atp[/thrive:compound] em "
+"[thrive:compound]ammonia[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]nitrogen[/thrive:compound] e "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1475
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2078,14 +2031,13 @@ msgstr ""
 "Este é um processo chamado Fixação de Nitrogênio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
-#, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "O vacúolo é uma organela membranosa interna usada para o armazenamento da "
 "célula. Composta de várias vesículas, estruturas membranosas menores "
 "amplamente usadas nas células para o armazenamento que se fundiram. É "
-"preenchida com água usada para conter moléculas, enzimas, sólidos, e "
-"outras substâncias. Sua forma é fluida e pode variar em cada célula."
+"preenchida com água usada para conter moléculas, enzimas, sólidos, e outras "
+"substâncias. Sua forma é fluida e pode variar em cada célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "VACUOLE_DESCRIPTION"
@@ -2097,12 +2049,12 @@ msgstr ""
 "outras substâncias. Sua forma é fluida e pode variar em cada célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"O vacúolo de toxinas é um vacúolo que foi modificado para a produção, "
-"armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão "
-"aumentar a taxa na qual toxinas serão liberadas."
+"Transforma [thrive:compound]atp[/thrive:compound] em "
+"[thrive:compound]oxytoxy[/thrive:compound]. Quantidade escala com a "
+"concentração de [thrive:compound]oxygen[/thrive:compound]. Pode liberar "
+"toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "TOXIN_VACUOLE_DESCRIPTION"
