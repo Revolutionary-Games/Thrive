@@ -24,7 +24,7 @@ Prerequisites
 Godot mono version
 ------------------
 
-The currently used Godot version is __3.2.3 mono__. The regular version
+The currently used Godot version is __3.3.2 mono__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -90,7 +90,7 @@ Godot currently supports the following development environments:
 ### MonoDevelop
 
 On Linux MonoDevelop and Jetbrains Rider are recommended. To get an up
-to date version, first enable the mono repository:
+to date version of mono, first enable the mono repository:
 https://www.mono-project.com/download/stable/ and then install the
 following packages with your package manager: `mono-complete
 monodevelop nuget`. Make sure it is a newer version of mono that comes
@@ -98,7 +98,14 @@ with msbuild. Fedora has mono in the official repo but it is too old
 to work. If you are going to use Rider you don't need the monodevelop
 package.
 
-On Windows don't intall Mono or MonoDevelop, it will break things.
+Next you need, dotnet sdk, for example the package might be called
+`dotnet-sdk-5.0`, this will install the `dotnet` command required
+later. With Rider it may be possible to skip the mono install and just
+install dotnet sdk. Note that some of the used tools require the 3.1
+version of the sdk, so you should install that now.
+
+On Windows don't intall Mono or MonoDevelop, it will break
+things. Dotnet may be a good tool to use on Windows.
 
 For a better experience with Godot, you can install the following
 addon for MonoDevelop:
@@ -114,8 +121,10 @@ available from: https://www.jetbrains.com/rider/
 It has a Godot plugin which is easy to install. With Rider the
 debugging experience is better than with MonoDevelop.
 
-Rider requires mono to be installed similarly to MonoDevelop, so
-follow those instructions on how to get mono setup.
+First install dotnet according to the instructions in the previous
+section. If building in Rider doesn't work or some features are
+missing, then install the mono packages, also mentioned in the
+previous section.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_godot_plugin.png" alt="rider godot plugin" width="600px">
 
@@ -130,7 +139,7 @@ https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp
 ### Visual Studio Code
 
 Note: Setting up Visual Studio Code with Linux is possible,
-however it is recommended to use MonoDevelop instead
+however it is recommended to use MonoDevelop or Rider instead.
 
 Visual Studio Code, not to be confused with Visual Studio, doesn't
 come with build tools, so you'll need to install the build tools for
@@ -153,8 +162,8 @@ Scroll down on the left window until you find Mono. Click on Editor and set
 External Editor to Visual Studio Code. Click on Builds and set Build Tool to
 MSBuild (VS Build Tools).
 
-If you want to setup live debugging with Godot follow the instructions here
-https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html#configuring-visual-studio-code-for-debugging
+If you want to setup live debugging with Godot follow the instructions here:
+https://docs.godotengine.org/en/3.3/getting_started/scripting/c_sharp/c_sharp_basics.html#visual-studio-code
 
 
 Building Thrive
@@ -197,7 +206,7 @@ can't be opened and their file sizes are tiny, you don't have Git LFS
 properly installed.
 
 For devs working directly with the Thrive repository switch to a feature
-branch or create one when working on new features. For example `git checkout godot`.
+branch or create one when working on new features. For example `git checkout 123_feature`.
 This keeps the main branch clean as other branches can be merged through
 pull requests on github which is the recommended way to get your code into
 Thrive.
@@ -251,14 +260,10 @@ Click on Editor. Set External Editor to your development environment.
 
 Here selected IDE is Rider.
 
-Click on Builds under Mono and set Build Tool to your compiler. If you have build errors,
-check if this is setup properly.
+Click on Builds under Mono and set Build Tool to your compiler. If you
+have build errors, check if this is setup properly.
 
-On Linux it is required to use mono as the build tool as selected in
-Godot editor settings. The option to build with dotnet is creates
-broken releases. Like this:
-
-<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_build_tool_option_linux.png" alt="godot linux build tool" width="550px">
+On Linux dotnet is the recommended build tool.
 
 Even if you do not use the Godot script editor, Godot automatically opens some files and replaces the spaces with tabs.
 To stop Godot from messing with you files, go to Text Editor -> Indent and set Type to spaces
@@ -271,12 +276,12 @@ Thrive uses some external C# packages which need to be restored before
 compiling.
 
 On Linux, or if you're using Visual Studio Code, open a terminal to
-the thrive folder and run the following
-command: `nuget restore` it should download the missing nuget
-packages. You may need to rerun this command when new package
-dependencies are added to Thrive. Note: if you use MonoDevelop it
-*might* automatically restore missing packages using nuget when
-compiling the game within MonoDevelop.
+the thrive folder and run the following command: `dotnet restore` (or
+use `nuget restore` command if you use mono instead of dotnet) it
+should download the missing nuget packages. You may need to rerun this
+command when new package dependencies are added to Thrive. Note: if
+you use an IDE like MonoDevelop or Rider it may automatically restore
+missing packages when compiling the game through it.
 
 
 On Windows you should use Visual Studio to restore the packages. To do
@@ -289,8 +294,6 @@ https://docs.microsoft.com/en-us/nuget/consume-packages/package-restore
 If you have nuget in path or you use the Visual Studio command prompt
 you should also be able to restore the packages by running `nuget
 restore` in the Thrive folder.
-
-Note: dotnet restore command should be avoided as it can break things.
 
 Compiling
 ---------
@@ -319,7 +322,9 @@ breakpoints set in MonoDevelop work.
 From Rider you can compile the game from the top right menu bar by
 selecting the `Player` target (with the Godot icon). That target
 should automatically appear once you install the Godot plugin
-(https://plugins.jetbrains.com/plugin/13882-godot-support).
+(https://plugins.jetbrains.com/plugin/13882-godot-support). If things
+don't work you should check Rider settings to make sure that the used
+msbuild version is from dotnet and not mono.
 
 With that plugin you can run the game from Godot (once you have ran once
 from Godot editor so that it sets up things), using these toolbar buttons
@@ -446,13 +451,16 @@ sudo npm install -g jsonlint
 Download from:
 https://www.jetbrains.com/resharper/download/#section=commandline
 unzip and add to PATH. Currently used version is:
-JetBrains.ReSharper.CommandLineTools.2020.2
+JetBrains.ReSharper.CommandLineTools.2021.1.3
 
 NOTE: there is more documentation on the install process here:
 https://www.jetbrains.com/help/resharper/InspectCode.html
 
 On Linux you need to install the dotnet runtime for them to work. On
-Fedora this can be done with: `sudo dnf install dotnet-runtime-3.1`
+Fedora this can be done with: `sudo dnf install dotnet-runtime-3.1` If
+that doesn't work you may need to install a different runtime as
+well. If none of the sh scripts are executable run this in the
+unzipped jetbrains folder: `chmod +x *.sh`
 
 ## Localization tools
 

@@ -3,7 +3,7 @@ jobs:
    jetbrains:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v6
+       - image: hhyyrylainen/godot-ci:v9
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
        CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
@@ -44,7 +44,7 @@ jobs:
        - restore_cache:
            keys:
              - v3-nuget-{{ .Branch }}
-       - run: nuget restore Thrive.sln
+       - run: dotnet restore Thrive.sln
        - save_cache:
           key: v3-nuget-{{ .Branch }}
           paths:
@@ -81,7 +81,7 @@ jobs:
    format_script:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/thrive-lint:v6
+       - image: hhyyrylainen/thrive-lint:v8
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:

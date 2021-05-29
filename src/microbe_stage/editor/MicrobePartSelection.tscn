@@ -101,7 +101,6 @@ custom_styles/disabled = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
 toggle_mode = true
 action_mode = 0
-enabled_focus_mode = 0
 group = SubResource( 5 )
 expand_icon = true
 
@@ -117,9 +116,8 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="VBoxContainer"]
-margin_left = -1.0
 margin_top = 78.0
-margin_right = 84.0
+margin_right = 85.0
 margin_bottom = 93.0
 rect_min_size = Vector2( 85, 0 )
 size_flags_horizontal = 4
@@ -132,4 +130,5 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="OnSelected"]
