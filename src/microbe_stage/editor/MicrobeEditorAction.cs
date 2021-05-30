@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <remarks>
 ///   TODO: this probably needs to be split into separate classes to make saving work for these
 /// </remarks>
-public class MicrobeEditorAction : ReversableAction
+public class MicrobeEditorAction : ReversibleAction
 {
     [JsonProperty]
     public readonly int Cost;
