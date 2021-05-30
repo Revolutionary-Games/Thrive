@@ -1447,6 +1447,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 report.Show();
                 reportTabButton.Pressed = true;
+                editor.SetEditorCellVisibility(false);
                 break;
             }
 
@@ -1454,6 +1455,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 patchMap.Show();
                 patchMapButton.Pressed = true;
+                editor.SetEditorCellVisibility(false);
                 break;
             }
 
@@ -1461,6 +1463,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 cellEditor.Show();
                 cellEditorButton.Pressed = true;
+                editor.SetEditorCellVisibility(true);
                 break;
             }
 
