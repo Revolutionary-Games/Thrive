@@ -14,7 +14,7 @@ require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
 
 MAX_LINE_LENGTH = 120
-DUPLICATE_THRESSHOLD = 110
+DUPLICATE_THRESSHOLD = 105
 
 LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
 
@@ -590,13 +590,10 @@ def run_duplicate_finder
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
             "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=true',
-            '--exclude-by-comment="NO_DUPLICATE_CHECK"']
+            '--exclude-by-comment="NO_DUPLICATE_CHECK"', 'Thrive.sln']
 
-  if @includes
-    params += @includes.select { |item| item =~ /\.cs$/ }.uniq
-  else
-    params.append 'Thrive.sln'
-  end
+  # Duplicate code needs to always process all files to detect code
+  # from an existing file being duplicated in a new file
 
   runOpen3Checked(*params)
 
