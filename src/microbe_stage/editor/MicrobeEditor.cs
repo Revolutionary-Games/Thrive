@@ -181,8 +181,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private bool microbePreviewMode;
 
-    private bool worldEntitiesVisible = true;
-
     /// <summary>
     ///   Where the user started panning with the mouse
     ///   Null if the user is not panning with the mouse
@@ -346,15 +344,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Controls the visibility of spatial nodes in the editor.
+    ///   Sets the visibility of placed cell parts, editor forward arrow, etc.
     /// </summary>
     [JsonIgnore]
-    public bool WorldEntitiesVisible
+    public bool ShowWorldEntities
     {
-        get => worldEntitiesVisible;
         set
         {
-            worldEntitiesVisible = value;
             editorArrow.Visible = value;
             editorGrid.Visible = value;
             rootOfDynamicallySpawned.Visible = value;
