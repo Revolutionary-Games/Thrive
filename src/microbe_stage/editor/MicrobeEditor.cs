@@ -50,6 +50,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private MicrobeEditorGUI gui;
 
     private Node world;
+    private Spatial rootOfDynamicallySpawned;
     private MicrobeEditorTutorialGUI tutorialGUI;
     private PauseMenu pauseMenu;
 
@@ -179,6 +180,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private string activeActionName;
 
     private bool microbePreviewMode;
+
+    private bool worldEntitiesVisible = true;
 
     /// <summary>
     ///   Where the user started panning with the mouse
@@ -343,6 +346,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
+    ///   Controls the visibility of spatial nodes in the editor.
+    /// </summary>
+    public bool WorldEntitiesVisible
+    {
+        get => worldEntitiesVisible;
+        set
+        {
+            worldEntitiesVisible = value;
+            editorArrow.Visible = value;
+            editorGrid.Visible = value;
+            rootOfDynamicallySpawned.Visible = value;
+        }
+    }
+
+    /// <summary>
     ///   The main current game object holding various details
     /// </summary>
     [JsonProperty]
@@ -450,11 +468,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         NodeReferencesResolved = true;
 
-        camera = GetNode<MicrobeCamera>("PrimaryCamera");
-        editorArrow = GetNode<MeshInstance>("EditorArrow");
-        editorGrid = GetNode<MeshInstance>("Grid");
-        cameraFollow = GetNode<Spatial>("CameraLookAt");
         world = GetNode("World");
+        camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
+        editorArrow = world.GetNode<MeshInstance>("EditorArrow");
+        editorGrid = world.GetNode<MeshInstance>("Grid");
+        cameraFollow = world.GetNode<Spatial>("CameraLookAt");
+        rootOfDynamicallySpawned = world.GetNode<Spatial>("DynamicallySpawned");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
@@ -1102,7 +1121,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void OnEnterEditor()
     {
         // Clear old stuff in the world
-        world.FreeChildren();
+        rootOfDynamicallySpawned.FreeChildren();
 
         hoverHexes = new List<MeshInstance>();
         hoverOrganelles = new List<SceneDisplayer>();
@@ -1259,7 +1278,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Setup the display cell
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
-        world.AddChild(previewMicrobe);
+        rootOfDynamicallySpawned.AddChild(previewMicrobe);
         previewMicrobe.ApplySpecies((MicrobeSpecies)editedSpecies.Clone());
 
         // Set its initial visibility
@@ -1614,14 +1633,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private MeshInstance CreateEditorHex()
     {
         var hex = (MeshInstance)hexScene.Instance();
-        world.AddChild(hex);
+        rootOfDynamicallySpawned.AddChild(hex);
         return hex;
     }
 
     private SceneDisplayer CreateEditorOrganelle()
     {
         var node = (SceneDisplayer)modelScene.Instance();
-        world.AddChild(node);
+        rootOfDynamicallySpawned.AddChild(node);
         return node;
     }
 
