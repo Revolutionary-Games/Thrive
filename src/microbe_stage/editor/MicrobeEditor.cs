@@ -344,20 +344,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Sets the visibility of placed cell parts, editor forward arrow, etc.
-    /// </summary>
-    [JsonIgnore]
-    public bool ShowWorldEntities
-    {
-        set
-        {
-            editorArrow.Visible = value;
-            editorGrid.Visible = value;
-            rootOfDynamicallySpawned.Visible = value;
-        }
-    }
-
-    /// <summary>
     ///   The main current game object holding various details
     /// </summary>
     [JsonProperty]
@@ -1088,6 +1074,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         UpdatePatchBackgroundImage();
         CalculateOrganelleEffectivenessInPatch(targetPatch);
         UpdatePatchDependentBalanceData();
+    }
+
+    /// <summary>
+    ///   Sets the visibility of placed cell parts, editor forward arrow, etc.
+    /// </summary>
+    public void SetEditorCellVisibility(bool shown)
+    {
+        editorArrow.Visible = shown;
+        editorGrid.Visible = shown;
+        rootOfDynamicallySpawned.Visible = shown;
     }
 
     /// <summary>
