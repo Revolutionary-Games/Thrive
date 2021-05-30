@@ -8,7 +8,7 @@ using DataSetDictionary = System.Collections.Generic.Dictionary<string, LineChar
 
 /// <summary>
 ///   A custom widget for multi-line chart with hoverable data points tooltip. Uses <see cref="LineChartData"/>
-///   as dataset; currently only support numerical datas.
+///   as dataset; currently only support numerical data.
 /// </summary>
 public class LineChart : VBoxContainer
 {
@@ -135,7 +135,7 @@ public class LineChart : VBoxContainer
         MinVisibleLimitReached,
 
         /// <summary>
-        ///   The dataset visibility is succesfully changed.
+        ///   The dataset visibility is successfully changed.
         /// </summary>
         Success,
     }
@@ -676,7 +676,7 @@ public class LineChart : VBoxContainer
             // Had to apply the coordinate on the next frame to compensate with Godot's UI update delay,
             // so the coordinates could be correctly calculated (since it depends on the Control container
             // rect sizes) just after Plot() call. This may result to a subtle glitchy look in the first
-            // few frame where all the points were postioned at the top-left. But this works just fine for now.
+            // few frame where all the points were positioned at the top-left. But this works just fine for now.
             Invoke.Instance.Queue(() =>
             {
                 if (!IsInstanceValid(point))

@@ -18,10 +18,7 @@ public abstract class SaveLoadable<T> : ISaveLoadable
     /// </summary>
     public T GetUnAppliedData()
     {
-        if (UnAppliedSaveData == null)
-            UnAppliedSaveData = new T();
-
-        return UnAppliedSaveData;
+        return UnAppliedSaveData ??= new T();
     }
 
     public void FinishLoading(ISaveContext context)

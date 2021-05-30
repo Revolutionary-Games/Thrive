@@ -41,10 +41,7 @@ public class KeyPrompt : Control
     {
         base._EnterTree();
 
-        if (icon == null)
-        {
-            icon = GetNode<TextureRect>("Icon");
-        }
+        icon ??= GetNode<TextureRect>("Icon");
 
         // TODO: should this rather happen in _Ready and unregister happen in dispose?
         KeyPromptHelper.IconsChanged += OnIconsChanged;

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Action that can be undone and redone
 /// </summary>
-public abstract class ReversableAction
+public abstract class ReversibleAction
 {
     /// <summary>
     ///   True when the action has been performed and can be undone

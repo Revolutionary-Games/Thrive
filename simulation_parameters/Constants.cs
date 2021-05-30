@@ -145,7 +145,7 @@ public static class Constants
     public const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
 
     /// <summary>
-    ///   The time (in seconds) it takes a cloud being absorbed to halve its compunds.
+    ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
     /// </summary>
     public const float CLOUD_ABSORPTION_HALF_LIFE = 0.02291666666f;
 
@@ -286,8 +286,8 @@ public static class Constants
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
-    public const int CORPSE_CHUNK_DIVISER = 3;
-    public const float CORPSE_CHUNK_AMOUNT_DIVISER = 3.0f;
+    public const int CORPSE_CHUNK_DIVISOR = 3;
+    public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
 
     /// <summary>
@@ -334,8 +334,8 @@ public static class Constants
     public const float MUTATION_DELETION_RATE = 0.1f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
-    // Max fear and agression and activity
-    public const float MAX_SPECIES_AGRESSION = 400.0f;
+    // Max fear and aggression and activity
+    public const float MAX_SPECIES_AGGRESSION = 400.0f;
     public const float MAX_SPECIES_FEAR = 400.0f;
     public const float MAX_SPECIES_ACTIVITY = 400.0f;
     public const float MAX_SPECIES_FOCUS = 400.0f;
@@ -348,7 +348,7 @@ public static class Constants
     public const int MAX_BACTERIAL_LINE_SIZE = 7;
 
     // What is divided during fear and aggression calculations in the AI
-    public const float AGRESSION_DIVISOR = 25.0f;
+    public const float AGGRESSION_DIVISOR = 25.0f;
     public const float FEAR_DIVISOR = 25.0f;
     public const float ACTIVITY_DIVISOR = 100.0f;
     public const float FOCUS_DIVISOR = 100.0f;
