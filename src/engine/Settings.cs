@@ -416,20 +416,18 @@ public class Settings
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()
     {
-        using (var file = new File())
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
+
+        if (error != Error.Ok)
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
-
-            if (error != Error.Ok)
-            {
-                GD.PrintErr("Couldn't open settings file for writing.");
-                return false;
-            }
-
-            file.StoreString(JsonConvert.SerializeObject(this));
-
-            file.Close();
+            GD.PrintErr("Couldn't open settings file for writing.");
+            return false;
         }
+
+        file.StoreString(JsonConvert.SerializeObject(this));
+
+        file.Close();
 
         return true;
     }
@@ -583,39 +581,37 @@ public class Settings
     /// </summary>
     private static Settings LoadSettings()
     {
-        using (var file = new File())
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+
+        if (error != Error.Ok)
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+            GD.Print("Failed to open settings configuration file, file is missing or unreadable. "
+                + "Using default settings instead.");
 
-            if (error != Error.Ok)
-            {
-                GD.Print("Failed to open settings configuration file, file is missing or unreadable. "
-                    + "Using default settings instead.");
+            var settings = new Settings();
+            settings.Save();
 
-                var settings = new Settings();
-                settings.Save();
+            return settings;
+        }
 
-                return settings;
-            }
+        var text = file.GetAsText();
 
-            var text = file.GetAsText();
+        file.Close();
 
-            file.Close();
+        try
+        {
+            return JsonConvert.DeserializeObject<Settings>(text);
+        }
+        catch
+        {
+            GD.Print("Failed to deserialize settings file data, data may be improperly formatted. "
+                + "Using default settings instead.");
 
-            try
-            {
-                return JsonConvert.DeserializeObject<Settings>(text);
-            }
-            catch
-            {
-                GD.Print("Failed to deserialize settings file data, data may be improperly formatted. "
-                    + "Using default settings instead.");
+            var settings = new Settings();
+            settings.Save();
 
-                var settings = new Settings();
-                settings.Save();
-
-                return settings;
-            }
+            return settings;
         }
     }
 
