@@ -589,7 +589,7 @@ def run_duplicate_finder
   return if skip_jetbrains?
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
-            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=true',
+            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=false',
             '--exclude-by-comment="NO_DUPLICATE_CHECK"', 'Thrive.sln']
 
   # Duplicate code needs to always process all files to detect code
