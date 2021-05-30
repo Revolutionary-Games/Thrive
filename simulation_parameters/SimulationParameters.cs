@@ -68,7 +68,7 @@ public class SimulationParameters : Node
         inputGroups = LoadListRegistry<NamedInputGroup>("res://simulation_parameters/common/input_options.json");
 
         autoEvoConfiguration =
-            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/autoevo_parameters.json");
+            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/auto-evo_parameters.json");
 
         gallery = LoadRegistry<Gallery>("res://simulation_parameters/common/gallery.json");
 

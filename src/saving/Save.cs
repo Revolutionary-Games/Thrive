@@ -200,7 +200,7 @@ public class Save
                 }
             }
 
-            if (data != null && data.Length > 0)
+            if (data?.Length > 0)
                 OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
 
@@ -249,7 +249,7 @@ public class Save
         {
             imageResult = new Image();
 
-            if (screenshotData != null && screenshotData.Length > 0)
+            if (screenshotData?.Length > 0)
             {
                 imageResult.LoadPngFromBuffer(screenshotData);
             }

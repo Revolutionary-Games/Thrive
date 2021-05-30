@@ -653,7 +653,7 @@ public class LineChart : VBoxContainer
         // Set pivot at the center of the rect
         mouseCollider.RectPivotOffset = mouseCollider.RectSize / 2;
 
-        // Use the distance between two coordinates as the collider's length
+        // Use the distance between two coordinates as the length of the collider
         mouseCollider.RectScale = new Vector2(
             firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.RectSize.x,
             dataSets[datasetName].LineWidth + 10);
