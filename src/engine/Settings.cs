@@ -416,20 +416,18 @@ public class Settings
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()
     {
-        using (var file = new File())
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
+
+        if (error != Error.Ok)
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
-
-            if (error != Error.Ok)
-            {
-                GD.PrintErr("Couldn't open settings file for writing.");
-                return false;
-            }
-
-            file.StoreString(JsonConvert.SerializeObject(this));
-
-            file.Close();
+            GD.PrintErr("Couldn't open settings file for writing.");
+            return false;
         }
+
+        file.StoreString(JsonConvert.SerializeObject(this));
+
+        file.Close();
 
         return true;
     }
