@@ -77,7 +77,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// <remarks>
     ///   <para>
     ///     NOTE: description string should only be set here and not directly on the rich text label node
-    ///     as it will be overidden otherwise.
+    ///     as it will be overridden otherwise.
     ///   </para>
     /// </remarks>
     [Export]
@@ -191,10 +191,10 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             processList.QueueFreeChildren();
 
-            var noProcesslabel = new Label();
-            noProcesslabel.AddFontOverride("font", latoBoldFont);
-            noProcesslabel.Text = TranslationServer.Translate("NO_ORGANELLE_PROCESSES");
-            processList.AddChild(noProcesslabel);
+            var noProcessLabel = new Label();
+            noProcessLabel.AddFontOverride("font", latoBoldFont);
+            noProcessLabel.Text = TranslationServer.Translate("NO_ORGANELLE_PROCESSES");
+            processList.AddChild(noProcessLabel);
             return;
         }
 
@@ -206,7 +206,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     /// <summary>
     ///   Sets the value of all the membrane type modifiers on this tooltip relative
-    ///   to the referenceMembrane. This currently only reads from the preadded modifier
+    ///   to the referenceMembrane. This currently only reads from the pre-added modifier
     ///   UI elements on this tooltip and doesn't actually create them on runtime.
     /// </summary>
     public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType)

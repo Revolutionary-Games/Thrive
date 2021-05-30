@@ -132,7 +132,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         ModelNodePath = modelPath;
 
         // Copy compounds to vent
-        if (chunkType.Compounds != null && chunkType.Compounds.Count > 0)
+        if (chunkType.Compounds?.Count > 0)
         {
             // Capacity is set to 0 so that no compounds can be added
             // the normal way to the chunk
@@ -174,7 +174,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         config.Meshes.Add(item);
 
-        if (ContainedCompounds != null && ContainedCompounds.Compounds.Count > 0)
+        if (ContainedCompounds?.Compounds.Count > 0)
         {
             config.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
 

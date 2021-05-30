@@ -54,7 +54,7 @@ public class MembraneType : IRegistryType
             if (!directory.FileExists(resource + ".import"))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Membrane uses non-existant image: " + resource);
+                    "Membrane uses non-existent image: " + resource);
             }
         }
 

@@ -251,11 +251,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             }
         }
 
-        if (CurrentGame == null)
-            throw new InvalidOperationException("current game is not set");
+        pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
-        pauseMenu.GameProperties = CurrentGame;
 
         Clouds.Init(FluidSystem);
 

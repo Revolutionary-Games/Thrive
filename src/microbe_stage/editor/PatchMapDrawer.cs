@@ -41,8 +41,7 @@ public class PatchMapDrawer : Control
             map = value;
             dirty = true;
 
-            if (playerPatch == null)
-                playerPatch = Map.CurrentPatch;
+            playerPatch ??= Map.CurrentPatch;
         }
     }
 

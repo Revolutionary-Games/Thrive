@@ -140,7 +140,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Similar to organelleDataDirty but with the exception that this is only set false when the editor
     ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild everytime when
-    ///   switching back and forth between structure and membrane tab (wihout editing organelle placements).
+    ///   switching back and forth between structure and membrane tab (without editing organelle placements).
     /// </summary>
     private bool membraneOrganellePositionsAreDirty = true;
 
@@ -478,13 +478,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                     SceneManager.Instance.AttachAndDetachScene(ReturnToStage);
             }
 
-            if (ReturnToStage != null)
-            {
-                if (ReturnToStage.GetParent() != null)
-                    GD.PrintErr("ReturnToStage has a parent when editor is wanting to free it");
+            if (ReturnToStage?.GetParent() != null)
+                GD.PrintErr("ReturnToStage has a parent when editor is wanting to free it");
 
-                ReturnToStage.QueueFree();
-            }
+            ReturnToStage?.QueueFree();
         }
         catch (ObjectDisposedException)
         {
@@ -1208,10 +1205,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     private void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
     {
-        if (patch == null)
-        {
-            patch = CurrentPatch;
-        }
+        patch ??= CurrentPatch;
 
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
@@ -1226,10 +1220,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void CalculateEnergyBalanceWithOrganellesAndMembraneType(List<OrganelleTemplate> organelles,
         MembraneType membrane, Patch patch = null)
     {
-        if (patch == null)
-        {
-            patch = CurrentPatch;
-        }
+        patch ??= CurrentPatch;
 
         gui.UpdateEnergyBalance(
             ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome, membrane));
@@ -1399,14 +1390,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdatePartsAvailability(HasNucleus);
 
         // Reset to cytoplasm if nothing is selected
-        if (ActiveActionName == null)
-        {
-            gui.OnOrganelleToPlaceSelected("cytoplasm");
-        }
-        else
-        {
-            gui.OnOrganelleToPlaceSelected(ActiveActionName);
-        }
+        gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
         gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
         gui.UpdateGeneration(species.Generation);
@@ -1830,12 +1814,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         editedMicrobeOrganelles.Remove(data.Organelle);
 
-        foreach (var cyto in data.ReplacedCytoplasm)
+        foreach (var cytoplasm in data.ReplacedCytoplasm)
         {
-            GD.Print("Replacing ", cyto.Definition.InternalName, " at: ",
-                cyto.Position);
+            GD.Print("Replacing ", cytoplasm.Definition.InternalName, " at: ",
+                cytoplasm.Position);
 
-            editedMicrobeOrganelles.Add(cyto);
+            editedMicrobeOrganelles.Add(cytoplasm);
         }
     }
 

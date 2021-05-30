@@ -108,7 +108,7 @@ public class PauseMenu : ControlWithInput
 
     private bool NoExclusiveTutorialActive()
     {
-        return GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive();
+        return GameProperties.TutorialState?.ExclusiveTutorialActive() != true;
     }
 
     private void ClosePressed()

@@ -33,7 +33,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath StructureTabPath;
 
     [Export]
-    public NodePath ApperanceTabPath;
+    public NodePath AppearanceTabPath;
 
     [Export]
     public NodePath SizeLabelPath;
@@ -435,7 +435,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         structureTabButton = GetNode<Button>(StructureTabButtonPath);
 
-        appearanceTab = GetNode<PanelContainer>(ApperanceTabPath);
+        appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
         appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
 
         sizeLabel = GetNode<Label>(SizeLabelPath);
@@ -566,14 +566,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdatePlayerPatch(Patch patch)
     {
-        if (patch == null)
-        {
-            mapDrawer.PlayerPatch = editor.CurrentPatch;
-        }
-        else
-        {
-            mapDrawer.PlayerPatch = patch;
-        }
+        mapDrawer.PlayerPatch = patch ?? editor.CurrentPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
@@ -778,7 +771,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
-        // Populate charts with datas from patch history
+        // Populate charts with data from patch history
         foreach (var snapshot in patch.History)
         {
             temperatureData.AddPoint(new DataPoint
@@ -1762,10 +1755,15 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
 
+        // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
+        // ReSharper disable StringLiteralTypo
         temperatureButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("temperature", "chartLegendPhysConds"), tooltipCallbacks);
+
         sunlightButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("sunlight", "chartLegendPhysConds"), tooltipCallbacks);
+
+        // ReSharper restore StringLiteralTypo
     }
 
     private void OnSpeciesNameTextChanged(string newText)

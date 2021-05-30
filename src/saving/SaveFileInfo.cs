@@ -33,13 +33,8 @@ public class SaveFileInfo
     {
         get
         {
-            if (info == null)
-            {
-                // Load from file
-                info = Save.LoadJustInfoFromSave(Name);
-            }
-
-            return info;
+            // Load from file if missing
+            return info ??= Save.LoadJustInfoFromSave(Name);
         }
         set => info = value;
     }
