@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-20 23:54+0700\n"
+"POT-Creation-Date: 2021-05-29 22:04+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -391,7 +391,7 @@ msgid "ZOOM_IN"
 msgstr "Зумирати"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:990
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:549
 msgid "EDITOR"
 msgstr "Уредник"
 
@@ -643,58 +643,58 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:16
-#: ../src/microbe_stage/MicrobeStage.tscn:1217
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3467
+#: ../src/microbe_stage/MicrobeStage.tscn:1213
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3029
 msgid "AMMONIA"
 msgstr "Амонијак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:29
-#: ../src/microbe_stage/MicrobeStage.tscn:1271
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3538
+#: ../src/microbe_stage/MicrobeStage.tscn:1267
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3100
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:1325
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3432
+#: ../src/microbe_stage/MicrobeStage.tscn:1321
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2994
 msgid "HYDROGEN_SULFIDE"
 msgstr "Водоник Сулфид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:55
-#: ../src/microbe_stage/MicrobeStage.tscn:1163
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3502
+#: ../src/microbe_stage/MicrobeStage.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3064
 msgid "GLUCOSE"
 msgstr "Глукоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:68
-#: ../src/microbe_stage/MicrobeStage.tscn:1511
+#: ../src/microbe_stage/MicrobeStage.tscn:1507
 msgid "OXYTOXY_NT"
 msgstr "ОксиТокси НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:81
-#: ../src/microbe_stage/MicrobeStage.tscn:1379
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3573
+#: ../src/microbe_stage/MicrobeStage.tscn:1375
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3135
 msgid "IRON"
 msgstr "Гвожђе"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:94
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3268
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2830
 msgid "OXYGEN"
 msgstr "Кисеоник"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:107
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3322
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2884
 msgid "CARBON_DIOXIDE"
 msgstr "Угљен Диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:120
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3295
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2857
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:133
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2710
 msgid "SUNLIGHT"
 msgstr "Сунчева Светлост"
 
@@ -703,27 +703,27 @@ msgstr "Сунчева Светлост"
 msgid "NORMAL"
 msgstr "Нормално"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:18
+#: ../simulation_parameters/microbe_stage/membranes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1960
 msgid "DOUBLE"
 msgstr "Дупли"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:33
+#: ../simulation_parameters/microbe_stage/membranes.json:35
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2124
 msgid "CELLULOSE"
 msgstr "Целулоза"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:48
+#: ../simulation_parameters/microbe_stage/membranes.json:51
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
 msgid "CHITIN"
 msgstr "Хитин"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:63
+#: ../simulation_parameters/microbe_stage/membranes.json:67
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2594
 msgid "CALCIUM_CARBONATE"
 msgstr "Калцијум Карбонат"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:78
+#: ../simulation_parameters/microbe_stage/membranes.json:83
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2862
 msgid "SILICA"
 msgstr "Силицијум-Диоксид"
@@ -1323,61 +1323,61 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Затвори"
 
-#: ../src/general/MainMenu.cs:340
+#: ../src/general/MainMenu.cs:336
 msgid "OK"
 msgstr "У реду"
 
-#: ../src/general/MainMenu.cs:341
+#: ../src/general/MainMenu.cs:337
 msgid "Cancel"
 msgstr "Отказати"
 
-#: ../src/general/MainMenu.tscn:148
+#: ../src/general/MainMenu.tscn:146
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:163 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
 msgid "LOAD_GAME"
 msgstr "Учитајте Игру"
 
-#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
 msgid "OPTIONS"
 msgstr "Опције"
 
-#: ../src/general/MainMenu.tscn:187
+#: ../src/general/MainMenu.tscn:181
 msgid "TOOLS"
 msgstr "Алати"
 
-#: ../src/general/MainMenu.tscn:199
+#: ../src/general/MainMenu.tscn:192
 msgid "VIEW_SOURCE_CODE"
 msgstr "Погледајте Изворни Код"
 
-#: ../src/general/MainMenu.tscn:211
+#: ../src/general/MainMenu.tscn:204
 msgid "EXTRAS"
 msgstr "Додатне"
 
-#: ../src/general/MainMenu.tscn:223
+#: ../src/general/MainMenu.tscn:216
 msgid "CREDITS"
 msgstr "Кредити"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:227
 msgid "QUIT"
 msgstr "Одустати"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:249
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Слободна-Градња Уређивач Микроба"
 
-#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:113
+#: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/general/MainMenu.tscn:359
+#: ../src/general/MainMenu.tscn:349
 msgid "GLES2_MODE_WARNING"
 msgstr "Упозорење у режиму GLES2"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:362
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Користите Thrive витх GLES2. Ово је озбиљно непроверено и вероватно ће "
@@ -1385,234 +1385,234 @@ msgstr ""
 "или присилите АМД или Нвидиа графику да се користи за покретање програма "
 "Thrive."
 
-#: ../src/general/OptionsMenu.tscn:126
+#: ../src/general/OptionsMenu.tscn:125
 msgid "GRAPHICS"
 msgstr "Графика"
 
-#: ../src/general/OptionsMenu.tscn:138
+#: ../src/general/OptionsMenu.tscn:136
 msgid "SOUND"
 msgstr "Звук"
 
-#: ../src/general/OptionsMenu.tscn:150
+#: ../src/general/OptionsMenu.tscn:147
 msgid "PERFORMANCE"
 msgstr "Перформансе"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:158
 msgid "INPUTS"
 msgstr "Уноси"
 
-#: ../src/general/OptionsMenu.tscn:174
+#: ../src/general/OptionsMenu.tscn:169
 msgid "MISC"
 msgstr "Остало"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:208
 msgid "VSYNC"
 msgstr "В-синц"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:216
 msgid "FULLSCREEN"
 msgstr "Цео екран"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:238
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Мултисампле анти-алиасинг:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:245
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(веће вредности погоршавају перформансе)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:275
 msgid "RESOLUTION"
 msgstr "Резолуција:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:288
 msgid "AUTO"
 msgstr "аутоматски"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:298
 msgid "MAX_FPS"
 msgstr "Максимални FPS:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:324
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Корекција далтониста:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:356
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматске аберације:"
 
-#: ../src/general/OptionsMenu.tscn:402
+#: ../src/general/OptionsMenu.tscn:397
 msgid "MASTER_VOLUME"
 msgstr "Главна јачина звука"
 
-#: ../src/general/OptionsMenu.tscn:429 ../src/general/OptionsMenu.tscn:470
-#: ../src/general/OptionsMenu.tscn:503 ../src/general/OptionsMenu.tscn:536
-#: ../src/general/OptionsMenu.tscn:569
+#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:465
+#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:531
+#: ../src/general/OptionsMenu.tscn:564
 msgid "MUTE"
 msgstr "Пригуши звук"
 
-#: ../src/general/OptionsMenu.tscn:443
+#: ../src/general/OptionsMenu.tscn:438
 msgid "MUSIC_VOLUME"
 msgstr "Јачина музике"
 
-#: ../src/general/OptionsMenu.tscn:476
+#: ../src/general/OptionsMenu.tscn:471
 msgid "AMBIANCE_VOLUME"
 msgstr "Амбијента јачина звука"
 
-#: ../src/general/OptionsMenu.tscn:509
+#: ../src/general/OptionsMenu.tscn:504
 msgid "SFX_VOLUME"
 msgstr "Том од звучних ефеката"
 
-#: ../src/general/OptionsMenu.tscn:542
+#: ../src/general/OptionsMenu.tscn:537
 msgid "GUI_VOLUME"
 msgstr "Том од интерфејс"
 
-#: ../src/general/OptionsMenu.tscn:587
+#: ../src/general/OptionsMenu.tscn:582
 msgid "LANGUAGE"
 msgstr "Језик:"
 
-#: ../src/general/OptionsMenu.tscn:602 ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:1005
 msgid "RESET"
 msgstr "Ресетовати"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:606
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:631
+#: ../src/general/OptionsMenu.tscn:626
 msgid "COMPOUND_CLOUDS"
 msgstr "Облак једињења"
 
-#: ../src/general/OptionsMenu.tscn:646
+#: ../src/general/OptionsMenu.tscn:641
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Минимум Интервал од Симулације\n"
 "Облака:"
 
-#: ../src/general/OptionsMenu.tscn:653 ../src/general/OptionsMenu.tscn:697
+#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:692
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(веће вредности побољшавају перформансе)"
 
-#: ../src/general/OptionsMenu.tscn:688
+#: ../src/general/OptionsMenu.tscn:683
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:690
+#: ../src/general/OptionsMenu.tscn:685
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитељ Облачне Резолуције:"
 
-#: ../src/general/OptionsMenu.tscn:732
+#: ../src/general/OptionsMenu.tscn:727
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Покрените аутоматску-еволуцију током играња"
 
-#: ../src/general/OptionsMenu.tscn:799
+#: ../src/general/OptionsMenu.tscn:794
 msgid "RESET_INPUTS"
 msgstr "Ресетујте Уноси"
 
-#: ../src/general/OptionsMenu.tscn:823
+#: ../src/general/OptionsMenu.tscn:818
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Пусти уводни видео"
 
-#: ../src/general/OptionsMenu.tscn:832
+#: ../src/general/OptionsMenu.tscn:827
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Пустите уводни видео за микробе на Новој Игри"
 
-#: ../src/general/OptionsMenu.tscn:841
+#: ../src/general/OptionsMenu.tscn:836
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Аутоматско чување током игре"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:847
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количина аутоматског чувања да задржати:"
 
-#: ../src/general/OptionsMenu.tscn:880
+#: ../src/general/OptionsMenu.tscn:875
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количина брзог чувања да задржати:"
 
-#: ../src/general/OptionsMenu.tscn:906
+#: ../src/general/OptionsMenu.tscn:901
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Прикажи водиче (у новим играма)"
 
-#: ../src/general/OptionsMenu.tscn:914
+#: ../src/general/OptionsMenu.tscn:909
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Прикажи водиче (у тренутној игри)"
 
-#: ../src/general/OptionsMenu.tscn:930
+#: ../src/general/OptionsMenu.tscn:925
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Укључи тастери за варања"
 
-#: ../src/general/OptionsMenu.tscn:942
+#: ../src/general/OptionsMenu.tscn:937
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Користите прилагођено корисничко име"
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:948
 msgid "CUSTOM_USERNAME"
 msgstr "Корисничко име:"
 
-#: ../src/general/OptionsMenu.tscn:979
+#: ../src/general/OptionsMenu.tscn:974
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:987
+#: ../src/general/OptionsMenu.tscn:982
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1019 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1017 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Сачувати"
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Подразумеване вредности"
 
-#: ../src/general/OptionsMenu.tscn:1047
+#: ../src/general/OptionsMenu.tscn:1046
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ресетуј до почетног?"
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Да ли сте сигурни да желите да вратите СВА подешавања на подразумеване "
 "вредности?"
 
-#: ../src/general/OptionsMenu.tscn:1070
+#: ../src/general/OptionsMenu.tscn:1069
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ресетовати уносе на подразумеване вредности?"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Да ли сте сигурни да желите да вратите поставке уноса на подразумеване "
 "вредности?"
 
-#: ../src/general/OptionsMenu.tscn:1093
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "CLOSE_OPTIONS"
 msgstr "Затворити опције?"
 
-#: ../src/general/OptionsMenu.tscn:1113
+#: ../src/general/OptionsMenu.tscn:1112
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Имате несачуване промене које ће бити одбачене.\n"
 "Да ли желите да наставите?"
 
-#: ../src/general/OptionsMenu.tscn:1135
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сачувај и настави"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1143
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Одбаци и настави"
 
-#: ../src/general/OptionsMenu.tscn:1160
+#: ../src/general/OptionsMenu.tscn:1159
 msgid "CANCEL"
 msgstr "Отказати"
 
-#: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1195
-#: ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1218
 msgid "ERROR"
 msgstr "Грешка"
 
-#: ../src/general/OptionsMenu.tscn:1181 ../src/general/OptionsMenu.tscn:1220
+#: ../src/general/OptionsMenu.tscn:1180 ../src/general/OptionsMenu.tscn:1219
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Грешка: Није успело чување нових поставки у конфигурационој датотеци."
@@ -1626,7 +1626,7 @@ msgid "SAVE_GAME"
 msgstr "Сачувај Игру"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2571
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2134
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -2215,7 +2215,7 @@ msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3253
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3085
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2647
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:759
 msgid "TEMPERATURE"
 msgstr "Температура"
@@ -2225,24 +2225,24 @@ msgstr "Температура"
 msgid "N_A_MP"
 msgstr "- МП"
 
-#: ../src/microbe_stage/Microbe.cs:842
+#: ../src/microbe_stage/Microbe.cs:854
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1229
+#: ../src/microbe_stage/Microbe.cs:1241
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешно окупљање"
 
-#: ../src/microbe_stage/Microbe.cs:1236
+#: ../src/microbe_stage/Microbe.cs:1248
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убиство"
 
-#: ../src/microbe_stage/Microbe.cs:1562
+#: ../src/microbe_stage/Microbe.cs:1575
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Производи"
 
-#: ../src/microbe_stage/Microbe.cs:1642
+#: ../src/microbe_stage/Microbe.cs:1655
 msgid "ESCAPE_ENGULFING"
 msgstr "побегне од гутања"
 
@@ -2305,30 +2305,30 @@ msgstr "Врсте:"
 msgid "ENVIRONMENT"
 msgstr "Животна средина"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:867
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:923
 msgid "LIGHT"
 msgstr "Светлост"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:978
 msgid "PRESSURE_SHORT"
 msgstr "Прити."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2755
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3392
+#: ../src/microbe_stage/MicrobeStage.tscn:1061
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2318
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2954
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
 msgid "COMPOUNDS"
 msgstr "Једињење"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1445
 msgid "AGENTS"
 msgstr "Агенси"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1708
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЈА:"
 
@@ -2384,196 +2384,196 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:580
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1285
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:597
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1302
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Учитавање Уређивача Микроба"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:582
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:599
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Чека се аутоматска-еволуција:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2220
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2240
 msgid "AUTO_EVO_FAILED"
 msgstr "Аутоматска-еволуција није успела"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2221
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2241
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус покретања:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:946
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:507
 msgid "REPORT"
 msgstr "Извештај"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:528
 msgid "PATCH_MAP"
 msgstr "Карта Зоне"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1049
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:608
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1110
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:669
 msgid "SPEED_COLON"
 msgstr "Брзина:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1140
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:699
 msgid "HP_COLON"
 msgstr "Здрав.:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1170
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:729
 msgid "SIZE_COLON"
 msgstr "Величина:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1191
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:750
 msgid "GENERATION_COLON"
 msgstr "Генерација:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1233
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:792
 msgid "ATP_BALANCE"
 msgstr "ATP Равнотежа"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1439
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:998
 msgid "MUTATION_POINTS"
 msgstr "Мутације Поени"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1575
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1133
 msgid "STRUCTURE"
 msgstr "Структура"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1598
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1155
 #, fuzzy
 msgid "MEMBRANE"
 msgstr "Врсте Мембрана"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1621
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1178
 msgid "BEHAVIOR"
 msgstr "Понашање"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1673
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1230
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Тражи..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1237
 msgid "STRUCTURAL"
 msgstr "Структурни"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1716
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1273
 msgid "PROTEINS"
 msgstr "Протеини"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1349
 msgid "EXTERNAL"
 msgstr "Спољни"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1846
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1403
 msgid "ORGANELLES"
 msgstr "Органеле"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1983
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1544
 msgid "MEMBRANE_TYPES"
 msgstr "Врсте Мембрана"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2043
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1614
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Течност / Ригидност"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1653
 msgid "COLOUR"
 msgstr "Боја"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2227
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1792
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Име врсте..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2264
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1828
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ПОТВРДИ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1842
 msgid "CONFIRM_CAPITAL"
 msgstr "ПОТВРДИ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Негативан ATP Биланс"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2301
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш микроб не производи довољно ATP-а да би преживео!\n"
 "Да ли желите да наставите?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2312
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1875
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Искључене Органеле"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2324
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Постоје постављене органеле, које нису повезане са осталим.\n"
 "Повежите све постављене органеле једни са другима или поништите промене."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2424
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1987
 msgid "AUTO_EVO"
 msgstr "Аутоматска-Еволуција"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2437
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
 msgid "FOOD_CHAIN"
 msgstr "Ланац Исхране"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2450
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
 msgid "TIMELINE"
 msgstr "Временска линија"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2503
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2066
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати аутоматске-еволуције:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2522
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
 msgid "EXTERNAL_EFFECTS"
 msgstr "Спољни ефекти:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2580
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "Врсте:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2613
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3044
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2176
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2606
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физички Услови"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2717
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2789
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:831
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферски Гасови"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3739
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2373
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3298
 msgid "NEXT_CAPITAL"
 msgstr "СЛЕДЕЋИ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2926
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2488
 msgid "SELECT_A_PATCH"
 msgstr "Изаберите зону да бисте овде приказали детаље"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2961
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2523
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТРЕНУТНА ЛОКАЦИЈА"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3121
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2683
 #, fuzzy
 msgid "PRESSURE"
 msgstr "Прити."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3652
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3214
 msgid "SPECIES_PRESENT"
 msgstr "Врсте Присутне"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3710
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3271
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Пређите у Ову Зону"
 
@@ -2650,16 +2650,16 @@ msgstr "{0} са популацијом: {1}"
 msgid "MP_COST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
 msgid "DELETE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
 #, fuzzy
 msgid "MOVE"
 msgstr "Покрет"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:361
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
 msgstr ""
 
@@ -2875,7 +2875,7 @@ msgstr "Аутор:"
 msgid "CREATED_ON_PLATFORM"
 msgstr "Направљено на Платформи:"
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:54
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:55
 msgid "LOAD"
 msgstr "Учитавање"
 
@@ -2899,39 +2899,39 @@ msgstr ""
 " - {0} Аутоматско чување\n"
 " - {1} Брзо чување"
 
-#: ../src/saving/SaveManagerGUI.tscn:66
+#: ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
 msgstr "Освјежи"
 
-#: ../src/saving/SaveManagerGUI.tscn:74
+#: ../src/saving/SaveManagerGUI.tscn:77
 msgid "DELETE_SELECTED"
 msgstr "Избриши Изабрано"
 
-#: ../src/saving/SaveManagerGUI.tscn:82
+#: ../src/saving/SaveManagerGUI.tscn:86
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Очистите Старе Чување"
 
-#: ../src/saving/SaveManagerGUI.tscn:93
+#: ../src/saving/SaveManagerGUI.tscn:98
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"
 
-#: ../src/saving/SaveManagerGUI.tscn:125
+#: ../src/saving/SaveManagerGUI.tscn:131
 msgid "TOTAL_SAVES"
 msgstr "Укупно сачување:"
 
-#: ../src/saving/SaveManagerGUI.tscn:145
+#: ../src/saving/SaveManagerGUI.tscn:151
 msgid "SAVE_SPACE_USED"
 msgstr "Коришћен простор:"
 
-#: ../src/saving/SaveManagerGUI.tscn:165
+#: ../src/saving/SaveManagerGUI.tscn:171
 msgid "SELECTED_COLON"
 msgstr "Одабрано:"
 
-#: ../src/saving/SaveManagerGUI.tscn:182
+#: ../src/saving/SaveManagerGUI.tscn:188
 msgid "DELETE_SELECTED_SAVES"
 msgstr "Избришете изабрано Сачувај?"
 
-#: ../src/saving/SaveManagerGUI.tscn:205
+#: ../src/saving/SaveManagerGUI.tscn:211
 msgid "DELETE_OLD_SAVES"
 msgstr "Избришете старе Сачуваје?"
 

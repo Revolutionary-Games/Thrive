@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-20 23:54+0700\n"
+"POT-Creation-Date: 2021-05-29 22:04+0300\n"
 "PO-Revision-Date: 2021-04-18 08:40+0000\n"
 "Last-Translator: EzraZebra <ezra.zebra@protonmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -406,7 +406,7 @@ msgid "ZOOM_IN"
 msgstr "Inzoomen"
 
 #: ../simulation_parameters/common/input_options.json:67
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:990
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:549
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -656,58 +656,58 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:16
-#: ../src/microbe_stage/MicrobeStage.tscn:1217
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3467
+#: ../src/microbe_stage/MicrobeStage.tscn:1213
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3029
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:29
-#: ../src/microbe_stage/MicrobeStage.tscn:1271
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3538
+#: ../src/microbe_stage/MicrobeStage.tscn:1267
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3100
 msgid "PHOSPHATE"
 msgstr "Fosfaat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:1325
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3432
+#: ../src/microbe_stage/MicrobeStage.tscn:1321
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2994
 msgid "HYDROGEN_SULFIDE"
 msgstr "Waterstofsulfide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:55
-#: ../src/microbe_stage/MicrobeStage.tscn:1163
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3502
+#: ../src/microbe_stage/MicrobeStage.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3064
 msgid "GLUCOSE"
 msgstr "Glucose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:68
-#: ../src/microbe_stage/MicrobeStage.tscn:1511
+#: ../src/microbe_stage/MicrobeStage.tscn:1507
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:81
-#: ../src/microbe_stage/MicrobeStage.tscn:1379
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3573
+#: ../src/microbe_stage/MicrobeStage.tscn:1375
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3135
 msgid "IRON"
 msgstr "Ijzer"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:94
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3268
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2830
 msgid "OXYGEN"
 msgstr "Zuurstof"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:107
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3322
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2884
 msgid "CARBON_DIOXIDE"
 msgstr "Koolstofdioxide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:120
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3295
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2857
 msgid "NITROGEN"
 msgstr "Stikstof"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:133
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2710
 msgid "SUNLIGHT"
 msgstr "Zonlicht"
 
@@ -716,27 +716,27 @@ msgstr "Zonlicht"
 msgid "NORMAL"
 msgstr "Normaal"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:18
+#: ../simulation_parameters/microbe_stage/membranes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1960
 msgid "DOUBLE"
 msgstr "Dubbel"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:33
+#: ../simulation_parameters/microbe_stage/membranes.json:35
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2124
 msgid "CELLULOSE"
 msgstr "Cellulose"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:48
+#: ../simulation_parameters/microbe_stage/membranes.json:51
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
 msgid "CHITIN"
 msgstr "Chitine"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:63
+#: ../simulation_parameters/microbe_stage/membranes.json:67
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2594
 msgid "CALCIUM_CARBONATE"
 msgstr "Calciumcarbonaat"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:78
+#: ../simulation_parameters/microbe_stage/membranes.json:83
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2862
 msgid "SILICA"
 msgstr "Siliciumdioxide"
@@ -1332,297 +1332,297 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Sluit"
 
-#: ../src/general/MainMenu.cs:340
+#: ../src/general/MainMenu.cs:336
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:341
+#: ../src/general/MainMenu.cs:337
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: ../src/general/MainMenu.tscn:148
+#: ../src/general/MainMenu.tscn:146
 msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
-#: ../src/general/MainMenu.tscn:163 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
 msgid "LOAD_GAME"
 msgstr "Spel Laden"
 
-#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
 msgid "OPTIONS"
 msgstr "Opties"
 
-#: ../src/general/MainMenu.tscn:187
+#: ../src/general/MainMenu.tscn:181
 msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
-#: ../src/general/MainMenu.tscn:199
+#: ../src/general/MainMenu.tscn:192
 msgid "VIEW_SOURCE_CODE"
 msgstr "Bekijk de broncode"
 
-#: ../src/general/MainMenu.tscn:211
+#: ../src/general/MainMenu.tscn:204
 msgid "EXTRAS"
 msgstr "Extra's"
 
-#: ../src/general/MainMenu.tscn:223
+#: ../src/general/MainMenu.tscn:216
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:227
 msgid "QUIT"
 msgstr "Stoppen"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:249
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
-#: ../src/general/MainMenu.tscn:319 ../src/general/OptionsMenu.tscn:998
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:113
+#: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Terug"
 
-#: ../src/general/MainMenu.tscn:359
+#: ../src/general/MainMenu.tscn:349
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:362
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal "
 "waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten "
 "en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
 
-#: ../src/general/OptionsMenu.tscn:126
+#: ../src/general/OptionsMenu.tscn:125
 msgid "GRAPHICS"
 msgstr "Graphics"
 
-#: ../src/general/OptionsMenu.tscn:138
+#: ../src/general/OptionsMenu.tscn:136
 msgid "SOUND"
 msgstr "Geluid"
 
-#: ../src/general/OptionsMenu.tscn:150
+#: ../src/general/OptionsMenu.tscn:147
 msgid "PERFORMANCE"
 msgstr "Prestaties"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:158
 msgid "INPUTS"
 msgstr "Invoer"
 
-#: ../src/general/OptionsMenu.tscn:174
+#: ../src/general/OptionsMenu.tscn:169
 msgid "MISC"
 msgstr "Varia"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:208
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:216
 msgid "FULLSCREEN"
 msgstr "VolledigScherm"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:238
 #, fuzzy
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:245
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(hogere waarden verslechteren prestaties)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:275
 msgid "RESOLUTION"
 msgstr "Resolutie:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:288
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:298
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:324
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Kleurenblinde Correctie:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:356
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
-#: ../src/general/OptionsMenu.tscn:402
+#: ../src/general/OptionsMenu.tscn:397
 msgid "MASTER_VOLUME"
 msgstr "Meester volume"
 
-#: ../src/general/OptionsMenu.tscn:429 ../src/general/OptionsMenu.tscn:470
-#: ../src/general/OptionsMenu.tscn:503 ../src/general/OptionsMenu.tscn:536
-#: ../src/general/OptionsMenu.tscn:569
+#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:465
+#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:531
+#: ../src/general/OptionsMenu.tscn:564
 msgid "MUTE"
 msgstr "Dempen"
 
-#: ../src/general/OptionsMenu.tscn:443
+#: ../src/general/OptionsMenu.tscn:438
 msgid "MUSIC_VOLUME"
 msgstr "Muziek volume"
 
-#: ../src/general/OptionsMenu.tscn:476
+#: ../src/general/OptionsMenu.tscn:471
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance Volume"
 
-#: ../src/general/OptionsMenu.tscn:509
+#: ../src/general/OptionsMenu.tscn:504
 msgid "SFX_VOLUME"
 msgstr "Volume Geluidseffecten"
 
-#: ../src/general/OptionsMenu.tscn:542
+#: ../src/general/OptionsMenu.tscn:537
 msgid "GUI_VOLUME"
 msgstr "GUI Volume"
 
-#: ../src/general/OptionsMenu.tscn:587
+#: ../src/general/OptionsMenu.tscn:582
 msgid "LANGUAGE"
 msgstr "Taal:"
 
-#: ../src/general/OptionsMenu.tscn:602 ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:1005
 msgid "RESET"
 msgstr "Resetten"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:606
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help met het spel te vertalen"
 
-#: ../src/general/OptionsMenu.tscn:631
+#: ../src/general/OptionsMenu.tscn:626
 msgid "COMPOUND_CLOUDS"
 msgstr "Wolken met chemische stoffen"
 
-#: ../src/general/OptionsMenu.tscn:646
+#: ../src/general/OptionsMenu.tscn:641
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Wolk Simulatie Minimum\n"
 "Interval:"
 
-#: ../src/general/OptionsMenu.tscn:653 ../src/general/OptionsMenu.tscn:697
+#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:692
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(hogere waarden verslechteren prestaties)"
 
-#: ../src/general/OptionsMenu.tscn:688
+#: ../src/general/OptionsMenu.tscn:683
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:690
+#: ../src/general/OptionsMenu.tscn:685
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolk Resolutie Deler:"
 
-#: ../src/general/OptionsMenu.tscn:732
+#: ../src/general/OptionsMenu.tscn:727
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Gebruik auto-evo tijdens gameplay"
 
-#: ../src/general/OptionsMenu.tscn:799
+#: ../src/general/OptionsMenu.tscn:794
 msgid "RESET_INPUTS"
 msgstr "Reset Invoer"
 
-#: ../src/general/OptionsMenu.tscn:823
+#: ../src/general/OptionsMenu.tscn:818
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Speel intro video"
 
-#: ../src/general/OptionsMenu.tscn:832
+#: ../src/general/OptionsMenu.tscn:827
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Speel Microbe Intro bij Nieuw Spel"
 
-#: ../src/general/OptionsMenu.tscn:841
+#: ../src/general/OptionsMenu.tscn:836
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:847
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Hoeveelheid autosaves om bij te houden:"
 
-#: ../src/general/OptionsMenu.tscn:880
+#: ../src/general/OptionsMenu.tscn:875
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Hoeveelheid snel opgeslagen bestanden om bij te houden:"
 
-#: ../src/general/OptionsMenu.tscn:906
+#: ../src/general/OptionsMenu.tscn:901
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Laat instructies zien (in nieuwe spellen)"
 
-#: ../src/general/OptionsMenu.tscn:914
+#: ../src/general/OptionsMenu.tscn:909
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Laat instructies zien (in huidig spel)"
 
-#: ../src/general/OptionsMenu.tscn:930
+#: ../src/general/OptionsMenu.tscn:925
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheattoetsen ingeschakeld"
 
-#: ../src/general/OptionsMenu.tscn:942
+#: ../src/general/OptionsMenu.tscn:937
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een gebruikersnaam naar keuze"
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:948
 msgid "CUSTOM_USERNAME"
 msgstr "Gebruikersnaam naar keuze:"
 
-#: ../src/general/OptionsMenu.tscn:979
+#: ../src/general/OptionsMenu.tscn:974
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open Screenshotfolder"
 
-#: ../src/general/OptionsMenu.tscn:987
+#: ../src/general/OptionsMenu.tscn:982
 #, fuzzy
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open Logs Folder"
 
-#: ../src/general/OptionsMenu.tscn:1019 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1017 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Opslaan"
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaardwaarden"
 
-#: ../src/general/OptionsMenu.tscn:1047
+#: ../src/general/OptionsMenu.tscn:1046
 msgid "RESET_TO_DEFAULTS"
 msgstr "Standaardinstellingen herstellen?"
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Ben je zeker dat je ALLE instellingen wilt resetten naar de "
 "standaardwaarden?"
 
-#: ../src/general/OptionsMenu.tscn:1070
+#: ../src/general/OptionsMenu.tscn:1069
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Invoer resetten naar standaardwaarden?"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Bent u zeker dat u de invoersinstellingen wilt resetten naar de "
 "standaardwaarden?"
 
-#: ../src/general/OptionsMenu.tscn:1093
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "CLOSE_OPTIONS"
 msgstr "Opties sluiten?"
 
-#: ../src/general/OptionsMenu.tscn:1113
+#: ../src/general/OptionsMenu.tscn:1112
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen wijzigingen die worden verwijderd.\n"
 "Wens je verder te gaan?"
 
-#: ../src/general/OptionsMenu.tscn:1135
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "SAVE_AND_CONTINUE"
 msgstr "Opslaan en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1143
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Verwijderen en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1160
+#: ../src/general/OptionsMenu.tscn:1159
 msgid "CANCEL"
 msgstr "Annuleer"
 
-#: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1195
-#: ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1218
 msgid "ERROR"
 msgstr "Fout"
 
-#: ../src/general/OptionsMenu.tscn:1181 ../src/general/OptionsMenu.tscn:1220
+#: ../src/general/OptionsMenu.tscn:1180 ../src/general/OptionsMenu.tscn:1219
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Fout: Het opslaan van nieuwe instellingen in het configuratiebestand is "
@@ -1637,7 +1637,7 @@ msgid "SAVE_GAME"
 msgstr "Spel Opslaan"
 
 #: ../src/general/PauseMenu.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2571
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2134
 msgid "STATISTICS"
 msgstr "Statistieken"
 
@@ -2242,7 +2242,7 @@ msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3253
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3085
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2647
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:759
 msgid "TEMPERATURE"
 msgstr "Temperatuur"
@@ -2252,24 +2252,24 @@ msgstr "Temperatuur"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:842
+#: ../src/microbe_stage/Microbe.cs:854
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1229
+#: ../src/microbe_stage/Microbe.cs:1241
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "succesvolle doorzoeking"
 
-#: ../src/microbe_stage/Microbe.cs:1236
+#: ../src/microbe_stage/Microbe.cs:1248
 msgid "SUCCESSFUL_KILL"
 msgstr "succesvolle moord"
 
-#: ../src/microbe_stage/Microbe.cs:1562
+#: ../src/microbe_stage/Microbe.cs:1575
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Produceert"
 
-#: ../src/microbe_stage/Microbe.cs:1642
+#: ../src/microbe_stage/Microbe.cs:1655
 msgid "ESCAPE_ENGULFING"
 msgstr "ontsnap omsluiting"
 
@@ -2331,30 +2331,30 @@ msgstr "Soorten:"
 msgid "ENVIRONMENT"
 msgstr "Omgeving"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:867
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:923
 msgid "LIGHT"
 msgstr "Licht"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:978
 msgid "PRESSURE_SHORT"
 msgstr "Druk"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2755
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3392
+#: ../src/microbe_stage/MicrobeStage.tscn:1061
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2318
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2954
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
 msgid "COMPOUNDS"
 msgstr "Chemische verbindingen"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1445
 msgid "AGENTS"
 msgstr "Middelen"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1708
 msgid "POPULATION_CAPITAL"
 msgstr "BEVOLKING:"
 
@@ -2410,196 +2410,196 @@ msgstr "Celprocessen"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balansen van de chemische verbindingen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:580
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1285
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:597
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1302
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe editor laden"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:582
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:599
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten voor auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2220
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2240
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo mislukt"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2221
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2241
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "loopstatus:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:946
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:507
 msgid "REPORT"
 msgstr "Melden"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:968
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:528
 msgid "PATCH_MAP"
 msgstr "Kaart met plekken"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1049
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:608
 msgid "ORGANISM_STATISTICS"
 msgstr "Organisme Statistieken"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1110
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:669
 msgid "SPEED_COLON"
 msgstr "Snelheid:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1140
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:699
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1170
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:729
 msgid "SIZE_COLON"
 msgstr "Grootte:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1191
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:750
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1233
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:792
 msgid "ATP_BALANCE"
 msgstr "ATP Balans"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1439
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:998
 msgid "MUTATION_POINTS"
 msgstr "Mutatiepunten"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1575
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1133
 msgid "STRUCTURE"
 msgstr "Structuur"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1598
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1155
 #, fuzzy
 msgid "MEMBRANE"
 msgstr "Membraantypes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1621
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1178
 msgid "BEHAVIOR"
 msgstr "Gedrag"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1673
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1230
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Zoeken..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1237
 msgid "STRUCTURAL"
 msgstr "Structureel"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1716
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1273
 msgid "PROTEINS"
 msgstr "Proteïnen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1349
 msgid "EXTERNAL"
 msgstr "Extern"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1846
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1403
 msgid "ORGANELLES"
 msgstr "Organellen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1983
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1544
 msgid "MEMBRANE_TYPES"
 msgstr "Membraantypes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2043
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1614
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Vloeibaarheid / Stijfheid"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1653
 msgid "COLOUR"
 msgstr "Kleur"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2227
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1792
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Soortnaam..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2264
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1828
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "BEVESTIGEN"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1842
 msgid "CONFIRM_CAPITAL"
 msgstr "BEVESTIGEN"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatieve ATP Balans"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2301
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Je microbe produceert niet genoeg ATP om te overleven!\n"
 "Wil je verder gaan?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2312
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1875
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Niet-geconnecteerde Organellen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2324
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Er zijn geplaatste organellen die niet geconnecteerd zijn met de rest.\n"
 "Connecteer a.u.b. alle geplaatste organellen met elkaar of maak "
 "aanpassingen ongedaan."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2424
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1987
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2437
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
 msgid "FOOD_CHAIN"
 msgstr "Voedselketen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2450
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
 msgid "TIMELINE"
 msgstr "Tijdlijn"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2503
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2066
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo resultaten:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2522
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
 msgid "EXTERNAL_EFFECTS"
 msgstr "Externe effecten:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2580
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
 msgid "SPECIES_POPULATION"
 msgstr "Soortenpopulatie"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2613
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3044
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2176
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2606
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fysieke Omstandigheden"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2717
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2789
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:831
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferische Gassen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3739
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2373
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3298
 msgid "NEXT_CAPITAL"
 msgstr "VOLGENDE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2926
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2488
 msgid "SELECT_A_PATCH"
 msgstr "Kies een plek om de details hier te zien"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2961
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2523
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "HUIDIGE LOCATIE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3121
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2683
 #, fuzzy
 msgid "PRESSURE"
 msgstr "Druk"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3652
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3214
 msgid "SPECIES_PRESENT"
 msgstr "Soorten aanwezig"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3710
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3271
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Ga naar deze plek"
 
@@ -2676,15 +2676,15 @@ msgstr "{0} met populatie: {1}"
 msgid "MP_COST"
 msgstr "{0} MP"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
 msgid "DELETE"
 msgstr "Verwijder"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
 msgid "MOVE"
 msgstr "Verplaats"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:361
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
 msgstr "Pas aan"
 
@@ -2905,7 +2905,7 @@ msgstr "Door:"
 msgid "CREATED_ON_PLATFORM"
 msgstr "Gemaakt op platform:"
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:54
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:55
 msgid "LOAD"
 msgstr "Laden"
 
@@ -2931,39 +2931,39 @@ msgstr ""
 " - {0} Automatisch opgeslagen bestand(en)\n"
 " - {1} Snel opgeslagen bestand(en)"
 
-#: ../src/saving/SaveManagerGUI.tscn:66
+#: ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
 msgstr "Vernieuwen"
 
-#: ../src/saving/SaveManagerGUI.tscn:74
+#: ../src/saving/SaveManagerGUI.tscn:77
 msgid "DELETE_SELECTED"
 msgstr "Verwijder het geselecteerde"
 
-#: ../src/saving/SaveManagerGUI.tscn:82
+#: ../src/saving/SaveManagerGUI.tscn:86
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Ruim oude opgeslagen bestanden op"
 
-#: ../src/saving/SaveManagerGUI.tscn:93
+#: ../src/saving/SaveManagerGUI.tscn:98
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Open adresboek van opgeslagen bestanden"
 
-#: ../src/saving/SaveManagerGUI.tscn:125
+#: ../src/saving/SaveManagerGUI.tscn:131
 msgid "TOTAL_SAVES"
 msgstr "Totaal aantal opgeslagen bestanden:"
 
-#: ../src/saving/SaveManagerGUI.tscn:145
+#: ../src/saving/SaveManagerGUI.tscn:151
 msgid "SAVE_SPACE_USED"
 msgstr "Gebruikte ruimte:"
 
-#: ../src/saving/SaveManagerGUI.tscn:165
+#: ../src/saving/SaveManagerGUI.tscn:171
 msgid "SELECTED_COLON"
 msgstr "Geselecteerd:"
 
-#: ../src/saving/SaveManagerGUI.tscn:182
+#: ../src/saving/SaveManagerGUI.tscn:188
 msgid "DELETE_SELECTED_SAVES"
 msgstr "Verwijder geselecteerde opgeslagen bestand(en)?"
 
-#: ../src/saving/SaveManagerGUI.tscn:205
+#: ../src/saving/SaveManagerGUI.tscn:211
 msgid "DELETE_OLD_SAVES"
 msgstr "Verwijder oude opgeslagen bestanden?"
 
