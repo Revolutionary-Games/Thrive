@@ -65,7 +65,7 @@ jobs:
       # Makes sure that there aren't any changes at this point to not make the CI trip up on them
       - run:
           name: Make sure no changes to git tracked files at this point
-          command: git reset --hard HEAD
+          command: GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
       # Inspect code (this only takes like 40 seconds for all files)
       - run:
           command: ./check_formatting.rb -c inspectcode
