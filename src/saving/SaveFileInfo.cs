@@ -56,9 +56,7 @@ public class SaveFileInfo
     {
         info = null;
 
-        using (var file = new File())
-        {
-            LastModified = file.GetModifiedTime(Path);
-        }
+        using var file = new File();
+        LastModified = file.GetModifiedTime(Path);
     }
 }

@@ -358,8 +358,8 @@ public class Save
     {
         // Pre-allocate storage
         var buffer = new byte[length];
-        using (var stream = new MemoryStream(buffer))
         {
+            using var stream = new MemoryStream(buffer);
             tar.CopyEntryContents(stream);
         }
 
@@ -370,8 +370,8 @@ public class Save
     {
         // Pre-allocate storage
         var buffer = new byte[length];
-        using (var stream = new MemoryStream(buffer))
         {
+            using var stream = new MemoryStream(buffer);
             tar.CopyEntryContents(stream);
         }
 

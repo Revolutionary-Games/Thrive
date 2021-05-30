@@ -276,16 +276,14 @@ public class SimulationParameters : Node
 
     private static string ReadJSONFile(string path)
     {
-        using (var file = new File())
-        {
-            file.Open(path, File.ModeFlags.Read);
-            var result = file.GetAsText();
+        using var file = new File();
+        file.Open(path, File.ModeFlags.Read);
+        var result = file.GetAsText();
 
-            // This might be completely unnecessary
-            file.Close();
+        // This might be completely unnecessary
+        file.Close();
 
-            return result;
-        }
+        return result;
     }
 
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
