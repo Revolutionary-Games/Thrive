@@ -184,10 +184,7 @@ public class MicrobeAI
                     }
                 }
 
-                if (targetChunk == null)
-                {
-                    targetChunk = GetNearestChunkItem(data.AllChunks);
-                }
+                targetChunk ??= GetNearestChunkItem(data.AllChunks);
 
                 EvaluateEnvironment(random);
                 break;
@@ -272,10 +269,7 @@ public class MicrobeAI
 
             case LifeState.SCAVENGING_STATE:
             {
-                if (targetChunk == null)
-                {
-                    targetChunk = GetNearestChunkItem(data.AllChunks);
-                }
+                targetChunk ??= GetNearestChunkItem(data.AllChunks);
 
                 if (targetChunk != null)
                 {
@@ -423,9 +417,9 @@ public class MicrobeAI
 
             if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
             {
-                if ((SpeciesAggression == Constants.MAX_SPECIES_AGRESSION) ||
+                if ((SpeciesAggression == Constants.MAX_SPECIES_AGGRESSION) ||
                     ((((microbe.AgentVacuoleCount + microbe.EngulfSize) * 1.0f) *
-                            (SpeciesAggression / Constants.AGRESSION_DIVISOR)) >
+                            (SpeciesAggression / Constants.AGGRESSION_DIVISOR)) >
                         (otherMicrobe.EngulfSize * 1.0f)))
                 {
                     preyMicrobes.Add(otherMicrobe);
@@ -449,7 +443,7 @@ public class MicrobeAI
             }
         }
 
-        // It might be interesting to prioritize weakened prey (Maybe add a variable for opportunisticness to each
+        // It might be interesting to prioritize weakened prey (Maybe add a variable for opportunism to each
         // species?)
         return chosenPrey;
     }
@@ -529,7 +523,7 @@ public class MicrobeAI
         }
 
         // Chase your prey if you dont like acting like a plant
-        // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
+        // Allows for emergence of Predatory Plants (Like a single celled version of a venus fly trap)
         // Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
         microbe.LookAtPoint = targetPosition;
         hasTargetPosition = true;
@@ -537,14 +531,9 @@ public class MicrobeAI
         // Always set target Position, for use later in AI
         if (moveThisHunt)
         {
-            if (moveFocused)
-            {
-                microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_FOCUSED_MOVEMENT);
-            }
-            else
-            {
-                microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
-            }
+            microbe.MovementDirection = moveFocused ?
+                new Vector3(0.0f, 0.0f, -Constants.AI_FOCUSED_MOVEMENT) :
+                new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         }
         else
         {
@@ -552,7 +541,7 @@ public class MicrobeAI
         }
 
         // Turn off engulf if prey is Dead
-        // This is probabbly not working. This is almost certainly not working in the Godot version
+        // This is probably not working. This is almost certainly not working in the Godot version
         if (prey.Dead)
         {
             hasTargetPosition = false;
@@ -578,7 +567,7 @@ public class MicrobeAI
         }
         else
         {
-            // Turn on engulfmode if close
+            // Turn on engulf mode if close
             if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + microbe.EngulfSize * 3.0f
                 && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
                 && !microbe.EngulfMode &&
@@ -658,7 +647,7 @@ public class MicrobeAI
         // Always set target Position, for use later in AI
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
 
-        // Turn on engulfmode if close
+        // Turn on engulf mode if close
         if ((microbe.Translation - targetPosition).LengthSquared() <= 300 +
             microbe.EngulfSize * 3.0f
             && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
@@ -854,11 +843,11 @@ public class MicrobeAI
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
 
         var randAngle = previousAngle;
-        float randDist;
+        float randomDistance;
 
         float compoundDifference = microbe.TotalAbsorbedCompounds.SumValues();
 
-        // Angle should only change if you havent picked up compounds || picked up less compounds
+        // Angle should only change if you haven't picked up compounds || picked up less compounds
         if (compoundDifference < 0 && random.Next(0, 10) < 5)
         {
             randAngle = SelectRandomTargetPosition(random);
@@ -881,8 +870,9 @@ public class MicrobeAI
             // If found food subtract from angle randomly;
             randAngle = previousAngle - random.Next(0.1f, 0.3f);
             previousAngle = randAngle;
-            randDist = random.Next(200.0f, movementRadius);
-            targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
+            randomDistance = random.Next(200.0f, movementRadius);
+            targetPosition = new Vector3(Mathf.Cos(randAngle) * randomDistance, 0,
+                Mathf.Sin(randAngle) * randomDistance);
         }
 
         // Turn more if not in concentration gradient basically (step is .4 if really no food, .3 if less food, .1 if

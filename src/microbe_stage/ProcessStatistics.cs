@@ -84,13 +84,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     {
         get
         {
-            if (precomputedEnvironmentInputs == null)
-            {
-                precomputedEnvironmentInputs = Process.Inputs.Where(p => p.Key.IsEnvironmental)
-                    .ToDictionary(p => p.Key, p => p.Value);
-            }
-
-            return precomputedEnvironmentInputs;
+            return precomputedEnvironmentInputs ??= Process.Inputs
+                .Where(p => p.Key.IsEnvironmental)
+                .ToDictionary(p => p.Key, p => p.Value);
         }
     }
 

@@ -229,7 +229,7 @@ public class MicrobeHUD : Node
 
     // Checks
     private bool environmentCompressed;
-    private bool compundCompressed;
+    private bool compoundCompressed;
     private bool leftPanelsActive;
 
     /// <summary>
@@ -368,9 +368,9 @@ public class MicrobeHUD : Node
     {
         var bars = compoundsPanelBarContainer.GetChildren();
 
-        if (mode == "compress" && !compundCompressed)
+        if (mode == "compress" && !compoundCompressed)
         {
-            compundCompressed = true;
+            compoundCompressed = true;
             compoundsPanelBarContainer.AddConstantOverride("vseparation", 20);
             compoundsPanelBarContainer.AddConstantOverride("hseparation", 14);
 
@@ -392,9 +392,9 @@ public class MicrobeHUD : Node
             }
         }
 
-        if (mode == "expand" && compundCompressed)
+        if (mode == "expand" && compoundCompressed)
         {
-            compundCompressed = false;
+            compoundCompressed = false;
             compoundsPanelBarContainer.Columns = 1;
             compoundsPanelBarContainer.AddConstantOverride("vseparation", 5);
             compoundsPanelBarContainer.AddConstantOverride("hseparation", 0);
@@ -513,12 +513,9 @@ public class MicrobeHUD : Node
     /// </summary>
     public void UpdateNeededBars()
     {
-        if (stage.Player == null)
-            return;
+        var compounds = stage.Player?.Compounds;
 
-        var compounds = stage.Player.Compounds;
-
-        if (!compounds.HasAnyBeenSetUseful())
+        if (compounds?.HasAnyBeenSetUseful() != true)
             return;
 
         if (compounds.IsSpecificallySetUseful(oxytoxy))

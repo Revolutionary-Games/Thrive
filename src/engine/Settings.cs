@@ -306,6 +306,7 @@ public class Settings
     /// <returns>C# locale name, or null if there is not a premade mapping</returns>
     public static string TranslateLocaleToCSharp(string godotLocale)
     {
+        // ReSharper disable StringLiteralTypo
         switch (godotLocale)
         {
             case "eo":
@@ -316,6 +317,7 @@ public class Settings
                 return "sr-Cyrl-RS";
         }
 
+        // ReSharper restore StringLiteralTypo
         return null;
     }
 
@@ -361,7 +363,7 @@ public class Settings
             object thisValue = property.GetValue(this);
             object objValue = property.GetValue(obj);
 
-            if (thisValue != objValue && (thisValue == null || !thisValue.Equals(objValue)))
+            if (thisValue != objValue && thisValue?.Equals(objValue) != true)
             {
                 return false;
             }
@@ -542,7 +544,7 @@ public class Settings
         CultureInfo.CurrentUICulture = cultureInfo;
 
         // Set locale for the game. Called after C# locale change so that string
-        // formattings could also get updated properly.
+        // formatting uses could also get updated properly.
         TranslationServer.SetLocale(language);
     }
 
