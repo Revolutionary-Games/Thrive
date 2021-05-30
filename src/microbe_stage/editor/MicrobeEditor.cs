@@ -348,6 +348,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Controls the visibility of spatial nodes in the editor.
     /// </summary>
+    [JsonIgnore]
     public bool WorldEntitiesVisible
     {
         get => worldEntitiesVisible;
