@@ -445,7 +445,7 @@ public class MicrobeAI
 
     private bool ICanShootToxin()
     {
-        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
     }
 
     private float DistanceFromMe(Vector3 target)
