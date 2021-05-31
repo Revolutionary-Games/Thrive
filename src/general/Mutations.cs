@@ -16,7 +16,7 @@ public class Mutations
         "a", "e", "i", "o", "u",
     };
 
-    private static readonly List<string> PronoucablePermutation = new List<string>
+    private static readonly List<string> PronounceablePermutation = new List<string>
     {
         "th", "sh", "ch", "wh", "Th", "Sh", "Ch", "Wh",
     };
@@ -164,9 +164,9 @@ public class Mutations
         var part1 = newName.ToString(index - 1, 2);
         var part2 = newName.ToString(index - 2, 2);
         var part3 = newName.ToString(index, 2);
-        if (PronoucablePermutation.Any(item => item == part1) ||
-            PronoucablePermutation.Any(item => item == part2) ||
-            PronoucablePermutation.Any(item => item == part3))
+        if (PronounceablePermutation.Any(item => item == part1) ||
+            PronounceablePermutation.Any(item => item == part2) ||
+            PronounceablePermutation.Any(item => item == part3))
         {
             return true;
         }
@@ -195,7 +195,7 @@ public class Mutations
 
         // Make sure not over or under our scales
         // This used to be a method as well
-        mutated.Aggression = aggression.Clamp(0.0f, Constants.MAX_SPECIES_AGRESSION);
+        mutated.Aggression = aggression.Clamp(0.0f, Constants.MAX_SPECIES_AGGRESSION);
         mutated.Fear = fear.Clamp(0.0f, Constants.MAX_SPECIES_FEAR);
         mutated.Activity = activity.Clamp(0.0f, Constants.MAX_SPECIES_ACTIVITY);
         mutated.Focus = focus.Clamp(0.0f, Constants.MAX_SPECIES_FOCUS);
@@ -423,16 +423,14 @@ public class Mutations
 
     private Color RandomEukaryoteColour(float? opaqueness = null)
     {
-        if (!opaqueness.HasValue)
-            opaqueness = RandomOpacity();
+        opaqueness ??= RandomOpacity();
 
         return RandomColour(opaqueness.Value);
     }
 
     private Color RandomProkaryoteColour(float? opaqueness = null)
     {
-        if (!opaqueness.HasValue)
-            opaqueness = RandomOpacityBacteria();
+        opaqueness ??= RandomOpacityBacteria();
 
         return RandomColour(opaqueness.Value);
     }
@@ -460,12 +458,12 @@ public class Mutations
 
                 // Are we a vowel or are we a consonant?
                 var part = newName.ToString(index, 2);
-                bool isPermute = PronoucablePermutation.Any(item => item == part);
+                bool isPermute = PronounceablePermutation.Any(item => item == part);
                 if (random.Next(0, 21) <= 10 && isPermute)
                 {
                     newName.Erase(index, 2);
                     changes++;
-                    newName.Insert(index, PronoucablePermutation.Random(random));
+                    newName.Insert(index, PronounceablePermutation.Random(random));
                 }
             }
         }
@@ -579,7 +577,7 @@ public class Mutations
         // Our base case
         if (letterChanges < letterChangeLimit && changes == 0)
         {
-            // We didnt change our word at all, try again recursviely until we do
+            // We didnt change our word at all, try recursively until we do
             return MutateWord(name);
         }
 

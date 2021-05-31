@@ -245,12 +245,12 @@
                 if (entry.MutatedProperties != null)
                 {
                     builder.Append(" ");
-                    builder.Append(TranslationServer.Translate("RUNRESULT_HAS_A_MUTATION"));
+                    builder.Append(TranslationServer.Translate("RUN_RESULT_HAS_A_MUTATION"));
 
                     if (!playerReadable)
                     {
                         builder.Append(", ");
-                        builder.Append(TranslationServer.Translate("RUNRESULT_GENE_CODE"));
+                        builder.Append(TranslationServer.Translate("RUN_RESULT_GENE_CODE"));
                         builder.Append(" ");
                         builder.Append(entry.MutatedProperties.StringCode);
                     }
@@ -261,7 +261,7 @@
                 if (entry.SpreadToPatches.Count > 0)
                 {
                     builder.Append(" ");
-                    builder.Append(TranslationServer.Translate("RUNRESULT_SPREAD_TO_PATCHES"));
+                    builder.Append(TranslationServer.Translate("RUN_RESULT_SPREAD_TO_PATCHES"));
                     builder.Append("\n");
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
@@ -270,7 +270,7 @@
                         {
                             builder.Append("  ");
                             builder.Append(string.Format(CultureInfo.CurrentCulture,
-                                TranslationServer.Translate("RUNRESULT_BY_SENDING_POPULATION"),
+                                TranslationServer.Translate("RUN_RESULT_BY_SENDING_POPULATION"),
                                 TranslationServer.Translate(spreadEntry.To.Name), spreadEntry.Population,
                                 TranslationServer.Translate(spreadEntry.From.Name)));
                         }
@@ -289,7 +289,7 @@
                 }
 
                 builder.Append(" ");
-                builder.Append(TranslationServer.Translate("RUNRESULT_POP_IN_PATCHES"));
+                builder.Append(TranslationServer.Translate("RUN_RESULT_POP_IN_PATCHES"));
                 builder.Append("\n");
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
@@ -326,9 +326,9 @@
                     {
                         include = true;
                     }
-                    else if (previousPopulations != null)
+                    else
                     {
-                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
+                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
                             0)
                         {
                             include = true;

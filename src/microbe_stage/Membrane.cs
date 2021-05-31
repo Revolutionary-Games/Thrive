@@ -172,8 +172,7 @@ public class Membrane : MeshInstance
 
     public override void _Ready()
     {
-        if (Type == null)
-            Type = SimulationParameters.Instance.GetMembrane("single");
+        Type ??= SimulationParameters.Instance.GetMembrane("single");
 
         if (MaterialToEdit == null)
             GD.PrintErr("MaterialToEdit on Membrane is not set");
@@ -399,10 +398,7 @@ public class Membrane : MeshInstance
     private void InitializeMesh()
     {
         // For preview scenes, add just one organelle
-        if (OrganellePositions == null)
-        {
-            OrganellePositions = new List<Vector2> { new Vector2(0, 0) };
-        }
+        OrganellePositions ??= new List<Vector2> { new Vector2(0, 0) };
 
         foreach (var pos in OrganellePositions)
         {

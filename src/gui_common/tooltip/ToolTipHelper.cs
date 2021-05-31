@@ -22,9 +22,9 @@ public static class ToolTipHelper
     /// </summary>
     /// <param name="control">The Control to register the tooltip to</param>
     /// <param name="tooltip">The tooltip to register with</param>
-    /// <param name="callbackDatas">List to store the callbacks to keep them from unloading</param>
+    /// <param name="callbackData">List to store the callbacks to keep them from unloading</param>
     public static void RegisterToolTipForControl(this Control control, ICustomToolTip tooltip,
-        List<ToolTipCallbackData> callbackDatas)
+        List<ToolTipCallbackData> callbackData)
     {
         if (tooltip == null)
         {
@@ -33,7 +33,7 @@ public static class ToolTipHelper
         }
 
         // Skip if already registered
-        if (callbackDatas.Find(match => match.ToolTip == tooltip) != null)
+        if (callbackData.Find(match => match.ToolTip == tooltip) != null)
             return;
 
         var toolTipCallbackData = new ToolTipCallbackData(tooltip);
@@ -43,6 +43,6 @@ public static class ToolTipHelper
         control.Connect("hide", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
         control.Connect("tree_exiting", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
 
-        callbackDatas.Add(toolTipCallbackData);
+        callbackData.Add(toolTipCallbackData);
     }
 }

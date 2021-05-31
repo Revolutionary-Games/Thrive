@@ -293,6 +293,7 @@ public class MicrobeAI
         microbe.EngulfMode = false;
 
         targetPosition = (2 * (microbe.Translation - predatorLocation)) + microbe.Translation;
+
         microbe.LookAtPoint = targetPosition;
 
         // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.

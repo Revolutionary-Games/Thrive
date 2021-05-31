@@ -205,6 +205,11 @@ Code style rules
 
 - Don't add a `Dispose` method to classes that don't need it.
 
+- Prefer using declarations (C# 8 feature) over using statement
+  blocks. If you need to reduce the scope of the using variables,
+  start a new block with curly braces and use the using declaration
+  inside it.
+
 - Continuous Integration (CI) will check if the formatting scripts and
   tools find some problems in your code. You should fix these if your
   pull request (PR) fails the CI build.
