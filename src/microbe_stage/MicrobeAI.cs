@@ -439,10 +439,14 @@ public class MicrobeAI
     private bool ICanTryToEatMicrobe(Microbe targetMicrobe)
     {
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
+
+        // ReSharper disable MissingIndent
         return targetMicrobe.Species != microbe.Species && (
-        (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && ICanShootToxin() &&
+            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && ICanShootToxin() &&
             sizeRatio > 1 / Constants.ENGULF_SIZE_RATIO_REQ) ||
         (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+        
+        // ReSharper enable MissingIndent
     }
 
     private bool ICanShootToxin()
