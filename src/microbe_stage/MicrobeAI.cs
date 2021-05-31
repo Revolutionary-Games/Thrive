@@ -444,8 +444,8 @@ public class MicrobeAI
         return targetMicrobe.Species != microbe.Species && (
             (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && ICanShootToxin() &&
             sizeRatio > 1 / Constants.ENGULF_SIZE_RATIO_REQ) ||
-        (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
-        
+            (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+
         // ReSharper enable MissingIndent
     }
 
