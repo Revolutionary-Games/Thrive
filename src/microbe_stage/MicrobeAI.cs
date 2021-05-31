@@ -405,7 +405,7 @@ public class MicrobeAI
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
             (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
         {
-            if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+            if (ICanShootToxin())
             {
                 microbe.LookAtPoint = target;
                 microbe.QueueEmitToxin(oxytoxy);
@@ -438,8 +438,14 @@ public class MicrobeAI
 
     private bool ICanTryToEatMicrobe(Microbe targetMicrobe)
     {
-        return targetMicrobe.Species != microbe.Species && ((SpeciesAggression == Constants.MAX_SPECIES_AGGRESSION)
+        return targetMicrobe.Species != microbe.Species && (
+            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && ICanShootToxin())
             || (microbe.EngulfSize / targetMicrobe.EngulfSize >= Constants.ENGULF_SIZE_RATIO_REQ));
+    }
+
+    private bool ICanShootToxin()
+    {
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT
     }
 
     private float DistanceFromMe(Vector3 target)
