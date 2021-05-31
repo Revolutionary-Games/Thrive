@@ -224,7 +224,7 @@ public class MicrobeAI
             if (!otherMicrobe.Dead)
             {
                 if (DistanceFromMe(otherMicrobe.Translation) <
-                    (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGRESSION)
+                    (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
                     && ICanTryToEatMicrobe(otherMicrobe))
                 {
                     if (chosenPrey == null ||
@@ -298,7 +298,7 @@ public class MicrobeAI
 
         // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
         if (DistanceFromMe(predatorLocation) < 100.0f &&
-            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
+            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
         {
             MoveWithRandomTurn(2.5f, 3.0f, random);
         }
@@ -307,7 +307,7 @@ public class MicrobeAI
         if (SpeciesAggression > SpeciesFear &&
             DistanceFromMe(predatorLocation) >
             300.0f - (5.0f * SpeciesAggression) + (6.0f * SpeciesFear) &&
-            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION, random))
+            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
         {
             LaunchToxin(predatorLocation);
         }
@@ -325,7 +325,7 @@ public class MicrobeAI
         {
             LaunchToxin(target);
 
-            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGRESSION / 5, random))
+            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
                 SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
             }
@@ -438,7 +438,7 @@ public class MicrobeAI
 
     private bool ICanTryToEatMicrobe(Microbe targetMicrobe)
     {
-        return targetMicrobe.Species != microbe.Species && ((SpeciesAggression == Constants.MAX_SPECIES_AGRESSION)
+        return targetMicrobe.Species != microbe.Species && ((SpeciesAggression == Constants.MAX_SPECIES_AGGRESSION)
             || (microbe.EngulfSize / targetMicrobe.EngulfSize >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
