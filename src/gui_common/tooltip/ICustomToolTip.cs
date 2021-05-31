@@ -6,7 +6,7 @@
 public enum ToolTipPositioning
 {
     /// <summary>
-    ///   Tooltip positioned at the last cursor position after entering a tooltipable area.
+    ///   Tooltip positioned at the last cursor position after entering a tooltip enabled area.
     /// </summary>
     LastMousePosition,
 
@@ -17,7 +17,7 @@ public enum ToolTipPositioning
 }
 
 /// <summary>
-///   Interface for all custom tooltip Control nodes. Benefits from being highly-customizeable
+///   Interface for all custom tooltip Control nodes. Benefits from being highly-customizable
 ///   than the default built-in tooltips.
 /// </summary>
 /// <remarks>

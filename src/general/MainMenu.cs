@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -147,10 +146,7 @@ public class MainMenu : Node
     {
         Random rand = new Random();
 
-        // Exported lists will crash the game, so as a workaround ToList() is added
-        // https://github.com/godotengine/godot/issues/37934
-        // This is a Godot issue that may get fixed in 4.0
-        var chosenBackground = MenuBackgrounds.ToList().Random(rand);
+        var chosenBackground = MenuBackgrounds.Random(rand);
 
         SetBackground(chosenBackground);
     }
@@ -191,7 +187,9 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, IsReturningToMenu ?
+            0.3f :
+            0.5f, false);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
 
         // Start music after the video
@@ -258,7 +256,7 @@ public class MainMenu : Node
         // Ignore mouse event on the button to prevent it being clicked twice
         freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.2f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.15f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 

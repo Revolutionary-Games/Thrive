@@ -224,7 +224,7 @@ public struct Hex : IEquatable<Hex>
     }
 
     /// <summary>
-    ///   Symmetrizes a hex horizontally about the (0,x) axis.
+    ///   Makes a hex symmetrical horizontally about the (0,x) axis.
     /// </summary>
     public static Hex FlipHorizontally(Hex hex)
     {
@@ -233,10 +233,10 @@ public struct Hex : IEquatable<Hex>
 
     public override bool Equals(object obj)
     {
-        if (!(obj is Hex))
+        if (!(obj is Hex hex))
             return false;
 
-        return Equals((Hex)obj);
+        return Equals(hex);
     }
 
     public bool Equals(Hex other)
