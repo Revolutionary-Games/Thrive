@@ -105,7 +105,8 @@ public class MicrobeAI
 
     /// <summary>
     ///   Anything held between calls of the think() method has a chance of having been disposed elsewhere.
-    ///   This sets anything disposed to null to prevent errors. This can probably be removed when issue 2029 is fixed
+    ///   This sets anything disposed to null to prevent errors. This can probably be removed when issue 
+    ///   https://github.com/Revolutionary-Games/Thrive/issues/2029 is fixed
     /// </summary>
     private void ClearDisposedReferences(MicrobeAICommonData data)
     {
