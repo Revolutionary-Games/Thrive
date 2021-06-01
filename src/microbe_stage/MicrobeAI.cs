@@ -74,17 +74,17 @@ public class MicrobeAI
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
         else if (predator.HasValue &&
-            DistanceFromMe((Vector3)predator.Value) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
+            DistanceFromMe(predator.Value) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
         {
-            FleeFromPredators(random, (Vector3)predator);
+            FleeFromPredators(random, predator.Value);
         }
         else if (targetChunk.HasValue)
         {
-            PursueAndConsumeChunks((Vector3)targetChunk, random);
+            PursueAndConsumeChunks(targetChunk.Value, random);
         }
         else if (prey.HasValue)
         {
-            EngagePrey((Vector3)prey, random, engulfPrey);
+            EngagePrey(prey.Value, random, engulfPrey);
         }
         else
         {
