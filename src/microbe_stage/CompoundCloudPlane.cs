@@ -723,13 +723,5 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         // No clue how this math ends up with the right UV offsets - hhyyrylainen
         material.SetShaderParam("UVOffset", new Vector2(position.x / (float)Constants.CLOUD_SQUARES_PER_SIDE,
             position.y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
-
-        // Noise texture follows the world position with a modifier to make the noise texture repeat more often
-        // material.SetShaderParam("NoiseUVOffset",
-        //     new Vector2((position.x / (float)Constants.CLOUD_WIDTH) * Constants.CLOUD_NOISE_UV_OFFSET_MULTIPLIER,
-        //         (position.y / (float)Constants.CLOUD_HEIGHT) * Constants.CLOUD_NOISE_UV_OFFSET_MULTIPLIER));
-        material.SetShaderParam("NoiseUVOffset",
-            new Vector2(position.x * Constants.CLOUD_NOISE_UV_OFFSET_MULTIPLIER,
-                position.y * Constants.CLOUD_NOISE_UV_OFFSET_MULTIPLIER));
     }
 }
