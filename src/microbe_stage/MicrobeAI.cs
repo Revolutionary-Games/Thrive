@@ -33,7 +33,7 @@ public class MicrobeAI
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
-    [JsonProperty]
+    [JsonIgnore]
     private Microbe focusedPrey;
 
     [JsonProperty]
@@ -156,16 +156,17 @@ public class MicrobeAI
         // Don't bother with chunks when there's a lot of microbes to compete with
         if (chosenChunk != null)
         {
-            var numRivals = 0;
+            var rivals = 0;
+            var distanceToChunk = (microbe.Translation - chosenChunk.Translation).LengthSquared();
             foreach (var rival in allMicrobes)
             {
                 if (rival != microbe)
                 {
                     var rivalDistance = (rival.Translation - chosenChunk.Translation).LengthSquared();
                     if (rivalDistance < 500.0f &&
-                        rivalDistance < (microbe.Translation - chosenChunk.Translation).LengthSquared())
+                        rivalDistance < distanceToChunk)
                     {
-                        numRivals++;
+                        rivals++;
                     }
                 }
             }
@@ -180,7 +181,7 @@ public class MicrobeAI
                 rivalThreshold *= 2;
             }
 
-            if (numRivals > rivalThreshold)
+            if (rivals > rivalThreshold)
             {
                 chosenChunk = null;
             }
@@ -358,7 +359,7 @@ public class MicrobeAI
         }
 
         float compoundDifference = 0.0f;
-        foreach (KeyValuePair<Compound, float> compound in usefulCompounds)
+        foreach (var compound in usefulCompounds)
         {
             compoundDifference += compound.Value;
         }
@@ -389,7 +390,7 @@ public class MicrobeAI
     private void SetEngulfIfClose()
     {
         // Turn on engulfmode if close
-        // Sometimes "close" is hard to decern since microbes can range from straight lines to circles
+        // Sometimes "close" is hard to dicern since microbes can range from straight lines to circles
         if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
         {
             microbe.EngulfMode = true;
@@ -440,13 +441,10 @@ public class MicrobeAI
     {
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
-        // ReSharper disable MissingIndent
         return targetMicrobe.Species != microbe.Species && (
             (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && ICanShootToxin() &&
                 sizeRatio > 1 / Constants.ENGULF_SIZE_RATIO_REQ) ||
             (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
-
-        // ReSharper enable MissingIndent
     }
 
     private bool ICanShootToxin()
