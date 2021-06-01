@@ -23,10 +23,6 @@ public class MicrobeAI
     [JsonProperty]
     private Microbe microbe;
 
-    // ReSharper disable once CollectionNeverQueried.Local
-    [JsonIgnore]
-    private List<FloatingChunk> chunkList = new List<FloatingChunk>();
-
     [JsonProperty]
     private float previousAngle;
 
@@ -57,9 +53,6 @@ public class MicrobeAI
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
         _ = delta;
-
-        // Clear the lists
-        chunkList.Clear();
 
         ClearDisposedReferences(data);
 
@@ -141,8 +134,6 @@ public class MicrobeAI
             {
                 if (chunk.ContainedCompounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
-                    chunkList.Add(chunk);
-
                     if (chosenChunk == null ||
                         (chosenChunk.Translation - microbe.Translation).LengthSquared() >
                         (chunk.Translation - microbe.Translation).LengthSquared())
