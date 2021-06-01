@@ -30,8 +30,6 @@ const float NOISE_UV_SCALE = 2.5f;
 
 float getIntensity(float value){
     return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f);
-    // return min(0.008 * CLOUD_MAX_INTENSITY_SHOWN * value, 1.0f);
-    // return min(value * 0.9f, 1.0f);
 }
 
 void fragment(){
