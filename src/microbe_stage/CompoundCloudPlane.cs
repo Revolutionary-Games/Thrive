@@ -719,6 +719,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     private void SetMaterialUVForPosition()
     {
         var material = (ShaderMaterial)Material;
+
+        // No clue how this math ends up with the right UV offsets - hhyyrylainen
         material.SetShaderParam("UVOffset", new Vector2(position.x / (float)Constants.CLOUD_SQUARES_PER_SIDE,
             position.y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
 
