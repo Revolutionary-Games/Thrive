@@ -95,6 +95,9 @@ onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
 
 VALID_TARGETS = @options[:dehydrate] ? DEVBUILD_TARGETS : ALL_TARGETS
 
+# Make sure godot ignores the builds folder in terms of imports
+File.write 'builds/.gdignore', '' unless File.exist? 'builds/.gdignore'
+
 if @options[:dehydrate]
   puts 'Making dehydrated devbuilds'
 
