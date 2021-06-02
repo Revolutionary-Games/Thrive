@@ -74,7 +74,8 @@ def ide_file?(path)
 end
 
 def explicitly_ignored?(path)
-  path =~ %r{/ThirdParty/}i || path =~ /GlobalSuppressions.cs/ || path =~ %r{/RubySetupSystem/}
+  path =~ %r{/ThirdParty/}i || %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
+    path =~ %r{/RubySetupSystem/}
 end
 
 def cache?(path)
