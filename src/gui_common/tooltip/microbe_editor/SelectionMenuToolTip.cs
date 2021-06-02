@@ -124,7 +124,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.FollowMousePosition;
 
-    public bool HideOnMousePress { get; set; } = false;
+    public bool HideOnMousePress { get; set; }
 
     public Node ToolTipNode => this;
 
