@@ -51,7 +51,7 @@ SOURCE_ITEMS = [
   'GlobalSuppressions.cs', 'LICENSE.txt', 'project.godot', 'stylecop.json', 'StyleCop.ruleset',
   'Thrive.csproj', 'Thrive.sln', 'Thrive.sln.DotSettings', 'doc', 'docker/ci',
   'docker/jsonlint', 'Properties', 'shaders', 'simulation_parameters', 'src', 'test',
-  'README.md'
+  'third_party', 'README.md'
 ].freeze
 
 ASSEMBLY_VERSION = /AssemblyVersion\("([\d.]+)"\)/.freeze
