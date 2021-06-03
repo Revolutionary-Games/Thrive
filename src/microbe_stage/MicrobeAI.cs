@@ -218,7 +218,7 @@ public class MicrobeAI
             {
                 if (DistanceFromMe(otherMicrobe.Translation) <
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
-                    && ICanTryToEatMicrobe(otherMicrobe))
+                    && CanTryToEatMicrobe(otherMicrobe))
                 {
                     if (chosenPrey == null ||
                         (chosenPrey.Translation - microbe.Translation).LengthSquared() >
@@ -344,7 +344,7 @@ public class MicrobeAI
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
 
         // If this microbe lacks glucose, don't bother with ammonia and phosphorous
-        // This algorithm doesn't try to determine if iron and sulfuric acid is usefull to this microbe
+        // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
         if (microbe.Compounds.GetCompoundAmount(glucose) < 0.5f)
         {
             usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
@@ -381,8 +381,8 @@ public class MicrobeAI
 
     private void SetEngulfIfClose()
     {
-        // Turn on engulfmode if close
-        // Sometimes "close" is hard to dicern since microbes can range from straight lines to circles
+        // Turn on engulf mode if close
+        // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
         if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
         {
             microbe.EngulfMode = true;
@@ -398,7 +398,7 @@ public class MicrobeAI
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
             (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
         {
-            if (ICanShootToxin())
+            if (CanShootToxin())
             {
                 microbe.LookAtPoint = target;
                 microbe.QueueEmitToxin(oxytoxy);
@@ -429,17 +429,17 @@ public class MicrobeAI
         microbe.MovementDirection = new Vector3(0, 0, -speed);
     }
 
-    private bool ICanTryToEatMicrobe(Microbe targetMicrobe)
+    private bool CanTryToEatMicrobe(Microbe targetMicrobe)
     {
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
         return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && ICanShootToxin() &&
+            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && CanShootToxin() &&
                 sizeRatio > 1 / Constants.ENGULF_SIZE_RATIO_REQ) ||
             (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
-    private bool ICanShootToxin()
+    private bool CanShootToxin()
     {
         return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
     }
