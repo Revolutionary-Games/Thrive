@@ -220,7 +220,9 @@ public class MicrobeHUD : Node
     ///   Show mouse coordinates data in the mouse
     ///   hover box, useful during develop.
     /// </summary>
-    private bool showMouseCoordinates = false;
+#pragma warning disable 649 // ignored until we get some GUI or something to change this
+    private bool showMouseCoordinates;
+#pragma warning restore 649
 
     /// <summary>
     ///   For toggling paused with the pause button.

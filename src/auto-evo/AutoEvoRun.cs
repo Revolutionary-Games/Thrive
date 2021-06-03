@@ -272,7 +272,7 @@ public class AutoEvoRun
             builder.Append(string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED"),
                 entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
-            builder.Append("\n");
+            builder.Append('\n');
         }
 
         return builder.ToString();
