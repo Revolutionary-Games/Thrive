@@ -26,6 +26,7 @@ class DevBuildUploader
     @parallel = options[:parallel_upload]
     @base_url = options[:url]
     @retries = options[:retries]
+    @delete = options[:delete_after_upload]
 
     @dehydrated_to_upload = []
     @devbuilds_to_upload = []
@@ -203,6 +204,11 @@ class DevBuildUploader
                     headers: headers, body: {
                       token: token
                     }.to_json)
+    end
+
+    if @delete
+      puts "Deleting successfully uploaded file: #{file}"
+      File.unlink file
     end
   end
 
