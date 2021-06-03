@@ -376,7 +376,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
-    private static Color CalculateHSLForOrganelle(Color rawColour)
+    private static Color CalculateHSVForOrganelle(Color rawColour)
     {
         // Get hue saturation and brightness for the colour
 
@@ -464,7 +464,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private void UpdateColour()
     {
-        organelleMaterial?.SetShaderParam("tint", CalculateHSLForOrganelle(Colour));
+        organelleMaterial?.SetShaderParam("tint", CalculateHSVForOrganelle(Colour));
 
         needsColourUpdate = false;
     }

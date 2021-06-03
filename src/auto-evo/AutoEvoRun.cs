@@ -26,7 +26,7 @@ public class AutoEvoRun
     /// </summary>
     private readonly Queue<IRunStep> runSteps = new Queue<IRunStep>();
 
-    private volatile RunStage state = RunStage.GATHERING_INFO;
+    private volatile RunStage state = RunStage.GatheringInfo;
 
     private bool started;
     private volatile bool running;
@@ -51,17 +51,17 @@ public class AutoEvoRun
         ///   On the first step(s) all the data is loaded (if there is a lot then it is split into multiple steps) and
         ///   the total number of steps is calculated
         /// </summary>
-        GATHERING_INFO,
+        GatheringInfo,
 
         /// <summary>
         ///   Steps are being executed
         /// </summary>
-        STEPPING,
+        Stepping,
 
         /// <summary>
         ///   All the steps are done and the result is written
         /// </summary>
-        ENDED,
+        Ended,
     }
 
     /// <summary>
@@ -313,20 +313,20 @@ public class AutoEvoRun
     {
         switch (state)
         {
-            case RunStage.GATHERING_INFO:
+            case RunStage.GatheringInfo:
                 GatherInfo();
 
                 // +2 is for this step and the result apply step
                 totalSteps = runSteps.Sum(step => step.TotalSteps) + 2;
 
                 Interlocked.Increment(ref completeSteps);
-                state = RunStage.STEPPING;
+                state = RunStage.Stepping;
                 return false;
-            case RunStage.STEPPING:
+            case RunStage.Stepping:
                 if (runSteps.Count < 1)
                 {
                     // All steps complete
-                    state = RunStage.ENDED;
+                    state = RunStage.Ended;
                 }
                 else
                 {
@@ -337,7 +337,7 @@ public class AutoEvoRun
                 }
 
                 return false;
-            case RunStage.ENDED:
+            case RunStage.Ended:
                 // Results are no longer applied here as it's easier to just apply them on the main thread while
                 // moving to the editor
                 Interlocked.Increment(ref completeSteps);
