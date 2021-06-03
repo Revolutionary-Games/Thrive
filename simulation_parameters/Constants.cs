@@ -329,7 +329,7 @@ public static class Constants
 
     // Mutation Variables
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 1.0f;
-    public const float MUTATION_CREATION_RATE = 0.1f;
+    public const float MUTATION_CREATION_RATE = 0.15f;
     public const float MUTATION_EXTRA_CREATION_RATE = 0.1f;
     public const float MUTATION_DELETION_RATE = 0.1f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
@@ -368,7 +368,6 @@ public static class Constants
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
     // Genus splitting and name mutation
-    public const int MUTATION_CHANGE_GENUS = 33;
     public const int MUTATION_WORD_EDIT = 10;
 
     /// <summary>
