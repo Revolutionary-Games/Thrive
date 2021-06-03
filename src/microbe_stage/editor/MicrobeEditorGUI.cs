@@ -384,9 +384,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureRect sizeIndicator;
 
     private Texture symmetryIconDefault;
-    private Texture symmetryIcon2x;
-    private Texture symmetryIcon4x;
-    private Texture symmetryIcon6x;
+    private Texture symmetryIcon2X;
+    private Texture symmetryIcon4X;
+    private Texture symmetryIcon6X;
     private Texture increaseIcon;
     private Texture decreaseIcon;
     private AudioStream unableToPlaceHexSound;
@@ -516,9 +516,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
-        symmetryIcon2x = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
-        symmetryIcon4x = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
-        symmetryIcon6x = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
+        symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
+        symmetryIcon4X = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
+        symmetryIcon6X = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
@@ -1310,13 +1310,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 symmetryIcon.Texture = symmetryIconDefault;
                 break;
             case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
-                symmetryIcon.Texture = symmetryIcon2x;
+                symmetryIcon.Texture = symmetryIcon2X;
                 break;
             case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon4x;
+                symmetryIcon.Texture = symmetryIcon4X;
                 break;
             case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon6x;
+                symmetryIcon.Texture = symmetryIcon6X;
                 break;
         }
     }
