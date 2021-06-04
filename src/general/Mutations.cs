@@ -59,7 +59,7 @@ public class Mutations
 
         MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria);
 
-        // Update the genus is the new species is different enough
+        // Update the genus if the new species is different enough
         if (NewGenus(mutated, parent))
         {
             // We can do more fun stuff here later
