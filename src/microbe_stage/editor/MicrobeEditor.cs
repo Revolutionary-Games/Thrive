@@ -1312,9 +1312,17 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void InitEditorFresh()
     {
+        MutationPoints = Constants.BASE_MUTATION_POINTS;
+        editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
+            OnOrganelleAdded, OnOrganelleRemoved);
+
+        organelleRot = 0;
+
         targetPatch = null;
 
         playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
+
+        canStillMove = true;
 
         // For now we only show a loading screen if auto-evo is not ready yet
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
@@ -1341,14 +1349,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             // Make sure freebuilding doesn't get stuck on
             FreeBuilding = false;
         }
-
-        MutationPoints = Constants.BASE_MUTATION_POINTS;
-        editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
-            OnOrganelleAdded, OnOrganelleRemoved);
-
-        organelleRot = 0;
-
-        canStillMove = true;
 
         var playerSpecies = CurrentGame.GameWorld.PlayerSpecies;
 
