@@ -190,52 +190,30 @@ public class Mutations
         {
             mutatedOrganelles.Clear();
 
-            // Delete or replace an organelle randomly
-            for (int i = 0; i < parentOrganelles.Count; i++)
+            // Chance to replace each organelle randomly
+            foreach (var parentOrganelle in parentOrganelles)
             {
-                bool copy = true;
+                OrganelleTemplate organelle = (OrganelleTemplate)parentOrganelle.Clone();
 
-                var organelle = parentOrganelles[i];
-
-                if (parentOrganelles.Count < 2)
+                // Chance to replace or remove if not a nucleus
+                if (organelle.Definition != nucleus)
                 {
-                    // Removing last organelle would be silly
-                }
-                else if (organelle.Definition != nucleus)
-                {
-                    // Chance to replace or remove if not a nucleus
-
-                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE)
+                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE / Math.Sqrt(parentOrganelles.Count))
                     {
-                        copy = false;
+                        // Don't copy over any organelle, removing this one from the new species
+                        continue;
                     }
                     else if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
                     {
-                        copy = false;
-
-                        var replacer = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
+                        organelle = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
                             organelle.Position, organelle.Orientation);
-
-                        // The replacing organelle might not fit at the same position
-                        try
-                        {
-                            mutatedOrganelles.Add(replacer);
-                        }
-                        catch (ArgumentException)
-                        {
-                            // Couldn't replace it
-                            copy = true;
-                        }
                     }
                 }
-
-                if (!copy)
-                    continue;
 
                 // Copy the organelle
                 try
                 {
-                    mutatedOrganelles.Add((OrganelleTemplate)organelle.Clone());
+                    mutatedOrganelles.Add(organelle);
                 }
                 catch (ArgumentException)
                 {
@@ -245,23 +223,17 @@ public class Mutations
                 }
             }
 
-            // Can add up to 6 new organelles (Which should allow AI to catch up to player more)
-            // We can insert new organelles at the end of the list
-            if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
-            {
-                AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
-            }
-
             /*
+            Can add up to 6 new organelles (Which should allow AI to catch up to player more)
             Probability of mutation occuring 5 time = 0.15 ^ 5 = 7.5 * 10 ^ -5
             Probability of mutation NOT occuring = (1 - 0.15) ^ 5 = 0.443
             Probability of mutation occuring = 1 - (1 - 0.15) ^ 5 = 0.556
             */
 
             // We can insert new organelles at the end of the list
-            for (int n = 0; n < 5; ++n)
+            for (int n = 0; n < 6; n++)
             {
-                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_EXTRA_CREATION_RATE)
+                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
                 {
                     AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
                 }
@@ -269,7 +241,7 @@ public class Mutations
 
             if (isBacteria)
             {
-                if (random.Next(0.0f, 100.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
+                if (random.Next(0.0f, 1.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
                 {
                     AddNewOrganelle(mutatedOrganelles, nucleus);
                 }
@@ -288,7 +260,7 @@ public class Mutations
 
             // Try again if the mutation has islands
             if (mutatedOrganelles.GetIslandHexes().Count == 0)
-                return;
+                continue;
         }
 
         GD.PrintErr("Could not create a valid mutation after 10 retries.");
