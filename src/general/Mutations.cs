@@ -425,6 +425,7 @@ public class Mutations
             opaqueness);
     }
 
+    // Returns true if the two species should have a different species name, false otherwise.
     private bool NewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
     {
         var species1UniqueOrganelles = new HashSet<string>();
