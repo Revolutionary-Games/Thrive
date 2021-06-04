@@ -8,7 +8,7 @@ using DataSetDictionary = System.Collections.Generic.Dictionary<string, LineChar
 
 /// <summary>
 ///   A custom widget for multi-line chart with hoverable data points tooltip. Uses <see cref="LineChartData"/>
-///   as dataset; currently only support numerical datas.
+///   as dataset; currently only support numerical data.
 /// </summary>
 public class LineChart : VBoxContainer
 {
@@ -135,7 +135,7 @@ public class LineChart : VBoxContainer
         MinVisibleLimitReached,
 
         /// <summary>
-        ///   The dataset visibility is succesfully changed.
+        ///   The dataset visibility is successfully changed.
         /// </summary>
         Success,
     }
@@ -233,6 +233,7 @@ public class LineChart : VBoxContainer
                 {
                     // Hide the marker as its positioning won't be pretty at zero coordinate
                     point.Visible = false;
+                    data.Value.Draw = false;
                 }
 
                 point.Coordinate = point.Coordinate.LinearInterpolate(coordinate, 3.0f * delta);
@@ -506,7 +507,7 @@ public class LineChart : VBoxContainer
         {
             Flat = false,
             Text = title,
-            EnabledFocusMode = FocusModeEnum.None,
+            FocusMode = FocusModeEnum.None,
         };
 
         var itemId = 0;
@@ -652,7 +653,7 @@ public class LineChart : VBoxContainer
         // Set pivot at the center of the rect
         mouseCollider.RectPivotOffset = mouseCollider.RectSize / 2;
 
-        // Use the distance between two coordinates as the collider's length
+        // Use the distance between two coordinates as the length of the collider
         mouseCollider.RectScale = new Vector2(
             firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.RectSize.x,
             dataSets[datasetName].LineWidth + 10);
@@ -675,7 +676,7 @@ public class LineChart : VBoxContainer
             // Had to apply the coordinate on the next frame to compensate with Godot's UI update delay,
             // so the coordinates could be correctly calculated (since it depends on the Control container
             // rect sizes) just after Plot() call. This may result to a subtle glitchy look in the first
-            // few frame where all the points were postioned at the top-left. But this works just fine for now.
+            // few frame where all the points were positioned at the top-left. But this works just fine for now.
             Invoke.Instance.Queue(() =>
             {
                 if (!IsInstanceValid(point))
@@ -994,7 +995,7 @@ public class LineChart : VBoxContainer
             IsUsingFallbackIcon = isUsingFallbackIcon;
             Expand = true;
             RectMinSize = new Vector2(18, 18);
-            EnabledFocusMode = FocusModeEnum.None;
+            FocusMode = FocusModeEnum.None;
             ToggleMode = true;
             Pressed = true;
             TextureNormal = data.IconTexture;

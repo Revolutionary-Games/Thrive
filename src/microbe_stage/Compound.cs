@@ -20,6 +20,8 @@ public class Compound : IRegistryType
 
     public bool IsCloud;
 
+    public string IconPath;
+
     /// <summary>
     ///   When this is true the compound is always considered to be
     ///   useful and is not dumped.
@@ -35,6 +37,11 @@ public class Compound : IRegistryType
 
     public Color Colour;
 
+    /// <summary>
+    ///   Loaded icon for display in GUIs
+    /// </summary>
+    public Texture LoadedIcon;
+
 #pragma warning disable 169 // Used through reflection
     private string untranslatedName;
 #pragma warning restore 169
@@ -47,6 +54,12 @@ public class Compound : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compound has no name");
+        }
+
+        if (string.IsNullOrEmpty(IconPath))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Compound must be provided an icon");
         }
 
         // Guards against uninitialized alpha
@@ -75,6 +88,11 @@ public class Compound : IRegistryType
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+    }
+
+    public void Resolve()
+    {
+        LoadedIcon = GD.Load<Texture>(IconPath);
     }
 
     public void ApplyTranslations()

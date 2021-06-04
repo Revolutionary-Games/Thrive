@@ -58,7 +58,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private OrganelleLayout<PlacedOrganelle> organelles;
 
     /// <summary>
-    ///   Contains the piluses this microbe has for collision checking
+    ///   Contains the pili this microbe has for collision checking
     /// </summary>
     private HashSet<uint> pilusPhysicsShapes = new HashSet<uint>();
 
@@ -333,6 +333,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public int DespawnRadiusSqr { get; set; }
 
+    /// <summary>
+    ///   If true this shifts the purpose of this cell for visualizations-only
+    ///   (stops the normal functioning of the cell).
+    /// </summary>
+    [JsonIgnore]
+    public bool IsForPreviewOnly { get; set; }
+
     [JsonIgnore]
     public Node SpawnedNode => this;
 
@@ -418,7 +425,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _Ready()
     {
-        if (cloudSystem == null)
+        if (cloudSystem == null && !IsForPreviewOnly)
         {
             throw new Exception("Microbe not initialized");
         }
@@ -432,7 +439,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
-        cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
+        cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
         if (IsPlayerMicrobe)
         {
@@ -542,6 +549,33 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Unbind if the master removed it's binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
             Colony.RemoveFromColony(this);
+    }
+
+    /// <summary>
+    ///   Applies the set species' color to all of this microbe's organelles
+    /// </summary>
+    public void ApplyPreviewOrganelleColours()
+    {
+        if (!IsForPreviewOnly)
+            throw new InvalidOperationException("Microbe must be a preview-only type");
+
+        foreach (var entry in organelles.Organelles)
+        {
+            entry.Colour = Species.Colour;
+            entry.Update(0);
+        }
+    }
+
+    /// <summary>
+    ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
+    ///   membrane rigidity into account.
+    /// </summary>
+    public void ApplyMembraneWigglyness()
+    {
+        Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (Species.MembraneRigidity /
+            Membrane.Type.BaseWigglyness) * 0.2f;
+        Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (Species.MembraneRigidity /
+            Membrane.Type.MovementWigglyness) * 0.2f;
     }
 
     /// <summary>
@@ -829,14 +863,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             }
         }
 
-        int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISER);
+        int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISER;
+            float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
@@ -1159,7 +1193,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // Redo the cell membrane.
             SendOrganellePositionsToMembrane();
+
+            if (IsForPreviewOnly)
+            {
+                // Update once for the positioning of external organelles
+                foreach (var organelle in organelles.Organelles)
+                    organelle.Update(delta);
+            }
         }
+
+        // The code below starting from here is not needed for a display-only cell
+        if (IsForPreviewOnly)
+            return;
 
         CheckEngulfShapeSize();
 
@@ -1374,6 +1419,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Membrane.Type = Species.MembraneType;
         Membrane.Tint = Species.Colour;
         Membrane.Dirty = true;
+        ApplyMembraneWigglyness();
     }
 
     private void HandleCompoundAbsorbing(float delta)
@@ -1520,7 +1566,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (allOrganellesDivided)
         {
             // Ready to reproduce already. Only the player gets here
-            // as other cells split and reset varmatically
+            // as other cells split and reset automatically
             return;
         }
 
@@ -1624,7 +1670,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         while (true)
         {
             // Moves into the ring of radius "radius" and center the old organelle
-            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BOTTOM_LEFT];
+            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
             q = q + radiusOffset.Q;
             r = r + radiusOffset.R;
 
@@ -1933,13 +1979,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             deathParticlesSpawned = true;
 
-            var cellBurstEffectParticles = (Particles)cellBurstEffectScene.Instance();
-            var cellBurstEffectMaterial = (ParticlesMaterial)cellBurstEffectParticles.ProcessMaterial;
+            var cellBurstEffectParticles = (CellBurstEffect)cellBurstEffectScene.Instance();
+            cellBurstEffectParticles.Translation = Translation;
+            cellBurstEffectParticles.Radius = Radius;
+            cellBurstEffectParticles.AddToGroup(Constants.TIMED_GROUP);
 
-            cellBurstEffectMaterial.EmissionSphereRadius = Radius / 2;
-            cellBurstEffectMaterial.LinearAccel = Radius / 2;
-            cellBurstEffectParticles.OneShot = true;
-            AddChild(cellBurstEffectParticles);
+            GetParent().AddChild(cellBurstEffectParticles);
 
             // Hide the particles if being engulfed since they are
             // supposed to be already "absorbed" by the engulfing cell
@@ -1956,7 +2001,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         Membrane.DissolveEffectValue += delta * Constants.MEMBRANE_DISSOLVE_SPEED;
 
-        if (Membrane.DissolveEffectValue >= 6)
+        if (Membrane.DissolveEffectValue >= 1)
         {
             this.DetachAndQueueFree();
         }

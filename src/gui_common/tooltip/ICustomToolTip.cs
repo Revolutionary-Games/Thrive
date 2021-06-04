@@ -1,12 +1,12 @@
 ﻿using Godot;
 
 /// <summary>
-///   How the tooltip should be positioned on display.
+///   How a tooltip should be positioned on display.
 /// </summary>
 public enum ToolTipPositioning
 {
     /// <summary>
-    ///   Tooltip positioned at the last cursor position after entering a tooltipable area.
+    ///   Tooltip positioned at the last cursor position after entering a tooltip enabled area.
     /// </summary>
     LastMousePosition,
 
@@ -17,8 +17,16 @@ public enum ToolTipPositioning
 }
 
 /// <summary>
-///   Interface for all custom tooltip Control nodes
+///   Interface for all custom tooltip Control nodes. Benefits from being highly-customizable
+///   than the default built-in tooltips.
 /// </summary>
+/// <remarks>
+///   <para>
+///     NOTE: if the tooltip is simple enough (just a single line of text), it's better to use
+///     a Control's HintTooltip property for displaying it as using a custom tooltip will just
+///     be unnecessarily complicated.
+///   </para>
+/// </remarks>
 public interface ICustomToolTip
 {
     Vector2 Position { get; set; }

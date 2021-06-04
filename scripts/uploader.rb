@@ -26,6 +26,7 @@ class DevBuildUploader
     @parallel = options[:parallel_upload]
     @base_url = options[:url]
     @retries = options[:retries]
+    @delete = options[:delete_after_upload]
 
     @dehydrated_to_upload = []
     @devbuilds_to_upload = []
@@ -37,9 +38,9 @@ class DevBuildUploader
 
   def headers
     if @access_key
-      { 'X-Access-Code' => @access_key }
+      { 'X-Access-Code' => @access_key, 'Content-Type' => 'application/json' }
     else
-      {}
+      { 'Content-Type' => 'application/json' }
     end
   end
 
@@ -77,7 +78,7 @@ class DevBuildUploader
 
     info 'Uploading devbuilds'
     Parallel.map(things_to_upload, in_threads: @parallel) do |obj|
-      upload(*obj)
+      upload(*obj, delete: @delete)
     end
 
     success 'Done uploading'
@@ -95,7 +96,7 @@ class DevBuildUploader
                         objects: group.map do |i|
                           { sha3: i, size: object_size(i) }
                         end
-                      })
+                      }.to_json)
       end
 
       data['upload'].each do |upload|
@@ -120,7 +121,7 @@ class DevBuildUploader
                         build_size: File.size(build[:file]),
                         required_objects: build[:dehydrated_objects],
                         build_zip_hash: build[:build_zip_hash]
-                      })
+                      }.to_json)
       end
 
       onError "failed to receive upload url, response: #{data}" unless data['upload_url']
@@ -153,7 +154,7 @@ class DevBuildUploader
                     headers: headers, body: {
                       build_hash: version,
                       build_platform: platform
-                    })
+                    }.to_json)
     end
 
     return unless data['upload']
@@ -173,7 +174,7 @@ class DevBuildUploader
                         objects: group.map do |i|
                                    { sha3: i, size: object_size(i) }
                                  end
-                      })
+                      }.to_json)
       end
 
       data['upload'].each do |upload|
@@ -191,9 +192,9 @@ class DevBuildUploader
   end
 
   # Does the whole upload process
-  def upload(file, url, token)
+  def upload(file, url, token, delete: false)
     file_size = (File.size(file).to_f / 2**20).round(2)
-    puts "Uploading file #{file} " + 
+    puts "Uploading file #{file} " \
          "with size of #{file_size} MiB"
     put_file file, url
 
@@ -202,8 +203,13 @@ class DevBuildUploader
       HTTParty.post(URI.join(@base_url, '/api/v1/devbuild/finish'),
                     headers: headers, body: {
                       token: token
-                    })
+                    }.to_json)
     end
+
+    return unless delete
+
+    puts "Deleting successfully uploaded file: #{file}"
+    File.unlink file
   end
 
   # Puts file to storage URL
@@ -219,7 +225,7 @@ class DevBuildUploader
     (1..@retries).each do |i|
       begin
         response = yield
-        
+
         if response.code == 503
           puts "Error 503: waiting #{time_to_wait} seconds..."
           sleep(time_to_wait)

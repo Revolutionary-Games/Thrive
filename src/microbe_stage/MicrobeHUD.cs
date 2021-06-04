@@ -224,7 +224,9 @@ public class MicrobeHUD : Node
     ///   Show mouse coordinates data in the mouse
     ///   hover box, useful during develop.
     /// </summary>
-    private bool showMouseCoordinates = false;
+#pragma warning disable 649 // ignored until we get some GUI or something to change this
+    private bool showMouseCoordinates;
+#pragma warning restore 649
 
     /// <summary>
     ///   For toggling paused with the pause button.
@@ -233,7 +235,7 @@ public class MicrobeHUD : Node
 
     // Checks
     private bool environmentCompressed;
-    private bool compundCompressed;
+    private bool compoundCompressed;
     private bool leftPanelsActive;
 
     /// <summary>
@@ -379,9 +381,9 @@ public class MicrobeHUD : Node
     {
         var bars = compoundsPanelBarContainer.GetChildren();
 
-        if (mode == "compress" && !compundCompressed)
+        if (mode == "compress" && !compoundCompressed)
         {
-            compundCompressed = true;
+            compoundCompressed = true;
             compoundsPanelBarContainer.AddConstantOverride("vseparation", 20);
             compoundsPanelBarContainer.AddConstantOverride("hseparation", 14);
 
@@ -403,9 +405,9 @@ public class MicrobeHUD : Node
             }
         }
 
-        if (mode == "expand" && compundCompressed)
+        if (mode == "expand" && compoundCompressed)
         {
-            compundCompressed = false;
+            compoundCompressed = false;
             compoundsPanelBarContainer.Columns = 1;
             compoundsPanelBarContainer.AddConstantOverride("vseparation", 5);
             compoundsPanelBarContainer.AddConstantOverride("hseparation", 0);
@@ -425,20 +427,20 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        if (editorButton.Disabled)
-        {
-            GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
+        if (!editorButton.Disabled)
+            return;
 
-            editorButton.Disabled = false;
-            editorButton.GetNode<TextureRect>("Highlight").Show();
-            editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
-                new Color(1, 1, 1, 1);
-            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
-                new Color(1, 1, 1, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
-            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
-            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
-        }
+        GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
+
+        editorButton.Disabled = false;
+        editorButton.GetNode<TextureRect>("Highlight").Show();
+        editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
+            new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
+            new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
     }
 
     /// <summary>
@@ -476,6 +478,9 @@ public class MicrobeHUD : Node
     {
         GD.Print("Move to editor pressed");
 
+        // To prevent being clicked twice
+        editorButton.Disabled = true;
+
         // Make sure the game is unpaused
         if (GetTree().Paused)
         {
@@ -484,6 +489,8 @@ public class MicrobeHUD : Node
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+
+        stage.MovingToEditor = true;
     }
 
     public void ShowExtinctionBox()
@@ -519,12 +526,9 @@ public class MicrobeHUD : Node
     /// </summary>
     public void UpdateNeededBars()
     {
-        if (stage.Player == null)
-            return;
+        var compounds = stage.Player?.Compounds;
 
-        var compounds = stage.Player.Compounds;
-
-        if (!compounds.HasAnyBeenSetUseful())
+        if (compounds?.HasAnyBeenSetUseful() != true)
             return;
 
         if (compounds.IsSpecificallySetUseful(oxytoxy))

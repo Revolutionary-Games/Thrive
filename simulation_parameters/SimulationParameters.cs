@@ -22,6 +22,7 @@ public class SimulationParameters : Node
     private readonly Dictionary<string, HelpTexts> helpTexts;
     private readonly AutoEvoConfiguration autoEvoConfiguration;
     private readonly List<NamedInputGroup> inputGroups;
+    private readonly Dictionary<string, Gallery> gallery;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -67,7 +68,9 @@ public class SimulationParameters : Node
         inputGroups = LoadListRegistry<NamedInputGroup>("res://simulation_parameters/common/input_options.json");
 
         autoEvoConfiguration =
-            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/autoevo_parameters.json");
+            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/auto-evo_parameters.json");
+
+        gallery = LoadRegistry<Gallery>("res://simulation_parameters/common/gallery.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -146,6 +149,11 @@ public class SimulationParameters : Node
         return compounds[name];
     }
 
+    public bool DoesCompoundExist(string name)
+    {
+        return compounds.ContainsKey(name);
+    }
+
     /// <summary>
     ///   Returns all compounds that are clouds
     /// </summary>
@@ -172,6 +180,11 @@ public class SimulationParameters : Node
     public HelpTexts GetHelpTexts(string name)
     {
         return helpTexts[name];
+    }
+
+    public Gallery GetGallery(string name)
+    {
+        return gallery[name];
     }
 
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
@@ -218,6 +231,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(musicCategories);
         ApplyRegistryObjectTranslations(helpTexts);
         ApplyRegistryObjectTranslations(inputGroups);
+        ApplyRegistryObjectTranslations(gallery);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -262,16 +276,14 @@ public class SimulationParameters : Node
 
     private static string ReadJSONFile(string path)
     {
-        using (var file = new File())
-        {
-            file.Open(path, File.ModeFlags.Read);
-            var result = file.GetAsText();
+        using var file = new File();
+        file.Open(path, File.ModeFlags.Read);
+        var result = file.GetAsText();
 
-            // This might be completely unnecessary
-            file.Close();
+        // This might be completely unnecessary
+        file.Close();
 
-            return result;
-        }
+        return result;
     }
 
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
@@ -324,6 +336,7 @@ public class SimulationParameters : Node
         CheckRegistryType(musicCategories);
         CheckRegistryType(helpTexts);
         CheckRegistryType(inputGroups);
+        CheckRegistryType(gallery);
 
         NameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
@@ -347,6 +360,16 @@ public class SimulationParameters : Node
         }
 
         foreach (var entry in membranes)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in compounds)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in gallery)
         {
             entry.Value.Resolve();
         }

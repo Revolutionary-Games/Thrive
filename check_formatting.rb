@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# This script first builds using msbuild treating warnings as errors
+# This script first builds using dotnet treating warnings as errors
 # and then runs some custom line length checks
 require 'optparse'
 require 'find'
@@ -14,7 +14,7 @@ require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
 
 MAX_LINE_LENGTH = 120
-DUPLICATE_THRESSHOLD = 110
+DUPLICATE_THRESSHOLD = 105
 
 LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
 
@@ -37,7 +37,6 @@ TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
 OUTPUT_MUTEX = Mutex.new
-MSBUILD_MUTEX = Mutex.new
 
 # Bom bytes
 BOM = [239, 187, 191].freeze
@@ -62,9 +61,6 @@ OptionParser.new do |opts|
   opts.on('-p', '--[no-]parallel', 'Run different checks in parallel (default)') do |b|
     @options[:parallel] = b
   end
-  opts.on('--msbuild MSBUILD', 'Specify msbuild dll to use with jetbrains tools') do |f|
-    @options[:msBuild] = f
-  end
 end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
@@ -73,49 +69,13 @@ info "Starting formatting checks with the following checks: #{@options[:checks]}
 
 # Helper functions
 
-def detect_ms_build_dll
-  msbuild = which 'msbuild'
-
-  unless msbuild
-    OUTPUT_MUTEX.synchronize do
-      puts 'Searched paths:'
-      pathAsArray.each do |p|
-        puts p
-      end
-
-      onError 'msbuild not found in PATH'
-    end
-  end
-
-  File.foreach(msbuild) do |line|
-    match = line.match(%r{/mono\s+.+\s(/.*/MSBuild.dll)\s+})
-
-    next unless match
-
-    dll = match.captures[0]
-
-    info "msbuild dll path detected: #{dll}"
-    return dll
-  end
-
-  onError 'Could not determine MSBuild.dll location, please specify --msbuild ' \
-          'parameter with the correct path'
-end
-
-def ms_build
-  MSBUILD_MUTEX.synchronize do
-    return @options[:msBuild] if @options[:msBuild]
-
-    @options[:msBuild] = detect_ms_build_dll
-  end
-end
-
 def ide_file?(path)
   path =~ %r{/\.vs/} || path =~ %r{/\.idea/}
 end
 
 def explicitly_ignored?(path)
-  path =~ %r{/ThirdParty/}i || path =~ /GlobalSuppressions.cs/ || path =~ %r{/RubySetupSystem/}
+  path =~ %r{/ThirdParty/}i || %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
+    path =~ %r{/RubySetupSystem/}
 end
 
 def cache?(path)
@@ -124,7 +84,7 @@ end
 
 # Skip some files that would otherwise be processed
 def skip_file?(path)
-  explicitly_ignored?(path) || path =~ %r{^\.\/\.\/} || cache?(path) || ide_file?(path)
+  explicitly_ignored?(path) || path =~ %r{^\./\./} || cache?(path) || ide_file?(path)
 end
 
 def file_type_skipped?(path)
@@ -485,12 +445,12 @@ def run_compile
   # Make sure in analysis mode before running build
   perform_analysis_mode_check true, quiet: true
 
-  status, output = runOpen3CaptureOutput('msbuild', 'Thrive.sln', '/t:Clean,Build',
+  status, output = runOpen3CaptureOutput('dotnet', 'build', 'Thrive.sln', '/t:Clean,Build',
                                          '/warnaserror')
 
   if status != 0
     OUTPUT_MUTEX.synchronize  do
-      info 'Build output from msbuild:'
+      info 'Build output from dotnet:'
       puts output
       error "\nBuild generated warnings or errors."
     end
@@ -554,8 +514,6 @@ def run_inspect_code
 
   params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
 
-  params.append "--toolset-path=#{ms_build}" if OS.linux?
-
   params.append "--include=#{@includes.join(';')}" if @includes
 
   runOpen3Checked(*params)
@@ -606,8 +564,6 @@ def run_cleanup_code
 
   params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
 
-  params.append "--toolset-path=#{ms_build}" if OS.linux?
-
   params.append "--include=#{@includes.join(';')}" if @includes
 
   runOpen3Checked(*params)
@@ -634,16 +590,11 @@ def run_duplicate_finder
   return if skip_jetbrains?
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
-            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=true',
-            '--exclude-by-comment="NO_DUPLICATE_CHECK"']
+            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=false',
+            '--exclude-by-comment="NO_DUPLICATE_CHECK"', 'Thrive.csproj']
 
-  params.append "--toolset-path=#{ms_build}" if OS.linux?
-
-  if @includes
-    params += @includes.select { |item| item =~ /\.cs$/ }.uniq
-  else
-    params.append 'Thrive.sln'
-  end
+  # Duplicate code needs to always process all files to detect code
+  # from an existing file being duplicated in a new file
 
   runOpen3Checked(*params)
 
