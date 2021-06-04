@@ -553,10 +553,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         ApplySelectionMenuTab();
 
         UpdateMutationPointsBar();
-
-        // Fade out for that smooth satisfying transition
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
     }
 
     public void SetMap(PatchMap map)
