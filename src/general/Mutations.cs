@@ -373,7 +373,6 @@ public class Mutations
         }
 
         return simulation.GetMembrane("silica");
-
     }
 
     private float RandomColourChannel()
