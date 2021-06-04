@@ -333,7 +333,7 @@ public static class Constants
     // Mutation Variables
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.15f;
-    public const float MUTATION_DELETION_RATE = 0.3f;
+    public const float MUTATION_DELETION_RATE = 0.03f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
     // Max fear and aggression and activity
