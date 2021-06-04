@@ -17,12 +17,12 @@ public class ScreenFade : CanvasLayer, ITransition
     public enum FadeType
     {
         /// <summary>
-        ///   Screen fades in
+        ///   Screen fades to white (transparent)
         /// </summary>
         FadeIn,
 
         /// <summary>
-        ///   Screen fades out
+        ///   Screen fades to black
         /// </summary>
         FadeOut,
     }
@@ -47,11 +47,11 @@ public class ScreenFade : CanvasLayer, ITransition
             // Apply initial colors
             if (currentFadeType == FadeType.FadeIn)
             {
-                rect.Color = new Color(0, 0, 0, 0);
+                rect.Color = new Color(0, 0, 0, 1);
             }
             else if (currentFadeType == FadeType.FadeOut)
             {
-                rect.Color = new Color(0, 0, 0, 1);
+                rect.Color = new Color(0, 0, 0, 0);
             }
         }
     }
@@ -92,10 +92,10 @@ public class ScreenFade : CanvasLayer, ITransition
         switch (CurrentFadeType)
         {
             case FadeType.FadeIn:
-                FadeToBlack();
+                FadeToWhite();
                 break;
             case FadeType.FadeOut:
-                FadeToWhite();
+                FadeToBlack();
                 break;
         }
     }

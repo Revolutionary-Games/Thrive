@@ -608,10 +608,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             OnEditorReady();
         }
 
-        // Save if wanted
+        // Auto save after editor entry is complete
         if (TransitionFinished && wantsToSave)
         {
-            // Auto save after editor entry is complete
             if (!CurrentGame.FreeBuild)
                 SaveHelper.AutoSave(this);
 
@@ -2261,7 +2260,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateReportTabStatistics(CurrentPatch);
 
-        FadeOut();
+        FadeIn();
     }
 
     private void OnLoadedEditorReady()
@@ -2278,7 +2277,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateReportTabStatistics(CurrentPatch);
 
-        FadeOut();
+        FadeIn();
     }
 
     private void ApplyAutoEvoResults()
@@ -2319,11 +2318,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Starts a fade out transition
+    ///   Starts a fade in transition
     /// </summary>
-    private void FadeOut()
+    private void FadeIn()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFinishTransitioning));
     }
 
