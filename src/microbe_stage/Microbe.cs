@@ -1381,7 +1381,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
-        cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
+        cloudSystem.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
