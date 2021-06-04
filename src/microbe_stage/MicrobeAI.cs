@@ -52,46 +52,19 @@ public class MicrobeAI
 
     public void TryThink(float delta, Random random, MicrobeAICommonData data)
     {
-        _ = delta;
-
-<<<<<<< HEAD
         // Disable most AI in a colony
         if (microbe.ColonyParent == null)
-        {
-            Think(random, data);
-
-            // Run reflexes
-            DoReflexes();
-        }
+            Think(delta, random, data);
 
         // Clear the absorbed compounds for run and rumble
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
-    public void ResetAI()
+    public void Think(float delta, Random random, MicrobeAICommonData data)
     {
-        targetPosition = Vector3.Zero;
-        microbe.MovementDirection = Vector3.Zero;
-        lifeState = LifeState.NEUTRAL_STATE;
-    }
+        _ = delta;
 
-    // There are cases when we want either ||, so here's two state rolls
-    private static bool RollCheck(float ourStat, float dc, Random random)
-    {
-        return random.Next(0.0f, dc) <= ourStat;
-    }
-
-    private static bool RollReverseCheck(float ourStat, float dc, Random random)
-    {
-        return ourStat >= random.Next(0.0f, dc);
-    }
-
-    private void Think(Random random, MicrobeAICommonData data)
-    {
-        // SetRandomTargetAndSpeed(random);
-=======
         ClearDisposedReferences(data);
->>>>>>> master
 
         Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
         Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
@@ -135,22 +108,17 @@ public class MicrobeAI
                 SetMoveSpeed(0.0f);
             }
         }
-
-        // Clear the absorbed compounds for run and rumble
-        microbe.TotalAbsorbedCompounds.Clear();
     }
 
-<<<<<<< HEAD
-    private void DoReflexes()
+    public void ResetAI()
     {
-        // For times when its best to tell the microbe directly what to do (Life threatening, attaching to things etc);
-        /* Check if we are willing to run, and there is a predator nearby, if so, flee for your life
-           If it was ran in evaluate environment, it would only work if the microbe was in the neutral state.
-           because we may need more of these very specific things in the future for things like latching onto rocks */
-        // If you are predating and not being engulfed, don't run away until you switch state (keeps predators chasing
-        // you even when their predators are nearby) Its not a good survival strategy but it makes the game more fun.
-        if (predator != null && (lifeState != LifeState.PREDATING_STATE || microbe.IsBeingEngulfed))
-=======
+        previousAngle = 0;
+        targetPosition = Vector3.Zero;
+        focusedPrey = null;
+        pursuitThreshold = 0;
+        microbe.MovementDirection = Vector3.Zero;
+    }
+
     /// <summary>
     ///   Anything held between calls of the think() method has a chance of having been disposed elsewhere.
     ///   This sets anything disposed to null to prevent errors. This can probably be removed when issue
@@ -176,7 +144,6 @@ public class MicrobeAI
 
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
->>>>>>> master
         {
             if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
                 && (chunk.Translation - microbe.Translation).LengthSquared()
@@ -332,7 +299,7 @@ public class MicrobeAI
 
     private void FleeFromPredators(Random random, Vector3 predatorLocation)
     {
-        microbe.EngulfMode = false;
+        microbe.State = Microbe.MicrobeState.Normal;
 
         targetPosition = (2 * (microbe.Translation - predatorLocation)) + microbe.Translation;
 
@@ -354,17 +321,13 @@ public class MicrobeAI
             LaunchToxin(predatorLocation);
         }
 
-<<<<<<< HEAD
-            microbe.State = Microbe.MicrobeState.Normal;
-=======
         // No matter what, I want to make sure I'm moving
         SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
     }
->>>>>>> master
 
     private void EngagePrey(Vector3 target, Random random, bool engulf)
     {
-        microbe.EngulfMode = engulf;
+        microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
         if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
@@ -378,44 +341,7 @@ public class MicrobeAI
         }
         else
         {
-<<<<<<< HEAD
-            // Turn on engulfmode if close
-            if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + microbe.EngulfSize * 3.0f
-                && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-                && microbe.State != Microbe.MicrobeState.Engulf &&
-                microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize
-                && !microbe.Membrane.Type.CellWall)
-            {
-                microbe.State = Microbe.MicrobeState.Engulf;
-                ticksSinceLastToggle = 0;
-            }
-            else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f
-                && microbe.State == Microbe.MicrobeState.Engulf
-                && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
-            {
-                microbe.State = Microbe.MicrobeState.Normal;
-                ticksSinceLastToggle = 0;
-            }
-        }
-
-        // Shoot toxins if able There should be AI that prefers shooting over engulfing, etc, not sure how to model that
-        // without a million and one variables perhaps its a mix? Maybe a creature with a focus less then a certain
-        // amount simply never attacks that way?  Maybe a creature with a specific focus, only ever shoots and never
-        // engulfs? Maybe their lethargicness impacts that? I just dont want each enemy to feel the same you know.  For
-        // now creatures with a focus under 100 will never shoot.
-        if (SpeciesFocus >= 100.0f)
-        {
-            if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-                (microbe.Translation - targetPosition).LengthSquared() <= SpeciesFocus * 10.0f)
-            {
-                if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
-                {
-                    microbe.QueueEmitToxin(oxytoxy);
-                }
-            }
-=======
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
->>>>>>> master
         }
     }
 
@@ -428,14 +354,8 @@ public class MicrobeAI
         // deposits being a lot smaller compared to the microbes
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
 
-<<<<<<< HEAD
-            hasTargetPosition = false;
-            targetChunk = GetNearestChunkItem(allChunks);
-            microbe.State = Microbe.MicrobeState.Normal;
-=======
         // If we are still engulfing for some reason, stop
-        microbe.EngulfMode = false;
->>>>>>> master
+        microbe.State = Microbe.MicrobeState.Normal;
 
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
 
@@ -446,32 +366,6 @@ public class MicrobeAI
             usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
         }
 
-<<<<<<< HEAD
-        microbe.LookAtPoint = targetPosition;
-        hasTargetPosition = true;
-
-        // Always set target Position, for use later in AI
-        microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
-
-        // Turn on engulfmode if close
-        if ((microbe.Translation - targetPosition).LengthSquared() <= 300 +
-            microbe.EngulfSize * 3.0f
-            && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-            && microbe.State != Microbe.MicrobeState.Engulf &&
-            microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * chunk.Size
-            && !microbe.Membrane.Type.CellWall)
-        {
-            microbe.State = Microbe.MicrobeState.Engulf;
-            ticksSinceLastToggle = 0;
-        }
-        else if ((microbe.Translation - targetPosition).LengthSquared() >=
-            500 + microbe.EngulfSize * 3.0f
-            && microbe.State == Microbe.MicrobeState.Engulf
-            && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
-        {
-            microbe.State = Microbe.MicrobeState.Normal;
-            ticksSinceLastToggle = 0;
-=======
         float compoundDifference = 0.0f;
         foreach (var compound in usefulCompounds)
         {
@@ -482,7 +376,6 @@ public class MicrobeAI
         if (compoundDifference < 0 && random.Next(0, 10) < 9)
         {
             MoveWithRandomTurn(2.5f, 3.0f, random);
->>>>>>> master
         }
 
         // If there isn't any food here, it's a good idea to keep moving
@@ -508,11 +401,11 @@ public class MicrobeAI
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
         if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
         {
-            microbe.EngulfMode = true;
+            microbe.State = Microbe.MicrobeState.Engulf;
         }
         else
         {
-            microbe.EngulfMode = false;
+            microbe.State = Microbe.MicrobeState.Normal;
         }
     }
 
