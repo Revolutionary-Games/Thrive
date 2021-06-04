@@ -159,6 +159,8 @@ internal static class KeyNames
     /// </summary>
     private static void Keys()
     {
+        // Names are from Godot so we need to have these as-is
+        // ReSharper disable StringLiteralTypo
         TranslationServer.Translate("SPACE");
         TranslationServer.Translate("BACKSLASH");
         TranslationServer.Translate("ESCAPE");
@@ -223,5 +225,7 @@ internal static class KeyNames
         TranslationServer.Translate("KP8");
         TranslationServer.Translate("KP9");
         TranslationServer.Translate("UNKNOWN");
+
+        // ReSharper restore StringLiteralTypo
     }
 }

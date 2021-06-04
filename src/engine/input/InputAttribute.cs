@@ -29,7 +29,7 @@ public abstract class InputAttribute : Attribute
     ///   Defines the priority of the input.
     ///   Priority defines which method gets to consume an input if two method match the input.
     /// </summary>
-    public int Priority { get; set; } = 0;
+    public int Priority { get; set; }
 
     public override bool Equals(object obj)
     {

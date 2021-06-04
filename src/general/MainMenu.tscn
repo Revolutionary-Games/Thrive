@@ -141,10 +141,8 @@ margin_left = 515.0
 margin_right = 765.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
-enabled_focus_mode = 0
 text = "NEW_GAME"
 __meta__ = {
 "_editor_description_": ""
@@ -156,10 +154,8 @@ margin_top = 50.0
 margin_right = 765.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
-enabled_focus_mode = 0
 text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
@@ -171,7 +167,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
-enabled_focus_mode = 0
 text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
@@ -183,7 +178,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
-enabled_focus_mode = 0
 text = "TOOLS"
 
 [node name="View Source Code" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
@@ -195,7 +189,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
-enabled_focus_mode = 0
 text = "VIEW_SOURCE_CODE"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
@@ -204,10 +197,10 @@ margin_top = 250.0
 margin_right = 765.0
 margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 disabled = true
-enabled_focus_mode = 0
 text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
@@ -216,10 +209,10 @@ margin_top = 300.0
 margin_right = 765.0
 margin_bottom = 340.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 disabled = true
-enabled_focus_mode = 0
 text = "CREDITS"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
@@ -231,7 +224,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
-enabled_focus_mode = 0
 text = "QUIT"
 
 [node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
@@ -254,7 +246,6 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-enabled_focus_mode = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
 [node name="\?\?" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
@@ -263,11 +254,11 @@ margin_top = 50.0
 margin_right = 808.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-enabled_focus_mode = 0
 text = "???"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -279,11 +270,11 @@ margin_top = 100.0
 margin_right = 808.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-enabled_focus_mode = 0
 text = "???"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -295,11 +286,11 @@ margin_top = 150.0
 margin_right = 808.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-enabled_focus_mode = 0
 text = "???"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -315,7 +306,6 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-enabled_focus_mode = 0
 text = "BACK"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
@@ -374,6 +364,7 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Options" to="." method="OptionsPressed"]

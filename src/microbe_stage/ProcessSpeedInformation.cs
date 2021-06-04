@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 ///   Speed information of a process in specific patch. Used in the
 ///   editor to show info to the player.
 /// </summary>
-public class ProcessSpeedInformation
+public class ProcessSpeedInformation : IProcessDisplayInfo
 {
     public ProcessSpeedInformation(BioProcess process)
     {
@@ -12,37 +13,33 @@ public class ProcessSpeedInformation
     }
 
     public BioProcess Process { get; }
-    public float SpeedFactor { get; set; }
 
-    public Dictionary<Compound, EnvironmentalInput> EnvironmentInputs { get; } =
-        new Dictionary<Compound, EnvironmentalInput>();
+    public string Name => Process.Name;
 
-    public Dictionary<Compound, CompoundAmount> OtherInputs { get; } =
-        new Dictionary<Compound, CompoundAmount>();
+    public Dictionary<Compound, float> WritableInputs { get; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> WritableOutputs { get; } = new Dictionary<Compound, float>();
+    public List<Compound> WritableLimitingCompounds { get; } = new List<Compound>();
 
-    public Dictionary<Compound, CompoundAmount> Outputs { get; } =
-        new Dictionary<Compound, CompoundAmount>();
+    public Dictionary<Compound, float> WritableFullSpeedRequiredEnvironmentalInputs { get; } =
+        new Dictionary<Compound, float>();
 
-    public class EnvironmentalInput : CompoundAmount
-    {
-        public EnvironmentalInput(Compound compound, float amount)
-            : base(compound, amount)
-        {
-        }
+    public Dictionary<Compound, float> AvailableAmounts { get; } = new Dictionary<Compound, float>();
 
-        public float AvailableAmount { get; set; }
-        public float AvailableRate { get; set; }
-    }
+    // ReSharper disable once CollectionNeverQueried.Global
+    public Dictionary<Compound, float> AvailableRates { get; } = new Dictionary<Compound, float>();
 
-    public class CompoundAmount
-    {
-        public CompoundAmount(Compound compound, float amount)
-        {
-            Compound = compound;
-            Amount = amount;
-        }
+    public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
+        WritableInputs.Where(p => !p.Key.IsEnvironmental);
 
-        public Compound Compound { get; }
-        public float Amount { get; }
-    }
+    public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
+        AvailableAmounts.Where(p => p.Key.IsEnvironmental);
+
+    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
+        WritableFullSpeedRequiredEnvironmentalInputs;
+
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs => WritableOutputs;
+
+    public float CurrentSpeed { get; set; }
+
+    public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 }

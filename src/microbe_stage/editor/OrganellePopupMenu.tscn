@@ -184,7 +184,6 @@ custom_styles/pressed = SubResource( 4 )
 custom_styles/disabled = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-enabled_focus_mode = 0
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Delete"]
@@ -250,7 +249,6 @@ custom_styles/pressed = SubResource( 8 )
 custom_styles/disabled = SubResource( 9 )
 custom_styles/normal = SubResource( 10 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-enabled_focus_mode = 0
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Move"]
@@ -310,6 +308,7 @@ margin_top = 93.0
 margin_right = 210.0
 margin_bottom = 121.0
 rect_min_size = Vector2( 0, 28 )
+focus_mode = 0
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
 custom_styles/disabled = SubResource( 9 )
@@ -317,7 +316,6 @@ custom_styles/normal = SubResource( 10 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 disabled = true
 action_mode = 0
-enabled_focus_mode = 0
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Modify"]
@@ -370,6 +368,7 @@ align = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
+
 [connection signal="button_down" from="VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= [ "Delete", true ]]
 [connection signal="button_up" from="VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= [ "Delete", false ]]
 [connection signal="pressed" from="VBoxContainer/Delete" to="." method="OnDeletePressed"]

@@ -3,7 +3,7 @@ using System.Globalization;
 using Godot;
 
 /// <summary>
-///   Helpers for dealing with Thrive's version number
+///   Helpers for dealing with Thrive version number
 /// </summary>
 public static class VersionUtils
 {

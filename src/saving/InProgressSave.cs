@@ -117,28 +117,26 @@ public class InProgressSave : IDisposable
         oldestSave = null;
         ulong oldestModifiedTime = ulong.MaxValue;
 
-        using (var file = new File())
+        using var file = new File();
+        foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
         {
-            foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
+            var match = Regex.Match(name, matchRegex);
+
+            if (match.Success)
             {
-                var match = Regex.Match(name, matchRegex);
+                ++totalCount;
 
-                if (match.Success)
+                int found = Convert.ToInt32(match.Groups[1].Value, CultureInfo.InvariantCulture);
+
+                if (found > highestNumber)
+                    highestNumber = found;
+
+                var modified = file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, name));
+
+                if (modified < oldestModifiedTime)
                 {
-                    ++totalCount;
-
-                    int found = Convert.ToInt32(match.Groups[1].Value, CultureInfo.InvariantCulture);
-
-                    if (found > highestNumber)
-                        highestNumber = found;
-
-                    var modified = file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, name));
-
-                    if (modified < oldestModifiedTime)
-                    {
-                        oldestModifiedTime = modified;
-                        oldestSave = name;
-                    }
+                    oldestModifiedTime = modified;
+                    oldestSave = name;
                 }
             }
         }

@@ -213,9 +213,9 @@ public class OptionsMenu : Control
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
     private CheckBox tutorialsEnabledOnNewGame;
-    private CheckBox autosave;
-    private SpinBox maxAutosaves;
-    private SpinBox maxQuicksaves;
+    private CheckBox autoSave;
+    private SpinBox maxAutoSaves;
+    private SpinBox maxQuickSaves;
     private CheckBox customUsernameEnabled;
     private LineEdit customUsername;
 
@@ -320,9 +320,9 @@ public class OptionsMenu : Control
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
         tutorialsEnabledOnNewGame = GetNode<CheckBox>(TutorialsEnabledOnNewGamePath);
         cheats = GetNode<CheckBox>(CheatsPath);
-        autosave = GetNode<CheckBox>(AutoSavePath);
-        maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
-        maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
+        autoSave = GetNode<CheckBox>(AutoSavePath);
+        maxAutoSaves = GetNode<SpinBox>(MaxAutoSavesPath);
+        maxQuickSaves = GetNode<SpinBox>(MaxQuickSavesPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
@@ -441,10 +441,10 @@ public class OptionsMenu : Control
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
         tutorialsEnabledOnNewGame.Pressed = settings.TutorialsEnabled;
         cheats.Pressed = settings.CheatsEnabled;
-        autosave.Pressed = settings.AutoSaveEnabled;
-        maxAutosaves.Value = settings.MaxAutoSaves;
-        maxAutosaves.Editable = settings.AutoSaveEnabled;
-        maxQuicksaves.Value = settings.MaxQuickSaves;
+        autoSave.Pressed = settings.AutoSaveEnabled;
+        maxAutoSaves.Value = settings.MaxAutoSaves;
+        maxAutoSaves.Editable = settings.AutoSaveEnabled;
+        maxQuickSaves.Value = settings.MaxQuickSaves;
         customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
         customUsername.Text = settings.CustomUsername.Value != null ?
             settings.CustomUsername :
@@ -1021,7 +1021,7 @@ public class OptionsMenu : Control
     private void OnAutoSaveToggled(bool pressed)
     {
         Settings.Instance.AutoSaveEnabled.Value = pressed;
-        maxAutosaves.Editable = pressed;
+        maxAutoSaves.Editable = pressed;
 
         UpdateResetSaveButtonState();
     }
