@@ -1347,7 +1347,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         State = MicrobeState.Normal;
 
         var offset = (Translation - ColonyParent.Translation)
-           .Rotated(Vector3.Down, ColonyParent.Rotation.y);
+            .Rotated(Vector3.Down, ColonyParent.Rotation.y);
         var rotation = Rotation - ColonyParent.Rotation;
 
         Translation = offset;
