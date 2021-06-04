@@ -204,7 +204,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-    [JsonIgnore]
+    [JsonProperty]
     public Microbe ColonyParent { get; set; }
 
     [JsonProperty]

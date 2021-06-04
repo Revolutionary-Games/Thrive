@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -144,7 +145,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         get
         {
-            var results = new List<Node>();
+            var results = new HashSet<Node>();
 
             foreach (var node in rootOfDynamicallySpawned.GetChildren())
             {
@@ -175,11 +176,15 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                     disposed = true;
                 }
 
-                if (!disposed)
-                    results.Add(casted);
+                if (disposed)
+                    continue;
+
+                if (casted is Microbe microbe)
+                    microbe.Colony?.ColonyMembers?.ForEach(x => results.Add(x));
+                results.Add(casted);
             }
 
-            return results;
+            return results.ToList();
         }
         set
         {
@@ -187,7 +192,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
             foreach (var entity in value)
             {
-                rootOfDynamicallySpawned.AddChild(entity);
+                if (entity is Microbe microbe)
+                    (microbe.ColonyParent ?? rootOfDynamicallySpawned).AddChild(entity);
+                else
+                    rootOfDynamicallySpawned.AddChild(entity);
             }
         }
     }
