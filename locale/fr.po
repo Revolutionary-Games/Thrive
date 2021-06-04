@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-29 22:31+0300\n"
-"PO-Revision-Date: 2021-05-21 08:12+0000\n"
-"Last-Translator: George Dupond <whatda513@gmail.com>\n"
+"PO-Revision-Date: 2021-06-04 17:11+0000\n"
+"Last-Translator: Felecarp <felecarp@suboxide.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -31,8 +31,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Vos cellules utilisent l'ATP comme source d'énergie, si elle n'en a plus "
-"vous mourrez."
+"Vos cellules utilisent l'ATP comme leur source d'énergie, si elles n'en ont "
+"plus vous mourrez."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:31
@@ -45,17 +45,17 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Vous pouvez aussi absorber des cellules, des bactéries, des morceaux de "
-"fer et de cellules qui sont plus petit que vous en pressant G. Cela vous "
-"coûtera plus d'ATP et vous ralentira. N'oubliez pas de presser G une "
-"seconde fois arrêter d'absorber."
+"Vous pouvez aussi absorber des cellules, des bactéries, des morceaux de fer "
+"et de cellules qui sont plus petit que vous en pressant G. Cela vous coûtera "
+"plus d'ATP et vous ralentira. N'oubliez pas de presser G une seconde fois "
+"arrêter d'absorber."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"L'Osmoregulation coûte de l'ATP, ce qui signifie que plus votre cellule "
-"est grande, plus vous aurez besoin de Mitochondries, Metabolosomes ou "
+"L'Osmoregulation coûte de l'ATP, ce qui signifie que plus votre cellule est "
+"grande, plus vous aurez besoin de Mitochondries, Metabolosomes ou "
 "Rusticyanines (ou cytoplasmes, qui réalisent la Glycolyse) pour éviter de "
 "perdre de l'ATP quand vous êtes statiques."
 
@@ -70,7 +70,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:35
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr ""
-"Pour l'instant si votre population chute à zéro votre espèce s'éteint."
+"Pour l'instant, si votre population chute à zéro, votre espèce s'éteint."
 
 #: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -104,9 +104,9 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
 "Mais si vous survivez pendant vingt générations avec une population "
-"supérieure à 300, vous êtes considéré comme ayant gagné la partie en "
-"cours, après avoir gagné vous aurez un popup et pourrez continuer de jouer "
-"si vous voulez."
+"supérieure à 300, vous êtes considéré comme ayant gagné la partie en cours. "
+"Après avoir gagné vous aurez un popup et pourrez continuer de jouer si vous "
+"voulez."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:38
@@ -122,9 +122,9 @@ msgstr ""
 "\n"
 "Métabolosomes : Produisent de l'ATP à partir de glucose\n"
 "\n"
-"Protéines Chimiosyntétisantes : Produisent à demi-efficacité du "
-"chimioplaste du glucose à partir de Sulfure d'Hydrogène, mais réalisent "
-"aussi la glycolyse, prennent un Hexagone\n"
+"Protéines Chimiosyntétisantes : Produisent à demi-efficacité du chimioplaste "
+"du glucose à partir de Sulfure d'Hydrogène, mais réalisent aussi la "
+"glycolyse, prennent un Hexagone\n"
 "\n"
 "Thylacoïdes : Produisent à 1/3 de l'efficacité de glucose par rapport à un "
 "chloroplaste normal, mais réalisent aussi la glycolyse, et prennent un "
@@ -135,8 +135,8 @@ msgstr ""
 "Nitrogénase : Convertissent l'azote environnant et l'ATP en ammoniaque en "
 "anaérobie\n"
 "\n"
-"Cytoplasme : Ont des espaces de stockage et réalisent la glycolyse "
-"(Produit une faible quantité d'ATP)"
+"Cytoplasme : Ont des espaces de stockage et réalisent la glycolyse (Produit "
+"une faible quantité d'ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -153,19 +153,19 @@ msgstr ""
 "Organites Liées à la Membrane\n"
 "\n"
 "Noyau : Prends 11 hexagones et permet l'évolution d'organites liée à la "
-"membrane. Double aussi la taille de votre cellule. (Ne peut être évolué "
+"membrane, double aussi la taille de votre cellule (ne peut être évolué "
 "qu'une fois)\n"
 "\n"
 "Mitochondrie : Produisent de l'ATP à partir de glucose et de l'O2 "
-"environnant. Bien plus efficace que le cytoplasme\n"
+"environnant, bien plus efficace que le cytoplasme\n"
 "\n"
 "Chloroplaste : Produisent du glucose à partir de rayons solaires et du CO2 "
 "environnant\n"
 "\n"
 "Chimioplaste : Produisent du glucose à partir de Sulfure d'Hydrogène\n"
 "\n"
-"Plaste Fixeur d'Azote : Produisent de l'ammoniaque à partir d'ATP et "
-"d'Azote et d'Oxygène environnant\n"
+"Plaste Fixeur d'Azote : Produisent de l'ammoniaque à partir d'ATP et d'Azote "
+"et d'Oxygène environnant\n"
 "\n"
 "Vacuole : Stockent 15 éléments collectés\n"
 "\n"
@@ -176,10 +176,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "À chaque génération, vous avez 100 points de mutation (PM) à dépenser, et "
 "chaque changement (ou mutation) coûtera une certaine quantité de ces PM. "
-"Ajouter ou retirer des organites coûte des PM, mais retirer les organites "
-"placées lors de cette mutation les rembourse. Vous pouvez retirer une "
-"organite en faisant un clique droit dessus. Vous pouvez faire tourner vos "
-"organites avec A et D."
+"Ajouter ou retirer des organites coûte des PM. Cependant, retirer les "
+"organites placées lors de cette mutation les rembourse. Vous pouvez déplacer "
+"ou retirer une organite en faisant un clic droit dessus et en sélectionnant "
+"l'action voulue. Vous pouvez faire tourner vos organites lors du placement "
+"avec A et D."
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -197,13 +198,12 @@ msgstr ""
 "erreur"
 
 #: ../simulation_parameters/common/help_texts.json:48
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Anecdote: Les Didiniums et les Paramécies sont des exemples littéraires de "
-"la relation proie/prédateur qui a été étudié pendant des décennies, "
-"maintenant êtes vous un Didinium ou un Paramécie ? Un Prédateur ou une "
-"Proie ?"
+"Anecdote: les Didiniums et les Paramécies sont des exemples littéraires de "
+"la relation proie/prédateur qui a été étudié pendant des décennies. "
+"Maintenant êtes vous un Didinium ou un Paramécie ? Un Prédateur ou une Proie "
+"?"
 
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_2"
@@ -214,11 +214,11 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Voici une astuce, l'Osmorégulation coûte 1 ATP par seconde par hexagone "
-"que votre cellule possède, chaque cellule vide de votre cytoplasme génère "
-"aussi 5 ATP par seconde, ce qui signifie que si vous perdez de l'ATP à "
-"cause de l'osmorégulation ajoutez juste quelques hexagones de cytoplasmes "
-"vides ou retirez quelques organites."
+"Voici une astuce, l'Osmorégulation coûte 1 ATP par seconde par hexagone que "
+"votre cellule possède, chaque cellule vide de votre cytoplasme génère aussi "
+"5 ATP par seconde, ce qui signifie que si vous perdez de l'ATP à cause de "
+"l'osmorégulation ajoutez juste quelques hexagones de cytoplasmes vides ou "
+"retirez quelques organites."
 
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_4"
@@ -245,9 +245,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:55
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Les bactéries sont plus dangereuses qu'elles n'y paraissent. Elles peuvent "
-"sembler minuscules, mais certaines d'entre elles peuvent vous transpercer "
-"avec leur pilus pour vous tuer !"
+"Voici un conseil, les bactéries sont plus dangereuses qu'elles n'y "
+"paraissent, elles peuvent sembler minuscules, mais certaines d'entre elles "
+"peuvent vous transpercer avec leur pilus pour vous tuer !"
 
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_9"
@@ -283,7 +283,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
-"Voici une astuce, vous pouvez en[g]loutir des morceaux de fer ou autrement."
+"Voici une astuce, vous pouvez en[g]loutir des morceaux, de fer ou autre."
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_16"
@@ -460,7 +460,7 @@ msgstr "Réinitialiser la caméra"
 #: ../simulation_parameters/common/input_options.json:115
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Arrêter l'action courante"
 
 #: ../simulation_parameters/common/input_options.json:123
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -485,9 +485,8 @@ msgid "SPAWN_PHOSPHATES"
 msgstr "Créer du phosphate"
 
 #: ../simulation_parameters/common/input_options.json:143
-#, fuzzy
 msgid "CHEAT_MENU"
-msgstr "Triches"
+msgstr "Menu de triches"
 
 #: ../simulation_parameters/common/input_options.json:152
 msgid "MISCELLANEOUS"
@@ -520,7 +519,7 @@ msgstr "Plein Écran"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Respiration"
+msgstr "Respiration aérobie"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -543,7 +542,7 @@ msgstr "Synthèse d'OxyToxy"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "Chimio Synthèse"
+msgstr "Chimio synthèse"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
@@ -859,7 +858,6 @@ msgid "POPULATION"
 msgstr "population :"
 
 #: ../src/auto-evo/RunResults.cs:226
-#, fuzzy
 msgid "WENT_EXTINCT_IN"
 msgstr "extinction en {0}"
 
@@ -888,9 +886,8 @@ msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "population dans les zones :"
 
 #: ../src/auto-evo/RunResults.cs:372
-#, fuzzy
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr "Est devenu éteint sur cette planète"
+msgstr "a disparu de la planète"
 
 #: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
 msgid "LOADING"
@@ -907,27 +904,24 @@ msgstr ""
 "Voulez-vous enlever l'entrée de {1} ?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
-#, fuzzy
 msgid "KEY_FORWARD"
 msgstr "Avancer"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
-#, fuzzy
 msgid "KEY_TAB"
 msgstr "Tab"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
-#, fuzzy
 msgid "KEY_ENTER"
 msgstr "Entrer"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr ""
+msgstr "Insérer"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
-msgstr ""
+msgstr "Supprimer"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
@@ -935,41 +929,37 @@ msgstr "Pause"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Effacer"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
-msgstr ""
+msgstr "Menu principal"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
 msgstr "Fin"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
-#, fuzzy
 msgid "KEY_LEFT"
-msgstr "Se déplacer vers la gauche"
+msgstr "Gauche"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr ""
+msgstr "Haut"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
-#, fuzzy
 msgid "KEY_RIGHT"
-msgstr "Se déplacer vers la droite"
+msgstr "Droite"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
-#, fuzzy
 msgid "KEY_DOWN"
-msgstr "Molette arrière"
+msgstr "Bas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
 msgstr "Menu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
-#, fuzzy
 msgid "KEY_HELP"
 msgstr "Aide"
 
@@ -982,57 +972,52 @@ msgid "KEY_STOP"
 msgstr "Arrete"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
-#, fuzzy
 msgid "KEY_REFRESH"
-msgstr "Rafraîchir"
+msgstr "Actualiser"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Rechercher"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
-#, fuzzy
 msgid "KEY_OPENURL"
 msgstr "Ouvre l'URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
-msgstr ""
+msgstr "Page d'accueil"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
-#, fuzzy
 msgid "KEY_FAVORITES"
-msgstr "Favori"
+msgstr "Favoris"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Imprimer l'écran"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:162
 msgid "SPACE"
 msgstr "Espace"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:163
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "Revenir"
+msgstr "Barre oblique inversée"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "ESCAPE"
-msgstr ""
+msgstr "Échap"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Revenir"
+msgstr "Retour arrière"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "KPENTER"
-msgstr ""
+msgstr "Verr Num"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "SYSREQ"
@@ -1043,9 +1028,8 @@ msgid "PAGEUP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
-#, fuzzy
 msgid "PAGEDOWN"
-msgstr "Panoramique vers le bas"
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "CAPSLOCK"
@@ -1053,7 +1037,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Verr Num"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "SCROLLLOCK"
@@ -1076,29 +1060,24 @@ msgid "HYPERR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
-#, fuzzy
 msgid "DIRECTIONL"
-msgstr "Description :"
+msgstr "Vers la gauche"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
-#, fuzzy
 msgid "DIRECTIONR"
-msgstr "Description :"
+msgstr "Vers la droite"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "Volume des effets spéciaux"
+msgstr "Réduire le volume sonore"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "Volume des effets spéciaux"
+msgstr "Taire le volume sonore"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "Volume des effets spéciaux"
+msgstr "Augmenter le volume sonore"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "BASSBOOST"
@@ -1117,26 +1096,24 @@ msgid "TREBLEUP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Molette arrière"
+msgstr "Réduire le volume aigu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Lire média"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Interrompre lecture"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "précédent :"
+msgstr "Média précédent"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Média suivant"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIARECORD"
@@ -1244,40 +1221,39 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP2"
-msgstr ""
+msgstr "Num 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP3"
-msgstr ""
+msgstr "Num 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP4"
-msgstr ""
+msgstr "Num 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP5"
-msgstr ""
+msgstr "Num 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP6"
-msgstr ""
+msgstr "Num 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP7"
-msgstr ""
+msgstr "Num 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP8"
-msgstr ""
+msgstr "Num 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "KP9"
-msgstr ""
+msgstr "Num 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:225
-#, fuzzy
 msgid "UNKNOWN"
-msgstr "Souris inconnue"
+msgstr "Entrée inconnue"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -1334,11 +1310,11 @@ msgstr "Souris inconnue"
 #: ../src/general/Gallery.cs:70
 #, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "VOUS AVEZ PROSPÉRÉ !"
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Œuvre de {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1517,6 +1493,8 @@ msgstr "(des valeurs plus hautes améliorent les performances)"
 #: ../src/general/OptionsMenu.tscn:683
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
+"Cette valeur ne s'applique qu'aux nouvelles parties après avoir changé cette "
+"option"
 
 #: ../src/general/OptionsMenu.tscn:685
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -1692,19 +1670,13 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:901
 #: ../src/gui_common/charts/line/LineChart.cs:930
-#, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Supprimer cette sauvegarde ne peut pas être défait, êtes-vous sûr de "
-"vouloir détruire {0} de manière permanente?"
+msgstr "Il n'est pas permit d'afficher plus de {0} datasets !"
 
 #: ../src/gui_common/charts/line/LineChart.cs:910
 #: ../src/gui_common/charts/line/LineChart.cs:938
-#, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Supprimer cette sauvegarde ne peut pas être défait, êtes-vous sûr de "
-"vouloir détruire {0} de manière permanente?"
+msgstr "Il n'est pas permis d'afficher moins de {0} datasets !"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -1769,26 +1741,20 @@ msgid "HEALTH"
 msgstr "Santé"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"L'intérieur visqueux d'une cellule. Le cytoplasme est une mixture basique "
-"d'ions, de protéines et d'autres substances dissoutes dans l'eau qui "
-"rempli l'intérieur de la cellule. Une des fonctions qu'elle réalise est la "
-"Fermentation, la conversion du glucose en énergie ATP. Pour les cellules "
-"qui manquent d'organites pour avoir un métabolisme plus avancé, c'est ce "
-"sur quoi elles dépendent en énergie. C'est aussi utilisé pour stocker des "
-"molécules dans la cellules et augmenter sa taille."
+"Transforme [thrive:compound]glucose[/thrive:compound] en "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "L'intérieur visqueux d'une cellule. Le cytoplasme est une mixture basique "
-"d'ions, de protéines et d'autres substances dissoutes dans l'eau qui "
-"rempli l'intérieur de la cellule. Une des fonctions qu'elle réalise est la "
-"Fermentation, la conversion du glucose en énergie ATP. Pour les cellules "
-"qui manquent d'organites pour avoir un métabolisme plus avancé, c'est ce "
-"sur quoi elles dépendent en énergie. C'est aussi utilisé pour stocker des "
+"d'ions, de protéines et d'autres substances dissoutes dans l'eau qui rempli "
+"l'intérieur de la cellule. Une des fonctions qu'elle réalise est la "
+"glycolyse, la conversion du glucose en énergie ATP. Pour les cellules qui "
+"manquent d'organites pour avoir un métabolisme plus avancé, c'est ce sur "
+"quoi elles dépendent en énergie. C'est aussi utilisé pour stocker des "
 "molécules dans la cellules et augmenter sa taille."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:246
@@ -1834,89 +1800,73 @@ msgid "OSMOREGULATION_COST"
 msgstr "Coût en osmorégulation"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Les Métabolosomes sont des groupes de protéines enfermés dans des cages en "
-"protéines. Ils peuvent convertir le glucose en ATP a un taux bien plus "
-"élevé que ce qui est fait dans le cytoplasme avec le processus nommé "
-"Respiration Aérobique. Elle a, cependant, besoin d'oxygène pour "
-"fonctionner, et de plus faibles niveaux d'oxygènes dans l'environnement "
-"vont ralentir son taux de production d'ATP. Puisque les métabolosomes sont "
-"suspendu directement dans le cytoplasme, les fluides l'entourant réalisent "
-"un peu la fermentation."
+"Transforme [thrive:compound]glucose[/thrive:compound] en "
+"[thrive:compound]atp[/thrive:compound]. Effet proportionnel avec la "
+"concentration en [thrive:compound]dioxygène[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Les Métabolosomes sont des groupes de protéines enfermés dans des cages en "
-"protéines. Ils peuvent convertir le glucose en ATP a un taux bien plus "
-"élevé que ce qui est fait dans le cytoplasme avec le processus nommé "
-"Respiration Aérobique. Elle a, cependant, besoin d'oxygène pour "
-"fonctionner, et de plus faibles niveaux d'oxygènes dans l'environnement "
-"vont ralentir son taux de production d'ATP. Puisque les métabolosomes sont "
-"suspendu directement dans le cytoplasme, les fluides l'entourant réalisent "
-"un peu la fermentation."
+"protéines. Ils peuvent convertir le glucose en ATP a un taux bien plus élevé "
+"que ce qui est fait dans le cytoplasme avec le processus nommé Respiration "
+"Aérobique. Elle a, cependant, besoin d'oxygène pour fonctionner, et de plus "
+"faibles niveaux d'oxygènes dans l'environnement vont ralentir son taux de "
+"production d'ATP. Puisque les métabolosomes sont suspendu directement dans "
+"le cytoplasme, les fluides l'entourant réalisent un peu la glycolyse."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
 msgid "THYLAKOID"
 msgstr "Thylacoïde"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Les protéines Chimiosynthétisantes sont des petits groupes de protéines "
-"dans le cytoplasme qui sont capable de convertir le sulfure d'hydrogène, "
-"l'eau et le dioxyde de carbone gazeux en du glucose lors d'un processus "
-"nommé Chimiosynthèse de Sulfure d'Hydrogène. Le taux de production de "
-"glucose varie en fonction de la concentration en dioxyde de carbone. "
-"Puisque les protéines chimiosynthétisantes sont suspendu directement dans "
-"le cytoplasme, les fluides l'entourant réalisent un peu la fermentation."
+"Produit [thrive:compound]glucose[/thrive:compound]. Effet proportionnel avec "
+"la concentration en [thrive:compound]dioxyde de carbone[/thrive:compound] et "
+"[thrive:compound]l'intensité lumineuse[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"Les Thylacoïdes sont des groupes de protéines et de pigments "
-"photosensibles. Les pigments sont capables d'utiliser l'énergie lumineuse "
-"pour produire du glucose à partir d'eau et de dioxyde de carbone lors d'un "
-"processus nommé Photosynthèse. Ces pigments sont aussi ce qui leur donne "
-"leur couleur. Le taux de glucose produit varie en fonction de la "
-"concentration en dioxyde de carbone, et de l'intensité de la lumière. "
-"Puisque les thylacoïdes sont suspendu directement dans le cytoplasme, les "
-"fluides l'entourant réalisent un peu la fermentation."
+"Les Thylacoïdes sont des groupes de protéines et de pigments photosensibles. "
+"Les pigments sont capables d'utiliser l'énergie lumineuse pour produire du "
+"glucose à partir d'eau et de dioxyde de carbone lors d'un processus nommé "
+"Photosynthèse. Ces pigments sont aussi ce qui leur donne leur couleur. Le "
+"taux de glucose produit varie en fonction de la concentration en dioxyde de "
+"carbone, et de l'intensité de la lumière. Puisque les thylacoïdes sont "
+"suspendu directement dans le cytoplasme, les fluides l'entourant réalisent "
+"un peu la glycolyse."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Les protéines Chimiosynthétisantes sont des petits groupes de protéines "
-"dans le cytoplasme qui sont capable de convertir le sulfure d'hydrogène, "
-"l'eau et le dioxyde de carbone gazeux en du glucose lors d'un processus "
-"nommé Chimiosynthèse de Sulfure d'Hydrogène. Le taux de production de "
-"glucose varie en fonction de la concentration en dioxyde de carbone. "
-"Puisque les protéines chimiosynthétisantes sont suspendu directement dans "
-"le cytoplasme, les fluides l'entourant réalisent un peu la fermentation."
+"Transforme le [thrive:compound]sulfure d'hydrogène[/thrive:compound] en "
+"[thrive:compound]glucose[/thrive:compound]. Effet proportionnel avec la "
+"concentration en [thrive:compound]dioxyde de carbone[/thrive:compound]. "
+"Transforme aussi le [thrive:compound]glucose[/thrive:compound] en "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"Les protéines Chimiosynthétisantes sont des petits groupes de protéines "
-"dans le cytoplasme qui sont capable de convertir le sulfure d'hydrogène, "
-"l'eau et le dioxyde de carbone gazeux en du glucose lors d'un processus "
-"nommé Chimiosynthèse de Sulfure d'Hydrogène. Le taux de production de "
-"glucose varie en fonction de la concentration en dioxyde de carbone. "
-"Puisque les protéines chimiosynthétisantes sont suspendu directement dans "
-"le cytoplasme, les fluides l'entourant réalisent un peu la fermentation."
+"Les protéines Chimiosynthétisantes sont des petits groupes de protéines dans "
+"le cytoplasme qui sont capable de convertir le sulfure d'hydrogène, l'eau et "
+"le dioxyde de carbone gazeux en du glucose lors d'un processus nommé "
+"Chimiosynthèse de Sulfure d'Hydrogène. Le taux de production de glucose "
+"varie en fonction de la concentration en dioxyde de carbone. Puisque les "
+"protéines chimiosynthétisantes sont suspendu directement dans le cytoplasme, "
+"les fluides l'entourant réalisent un peu la glycolyse."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"La Rusticyanine est une protéine capable d'utiliser le dioxyde de carbone "
-"gazeux et l'oxygène pour oxyder le fer d'un état chimique à un autre. Ce "
-"processus, nommé Respiration Ferrique, produit de l'énergie que la cellule "
-"peut ensuite récupérer."
+"Transforme le [thrive:compound]iron[/thrive:compound] en "
+"[thrive:compound]atp[/thrive:compound]. Taux proportionnels à la "
+"concentration de [thrive:compound]carbondioxide[/thrive:compound] et "
+"d'[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1943,7 +1893,7 @@ msgstr ""
 "de la cellule sous forme d'ATP pour produire de l'ammoniaque, un nutriment "
 "de croissance clé pour une cellule. C'est un processus nommé la Fixation "
 "Anaérobique d'Azote. Puisque l'azotéase est suspendu directement dans le "
-"cytoplasme, les fluides l'entourant réalisent un peu la fermentation."
+"cytoplasme, les fluides l'entourant réalisent un peu la glycolyse."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 #, fuzzy
@@ -2000,10 +1950,8 @@ msgstr "Doit être implémenté."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Permet l'évolution vers des organelles\n"
-"plus complexes liés à la membrane. \n"
-"Coûte beaucoup d'ATP à maintenir. \n"
-"Cette évolution est irréversible."
+"Permet l'évolution vers des organelles plus complexes liés à la membrane. "
+"Coûte beaucoup d'ATP à maintenir. Cette évolution est irréversible."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "NUCLEUS_DESCRIPTION"
@@ -2098,9 +2046,8 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Place organite"
+msgstr "Aucune action"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
 #, fuzzy
@@ -2139,15 +2086,8 @@ msgstr ""
 "un processus appelé Fixation Aérobique d'Azote."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
-#, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"La vacuole est un organite de la membrane interne utilisé pour stocker "
-"dans la cellule. Ils sont composé de plusieurs vésicules, des structures "
-"membranaires plus petites grandement utilisé dans les cellules pour le "
-"stockage, qui ont fusionné ensemble. Elle est rempli d'eau qui est utilisé "
-"pour contenir des molécules, des enzymes, des solides et autres "
-"substances. Leur forme est fluide et peut varier selon les cellules."
+msgstr "Augmente l'espace de stockage de la cellule."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "VACUOLE_DESCRIPTION"
@@ -2272,7 +2212,7 @@ msgstr "N/A PM"
 
 #: ../src/microbe_stage/Microbe.cs:854
 msgid "DEATH"
-msgstr ""
+msgstr "mort"
 
 #: ../src/microbe_stage/Microbe.cs:1241
 msgid "SUCCESSFUL_SCAVENGE"
@@ -2283,31 +2223,28 @@ msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
 #: ../src/microbe_stage/Microbe.cs:1575
-#, fuzzy
 msgid "REPRODUCED"
-msgstr "Produits"
+msgstr "reproduit"
 
 #: ../src/microbe_stage/Microbe.cs:1655
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:28
-#, fuzzy
 msgid "INFINITE_COMPOUNDS"
-msgstr "Composés"
+msgstr "Composés infinis"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "GODMODE"
-msgstr ""
+msgstr "Mode Tout-Puissant"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
 msgid "NO_AI"
-msgstr ""
+msgstr "Pas d'IA"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
-#, fuzzy
 msgid "PLAYER_SPEED"
-msgstr "joueur mort"
+msgstr "Vitesse du joueur"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
@@ -2530,9 +2467,8 @@ msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l’espèce..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1828
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "ACCEPTER"
+msgstr "ANNULER L'ACTION"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1842
 msgid "CONFIRM_CAPITAL"
@@ -2608,9 +2544,8 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2683
-#, fuzzy
 msgid "PRESSURE"
-msgstr "Press."
+msgstr "Pression"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3214
 msgid "SPECIES_PRESENT"
@@ -2622,7 +2557,7 @@ msgstr "Se Déplacer vers Cette Parcelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
-msgstr ""
+msgstr "MP illimités"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -2690,11 +2625,11 @@ msgstr "{0} avec population : {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
 msgid "DELETE"
-msgstr ""
+msgstr "Supprimer"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
 #, fuzzy
@@ -2703,7 +2638,7 @@ msgstr "Mouvement"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
-msgstr ""
+msgstr "Modifier"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -3055,14 +2990,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Retirer des organites coûte aussi des PM comme c'est une mutation pour "
-"votre espèce. Vous pouvez faire un clique droit sur les organites pour les "
-"retirer.\n"
-"Si vous faites une erreur, vous pouvez annuler tous les changements que "
-"vous faites dans l'éditeur.\n"
-"\n"
-"Note : retirer des organites que vous avez placé dans la session actuelle "
-"d'édition est gratuit.\n"
+"Retirer des organites coûte aussi des PM car c'est aussi une mutation de "
+"votre espèce, à moins qu'elles n'aient été placé lors de la session en "
+"cours. \n"
+"Vous pouvez faire un clic droit sur les organites puis sélectionner l’option "
+"supprimer pour les retirer.\n"
+"Si vous faites une erreur, vous pouvez annuler tous les changements que vous "
+"faites dans l'éditeur.\n"
 "\n"
 "Cliquez sur le bouton d'annulation pour continuer."
 
