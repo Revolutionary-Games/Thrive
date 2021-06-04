@@ -1008,18 +1008,44 @@ visible = false
 visible = false
 DisplayName = "BINDING_AGENT"
 Description = "BINDING_AGENT_DESCRIPTION"
+MutationPointCost = 55
 
-[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer" index="1"]
-visible = false
+[node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList" index="0"]
+margin_right = 318.0
+margin_bottom = 20.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "STORAGE"
+ModifierValue = "+15"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 12 )
 
-[node name="ProcessList" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer" index="2"]
-visible = false
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_top = 1.0
+margin_right = 24.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 26 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+5"
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer" index="3"]
-visible = false
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 28.0
+margin_right = 81.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "Storage"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer" index="4"]
-visible = false
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 85.0
+margin_right = 105.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 12 )
+expand = true
 
 [node name="nucleus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
