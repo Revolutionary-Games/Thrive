@@ -2332,11 +2332,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         var other = touchedMicrobes.FirstOrDefault();
-        if (other == null)
-            return;
 
         // Cannot hijack the player, other species or other colonies (TODO: yet)
-        if (other.IsPlayerMicrobe || other.Colony != null || other.Species != Species)
+        if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
             return;
 
         BeginBindWith(other);

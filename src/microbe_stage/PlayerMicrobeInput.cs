@@ -123,23 +123,17 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_unbind_all")]
     public void UnbindAll()
     {
-        if (stage.Player == null)
-            return;
-
-        if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+        if (stage.Player?.State == Microbe.MicrobeState.Unbinding)
             stage.Player.State = Microbe.MicrobeState.Normal;
 
-        if (stage.Player.Colony != null)
+        if (stage.Player?.Colony != null)
             RemoveCellFromColony(stage.Player);
     }
 
     [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
     public bool AcceptUnbind()
     {
-        if (stage.Player == null)
-            return false;
-
-        if (stage.Player.State != Microbe.MicrobeState.Unbinding)
+        if (stage.Player?.State != Microbe.MicrobeState.Unbinding)
             return false;
 
         if (stage.MicrobesAtMouse.Count == 0)
