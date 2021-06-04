@@ -444,7 +444,7 @@ public class Mutations
             }
         }
 
-        return species1UniqueOrganelles == species2UniqueOrganelles;
+        return species1UniqueOrganelles.Equals(species2UniqueOrganelles);
     }
 
     private string MutateWord(string name)
