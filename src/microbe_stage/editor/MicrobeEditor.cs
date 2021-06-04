@@ -182,6 +182,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private bool microbePreviewMode;
 
     /// <summary>
+    ///   True if auto save should trigger ASAP
+    /// </summary>
+    private bool wantsToSave;
+
+    /// <summary>
     ///   Where the user started panning with the mouse
     ///   Null if the user is not panning with the mouse
     /// </summary>
@@ -600,10 +605,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 return;
             }
 
-            if (!TransitionFinished)
-                return;
-
             OnEditorReady();
+        }
+
+        // Auto save after editor entry is complete
+        if (TransitionFinished && wantsToSave)
+        {
+            if (!CurrentGame.FreeBuild)
+                SaveHelper.AutoSave(this);
+
+            wantsToSave = false;
         }
 
         UpdateEditor(delta);
@@ -1246,6 +1257,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (!IsLoadedFromSave)
         {
+            // Auto save is wanted once possible
+            wantsToSave = true;
+
             InitEditorFresh();
 
             Symmetry = 0;
@@ -1298,6 +1312,18 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void InitEditorFresh()
     {
+        MutationPoints = Constants.BASE_MUTATION_POINTS;
+        editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
+            OnOrganelleAdded, OnOrganelleRemoved);
+
+        organelleRot = 0;
+
+        targetPatch = null;
+
+        playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
+
+        canStillMove = true;
+
         // For now we only show a loading screen if auto-evo is not ready yet
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
@@ -1305,10 +1331,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
                 MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
-        }
-        else if (!TransitionFinished)
-        {
-            ready = false;
         }
         else
         {
@@ -1327,18 +1349,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             // Make sure freebuilding doesn't get stuck on
             FreeBuilding = false;
         }
-
-        MutationPoints = Constants.BASE_MUTATION_POINTS;
-        editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
-            OnOrganelleAdded, OnOrganelleRemoved);
-
-        organelleRot = 0;
-
-        targetPatch = null;
-
-        playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
-
-        canStillMove = true;
 
         var playerSpecies = CurrentGame.GameWorld.PlayerSpecies;
 
@@ -2250,9 +2260,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateReportTabStatistics(CurrentPatch);
 
-        // Auto save after editor entry is complete
-        if (!CurrentGame.FreeBuild)
-            SaveHelper.AutoSave(this);
+        FadeIn();
     }
 
     private void OnLoadedEditorReady()
@@ -2268,6 +2276,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
+
+        FadeIn();
     }
 
     private void ApplyAutoEvoResults()
@@ -2305,6 +2315,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void UpdatePatchBackgroundImage()
     {
         camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.BiomeTemplate.Background));
+    }
+
+    /// <summary>
+    ///   Starts a fade in transition
+    /// </summary>
+    private void FadeIn()
+    {
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
+        TransitionManager.Instance.StartTransitions(this, nameof(OnFinishTransitioning));
     }
 
     private void SaveGame(string name)
