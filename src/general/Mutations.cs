@@ -258,9 +258,9 @@ public class Mutations
                     mutatedOrganelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
             }
 
-            // Try again if the mutation has islands
+            // If the mutation has no islands, we can use this iteration
             if (mutatedOrganelles.GetIslandHexes().Count == 0)
-                continue;
+                return;
         }
 
         GD.PrintErr("Could not create a valid mutation after 10 retries.");
