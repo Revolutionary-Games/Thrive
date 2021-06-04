@@ -203,7 +203,8 @@ public class Mutations
                         // Don't copy over any organelle, removing this one from the new species
                         continue;
                     }
-                    else if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
+
+                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
                     {
                         organelle = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
                             organelle.Position, organelle.Orientation);
@@ -350,26 +351,29 @@ public class Mutations
         {
             return simulation.GetMembrane("single");
         }
-        else if (random.Next(0, 101) < 50)
+
+        if (random.Next(0, 101) < 50)
         {
             return simulation.GetMembrane("double");
         }
-        else if (random.Next(0, 101) < 50)
+
+        if (random.Next(0, 101) < 50)
         {
             return simulation.GetMembrane("cellulose");
         }
-        else if (random.Next(0, 101) < 50)
+
+        if (random.Next(0, 101) < 50)
         {
             return simulation.GetMembrane("chitin");
         }
-        else if (random.Next(0, 101) < 50)
+
+        if (random.Next(0, 101) < 50)
         {
             return simulation.GetMembrane("calcium_carbonate");
         }
-        else
-        {
-            return simulation.GetMembrane("silica");
-        }
+
+        return simulation.GetMembrane("silica");
+
     }
 
     private float RandomColourChannel()
