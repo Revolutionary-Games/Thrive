@@ -6,7 +6,6 @@
 public class Cutscene : CanvasLayer, ITransition
 {
     private VideoPlayer cutsceneVideoPlayer;
-    private Vector2 frameSize;
     private Control controlNode;
 
     [Signal]
@@ -30,8 +29,6 @@ public class Cutscene : CanvasLayer, ITransition
     {
         controlNode = GetNode<Control>("Control");
         cutsceneVideoPlayer = GetNode<VideoPlayer>("Control/VideoPlayer");
-
-        frameSize = cutsceneVideoPlayer.RectSize;
 
         cutsceneVideoPlayer.Connect("finished", this, nameof(OnFinished));
     }
