@@ -425,7 +425,12 @@ public class Mutations
             opaqueness);
     }
 
-    // Returns true if the two species should have a different species name, false otherwise.
+    /// <summary>
+    ///   Used to determine if a newly mutated species needs to be in a different genus.
+    /// </summary>
+    /// <param name="species1">The first species. Function is not order-dependent.</param>
+    /// <param name="species2">The second species. Function is not order-dependent.</param>
+    /// <returns>True if the two species should be a new genus, false otherwise.</returns>
     private bool NewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
     {
         var species1UniqueOrganelles = new HashSet<string>();
