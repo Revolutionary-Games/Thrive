@@ -94,11 +94,8 @@ public class MicrobeAI
                 microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
             Vector3? prey = possiblePrey.Translation;
 
-            if (prey.HasValue)
-            {
-                EngagePrey(prey.Value, random, engulfPrey);
-                return;
-            }
+            EngagePrey(prey.Value, random, engulfPrey);
+            return;
         }
 
         // Otherwise just wander around and look for compounds
