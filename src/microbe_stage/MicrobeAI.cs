@@ -87,14 +87,12 @@ public class MicrobeAI
         }
 
         // If there are no chunks, look for living prey to hunt
-        Vector3? prey = null;
-        bool engulfPrey = false;
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null)
         {
-            engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
+            bool engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
                 microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
-            prey = possiblePrey.Translation;
+            Vector3? prey = possiblePrey.Translation;
 
             if (prey.HasValue)
             {
