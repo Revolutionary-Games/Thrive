@@ -1419,7 +1419,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Translation = offset;
         Rotation = rotation;
 
-
         UnreadyToReproduce();
     }
 
