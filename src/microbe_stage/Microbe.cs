@@ -1401,24 +1401,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void OnIGotAddedToColony()
     {
+        var oldRotation = Rotation;
+        var vectorToParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
         ChangeNodeParent(ColonyParent);
 
         State = MicrobeState.Normal;
 
-        var vectorToParent = ColonyParent.GlobalTransform.origin - GlobalTransform.origin;
-
         var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
         var myVectorToMyMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
 
-        vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, ColonyParent.Rotation.y);
-        var parentVectorToItsMembrane = ColonyParent.Membrane.GetExternalOrganelle(-vectorToParentRotated.x, -vectorToParentRotated.y);
-        var offset = myVectorToMyMembrane - parentVectorToItsMembrane;
+        vectorToParentRotated = (-vectorToParent).Rotated(Vector3.Down, ColonyParent.Rotation.y);
+        var parentVectorToItsMembrane = ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
 
-        var rotation = Rotation - ColonyParent.Rotation;
+        var requiredDistance = myVectorToMyMembrane.Length() + parentVectorToItsMembrane.Length();
 
-        Translation = offset;
-        Rotation = rotation;
+        var offset = vectorToParent.Normalized() * requiredDistance;
 
+        Rotation = oldRotation - ColonyParent.Rotation;
+        Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
         UnreadyToReproduce();
     }
 
