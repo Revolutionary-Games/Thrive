@@ -224,13 +224,6 @@ public class Mutations
                 }
             }
 
-            /*
-            Can add up to 6 new organelles (Which should allow AI to catch up to player more)
-            Probability of mutation occuring 5 time = 0.15 ^ 5 = 7.5 * 10 ^ -5
-            Probability of mutation NOT occuring = (1 - 0.15) ^ 5 = 0.443
-            Probability of mutation occuring = 1 - (1 - 0.15) ^ 5 = 0.556
-            */
-
             // We can insert new organelles at the end of the list
             for (int n = 0; n < 6; n++)
             {
