@@ -1411,7 +1411,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var myVectorToMyMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
 
         vectorToParentRotated = (-vectorToParent).Rotated(Vector3.Down, ColonyParent.Rotation.y);
-        var parentVectorToItsMembrane = ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+        var parentVectorToItsMembrane =
+            ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
 
         var requiredDistance = myVectorToMyMembrane.Length() + parentVectorToItsMembrane.Length();
 
