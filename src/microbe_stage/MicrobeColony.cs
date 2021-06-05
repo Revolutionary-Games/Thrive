@@ -59,14 +59,19 @@ public class MicrobeColony
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
 
-        foreach (var child in microbe.ColonyChildren)
-            RemoveFromColony(child);
+        microbe.Colony = null;
+
+        while (microbe.ColonyChildren.Count != 0)
+            RemoveFromColony(microbe.ColonyChildren[0]);
 
         ColonyMembers.Remove(microbe);
+
         microbe.ColonyParent?.ColonyChildren?.Remove(microbe);
+        if (microbe.ColonyParent?.Colony != null && microbe.ColonyParent?.ColonyParent == null && microbe.ColonyParent?.ColonyChildren?.Count == 0)
+            RemoveFromColony(microbe.ColonyParent);
+
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
-        microbe.Colony = null;
 
         if (State == Microbe.MicrobeState.Unbinding)
             State = Microbe.MicrobeState.Normal;

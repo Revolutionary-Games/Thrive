@@ -1356,14 +1356,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
-        if (microbe == this || Colony.ColonyMembers.Count == 2)
+        if (microbe == this)
         {
             OnUnbound?.Invoke(this);
 
             RevertNodeParent();
             ai?.ResetAI();
-
-            Colony = null;
 
             return;
         }
@@ -2237,18 +2235,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void RevertNodeParent()
     {
-        var parent = GetParent();
-        Vector3 pos;
-        if (parent is Spatial spatial)
-        {
-            var offset = Translation
-                .Rotated(Vector3.Up, spatial.Rotation.y);
-            pos = spatial.Translation + offset;
-        }
-        else
-        {
-            pos = Translation;
-        }
+        var pos = GlobalTransform;
 
         if (Colony.Master != this)
         {
@@ -2257,7 +2244,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             GetStageAsParent().AddChild(this);
         }
 
-        Translation = pos;
+        GlobalTransform = pos;
     }
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
@@ -2380,6 +2367,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         Colony.AddToColony(other, this);
+        State = MicrobeState.Normal;
     }
 
     /// <summary>

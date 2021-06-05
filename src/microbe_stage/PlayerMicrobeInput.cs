@@ -149,7 +149,6 @@ public class PlayerMicrobeInput : NodeWithInput
     public void RemoveCellFromColony(Microbe target)
     {
         target.Colony.RemoveFromColony(target);
-        target.State = Microbe.MicrobeState.Normal;
     }
 
     [RunOnKeyDown("g_cheat_editor")]
