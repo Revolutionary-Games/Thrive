@@ -471,8 +471,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (IsLoadedFromSave)
         {
             // Fix the tree of colonies
-            foreach (var children in ColonyChildren)
-                AddChild(children);
+            if (ColonyChildren != null)
+            {
+                foreach (var children in ColonyChildren)
+                    AddChild(children);
+            }
 
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
