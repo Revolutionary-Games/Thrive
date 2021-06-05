@@ -56,18 +56,17 @@ public class MicrobeColony
         if (!Equals(microbe.Colony, this))
             throw new ArgumentException("Cannot remove a colony member who isn't a member");
 
-        ColonyMembers.ForEach(m => m.OnColonyMemberRemoved(microbe));
+        foreach (var colonyMember in ColonyMembers)
+            colonyMember.OnColonyMemberRemoved(microbe);
+
+        foreach (var child in microbe.ColonyChildren)
+            RemoveFromColony(child);
 
         ColonyMembers.Remove(microbe);
-
-        while (microbe.ColonyChildren.Any())
-            RemoveFromColony(microbe.ColonyChildren[0]);
-
         microbe.ColonyParent?.ColonyChildren?.Remove(microbe);
-
-        microbe.Colony = null;
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
+        microbe.Colony = null;
 
         if (State == Microbe.MicrobeState.Unbinding)
             State = Microbe.MicrobeState.Normal;

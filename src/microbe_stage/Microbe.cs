@@ -1356,12 +1356,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
-        if (microbe == this)
+        if (microbe == this || Colony.ColonyMembers.Count == 2)
         {
             OnUnbound?.Invoke(this);
 
             RevertNodeParent();
             ai?.ResetAI();
+
+            Colony = null;
 
             return;
         }
@@ -2250,6 +2252,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (Colony.Master != this)
         {
+            justEnteringColony = true;
             GetParent().RemoveChild(this);
             GetStageAsParent().AddChild(this);
         }
@@ -2417,7 +2420,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void StopEngulfingOnTarget(Microbe microbe)
     {
-        if (Colony == null || Colony == microbe.Colony)
+        if (Colony == null || Colony != microbe.Colony)
             RemoveCollisionExceptionWith(microbe);
 
         microbe.hostileEngulfer = null;
