@@ -19,6 +19,13 @@ public class ReferenceResolver : IReferenceResolver
 
     public object ResolveReference(object context, string reference)
     {
+        if (!referenceToObject.ContainsKey(reference))
+        {
+            throw new KeyNotFoundException(
+                $"The reference {reference} was not found.\n" +
+                $"Is a child referencing an ancestor? If so, you should use the [UseThriveSerializer]");
+        }
+
         return referenceToObject[reference];
     }
 
