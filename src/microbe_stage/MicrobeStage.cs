@@ -176,12 +176,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                     disposed = true;
                 }
 
-                if (disposed)
-                    continue;
-
-                if (casted is Microbe microbe)
-                    microbe.Colony?.ColonyMembers?.ForEach(x => results.Add(x));
-                results.Add(casted);
+                if (!disposed)
+                    results.Add(casted);
             }
 
             return results.ToList();
@@ -192,10 +188,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
             foreach (var entity in value)
             {
-                if (entity is Microbe microbe)
-                    (microbe.ColonyParent ?? rootOfDynamicallySpawned).AddChild(entity);
-                else
-                    rootOfDynamicallySpawned.AddChild(entity);
+                rootOfDynamicallySpawned.AddChild(entity);
             }
         }
     }
