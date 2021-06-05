@@ -1405,12 +1405,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         State = MicrobeState.Normal;
 
-        var offset = (Translation - ColonyParent.Translation)
-            .Rotated(Vector3.Down, ColonyParent.Rotation.y);
+        var vectorToParent = ColonyParent.GlobalTransform.origin - GlobalTransform.origin;
+
+        var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
+        var myVectorToMyMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+
+        vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, ColonyParent.Rotation.y);
+        var parentVectorToItsMembrane = ColonyParent.Membrane.GetExternalOrganelle(-vectorToParentRotated.x, -vectorToParentRotated.y);
+        var offset = myVectorToMyMembrane - parentVectorToItsMembrane;
+
         var rotation = Rotation - ColonyParent.Rotation;
 
         Translation = offset;
         Rotation = rotation;
+
 
         UnreadyToReproduce();
     }
