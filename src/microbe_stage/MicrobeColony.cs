@@ -4,6 +4,7 @@ using System.Linq;
 using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
+[UseThriveSerializer]
 public class MicrobeColony
 {
     private Microbe.MicrobeState state;
