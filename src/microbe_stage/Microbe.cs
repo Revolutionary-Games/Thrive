@@ -1363,8 +1363,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
-        microbe.RemoveCollisionExceptionWith(this);
-        RemoveCollisionExceptionWith(microbe);
+        if (hostileEngulfer != microbe)
+            microbe.RemoveCollisionExceptionWith(this);
+        if (microbe.hostileEngulfer != this)
+            RemoveCollisionExceptionWith(microbe);
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
@@ -1372,6 +1374,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (microbe == this)
         {
             OnIGotAddedToColony();
+        }
+        else
+        {
+            AddCollisionExceptionWith(microbe);
+            microbe.AddCollisionExceptionWith(this);
         }
     }
 
@@ -2399,10 +2406,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void StopEngulfingOnTarget(Microbe microbe)
     {
-        if (Colony != null && Colony == microbe.Colony)
-        {
+        if (Colony == null || Colony == microbe.Colony)
             RemoveCollisionExceptionWith(microbe);
-        }
 
         microbe.hostileEngulfer = null;
     }
