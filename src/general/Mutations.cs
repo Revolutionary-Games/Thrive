@@ -77,14 +77,14 @@ public class Mutations
             mutated.Genus = parent.Genus;
         }
 
-        // If the new species is a eukaryote, mark this
+        // If the new species is a eukaryote, mark this as such
         var nucleus = simulation.GetOrganelleType("nucleus");
         if (mutated.Organelles.Any(o => o.Definition == nucleus))
         {
             mutated.IsBacteria = false;
         }
 
-        // Update color and membrane
+        // Update colour and membrane
         var colour = mutated.IsBacteria ? RandomProkaryoteColour() : RandomEukaryoteColour();
         if (random.Next(0, 101) <= 20)
         {
@@ -200,7 +200,7 @@ public class Mutations
                 {
                     if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE / Math.Sqrt(parentOrganelles.Count))
                     {
-                        // Don't copy over any organelle, removing this one from the new species
+                        // Don't copy over this organelle, removing this one from the new species
                         continue;
                     }
 
@@ -225,7 +225,7 @@ public class Mutations
             }
 
             // We can insert new organelles at the end of the list
-            for (int n = 0; n < 6; n++)
+            for (int i = 0; i < 6; i++)
             {
                 if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
                 {
@@ -426,23 +426,9 @@ public class Mutations
     /// <returns>True if the two species should be a new genus, false otherwise.</returns>
     private bool NewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
     {
-        var species1UniqueOrganelles = new HashSet<string>();
-        foreach (var organelle in species1.Organelles.Organelles)
-        {
-            if (!species1UniqueOrganelles.Contains(organelle.Definition.Name))
-            {
-                species1UniqueOrganelles.Add(organelle.Definition.Name);
-            }
-        }
+        var species1UniqueOrganelles = species1.Organelles.Select(o => o.Definition).ToHashSet();
 
-        var species2UniqueOrganelles = new HashSet<string>();
-        foreach (var organelle in species2.Organelles.Organelles)
-        {
-            if (!species2UniqueOrganelles.Contains(organelle.Definition.Name))
-            {
-                species2UniqueOrganelles.Add(organelle.Definition.Name);
-            }
-        }
+        var species2UniqueOrganelles = species2.Organelles.Select(o => o.Definition).ToHashSet();
 
         return !species1UniqueOrganelles.SetEquals(species2UniqueOrganelles);
     }
