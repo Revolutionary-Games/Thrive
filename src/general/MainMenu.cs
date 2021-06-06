@@ -187,7 +187,7 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, IsReturningToMenu ?
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
             0.3f :
             0.5f, false);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
@@ -231,13 +231,13 @@ public class MainMenu : Node
 
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
             TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
         }
         else
         {
             // People who disable the cutscene are impatient anyway so use a reduced fade time
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.2f);
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.2f);
         }
 
         TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
@@ -256,7 +256,7 @@ public class MainMenu : Node
         // Ignore mouse event on the button to prevent it being clicked twice
         freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.15f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.15f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 
