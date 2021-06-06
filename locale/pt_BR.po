@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-29 22:04+0300\n"
-"PO-Revision-Date: 2021-05-27 01:42+0000\n"
+"POT-Creation-Date: 2021-05-20 23:54+0700\n"
+"PO-Revision-Date: 2021-05-30 07:33+0000\n"
 "Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -959,7 +959,7 @@ msgstr "Parar"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr "Atualizar"
+msgstr "Recarregar"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
@@ -1502,7 +1502,7 @@ msgstr "Reproduzir a introdução do Estágio Microbial em novo jogo"
 
 #: ../src/general/OptionsMenu.tscn:836
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr "Usar o salvamento automático durante o jogo"
+msgstr "Salvamento automático durante o jogo"
 
 #: ../src/general/OptionsMenu.tscn:847
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -2632,7 +2632,7 @@ msgstr "O jogo salvo é inválido"
 
 #: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "O jogo salvamento tem uma cena de game state inválida"
+msgstr "Salvamento tem save game scene inválida"
 
 #: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
@@ -2692,11 +2692,11 @@ msgstr "Salvo com sucesso"
 
 #: ../src/saving/SaveHelper.cs:384
 msgid "SAVING_FAILED"
-msgstr "O salvamento falhou! Uma exceção aconteceu"
+msgstr "O salvamento falhou! Uma exceção ocorreu"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr "Salvamento manual"
+msgstr "Manual"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
@@ -2765,8 +2765,8 @@ msgstr "O jogo salvo selecionado é incompatível"
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O jogo salvo selecionado não é compatível com esta versão de Thrive.\n"
-"Como Thrive está em desenvolvimento, a compatibilidade entre salvamentos "
-"não é uma prioridade, já que não há um corversor para atualizar os "
+"Como Thrive está em desenvolvimento inicial, a compatibilidade entre "
+"salvamentos não é prioridade, já que não há um conversor para atualizar os "
 "arquivos."
 
 #: ../src/saving/SaveListItem.tscn:131
@@ -2829,7 +2829,7 @@ msgstr "Atualizar"
 
 #: ../src/saving/SaveManagerGUI.tscn:77
 msgid "DELETE_SELECTED"
-msgstr "Apagar seleção"
+msgstr "Apagar selecionado"
 
 #: ../src/saving/SaveManagerGUI.tscn:86
 msgid "CLEAN_UP_OLD_SAVES"
@@ -2841,7 +2841,7 @@ msgstr "Abrir Diretório de Salvamentos"
 
 #: ../src/saving/SaveManagerGUI.tscn:131
 msgid "TOTAL_SAVES"
-msgstr "Total de salvamentos:"
+msgstr "Salvamentos totais:"
 
 #: ../src/saving/SaveManagerGUI.tscn:151
 msgid "SAVE_SPACE_USED"
@@ -2849,7 +2849,7 @@ msgstr "Espaço usado:"
 
 #: ../src/saving/SaveManagerGUI.tscn:171
 msgid "SELECTED_COLON"
-msgstr "Seleção:"
+msgstr "Selecionado:"
 
 #: ../src/saving/SaveManagerGUI.tscn:188
 msgid "DELETE_SELECTED_SAVES"

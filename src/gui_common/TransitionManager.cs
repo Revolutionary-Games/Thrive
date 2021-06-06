@@ -50,15 +50,9 @@ public class TransitionManager : NodeWithInput
     /// <summary>
     ///   Creates and queues a screen fade.
     /// </summary>
-    /// <param name="type">
-    ///   The type of fade to transition to.
-    /// </param>
-    /// <param name="fadeDuration">
-    ///   How long the fade lasts
-    /// </param>
-    /// <param name="allowSkipping">
-    ///   Allow the user to skip this
-    /// </param>
+    /// <param name="type">The type of fade to transition to</param>
+    /// <param name="fadeDuration">How long the fade lasts</param>
+    /// <param name="allowSkipping">Allow the user to skip this</param>
     public void AddScreenFade(ScreenFade.FadeType type, float fadeDuration, bool allowSkipping = true)
     {
         // Instantiate scene
@@ -66,7 +60,7 @@ public class TransitionManager : NodeWithInput
         AddChild(screenFade);
 
         screenFade.Skippable = allowSkipping;
-        screenFade.FadeTransition = type;
+        screenFade.CurrentFadeType = type;
         screenFade.FadeDuration = fadeDuration;
 
         screenFade.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
@@ -78,9 +72,7 @@ public class TransitionManager : NodeWithInput
     ///   Creates and queues a cutscene.
     /// </summary>
     /// <param name="path">The video file to play</param>
-    /// <param name="allowSkipping">
-    ///   Allow the user to skip this
-    /// </param>
+    /// <param name="allowSkipping">Allow the user to skip this</param>
     public void AddCutscene(string path, bool allowSkipping = true)
     {
         // Instantiate scene
@@ -88,10 +80,7 @@ public class TransitionManager : NodeWithInput
         AddChild(cutscene);
 
         cutscene.Skippable = allowSkipping;
-
-        var stream = GD.Load<VideoStream>(path);
-
-        cutscene.CutsceneVideoPlayer.Stream = stream;
+        cutscene.Stream = GD.Load<VideoStream>(path);
 
         cutscene.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
 
@@ -108,7 +97,7 @@ public class TransitionManager : NodeWithInput
     {
         if (queuedTransitions.Count == 0 || queuedTransitions == null)
         {
-            GD.PrintErr("Queued transitions is either empty or null");
+            GD.PrintErr("No transitions found in the queue, can't execute transitions");
             return;
         }
 
@@ -121,9 +110,11 @@ public class TransitionManager : NodeWithInput
             }
         }
 
-        // Add the transitions to the list for reference
         foreach (var entry in queuedTransitions)
         {
+            entry.Visible = false;
+
+            // Add the transitions to the list for reference
             TransitionSequence.Add(entry);
         }
 
@@ -156,7 +147,7 @@ public class TransitionManager : NodeWithInput
     /// </summary>
     private void StartNextQueuedTransition()
     {
-        // Assume it's finished when queue is empty.
+        // Assume all transitions are finished if the queue is empty.
         if (queuedTransitions.Count == 0)
         {
             EmitSignal(nameof(QueuedTransitionsFinished));
@@ -165,6 +156,7 @@ public class TransitionManager : NodeWithInput
         }
 
         var currentTransition = queuedTransitions.Dequeue();
+        currentTransition.Visible = true;
         currentTransition.OnStarted();
     }
 }
