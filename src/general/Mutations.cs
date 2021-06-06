@@ -225,7 +225,7 @@ public class Mutations
             }
 
             // We can insert new organelles at the end of the list
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; ++i)
             {
                 if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
                 {
