@@ -427,10 +427,11 @@ public class Mutations
     private bool NewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
     {
         var species1UniqueOrganelles = species1.Organelles.Select(o => o.Definition).ToHashSet();
-
         var species2UniqueOrganelles = species2.Organelles.Select(o => o.Definition).ToHashSet();
 
-        return !species1UniqueOrganelles.SetEquals(species2UniqueOrganelles);
+        return species1UniqueOrganelles.Union(species2UniqueOrganelles).Count()
+            - species1UniqueOrganelles.Intersect(species2UniqueOrganelles).Count()
+            >= Constants.DIFFERENCES_FOR_GENUS_SPLIT;
     }
 
     private string MutateWord(string name)
@@ -441,7 +442,7 @@ public class Mutations
         int letterChanges = 0;
         int changes = 0;
 
-        for (int i = 1; i < newName.Length; i++)
+        for (int i = 1; i < newName.Length; ++i)
         {
             if (changes <= changeLimit && i > 1)
             {

@@ -371,6 +371,7 @@ public static class Constants
 
     // Genus splitting and name mutation
     public const int MUTATION_WORD_EDIT = 10;
+    public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
