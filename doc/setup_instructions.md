@@ -621,3 +621,20 @@ If you are on Windows and you see that most game files are marked as
 changed after opening the Godot editor, then check your `autocrlf`
 setting (instructions are in this file), and reclone or recheckout all
 of the game files (while Godot is closed).
+
+### Code checks (inspectcode, cleanupcode) report incorrect errors
+
+Due to a problem with caching with those tools, they may not be using
+the latest configuration on your computer. To fix this problem (for
+now, this has been [reported to
+jetbrains](https://youtrack.jetbrains.com/issue/RSRP-484743) you need
+to delete some cache folders.
+
+On Linux these folders are:
+```
+~/.local/share/JetBrains/Transient
+~/.local/share/JetBrains/InspectCode
+/tmp/JetBrainsPerUserTemp-*
+```
+
+On Windows the cache folders are somewhere in your APPDATA folders.
