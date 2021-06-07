@@ -88,7 +88,7 @@ public class Mutations
         var colour = mutated.IsBacteria ? RandomProkaryoteColour() : RandomEukaryoteColour();
         if (random.Next(0, 101) <= 20)
         {
-            mutated.MembraneType = RandomMembraneType();
+            mutated.MembraneType = RandomMembraneType(simulation);
             if (mutated.MembraneType != simulation.GetMembrane("single"))
             {
                 colour.a = RandomOpacityChitin();
@@ -193,7 +193,7 @@ public class Mutations
             // Chance to replace each organelle randomly
             foreach (var parentOrganelle in parentOrganelles)
             {
-                OrganelleTemplate organelle = (OrganelleTemplate)parentOrganelle.Clone();
+                var organelle = (OrganelleTemplate)parentOrganelle.Clone();
 
                 // Chance to replace or remove if not a nucleus
                 if (organelle.Definition != nucleus)
@@ -333,10 +333,8 @@ public class Mutations
             "for a new organelle");
     }
 
-    private MembraneType RandomMembraneType()
+    private MembraneType RandomMembraneType(SimulationParameters simulation)
     {
-        var simulation = SimulationParameters.Instance;
-
         // Could perhaps use a weighted entry model here... the
         // earlier one is listed, the more likely currently (I
         // think). That may be an issue.
