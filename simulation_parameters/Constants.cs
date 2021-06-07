@@ -331,10 +331,9 @@ public static class Constants
     public const float MAX_OPACITY_MUTATION = 0.01f;
 
     // Mutation Variables
-    public const float MUTATION_BACTERIA_TO_EUKARYOTE = 1.0f;
-    public const float MUTATION_CREATION_RATE = 0.1f;
-    public const float MUTATION_EXTRA_CREATION_RATE = 0.1f;
-    public const float MUTATION_DELETION_RATE = 0.1f;
+    public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
+    public const float MUTATION_CREATION_RATE = 0.15f;
+    public const float MUTATION_DELETION_RATE = 0.03f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
     // Max fear and aggression and activity
@@ -371,8 +370,8 @@ public static class Constants
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
     // Genus splitting and name mutation
-    public const int MUTATION_CHANGE_GENUS = 33;
     public const int MUTATION_WORD_EDIT = 10;
+    public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations

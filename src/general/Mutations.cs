@@ -55,11 +55,12 @@ public class Mutations
             mutated.Epithet = nameGenerator.GenerateNameSection();
         }
 
-        mutated.Genus = parent.Genus;
-
         MutateBehaviour(parent, mutated);
 
-        if (random.Next(0, 101) <= Constants.MUTATION_CHANGE_GENUS)
+        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria);
+
+        // Update the genus if the new species is different enough
+        if (NewGenus(mutated, parent))
         {
             // We can do more fun stuff here later
             if (random.Next(0, 101) < Constants.MUTATION_WORD_EDIT)
@@ -71,50 +72,25 @@ public class Mutations
                 mutated.Genus = nameGenerator.GenerateNameSection();
             }
         }
+        else
+        {
+            mutated.Genus = parent.Genus;
+        }
 
-        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria);
-
-        // There is a small chance of evolving into a eukaryote
+        // If the new species is a eukaryote, mark this as such
         var nucleus = simulation.GetOrganelleType("nucleus");
-
         if (mutated.Organelles.Any(o => o.Definition == nucleus))
         {
             mutated.IsBacteria = false;
         }
 
+        // Update colour and membrane
         var colour = mutated.IsBacteria ? RandomProkaryoteColour() : RandomEukaryoteColour();
-
         if (random.Next(0, 101) <= 20)
         {
-            // Could perhaps use a weighted entry model here... the
-            // earlier one is listed, the more likely currently (I
-            // think). That may be an issue.
-            if (random.Next(0, 101) < 50)
+            mutated.MembraneType = RandomMembraneType(simulation);
+            if (mutated.MembraneType != simulation.GetMembrane("single"))
             {
-                mutated.MembraneType = simulation.GetMembrane("single");
-            }
-            else if (random.Next(0, 101) < 50)
-            {
-                mutated.MembraneType = simulation.GetMembrane("double");
-                colour.a = RandomOpacityChitin();
-            }
-            else if (random.Next(0, 101) < 50)
-            {
-                mutated.MembraneType = simulation.GetMembrane("cellulose");
-            }
-            else if (random.Next(0, 101) < 50)
-            {
-                mutated.MembraneType = simulation.GetMembrane("chitin");
-                colour.a = RandomOpacityChitin();
-            }
-            else if (random.Next(0, 101) < 50)
-            {
-                mutated.MembraneType = simulation.GetMembrane("calcium_carbonate");
-                colour.a = RandomOpacityChitin();
-            }
-            else
-            {
-                mutated.MembraneType = simulation.GetMembrane("silica");
                 colour.a = RandomOpacityChitin();
             }
         }
@@ -206,112 +182,78 @@ public class Mutations
     ///   Creates a mutated version of parentOrganelles in organelles
     /// </summary>
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
-        OrganelleLayout<OrganelleTemplate> organelles, bool isBacteria)
+        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria)
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         for (var iteration = 0; iteration < 10; iteration++)
         {
-            organelles.Clear();
+            mutatedOrganelles.Clear();
 
-            // Delete or replace an organelle randomly
-            for (int i = 0; i < parentOrganelles.Count; i++)
+            // Chance to replace each organelle randomly
+            foreach (var parentOrganelle in parentOrganelles)
             {
-                bool copy = true;
+                var organelle = (OrganelleTemplate)parentOrganelle.Clone();
 
-                var organelle = parentOrganelles[i];
-
-                if (parentOrganelles.Count < 2)
+                // Chance to replace or remove if not a nucleus
+                if (organelle.Definition != nucleus)
                 {
-                    // Removing last organelle would be silly
-                }
-                else if (organelle.Definition != nucleus)
-                {
-                    // Chance to replace or remove if not a nucleus
-
-                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE)
+                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE / Math.Sqrt(parentOrganelles.Count))
                     {
-                        copy = false;
+                        // Don't copy over this organelle, removing this one from the new species
+                        continue;
                     }
-                    else if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
-                    {
-                        copy = false;
 
-                        var replacer = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
+                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
+                    {
+                        organelle = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
                             organelle.Position, organelle.Orientation);
-
-                        // The replacing organelle might not fit at the same position
-                        try
-                        {
-                            organelles.Add(replacer);
-                        }
-                        catch (ArgumentException)
-                        {
-                            // Couldn't replace it
-                            copy = true;
-                        }
                     }
                 }
-
-                if (!copy)
-                    continue;
 
                 // Copy the organelle
                 try
                 {
-                    organelles.Add((OrganelleTemplate)organelle.Clone());
+                    mutatedOrganelles.Add(organelle);
                 }
                 catch (ArgumentException)
                 {
                     // Add the organelle randomly back to the list to make
                     // sure we don't throw it away
-                    AddNewOrganelle(organelles, organelle.Definition);
+                    AddNewOrganelle(mutatedOrganelles, organelle.Definition);
                 }
             }
 
-            // Can add up to 6 new organelles (Which should allow AI to catch up to player more
             // We can insert new organelles at the end of the list
-            if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
+            for (int i = 0; i < 6; ++i)
             {
-                AddNewOrganelle(organelles, GetRandomOrganelle(isBacteria));
-            }
-
-            /*
-            Probability of mutation occuring 5 time(s) = 0.15 = 1.0E-5
-            Probability of mutation NOT occuring = (1 - 0.1)5 = 0.59049
-            Probability of mutation occuring = 1 - (1 - 0.1)5 = 0.40951
-            */
-
-            // We can insert new organelles at the end of the list
-            for (int n = 0; n < 5; ++n)
-            {
-                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_EXTRA_CREATION_RATE)
+                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
                 {
-                    AddNewOrganelle(organelles, GetRandomOrganelle(isBacteria));
+                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
                 }
             }
 
             if (isBacteria)
             {
-                if (random.Next(0.0f, 100.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
+                if (random.Next(0.0f, 1.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
                 {
-                    AddNewOrganelle(organelles, nucleus);
+                    AddNewOrganelle(mutatedOrganelles, nucleus);
                 }
             }
 
             // Disallow creating empty species as that throws an exception when trying to spawn
-            if (organelles.Count < 1)
+            if (mutatedOrganelles.Count < 1)
             {
                 // Add the first parent species organelle
-                AddNewOrganelle(organelles, parentOrganelles[0].Definition);
+                AddNewOrganelle(mutatedOrganelles, parentOrganelles[0].Definition);
 
                 // If still empty, copy the first organelle of the parent
-                if (organelles.Count < 1)
-                    organelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
+                if (mutatedOrganelles.Count < 1)
+                    mutatedOrganelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
             }
 
-            // Try again if the mutation has islands
-            if (organelles.GetIslandHexes().Count == 0)
+            // If the mutation has no islands, we can use this iteration
+            if (mutatedOrganelles.GetIslandHexes().Count == 0)
                 return;
         }
 
@@ -391,6 +333,39 @@ public class Mutations
             "for a new organelle");
     }
 
+    private MembraneType RandomMembraneType(SimulationParameters simulation)
+    {
+        // Could perhaps use a weighted entry model here... the
+        // earlier one is listed, the more likely currently (I
+        // think). That may be an issue.
+        if (random.Next(0, 101) < 50)
+        {
+            return simulation.GetMembrane("single");
+        }
+
+        if (random.Next(0, 101) < 50)
+        {
+            return simulation.GetMembrane("double");
+        }
+
+        if (random.Next(0, 101) < 50)
+        {
+            return simulation.GetMembrane("cellulose");
+        }
+
+        if (random.Next(0, 101) < 50)
+        {
+            return simulation.GetMembrane("chitin");
+        }
+
+        if (random.Next(0, 101) < 50)
+        {
+            return simulation.GetMembrane("calcium_carbonate");
+        }
+
+        return simulation.GetMembrane("silica");
+    }
+
     private float RandomColourChannel()
     {
         return random.Next(Constants.MIN_COLOR, Constants.MAX_COLOR);
@@ -441,6 +416,22 @@ public class Mutations
             opaqueness);
     }
 
+    /// <summary>
+    ///   Used to determine if a newly mutated species needs to be in a different genus.
+    /// </summary>
+    /// <param name="species1">The first species. Function is not order-dependent.</param>
+    /// <param name="species2">The second species. Function is not order-dependent.</param>
+    /// <returns>True if the two species should be a new genus, false otherwise.</returns>
+    private bool NewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
+    {
+        var species1UniqueOrganelles = species1.Organelles.Select(o => o.Definition).ToHashSet();
+        var species2UniqueOrganelles = species2.Organelles.Select(o => o.Definition).ToHashSet();
+
+        return species1UniqueOrganelles.Union(species2UniqueOrganelles).Count()
+            - species1UniqueOrganelles.Intersect(species2UniqueOrganelles).Count()
+            >= Constants.DIFFERENCES_FOR_GENUS_SPLIT;
+    }
+
     private string MutateWord(string name)
     {
         StringBuilder newName = new StringBuilder(name);
@@ -449,7 +440,7 @@ public class Mutations
         int letterChanges = 0;
         int changes = 0;
 
-        for (int i = 1; i < newName.Length; i++)
+        for (int i = 1; i < newName.Length; ++i)
         {
             if (changes <= changeLimit && i > 1)
             {
