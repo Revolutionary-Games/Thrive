@@ -27,7 +27,7 @@ public class HeterotrophicNiche : INiche
             return 0.0f;
         }
 
-        var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGRESSION;
+        var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
         var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         var predatorSpeed = microbeSpecies.BaseSpeed();
