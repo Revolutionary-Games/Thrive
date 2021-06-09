@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Godot.NET.Sdk/3.2.3">
+<Project Sdk="Godot.NET.Sdk/3.3.0">
   <PropertyGroup>
     <ProjectGuid>{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -167,7 +167,6 @@
     <Compile Include="src\microbe_stage\CompoundCloudSystem.cs" />
     <Compile Include="src\engine\TaskExecutor.cs" />
     <Compile Include="src\microbe_stage\FluidSystem.cs" />
-    <Compile Include="src\general\PerlinNoise.cs" />
     <Compile Include="src\microbe_stage\Spawner.cs" />
     <Compile Include="src\microbe_stage\ISpawned.cs" />
     <Compile Include="src\microbe_stage\Spawners.cs" />
@@ -197,7 +196,7 @@
     <Compile Include="src\microbe_stage\IPositionedOrganelle.cs" />
     <Compile Include="src\general\ListUtils.cs" />
     <Compile Include="src\general\ActionHistory.cs" />
-    <Compile Include="src\general\ReversableAction.cs" />
+    <Compile Include="src\general\ReversibleAction.cs" />
     <Compile Include="src\general\Mutations.cs" />
     <Compile Include="src\microbe_stage\ProcessSpeedInformation.cs" />
     <Compile Include="src\microbe_stage\OrganelleEfficiency.cs" />
@@ -328,5 +327,8 @@
     <Content Include="simulation_parameters\microbe_stage\membranes.json" />
     <Content Include="simulation_parameters\microbe_stage\organelles.json" />
     <Content Include="simulation_parameters\microbe_stage\species_names.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="third_party\ThirdParty.csproj" />
   </ItemGroup>
 </Project>

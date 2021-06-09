@@ -55,7 +55,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private OrganelleLayout<PlacedOrganelle> organelles;
 
     /// <summary>
-    ///   Contains the piluses this microbe has for collision checking
+    ///   Contains the pili this microbe has for collision checking
     /// </summary>
     private HashSet<uint> pilusPhysicsShapes = new HashSet<uint>();
 
@@ -776,14 +776,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             }
         }
 
-        int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISER);
+        int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISER;
+            float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
@@ -1413,7 +1413,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (allOrganellesDivided)
         {
             // Ready to reproduce already. Only the player gets here
-            // as other cells split and reset varmatically
+            // as other cells split and reset automatically
             return;
         }
 
@@ -1514,7 +1514,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         while (true)
         {
             // Moves into the ring of radius "radius" and center the old organelle
-            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BOTTOM_LEFT];
+            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
             q = q + radiusOffset.Q;
             r = r + radiusOffset.R;
 

@@ -21,7 +21,7 @@ public class MembraneType : IRegistryType
     public float PhysicalResistance = 1.0f;
     public float ToxinResistance = 1.0f;
     public int EditorCost = 50;
-    public bool CellWall = false;
+    public bool CellWall;
     public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
 
@@ -54,7 +54,7 @@ public class MembraneType : IRegistryType
             if (!directory.FileExists(resource + ".import"))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Membrane uses non-existant image: " + resource);
+                    "Membrane uses non-existent image: " + resource);
             }
         }
 

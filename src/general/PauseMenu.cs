@@ -108,7 +108,7 @@ public class PauseMenu : ControlWithInput
 
     private bool NoExclusiveTutorialActive()
     {
-        return GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive();
+        return GameProperties.TutorialState?.ExclusiveTutorialActive() != true;
     }
 
     private void ClosePressed()
@@ -124,7 +124,7 @@ public class PauseMenu : ControlWithInput
         // Unpause the game
         GetTree().Paused = false;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.1f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
     }
 

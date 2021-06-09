@@ -33,7 +33,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath StructureTabPath;
 
     [Export]
-    public NodePath ApperanceTabPath;
+    public NodePath AppearanceTabPath;
 
     [Export]
     public NodePath SizeLabelPath;
@@ -384,9 +384,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureRect sizeIndicator;
 
     private Texture symmetryIconDefault;
-    private Texture symmetryIcon2x;
-    private Texture symmetryIcon4x;
-    private Texture symmetryIcon6x;
+    private Texture symmetryIcon2X;
+    private Texture symmetryIcon4X;
+    private Texture symmetryIcon6X;
     private Texture increaseIcon;
     private Texture decreaseIcon;
     private AudioStream unableToPlaceHexSound;
@@ -435,7 +435,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         structureTabButton = GetNode<Button>(StructureTabButtonPath);
 
-        appearanceTab = GetNode<PanelContainer>(ApperanceTabPath);
+        appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
         appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
 
         sizeLabel = GetNode<Label>(SizeLabelPath);
@@ -516,9 +516,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
-        symmetryIcon2x = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
-        symmetryIcon4x = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
-        symmetryIcon6x = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
+        symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
+        symmetryIcon4X = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
+        symmetryIcon6X = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
@@ -553,10 +553,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         ApplySelectionMenuTab();
 
         UpdateMutationPointsBar();
-
-        // Fade out for that smooth satisfying transition
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
     }
 
     public void SetMap(PatchMap map)
@@ -566,14 +562,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdatePlayerPatch(Patch patch)
     {
-        if (patch == null)
-        {
-            mapDrawer.PlayerPatch = editor.CurrentPatch;
-        }
-        else
-        {
-            mapDrawer.PlayerPatch = patch;
-        }
+        mapDrawer.PlayerPatch = patch ?? editor.CurrentPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
@@ -778,7 +767,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
-        // Populate charts with datas from patch history
+        // Populate charts with data from patch history
         foreach (var snapshot in patch.History)
         {
             temperatureData.AddPoint(new DataPoint
@@ -1187,7 +1176,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1195,7 +1184,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1317,13 +1306,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 symmetryIcon.Texture = symmetryIconDefault;
                 break;
             case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
-                symmetryIcon.Texture = symmetryIcon2x;
+                symmetryIcon.Texture = symmetryIcon2X;
                 break;
             case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon4x;
+                symmetryIcon.Texture = symmetryIcon4X;
                 break;
             case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon6x;
+                symmetryIcon.Texture = symmetryIcon6X;
                 break;
         }
     }
@@ -1454,6 +1443,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 report.Show();
                 reportTabButton.Pressed = true;
+                editor.SetEditorCellVisibility(false);
                 break;
             }
 
@@ -1461,6 +1451,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 patchMap.Show();
                 patchMapButton.Pressed = true;
+                editor.SetEditorCellVisibility(false);
                 break;
             }
 
@@ -1468,6 +1459,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 cellEditor.Show();
                 cellEditorButton.Pressed = true;
+                editor.SetEditorCellVisibility(true);
                 break;
             }
 
@@ -1759,10 +1751,15 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
 
+        // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
+        // ReSharper disable StringLiteralTypo
         temperatureButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("temperature", "chartLegendPhysConds"), tooltipCallbacks);
+
         sunlightButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("sunlight", "chartLegendPhysConds"), tooltipCallbacks);
+
+        // ReSharper restore StringLiteralTypo
     }
 
     private void OnSpeciesNameTextChanged(string newText)

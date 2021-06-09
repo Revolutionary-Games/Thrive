@@ -1,8 +1,10 @@
-﻿using Godot;
+﻿using System.Diagnostics.CodeAnalysis;
+using Godot;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
 /// </summary>
+[SuppressMessage("ReSharper", "StringLiteralTypo", Justification = "Patch names aren't proper words")]
 public static class PatchMapGenerator
 {
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies)

@@ -26,6 +26,7 @@ class DevBuildUploader
     @parallel = options[:parallel_upload]
     @base_url = options[:url]
     @retries = options[:retries]
+    @delete = options[:delete_after_upload]
 
     @dehydrated_to_upload = []
     @devbuilds_to_upload = []
@@ -77,7 +78,7 @@ class DevBuildUploader
 
     info 'Uploading devbuilds'
     Parallel.map(things_to_upload, in_threads: @parallel) do |obj|
-      upload(*obj)
+      upload(*obj, delete: @delete)
     end
 
     success 'Done uploading'
@@ -191,9 +192,9 @@ class DevBuildUploader
   end
 
   # Does the whole upload process
-  def upload(file, url, token)
+  def upload(file, url, token, delete: false)
     file_size = (File.size(file).to_f / 2**20).round(2)
-    puts "Uploading file #{file} " +
+    puts "Uploading file #{file} " \
          "with size of #{file_size} MiB"
     put_file file, url
 
@@ -204,6 +205,11 @@ class DevBuildUploader
                       token: token
                     }.to_json)
     end
+
+    return unless delete
+
+    puts "Deleting successfully uploaded file: #{file}"
+    File.unlink file
   end
 
   # Puts file to storage URL
