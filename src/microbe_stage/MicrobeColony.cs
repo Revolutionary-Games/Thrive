@@ -66,7 +66,8 @@ public class MicrobeColony
         ColonyMembers.Remove(microbe);
 
         microbe.ColonyParent?.ColonyChildren?.Remove(microbe);
-        if (microbe.ColonyParent?.Colony != null && microbe.ColonyParent?.ColonyParent == null && microbe.ColonyParent?.ColonyChildren?.Count == 0)
+        if (microbe.ColonyParent?.Colony != null && microbe.ColonyParent?.ColonyParent == null &&
+            microbe.ColonyParent?.ColonyChildren?.Count == 0)
             RemoveFromColony(microbe.ColonyParent);
 
         microbe.ColonyParent = null;
@@ -79,7 +80,7 @@ public class MicrobeColony
     public void AddToColony(Microbe microbe, Microbe master)
     {
         if (microbe == null || master == null || microbe.Colony != null)
-            throw new ArgumentException("Microbe or master null");
+            throw new ArgumentException("Microbe or master null or microbe already is in a colony");
 
         ColonyMembers.Add(microbe);
 

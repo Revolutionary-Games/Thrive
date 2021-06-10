@@ -31,8 +31,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-    private MicrobeColony colony;
-
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
 
@@ -81,8 +79,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     [JsonProperty]
     private bool wasBeingEngulfed;
-
-    private bool justEnteringColony;
 
     // private bool isCurrentlyEngulfing = false;
 
@@ -192,17 +188,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   </para>
     /// </remarks>
     [JsonProperty(Order = 1)]
-    public MicrobeColony Colony
-    {
-        get => colony;
-        set
-        {
-            if (colony != null && colony == value)
-                return;
-
-            colony = value;
-        }
-    }
+    public MicrobeColony Colony { get; set; }
 
     [JsonProperty]
     public Microbe ColonyParent { get; set; }
@@ -1318,12 +1304,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _ExitTree()
     {
-        if (justEnteringColony)
-        {
-            justEnteringColony = false;
-            return;
-        }
-
         Colony?.RemoveFromColony(this);
     }
 
@@ -2228,9 +2208,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void ChangeNodeParent(Microbe parent)
     {
-        justEnteringColony = true;
+        // We unset Colony temporarily as otherwise our exit tree callback would remove us from the colony immediately
+        // TODO: it would be perhaps a nicer code approach to only set the Colony after this is re-parented
+        var savedColony = Colony;
+        Colony = null;
+
         GetParent().RemoveChild(this);
         parent.AddChild(this);
+
+        // And restore the colony after completing the re-parenting of this node
+        Colony = savedColony;
     }
 
     private void RevertNodeParent()
@@ -2239,9 +2226,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (Colony.Master != this)
         {
-            justEnteringColony = true;
+            var newParent = GetStageAsParent();
+
+            // See the comment in ChangeNodeParent
+            var savedColony = Colony;
+            Colony = null;
+
             GetParent().RemoveChild(this);
-            GetStageAsParent().AddChild(this);
+            newParent.AddChild(this);
+
+            Colony = savedColony;
         }
 
         GlobalTransform = pos;
@@ -2357,7 +2351,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
-        other.MovementDirection = Vector3.Zero;
+        // This needs to be done later otherwise the AI (probably) can get the cell movement direction stuck
+        Invoke.Instance.Queue(() => other.MovementDirection = Vector3.Zero);
 
         // Create a colony if there isn't one yet
         if (Colony == null)
