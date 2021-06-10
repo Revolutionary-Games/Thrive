@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-10 17:09+0300\n"
-"PO-Revision-Date: 2021-06-10 17:12+0300\n"
+"PO-Revision-Date: 2021-06-10 18:20+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -111,9 +111,17 @@ msgstr ""
 "you enter the editor they evolve as well."
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "TODO: Write text about binding"
+msgstr ""
+"By binding with other cells you can build a cell colony where the cells "
+"share the compounds they absorb and produce with each other. In order to "
+"be able to bind with another cell, you need to have the binding agents "
+"organelle and move into them after entering binding mode. You can only "
+"bind with cells of your own species. While in a colony you can't divide "
+"your cell and enter the editor (for now). To enter the editor first leave "
+"the colony once you have collected enough compounds, and then enter the "
+"editor. Large cell colonies are the way towards multicellularity (not in "
+"the game yet)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -2334,7 +2342,7 @@ msgstr "Pangonian Sea Floor"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Unbind Mode"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -3052,9 +3060,13 @@ msgstr ""
 "Look at the indicator in the bottom right to see how much more you need."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
-msgstr "TODO: Add tutorial text"
+msgstr ""
+"You have entered unbind mode. In this mode you can click on colony members "
+"to unbind them.\n"
+"\n"
+"To leave the colony entirely you can click on your own cell or press the "
+"unbind all key."
 
 #~ msgid "TURNS"
 #~ msgstr "Turns"
