@@ -154,6 +154,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private Listener listener;
 
+    [JsonProperty]
     private MicrobeState state;
 
     public enum MicrobeState
