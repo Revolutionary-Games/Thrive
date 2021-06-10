@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-10 17:09+0300\n"
-"PO-Revision-Date: 2021-05-27 01:42+0000\n"
+"POT-Creation-Date: 2021-06-10 19:38+0300\n"
+"PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1848,7 +1848,9 @@ msgstr "使用[thrive:compound]ATP[/thrive:compound]来增加细胞的移动速�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，可使用ATP沿一个方向起伏并推动细胞。"
+"鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿一个方向起伏并推动细胞。鞭"
+"毛的位置决定其推力的方向，推力方向跟鞭毛的朝向是相反的。举例说，如果将鞭毛"
+"放在细胞的左侧，那么它就会在细胞往右侧移动时提供推力。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "SPEED"
@@ -1872,9 +1874,8 @@ msgstr "仍在开发中。"
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被"
-"称作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行"
-"一些糖酵解。"
+"将[thrive:compound]ATP[/thrive:compound]转换成[thrive:compound]氨[/thrive:"
+"compound]。速率取决于[thrive:compound]氮[/thrive:compound]的浓度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 #, fuzzy
@@ -2072,7 +2073,7 @@ msgstr "添加新的绑定键位"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
 msgid "TEMPERATURE"
 msgstr "温度"
 
@@ -2081,23 +2082,23 @@ msgstr "温度"
 msgid "N_A_MP"
 msgstr "不消耗变异点"
 
-#: ../src/microbe_stage/Microbe.cs:948
+#: ../src/microbe_stage/Microbe.cs:934
 msgid "DEATH"
 msgstr "死亡数"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1372
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1379
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1733
 msgid "REPRODUCED"
 msgstr "繁殖次数"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1874
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -2174,7 +2175,7 @@ msgstr "压力"
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr "化合物"
 
@@ -2230,7 +2231,7 @@ msgstr "冰架"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "远古海床"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -2242,20 +2243,20 @@ msgstr "细胞生理过程"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1309
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo中："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2241
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2242
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
@@ -2402,7 +2403,7 @@ msgstr "物理条件"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大气气体"
 
@@ -2435,65 +2436,65 @@ msgstr "移动到这个地区"
 msgid "INFINITE_MP"
 msgstr "无限变异点"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "环境中的葡萄糖已减少到原先量的{0}。"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
 msgid "MEGA_YEARS"
 msgstr "百万年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
 msgid "ATP_PRODUCTION"
 msgstr "ATP产出"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:641
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP产出不足！"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "OSMOREGULATION"
 msgstr "渗透调节"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
 msgid "SPECIES_LIST"
 msgstr "物种列表"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
 msgid "FREEBUILDING"
 msgstr "自由编辑器"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:937
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:942
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:970
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
 msgid "WITH_POPULATION"
 msgstr "{0} 有生物数： {1}"
 
@@ -2933,45 +2934,6 @@ msgstr ""
 #~ msgid "INTO"
 #~ msgstr "转换成"
 
-#~ msgid "OXYTOXY"
-#~ msgstr "氧化毒素"
-
-#~ msgid "DOT_CAN_RELEASE"
-#~ msgstr ". 按E可释放"
-
-#~ msgid "TOXINS_BY_PRESSING_E"
-#~ msgstr "毒素。速率取决于"
-
-#~ msgid "CONCENTRATION_OF"
-#~ msgstr " "
-
-#~ msgid "USES"
-#~ msgstr "使用"
-
-#~ msgid "TO_INCREASE_THE_MOVEMENT"
-#~ msgstr "来加快细胞的移动"
-
-#~ msgid "SPEED_OF_THE_CELL"
-#~ msgstr "速度。"
-
-#~ msgid "DOT_RATE"
-#~ msgstr ". 速率"
-
-#~ msgid "SCALES_WITH_CONCENTRATION_OF"
-#~ msgstr "取决于"
-
-#~ msgid "PRODUCES"
-#~ msgstr "产出"
-
-#~ msgid "DOT_RATE_SCALES_WITH"
-#~ msgstr ". 产出速率取决于"
-
-#~ msgid "AND"
-#~ msgstr "以及"
-
-#~ msgid "INTENSITY_OF"
-#~ msgstr " "
-
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". 产出速率取决于"
 
@@ -2981,11 +2943,50 @@ msgstr ""
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "氧。"
 
+#~ msgid "PRODUCES"
+#~ msgstr "产出"
+
+#~ msgid "DOT_RATE_SCALES_WITH"
+#~ msgstr ". 产出速率取决于"
+
+#~ msgid "CONCENTRATION_OF"
+#~ msgstr " "
+
+#~ msgid "AND"
+#~ msgstr "以及"
+
+#~ msgid "INTENSITY_OF"
+#~ msgstr " "
+
 #~ msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 #~ msgstr ".速率取决于"
 
 #~ msgid "ALSO_TURNS"
 #~ msgstr "同时也将"
+
+#~ msgid "DOT_RATE"
+#~ msgstr ". 速率"
+
+#~ msgid "SCALES_WITH_CONCENTRATION_OF"
+#~ msgstr "取决于"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "氧化毒素"
+
+#~ msgid "DOT_CAN_RELEASE"
+#~ msgstr ". 按E可释放"
+
+#~ msgid "TOXINS_BY_PRESSING_E"
+#~ msgstr "毒素。速率取决于"
+
+#~ msgid "USES"
+#~ msgstr "使用"
+
+#~ msgid "TO_INCREASE_THE_MOVEMENT"
+#~ msgstr "来加快细胞的移动"
+
+#~ msgid "SPEED_OF_THE_CELL"
+#~ msgstr "速度。"
 
 #~ msgid "INREASE_STORAGE_SPACE"
 #~ msgstr "增加细胞的储存空间。"

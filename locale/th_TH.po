@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-10 17:09+0300\n"
-"PO-Revision-Date: 2021-05-11 14:41+0000\n"
+"POT-Creation-Date: 2021-06-10 19:38+0300\n"
+"PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/th/>\n"
@@ -438,7 +438,7 @@ msgstr "รีเซ็ตกล้อง"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "ยกเลิกการกระทำปัจจุบัน"
 
 #: ../simulation_parameters/common/input_options.json:139
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -1295,11 +1295,11 @@ msgstr "เมาส์ที่ไม่รู้จัก"
 
 #: ../src/general/Gallery.cs:70
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "ศิลปะโดย {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1718,13 +1718,10 @@ msgid "HEALTH"
 msgstr "เลือด"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ "
-"ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP "
-"สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน "
-"นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
+"เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1778,14 +1775,11 @@ msgid "OSMOREGULATION_COST"
 msgstr "ต้นทุน ออสโมซิส"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP "
-"ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration "
-"อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต "
-"ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ "
-"จึงทำปฏิกิริยาไกลโคไลซิส"
+"เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/"
+"thrive:compound] อัตรามาตราส่วนด้วยความเข้มข้นของ [thrive:compound]oxygen[/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1801,15 +1795,12 @@ msgid "THYLAKOID"
 msgstr "ไธลาคอยด์"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"โปรตีนสังเคราะห์ Chemosynthesizing "
-"เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า "
-"Hydrogen Sulfide Chemosynthesis "
-"อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์ "
-"เนื่องจากโปรตีนสังเคราะห์ทางเคมีจะแขวนลอยอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ "
-"จึงทำปฏิกิริยาไกลโคไลซิส"
+"ผลิต [เจริญเติบโต:สารประกอบ]กลูโคส[/เจริญเติบโต:สารประกอบ] "
+"อัตรามาตราส่วนด้วยความเข้มข้นของ [การเจริญเติบโต:สารประกอบ]คาร์บอนไดออกไซด์[/"
+"การเจริญเติบโต:สารประกอบ] และความเข้มของ [การเจริญเติบโต:สารประกอบ]แสงแดด[/"
+"การเจริญเติบโต:สารประกอบ]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -2153,7 +2144,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
 msgid "TEMPERATURE"
 msgstr "อุณหภูมิ"
 
@@ -2162,23 +2153,23 @@ msgstr "อุณหภูมิ"
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:948
+#: ../src/microbe_stage/Microbe.cs:934
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1372
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1379
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1733
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1874
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2253,7 +2244,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -2309,7 +2300,7 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -2321,20 +2312,20 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1309
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2241
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2242
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -2477,7 +2468,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
@@ -2510,65 +2501,65 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:641
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:937
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:942
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:970
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
 msgid "WITH_POPULATION"
 msgstr ""
 
@@ -2919,45 +2910,6 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 #~ msgid "INTO"
 #~ msgstr "เป็น"
 
-#~ msgid "OXYTOXY"
-#~ msgstr "ออกซิโทซิน"
-
-#~ msgid "DOT_CAN_RELEASE"
-#~ msgstr ". สามารถปล่อย"
-
-#~ msgid "TOXINS_BY_PRESSING_E"
-#~ msgstr "สารพิษโดยการกด E. อัตราสเกลด้วย"
-
-#~ msgid "CONCENTRATION_OF"
-#~ msgstr "ความเข้มข้นของ"
-
-#~ msgid "USES"
-#~ msgstr "ใช้"
-
-#~ msgid "TO_INCREASE_THE_MOVEMENT"
-#~ msgstr "เพื่อเพิ่มการเคลื่อนไหว"
-
-#~ msgid "SPEED_OF_THE_CELL"
-#~ msgstr "ความเร็วของเซลล์"
-
-#~ msgid "DOT_RATE"
-#~ msgstr ". ประเมินค่า"
-
-#~ msgid "SCALES_WITH_CONCENTRATION_OF"
-#~ msgstr "เครื่องชั่งที่มีความเข้มข้นของ"
-
-#~ msgid "PRODUCES"
-#~ msgstr "ผลิต"
-
-#~ msgid "DOT_RATE_SCALES_WITH"
-#~ msgstr ". ให้คะแนนเครื่องชั่งด้วย"
-
-#~ msgid "AND"
-#~ msgstr "และ"
-
-#~ msgid "INTENSITY_OF"
-#~ msgstr "ความเข้มของ"
-
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". อัตราเครื่องชั่ง"
 
@@ -2967,11 +2919,50 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "ออกซิเจน."
 
+#~ msgid "PRODUCES"
+#~ msgstr "ผลิต"
+
+#~ msgid "DOT_RATE_SCALES_WITH"
+#~ msgstr ". ให้คะแนนเครื่องชั่งด้วย"
+
+#~ msgid "CONCENTRATION_OF"
+#~ msgstr "ความเข้มข้นของ"
+
+#~ msgid "AND"
+#~ msgstr "และ"
+
+#~ msgid "INTENSITY_OF"
+#~ msgstr "ความเข้มของ"
+
 #~ msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 #~ msgstr ". อัตราสเกลที่มีความเข้มข้นของ"
 
 #~ msgid "ALSO_TURNS"
 #~ msgstr "ยังเปลี่ยน"
+
+#~ msgid "DOT_RATE"
+#~ msgstr ". ประเมินค่า"
+
+#~ msgid "SCALES_WITH_CONCENTRATION_OF"
+#~ msgstr "เครื่องชั่งที่มีความเข้มข้นของ"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "ออกซิโทซิน"
+
+#~ msgid "DOT_CAN_RELEASE"
+#~ msgstr ". สามารถปล่อย"
+
+#~ msgid "TOXINS_BY_PRESSING_E"
+#~ msgstr "สารพิษโดยการกด E. อัตราสเกลด้วย"
+
+#~ msgid "USES"
+#~ msgstr "ใช้"
+
+#~ msgid "TO_INCREASE_THE_MOVEMENT"
+#~ msgstr "เพื่อเพิ่มการเคลื่อนไหว"
+
+#~ msgid "SPEED_OF_THE_CELL"
+#~ msgstr "ความเร็วของเซลล์"
 
 #~ msgid "INREASE_STORAGE_SPACE"
 #~ msgstr "เพิ่มพื้นที่จัดเก็บของเซลล์"

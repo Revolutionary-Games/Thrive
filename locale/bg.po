@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-10 17:09+0300\n"
-"PO-Revision-Date: 2021-05-27 01:42+0000\n"
+"POT-Creation-Date: 2021-06-10 19:38+0300\n"
+"PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -1922,7 +1922,11 @@ msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "Флагелата (мн. ч.: флагели) представлява протеин с формата на камшик, "
 "който се разпростира извън клетъчната мембрана и използва АТФ за да "
-"придвижва клетката, чрез вълнообразни движения."
+"придвижва клетката, чрез вълнообразни движения. Позицията на флагелата "
+"определя посоката, в която тя осигурява тласък за движение на клетката. "
+"Тласъкът винаги е противоположен на позицията на флагелата (например, ако "
+"е поставена от лявата страна на клетката, флагелата ще осигурява тласък за "
+"движение надясно)."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "SPEED"
@@ -1946,11 +1950,9 @@ msgstr "В процес на разработка."
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Нитрогеназата представлява протеин, който използва газообразен въглероден "
-"диоксид и клетъчна енергия под формата на АТФ за да произвежда амоняк, "
-"който е ключов за растежа на клетките. Този процес се нарича анаеробна "
-"азотна фиксация. Понеже нитрогеназата е скачена с цитоплазма, тя извършва "
-"известна гликолиза."
+"Превръща [thrive:compound]atp[/thrive:compound] в [thrive:"
+"compound]ammonia[/thrive:compound]. Количеството зависи от концентрацията "
+"на [thrive:compound]nitrogen[/thrive:compound] в околната среда"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 #, fuzzy
@@ -2187,7 +2189,7 @@ msgstr "Добавяне на нов клавиш"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
 msgid "TEMPERATURE"
 msgstr "Температура"
 
@@ -2196,23 +2198,23 @@ msgstr "Температура"
 msgid "N_A_MP"
 msgstr "Няма МТ"
 
-#: ../src/microbe_stage/Microbe.cs:948
+#: ../src/microbe_stage/Microbe.cs:934
 msgid "DEATH"
 msgstr "измиране"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1372
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешно плячкосване"
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1379
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1733
 msgid "REPRODUCED"
 msgstr "възпроизвеждане"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1874
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -2289,7 +2291,7 @@ msgstr "Наляг."
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
 
@@ -2345,7 +2347,7 @@ msgstr "Шелфов ледник"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Пангонско морско дъно"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -2357,20 +2359,20 @@ msgstr "Клетъчни процеси"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1309
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Изчакване на автоматичната еволюция:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2241
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
 msgid "AUTO_EVO_FAILED"
 msgstr "Автоматичната еволюция не успя да стартира"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2242
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "състояние:"
 
@@ -2517,7 +2519,7 @@ msgstr "Физически условия"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферни газове"
 
@@ -2550,65 +2552,65 @@ msgstr "Преселване"
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Глюкозата се понижи на {0} от предишното си състояние."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
 msgid "MEGA_YEARS"
 msgstr "млн. г."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "YEARS"
 msgstr "години"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
 msgid "ATP_PRODUCTION"
 msgstr "Производство на АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:641
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "OSMOREGULATION"
 msgstr "Осморегулация"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
 msgid "BASE_MOVEMENT"
 msgstr "Базово движение"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
 msgid "SPECIES_LIST"
 msgstr "Списък на създанията"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
 msgid "FREEBUILDING"
 msgstr "Неограничени"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:937
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:942
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:970
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
 msgid "WITH_POPULATION"
 msgstr "{0}: {1} индивида"
 
@@ -3073,45 +3075,6 @@ msgstr ""
 #~ msgid "INTO"
 #~ msgstr "в"
 
-#~ msgid "OXYTOXY"
-#~ msgstr "Окситокси"
-
-#~ msgid "DOT_CAN_RELEASE"
-#~ msgstr ". Освобождава"
-
-#~ msgid "TOXINS_BY_PRESSING_E"
-#~ msgstr "токсини с натискане на „Е“. Количеството зависи от"
-
-#~ msgid "CONCENTRATION_OF"
-#~ msgstr "концентрацията на"
-
-#~ msgid "USES"
-#~ msgstr "Използва"
-
-#~ msgid "TO_INCREASE_THE_MOVEMENT"
-#~ msgstr "за да увеличи скоростта"
-
-#~ msgid "SPEED_OF_THE_CELL"
-#~ msgstr "на движение на клетката."
-
-#~ msgid "DOT_RATE"
-#~ msgstr ". Количеството"
-
-#~ msgid "SCALES_WITH_CONCENTRATION_OF"
-#~ msgstr "зависи от концентрацията на"
-
-#~ msgid "PRODUCES"
-#~ msgstr "Произвежда"
-
-#~ msgid "DOT_RATE_SCALES_WITH"
-#~ msgstr ". Количеството зависи от"
-
-#~ msgid "AND"
-#~ msgstr "и"
-
-#~ msgid "INTENSITY_OF"
-#~ msgstr "количеството"
-
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". Количеството зависи"
 
@@ -3121,11 +3084,50 @@ msgstr ""
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Кислород."
 
+#~ msgid "PRODUCES"
+#~ msgstr "Произвежда"
+
+#~ msgid "DOT_RATE_SCALES_WITH"
+#~ msgstr ". Количеството зависи от"
+
+#~ msgid "CONCENTRATION_OF"
+#~ msgstr "концентрацията на"
+
+#~ msgid "AND"
+#~ msgstr "и"
+
+#~ msgid "INTENSITY_OF"
+#~ msgstr "количеството"
+
 #~ msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 #~ msgstr ". Количеството зависи от концентрацията на"
 
 #~ msgid "ALSO_TURNS"
 #~ msgstr "Също така, превръща"
+
+#~ msgid "DOT_RATE"
+#~ msgstr ". Количеството"
+
+#~ msgid "SCALES_WITH_CONCENTRATION_OF"
+#~ msgstr "зависи от концентрацията на"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "Окситокси"
+
+#~ msgid "DOT_CAN_RELEASE"
+#~ msgstr ". Освобождава"
+
+#~ msgid "TOXINS_BY_PRESSING_E"
+#~ msgstr "токсини с натискане на „Е“. Количеството зависи от"
+
+#~ msgid "USES"
+#~ msgstr "Използва"
+
+#~ msgid "TO_INCREASE_THE_MOVEMENT"
+#~ msgstr "за да увеличи скоростта"
+
+#~ msgid "SPEED_OF_THE_CELL"
+#~ msgstr "на движение на клетката."
 
 #~ msgid "INREASE_STORAGE_SPACE"
 #~ msgstr "Увеличава мястото за съхранение на клетката."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-10 17:09+0300\n"
-"PO-Revision-Date: 2021-04-25 18:41+0000\n"
+"POT-Creation-Date: 2021-06-10 19:38+0300\n"
+"PO-Revision-Date: 2021-06-07 11:56+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -475,7 +475,7 @@ msgstr "Kamerayı sıfırla"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Mevcut eylemi iptal et"
 
 #: ../simulation_parameters/common/input_options.json:139
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -1380,13 +1380,12 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Bilinmeyen fare tuşu"
 
 #: ../src/general/Gallery.cs:70
-#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "BAŞARDIN!"
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Resmi yapan: {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1566,6 +1565,8 @@ msgstr "(üst değerler performansı arttırır)"
 #: ../src/general/OptionsMenu.tscn:683
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
+"Bu ayar değiştirilirse, değişiklik yalnızca yeni başlatılan oyunlara "
+"uygulanır"
 
 #: ../src/general/OptionsMenu.tscn:685
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -1809,16 +1810,10 @@ msgid "HEALTH"
 msgstr "Sağlık"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; "
-"iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımdan "
-"oluşur. Yaptığı işlevlerden biri glikolizdir, yani glukozun ATP enerjisine "
-"dönüşümü. Gelişmiş metabolizmaya öncü organellerden yoksun hücreler, "
-"enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede "
-"moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için "
-"kullanılır."
+"[thrive:compound]Glukozu[/thrive:compound] [thrive:compound]ATP'ye[/thrive:"
+"compound] dönüştürür"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1875,16 +1870,11 @@ msgid "OSMOREGULATION_COST"
 msgstr "Ozmoregülasyon Maliyeti"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. "
-"Sitoplazmada gerçekleşen oksijenli solunuma kıyasla, metabolozomlar "
-"glukozu ATP'ye çok daha yüksek oranlarda dönüştürebilir. Ancak "
-"metabolozomlar çalışmak için oksijen gerektirir ve ortamda bulunan düşük "
-"seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır. "
-"Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan "
-"akışkan glikoliz yapabilir."
+"[thrive:compound]Glukozu[/thrive:compound] [thrive:compound]ATP'ye[/thrive:"
+"compound] dönüştürür. Bu oran [thrive:compound]oksijen[/thrive:compound] "
+"konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1902,15 +1892,11 @@ msgid "THYLAKOID"
 msgstr "Tilakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Kemosentez yapan proteinler, Hidrojen Sülfür Kemosentezi adı verilen bir "
-"işlemde, hidrojen sülfür, su ve karbondioksit gazını glukoza dönüştüren, "
-"sitoplazmada bulunan küçük proteinler kümesidir. Üretilen glukoz oranı, "
-"karbondioksit konsantrasyonu ile doğru orantılıdır. Kemosentez yapan "
-"proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan "
-"akışkan glikoliz yapabilir."
+"[thrive:compound]Glukoz[/thrive:compound] üretir. [thrive:"
+"compound]Karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:"
+"compound]güneş ışığı[/thrive:compound] şiddeti ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1924,15 +1910,13 @@ msgstr ""
 "akışkan glikoliz yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Kemosentez yapan proteinler, Hidrojen Sülfür Kemosentezi adı verilen bir "
-"işlemde, hidrojen sülfür, su ve karbondioksit gazını glukoza dönüştüren, "
-"sitoplazmada bulunan küçük proteinler kümesidir. Üretilen glukoz oranı, "
-"karbondioksit konsantrasyonu ile doğru orantılıdır. Kemosentez yapan "
-"proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan "
-"akışkan glikoliz yapabilir."
+"[thrive:compound]Hidrojen sülfürü[/thrive:compound] [thrive:"
+"compound]glukoza[/thrive:compound] dönüştürür. [thrive:"
+"compound]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru "
+"orantılıdır. Ayrıca [thrive:compound]glukozu[/thrive:compound] [thrive:"
+"compound]ATP'ye[/thrive:compound] dönüştürür"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1945,12 +1929,12 @@ msgstr ""
 "akışkan glikoliz yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için "
-"karbondioksit gazı ve oksijen kullanan bir proteindir. Demir Solunumu "
-"olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+"[thrive:compound]Demiri[/thrive:compound] [thrive:compound]ATP'ye[/thrive:"
+"compound] dönüştürür. [thrive:compound]Karbondioksit[/thrive:compound] ve "
+"[thrive:compound]oksijen[/thrive:compound] konsantrasyonu ile doğru "
+"orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1960,14 +1944,11 @@ msgstr ""
 "olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan amonyağı üretmek "
-"için azot gazı ve ATP formundaki hücresel enerjiyi kullanan bir "
-"proteindir. Bu işlem Oksijensiz Azot Fiksasyonu olarak anılır. Nitrojenaz "
-"direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz "
-"yapabilir."
+"[thrive:compound]ATP'yi[/thrive:compound] [thrive:compound]amonyağa[/"
+"thrive:compound] dönüştürür. [thrive:compound]Azot[/thrive:compound] "
+"konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1979,16 +1960,12 @@ msgstr ""
 "yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. "
-"Sitoplazmada gerçekleşen oksijenli solunuma kıyasla, metabolozomlar "
-"glukozu ATP'ye çok daha yüksek oranlarda dönüştürebilir. Ancak "
-"metabolozomlar çalışmak için oksijen gerektirir ve ortamda bulunan düşük "
-"seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır. "
-"Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan "
-"akışkan glikoliz yapabilir."
+"[thrive:compound]ATP'yi[/thrive:compound] [thrive:compound]oksitoksiye[/"
+"thrive:compound] dönüştürür. [thrive:compound]Oksijen[/thrive:compound] "
+"konsantrasyonu ile doğru orantılıdır. [thrive:input]G tuşuna[/thrive:"
+"input] basıldığında toksin salabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1997,12 +1974,10 @@ msgstr ""
 "değişime uğramış bir metabolozom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Kamçı (veya Flagella), hücrenin bir doğrultuda kıvrılması ve ilerlemesi "
-"için ATP kullanan, hücre zarından uzanıp birbirine bağlanmış kamçı benzeri "
-"protein fiberleridir."
+"Hücrenin hareket hızını arttırmak için [thrive:compound]ATP[/thrive:"
+"compound] kullanır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2033,11 +2008,9 @@ msgstr "Henüz Eklenmedi."
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan amonyağı üretmek "
-"için azot gazı ve ATP formundaki hücresel enerjiyi kullanan bir "
-"proteindir. Bu işlem Oksijensiz Azot Fiksasyonu olarak anılır. Nitrojenaz "
-"direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz "
-"yapabilir."
+"[thrive:compound]ATP'yi[/thrive:compound] [thrive:compound]amonyağa[/"
+"thrive:compound] dönüştürür. [thrive:compound]Azot[/thrive:compound] "
+"konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 #, fuzzy
@@ -2052,10 +2025,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Daha kompleks olan zarlı organellerin\n"
-"evrimleşmesini sağlar. Bakımı bir sürü\n"
-"ATP'ye mal olur. Bu evrimden geri\n"
-"dönüş yapılamaz."
+"Daha kompleks olan zarlı organellerin evrimleşmesini sağlar. Bakımı bir "
+"sürü ATP'ye mal olur. Bu evrimden geri dönülemez."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
 msgid "NUCLEUS_DESCRIPTION"
@@ -2070,15 +2041,11 @@ msgstr ""
 "özelleşmiş olmasını sağlar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
-#, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı "
-"bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere "
-"özümsenmiş bir prokaryottur. Mitokondri, Oksijenli Solunum adı verilen bir "
-"işlemde, glukozu ATP'ye sitoplazmada olduğundan çok daha etkili bir "
-"şekilde dönüştürür. Ancak çalışmak için oksijen gerektirir ve ortamda "
-"bulunan düşük seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır."
+"[thrive:compound]Glukozu[/thrive:compound] [thrive:compound]ATP'ye[/thrive:"
+"compound] dönüştürür. [thrive:compound]Oksijen[/thrive:compound] "
+"konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2091,16 +2058,11 @@ msgstr ""
 "bulunan düşük seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Kloroplast zarsı keseler içinde birbirinin üstüne dizili, ışığa hassas "
-"pigmentler içeren çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı "
-"tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Kloroplasttaki "
-"pigmentler, Fotosentez adı verilen bir işlemde, sudan glukoz ve "
-"karbondioksit gazı üretmek için ışık enerjisini kullanırlar. Bu pigmentler "
-"ayrıca yapıya kendine özgü bir renk verir. Üretilen glukoz oranı, "
-"karbondioksit konsantrasyonu ve ışık şiddeti ile doğru orantılıdır."
+"[thrive:compound]Glukoz[/thrive:compound] üretir. [thrive:"
+"compound]Karbondioksit[/thrive:compound] ve [thrive:compound]güneş ışığı[/"
+"thrive:compound] şiddeti ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2118,16 +2080,11 @@ msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas "
-"pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı "
-"tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki "
-"pigmentler, Termosentez adı verilen bir işlemde, sudan glukoz ve "
-"karbondioksit gazı üretmek için çevredeki ısı farkını kullanırlar. "
-"Üretilen glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru "
-"orantılıdır."
+"[thrive:compound]Glukoz[/thrive:compound] üretir. [thrive:"
+"compound]Karbondioksit[/thrive:compound] konsantrasyonu ve sıcaklık ile "
+"doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2142,18 +2099,16 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1339
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Organel yerleştir"
+msgstr "İşlev yok"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Kemoplast, Hidrojen Sülfür Kemosentezi adı verilen bir işlemde, hidrojen "
-"sülfür, su ve karbondioksit gazını glukoza çeviren proteinler içeren çift "
-"zarlı bir yapıdır. Üretilen glukoz oranı, karbondioksit konsantrasyonu ile "
-"doğru orantılıdır."
+"[thrive:compound]Hidrojen sülfürü[/thrive:compound] [thrive:"
+"compound]glukoza[/thrive:compound] dönüştürür. [thrive:"
+"compound]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru "
+"orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2164,12 +2119,12 @@ msgstr ""
 "doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
-#, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan amonyağı "
-"üretmek için azot gazı, oksijen ve ATP formundaki hücresel enerjiyi "
-"kullanan bir proteindir. Bu işlem Oksijenli Azot Fiksasyonu olarak anılır."
+"[thrive:compound]ATP'yi[/thrive:compound] [thrive:compound]amonyağa[/"
+"thrive:compound] dönüştürür. [thrive:compound]Azot[/thrive:compound] ve "
+"[thrive:compound]oksijen[/thrive:compound] konsantrasyonu ile doğru "
+"orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2179,14 +2134,8 @@ msgstr ""
 "kullanan bir proteindir. Bu işlem Oksijenli Azot Fiksasyonu olarak anılır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1619
-#, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, "
-"hücrede geniş çapta depo olarak kullanılan daha küçük zarsı yapılar olan "
-"ve birbiriyle birleşen birkaç kesecikten oluşur. Kofulun içi; moleküller, "
-"enzimler, katılar ve diğer maddeleri içeren suyla doludur. Şekilleri "
-"değişken ve hücreler arasında değişiklik gösterir."
+msgstr "Hücrenin depo alanını arttırır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
 msgid "VACUOLE_DESCRIPTION"
@@ -2198,12 +2147,12 @@ msgstr ""
 "değişken ve hücreler arasında değişiklik gösterir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Toksin kofulu, oksitoksi toksinlerinin özel üretimi, depolanması ve "
-"salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, "
-"salınabilecek toksin oranını arttırır."
+"[thrive:compound]ATP'yi[/thrive:compound] [thrive:compound]oksitoksiye[/"
+"thrive:compound] dönüştürür. [thrive:compound]Oksijen[/thrive:compound] "
+"konsantrasyonu ile doğru orantılıdır. [thrive:input]G tuşuna[/thrive:"
+"input] basıldığında toksin salabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2297,7 +2246,7 @@ msgstr "Yeni bir kontrol tuşu ekle"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
 msgid "TEMPERATURE"
 msgstr "Sıcaklık"
 
@@ -2306,23 +2255,23 @@ msgstr "Sıcaklık"
 msgid "N_A_MP"
 msgstr "Bilinmeyen MP"
 
-#: ../src/microbe_stage/Microbe.cs:948
+#: ../src/microbe_stage/Microbe.cs:934
 msgid "DEATH"
 msgstr "ölüm"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1372
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1379
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1733
 msgid "REPRODUCED"
 msgstr "çoğaldı"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1874
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -2399,7 +2348,7 @@ msgstr "Bsnç."
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
 
@@ -2455,7 +2404,7 @@ msgstr "Buz Sahanlığı"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonik Deniz Tabanı"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -2467,20 +2416,20 @@ msgstr "Hücre İşleyişi"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bileşik Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1309
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikrop Editörü Yükleniyor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Oto-evrim bekleniyor:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2241
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
 msgid "AUTO_EVO_FAILED"
 msgstr "Oto-evrim çalıştırılamadı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2242
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
@@ -2569,9 +2518,8 @@ msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Tür ismi..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "ONAYLA"
+msgstr "EYLEMİ İPTAL ET"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1850
 msgid "CONFIRM_CAPITAL"
@@ -2629,7 +2577,7 @@ msgstr "Fiziksel Koşullar"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
 
@@ -2647,9 +2595,8 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2691
-#, fuzzy
 msgid "PRESSURE"
-msgstr "Bsnç."
+msgstr "Basınç"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
 msgid "SPECIES_PRESENT"
@@ -2663,65 +2610,65 @@ msgstr "Bu Araziye Git"
 msgid "INFINITE_MP"
 msgstr "Sonsuz MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
 msgid "MEGA_YEARS"
 msgstr "Myö"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "YEARS"
 msgstr "yıl"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
 msgid "ATP_PRODUCTION"
 msgstr "ATP Üretimi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:641
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ÜRETİMİ ÇOK DÜŞÜK!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "OSMOREGULATION"
 msgstr "Ozmoregülasyon"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
 msgid "BASE_MOVEMENT"
 msgstr "Ana Hareket"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
 msgid "SPECIES_LIST"
 msgstr "Tür Listesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
 msgid "FREEBUILDING"
 msgstr "Serbest mod"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:937
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:942
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
 msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:970
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
 msgid "WITH_POPULATION"
 msgstr "{0}: {1} popülasyonla"
 
@@ -2977,8 +2924,8 @@ msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, "
 "sıralanan kayıtları kalıcı olarak silmek istediğinden emin misin?\n"
-" - {0} Otomatik kayıt\n"
-" - {1} Çabuk kayıt"
+"- {0} Otomatik kayıt\n"
+"- {1} Çabuk kayıt"
 
 #: ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
@@ -3195,53 +3142,6 @@ msgstr ""
 #~ msgid "INTO"
 #~ msgstr "a/e"
 
-#~ msgid "OXYTOXY"
-#~ msgstr "OksiToksi"
-
-#, fuzzy
-#~ msgid "DOT_CAN_RELEASE"
-#~ msgstr ". Salabilir"
-
-#~ msgid "TOXINS_BY_PRESSING_E"
-#~ msgstr "toksinler E tuşuna basarak. Oran ile doğru orantılı"
-
-#, fuzzy
-#~ msgid "CONCENTRATION_OF"
-#~ msgstr "konsantrasyonu"
-
-#, fuzzy
-#~ msgid "USES"
-#~ msgstr "Kullanır"
-
-#~ msgid "TO_INCREASE_THE_MOVEMENT"
-#~ msgstr "hareketi arttırmak için"
-
-#~ msgid "SPEED_OF_THE_CELL"
-#~ msgstr "hücrenin hızı."
-
-#, fuzzy
-#~ msgid "DOT_RATE"
-#~ msgstr ". Oran"
-
-#, fuzzy
-#~ msgid "SCALES_WITH_CONCENTRATION_OF"
-#~ msgstr "konsantrasyonu ile doğru orantılı"
-
-#, fuzzy
-#~ msgid "PRODUCES"
-#~ msgstr "Üretir"
-
-#~ msgid "DOT_RATE_SCALES_WITH"
-#~ msgstr ". Oran ile doğru orantılı"
-
-#, fuzzy
-#~ msgid "AND"
-#~ msgstr "ve"
-
-#, fuzzy
-#~ msgid "INTENSITY_OF"
-#~ msgstr "şiddeti"
-
 #, fuzzy
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". Oran doğru orantılı"
@@ -3255,12 +3155,59 @@ msgstr ""
 #~ msgstr "Oksijen."
 
 #, fuzzy
+#~ msgid "PRODUCES"
+#~ msgstr "Üretir"
+
+#~ msgid "DOT_RATE_SCALES_WITH"
+#~ msgstr ". Oran ile doğru orantılı"
+
+#, fuzzy
+#~ msgid "CONCENTRATION_OF"
+#~ msgstr "konsantrasyonu"
+
+#, fuzzy
+#~ msgid "AND"
+#~ msgstr "ve"
+
+#, fuzzy
+#~ msgid "INTENSITY_OF"
+#~ msgstr "şiddeti"
+
+#, fuzzy
 #~ msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 #~ msgstr ". Oran konsantrasyonu ile doğru orantılı"
 
 #, fuzzy
 #~ msgid "ALSO_TURNS"
 #~ msgstr "Ayrıca dönüştürür"
+
+#, fuzzy
+#~ msgid "DOT_RATE"
+#~ msgstr ". Oran"
+
+#, fuzzy
+#~ msgid "SCALES_WITH_CONCENTRATION_OF"
+#~ msgstr "konsantrasyonu ile doğru orantılı"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "OksiToksi"
+
+#, fuzzy
+#~ msgid "DOT_CAN_RELEASE"
+#~ msgstr ". Salabilir"
+
+#~ msgid "TOXINS_BY_PRESSING_E"
+#~ msgstr "toksinler E tuşuna basarak. Oran ile doğru orantılı"
+
+#, fuzzy
+#~ msgid "USES"
+#~ msgstr "Kullanır"
+
+#~ msgid "TO_INCREASE_THE_MOVEMENT"
+#~ msgstr "hareketi arttırmak için"
+
+#~ msgid "SPEED_OF_THE_CELL"
+#~ msgstr "hücrenin hızı."
 
 #~ msgid "INREASE_STORAGE_SPACE"
 #~ msgstr "Hücrenin depo alanını arttırır."

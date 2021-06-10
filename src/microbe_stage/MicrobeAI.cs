@@ -66,47 +66,57 @@ public class MicrobeAI
 
         ClearDisposedReferences(data);
 
-        Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
-        Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
+        ChooseActions(random, data);
 
-        Vector3? prey = null;
-        bool engulfPrey = false;
-        var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
-        if (possiblePrey != null)
-        {
-            engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-                microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
-            prey = possiblePrey.Translation;
-        }
+        // Clear the absorbed compounds for run and rumble
+        microbe.TotalAbsorbedCompounds.Clear();
+    }
 
+    public void ChooseActions(Random random, MicrobeAICommonData data)
+    {
         if (microbe.IsBeingEngulfed)
         {
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
-        else if (predator.HasValue &&
+
+        // If nothing is engulfing me right now, see if there's something that might want to hunt me
+        Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
+        if (predator.HasValue &&
             DistanceFromMe(predator.Value) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
         {
             FleeFromPredators(random, predator.Value);
+            return;
         }
-        else if (targetChunk.HasValue)
+
+        // If there are no threats, look for a chunk to eat that isn't running away
+        Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
+        if (targetChunk.HasValue)
         {
             PursueAndConsumeChunks(targetChunk.Value, random);
+            return;
         }
-        else if (prey.HasValue)
+
+        // If there are no chunks, look for living prey to hunt
+        var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
+        if (possiblePrey != null)
         {
+            bool engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
+                microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
+            Vector3? prey = possiblePrey.Translation;
+
             EngagePrey(prey.Value, random, engulfPrey);
+            return;
+        }
+
+        // Otherwise just wander around and look for compounds
+        if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
+        {
+            RunAndTumble(random);
         }
         else
         {
-            if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
-            {
-                RunAndTumble(random);
-            }
-            else
-            {
-                // This organism is sessile, and will not act until the environment changes
-                SetMoveSpeed(0.0f);
-            }
+            // This organism is sessile, and will not act until the environment changes
+            SetMoveSpeed(0.0f);
         }
     }
 

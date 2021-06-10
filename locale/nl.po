@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-10 17:09+0300\n"
-"PO-Revision-Date: 2021-04-18 08:40+0000\n"
-"Last-Translator: tommy koning <tommykoning@live.nl>\n"
+"POT-Creation-Date: 2021-06-10 19:38+0300\n"
+"PO-Revision-Date: 2021-06-10 16:27+0000\n"
+"Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -119,21 +119,23 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"Procarjote samenstellingen\n"
+"Procaryote samenstellingen\n"
 "\n"
-"Metabolosomen: produceren ATP met glucose\n"
+"Metabolosomen: produceren ATP uit glucose\n"
 "\n"
-"Chemosynthese-eiwitten: produceert de helft van waterstofsulfide als een "
-"chemoplast, maar voert ook glycolise uit. Neemt 1 Hex in beslag\n"
+"Chemosynthese-eiwitten: produceert de helft van de glucose uit "
+"waterstofsulfide als een chemoplast, maar voert ook glycolise uit. Neemt 1 "
+"Hex in beslag\n"
 "\n"
-"Thylakoïden: produceert 1/3 van de hoeveelheid glucose als een "
+"Thylakoïden: produceert 1/3 van de hoeveelheid glucose als een normale "
 "chloroplast, maar voert ook glycolise uit. Neemt 1 Hex in beslag\n"
 "\n"
 "Rusticyanine: zet ijzer om in ATP\n"
 "\n"
-"Stikstofase: zet stikstof om in ATP\n"
+"Nitrogenase: zet stikstof uit de atmosfeer en ATP anaeroob om in ammoniak\n"
 "\n"
-"Cytoplasma: heeft opslagruimte en produceert een kleine hoeveelheid ATP"
+"Cytoplasma: heeft opslagruimte en voert glycolyse uit (produceert een "
+"kleine hoeveelheid ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -149,22 +151,22 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membraangebonden organellen\n"
 "\n"
-"Kern: gebruikt elf hexes en zorgt ervoor dat andere membraangebonden "
-"organellen kunnen evolueren\n"
+"Kern: neemt elf hexes in beslag en zorgt ervoor dat andere "
+"membraangebonden organellen kunnen evolueren, en verdubbelt de grootte van "
+"je cel (kan maar één keer geëvolueerd worden)\n"
 "\n"
-"Mitochondrion: produceert ATP van glucose en O2. Efficienter dan "
-"cytoplasma\n"
+"Mitochondrion: produceert ATP veel efficiënter uit glucose en "
+"atmosferische O2 dan cytoplasma\n"
 "\n"
-"Chloroplast: produceert glucose van zonlicht en CO2\n"
+"Chloroplast: maakt glucose uit zonlicht en CO2\n"
 "\n"
-"Chemoplast: produceert glucose van waterstofsulfide\n"
+"Chemoplast: maakt glucose uit waterstofsulfide\n"
 "\n"
-"Stikstof fixerende plastid: produceert ammoniak van ATP, stikstof en "
-"zuurstof\n"
+"Stikstof fixerende plastid: maakt ammoniak uit ATP, stikstof en zuurstof\n"
 "\n"
-"Vacuole: slaat vijftien samenstellingen op\n"
+"Vacuole: slaat vijftien verzamelde samenstellingen op\n"
 "\n"
-"Toxine vacuolen: produceert toxine (OxyToxy NT)"
+"Toxine vacuolen: produceert toxine (OxyToxy NT genoemd)"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -1917,9 +1919,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
-"Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te "
-"bewegen."
+msgstr "Stikstofbindende plastide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 #, fuzzy
@@ -2093,7 +2093,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
 msgid "TEMPERATURE"
 msgstr ""
 
@@ -2102,23 +2102,23 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:948
+#: ../src/microbe_stage/Microbe.cs:934
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1372
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1379
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1733
 msgid "REPRODUCED"
 msgstr "Hergeproduceerd"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1874
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2193,7 +2193,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -2249,7 +2249,7 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -2261,20 +2261,20 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1309
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2241
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2242
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -2417,7 +2417,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
@@ -2450,65 +2450,65 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:641
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:937
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:942
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:970
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
 msgid "WITH_POPULATION"
 msgstr ""
 
@@ -2859,23 +2859,14 @@ msgstr "Microbe vrij bouwen"
 #~ msgid "INTO"
 #~ msgstr "naar"
 
-#, fuzzy
-#~ msgid "OXYTOXY"
-#~ msgstr "OxyToxy NT"
+#~ msgid "DOT_RATE_SCALES"
+#~ msgstr ". Beoordelingsschaal"
 
-#, fuzzy
-#~ msgid "DOT_CAN_RELEASE"
-#~ msgstr ". Snelheid"
-
-#~ msgid "CONCENTRATION_OF"
-#~ msgstr "oncentratie van"
-
-#~ msgid "DOT_RATE"
-#~ msgstr ". Snelheid"
-
-#, fuzzy
-#~ msgid "SCALES_WITH_CONCENTRATION_OF"
+#~ msgid "WITH_CONCENTRATION_OF"
 #~ msgstr "met een concentratie van"
+
+#~ msgid "OXYGEN_DOT"
+#~ msgstr "Zuurstof."
 
 #~ msgid "PRODUCES"
 #~ msgstr "Produceett"
@@ -2883,20 +2874,20 @@ msgstr "Microbe vrij bouwen"
 #~ msgid "DOT_RATE_SCALES_WITH"
 #~ msgstr ". snelheid schaalt met"
 
+#~ msgid "CONCENTRATION_OF"
+#~ msgstr "oncentratie van"
+
 #~ msgid "AND"
 #~ msgstr "en"
 
 #~ msgid "INTENSITY_OF"
 #~ msgstr "intensiteit van"
 
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Beoordelingsschaal"
-
-#~ msgid "OXYGEN_DOT"
-#~ msgstr "Zuurstof."
-
 #~ msgid "ALSO_TURNS"
 #~ msgstr "Veranderd ook"
+
+#~ msgid "DOT_RATE"
+#~ msgstr ". Snelheid"
 
 #, fuzzy
 #~ msgid "END"

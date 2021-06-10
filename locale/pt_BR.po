@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-10 17:09+0300\n"
-"PO-Revision-Date: 2021-05-27 01:42+0000\n"
+"POT-Creation-Date: 2021-06-10 19:38+0300\n"
+"PO-Revision-Date: 2021-05-30 07:33+0000\n"
 "Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -994,7 +994,7 @@ msgstr "Parar"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr "Atualizar"
+msgstr "Recarregar"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
@@ -1537,7 +1537,7 @@ msgstr "Reproduzir a introdução do Estágio Microbial em novo jogo"
 
 #: ../src/general/OptionsMenu.tscn:836
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr "Usar o salvamento automático durante o jogo"
+msgstr "Salvamento automático durante o jogo"
 
 #: ../src/general/OptionsMenu.tscn:847
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -1955,11 +1955,9 @@ msgstr "A ser implementado."
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia "
-"celular na forma de ATP para sintetizar amônia, um nutriente essencial "
-"para o crescimento das células. Esse processo é chamado de Fixação de "
-"Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os "
-"fluidos em volta realizam a Fermentação."
+"Transforma [thrive:compound]atp[/thrive:compound] em [thrive:"
+"compound]ammonia[/thrive:compound]. Quantidade escala com a concentração "
+"de [thrive:compound]nitrogen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 #, fuzzy
@@ -2203,7 +2201,7 @@ msgstr "Adicionar uma nova tecla"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:752
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
 msgid "TEMPERATURE"
 msgstr "Temperatura"
 
@@ -2212,23 +2210,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.cs:948
+#: ../src/microbe_stage/Microbe.cs:934
 msgid "DEATH"
 msgstr "morte"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1372
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "busca de recursos bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.cs:1399
+#: ../src/microbe_stage/Microbe.cs:1379
 msgid "SUCCESSFUL_KILL"
 msgstr "caça bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1733
 msgid "REPRODUCED"
 msgstr "reproduziu"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1874
 msgid "ESCAPE_ENGULFING"
 msgstr "escapou de predação"
 
@@ -2305,7 +2303,7 @@ msgstr "Press."
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
@@ -2361,7 +2359,7 @@ msgstr "Plataforma de Gelo"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Relevo Oceânico Pangoniano"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -2373,20 +2371,20 @@ msgstr "Processos"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compostos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1309
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Carregando Editor de Micróbios"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Esperando pela auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2241
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
 msgid "AUTO_EVO_FAILED"
 msgstr "A auto-evo falhou"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2242
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estado da auto-evo:"
 
@@ -2533,7 +2531,7 @@ msgstr "Condições Físicas"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gases Atmosféricos"
 
@@ -2566,66 +2564,66 @@ msgstr "Mover para esta região"
 msgid "INFINITE_MP"
 msgstr "MP Infinito"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 "A quantidade de glicose foi reduzida para {0} da quantidade anterior."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
 msgid "MEGA_YEARS"
 msgstr "milhões de anos"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "YEARS"
 msgstr "anos"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:640
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
 msgid "ATP_PRODUCTION"
 msgstr "Produção de ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:641
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUÇÃO DE ATP MUITO BAIXA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "OSMOREGULATION"
 msgstr "Osmorregulação"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:693
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
 msgid "BASE_MOVEMENT"
 msgstr "Movimento Base"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:705
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
 msgid "SPECIES_LIST"
 msgstr "Lista de espécies"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
 msgid "FREEBUILDING"
 msgstr "Modo livre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:937
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:942
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sob o nível do mar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:970
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
 msgid "WITH_POPULATION"
 msgstr "{0} com a população: {1}"
 
@@ -2692,7 +2690,7 @@ msgstr "O jogo salvo é inválido"
 
 #: ../src/saving/InProgressLoad.cs:129
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "O jogo salvamento tem uma cena de game state inválida"
+msgstr "Salvamento tem save game scene inválida"
 
 #: ../src/saving/InProgressLoad.cs:142
 msgid "PROCESSING_LOADED_OBJECTS"
@@ -2752,11 +2750,11 @@ msgstr "Salvo com sucesso"
 
 #: ../src/saving/SaveHelper.cs:376
 msgid "SAVING_FAILED"
-msgstr "O salvamento falhou! Uma exceção aconteceu"
+msgstr "O salvamento falhou! Uma exceção ocorreu"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr "Salvamento manual"
+msgstr "Manual"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
@@ -2825,8 +2823,8 @@ msgstr "O jogo salvo selecionado é incompatível"
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O jogo salvo selecionado não é compatível com esta versão de Thrive.\n"
-"Como Thrive está em desenvolvimento, a compatibilidade entre salvamentos "
-"não é uma prioridade, já que não há um corversor para atualizar os "
+"Como Thrive está em desenvolvimento inicial, a compatibilidade entre "
+"salvamentos não é prioridade, já que não há um conversor para atualizar os "
 "arquivos."
 
 #: ../src/saving/SaveListItem.tscn:131
@@ -2889,7 +2887,7 @@ msgstr "Atualizar"
 
 #: ../src/saving/SaveManagerGUI.tscn:77
 msgid "DELETE_SELECTED"
-msgstr "Apagar seleção"
+msgstr "Apagar selecionado"
 
 #: ../src/saving/SaveManagerGUI.tscn:86
 msgid "CLEAN_UP_OLD_SAVES"
@@ -2901,7 +2899,7 @@ msgstr "Abrir Diretório de Salvamentos"
 
 #: ../src/saving/SaveManagerGUI.tscn:131
 msgid "TOTAL_SAVES"
-msgstr "Total de salvamentos:"
+msgstr "Salvamentos totais:"
 
 #: ../src/saving/SaveManagerGUI.tscn:151
 msgid "SAVE_SPACE_USED"
@@ -2909,7 +2907,7 @@ msgstr "Espaço usado:"
 
 #: ../src/saving/SaveManagerGUI.tscn:171
 msgid "SELECTED_COLON"
-msgstr "Seleção:"
+msgstr "Selecionado:"
 
 #: ../src/saving/SaveManagerGUI.tscn:188
 msgid "DELETE_SELECTED_SAVES"
@@ -3098,45 +3096,6 @@ msgstr ""
 #~ msgid "INTO"
 #~ msgstr "em"
 
-#~ msgid "OXYTOXY"
-#~ msgstr "Oxitoxina"
-
-#~ msgid "DOT_CAN_RELEASE"
-#~ msgstr ". Pode liberar"
-
-#~ msgid "TOXINS_BY_PRESSING_E"
-#~ msgstr "pressionar a tecla E. Produção aumenta com"
-
-#~ msgid "CONCENTRATION_OF"
-#~ msgstr "a concentração de"
-
-#~ msgid "USES"
-#~ msgstr "Usa"
-
-#~ msgid "TO_INCREASE_THE_MOVEMENT"
-#~ msgstr "para aumentar a velocidade de movimentação"
-
-#~ msgid "SPEED_OF_THE_CELL"
-#~ msgstr "da célula."
-
-#~ msgid "DOT_RATE"
-#~ msgstr ". Proporção"
-
-#~ msgid "SCALES_WITH_CONCENTRATION_OF"
-#~ msgstr "aumenta com a concentração de"
-
-#~ msgid "PRODUCES"
-#~ msgstr "Produz"
-
-#~ msgid "DOT_RATE_SCALES_WITH"
-#~ msgstr ". Proporção aumenta com"
-
-#~ msgid "AND"
-#~ msgstr "e"
-
-#~ msgid "INTENSITY_OF"
-#~ msgstr "intensidade de"
-
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". Proporção aumenta"
 
@@ -3146,11 +3105,50 @@ msgstr ""
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oxigênio."
 
+#~ msgid "PRODUCES"
+#~ msgstr "Produz"
+
+#~ msgid "DOT_RATE_SCALES_WITH"
+#~ msgstr ". Proporção aumenta com"
+
+#~ msgid "CONCENTRATION_OF"
+#~ msgstr "a concentração de"
+
+#~ msgid "AND"
+#~ msgstr "e"
+
+#~ msgid "INTENSITY_OF"
+#~ msgstr "intensidade de"
+
 #~ msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
 #~ msgstr ". Proporção aumenta com a concentração de"
 
 #~ msgid "ALSO_TURNS"
 #~ msgstr "Também transforma"
+
+#~ msgid "DOT_RATE"
+#~ msgstr ". Proporção"
+
+#~ msgid "SCALES_WITH_CONCENTRATION_OF"
+#~ msgstr "aumenta com a concentração de"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "Oxitoxina"
+
+#~ msgid "DOT_CAN_RELEASE"
+#~ msgstr ". Pode liberar"
+
+#~ msgid "TOXINS_BY_PRESSING_E"
+#~ msgstr "pressionar a tecla E. Produção aumenta com"
+
+#~ msgid "USES"
+#~ msgstr "Usa"
+
+#~ msgid "TO_INCREASE_THE_MOVEMENT"
+#~ msgstr "para aumentar a velocidade de movimentação"
+
+#~ msgid "SPEED_OF_THE_CELL"
+#~ msgstr "da célula."
 
 #~ msgid "INREASE_STORAGE_SPACE"
 #~ msgstr "Aumenta o espaço de armazenamento da célula."
