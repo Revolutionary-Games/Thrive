@@ -72,7 +72,19 @@ public class MicrobeAI
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
-    public void ChooseActions(Random random, MicrobeAICommonData data)
+    /// <summary>
+    ///   Resets AI status when this AI controlled microbe is removed from a colony
+    /// </summary>
+    public void ResetAI()
+    {
+        previousAngle = 0;
+        targetPosition = Vector3.Zero;
+        focusedPrey = null;
+        pursuitThreshold = 0;
+        microbe.MovementDirection = Vector3.Zero;
+    }
+
+    private void ChooseActions(Random random, MicrobeAICommonData data)
     {
         if (microbe.IsBeingEngulfed)
         {
@@ -118,15 +130,6 @@ public class MicrobeAI
             // This organism is sessile, and will not act until the environment changes
             SetMoveSpeed(0.0f);
         }
-    }
-
-    public void ResetAI()
-    {
-        previousAngle = 0;
-        targetPosition = Vector3.Zero;
-        focusedPrey = null;
-        pursuitThreshold = 0;
-        microbe.MovementDirection = Vector3.Zero;
     }
 
     /// <summary>
