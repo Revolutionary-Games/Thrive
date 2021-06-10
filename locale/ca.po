@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-29 22:31+0300\n"
-"PO-Revision-Date: 2021-05-31 17:45+0000\n"
+"PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ca/>\n"
@@ -411,7 +411,7 @@ msgstr "Càmera"
 
 #: ../simulation_parameters/common/input_options.json:55
 msgid "ZOOM_OUT"
-msgstr "Eixamplar la visió de la càmera"
+msgstr "Zoom enfora"
 
 #: ../simulation_parameters/common/input_options.json:59
 msgid "ZOOM_IN"
@@ -1756,7 +1756,7 @@ msgstr "Salut"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]glucosa[/thrive:compound] en "
+"Transforma [thrive:compound]glucose[/thrive:compound] en "
 "[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
@@ -1814,9 +1814,9 @@ msgstr "Cost d'Osmoregulació"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]glucosa[/thrive:compound] en "
+"Transforma [thrive:compound]glucose[/thrive:compound] en "
 "[thrive:compound]atp[/thrive:compound]. La taxa és proporcional a la "
-"concentració de [thrive:compound]oxigen[/thrive:compound]"
+"concentració de [thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1835,9 +1835,9 @@ msgstr "Tilacoide"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produeix [thrive:compound]glucosa[/thrive:compound]. La taxa és proporcional "
-"a la concentració de [thrive:compound]dioxid de carboni[/thrive:compound] i "
-"la intensitat de [thrive:compound]llum solar[/thrive:compound]"
+"Produeix [thrive:compound]glucose[/thrive:compound]. La taxa és proporcional "
+"a la concentració de [thrive:compound]carbondioxide[/thrive:compound] i la "
+"intensitat de [thrive:compound]sunlight[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1852,38 +1852,33 @@ msgstr ""
 "suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el "
-"Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid "
-"de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de "
-"l'Àcid Sulfhídric. La velocitat de la producció de Glucosa és proporcional "
-"a la concentració de Diòxid de Carboni. Transformen la Glucosa en ATP "
-"mitjançant la Respiració Aeròbica, de manera més ràpida que el Citoplasma. "
-"Com que les Proteïnes Quimiosintetitzadores estan suspeses en el "
-"Citoplasma, aquest fluid duu a terme una certa Fermentació."
+"Transforma [thrive:compound]hydrogensulfide[/thrive:compound] en "
+"[thrive:compound]glucose[/thrive:compound]. La velocitat és proporcional a "
+"la concentració de [thrive:compound]carbondioxide[/thrive:compound]. També "
+"transforma [thrive:compound]glucose[/thrive:compound] en "
+"[thrive:compound]atp[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el "
-"Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid "
-"de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de "
-"l'Àcid Sulfhídric. La velocitat de la producció de Glucosa és proporcional "
-"a la concentració de Diòxid de Carboni. Transformen la Glucosa en ATP "
-"mitjançant la Respiració Aeròbica, de manera més ràpida que el Citoplasma. "
-"Com que les Proteïnes Quimiosintetitzadores estan suspeses en el "
-"Citoplasma, aquest fluid duu a terme una certa Fermentació."
+"Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid de "
+"Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid "
+"Sulfhídric. La velocitat de la producció de Glucosa és proporcional a la "
+"concentració de Diòxid de Carboni. Transformen la Glucosa en ATP mitjançant "
+"la Respiració Aeròbica, de manera més ràpida que el Citoplasma. Com que les "
+"Proteïnes Quimiosintetitzadores estan suspeses en el Citoplasma, aquest "
+"fluid duu a terme una certa Glicòlisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, "
-"canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest "
-"procés s'anomena Respiració de Ferro, i allibera una certa quantitat "
-"d'energia que la cèl·lula pot fer servir."
+"Transforma [thrive:compound]iron[/thrive:compound] en "
+"[thrive:compound]atp[/thrive:compound]. La velocitat és proporcional a la "
+"concentració de [thrive:compound]carbondioxide[/thrive:compound] i "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1894,34 +1889,28 @@ msgstr ""
 "d'energia que la cèl·lula pot fer servir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic "
-"per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen "
-"i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen "
-"Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest "
-"fluid duu a terme una certa Fermentació."
+"Transforma [thrive:compound]atp[/thrive:compound] en "
+"[thrive:compound]ammonia[/thrive:compound]. La velocitat és proporcional a "
+"la concentració de [thrive:compound]nitrogen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic "
-"per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen "
-"i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen "
-"Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest "
-"fluid duu a terme una certa Fermentació."
+"La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per "
+"al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·"
+"lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com "
+"que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme "
+"una certa Glicòlisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana. "
-"Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera "
-"més ràpida i eficient que el Citoplasma. No obstant, necessita grans "
-"quantitats d'Oxigen atmosfèric per funcionar amb eficàcia. Com que els "
-"Metabolosomes estan suspesos en el Citoplasma, aquest fluid duu a terme "
-"una certa Fermentació."
+"Transforma [thrive:compound]atp[/thrive:compound] en "
+"[thrive:compound]oxytoxy[/thrive:compound]. La velocitat és proporcional a "
+"la concentració d' [thrive:compound]oxygen[/thrive:compound]. Allibera "
+"toxines can es prem la tecla [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1930,21 +1919,22 @@ msgstr ""
 "primitiva de l'agent tòxic OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Els flagels són uns farcells de proteïnes i fibres, com petits tentacles "
-"que sobresurten de la membrana cel·lular. Mitjançant un moviment "
-"ondulatori, permeten propulsar la cèl·lula cap endavant a gran velocitat, "
-"mentre consumeixen ATP."
+"Fa servir [thrive:compound]atp[/thrive:compound] per augmentar la velocitat "
+"de la cèl·lula"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"Els flagels són uns farcells de proteïnes i fibres, com petits tentacles "
-"que sobresurten de la membrana cel·lular. Mitjançant un moviment "
-"ondulatori, permeten propulsar la cèl·lula cap endavant a gran velocitat, "
-"mentre consumeixen ATP."
+"El flagel (plural: flagels) és uns farcell de proteïnes i fibres, com un "
+"petit tentacle que sobresurt de la membrana cel·lular. Mitjançant un "
+"moviment ondulatori, permet propulsar la cèl·lula cap endavant a gran "
+"velocitat, mentre consumeix ATP. La posició dels flagels determina la "
+"direcció en la qual produeix l'impuls per moure la cèl·lula. La direcció de "
+"l'impuls és oposada a la direcció cap a la qual el flagel està apuntant. Per "
+"exemple, un flagel col·locat a l'esquerra del centre de la cèl·lula produïra "
+"impuls quan aquesta es mogui cap a la dreta."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "SPEED"
@@ -1969,10 +1959,8 @@ msgstr "Encara no s'ha implementat."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Permet evolucionar orgànuls més complexes,\n"
-" que es poden adherir a la part externa de la\n"
-" membrana. Consumeix una gran quantitat\t\n"
-" d'ATP. Es tracta d'un pas evolutiu irreversible."
+"Permet evolucionar orgànuls més complexes, adherits a la membrana. Mantenir-"
+"lo costa una gran quantitat d'ATP. Aquesta evolució és irreversible."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "NUCLEUS_DESCRIPTION"
@@ -1989,15 +1977,11 @@ msgstr ""
 "ha d'esdevenir més gran i necessita més quantitat de recursos per a viure."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
-#, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"És el pal de paller de la generació d'energia per la cèl·lula. Els "
-"Mitocondris són una estructura de membrana doble curulla de proteïnes i "
-"enzims. En realitat, és un petit organisme procariota que ha estat engolit "
-"i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix "
-"grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran "
-"eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
+"Transforma [thrive:compound]glucose[/thrive:compound] en "
+"[thrive:compound]atp[/thrive:compound]. La velocitat és proporcional a la "
+"concentració d' [thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2010,18 +1994,12 @@ msgstr ""
 "eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"El cloroplast és una estructura de doble membrana que conté pigments "
-"sensibles a la Llum, agrupats en petites membranes. En realitat, és un "
-"petit organisme procariota que ha estat engolit i assimilat per una "
-"cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços "
-"de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de "
-"Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li "
-"donen un color distintiu. La velocitat de producció de Glucosa augmenta "
-"proporcionalment amb la concentració de Diòxid de Carboni i la intensitat "
-"de la Llum."
+"Produeix [thrive:compound]glucose[/thrive:compound]. La velocitat és "
+"proporcional a la concentració de "
+"[thrive:compound]carbondioxide[/thrive:compound] i a la intensitat de "
+"[thrive:compound]sunlight[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2041,17 +2019,11 @@ msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"El termoplast és una estructura de doble membrana que, de manera anàloga "
-"al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites "
-"membranes. En realitat, és un petit organisme procariota que ha estat "
-"engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. "
-"Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i "
-"les diferències de Temperatura al seu entorn. La velocitat de producció de "
-"la Glucosa augmenta proporcionalment a la concentració de Diòxid de "
-"Carboni i la Temperatura."
+"Produeix [thrive:compound]glucose[/thrive:compound]. La velocitat és "
+"proporcional a la concentració de "
+"[thrive:compound]carbondioxide[/thrive:compound] i temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1276
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2067,19 +2039,15 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Col·locar orgànul"
+msgstr "Cap procés"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"El Quimioplast és una estructura de doble membrana que conté proteïnes que "
-"transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, "
-"mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La "
-"velocitat de producció de Glucosa augmenta proporcionalment a la "
-"concentració de Diòxid de Carboni."
+"Transforma [thrive:compound]hydrogensulfide[/thrive:compound] en "
+"[thrive:compound]glucose[/thrive:compound]. La velocitat és proporcional a "
+"la concentració de [thrive:compound]carbondioxide[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1391
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2091,13 +2059,12 @@ msgstr ""
 "concentració de Diòxid de Carboni."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1474
-#, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un "
-"component important en el creixement i reproducció de les cèl·lules, "
-"mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena "
-"Fixació de Nitrogen Aeròbica."
+"Transforma [thrive:compound]atp[/thrive:compound] en "
+"[thrive:compound]ammonia[/thrive:compound]. La velocitat és proporcional a "
+"la concentració de [thrive:compound]nitrogen[/thrive:compound] i "
+"[thrive:compound]oxygen[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1475
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2108,15 +2075,8 @@ msgstr ""
 "Fixació de Nitrogen Aeròbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1572
-#, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"El Vacúol és un orgànul intern que consisteix en una membrana capaç "
-"d'emmagatzemar una certa quantitat de nutrients. Està format per un cert "
-"nombre de vesícules, que són unes petites estructures membranoses que han "
-"estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota "
-"mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No "
-"són estructures rígides, sinò que la seva forma pot canviar amb el temps."
+msgstr "Augmenta l'espai d'emmagatzematge de la cèl·lula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "VACUOLE_DESCRIPTION"
@@ -2129,13 +2089,12 @@ msgstr ""
 "són estructures rígides, sinò que la seva forma pot canviar amb el temps."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la "
-"producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat "
-"d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes "
-"Toxines."
+"Transforma [thrive:compound]atp[/thrive:compound] en "
+"[thrive:compound]oxytoxy[/thrive:compound]. La velocitat és proporcional a "
+"la concentració d'[thrive:compound]oxygen[/thrive:compound]. Allibera "
+"toxines quan es prem la tecla [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2241,7 +2200,7 @@ msgstr "S'han esgotat els Punts de Mutació"
 
 #: ../src/microbe_stage/Microbe.cs:854
 msgid "DEATH"
-msgstr ""
+msgstr "mort"
 
 #: ../src/microbe_stage/Microbe.cs:1241
 msgid "SUCCESSFUL_SCAVENGE"
@@ -2252,31 +2211,30 @@ msgid "SUCCESSFUL_KILL"
 msgstr "acció de caça exitosa"
 
 #: ../src/microbe_stage/Microbe.cs:1575
-#, fuzzy
 msgid "REPRODUCED"
-msgstr "Produeix"
+msgstr "reproducció"
 
 #: ../src/microbe_stage/Microbe.cs:1655
 msgid "ESCAPE_ENGULFING"
 msgstr "evasió d'un intent d'engolició"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:28
-#, fuzzy
 msgid "INFINITE_COMPOUNDS"
-msgstr "Compostos"
+msgstr "Compostos infinits"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "GODMODE"
-msgstr ""
+msgstr "Mode Déu"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
 msgid "NO_AI"
-msgstr ""
+msgstr "No IA"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
-#, fuzzy
 msgid "PLAYER_SPEED"
-msgstr "el jugador ha mort"
+msgstr ""
+"Jugador\n"
+"Velocitat"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
@@ -2499,9 +2457,8 @@ msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l'Espècie..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1828
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "CONFIRMAR"
+msgstr "CANCEL·LAR ACCIÓ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1842
 msgid "CONFIRM_CAPITAL"
@@ -2576,7 +2533,6 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "INDRET ACTUAL"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2683
-#, fuzzy
 msgid "PRESSURE"
 msgstr "Pressió"
 
@@ -2590,7 +2546,7 @@ msgstr "Moure a aquest Indret"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
-msgstr ""
+msgstr "MP Infinit"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3031,13 +2987,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Eliminar orgànuls també costa una certa quantitat de Punts de Mutació, ja "
-"que representa una mutació a la teva espècie. Pots fer clic dret als "
-"orgànuls per tal d'obrir un submenú i seleccionar la opció d'eliminar-los. "
-"Si t'equivoques, pots desfer qualsevol canvi que facis a l'Editor.\n"
+"Eliminar orgànuls també costa una certa quantitat de Punts de Mutació, a "
+"menys que els hagis col·locat en la sessió actual de l'editor.\n"
 "\n"
-"Nota: pots eliminar qualsevol orgànul d'entre els que hagis posat en la "
-"sessió d'edició actual, sense cap cost en termes de Punts de Mutació.\n"
+"Pots fer clic dret a damunt dels orgànuls per fer visible el \"menú d'"
+"orgànul\" i seleccionar la opció d'eliminar-lo.\n"
+"\n"
+"Si comets un error, pots desfer qualsevol canvi que hagis fet a l'editor.\n"
 "\n"
 "Clica el botó de desfer per tal de prosseguir."
 
