@@ -187,6 +187,13 @@ public static class PopulationSimulation
             var newPopulation = (long)(energyBySpecies[currentSpecies]
                 / currentSpecies.BaseOsmoregulationCost());
 
+            // Severely penalize a species that can't osmoregulate
+            if (ProcessSystem.ComputeEnergyBalance(currentSpecies.Organelles.Select(i => i.Definition),
+                patch.Biome, currentSpecies.MembraneType).FinalBalance < 0)
+            {
+                newPopulation /= 10;
+            }
+
             // Can't survive without enough population
             if (newPopulation < Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                 newPopulation = 0;
