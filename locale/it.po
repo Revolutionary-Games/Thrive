@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-29 22:31+0300\n"
-"PO-Revision-Date: 2021-05-28 16:55+0000\n"
+"PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -854,7 +854,7 @@ msgstr "precedente:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUN_RESULT_HAS_A_MUTATION"
-msgstr "ha avuto una mutazione"
+msgstr "ha subito una mutazione"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUN_RESULT_GENE_CODE"
@@ -1899,8 +1899,10 @@ msgstr ""
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "Il flagello è un fascio di proteine simile a una frusta che si estende a "
-"partire dalla membrana cellulare. Può usare ATP per ondulare, e di "
-"conseguenza propellere la cellula in una direzione."
+"partire dalla membrana cellulare. Può usare ATP per ondulare, fornendo così "
+"movimento alla cellula. La direzione di tale movimento è opposta alla "
+"direzione in cui il flagello punta: per esempio, un flagello posizionato sul "
+"lato sinistro della cellula fornisce spinta nel movimento verso destra."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "SPEED"
@@ -2064,7 +2066,7 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Il vacuolo tossina è un vacuolo che è stato modificato per la produzione, "
 "l'immagazzinamento e la secrezione di OssiTossi. Avere più vacuoli tossina "
-"aumenterà la rapidità di secrezione delle tossine."
+"aumenta la rapidità di secrezione delle tossine."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1766
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -3001,7 +3003,7 @@ msgstr "Inizia a Prosperare"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Per controllare la tua cellula, usa i tasti mostrati vicino a lei (al "
+"Per controllare la tua cellula, usa i tasti mostrati vicino a essa (al "
 "centro dello schermo); usa il mouse per controllare la sua direzione.\n"
 "\n"
 "Per continuare, prova a premere tutti i tasti mostrati per qualche secondo."
