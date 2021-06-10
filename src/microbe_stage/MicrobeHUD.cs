@@ -665,7 +665,7 @@ public class MicrobeHUD : Node
             microbeText.Text = entry.Species.FormattedName;
 
             if (entry.IsPlayerMicrobe)
-                microbeText.Text += "\n(" + TranslationServer.Translate("PLAYER_CELL") + ")";
+                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&

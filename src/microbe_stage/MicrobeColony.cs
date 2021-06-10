@@ -42,7 +42,7 @@ public class MicrobeColony
 
     public void Process(float delta)
     {
-        _ = delta; // Disable parameter not used suggestion
+        _ = delta;
 
         ColonyCompounds.DistributeCompoundSurplus();
     }
@@ -50,7 +50,7 @@ public class MicrobeColony
     public void RemoveFromColony(Microbe microbe)
     {
         if (microbe?.Colony == null)
-            throw new ArgumentException("Microbe null or invalid");
+            throw new ArgumentException("Microbe null or not a member of a colony");
 
         if (!Equals(microbe.Colony, this))
             throw new ArgumentException("Cannot remove a colony member who isn't a member");
@@ -68,7 +68,9 @@ public class MicrobeColony
         microbe.ColonyParent?.ColonyChildren?.Remove(microbe);
         if (microbe.ColonyParent?.Colony != null && microbe.ColonyParent?.ColonyParent == null &&
             microbe.ColonyParent?.ColonyChildren?.Count == 0)
+        {
             RemoveFromColony(microbe.ColonyParent);
+        }
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;

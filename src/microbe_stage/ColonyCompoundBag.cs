@@ -6,10 +6,6 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class ColonyCompoundBag : ICompoundStorage
 {
-    public ColonyCompoundBag()
-    {
-    }
-
     public ColonyCompoundBag(MicrobeColony colony)
     {
         Colony = colony;

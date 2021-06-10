@@ -1118,7 +1118,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock the organelles that need a nucleus
     /// </summary>
-    internal void UpdatePartsAvailability(List<string> placedUniqueOrganelleNames)
+    internal void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
@@ -1324,17 +1324,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock a single organelle that need a nucleus
     /// </summary>
-    private void UpdatePartAvailability(List<string> placedUniqueOrganelleNames, OrganelleDefinition organelle)
+    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
+        OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
-        var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus.InternalName);
 
-        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle.InternalName))
+        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
         {
             item.Locked = true;
         }
         else if (organelle.RequiresNucleus)
         {
+            var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus);
             item.Locked = !hasNucleus;
         }
         else

@@ -22,8 +22,8 @@ public class ReferenceResolver : IReferenceResolver
         if (!referenceToObject.ContainsKey(reference))
         {
             throw new KeyNotFoundException(
-                $"The reference {reference} was not found.\n" +
-                $"Is a child referencing an ancestor? If so, you should use the [UseThriveSerializer]");
+                $"The reference {reference} was not found. " +
+                "Is a child referencing an ancestor? If so, you should add [UseThriveSerializer]");
         }
 
         return referenceToObject[reference];

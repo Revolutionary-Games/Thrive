@@ -360,7 +360,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public MicrobeStage ReturnToStage { get; set; }
 
     [JsonIgnore]
-    public bool HasNucleus => PlacedUniqueOrganelleNames.Contains("nucleus");
+    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d.InternalName == "nucleus");
 
     [JsonIgnore]
     public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
@@ -390,10 +390,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
-    public List<string> PlacedUniqueOrganelleNames => editedMicrobeOrganelles
+    public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => editedMicrobeOrganelles
         .Where(p => p.Definition.Unique)
-        .Select(p => p.Definition.InternalName)
-        .Distinct().ToList();
+        .Select(p => p.Definition);
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -1091,13 +1090,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
     {
-        foreach (var organelle in editedMicrobeOrganelles.Organelles)
-        {
-            if (organelle.Definition == organelleDefinition)
-                return true;
-        }
-
-        return false;
+        return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
     }
 
     /// <summary>
@@ -1391,7 +1384,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-        gui.UpdatePartsAvailability(PlacedUniqueOrganelleNames);
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
@@ -2000,7 +1993,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
 
-        gui.UpdatePartsAvailability(PlacedUniqueOrganelleNames);
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         UpdatePatchDependentBalanceData();
 

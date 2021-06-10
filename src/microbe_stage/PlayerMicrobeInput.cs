@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -108,14 +107,7 @@ public class PlayerMicrobeInput : NodeWithInput
         }
         else if (stage.Player.Colony != null)
         {
-            var unbindingText = new SpecifiedInputKey(
-                (InputEventWithModifiers)InputMap.GetActionList("g_toggle_unbinding")[0]).ToString();
-
-            stage.HUD.HelpText = string.Format(
-                CultureInfo.CurrentCulture,
-                TranslationServer.Translate("UNBIND_HELP_TEXT"),
-                unbindingText);
-
+            stage.HUD.HelpText = TranslationServer.Translate("UNBIND_HELP_TEXT");
             stage.Player.State = Microbe.MicrobeState.Unbinding;
         }
     }
@@ -127,7 +119,11 @@ public class PlayerMicrobeInput : NodeWithInput
             stage.Player.State = Microbe.MicrobeState.Normal;
 
         if (stage.Player?.Colony != null)
+        {
+            // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
+            // disband entire colony functionality
             RemoveCellFromColony(stage.Player);
+        }
     }
 
     [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
@@ -144,11 +140,6 @@ public class PlayerMicrobeInput : NodeWithInput
 
         stage.HUD.HelpText = string.Empty;
         return true;
-    }
-
-    public void RemoveCellFromColony(Microbe target)
-    {
-        target.Colony.RemoveFromColony(target);
     }
 
     [RunOnKeyDown("g_cheat_editor")]
@@ -185,6 +176,11 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             SpawnCheatCloud("phosphates", delta);
         }
+    }
+
+    private void RemoveCellFromColony(Microbe target)
+    {
+        target.Colony.RemoveFromColony(target);
     }
 
     private void SpawnCheatCloud(string name, float delta)

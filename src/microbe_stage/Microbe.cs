@@ -459,8 +459,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Fix the tree of colonies
             if (ColonyChildren != null)
             {
-                foreach (var children in ColonyChildren)
-                    AddChild(children);
+                foreach (var child in ColonyChildren)
+                    AddChild(child);
             }
 
             // Need to re-attach our organelles
@@ -2351,8 +2351,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
-        // This needs to be done later otherwise the AI (probably) can get the cell movement direction stuck
-        Invoke.Instance.Queue(() => other.MovementDirection = Vector3.Zero);
+        other.MovementDirection = Vector3.Zero;
 
         // Create a colony if there isn't one yet
         if (Colony == null)

@@ -18,17 +18,13 @@ public interface ICompoundStorage : IEnumerable<KeyValuePair<Compound, float>>
     /// <summary>
     ///   Takes some compound out of this bag.
     /// </summary>
-    /// <returns>
-    ///   Returns the amount taken, which can be less than the requested amount.
-    /// </returns>
+    /// <returns>Returns the amount taken, which can be less than the requested amount.</returns>
     float TakeCompound(Compound compound, float amount);
 
     /// <summary>
     ///   Adds some compound to this bag.
     /// </summary>
-    /// <returns>
-    ///   Returns the amount that was added, which can be less than the given amount.
-    /// </returns>
+    /// <returns>Returns the amount that was added, which can be less than the given amount.</returns>
     float AddCompound(Compound compound, float amount);
 
     /// <summary>
