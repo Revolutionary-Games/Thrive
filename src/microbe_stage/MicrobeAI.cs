@@ -50,19 +50,13 @@ public class MicrobeAI
     private float SpeciesFocus => microbe.Species.Focus;
     private float SpeciesOpportunism => microbe.Species.Opportunism;
 
-    public void TryThink(float delta, Random random, MicrobeAICommonData data)
-    {
-        // Disable most AI in a colony
-        if (microbe.ColonyParent == null)
-            Think(delta, random, data);
-
-        // Clear the absorbed compounds for run and rumble
-        microbe.TotalAbsorbedCompounds.Clear();
-    }
-
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
         _ = delta;
+
+        // Disable most AI in a colony
+        if (microbe.ColonyParent != null)
+            return;
 
         ClearDisposedReferences(data);
 
@@ -82,6 +76,7 @@ public class MicrobeAI
         focusedPrey = null;
         pursuitThreshold = 0;
         microbe.MovementDirection = Vector3.Zero;
+        microbe.TotalAbsorbedCompounds.Clear();
     }
 
     private void ChooseActions(Random random, MicrobeAICommonData data)

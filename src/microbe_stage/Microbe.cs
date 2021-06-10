@@ -124,6 +124,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private Color flashColour = new Color(0, 0, 0, 0);
 
+    /// <summary>
+    ///   This determines how important the current flashing action is. This allows higher priority flash colours to
+    ///   take over.
+    /// </summary>
     [JsonProperty]
     private int flashPriority;
 
@@ -630,7 +634,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     /// <summary>
     ///   Flashes the membrane a specific colour for duration. A new
-    ///   flash is not started if currently flashing.
+    ///   flash is not started if currently flashing and priority is lower than the current flash priority.
     /// </summary>
     /// <returns>True when a new flash was started, false if already flashing</returns>
     public bool Flash(float duration, Color colour, int priority = 0)
@@ -1318,7 +1322,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         try
         {
-            ai.TryThink(delta, random, data);
+            ai.Think(delta, random, data);
         }
 #pragma warning disable CA1031 // AI needs to be boxed good
         catch (Exception e)
@@ -1328,11 +1332,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-    public override void _IntegrateForces(PhysicsDirectBodyState state)
+    public override void _IntegrateForces(PhysicsDirectBodyState physicsState)
     {
         // TODO: should movement also be applied here?
 
-        state.Transform = GetNewPhysicsRotation(state.Transform);
+        physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
     }
 
     internal void OnColonyMemberRemoved(Microbe microbe)
