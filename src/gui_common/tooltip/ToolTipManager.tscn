@@ -1007,8 +1007,12 @@ visible = false
 [node name="bindingagent" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
 DisplayName = "BINDING_AGENT"
+ProcessesDescription = "BINDING_AGENT_PROCESSES_DESCRIPTION"
 Description = "BINDING_AGENT_DESCRIPTION"
 MutationPointCost = 55
+
+[node name="VBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer" index="0"]
+margin_bottom = 180.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingagent/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
