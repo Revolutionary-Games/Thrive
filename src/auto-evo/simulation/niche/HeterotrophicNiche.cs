@@ -2,8 +2,8 @@
 
 public class HeterotrophicNiche : INiche
 {
-    private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+    private readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+    private readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
 
     private MicrobeSpecies prey;
     private float preySpeed;

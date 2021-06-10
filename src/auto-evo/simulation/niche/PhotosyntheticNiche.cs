@@ -1,8 +1,8 @@
 ﻿public class PhotosyntheticNiche : INiche
 {
-    private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-    private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+    private readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    private readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
 
     private float totalSunlight;
 

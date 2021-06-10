@@ -2,8 +2,8 @@
 
 public class ChemosyntheticNiche : INiche
 {
-    private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+    private readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
 
     private Compound compound;
     private float totalCompound;
