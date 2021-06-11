@@ -95,7 +95,7 @@ public static class NodeHelpers
     ///     available in upcoming Godot versions.
     ///   </para>
     /// </remarks>
-    public static void Reparent(this Node node, Node parent)
+    public static void Reparent(this Node node, Node newParent)
     {
         if (node.GetParent() == null)
         {
@@ -104,6 +104,6 @@ public static class NodeHelpers
         }
 
         node.GetParent().RemoveChild(node);
-        parent.AddChild(node);
+        newParent.AddChild(node);
     }
 }
