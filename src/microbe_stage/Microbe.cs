@@ -316,6 +316,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
+    ///   Returns true when this microbe can enable binding mode
+    /// </summary>
+    public bool CanBind => organelles.Any(p => p.IsBindingAgent) || Colony != null;
+
+    /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
     /// </summary>
     [JsonIgnore]
@@ -546,7 +551,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Reproduction progress is lost
         allOrganellesDivided = false;
 
-        // Unbind if the master removed it's binding agent.
+        // Unbind if a colony's master cell removed its binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
             Colony.RemoveFromColony(this);
     }
@@ -747,14 +752,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Needs to be big enough to engulf
         return EngulfSize >= target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
-    }
-
-    /// <summary>
-    ///   Returns true when this microbe can enable binding mode
-    /// </summary>
-    public bool CanBind()
-    {
-        return organelles.Any(p => p.IsBindingAgent) || Colony != null;
     }
 
     /// <summary>
@@ -1404,13 +1401,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         State = MicrobeState.Normal;
 
         var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
-        var myVectorToMyMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+        var vectorToMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
 
         vectorToParentRotated = (-vectorToParent).Rotated(Vector3.Down, ColonyParent.Rotation.y);
         var parentVectorToItsMembrane =
             ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
 
-        var requiredDistance = myVectorToMyMembrane.Length() + parentVectorToItsMembrane.Length();
+        var requiredDistance = vectorToMembrane.Length() + parentVectorToItsMembrane.Length();
 
         var offset = vectorToParent.Normalized() * requiredDistance;
 
@@ -1763,7 +1760,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
-    ///   Removes the player the ability to go to the editor.
+    ///   Removes the player's ability to go to the editor.
     ///   Does nothing when called by the AI.
     /// </summary>
     private void UnreadyToReproduce()
@@ -2236,8 +2233,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var savedColony = Colony;
         Colony = null;
 
-        GetParent().RemoveChild(this);
-        parent.AddChild(this);
+        this.Reparent(parent);
 
         // And restore the colony after completing the re-parenting of this node
         Colony = savedColony;
@@ -2255,8 +2251,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var savedColony = Colony;
             Colony = null;
 
-            GetParent().RemoveChild(this);
-            newParent.AddChild(this);
+            this.Reparent(newParent);
 
             Colony = savedColony;
         }
@@ -2354,7 +2349,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (State != MicrobeState.Binding)
             return;
 
-        if (!CanBind())
+        if (!CanBind)
         {
             State = MicrobeState.Normal;
             return;
