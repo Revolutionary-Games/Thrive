@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-10 20:04+0300\n"
+"POT-Creation-Date: 2021-06-11 21:22+0200\n"
 "PO-Revision-Date: 2021-04-20 08:07+0000\n"
 "Last-Translator: Pajoš <fractvival@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -2226,43 +2226,48 @@ msgstr "Teplota"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:939
+#: ../src/microbe_stage/Microbe.cs:941
 msgid "DEATH"
 msgstr "smrt"
 
-#: ../src/microbe_stage/Microbe.cs:1377
+#: ../src/microbe_stage/Microbe.cs:1388
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "úspěšné prohledání"
 
-#: ../src/microbe_stage/Microbe.cs:1384
+#: ../src/microbe_stage/Microbe.cs:1395
 msgid "SUCCESSFUL_KILL"
 msgstr "úspěšné zabití"
 
-#: ../src/microbe_stage/Microbe.cs:1738
+#: ../src/microbe_stage/Microbe.cs:1756
 msgid "REPRODUCED"
 msgstr "reprodukováno"
 
-#: ../src/microbe_stage/Microbe.cs:1879
+#: ../src/microbe_stage/Microbe.cs:1897
 msgid "ESCAPE_ENGULFING"
 msgstr "uniknout pohlcení"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:28
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:29
 msgid "INFINITE_COMPOUNDS"
 msgstr "Nekonečné sloučeniny"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "GODMODE"
 msgstr "Nesmrtelnost"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr "Žádné AI"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:66
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:70
 msgid "PLAYER_SPEED"
 msgstr ""
 "Hráč\n"
 "Rychlost"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#, fuzzy
+msgid "PLAYER_DUPLICATE"
+msgstr "hráč zemřel"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:474
 msgid "MICROBE_PATCH_LABEL"
