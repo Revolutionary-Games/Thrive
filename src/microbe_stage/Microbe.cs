@@ -544,7 +544,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Reproduction progress is lost
         allOrganellesDivided = false;
 
-        // Unbind if the master removed it's binding agent.
+        // Unbind if a colony's master cell removed its binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
             Colony.RemoveFromColony(this);
     }
