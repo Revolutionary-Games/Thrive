@@ -126,7 +126,7 @@ public class MicrobeHUD : Node
     public NodePath ProcessPanelButtonPath;
 
     [Export]
-    public NodePath HelpTextPath;
+    public NodePath HintTextPath;
 
     [Export]
     public PackedScene ExtinctionBoxScene;
@@ -207,7 +207,7 @@ public class MicrobeHUD : Node
     private Node winBox;
     private Tween panelsTween;
     private Control winExtinctBoxHolder;
-    private Label helpText;
+    private Label hintText;
 
     private Array compoundBars;
 
@@ -243,10 +243,13 @@ public class MicrobeHUD : Node
     /// </summary>
     private float hoverInfoTimeElapsed;
 
-    public string HelpText
+    /// <summary>
+    ///   Gets and sets the text that appears at the upper HUD.
+    /// </summary>
+    public string HintText
     {
-        get => helpText.Text;
-        set => helpText.Text = value;
+        get => hintText.Text;
+        set => hintText.Text = value;
     }
 
     public override void _Ready()
@@ -294,7 +297,7 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
-        helpText = GetNode<Label>(HelpTextPath);
+        hintText = GetNode<Label>(HintTextPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);

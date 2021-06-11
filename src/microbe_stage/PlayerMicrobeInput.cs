@@ -88,7 +88,7 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             stage.Player.State = Microbe.MicrobeState.Normal;
         }
-        else if (stage.Player.CanBind())
+        else if (stage.Player.CanBind)
         {
             stage.Player.State = Microbe.MicrobeState.Binding;
         }
@@ -102,12 +102,12 @@ public class PlayerMicrobeInput : NodeWithInput
 
         if (stage.Player.State == Microbe.MicrobeState.Unbinding)
         {
-            stage.HUD.HelpText = string.Empty;
+            stage.HUD.HintText = string.Empty;
             stage.Player.State = Microbe.MicrobeState.Normal;
         }
         else if (stage.Player.Colony != null)
         {
-            stage.HUD.HelpText = TranslationServer.Translate("UNBIND_HELP_TEXT");
+            stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
             stage.Player.State = Microbe.MicrobeState.Unbinding;
         }
     }
@@ -138,7 +138,7 @@ public class PlayerMicrobeInput : NodeWithInput
         var target = stage.MicrobesAtMouse[0];
         RemoveCellFromColony(target);
 
-        stage.HUD.HelpText = string.Empty;
+        stage.HUD.HintText = string.Empty;
         return true;
     }
 
