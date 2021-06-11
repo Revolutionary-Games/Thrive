@@ -17,10 +17,14 @@ public class MicrobeCheatMenu : CheatMenu
     [Export]
     public NodePath SpeedSliderPath;
 
+    [Export]
+    public NodePath PlayerDividePath;
+
     private CheckBox infiniteCompounds;
     private CheckBox godMode;
     private CheckBox disableAI;
     private Slider speed;
+    private Button playerDivide;
 
     public override void _Ready()
     {
@@ -28,6 +32,9 @@ public class MicrobeCheatMenu : CheatMenu
         godMode = GetNode<CheckBox>(GodModePath);
         disableAI = GetNode<CheckBox>(DisableAIPath);
         speed = GetNode<Slider>(SpeedSliderPath);
+        playerDivide = GetNode<Button>(PlayerDividePath);
+
+        playerDivide.Connect("pressed", this, nameof(OnPlayerDivideClicked));
         base._Ready();
     }
 
@@ -37,5 +44,10 @@ public class MicrobeCheatMenu : CheatMenu
         godMode.Pressed = CheatManager.GodMode;
         disableAI.Pressed = CheatManager.NoAI;
         speed.Value = CheatManager.Speed;
+    }
+
+    private void OnPlayerDivideClicked()
+    {
+        CheatManager.PlayerDuplication();
     }
 }

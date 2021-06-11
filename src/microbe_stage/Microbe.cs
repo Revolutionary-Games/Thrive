@@ -443,6 +443,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Setup tracking running processes
             ProcessStatistics = new ProcessStatistics();
 
+            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
+
             GD.Print("Player Microbe spawned");
         }
 
@@ -1003,6 +1005,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (Colony != null)
             throw new NotSupportedException("Cannot divide a microbe while in a colony");
 
+        ForceDivide();
+    }
+
+    /// <summary>
+    ///   Triggers reproduction on this cell (even if not ready)
+    ///   Ignores security checks. If you want those checks, use <see cref="Divide"/>
+    /// </summary>
+    public void ForceDivide()
+    {
         // Separate the two cells.
         var separation = new Vector3(Radius, 0, 0);
 
@@ -1662,6 +1673,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // allOrganellesDivided flag is reset
             ReadyToReproduce();
         }
+    }
+
+    private void OnPlayerDuplicationCheat(object sender, EventArgs e)
+    {
+        allOrganellesDivided = true;
+
+        ForceDivide();
     }
 
     private PlacedOrganelle SplitOrganelle(PlacedOrganelle organelle)

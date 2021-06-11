@@ -18,6 +18,7 @@ InfiniteCompoundsPath = NodePath("InfiniteCompounds")
 GodModePath = NodePath("GodMode")
 DisableAIPath = NodePath("DisableAI")
 SpeedSliderPath = NodePath("Speed/SpeedSlider")
+PlayerDividePath = NodePath("PlayerDuplicate")
 
 [node name="InfiniteCompounds" type="CheckBox" parent="."]
 margin_left = 11.0
@@ -48,6 +49,9 @@ margin_right = 188.0
 margin_bottom = 82.0
 custom_fonts/font = ExtResource( 3 )
 text = "NO_AI"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Speed" type="HBoxContainer" parent="."]
 margin_left = 11.0
@@ -78,6 +82,17 @@ min_value = 1.0
 max_value = 5.0
 step = 0.5
 value = 1.0
+
+[node name="PlayerDuplicate" type="Button" parent="."]
+margin_left = 11.0
+margin_top = 110.0
+margin_right = 188.0
+margin_bottom = 137.0
+custom_fonts/font = ExtResource( 3 )
+text = "PLAYER_DUPLICATE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="toggled" from="InfiniteCompounds" to="." method="SetInfiniteCompounds"]
 [connection signal="toggled" from="GodMode" to="." method="SetGodMode"]
 [connection signal="toggled" from="DisableAI" to="." method="SetDisableAI"]
