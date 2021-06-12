@@ -165,7 +165,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   Used to denote how long the microbe has been acting strenuously, and increase action costs
     /// </summary>
     [JsonProperty]
-    private float stress = 0.0f;
+    private float stress;
 
     [JsonProperty]
     private MicrobeState state;

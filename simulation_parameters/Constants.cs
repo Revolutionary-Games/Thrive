@@ -249,6 +249,10 @@ public static class Constants
     ///   Used to disable sprint when a microbe is too tired.
     /// </summary>
     public const float MIN_ATP_TO_START_SPRINT = 0.9f;
+
+    /// <summary>
+    ///   Used to disable sprint when a microbe is too tired.
+    /// </summary>
     public const float MIN_ATP_TO_CONTINUE_SPRINT = 0.2f;
 
     public const float STRESS_INCREASE_RATE = 0.01f;
