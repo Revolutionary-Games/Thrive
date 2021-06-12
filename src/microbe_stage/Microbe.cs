@@ -1980,12 +1980,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // Drain atp
             var cost = BaseMovementCost(delta);
-            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
+            if (Compounds.GetCompoundAmount(atp) < cost)
             {
                 IsSprinting = false;
             }
             else
             {
+                Compounds.TakeCompound(atp, cost);
                 MovementFactor *= Constants.SPRINTING_MOVEMENT_MULTIPLIER;
             }
         }
