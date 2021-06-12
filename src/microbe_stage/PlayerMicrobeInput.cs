@@ -81,10 +81,7 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_toggle_sprint")]
     public void ToggleSprint()
     {
-        if (stage.Player == null)
-            return;
-
-        stage.Player.ToggleSprint();
+        stage.Player?.ToggleSprint();
     }
 
     [RunOnKeyDown("g_toggle_binding")]
