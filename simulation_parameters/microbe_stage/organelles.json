@@ -18,7 +18,7 @@
         "shouldScale": false,
         "prokaryoteChance": 0.5,
         "chanceToCreate": 0.5,
-        "mass": 0.4,
+        "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Pilus.tscn",
         "name": "PREDATORY_PILUS",
         "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png"
@@ -40,7 +40,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -73,7 +73,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -136,7 +136,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -172,7 +172,7 @@
                 "colourChangeFactor": 1
             },
             "storage": {
-                "capacity": 4
+                "capacity": 0.5
             },
             "agentVacuole": {
                 "process": "bacterial_oxytoxySynthesis",
@@ -206,7 +206,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -238,7 +238,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -274,7 +274,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 1
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -282,7 +282,7 @@
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 1,
-        "mass": 0.08,
+        "mass": 0.1,
         "displayScene": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
         "name": "NITROGEN_FIXING_PLASTID",
         "productionColour": "#4fc9ff",
@@ -311,7 +311,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 1
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -319,7 +319,7 @@
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 1,
-        "mass": 0.08,
+        "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Chemoplast.tscn",
         "name": "CHEMOPLAST",
         "iconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
@@ -340,7 +340,7 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "movement": {
                 "torque": 300,
@@ -349,7 +349,7 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 6,
-        "mass": 0.3,
+        "mass": 0.2,
         "displayScene": "res://assets/models/organelles/Flagellum.tscn",
         "displaySceneModelPath": "Armature001/Skeleton/flagella",
         "displaySceneAnimation": "AnimationPlayer",
@@ -373,12 +373,12 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 15
+                "capacity": 6
             }
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 3,
-        "mass": 0.4,
+        "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Vacuole.tscn",
         "name": "VACUOLE",
         "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
@@ -405,7 +405,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 1
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -438,7 +438,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 5
+                "capacity": 1
             },
             "agentVacuole": {
                 "process": "oxytoxySynthesis",
@@ -480,7 +480,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 1.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -511,7 +511,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 4
+                "capacity": 1
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -578,7 +578,7 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 15
+                "capacity": 2
             },
             "nucleus": {}
         },
