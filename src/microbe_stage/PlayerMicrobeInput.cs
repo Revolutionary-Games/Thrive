@@ -78,6 +78,22 @@ public class PlayerMicrobeInput : NodeWithInput
         }
     }
 
+    [RunOnKeyDown("g_toggle_sprint")]
+    public void ToggleSprint()
+    {
+        if (stage.Player == null)
+            return;
+
+        if (stage.Player.State == Microbe.MicrobeState.Engulf)
+        {
+            stage.Player.State = Microbe.MicrobeState.Normal;
+        }
+        else if (!stage.Player.Membrane.Type.CellWall)
+        {
+            stage.Player.State = Microbe.MicrobeState.Engulf;
+        }
+    }
+
     [RunOnKeyDown("g_toggle_binding")]
     public void ToggleBinding()
     {
