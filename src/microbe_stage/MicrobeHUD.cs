@@ -126,6 +126,9 @@ public class MicrobeHUD : Node
     public NodePath ProcessPanelButtonPath;
 
     [Export]
+    public NodePath HintTextPath;
+
+    [Export]
     public PackedScene ExtinctionBoxScene;
 
     [Export]
@@ -208,6 +211,7 @@ public class MicrobeHUD : Node
     private Node winBox;
     private Tween panelsTween;
     private Control winExtinctBoxHolder;
+    private Label hintText;
 
     private Array compoundBars;
 
@@ -242,6 +246,15 @@ public class MicrobeHUD : Node
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
     private float hoverInfoTimeElapsed;
+
+    /// <summary>
+    ///   Gets and sets the text that appears at the upper HUD.
+    /// </summary>
+    public string HintText
+    {
+        get => hintText.Text;
+        set => hintText.Text = value;
+    }
 
     public override void _Ready()
     {
@@ -288,6 +301,7 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+        hintText = GetNode<Label>(HintTextPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
@@ -602,8 +616,6 @@ public class MicrobeHUD : Node
         if (mouseHoverPanel.MarginRight != 0)
             mouseHoverPanel.MarginRight = 0;
 
-        var compounds = stage.Clouds.GetAllAvailableAt(stage.Camera.CursorWorldPos);
-
         var container = mouseHoverPanel.GetNode("PanelContainer/MarginContainer/VBoxContainer");
         var mousePosLabel = container.GetNode<Label>("MousePos");
         var nothingHere = container.GetNode<MarginContainer>("NothingHere");
@@ -614,7 +626,7 @@ public class MicrobeHUD : Node
                 stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z) + "\n";
         }
 
-        if (compounds.Count == 0)
+        if (stage.CompoundsAtMouse.Count == 0)
         {
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = false;
         }
@@ -623,7 +635,7 @@ public class MicrobeHUD : Node
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = true;
 
             // Create for each compound the information in GUI
-            foreach (var entry in compounds)
+            foreach (var entry in stage.CompoundsAtMouse)
             {
                 // It is not useful to show trace amounts of a compound, so those are skipped
                 if (entry.Value < 0.1)
@@ -647,18 +659,9 @@ public class MicrobeHUD : Node
             }
         }
 
-        var allMicrobes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
-
         // Show the species name of hovered cells
-        foreach (Microbe entry in allMicrobes)
+        foreach (var entry in stage.MicrobesAtMouse)
         {
-            var distance = (entry.Translation - stage.Camera.CursorWorldPos).Length();
-
-            // Find only cells that have the mouse
-            // position within their membrane
-            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
-                continue;
-
             // TODO: Combine cells of same species within mouse over
             // into a single line with total number of them
 
@@ -677,7 +680,7 @@ public class MicrobeHUD : Node
 
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
-        if (compounds.Count > 0 || hoveredCellsContainer.GetChildCount() > 0)
+        if (stage.CompoundsAtMouse.Count > 0 || hoveredCellsContainer.GetChildCount() > 0)
         {
             nothingHere.Hide();
         }
@@ -692,7 +695,7 @@ public class MicrobeHUD : Node
     /// </summary>
     private void UpdateCompoundBars()
     {
-        var compounds = stage.Player.Compounds;
+        var compounds = GetPlayerColonyOrPlayerStorage();
 
         glucoseBar.MaxValue = compounds.Capacity;
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
@@ -784,13 +787,20 @@ public class MicrobeHUD : Node
 
         if (stage.Player != null)
         {
-            atpAmount = Mathf.Ceil(stage.Player.Compounds.GetCompoundAmount(atp));
-            capacity = stage.Player.Compounds.Capacity;
+            var compounds = GetPlayerColonyOrPlayerStorage();
+
+            atpAmount = Mathf.Ceil(compounds.GetCompoundAmount(atp));
+            capacity = compounds.Capacity;
         }
 
         atpBar.MaxValue = capacity;
         atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.1f);
         atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(capacity);
+    }
+
+    private ICompoundStorage GetPlayerColonyOrPlayerStorage()
+    {
+        return stage.Player.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
     }
 
     private void UpdateHealth(float delta)

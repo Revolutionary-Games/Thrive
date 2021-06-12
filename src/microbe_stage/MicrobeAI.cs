@@ -54,6 +54,10 @@ public class MicrobeAI
     {
         _ = delta;
 
+        // Disable most AI in a colony
+        if (microbe.ColonyParent != null)
+            return;
+
         ClearDisposedReferences(data);
 
         ChooseActions(random, data);
@@ -62,7 +66,20 @@ public class MicrobeAI
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
-    public void ChooseActions(Random random, MicrobeAICommonData data)
+    /// <summary>
+    ///   Resets AI status when this AI controlled microbe is removed from a colony
+    /// </summary>
+    public void ResetAI()
+    {
+        previousAngle = 0;
+        targetPosition = Vector3.Zero;
+        focusedPrey = null;
+        pursuitThreshold = 0;
+        microbe.MovementDirection = Vector3.Zero;
+        microbe.TotalAbsorbedCompounds.Clear();
+    }
+
+    private void ChooseActions(Random random, MicrobeAICommonData data)
     {
         if (microbe.IsBeingEngulfed)
         {
@@ -290,7 +307,7 @@ public class MicrobeAI
 
     private void FleeFromPredators(Random random, Vector3 predatorLocation)
     {
-        microbe.EngulfMode = false;
+        microbe.State = Microbe.MicrobeState.Normal;
 
         targetPosition = (2 * (microbe.Translation - predatorLocation)) + microbe.Translation;
 
@@ -318,7 +335,7 @@ public class MicrobeAI
 
     private void EngagePrey(Vector3 target, Random random, bool engulf)
     {
-        microbe.EngulfMode = engulf;
+        microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
         if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
@@ -346,7 +363,7 @@ public class MicrobeAI
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
 
         // If we are still engulfing for some reason, stop
-        microbe.EngulfMode = false;
+        microbe.State = Microbe.MicrobeState.Normal;
 
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
 
@@ -392,11 +409,11 @@ public class MicrobeAI
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
         if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
         {
-            microbe.EngulfMode = true;
+            microbe.State = Microbe.MicrobeState.Engulf;
         }
         else
         {
-            microbe.EngulfMode = false;
+            microbe.State = Microbe.MicrobeState.Normal;
         }
     }
 

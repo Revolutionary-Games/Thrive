@@ -110,6 +110,9 @@
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
     <Compile Include="src\microbe_stage\ChunkConfiguration.cs" />
+    <Compile Include="src\microbe_stage\ColonyCompoundBag.cs" />
+    <Compile Include="src\microbe_stage\ICompoundStorage.cs" />
+    <Compile Include="src\microbe_stage\MicrobeColony.cs" />
     <Compile Include="src\microbe_stage\CompoundBalance.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\NucleusMesh.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
@@ -280,6 +284,7 @@
     <Compile Include="src\tutorial\microbe_stage\MicrobeReproduction.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeStageWelcome.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeStayingAlive.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeUnbind.cs" />
     <Compile Include="src\tutorial\TutorialEventArgs.cs" />
     <Compile Include="src\tutorial\TutorialEventType.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeTutorialGUI.cs" />

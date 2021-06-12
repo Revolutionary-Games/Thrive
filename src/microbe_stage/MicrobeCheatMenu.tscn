@@ -14,71 +14,92 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-InfiniteCompoundsPath = NodePath("InfiniteCompounds")
-GodModePath = NodePath("GodMode")
-DisableAIPath = NodePath("DisableAI")
-SpeedSliderPath = NodePath("Speed/SpeedSlider")
+InfiniteCompoundsPath = NodePath("VBoxContainer/InfiniteCompounds")
+GodModePath = NodePath("VBoxContainer/GodMode")
+DisableAIPath = NodePath("VBoxContainer/DisableAI")
+SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
+PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
 
-[node name="InfiniteCompounds" type="CheckBox" parent="."]
-margin_left = 11.0
-margin_top = 6.0
-margin_right = 188.0
-margin_bottom = 30.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 5.0
+margin_top = 7.0
+margin_right = 190.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 185, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfiniteCompounds" type="CheckBox" parent="VBoxContainer"]
+margin_right = 185.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "INFINITE_COMPOUNDS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GodMode" type="CheckBox" parent="."]
-margin_left = 11.0
-margin_top = 32.0
-margin_right = 188.0
-margin_bottom = 56.0
+[node name="GodMode" type="CheckBox" parent="VBoxContainer"]
+margin_top = 21.0
+margin_right = 185.0
+margin_bottom = 38.0
 custom_fonts/font = ExtResource( 3 )
 text = "GODMODE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DisableAI" type="CheckBox" parent="."]
-margin_left = 11.0
-margin_top = 58.0
-margin_right = 188.0
-margin_bottom = 82.0
+[node name="DisableAI" type="CheckBox" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 185.0
+margin_bottom = 59.0
 custom_fonts/font = ExtResource( 3 )
 text = "NO_AI"
-
-[node name="Speed" type="HBoxContainer" parent="."]
-margin_left = 11.0
-margin_top = 84.0
-margin_right = 188.0
-margin_bottom = 106.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Speed"]
-margin_top = 2.0
+[node name="Speed" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 63.0
+margin_right = 185.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/Speed"]
 margin_right = 101.0
-margin_bottom = 19.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "PLAYER_SPEED"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpeedSlider" type="HSlider" parent="Speed"]
+[node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Speed"]
 margin_left = 105.0
-margin_right = 177.0
-margin_bottom = 22.0
+margin_right = 185.0
+margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = 1.0
 max_value = 5.0
 step = 0.5
 value = 1.0
-[connection signal="toggled" from="InfiniteCompounds" to="." method="SetInfiniteCompounds"]
-[connection signal="toggled" from="GodMode" to="." method="SetGodMode"]
-[connection signal="toggled" from="DisableAI" to="." method="SetDisableAI"]
-[connection signal="value_changed" from="Speed/SpeedSlider" to="." method="SetSpeed"]
+
+[node name="PlayerDuplicate" type="Button" parent="VBoxContainer"]
+margin_top = 84.0
+margin_right = 185.0
+margin_bottom = 111.0
+custom_fonts/font = ExtResource( 3 )
+text = "PLAYER_DUPLICATE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="toggled" from="VBoxContainer/InfiniteCompounds" to="." method="SetInfiniteCompounds"]
+[connection signal="toggled" from="VBoxContainer/GodMode" to="." method="SetGodMode"]
+[connection signal="toggled" from="VBoxContainer/DisableAI" to="." method="SetDisableAI"]
+[connection signal="value_changed" from="VBoxContainer/Speed/SpeedSlider" to="." method="SetSpeed"]

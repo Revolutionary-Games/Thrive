@@ -244,7 +244,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+4"
+ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -254,7 +254,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+4"
+text = "+1"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -342,7 +342,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+1"
+ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -352,7 +352,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+1"
+text = "+0.5"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -439,7 +439,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+1"
+ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -449,7 +449,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+1"
+text = "+0.5"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -560,7 +560,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+1"
+ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -570,7 +570,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+1"
+text = "+0.5"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -657,7 +657,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+2"
+ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -667,7 +667,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+2"
+text = "+0.5"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -755,7 +755,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+4"
+ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -765,7 +765,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+4"
+text = "+0.5"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -890,7 +890,7 @@ margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+4"
+ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -900,7 +900,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+4"
+text = "+0.5"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -1004,6 +1004,53 @@ visible = false
 [node name="HSeparator" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="4"]
 visible = false
 
+[node name="bindingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
+DisplayName = "BINDING_AGENT"
+ProcessesDescription = "BINDING_AGENT_PROCESSES_DESCRIPTION"
+Description = "BINDING_AGENT_DESCRIPTION"
+MutationPointCost = 55
+
+[node name="VBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer" index="0"]
+margin_bottom = 180.0
+
+[node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList" index="0"]
+margin_right = 318.0
+margin_bottom = 20.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "STORAGE"
+ModifierValue = "+15"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 12 )
+
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_top = 1.0
+margin_right = 24.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 26 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+5"
+
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 28.0
+margin_right = 81.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "Storage"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 85.0
+margin_right = 105.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 12 )
+expand = true
+
 [node name="nucleus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
 DisplayName = "NUCLEUS"
@@ -1026,7 +1073,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+15"
+ModifierValue = "+2"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1036,7 +1083,7 @@ margin_right = 24.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+15"
+text = "+2"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 28.0
@@ -1118,7 +1165,7 @@ margin_bottom = 46.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+2"
+ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1128,7 +1175,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+2"
+text = "+1"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -1202,7 +1249,7 @@ margin_bottom = 70.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+2"
+ModifierValue = "+1.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1212,7 +1259,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+2"
+text = "+1.5"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -1301,7 +1348,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+2"
+ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1311,7 +1358,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+2"
+text = "+1"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -1401,7 +1448,7 @@ margin_bottom = 70.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+2"
+ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1411,7 +1458,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+2"
+text = "+1"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -1490,7 +1537,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+2"
+ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1500,7 +1547,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+2"
+text = "+1"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -1588,7 +1635,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+15"
+ModifierValue = "+6"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1598,7 +1645,7 @@ margin_right = 24.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+15"
+text = "+6"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 28.0
@@ -1685,7 +1732,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+5"
+ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1695,7 +1742,7 @@ margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+5"
+text = "+1"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 20.0
@@ -3269,6 +3316,7 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [editable path="GroupHolder/organelleSelection/flagellum"]
 [editable path="GroupHolder/organelleSelection/pilus"]
 [editable path="GroupHolder/organelleSelection/cilia"]
+[editable path="GroupHolder/organelleSelection/bindingAgent"]
 [editable path="GroupHolder/organelleSelection/nucleus"]
 [editable path="GroupHolder/organelleSelection/mitochondrion"]
 [editable path="GroupHolder/organelleSelection/chloroplast"]
