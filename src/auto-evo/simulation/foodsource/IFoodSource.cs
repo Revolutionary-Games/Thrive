@@ -1,4 +1,4 @@
-﻿public interface INiche
+﻿public interface IFoodSource
 {
     public float TotalEnergyAvailable();
 

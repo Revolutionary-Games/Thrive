@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-public class HeterotrophicNiche : INiche
+public class HeterotrophicFoodSource : IFoodSource
 {
     private readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
@@ -9,7 +9,7 @@ public class HeterotrophicNiche : INiche
     private float preySpeed;
     private float totalEnergy;
 
-    public HeterotrophicNiche(Patch patch, MicrobeSpecies prey)
+    public HeterotrophicFoodSource(Patch patch, MicrobeSpecies prey)
     {
         this.prey = prey;
         preySpeed = prey.BaseSpeed();

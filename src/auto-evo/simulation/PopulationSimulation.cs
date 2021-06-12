@@ -137,17 +137,17 @@
                 energyBySpecies[currentSpecies] = 0.0f;
             }
 
-            var niches = new List<INiche>
+            var niches = new List<IFoodSource>
         {
-            new PhotosyntheticNiche(patch),
-            new ChemosyntheticNiche(patch, Glucose),
-            new ChemosyntheticNiche(patch, HydrogenSulfide),
-            new ChemosyntheticNiche(patch, Iron),
+            new PhotosyntheticFoodSource(patch),
+            new ChemosyntheticFoodSource(patch, Glucose),
+            new ChemosyntheticFoodSource(patch, HydrogenSulfide),
+            new ChemosyntheticFoodSource(patch, Iron),
         };
 
             foreach (var currentSpecies in species)
             {
-                niches.Add(new HeterotrophicNiche(patch, currentSpecies));
+                niches.Add(new HeterotrophicFoodSource(patch, currentSpecies));
             }
 
             foreach (var niche in niches)

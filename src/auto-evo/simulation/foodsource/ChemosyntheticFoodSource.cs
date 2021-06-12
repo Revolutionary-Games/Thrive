@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class ChemosyntheticNiche : INiche
+public class ChemosyntheticFoodSource : IFoodSource
 {
     private readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
     private readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
@@ -8,7 +8,7 @@ public class ChemosyntheticNiche : INiche
     private Compound compound;
     private float totalCompound;
 
-    public ChemosyntheticNiche(Patch patch, Compound compound)
+    public ChemosyntheticFoodSource(Patch patch, Compound compound)
     {
         this.compound = compound;
         if (patch.Biome.Compounds.ContainsKey(compound))

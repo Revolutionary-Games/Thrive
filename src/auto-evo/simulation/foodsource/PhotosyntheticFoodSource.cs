@@ -1,4 +1,4 @@
-﻿public class PhotosyntheticNiche : INiche
+﻿public class PhotosyntheticFoodSource : IFoodSource
 {
     private readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     private readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
@@ -6,7 +6,7 @@
 
     private float totalSunlight;
 
-    public PhotosyntheticNiche(Patch patch)
+    public PhotosyntheticFoodSource(Patch patch)
     {
         totalSunlight = patch.Biome.Compounds[Sunlight].Dissolved * Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT;
     }
