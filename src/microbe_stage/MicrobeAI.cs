@@ -110,7 +110,7 @@ public class MicrobeAI
         {
             bool engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
                 microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
-            Vector3? prey = possiblePrey.Translation;
+            Vector3? prey = LeadTarget(possiblePrey);
 
             EngagePrey(prey.Value, random, engulfPrey);
             return;
@@ -478,6 +478,11 @@ public class MicrobeAI
     private bool CanShootToxin()
     {
         return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
+    }
+
+    private Vector3 LeadTarget(Microbe target)
+    {
+        return target.Translation.LinearInterpolate(target.LookAtPoint, 0.15f);
     }
 
     private float DistanceFromMe(Vector3 target)
