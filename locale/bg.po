@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-29 22:31+0300\n"
-"PO-Revision-Date: 2021-06-09 12:42+0000\n"
+"PO-Revision-Date: 2021-06-12 07:27+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -24,9 +24,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:29
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Използвайте „W“, „A“, „S“, „D“ и мишката за да се придвижвате. "
-"Окситоксинът се изстрелва с „Е“, ако имате токсична вакуола. Поглъщането "
-"на другите клетки се извършва с „G“."
+"Използвайте „W“, „A“, „S“, „D“ и мишката за да се придвижвате. Окситоксинът "
+"се изстрелва с „Е“, ако имате токсична вакуола. Режимът на поглъщане се "
+"включва с „G“."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:30
@@ -154,7 +154,7 @@ msgstr ""
 "Митохондрия: Произвежда АТФ, чрез глюкоза и атмосферен O2, много по-"
 "ефективно от цитоплазмата\n"
 "\n"
-"Хлоропласт: Създава глюкоза, чрез слънчева светлина и атмосферния СО2\n"
+"Хлоропласт: Създава глюкоза, чрез слънчева светлина и атмосферен СО2\n"
 "\n"
 "Хемопласт: Създава глюкоза от сероводород\n"
 "\n"
@@ -296,7 +296,7 @@ msgstr "Забавен факт е, че Дидиний е ресничест в
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ "
-"от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в Thrive."
+"от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в „Thrive“."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_21"
@@ -307,8 +307,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:69
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"Thrive има много мелодии, които все още не са добавени в играта. Може да "
-"ги чуете или да гледате как се правят в YouTube канала на Oliver Lugg."
+"„Thrive“ има много мелодии, които все още не са добавени в играта. Може да "
+"ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "EASTEREGG_MESSAGE_23"
@@ -319,19 +319,19 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:71
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"Thrive се развива на извънземна планета, следователно повечето създания, "
+"„Thrive“ се развива на извънземна планета, следователно повечето създания, "
 "които ще видите имат общи черти с едно или две определени създания, "
 "благодарение на еволюционният процес, опитайте се да познаете кои са те!"
 
 #: ../simulation_parameters/common/help_texts.json:72
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"Забавен факт е, че екипът на Thrive прави аудио конференции от време на "
+"Забавен факт е, че екипът на „Thrive“ прави аудио конференции от време на "
 "време, може да им хвърлите едно око!"
 
 #: ../simulation_parameters/common/help_texts.json:73
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Забавен факт е, че Thrive е базиранa на Godot!"
+msgstr "Забавен факт е, че „Thrive“ е базиранa на „Godot“!"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "EASTEREGG_MESSAGE_27"
@@ -826,12 +826,12 @@ msgstr "{0:F1}% завършена. {1:n0}/{2:n0} стъпки."
 
 #: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "STARTING"
-msgstr "Стартирана"
+msgstr "Започната"
 
 #: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
-"популацията на {0} се промени с {1} индивида, поради {2} на създанията"
+"популацията на „{0}“ се промени с {1} индивида, поради {2} на създанията"
 
 #: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
@@ -839,7 +839,7 @@ msgstr "популация:"
 
 #: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
-msgstr "изчезна в {0}"
+msgstr "изчезна в зоната „{0}“"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
@@ -859,7 +859,8 @@ msgstr "Разпространение в зоните:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr "към {0} се преселиха {1} индивида от популацията в {2}"
+msgstr ""
+"към зоната „{0}“ се преселиха {1} индивида от популацията в зоната „{2}“"
 
 #: ../src/auto-evo/RunResults.cs:292
 msgid "RUN_RESULT_POP_IN_PATCHES"
@@ -880,8 +881,8 @@ msgstr "Натиснете клавиш..."
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
-"Установен е конфликт с {0}.\n"
-"Искате ли да нулирате {1}?"
+"Установен е конфликт с „{0}“.\n"
+"Искате ли да нулирате „{1}“?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
@@ -1352,14 +1353,14 @@ msgstr "Назад"
 
 #: ../src/general/MainMenu.tscn:349
 msgid "GLES2_MODE_WARNING"
-msgstr "Предупреждение за GLES2"
+msgstr "Предупреждение за „GLES2“"
 
 #: ../src/general/MainMenu.tscn:362
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"В момента Thrive се изпълнява с GLES2. Това не е препоръчително и може да "
-"доведе до проблеми. Моля, обновете Вашите графични драйвери или "
-"използвайте, графичните карти на AMD или Nvidia."
+"В момента „Thrive“ се изпълнява с „GLES2“. Това не е препоръчително и може "
+"да доведе до проблеми. Моля, обновете Вашите графични драйвери или "
+"използвайте, графичните карти на „AMD“ или „Nvidia“."
 
 #: ../src/general/OptionsMenu.tscn:125
 msgid "GRAPHICS"
@@ -2184,7 +2185,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:461
 msgid "MICROBE_PATCH_LABEL"
-msgstr "Зона: {0}"
+msgstr "Зона: „{0}“"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:610
 msgid "STUFF_AT"
@@ -2324,7 +2325,7 @@ msgstr "Отчет"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:528
 msgid "PATCH_MAP"
-msgstr "Зонална карта"
+msgstr "Карта"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:608
 msgid "ORGANISM_STATISTICS"
@@ -2546,7 +2547,7 @@ msgstr "Неограничени"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:944
 msgid "BIOME_LABEL"
-msgstr "Биом: {0}"
+msgstr "Биом: „{0}“"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:949
 msgid "BELOW_SEA_LEVEL"
@@ -2593,7 +2594,7 @@ msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
-"Поздравления, Вие победихте в тази версия на Thrive! Може да продължите "
+"Поздравления, Вие победихте в тази версия на „Thrive“! Може да продължите "
 "играта след като този прозорец се затвори или да започнете нова игра в нов "
 "свят."
 
@@ -2652,7 +2653,7 @@ msgstr "Грешка по време на запазването"
 
 #: ../src/saving/NewSaveMenu.cs:61
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "Наименованието ({0}) вече съществува. Презаписване?"
+msgstr "Наименованието „{0}“ вече съществува. Презаписване?"
 
 #: ../src/saving/NewSaveMenu.tscn:30
 msgid "CREATE_NEW_SAVE"
@@ -2719,13 +2720,13 @@ msgstr "Заредете несъвместим запис?"
 #: ../src/saving/SaveList.tscn:93
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Този запис е от по-нова версия на Thrive и не е съвместим.\n"
+"Този запис е от по-нова версия на „Thrive“ и не е съвместим.\n"
 "Искате ли да го заредите въпреки това?"
 
 #: ../src/saving/SaveList.tscn:117
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Този запис е от стара версия на Thrive и е несъвместим.\n"
+"Този запис е от стара версия на „Thrive“ и е несъвместим.\n"
 "Играта е в начален етап на разработка и съвместимостта не е приоритет.\n"
 "Ако искате, може да докладвате за потенциалните проблеми.\n"
 "Искате ли да го заредите въпреки това?"
@@ -2738,7 +2739,7 @@ msgstr "Заредете невалиден запис?"
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Запазената информация не може да бъде заредена.\n"
-"Записът най-вероятно е повреден или е от по-нова версия на Thrive.\n"
+"Записът най-вероятно е повреден или е от по-нова версия на „Thrive“.\n"
 "Искате ли да го заредите въпреки това?"
 
 #: ../src/saving/SaveList.tscn:156
@@ -2748,7 +2749,7 @@ msgstr "Избраният запис е несъвместим"
 #: ../src/saving/SaveList.tscn:166
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Избраният запис не е съвместим с тази версия на Thrive.\n"
+"Избраният запис не е съвместим с тази версия на „Thrive“.\n"
 "Понеже играта е в начален етап на разработка и съвместимостта не е "
 "приоритет, все още не е създаден вграден конвертор за стари записи."
 
@@ -2880,14 +2881,14 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
-"Това е зоналната карта.\n"
+"Това е картата на зоните.\n"
 "Тук може да видите различните зони, в които живеят микробите.\n"
-"Вашата зона е подчертана.\n"
-"Изберете дадена зона с мишката за да я разгледате в повече детайли.\n"
+"Вашето местообитание е подчертано.\n"
+"Изберете дадена зона с мишката за повече детайли.\n"
 "\n"
-"Ако изберете зона, съседна на Вашата, може да натиснете бутона "
-"„Преселване“ за да се придвижите в нея. По този начин, Вашата популация се "
-"разпространява в различните зони.\n"
+"Ако изберете зона, съседна на Вашата, може да натиснете бутона „Преселване“ "
+"за да се придвижите в нея. По този начин, Вашата популация се разпространява "
+"в различните зони.\n"
 "\n"
 "Изберете зона за да продължите."
 
