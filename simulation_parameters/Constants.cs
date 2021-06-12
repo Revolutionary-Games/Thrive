@@ -246,6 +246,14 @@ public static class Constants
     public const float SPRINTING_MOVEMENT_MULTIPLIER = 2.0f;
 
     /// <summary>
+    ///   Used to disable sprint when a microbe is too tired.
+    /// </summary>
+    public const float MIN_ATP_TO_START_SPRINT = 0.9f;
+    public const float MIN_ATP_TO_CONTINUE_SPRINT = 0.2f;
+
+    public const float STRESS_INCREASE_RATE = 0.1f;
+
+    /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;

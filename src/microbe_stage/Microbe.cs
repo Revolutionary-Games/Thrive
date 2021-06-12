@@ -1969,7 +1969,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         if (state)
         {
-            if (Compounds.GetCompoundAmount(atp) > Compounds.Capacity * 0.9f)
+            if (Compounds.GetCompoundAmount(atp) > Compounds.Capacity * Constants.MIN_ATP_TO_START_SPRINT)
             {
                 isSprinting = true;
             }
@@ -1986,7 +1986,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // Drain atp
             var cost = BaseMovementCost(delta) * (1.0f + stress);
-            if (Compounds.GetCompoundAmount(atp) < Compounds.Capacity * 0.2f)
+            if (Compounds.GetCompoundAmount(atp) < Compounds.Capacity * Constants.MIN_ATP_TO_CONTINUE_SPRINT)
             {
                 isSprinting = false;
             }
@@ -2002,7 +2002,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         if (isSprinting)
         {
-            stress += delta * 0.1f;
+            stress += delta * Constants.STRESS_INCREASE_RATE;
         }
         else
         {
