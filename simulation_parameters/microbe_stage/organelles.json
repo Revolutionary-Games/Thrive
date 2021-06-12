@@ -455,6 +455,34 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
         "requiresNucleus": true
     },
+    "bindingAgent": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "storage": {
+                "capacity": 5
+            },
+            "bindingAgent": {}
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0,
+        "mass": 0.9,
+        "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
+        "name": "BINDING_AGENT",
+        "iconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
+        "requiresNucleus": true,
+        "unique": true
+    },
     "chloroplast": {
         "mpCost": 50,
         "initialComposition": {
@@ -588,6 +616,7 @@
         "mass": 0.5,
         "displayScene": "res://assets/models/organelles/Nucleus.tscn",
         "name": "NUCLEUS",
-        "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
+        "unique": true
     }
 }
