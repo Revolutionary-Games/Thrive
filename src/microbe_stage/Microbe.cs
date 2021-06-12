@@ -1358,6 +1358,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
     }
 
+    public void ToggleSprint()
+    {
+        RequestSprint(!isSprinting);
+    }
+
+    public void RequestSprint(bool state)
+    {
+        if (state)
+        {
+            if (Compounds.GetCompoundAmount(atp) > Compounds.Capacity * Constants.MIN_ATP_TO_START_SPRINT)
+            {
+                isSprinting = true;
+            }
+        }
+        else
+        {
+            isSprinting = false;
+        }
+    }
+
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
         if (microbe == this)
@@ -1957,26 +1977,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             microbe.hostileEngulfer = this;
             microbe.IsBeingEngulfed = true;
-        }
-    }
-
-    public void ToggleSprint()
-    {
-        RequestSprint(!isSprinting);
-    }
-
-    public void RequestSprint(bool state)
-    {
-        if (state)
-        {
-            if (Compounds.GetCompoundAmount(atp) > Compounds.Capacity * Constants.MIN_ATP_TO_START_SPRINT)
-            {
-                isSprinting = true;
-            }
-        }
-        else
-        {
-            isSprinting = false;
         }
     }
 
