@@ -378,7 +378,7 @@ public static class Constants
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
     ///   etc. for which is the most beneficial
     /// </summary>
-    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 10;
+    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 50;
 
     /// <summary>
     ///   Populations of species that are under this will be killed off by auto-evo
