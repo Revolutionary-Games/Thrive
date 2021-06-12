@@ -1954,6 +1954,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
+    public void ToggleSprint()
+    {
+        RequestSprint(!IsSprinting);
+    }
+
+    public void RequestSprint(bool state)
+    {
+        if (state)
+        {
+            if (Compounds.GetCompoundAmount(atp) > Compounds.Capacity * 0.9f)
+            {
+                IsSprinting = true;
+            }
+        }
+        else
+        {
+            IsSprinting = false;
+        }
+    }
+
     private void HandleSprint(float delta)
     {
         if (IsSprinting)
