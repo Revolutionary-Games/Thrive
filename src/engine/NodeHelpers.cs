@@ -85,4 +85,25 @@ public static class NodeHelpers
             child.Free();
         }
     }
+
+    /// <summary>
+    ///   Changes parent of this Node to a new parent. The node needs to already have parent to use this.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This will likely be obsolete once https://github.com/godotengine/godot/pull/36301 is merged and
+    ///     available in upcoming Godot versions.
+    ///   </para>
+    /// </remarks>
+    public static void Reparent(this Node node, Node newParent)
+    {
+        if (node.GetParent() == null)
+        {
+            GD.PrintErr("Node needs parent to be reparented");
+            return;
+        }
+
+        node.GetParent().RemoveChild(node);
+        newParent.AddChild(node);
+    }
 }
