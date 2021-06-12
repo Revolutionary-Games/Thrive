@@ -233,12 +233,17 @@ public static class Constants
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
     /// </summary>
-    public const float ENGULFING_MOVEMENT_DIVISION = 2.0f;
+    public const float ENGULFING_MOVEMENT_MULTIPLIER = 0.5f;
 
     /// <summary>
     ///   The speed reduction when a cell is being engulfed.
     /// </summary>
-    public const float ENGULFED_MOVEMENT_DIVISION = 10.0f;
+    public const float ENFULFED_MOVEMENT_MULTIPLIER = 0.1f;
+
+    /// <summary>
+    ///   The speed bonus when a cell is sprinting.
+    /// </summary>
+    public const float SPRINTING_MOVEMENT_MULTIPLIER = 2.0f;
 
     /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.

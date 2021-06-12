@@ -184,6 +184,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Engulf,
     }
 
+    [JsonProperty]
+    private bool IsSprinting;
+
     /// <summary>
     ///   The colony this microbe is currently in
     /// </summary>
@@ -1246,6 +1249,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // MovementFactor.
         HandleEngulfing(delta);
 
+        HandleSprint(delta);
+
         // Handles binding related stuff
         HandleBinding(delta);
         HandleUnbinding();
@@ -1856,12 +1861,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Movement modifier
         if (State == MicrobeState.Engulf)
         {
-            MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
+            MovementFactor *= Constants.ENGULFING_MOVEMENT_MULTIPLIER;
         }
 
         if (IsBeingEngulfed)
         {
-            MovementFactor /= Constants.ENGULFED_MOVEMENT_DIVISION;
+            MovementFactor *= Constants.ENFULFED_MOVEMENT_MULTIPLIER;
 
             Damage(Constants.ENGULF_DAMAGE * delta, "isBeingEngulfed");
             wasBeingEngulfed = true;
@@ -1949,6 +1954,23 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
+    private void HandleSprint(float delta)
+    {
+        if (IsSprinting)
+        {
+            // Drain atp
+            var cost = BaseMovementCost(delta);
+            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
+            {
+                IsSprinting = false;
+            }
+            else
+            {
+                MovementFactor *= Constants.SPRINTING_MOVEMENT_MULTIPLIER;
+            }
+        }
+    }
+
     private void RemoveEngulfedEffect()
     {
         // This kept getting doubled for some reason, so i just set it to default
@@ -2031,7 +2053,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private Vector3 DoBaseMovementForce(float delta)
     {
-        var cost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
+        var cost = BaseMovementCost(delta);
 
         var got = Compounds.TakeCompound(atp, cost);
 
@@ -2050,6 +2072,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -
                 (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+    }
+
+    private float BaseMovementCost(float delta)
+    {
+        return (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)
