@@ -83,6 +83,7 @@ public class MicrobeAI
     {
         if (microbe.IsBeingEngulfed)
         {
+            microbe.RequestSprint(true);
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
 
@@ -331,6 +332,8 @@ public class MicrobeAI
 
         // No matter what, I want to make sure I'm moving
         SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+
+        SprintIfActive();
     }
 
     private void EngagePrey(Vector3 target, Random random, bool engulf)
@@ -350,6 +353,7 @@ public class MicrobeAI
         else
         {
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            SprintIfActive();
         }
     }
 
@@ -414,6 +418,14 @@ public class MicrobeAI
         else
         {
             microbe.State = Microbe.MicrobeState.Normal;
+        }
+    }
+
+    private void SprintIfActive()
+    {
+        if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 2.0f)
+        {
+            microbe.RequestSprint(true);
         }
     }
 
