@@ -7,12 +7,14 @@ public class HeterotrophicFoodSource : IFoodSource
 
     private MicrobeSpecies prey;
     private float preySpeed;
+    private float preySize;
     private float totalEnergy;
 
     public HeterotrophicFoodSource(Patch patch, MicrobeSpecies prey)
     {
         this.prey = prey;
         preySpeed = prey.BaseSpeed();
+        preySize = prey.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         patch.SpeciesInPatch.TryGetValue(prey, out long population);
         totalEnergy = population * prey.BaseOsmoregulationCost() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
     }
@@ -31,7 +33,6 @@ public class HeterotrophicFoodSource : IFoodSource
 
         var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         var predatorSpeed = microbeSpecies.BaseSpeed();
-        var preySize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
 
         // It's great if you can engulf this prey, but only if you can catch it
         var engulfScore = (float)predatorSize / (float)preySize > Constants.ENGULF_SIZE_RATIO_REQ 
