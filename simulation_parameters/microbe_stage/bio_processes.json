@@ -41,10 +41,10 @@
         "name": "OXYTOXY_SYNTHESIS",
         "inputs": {
             "oxygen": 1,
-            "atp": 5
+            "atp": 8
         },
         "outputs": {
-            "oxytoxy": 1.5
+            "oxytoxy": 1
         }
     },
     "bacterial_oxytoxySynthesis": {
@@ -54,7 +54,7 @@
             "atp": 5
         },
         "outputs": {
-            "oxytoxy": 0.15
+            "oxytoxy": 0.1
         }
     },
     "chemoSynthesis": {
@@ -105,7 +105,7 @@
             "glucose": 0.15
         },
         "outputs": {
-            "atp": 36
+            "atp": 38
         }
     },
     "chromatophore_photosynthesis": {
