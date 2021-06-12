@@ -423,7 +423,7 @@ public class MicrobeAI
 
     private void SprintIfActive()
     {
-        if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 2.0f)
+        if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 5.0f)
         {
             microbe.RequestSprint(true);
         }

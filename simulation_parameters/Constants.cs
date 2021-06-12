@@ -233,7 +233,7 @@ public static class Constants
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
     /// </summary>
-    public const float ENGULFING_MOVEMENT_MULTIPLIER = 0.5f;
+    public const float ENGULFING_MOVEMENT_MULTIPLIER = 0.9f;
 
     /// <summary>
     ///   The speed reduction when a cell is being engulfed.
@@ -251,7 +251,7 @@ public static class Constants
     public const float MIN_ATP_TO_START_SPRINT = 0.9f;
     public const float MIN_ATP_TO_CONTINUE_SPRINT = 0.2f;
 
-    public const float STRESS_INCREASE_RATE = 0.1f;
+    public const float STRESS_INCREASE_RATE = 0.01f;
 
     /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.
