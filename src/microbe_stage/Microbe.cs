@@ -159,6 +159,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private Listener listener;
 
     [JsonProperty]
+    private bool isSprinting;
+
+    /// <summary>
+    ///   Used to denote how long the microbe has been acting strenuously, and increase action costs
+    /// </summary>
+    [JsonProperty]
+    private float stress = 0.0f;
+
+    [JsonProperty]
     private MicrobeState state;
 
     public enum MicrobeState
@@ -183,9 +192,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         /// </summary>
         Engulf,
     }
-
-    [JsonProperty]
-    private bool IsSprinting;
 
     /// <summary>
     ///   The colony this microbe is currently in
@@ -1248,8 +1254,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // called on organelles as movement organelles will use
         // MovementFactor.
         HandleEngulfing(delta);
-
         HandleSprint(delta);
+        HandleStress(delta);
 
         // Handles binding related stuff
         HandleBinding(delta);
@@ -1956,7 +1962,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public void ToggleSprint()
     {
-        RequestSprint(!IsSprinting);
+        RequestSprint(!isSprinting);
     }
 
     public void RequestSprint(bool state)
@@ -1965,30 +1971,42 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             if (Compounds.GetCompoundAmount(atp) > Compounds.Capacity * 0.9f)
             {
-                IsSprinting = true;
+                isSprinting = true;
             }
         }
         else
         {
-            IsSprinting = false;
+            isSprinting = false;
         }
     }
 
     private void HandleSprint(float delta)
     {
-        if (IsSprinting)
+        if (isSprinting)
         {
             // Drain atp
-            var cost = BaseMovementCost(delta);
+            var cost = BaseMovementCost(delta) * (1.0f + stress);
             if (Compounds.GetCompoundAmount(atp) < Compounds.Capacity * 0.2f)
             {
-                IsSprinting = false;
+                isSprinting = false;
             }
             else
             {
                 Compounds.TakeCompound(atp, cost);
                 MovementFactor *= Constants.SPRINTING_MOVEMENT_MULTIPLIER;
             }
+        }
+    }
+
+    private void HandleStress(float delta)
+    {
+        if (isSprinting)
+        {
+            stress += delta * 0.1f;
+        }
+        else
+        {
+            stress = 0.0f;
         }
     }
 
