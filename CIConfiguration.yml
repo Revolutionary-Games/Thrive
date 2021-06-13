@@ -9,7 +9,7 @@ jobs:
         - v1-master-build
       writeTo: v1-{Branch}-build
       shared:
-        .git/lfs/objects: v1-lfs
+        .git/lfs: v2-lfs
         .import: v1-import
         builds: v1-builds
     steps:
@@ -37,7 +37,7 @@ jobs:
         - v1-master-jetbrains
       writeTo: v1-{Branch}-jetbrains
       shared:
-        .git/lfs/objects: v1-lfs
+        .git/lfs: v2-lfs
         .import: v1-import
         builds: v1-jetbrains-dummy-builds
     artifacts:
@@ -95,7 +95,7 @@ jobs:
         - v1-master-format
       writeTo: v1-{Branch}-format
       shared:
-        .git/lfs/objects: v1-lfs
+        .git/lfs: v2-lfs
     artifacts:
       paths:
         - files_to_check.txt
