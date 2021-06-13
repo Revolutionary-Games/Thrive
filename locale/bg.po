@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-11 21:22+0200\n"
-"PO-Revision-Date: 2021-06-12 07:27+0000\n"
+"PO-Revision-Date: 2021-06-13 11:32+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -113,12 +113,16 @@ msgstr ""
 "когато отворите редактора, Вашите съперници също еволюират."
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"Използвайте „W“, „A“, „S“, „D“ и мишката за да се придвижвате. "
-"Окситоксинът се изстрелва с „Е“, ако имате токсична вакуола. Поглъщането "
-"на другите клетки се извършва с „G“."
+"Чрез свързването с други клетки, може да създадете клетъчна колония, в която "
+"клетките споделят химичните съединения помежду си. За да се свържете с друга "
+"клетка, трябва да имате свързващ агент и да сте в режим на свързване. Може "
+"да се свържете само с индивиди от Вашите създания. Засега, докато сте част "
+"от клетъчната колония, възпроизвеждането не е възможно. За да се "
+"възпроизведете, трябва да напуснете клетъчната колония и да съберете нужните "
+"химични съединения. Големите клетъчни колонии са първата стъпка към "
+"многоклетъчните организми, но те са все още в процес на разработка."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -384,23 +388,20 @@ msgid "TOGGLE_ENGULF"
 msgstr "Поглъщане"
 
 #: ../simulation_parameters/common/input_options.json:46
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Поглъщане"
+msgstr "Свързване"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Поглъщане"
+msgstr "Отделяне"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Разпадане"
 
 #: ../simulation_parameters/common/input_options.json:58
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Грешка по време на зареждането"
+msgstr "Извършване на отделяне"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -822,11 +823,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"Установен е конфликт с {0}.\n"
-"Искате ли да нулирате {1}?"
+msgstr "Свързващ агент"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
@@ -874,7 +872,7 @@ msgstr "популация:"
 
 #: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
-msgstr "изчезна в зоната „{0}“"
+msgstr "изчезнаха от „{0}“"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
@@ -882,7 +880,7 @@ msgstr "предишна:"
 
 #: ../src/auto-evo/RunResults.cs:248
 msgid "RUN_RESULT_HAS_A_MUTATION"
-msgstr "имат мутация"
+msgstr "претърпяха мутация"
 
 #: ../src/auto-evo/RunResults.cs:253
 msgid "RUN_RESULT_GENE_CODE"
@@ -894,8 +892,7 @@ msgstr "Разпространение в зоните:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr ""
-"към зоната „{0}“ се преселиха {1} индивида от популацията в зоната „{2}“"
+msgstr "към „{0}“ се преселиха {1} индивида от популацията в „{2}“"
 
 #: ../src/auto-evo/RunResults.cs:292
 msgid "RUN_RESULT_POP_IN_PATCHES"
@@ -1948,22 +1945,21 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "В процес на разработка."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Превръща [thrive:compound]atp[/thrive:compound] в [thrive:"
-"compound]ammonia[/thrive:compound]. Количеството зависи от концентрацията "
-"на [thrive:compound]nitrogen[/thrive:compound] в околната среда"
+"Може да се свържете само с индивиди от Вашите създания, чрез доближаване до "
+"тях. Режимът на свързване се включва с натискане на "
+"„[thrive:input]g_toggle_binding[/thrive:input]“. Може да разпаднете "
+"клетъчната колония с натискане на "
+"„[thrive:input]g_unbind_all[/thrive:input]“."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Нитрогеназата представлява протеин, който използва газообразен въглероден "
-"диоксид и клетъчна енергия под формата на АТФ за да произвежда амоняк, "
-"който е ключов за растежа на клетките. Този процес се нарича анаеробна "
-"азотна фиксация. Понеже нитрогеназата е скачена с цитоплазма, тя извършва "
-"известна гликолиза."
+"Позволява свързването с други клетки. Това е първата стъпка към "
+"многоклетъчните организми. Клетките в клетъчните колонии споделят химичните "
+"съединения помежду си . За да се възпроизведете, трябва да напуснете "
+"клетъчната колония и да съберете нужните химични съединения."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2238,9 +2234,8 @@ msgstr ""
 "скорост"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
-#, fuzzy
 msgid "PLAYER_DUPLICATE"
-msgstr "измиране"
+msgstr "Удвояване"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:474
 msgid "MICROBE_PATCH_LABEL"
@@ -2355,7 +2350,7 @@ msgstr "Пангонско морско дъно"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Режим на отделяне"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -3062,18 +3057,18 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"За възпроизвеждане, органелите на клетката трябва да се разделят на две. "
-"За да го направят те се нуждаят от амоняк и фосфат.\n"
+"За възпроизвеждане, органелите на клетката трябва да се удвоят. За да го "
+"направят те се нуждаят от амоняк и фосфат.\n"
 "Наблюдавайте показателите долу вдясно."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"За да управлявате Вашата клетка, използвайте клавишите, които са показани "
-"около нея (в центъра на екрана) и мишката за посоката на движение.\n"
+"Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху "
+"членовете на клетъчната колония за да ги отделите от нея.\n"
 "\n"
-"Натиснете всеки един клавиш за няколко секунди за да продължите."
+"За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
+"Вашата клетка или да натиснете съответния клавиш."
 
 #~ msgid "TURNS"
 #~ msgstr "Превръща"
