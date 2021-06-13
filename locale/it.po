@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-11 21:22+0200\n"
-"PO-Revision-Date: 2021-06-09 12:42+0000\n"
+"PO-Revision-Date: 2021-06-13 11:32+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -113,12 +113,15 @@ msgstr ""
 "entri nell'editor, si evolvono anche loro."
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"Usa W, A, S, D e il mouse per muoverti. Se possiedi un vacuolo tossina, "
-"premi E per rilasciare OssiTossi NT. Premi G per attivare e disattivare la "
-"modalità di fagocitosi."
+"Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, le "
+"cellule si scambiano liberamente i composti prodotti e assorbiti, ma non "
+"possono dividersi (per ora); per poterti duplicare, devi prima slegarti. "
+"Puoi legarti solo a cellule della tua stessa specie; per farlo, devi entrare "
+"in modalità di legatura (assicurati di avere l'organulo apposito). Le "
+"colonie sono il primo passo verso la multicellularità (che però non è ancora "
+"nel gioco)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -392,23 +395,20 @@ msgid "TOGGLE_ENGULF"
 msgstr "Attiva/disattiva fagocitosi"
 
 #: ../simulation_parameters/common/input_options.json:46
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Attiva/disattiva fagocitosi"
+msgstr "Attiva la modalità di legatura"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Attiva/disattiva fagocitosi"
+msgstr "Attiva la modalità di slegatura"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Slega tutte"
 
 #: ../simulation_parameters/common/input_options.json:58
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Errore di Caricamento"
+msgstr "Modalità di slegatura"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -830,11 +830,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"C'è un conflitto con {0}.\n"
-"Vuoi rimuovere l'input da {1}?"
+msgstr "Agente Legante"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
@@ -1959,22 +1956,20 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "Da implementare."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]ammonia[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]nitrogen[/thrive:compound]"
+"Premi [thrive:input]g_toggle_binding[/thrive:input] per attivare la modalità "
+"di legatura. In essa, puoi attaccarti ad altre cellule della tua specie e "
+"formare così una colonia. Per abbandonare la colonia premi "
+"[thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"La nitrogenasi è una proteina in grado di convertire l'azoto gassoso e "
-"l'energia della cellula (in forma di ATP) in ammoniaca, un nutriente "
-"essenziale per la crescita delle cellule. Questo processo si chiama "
-"Azotofissazione Anaerobica. Siccome la nitrogenasi è sospesa direttamente "
-"nel citoplasma, il fluido circostante fa una piccola quantità di glicolisi."
+"Permette di legarsi ad altre cellule. È il primo passo verso la "
+"multicellularità. All'interno di una colonia, le cellule si scambiano i "
+"composti liberamente, ma non puoi attivare l'editor; per farlo, devi prima "
+"lasciarla."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2255,9 +2250,8 @@ msgstr ""
 "Giocatore"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
-#, fuzzy
 msgid "PLAYER_DUPLICATE"
-msgstr "il giocatore è morto"
+msgstr "Duplica Giocatore"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:474
 msgid "MICROBE_PATCH_LABEL"
@@ -2372,7 +2366,7 @@ msgstr "Fondale Marino Pangoniano"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Modalità di slegatura"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -3097,13 +3091,13 @@ msgstr ""
 "Guarda l'indicatore in basso per vedere di quanto ancora ne hai bisogno."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Per controllare la tua cellula, usa i tasti mostrati vicino a essa (al "
-"centro dello schermo); usa il mouse per controllare la sua direzione.\n"
+"Sei in modalità di slegatura: clicca sui membri della colonia per separarti "
+"da essi.\n"
 "\n"
-"Per continuare, prova a premere tutti i tasti mostrati per qualche secondo."
+"Per abbandonare la colonia, clicca sulla tua stessa cellula, oppure premi il "
+"tasto per slegare tutti."
 
 #~ msgid "TURNS"
 #~ msgstr "Trasforma"
