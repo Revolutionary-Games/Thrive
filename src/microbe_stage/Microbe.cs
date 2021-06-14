@@ -2006,7 +2006,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
         else
         {
-            stress = 0.0f;
+            stress = Math.Max(stress - delta * Constants.STRESS_INCREASE_RATE, 0.0f);
         }
     }
 
