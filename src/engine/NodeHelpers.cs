@@ -95,11 +95,11 @@ public static class NodeHelpers
     ///     available in upcoming Godot versions.
     ///   </para>
     /// </remarks>
-    public static void Reparent(this Node node, Node newParent)
+    public static void ReParent(this Node node, Node newParent)
     {
         if (node.GetParent() == null)
         {
-            GD.PrintErr("Node needs parent to be reparented");
+            GD.PrintErr("Node needs parent to be re-parented");
             return;
         }
 
