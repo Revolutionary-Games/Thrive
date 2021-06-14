@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-11 21:22+0200\n"
-"PO-Revision-Date: 2021-06-09 12:42+0000\n"
+"PO-Revision-Date: 2021-06-13 11:32+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ca/>\n"
@@ -120,13 +120,18 @@ msgstr ""
 "evolutiu."
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"Fes servir les tecles W,A,S,D i el ratolí per moure't per la pantalla. "
-"Clica la tecla E per a disparar la toxina OxyToxy NT; per fer-ho, cal que "
-"tinguis un vacúol de toxines. Clica la tecla G per a activar el mode "
-"d'engolir."
+"Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on "
+"les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb "
+"les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir "
+"l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot "
+"seguit, entrar en el \"mode d'unió\". Només et pots unir a cèl·lules de la "
+"teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i "
+"entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit "
+"prou compostos hauràs d'abandonar la teva colònia. Les grans colònies de cèl·"
+"lules són la via per a esdevenir un organisme multicel·lular (però encara no "
+"ha estat implementat al joc)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -415,23 +420,20 @@ msgid "TOGGLE_ENGULF"
 msgstr "Activar el mode d'engolir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Activar el mode d'engolir"
+msgstr "Activar el mode d'unió"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Activar el mode d'engolir"
+msgstr "Desactivar el mode d'unió"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Desunir totes les cèl·lules"
 
 #: ../simulation_parameters/common/input_options.json:58
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Error durant la càrrega"
+msgstr "Dur a terme la desunió"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -853,11 +855,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"Hi ha un conflicte amb {0}\n"
-"Vols eliminar l'input de {1}?"
+msgstr "Agent d'Unió"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
@@ -1996,22 +1995,21 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "Encara no s'ha implementat."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]atp[/thrive:compound] en [thrive:"
-"compound]ammonia[/thrive:compound]. La velocitat és proporcional a la "
-"concentració de [thrive:compound]nitrogen[/thrive:compound]"
+"Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per entrar "
+"al mode d'unió. Quan siguis en aquest mode, et pots unir a altres cèl·lules "
+"de la teva espècie entrant-hi en contacte. Per abandonar una colònia, "
+"pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic "
-"per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen "
-"i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen "
-"Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest "
-"fluid duu a terme una certa Glicòlisi."
+"Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir "
+"un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les "
+"cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, "
+"no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·"
+"lectat prou compostos per dividir la teva cèl·lula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2294,9 +2292,8 @@ msgstr ""
 "Velocitat"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
-#, fuzzy
 msgid "PLAYER_DUPLICATE"
-msgstr "el jugador ha mort"
+msgstr "Jugador Duplicat"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:474
 msgid "MICROBE_PATCH_LABEL"
@@ -2411,7 +2408,7 @@ msgstr "Llit Marí de Pangònia"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Mode de Desunió"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -3179,14 +3176,13 @@ msgstr ""
 "quantitat d'Amoníac i Fosfats et falta encara."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"La teva cèl·lula, el darrer avantpassat universal comú, és al centre de la "
-"pantalla. Per tal de controlar-la, fes servir les tecles que es mostren al "
-"seu costat.\n"
+"Has entrar en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre "
+"dels membres de la teva colònia per desunir-los.\n"
 "\n"
-"Prova totes les tecles durant uns instants per tal de continuar."
+"Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia cèl·"
+"lula o pressionar la tecla per desunir-les a totes."
 
 #~ msgid "TURNS"
 #~ msgstr "Girs"
