@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 09:18-0400\n"
-"PO-Revision-Date: 2021-06-09 12:42+0000\n"
+"PO-Revision-Date: 2021-06-13 11:32+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -102,11 +102,11 @@ msgstr ""
 "保持警惕，你的竞争对手也在和你一起进化。每当你进入编辑器时他们也会进化。"
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"用W，A，S，D键和鼠标移动。如果你有一个毒素液泡，你可以按E发射氧化毒素。G键"
-"可以切换吞噬模式。"
+"你可以通过与其他细胞连接来建立细胞群。细胞群中的所有细胞共享它们吸收和产生的化合物。要跟其他细胞连接，你需要拥有连接器细胞器并在进入连接模式后接触你想要连"
+"接的细胞。你只能连接同物种细胞。（目前）你在细胞群中无法复制并进入细胞编辑器。如果在收集了足够多化合物后你想要进入细胞编辑器，你需要先脱离原细胞群。大的细"
+"胞群是形成多细胞生物（开发中）的基础。"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -344,23 +344,20 @@ msgid "TOGGLE_ENGULF"
 msgstr "切换吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:46
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "切换吞噬模式"
+msgstr "切换绑定模式"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "切换吞噬模式"
+msgstr "切换解绑定模式"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "取消所有绑定"
 
 #: ../simulation_parameters/common/input_options.json:58
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "载入时出错"
+msgstr "取消绑定"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -780,11 +777,8 @@ msgstr "毒素液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"这会跟{0}冲突。\n"
-"你想要移除{1}的输入吗？"
+msgstr "连接器"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
@@ -1871,19 +1865,15 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "仍在开发中。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"将[thrive:compound]ATP[/thrive:compound]转换成[thrive:compound]氨[/thrive:"
-"compound]。速率取决于[thrive:compound]氮[/thrive:compound]的浓度"
+"按[thrive:input]g_toggle_binding[/thrive:input]来切换绑定模式。在绑定模式中，通过接触同种细胞，你可以让它成为"
+"你的细胞群的一员。要离开细胞群，按[thrive:input]g_unbind_all[/thrive:input]。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被"
-"称作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行"
-"一些糖酵解。"
+"允许与其他细胞绑定。这是迈向多细胞的第一步。在绑定形成的细胞群中，资源是共享的。在细胞群中你无法进入细胞编辑器，你需要在收集足够的物质后离开细胞群再分裂。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2120,10 +2110,9 @@ msgstr ""
 "玩家\n"
 "速度"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
-#, fuzzy
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
 msgid "PLAYER_DUPLICATE"
-msgstr "玩家死亡"
+msgstr "玩家分裂"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:477
 msgid "MICROBE_PATCH_LABEL"
@@ -2238,7 +2227,7 @@ msgstr "远古海床"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "解绑定模式"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -2926,12 +2915,11 @@ msgstr ""
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
+"你已经进入解绑定模式。在这个模式中你可以点击细胞群成员解除绑定。\n"
 "\n"
-"尝试所有按键几秒钟以继续。"
+"为了离开细胞群你可以点击你自己的细胞或点击“解除所有绑定”键。"
 
 #~ msgid "TURNS"
 #~ msgstr "将"

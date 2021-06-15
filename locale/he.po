@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 09:18-0400\n"
-"PO-Revision-Date: 2021-06-10 16:27+0000\n"
+"PO-Revision-Date: 2021-06-13 11:32+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/he/>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 "
-"&& n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -109,11 +109,15 @@ msgstr ""
 "גם כן."
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"W,A,S,D והעכבר בשביל לנוע, E בשביל לירות את הרעלן \"אוקסיטוקסי נ\"ט\" אם "
-"יש לך חלולית רעלן. G בשביל מצב בליעה."
+"על ידי קשירה עם תאים אחרים אתה יכול ליצור מושבת תאים בה התאים חולקים תרכובות "
+"שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, אתה צריך שהיה לך "
+"אברון מקשר ולעבור דרכם אחרי שנכנסת למצב קישור. אתה יכול לקשר רק עם תאים "
+"מהמין שלך. בזמן שאתה במושבה אתה לא יכול לחלק את התאים שלך ולהיכנס לעורך ("
+"נכון לעכשיו). בשביל להיכנס לעורך ראשית אתה חייב לעזוב את המושבה וכשיש לך "
+"מספיק תרכובות, אז תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך ליצירת רב-"
+"תאים (עדין לא במשחק)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -363,23 +367,20 @@ msgid "TOGGLE_ENGULF"
 msgstr "החלף מצב בליעה"
 
 #: ../simulation_parameters/common/input_options.json:46
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "החלף מצב בליעה"
+msgstr "החלף מצב קישור"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "החלף מצב בליעה"
+msgstr "בטל מצב קישור"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "שחרר הכל"
 
 #: ../simulation_parameters/common/input_options.json:58
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "טוען שגיאה"
+msgstr "בצע שחרור"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -801,11 +802,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"יש התנגשות עם {0}.\n"
-"האם אתה רוצה להסיר את הקלט {1}?"
+msgstr "מקשר"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
@@ -1907,20 +1905,19 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "יושם בקרוב."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ATP[/thrive:compound] ל[thrive:compound]אמוניה[/"
-"thrive:compound]. בהתאם לריכוזו של ה[thrive:compound]חנקן[/thrive:compound]"
+"לחץ על [thrive:input]g_toggle_binding[/thrive:input] על מנת להחליף למצב "
+"קישור. בזמן מצב קישור אתה יכול להיצמד לתאים אחרים מאותו בני מינך על מנת "
+"ליצור מושבות על ידי תזוזה אליהם. על מנת לעזוב את המושבה לחץ "
+"[thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"ניטרוגנאז הוא חלבון המסוגל להשתמש בחנקן גזי ובאנרגיה תאית בצורת ATP כדי "
-"לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע חנקן "
-"אנאירובי. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע גליקוליזה "
-"ברמה מסוימת."
+"מאפשר להתחבר לתאים אחרים. זהו הצד הראשון לכיוון רב-תאים. בזמן שאתה חלק "
+"ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה חלק "
+"ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא שלך."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2175,10 +2172,9 @@ msgstr ""
 "מהירות\n"
 "שחקן"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
-#, fuzzy
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
 msgid "PLAYER_DUPLICATE"
-msgstr "השחקן מת"
+msgstr "שכפל שחקן"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:477
 msgid "MICROBE_PATCH_LABEL"
@@ -2293,7 +2289,7 @@ msgstr "אזור קרקעית הים"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "מצב שחרר"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -3000,13 +2996,13 @@ msgstr ""
 "תסתכל על האינדיקטור שבצד השמאלית התחתונה בשביל לראות כמה עוד צריך."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"בשביל לשלוט בתא שלך, השתמש במקשים המוצגים סביבו (במרכז המסך) ובעכבר על מנת "
-"לשלוט בכיוון התנועה שלו.\n"
+"אתהנכנסת ל\"מצב שחרר\". בזמן שאתה במצב זה אתה יכול ללחוץ על חברי המושבה שלך "
+"על מנת להשתחרר מהם.\n"
 "\n"
-"נסה את כל המקשים למשך מספר שניות על מנת להמשיך."
+"על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל\""
+"."
 
 #~ msgid "TURNS"
 #~ msgstr "הפוך ל"
