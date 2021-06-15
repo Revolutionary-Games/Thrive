@@ -1,6 +1,5 @@
 ﻿using System;
 using Godot;
-using Godot.Collections;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
@@ -128,7 +127,7 @@ public class GUICommon : Node
         if (!Tween.IsConnected("tween_completed", this, nameof(HideControlOnFadeOutComplete)) && hideOnFinished)
         {
             Tween.Connect("tween_completed", this, nameof(HideControlOnFadeOutComplete),
-                new Array { control }, (int)ConnectFlags.Oneshot);
+                new Godot.Collections.Array { control }, (int)ConnectFlags.Oneshot);
         }
     }
 
@@ -149,7 +148,7 @@ public class GUICommon : Node
         return element;
     }
 
-    private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)
+    private void HideControlOnFadeOutComplete(Godot.Object obj, NodePath key, Control control)
     {
         _ = obj;
         _ = key;
