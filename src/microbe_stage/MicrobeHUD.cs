@@ -171,9 +171,7 @@ public class MicrobeHUD : Node
     private Panel compoundsPanel;
 
     // Store these statefully for after player death
-    private float hp;
     private float maxHP;
-    private float atpAmount;
     private float maxATP;
 
     private ProgressBar oxygenBar;
@@ -784,6 +782,8 @@ public class MicrobeHUD : Node
         if (delta <= 0)
             return;
 
+        var atpAmount = 0.0f;
+
         // Update to the player's current HP, unless the player is dead
         if (stage.Player != null)
         {
@@ -792,10 +792,6 @@ public class MicrobeHUD : Node
             // Only show ATP changes in increments of 0.5
             atpAmount = Mathf.Ceil(compounds.GetCompoundAmount(atp) * 2) / 2.0f;
             maxATP = compounds.Capacity;
-        }
-        else
-        {
-            atpAmount = 0.0f;
         }
 
         atpBar.MaxValue = maxATP;
@@ -814,15 +810,13 @@ public class MicrobeHUD : Node
         if (delta <= 0)
             return;
 
+        var hp = 0.0f;
+
         // Update to the player's current HP, unless the player is dead
         if (stage.Player != null)
         {
             hp = stage.Player.Hitpoints;
             maxHP = stage.Player.MaxHitpoints;
-        }
-        else
-        {
-            hp = 0.0f;
         }
 
         healthBar.MaxValue = maxHP;
