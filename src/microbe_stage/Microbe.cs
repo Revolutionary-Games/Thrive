@@ -702,6 +702,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             // Divide damage by toxin resistance
             amount /= Species.MembraneType.ToxinResistance;
+
+            if (IsPlayerMicrobe)
+            {
+                amount *= (float)Math.Pow(CurrentGame.Difficulty, 2.0);
+            }
         }
         else if (source == "pilus")
         {
