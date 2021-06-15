@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-11 21:22+0200\n"
+"POT-Creation-Date: 2021-06-15 07:30-0400\n"
 "PO-Revision-Date: 2021-06-12 07:27+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
@@ -202,10 +202,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:51
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke lege "
-"hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent dat als je "
-"ATP verliest door osmoregulatie je gewoon wat lege hexes aan cytoplasma moet "
-"toevoegen of wat organellen moet verwijderen."
+"Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke "
+"lege hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent dat "
+"als je ATP verliest door osmoregulatie je gewoon wat lege hexes aan "
+"cytoplasma moet toevoegen of wat organellen moet verwijderen."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
@@ -230,8 +230,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit, maar "
-"sommigen van hen kunnen zich in je ingraven en je op die manier doden!"
+"Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit, "
+"maar sommigen van hen kunnen zich in je ingraven en je op die manier doden!"
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
@@ -1334,11 +1334,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Sluit"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:344
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:345
 msgid "Cancel"
 msgstr "Annuleer"
 
@@ -1346,49 +1346,54 @@ msgstr "Annuleer"
 msgid "NEW_GAME"
 msgstr "Nieuw spel"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159
+#, fuzzy
+msgid "NEW_GAME_HARD"
+msgstr "Nieuw spel"
+
+#: ../src/general/MainMenu.tscn:172 ../src/general/PauseMenu.tscn:71
 msgid "LOAD_GAME"
 msgstr "Laad spel"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:183 ../src/general/PauseMenu.tscn:93
 msgid "OPTIONS"
 msgstr "Opties"
 
-#: ../src/general/MainMenu.tscn:181
+#: ../src/general/MainMenu.tscn:194
 msgid "TOOLS"
 msgstr "Tools"
 
-#: ../src/general/MainMenu.tscn:192
+#: ../src/general/MainMenu.tscn:205
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ga naar broncode"
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:217
 msgid "EXTRAS"
 msgstr "Extra's"
 
-#: ../src/general/MainMenu.tscn:216
+#: ../src/general/MainMenu.tscn:229
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/general/MainMenu.tscn:227
+#: ../src/general/MainMenu.tscn:240
 msgid "QUIT"
 msgstr "Stop"
 
-#: ../src/general/MainMenu.tscn:249
+#: ../src/general/MainMenu.tscn:262
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
+#: ../src/general/MainMenu.tscn:322 ../src/general/OptionsMenu.tscn:994
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Terug"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:362
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:375
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Je gebruikt Thrive met GLES2. Dit is niet getest en veroorzaakt problemen. "
@@ -2096,63 +2101,63 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:941
+#: ../src/microbe_stage/Microbe.cs:944
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1388
+#: ../src/microbe_stage/Microbe.cs:1391
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1395
+#: ../src/microbe_stage/Microbe.cs:1398
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1756
+#: ../src/microbe_stage/Microbe.cs:1759
 msgid "REPRODUCED"
 msgstr "Hergeproduceerd"
 
-#: ../src/microbe_stage/Microbe.cs:1897
+#: ../src/microbe_stage/Microbe.cs:1900
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:29
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "INFINITE_COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:70
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 msgid "PLAYER_SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:474
+#: ../src/microbe_stage/MicrobeHUD.cs:477
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:618
+#: ../src/microbe_stage/MicrobeHUD.cs:621
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:668
+#: ../src/microbe_stage/MicrobeHUD.cs:671
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:484
+#: ../src/microbe_stage/MicrobeStage.cs:485
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:641
+#: ../src/microbe_stage/MicrobeStage.cs:642
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -2259,20 +2264,20 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:594
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1329
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:596
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2246
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 

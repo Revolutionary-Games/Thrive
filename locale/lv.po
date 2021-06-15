@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-11 21:22+0200\n"
+"POT-Creation-Date: 2021-06-15 07:30-0400\n"
 "PO-Revision-Date: 2021-04-28 19:41+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -1273,11 +1273,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Aizvērt"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:344
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:345
 msgid "Cancel"
 msgstr "Atcelt"
 
@@ -1285,49 +1285,54 @@ msgstr "Atcelt"
 msgid "NEW_GAME"
 msgstr "Jauna spēle"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159
+#, fuzzy
+msgid "NEW_GAME_HARD"
+msgstr "Jauna spēle"
+
+#: ../src/general/MainMenu.tscn:172 ../src/general/PauseMenu.tscn:71
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:183 ../src/general/PauseMenu.tscn:93
 msgid "OPTIONS"
 msgstr "Opcijas"
 
-#: ../src/general/MainMenu.tscn:181
+#: ../src/general/MainMenu.tscn:194
 msgid "TOOLS"
 msgstr "Instrumenti"
 
-#: ../src/general/MainMenu.tscn:192
+#: ../src/general/MainMenu.tscn:205
 msgid "VIEW_SOURCE_CODE"
 msgstr "Apskatīt pirmkodu"
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:217
 msgid "EXTRAS"
 msgstr "Papildinājumi"
 
-#: ../src/general/MainMenu.tscn:216
+#: ../src/general/MainMenu.tscn:229
 msgid "CREDITS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:227
+#: ../src/general/MainMenu.tscn:240
 msgid "QUIT"
 msgstr "Iziet"
 
-#: ../src/general/MainMenu.tscn:249
+#: ../src/general/MainMenu.tscn:262
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
+#: ../src/general/MainMenu.tscn:322 ../src/general/OptionsMenu.tscn:994
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Atpakaļ"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:362
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:375
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -1967,66 +1972,66 @@ msgstr "Temperatūra"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:941
+#: ../src/microbe_stage/Microbe.cs:944
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1388
+#: ../src/microbe_stage/Microbe.cs:1391
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1395
+#: ../src/microbe_stage/Microbe.cs:1398
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1756
+#: ../src/microbe_stage/Microbe.cs:1759
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1897
+#: ../src/microbe_stage/Microbe.cs:1900
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:29
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "Savienojumi"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:70
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "Spēlētāja šūna"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "Spēlētāja šūna"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:474
+#: ../src/microbe_stage/MicrobeHUD.cs:477
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:618
+#: ../src/microbe_stage/MicrobeHUD.cs:621
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:668
+#: ../src/microbe_stage/MicrobeHUD.cs:671
 msgid "PLAYER_CELL"
 msgstr "Spēlētāja šūna"
 
-#: ../src/microbe_stage/MicrobeStage.cs:484
+#: ../src/microbe_stage/MicrobeStage.cs:485
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:641
+#: ../src/microbe_stage/MicrobeStage.cs:642
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -2133,20 +2138,20 @@ msgstr "Šūnas procesi"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:594
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1329
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:596
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2246
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
