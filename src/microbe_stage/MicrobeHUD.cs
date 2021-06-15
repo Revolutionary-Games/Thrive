@@ -832,7 +832,7 @@ public class MicrobeHUD : Node
 
     private void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
     {
-        var weight = 3.0f * delta + 0.2f;
+        var weight = (float)Math.Min(3.0f * delta + 0.2f, 1.0f);
         bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 0.1f);
     }
 
