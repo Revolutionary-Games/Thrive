@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Godot.Collections;
 
 /// <summary>
@@ -53,6 +54,18 @@ public class GUICommon : Node
         var top = popup.MarginTop;
         popup.PopupCenteredMinsize();
         popup.RectPosition = new Vector2(left, top);
+    }
+
+    public static void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
+    {
+        if (delta <= 0.0f)
+        {
+            var paramName = "delta must be positive!";
+            throw new ArgumentOutOfRangeException(paramName);
+        }
+
+        var weight = Math.Min(3.0f * delta + 0.2f, 1.0f);
+        bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 1.0f / (float)bar.MaxValue);
     }
 
     /// <summary>

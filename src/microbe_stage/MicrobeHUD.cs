@@ -799,7 +799,7 @@ public class MicrobeHUD : Node
         }
 
         atpBar.MaxValue = maxATP;
-        SmoothlyUpdateBar(atpBar, atpAmount, delta);
+        GUICommon.SmoothlyUpdateBar(atpBar, atpAmount, delta);
         atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(maxATP);
     }
 
@@ -826,14 +826,8 @@ public class MicrobeHUD : Node
         }
 
         healthBar.MaxValue = maxHP;
-        SmoothlyUpdateBar(healthBar, hp, delta);
+        GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
         hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
-    }
-
-    private void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
-    {
-        var weight = Math.Min(3.0f * delta + 0.2f, 1.0f);
-        bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 1.0f / (float)bar.MaxValue);
     }
 
     private void UpdatePopulation()
