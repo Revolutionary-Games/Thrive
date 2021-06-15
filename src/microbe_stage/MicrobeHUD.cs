@@ -799,7 +799,7 @@ public class MicrobeHUD : Node
         }
 
         atpBar.MaxValue = maxATP;
-        atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.1f);
+        atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.5f);
         atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(maxATP);
     }
 
@@ -826,7 +826,7 @@ public class MicrobeHUD : Node
         }
 
         healthBar.MaxValue = maxHP;
-        healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.1f);
+        healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.5f);
         hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
     }
 
