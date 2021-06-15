@@ -7,6 +7,7 @@ using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Directory = Godot.Directory;
 using File = Godot.File;
+using Thrive.src.general;
 
 /// <summary>
 ///   A class representing a single saved game

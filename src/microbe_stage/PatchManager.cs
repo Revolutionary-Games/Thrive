@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Godot;
+using Thrive.src.general;
 
 /// <summary>
 ///   Manages applying patch data and setting up spawns
