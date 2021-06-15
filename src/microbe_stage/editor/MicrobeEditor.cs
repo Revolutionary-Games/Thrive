@@ -1232,7 +1232,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         patch ??= CurrentPatch;
 
         gui.UpdateEnergyBalance(
-            ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome, membrane));
+            ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome, membrane, CurrentGame));
     }
 
     private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)

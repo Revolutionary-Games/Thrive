@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Thrive.src.general;
 
 /// <summary>
 ///   Runs processes in parallel on entities
@@ -47,7 +48,7 @@ public class ProcessSystem
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleDefinition> organelles,
-        BiomeConditions biome, MembraneType membrane)
+        BiomeConditions biome, MembraneType membrane, GameProperties gameProperties)
     {
         var result = new EnergyBalanceInfo();
 
@@ -107,6 +108,8 @@ public class ProcessSystem
         // Add osmoregulation
         result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
+
+        result.Osmoregulation *= gameProperties.Difficulty;
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);
 
