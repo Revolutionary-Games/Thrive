@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
-using Thrive.src.general;
+using Thrive.Src.General;
 using Array = Godot.Collections.Array;
 
 /// <summary>

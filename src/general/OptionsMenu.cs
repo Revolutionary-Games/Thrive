@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Thrive.Src.General;
 using Environment = System.Environment;
-using Thrive.src.general;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.

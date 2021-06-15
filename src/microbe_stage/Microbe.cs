@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Thrive.src.general;
+using Thrive.Src.General;
 
 /// <summary>
 ///   Main script on each cell in the game

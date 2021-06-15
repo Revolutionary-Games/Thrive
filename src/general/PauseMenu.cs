@@ -1,6 +1,6 @@
 ﻿using System;
 using Godot;
-using Thrive.src.general;
+using Thrive.Src.General;
 
 /// <summary>
 ///   Handles logic in the pause menu

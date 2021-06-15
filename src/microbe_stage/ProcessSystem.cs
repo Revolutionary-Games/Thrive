@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
-using Thrive.src.general;
+using Thrive.Src.General;
 
 /// <summary>
 ///   Runs processes in parallel on entities

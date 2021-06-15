@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-using Thrive.src.general;
+using Thrive.Src.General;
 
 /// <summary>
 ///   Helpers for making different types of spawners
