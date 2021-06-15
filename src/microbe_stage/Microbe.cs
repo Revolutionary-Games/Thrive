@@ -2244,7 +2244,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var savedColony = Colony;
         Colony = null;
 
-        this.Reparent(parent);
+        this.ReParent(parent);
 
         // And restore the colony after completing the re-parenting of this node
         Colony = savedColony;
@@ -2262,7 +2262,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var savedColony = Colony;
             Colony = null;
 
-            this.Reparent(newParent);
+            this.ReParent(newParent);
 
             Colony = savedColony;
         }

@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
@@ -51,11 +51,12 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:34
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulação custa ATP, o que significa que quanto maior for a tua "
-"célula, mais Mitocôndrias, Metabolossomas ou Rusticianina (ou citoplasma, "
-"que faz Glicólise) necessitas para evitar perder ATP quando te encontrares "
+"Osmoregulação custa ATP, o que significa que quanto maior for a tua célula, "
+"mais Mitocôndrias, Metabolossomas ou Rusticianina (ou citoplasma, o qual "
+"realiza a Glicólise) necessitas para evitar perder ATP quando te encontrares "
 "estacionário."
 
 #: ../simulation_parameters/common/help_texts.json:9
@@ -102,7 +103,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
 "Mas se sobreviveres vinte gerações com 300 de população, considera-se que "
-"ganhaste o jogo, depois de ganhares recebes um pop-up e podes continuar a "
+"ganhaste o jogo. Depois de ganhares recebes um pop-up e podes continuar a "
 "jogar como desejares."
 
 #: ../simulation_parameters/common/help_texts.json:15
@@ -116,8 +117,16 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"W,A,S,D e o rato para te moveres. E para disparar OxiToxi NT se tiveres um "
-"vacúolo de toxinas. G para ativar o modo de engolfar."
+"Ao te conectares com outras células podes formar uma colónia de células, "
+"onde as células partilham os compostos que absorvem e produzem entre si. De "
+"modo a te poderes conectar com outra célula, necessitas de possuir o "
+"organelo \"agentes de adesão\" e de te aproximar da mesma após entrares no "
+"modo de adesão. Apenas te podes conectar com células da tua própria espécie. "
+"Enquanto permaneceres numa colónia, não serás capaz de dividir a tua célula "
+"e entrar no editor (por agora). Para entrar no editor, primeiro deixa a "
+"colónia, uma vez que tenhas coletado compostos suficientes, e depois entra "
+"no mesmo. Grandes colónias de células são precursoras da multicelularidade ("
+"ainda ausente no jogo)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -156,11 +165,11 @@ msgstr ""
 "Organelos Limitados por Membrana\n"
 "\n"
 "Núcleo: Ocupa 11 hexágonos e permite a evolução de organelos limitados por "
-"membrana. Também duplica o tamanho da tua célula. (Apenas pode ser "
-"evoluido uma única vez)\n"
+"membrana. Também duplica o tamanho da tua célula. (apenas pode ser evoluído "
+"uma única vez)\n"
 "\n"
-"Mitocôndria: Produz ATP a partir de glicose e O2 atmosférico. Bastante "
-"mais eficiente que o citoplasma\n"
+"Mitocôndria: Produz ATP a partir de glicose e O2 atmosférico. Bastante mais "
+"eficiente que o citoplasma\n"
 "\n"
 "Cloroplasto: Produz glicose a partir de luz solar e CO2 atmosférico\n"
 "\n"
@@ -178,10 +187,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Para cada geração, tens 100 pontos de mutação (PM) para gastar, e cada "
 "mudança custará uma certa quantia desses pontos. Adicionar e remover "
-"organelos custa PM, porém remover organelos que foram adicionados na "
-"sessão de mutação atual devolve os PM deles. Tu podes remover um organelo "
-"clicando nele com o botão direito do rato. Também é possível rodar "
-"organelos com A e D."
+"organelos custa PM. Porém, remover organelos que foram adicionados na sessão "
+"de mutação atual devolve os PM deles. Tu podes mover ou remover "
+"completamente um organelo ao clicar no mesmo com o botão direito do rato e "
+"ao selecionar a ação apropriada do menu pop-up. Também é possível rodar "
+"organelos enquanto os colocas com A e D."
 
 #: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -198,7 +208,7 @@ msgstr "Pressione o botão de desfazer no editor para corrigir um erro"
 #: ../simulation_parameters/common/help_texts.json:49
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Curiosidade, o Didinium e o Paramecium são um exemplo clássico de uma "
+"Curiosidade: o Didinium e o Paramecium são um exemplo clássico de uma "
 "relação predador-presa estudada há décadas. Serás o Didinium ou o "
 "Paramecium? Predador ou Presa?"
 
@@ -218,11 +228,11 @@ msgstr ""
 "remover alguns organelos."
 
 #: ../simulation_parameters/common/help_texts.json:52
+#, fuzzy
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Curiosidade, na vida real os procariotas têm algo chamado "
-"Biocompartimentos, que actuam como organelos, e são de facto chamados "
-"organelos poliédricos."
+"Curiosidade, na vida real os procariotas têm algo chamado Biocompartimentos, "
+"que actuam como organelos, e são de facto chamados organelos poliédricos."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
@@ -242,9 +252,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:56
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Eis uma dica, as Bactérias podem ser mais fortes do que aparentam. Podem "
-"parecer pequenas, mas algumas delas são capazes de te penetrar e matar "
-"desta forma!"
+"Eis uma dica, as bactérias podem ser mais fortes do que aparentam. Podem "
+"parecer pequenas, mas algumas delas são capazes de te penetrar e matar desta "
+"forma!"
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
@@ -1412,7 +1422,7 @@ msgstr "(valores mais altos pioram o desempenho)"
 
 #: ../src/general/OptionsMenu.tscn:275
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Resolução:"
 
 #: ../src/general/OptionsMenu.tscn:288
 msgid "AUTO"
@@ -1424,11 +1434,11 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:324
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Correção de cor para daltónicos:"
 
 #: ../src/general/OptionsMenu.tscn:356
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Aberração Cromática:"
 
 #: ../src/general/OptionsMenu.tscn:397
 msgid "MASTER_VOLUME"
@@ -1442,7 +1452,7 @@ msgstr "Silenciar"
 
 #: ../src/general/OptionsMenu.tscn:438
 msgid "MUSIC_VOLUME"
-msgstr ""
+msgstr "Volume da música"
 
 #: ../src/general/OptionsMenu.tscn:471
 msgid "AMBIANCE_VOLUME"
