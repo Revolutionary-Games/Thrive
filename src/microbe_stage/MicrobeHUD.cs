@@ -170,6 +170,10 @@ public class MicrobeHUD : Node
     private GridContainer environmentPanelBarContainer;
     private Panel compoundsPanel;
 
+    // Store these statefully for after player death
+    private float hp;
+    private float maxHP;
+
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
     private ProgressBar nitrogenBar;
@@ -805,13 +809,15 @@ public class MicrobeHUD : Node
         if (delta <= 0)
             return;
 
-        var hp = 0.0f;
-        var maxHP = 100.0f;
-
+        // Update to the player's current HP, unless the player is dead
         if (stage.Player != null)
         {
             hp = stage.Player.Hitpoints;
             maxHP = stage.Player.MaxHitpoints;
+        }
+        else
+        {
+            hp = 0.0f;
         }
 
         healthBar.MaxValue = maxHP;
