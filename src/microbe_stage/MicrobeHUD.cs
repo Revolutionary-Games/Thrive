@@ -833,6 +833,9 @@ public class MicrobeHUD : Node
     private void UpdatePopulation()
     {
         populationLabel.Text = StringUtils.FormatNumber(stage.GameWorld.PlayerSpecies.Population);
+
+        // Reset box height
+        populationLabel.GetParent<Control>().MarginTop = 0;
     }
 
     private void UpdateProcessPanel()

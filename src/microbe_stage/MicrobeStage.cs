@@ -565,7 +565,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         foreach (Microbe entry in microbes)
         {
-            var distance = (entry.Translation - Camera.CursorWorldPos).Length();
+            var distance = (entry.GlobalTransform.origin - Camera.CursorWorldPos).Length();
 
             // Find only cells that have the mouse
             // position within their membrane
