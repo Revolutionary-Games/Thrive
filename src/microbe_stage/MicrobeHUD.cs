@@ -790,7 +790,7 @@ public class MicrobeHUD : Node
             var compounds = GetPlayerColonyOrPlayerStorage();
 
             // Only show ATP changes in increments of 0.5
-            atpAmount = Mathf.Round(compounds.GetCompoundAmount(atp) * 2) / 2.0f;
+            atpAmount = Mathf.Ceil(compounds.GetCompoundAmount(atp) * 2) / 2.0f;
             maxATP = compounds.Capacity;
         }
         else
