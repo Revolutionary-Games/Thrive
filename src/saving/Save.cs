@@ -5,8 +5,8 @@ using Godot;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
-using Directory = Godot.Directory;
 using Thrive.Src.General;
+using Directory = Godot.Directory;
 using File = Godot.File;
 
 /// <summary>
