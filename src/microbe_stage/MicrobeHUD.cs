@@ -173,6 +173,8 @@ public class MicrobeHUD : Node
     // Store these statefully for after player death
     private float hp;
     private float maxHP;
+    private float atpAmount;
+    private float maxATP;
 
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
@@ -782,20 +784,22 @@ public class MicrobeHUD : Node
         if (delta <= 0)
             return;
 
-        var atpAmount = 0.0f;
-        var capacity = 4.0f;
-
+        // Update to the player's current HP, unless the player is dead
         if (stage.Player != null)
         {
             var compounds = GetPlayerColonyOrPlayerStorage();
 
-            atpAmount = Mathf.Ceil(compounds.GetCompoundAmount(atp));
-            capacity = compounds.Capacity;
+            atpAmount = Mathf.Round(compounds.GetCompoundAmount(atp) * 10) / 10.0f;
+            maxATP = compounds.Capacity;
+        }
+        else
+        {
+            atpAmount = 0.0f;
         }
 
-        atpBar.MaxValue = capacity;
+        atpBar.MaxValue = maxATP;
         atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.1f);
-        atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(capacity);
+        atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(maxATP);
     }
 
     private ICompoundStorage GetPlayerColonyOrPlayerStorage()
