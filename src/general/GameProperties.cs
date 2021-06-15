@@ -1,4 +1,4 @@
-﻿namespace Thrive.src.general
+﻿namespace Thrive.Src.General
 {
     using System.Collections.Generic;
     using Godot;
@@ -11,6 +11,12 @@
     [JsonObject(IsReference = true)]
     public class GameProperties
     {
+        /// <summary>
+        ///   The difficulty for this game
+        /// </summary>
+        [JsonProperty]
+        public float Difficulty;
+
         [JsonProperty]
         private readonly Dictionary<string, bool> setBoolStatuses = new Dictionary<string, bool>();
 
@@ -41,12 +47,6 @@
         /// </summary>
         [JsonProperty]
         public TutorialState TutorialState { get; private set; }
-
-        /// <summary>
-        ///   The difficulty for this game
-        /// </summary>
-        [JsonProperty]
-        public float Difficulty;
 
         /// <summary>
         ///   Starts a new game in the microbe stage

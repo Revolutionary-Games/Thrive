@@ -1,30 +1,28 @@
-﻿namespace Thrive.src.general
+﻿namespace Thrive.Src.General
 {
     /// <summary>
     ///    A singleton used as a message queue, used by main menu to specify rules for a new game
     /// </summary>
     public class NewGameSetupData
     {
-        private static NewGameSetupData Instance;
+        public float Difficulty;
+        private static NewGameSetupData instance;
+
+        public NewGameSetupData(float difficulty)
+        {
+            Difficulty = difficulty;
+        }
 
         public static void PushInstance(NewGameSetupData setupData)
         {
-            Instance = setupData;
+            instance = setupData;
         }
 
         public static NewGameSetupData PopInstance()
         {
-            var instanceToReturn = Instance;
-            Instance = null;
+            var instanceToReturn = instance;
+            instance = null;
             return instanceToReturn;
         }
-
-        public float Difficulty;
-
-        public NewGameSetupData(float Difficulty)
-        {
-            this.Difficulty = Difficulty;
-        }
-
     }
 }
