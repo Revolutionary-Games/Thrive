@@ -826,13 +826,13 @@ public class MicrobeHUD : Node
         }
 
         healthBar.MaxValue = maxHP;
-        healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.5f);
+        SmoothlyUpdateBar(healthBar, hp, delta);
         hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
     }
 
     private void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
     {
-        var weight = (float)Math.Max(Math.Min(3.0f * delta, 0.5f), 1.0f);
+        var weight = 3.0f * delta + 0.2f;
         bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 0.1f);
     }
 
