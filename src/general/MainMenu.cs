@@ -246,7 +246,7 @@ public class MainMenu : Node
 
     private void NewHardGamePressed()
     {
-        var setupData = new NewGameSetupData(100.0f);
+        var setupData = new NewGameSetupData(1.5f);
         NewGameSetupData.PushInstance(setupData);
         NewGamePressed();
     }
