@@ -244,6 +244,13 @@ public class MainMenu : Node
         TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
     }
 
+    private void NewHardGamePressed()
+    {
+        var setupData = new NewGameSetupData(100.0f);
+        NewGameSetupData.PushInstance(setupData);
+        NewGamePressed();
+    }
+
     private void ToolsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();

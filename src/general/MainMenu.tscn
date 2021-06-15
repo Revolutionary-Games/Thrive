@@ -379,7 +379,7 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewHardGame" to="." method="NewGamePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewHardGame" to="." method="NewHardGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Options" to="." method="OptionsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Tools" to="." method="ToolsPressed"]
