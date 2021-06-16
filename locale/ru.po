@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-11 21:22+0200\n"
+"POT-Creation-Date: 2021-06-15 09:18-0400\n"
 "PO-Revision-Date: 2021-04-25 18:41+0000\n"
 "Last-Translator: Sergey Sokolov <the.exp@bk.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -67,11 +67,6 @@ msgstr ""
 "развивать. Это позволяет тебе выбрать свой стиль игры."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:36
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Если число особей упадёт до нуля, то твой вид вымрет."
-
-#: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Различные соединения облаков:\n"
@@ -84,19 +79,24 @@ msgstr ""
 "\n"
 "Глюкоза даёт АТФ"
 
-#: ../simulation_parameters/common/help_texts.json:12
+#: ../simulation_parameters/common/help_texts.json:11
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "Сероводород может быть превращён в глюкозу с помощью хемопластов или "
 "белков-хемосинтетиков. Железо может стать АТФ с помощью рустицианина."
 
-#: ../simulation_parameters/common/help_texts.json:13
+#: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Чтобы размножиться, нужно каждую органеллу поделить надвое. Для этого "
 "нужно иметь больше аммиака и фосфата."
+
+#: ../simulation_parameters/common/help_texts.json:13
+#: ../simulation_parameters/common/help_texts.json:36
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Если число особей упадёт до нуля, то твой вид вымрет."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -2189,60 +2189,60 @@ msgstr "Температура"
 msgid "N_A_MP"
 msgstr "Н/Д МО"
 
-#: ../src/microbe_stage/Microbe.cs:941
+#: ../src/microbe_stage/Microbe.cs:938
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1388
+#: ../src/microbe_stage/Microbe.cs:1385
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1395
+#: ../src/microbe_stage/Microbe.cs:1392
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/Microbe.cs:1756
+#: ../src/microbe_stage/Microbe.cs:1753
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Производит"
 
-#: ../src/microbe_stage/Microbe.cs:1897
+#: ../src/microbe_stage/Microbe.cs:1894
 #, fuzzy
 msgid "ESCAPE_ENGULFING"
 msgstr "избегать поглощения"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:29
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "Соединения"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:70
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "игрок умер"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "игрок умер"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:474
+#: ../src/microbe_stage/MicrobeHUD.cs:477
 msgid "MICROBE_PATCH_LABEL"
 msgstr "Участок: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:618
+#: ../src/microbe_stage/MicrobeHUD.cs:621
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:668
+#: ../src/microbe_stage/MicrobeHUD.cs:671
 msgid "PLAYER_CELL"
 msgstr "Клетка игрока"
 

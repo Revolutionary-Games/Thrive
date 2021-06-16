@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-11 21:22+0200\n"
+"POT-Creation-Date: 2021-06-15 09:18-0400\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -59,11 +59,6 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "在編輯器中，有很多的細胞器供你進化，讓你有多種不同的玩法。"
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:36
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "現在版本如果你的人口降到零，你就會滅絕。"
-
-#: ../simulation_parameters/common/help_texts.json:11
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "各種複合雲為：\n"
@@ -76,18 +71,23 @@ msgstr ""
 "\n"
 "葡萄糖製造ATP(三磷酸腺苷)"
 
-#: ../simulation_parameters/common/help_texts.json:12
+#: ../simulation_parameters/common/help_texts.json:11
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "硫化氫可以通過化學質體和化學合成蛋白轉化為葡萄糖。鐵可以通過鐵硫菌藍蛋白"
 "[Rusticyanin]轉化為ATP。"
 
-#: ../simulation_parameters/common/help_texts.json:13
+#: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "要繁殖，您需要將每個細胞器一分為二。 細胞器需要氨和磷酸鹽才能分裂成兩半。"
+
+#: ../simulation_parameters/common/help_texts.json:13
+#: ../simulation_parameters/common/help_texts.json:36
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "現在版本如果你的人口降到零，你就會滅絕。"
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -2094,60 +2094,60 @@ msgstr "溫度"
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:941
+#: ../src/microbe_stage/Microbe.cs:938
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1388
+#: ../src/microbe_stage/Microbe.cs:1385
 #, fuzzy
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功清除"
 
-#: ../src/microbe_stage/Microbe.cs:1395
+#: ../src/microbe_stage/Microbe.cs:1392
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.cs:1756
+#: ../src/microbe_stage/Microbe.cs:1753
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "產生"
 
-#: ../src/microbe_stage/Microbe.cs:1897
+#: ../src/microbe_stage/Microbe.cs:1894
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:29
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "化合物"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:70
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:474
+#: ../src/microbe_stage/MicrobeHUD.cs:477
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:618
+#: ../src/microbe_stage/MicrobeHUD.cs:621
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:668
+#: ../src/microbe_stage/MicrobeHUD.cs:671
 #, fuzzy
 msgid "PLAYER_CELL"
 msgstr "玩家死亡"
