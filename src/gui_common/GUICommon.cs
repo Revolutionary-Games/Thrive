@@ -1,7 +1,5 @@
-﻿using System;
-using Godot;
-using Array = Godot.Collections.Array;
-using Object = Godot.Object;
+﻿using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
@@ -57,15 +55,9 @@ public class GUICommon : Node
         popup.RectPosition = new Vector2(left, top);
     }
 
-    public static void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
+    public static void SmoothlyUpdateBar(TextureProgress bar, float target, float speed)
     {
-        if (delta <= 0.0f)
-        {
-            var paramName = "delta must be positive!";
-            throw new ArgumentOutOfRangeException(paramName);
-        }
-
-        var weight = Math.Min(3.0f * delta + 0.2f, 1.0f);
+        var weight = System.Math.Min(speed, 1.0f);
         bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 1.0f / (float)bar.MaxValue);
     }
 

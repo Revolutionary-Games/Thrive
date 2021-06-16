@@ -795,7 +795,7 @@ public class MicrobeHUD : Node
         }
 
         atpBar.MaxValue = maxATP;
-        GUICommon.SmoothlyUpdateBar(atpBar, atpAmount, delta);
+        GUICommon.SmoothlyUpdateBar(atpBar, atpAmount, 3.0f * delta + 0.2f);
         atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(maxATP);
     }
 
@@ -820,7 +820,7 @@ public class MicrobeHUD : Node
         }
 
         healthBar.MaxValue = maxHP;
-        GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
+        GUICommon.SmoothlyUpdateBar(healthBar, hp, 3.0f * delta + 0.2f);
         hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
     }
 
