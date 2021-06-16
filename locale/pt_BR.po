@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 09:18-0400\n"
-"PO-Revision-Date: 2021-06-13 11:32+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"PO-Revision-Date: 2021-06-16 13:13+0000\n"
+"Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -32,8 +32,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"A sua célula utiliza ATP como sua fonte de energia, se ela se esgostar, "
-"sua célula morrera."
+"A sua célula utiliza ATP como sua fonte de energia, se ela se esgotar, sua "
+"célula morrerá."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:32
@@ -117,9 +117,15 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"Use W, A, S, D e o mouse para mover a célula. Pressione E para lançar "
-"Oxitoxina se você tiver um vacúolo de toxinas. Aperte G para ativar ou "
-"desativar o modo de engolir."
+"Se unindo com outras células, você pode construir uma colônia onde as "
+"células compartilham compostos que absorvem e produzem com cada uma. Para "
+"poder unir com outra célula, você deve ter o agente de ligação e se mover à "
+"ela após entrar o modo de ligação. Você só pode se unir com células de sua "
+"própria espécie. Enquanto em uma colônia, você não pode dividir sua célula e "
+"entrar no editor (por enquanto). Para entrar no editor, primeiro deixe a "
+"colônia após coletar compostos suficientes, e então entre o editor. Colônias "
+"grandes de células são o caminho em direção à multicelularidade (ainda não "
+"adicionado)"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -391,23 +397,20 @@ msgid "TOGGLE_ENGULF"
 msgstr "Engolir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Engolir"
+msgstr "Ativar modo de ligação"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Engolir"
+msgstr "Desativar modo de ligação"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Desconectar todos"
 
 #: ../simulation_parameters/common/input_options.json:58
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Erro ao carregar"
+msgstr "Desconectar"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -829,11 +832,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"Há um conflito com {0}.\n"
-"Deseja redefinir {1}?"
+msgstr "Agente de Ligação"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
@@ -1955,22 +1955,22 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "A ser implementado."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound]atp[/thrive:compound] em [thrive:"
-"compound]ammonia[/thrive:compound]. Quantidade escala com a concentração "
-"de [thrive:compound]nitrogen[/thrive:compound]"
+"Aperte [thrive:input]g_toggle_binding[/thrive:input] para ativar o modo de "
+"ligação. Enquanto em modo de ligação, você pode conectar outras células de "
+"sua colônia se movendo à elas. Para sair da colônia, pessione "
+"[thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia "
-"celular na forma de ATP para sintetizar amônia, um nutriente essencial "
-"para o crescimento das células. Esse processo é chamado de Fixação de "
-"Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os "
-"fluidos em volta realizam a Fermentação."
+"Permite a ligação com outras células. Este é o primeiro passo até a "
+"multicelularidade. Quando sua célula é parte de uma colônia, os compostos "
+"são compartilhados entre as células. Você não pode entrar no editor enquanto "
+"faz parte de uma colônia, por isso você precisa se desconectar quando "
+"coletar compostos suficientes para dividir sua célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2254,7 +2254,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
-msgstr "jogador morreu"
+msgstr "Duplicar Jogador"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:477
 msgid "MICROBE_PATCH_LABEL"
@@ -3093,10 +3093,11 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Para controlar a sua célula use as teclas mostradas perto de sua célula "
-"(centro da tela) e o mouse para controlar a sua orientação.\n"
+"Você entrou no modo de desvinculação. Nesse modo você pode clicar nos "
+"membros da colônia para desconectá-las.\n"
 "\n"
-"Prove todas as teclas por alguns segundos para continuar."
+"Para sair da colônia você pode clicar em sua própria célula ou apertar a "
+"tecla “desconectar todos”."
 
 #~ msgid "TURNS"
 #~ msgstr "Transforma"
