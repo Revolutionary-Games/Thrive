@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-11 21:22+0200\n"
-"PO-Revision-Date: 2021-06-10 16:27+0000\n"
-"Last-Translator: Felecarp <felecarp@suboxide.org>\n"
+"PO-Revision-Date: 2021-06-14 16:59+0000\n"
+"Last-Translator: Nate Magid <bku78893@cuoly.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -116,11 +116,19 @@ msgstr ""
 "vous entrez dans l'éditeur ils évoluent eux aussi."
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"W,A,S,D et souris pour bouger. E pour tirer des OxyToxy NT si vous avez "
-"une vacuole à toxines. G pour passer en mode absorption."
+"En vous liant à d’autres cellules, vous pouvez construire une colonie "
+"cellulaire où les cellules partagent les composés qu’elles absorbent et "
+"produisent les unes avec les autres. Afin de pouvoir se lier à une autre "
+"cellule, vous devez avoir l’organelle des agents de liaison et s’y déplacer "
+"après être entré en mode de liaison. Vous ne pouvez lier qu’avec des "
+"cellules de votre propre espèce. Alors que dans une colonie, vous ne pouvez "
+"pas diviser votre cellule et entrer dans l’éditeur (pour l’instant). Pour "
+"entrer dans l’éditeur, quittez d’abord la colonie une fois que vous avez "
+"collecté suffisamment de composés, puis entrez dans l’éditeur. Les grandes "
+"colonies cellulaires sont la voie vers la multicellularité (pas encore dans "
+"le jeu)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -404,23 +412,20 @@ msgid "TOGGLE_ENGULF"
 msgstr "Activer Engloutir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Activer Engloutir"
+msgstr "Activer relieur"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Activer Engloutir"
+msgstr "Activer/désactiver la liaison"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Dissocier tout"
 
 #: ../simulation_parameters/common/input_options.json:58
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Erreur de Chargement"
+msgstr "Supprimer le relieur"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -842,11 +847,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"Il y a un conflit avec {0}.\n"
-"Voulez-vous enlever l'entrée de {1} ?"
+msgstr "relieur"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
@@ -1015,7 +1017,7 @@ msgstr "Rechercher"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Veuillez patienter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
@@ -1059,7 +1061,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "monter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
@@ -1067,7 +1069,7 @@ msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Lettre en majuscules"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
@@ -1075,23 +1077,23 @@ msgstr "Verr Num"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Verrouillage de défilement"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr ""
+msgstr "Super gauche"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr ""
+msgstr "Super droite"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr ""
+msgstr "Hyper Gauche"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr ""
+msgstr "Hyper Droite"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
@@ -1115,19 +1117,19 @@ msgstr "Augmenter le volume sonore"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr ""
+msgstr "Boost de basse"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr ""
+msgstr "Basse vers le haut"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr ""
+msgstr "Basse vers le bas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
-msgstr ""
+msgstr "Aigus vers le haut"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "TREBLEDOWN"
@@ -1155,103 +1157,103 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "courrier"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "média"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Lancement 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Lancement 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Lancement 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Lancement 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Lancement 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Lancement 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Lancement 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Lancement 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Lancement 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Lancement 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Lancement A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Lancement B"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Lancement C"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Lancement D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Lancement E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Lancement F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "nombre *"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "nombre /"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "nombre -"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KPPERIOD"
-msgstr ""
+msgstr "nombre ."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KPADD"
-msgstr ""
+msgstr "nombre +"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
-msgstr ""
+msgstr "nombre 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP1"
-msgstr ""
+msgstr "nombre 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP2"
@@ -1913,14 +1915,13 @@ msgstr ""
 "peut ensuite récupérer."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 "L'Azotéase est une protéine capable d'utiliser l'azote gazeux et l'énergie "
 "de la cellule sous forme d'ATP pour produire de l'ammoniaque, un nutriment "
 "de croissance clé pour une cellule. C'est un processus nommé la Fixation "
 "Anaérobique d'Azote. Puisque l'azotéase est suspendu directement dans le "
-"cytoplasme, les fluides l'entourant réalisent un peu la fermentation."
+"cytoplasme, les fluides l'entourant réalisent un peu la fermentation"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1951,19 +1952,21 @@ msgstr ""
 "l'agent toxique OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le flagelle est un groupe de protéines fibreuses en forme de fouet "
-"s'étendant depuis la membrane de la cellule qui peut utiliser l'ATP pour "
-"onduler et propulser la cellule dans une direction."
+"Utilise [thrive:compound]atp[/thrive:compound] pour augmenter la vitesse de "
+"déplacement de la cellule"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"Le flagelle est un groupe de protéines fibreuses en forme de fouet "
-"s'étendant depuis la membrane de la cellule qui peut utiliser l'ATP pour "
-"onduler et propulser la cellule dans une direction."
+"Le flagelle (pluriel: flagelle) est un faisceau de fibres protéiques en "
+"forme de fouet s’étendant de la membrane de la cellule qui utilisent l’ATP "
+"pour onduler et propulser la cellule dans une direction. La position du "
+"flagelle détermine la direction dans laquelle il fournit la poussée pour le "
+"mouvement de la cellule. La direction de poussée est opposée à la direction "
+"vers laquelle pointe le flagelle, par exemple un flagelle placé sur le côté "
+"gauche d’une cellule fournit une poussée lors du déplacement vers la droite."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "SPEED"
@@ -1984,24 +1987,20 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "Doit être implémenté."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"L'Azotéase est une protéine capable d'utiliser l'azote gazeux et l'énergie "
-"de la cellule sous forme d'ATP pour produire de l'ammoniaque, un nutriment "
-"de croissance clé pour une cellule. C'est un processus nommé la Fixation "
-"Anaérobique d'Azote. Puisque l'azotéase est suspendu directement dans le "
-"cytoplasme, les fluides l'entourant réalisent un peu la fermentation."
+"Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en "
+"mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules "
+"de votre espèce à votre colonie en vous y déplaçant. Pour quitter une "
+"colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"L'Azotéase est une protéine capable d'utiliser l'azote gazeux et l'énergie "
-"de la cellule sous forme d'ATP pour produire de l'ammoniaque, un nutriment "
-"de croissance clé pour une cellule. C'est un processus nommé la Fixation "
-"Anaérobique d'Azote. Puisque l'azotéase est suspendu directement dans le "
-"cytoplasme, les fluides l'entourant réalisent un peu la glycolyse."
+"Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en "
+"mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules "
+"de votre espèce à votre colonie en vous y déplaçant. Pour quitter une "
+"colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2024,7 +2023,6 @@ msgstr ""
 "de l'énergie de la cellule pour subsister."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
-#, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 "La centrale de la cellule. La mitochondrie est une structure à double "
@@ -2034,7 +2032,7 @@ msgstr ""
 "peut être fait dans le cytoplasme avec le procédé appelé Respiration "
 "Aérobique. Cependant, elle a besoin d'oxygène pour fonctionner, et de "
 "faibles niveaux d'oxygènes dans l'environnement vont ralentir son taux de "
-"production d'ATP."
+"production d'ATP"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
