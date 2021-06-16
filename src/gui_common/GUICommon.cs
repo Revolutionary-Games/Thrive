@@ -1,5 +1,7 @@
-﻿using Godot;
-using Godot.Collections;
+﻿using System;
+using Godot;
+using Array = Godot.Collections.Array;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
@@ -57,7 +59,7 @@ public class GUICommon : Node
 
     public static void SmoothlyUpdateBar(TextureProgress bar, float target, float speed)
     {
-        var weight = System.Math.Min(speed, 1.0f);
+        var weight = Math.Min(speed, 1.0f);
         bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 1.0f / (float)bar.MaxValue);
     }
 
