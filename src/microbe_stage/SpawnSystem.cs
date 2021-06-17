@@ -141,7 +141,18 @@ public class SpawnSystem
         foreach (Node entity in spawnedEntities)
         {
             if (!entity.IsQueuedForDeletion())
+            {
+                var spawned = entity as ISpawned;
+
+                if (spawned == null)
+                {
+                    GD.PrintErr("A node has been put in the spawned group but it isn't derived from ISpawned");
+                    continue;
+                }
+
+                spawned.OnDestroyed();
                 entity.DetachAndQueueFree();
+            }
         }
     }
 
@@ -344,8 +355,7 @@ public class SpawnSystem
 
             if (spawned == null)
             {
-                GD.PrintErr("A node has been put in the spawned group " +
-                    "but it isn't derived from ISpawned");
+                GD.PrintErr("A node has been put in the spawned group but it isn't derived from ISpawned");
                 continue;
             }
 
@@ -360,6 +370,7 @@ public class SpawnSystem
             if (squaredDistance > spawned.DespawnRadiusSqr)
             {
                 entitiesDeleted++;
+                spawned.OnDestroyed();
                 entity.DetachAndQueueFree();
 
                 if (entitiesDeleted >= maxEntitiesToDeletePerStep)
