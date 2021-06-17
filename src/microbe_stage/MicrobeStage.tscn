@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=2]
+[gd_scene load_steps=114 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -80,6 +80,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=81]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -379,6 +380,7 @@ AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/
 PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
 ProcessPanelPath = NodePath("ProcessPanel")
 ProcessPanelButtonPath = NodePath("BottomLeft/BottomBar/ChemicalButton")
+HintTextPath = NodePath("HintText")
 ExtinctionBoxScene = ExtResource( 70 )
 WinBoxScene = ExtResource( 69 )
 MicrobePickupOrganelleSound = ExtResource( 8 )
@@ -1687,10 +1689,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -131.0
-margin_top = -277.0
-margin_right = -6.0
-margin_bottom = -244.0
+margin_left = -135.0
+margin_top = -274.0
+margin_right = -10.0
+margin_bottom = -241.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 17 )
@@ -1732,10 +1734,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -124.0
+margin_left = -90.0
 margin_top = -235.0
-margin_right = -44.0
-margin_bottom = -185.0
+margin_right = -10.0
+margin_bottom = -183.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 29 )
@@ -1783,9 +1785,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -263.509
+margin_left = -229.509
 margin_top = -228.78
-margin_right = -129.509
+margin_right = -95.509
 margin_bottom = -31.7796
 mouse_filter = 2
 step = 0.1
@@ -1821,9 +1823,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -237.756
+margin_left = -203.756
 margin_top = -201.525
-margin_right = -128.756
+margin_right = -94.756
 margin_bottom = -45.525
 step = 0.1
 value = 100.0
@@ -1858,11 +1860,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -209.0
-margin_top = -181.0
-margin_right = -39.0
-margin_bottom = -11.0
-rect_min_size = Vector2( 170, 170 )
+margin_left = -178.0
+margin_top = -178.0
+margin_right = -18.0
+margin_bottom = -18.0
+rect_min_size = Vector2( 160, 160 )
 focus_mode = 0
 disabled = true
 texture_normal = ExtResource( 39 )
@@ -1887,8 +1889,8 @@ __meta__ = {
 }
 
 [node name="Light2D" type="Light2D" parent="MicrobeHUD/BottomRight/EditorButton/Highlight"]
-position = Vector2( 85, 70 )
-scale = Vector2( 0.980195, 0.980195 )
+position = Vector2( 79.2703, 78.2703 )
+scale = Vector2( 0.845357, 0.845357 )
 texture = ExtResource( 76 )
 energy = 0.0
 
@@ -1906,10 +1908,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -75.0
-margin_top = -75.0
-margin_right = 75.0
-margin_bottom = 75.0
+margin_left = -70.0
+margin_top = -70.0
+margin_right = 70.0
+margin_bottom = 70.0
 texture = ExtResource( 65 )
 expand = true
 stretch_mode = 6
@@ -1922,10 +1924,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -75.0
-margin_top = -75.0
-margin_right = 75.0
-margin_bottom = 75.0
+margin_left = -70.0
+margin_top = -70.0
+margin_right = 70.0
+margin_bottom = 70.0
 step = 0.1
 value = 100.0
 texture_progress = ExtResource( 65 )
@@ -1942,10 +1944,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -75.0
-margin_top = -75.0
-margin_right = 75.0
-margin_bottom = 75.0
+margin_left = -70.0
+margin_top = -70.0
+margin_right = 70.0
+margin_bottom = 70.0
 step = 0.1
 value = 100.0
 texture_progress = ExtResource( 65 )
@@ -1959,9 +1961,9 @@ __meta__ = {
 }
 
 [node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
-margin_left = 75.0
+margin_left = 70.0
 margin_top = 5.5
-margin_right = 95.0
+margin_right = 90.0
 margin_bottom = 25.5
 texture = ExtResource( 3 )
 expand = true
@@ -1970,10 +1972,10 @@ __meta__ = {
 }
 
 [node name="PhosphateIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
-margin_left = 75.0
-margin_top = 143.5
-margin_right = 95.0
-margin_bottom = 163.5
+margin_left = 70.0
+margin_top = 134.5
+margin_right = 90.0
+margin_bottom = 154.5
 texture = ExtResource( 4 )
 expand = true
 __meta__ = {
@@ -2008,6 +2010,17 @@ anims/ShowLeftPanels = SubResource( 32 )
 margin_left = 10.0
 margin_top = 30.0
 margin_right = 207.0
+
+[node name="HintText" type="Label" parent="MicrobeHUD"]
+anchor_right = 1.0
+margin_top = 35.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 81 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false

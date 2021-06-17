@@ -42,6 +42,12 @@ public class PlayerMicrobeInput : NodeWithInput
 
         if (stage.Player != null)
         {
+            if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+            {
+                stage.Player.MovementDirection = Vector3.Zero;
+                return;
+            }
+
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
             stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
@@ -62,7 +68,78 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        stage.Player.EngulfMode = !stage.Player.EngulfMode;
+        if (stage.Player.State == Microbe.MicrobeState.Engulf)
+        {
+            stage.Player.State = Microbe.MicrobeState.Normal;
+        }
+        else if (!stage.Player.Membrane.Type.CellWall)
+        {
+            stage.Player.State = Microbe.MicrobeState.Engulf;
+        }
+    }
+
+    [RunOnKeyDown("g_toggle_binding")]
+    public void ToggleBinding()
+    {
+        if (stage.Player == null)
+            return;
+
+        if (stage.Player.State == Microbe.MicrobeState.Binding)
+        {
+            stage.Player.State = Microbe.MicrobeState.Normal;
+        }
+        else if (stage.Player.CanBind)
+        {
+            stage.Player.State = Microbe.MicrobeState.Binding;
+        }
+    }
+
+    [RunOnKeyDown("g_toggle_unbinding")]
+    public void ToggleUnbinding()
+    {
+        if (stage.Player == null)
+            return;
+
+        if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+        {
+            stage.HUD.HintText = string.Empty;
+            stage.Player.State = Microbe.MicrobeState.Normal;
+        }
+        else if (stage.Player.Colony != null)
+        {
+            stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
+            stage.Player.State = Microbe.MicrobeState.Unbinding;
+        }
+    }
+
+    [RunOnKeyDown("g_unbind_all")]
+    public void UnbindAll()
+    {
+        if (stage.Player?.State == Microbe.MicrobeState.Unbinding)
+            stage.Player.State = Microbe.MicrobeState.Normal;
+
+        if (stage.Player?.Colony != null)
+        {
+            // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
+            // disband entire colony functionality
+            RemoveCellFromColony(stage.Player);
+        }
+    }
+
+    [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
+    public bool AcceptUnbind()
+    {
+        if (stage.Player?.State != Microbe.MicrobeState.Unbinding)
+            return false;
+
+        if (stage.MicrobesAtMouse.Count == 0)
+            return false;
+
+        var target = stage.MicrobesAtMouse[0];
+        RemoveCellFromColony(target);
+
+        stage.HUD.HintText = string.Empty;
+        return true;
     }
 
     [RunOnKeyDown("g_cheat_editor")]
@@ -99,6 +176,11 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             SpawnCheatCloud("phosphates", delta);
         }
+    }
+
+    private void RemoveCellFromColony(Microbe target)
+    {
+        target.Colony.RemoveFromColony(target);
     }
 
     private void SpawnCheatCloud(string name, float delta)

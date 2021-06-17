@@ -365,19 +365,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public MicrobeStage ReturnToStage { get; set; }
 
     [JsonIgnore]
-    public bool HasNucleus
-    {
-        get
-        {
-            foreach (var organelle in editedMicrobeOrganelles.Organelles)
-            {
-                if (organelle.Definition.InternalName == "nucleus")
-                    return true;
-            }
-
-            return false;
-        }
-    }
+    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d.InternalName == "nucleus");
 
     [JsonIgnore]
     public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
@@ -406,6 +394,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return result;
         }
     }
+
+    public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => editedMicrobeOrganelles
+        .Where(p => p.Definition.Unique)
+        .Select(p => p.Definition);
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -1083,6 +1075,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateMutationPointsBar();
     }
 
+    private bool HasOrganelle(OrganelleDefinition organelleDefinition)
+    {
+        return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
+    }
+
     /// <summary>
     ///   Moves the ObjectToFollow of the camera in a direction
     /// </summary>
@@ -1373,7 +1370,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-        gui.UpdatePartsAvailability(HasNucleus);
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
@@ -1813,7 +1810,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
-        if ((organelle.Definition.InternalName == "nucleus" && HasNucleus) ||
+        if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
                 && organelle.Definition.ChanceToCreate != 0))
             return false;
@@ -1981,7 +1978,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
-        gui.UpdatePartsAvailability(HasNucleus);
+
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         UpdatePatchDependentBalanceData();
 

@@ -103,6 +103,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     public bool IsLoadedFromSave { get; set; }
 
+    [JsonIgnore]
+    public AliveMarker AliveMarker { get; } = new AliveMarker();
+
     /// <summary>
     ///   Grabs data from the type to initialize this
     /// </summary>
@@ -260,7 +263,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             bool disappear = false;
 
             // Engulfing
-            if (Size > 0 && microbe.EngulfMode)
+            if (Size > 0 && microbe.State == Microbe.MicrobeState.Engulf)
             {
                 // Check can engulf based on the size of the chunk compared to the cell size
                 if (microbe.EngulfSize >= Size * Constants.ENGULF_SIZE_RATIO_REQ)
@@ -296,8 +299,16 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             particleFadeTimer -= delta;
 
             if (particleFadeTimer <= 0)
+            {
+                OnDestroyed();
                 this.DetachAndFree();
+            }
         }
+    }
+
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
     }
 
     /// <summary>
@@ -358,6 +369,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         if (dissolveEffectValue >= 1)
         {
+            OnDestroyed();
             this.DetachAndQueueFree();
         }
     }
@@ -437,6 +449,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         }
         else if (!isParticles)
         {
+            OnDestroyed();
             this.DetachAndQueueFree();
         }
     }

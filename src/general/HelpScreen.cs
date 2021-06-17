@@ -94,7 +94,7 @@ public class HelpScreen : Control
     {
         var helpTexts = SimulationParameters.Instance.GetHelpTexts(category);
 
-        var middleIndex = helpTexts.Messages.Count / 2;
+        var middleIndex = Math.Ceiling(helpTexts.Messages.Count / 2.0f);
 
         for (var i = 0; i < helpTexts.Messages.Count; i++)
         {
