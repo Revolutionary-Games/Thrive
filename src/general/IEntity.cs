@@ -19,7 +19,8 @@ public interface IEntity
 
     void OnDestroyed();
 
-    // TODO: have this implementation here (and also for AliveMarker) once
+    // TODO: have this implementation here (and also for AliveMarker) once Godot updates their dotnet runtime version
+    // requirement, currently this doesn't compile if this default implementation is uncommented
     /*{
         AliveMarker.Alive = false;
     }*/
