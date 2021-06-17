@@ -251,6 +251,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     public float MovementFactor { get; private set; } = 1.0f;
 
+    [JsonIgnore]
+    public AliveMarker AliveMarker { get; } = new AliveMarker();
+
     /// <summary>
     ///   The current state of the microbe. Shared across the colony
     /// </summary>
@@ -791,7 +794,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Dead = true;
 
         OnDeath?.Invoke(this);
-        Colony?.RemoveFromColony(this);
+        OnDestroyed();
 
         // Reset some stuff
         State = MicrobeState.Normal;
@@ -1315,9 +1318,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-    public override void _ExitTree()
+    public void OnDestroyed()
     {
         Colony?.RemoveFromColony(this);
+
+        AliveMarker.Alive = false;
     }
 
     public void AIThink(float delta, Random random, MicrobeAICommonData data)
@@ -2025,6 +2030,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (Membrane.DissolveEffectValue >= 1)
         {
+            OnDestroyed();
             this.DetachAndQueueFree();
         }
     }
