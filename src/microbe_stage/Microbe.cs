@@ -2384,6 +2384,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
+        if (other.Colony != null)
+        {
+            GD.PrintErr("Can't bind to a cell that is suddenly in a colony");
+            return;
+        }
+
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
