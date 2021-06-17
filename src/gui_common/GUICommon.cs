@@ -63,9 +63,9 @@ public class GUICommon : Node
     /// <param name="bar">TextureProgress instance to be modified.</param>
     /// <param name="target">Destination value to approach.</param>
     /// <param name="speed">Portion of the distance to be traveled.</param>
-    public static void SmoothlyUpdateBar(TextureProgress bar, float target, float speed)
+    public static void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
     {
-        var weight = Math.Min(speed, 1.0f);
+        var weight = Math.Min(3.0f * delta + 0.2f, 1.0f);
         bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 1.0f / (float)bar.MaxValue);
     }
 
