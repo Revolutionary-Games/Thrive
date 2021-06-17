@@ -57,12 +57,6 @@ public class GUICommon : Node
         popup.RectPosition = new Vector2(left, top);
     }
 
-    /// <summary>
-    ///   Modifies provided element to move in an exponentially decreasing way, with clamping.
-    /// </summary>
-    /// <param name="bar">TextureProgress instance to be modified.</param>
-    /// <param name="target">Destination value to approach.</param>
-    /// <param name="speed">Portion of the distance to be traveled.</param>
     public static void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
     {
         var weight = Math.Min(3.0f * delta + 0.2f, 1.0f);
