@@ -1157,12 +1157,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         GUICommon.Instance.PlayButtonPressSound();
-         // Can't exit the editor with disconnected organelles
+        // Can't exit the editor with disconnected organelles
         if (editor.HasIslands)
         {
             islandPopup.PopupCenteredShrink();
             return;
         }
+        
         // Show warning popup if trying to exit with negative atp production
         if (energyBalanceInfo != null &&
             energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
