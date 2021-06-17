@@ -1157,6 +1157,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         GUICommon.Instance.PlayButtonPressSound();
+        
         // Can't exit the editor with disconnected organelles
         if (editor.HasIslands)
         {
@@ -1171,6 +1172,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             negativeAtpPopup.PopupCenteredShrink();
             return;
         }
+        
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
