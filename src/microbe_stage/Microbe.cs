@@ -80,8 +80,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private bool wasBeingEngulfed;
 
-    // private bool isCurrentlyEngulfing = false;
-
     /// <summary>
     ///   Tracks other Microbes that are within the engulf area and are ignoring collisions with this body.
     /// </summary>
@@ -1320,6 +1318,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public void OnDestroyed()
     {
+        if (IsPlayerMicrobe)
+        {
+            CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
+        }
+
         Colony?.RemoveFromColony(this);
 
         AliveMarker.Alive = false;
