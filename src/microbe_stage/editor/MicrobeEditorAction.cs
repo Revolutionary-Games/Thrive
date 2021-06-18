@@ -19,17 +19,17 @@ public class MicrobeEditorAction : ReversibleAction
     public IMicrobeEditorActionData Data;
 
     [JsonProperty]
-    private readonly Action<MicrobeEditorAction> redo;
+    private readonly Action<MicrobeEditorAction, MicrobeSpecies> redo;
 
     [JsonProperty]
-    private readonly Action<MicrobeEditorAction> undo;
+    private readonly Action<MicrobeEditorAction, MicrobeSpecies> undo;
 
     [JsonProperty]
     private readonly MicrobeEditor editor;
 
     public MicrobeEditorAction(MicrobeEditor editor, int cost,
-        Action<MicrobeEditorAction> redo,
-        Action<MicrobeEditorAction> undo, IMicrobeEditorActionData data = null)
+        Action<MicrobeEditorAction, MicrobeSpecies> redo,
+        Action<MicrobeEditorAction, MicrobeSpecies> undo, IMicrobeEditorActionData data = null)
     {
         this.editor = editor;
         Cost = cost;
@@ -43,13 +43,20 @@ public class MicrobeEditorAction : ReversibleAction
 
     public override void DoAction()
     {
-        redo(this);
-        editor.ChangeMutationPoints();
+        redo(this, editor.currentSpecies);
+        editor.UpdateMutationPoints();
     }
 
     public override void UndoAction()
     {
-        undo(this);
-        editor.ChangeMutationPoints();
+        undo(this, editor.currentSpecies);
+        editor.UpdateMutationPoints();
+    }
+
+    public int Forcast()
+    {
+        var prospectiveSpecies = (MicrobeSpecies)editor.currentSpecies.Clone();
+        redo(this, prospectiveSpecies);
+        return editor.MutationPointsAfterChange(prospectiveSpecies);
     }
 }

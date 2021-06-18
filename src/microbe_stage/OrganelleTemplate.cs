@@ -47,6 +47,23 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     [JsonIgnore]
     public IEnumerable<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
 
+    public override bool Equals(object obj)
+    {
+        if (!(obj is OrganelleTemplate))
+        {
+            return false;
+        }
+
+        var castObj = (OrganelleTemplate)obj;
+
+        if (castObj.Definition != Definition)
+        {
+            return false;
+        }
+
+        return castObj.Position.Equals(Position);
+    }
+
     public object Clone()
     {
         return new OrganelleTemplate(Definition, Position, Orientation, NumberOfTimesMoved);
