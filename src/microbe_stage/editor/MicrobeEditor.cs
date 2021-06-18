@@ -970,6 +970,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         return cost;
     }
 
+    public void UpdateGUI()
+    {
+        gui.SetSpeciesInfo(NewName, currentSpecies.MembraneType, currentSpecies.Colour, currentSpecies.MembraneRigidity);
+        gui.UpdateRigiditySlider((int)Math.Round(currentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+            MutationPoints);
+    }
+
     /// <summary>
     ///   Returns true when the player is allowed to move to the specified patch
     /// </summary>
