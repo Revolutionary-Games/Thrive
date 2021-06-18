@@ -13,8 +13,6 @@ public class OptionsMenu : Control
       GUI Control Paths
     */
 
-    
-
     // Options control buttons.
 
     [Export]
