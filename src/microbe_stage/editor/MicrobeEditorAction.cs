@@ -43,13 +43,13 @@ public class MicrobeEditorAction : ReversibleAction
 
     public override void DoAction()
     {
-        editor.ChangeMutationPoints(-Cost);
+        editor.ChangeMutationPoints();
         redo(this);
     }
 
     public override void UndoAction()
     {
-        editor.ChangeMutationPoints(Cost);
+        editor.ChangeMutationPoints();
         undo(this);
     }
 }

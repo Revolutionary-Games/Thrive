@@ -787,7 +787,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = currentSpecies.MembraneRigidity;
 
-        var action = new MicrobeEditorAction(this, cost, DoRigidityChangeAction, UndoRigidityChangeAction,
+        var action = new MicrobeEditorAction(this, 0, DoRigidityChangeAction, UndoRigidityChangeAction,
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
@@ -1051,12 +1051,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Changes the number of mutation points left. Should only be called by MicrobeEditorAction
     /// </summary>
-    internal void ChangeMutationPoints(int change)
+    internal void ChangeMutationPoints()
     {
         if (FreeBuilding || CheatManager.InfiniteMP)
             return;
 
-        MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
+        var rigidityChangeCost = (int)Math.Abs(currentSpecies.MembraneRigidity - startingSpecies.MembraneRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+
+        MutationPoints = Constants.BASE_MUTATION_POINTS - rigidityChangeCost;
 
         gui.UpdateMutationPointsBar();
     }
