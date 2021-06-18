@@ -240,7 +240,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var name = compound.Name;
 
-                // Parse subtag
+                // Parse subtags
+                // ReSharper disable MergeSequentialChecksWhenPossible
                 if (subTag != null && subTag.Length > 0)
                 {
                     if (subTag[0].BeginsWith("text="))
@@ -266,7 +267,11 @@ public class CustomRichTextLabel : RichTextLabel
 
                         name = value.Substr(1, endQuote - 1);
                     }
+
+                    /// if (... other tags ...)
                 }
+
+                // ReSharper restore MergeSequentialChecksWhenPossible
 
                 output = $"[b]{name}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
