@@ -171,8 +171,8 @@ public class MicrobeHUD : Node
     private Panel compoundsPanel;
 
     // Store these statefully for after player death
-    private float maxHP;
-    private float maxATP;
+    private float maxHP = 1.0f;
+    private float maxATP = 1.0f;
 
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
