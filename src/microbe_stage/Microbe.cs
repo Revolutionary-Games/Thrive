@@ -1352,10 +1352,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (microbe == this)
         {
             OnUnbound?.Invoke(this);
-
             RevertNodeParent();
             ai?.ResetAI();
-
             return;
         }
 
