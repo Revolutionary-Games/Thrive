@@ -1056,7 +1056,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (FreeBuilding || CheatManager.InfiniteMP)
             return;
 
-        var rigidityChangeCost = (int)Math.Abs(currentSpecies.MembraneRigidity - startingSpecies.MembraneRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+        var rigidityChangeCost = (int)Math.Round(
+            Math.Abs(currentSpecies.MembraneRigidity - startingSpecies.MembraneRigidity) 
+            * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP);
 
         MutationPoints = Constants.BASE_MUTATION_POINTS - rigidityChangeCost;
 
