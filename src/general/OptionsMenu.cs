@@ -162,7 +162,7 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CustomUsernamePath;
 
-    //Sound tab
+    // Sound tab static variables
     private static List<string> languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture).ToList();
 
     private Button resetButton;
