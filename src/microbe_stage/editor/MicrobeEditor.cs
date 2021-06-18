@@ -1933,6 +1933,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (!isFreeToMove && MutationPoints < Constants.ORGANELLE_MOVE_COST)
         {
             CancelCurrentAction();
+            gui.OnInsufficientMp();
             return false;
         }
 
