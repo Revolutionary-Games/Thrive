@@ -268,7 +268,7 @@ public class CustomRichTextLabel : RichTextLabel
                         name = value.Substr(1, endQuote - 1);
                     }
 
-                    /// if (... other tags ...)
+                    // if (... other tags ...)
                 }
 
                 // ReSharper restore MergeSequentialChecksWhenPossible
