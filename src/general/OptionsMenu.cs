@@ -198,11 +198,7 @@ public class OptionsMenu : Control
     private CheckBox guiMuted;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
-<<<<<<< HEAD
     
-=======
->>>>>>> 7fdc360e494b2e769b997bec0335bf240dd58ebb
-
     // Performance tab
     private Control performanceTab;
     private OptionButton cloudInterval;
