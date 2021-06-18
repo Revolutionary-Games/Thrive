@@ -59,6 +59,12 @@ public class GUICommon : Node
 
     public static void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
     {
+        if (delta <= 0)
+        {
+            GD.PrintErr("Tried to run SmoothlyUpdateBar with non-positive delta!");
+            return;
+        }
+
         var weight = Math.Min(3.0f * delta + 0.2f, 1.0f);
         bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 1.0f / (float)bar.MaxValue);
     }
