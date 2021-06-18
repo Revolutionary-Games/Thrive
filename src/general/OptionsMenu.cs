@@ -13,6 +13,9 @@ public class OptionsMenu : Control
       GUI Control Paths
     */
 
+    //Sound tab
+    private static List<string> languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture).ToList();
+
     // Options control buttons.
 
     [Export]
@@ -195,8 +198,6 @@ public class OptionsMenu : Control
     private CheckBox guiMuted;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
-    private static List<string> languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
-    .ToList();
 
     // Performance tab
     private Control performanceTab;
