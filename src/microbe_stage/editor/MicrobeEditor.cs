@@ -2111,13 +2111,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var data = (MembraneActionData)action.Data;
         var membrane = data.NewMembrane;
         GD.Print("Changing membrane to '", membrane.InternalName, "'");
-        currentSpecies.MembraneType = membrane;
-        gui.UpdateMembraneButtons(currentSpecies.MembraneType.InternalName);
+        species.MembraneType = membrane;
+        gui.UpdateMembraneButtons(species.MembraneType.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            species.Organelles.Organelles, currentSpecies.MembraneType, targetPatch);
-        gui.SetMembraneTooltips(currentSpecies.MembraneType);
+            species.Organelles.Organelles, species.MembraneType, targetPatch);
+        gui.SetMembraneTooltips(species.MembraneType);
 
         if (previewMicrobe != null)
         {
@@ -2131,14 +2131,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void UndoMembraneChangeAction(MicrobeEditorAction action, MicrobeSpecies species)
     {
         var data = (MembraneActionData)action.Data;
-        currentSpecies.MembraneType = data.OldMembrane;
-        GD.Print("Changing membrane back to '", currentSpecies.MembraneType.InternalName, "'");
-        gui.UpdateMembraneButtons(currentSpecies.MembraneType.InternalName);
+        species.MembraneType = data.OldMembrane;
+        GD.Print("Changing membrane back to '", species.MembraneType.InternalName, "'");
+        gui.UpdateMembraneButtons(species.MembraneType.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            species.Organelles.Organelles, currentSpecies.MembraneType, targetPatch);
-        gui.SetMembraneTooltips(currentSpecies.MembraneType);
+            species.Organelles.Organelles, species.MembraneType, targetPatch);
+        gui.SetMembraneTooltips(species.MembraneType);
 
         if (previewMicrobe != null)
         {
