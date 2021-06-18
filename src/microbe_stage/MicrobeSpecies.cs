@@ -136,25 +136,17 @@ public class MicrobeSpecies : Species
 
         float organelleMovementForce = 0;
 
-        Vector3 forwardsDirection = new Vector3(0, 0, -1);
-
         foreach (var organelle in Organelles)
         {
             microbeMass += organelle.Definition.Mass;
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
-                    - Hex.AxialToCartesian(organelle.Position)).Normalized();
-
-                float directionFactor = organelleDirection.Dot(forwardsDirection);
-
-                // Flagella pointing backwards don't slow you down
-                directionFactor = Math.Max(directionFactor, 0);
-
-                organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement.Momentum / 100.0f
-                    * directionFactor;
+                if (organelle.Orientation == 3)
+                {
+                    organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
+                    * organelle.Definition.Components.Movement.Momentum / 100.0f;
+                }
             }
         }
 
