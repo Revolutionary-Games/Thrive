@@ -1073,8 +1073,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var commonOrganelles = startingSpecies.Organelles.Organelles.Where(x => newSpecies.Organelles.Organelles
         .Contains(x));
 
-        GD.Print("old count: "+commonOrganelles.Count() + ", new count: " + newSpecies.Organelles.Organelles.Count);
-        var organelleAdditionCost = (newSpecies.Organelles.Organelles.Count - commonOrganelles.Count()) * 10;
+        var addedOrganelles = newSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x));
+        var organelleAdditionCost = addedOrganelles.Select(x => x.Definition.MPCost).Sum();
 
         return Constants.BASE_MUTATION_POINTS
             - rigidityChangeCost
