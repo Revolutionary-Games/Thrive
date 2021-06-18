@@ -13,8 +13,7 @@ public class OptionsMenu : Control
       GUI Control Paths
     */
 
-    //Sound tab
-    private static List<string> languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture).ToList();
+    
 
     // Options control buttons.
 
@@ -164,6 +163,9 @@ public class OptionsMenu : Control
 
     [Export]
     public NodePath CustomUsernamePath;
+
+    //Sound tab
+    private static List<string> languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture).ToList();
 
     private Button resetButton;
     private Button saveButton;
