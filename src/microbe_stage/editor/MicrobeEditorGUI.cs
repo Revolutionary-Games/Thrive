@@ -1401,7 +1401,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private void OnColorChanged(Color color)
     {
-        editor.Colour = color;
+        editor.currentSpecies.Colour = color;
     }
 
     private void MoveToPatchClicked()
