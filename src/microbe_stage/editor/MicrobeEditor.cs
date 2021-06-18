@@ -1323,6 +1323,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void SetupEditedSpecies(MicrobeSpecies species)
     {
         startingSpecies = species ?? throw new NullReferenceException("didn't find edited species");
+        currentSpecies = (MicrobeSpecies)species.Clone();
 
         // We need to set the membrane type here so the ATP balance
         // bar can take it into account (the bar is updated when
