@@ -1061,9 +1061,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         var membraneChangeCost = startingSpecies.MembraneType.Equals(currentSpecies.MembraneType) ?
-            currentSpecies.MembraneType.EditorCost : 0;
+            0 : currentSpecies.MembraneType.EditorCost;
 
-        MutationPoints = Constants.BASE_MUTATION_POINTS 
+        MutationPoints = Constants.BASE_MUTATION_POINTS
             - rigidityChangeCost
             - membraneChangeCost;
 
