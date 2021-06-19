@@ -12,9 +12,9 @@ public class CustomRichTextLabel : RichTextLabel
     private string extendedBbcode;
 
     /// <summary>
-    ///   Custom Bbcode tags exclusive for Thrive. Acts more like an extension to the built-in tags.
+    ///   Custom Bbcodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
-    public enum ThriveBbCodeTag
+    public enum ThriveBbCode
     {
         /// <summary>
         ///   Turns compound internal name string into a bolded display name and an icon next to it.
@@ -178,11 +178,11 @@ public class CustomRichTextLabel : RichTextLabel
                     var input = extendedBbcode.Substr(
                         lastStartingTagEndIndex + 1, closingTagStartIndex - lastStartingTagEndIndex - 1);
 
-                    ThriveBbCodeTag parsedTag;
+                    ThriveBbCode parsedTag;
 
                     if (Enum.TryParse(bbcode, true, out parsedTag))
                     {
-                        // Skip the main tag
+                        // Leave out bbcode, all that's left should be the attributes
                         var attributes = chunks.Skip(1).ToArray();
 
                         // Success!
@@ -219,16 +219,16 @@ public class CustomRichTextLabel : RichTextLabel
     ///   Returns a templated bbcode string for the given custom tag.
     /// </summary>
     /// <param name="input">The string tagged by custom tags</param>
-    /// <param name="tag">Custom Thrive bbcode-styled tags</param>
+    /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
     /// <param name="attributes">Attributes specifying an additional functionality to the bbcode.</param>
-    private string BuildTemplateForTag(string input, ThriveBbCodeTag tag, string[] attributes = null)
+    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, string[] attributes = null)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
 
-        switch (tag)
+        switch (bbcode)
         {
-            case ThriveBbCodeTag.Compound:
+            case ThriveBbCode.Compound:
             {
                 if (!SimulationParameters.Instance.DoesCompoundExist(input))
                 {
@@ -256,16 +256,10 @@ public class CustomRichTextLabel : RichTextLabel
 
                         var value = split[1];
 
-                        if (!value.BeginsWith("\""))
+                        if (!value.BeginsWith("\"") || !value.EndsWith("\""))
                             break;
 
-                        // Search from after the first quote's position
-                        var endQuote = value.Find("\"", 1);
-
-                        if (endQuote == -1)
-                            break;
-
-                        name = value.Substr(1, endQuote - 1);
+                        name = value.Substr(1, value.Length - 2);
                     }
 
                     // if (... other tags ...)
@@ -279,7 +273,7 @@ public class CustomRichTextLabel : RichTextLabel
                 break;
             }
 
-            case ThriveBbCodeTag.Input:
+            case ThriveBbCode.Input:
             {
                 if (!InputMap.HasAction(input))
                 {

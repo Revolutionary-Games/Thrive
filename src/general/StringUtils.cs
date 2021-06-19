@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Godot;
 
 /// <summary>
@@ -53,22 +54,24 @@ public static class StringUtils
         var result = new List<string>();
 
         var cutPoint = 0;
-        var validToSplit = true;
+        var insideQuote = false;
 
         for (var i = 0; i < input.Length; ++i)
         {
             var character = input[i];
 
-            if (character == '"' && validToSplit && ignoreWithinQuotes)
+            var validQuotes = character != '\\' && i + 1 < input.Length && input[i + 1] == '"';
+
+            if (validQuotes && !insideQuote && ignoreWithinQuotes)
             {
-                validToSplit = false;
+                insideQuote = true;
             }
-            else if (character == '"' && !validToSplit)
+            else if (validQuotes && insideQuote)
             {
-                validToSplit = true;
+                insideQuote = false;
             }
 
-            if (character == ' ' && validToSplit)
+            if (character == ' ' && !insideQuote)
             {
                 if ((i == 0) || (i + 1 < input.Length && input[i + 1] == ' '))
                 {
@@ -76,13 +79,13 @@ public static class StringUtils
                     continue;
                 }
 
-                result.Add(input.Substr(cutPoint, i - cutPoint));
+                result.Add(Regex.Unescape(input.Substr(cutPoint, i - cutPoint)));
                 cutPoint = i + 1;
             }
 
             // Reached end of string, add the rest of it from last cut point (whitespace)
             if (i == input.Length - 1)
-                result.Add(input.Substr(cutPoint, i - cutPoint + 1));
+                result.Add(Regex.Unescape(input.Substr(cutPoint, i - cutPoint + 1)));
         }
 
         return result.ToArray();
