@@ -1083,8 +1083,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Search the new organelles for old ones of the same time, to count as many as having moved as possible
         foreach (var newOrganelle in currentSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x)))
         {
-            if (missingOrganelles.Where(x => x.Definition.Equals(newOrganelle.Definition)).Count()
-                < movedOrganelles.Where(x => x.Definition.Equals(newOrganelle.Definition)).Count())
+            if (missingOrganelles.Where(x => x.Definition == newOrganelle.Definition).Count()
+                > movedOrganelles.Where(x => x.Definition == newOrganelle.Definition).Count())
             {
                 movedOrganelles.Add(newOrganelle);
             }
