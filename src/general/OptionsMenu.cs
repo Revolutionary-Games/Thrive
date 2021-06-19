@@ -7,7 +7,7 @@ using Environment = System.Environment;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
-public class OptionsMenu : Control
+public class OptionsMenu : ControlWithInput
 {
     /*
       GUI Control Paths
@@ -704,6 +704,7 @@ public class OptionsMenu : Control
       GUI Control Callbacks
     */
 
+    [RunOnKeyDown("g_return")]
     private void OnBackPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
