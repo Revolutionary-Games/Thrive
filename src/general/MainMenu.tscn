@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -11,7 +11,14 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="InputEventKey" id=2]
+scancode = 16777217
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "MenuSlide"
 length = 0.4
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -305,6 +312,7 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
+shortcut = SubResource( 3 )
 text = "BACK"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
@@ -338,7 +346,7 @@ __meta__ = {
 }
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
-anims/MenuSlide = SubResource( 2 )
+anims/MenuSlide = SubResource( 1 )
 
 [node name="GLES2 Popup" type="AcceptDialog" parent="."]
 margin_right = 500.0

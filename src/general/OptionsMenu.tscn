@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -23,11 +23,17 @@ expand_margin_right = 3.0
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="InputEventKey" id=6]
+scancode = 16777217
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
 
 [sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
 
 [node name="OptionsMenu" type="Control"]
 pause_mode = 2
@@ -991,6 +997,7 @@ margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 focus_mode = 0
+shortcut = SubResource( 7 )
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1024,7 +1031,7 @@ margin_left = 281.0
 margin_right = 373.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+custom_styles/separator = SubResource( 8 )
 
 [node name="Defaults" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 377.0
@@ -1119,7 +1126,7 @@ margin_right = 580.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/separator = SubResource( 7 )
+custom_styles/separator = SubResource( 9 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
 margin_top = 33.0
@@ -1150,7 +1157,7 @@ margin_left = 449.0
 margin_right = 494.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 8 )
+custom_styles/separator = SubResource( 10 )
 
 [node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
 margin_left = 498.0
