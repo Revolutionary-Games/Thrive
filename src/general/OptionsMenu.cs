@@ -455,6 +455,10 @@ public class OptionsMenu : Control
     // GUI Function, but it must be places before private ones?
     public void OnBackPressed()
     {
+        // If InputGroupList is listening for input, cancel the operation.
+        if (InputGroupList.WasListeningForInput)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         // If any settings have been changed, show a dialogue asking if the changes should be kept or

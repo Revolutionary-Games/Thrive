@@ -133,7 +133,7 @@ public class SaveManagerGUI : Control
 
         EmitSignal(nameof(OnBackPressed));
     }
-    
+
     private void OnSelectedChanged()
     {
         selectedDirty = true;
