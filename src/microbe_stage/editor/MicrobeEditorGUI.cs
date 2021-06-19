@@ -1090,7 +1090,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
-    internal void OnInsufficientMp()
+    internal void OnInsufficientMp(bool playSound = true)
     {
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
@@ -1098,7 +1098,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
 
-        PlayInvalidActionSound();
+        if (playSound)
+            PlayInvalidActionSound();
     }
 
     internal void OnActionBlockedWhileMoving()
