@@ -1073,13 +1073,35 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var commonOrganelles = startingSpecies.Organelles.Organelles.Where(x => newSpecies.Organelles.Organelles
         .Contains(x));
 
-        var addedOrganelles = newSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x));
+        // Organelles that are not in the exact same spot; either deleted or moved
+        var missingOrganelles = startingSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x));
+
+        List<OrganelleTemplate> movedOrganelles = new List<OrganelleTemplate>();
+        List<OrganelleTemplate> deletedOrganelles = new List<OrganelleTemplate>();
+        List<OrganelleTemplate> addedOrganelles = new List<OrganelleTemplate>();
+
+        // Search the new organelles for old ones of the same time, to count as many as having moved as possible
+        foreach (var newOrganelle in currentSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x)))
+        {
+            if (missingOrganelles.Where(x => x.Definition.Equals(newOrganelle.Definition)).Count()
+                < movedOrganelles.Where(x => x.Definition.Equals(newOrganelle.Definition)).Count())
+            {
+                movedOrganelles.Add(newOrganelle);
+            }
+            else
+            {
+                addedOrganelles.Add(newOrganelle);
+            }
+        }
+
         var organelleAdditionCost = addedOrganelles.Select(x => x.Definition.MPCost).Sum();
+        var organelleMovementCost = movedOrganelles.Count * Constants.ORGANELLE_MOVE_COST;
 
         return Constants.BASE_MUTATION_POINTS
             - rigidityChangeCost
             - membraneChangeCost
-            - organelleAdditionCost;
+            - organelleAdditionCost
+            - organelleMovementCost;
     }
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
