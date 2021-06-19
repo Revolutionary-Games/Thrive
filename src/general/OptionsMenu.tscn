@@ -23,9 +23,9 @@ expand_margin_right = 3.0
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=9]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=8]
 
@@ -1024,7 +1024,7 @@ margin_left = 281.0
 margin_right = 373.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+custom_styles/separator = SubResource( 9 )
 
 [node name="Defaults" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 377.0
@@ -1119,7 +1119,7 @@ margin_right = 580.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/separator = SubResource( 7 )
+custom_styles/separator = SubResource( 10 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
 margin_top = 33.0

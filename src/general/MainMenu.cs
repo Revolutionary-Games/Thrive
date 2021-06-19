@@ -7,7 +7,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
-public class MainMenu : Node
+public class MainMenu : NodeWithInput
 {
     /// <summary>
     ///   Index of the current menu.
@@ -260,6 +260,7 @@ public class MainMenu : Node
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 
+    [RunOnKeyDown("ui_cancel")]
     private void BackFromToolsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
