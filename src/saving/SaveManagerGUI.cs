@@ -249,7 +249,7 @@ public class SaveManagerGUI : Control
         RefreshList();
     }
 
-    private void OnBackButton()
+    public void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
 

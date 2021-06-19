@@ -7,7 +7,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
-public class MainMenu : Node
+public class MainMenu : NodeWithInput
 {
     /// <summary>
     ///   Index of the current menu.
@@ -335,5 +335,13 @@ public class MainMenu : Node
     {
         _ = TranslationServer.Translate("OK");
         _ = TranslationServer.Translate("Cancel");
+    }
+
+    [RunOnKeyDown("ui_cancel")]
+    public void ReturnPressed()
+    {
+        if (options.Visible) options.OnBackPressed();
+        else if (saves.Visible) saves.OnBackButton();
+        else if (CurrentMenuIndex != 0) SetCurrentMenu(0, true);
     }
 }

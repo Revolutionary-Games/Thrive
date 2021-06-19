@@ -704,7 +704,7 @@ public class OptionsMenu : Control
       GUI Control Callbacks
     */
 
-    private void OnBackPressed()
+    public void OnBackPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
