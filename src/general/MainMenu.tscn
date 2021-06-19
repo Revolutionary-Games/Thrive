@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -10,6 +10,12 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
+
+[sub_resource type="InputEventKey" id=2]
+scancode = 16777217
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -238,8 +244,8 @@ __meta__ = {
 }
 
 [node name="Freebuild Editor" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 558.0
-margin_right = 808.0
+margin_left = 502.0
+margin_right = 777.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -249,9 +255,9 @@ size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
 [node name="\?\?" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 50.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -265,9 +271,9 @@ __meta__ = {
 }
 
 [node name="\?\?_2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 100.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -281,9 +287,9 @@ __meta__ = {
 }
 
 [node name="\?\?_3" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 150.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -297,15 +303,16 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 200.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
+shortcut = SubResource( 3 )
 text = "BACK"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]

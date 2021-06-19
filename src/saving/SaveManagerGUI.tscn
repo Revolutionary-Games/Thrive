@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/saving/SaveManagerGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=4]
+
+[sub_resource type="InputEventKey" id=1]
+scancode = 16777217
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="SaveManagerGUI" type="Control"]
 anchor_right = 1.0
@@ -116,6 +122,7 @@ margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 focus_mode = 0
+shortcut = SubResource( 2 )
 text = "BACK"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/BottomBox"]
