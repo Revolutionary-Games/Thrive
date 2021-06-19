@@ -127,6 +127,13 @@ public class SaveManagerGUI : Control
         refreshing = false;
     }
 
+    public void OnBackButton()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(nameof(OnBackPressed));
+    }
+    
     private void OnSelectedChanged()
     {
         selectedDirty = true;
@@ -247,12 +254,5 @@ public class SaveManagerGUI : Control
         GD.Print("Deleted save(s): ", message);
 
         RefreshList();
-    }
-
-    public void OnBackButton()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        EmitSignal(nameof(OnBackPressed));
     }
 }

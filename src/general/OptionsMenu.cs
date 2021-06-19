@@ -452,6 +452,22 @@ public class OptionsMenu : Control
         customUsername.Editable = settings.CustomUsernameEnabled;
     }
 
+    // GUI Function, but it must be places before private ones?
+    public void OnBackPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // If any settings have been changed, show a dialogue asking if the changes should be kept or
+        // discarded.
+        if (!CompareSettings())
+        {
+            backConfirmationBox.PopupCenteredShrink();
+            return;
+        }
+
+        EmitSignal(nameof(OnOptionsClosed));
+    }
+
     private void SwitchMode(OptionsMode mode)
     {
         switch (mode)
@@ -703,21 +719,6 @@ public class OptionsMenu : Control
     /*
       GUI Control Callbacks
     */
-
-    public void OnBackPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        // If any settings have been changed, show a dialogue asking if the changes should be kept or
-        // discarded.
-        if (!CompareSettings())
-        {
-            backConfirmationBox.PopupCenteredShrink();
-            return;
-        }
-
-        EmitSignal(nameof(OnOptionsClosed));
-    }
 
     private void OnResetPressed()
     {

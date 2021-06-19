@@ -100,6 +100,17 @@ public class MainMenu : NodeWithInput
         }
     }
 
+    [RunOnKeyDown("ui_cancel")]
+    public void ReturnPressed()
+    {
+        if (options.Visible)
+            options.OnBackPressed();
+        else if (saves.Visible)
+            saves.OnBackButton();
+        else if (CurrentMenuIndex != 0)
+            SetCurrentMenu(0, true);
+    }
+
     /// <summary>
     ///   Setup the main menu.
     /// </summary>
@@ -335,13 +346,5 @@ public class MainMenu : NodeWithInput
     {
         _ = TranslationServer.Translate("OK");
         _ = TranslationServer.Translate("Cancel");
-    }
-
-    [RunOnKeyDown("ui_cancel")]
-    public void ReturnPressed()
-    {
-        if (options.Visible) options.OnBackPressed();
-        else if (saves.Visible) saves.OnBackButton();
-        else if (CurrentMenuIndex != 0) SetCurrentMenu(0, true);
     }
 }
