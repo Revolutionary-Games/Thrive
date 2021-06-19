@@ -141,30 +141,30 @@ public class CustomRichTextLabel : RichTextLabel
                 }
 
                 // Custom bbcode Thrive tag namespace
-                var tagNamespace = leftHandSide[0];
+                var bbcodeNamespace = leftHandSide[0];
 
                 // Tag name (and subtag if this is an opening tag)
                 var splitTagBlock = StringUtils.SplitByWhiteSpace(leftHandSide[1], true);
 
                 // Not a thrive custom tag, don't parse this
-                if (!tagNamespace.Contains("thrive"))
+                if (!bbcodeNamespace.Contains("thrive"))
                 {
                     result.Append($"[{tagBlock}]");
                     isIteratingTag = false;
                     continue;
                 }
 
-                // Tag seems okay, proceed with processing subtags and content
+                // Tag seems okay, next step is to try parse the content and the closing tag
 
                 // Is a closing tag
-                if (tagNamespace.BeginsWith("/"))
+                if (bbcodeNamespace.BeginsWith("/"))
                 {
                     var chunks = tagStack.Peek();
 
-                    var tagName = chunks[0];
+                    var bbcode = chunks[0];
 
                     // Closing tag doesn't match opening tag or vice versa, aborting parsing
-                    if (tagStack.Count == 0 || tagName != splitTagBlock[0])
+                    if (tagStack.Count == 0 || bbcode != splitTagBlock[0])
                     {
                         result.Append($"[{tagBlock}]");
                         isIteratingTag = false;
@@ -180,13 +180,13 @@ public class CustomRichTextLabel : RichTextLabel
 
                     ThriveBbCodeTag parsedTag;
 
-                    if (Enum.TryParse(tagName, true, out parsedTag))
+                    if (Enum.TryParse(bbcode, true, out parsedTag))
                     {
                         // Skip the main tag
-                        var subtag = chunks.Skip(1).ToArray();
+                        var attributes = chunks.Skip(1).ToArray();
 
                         // Success!
-                        result.Append(BuildTemplateForTag(input, parsedTag, subtag));
+                        result.Append(BuildTemplateForTag(input, parsedTag, attributes));
                     }
                     else
                     {
@@ -220,8 +220,8 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     /// <param name="input">The string tagged by custom tags</param>
     /// <param name="tag">Custom Thrive bbcode-styled tags</param>
-    /// <param name="subTag">Additional tags following the main tag specifying a special use.</param>
-    private string BuildTemplateForTag(string input, ThriveBbCodeTag tag, string[] subTag = null)
+    /// <param name="attributes">Attributes specifying an additional functionality to the bbcode.</param>
+    private string BuildTemplateForTag(string input, ThriveBbCodeTag tag, string[] attributes = null)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
@@ -240,17 +240,17 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var name = compound.Name;
 
-                // Parse subtags
+                // Parse attributes if there is any
                 // ReSharper disable MergeSequentialChecksWhenPossible
-                if (subTag != null && subTag.Length > 0)
+                if (attributes != null && attributes.Length > 0)
                 {
-                    if (subTag[0].BeginsWith("text="))
+                    if (attributes[0].BeginsWith("text="))
                     {
-                        var split = subTag[0].Split("=");
+                        var split = attributes[0].Split("=");
 
                         if (split.Length != 2)
                         {
-                            GD.PrintErr("Compound BBCode tag: `text` override is specified but missing a value");
+                            GD.PrintErr("Compound BBCode tag: `text` attribute is specified but missing a value");
                             break;
                         }
 
