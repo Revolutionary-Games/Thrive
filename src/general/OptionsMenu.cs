@@ -691,8 +691,6 @@ public class OptionsMenu : Control
 
     private void LoadLanguages(OptionButton optionButton)
     {
-        
-
         foreach (var locale in languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
