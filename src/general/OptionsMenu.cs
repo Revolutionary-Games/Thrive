@@ -162,6 +162,9 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CustomUsernamePath;
 
+    // Sount tab statics
+    private static List<string> languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
+        .ToList();
     private Button resetButton;
     private Button saveButton;
 
@@ -195,7 +198,6 @@ public class OptionsMenu : Control
     private CheckBox guiMuted;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
-    private List<string> languages;
 
     // Performance tab
     private Control performanceTab;
@@ -689,8 +691,7 @@ public class OptionsMenu : Control
 
     private void LoadLanguages(OptionButton optionButton)
     {
-        languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
-            .ToList();
+        
 
         foreach (var locale in languages)
         {
