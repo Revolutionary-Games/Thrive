@@ -166,6 +166,7 @@ public class OptionsMenu : Control
     private List<string> languages = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
+
     private Button resetButton;
     private Button saveButton;
 
