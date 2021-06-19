@@ -151,7 +151,6 @@ Category = "MicrobeStage"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
 visible = false
-
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
