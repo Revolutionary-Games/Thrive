@@ -77,5 +77,6 @@ margin_bottom = 55.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6
+
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
