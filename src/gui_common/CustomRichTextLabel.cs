@@ -256,7 +256,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                         var value = split[1];
 
-                        if (!value.BeginsWith("\"") || !value.EndsWith("\""))
+                        if (!value.BeginsWith("\"") || !value.EndsWith("\"", StringComparison.CurrentCulture))
                             break;
 
                         name = value.Substr(1, value.Length - 2);
