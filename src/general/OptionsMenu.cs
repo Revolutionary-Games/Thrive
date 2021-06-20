@@ -163,7 +163,7 @@ public class OptionsMenu : Control
     public NodePath CustomUsernamePath;
 
     // Sound tab statics
-    private static readonly List<string> Languages_N = TranslationServer.GetLoadedLocales().Cast<string>()
+    private static readonly List<string> LanguagesAux = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
 
@@ -270,7 +270,7 @@ public class OptionsMenu : Control
     }
 
     // Languages variable
-    private static List<string> Languages => Languages_N;
+    private static List<string> Languages => LanguagesAux;
 
     public override void _Ready()
     {
