@@ -1061,13 +1061,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             .Where(x => newSpecies.Organelles.Organelles.Contains(x));
 
         // Organelles that are not in the exact same spot; either deleted or moved
-        var missingOrganelles = startingSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x));
+        var missingOrganelles = startingSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x)).ToList();
 
         List<OrganelleTemplate> movedOrganelles = new List<OrganelleTemplate>();
         List<OrganelleTemplate> addedOrganelles = new List<OrganelleTemplate>();
 
         // Search the new organelles for old ones of the same time, to count as many as having moved as possible
-        // ReSharper disable once PossibleMultipleEnumeration
         foreach (var newOrganelle in newSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x)))
         {
             if (missingOrganelles.Where(x => x.Definition == newOrganelle.Definition).Count()
@@ -1081,11 +1080,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             }
         }
 
-        // ReSharper restore PossibleMultipleEnumeration
-
         var organelleAdditionCost = addedOrganelles.Select(x => x.Definition.MPCost).Sum();
         var organelleMovementCost = movedOrganelles.Count * Constants.ORGANELLE_MOVE_COST;
-        var organelleDeletionCost = (missingOrganelles.Count() - movedOrganelles.Count) * Constants.ORGANELLE_REMOVE_COST;
+        var organelleDeletionCost = (missingOrganelles.Count - movedOrganelles.Count) * Constants.ORGANELLE_REMOVE_COST;
 
         return Constants.BASE_MUTATION_POINTS
             - rigidityChangeCost
