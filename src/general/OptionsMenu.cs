@@ -270,7 +270,7 @@ public class OptionsMenu : Control
     }
 
     // Languages variable
-    private static List<string> Languages => LanguagesAux;
+    private static List<string> Languages => LanguagesCache;
 
     public override void _Ready()
     {
