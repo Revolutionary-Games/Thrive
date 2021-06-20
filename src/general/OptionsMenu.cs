@@ -162,7 +162,7 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CustomUsernamePath;
 
-    // Sound tab statics
+    // Sound tab cache
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
