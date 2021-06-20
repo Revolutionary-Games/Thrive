@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-06-20 08:10-0400\n"
 "PO-Revision-Date: 2021-06-18 16:30+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -125,13 +125,13 @@ msgstr ""
 "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on "
 "les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb "
 "les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir "
-"l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot "
-"seguit, entrar en el \"mode d'unió\". Només et pots unir a cèl·lules de la "
-"teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i "
-"entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit "
-"prou compostos hauràs d'abandonar la teva colònia. Les grans colònies de cèl·"
-"lules són la via per a esdevenir un organisme multicel·lular (però encara no "
-"ha estat implementat al joc)."
+"l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, "
+"tot seguit, entrar en el \"mode d'unió\". Només et pots unir a cèl·lules "
+"de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr "
+"i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis "
+"recollit prou compostos hauràs d'abandonar la teva colònia. Les grans "
+"colònies de cèl·lules són la via per a esdevenir un organisme "
+"multicel·lular (però encara no ha estat implementat al joc)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -420,138 +420,143 @@ msgid "TOGGLE_ENGULF"
 msgstr "Activar el mode d'engolir"
 
 #: ../simulation_parameters/common/input_options.json:46
+#, fuzzy
+msgid "TOGGLE_SPRINT"
+msgstr "Activar monitor FPS"
+
+#: ../simulation_parameters/common/input_options.json:50
 msgid "TOGGLE_BINDING"
 msgstr "Activar el mode d'unió"
 
-#: ../simulation_parameters/common/input_options.json:50
+#: ../simulation_parameters/common/input_options.json:54
 msgid "TOGGLE_UNBINDING"
 msgstr "Desactivar el mode d'unió"
 
-#: ../simulation_parameters/common/input_options.json:54
+#: ../simulation_parameters/common/input_options.json:58
 msgid "UNBIND_ALL"
 msgstr "Desunir totes les cèl·lules"
 
-#: ../simulation_parameters/common/input_options.json:58
+#: ../simulation_parameters/common/input_options.json:62
 msgid "PERFORM_UNBINDING"
 msgstr "Dur a terme la desunió"
 
-#: ../simulation_parameters/common/input_options.json:67
+#: ../simulation_parameters/common/input_options.json:71
 msgid "CAMERA"
 msgstr "Càmera"
 
-#: ../simulation_parameters/common/input_options.json:71
+#: ../simulation_parameters/common/input_options.json:75
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
-#: ../simulation_parameters/common/input_options.json:75
+#: ../simulation_parameters/common/input_options.json:79
 msgid "ZOOM_IN"
 msgstr "Enfocar la visió de la càmera"
 
-#: ../simulation_parameters/common/input_options.json:83
+#: ../simulation_parameters/common/input_options.json:87
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:551
 msgid "EDITOR"
 msgstr "Editor"
 
-#: ../simulation_parameters/common/input_options.json:87
+#: ../simulation_parameters/common/input_options.json:91
 msgid "ROTATE_RIGHT"
 msgstr "Rotar cap a la dreta"
 
-#: ../simulation_parameters/common/input_options.json:91
+#: ../simulation_parameters/common/input_options.json:95
 msgid "ROTATE_LEFT"
 msgstr "Rotar cap a l'esquerra"
 
-#: ../simulation_parameters/common/input_options.json:95
+#: ../simulation_parameters/common/input_options.json:99
 msgid "UNDO"
 msgstr "Desfer l'acció"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:103
 msgid "REDO"
 msgstr "Refer l'acció"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:107
 msgid "PLACE_ORGANELLE"
 msgstr "Col·locar orgànul"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:111
 msgid "REMOVE_ORGANELLE"
 msgstr "Suprimir orgànul"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:115
 msgid "PAN_CAMERA_LEFT"
 msgstr "Desplaçar cap a l'esquerra"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Desplaçar cap a la dreta"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_UP"
 msgstr "Desplaçar cap amunt"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "PAN_CAMERA_DOWN"
 msgstr "Desplaçar cap avall"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_RESET"
 msgstr "Reinicialitzar càmera"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancel·la l'acció actual"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Trucs"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "ENABLE_EDITOR"
 msgstr "Habilitar l'editor"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "SPAWN_GLUCOSE"
 msgstr "Fer aparéixer Glucosa"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
 msgid "SPAWN_AMMONIA"
 msgstr "Fer aparéixer Amoníac"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:159
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fer aparéixer Fosfats"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:163
 msgid "CHEAT_MENU"
 msgstr "Menú de trucs"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "MISCELLANEOUS"
 msgstr "Miscel·lània"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:176
 msgid "TOGGLE_FPS"
 msgstr "Activar monitor FPS"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:180
 msgid "QUICK_SAVE"
 msgstr "Guardat ràpid"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:184
 msgid "QUICK_LOAD"
 msgstr "Càrrega ràpida"
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:188
 msgid "TAKE_SCREENSHOT"
 msgstr "Fer una captura de pantalla"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:192
 msgid "SHOW_HELP"
 msgstr "Mostrar tauler d'ajuda"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Activar pantalla completa"
 
@@ -1997,19 +2002,19 @@ msgstr "Encara no s'ha implementat."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per entrar "
-"al mode d'unió. Quan siguis en aquest mode, et pots unir a altres cèl·lules "
-"de la teva espècie entrant-hi en contacte. Per abandonar una colònia, "
-"pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
+"Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per "
+"entrar al mode d'unió. Quan siguis en aquest mode, et pots unir a altres "
+"cèl·lules de la teva espècie entrant-hi en contacte. Per abandonar una "
+"colònia, pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir "
-"un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les "
-"cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, "
-"no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·"
-"lectat prou compostos per dividir la teva cèl·lula."
+"Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a "
+"esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una "
+"colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part "
+"d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir "
+"un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2253,23 +2258,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "S'han esgotat els Punts de Mutació"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:948
 msgid "DEATH"
 msgstr "mort"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1424
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "acció carronyaire exitosa"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1431
 msgid "SUCCESSFUL_KILL"
 msgstr "acció de caça exitosa"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1792
 msgid "REPRODUCED"
 msgstr "reproducció"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1933
 msgid "ESCAPE_ENGULFING"
 msgstr "evasió d'un intent d'engolició"
 
@@ -2291,7 +2296,7 @@ msgstr ""
 "Jugador\n"
 "Velocitat"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
 msgstr "Jugador Duplicat"
 
@@ -2406,7 +2411,7 @@ msgstr "Plataforma de Gel"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Llit Marí de Pangònia"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
 msgstr "Mode de Desunió"
 
@@ -2427,11 +2432,11 @@ msgstr "S'està carregant l'Editor de Microbi"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "S'està esperant l'algorisme auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "L'algorisme auto-evo ha tingut un error"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "estat d'execució:"
 
@@ -3181,8 +3186,8 @@ msgstr ""
 "Has entrar en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre "
 "dels membres de la teva colònia per desunir-los.\n"
 "\n"
-"Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia cèl·"
-"lula o pressionar la tecla per desunir-les a totes."
+"Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia "
+"cèl·lula o pressionar la tecla per desunir-les a totes."
 
 #~ msgid "TURNS"
 #~ msgstr "Girs"

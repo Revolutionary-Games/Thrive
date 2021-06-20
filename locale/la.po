@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-06-20 08:10-0400\n"
 "PO-Revision-Date: 2021-01-03 09:13+0000\n"
 "Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
 "Language-Team: Latin <https://translate.revolutionarygamesstudio.com/"
@@ -257,138 +257,142 @@ msgid "TOGGLE_ENGULF"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:46
-msgid "TOGGLE_BINDING"
+msgid "TOGGLE_SPRINT"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-msgid "TOGGLE_UNBINDING"
+msgid "TOGGLE_BINDING"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:54
-msgid "UNBIND_ALL"
+msgid "TOGGLE_UNBINDING"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:58
+msgid "UNBIND_ALL"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:62
 msgid "PERFORM_UNBINDING"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:67
+#: ../simulation_parameters/common/input_options.json:71
 msgid "CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:71
+#: ../simulation_parameters/common/input_options.json:75
 msgid "ZOOM_OUT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:75
+#: ../simulation_parameters/common/input_options.json:79
 msgid "ZOOM_IN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:83
+#: ../simulation_parameters/common/input_options.json:87
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:551
 msgid "EDITOR"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:87
+#: ../simulation_parameters/common/input_options.json:91
 msgid "ROTATE_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:91
+#: ../simulation_parameters/common/input_options.json:95
 msgid "ROTATE_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:95
+#: ../simulation_parameters/common/input_options.json:99
 msgid "UNDO"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:103
 msgid "REDO"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:107
 msgid "PLACE_ORGANELLE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:111
 msgid "REMOVE_ORGANELLE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:115
 msgid "PAN_CAMERA_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "PAN_CAMERA_DOWN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_RESET"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
 msgid "SPAWN_AMMONIA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:159
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:163
 msgid "CHEAT_MENU"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "MISCELLANEOUS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:176
 msgid "TOGGLE_FPS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:180
 msgid "QUICK_SAVE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:184
 msgid "QUICK_LOAD"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:188
 msgid "TAKE_SCREENSHOT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:192
 msgid "SHOW_HELP"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "TOGGLE_FULLSCREEN"
 msgstr ""
 
@@ -1879,23 +1883,23 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:948
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1424
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1431
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1792
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1933
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2030,7 +2034,7 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -2051,11 +2055,11 @@ msgstr ""
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
