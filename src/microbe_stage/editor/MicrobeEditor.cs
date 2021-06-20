@@ -2192,7 +2192,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void OnRigidityChanged()
     {
         gui.UpdateRigiditySlider((int)Math.Round(CurrentSpecies.MembraneRigidity
-            * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+        * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
             MutationPoints);
 
         gui.UpdateSpeed(CalculateSpeed());
