@@ -166,6 +166,7 @@ public class OptionsMenu : Control
     private static readonly List<string> Languages_N = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
+
     private Button resetButton;
     private Button saveButton;
 
@@ -246,13 +247,16 @@ public class OptionsMenu : Control
 
     private GameProperties gameProperties;
 
-    private static List<string> Languages => Languages_N;
+    
     /*
       Signals
     */
 
     [Signal]
     public delegate void OnOptionsClosed();
+    
+    // Languages variable 
+    private static List<string> Languages => Languages_N;
 
     public enum OptionsMode
     {
