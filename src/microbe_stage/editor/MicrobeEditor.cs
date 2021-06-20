@@ -1080,7 +1080,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 addedOrganelles.Add(newOrganelle);
             }
         }
-        // ReSharper enable PossibleMultipleEnumeration
+
+        // ReSharper restore PossibleMultipleEnumeration
 
         var organelleAdditionCost = addedOrganelles.Select(x => x.Definition.MPCost).Sum();
         var organelleMovementCost = movedOrganelles.Count * Constants.ORGANELLE_MOVE_COST;
