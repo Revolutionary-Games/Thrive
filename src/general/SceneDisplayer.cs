@@ -23,7 +23,7 @@ public class SceneDisplayer : Spatial
 
     private void LoadNewScene()
     {
-        if (currentlyShown != null)
+        if (currentlyShown != null && IsInstanceValid(currentlyShown))
         {
             RemoveChild(currentlyShown);
             currentlyShown.QueueFree();
