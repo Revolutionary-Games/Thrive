@@ -842,50 +842,42 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         switch (Symmetry)
         {
             case MicrobeSymmetry.None:
-                {
-                    RemoveOrganelleAt(new Hex(q, r));
-                    break;
-                }
+                RemoveOrganelleAt(new Hex(q, r));
+                break;
 
             case MicrobeSymmetry.XAxisSymmetry:
+                RemoveOrganelleAt(new Hex(q, r));
+                if (q != -1 * q || r != r + q)
                 {
-                    RemoveOrganelleAt(new Hex(q, r));
-                    if (q != -1 * q || r != r + q)
-                    {
-                        RemoveOrganelleAt(new Hex(-1 * q, r + q));
-                    }
-
-                    break;
+                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
                 }
+
+                break;
 
             case MicrobeSymmetry.FourWaySymmetry:
+                RemoveOrganelleAt(new Hex(q, r));
+                if (q != -1 * q || r != r + q)
                 {
-                    RemoveOrganelleAt(new Hex(q, r));
-                    if (q != -1 * q || r != r + q)
-                    {
-                        RemoveOrganelleAt(new Hex(-1 * q, r + q));
-                        RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                        RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
-                    }
-                    else
-                    {
-                        RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    }
-
-                    break;
+                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
+                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                    RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
                 }
+                else
+                {
+                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                }
+
+                break;
 
             case MicrobeSymmetry.SixWaySymmetry:
-                {
-                    RemoveOrganelleAt(new Hex(q, r));
-                    RemoveOrganelleAt(new Hex(-1 * r, r + q));
-                    RemoveOrganelleAt(new Hex(-1 * (r + q), q));
-                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                    RemoveOrganelleAt(new Hex(r + q, -1 * q));
-                    break;
-                }
+                RemoveOrganelleAt(new Hex(q, r));
+                RemoveOrganelleAt(new Hex(-1 * r, r + q));
+                RemoveOrganelleAt(new Hex(-1 * (r + q), q));
+                RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r + q, -1 * q));
+                break;
         }
     }
 
