@@ -21,6 +21,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     public string NewName;
 
+    /// <summary>
+    ///   The current state of the species being worked on, used to calculate stats
+    ///   and MP costs
+    /// </summary>
+    [JsonProperty]
+    public MicrobeSpecies currentSpecies;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     /// <summary>
@@ -69,12 +76,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private PackedScene modelScene;
     private PackedScene microbeScene;
 
-    [JsonProperty]
-    private Color colour;
-
-    [JsonProperty]
-    private float rigidity;
-
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -115,13 +116,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     [JsonProperty]
     private MicrobeSpecies startingSpecies;
-
-    /// <summary>
-    ///   The current state of the species being worked on, used to calculate stats
-    ///   and MP costs
-    /// </summary>
-    [JsonProperty]
-    public MicrobeSpecies currentSpecies;
 
     /// <summary>
     ///   This is a global assessment if the currently being placed
