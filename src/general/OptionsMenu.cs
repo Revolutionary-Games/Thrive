@@ -166,7 +166,6 @@ public class OptionsMenu : Control
     private static readonly List<string> Languages_N = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
-    private static List<string> languages => Languages_N;
     private Button resetButton;
     private Button saveButton;
 
@@ -247,6 +246,7 @@ public class OptionsMenu : Control
 
     private GameProperties gameProperties;
 
+    private static List<string> languages => Languages_N;
     /*
       Signals
     */
