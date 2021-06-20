@@ -162,6 +162,10 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CustomUsernamePath;
 
+    private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
+        .OrderBy(i => i, StringComparer.InvariantCulture)
+        .ToList();
+
     private Button resetButton;
     private Button saveButton;
 
@@ -195,7 +199,6 @@ public class OptionsMenu : Control
     private CheckBox guiMuted;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
-    private List<string> languages;
 
     // Performance tab
     private Control performanceTab;
@@ -264,6 +267,8 @@ public class OptionsMenu : Control
         Inputs,
         Miscellaneous,
     }
+
+    private static List<string> Languages => LanguagesCache;
 
     public override void _Ready()
     {
@@ -689,10 +694,7 @@ public class OptionsMenu : Control
 
     private void LoadLanguages(OptionButton optionButton)
     {
-        languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
-            .ToList();
-
-        foreach (var locale in languages)
+        foreach (var locale in Languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
@@ -1082,7 +1084,7 @@ public class OptionsMenu : Control
 
     private void OnLanguageSettingSelected(int item)
     {
-        Settings.Instance.SelectedLanguage.Value = languages[item];
+        Settings.Instance.SelectedLanguage.Value = Languages[item];
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
@@ -1109,25 +1111,25 @@ public class OptionsMenu : Control
     {
         if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
         {
-            int index = languages.IndexOf(Settings.DefaultLanguage);
+            int index = Languages.IndexOf(Settings.DefaultLanguage);
 
             // Inexact match to match things like "fi_FI"
             if (index == -1 && Settings.DefaultLanguage.Contains("_"))
             {
-                index = languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
+                index = Languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
             }
 
             // English is the default language, if the user's default locale didn't match anything
             if (index < 0)
             {
-                index = languages.IndexOf("en");
+                index = Languages.IndexOf("en");
             }
 
             languageSelection.Selected = index;
         }
         else
         {
-            languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
+            languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value);
         }
     }
 
