@@ -689,7 +689,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
                 // Update rigidity slider in case it was disabled
                 // TODO: could come up with a bit nicer design here
-                int intRigidity = (int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+                int intRigidity = (int)Math.Round(CurrentSpecies.MembraneRigidity
+                    * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
                 gui.UpdateRigiditySlider(intRigidity, MutationPoints);
             }
             else
@@ -743,7 +744,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public void SetRigidity(int rigidity)
     {
-        int intRigidity = (int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        int intRigidity = (int)Math.Round(CurrentSpecies.MembraneRigidity
+            * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         if (MovingOrganelle != null)
         {
@@ -910,7 +912,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         float baseMovementForce = Constants.CELL_BASE_THRUST *
-            (CurrentSpecies.MembraneType.MovementFactor - CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
+            (CurrentSpecies.MembraneType.MovementFactor -
+                CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
@@ -951,8 +954,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public void UpdateGUI()
     {
-        gui.SetSpeciesInfo(NewName, CurrentSpecies.MembraneType, CurrentSpecies.Colour, CurrentSpecies.MembraneRigidity);
-        gui.UpdateRigiditySlider((int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+        gui.SetSpeciesInfo(NewName,
+            CurrentSpecies.MembraneType,
+            CurrentSpecies.Colour,
+            CurrentSpecies.MembraneRigidity);
+        gui.UpdateRigiditySlider(
+            (int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
             MutationPoints);
     }
 
@@ -1046,14 +1053,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         var membraneChangeCost = startingSpecies.MembraneType.Equals(newSpecies.MembraneType) ?
-            0 : newSpecies.MembraneType.EditorCost;
+            0 :
+            newSpecies.MembraneType.EditorCost;
 
         // Calculate which organelles are moved, added, or deleted
         var commonOrganelles = startingSpecies.Organelles.Organelles
             .Where(x => newSpecies.Organelles.Organelles.Contains(x));
 
         // Organelles that are not in the exact same spot; either deleted or moved
-        var missingOrganelles = startingSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x)).ToList();
+        var missingOrganelles = startingSpecies.Organelles.Organelles
+            .Where(x => !commonOrganelles.Contains(x)).ToList();
 
         List<OrganelleTemplate> movedOrganelles = new List<OrganelleTemplate>();
         List<OrganelleTemplate> addedOrganelles = new List<OrganelleTemplate>();
@@ -1074,7 +1083,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         var organelleAdditionCost = addedOrganelles.Select(x => x.Definition.MPCost).Sum();
         var organelleMovementCost = movedOrganelles.Count * Constants.ORGANELLE_MOVE_COST;
-        var organelleDeletionCost = (missingOrganelles.Count - movedOrganelles.Count) * Constants.ORGANELLE_REMOVE_COST;
+        var organelleDeletionCost = (missingOrganelles.Count - movedOrganelles.Count)
+            * Constants.ORGANELLE_REMOVE_COST;
 
         return Constants.BASE_MUTATION_POINTS
             - rigidityChangeCost
@@ -1386,7 +1396,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
-        gui.SetSpeciesInfo(NewName, CurrentSpecies.MembraneType, CurrentSpecies.Colour, CurrentSpecies.MembraneRigidity);
+        gui.SetSpeciesInfo(NewName,
+            CurrentSpecies.MembraneType,
+            CurrentSpecies.Colour,
+            CurrentSpecies.MembraneRigidity);
         gui.UpdateGeneration(species.Generation);
         gui.UpdateHitpoints(CalculateHitpoints());
     }
@@ -2178,7 +2191,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void OnRigidityChanged()
     {
-        gui.UpdateRigiditySlider((int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+        gui.UpdateRigiditySlider((int)Math.Round(CurrentSpecies.MembraneRigidity 
+            * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
             MutationPoints);
 
         gui.UpdateSpeed(CalculateSpeed());

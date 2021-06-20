@@ -63,10 +63,8 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
 
             return castObj.Position.Equals(Position);
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public object Clone()
