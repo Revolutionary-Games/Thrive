@@ -269,7 +269,7 @@ public class OptionsMenu : Control
         Miscellaneous,
     }
 
-    // Languages variable 
+    // Languages variable
     private static List<string> Languages => Languages_N;
 
     public override void _Ready()
