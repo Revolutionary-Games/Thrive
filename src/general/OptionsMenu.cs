@@ -163,10 +163,10 @@ public class OptionsMenu : Control
     public NodePath CustomUsernamePath;
 
     // Sound tab statics
-    private static readonly List<string> languages_N = TranslationServer.GetLoadedLocales().Cast<string>()
+    private static readonly List<string> Languages_N = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
-    public static List<string> languages =>languages_N;
+    private static List<string> languages => Languages_N;
     private Button resetButton;
     private Button saveButton;
 
