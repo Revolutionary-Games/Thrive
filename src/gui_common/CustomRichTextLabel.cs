@@ -140,13 +140,13 @@ public class CustomRichTextLabel : RichTextLabel
                     continue;
                 }
 
-                // Custom bbcode Thrive tag namespace
+                // Custom bbcode Thrive namespace
                 var bbcodeNamespace = leftHandSide[0];
 
-                // Tag name (and subtag if this is an opening tag)
+                // The bbcode (and its attributes if this is an opening tag)
                 var splitTagBlock = StringUtils.SplitByWhiteSpace(leftHandSide[1], true);
 
-                // Not a thrive custom tag, don't parse this
+                // Not a thrive custom bbcode, don't parse this
                 if (!bbcodeNamespace.Contains("thrive"))
                 {
                     result.Append($"[{tagBlock}]");
@@ -190,7 +190,7 @@ public class CustomRichTextLabel : RichTextLabel
                     }
                     else
                     {
-                        // Tag is not present in the enum
+                        // BBcode is not present in the enum
                         result.Append(input);
                         GD.PrintErr($"Failed parsing custom thrive tag: {tagStack.Peek()}, it probably doesn't exist");
                     }
@@ -256,13 +256,13 @@ public class CustomRichTextLabel : RichTextLabel
 
                         var value = split[1];
 
-                        if (!value.BeginsWith("\"") || !value.EndsWith("\"", StringComparison.CurrentCulture))
+                        if (!value.BeginsWith("\"") || !value.EndsWith("\"", StringComparison.InvariantCulture))
                             break;
 
                         name = value.Substr(1, value.Length - 2);
                     }
 
-                    // if (... other tags ...)
+                    // if (... other attribs ...)
                 }
 
                 // ReSharper restore MergeSequentialChecksWhenPossible
