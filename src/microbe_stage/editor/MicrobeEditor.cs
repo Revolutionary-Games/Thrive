@@ -839,58 +839,53 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         int q = hex.Q;
         int r = hex.R;
-
         switch (Symmetry)
         {
-        case MicrobeSymmetry.None:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-                break;
-            }
-
-        case MicrobeSymmetry.XAxisSymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                if (q != -1 * q || r != r + q)
+            case MicrobeSymmetry.None:
                 {
-                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
+                    RemoveOrganelleAt(new Hex(q, r));
+                    break;
                 }
 
-                break;
-            }
-
-        case MicrobeSymmetry.FourWaySymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                if (q != -1 * q || r != r + q)
+            case MicrobeSymmetry.XAxisSymmetry:
                 {
-                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
+                    RemoveOrganelleAt(new Hex(q, r));
+                    if (q != -1 * q || r != r + q)
+                    {
+                        RemoveOrganelleAt(new Hex(-1 * q, r + q));
+                    }
+
+                    break;
+                }
+
+            case MicrobeSymmetry.FourWaySymmetry:
+                {
+                    RemoveOrganelleAt(new Hex(q, r));
+                    if (q != -1 * q || r != r + q)
+                    {
+                        RemoveOrganelleAt(new Hex(-1 * q, r + q));
+                        RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                        RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
+                    }
+                    else
+                    {
+                        RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                    }
+
+                    break;
+                }
+
+            case MicrobeSymmetry.SixWaySymmetry:
+                {
+                    RemoveOrganelleAt(new Hex(q, r));
+                    RemoveOrganelleAt(new Hex(-1 * r, r + q));
+                    RemoveOrganelleAt(new Hex(-1 * (r + q), q));
                     RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
+                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                    RemoveOrganelleAt(new Hex(r + q, -1 * q));
+                    break;
                 }
-                else
-                {
-                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                }
-
-                break;
-            }
-
-        case MicrobeSymmetry.SixWaySymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                RemoveOrganelleAt(new Hex(-1 * r, r + q));
-                RemoveOrganelleAt(new Hex(-1 * (r + q), q));
-                RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                RemoveOrganelleAt(new Hex(r + q, -1 * q));
-
-                break;
-            }
         }
     }
 
@@ -1072,6 +1067,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         List<OrganelleTemplate> addedOrganelles = new List<OrganelleTemplate>();
 
         // Search the new organelles for old ones of the same time, to count as many as having moved as possible
+        // ReSharper disable once PossibleMultipleEnumeration
         foreach (var newOrganelle in newSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x)))
         {
             if (missingOrganelles.Where(x => x.Definition == newOrganelle.Definition).Count()
@@ -1084,6 +1080,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 addedOrganelles.Add(newOrganelle);
             }
         }
+        // ReSharper enable PossibleMultipleEnumeration
 
         var organelleAdditionCost = addedOrganelles.Select(x => x.Definition.MPCost).Sum();
         var organelleMovementCost = movedOrganelles.Count * Constants.ORGANELLE_MOVE_COST;
