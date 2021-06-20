@@ -246,7 +246,7 @@ public class OptionsMenu : Control
 
     private GameProperties gameProperties;
 
-    private static List<string> languages => Languages_N;
+    private static List<string> Languages => Languages_N;
     /*
       Signals
     */
@@ -693,7 +693,7 @@ public class OptionsMenu : Control
 
     private void LoadLanguages(OptionButton optionButton)
     {
-        foreach (var locale in languages)
+        foreach (var locale in Languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
@@ -1083,7 +1083,7 @@ public class OptionsMenu : Control
 
     private void OnLanguageSettingSelected(int item)
     {
-        Settings.Instance.SelectedLanguage.Value = languages[item];
+        Settings.Instance.SelectedLanguage.Value = Languages[item];
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
@@ -1110,25 +1110,25 @@ public class OptionsMenu : Control
     {
         if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
         {
-            int index = languages.IndexOf(Settings.DefaultLanguage);
+            int index = Languages.IndexOf(Settings.DefaultLanguage);
 
             // Inexact match to match things like "fi_FI"
             if (index == -1 && Settings.DefaultLanguage.Contains("_"))
             {
-                index = languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
+                index = Languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
             }
 
             // English is the default language, if the user's default locale didn't match anything
             if (index < 0)
             {
-                index = languages.IndexOf("en");
+                index = Languages.IndexOf("en");
             }
 
             languageSelection.Selected = index;
         }
         else
         {
-            languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
+            languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value);
         }
     }
 
