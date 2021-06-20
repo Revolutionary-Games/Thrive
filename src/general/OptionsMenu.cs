@@ -247,16 +247,12 @@ public class OptionsMenu : Control
 
     private GameProperties gameProperties;
 
-    
     /*
       Signals
     */
 
     [Signal]
     public delegate void OnOptionsClosed();
-    
-    // Languages variable 
-    private static List<string> Languages => Languages_N;
 
     public enum OptionsMode
     {
@@ -272,6 +268,9 @@ public class OptionsMenu : Control
         Inputs,
         Miscellaneous,
     }
+
+    // Languages variable 
+    private static List<string> Languages => Languages_N;
 
     public override void _Ready()
     {
