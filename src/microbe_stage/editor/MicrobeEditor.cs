@@ -709,7 +709,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (ActiveActionName == null)
             return;
 
-        if (AddOrganelle(ActiveActionName))
+        if (AddOrganelle(currentSpecies, ActiveActionName))
         {
             // Only trigger tutorial if an organelle was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
@@ -821,6 +821,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         MovingOrganelle = selectedOrganelle;
         currentSpecies.Organelles.Remove(MovingOrganelle);
+        gui.UpdateMutationPointsBar();
     }
 
     /// <summary>
@@ -947,27 +948,25 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Returns the cost of the organelle that is about to be placed
     /// </summary>
-    public float CalculateCurrentOrganelleCost()
+    public int MutationPointsAfterOrganelleAddition()
     {
-        if (string.IsNullOrEmpty(ActiveActionName) || !ShowHover)
-            return 0;
-
-        var cost = SimulationParameters.Instance.GetOrganelleType(ActiveActionName).MPCost;
-
-        switch (Symmetry)
+        if (MovingOrganelle != null)
         {
-            case MicrobeSymmetry.XAxisSymmetry:
-                cost *= 2;
-                break;
-            case MicrobeSymmetry.FourWaySymmetry:
-                cost *= 4;
-                break;
-            case MicrobeSymmetry.SixWaySymmetry:
-                cost *= 6;
-                break;
+            return Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST;
         }
 
-        return cost;
+        if (string.IsNullOrEmpty(ActiveActionName) || !ShowHover)
+            return Constants.BASE_MUTATION_POINTS;
+
+        var prospectiveSpecies = (MicrobeSpecies)currentSpecies.Clone();
+        GetMouseHex(out int q, out int r);
+        var organelle = new OrganelleTemplate(GetOrganelleDefinition(ActiveActionName),
+            new Hex(q, r), 0);
+
+        // This placement might be invalid, but that doesn't matter for measurment purposes
+        prospectiveSpecies.Organelles.Organelles.Add(organelle);
+
+        return MutationPointsAfterChange(prospectiveSpecies);
     }
 
     public void UpdateGUI()
@@ -1080,7 +1079,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         List<OrganelleTemplate> addedOrganelles = new List<OrganelleTemplate>();
 
         // Search the new organelles for old ones of the same time, to count as many as having moved as possible
-        foreach (var newOrganelle in currentSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x)))
+        foreach (var newOrganelle in newSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x)))
         {
             if (missingOrganelles.Where(x => x.Definition == newOrganelle.Definition).Count()
                 > movedOrganelles.Where(x => x.Definition == newOrganelle.Definition).Count())
@@ -1669,7 +1668,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   and also applies symmetry to place multiple at once.
     /// </summary>
     /// <returns>True when at least one organelle got placed</returns>
-    private bool AddOrganelle(string organelleType)
+    private bool AddOrganelle(MicrobeSpecies species, string organelleType)
     {
         GetMouseHex(out int q, out int r);
 

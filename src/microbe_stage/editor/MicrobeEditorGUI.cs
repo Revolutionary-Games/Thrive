@@ -832,7 +832,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
-            editor.MutationPoints - editor.CalculateCurrentOrganelleCost();
+            editor.MutationPointsAfterOrganelleAddition();
 
         GUICommon.Instance.TweenBarValue(
             mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
