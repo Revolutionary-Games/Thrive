@@ -767,7 +767,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             }
 
             rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
-            cost = stepsLeft * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
@@ -843,55 +842,55 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         switch (Symmetry)
         {
-            case MicrobeSymmetry.None:
+        case MicrobeSymmetry.None:
+            {
+                RemoveOrganelleAt(new Hex(q, r));
+                break;
+            }
+
+        case MicrobeSymmetry.XAxisSymmetry:
+            {
+                RemoveOrganelleAt(new Hex(q, r));
+
+                if (q != -1 * q || r != r + q)
                 {
-                    RemoveOrganelleAt(new Hex(q, r));
-                    break;
+                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
                 }
 
-            case MicrobeSymmetry.XAxisSymmetry:
+                break;
+            }
+
+        case MicrobeSymmetry.FourWaySymmetry:
+            {
+                RemoveOrganelleAt(new Hex(q, r));
+
+                if (q != -1 * q || r != r + q)
                 {
-                    RemoveOrganelleAt(new Hex(q, r));
-
-                    if (q != -1 * q || r != r + q)
-                    {
-                        RemoveOrganelleAt(new Hex(-1 * q, r + q));
-                    }
-
-                    break;
-                }
-
-            case MicrobeSymmetry.FourWaySymmetry:
-                {
-                    RemoveOrganelleAt(new Hex(q, r));
-
-                    if (q != -1 * q || r != r + q)
-                    {
-                        RemoveOrganelleAt(new Hex(-1 * q, r + q));
-                        RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                        RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
-                    }
-                    else
-                    {
-                        RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    }
-
-                    break;
-                }
-
-            case MicrobeSymmetry.SixWaySymmetry:
-                {
-                    RemoveOrganelleAt(new Hex(q, r));
-
-                    RemoveOrganelleAt(new Hex(-1 * r, r + q));
-                    RemoveOrganelleAt(new Hex(-1 * (r + q), q));
+                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
                     RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                    RemoveOrganelleAt(new Hex(r + q, -1 * q));
-
-                    break;
+                    RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
                 }
+                else
+                {
+                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                }
+
+                break;
+            }
+
+        case MicrobeSymmetry.SixWaySymmetry:
+            {
+                RemoveOrganelleAt(new Hex(q, r));
+
+                RemoveOrganelleAt(new Hex(-1 * r, r + q));
+                RemoveOrganelleAt(new Hex(-1 * (r + q), q));
+                RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r + q, -1 * q));
+
+                break;
+            }
         }
     }
 
@@ -1063,8 +1062,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             0 : newSpecies.MembraneType.EditorCost;
 
         // Calculate which organelles are moved, added, or deleted
-        var commonOrganelles = startingSpecies.Organelles.Organelles.Where(x => newSpecies.Organelles.Organelles
-        .Contains(x));
+        var commonOrganelles = startingSpecies.Organelles.Organelles
+            .Where(x => newSpecies.Organelles.Organelles.Contains(x));
 
         // Organelles that are not in the exact same spot; either deleted or moved
         var missingOrganelles = startingSpecies.Organelles.Organelles.Where(x => !commonOrganelles.Contains(x));

@@ -54,19 +54,19 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
 
     public override bool Equals(object obj)
     {
-        if (!(obj is OrganelleTemplate))
+        if (obj is OrganelleTemplate castObj)
+        {
+            if (castObj.Definition != Definition)
+            {
+                return false;
+            }
+
+            return castObj.Position.Equals(Position);
+        }
+        else
         {
             return false;
         }
-
-        var castObj = (OrganelleTemplate)obj;
-
-        if (castObj.Definition != Definition)
-        {
-            return false;
-        }
-
-        return castObj.Position.Equals(Position);
     }
 
     public object Clone()
