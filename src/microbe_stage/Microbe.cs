@@ -1364,6 +1364,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
+            foreach (var organelle in organelles)
+                organelle.ReParentShapes(this);
+
             return;
         }
 
@@ -1378,6 +1381,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (microbe == this)
         {
             OnIGotAddedToColony();
+
+            foreach (var organelle in organelles)
+                organelle.ReParentShapes(Colony.Master);
         }
         else
         {
