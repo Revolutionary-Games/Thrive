@@ -47,6 +47,11 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     [JsonIgnore]
     public IEnumerable<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
 
+    public override int GetHashCode()
+    {
+        return Definition.GetHashCode() * Position.GetHashCode();
+    }
+
     public override bool Equals(object obj)
     {
         if (!(obj is OrganelleTemplate))
