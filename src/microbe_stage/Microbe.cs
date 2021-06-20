@@ -1355,6 +1355,19 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
     }
 
+    /// <summary>
+    ///   Unbinds all colony members
+    /// </summary>
+    public void UnbindAll()
+    {
+        if (State == MicrobeState.Unbinding || State == MicrobeState.Binding)
+            State = MicrobeState.Normal;
+
+        // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
+        // disband entire colony functionality
+        Colony?.RemoveFromColony(this);
+    }
+
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
         if (microbe == this)
