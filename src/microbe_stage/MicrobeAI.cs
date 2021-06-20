@@ -12,6 +12,9 @@ using Newtonsoft.Json;
 ///   <para>
 ///     This is run in a background thread so no state changing or scene spawning methods on Microbe may be called.
 ///   </para>
+///   <para>
+///     TODO: this should be updated to have special handling for cell colonies
+///   </para>
 /// </remarks>
 public class MicrobeAI
 {
@@ -88,7 +91,8 @@ public class MicrobeAI
         }
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
-        Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.Translation;
+        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2323
+        Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.GlobalTransform.origin;
         if (predator.HasValue &&
             DistanceFromMe(predator.Value) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
         {
@@ -109,7 +113,7 @@ public class MicrobeAI
         if (possiblePrey != null)
         {
             bool engulfPrey = possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-                microbe.EngulfSize && DistanceFromMe(possiblePrey.Translation) < 10.0f * microbe.EngulfSize;
+                microbe.EngulfSize && DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
             Vector3? prey = LeadTarget(possiblePrey);
 
             EngagePrey(prey.Value, random, engulfPrey);
@@ -179,7 +183,7 @@ public class MicrobeAI
             {
                 if (rival != microbe)
                 {
-                    var rivalDistance = (rival.Translation - chosenChunk.Translation).LengthSquared();
+                    var rivalDistance = (rival.GlobalTransform.origin - chosenChunk.Translation).LengthSquared();
                     if (rivalDistance < 500.0f &&
                         rivalDistance < distanceToChunk)
                     {
@@ -216,7 +220,7 @@ public class MicrobeAI
     {
         if (focusedPrey != null)
         {
-            var distanceToFocusedPrey = DistanceFromMe(focusedPrey.Translation);
+            var distanceToFocusedPrey = DistanceFromMe(focusedPrey.GlobalTransform.origin);
             if (!focusedPrey.Dead && distanceToFocusedPrey <
                 (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
@@ -241,13 +245,13 @@ public class MicrobeAI
         {
             if (!otherMicrobe.Dead)
             {
-                if (DistanceFromMe(otherMicrobe.Translation) <
+                if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
                     && CanTryToEatMicrobe(otherMicrobe))
                 {
                     if (chosenPrey == null ||
-                        (chosenPrey.Translation - microbe.Translation).LengthSquared() >
-                        (otherMicrobe.Translation - microbe.Translation).LengthSquared())
+                        (chosenPrey.GlobalTransform.origin - microbe.Translation).LengthSquared() >
+                        (otherMicrobe.GlobalTransform.origin - microbe.Translation).LengthSquared())
                     {
                         chosenPrey = otherMicrobe;
                     }
@@ -256,7 +260,7 @@ public class MicrobeAI
         }
 
         focusedPrey = chosenPrey;
-        pursuitThreshold = chosenPrey != null ? DistanceFromMe(chosenPrey.Translation) * 3.0f : 0.0f;
+        pursuitThreshold = chosenPrey != null ? DistanceFromMe(chosenPrey.GlobalTransform.origin) * 3.0f : 0.0f;
         return chosenPrey;
     }
 
@@ -278,8 +282,8 @@ public class MicrobeAI
                 && otherMicrobe.EngulfSize > microbe.EngulfSize
                 * (1.8f - SpeciesFear / Constants.MAX_SPECIES_FEAR))
             {
-                if (predator == null || DistanceFromMe(predator.Translation) >
-                    DistanceFromMe(otherMicrobe.Translation))
+                if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >
+                    DistanceFromMe(otherMicrobe.GlobalTransform.origin))
                 {
                     predator = otherMicrobe;
                 }
@@ -482,7 +486,7 @@ public class MicrobeAI
 
     private Vector3 LeadTarget(Microbe target)
     {
-        return target.Translation.LinearInterpolate(target.LookAtPoint, 0.15f);
+        return target.GlobalTransform.origin.LinearInterpolate(target.LookAtPoint, 0.15f);
     }
 
     private float DistanceFromMe(Vector3 target)

@@ -80,8 +80,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [JsonProperty]
     private bool wasBeingEngulfed;
 
-    // private bool isCurrentlyEngulfing = false;
-
     /// <summary>
     ///   Tracks other Microbes that are within the engulf area and are ignoring collisions with this body.
     /// </summary>
@@ -259,6 +257,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     [JsonProperty]
     public float MovementFactor { get; private set; } = 1.0f;
+
+    [JsonIgnore]
+    public AliveMarker AliveMarker { get; } = new AliveMarker();
 
     /// <summary>
     ///   The current state of the microbe. Shared across the colony
@@ -800,7 +801,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Dead = true;
 
         OnDeath?.Invoke(this);
-        Colony?.RemoveFromColony(this);
+        OnDestroyed();
 
         // Reset some stuff
         State = MicrobeState.Normal;
@@ -1326,9 +1327,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-    public override void _ExitTree()
+    public void OnDestroyed()
     {
+        if (IsPlayerMicrobe)
+        {
+            CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
+        }
+
         Colony?.RemoveFromColony(this);
+
+        AliveMarker.Alive = false;
     }
 
     public void AIThink(float delta, Random random, MicrobeAICommonData data)
@@ -2086,6 +2094,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (Membrane.DissolveEffectValue >= 1)
         {
+            OnDestroyed();
             this.DetachAndQueueFree();
         }
     }
@@ -2427,11 +2436,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
             return;
 
-        BeginBindWith(other);
+        // Invoke this on the next frame to avoid crashing when adding a third cell
+        Invoke.Instance.Perform(BeginBind);
     }
 
-    private void BeginBindWith(Microbe other)
+    private void BeginBind()
     {
+        var other = touchedMicrobes.FirstOrDefault();
+
+        if (other == null)
+        {
+            GD.PrintErr("Touched microbe has disappeared before binding could start");
+            return;
+        }
+
+        if (other.Colony != null)
+        {
+            GD.PrintErr("Can't bind to a cell that is suddenly in a colony");
+            return;
+        }
+
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
@@ -2444,8 +2468,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             GD.Print("Created a new colony");
         }
 
-        Colony.AddToColony(other, this);
+        // Move out of binding state before adding the colony member to avoid accidental collisions being able to
+        // recursively trigger colony attachment
         State = MicrobeState.Normal;
+        other.State = MicrobeState.Normal;
+
+        Colony.AddToColony(other, this);
     }
 
     /// <summary>
