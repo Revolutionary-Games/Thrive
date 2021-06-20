@@ -43,21 +43,21 @@ public class MicrobeEditorAction : ReversibleAction
 
     public override void DoAction()
     {
-        redo(this, editor.currentSpecies);
+        redo(this, editor.CurrentSpecies);
         editor.UpdateMutationPoints();
         editor.UpdateGUI();
     }
 
     public override void UndoAction()
     {
-        undo(this, editor.currentSpecies);
+        undo(this, editor.CurrentSpecies);
         editor.UpdateMutationPoints();
         editor.UpdateGUI();
     }
 
     public int Forcast()
     {
-        var prospectiveSpecies = (MicrobeSpecies)editor.currentSpecies.Clone();
+        var prospectiveSpecies = (MicrobeSpecies)editor.CurrentSpecies.Clone();
         redo(this, prospectiveSpecies);
         return editor.MutationPointsAfterChange(prospectiveSpecies);
     }

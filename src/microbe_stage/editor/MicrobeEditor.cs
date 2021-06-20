@@ -26,7 +26,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   and MP costs
     /// </summary>
     [JsonProperty]
-    public MicrobeSpecies currentSpecies;
+    public MicrobeSpecies CurrentSpecies;
 
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
@@ -316,13 +316,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d.InternalName == "nucleus");
 
     [JsonIgnore]
-    public bool HasIslands => currentSpecies.Organelles.GetIslandHexes().Count > 0;
+    public bool HasIslands => CurrentSpecies.Organelles.GetIslandHexes().Count > 0;
 
     /// <summary>
     ///   Number of organelles in the microbe
     /// </summary>
     [JsonIgnore]
-    public int MicrobeSize => currentSpecies.Organelles.Organelles.Count;
+    public int MicrobeSize => CurrentSpecies.Organelles.Organelles.Count;
 
     /// <summary>
     ///   Number of hexes in the microbe
@@ -334,7 +334,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             int result = 0;
 
-            foreach (var organelle in currentSpecies.Organelles.Organelles)
+            foreach (var organelle in CurrentSpecies.Organelles.Organelles)
             {
                 result += organelle.Definition.HexCount;
             }
@@ -343,7 +343,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
-    public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => currentSpecies.Organelles
+    public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => CurrentSpecies.Organelles
         .Where(p => p.Definition.Unique)
         .Select(p => p.Definition);
 
@@ -474,7 +474,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // It is easiest to just replace all
         startingSpecies.Organelles.Clear();
 
-        foreach (var organelle in currentSpecies.Organelles.Organelles)
+        foreach (var organelle in CurrentSpecies.Organelles.Organelles)
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
             organelleToAdd.PlacedThisSession = false;
@@ -508,9 +508,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         // Update membrane
-        startingSpecies.MembraneType = currentSpecies.MembraneType;
-        startingSpecies.Colour = currentSpecies.Colour;
-        startingSpecies.MembraneRigidity = currentSpecies.MembraneRigidity;
+        startingSpecies.MembraneType = CurrentSpecies.MembraneType;
+        startingSpecies.Colour = CurrentSpecies.Colour;
+        startingSpecies.MembraneRigidity = CurrentSpecies.MembraneRigidity;
 
         // Move patches
         if (targetPatch != null)
@@ -588,7 +588,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var oldEditedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>();
         var oldMembrane = startingSpecies.MembraneType;
 
-        foreach (var organelle in currentSpecies.Organelles)
+        foreach (var organelle in CurrentSpecies.Organelles)
         {
             oldEditedMicrobeOrganelles.Add(organelle);
         }
@@ -689,7 +689,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
                 // Update rigidity slider in case it was disabled
                 // TODO: could come up with a bit nicer design here
-                int intRigidity = (int)Math.Round(currentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+                int intRigidity = (int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
                 gui.UpdateRigiditySlider(intRigidity, MutationPoints);
             }
             else
@@ -703,7 +703,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (ActiveActionName == null)
             return;
 
-        if (AddOrganelle(currentSpecies, ActiveActionName))
+        if (AddOrganelle(ActiveActionName))
         {
             // Only trigger tutorial if an organelle was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
@@ -729,21 +729,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         var membrane = SimulationParameters.Instance.GetMembrane(membraneName);
 
-        if (currentSpecies.MembraneType.Equals(membrane))
+        if (CurrentSpecies.MembraneType.Equals(membrane))
             return;
 
         var action = new MicrobeEditorAction(this, membrane.EditorCost, DoMembraneChangeAction,
-            UndoMembraneChangeAction, new MembraneActionData(currentSpecies.MembraneType, membrane));
+            UndoMembraneChangeAction, new MembraneActionData(CurrentSpecies.MembraneType, membrane));
 
         EnqueueAction(action);
 
         // In case the action failed, we need to make sure the membrane buttons are updated properly
-        gui.UpdateMembraneButtons(currentSpecies.MembraneType.InternalName);
+        gui.UpdateMembraneButtons(CurrentSpecies.MembraneType.InternalName);
     }
 
     public void SetRigidity(int rigidity)
     {
-        int intRigidity = (int)Math.Round(currentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        int intRigidity = (int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         if (MovingOrganelle != null)
         {
@@ -771,7 +771,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
-        var prevRigidity = currentSpecies.MembraneRigidity;
+        var prevRigidity = CurrentSpecies.MembraneRigidity;
 
         var action = new MicrobeEditorAction(this, 0, DoRigidityChangeAction, UndoRigidityChangeAction,
             new RigidityChangeActionData(newRigidity, prevRigidity));
@@ -797,7 +797,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         GetMouseHex(out int q, out int r);
 
-        var organelle = currentSpecies.Organelles.GetOrganelleAt(new Hex(q, r));
+        var organelle = CurrentSpecies.Organelles.GetOrganelleAt(new Hex(q, r));
 
         if (organelle == null)
             return;
@@ -814,7 +814,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         MovingOrganelle = selectedOrganelle;
-        currentSpecies.Organelles.Remove(MovingOrganelle);
+        CurrentSpecies.Organelles.Remove(MovingOrganelle);
         gui.UpdateMutationPointsBar();
     }
 
@@ -827,7 +827,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         if (MovingOrganelle != null)
         {
-            currentSpecies.Organelles.Add(MovingOrganelle);
+            CurrentSpecies.Organelles.Add(MovingOrganelle);
             MovingOrganelle = null;
             gui.UpdateCancelButtonVisibility();
             return true;
@@ -903,7 +903,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         Vector3 forwardsDirection = new Vector3(0, 0, -1);
 
-        foreach (var organelle in currentSpecies.Organelles.Organelles)
+        foreach (var organelle in CurrentSpecies.Organelles.Organelles)
         {
             microbeMass += organelle.Definition.Mass;
 
@@ -924,7 +924,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         float baseMovementForce = Constants.CELL_BASE_THRUST *
-            (currentSpecies.MembraneType.MovementFactor - currentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
+            (CurrentSpecies.MembraneType.MovementFactor - CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
@@ -933,8 +933,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = currentSpecies.MembraneType.Hitpoints +
-            (currentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+        var maxHitpoints = CurrentSpecies.MembraneType.Hitpoints +
+            (CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
 
         return maxHitpoints;
     }
@@ -952,7 +952,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (string.IsNullOrEmpty(ActiveActionName) || !ShowHover)
             return Constants.BASE_MUTATION_POINTS;
 
-        var prospectiveSpecies = (MicrobeSpecies)currentSpecies.Clone();
+        var prospectiveSpecies = (MicrobeSpecies)CurrentSpecies.Clone();
         GetMouseHex(out int q, out int r);
         var organelle = new OrganelleTemplate(GetOrganelleDefinition(ActiveActionName),
             new Hex(q, r), 0);
@@ -965,8 +965,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public void UpdateGUI()
     {
-        gui.SetSpeciesInfo(NewName, currentSpecies.MembraneType, currentSpecies.Colour, currentSpecies.MembraneRigidity);
-        gui.UpdateRigiditySlider((int)Math.Round(currentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+        gui.SetSpeciesInfo(NewName, CurrentSpecies.MembraneType, CurrentSpecies.Colour, CurrentSpecies.MembraneRigidity);
+        gui.UpdateRigiditySlider((int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
             MutationPoints);
     }
 
@@ -1048,7 +1048,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (FreeBuilding || CheatManager.InfiniteMP)
             return;
 
-        MutationPoints = MutationPointsAfterChange(currentSpecies);
+        MutationPoints = MutationPointsAfterChange(CurrentSpecies);
 
         gui.UpdateMutationPointsBar();
     }
@@ -1100,7 +1100,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
     {
-        return currentSpecies.Organelles.Organelles.Any(o => o.Definition == organelleDefinition);
+        return CurrentSpecies.Organelles.Organelles.Any(o => o.Definition == organelleDefinition);
     }
 
     /// <summary>
@@ -1175,7 +1175,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var highestPointInMiddleRows = 0.0f;
 
         // Iterate through all organelles
-        foreach (var organelle in currentSpecies.Organelles)
+        foreach (var organelle in CurrentSpecies.Organelles)
         {
             // Iterate through all hexes
             foreach (var relativeHex in organelle.Definition.Hexes)
@@ -1358,22 +1358,22 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void SetupEditedSpecies(MicrobeSpecies species)
     {
         startingSpecies = species ?? throw new NullReferenceException("didn't find edited species");
-        currentSpecies = (MicrobeSpecies)species.Clone();
+        CurrentSpecies = (MicrobeSpecies)species.Clone();
 
-        currentSpecies.Organelles = new OrganelleLayout<OrganelleTemplate>(
+        CurrentSpecies.Organelles = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
 
         // We need to set the membrane type here so the ATP balance
         // bar can take it into account (the bar is updated when
         // organelles are added)
-        currentSpecies.MembraneType = species.MembraneType;
-        currentSpecies.MembraneRigidity = species.MembraneRigidity;
-        currentSpecies.Colour = species.Colour;
+        CurrentSpecies.MembraneType = species.MembraneType;
+        CurrentSpecies.MembraneRigidity = species.MembraneRigidity;
+        CurrentSpecies.Colour = species.Colour;
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
         {
-            currentSpecies.Organelles.Add((OrganelleTemplate)organelle.Clone());
+            CurrentSpecies.Organelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
         // Create a mutated version of the current species code to compete against the player
@@ -1400,7 +1400,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
-        gui.SetSpeciesInfo(NewName, currentSpecies.MembraneType, currentSpecies.Colour, currentSpecies.MembraneRigidity);
+        gui.SetSpeciesInfo(NewName, CurrentSpecies.MembraneType, CurrentSpecies.Colour, CurrentSpecies.MembraneRigidity);
         gui.UpdateGeneration(species.Generation);
         gui.UpdateHitpoints(CalculateHitpoints());
     }
@@ -1642,13 +1642,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
 
         previewMicrobe.Species.IsBacteria = false;
-        previewMicrobe.Species.Colour = currentSpecies.Colour;
-        previewMicrobe.Species.MembraneType = currentSpecies.MembraneType;
-        previewMicrobe.Species.MembraneRigidity = currentSpecies.MembraneRigidity;
+        previewMicrobe.Species.Colour = CurrentSpecies.Colour;
+        previewMicrobe.Species.MembraneType = CurrentSpecies.MembraneType;
+        previewMicrobe.Species.MembraneRigidity = CurrentSpecies.MembraneRigidity;
 
         previewMicrobe.Species.Organelles.Clear();
 
-        foreach (var entry in currentSpecies.Organelles.Organelles)
+        foreach (var entry in CurrentSpecies.Organelles.Organelles)
             previewMicrobe.Species.Organelles.Add(entry);
 
         // This is now just for applying changes in the species to the preview cell
@@ -1662,7 +1662,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   and also applies symmetry to place multiple at once.
     /// </summary>
     /// <returns>True when at least one organelle got placed</returns>
-    private bool AddOrganelle(MicrobeSpecies species, string organelleType)
+    private bool AddOrganelle(string organelleType)
     {
         GetMouseHex(out int q, out int r);
 
@@ -1758,7 +1758,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
 
-        return currentSpecies.Organelles.CanPlaceAndIsTouching(
+        return CurrentSpecies.Organelles.CanPlaceAndIsTouching(
             organelle,
             notPlacingCytoplasm,
             notPlacingCytoplasm);
@@ -1773,7 +1773,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <returns>True if valid</returns>
     private bool IsMoveTargetValid(Hex position, int rotation, OrganelleTemplate organelle)
     {
-        return currentSpecies.Organelles.CanPlace(organelle.Definition, position, rotation, false);
+        return CurrentSpecies.Organelles.CanPlace(organelle.Definition, position, rotation, false);
     }
 
     private OrganelleDefinition GetOrganelleDefinition(string name)
@@ -1865,7 +1865,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void RemoveOrganelleAt(Hex location)
     {
-        var organelleHere = currentSpecies.Organelles.GetOrganelleAt(location);
+        var organelleHere = CurrentSpecies.Organelles.GetOrganelleAt(location);
         if (organelleHere == null)
             return;
 
@@ -1958,7 +1958,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // the wrong organelles
 
         MutationPoints = Constants.BASE_MUTATION_POINTS;
-        currentSpecies.MembraneType = SimulationParameters.Instance.GetMembrane("single");
+        CurrentSpecies.MembraneType = SimulationParameters.Instance.GetMembrane("single");
         species.Organelles.Clear();
         species.Organelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
             new Hex(0, 0), 0));
@@ -1973,7 +1973,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         species.Organelles.Clear();
         MutationPoints = data.PreviousMP;
-        currentSpecies.MembraneType = data.OldMembrane;
+        CurrentSpecies.MembraneType = data.OldMembrane;
 
         foreach (var organelle in data.OldEditedMicrobeOrganelles)
         {
@@ -1985,7 +1985,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void OnPostNewMicrobeChange()
     {
-        gui.UpdateMembraneButtons(currentSpecies.MembraneType.InternalName);
+        gui.UpdateMembraneButtons(CurrentSpecies.MembraneType.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
     }
@@ -2026,9 +2026,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            currentSpecies.Organelles.Organelles, currentSpecies.MembraneType, targetPatch);
+            CurrentSpecies.Organelles.Organelles, CurrentSpecies.MembraneType, targetPatch);
 
-        CalculateCompoundBalanceInPatch(currentSpecies.Organelles.Organelles, targetPatch);
+        CalculateCompoundBalanceInPatch(CurrentSpecies.Organelles.Organelles, targetPatch);
     }
 
     /// <summary>
@@ -2041,10 +2041,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         int nextFreeHex = 0;
         int nextFreeOrganelle = 0;
 
-        var islands = currentSpecies.Organelles.GetIslandHexes();
+        var islands = CurrentSpecies.Organelles.GetIslandHexes();
 
         // Build the entities to show the current microbe
-        foreach (var organelle in currentSpecies.Organelles.Organelles)
+        foreach (var organelle in CurrentSpecies.Organelles.Organelles)
         {
             foreach (var hex in organelle.RotatedHexes)
             {
@@ -2165,7 +2165,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (previewMicrobe != null)
         {
-            previewMicrobe.Membrane.Type = currentSpecies.MembraneType;
+            previewMicrobe.Membrane.Type = CurrentSpecies.MembraneType;
             previewMicrobe.Membrane.Dirty = true;
             previewMicrobe.ApplyMembraneWigglyness();
         }
@@ -2176,7 +2176,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         var data = (RigidityChangeActionData)action.Data;
 
-        currentSpecies.MembraneRigidity = data.NewRigidity;
+        CurrentSpecies.MembraneRigidity = data.NewRigidity;
 
         OnRigidityChanged();
     }
@@ -2186,13 +2186,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         var data = (RigidityChangeActionData)action.Data;
 
-        currentSpecies.MembraneRigidity = data.PreviousRigidity;
+        CurrentSpecies.MembraneRigidity = data.PreviousRigidity;
         OnRigidityChanged();
     }
 
     private void OnRigidityChanged()
     {
-        gui.UpdateRigiditySlider((int)Math.Round(currentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+        gui.UpdateRigiditySlider((int)Math.Round(CurrentSpecies.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
             MutationPoints);
 
         gui.UpdateSpeed(CalculateSpeed());
