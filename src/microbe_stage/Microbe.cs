@@ -1356,8 +1356,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
-    ///   Unbinds all colony members
+    ///   Removes this cell and child cells from the colony.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     If this is the colony master, this disbands the whole colony
+    ///   </para>
+    /// </remarks>
     public void UnbindAll()
     {
         if (State == MicrobeState.Unbinding || State == MicrobeState.Binding)
