@@ -9,12 +9,16 @@ public class MovementComponent : ExternallyPositionedComponent
     public float Torque;
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
+    private int CountInitialization = 6;
     private bool movingTail;
     private Vector3 force;
 
     private AnimationPlayer animation;
-
+    protected override bool NeedsUpdateAnyway()
+    {
+        CountInitialization--;
+        return CountInitialization>0;
+    }
     public MovementComponent(float momentum, float torque)
     {
         Momentum = momentum;
