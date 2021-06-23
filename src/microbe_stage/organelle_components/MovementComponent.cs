@@ -14,15 +14,17 @@ public class MovementComponent : ExternallyPositionedComponent
     private Vector3 force;
 
     private AnimationPlayer animation;
-    protected override bool NeedsUpdateAnyway()
-    {
-        countInitialization--;
-        return countInitialization > 0;
-    }
+
     public MovementComponent(float momentum, float torque)
     {
         Momentum = momentum;
         Torque = torque;
+    }
+
+        protected override bool NeedsUpdateAnyway()
+    {
+        countInitialization--;
+        return countInitialization > 0;
     }
 
     public override void Update(float elapsed)
