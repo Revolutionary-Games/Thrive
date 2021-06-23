@@ -9,6 +9,7 @@ public class MovementComponent : ExternallyPositionedComponent
     public float Torque;
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
     private int countInitialization = 6;
     private bool movingTail;
     private Vector3 force;
@@ -19,12 +20,6 @@ public class MovementComponent : ExternallyPositionedComponent
     {
         Momentum = momentum;
         Torque = torque;
-    }
-
-        protected override bool NeedsUpdateAnyway()
-    {
-        countInitialization--;
-        return countInitialization > 0;
     }
 
     public override void Update(float elapsed)
@@ -53,6 +48,12 @@ public class MovementComponent : ExternallyPositionedComponent
         }
 
         SetSpeedFactor(0.25f);
+    }
+
+    protected override bool NeedsUpdateAnyway()
+    {
+        countInitialization--;
+        return countInitialization > 0;
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle,
