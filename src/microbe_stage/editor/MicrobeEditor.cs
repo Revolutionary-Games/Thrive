@@ -1943,6 +1943,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         EnqueueAction(action);
         previewMicrobe.RecalculateExteriorOrganellesPosition();
+
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingOrganelle may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingOrganelle to null
         // when we return true)

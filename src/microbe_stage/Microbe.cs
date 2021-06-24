@@ -1372,6 +1372,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // disband entire colony functionality
         Colony?.RemoveFromColony(this);
     }
+
     /// <summary>
     /// Recalculates exterior organelles according to the true middle of the cell
     /// </summary>
@@ -1379,17 +1380,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         foreach (var organelle in organelles.Organelles)
         {
-            if ((organelle.Definition.Name == "Flagellum" || organelle.Definition.Name == "Pilus") && organelle.FalsePosition == new Hex(0,0))
+            if ((organelle.Definition.Name == "Flagellum" || organelle.Definition.Name == "Pilus") && organelle.FalsePosition == new Hex(0, 0))
             {
                 organelle.Position = organelle.FalsePosition;
-                var newPositionVector = new Hex(0,0);
+                var newPositionVector = new Hex(0, 0);
                 foreach (var each in organelles.Organelles)
                 {
                     var dif = organelle.Position - each.Position;
                     newPositionVector -= dif;
                 }
 
-                if (newPositionVector == new Hex(0,0))
+                if (newPositionVector == new Hex(0, 0))
                     newPositionVector += Hex.CartesianToAxial(LookAtPoint);
                 organelle.Position -= newPositionVector;
                 foreach (var component in organelle.Components)
@@ -2132,10 +2133,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(PlacedOrganelle organelle)
     {
-        if (organelle.Position == new Hex(0,0))
+        if (organelle.Position == new Hex(0, 0))
             organelle.FalsePosition = organelle.Position;
         else
-            organelle.FalsePosition = new Hex(1,1);
+            organelle.FalsePosition = new Hex(1, 1);
         organelle.OnAddedToMicrobe(this);
         processesDirty = true;
         cachedHexCountDirty = true;
