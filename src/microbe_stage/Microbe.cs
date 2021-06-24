@@ -1372,6 +1372,33 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // disband entire colony functionality
         Colony?.RemoveFromColony(this);
     }
+    /// <summary>
+    /// Recalculates exterior organelles according to the true middle of the cell
+    /// </summary>
+    public void RecalculateExteriorOrganellesPosition()
+    {
+        foreach (var organelle in organelles.Organelles)
+        {
+            if ((organelle.Definition.Name == "Flagellum" || organelle.Definition.Name == "Pilus") && organelle.FalsePosition == new Hex(0,0))
+            {
+                organelle.Position = organelle.FalsePosition;
+                var newPositionVector = new Hex(0,0);
+                foreach (var each in organelles.Organelles)
+                {
+                    var dif = organelle.Position - each.Position;
+                    newPositionVector -= dif;
+                }
+
+                if (newPositionVector == new Hex(0,0))
+                    newPositionVector += Hex.CartesianToAxial(LookAtPoint);
+                organelle.Position -= newPositionVector;
+                foreach (var component in organelle.Components)
+                {
+                    component.OnAttachToCell(organelle);
+                }
+            }
+        }
+    }
 
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
@@ -2100,34 +2127,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             target.basis.Quat().Normalized(), 0.2f);
 
         return new Transform(new Basis(slerped), transform.origin);
-    }
-
-    /// <summary>
-    /// Recalculates exterior organelles according to the true middle of the cell
-    /// </summary>
-    public void RecalculateExteriorOrganellesPosition()
-    {
-        foreach (var organelle in organelles.Organelles)
-        {
-            if ((organelle.Definition.Name == "Flagellum" || organelle.Definition.Name == "Pilus") && organelle.FalsePosition == new Hex(0,0))
-            {
-                organelle.Position = organelle.FalsePosition;
-                var newPositionVector = new Hex(0,0);
-                foreach (var each in organelles.Organelles)
-                {
-                    var dif = organelle.Position - each.Position;
-                    newPositionVector -= dif;
-                }
-                
-                if (newPositionVector == new Hex(0,0))
-                    newPositionVector += Hex.CartesianToAxial(LookAtPoint);
-                organelle.Position -= newPositionVector;
-                foreach (var component in organelle.Components)
-                {
-                    component.OnAttachToCell(organelle);
-                }
-            }
-        }
     }
 
     [DeserializedCallbackAllowed]
