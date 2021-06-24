@@ -1,0 +1,471 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/textures/DiscoBall.jpg" type="Texture" id=2]
+[ext_resource path="res://src/general/ModLoaderUI.cs" type="Script" id=3]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/ExpandDownIcon.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/ExpandUpIcon.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 0.6, 0.537255, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
+grow_begin = 12.0
+grow_end = 12.0
+thickness = 2
+
+[node name="ModLoader" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+UnloadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList")
+ModInfoContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox")
+ModInfoNamePath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/ModNameLabel")
+ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/AuthorContainer/AuthorValueLabel")
+ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer/VersionValueLabel")
+ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/ModInfoDescription")
+PreviewImagePath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/Preview Image")
+LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/LoadedItemList")
+ErrorItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorModItemList")
+ErrorLabelPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel/MarginContainer/ErrorLabel")
+AutoLoadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Autoloaded Mods/AutoLoadedModItemList")
+ConfirmationPopupPath = NodePath("ConfirmationDialog")
+AcceptPopupPath = NodePath("AcceptDialog")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 1240.0
+margin_bottom = 680.0
+
+[node name="InfoBoxSplit" type="VSplitContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1200.0
+margin_bottom = 601.0
+size_flags_vertical = 3
+
+[node name="ModContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit"]
+margin_right = 1200.0
+margin_bottom = 294.0
+size_flags_vertical = 3
+custom_constants/hseparation = 137
+
+[node name="Mod Loader" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 33.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="LoaderContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1193.0
+margin_bottom = 255.0
+
+[node name="LabelContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer"]
+margin_right = 1188.0
+margin_bottom = 22.0
+
+[node name="UnloadedModsLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/LabelContainer"]
+margin_right = 153.0
+margin_bottom = 22.0
+text = "Unloaded Mods"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/LabelContainer"]
+margin_left = 157.0
+margin_right = 624.0
+margin_bottom = 22.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 467
+
+[node name="LoadedModsLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/LabelContainer"]
+margin_left = 628.0
+margin_right = 760.0
+margin_bottom = 22.0
+text = "Loaded Mods"
+
+[node name="ItemListContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer"]
+margin_top = 26.0
+margin_right = 1188.0
+margin_bottom = 250.0
+size_flags_vertical = 3
+
+[node name="UnloadedItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer"]
+margin_right = 538.0
+margin_bottom = 224.0
+size_flags_horizontal = 3
+custom_styles/bg = SubResource( 3 )
+custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
+custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+
+[node name="Center Bar" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer"]
+margin_left = 542.0
+margin_right = 646.0
+margin_bottom = 224.0
+custom_constants/separation = 15
+alignment = 1
+
+[node name="MoveLeftButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar"]
+margin_top = 40.0
+margin_right = 104.0
+margin_bottom = 72.0
+text = "<--"
+
+[node name="OrderButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar"]
+margin_top = 87.0
+margin_right = 104.0
+margin_bottom = 137.0
+
+[node name="MoveUpButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/OrderButtonContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+icon = ExtResource( 8 )
+
+[node name="MoveDownButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/OrderButtonContainer"]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+icon = ExtResource( 6 )
+
+[node name="MoveRightButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar"]
+margin_top = 152.0
+margin_right = 104.0
+margin_bottom = 184.0
+text = "-->"
+
+[node name="LoadedItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer"]
+margin_left = 650.0
+margin_right = 1188.0
+margin_bottom = 224.0
+size_flags_horizontal = 3
+custom_styles/bg = SubResource( 3 )
+custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
+custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Autoloaded Mods" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 33.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="AutoLoadedModItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Autoloaded Mods"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1193.0
+margin_bottom = 255.0
+size_flags_horizontal = 3
+custom_styles/bg = SubResource( 3 )
+custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
+custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false, "Item 10", null, false ]
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Failed to Load Mods" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 33.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Container" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1193.0
+margin_bottom = 255.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ErrorModItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container"]
+margin_right = 592.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+custom_styles/bg = SubResource( 3 )
+custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
+custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false, "Item 10", null, false, "Item 11", null, false, "Item 12", null, false ]
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ErrorInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container"]
+margin_left = 596.0
+margin_right = 1188.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 591.0
+margin_bottom = 249.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ErrorLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 100.0
+margin_right = 580.0
+margin_bottom = 147.0
+text = "The mod failed to load due to the path not being able to be found"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ModInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit"]
+margin_top = 306.0
+margin_right = 1200.0
+margin_bottom = 601.0
+size_flags_vertical = 3
+
+[node name="InfoBox" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1199.0
+margin_bottom = 294.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="ModInfoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 1186.0
+margin_bottom = 281.0
+custom_constants/separation = 10
+
+[node name="MainModInfoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
+margin_right = 1174.0
+margin_bottom = 140.0
+
+[node name="Preview Image" type="TextureRect" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
+margin_right = 400.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 400, 140 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="ImageSeperator" type="VSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/Preview Image"]
+margin_left = 404.0
+margin_right = 429.0
+margin_bottom = 140.0
+custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoCenterer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
+margin_left = 404.0
+margin_right = 1174.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="InfoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer"]
+margin_left = 325.0
+margin_right = 445.0
+margin_bottom = 140.0
+custom_constants/separation = 15
+alignment = 1
+
+[node name="ModNameLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer"]
+margin_top = 22.0
+margin_right = 120.0
+margin_bottom = 44.0
+text = "Mod Name"
+align = 1
+
+[node name="AuthorContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer"]
+margin_top = 59.0
+margin_right = 120.0
+margin_bottom = 81.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="AuthorLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/AuthorContainer"]
+margin_right = 71.0
+margin_bottom = 22.0
+text = "Author:"
+
+[node name="AuthorValueLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/AuthorContainer"]
+margin_left = 81.0
+margin_right = 120.0
+margin_bottom = 22.0
+text = "Man"
+
+[node name="VersionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer"]
+margin_top = 96.0
+margin_right = 120.0
+margin_bottom = 118.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="VersionLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer"]
+margin_right = 80.0
+margin_bottom = 22.0
+text = "Version:"
+
+[node name="VersionValueLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer"]
+margin_left = 90.0
+margin_right = 119.0
+margin_bottom = 22.0
+text = "1.0"
+
+[node name="DescriptionSeperator" type="HSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
+margin_top = 150.0
+margin_right = 1174.0
+margin_bottom = 155.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 5
+
+[node name="ModInfoDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
+margin_top = 165.0
+margin_right = 1174.0
+margin_bottom = 269.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/bold_font = ExtResource( 4 )
+custom_fonts/normal_font = ExtResource( 5 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/selection_color = Color( 0.0588235, 0.376471, 0.321569, 0.666667 )
+bbcode_enabled = true
+bbcode_text = "Lorem ipsum [color=red]dolor sit amet[/color], consectetur adipiscing elit. Vivamus at urna elementum, [b]lobortis lorem in[/b], pulvinar eros. Pellentesque varius augue nec enim luctus finibus. Nullam tortor diam, feugiat vitae pellentesque vestibulum, interdum eu mi. Proin porttitor ut ex consectetur viverra. Sed lacinia sollicitudin magna, in pellentesque [color=blue]ligula molestie sed[/color]. Maecenas semper gravida nulla vel volutpat. Proin rutrum semper interdum. Nulla auctor lacus a purus condimentum, nec vestibulum lacus semper. Aliquam interdum in arcu sit amet congue. Duis in semper ex. Nullam ut nibh et lacus imperdiet auctor. Nulla tempor sed mi quis viverra. Aenean laoreet, massa ac elementum gravida, libero urna convallis orci, sollicitudin pharetra odio purus id leo.
+
+[url=www.google.com]Mauris[/url] fermentum fermentum[wave amp=50 freq=2] risus eget consequat.[/wave] Fusce scelerisque facilisis sapien in ultrices. Nam rutrum quam vel ante lacinia, efficitur viverra erat posuere. Ut eu dictum urna, ut sollicitudin sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae nulla eu orci lacinia aliquet laoreet vel massa. Praesent at viverra ipsum. Phasellus nec euismod turpis. Curabitur sit amet faucibus ex.
+
+Praesent vitae rhoncus enim. Nulla non lacus libero. Donec ut dapibus ipsum. Ut in dapibus diam. Ut iaculis finibus tincidunt. Maecenas ut dolor at lacus lobortis iaculis. Phasellus diam mauris, efficitur venenatis urna nec, ultricies tincidunt nulla. Donec ultricies molestie enim eget pulvinar. Curabitur ut maximus nisi. In maximus sapien vitae neque ullamcorper, eget posuere quam varius. Cras euismod augue ac odio bibendum condimentum. Pellentesque bibendum cursus elementum. Nulla consequat fringilla libero, eu iaculis tellus bibendum at.
+
+Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris a eros luctus, ullamcorper diam sed, condimentum orci. Praesent eget ex eu elit vestibulum maximus. Cras vel interdum tellus. Ut mollis faucibus viverra. Sed lorem dui, tristique at nunc vitae, rutrum facilisis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam rhoncus risus nec bibendum.
+
+Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros.[/color]"
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at urna elementum, lobortis lorem in, pulvinar eros. Pellentesque varius augue nec enim luctus finibus. Nullam tortor diam, feugiat vitae pellentesque vestibulum, interdum eu mi. Proin porttitor ut ex consectetur viverra. Sed lacinia sollicitudin magna, in pellentesque ligula molestie sed. Maecenas semper gravida nulla vel volutpat. Proin rutrum semper interdum. Nulla auctor lacus a purus condimentum, nec vestibulum lacus semper. Aliquam interdum in arcu sit amet congue. Duis in semper ex. Nullam ut nibh et lacus imperdiet auctor. Nulla tempor sed mi quis viverra. Aenean laoreet, massa ac elementum gravida, libero urna convallis orci, sollicitudin pharetra odio purus id leo.
+
+Mauris fermentum fermentum risus eget consequat. Fusce scelerisque facilisis sapien in ultrices. Nam rutrum quam vel ante lacinia, efficitur viverra erat posuere. Ut eu dictum urna, ut sollicitudin sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae nulla eu orci lacinia aliquet laoreet vel massa. Praesent at viverra ipsum. Phasellus nec euismod turpis. Curabitur sit amet faucibus ex.
+
+Praesent vitae rhoncus enim. Nulla non lacus libero. Donec ut dapibus ipsum. Ut in dapibus diam. Ut iaculis finibus tincidunt. Maecenas ut dolor at lacus lobortis iaculis. Phasellus diam mauris, efficitur venenatis urna nec, ultricies tincidunt nulla. Donec ultricies molestie enim eget pulvinar. Curabitur ut maximus nisi. In maximus sapien vitae neque ullamcorper, eget posuere quam varius. Cras euismod augue ac odio bibendum condimentum. Pellentesque bibendum cursus elementum. Nulla consequat fringilla libero, eu iaculis tellus bibendum at.
+
+Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris a eros luctus, ullamcorper diam sed, condimentum orci. Praesent eget ex eu elit vestibulum maximus. Cras vel interdum tellus. Ut mollis faucibus viverra. Sed lorem dui, tristique at nunc vitae, rutrum facilisis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam rhoncus risus nec bibendum.
+
+Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros.[/color]"
+selection_enabled = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 605.0
+margin_right = 1200.0
+margin_bottom = 640.0
+custom_constants/separation = 40
+alignment = 1
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+margin_left = 383.0
+margin_right = 483.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 35 )
+text = "Back"
+
+[node name="Reset" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+margin_left = 523.0
+margin_right = 590.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+text = "Reset"
+
+[node name="Refresh" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+margin_left = 630.0
+margin_right = 718.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+text = "Refresh"
+
+[node name="Load" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+margin_left = 758.0
+margin_right = 817.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+text = "Load"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+margin_right = 209.0
+margin_bottom = 84.0
+dialog_text = "Confirm Reset Of Mod List?"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+margin_right = 99.0
+margin_bottom = 84.0
+dialog_text = "Resatrt Game To Apply Mods!"
+
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList" to="." method="OnModSelected" binds= [ 0 ]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/MoveLeftButton" to="." method="OnMoveToUnloadPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/OrderButtonContainer/MoveUpButton" to="." method="OnMoveUpPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/OrderButtonContainer/MoveDownButton" to="." method="OnMoveDownPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/MoveRightButton" to="." method="OnMoveToLoadPressed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/LoadedItemList" to="." method="OnModSelected" binds= [ 1 ]]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Autoloaded Mods/AutoLoadedModItemList" to="." method="OnModSelected" binds= [ 2 ]]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorModItemList" to="." method="OnModSelected" binds= [ 3 ]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Back" to="." method="OnBackPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Refresh" to="." method="OnRefreshPressed"]

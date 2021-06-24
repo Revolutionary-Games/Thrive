@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
@@ -42,6 +42,7 @@ public class MainMenu : Node
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
     private SaveManagerGUI saves;
+    private ModLoaderUI modLoader;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -126,6 +127,7 @@ public class MainMenu : Node
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
+        modLoader = GetNode<ModLoaderUI>("ModLoader");
         gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
 
         // Set initial menu
@@ -316,6 +318,28 @@ public class MainMenu : Node
     private void OnReturnFromLoadGame()
     {
         saves.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void ModLoaderPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the Mod Loader
+        modLoader.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnModLoaderClosed()
+    {
+        modLoader.Visible = false;
 
         SetCurrentMenu(0, false);
 

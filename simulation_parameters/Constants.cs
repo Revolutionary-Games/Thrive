@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
@@ -488,6 +488,8 @@ public static class Constants
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
     public const string SAVE_FOLDER = "user://saves";
+
+    public const string MOD_FOLDER = "user://mods";
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 

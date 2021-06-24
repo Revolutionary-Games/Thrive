@@ -53,6 +53,8 @@
     <Compile Include="src\engine\input\key_mapping\SpecifiedInputKey.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
+    <Compile Include="src\engine\ModInfo.cs" />
+    <Compile Include="src\engine\ModLoader.cs" />
     <Compile Include="src\engine\NodeHelpers.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
     <Compile Include="src\general\IEntity.cs" />
+    <Compile Include="src\general\ModLoaderUI.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
