@@ -2102,9 +2102,44 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         return new Transform(new Basis(slerped), transform.origin);
     }
 
+    /// <summary>
+    /// Recalculates exterior organelles according to the true middle of the cell
+    /// <summary>
+    public void RecalculateExteriorOrganellesPosition()
+    {
+          foreach (var organelle in organelles.Organelles)
+        {
+            if((organelle.Definition.Name=="Flagellum" || organelle.Definition.Name=="Pilus") && organelle.FalsePosition == new Hex(0,0))
+            {
+                GD.Print("FalseP:"+organelle.FalsePosition);
+                organelle.Position = organelle.FalsePosition;
+                var newPositionVector = new Hex(0,0);
+                foreach (var each in organelles.Organelles)
+                {
+                    var dif = organelle.Position - each.Position;
+                    newPositionVector -= dif;
+                }
+                
+                GD.Print(organelle.Position);
+                if(newPositionVector == new Hex(0,0))
+                    newPositionVector += Hex.CartesianToAxial(LookAtPoint);
+                organelle.Position -= newPositionVector;
+                GD.Print(organelle.Position);
+                foreach (var component in organelle.Components)
+                {
+                    component.OnAttachToCell(organelle);
+                }
+            }
+        }
+    }
+
     [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(PlacedOrganelle organelle)
     {
+        if(organelle.Position == new Hex(0,0))
+            organelle.FalsePosition = organelle.Position;
+        else
+            organelle.FalsePosition = new Hex(1,1);
         organelle.OnAddedToMicrobe(this);
         processesDirty = true;
         cachedHexCountDirty = true;
@@ -2117,6 +2152,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
         Compounds.Capacity = organellesCapacity;
+        RecalculateExteriorOrganellesPosition();
     }
 
     [DeserializedCallbackAllowed]

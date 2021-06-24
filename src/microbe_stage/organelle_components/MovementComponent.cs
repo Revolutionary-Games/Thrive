@@ -52,7 +52,8 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override bool NeedsUpdateAnyway()
     {
-        countInitialization--;
+        if(countInitialization>0)
+            countInitialization--;
         return countInitialization > 0;
     }
 
