@@ -274,7 +274,7 @@ public class ModLoaderUI : Control
     /// </summary>
     private void ReloadUnloadedModList()
     {
-        var tempItemList = modItemLists[0];
+        var unloadedItemList = modItemLists[(int)ItemLists.UnloadedItemList];
         int index = 0;
 
         foreach (ModInfo currentModInfo in loader.LoadModList(false))
@@ -283,5 +283,21 @@ public class ModLoaderUI : Control
 
             index++;
         }
+    }
+
+    private void OnLoadPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        var loadedItemList = modItemLists[(int)ItemLists.LoadedItemList];
+
+        if (loadedItemList.GetItemCount() <= 0)
+        {
+            return;
+        }
+
+        loader.LoadModFromList(loadedItemList, true, true, true);
+        loader.SaveAutoLoadedModsList();
+        GD.Print("All mods loaded");
+        SceneManager.Instance.ReturnToMenu();
     }
 }

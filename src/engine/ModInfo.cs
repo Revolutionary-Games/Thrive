@@ -32,6 +32,9 @@ public class ModInfo : Resource
 
     public ImageTexture PreviewImage { get; set; }
 
+    // This uses the same numbering scheme as the load function in the ModLoader
+    public int Status { get; set; }
+
     public override bool Equals(object other)
     {
         var item = other as ModInfo;

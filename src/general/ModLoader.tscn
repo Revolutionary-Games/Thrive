@@ -10,7 +10,7 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
@@ -27,7 +27,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 1
 
-[sub_resource type="StyleBoxLine" id=2]
+[sub_resource type="StyleBoxLine" id=3]
 color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 grow_begin = 12.0
 grow_end = 12.0
@@ -133,7 +133,7 @@ size_flags_vertical = 3
 margin_right = 538.0
 margin_bottom = 224.0
 size_flags_horizontal = 3
-custom_styles/bg = SubResource( 3 )
+custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -178,7 +178,7 @@ margin_left = 650.0
 margin_right = 1188.0
 margin_bottom = 224.0
 size_flags_horizontal = 3
-custom_styles/bg = SubResource( 3 )
+custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -205,7 +205,7 @@ margin_top = 5.0
 margin_right = 1193.0
 margin_bottom = 255.0
 size_flags_horizontal = 3
-custom_styles/bg = SubResource( 3 )
+custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -239,7 +239,7 @@ size_flags_vertical = 3
 margin_right = 592.0
 margin_bottom = 250.0
 size_flags_horizontal = 3
-custom_styles/bg = SubResource( 3 )
+custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -326,22 +326,22 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="InfoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer"]
-margin_left = 325.0
-margin_right = 445.0
+margin_left = 280.0
+margin_right = 490.0
 margin_bottom = 140.0
 custom_constants/separation = 15
 alignment = 1
 
 [node name="ModNameLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer"]
 margin_top = 22.0
-margin_right = 120.0
+margin_right = 210.0
 margin_bottom = 44.0
 text = "Mod Name"
 align = 1
 
 [node name="AuthorContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer"]
 margin_top = 59.0
-margin_right = 120.0
+margin_right = 210.0
 margin_bottom = 81.0
 custom_constants/separation = 10
 alignment = 1
@@ -353,25 +353,26 @@ text = "Author:"
 
 [node name="AuthorValueLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/AuthorContainer"]
 margin_left = 81.0
-margin_right = 120.0
+margin_right = 210.0
 margin_bottom = 22.0
-text = "Man"
+text = "The Creator :)"
 
 [node name="VersionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer"]
 margin_top = 96.0
-margin_right = 120.0
+margin_right = 210.0
 margin_bottom = 118.0
 custom_constants/separation = 10
 alignment = 1
 
 [node name="VersionLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer"]
-margin_right = 80.0
+margin_left = 45.0
+margin_right = 125.0
 margin_bottom = 22.0
 text = "Version:"
 
 [node name="VersionValueLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer"]
-margin_left = 90.0
-margin_right = 119.0
+margin_left = 135.0
+margin_right = 164.0
 margin_bottom = 22.0
 text = "1.0"
 
@@ -379,7 +380,7 @@ text = "1.0"
 margin_top = 150.0
 margin_right = 1174.0
 margin_bottom = 155.0
-custom_styles/separator = SubResource( 2 )
+custom_styles/separator = SubResource( 3 )
 custom_constants/separation = 5
 
 [node name="ModInfoDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
@@ -402,7 +403,7 @@ Praesent vitae rhoncus enim. Nulla non lacus libero. Donec ut dapibus ipsum. Ut 
 
 Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris a eros luctus, ullamcorper diam sed, condimentum orci. Praesent eget ex eu elit vestibulum maximus. Cras vel interdum tellus. Ut mollis faucibus viverra. Sed lorem dui, tristique at nunc vitae, rutrum facilisis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam rhoncus risus nec bibendum.
 
-Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros.[/color]"
+Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros."
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at urna elementum, lobortis lorem in, pulvinar eros. Pellentesque varius augue nec enim luctus finibus. Nullam tortor diam, feugiat vitae pellentesque vestibulum, interdum eu mi. Proin porttitor ut ex consectetur viverra. Sed lacinia sollicitudin magna, in pellentesque ligula molestie sed. Maecenas semper gravida nulla vel volutpat. Proin rutrum semper interdum. Nulla auctor lacus a purus condimentum, nec vestibulum lacus semper. Aliquam interdum in arcu sit amet congue. Duis in semper ex. Nullam ut nibh et lacus imperdiet auctor. Nulla tempor sed mi quis viverra. Aenean laoreet, massa ac elementum gravida, libero urna convallis orci, sollicitudin pharetra odio purus id leo.
 
 Mauris fermentum fermentum risus eget consequat. Fusce scelerisque facilisis sapien in ultrices. Nam rutrum quam vel ante lacinia, efficitur viverra erat posuere. Ut eu dictum urna, ut sollicitudin sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae nulla eu orci lacinia aliquet laoreet vel massa. Praesent at viverra ipsum. Phasellus nec euismod turpis. Curabitur sit amet faucibus ex.
@@ -411,7 +412,7 @@ Praesent vitae rhoncus enim. Nulla non lacus libero. Donec ut dapibus ipsum. Ut 
 
 Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris a eros luctus, ullamcorper diam sed, condimentum orci. Praesent eget ex eu elit vestibulum maximus. Cras vel interdum tellus. Ut mollis faucibus viverra. Sed lorem dui, tristique at nunc vitae, rutrum facilisis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam rhoncus risus nec bibendum.
 
-Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros.[/color]"
+Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros."
 selection_enabled = true
 
 [node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -469,3 +470,4 @@ dialog_text = "Resatrt Game To Apply Mods!"
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorModItemList" to="." method="OnModSelected" binds= [ 3 ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Refresh" to="." method="OnRefreshPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Load" to="." method="OnLoadPressed"]
