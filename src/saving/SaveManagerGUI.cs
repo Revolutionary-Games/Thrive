@@ -127,11 +127,9 @@ public class SaveManagerGUI : Control
         refreshing = false;
     }
 
-    public void OnBackButton()
+    public void OnEscButtonPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        EmitSignal(nameof(OnBackPressed));
+        OnBackButtonPressed();
     }
 
     private void OnSelectedChanged()
@@ -254,5 +252,12 @@ public class SaveManagerGUI : Control
         GD.Print("Deleted save(s): ", message);
 
         RefreshList();
+    }
+
+    private void OnBackButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(nameof(OnBackPressed));
     }
 }

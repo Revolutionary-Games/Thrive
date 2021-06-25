@@ -399,6 +399,19 @@ public class OptionsMenu : Control
     }
 
     /// <summary>
+    ///   When ESC button is pressed main menu captures it and call this.
+    /// </summary>
+    public void OnEscButtonPressed()
+    {
+        // If InputGroupList is listening for input, cancel the operation.
+        if (InputGroupList.WasListeningForInput)
+            return;
+
+        // Signal to exit.
+        OnBackPressed();
+    }
+
+    /// <summary>
     ///   Applies the values of a settings object to all corresponding options menu GUI controls.
     /// </summary>
     public void ApplySettingsToControls(Settings settings)
@@ -450,26 +463,6 @@ public class OptionsMenu : Control
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
-    }
-
-    // GUI Function, but it must be places before private ones?
-    public void OnBackPressed()
-    {
-        // If InputGroupList is listening for input, cancel the operation.
-        if (InputGroupList.WasListeningForInput)
-            return;
-
-        GUICommon.Instance.PlayButtonPressSound();
-
-        // If any settings have been changed, show a dialogue asking if the changes should be kept or
-        // discarded.
-        if (!CompareSettings())
-        {
-            backConfirmationBox.PopupCenteredShrink();
-            return;
-        }
-
-        EmitSignal(nameof(OnOptionsClosed));
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -723,6 +716,20 @@ public class OptionsMenu : Control
     /*
       GUI Control Callbacks
     */
+    private void OnBackPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // If any settings have been changed, show a dialogue asking if the changes should be kept or
+        // discarded.
+        if (!CompareSettings())
+        {
+            backConfirmationBox.PopupCenteredShrink();
+            return;
+        }
+
+        EmitSignal(nameof(OnOptionsClosed));
+    }
 
     private void OnResetPressed()
     {

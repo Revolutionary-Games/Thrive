@@ -104,11 +104,17 @@ public class MainMenu : NodeWithInput
     public void ReturnPressed()
     {
         if (options.Visible)
-            options.OnBackPressed();
+        {
+            options.OnEscButtonPressed();
+        }
         else if (saves.Visible)
-            saves.OnBackButton();
+        {
+            saves.OnEscButtonPressed();
+        }
         else if (CurrentMenuIndex != 0)
-            SetCurrentMenu(0, true);
+        {
+            BackFromToolsPressed();
+        }
     }
 
     /// <summary>
