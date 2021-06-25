@@ -7,7 +7,7 @@ using Environment = System.Environment;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
-public class OptionsMenu : Control
+public class OptionsMenu : ControlWithInput
 {
     /*
       GUI Control Paths
@@ -401,14 +401,19 @@ public class OptionsMenu : Control
     /// <summary>
     ///   When ESC button is pressed main menu captures it and call this.
     /// </summary>
-    public void OnEscButtonPressed()
+    [RunOnKeyDown("ui_cancel")]
+    public bool OnEscButtonPressed()
     {
+        if (!Visible) return false; 
+
         // If InputGroupList is listening for input, cancel the operation.
         if (InputGroupList.WasListeningForInput)
-            return;
+            return true;
 
         // Signal to exit.
         OnBackPressed();
+
+        return true;
     }
 
     /// <summary>

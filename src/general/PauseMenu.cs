@@ -70,24 +70,27 @@ public class PauseMenu : ControlWithInput
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
     }
 
-    [RunOnKeyDown("ui_cancel")]
-    public void EscapeKeyPressed()
+    [RunOnKeyDown("ui_cancel", Priority = -1)]
+    public bool EscapeKeyPressed()
     {
         if (Visible)
         {
             // Do not close the window if the user is rebinding the input keys
             // TODO: https://github.com/Revolutionary-Games/Thrive/issues/1888
             if (InputGroupList.WasListeningForInput)
-                return;
+                return true;
 
             SetActiveMenu("primary");
 
             EmitSignal(nameof(OnClosed));
+            return true;
         }
         else if (NoExclusiveTutorialActive())
         {
             EmitSignal(nameof(OnOpenWithKeyPress));
+            return true;
         }
+        return false;
     }
 
     [RunOnKeyDown("help")]
