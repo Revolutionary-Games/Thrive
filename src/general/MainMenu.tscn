@@ -64,6 +64,7 @@ MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
 NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/Freebuild Editor")
 GLES2PopupPath = NodePath("GLES2 Popup")
+ModErrorPopupPath = NodePath("Mod Error Popup")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -364,6 +365,19 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "GLES2_MODE_WARNING_TEXT"
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mod Error Popup" type="AcceptDialog" parent="."]
+visible = true
+margin_right = 250.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 500, 0 )
+theme = ExtResource( 1 )
+window_title = "Mod Error!"
+dialog_text = ":)"
+dialog_autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

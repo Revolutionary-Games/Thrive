@@ -43,6 +43,7 @@ __meta__ = {
 }
 UnloadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList")
 ModInfoContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox")
+ErrorInfoContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel/MarginContainer")
 ModInfoNamePath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/ModNameLabel")
 ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/AuthorContainer/AuthorValueLabel")
 ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer/VersionValueLabel")
@@ -52,8 +53,8 @@ LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModCon
 ErrorItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorModItemList")
 ErrorLabelPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel/MarginContainer/ErrorLabel")
 AutoLoadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Autoloaded Mods/AutoLoadedModItemList")
-ConfirmationPopupPath = NodePath("ConfirmationDialog")
-AcceptPopupPath = NodePath("AcceptDialog")
+ConfirmationPopupPath = NodePath("ResetDialog")
+AcceptPopupPath = NodePath("ReloadReminderDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -84,6 +85,7 @@ size_flags_vertical = 3
 custom_constants/hseparation = 137
 
 [node name="Mod Loader" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -209,13 +211,11 @@ custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false, "Item 10", null, false ]
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="Failed to Load Mods" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -243,7 +243,6 @@ custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false, "Item 10", null, false, "Item 11", null, false, "Item 12", null, false ]
 __meta__ = {
 "_editor_description_": ""
 }
@@ -255,6 +254,7 @@ margin_bottom = 250.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel"]
+visible = false
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 591.0
@@ -450,15 +450,15 @@ margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "Load"
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ResetDialog" type="ConfirmationDialog" parent="."]
 margin_right = 209.0
 margin_bottom = 84.0
 dialog_text = "Confirm Reset Of Mod List?"
 
-[node name="AcceptDialog" type="AcceptDialog" parent="."]
+[node name="ReloadReminderDialog" type="AcceptDialog" parent="."]
 margin_right = 99.0
 margin_bottom = 84.0
-dialog_text = "Resatrt Game To Apply Mods!"
+dialog_text = "Please relaunch the game now to fully reset the game."
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList" to="." method="OnModSelected" binds= [ 0 ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/MoveLeftButton" to="." method="OnMoveToUnloadPressed"]
@@ -469,5 +469,7 @@ dialog_text = "Resatrt Game To Apply Mods!"
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Autoloaded Mods/AutoLoadedModItemList" to="." method="OnModSelected" binds= [ 2 ]]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorModItemList" to="." method="OnModSelected" binds= [ 3 ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Back" to="." method="OnBackPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Refresh" to="." method="OnRefreshPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Load" to="." method="OnLoadPressed"]
+[connection signal="confirmed" from="ResetDialog" to="." method="ResetGame"]

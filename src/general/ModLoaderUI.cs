@@ -1,6 +1,9 @@
 using System;
 using Godot;
 
+/// <summary>
+///   Class managing the Mod Manager UI
+/// </summary>
 public class ModLoaderUI : Control
 {
     [Export]
@@ -8,6 +11,9 @@ public class ModLoaderUI : Control
 
     [Export]
     public NodePath ModInfoContainerPath;
+
+    [Export]
+    public NodePath ErrorInfoContainerPath;
 
     [Export]
     public NodePath ModInfoNamePath;
@@ -58,6 +64,7 @@ public class ModLoaderUI : Control
     private AcceptDialog acceptPopup;
 
     private MarginContainer modInfoContainer;
+    private MarginContainer errorInfoContainer;
 
     private ModLoader loader = new ModLoader();
 
@@ -76,6 +83,7 @@ public class ModLoaderUI : Control
     public override void _Ready()
     {
         modInfoContainer = GetNode<MarginContainer>(ModInfoContainerPath);
+        errorInfoContainer = GetNode<MarginContainer>(ErrorInfoContainerPath);
 
         // Temporary variables to hold all the ItemList to put it in the modItemLists
         ItemList unloadedItemList;
@@ -100,8 +108,7 @@ public class ModLoaderUI : Control
 
         confirmationPopup = GetNode<ConfirmationDialog>(ConfirmationPopupPath);
         acceptPopup = GetNode<AcceptDialog>(AcceptPopupPath);
-
-        ReloadUnloadedModList();
+        ReloadModLists();
     }
 
     private void OnModSelected(int itemIndex, int selectedItemList)
@@ -122,7 +129,7 @@ public class ModLoaderUI : Control
             modInfoName.Text = tempModInfo.Name;
             modInfoAuthor.Text = tempModInfo.Author;
             modInfoVersion.Text = tempModInfo.Version;
-            modInfoDescription.Text = tempModInfo.Description;
+            modInfoDescription.BbcodeText = tempModInfo.Description;
 
             if (tempModInfo.PreviewImage != null)
             {
@@ -133,6 +140,33 @@ public class ModLoaderUI : Control
             {
                 modInfoPreviewImage.Visible = false;
             }
+
+            // Checks if the ErrorItemList was selected and if so display the error
+            if (modItemLists[(int)ItemLists.ErrorItemList].GetSelectedItems().Length > 0)
+            {
+                errorInfoContainer.Visible = true;
+
+                switch (tempModInfo.Status)
+                {
+                     case (int)ModLoader.ModStatus.ModFileCanNotBeFound:
+                        errorLabel.Text = "The mod failed to load due to the path not being able to be found!";
+                        break;
+                     case (int)ModLoader.ModStatus.FailedModLoading:
+                        errorLabel.Text = "The mod failed to load due to some unknown reasons!";
+                        break;
+                     case (int)ModLoader.ModStatus.ModAlreadyBeenLoaded:
+                        errorLabel.Text = "The mod failed to load due to it already being loaded!";
+                        break;
+                     default:
+                     case (int)ModLoader.ModStatus.ModLoadedSuccessfully:
+                        errorLabel.Text = "The mod was loaded successfully!";
+                        break;
+                }
+            }
+            else
+            {
+                errorInfoContainer.Visible = false;
+            }
         }
     }
 
@@ -140,6 +174,12 @@ public class ModLoaderUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnModLoaderClosed));
+    }
+
+    private void OnResetPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        confirmationPopup.PopupCenteredShrink();
     }
 
     private void OnMoveToLoadPressed()
@@ -266,22 +306,64 @@ public class ModLoaderUI : Control
             modItemLists[i].Clear();
         }
 
-        ReloadUnloadedModList();
+        ReloadModLists();
+    }
+
+    /// <summary>
+    ///   This is the method that actually reset the game
+    /// </summary>
+    private void ResetGame()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        loader.ResetGame();
+
+        modItemLists[(int)ItemLists.UnloadedItemList].Clear();
+        modItemLists[(int)ItemLists.LoadedItemList].Clear();
+        ReloadModLists();
+
+        acceptPopup.PopupCenteredShrink();
     }
 
     /// <summary>
     ///   This get the mods from the mod directory and updates the UnloadedItemList
     /// </summary>
-    private void ReloadUnloadedModList()
+    private void ReloadModLists(bool unloadedModList = true, bool autoLoadedModList = true, bool errorModList = true)
     {
-        var unloadedItemList = modItemLists[(int)ItemLists.UnloadedItemList];
-        int index = 0;
-
-        foreach (ModInfo currentModInfo in loader.LoadModList(false))
+        if (unloadedModList)
         {
-            AddModToItemList((int)ItemLists.UnloadedItemList, index, currentModInfo);
+            var unloadedItemList = modItemLists[(int)ItemLists.UnloadedItemList];
+            int index = 0;
+            foreach (ModInfo currentModInfo in loader.LoadModList(true, false))
+            {
+                AddModToItemList((int)ItemLists.UnloadedItemList, index, currentModInfo);
+                index++;
+            }
+        }
 
-            index++;
+        if (autoLoadedModList)
+        {
+            var autoLoadedItemList = modItemLists[(int)ItemLists.AutoloadedItemlist];
+            int index = 0;
+
+            foreach (ModInfo currentModInfo in loader.LoadModList(false, true))
+            {
+                AddModToItemList((int)ItemLists.AutoloadedItemlist, index, currentModInfo);
+
+                index++;
+            }
+        }
+
+        if (errorModList)
+        {
+            var errorItemList = modItemLists[(int)ItemLists.ErrorItemList];
+            int index = 0;
+
+            foreach (ModInfo currentModInfo in ModLoader.FailedToLoadMods)
+            {
+                AddModToItemList((int)ItemLists.ErrorItemList, index, currentModInfo);
+
+                index++;
+            }
         }
     }
 

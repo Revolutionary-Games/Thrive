@@ -31,6 +31,9 @@ public class MainMenu : Node
     [Export]
     public NodePath GLES2PopupPath;
 
+    [Export]
+    public NodePath ModErrorPopupPath;
+
     public Array MenuArray;
     public TextureRect Background;
 
@@ -48,6 +51,7 @@ public class MainMenu : Node
     private Button freebuildButton;
 
     private AcceptDialog gles2Popup;
+    private AcceptDialog modErrorPopup;
 
     public override void _Ready()
     {
@@ -129,6 +133,7 @@ public class MainMenu : Node
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         modLoader = GetNode<ModLoaderUI>("ModLoader");
         gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
+        modErrorPopup = GetNode<AcceptDialog>(ModErrorPopupPath);
 
         // Set initial menu
         SwitchMenu();
@@ -196,6 +201,8 @@ public class MainMenu : Node
 
         // Start music after the video
         StartMusic();
+
+        GetNode<AutoModLoader>("/root/AutoModLoader").OpenModErrorPopup(modErrorPopup);
     }
 
     private void OnMicrobeIntroEnded()

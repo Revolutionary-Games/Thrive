@@ -3,8 +3,23 @@ using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Class that manages all the loading, getting the mods from the directory, and other things
+///   relating to mods
+/// </summary>
 public class ModLoader : Reference
 {
+    /// <summary>
+    ///   The number that corresponds to the number returned by the loadMod function
+    /// </summary>
+    public enum ModStatus
+    {
+        ModFileCanNotBeFound = -2,
+        FailedModLoading = -1,
+        ModAlreadyBeenLoaded = 0,
+        ModLoadedSuccessfully = 1,
+    }
+
     /// <summary>
     ///   Mods that are loaded in by the auto mod loader
     ///   so the player don't have to reload them every time they start the game
@@ -24,7 +39,7 @@ public class ModLoader : Reference
     /// <summary>
     ///   This fetches the mods from the mod directory and then returns it
     /// </summary>
-    public List<ModInfo> LoadModList(bool ignoreAutoload = true)
+    public List<ModInfo> LoadModList(bool loadNonAutoloadedMods = true, bool loadAutoload = true)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.MOD_FOLDER);
         var modFolder = new Directory();
@@ -50,14 +65,17 @@ public class ModLoader : Reference
                 continue;
             }
 
-            // Checks if it should ignore autoloaded mods
-            if (currentModInfo.AutoLoad && ignoreAutoload)
+            // It will load the mod if it not a autoloaded mod and loadNonAutoloadedMods is true
+            // or if it is an autoloaded and loadAutoload is true
+            if ((loadNonAutoloadedMods && !currentModInfo.AutoLoad) || (currentModInfo.AutoLoad && loadAutoload))
             {
-                continue;
+                modList.Add(currentModInfo);
+                currentMod = modFolder.GetNext();
             }
-
-            modList.Add(currentModInfo);
-            currentMod = modFolder.GetNext();
+            else
+            {
+                currentMod = modFolder.GetNext();
+            }
         }
 
         return modList;
@@ -132,6 +150,86 @@ public class ModLoader : Reference
     }
 
     /// <summary>
+    ///   This loads multiple mods from a array
+    /// </summary>
+    public List<ModInfo> LoadModFromArray(ModInfo[] modsToLoad, bool ignoreAutoloaded = true,
+        bool addToAutoLoader = false, bool clearAutoloaderModList = true, bool clearFailedToLoadModsList = true)
+    {
+        var failedModList = new List<ModInfo>();
+
+        if (clearAutoloaderModList)
+        {
+            AutoLoadedMods.Clear();
+        }
+
+        if (clearFailedToLoadModsList)
+        {
+            FailedToLoadMods.Clear();
+        }
+
+        foreach (ModInfo currentMod in modsToLoad)
+        {
+            if (currentMod.AutoLoad && ignoreAutoloaded)
+            {
+                if (addToAutoLoader)
+                {
+                    AutoLoadedMods.Add(currentMod);
+                }
+
+                continue;
+            }
+
+            if (LoadMod(currentMod, addToAutoLoader, false, false) < 0)
+            {
+                failedModList.Add(currentMod);
+            }
+        }
+
+        // Returns the mods that failed to load from the list
+        return failedModList;
+    }
+
+    /// <summary>
+    ///   This loads multiple mods from a List
+    /// </summary>
+    public List<ModInfo> LoadModFromList(List<ModInfo> modsToLoad, bool ignoreAutoloaded = true,
+        bool addToAutoLoader = false, bool clearAutoloaderModList = true, bool clearFailedToLoadModsList = true)
+    {
+        var failedModList = new List<ModInfo>();
+
+        if (clearAutoloaderModList)
+        {
+            AutoLoadedMods.Clear();
+        }
+
+        if (clearFailedToLoadModsList)
+        {
+            FailedToLoadMods.Clear();
+        }
+
+        foreach (ModInfo currentMod in modsToLoad)
+        {
+            if (currentMod.AutoLoad && ignoreAutoloaded)
+            {
+                if (addToAutoLoader)
+                {
+                    AutoLoadedMods.Add(currentMod);
+                }
+
+                continue;
+            }
+
+            if (LoadMod(currentMod, addToAutoLoader, false, false) < 0)
+            {
+                failedModList.Add(currentMod);
+            }
+        }
+
+        // Returns the mods that failed to load from the list
+        return failedModList;
+    }
+
+    /// <summary>
     ///   This loads multiple mods from a ItemList, Mostly use for the ModManagerUI
     /// </summary>
     public List<ModInfo> LoadModFromList(ItemList modsToLoad, bool ignoreAutoloaded = true,
@@ -188,20 +286,28 @@ public class ModLoader : Reference
             JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(location + "/mod_info.json"));
 
         currentModInfo.Location = location;
-        if (file.FileExists(location + "/icon.png"))
+        if (file.FileExists(location + "/icon.png") || file.FileExists(location + "/icon.jpg"))
         {
             var iconTexture = new ImageTexture();
             var iconImage = new Image();
-            iconImage.Load(location + "/icon.png");
+            if (iconImage.Load(location + "/icon.png") != 0)
+            {
+                iconImage.Load(location + "/icon.jpg");
+            }
+
             iconTexture.CreateFromImage(iconImage);
             currentModInfo.IconImage = iconTexture;
         }
 
-        if (file.FileExists(location + "/preview.png"))
+        if (file.FileExists(location + "/preview.png") || file.FileExists(location + "/preview.jpg"))
         {
             var previewTexture = new ImageTexture();
             var previewImage = new Image();
-            previewImage.Load(location + "/preview.png");
+            if (previewImage.Load(location + "/preview.png") != 0)
+            {
+                previewImage.Load(location + "/preview.jpg");
+            }
+
             previewTexture.CreateFromImage(previewImage);
             currentModInfo.PreviewImage = previewTexture;
         }
@@ -232,6 +338,34 @@ public class ModLoader : Reference
         file.Close();
 
         return true;
+    }
+
+    /// <summary>
+    ///   This loads the 'AutoLoadedMods' list from a file
+    /// </summary>
+    /// <returns>True on success, false if the file can't be loaded.</returns>
+    public bool LoadAutoLoadedModsList()
+    {
+        var modFileContent = ReadJSONFile(Constants.MOD_CONFIGURATION);
+        var autoModList =
+            JsonConvert.DeserializeObject<List<ModInfo>>(modFileContent);
+
+        if (autoModList != null)
+        {
+            AutoLoadedMods = autoModList;
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   This resets the game by clearing the mod list in the settings file
+    /// </summary>
+    public void ResetGame()
+    {
+        AutoLoadedMods.Clear();
+        SaveAutoLoadedModsList();
     }
 
     private static string ReadJSONFile(string path)
