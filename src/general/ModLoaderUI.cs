@@ -13,6 +13,9 @@ public class ModLoaderUI : Control
     public NodePath ModInfoContainerPath;
 
     [Export]
+    public NodePath CompatibleVersionContainerPath;
+
+    [Export]
     public NodePath ErrorInfoContainerPath;
 
     [Export]
@@ -29,6 +32,9 @@ public class ModLoaderUI : Control
 
     [Export]
     public NodePath PreviewImagePath;
+
+    [Export]
+    public NodePath CompatibleVersionLabelPath;
 
     [Export]
     public NodePath LoadedItemListPath;
@@ -59,12 +65,14 @@ public class ModLoaderUI : Control
     private TextureRect modInfoPreviewImage;
 
     private Label errorLabel;
+    private Label compatibleVersionLabel;
 
     private ConfirmationDialog confirmationPopup;
     private AcceptDialog acceptPopup;
 
     private MarginContainer modInfoContainer;
     private MarginContainer errorInfoContainer;
+    private BoxContainer compatibleVersionContainer;
 
     private ModLoader loader = new ModLoader();
 
@@ -84,6 +92,7 @@ public class ModLoaderUI : Control
     {
         modInfoContainer = GetNode<MarginContainer>(ModInfoContainerPath);
         errorInfoContainer = GetNode<MarginContainer>(ErrorInfoContainerPath);
+        compatibleVersionContainer = GetNode<BoxContainer>(CompatibleVersionContainerPath);
 
         // Temporary variables to hold all the ItemList to put it in the modItemLists
         ItemList unloadedItemList;
@@ -99,6 +108,7 @@ public class ModLoaderUI : Control
 
         modItemLists = new ItemList[] { unloadedItemList, loadedItemList, autoLoadedItemList, errorItemList };
         errorLabel = GetNode<Label>(ErrorLabelPath);
+        compatibleVersionLabel = GetNode<Label>(CompatibleVersionLabelPath);
 
         modInfoName = GetNode<Label>(ModInfoNamePath);
         modInfoAuthor = GetNode<Label>(ModInfoAuthorPath);
@@ -114,6 +124,7 @@ public class ModLoaderUI : Control
     private void OnModSelected(int itemIndex, int selectedItemList)
     {
         ModInfo tempModInfo = (ModInfo)modItemLists[selectedItemList].GetItemMetadata(itemIndex);
+
         for (int i = 0; i < modItemLists.Length; ++i)
         {
             if (i != selectedItemList)
@@ -126,7 +137,15 @@ public class ModLoaderUI : Control
 
         if (tempModInfo != null)
         {
-            modInfoName.Text = tempModInfo.Name;
+            if (tempModInfo.DisplayName != null)
+            {
+                modInfoName.Text = tempModInfo.DisplayName;
+            }
+            else
+            {
+                modInfoName.Text = tempModInfo.Name;
+            }
+
             modInfoAuthor.Text = tempModInfo.Author;
             modInfoVersion.Text = tempModInfo.Version;
             modInfoDescription.BbcodeText = tempModInfo.Description;
@@ -139,6 +158,22 @@ public class ModLoaderUI : Control
             else
             {
                 modInfoPreviewImage.Visible = false;
+            }
+
+            // Checks if there is a Compatible Version and then display it
+            compatibleVersionLabel.Text = string.Empty;
+            if (tempModInfo.CompatibleVersion != null)
+            {
+                GD.Print(tempModInfo.IsCompatibleVersion);
+                compatibleVersionContainer.Visible = true;
+                foreach (string currentVersion in tempModInfo.CompatibleVersion)
+                {
+                    compatibleVersionLabel.Text += "* " + currentVersion + "\n";
+                }
+            }
+            else
+            {
+                compatibleVersionContainer.Visible = false;
             }
 
             // Checks if the ErrorItemList was selected and if so display the error
@@ -229,13 +264,42 @@ public class ModLoaderUI : Control
     {
         var tempItemList = modItemLists[itemListIndex];
 
-        tempItemList.AddItem(currentModInfo.Name);
+        if (currentModInfo.DisplayName != null)
+        {
+            tempItemList.AddItem(currentModInfo.DisplayName);
+        }
+        else
+        {
+            tempItemList.AddItem(currentModInfo.Name);
+        }
+
         tempItemList.SetItemMetadata(newItemIndex, currentModInfo);
 
         // Checks if a there is a icon image and if so set it
         if (currentModInfo.IconImage != null)
         {
             tempItemList.SetItemIcon(newItemIndex, currentModInfo.IconImage);
+        }
+
+        // Checks if a there is a stated compatible version on it
+        if (currentModInfo.CompatibleVersion != null)
+        {
+            var isCompatible = false;
+            foreach (string currentVersion in currentModInfo.CompatibleVersion)
+            {
+                if (currentVersion == Constants.Version)
+                {
+                    isCompatible = true;
+                    currentModInfo.IsCompatibleVersion = 1;
+                }
+            }
+
+            if (!isCompatible)
+            {
+                tempItemList.SetItemCustomFgColor(newItemIndex, new Color(1, 1, 0));
+                tempItemList.SetItemTooltip(newItemIndex, "This mod might not be compatible with this version of Thrive.");
+                currentModInfo.IsCompatibleVersion = -1;
+            }
         }
     }
 

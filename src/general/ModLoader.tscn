@@ -43,12 +43,14 @@ __meta__ = {
 }
 UnloadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList")
 ModInfoContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox")
+CompatibleVersionContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion")
 ErrorInfoContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel/MarginContainer")
 ModInfoNamePath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/ModNameLabel")
 ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/AuthorContainer/AuthorValueLabel")
 ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer/VersionValueLabel")
 ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/ModInfoDescription")
 PreviewImagePath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/Preview Image")
+CompatibleVersionLabelPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion/VBoxContainer/ScrollContainer/CompatibleVersion Value")
 LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/LoadedItemList")
 ErrorItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorModItemList")
 ErrorLabelPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel/MarginContainer/ErrorLabel")
@@ -85,7 +87,6 @@ size_flags_vertical = 3
 custom_constants/hseparation = 137
 
 [node name="Mod Loader" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -216,6 +217,7 @@ __meta__ = {
 }
 
 [node name="Failed to Load Mods" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -320,14 +322,14 @@ __meta__ = {
 
 [node name="InfoCenterer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
 margin_left = 404.0
-margin_right = 1174.0
+margin_right = 963.0
 margin_bottom = 140.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="InfoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer"]
-margin_left = 280.0
-margin_right = 490.0
+margin_left = 174.0
+margin_right = 384.0
 margin_bottom = 140.0
 custom_constants/separation = 15
 alignment = 1
@@ -376,12 +378,65 @@ margin_right = 164.0
 margin_bottom = 22.0
 text = "1.0"
 
+[node name="CompatibleGameVersion" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
+margin_left = 967.0
+margin_right = 1174.0
+margin_bottom = 140.0
+
+[node name="InfoSeperator" type="VSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion"]
+margin_right = 25.0
+margin_bottom = 140.0
+custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion"]
+margin_left = 29.0
+margin_right = 207.0
+margin_bottom = 140.0
+
+[node name="CompatibleVersion Label" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion/VBoxContainer"]
+margin_right = 178.0
+margin_bottom = 22.0
+text = "For Game Version:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion/VBoxContainer"]
+margin_top = 26.0
+margin_right = 178.0
+margin_bottom = 140.0
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="CompatibleVersion Value" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion/VBoxContainer/ScrollContainer"]
+margin_right = 172.0
+margin_bottom = 247.0
+size_flags_horizontal = 3
+text = "* 0.5.4.0
+* 2.0
+* 3.0
+* 4.0
+* 5.0
+* 6.0
+* 7.0
+* 8.0
+* 9.0
+* 10.0"
+autowrap = true
+
 [node name="DescriptionSeperator" type="HSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
 margin_top = 150.0
 margin_right = 1174.0
 margin_bottom = 155.0
 custom_styles/separator = SubResource( 3 )
 custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ModInfoDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
 margin_top = 165.0

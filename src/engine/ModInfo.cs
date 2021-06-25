@@ -10,6 +10,15 @@ public class ModInfo : Resource
     [JsonProperty]
     public string Name;
 
+    [JsonProperty("Display Name")]
+    public string DisplayName;
+
+    [JsonProperty("Compatible Version")]
+    public string[] CompatibleVersion;
+
+    [JsonProperty("Incompatible Version")]
+    public string[] IncompatibleVersion;
+
     [JsonProperty]
     public string Author { get; set; }
 
@@ -31,6 +40,12 @@ public class ModInfo : Resource
     public ImageTexture IconImage { get; set; }
 
     public ImageTexture PreviewImage { get; set; }
+
+    // 1 = Compatible, 0 = Unknown, -1 = Might Not Be Compatible, -2 = Not Compatible
+    public int IsCompatibleVersion { get; set; }
+
+    // The index of the mod is loaded in
+    public int LoadPosition { get; set; }
 
     // This uses the same numbering scheme as the load function in the ModLoader
     public int Status { get; set; }
