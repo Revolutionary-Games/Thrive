@@ -101,7 +101,7 @@ public class MainMenu : NodeWithInput
     }
 
     [RunOnKeyDown("ui_cancel")]
-    public void ReturnPressed()
+    public void OnReturnToMainMenuPressed()
     {
         if (options.Visible)
         {
