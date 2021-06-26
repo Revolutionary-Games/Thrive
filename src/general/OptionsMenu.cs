@@ -7,7 +7,7 @@ using Environment = System.Environment;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
-public class OptionsMenu : Control
+public class OptionsMenu : ControlWithInput
 {
     /*
       GUI Control Paths
@@ -450,6 +450,28 @@ public class OptionsMenu : Control
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+    }
+
+    [RunOnKeyDown("ui_cancel")]
+    public bool OnEscapePressed()
+    {
+        // Only handle keystrike when visible
+        if (Visible)
+        {
+            if (InputGroupList.WasListeningForInput)
+            {
+                // Listening for Inputs, should not do anything and should not pass through
+                return true;
+            }
+
+            // Call the default Back()
+            OnBackPressed();
+
+            return true;
+        }
+
+        // Pass through
+        return false;
     }
 
     private void SwitchMode(OptionsMode mode)

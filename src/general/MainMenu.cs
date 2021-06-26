@@ -7,7 +7,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
-public class MainMenu : Node
+public class MainMenu : NodeWithInput
 {
     /// <summary>
     ///   Index of the current menu.
@@ -98,6 +98,26 @@ public class MainMenu : Node
             // Just switch the menu
             SwitchMenu();
         }
+    }
+
+    /// <summary>
+    ///   This is when ESC is pressed. Main menu priority is lower than Options Menu (0)
+    ///   to avoid capturing ESC pressed in the Options Menu or Load menu.
+    /// </summary>
+    [RunOnKeyDown("ui_cancel", Priority = -1)]
+    public bool OnEscapePressed()
+    {
+        // In the Tools menu: Return to main menu.
+        if (CurrentMenuIndex == 1)
+        {
+            BackFromToolsPressed();
+
+            // Handled, stop here.
+            return true;
+        }
+
+        // Not handled, pass through.
+        return false;
     }
 
     /// <summary>
