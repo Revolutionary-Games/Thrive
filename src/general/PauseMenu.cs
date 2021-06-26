@@ -79,13 +79,12 @@ public class PauseMenu : ControlWithInput
         if (Visible)
         {
             // If the primary menu is not visible, return to it.
+            // Otherwise, close it.
             if (!primaryMenu.Visible)
             {
                 SetActiveMenu("primary");
                 return true;
             }
-
-            // Otherwise, close it.
             else
             {
                 EmitSignal(nameof(OnClosed));
