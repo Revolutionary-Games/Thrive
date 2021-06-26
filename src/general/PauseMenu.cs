@@ -84,7 +84,9 @@ public class PauseMenu : ControlWithInput
                 SetActiveMenu("primary");
                 return true;
             }
-            else // Otherwise, close it.
+
+            // Otherwise, close it.
+            else
             {
                 EmitSignal(nameof(OnClosed));
                 return true;
