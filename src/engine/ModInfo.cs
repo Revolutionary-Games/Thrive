@@ -13,11 +13,23 @@ public class ModInfo : Resource
     [JsonProperty("Display Name")]
     public string DisplayName;
 
-    [JsonProperty("Compatible Version")]
+    [JsonProperty("Compatible Versions")]
     public string[] CompatibleVersion;
 
-    [JsonProperty("Incompatible Version")]
+    [JsonProperty("Incompatible Versions")]
     public string[] IncompatibleVersion;
+
+    [JsonProperty]
+    public string[] Dependencies;
+
+    [JsonProperty("Incompatible Mods")]
+    public string[] IncompatibleMods;
+
+    [JsonProperty("Load Before")]
+    public string[] LoadBefore;
+
+    [JsonProperty("Load After")]
+    public string[] LoadAfter;
 
     [JsonProperty]
     public string Author { get; set; }

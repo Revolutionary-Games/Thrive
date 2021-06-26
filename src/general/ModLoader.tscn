@@ -55,34 +55,37 @@ LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModCon
 ErrorItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorModItemList")
 ErrorLabelPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel/MarginContainer/ErrorLabel")
 AutoLoadedItemListPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Autoloaded Mods/AutoLoadedModItemList")
-ConfirmationPopupPath = NodePath("ResetDialog")
-AcceptPopupPath = NodePath("ReloadReminderDialog")
+ResetPopupPath = NodePath("ResetDialog")
+ReloadReminderPopupPath = NodePath("ReloadReminderDialog")
+ModCheckPopupPath = NodePath("ModCheckPopup")
+LoadWarningPopupPath = NodePath("LoadWarningPopup")
+SafeModeButtonPath = NodePath("SafeModeCheckBox")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 40
-custom_constants/margin_top = 40
-custom_constants/margin_left = 40
-custom_constants/margin_bottom = 40
+custom_constants/margin_right = 37
+custom_constants/margin_top = 37
+custom_constants/margin_left = 37
+custom_constants/margin_bottom = 37
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 40.0
-margin_top = 40.0
-margin_right = 1240.0
-margin_bottom = 680.0
+margin_left = 37.0
+margin_top = 37.0
+margin_right = 1243.0
+margin_bottom = 683.0
 
 [node name="InfoBoxSplit" type="VSplitContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 1200.0
-margin_bottom = 601.0
+margin_right = 1206.0
+margin_bottom = 607.0
 size_flags_vertical = 3
 
 [node name="ModContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit"]
-margin_right = 1200.0
-margin_bottom = 294.0
+margin_right = 1206.0
+margin_bottom = 297.0
 size_flags_vertical = 3
 custom_constants/hseparation = 137
 
@@ -101,11 +104,11 @@ custom_constants/margin_bottom = 5
 [node name="LoaderContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1193.0
-margin_bottom = 255.0
+margin_right = 1199.0
+margin_bottom = 258.0
 
 [node name="LabelContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer"]
-margin_right = 1188.0
+margin_right = 1194.0
 margin_bottom = 22.0
 
 [node name="UnloadedModsLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/LabelContainer"]
@@ -128,36 +131,37 @@ text = "Loaded Mods"
 
 [node name="ItemListContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer"]
 margin_top = 26.0
-margin_right = 1188.0
-margin_bottom = 250.0
+margin_right = 1194.0
+margin_bottom = 253.0
 size_flags_vertical = 3
 
 [node name="UnloadedItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer"]
-margin_right = 538.0
-margin_bottom = 224.0
+margin_right = 541.0
+margin_bottom = 227.0
 size_flags_horizontal = 3
 custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+fixed_icon_size = Vector2( 32, 32 )
 
 [node name="Center Bar" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer"]
-margin_left = 542.0
-margin_right = 646.0
-margin_bottom = 224.0
+margin_left = 545.0
+margin_right = 649.0
+margin_bottom = 227.0
 custom_constants/separation = 15
 alignment = 1
 
 [node name="MoveLeftButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar"]
-margin_top = 40.0
+margin_top = 41.0
 margin_right = 104.0
-margin_bottom = 72.0
+margin_bottom = 73.0
 text = "<--"
 
 [node name="OrderButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar"]
-margin_top = 87.0
+margin_top = 88.0
 margin_right = 104.0
-margin_bottom = 137.0
+margin_bottom = 138.0
 
 [node name="MoveUpButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/OrderButtonContainer"]
 margin_right = 50.0
@@ -171,20 +175,21 @@ margin_bottom = 50.0
 icon = ExtResource( 6 )
 
 [node name="MoveRightButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar"]
-margin_top = 152.0
+margin_top = 153.0
 margin_right = 104.0
-margin_bottom = 184.0
+margin_bottom = 185.0
 text = "-->"
 
 [node name="LoadedItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer"]
-margin_left = 650.0
-margin_right = 1188.0
-margin_bottom = 224.0
+margin_left = 653.0
+margin_right = 1194.0
+margin_bottom = 227.0
 size_flags_horizontal = 3
 custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+fixed_icon_size = Vector2( 32, 32 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -205,13 +210,14 @@ custom_constants/margin_bottom = 5
 [node name="AutoLoadedModItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Autoloaded Mods"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1193.0
-margin_bottom = 255.0
+margin_right = 1199.0
+margin_bottom = 258.0
 size_flags_horizontal = 3
 custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+fixed_icon_size = Vector2( 32, 32 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -232,8 +238,8 @@ custom_constants/margin_bottom = 5
 [node name="Container" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1193.0
-margin_bottom = 255.0
+margin_right = 1199.0
+margin_bottom = 258.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -245,6 +251,7 @@ custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+fixed_icon_size = Vector2( 32, 32 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -277,16 +284,16 @@ valign = 1
 autowrap = true
 
 [node name="ModInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit"]
-margin_top = 306.0
-margin_right = 1200.0
-margin_bottom = 601.0
+margin_top = 309.0
+margin_right = 1206.0
+margin_bottom = 607.0
 size_flags_vertical = 3
 
 [node name="InfoBox" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 1199.0
-margin_bottom = 294.0
+margin_right = 1205.0
+margin_bottom = 297.0
 custom_constants/margin_right = 12
 custom_constants/margin_top = 12
 custom_constants/margin_left = 12
@@ -295,12 +302,12 @@ custom_constants/margin_bottom = 12
 [node name="ModInfoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 1186.0
-margin_bottom = 281.0
+margin_right = 1192.0
+margin_bottom = 284.0
 custom_constants/separation = 10
 
 [node name="MainModInfoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
-margin_right = 1174.0
+margin_right = 1180.0
 margin_bottom = 140.0
 
 [node name="Preview Image" type="TextureRect" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
@@ -322,14 +329,14 @@ __meta__ = {
 
 [node name="InfoCenterer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
 margin_left = 404.0
-margin_right = 963.0
+margin_right = 750.0
 margin_bottom = 140.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="InfoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer"]
-margin_left = 174.0
-margin_right = 384.0
+margin_left = 68.0
+margin_right = 278.0
 margin_bottom = 140.0
 custom_constants/separation = 15
 alignment = 1
@@ -379,8 +386,8 @@ margin_bottom = 22.0
 text = "1.0"
 
 [node name="CompatibleGameVersion" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
-margin_left = 967.0
-margin_right = 1174.0
+margin_left = 754.0
+margin_right = 961.0
 margin_bottom = 140.0
 
 [node name="InfoSeperator" type="VSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion"]
@@ -428,9 +435,46 @@ text = "* 0.5.4.0
 * 10.0"
 autowrap = true
 
+[node name="InfoButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
+margin_left = 965.0
+margin_right = 1180.0
+margin_bottom = 140.0
+
+[node name="VersionSeperator" type="VSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons"]
+margin_right = 25.0
+margin_bottom = 140.0
+custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons"]
+margin_left = 29.0
+margin_right = 215.0
+margin_bottom = 140.0
+alignment = 1
+
+[node name="DependencyButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
+margin_top = 18.0
+margin_right = 186.0
+margin_bottom = 50.0
+text = "Dependencies"
+
+[node name="IncompatibleButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
+margin_top = 54.0
+margin_right = 186.0
+margin_bottom = 86.0
+text = "Incompatible With"
+
+[node name="LoadOrderButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
+margin_top = 90.0
+margin_right = 186.0
+margin_bottom = 122.0
+text = "Load Order"
+
 [node name="DescriptionSeperator" type="HSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
 margin_top = 150.0
-margin_right = 1174.0
+margin_right = 1180.0
 margin_bottom = 155.0
 custom_styles/separator = SubResource( 3 )
 custom_constants/separation = 5
@@ -440,8 +484,8 @@ __meta__ = {
 
 [node name="ModInfoDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
 margin_top = 165.0
-margin_right = 1174.0
-margin_bottom = 269.0
+margin_right = 1180.0
+margin_bottom = 272.0
 focus_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -471,36 +515,43 @@ Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttito
 selection_enabled = true
 
 [node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 605.0
-margin_right = 1200.0
-margin_bottom = 640.0
+margin_top = 611.0
+margin_right = 1206.0
+margin_bottom = 646.0
 custom_constants/separation = 40
 alignment = 1
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 383.0
-margin_right = 483.0
+margin_left = 331.0
+margin_right = 431.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 text = "Back"
 
 [node name="Reset" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 523.0
-margin_right = 590.0
+margin_left = 471.0
+margin_right = 538.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "Reset"
 
+[node name="Check" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+margin_left = 578.0
+margin_right = 648.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+text = "Check"
+
 [node name="Refresh" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 630.0
-margin_right = 718.0
+margin_left = 688.0
+margin_right = 776.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "Refresh"
 
 [node name="Load" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 758.0
-margin_right = 817.0
+margin_left = 816.0
+margin_right = 875.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "Load"
@@ -515,6 +566,42 @@ margin_right = 99.0
 margin_bottom = 84.0
 dialog_text = "Please relaunch the game now to fully reset the game."
 
+[node name="ModCheckPopup" type="AcceptDialog" parent="."]
+margin_left = 10.7404
+margin_top = 30.7621
+margin_right = 205.74
+margin_bottom = 149.762
+
+[node name="InfoPopup" type="AcceptDialog" parent="."]
+margin_left = 227.74
+margin_top = 29.7621
+margin_right = 422.74
+margin_bottom = 148.762
+
+[node name="LoadWarningPopup" type="ConfirmationDialog" parent="."]
+margin_left = 441.74
+margin_top = 29.7621
+margin_right = 636.74
+margin_bottom = 148.762
+window_title = "Are you sure you want to load?"
+
+[node name="SafeModeCheckBox" type="CheckBox" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -30.0
+margin_right = 140.0
+margin_bottom = -5.0
+grow_horizontal = 0
+hint_tooltip = "Safe Mode turns on checks for mod incompatibility before loading.
+Turn it off if you know what you are doing."
+pressed = true
+text = "Safe Mode"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList" to="." method="OnModSelected" binds= [ 0 ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/MoveLeftButton" to="." method="OnMoveToUnloadPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/OrderButtonContainer/MoveUpButton" to="." method="OnMoveUpPressed"]
@@ -525,6 +612,8 @@ dialog_text = "Please relaunch the game now to fully reset the game."
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorModItemList" to="." method="OnModSelected" binds= [ 3 ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Reset" to="." method="OnResetPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Check" to="." method="OnCheckPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Refresh" to="." method="OnRefreshPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Load" to="." method="OnLoadPressed"]
 [connection signal="confirmed" from="ResetDialog" to="." method="ResetGame"]
+[connection signal="confirmed" from="LoadWarningPopup" to="." method="LoadAllMods"]

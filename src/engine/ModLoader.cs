@@ -21,6 +21,22 @@ public class ModLoader : Reference
     }
 
     /// <summary>
+    ///   The number that corresponds to the number returned by the isValidModList/isValidModArray function
+    /// </summary>
+    public enum CheckErrorStatus
+    {
+        InvalidLoadOrderAfter = -6,
+        InvalidLoadOrderBefore = -5,
+        IncompatibleMod = -4,
+        InvalidDependencyOrder = -3,
+        DependencyNotFound = -2,
+        IncompatibleVersion = -1,
+        Unknown = 0,
+        Valid = 1,
+        EmptyList = 2,
+    }
+
+    /// <summary>
     ///   Mods that are loaded in by the auto mod loader
     ///   so the player don't have to reload them every time they start the game
     /// </summary>
@@ -147,6 +163,385 @@ public class ModLoader : Reference
         currentMod.Status = -1;
         FailedToLoadMods.Add(currentMod);
         return -1;
+    }
+
+    public int[] IsValidModArray(ModInfo[] modsToCheck)
+    {
+        int[] isValidList = { (int)CheckErrorStatus.Unknown };
+        Dictionary<string, ModInfo> tempModDictionary = new Dictionary<string, ModInfo>();
+
+        if (modsToCheck.Length < 1)
+        {
+            return new int[] { (int)CheckErrorStatus.EmptyList };
+        }
+
+        // Store the mod in a dictionary for faster look-up when actually checking
+        for (int index = 0; index < modsToCheck.Length; ++index)
+        {
+            var currentMod = (ModInfo)modsToCheck[index];
+            currentMod.LoadPosition = index;
+            tempModDictionary.Add(currentMod.Name, currentMod);
+        }
+
+        for (int index = 0; index < modsToCheck.Length; index++)
+        {
+            var currentMod = (ModInfo)modsToCheck[index];
+            if (currentMod.IsCompatibleVersion < -1)
+            {
+                isValidList = new int[] { (int)CheckErrorStatus.IncompatibleVersion, index };
+                break;
+            }
+
+            if (currentMod.Dependencies != null)
+            {
+                var dependencyIndex = 0;
+                foreach (string dependencyName in currentMod.Dependencies)
+                {
+                    if (tempModDictionary.ContainsKey(dependencyName))
+                    {
+                        if (currentMod.LoadPosition < tempModDictionary[dependencyName].LoadPosition)
+                        {
+                            isValidList = new int[] { (int)CheckErrorStatus.InvalidDependencyOrder, index, tempModDictionary[dependencyName].LoadPosition };
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        isValidList = new int[] { (int)CheckErrorStatus.DependencyNotFound, index, dependencyIndex };
+                        break;
+                    }
+
+                    dependencyIndex++;
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.IncompatibleMods != null)
+            {
+                foreach (string incompatibleName in currentMod.IncompatibleMods)
+                {
+                    if (tempModDictionary.ContainsKey(incompatibleName))
+                    {
+                        isValidList = new int[] { (int)CheckErrorStatus.IncompatibleMod, index, tempModDictionary[incompatibleName].LoadPosition };
+                        break;
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.LoadBefore != null)
+            {
+                foreach (string loadBeforeName in currentMod.LoadBefore)
+                {
+                    if (tempModDictionary.ContainsKey(loadBeforeName))
+                    {
+                        if (currentMod.LoadPosition > tempModDictionary[loadBeforeName].LoadPosition)
+                            {
+                                isValidList = new int[] { (int)CheckErrorStatus.InvalidLoadOrderBefore, index, tempModDictionary[loadBeforeName].LoadPosition };
+                                break;
+                            }
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.LoadAfter != null)
+            {
+                foreach (string loadAfterName in currentMod.LoadAfter)
+                {
+                    if (tempModDictionary.ContainsKey(loadAfterName))
+                    {
+                        if (currentMod.LoadPosition < tempModDictionary[loadAfterName].LoadPosition)
+                            {
+                                isValidList = new int[] { (int)CheckErrorStatus.InvalidLoadOrderAfter, index, tempModDictionary[loadAfterName].LoadPosition };
+                                break;
+                            }
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+        }
+
+        // If there were no errors then the list is valid
+        if (isValidList[0] == (int)CheckErrorStatus.Unknown)
+        {
+            isValidList = new int[] { (int)CheckErrorStatus.Valid };
+        }
+
+        return isValidList;
+    }
+
+    public int[] IsValidModList(List<ModInfo> modsToCheck)
+    {
+        int[] isValidList = { (int)CheckErrorStatus.Unknown };
+        Dictionary<string, ModInfo> tempModDictionary = new Dictionary<string, ModInfo>();
+
+        if (modsToCheck.Count < 1)
+        {
+            return new int[] { (int)CheckErrorStatus.EmptyList };
+        }
+
+        // Store the mod in a dictionary for faster look-up when actually checking
+        for (int index = 0; index < modsToCheck.Count; ++index)
+        {
+            var currentMod = (ModInfo)modsToCheck[index];
+            currentMod.LoadPosition = index;
+            tempModDictionary.Add(currentMod.Name, currentMod);
+        }
+
+        for (int index = 0; index < modsToCheck.Count; index++)
+        {
+            var currentMod = (ModInfo)modsToCheck[index];
+            if (currentMod.IsCompatibleVersion < -1)
+            {
+                isValidList = new int[] { (int)CheckErrorStatus.IncompatibleVersion, index };
+                break;
+            }
+
+            if (currentMod.Dependencies != null)
+            {
+                var dependencyIndex = 0;
+                foreach (string dependencyName in currentMod.Dependencies)
+                {
+                    if (tempModDictionary.ContainsKey(dependencyName))
+                    {
+                        if (currentMod.LoadPosition < tempModDictionary[dependencyName].LoadPosition)
+                        {
+                            isValidList = new int[] { (int)CheckErrorStatus.InvalidDependencyOrder, index, tempModDictionary[dependencyName].LoadPosition };
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        isValidList = new int[] { (int)CheckErrorStatus.DependencyNotFound, index, dependencyIndex };
+                        break;
+                    }
+
+                    dependencyIndex++;
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.IncompatibleMods != null)
+            {
+                foreach (string incompatibleName in currentMod.IncompatibleMods)
+                {
+                    if (tempModDictionary.ContainsKey(incompatibleName))
+                    {
+                        isValidList = new int[] { (int)CheckErrorStatus.IncompatibleMod, index, tempModDictionary[incompatibleName].LoadPosition };
+                        break;
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.LoadBefore != null)
+            {
+                foreach (string loadBeforeName in currentMod.LoadBefore)
+                {
+                    if (tempModDictionary.ContainsKey(loadBeforeName))
+                    {
+                        if (currentMod.LoadPosition > tempModDictionary[loadBeforeName].LoadPosition)
+                            {
+                                isValidList = new int[] { (int)CheckErrorStatus.InvalidLoadOrderBefore, index, tempModDictionary[loadBeforeName].LoadPosition };
+                                break;
+                            }
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.LoadAfter != null)
+            {
+                foreach (string loadAfterName in currentMod.LoadAfter)
+                {
+                    if (tempModDictionary.ContainsKey(loadAfterName))
+                    {
+                        if (currentMod.LoadPosition < tempModDictionary[loadAfterName].LoadPosition)
+                            {
+                                isValidList = new int[] { (int)CheckErrorStatus.InvalidLoadOrderAfter, index, tempModDictionary[loadAfterName].LoadPosition };
+                                break;
+                            }
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+        }
+
+        // If there were no errors then the list is valid
+        if (isValidList[0] == (int)CheckErrorStatus.Unknown)
+        {
+            isValidList = new int[] { (int)CheckErrorStatus.Valid };
+        }
+
+        return isValidList;
+    }
+
+    public int[] IsValidModList(ItemList modsToCheck)
+    {
+        var modListCount = modsToCheck.GetItemCount();
+        int[] isValidList = { (int)CheckErrorStatus.Unknown };
+        Dictionary<string, ModInfo> tempModDictionary = new Dictionary<string, ModInfo>();
+
+        if (modListCount < 1)
+        {
+            return new int[] { (int)CheckErrorStatus.EmptyList };
+        }
+
+        // Store the mod in a dictionary for faster look-up when actually checking
+        for (int index = 0; index < modListCount; index++)
+        {
+            var currentMod = (ModInfo)modsToCheck.GetItemMetadata(index);
+            currentMod.LoadPosition = index;
+            tempModDictionary.Add(currentMod.Name, currentMod);
+        }
+
+        for (int index = 0; index < modListCount; index++)
+        {
+            var currentMod = (ModInfo)modsToCheck.GetItemMetadata(index);
+            if (currentMod.IsCompatibleVersion < -1)
+            {
+                isValidList = new int[] { (int)CheckErrorStatus.IncompatibleVersion, index };
+                break;
+            }
+
+            if (currentMod.Dependencies != null)
+            {
+                var dependencyIndex = 0;
+                foreach (string dependencyName in currentMod.Dependencies)
+                {
+                    if (tempModDictionary.ContainsKey(dependencyName))
+                    {
+                        if (currentMod.LoadPosition < tempModDictionary[dependencyName].LoadPosition)
+                        {
+                            isValidList = new int[] { (int)CheckErrorStatus.InvalidDependencyOrder, index, tempModDictionary[dependencyName].LoadPosition };
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        isValidList = new int[] { (int)CheckErrorStatus.DependencyNotFound, index, dependencyIndex };
+                        break;
+                    }
+
+                    dependencyIndex++;
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.IncompatibleMods != null)
+            {
+                foreach (string incompatibleName in currentMod.IncompatibleMods)
+                {
+                    if (tempModDictionary.ContainsKey(incompatibleName))
+                    {
+                        isValidList = new int[] { (int)CheckErrorStatus.IncompatibleMod, index, tempModDictionary[incompatibleName].LoadPosition };
+                        break;
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.LoadBefore != null)
+            {
+                foreach (string loadBeforeName in currentMod.LoadBefore)
+                {
+                    if (tempModDictionary.ContainsKey(loadBeforeName))
+                    {
+                        if (currentMod.LoadPosition > tempModDictionary[loadBeforeName].LoadPosition)
+                            {
+                                isValidList = new int[] { (int)CheckErrorStatus.InvalidLoadOrderBefore, index, tempModDictionary[loadBeforeName].LoadPosition };
+                                break;
+                            }
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+
+            if (currentMod.LoadAfter != null)
+            {
+                foreach (string loadAfterName in currentMod.LoadAfter)
+                {
+                    if (tempModDictionary.ContainsKey(loadAfterName))
+                    {
+                        if (currentMod.LoadPosition < tempModDictionary[loadAfterName].LoadPosition)
+                            {
+                                isValidList = new int[] { (int)CheckErrorStatus.InvalidLoadOrderAfter, index, tempModDictionary[loadAfterName].LoadPosition };
+                                break;
+                            }
+                    }
+                }
+
+                // Breaks out of the loop when the list is invalid
+                if (isValidList[0] != (int)CheckErrorStatus.Unknown)
+                {
+                    break;
+                }
+            }
+        }
+
+        // If there were no errors then the list is valid
+        if (isValidList[0] == (int)CheckErrorStatus.Unknown)
+        {
+            isValidList = new int[] { (int)CheckErrorStatus.Valid };
+        }
+
+        return isValidList;
     }
 
     /// <summary>
