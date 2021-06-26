@@ -27,7 +27,6 @@ public class SceneDisplayer : Spatial
         {
             RemoveChild(currentlyShown);
             currentlyShown.QueueFree();
-            currentlyShown = null;
         }
 
         if (string.IsNullOrEmpty(currentScene))
