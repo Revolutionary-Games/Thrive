@@ -127,11 +127,6 @@ public class SaveManagerGUI : Control
         refreshing = false;
     }
 
-    public void OnEscButtonPressed()
-    {
-        OnBackButtonPressed();
-    }
-
     private void OnSelectedChanged()
     {
         selectedDirty = true;
@@ -254,7 +249,7 @@ public class SaveManagerGUI : Control
         RefreshList();
     }
 
-    private void OnBackButtonPressed()
+    private void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
 

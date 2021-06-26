@@ -7,7 +7,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
-public class MainMenu : NodeWithInput
+public class MainMenu : Node
 {
     /// <summary>
     ///   Index of the current menu.
@@ -97,23 +97,6 @@ public class MainMenu : NodeWithInput
         {
             // Just switch the menu
             SwitchMenu();
-        }
-    }
-
-    [RunOnKeyDown("ui_cancel")]
-    public void OnReturnToMainMenuPressed()
-    {
-        if (options.Visible)
-        {
-            options.OnEscButtonPressed();
-        }
-        else if (saves.Visible)
-        {
-            saves.OnEscButtonPressed();
-        }
-        else if (CurrentMenuIndex != 0)
-        {
-            BackFromToolsPressed();
         }
     }
 
