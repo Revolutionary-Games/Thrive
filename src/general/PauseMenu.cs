@@ -85,11 +85,11 @@ public class PauseMenu : ControlWithInput
                 SetActiveMenu("primary");
                 return true;
             }
-            
+
             EmitSignal(nameof(OnClosed));
             return true;
         }
-        
+
         if (NoExclusiveTutorialActive())
         {
             EmitSignal(nameof(OnOpenWithKeyPress));
