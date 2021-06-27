@@ -8,7 +8,7 @@ using Godot;
 /// <summary>
 ///   Shows a GUI to the user that lists the existing saves and allows doing things with them like loading and deleting
 /// </summary>
-public class SaveManagerGUI : ControlWithInput
+public class SaveManagerGUI : Control
 {
     [Export]
     public NodePath SaveListPath;
@@ -125,19 +125,6 @@ public class SaveManagerGUI : ControlWithInput
         UpdateButtonsStatus();
 
         refreshing = false;
-    }
-
-    [RunOnKeyDown("ui_cancel")]
-    public bool OnEscapePressed()
-    {
-        // Only handle when visible
-        if (Visible)
-        {
-            Exit();
-            return true; // Handled
-        }
-
-        return false;
     }
 
     private void OnSelectedChanged()
@@ -265,11 +252,6 @@ public class SaveManagerGUI : ControlWithInput
     private void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        Exit();
-    }
-
-    private void Exit()
-    {
         EmitSignal(nameof(OnBackPressed));
     }
 }

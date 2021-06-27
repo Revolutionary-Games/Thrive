@@ -101,18 +101,24 @@ public class MainMenu : NodeWithInput
     }
 
     /// <summary>
-    ///   This is when ESC is pressed. Main menu priority is lower than Options Menu (0)
-    ///   to avoid capturing ESC pressed in the Options Menu or Load menu.
+    ///   This is when ESC is pressed. Main menu priority is lower than Options Menu
+    ///   to avoid capturing ESC presses in the Options Menu.
     /// </summary>
-    [RunOnKeyDown("ui_cancel", Priority = -1)]
+    [RunOnKeyDown("ui_cancel", Priority = Constants.MAIN_MENU_CANCEL_PRIORITY)]
     public bool OnEscapePressed()
     {
-        // In the Tools menu: Return to main menu.
-        if (CurrentMenuIndex == 1)
+        // In a sub menu (that doesn't have its own class)
+        if (CurrentMenuIndex != 0 && CurrentMenuIndex < uint.MaxValue)
         {
-            BackFromTools();
+            SetCurrentMenu(0);
 
             // Handled, stop here.
+            return true;
+        }
+
+        if (CurrentMenuIndex == uint.MaxValue && saves.Visible)
+        {
+            OnReturnFromLoadGame();
             return true;
         }
 
@@ -283,11 +289,6 @@ public class MainMenu : NodeWithInput
     private void BackFromToolsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        BackFromTools();
-    }
-
-    private void BackFromTools()
-    {
         SetCurrentMenu(0);
     }
 

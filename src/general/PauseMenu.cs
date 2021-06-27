@@ -70,10 +70,7 @@ public class PauseMenu : ControlWithInput
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
     }
 
-    /// <summary>
-    ///   Priority lower to avoid handling SubMenu ESCs.
-    /// </summary>
-    [RunOnKeyDown("ui_cancel", Priority = -1)]
+    [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
     public bool EscapeKeyPressed()
     {
         if (Visible)

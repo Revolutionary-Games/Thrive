@@ -452,10 +452,10 @@ public class OptionsMenu : ControlWithInput
         customUsername.Editable = settings.CustomUsernameEnabled;
     }
 
-    [RunOnKeyDown("ui_cancel")]
+    [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
     public bool OnEscapePressed()
     {
-        // Only handle keystrike when visible
+        // Only handle keypress when visible
         if (Visible)
         {
             if (InputGroupList.WasListeningForInput)
@@ -464,7 +464,11 @@ public class OptionsMenu : ControlWithInput
                 return true;
             }
 
-            Exit();
+            if (!Exit())
+            {
+                // We are prevented from exiting, consume this input
+                return true;
+            }
 
             // If it is opened from InGame then let pause menu hide too.
             if (optionsMode == OptionsMode.InGame)
@@ -738,17 +742,18 @@ public class OptionsMenu : ControlWithInput
         Exit();
     }
 
-    private void Exit()
+    private bool Exit()
     {
         // If any settings have been changed, show a dialogue asking if the changes should be kept or
         // discarded.
         if (!CompareSettings())
         {
             backConfirmationBox.PopupCenteredShrink();
-            return;
+            return false;
         }
 
         EmitSignal(nameof(OnOptionsClosed));
+        return true;
     }
 
     private void OnResetPressed()
