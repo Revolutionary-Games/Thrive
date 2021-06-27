@@ -163,4 +163,4 @@ visible = false
 [connection signal="OnClosed" from="CenterContainer/NewSaveMenu" to="." method="CloseSavePressed"]
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
-[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="CloseOptionsPressed"]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]

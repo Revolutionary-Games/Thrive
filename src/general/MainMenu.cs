@@ -110,7 +110,7 @@ public class MainMenu : NodeWithInput
         // In the Tools menu: Return to main menu.
         if (CurrentMenuIndex == 1)
         {
-            BackFromToolsPressed();
+            BackFromTools();
 
             // Handled, stop here.
             return true;
@@ -283,6 +283,11 @@ public class MainMenu : NodeWithInput
     private void BackFromToolsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
+        BackFromTools();
+    }
+
+    private void BackFromTools()
+    {
         SetCurrentMenu(0);
     }
 

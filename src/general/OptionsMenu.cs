@@ -464,8 +464,13 @@ public class OptionsMenu : ControlWithInput
                 return true;
             }
 
-            // Call the default Back()
-            OnBackPressed();
+            Exit();
+
+            // If it is opened from InGame then let pause menu hide too.
+            if (optionsMode == OptionsMode.InGame)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -730,6 +735,11 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        Exit();
+    }
+
+    private void Exit()
+    {
         // If any settings have been changed, show a dialogue asking if the changes should be kept or
         // discarded.
         if (!CompareSettings())

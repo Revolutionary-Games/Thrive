@@ -78,15 +78,10 @@ public class PauseMenu : ControlWithInput
     {
         if (Visible)
         {
-            // If the primary menu is not visible, return to it.
-            // Otherwise, close it.
-            if (!primaryMenu.Visible)
-            {
-                SetActiveMenu("primary");
-                return true;
-            }
+            SetActiveMenu("primary");
 
             EmitSignal(nameof(OnClosed));
+
             return true;
         }
 
@@ -180,10 +175,8 @@ public class PauseMenu : ControlWithInput
         SetActiveMenu("options");
     }
 
-    private void CloseOptionsPressed()
+    private void OnOptionsClosed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         SetActiveMenu("primary");
     }
 

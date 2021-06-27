@@ -133,7 +133,7 @@ public class SaveManagerGUI : ControlWithInput
         // Only handle when visible
         if (Visible)
         {
-            OnBackButton();
+            Exit();
             return true; // Handled
         }
 
@@ -265,7 +265,11 @@ public class SaveManagerGUI : ControlWithInput
     private void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
+        Exit();
+    }
 
+    private void Exit()
+    {
         EmitSignal(nameof(OnBackPressed));
     }
 }
