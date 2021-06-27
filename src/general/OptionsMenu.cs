@@ -59,6 +59,15 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ChromaticAberrationTogglePath;
 
+    [Export]
+    public NodePath CurrentGpuPath;
+
+    [Export]
+    public NodePath VideoMemPath;
+
+    [Export]
+    public NodePath DisplayDriverPath;
+
     // Sound tab.
     [Export]
     public NodePath SoundTabPath;
@@ -184,6 +193,9 @@ public class OptionsMenu : Control
     private OptionButton colourblindSetting;
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
+    private Label currentGpu;
+    private Label displayDriver;
+    private Label videoMem;
 
     // Sound tab
     private Control soundTab;
@@ -291,6 +303,9 @@ public class OptionsMenu : Control
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
+        currentGpu = GetNode<Label>(CurrentGpuPath);
+        displayDriver = GetNode<Label>(DisplayDriverPath);
+        videoMem = GetNode<Label>(VideoMemPath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -337,10 +352,12 @@ public class OptionsMenu : Control
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
+        GetSystemInfo();
 
         // We're only utilizing the AcceptDialog's auto resize functionality,
         // so hide the default Ok button since it's not needed
         backConfirmationBox.GetOk().Hide();
+
     }
 
     public override void _Notification(int what)
@@ -1137,5 +1154,13 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
+    }
+
+    private void GetSystemInfo()
+    {
+        ulong videoMemUsed = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / 1000000;
+        currentGpu.Text = VisualServer.GetVideoAdapterName();
+        displayDriver.Text = OS.GetCurrentVideoDriver().ToString();
+        videoMem.Text = videoMemUsed.ToString() + " MB";
     }
 }
