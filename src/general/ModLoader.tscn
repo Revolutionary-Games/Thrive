@@ -89,6 +89,9 @@ margin_right = 1206.0
 margin_bottom = 297.0
 size_flags_vertical = 3
 custom_constants/hseparation = 137
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Mod Loader" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
 anchor_right = 1.0
@@ -116,6 +119,9 @@ margin_bottom = 22.0
 margin_right = 153.0
 margin_bottom = 22.0
 text = "Unloaded Mods"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/LabelContainer"]
 margin_left = 157.0
@@ -129,6 +135,9 @@ margin_left = 628.0
 margin_right = 760.0
 margin_bottom = 22.0
 text = "Loaded Mods"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ItemListContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer"]
 margin_top = 26.0
@@ -158,6 +167,9 @@ margin_top = 41.0
 margin_right = 104.0
 margin_bottom = 73.0
 text = "<--"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="OrderButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar"]
 margin_top = 88.0
@@ -180,6 +192,9 @@ margin_top = 153.0
 margin_right = 104.0
 margin_bottom = 185.0
 text = "-->"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="LoadedItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer"]
 margin_left = 653.0
@@ -283,6 +298,9 @@ text = "The mod failed to load due to the path not being able to be found"
 align = 1
 valign = 1
 autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ModInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit"]
 margin_top = 309.0
@@ -348,6 +366,9 @@ margin_right = 210.0
 margin_bottom = 44.0
 text = "Mod Name"
 align = 1
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="AuthorContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer"]
 margin_top = 59.0
@@ -360,12 +381,18 @@ alignment = 1
 margin_right = 71.0
 margin_bottom = 22.0
 text = "Author:"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="AuthorValueLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/AuthorContainer"]
 margin_left = 81.0
 margin_right = 210.0
 margin_bottom = 22.0
 text = "The Creator :)"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="VersionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer"]
 margin_top = 96.0
@@ -379,12 +406,18 @@ margin_left = 45.0
 margin_right = 125.0
 margin_bottom = 22.0
 text = "Version:"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="VersionValueLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer"]
 margin_left = 135.0
 margin_right = 164.0
 margin_bottom = 22.0
 text = "1.0"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="CompatibleGameVersion" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
 margin_left = 754.0
@@ -410,7 +443,8 @@ margin_bottom = 22.0
 text = "For Game Version:"
 align = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion/VBoxContainer"]
@@ -435,6 +469,9 @@ text = "* 0.5.4.0
 * 9.0
 * 10.0"
 autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="InfoButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
 margin_left = 965.0
@@ -460,18 +497,27 @@ margin_top = 18.0
 margin_right = 186.0
 margin_bottom = 50.0
 text = "Dependencies"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="IncompatibleButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
 margin_top = 54.0
 margin_right = 186.0
 margin_bottom = 86.0
 text = "Incompatible With"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="LoadOrderButton" type="Button" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
 margin_top = 90.0
 margin_right = 186.0
 margin_bottom = 122.0
 text = "Load Order"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="DescriptionSeperator" type="HSeparator" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
 margin_top = 150.0
@@ -514,6 +560,9 @@ Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et
 
 Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros."
 selection_enabled = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 611.0
@@ -528,6 +577,9 @@ margin_right = 431.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 text = "Back"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Reset" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 margin_left = 471.0
@@ -535,6 +587,9 @@ margin_right = 538.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "Reset"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Check" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 margin_left = 578.0
@@ -542,6 +597,9 @@ margin_right = 648.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "Check"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Refresh" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 margin_left = 688.0
@@ -549,6 +607,9 @@ margin_right = 776.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "Refresh"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Load" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 margin_left = 816.0
@@ -556,28 +617,44 @@ margin_right = 875.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "Load"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ResetDialog" type="ConfirmationDialog" parent="."]
 margin_right = 209.0
 margin_bottom = 84.0
 dialog_text = "Confirm Reset Of Mod List?"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ReloadReminderDialog" type="AcceptDialog" parent="."]
 margin_right = 99.0
 margin_bottom = 84.0
 dialog_text = "Please relaunch the game now to fully reset the game."
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ModCheckPopup" type="AcceptDialog" parent="."]
 margin_left = 10.7404
 margin_top = 30.7621
 margin_right = 205.74
 margin_bottom = 149.762
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="InfoPopup" type="AcceptDialog" parent="."]
 margin_left = 227.74
 margin_top = 29.7621
 margin_right = 422.74
 margin_bottom = 148.762
+window_title = ":)"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="LoadWarningPopup" type="ConfirmationDialog" parent="."]
 margin_left = 441.74
@@ -585,6 +662,9 @@ margin_top = 29.7621
 margin_right = 636.74
 margin_bottom = 148.762
 window_title = "Are you sure you want to load?"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="SafeModeCheckBox" type="CheckBox" parent="."]
 anchor_top = 1.0
@@ -600,7 +680,8 @@ pressed = true
 text = "Safe Mode"
 align = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList" to="." method="OnModSelected" binds= [ 0 ]]

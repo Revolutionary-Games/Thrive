@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 /// <summary>
@@ -19,10 +18,13 @@ public class AutoModLoader : Node
         }
     }
 
+    /// <summary>
+    ///   This just opens the Error Popup in the main menu
+    /// </summary>
     public void OpenModErrorPopup(AcceptDialog errorBox)
     {
-        errorBox.DialogText = TranslationServer.Translate("MOD_LOAD_FAILURE_TEXT") + "\n\n";
-
+        // errorBox.DialogText = TranslationServer.Translate("MOD_LOAD_FAILURE_TEXT") + "\n\n";
+        errorBox.DialogText = "There was an error while trying to load the following mods:" + "\n\n";
         if (ModLoader.FailedToLoadMods.Count > 0)
         {
             var failedToLoadMods = ModLoader.FailedToLoadMods;

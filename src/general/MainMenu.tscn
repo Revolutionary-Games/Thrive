@@ -370,8 +370,7 @@ __meta__ = {
 }
 
 [node name="Mod Error Popup" type="AcceptDialog" parent="."]
-visible = true
-margin_right = 250.0
+margin_right = 500.0
 margin_bottom = 84.0
 rect_min_size = Vector2( 500, 0 )
 theme = ExtResource( 1 )
@@ -379,7 +378,8 @@ window_title = "Mod Error!"
 dialog_text = ":)"
 dialog_autowrap = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]

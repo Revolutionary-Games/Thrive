@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 /// <summary>
@@ -123,7 +122,7 @@ public class ModLoaderUI : Control
         errorItemList = GetNode<ItemList>(ErrorItemListPath);
         autoLoadedItemList = GetNode<ItemList>(AutoLoadedItemListPath);
 
-        modItemLists = new ItemList[] { unloadedItemList, loadedItemList, autoLoadedItemList, errorItemList };
+        modItemLists = new[] { unloadedItemList, loadedItemList, autoLoadedItemList, errorItemList };
         errorLabel = GetNode<Label>(ErrorLabelPath);
         compatibleVersionLabel = GetNode<Label>(CompatibleVersionLabelPath);
         safeModeButton = GetNode<CheckBox>(SafeModeButtonPath);
@@ -207,17 +206,17 @@ public class ModLoaderUI : Control
 
                 switch (tempModInfo.Status)
                 {
-                     case (int)ModLoader.ModStatus.ModFileCanNotBeFound:
+                    case (int)ModLoader.ModStatus.ModFileCanNotBeFound:
                         errorLabel.Text = "The mod failed to load due to the path not being able to be found!";
                         break;
-                     case (int)ModLoader.ModStatus.FailedModLoading:
+                    case (int)ModLoader.ModStatus.FailedModLoading:
                         errorLabel.Text = "The mod failed to load due to some unknown reasons!";
                         break;
-                     case (int)ModLoader.ModStatus.ModAlreadyBeenLoaded:
+                    case (int)ModLoader.ModStatus.ModAlreadyBeenLoaded:
                         errorLabel.Text = "The mod failed to load due to it already being loaded!";
                         break;
-                     default:
-                     case (int)ModLoader.ModStatus.ModLoadedSuccessfully:
+                    default:
+                    case (int)ModLoader.ModStatus.ModLoadedSuccessfully:
                         errorLabel.Text = "The mod was loaded successfully!";
                         break;
                 }
@@ -262,7 +261,8 @@ public class ModLoaderUI : Control
         var selectedItem = unloadedItemList.GetSelectedItems()[0];
 
         ModInfo currentModInfo = (ModInfo)unloadedItemList.GetItemMetadata(selectedItem);
-        AddModToItemList((int)ItemLists.LoadedItemList, modItemLists[(int)ItemLists.LoadedItemList].GetItemCount(), currentModInfo);
+        AddModToItemList((int)ItemLists.LoadedItemList, modItemLists[(int)ItemLists.LoadedItemList].GetItemCount(),
+            currentModInfo);
 
         unloadedItemList.RemoveItem(selectedItem);
     }
@@ -282,7 +282,8 @@ public class ModLoaderUI : Control
         var selectedItem = loadedItemList.GetSelectedItems()[0];
 
         ModInfo currentModInfo = (ModInfo)loadedItemList.GetItemMetadata(selectedItem);
-        AddModToItemList((int)ItemLists.UnloadedItemList, modItemLists[(int)ItemLists.UnloadedItemList].GetItemCount(), currentModInfo);
+        AddModToItemList((int)ItemLists.UnloadedItemList, modItemLists[(int)ItemLists.UnloadedItemList].GetItemCount(),
+            currentModInfo);
 
         loadedItemList.RemoveItem(selectedItem);
     }
@@ -327,7 +328,8 @@ public class ModLoaderUI : Control
             if (!isCompatible)
             {
                 tempItemList.SetItemCustomFgColor(newItemIndex, new Color(1, 1, 0));
-                tempItemList.SetItemTooltip(newItemIndex, "This mod might not be compatible with this version of Thrive.");
+                tempItemList.SetItemTooltip(newItemIndex,
+                    "This mod might not be compatible with this version of Thrive.");
                 currentModInfo.IsCompatibleVersion = -1;
             }
         }
@@ -340,7 +342,8 @@ public class ModLoaderUI : Control
                 if (currentVersion == Constants.Version)
                 {
                     tempItemList.SetItemCustomFgColor(newItemIndex, new Color(1, 0, 0));
-                    tempItemList.SetItemTooltip(newItemIndex, "This mod is not compatible with this version of Thrive.");
+                    tempItemList.SetItemTooltip(newItemIndex,
+                        "This mod is not compatible with this version of Thrive.");
                     currentModInfo.IsCompatibleVersion = -2;
                     break;
                 }
@@ -372,11 +375,13 @@ public class ModLoaderUI : Control
     {
         if (modItemLists[(int)ItemLists.LoadedItemList].GetSelectedItems().Length > 0)
         {
-            MoveItem(modItemLists[(int)ItemLists.LoadedItemList], false, modItemLists[(int)ItemLists.LoadedItemList].GetSelectedItems()[0], 1);
+            MoveItem(modItemLists[(int)ItemLists.LoadedItemList], false,
+                modItemLists[(int)ItemLists.LoadedItemList].GetSelectedItems()[0], 1);
         }
         else if (modItemLists[(int)ItemLists.UnloadedItemList].GetSelectedItems().Length > 0)
         {
-            MoveItem(modItemLists[(int)ItemLists.UnloadedItemList], false, modItemLists[(int)ItemLists.UnloadedItemList].GetSelectedItems()[0], 1);
+            MoveItem(modItemLists[(int)ItemLists.UnloadedItemList], false,
+                modItemLists[(int)ItemLists.UnloadedItemList].GetSelectedItems()[0], 1);
         }
     }
 
@@ -407,6 +412,9 @@ public class ModLoaderUI : Control
         modCheckPopup.PopupCenteredShrink();
     }
 
+    /// <summary>
+    ///   Turns the result from a check into a string of the error and how to fix it
+    /// </summary>
     private string CheckResultToString(int[] checkResult, ItemList list)
     {
         var result = string.Empty;
@@ -433,13 +441,15 @@ public class ModLoaderUI : Control
                 result += "The '" + offendingMod.Name + "' mod is incompatible with this version of Thrive.";
                 break;
             case (int)ModLoader.CheckErrorStatus.DependencyNotFound:
-                result += "The '" + offendingMod.Name + "' mod is dependent on the '" + offendingMod.Dependencies[checkResult[2]] + "' mod.\n";
+                result += "The '" + offendingMod.Name + "' mod is dependent on the '" +
+                    offendingMod.Dependencies[checkResult[2]] + "' mod.\n";
                 result += "Add that mod to the mod loader to fix this error.";
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidDependencyOrder:
                 otherMod = (ModInfo)list.GetItemMetadata(checkResult[2]);
                 result += "The '" + offendingMod.Name + "' mod is dependent on the '" + otherMod.Name + "' mod.\n";
-                result += "Load the '" + offendingMod.Name + "' mod after the '" + otherMod.Name + "' mod to fix this error.";
+                result += "Load the '" + offendingMod.Name + "' mod after the '" + otherMod.Name +
+                    "' mod to fix this error.";
                 break;
             case (int)ModLoader.CheckErrorStatus.IncompatibleMod:
                 otherMod = (ModInfo)list.GetItemMetadata(checkResult[2]);
@@ -448,13 +458,17 @@ public class ModLoaderUI : Control
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
                 otherMod = (ModInfo)list.GetItemMetadata(checkResult[2]);
-                result += "The '" + offendingMod.Name + "' mod needs to be loaded before the '" + otherMod.Name + "' mod.\n";
-                result += "Load the '" + offendingMod.Name + "' mod before the '" + otherMod.Name + "' to fix this error.";
+                result += "The '" + offendingMod.Name + "' mod needs to be loaded before the '" + otherMod.Name +
+                    "' mod.\n";
+                result += "Load the '" + offendingMod.Name + "' mod before the '" + otherMod.Name +
+                    "' to fix this error.";
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
                 otherMod = (ModInfo)list.GetItemMetadata(checkResult[2]);
-                result += "The '" + offendingMod.Name + "' mod needs to be loaded after the '" + otherMod.Name + "' mod.\n";
-                result += "Load the '" + offendingMod.Name + "' mod after the '" + otherMod.Name + "' to fix this error.";
+                result += "The '" + offendingMod.Name + "' mod needs to be loaded after the '" + otherMod.Name +
+                    "' mod.\n";
+                result += "Load the '" + offendingMod.Name + "' mod after the '" + otherMod.Name +
+                    "' to fix this error.";
                 break;
         }
 
@@ -657,13 +671,17 @@ public class ModLoaderUI : Control
         }
         else if (checkResult[0] < 0 && safeModeButton.Pressed)
         {
-            var warningText = "The mods you want to load might cause errors.\n\n" + CheckResultToString(checkResult, loadedItemList);
+            var warningText = "The mods you want to load might cause errors.\n\n" +
+                CheckResultToString(checkResult, loadedItemList);
             warningText += "\n\n Are you sure you want to load these mods?";
             loadWarningPopup.DialogText = warningText;
             loadWarningPopup.PopupCenteredShrink();
         }
     }
 
+    /// <summary>
+    //    This loads all the mod in loadedItemList
+    /// </summary>
     private void LoadAllMods()
     {
         var loadedItemList = modItemLists[(int)ItemLists.LoadedItemList];
