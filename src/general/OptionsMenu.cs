@@ -1159,6 +1159,7 @@ public class OptionsMenu : Control
     private void GetSystemInfo()
     {
         ulong videoMemUsed = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / Constants.MEBIBYTE;
+
         currentGpu.Text = VisualServer.GetVideoAdapterName();
         displayDriver.Text = OS.GetCurrentVideoDriver().ToString();
         videoMem.Text = videoMemUsed.ToString() + " MB";
