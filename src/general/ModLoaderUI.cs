@@ -63,6 +63,9 @@ public class ModLoaderUI : Control
     [Export]
     public NodePath SafeModeButtonPath;
 
+    [Export]
+    public NodePath InfoPopupPath;
+
     // The array is used for getting all of the ItemList
     private ItemList[] modItemLists;
 
@@ -79,6 +82,7 @@ public class ModLoaderUI : Control
     private ConfirmationDialog resetPopup;
     private AcceptDialog reloadReminderPopup;
     private AcceptDialog modCheckPopup;
+    private AcceptDialog infoPopup;
     private ConfirmationDialog loadWarningPopup;
     private CheckBox safeModeButton;
 
@@ -87,6 +91,7 @@ public class ModLoaderUI : Control
     private BoxContainer compatibleVersionContainer;
 
     private ModLoader loader = new ModLoader();
+    private ModInfo currentSelectedMod;
 
     [Signal]
     public delegate void OnModLoaderClosed();
@@ -132,6 +137,7 @@ public class ModLoaderUI : Control
         resetPopup = GetNode<ConfirmationDialog>(ResetPopupPath);
         reloadReminderPopup = GetNode<AcceptDialog>(ReloadReminderPopupPath);
         modCheckPopup = GetNode<AcceptDialog>(ModCheckPopupPath);
+        infoPopup = GetNode<AcceptDialog>(InfoPopupPath);
         loadWarningPopup = GetNode<ConfirmationDialog>(LoadWarningPopupPath);
 
         loadWarningPopup.GetOk().Text = "Yes";
@@ -142,6 +148,7 @@ public class ModLoaderUI : Control
     private void OnModSelected(int itemIndex, int selectedItemList)
     {
         ModInfo tempModInfo = (ModInfo)modItemLists[selectedItemList].GetItemMetadata(itemIndex);
+        currentSelectedMod = tempModInfo;
 
         for (int i = 0; i < modItemLists.Length; ++i)
         {
@@ -452,6 +459,90 @@ public class ModLoaderUI : Control
         }
 
         return result;
+    }
+
+    private void OnDependencyPressed()
+    {
+        infoPopup.WindowTitle = "Dependencies";
+        var infoText = string.Empty;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (currentSelectedMod.Dependencies != null)
+        {
+            foreach (string currentDependency in currentSelectedMod.Dependencies)
+            {
+                infoText += "* " + currentDependency + "\n";
+            }
+        }
+        else
+        {
+            infoText += "This mod have no Dependencies";
+        }
+
+        infoPopup.DialogText = infoText;
+        infoPopup.PopupCenteredShrink();
+    }
+
+    private void OnIncompatiblePressed()
+    {
+        infoPopup.WindowTitle = "Incompatible With";
+        var infoText = string.Empty;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (currentSelectedMod.IncompatibleMods != null)
+        {
+            foreach (string currentIncompatibleMod in currentSelectedMod.IncompatibleMods)
+            {
+                infoText += "* " + currentIncompatibleMod + "\n";
+            }
+        }
+        else
+        {
+            infoText += "This mod is not incompatible With any other mod.";
+        }
+
+        infoPopup.DialogText = infoText;
+        infoPopup.PopupCenteredShrink();
+    }
+
+    private void OnLoadOrderPressed()
+    {
+        infoPopup.WindowTitle = "Load Order";
+        var infoText = string.Empty;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (currentSelectedMod.LoadBefore != null || currentSelectedMod.LoadAfter != null)
+        {
+            if (currentSelectedMod.LoadAfter != null)
+            {
+                infoText += "This mod needs to be loaded after the following mods:\n";
+                foreach (string currentLoadAfterMod in currentSelectedMod.LoadAfter)
+                {
+                    infoText += "* " + currentLoadAfterMod + "\n";
+                }
+            }
+
+            if (currentSelectedMod.LoadBefore != null && currentSelectedMod.LoadAfter != null)
+            {
+                infoText += "\n";
+            }
+
+            if (currentSelectedMod.LoadBefore != null)
+            {
+                infoText += "This mod needs to be loaded before the following mods:\n";
+                foreach (string currentLoadBeforeMod in currentSelectedMod.LoadBefore)
+                {
+                    infoText += "* " + currentLoadBeforeMod + "\n";
+                }
+            }
+        }
+        else
+        {
+            infoText += "This mod have no specified load order.";
+        }
+
+        infoPopup.DialogText = infoText;
+        infoPopup.PopupCenteredShrink();
     }
 
     /// <summary>
