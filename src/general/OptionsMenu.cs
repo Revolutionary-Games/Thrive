@@ -456,31 +456,28 @@ public class OptionsMenu : ControlWithInput
     public bool OnEscapePressed()
     {
         // Only handle keypress when visible
-        if (Visible)
+        if (!Visible)
+            return false;
+
+        if (InputGroupList.WasListeningForInput)
         {
-            if (InputGroupList.WasListeningForInput)
-            {
-                // Listening for Inputs, should not do anything and should not pass through
-                return true;
-            }
-
-            if (!Exit())
-            {
-                // We are prevented from exiting, consume this input
-                return true;
-            }
-
-            // If it is opened from InGame then let pause menu hide too.
-            if (optionsMode == OptionsMode.InGame)
-            {
-                return false;
-            }
-
+            // Listening for Inputs, should not do anything and should not pass through
             return true;
         }
 
-        // Pass through
-        return false;
+        if (!Exit())
+        {
+            // We are prevented from exiting, consume this input
+            return true;
+        }
+
+        // If it is opened from InGame then let pause menu hide too.
+        if (optionsMode == OptionsMode.InGame)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private void SwitchMode(OptionsMode mode)
