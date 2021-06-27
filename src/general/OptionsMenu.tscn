@@ -404,21 +404,21 @@ margin_right = 648.0
 margin_bottom = 315.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7"]
-margin_right = 139.0
+margin_right = 176.0
 margin_bottom = 22.0
-text = "Display Driver:"
+text = "Display Renderer:"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7"]
-margin_left = 143.0
-margin_right = 467.0
+margin_left = 180.0
+margin_right = 451.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 
 [node name="DisplayDriver" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7"]
-margin_left = 471.0
+margin_left = 455.0
 margin_right = 648.0
 margin_bottom = 22.0
-text = "Display Driver Info"
+text = "Display Render Info"
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 325.0
