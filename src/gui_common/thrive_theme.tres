@@ -1,6 +1,11 @@
-[gd_resource type="Theme" load_steps=42 format=2]
+[gd_resource type="Theme" load_steps=48 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 
@@ -376,10 +381,10 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = ExtResource( 8 )
-CheckBox/icons/checked = null
+CheckBox/icons/checked = ExtResource( 5 )
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
-CheckBox/icons/unchecked = null
+CheckBox/icons/unchecked = ExtResource( 6 )
 CheckBox/styles/disabled = SubResource( 6 )
 CheckBox/styles/focus = SubResource( 7 )
 CheckBox/styles/hover = SubResource( 8 )
@@ -484,9 +489,9 @@ HScrollBar/styles/scroll = SubResource( 15 )
 HScrollBar/styles/scroll_focus = null
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource( 16 )
-HSlider/icons/grabber = null
-HSlider/icons/grabber_disabled = null
-HSlider/icons/grabber_highlight = null
+HSlider/icons/grabber = ExtResource( 2 )
+HSlider/icons/grabber_disabled = ExtResource( 7 )
+HSlider/icons/grabber_highlight = ExtResource( 3 )
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource( 17 )
 HSlider/styles/grabber_area_highlight = SubResource( 18 )
@@ -576,11 +581,11 @@ PopupMenu/colors/font_color_hover = Color( 1, 1, 1, 1 )
 PopupMenu/constants/hseparation = 2
 PopupMenu/constants/vseparation = 4
 PopupMenu/fonts/font = ExtResource( 10 )
-PopupMenu/icons/checked = null
-PopupMenu/icons/radio_checked = null
-PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/checked = ExtResource( 5 )
+PopupMenu/icons/radio_checked = ExtResource( 5 )
+PopupMenu/icons/radio_unchecked = ExtResource( 6 )
 PopupMenu/icons/submenu = null
-PopupMenu/icons/unchecked = null
+PopupMenu/icons/unchecked = ExtResource( 6 )
 PopupMenu/styles/hover = SubResource( 27 )
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
