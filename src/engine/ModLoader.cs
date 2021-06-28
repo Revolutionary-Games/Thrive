@@ -198,9 +198,13 @@ public class ModLoader : Reference
             var currentMod = modsToCheck[index];
             var validMod = IsModValid(currentMod, tempModDictionary);
 
-            if (validMod[0] != (int)CheckErrorStatus.Valid)
+            if (validMod.Length > 1)
             {
                 isValidList = new[] { validMod[0], index, validMod[1] };
+            }
+            else if (validMod.Length > 0)
+            {
+                isValidList = new[] { validMod[0], index };
             }
         }
 
@@ -243,9 +247,13 @@ public class ModLoader : Reference
         {
             var currentMod = modsToCheck[index];
             var validMod = IsModValid(currentMod, tempModDictionary);
-            if (validMod[0] != (int)CheckErrorStatus.Valid)
+            if (validMod.Length > 1)
             {
                 isValidList = new[] { validMod[0], index, validMod[1] };
+            }
+            else if (validMod.Length > 0)
+            {
+                isValidList = new[] { validMod[0], index };
             }
         }
 
@@ -291,7 +299,14 @@ public class ModLoader : Reference
             var validMod = IsModValid(currentMod, tempModDictionary);
             if (validMod[0] != (int)CheckErrorStatus.Valid)
             {
-                isValidList = new[] { validMod[0], index, validMod[1] };
+                if (validMod.Length > 1)
+                {
+                    isValidList = new[] { validMod[0], index, validMod[1] };
+                }
+                else if (validMod.Length > 0)
+                {
+                    isValidList = new[] { validMod[0], index };
+                }
             }
         }
 
