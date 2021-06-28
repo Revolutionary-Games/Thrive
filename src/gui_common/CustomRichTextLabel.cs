@@ -250,4 +250,12 @@ public class CustomRichTextLabel : RichTextLabel
 
         return output;
     }
+
+    private void OnDraw()
+    {
+        // A workaround to get RichTextLabel's height properly update on tooltip size change
+        // See https://github.com/Revolutionary-Games/Thrive/issues/2236
+        // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
+        Invoke.Instance.Queue(() => BbcodeText = BbcodeText);
+    }
 }
