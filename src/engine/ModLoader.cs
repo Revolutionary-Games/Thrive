@@ -636,15 +636,14 @@ public class ModLoader : Reference
 
     private static string ReadJSONFile(string path)
     {
-        using (var file = new File())
-        {
-            file.Open(path, File.ModeFlags.Read);
-            var result = file.GetAsText();
+        using var file = new File();
 
-            // This might be completely unnecessary
-            file.Close();
+        file.Open(path, File.ModeFlags.Read);
+        var result = file.GetAsText();
 
-            return result;
-        }
+        // This might be completely unnecessary
+        file.Close();
+
+        return result;
     }
 }

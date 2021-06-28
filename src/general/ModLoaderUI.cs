@@ -161,15 +161,7 @@ public class ModLoaderUI : Control
 
         if (tempModInfo != null)
         {
-            if (tempModInfo.DisplayName != null)
-            {
-                modInfoName.Text = tempModInfo.DisplayName;
-            }
-            else
-            {
-                modInfoName.Text = tempModInfo.Name;
-            }
-
+            modInfoName.Text = tempModInfo.DisplayName ?? tempModInfo.Name;
             modInfoAuthor.Text = tempModInfo.Author;
             modInfoVersion.Text = tempModInfo.Version;
             modInfoDescription.BbcodeText = tempModInfo.Description;
@@ -216,7 +208,6 @@ public class ModLoaderUI : Control
                         errorLabel.Text = "The mod failed to load due to it already being loaded!";
                         break;
                     default:
-                    case (int)ModLoader.ModStatus.ModLoadedSuccessfully:
                         errorLabel.Text = "The mod was loaded successfully!";
                         break;
                 }
@@ -295,15 +286,7 @@ public class ModLoaderUI : Control
     {
         var tempItemList = modItemLists[itemListIndex];
 
-        if (currentModInfo.DisplayName != null)
-        {
-            tempItemList.AddItem(currentModInfo.DisplayName);
-        }
-        else
-        {
-            tempItemList.AddItem(currentModInfo.Name);
-        }
-
+        tempItemList.AddItem(currentModInfo.DisplayName ?? currentModInfo.Name);
         tempItemList.SetItemMetadata(newItemIndex, currentModInfo);
 
         // Checks if a there is a icon image and if so set it
@@ -423,7 +406,7 @@ public class ModLoaderUI : Control
         var offendingMod = new ModInfo();
 
         // The reason why the mod is causing an error
-        var otherMod = new ModInfo();
+        ModInfo otherMod;
 
         if (checkResult.Length > 1)
         {
@@ -433,8 +416,6 @@ public class ModLoaderUI : Control
         switch (checkResult[0])
         {
             default:
-            case (int)ModLoader.CheckErrorStatus.EmptyList:
-            case (int)ModLoader.CheckErrorStatus.Valid:
                 result = "The mod list has no errors and is valid.";
                 break;
             case (int)ModLoader.CheckErrorStatus.IncompatibleVersion:
@@ -619,7 +600,6 @@ public class ModLoaderUI : Control
     {
         if (unloadedModList)
         {
-            var unloadedItemList = modItemLists[(int)ItemLists.UnloadedItemList];
             int index = 0;
             foreach (ModInfo currentModInfo in loader.LoadModList(true, false))
             {
@@ -630,7 +610,6 @@ public class ModLoaderUI : Control
 
         if (autoLoadedModList)
         {
-            var autoLoadedItemList = modItemLists[(int)ItemLists.AutoloadedItemlist];
             int index = 0;
 
             foreach (ModInfo currentModInfo in loader.LoadModList(false, true))
@@ -643,7 +622,6 @@ public class ModLoaderUI : Control
 
         if (errorModList)
         {
-            var errorItemList = modItemLists[(int)ItemLists.ErrorItemList];
             int index = 0;
 
             foreach (ModInfo currentModInfo in ModLoader.FailedToLoadMods)
@@ -679,9 +657,6 @@ public class ModLoaderUI : Control
         }
     }
 
-    /// <summary>
-    //    This loads all the mod in loadedItemList
-    /// </summary>
     private void LoadAllMods()
     {
         var loadedItemList = modItemLists[(int)ItemLists.LoadedItemList];
