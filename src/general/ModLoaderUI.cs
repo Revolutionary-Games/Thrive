@@ -65,6 +65,9 @@ public class ModLoaderUI : Control
     [Export]
     public NodePath InfoPopupPath;
 
+    [Export]
+    public NodePath InfoButtonContainerPath;
+
     // The array is used for getting all of the ItemList
     private ItemList[] modItemLists;
 
@@ -88,6 +91,7 @@ public class ModLoaderUI : Control
     private MarginContainer modInfoContainer;
     private MarginContainer errorInfoContainer;
     private BoxContainer compatibleVersionContainer;
+    private BoxContainer infoButtonContainer;
 
     private ModLoader loader = new ModLoader();
     private ModInfo currentSelectedMod;
@@ -109,6 +113,7 @@ public class ModLoaderUI : Control
         modInfoContainer = GetNode<MarginContainer>(ModInfoContainerPath);
         errorInfoContainer = GetNode<MarginContainer>(ErrorInfoContainerPath);
         compatibleVersionContainer = GetNode<BoxContainer>(CompatibleVersionContainerPath);
+        infoButtonContainer = GetNode<BoxContainer>(InfoButtonContainerPath);
 
         // Temporary variables to hold all the ItemList to put it in the modItemLists
         ItemList unloadedItemList;
@@ -189,6 +194,15 @@ public class ModLoaderUI : Control
             else
             {
                 compatibleVersionContainer.Visible = false;
+            }
+
+            if (tempModInfo.Dependencies != null || tempModInfo.LoadBefore != null || tempModInfo.IncompatibleMods != null || tempModInfo.LoadAfter != null)
+            {
+                infoButtonContainer.Visible = true;
+            }
+            else
+            {
+                infoButtonContainer.Visible = false;
             }
 
             // Checks if the ErrorItemList was selected and if so display the error

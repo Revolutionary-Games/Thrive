@@ -61,6 +61,7 @@ ModCheckPopupPath = NodePath("ModCheckPopup")
 LoadWarningPopupPath = NodePath("LoadWarningPopup")
 SafeModeButtonPath = NodePath("SafeModeCheckBox")
 InfoPopupPath = NodePath("InfoPopup")
+InfoButtonContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

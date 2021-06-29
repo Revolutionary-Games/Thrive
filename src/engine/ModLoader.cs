@@ -143,10 +143,12 @@ public class ModLoader : Reference
         // Checks if a Dll file needs to be loaded
         if (!string.IsNullOrEmpty(currentMod.Dll))
         {
+            GD.Print("a: (" + ProjectSettings.GlobalizePath(currentMod.Location + currentMod.Dll));
+            GD.Print("b: (" + ProjectSettings.GlobalizePath(currentMod.Location));
+            GD.Print("c: (" + ProjectSettings.GlobalizePath(currentMod.Dll));
             if (file.FileExists(ProjectSettings.GlobalizePath(currentMod.Dll)))
             {
                 GD.Print("NEW JERSEY: (" + currentMod.Dll + ").");
-
                 // GD.Print("Loading...: " + Assembly.LoadFile(ProjectSettings.GlobalizePath(currentMod.Dll)).Location);
                 GD.Print("DLL LOADED YES: (" + currentMod.Dll + ").");
             }
