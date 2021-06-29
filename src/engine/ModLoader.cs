@@ -177,7 +177,7 @@ public class ModLoader : Reference
     public int[] IsValidModArray(ModInfo[] modsToCheck)
     {
         int[] isValidList = { (int)CheckErrorStatus.Unknown };
-        Dictionary<string, ModInfo> tempModDictionary = new Dictionary<string, ModInfo>();
+        Dictionary<string, ModInfo> tempModDictionary;
 
         if (modsToCheck.Length < 1)
         {
@@ -185,13 +185,7 @@ public class ModLoader : Reference
         }
 
         // Store the mod in a dictionary for faster look-up when actually checking
-        for (int index = 0; index < modsToCheck.Length; ++index)
-        {
-            var currentMod = modsToCheck[index];
-            currentMod.LoadPosition = index;
-
-            tempModDictionary.Add(currentMod.Name, currentMod);
-        }
+        tempModDictionary = ModArrayToModDictioanry(modsToCheck);
 
         for (int index = 0; index < modsToCheck.Length; index++)
         {
@@ -228,7 +222,7 @@ public class ModLoader : Reference
     public int[] IsValidModList(List<ModInfo> modsToCheck)
     {
         int[] isValidList = { (int)CheckErrorStatus.Unknown };
-        Dictionary<string, ModInfo> tempModDictionary = new Dictionary<string, ModInfo>();
+        Dictionary<string, ModInfo> tempModDictionary;
 
         if (modsToCheck.Count < 1)
         {
@@ -236,24 +230,19 @@ public class ModLoader : Reference
         }
 
         // Store the mod in a dictionary for faster look-up when actually checking
-        for (int index = 0; index < modsToCheck.Count; ++index)
-        {
-            var currentMod = modsToCheck[index];
-            currentMod.LoadPosition = index;
-            tempModDictionary.Add(currentMod.Name, currentMod);
-        }
+        tempModDictionary = ModArrayToModDictioanry(modsToCheck.ToArray());
 
         for (int index = 0; index < modsToCheck.Count; index++)
         {
-            var currentMod = modsToCheck[index];
-            var validMod = IsModValid(currentMod, tempModDictionary);
-            if (validMod.Length > 1)
-            {
-                isValidList = new[] { validMod[0], index, validMod[1] };
-            }
-            else if (validMod.Length > 0)
+            ModInfo currentMod = modsToCheck[index];
+            int[] validMod = IsModValid(currentMod, tempModDictionary);
+            if (validMod.Length > 0)
             {
                 isValidList = new[] { validMod[0], index };
+            }
+            else if (validMod.Length > 1)
+            {
+                isValidList = new[] { validMod[0], index, validMod[1] };
             }
         }
 
@@ -461,38 +450,8 @@ public class ModLoader : Reference
     public List<ModInfo> LoadModFromList(List<ModInfo> modsToLoad, bool ignoreAutoloaded = true,
         bool addToAutoLoader = false, bool clearAutoloaderModList = true, bool clearFailedToLoadModsList = true)
     {
-        var failedModList = new List<ModInfo>();
-
-        if (clearAutoloaderModList)
-        {
-            AutoLoadedMods.Clear();
-        }
-
-        if (clearFailedToLoadModsList)
-        {
-            FailedToLoadMods.Clear();
-        }
-
-        foreach (ModInfo currentMod in modsToLoad)
-        {
-            if (currentMod.AutoLoad && ignoreAutoloaded)
-            {
-                if (addToAutoLoader)
-                {
-                    AutoLoadedMods.Add(currentMod);
-                }
-
-                continue;
-            }
-
-            if (LoadMod(currentMod, addToAutoLoader, false, false) < 0)
-            {
-                failedModList.Add(currentMod);
-            }
-        }
-
-        // Returns the mods that failed to load from the list
-        return failedModList;
+        return LoadModFromArray(modsToLoad.ToArray(), ignoreAutoloaded, addToAutoLoader, clearAutoloaderModList,
+            clearFailedToLoadModsList);
     }
 
     /// <summary>
@@ -645,5 +604,18 @@ public class ModLoader : Reference
         file.Close();
 
         return result;
+    }
+
+    private Dictionary<string, ModInfo> ModArrayToModDictioanry(ModInfo[] modArray)
+    {
+        Dictionary<string, ModInfo> returnValue = new Dictionary<string, ModInfo>();
+        for (int index = 0; index < modArray.Length; ++index)
+        {
+            var currentMod = modArray[index];
+            currentMod.LoadPosition = index;
+            returnValue.Add(currentMod.Name, currentMod);
+        }
+
+        return returnValue;
     }
 }
