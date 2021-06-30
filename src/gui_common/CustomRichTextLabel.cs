@@ -66,7 +66,7 @@ public class CustomRichTextLabel : RichTextLabel
         var result = new StringBuilder(extendedBbcode.Length);
         var currentTagBlock = new StringBuilder(50);
 
-        var tagStack = new Stack<string[]>();
+        var tagStack = new Stack<List<string>>();
 
         var isIteratingTag = false;
         var isIteratingContent = false;
@@ -122,7 +122,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var tagBlock = currentTagBlock.ToString();
 
-                // Namespace divisor not found
+                // Bbcode delimiter not found
                 if (!tagBlock.Contains(":"))
                 {
                     result.Append($"[{tagBlock}]");
@@ -143,9 +143,6 @@ public class CustomRichTextLabel : RichTextLabel
                 // Custom bbcode Thrive namespace
                 var bbcodeNamespace = leftHandSide[0];
 
-                // The bbcode (and its attributes if this is an opening tag)
-                var splitTagBlock = StringUtils.SplitByWhiteSpace(leftHandSide[1], true);
-
                 // Not a thrive custom bbcode, don't parse this
                 if (!bbcodeNamespace.Contains("thrive"))
                 {
@@ -154,10 +151,13 @@ public class CustomRichTextLabel : RichTextLabel
                     continue;
                 }
 
+                // The bbcode (and its attributes if this is an opening tag)
+                var splitTagBlock = StringUtils.SplitByWhiteSpace(leftHandSide[1], true);
+
                 // Tag seems okay, next step is to try parse the content and the closing tag
 
                 // Is a closing tag
-                if (bbcodeNamespace.BeginsWith("/"))
+                if (bbcodeNamespace.StartsWith("/", StringComparison.InvariantCulture))
                 {
                     var chunks = tagStack.Peek();
 
@@ -175,7 +175,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                     var closingTagStartIndex = extendedBbcode.Find("[", lastStartingTagEndIndex);
 
-                    var input = extendedBbcode.Substr(
+                    var input = extendedBbcode.Substring(
                         lastStartingTagEndIndex + 1, closingTagStartIndex - lastStartingTagEndIndex - 1);
 
                     ThriveBbCode parsedTag;
@@ -183,7 +183,7 @@ public class CustomRichTextLabel : RichTextLabel
                     if (Enum.TryParse(bbcode, true, out parsedTag))
                     {
                         // Leave out bbcode, all that's left should be the attributes
-                        var attributes = chunks.Skip(1).ToArray();
+                        var attributes = chunks.Skip(1).ToList();
 
                         // Success!
                         result.Append(BuildTemplateForTag(input, parsedTag, attributes));
@@ -192,7 +192,7 @@ public class CustomRichTextLabel : RichTextLabel
                     {
                         // BBcode is not present in the enum
                         result.Append(input);
-                        GD.PrintErr($"Failed parsing custom thrive tag: {tagStack.Peek()}, it probably doesn't exist");
+                        GD.PrintErr($"Failed parsing custom thrive bbcode: {bbcode}, it probably doesn't exist");
                     }
 
                     isIteratingContent = false;
@@ -221,7 +221,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// <param name="input">The string tagged by custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
     /// <param name="attributes">Attributes specifying an additional functionality to the bbcode.</param>
-    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, string[] attributes = null)
+    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes = null)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
@@ -240,32 +240,18 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var name = compound.Name;
 
-                // Parse attributes if there is any
-                // ReSharper disable MergeSequentialChecksWhenPossible
-                if (attributes != null && attributes.Length > 0)
+                var pairs = StringUtils.ParseKeyValuePairs(attributes);
+
+                // Parse attributes if there are any
+                if (pairs.ContainsKey("text"))
                 {
-                    if (attributes[0].BeginsWith("text="))
-                    {
-                        var split = attributes[0].Split("=");
+                    var value = pairs["text"];
 
-                        if (split.Length != 2)
-                        {
-                            GD.PrintErr("Compound BBCode tag: `text` attribute is specified but missing a value");
-                            break;
-                        }
+                    if (!value.IsEnclosedIn("\""))
+                        break;
 
-                        var value = split[1];
-
-                        if (!value.BeginsWith("\"") || !value.EndsWith("\"", StringComparison.InvariantCulture))
-                            break;
-
-                        name = value.Substr(1, value.Length - 2);
-                    }
-
-                    // if (... other attribs ...)
+                    name = value.Substring(1, value.Length - 2);
                 }
-
-                // ReSharper restore MergeSequentialChecksWhenPossible
 
                 output = $"[b]{name}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
