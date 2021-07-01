@@ -59,7 +59,8 @@ ResetPopupPath = NodePath("ResetDialog")
 ReloadReminderPopupPath = NodePath("ReloadReminderDialog")
 ModCheckPopupPath = NodePath("ModCheckPopup")
 LoadWarningPopupPath = NodePath("LoadWarningPopup")
-SafeModeButtonPath = NodePath("SafeModeCheckBox")
+SafeModeButtonPath = NodePath("Checkbox Corner/Vertical Organizer/SafeModeCheckBox")
+OneShotButtonPath = NodePath("Checkbox Corner/Vertical Organizer/OneShotCheckBox")
 InfoPopupPath = NodePath("InfoPopup")
 InfoButtonContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons")
 
@@ -622,6 +623,52 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="Checkbox Corner" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -58.0
+margin_right = 133.0
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vertical Organizer" type="VBoxContainer" parent="Checkbox Corner"]
+margin_left = 10.0
+margin_right = 133.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OneShotCheckBox" type="CheckBox" parent="Checkbox Corner/Vertical Organizer"]
+margin_right = 123.0
+margin_bottom = 22.0
+grow_horizontal = 0
+hint_tooltip = "Only load these mod for only this instance"
+text = "One Shot"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="SafeModeCheckBox" type="CheckBox" parent="Checkbox Corner/Vertical Organizer"]
+margin_top = 26.0
+margin_right = 123.0
+margin_bottom = 48.0
+grow_horizontal = 0
+hint_tooltip = "Safe Mode turns on checks for mod incompatibility before loading.
+Turn it off if you know what you are doing."
+pressed = true
+text = "Safe Mode"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
 [node name="ResetDialog" type="ConfirmationDialog" parent="."]
 margin_right = 209.0
 margin_bottom = 84.0
@@ -664,24 +711,6 @@ margin_right = 636.74
 margin_bottom = 148.762
 window_title = "Are you sure you want to load?"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="SafeModeCheckBox" type="CheckBox" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -30.0
-margin_right = 140.0
-margin_bottom = -5.0
-grow_horizontal = 0
-hint_tooltip = "Safe Mode turns on checks for mod incompatibility before loading.
-Turn it off if you know what you are doing."
-pressed = true
-text = "Safe Mode"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 

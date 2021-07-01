@@ -63,6 +63,9 @@ public class ModLoaderUI : Control
     public NodePath SafeModeButtonPath;
 
     [Export]
+    public NodePath OneShotButtonPath;
+
+    [Export]
     public NodePath InfoPopupPath;
 
     [Export]
@@ -86,7 +89,9 @@ public class ModLoaderUI : Control
     private AcceptDialog modCheckPopup;
     private AcceptDialog infoPopup;
     private ConfirmationDialog loadWarningPopup;
+
     private CheckBox safeModeButton;
+    private CheckBox oneShotButton;
 
     private MarginContainer modInfoContainer;
     private MarginContainer errorInfoContainer;
@@ -130,7 +135,9 @@ public class ModLoaderUI : Control
         modItemLists = new[] { unloadedItemList, loadedItemList, autoLoadedItemList, errorItemList };
         errorLabel = GetNode<Label>(ErrorLabelPath);
         compatibleVersionLabel = GetNode<Label>(CompatibleVersionLabelPath);
+
         safeModeButton = GetNode<CheckBox>(SafeModeButtonPath);
+        oneShotButton = GetNode<CheckBox>(OneShotButtonPath);
 
         modInfoName = GetNode<Label>(ModInfoNamePath);
         modInfoAuthor = GetNode<Label>(ModInfoAuthorPath);
@@ -196,7 +203,8 @@ public class ModLoaderUI : Control
                 compatibleVersionContainer.Visible = false;
             }
 
-            if (tempModInfo.Dependencies != null || tempModInfo.LoadBefore != null || tempModInfo.IncompatibleMods != null || tempModInfo.LoadAfter != null)
+            if (tempModInfo.Dependencies != null || tempModInfo.LoadBefore != null ||
+                tempModInfo.IncompatibleMods != null || tempModInfo.LoadAfter != null)
             {
                 infoButtonContainer.Visible = true;
             }
@@ -675,8 +683,9 @@ public class ModLoaderUI : Control
     {
         var loadedItemList = modItemLists[(int)ItemLists.LoadedItemList];
 
-        loader.LoadModFromList(loadedItemList, true, true, true);
-        loader.SaveAutoLoadedModsList();
+        loader.LoadModFromList(loadedItemList, true, !oneShotButton.Pressed, true);
+        if (!oneShotButton.Pressed) loader.SaveReloadedModsList();
+
         GD.Print("All mods loaded");
         SceneManager.Instance.ReturnToMenu();
     }

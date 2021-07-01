@@ -10,11 +10,17 @@ public class AutoModLoader : Node
 
     private AutoModLoader()
     {
-        // Load in the AutoLoadedMods and checks if the AutoLoadedMods List is not empty
-        if (loader.LoadAutoLoadedModsList())
+        var autoloadedModList = loader.LoadModList(false, true, false);
+        if (autoloadedModList.Count > 0)
         {
-            var autoLoadedModList = ModLoader.AutoLoadedMods;
-            loader.LoadModFromList(autoLoadedModList, false, false, false);
+            loader.LoadModFromList(autoloadedModList, false, false, false);
+        }
+
+        // Load in the AutoLoadedMods and checks if the AutoLoadedMods List is not empty
+        if (loader.LoadReloadedModsList())
+        {
+            var reloadModList = ModLoader.ReloadedMods;
+            loader.LoadModFromList(reloadModList, false, false, false);
         }
     }
 

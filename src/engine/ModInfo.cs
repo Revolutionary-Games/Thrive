@@ -49,6 +49,9 @@ public class ModInfo : Resource
     [JsonProperty]
     public bool AutoLoad { get; set; }
 
+    [JsonProperty("Load On Startup")]
+    public bool StartupMod { get; set; }
+
     public ImageTexture IconImage { get; set; }
 
     public ImageTexture PreviewImage { get; set; }
