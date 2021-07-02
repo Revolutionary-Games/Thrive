@@ -408,20 +408,30 @@ public class MicrobeAI
     // Computes priority of compounds
     private Dictionary<Compound, float> PrioritizeUsefulCompounds(IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
     {
-        // If this microbe lacks vital compounds, don't bother with ammonia and phosphorous
+        var usefulVitalCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
+
+        // If this microbe lacks vital compounds (ATP producers and their producers), don't bother with ammonia and phosphorous
         // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
-        if (microbe.Compounds.GetCompoundAmount(glucose) < 0.5f)
+        foreach (var compound in usefulVitalCompounds)
         {
-            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
+            if (microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f)
+            {
+                usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
+            }
         }
+        
 
         var compoundsPriority = new Dictionary<Compound, float>();
         foreach (var compound in usefulCompounds)
         {
             // The priority of a compound is inversely proportional to its availability
             // Should be tweaked with consumption
-            compoundsPriority.Add(compound.Key, 1 - compound.Value / microbe.Compounds.Capacity);
+            var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound.Key) / microbe.Compounds.Capacity;
+
+            compoundsPriority.Add(compound.Key, compoundPriority);
         }
+
+
 
         return compoundsPriority;
     }
