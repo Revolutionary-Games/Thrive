@@ -379,17 +379,10 @@ public class MicrobeAI
         // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
         var compoundsPriority = PrioritizeUsefulCompounds(usefulCompounds);
 
-        // Moved to above function
-        /*if (microbe.Compounds.GetCompoundAmount(glucose) < 0.5f)
-        {
-            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
-        }*/
-
         float compoundDifference = 0.0f;
-        foreach (var compound in compoundsPriority.Keys)
+        foreach (var compoundPriority in compoundsPriority.ToList())
         {
-            // Use of Key and value : compounds Priority as an IEnumerable?
-            compoundDifference += compoundsPriority[compound] * microbe.TotalAbsorbedCompounds[compound];
+            compoundDifference += compoundPriority.Value * microbe.TotalAbsorbedCompounds[compoundPriority.Key];
         }
 
         // If food density is going down, back up and see if there's some more
