@@ -448,6 +448,8 @@ public static class Constants
 
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
+    public const int DIALOG_CANCEL_PRIORITY = 1;
+
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
     /// </summary>
