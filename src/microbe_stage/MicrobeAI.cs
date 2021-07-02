@@ -399,20 +399,24 @@ public class MicrobeAI
             compoundDifference += quantityDifference;
         }
 
+        // Implement a detection threshold to rule out too tiny variations
+        // Set to 0 to enable full detection as before
+        float differenceDetectionThreshold = 0;
+
         // If food density is going down, back up and see if there's some more
-        if (compoundDifference < 0 && random.Next(0, 10) < 9)
+        if (compoundDifference < -differenceDetectionThreshold && random.Next(0, 10) < 9)
         {
             MoveWithRandomTurn(2.5f, 3.0f, random);
         }
 
         // If there isn't any food here, it's a good idea to keep moving
-        if (compoundDifference == 0 && random.Next(0, 10) < 5)
+        if (Math.Abs(compoundDifference) <= differenceDetectionThreshold && random.Next(0, 10) < 5)
         {
             MoveWithRandomTurn(0.0f, 0.4f, random);
         }
 
         // If positive last step you gained compounds, so let's stick around
-        if (compoundDifference > 0)
+        if (compoundDifference > differenceDetectionThreshold)
         {
             // There's a decent chance to turn most of the way around
             if (random.Next(0, 10) < 4)
@@ -421,8 +425,10 @@ public class MicrobeAI
             }
         }
     }
+
     // Computes priority of compounds
-    private Dictionary<Compound, float> PrioritizeUsefulCompounds(IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
+    private Dictionary<Compound, float> PrioritizeUsefulCompounds
+        (IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
     {
         var usefulVitalCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
 
@@ -431,7 +437,7 @@ public class MicrobeAI
         // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
         foreach (var compound in usefulVitalCompounds)
         {
-            if (microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f)
+            if (microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity)
             {
                 usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
             }
