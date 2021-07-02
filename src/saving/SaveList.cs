@@ -167,11 +167,35 @@ public class SaveList : ScrollContainer
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.DIALOG_CANCEL_PRIORITY)]
-    public bool OnEscapePressed()
+    public bool OnEscapePressedInDialog()
     {
         if (deleteConfirmDialog.Visible)
         {
             deleteConfirmDialog.Hide();
+            return true;
+        }
+
+        if (loadNewerConfirmDialog.Visible)
+        {
+            loadNewerConfirmDialog.Hide();
+            return true;
+        }
+
+        if (loadOlderConfirmDialog.Visible)
+        {
+            loadOlderConfirmDialog.Hide();
+            return true;
+        }
+
+        if (loadInvalidConfirmDialog.Visible)
+        {
+            loadInvalidConfirmDialog.Hide();
+            return true;
+        }
+
+        if (loadIncompatibleDialog.Visible)
+        {
+            loadIncompatibleDialog.Hide();
             return true;
         }
 
