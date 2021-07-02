@@ -374,9 +374,6 @@ public class MicrobeAI
         microbe.State = Microbe.MicrobeState.Normal;
 
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
-
-        // If this microbe lacks glucose, don't bother with ammonia and phosphorous
-        // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
         var compoundsPriority = PrioritizeUsefulCompounds(usefulCompounds);
 
         float compoundDifference = 0.0f;
@@ -411,7 +408,8 @@ public class MicrobeAI
     // Computes priority of compounds
     private Dictionary<Compound, float> PrioritizeUsefulCompounds(IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
     {
-        //Used to discard phosphate/ammoniac search if in vital danger
+        // If this microbe lacks vital compounds, don't bother with ammonia and phosphorous
+        // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
         if (microbe.Compounds.GetCompoundAmount(glucose) < 0.5f)
         {
             usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
