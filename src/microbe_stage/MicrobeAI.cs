@@ -40,6 +40,9 @@ public class MicrobeAI
     [JsonProperty]
     private float pursuitThreshold;
 
+    private float gradientMemory;
+    private Dictionary<Compound, float> previouslyAbsorbedCompounds;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -49,6 +52,7 @@ public class MicrobeAI
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         iron = SimulationParameters.Instance.GetCompound("iron");
         hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;
@@ -69,7 +73,8 @@ public class MicrobeAI
 
         ChooseActions(random, data);
 
-        // Clear the absorbed compounds for run and rumble
+        // Store & clear the absorbed compounds for run and rumble
+        previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
@@ -88,6 +93,7 @@ public class MicrobeAI
 
     private void ChooseActions(Random random, MicrobeAICommonData data)
     {
+        /*
         if (microbe.IsBeingEngulfed)
         {
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
@@ -121,7 +127,7 @@ public class MicrobeAI
 
             EngagePrey(prey.Value, random, engulfPrey);
             return;
-        }
+        }*/
 
         // Otherwise just wander around and look for compounds
         if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
@@ -379,12 +385,29 @@ public class MicrobeAI
         float compoundDifference = 0.0f;
         foreach (var compoundPriority in compoundsPriority.ToList())
         {
-            compoundDifference += compoundPriority.Value * microbe.TotalAbsorbedCompounds[compoundPriority.Key];
+            // Note : as stored quantities have changed, it might affect gradient computation... To check.
+            float quantityDifference = 0.0f;
+
+            // No need to add a difference if compound was not absorbed
+            if (microbe.TotalAbsorbedCompounds.ContainsKey(compoundPriority.Key))
+            {
+                quantityDifference += microbe.TotalAbsorbedCompounds[compoundPriority.Key];
+            }
+
+            // Idem if not absorbed before
+            if (previouslyAbsorbedCompounds.ContainsKey(compoundPriority.Key))
+            {
+                quantityDifference -= previouslyAbsorbedCompounds[compoundPriority.Key];
+            }
+
+            quantityDifference *= compoundPriority.Value;
+            compoundDifference += quantityDifference;
         }
 
         // If food density is going down, back up and see if there's some more
         if (compoundDifference < 0 && random.Next(0, 10) < 9)
         {
+            // Never reached!
             MoveWithRandomTurn(2.5f, 3.0f, random);
         }
 
@@ -405,6 +428,18 @@ public class MicrobeAI
         }
     }
 
+    private Dictionary<Compound, float> ComputeCompoundsGradient(IEnumerable<KeyValuePair<Compound, float>> absorbedQuantities, IEnumerable<KeyValuePair<Compound, float>> previousQuantities)
+    {
+        Dictionary<Compound, float> compoundsGradient = new Dictionary<Compound, float>();
+
+        foreach (var compound in absorbedQuantities)
+        {
+            compoundsGradient.Add(compound.Key, compound.Value - previousQuantities.ToDictionary(x => x.Key)[compound.Key].Value);
+        }
+
+        return compoundsGradient;
+    }
+
     // Computes priority of compounds
     private Dictionary<Compound, float> PrioritizeUsefulCompounds(IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
     {
@@ -419,7 +454,6 @@ public class MicrobeAI
                 usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
             }
         }
-        
 
         var compoundsPriority = new Dictionary<Compound, float>();
         foreach (var compound in usefulCompounds)
