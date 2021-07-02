@@ -63,7 +63,7 @@ public class ModLoaderUI : Control
     public NodePath SafeModeButtonPath;
 
     [Export]
-    public NodePath OneShotButtonPath = new NodePath("Checkbox Corner/Vertical Organizer/OneShotCheckBox");
+    public NodePath OneShotButtonPath;
 
     [Export]
     public NodePath InfoPopupPath;
@@ -605,6 +605,11 @@ public class ModLoaderUI : Control
         ReloadModLists();
     }
 
+    private void LoadReminderPopupConfirmed()
+    {
+        SceneManager.Instance.ReturnToMenu();
+    }
+
     /// <summary>
     ///   This is the method that actually reset the game
     /// </summary>
@@ -698,10 +703,11 @@ public class ModLoaderUI : Control
         if (ModLoader.StartupMods.Count > 0)
         {
             GD.Print("FLY ME TO THE MOOON");
-
-            //loadReminderPopup.PopupCenteredShrink();
+            loadReminderPopup.PopupCenteredShrink();
         }
-
-        SceneManager.Instance.ReturnToMenu();
+        else
+        {
+            SceneManager.Instance.ReturnToMenu();
+        }
     }
 }

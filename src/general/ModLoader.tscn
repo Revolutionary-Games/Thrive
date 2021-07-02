@@ -60,6 +60,7 @@ ReloadReminderPopupPath = NodePath("ReloadReminderDialog")
 ModCheckPopupPath = NodePath("ModCheckPopup")
 LoadWarningPopupPath = NodePath("LoadWarningPopup")
 SafeModeButtonPath = NodePath("Checkbox Corner/Vertical Organizer/SafeModeCheckBox")
+OneShotButtonPath = NodePath("Checkbox Corner/Vertical Organizer/OneShotCheckBox")
 InfoPopupPath = NodePath("InfoPopup")
 InfoButtonContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons")
 LoadReminderPopupPath = NodePath("LoadReminderPopup")
@@ -739,4 +740,5 @@ __meta__ = {
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Refresh" to="." method="OnRefreshPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Load" to="." method="OnLoadPressed"]
 [connection signal="confirmed" from="ResetDialog" to="." method="ResetGame"]
+[connection signal="confirmed" from="LoadReminderPopup" to="." method="LoadReminderPopupConfirmed"]
 [connection signal="confirmed" from="LoadWarningPopup" to="." method="LoadAllMods"]
