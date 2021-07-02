@@ -22,6 +22,8 @@ public class MicrobeAI
     private readonly Compound oxytoxy;
     private readonly Compound ammonia;
     private readonly Compound phosphates;
+    private readonly Compound iron;
+    private readonly Compound hydrogensulfide;
 
     [JsonProperty]
     private Microbe microbe;
@@ -45,6 +47,8 @@ public class MicrobeAI
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;
@@ -373,15 +377,19 @@ public class MicrobeAI
 
         // If this microbe lacks glucose, don't bother with ammonia and phosphorous
         // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
-        if (microbe.Compounds.GetCompoundAmount(glucose) < 0.5f)
+        var compoundsPriority = PrioritizeUsefulCompounds(usefulCompounds);
+
+        // Moved to above function
+        /*if (microbe.Compounds.GetCompoundAmount(glucose) < 0.5f)
         {
             usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
-        }
+        }*/
 
         float compoundDifference = 0.0f;
-        foreach (var compound in usefulCompounds)
+        foreach (var compound in compoundsPriority.Keys)
         {
-            compoundDifference += compound.Value;
+            // Use of Key and value : compounds Priority as an IEnumerable?
+            compoundDifference += compoundsPriority[compound] * microbe.TotalAbsorbedCompounds[compound];
         }
 
         // If food density is going down, back up and see if there's some more
@@ -405,6 +413,26 @@ public class MicrobeAI
                 MoveWithRandomTurn(0.0f, 3.0f, random);
             }
         }
+    }
+
+    // Computes priority of compounds
+    private Dictionary<Compound, float> PrioritizeUsefulCompounds(IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
+    {
+        //Used to discard phosphate/ammoniac search if in vital danger
+        if (microbe.Compounds.GetCompoundAmount(glucose) < 0.5f)
+        {
+            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
+        }
+
+        var compoundsPriority = new Dictionary<Compound, float>();
+        foreach (var compound in usefulCompounds)
+        {
+            // The priority of a compound is inversely proportional to its availability
+            // Should be tweaked with consumption
+            compoundsPriority.Add(compound.Key, 1 - compound.Value / microbe.Compounds.Capacity);
+        }
+
+        return compoundsPriority;
     }
 
     private void SetEngulfIfClose()
