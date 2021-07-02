@@ -63,13 +63,16 @@ public class ModLoaderUI : Control
     public NodePath SafeModeButtonPath;
 
     [Export]
-    public NodePath OneShotButtonPath;
+    public NodePath OneShotButtonPath = new NodePath("Checkbox Corner/Vertical Organizer/OneShotCheckBox");
 
     [Export]
     public NodePath InfoPopupPath;
 
     [Export]
     public NodePath InfoButtonContainerPath;
+
+    [Export]
+    public NodePath LoadReminderPopupPath;
 
     // The array is used for getting all of the ItemList
     private ItemList[] modItemLists;
@@ -85,10 +88,11 @@ public class ModLoaderUI : Control
     private Label compatibleVersionLabel;
 
     private ConfirmationDialog resetPopup;
+    private ConfirmationDialog loadWarningPopup;
     private AcceptDialog reloadReminderPopup;
     private AcceptDialog modCheckPopup;
     private AcceptDialog infoPopup;
-    private ConfirmationDialog loadWarningPopup;
+    private AcceptDialog loadReminderPopup;
 
     private CheckBox safeModeButton;
     private CheckBox oneShotButton;
@@ -146,10 +150,11 @@ public class ModLoaderUI : Control
         modInfoPreviewImage = GetNode<TextureRect>(PreviewImagePath);
 
         resetPopup = GetNode<ConfirmationDialog>(ResetPopupPath);
+        loadWarningPopup = GetNode<ConfirmationDialog>(LoadWarningPopupPath);
         reloadReminderPopup = GetNode<AcceptDialog>(ReloadReminderPopupPath);
         modCheckPopup = GetNode<AcceptDialog>(ModCheckPopupPath);
         infoPopup = GetNode<AcceptDialog>(InfoPopupPath);
-        loadWarningPopup = GetNode<ConfirmationDialog>(LoadWarningPopupPath);
+        loadReminderPopup = GetNode<AcceptDialog>(LoadReminderPopupPath);
 
         loadWarningPopup.GetOk().Text = "Yes";
         loadWarningPopup.GetCancel().Text = "No";
@@ -684,9 +689,19 @@ public class ModLoaderUI : Control
         var loadedItemList = modItemLists[(int)ItemLists.LoadedItemList];
 
         loader.LoadModFromList(loadedItemList, true, !oneShotButton.Pressed, true);
-        if (!oneShotButton.Pressed) loader.SaveReloadedModsList();
+        if (!oneShotButton.Pressed)
+        {
+            loader.SaveReloadedModsList();
+        }
 
         GD.Print("All mods loaded");
+        if (ModLoader.StartupMods.Count > 0)
+        {
+            GD.Print("FLY ME TO THE MOOON");
+
+            //loadReminderPopup.PopupCenteredShrink();
+        }
+
         SceneManager.Instance.ReturnToMenu();
     }
 }

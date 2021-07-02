@@ -60,9 +60,9 @@ ReloadReminderPopupPath = NodePath("ReloadReminderDialog")
 ModCheckPopupPath = NodePath("ModCheckPopup")
 LoadWarningPopupPath = NodePath("LoadWarningPopup")
 SafeModeButtonPath = NodePath("Checkbox Corner/Vertical Organizer/SafeModeCheckBox")
-OneShotButtonPath = NodePath("Checkbox Corner/Vertical Organizer/OneShotCheckBox")
 InfoPopupPath = NodePath("InfoPopup")
 InfoButtonContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons")
+LoadReminderPopupPath = NodePath("LoadReminderPopup")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -681,6 +681,14 @@ __meta__ = {
 margin_right = 99.0
 margin_bottom = 84.0
 dialog_text = "Please relaunch the game now to fully reset the game."
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="LoadReminderPopup" type="AcceptDialog" parent="."]
+margin_right = 406.0
+margin_bottom = 109.0
+dialog_text = "Some of the mods you loaded will fully load after you launch the game again."
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
