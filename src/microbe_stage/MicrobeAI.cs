@@ -93,7 +93,6 @@ public class MicrobeAI
 
     private void ChooseActions(Random random, MicrobeAICommonData data)
     {
-        /*
         if (microbe.IsBeingEngulfed)
         {
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
@@ -127,7 +126,7 @@ public class MicrobeAI
 
             EngagePrey(prey.Value, random, engulfPrey);
             return;
-        }*/
+        }
 
         // Otherwise just wander around and look for compounds
         if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
@@ -390,15 +389,11 @@ public class MicrobeAI
 
             // No need to add a difference if compound was not absorbed
             if (microbe.TotalAbsorbedCompounds.ContainsKey(compoundPriority.Key))
-            {
                 quantityDifference += microbe.TotalAbsorbedCompounds[compoundPriority.Key];
-            }
 
             // Idem if not absorbed before
             if (previouslyAbsorbedCompounds.ContainsKey(compoundPriority.Key))
-            {
                 quantityDifference -= previouslyAbsorbedCompounds[compoundPriority.Key];
-            }
 
             quantityDifference *= compoundPriority.Value;
             compoundDifference += quantityDifference;
@@ -407,7 +402,6 @@ public class MicrobeAI
         // If food density is going down, back up and see if there's some more
         if (compoundDifference < 0 && random.Next(0, 10) < 9)
         {
-            // Never reached!
             MoveWithRandomTurn(2.5f, 3.0f, random);
         }
 
@@ -427,25 +421,13 @@ public class MicrobeAI
             }
         }
     }
-
-    private Dictionary<Compound, float> ComputeCompoundsGradient(IEnumerable<KeyValuePair<Compound, float>> absorbedQuantities, IEnumerable<KeyValuePair<Compound, float>> previousQuantities)
-    {
-        Dictionary<Compound, float> compoundsGradient = new Dictionary<Compound, float>();
-
-        foreach (var compound in absorbedQuantities)
-        {
-            compoundsGradient.Add(compound.Key, compound.Value - previousQuantities.ToDictionary(x => x.Key)[compound.Key].Value);
-        }
-
-        return compoundsGradient;
-    }
-
     // Computes priority of compounds
     private Dictionary<Compound, float> PrioritizeUsefulCompounds(IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
     {
         var usefulVitalCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
 
-        // If this microbe lacks vital compounds (ATP producers and their producers), don't bother with ammonia and phosphorous
+        // If this microbe lacks vital compounds (ATP producers and their producers), 
+        // don't bother with ammonia and phosphorous
         // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
         foreach (var compound in usefulVitalCompounds)
         {
@@ -464,8 +446,6 @@ public class MicrobeAI
 
             compoundsPriority.Add(compound.Key, compoundPriority);
         }
-
-
 
         return compoundsPriority;
     }
