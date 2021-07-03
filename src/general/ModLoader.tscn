@@ -170,6 +170,7 @@ margin_top = 41.0
 margin_right = 104.0
 margin_bottom = 73.0
 text = "<--"
+expand_icon = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -263,8 +264,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ErrorModItemList" type="ItemList" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container"]
-margin_right = 592.0
-margin_bottom = 250.0
+margin_right = 595.0
+margin_bottom = 253.0
 size_flags_horizontal = 3
 custom_styles/bg = SubResource( 2 )
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
@@ -276,9 +277,9 @@ __meta__ = {
 }
 
 [node name="ErrorInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container"]
-margin_left = 596.0
-margin_right = 1188.0
-margin_bottom = 250.0
+margin_left = 599.0
+margin_right = 1194.0
+margin_bottom = 253.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/Failed to Load Mods/Container/ErrorInfoPanel"]
@@ -312,6 +313,7 @@ margin_bottom = 607.0
 size_flags_vertical = 3
 
 [node name="InfoBox" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel"]
+visible = false
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1205.0
@@ -458,7 +460,7 @@ size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="CompatibleVersion Value" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion/VBoxContainer/ScrollContainer"]
-margin_right = 172.0
+margin_right = 178.0
 margin_bottom = 247.0
 size_flags_horizontal = 3
 text = "* 0.5.4.0

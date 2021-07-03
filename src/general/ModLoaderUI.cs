@@ -116,7 +116,6 @@ public class ModLoaderUI : Control
         ErrorItemList,
     }
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         modInfoContainer = GetNode<MarginContainer>(ModInfoContainerPath);
@@ -166,6 +165,7 @@ public class ModLoaderUI : Control
         ModInfo tempModInfo = (ModInfo)modItemLists[selectedItemList].GetItemMetadata(itemIndex);
         currentSelectedMod = tempModInfo;
 
+        // Unselects all the itemlist that are not being currently selected
         for (int i = 0; i < modItemLists.Length; ++i)
         {
             if (i != selectedItemList)
@@ -183,6 +183,7 @@ public class ModLoaderUI : Control
             modInfoVersion.Text = tempModInfo.Version;
             modInfoDescription.BbcodeText = tempModInfo.Description;
 
+            // Checks if there is a preview image and if so display it
             if (tempModInfo.PreviewImage != null)
             {
                 modInfoPreviewImage.Visible = true;
@@ -400,6 +401,7 @@ public class ModLoaderUI : Control
         GUICommon.Instance.PlayButtonPressSound();
         var loadedItemList = modItemLists[(int)ItemLists.LoadedItemList];
 
+        // Checks if there is anything that is going to be loaded first
         if (loadedItemList.GetItemCount() <= 0)
         {
             return;
@@ -544,6 +546,7 @@ public class ModLoaderUI : Control
                 }
             }
 
+            // If there both 'load before' and 'load after' is going to display add a empty line between them
             if (currentSelectedMod.LoadBefore != null && currentSelectedMod.LoadAfter != null)
             {
                 infoText += "\n";

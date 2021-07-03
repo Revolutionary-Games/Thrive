@@ -72,6 +72,7 @@ public class ModLoader : Reference
         List<ModInfo> modList = new List<ModInfo>();
         var currentMod = modFolder.GetNext();
 
+        // Loops until it went through all the folders
         while (true)
         {
             if (string.IsNullOrEmpty(currentMod))
@@ -131,22 +132,21 @@ public class ModLoader : Reference
         if (addToReloadedModList && !ReloadedMods.Contains(currentMod))
         {
             ReloadedMods.Add(currentMod);
-            StartupMods.Add(currentMod);
         }
 
         // If it already been loaded then skip it
         if (LoadedMods.Contains(currentMod))
         {
-            currentMod.Status = 0;
-            return 0;
+            currentMod.Status = (int)ModStatus.ModAlreadyBeenLoaded;
+            return currentMod.Status;
         }
 
         if (!file.FileExists(currentMod.Location + "/mod.pck"))
         {
             GD.Print("Fail to find mod file: " + currentMod.Name);
-            currentMod.Status = -2;
+            currentMod.Status = (int)ModStatus.ModFileCanNotBeFound;
             FailedToLoadMods.Add(currentMod);
-            return -2;
+            return currentMod.Status;
         }
 
         // Checks if a Dll file needs to be loaded
@@ -155,7 +155,6 @@ public class ModLoader : Reference
             if (file.FileExists(ProjectSettings.GlobalizePath(currentMod.Location + "/" + currentMod.Dll)))
             {
                 Assembly.LoadFile(ProjectSettings.GlobalizePath(currentMod.Location + "/" + currentMod.Dll));
-                GD.Print("DLL LOADED YES: (" + currentMod.Dll + ").");
             }
         }
 
@@ -163,14 +162,14 @@ public class ModLoader : Reference
         {
             GD.Print("Loaded mod: " + currentMod.Name);
             LoadedMods.Add(currentMod);
-            currentMod.Status = 1;
-            return 1;
+            currentMod.Status = (int)ModStatus.ModLoadedSuccessfully;
+            return currentMod.Status;
         }
 
         GD.Print("Failed to load mod: " + currentMod.Name);
-        currentMod.Status = -1;
+        currentMod.Status = (int)ModStatus.FailedModLoading;
         FailedToLoadMods.Add(currentMod);
-        return -1;
+        return currentMod.Status;
     }
 
     /// <summary>
@@ -601,7 +600,7 @@ public class ModLoader : Reference
     }
 
     /// <summary>
-    ///   This resets the game by clearing the 1list in the settings file
+    ///   This resets the game by clearing the list in the settings file
     /// </summary>
     public void ResetGame()
     {
