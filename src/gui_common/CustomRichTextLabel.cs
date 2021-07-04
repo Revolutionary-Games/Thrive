@@ -173,7 +173,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                     // Finally try building the bbcode template for the tagged substring
 
-                    var closingTagStartIndex = extendedBbcode.Find("[", lastStartingTagEndIndex);
+                    var closingTagStartIndex = extendedBbcode.IndexOf("[", lastStartingTagEndIndex,
+                        StringComparison.InvariantCulture);
 
                     var input = extendedBbcode.Substring(
                         lastStartingTagEndIndex + 1, closingTagStartIndex - lastStartingTagEndIndex - 1);

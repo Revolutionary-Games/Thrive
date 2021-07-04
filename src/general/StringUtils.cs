@@ -58,20 +58,15 @@ public static class StringUtils
         var cutPosition = 0;
         var insideQuote = false;
 
-        if (input.IsEnclosedIn("\"") && ignoreWithinQuotes)
-        {
-            result.Add(input.Unescape());
-            return result;
-        }
-
         for (var i = 0; i < input.Length; ++i)
         {
             var character = input[i];
 
-            // Test if this is an escape sequence
-            var validQuotes = character == '"' && i - 1 > -1 && input[i - 1] != '\\';
+            // Test if this is not an escape sequence
+            var validQuotes = (character == '"' && i - 1 > -1 && input[i - 1] != '\\') || (i == 0 && character == '"');
 
-            if (validQuotes && !insideQuote && ignoreWithinQuotes)
+            if (validQuotes && !insideQuote && ignoreWithinQuotes &&
+                input.IndexOf("\"", i + 1, StringComparison.InvariantCulture) != -1)
             {
                 insideQuote = true;
             }
@@ -103,6 +98,10 @@ public static class StringUtils
     /// <summary>
     ///   Parses a list of "key=value" pairs into a dictionary. Duplicate keys will be skipped.
     /// </summary>
+    /// <returns>
+    ///   A dictionary of key and value string pairs collected from input. If input string list is null,
+    ///   the return value is an empty dictionary.
+    /// </returns>
     public static Dictionary<string, string> ParseKeyValuePairs(List<string> input)
     {
         var result = new Dictionary<string, string>();
@@ -112,7 +111,7 @@ public static class StringUtils
 
         foreach (var entry in input)
         {
-            if (entry.Find("=") == -1)
+            if (entry.IndexOf("=", StringComparison.InvariantCulture) == -1)
                 continue;
 
             var split = entry.Split("=");
