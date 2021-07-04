@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-28 22:11+0700\n"
+"POT-Creation-Date: 2021-06-15 09:18-0400\n"
 "PO-Revision-Date: 2021-04-28 19:41+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -20,6 +20,268 @@ msgstr ""
 "<= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.9.0\n"
+
+#: ../simulation_parameters/common/help_texts.json:4
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr ""
+"W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
+"toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
+
+#: ../simulation_parameters/common/help_texts.json:5
+#: ../simulation_parameters/common/help_texts.json:31
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr ""
+"Tava šūna izmanto ATP kā enerģijas avotu, ja tas beigsies, tava šūna mirs."
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:32
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr ""
+"Lai atbloķētu redaktoru un vairoties, tev jāsavāc amonjaku (oranžs "
+"mākonis) un fosfāts (purpurs mākonis)."
+
+#: ../simulation_parameters/common/help_texts.json:7
+#: ../simulation_parameters/common/help_texts.json:33
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr ""
+"Tu var arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, kas "
+"ir mazāki par tevi, nospiežot G. Tas maksās papildu ATP, kā arī tev "
+"palēninās. Neaizmirsti nospiest G otrreiz, lai pārtrauktu absorbēšanu."
+
+#: ../simulation_parameters/common/help_texts.json:8
+#: ../simulation_parameters/common/help_texts.json:34
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr ""
+"Osmoregulācija izmanto ATP. Tas nozīmē, ka, jo lielāka ir tava šūna, jo "
+"vairāk ATP ražojošu organoīdu tev ir nepieciešams, lai nezaudētu ATP, kad "
+"nekusties."
+
+#: ../simulation_parameters/common/help_texts.json:9
+#: ../simulation_parameters/common/help_texts.json:35
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr ""
+"Redaktorā ir daudz organoīdu, kurus vari attīstīt, pieļaujot daudz dažādu "
+"spēles stilu."
+
+#: ../simulation_parameters/common/help_texts.json:10
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Dažādi savienojumu mākoņi ir:\n"
+"\n"
+"Balti - glikoze\n"
+"Dzelteni - sērūdeņradis\n"
+"Oranži - amonjaks\n"
+"Purpuri - fosfāts\n"
+"Rūsas brūni - dzelzs\n"
+"\n"
+"Glikoze ražo ATP"
+
+#: ../simulation_parameters/common/help_texts.json:11
+#: ../simulation_parameters/common/help_texts.json:37
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr ""
+"Sērūdeņradi var pārveidot glikozē, izmantojot hemoplastus un "
+"hemosintezējošas olbaltumvielas. Ar rusticianīnu no dzelzs var ražot ATP."
+
+#: ../simulation_parameters/common/help_texts.json:12
+#: ../simulation_parameters/common/help_texts.json:38
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr ""
+"Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. "
+"Organoīdiem ir nepieciešams amonjaks un fosfāts, lai sadalītos."
+
+#: ../simulation_parameters/common/help_texts.json:13
+#: ../simulation_parameters/common/help_texts.json:36
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Pagaidām, ja tava populācija samazināsies līdz nullei, tu izmirsi."
+
+#: ../simulation_parameters/common/help_texts.json:14
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr ""
+"Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik "
+"tiek uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt "
+"spēlēt, kā vēlies."
+
+#: ../simulation_parameters/common/help_texts.json:15
+#: ../simulation_parameters/common/help_texts.json:39
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:16
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
+"toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
+
+#: ../simulation_parameters/common/help_texts.json:21
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
+"glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī "
+"veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
+"daudzumos)"
+
+#: ../simulation_parameters/common/help_texts.json:22
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Ārējie organoīdi\n"
+"\n"
+"Vica: Pārvieto jūsu šūnu ātrāk, izmantojot ATP\n"
+"\n"
+"Pīluss: Var sadurt citas šūnas"
+
+#: ../simulation_parameters/common/help_texts.json:23
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:24
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:25
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:44
+msgid "LOADING_TIP"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#: ../simulation_parameters/common/help_texts.json:49
+msgid "EASTEREGG_MESSAGE_1"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:50
+msgid "EASTEREGG_MESSAGE_2"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:51
+msgid "EASTEREGG_MESSAGE_3"
+msgstr ""
+"Padoms: Osmoregulācija maksā 1 ATP sekundē par daļu tavā šūnā, katra tukšā "
+"citoplazmas daļa rada 5 ATP sekundē, kas nozīmē, ka, ja tu zaudē ATP "
+"osmoregulācijas dēļ, vienkārši pievieno vairāk tukšu citoplazmas daļu vai "
+"noņem dažus organoīdus."
+
+#: ../simulation_parameters/common/help_texts.json:52
+msgid "EASTEREGG_MESSAGE_4"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:53
+msgid "EASTEREGG_MESSAGE_5"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:54
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "Padoms: dažreiz labākā rīcība ir vienkārši bēgt no citām šūnām."
+
+#: ../simulation_parameters/common/help_texts.json:55
+msgid "EASTEREGG_MESSAGE_7"
+msgstr ""
+"Padoms: tu vari absorbēt šūnu, ja tā ir aptuveni puse no tavas šūnas "
+"lieluma."
+
+#: ../simulation_parameters/common/help_texts.json:56
+msgid "EASTEREGG_MESSAGE_8"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:57
+msgid "EASTEREGG_MESSAGE_9"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:58
+msgid "EASTEREGG_MESSAGE_10"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:59
+msgid "EASTEREGG_MESSAGE_11"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:60
+msgid "EASTEREGG_MESSAGE_12"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:61
+msgid "EASTEREGG_MESSAGE_13"
+msgstr ""
+"Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
+"biomos dažreiz parādās ar dažādiem biežumiem."
+
+#: ../simulation_parameters/common/help_texts.json:62
+msgid "EASTEREGG_MESSAGE_14"
+msgstr ""
+"Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā vairāk "
+"ATP"
+
+#: ../simulation_parameters/common/help_texts.json:63
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "Padoms: tu vari absorbēt dzelzs gabalus un arī citus gabalus."
+
+#: ../simulation_parameters/common/help_texts.json:64
+msgid "EASTEREGG_MESSAGE_16"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:65
+msgid "EASTEREGG_MESSAGE_17"
+msgstr ""
+"Interesants fakts: vai zināji, ka uz Zemes ir vairāk nekā 8000 infuzoriju "
+"veidu?"
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "EASTEREGG_MESSAGE_18"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:67
+msgid "EASTEREGG_MESSAGE_19"
+msgstr "Interesants fakts: Didinijs ir infuzorija, kas medī paramecijus."
+
+#: ../simulation_parameters/common/help_texts.json:68
+msgid "EASTEREGG_MESSAGE_20"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:69
+msgid "EASTEREGG_MESSAGE_21"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:70
+msgid "EASTEREGG_MESSAGE_22"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:71
+msgid "EASTEREGG_MESSAGE_23"
+msgstr ""
+"Padoms: ja tavā šūnā ir 150 daļas, tā var absorbēt lielus dzelzs gabalus."
+
+#: ../simulation_parameters/common/help_texts.json:72
+msgid "EASTEREGG_MESSAGE_24"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:73
+msgid "EASTEREGG_MESSAGE_25"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:74
+msgid "EASTEREGG_MESSAGE_26"
+msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:75
+msgid "EASTEREGG_MESSAGE_27"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1597,7 +1859,7 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1339
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:188
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Novietot organoīdu"
@@ -1705,23 +1967,23 @@ msgstr "Temperatūra"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:939
+#: ../src/microbe_stage/Microbe.cs:938
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1411
+#: ../src/microbe_stage/Microbe.cs:1385
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1418
+#: ../src/microbe_stage/Microbe.cs:1392
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1779
+#: ../src/microbe_stage/Microbe.cs:1753
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1920
+#: ../src/microbe_stage/Microbe.cs:1894
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1880,11 +2142,11 @@ msgstr ""
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -2473,153 +2735,6 @@ msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
 "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
-#~ "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Tava šūna izmanto ATP kā enerģijas avotu, ja tas beigsies, tava šūna "
-#~ "mirs."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Lai atbloķētu redaktoru un vairoties, tev jāsavāc amonjaku (oranžs "
-#~ "mākonis) un fosfāts (purpurs mākonis)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Tu var arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, "
-#~ "kas ir mazāki par tevi, nospiežot G. Tas maksās papildu ATP, kā arī tev "
-#~ "palēninās. Neaizmirsti nospiest G otrreiz, lai pārtrauktu absorbēšanu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Osmoregulācija izmanto ATP. Tas nozīmē, ka, jo lielāka ir tava šūna, jo "
-#~ "vairāk ATP ražojošu organoīdu tev ir nepieciešams, lai nezaudētu ATP, "
-#~ "kad nekusties."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Redaktorā ir daudz organoīdu, kurus vari attīstīt, pieļaujot daudz "
-#~ "dažādu spēles stilu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Dažādi savienojumu mākoņi ir:\n"
-#~ "\n"
-#~ "Balti - glikoze\n"
-#~ "Dzelteni - sērūdeņradis\n"
-#~ "Oranži - amonjaks\n"
-#~ "Purpuri - fosfāts\n"
-#~ "Rūsas brūni - dzelzs\n"
-#~ "\n"
-#~ "Glikoze ražo ATP"
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-#~ msgstr ""
-#~ "Sērūdeņradi var pārveidot glikozē, izmantojot hemoplastus un "
-#~ "hemosintezējošas olbaltumvielas. Ar rusticianīnu no dzelzs var ražot "
-#~ "ATP."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr ""
-#~ "Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. "
-#~ "Organoīdiem ir nepieciešams amonjaks un fosfāts, lai sadalītos."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr ""
-#~ "Pagaidām, ja tava populācija samazināsies līdz nullei, tu izmirsi."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr ""
-#~ "Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik "
-#~ "tiek uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt "
-#~ "spēlēt, kā vēlies."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr ""
-#~ "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
-#~ "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Prokariotu struktūras\n"
-#~ "\n"
-#~ "Metabolosomas: ražo ATP no glikozes\n"
-#~ "\n"
-#~ "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
-#~ "glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
-#~ "\n"
-#~ "Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet "
-#~ "arī veic glikolīzi un aizņem 1 daļu\n"
-#~ "\n"
-#~ "Rusticianīns : pārvērš dzelzi ATP\n"
-#~ "\n"
-#~ "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
-#~ "\n"
-#~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
-#~ "daudzumos)"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Ārējie organoīdi\n"
-#~ "\n"
-#~ "Vica: Pārvieto jūsu šūnu ātrāk, izmantojot ATP\n"
-#~ "\n"
-#~ "Pīluss: Var sadurt citas šūnas"
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#~ msgid "EASTEREGG_MESSAGE_3"
-#~ msgstr ""
-#~ "Padoms: Osmoregulācija maksā 1 ATP sekundē par daļu tavā šūnā, katra "
-#~ "tukšā citoplazmas daļa rada 5 ATP sekundē, kas nozīmē, ka, ja tu zaudē "
-#~ "ATP osmoregulācijas dēļ, vienkārši pievieno vairāk tukšu citoplazmas "
-#~ "daļu vai noņem dažus organoīdus."
-
-#~ msgid "EASTEREGG_MESSAGE_6"
-#~ msgstr "Padoms: dažreiz labākā rīcība ir vienkārši bēgt no citām šūnām."
-
-#~ msgid "EASTEREGG_MESSAGE_7"
-#~ msgstr ""
-#~ "Padoms: tu vari absorbēt šūnu, ja tā ir aptuveni puse no tavas šūnas "
-#~ "lieluma."
-
-#~ msgid "EASTEREGG_MESSAGE_13"
-#~ msgstr ""
-#~ "Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
-#~ "biomos dažreiz parādās ar dažādiem biežumiem."
-
-#~ msgid "EASTEREGG_MESSAGE_14"
-#~ msgstr ""
-#~ "Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā "
-#~ "vairāk ATP"
-
-#~ msgid "EASTEREGG_MESSAGE_15"
-#~ msgstr "Padoms: tu vari absorbēt dzelzs gabalus un arī citus gabalus."
-
-#~ msgid "EASTEREGG_MESSAGE_17"
-#~ msgstr ""
-#~ "Interesants fakts: vai zināji, ka uz Zemes ir vairāk nekā 8000 "
-#~ "infuzoriju veidu?"
-
-#~ msgid "EASTEREGG_MESSAGE_19"
-#~ msgstr "Interesants fakts: Didinijs ir infuzorija, kas medī paramecijus."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr ""
-#~ "Padoms: ja tavā šūnā ir 150 daļas, tā var absorbēt lielus dzelzs "
-#~ "gabalus."
 
 #, fuzzy
 #~ msgid "OXYTOXY"
