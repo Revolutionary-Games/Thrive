@@ -22,8 +22,6 @@ public class MicrobeAI
     private readonly Compound oxytoxy;
     private readonly Compound ammonia;
     private readonly Compound phosphates;
-    private readonly Compound iron;
-    private readonly Compound hydrogensulfide;
 
     [JsonProperty]
     private Microbe microbe;
@@ -40,7 +38,6 @@ public class MicrobeAI
     [JsonProperty]
     private float pursuitThreshold;
 
-    private float gradientMemory;
     private Dictionary<Compound, float> previouslyAbsorbedCompounds;
 
     public MicrobeAI(Microbe microbe)
@@ -50,8 +47,6 @@ public class MicrobeAI
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-        iron = SimulationParameters.Instance.GetCompound("iron");
-        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
         previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
     }
 
@@ -379,7 +374,7 @@ public class MicrobeAI
         microbe.State = Microbe.MicrobeState.Normal;
 
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
-        var compoundsPriority = PrioritizeUsefulCompounds(usefulCompounds);
+        var compoundsPriority = ComputeCompoundsPriorities(usefulCompounds);
 
         float compoundDifference = 0.0f;
         foreach (var compoundPriority in compoundsPriority.ToList())
@@ -425,13 +420,17 @@ public class MicrobeAI
         }
     }
 
-    // Computes priority of compounds
-    private Dictionary<Compound, float> PrioritizeUsefulCompounds
-        (IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
+    /// <summary>
+    ///   Prioritizing compounds that are stored in lesser quantities.
+    ///   If ATP-production chain compounds are low (less than half storage capacities), others are discarded.
+    /// </summary>
+    /// <returns> A dictionary of absolute priority for each (useful) compound.</returns>
+    private Dictionary<Compound, float> ComputeCompoundsPriorities(
+        IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
     {
         var usefulVitalCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
 
-        // If this microbe lacks vital compounds (ATP producers and their producers), 
+        // If this microbe lacks vital compounds (ATP producers and their producers),
         // don't bother with ammonia and phosphorous
         // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
         foreach (var compound in usefulVitalCompounds)
