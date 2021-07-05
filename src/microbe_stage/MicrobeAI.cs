@@ -384,7 +384,7 @@ public class MicrobeAI
         float compoundDifference = 0.0f;
         foreach (var compoundPriority in compoundsPriority.ToList())
         {
-            // Note : as stored quantities have changed, it might affect gradient computation... To check.
+            // Note this is about absorbed quantities (which is all microbe has access to), not real ones
             float quantityDifference = 0.0f;
 
             // No need to add a difference if compound was not absorbed
@@ -399,8 +399,7 @@ public class MicrobeAI
             compoundDifference += quantityDifference;
         }
 
-        // Implement a detection threshold to rule out too tiny variations
-        // Set to 0 to enable full detection as before
+        // Implement a detection threshold to possibly rule out too tiny variations
         float differenceDetectionThreshold = 0;
 
         // If food density is going down, back up and see if there's some more
