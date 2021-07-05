@@ -305,6 +305,12 @@ public class MicrobeAI
             MoveWithRandomTurn(0.1f, 0.2f, random);
         }
 
+        // If this Microbe is right on top of the chunk, stop instead of spinning
+        if (DistanceFromMe(chunk) < 1.0f)
+        {
+            SetMoveSpeed(0.0f);
+        }
+
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
     }
 
