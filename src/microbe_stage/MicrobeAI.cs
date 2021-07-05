@@ -310,8 +310,10 @@ public class MicrobeAI
         {
             SetMoveSpeed(0.0f);
         }
-
-        microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
+        else
+        {
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+        }
     }
 
     private void FleeFromPredators(Random random, Vector3 predatorLocation)
