@@ -439,7 +439,7 @@ public class MicrobeAI
         if (usefulVitalCompounds.Any(
             compound => microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity))
         {
-                usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates).ToList();
+            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates).ToList();
         }
 
         var compoundsPriority = new Dictionary<Compound, float>();
