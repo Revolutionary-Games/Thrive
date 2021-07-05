@@ -424,11 +424,11 @@ public class MicrobeAI
 
     /// <summary>
     ///   Prioritizing compounds that are stored in lesser quantities.
-    ///   If ATP-producing compounds are low (less than half storage capacities), non ATP-related compounds are discarded.
+    ///   If ATP-producing compounds are low (less than half storage capacities),
+    ///   non ATP-related compounds are discarded.
     /// </summary>
     /// <returns> A dictionary of absolute priority for each (useful) compound.</returns>
-    private Dictionary<Compound, float> ComputeCompoundsPriorities(
-        List<KeyValuePair<Compound, float>> usefulCompounds)
+    private Dictionary<Compound, float> ComputeCompoundsPriorities(List<KeyValuePair<Compound, float>> usefulCompounds)
     {
         // Vital compounds are *direct* ATP producers
         var usefulVitalCompounds = usefulCompounds.Where(x => x.Key == glucose || x.Key == iron);
