@@ -39,6 +39,7 @@ public class MicrobeAI
     [JsonProperty]
     private float pursuitThreshold;
 
+    [JsonProperty]
     private Dictionary<Compound, float> previouslyAbsorbedCompounds;
 
     public MicrobeAI(Microbe microbe)
