@@ -66,7 +66,7 @@ public static class StringUtils
         {
             var character = input[i];
 
-            var isAnEscapeSequence = i - 1 > -1 && input[i - 1] == '\\' && i != 0;
+            var isAnEscapeSequence = i > 0 && input[i - 1] == '\\';
 
             if (character == '"' && !isAnEscapeSequence && !insideQuote && ignoreWithinQuotes &&
                 input.IndexOf("\"", i + 1, StringComparison.InvariantCulture) != -1)

@@ -179,9 +179,7 @@ public class CustomRichTextLabel : RichTextLabel
                     var input = extendedBbcode.Substring(
                         lastStartingTagEndIndex + 1, closingTagStartIndex - lastStartingTagEndIndex - 1);
 
-                    ThriveBbCode parsedTag;
-
-                    if (Enum.TryParse(bbcode, true, out parsedTag))
+                    if (Enum.TryParse(bbcode, true, out ThriveBbCode parsedTag))
                     {
                         // Leave out bbcode, all that's left should be the attributes
                         var attributes = chunks.Skip(1).ToList();
@@ -242,10 +240,9 @@ public class CustomRichTextLabel : RichTextLabel
                 var name = compound.Name;
 
                 var pairs = StringUtils.ParseKeyValuePairs(attributes);
-                var value = string.Empty;
 
                 // Parse attributes if there are any
-                if (pairs.TryGetValue("text", out value))
+                if (pairs.TryGetValue("text", out string value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
