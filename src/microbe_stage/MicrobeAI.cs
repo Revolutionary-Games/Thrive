@@ -376,7 +376,7 @@ public class MicrobeAI
         microbe.State = Microbe.MicrobeState.Normal;
 
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
-        var compoundsPriority = ComputeCompoundsPriorities(usefulCompounds);
+        var compoundsPriority = ComputeCompoundsPriorities(usefulCompounds.ToList());
 
         float compoundDifference = 0.0f;
         foreach (var compoundPriority in compoundsPriority.ToList())
@@ -428,7 +428,7 @@ public class MicrobeAI
     /// </summary>
     /// <returns> A dictionary of absolute priority for each (useful) compound.</returns>
     private Dictionary<Compound, float> ComputeCompoundsPriorities(
-        IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
+        List<KeyValuePair<Compound, float>> usefulCompounds)
     {
         // Vital compounds are *direct* ATP producers
         var usefulVitalCompounds = usefulCompounds.Where(x => x.Key == glucose || x.Key == iron);
@@ -439,7 +439,7 @@ public class MicrobeAI
         {
             if (microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity)
             {
-                usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
+                usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates).ToList();
             }
         }
 
