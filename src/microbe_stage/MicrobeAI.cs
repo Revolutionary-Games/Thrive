@@ -378,41 +378,41 @@ public class MicrobeAI
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
         var compoundsPriority = ComputeCompoundsPriorities(usefulCompounds.ToList());
 
-        float compoundDifference = 0.0f;
+        float gradientValue = 0.0f;
         foreach (var compoundPriority in compoundsPriority.ToList())
         {
             // Note this is about absorbed quantities (which is all microbe has access to), not real ones
-            float quantityDifference = 0.0f;
+            float compoundDifference = 0.0f;
 
             // No need to add a difference if compound was not absorbed
             if (microbe.TotalAbsorbedCompounds.ContainsKey(compoundPriority.Key))
-                quantityDifference += microbe.TotalAbsorbedCompounds[compoundPriority.Key];
+                compoundDifference += microbe.TotalAbsorbedCompounds[compoundPriority.Key];
 
             // Idem if not absorbed before
             if (previouslyAbsorbedCompounds.ContainsKey(compoundPriority.Key))
-                quantityDifference -= previouslyAbsorbedCompounds[compoundPriority.Key];
+                compoundDifference -= previouslyAbsorbedCompounds[compoundPriority.Key];
 
-            quantityDifference *= compoundPriority.Value;
-            compoundDifference += quantityDifference;
+            compoundDifference *= compoundPriority.Value;
+            gradientValue += compoundDifference;
         }
 
         // Implement a detection threshold to possibly rule out too tiny variations
         float differenceDetectionThreshold = 0;
 
         // If food density is going down, back up and see if there's some more
-        if (compoundDifference < -differenceDetectionThreshold && random.Next(0, 10) < 9)
+        if (gradientValue < -differenceDetectionThreshold && random.Next(0, 10) < 9)
         {
             MoveWithRandomTurn(2.5f, 3.0f, random);
         }
 
         // If there isn't any food here, it's a good idea to keep moving
-        if (Math.Abs(compoundDifference) <= differenceDetectionThreshold && random.Next(0, 10) < 5)
+        if (Math.Abs(gradientValue) <= differenceDetectionThreshold && random.Next(0, 10) < 5)
         {
             MoveWithRandomTurn(0.0f, 0.4f, random);
         }
 
         // If positive last step you gained compounds, so let's stick around
-        if (compoundDifference > differenceDetectionThreshold)
+        if (gradientValue > differenceDetectionThreshold)
         {
             // There's a decent chance to turn most of the way around
             if (random.Next(0, 10) < 4)
