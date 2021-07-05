@@ -19,6 +19,7 @@ using Newtonsoft.Json;
 public class MicrobeAI
 {
     private readonly Compound glucose;
+    private readonly Compound iron;
     private readonly Compound oxytoxy;
     private readonly Compound ammonia;
     private readonly Compound phosphates;
@@ -47,6 +48,7 @@ public class MicrobeAI
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        iron = SimulationParameters.Instance.GetCompound("iron");
         previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
     }
 
@@ -422,16 +424,16 @@ public class MicrobeAI
 
     /// <summary>
     ///   Prioritizing compounds that are stored in lesser quantities.
-    ///   If ATP-production chain compounds are low (less than half storage capacities), others are discarded.
+    ///   If ATP-producing compounds are low (less than half storage capacities), non ATP-related compounds are discarded.
     /// </summary>
     /// <returns> A dictionary of absolute priority for each (useful) compound.</returns>
     private Dictionary<Compound, float> ComputeCompoundsPriorities(
         IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
     {
-        var usefulVitalCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
+        // Vital compounds are *direct* ATP producers
+        var usefulVitalCompounds = usefulCompounds.Where(x => x.Key == glucose || x.Key == iron);
 
-        // If this microbe lacks vital compounds (ATP producers and their producers),
-        // don't bother with ammonia and phosphorous
+        // If this microbe lacks vital compounds don't bother with ammonia and phosphorous
         // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
         foreach (var compound in usefulVitalCompounds)
         {
