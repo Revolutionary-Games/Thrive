@@ -435,12 +435,10 @@ public class MicrobeAI
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphorous
         // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
-        foreach (var compound in usefulVitalCompounds)
+        if (usefulVitalCompounds.Any(
+            compound => microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity))
         {
-            if (microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity)
-            {
                 usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates).ToList();
-            }
         }
 
         var compoundsPriority = new Dictionary<Compound, float>();
