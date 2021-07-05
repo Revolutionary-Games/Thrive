@@ -242,13 +242,12 @@ public class CustomRichTextLabel : RichTextLabel
                 var name = compound.Name;
 
                 var pairs = StringUtils.ParseKeyValuePairs(attributes);
+                var value = string.Empty;
 
                 // Parse attributes if there are any
-                if (pairs.ContainsKey("text"))
+                if (pairs.TryGetValue("text", out value))
                 {
-                    var value = pairs["text"];
-
-                    if (!value.IsEnclosedIn("\""))
+                    if (!value.StartsAndEndsWith("\""))
                         break;
 
                     name = value.Substring(1, value.Length - 2);

@@ -48,9 +48,13 @@ public static class StringUtils
     /// <summary>
     ///   Splits string into different chunks by whitespace.
     /// </summary>
+    /// <remarks>
+    ///   Only handles a single whitespace ( ) and not tabs, multiple spaces, etc. For quoted
+    ///   substrings handling, this only considers double quotes (") and not apostrophes (').
+    /// </remarks>
     /// <param name="input">String to split.</param>
     /// <param name="ignoreWithinQuotes">Ignore whitespace within quotation marks.</param>
-    /// <returns>A list of the substrings, starting from left.</returns>
+    /// <returns>A list of the substrings, starting from the beginning of the input string.</returns>
     public static List<string> SplitByWhiteSpace(string input, bool ignoreWithinQuotes)
     {
         var result = new List<string>();
@@ -62,15 +66,14 @@ public static class StringUtils
         {
             var character = input[i];
 
-            // Test if this is not an escape sequence
-            var validQuotes = (character == '"' && i - 1 > -1 && input[i - 1] != '\\') || (i == 0 && character == '"');
+            var isAnEscapeSequence = i - 1 > -1 && input[i - 1] == '\\' && i != 0;
 
-            if (validQuotes && !insideQuote && ignoreWithinQuotes &&
+            if (character == '"' && !isAnEscapeSequence && !insideQuote && ignoreWithinQuotes &&
                 input.IndexOf("\"", i + 1, StringComparison.InvariantCulture) != -1)
             {
                 insideQuote = true;
             }
-            else if (validQuotes && insideQuote)
+            else if (character == '"' && !isAnEscapeSequence && insideQuote)
             {
                 insideQuote = false;
             }
@@ -96,7 +99,7 @@ public static class StringUtils
     }
 
     /// <summary>
-    ///   Parses a list of "key=value" pairs into a dictionary. Duplicate keys will be skipped.
+    ///   Parses a list of "key=value" pairs into a dictionary. Overrides duplicate keys with newer ones.
     /// </summary>
     /// <returns>
     ///   A dictionary of key and value string pairs collected from input. If input string list is null,
@@ -119,8 +122,7 @@ public static class StringUtils
             if (split.Length != 2)
                 continue;
 
-            if (!result.ContainsKey(split[0]))
-                result.Add(split[0], split[1]);
+            result[split[0]] = split[1];
         }
 
         return result;
@@ -129,7 +131,7 @@ public static class StringUtils
     /// <summary>
     ///   Checks and returns true if the input string starts and ends with the given string.
     /// </summary>
-    public static bool IsEnclosedIn(this string input, string what)
+    public static bool StartsAndEndsWith(this string input, string what)
     {
         return input.StartsWith(what, StringComparison.InvariantCulture) &&
             input.EndsWith(what, StringComparison.InvariantCulture);
@@ -143,10 +145,7 @@ public static class StringUtils
     {
         var result = new StringBuilder(input);
 
-        result.Replace("\\a", "\a")
-            .Replace("\\b", "\b")
-            .Replace("\\f", "\f")
-            .Replace("\\n", "\n")
+        result.Replace("\\n", "\n")
             .Replace("\\r", "\r")
             .Replace("\\t", "\t")
             .Replace("\\v", "\v")
