@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=2]
+[gd_scene load_steps=115 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -80,9 +80,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
-[ext_resource path="res://assets/textures/DiscoBall.jpg" type="Texture" id=81]
-[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=82]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=81]
+[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=82]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -2018,7 +2017,6 @@ margin_right = 187.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 texture_normal = ExtResource( 82 )
-texture_pressed = ExtResource( 81 )
 texture_hover = ExtResource( 82 )
 expand = true
 
@@ -2028,7 +2026,6 @@ margin_right = 226.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 texture_normal = ExtResource( 15 )
-texture_pressed = ExtResource( 81 )
 texture_hover = ExtResource( 15 )
 expand = true
 
@@ -2039,7 +2036,6 @@ margin_right = 246.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 texture_normal = ExtResource( 66 )
-texture_pressed = ExtResource( 81 )
 texture_hover = ExtResource( 66 )
 expand = true
 
@@ -2050,6 +2046,11 @@ margin_right = 265.189
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 12 )
 text = "Patch:"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
 [node name="HintText" type="Label" parent="MicrobeHUD"]
 anchor_right = 1.0
 margin_top = 35.0
