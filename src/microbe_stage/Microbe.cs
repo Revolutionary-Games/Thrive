@@ -1382,7 +1382,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
-            // Oddly, colony is not nullified before while it should be?
+            // Colony reset at the end, to allow for previous operations on it.
             Colony = null;
 
             // Checks if the cell is ready to reproduce (allows editor access on unbind).
