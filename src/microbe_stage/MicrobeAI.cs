@@ -39,6 +39,8 @@ public class MicrobeAI
     [JsonProperty]
     private float pursuitThreshold;
 
+    // Memory of the previous absorption step is required to compute gradient
+    // Values dictionary rather than single value as they will be combined with variable weights.
     [JsonProperty]
     private Dictionary<Compound, float> previouslyAbsorbedCompounds;
 
