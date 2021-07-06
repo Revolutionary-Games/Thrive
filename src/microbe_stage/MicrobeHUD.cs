@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -248,7 +247,8 @@ public class MicrobeHUD : Node
     /// </summary>
     private float hoverInfoTimeElapsed;
 
-    private Dictionary<string, ActionButton> abilitiesHotkey = new Dictionary<string, ActionButton>();
+    private System.Collections.Generic.Dictionary<string, ActionButton> abilitiesHotkey =
+        new System.Collections.Generic.Dictionary<string, ActionButton>();
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
