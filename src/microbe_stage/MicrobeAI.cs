@@ -377,23 +377,23 @@ public class MicrobeAI
         microbe.State = Microbe.MicrobeState.Normal;
 
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
-        var compoundsPriority = ComputeCompoundsPriorities(usefulCompounds.ToList());
+        var compoundsWeights = ComputeCompoundsSearchWeights(usefulCompounds.ToList());
 
         float gradientValue = 0.0f;
-        foreach (var compoundPriority in compoundsPriority.ToList())
+        foreach (var compoundWeight in compoundsWeights.ToList())
         {
             // Note this is about absorbed quantities (which is all microbe has access to), not real ones
             float compoundDifference = 0.0f;
 
             // No need to add a difference if compound was not absorbed
-            if (microbe.TotalAbsorbedCompounds.ContainsKey(compoundPriority.Key))
-                compoundDifference += microbe.TotalAbsorbedCompounds[compoundPriority.Key];
+            if (microbe.TotalAbsorbedCompounds.ContainsKey(compoundWeight.Key))
+                compoundDifference += microbe.TotalAbsorbedCompounds[compoundWeight.Key];
 
             // Idem if not absorbed before
-            if (previouslyAbsorbedCompounds.ContainsKey(compoundPriority.Key))
-                compoundDifference -= previouslyAbsorbedCompounds[compoundPriority.Key];
+            if (previouslyAbsorbedCompounds.ContainsKey(compoundWeight.Key))
+                compoundDifference -= previouslyAbsorbedCompounds[compoundWeight.Key];
 
-            compoundDifference *= compoundPriority.Value;
+            compoundDifference *= compoundWeight.Value;
             gradientValue += compoundDifference;
         }
 
@@ -429,8 +429,9 @@ public class MicrobeAI
     ///   If ATP-producing compounds are low (less than half storage capacities),
     ///   non ATP-related compounds are discarded.
     /// </summary>
-    /// <returns> A dictionary of absolute priority for each (useful) compound.</returns>
-    private Dictionary<Compound, float> ComputeCompoundsPriorities(List<KeyValuePair<Compound, float>> usefulCompounds)
+    /// <returns> A dictionary of weights for each (useful) compound, to be used in search algorithms.</returns>
+    private Dictionary<Compound, float> ComputeCompoundsSearchWeights(
+        List<KeyValuePair<Compound, float>> usefulCompounds)
     {
         // Vital compounds are *direct* ATP producers
         var usefulVitalCompounds = usefulCompounds.Where(x => x.Key == glucose || x.Key == iron);
