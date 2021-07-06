@@ -412,13 +412,14 @@ public class MicrobeAI
             MoveWithRandomTurn(0.0f, 0.4f, random);
         }
 
-        // If positive last step you gained compounds, so let's stick around
+        // If positive last step you gained compounds, so let's move toward the source
         if (gradientValue > differenceDetectionThreshold)
         {
-            // There's a decent chance to turn most of the way around
+            // There's a decent chance to turn by 90° to explore gradient
+            // 180° is useless since previous position let you absorb less compounds already
             if (random.Next(0, 10) < 4)
             {
-                MoveWithRandomTurn(0.0f, 3.0f, random);
+                MoveWithRandomTurn(0.0f, 3.0f / 2, random);
             }
         }
     }
