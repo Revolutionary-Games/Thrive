@@ -72,7 +72,12 @@ public class MicrobeAI
         ChooseActions(random, data);
 
         // Store & clear the absorbed compounds for run and rumble
-        previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
+        previouslyAbsorbedCompounds.Clear();
+        foreach (var compound in microbe.TotalAbsorbedCompounds.ToList())
+        {
+            previouslyAbsorbedCompounds[compound.Key] = compound.Value;
+        }
+
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
