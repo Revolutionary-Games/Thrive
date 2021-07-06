@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -149,6 +149,9 @@ public class MicrobeHUD : Node
     [Export]
     public Texture PhosphatesInv;
 
+    [Export]
+    public NodePath HotBarPath;
+
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -169,6 +172,7 @@ public class MicrobeHUD : Node
     private Panel environmentPanel;
     private GridContainer environmentPanelBarContainer;
     private Panel compoundsPanel;
+    private HBoxContainer hotBar;
 
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
@@ -973,5 +977,37 @@ public class MicrobeHUD : Node
     private void OnProcessPanelClosed()
     {
         processPanelButton.Pressed = false;
+    }
+
+/// Actions performed from the hotbar
+    private void EngulfmentKeyPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        {
+        if (stage.Player == null)
+            return;
+
+        stage.Player.EngulfMode = !stage.Player.EngulfMode;
+        }
+    }
+
+    private void FiretoxinKeyPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        {
+        stage.Player?.EmitToxin();
+        }
+    }
+
+    private void UpdateHotBar()
+    {
+    if (stage.Player.Membrane.Type.CellWall)
+        {
+        hotBar.GetNode<TextureRect>("EngulfmentKey").Hide();
+        }
+    else
+        {
+        hotBar.GetNode<TextureRect>("EngulfmentKey").Show();
+        }
     }
 }
