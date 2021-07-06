@@ -437,7 +437,7 @@ public class MicrobeAI
         var usefulVitalCompounds = usefulCompounds.Where(x => x.Key == glucose || x.Key == iron);
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphorous
-        // This algorithm doesn't try to determine if iron and sulfuric acid is useful to this microbe
+        // This algorithm doesn't try to determine if iron and hydrogen sulfide is useful to this microbe
         if (usefulVitalCompounds.Any(
             compound => microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity))
         {
