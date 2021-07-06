@@ -419,7 +419,7 @@ public class MicrobeAI
             // 180° is useless since previous position let you absorb less compounds already
             if (random.Next(0, 10) < 4)
             {
-                MoveWithRandomTurn(0.0f, 3.0f / 2, random);
+                MoveWithRandomTurn(0.0f, 1.5f, random);
             }
         }
     }
