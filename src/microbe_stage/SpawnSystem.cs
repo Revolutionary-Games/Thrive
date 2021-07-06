@@ -232,7 +232,19 @@ public class SpawnSystem
 
         int spawned = 0;
 
+        // TODO ugly
+        Dictionary<Spawner, int> attemptsPerSpawnType = new Dictionary<Spawner, int>();
+        int maxAttempts = -1;
         foreach (var spawnType in spawnTypes)
+        {
+            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
+                maxTriesPerSpawner);
+            attemptsPerSpawnType[spawnType] = numAttempts;
+            if (numAttempts > maxAttempts)
+                maxAttempts = numAttempts;
+        }
+
+        for (int i = 0; i < maxAttempts; i++)
         {
             /*
             To actually spawn a given entity for a given attempt, two
@@ -249,11 +261,13 @@ public class SpawnSystem
             numAttempts stores how many times the SpawnSystem attempts
             to spawn the given entity.
             */
-            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
-                maxTriesPerSpawner);
 
-            for (int i = 0; i < numAttempts; i++)
+            foreach (var spawnType in spawnTypes)
             {
+                int numAttempts = attemptsPerSpawnType[spawnType];
+                if (i > numAttempts)
+                    continue;
+
                 if (random.Next(0, numAttempts + 1) < spawnType.SpawnFrequency)
                 {
                     /*
