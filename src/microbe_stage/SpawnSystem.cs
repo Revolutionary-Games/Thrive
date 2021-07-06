@@ -73,6 +73,7 @@ public class SpawnSystem
     public SpawnSystem(Node root)
     {
         worldRoot = root;
+        attemptsPerSpawnType = new Dictionary<Spawner, int>();
     }
 
     // Needs no params constructor for loading saves?
