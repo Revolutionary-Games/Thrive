@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=2]
+[gd_scene load_steps=116 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -65,7 +65,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/AtpBar.png" type="Texture" id=63]
 [ext_resource path="res://assets/textures/gui/bevel/HealthBar.png" type="Texture" id=64]
 [ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture" id=65]
-[ext_resource path="res://assets/textures/gui/bevel/parts/CytoplasmIcon.png" type="Texture" id=66]
+[ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=66]
 [ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=67]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=68]
 [ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=69]
@@ -81,7 +81,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=81]
-[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=82]
+[ext_resource path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" type="Texture" id=82]
+[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=83]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -389,6 +390,7 @@ AmmoniaBW = ExtResource( 6 )
 PhosphatesBW = ExtResource( 5 )
 AmmoniaInv = ExtResource( 3 )
 PhosphatesInv = ExtResource( 4 )
+HotBarPath = NodePath("ScrollContainer/HotBar")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -2001,43 +2003,63 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 207.0
 
-[node name="HotBar" type="HBoxContainer" parent="MicrobeHUD"]
-margin_left = 460.0
-margin_top = 675.0
-margin_right = 839.0
-margin_bottom = 710.0
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeHUD"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -189.0
+margin_top = -88.0
+margin_right = 190.0
+margin_bottom = -14.0
+rect_min_size = Vector2( 379, 62 )
+theme = ExtResource( 72 )
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
+margin_right = 379.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+custom_constants/separation = 6
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EngulfmentKey" type="TextureButton" parent="MicrobeHUD/HotBar"]
-margin_left = 152.0
-margin_right = 187.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-texture_normal = ExtResource( 82 )
-texture_hover = ExtResource( 82 )
-expand = true
+[node name="Engulfment" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 107.0
+margin_right = 158.0
+margin_bottom = 56.0
+hint_tooltip = "TOGGLE_ENGULF"
+toggle_mode = true
+ActionIcon = ExtResource( 83 )
+ActionName = "g_toggle_engulf"
 
-[node name="FiretoxinKey" type="TextureButton" parent="MicrobeHUD/HotBar"]
-margin_left = 191.0
-margin_right = 226.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-texture_normal = ExtResource( 15 )
-texture_hover = ExtResource( 15 )
-expand = true
+[node name="FireToxin" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 164.0
+margin_right = 215.0
+margin_bottom = 56.0
+hint_tooltip = "FIRE_TOXIN"
+ActionIcon = ExtResource( 15 )
+ActionName = "g_fire_toxin"
 
-[node name="BindingModeKey" type="TextureButton" parent="MicrobeHUD/HotBar"]
-visible = false
-margin_left = 211.0
-margin_right = 246.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-texture_normal = ExtResource( 66 )
-texture_hover = ExtResource( 66 )
-expand = true
+[node name="BindingMode" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 221.0
+margin_right = 272.0
+margin_bottom = 56.0
+hint_tooltip = "TOGGLE_BINDING"
+toggle_mode = true
+ActionIcon = ExtResource( 82 )
+ActionName = "g_toggle_binding"
 
 [node name="PatchLabel" type="Label" parent="MicrobeHUD"]
 margin_left = 11.1892
@@ -2083,8 +2105,9 @@ visible = false
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
 [connection signal="OnClosed" from="MicrobeHUD/ProcessPanel" to="MicrobeHUD" method="OnProcessPanelClosed"]
-[connection signal="pressed" from="MicrobeHUD/HotBar/EngulfmentKey" to="MicrobeHUD" method="EngulfmentKeyPressed"]
-[connection signal="pressed" from="MicrobeHUD/HotBar/FiretoxinKey" to="MicrobeHUD" method="FiretoxinKeyPressed"]
+[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/Engulfment" to="PlayerMicrobeInput" method="ToggleEngulf"]
+[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
+[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="PauseMenu" to="MicrobeHUD" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeHUD" method="OpenMenu"]
