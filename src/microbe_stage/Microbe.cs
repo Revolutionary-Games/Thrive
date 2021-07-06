@@ -1382,6 +1382,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
+
+            // Allows to open editor again after unbinding if conditions are met.
+            // Oddly, Colonny = null; line is necessary as it is not updated before.
+            Colony = null;
+            if (CheckReadyToReproduce())
+                OnReproductionStatus?.Invoke(this, true);
             return;
         }
 
@@ -1389,6 +1395,44 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             microbe.RemoveCollisionExceptionWith(this);
         if (microbe.hostileEngulfer != this)
             RemoveCollisionExceptionWith(microbe);
+    }
+
+    /// <remarks>
+    ///   Used to check editor opening readiness after unbinding,
+    ///   as boolean allOrganellesDivided is not necessarily saved.
+    /// </remarks>
+    public bool CheckReadyToReproduce()
+    {
+        // If this boolean was set true, all organelles have been divided for sure (this includes nucleus being ready).
+        if (allOrganellesDivided)
+        {
+            return true;
+        }
+
+        // On the contrary we check that the boolean hasn't been reset to false.
+        foreach (var organelle in organelles.Organelles)
+        {
+            if (!organelle.WasSplit)
+            {
+                // Only the nucleus is not split when ready to reproduce.
+                if (organelle.Definition.InternalName != "nucleus")
+                {
+                    if (this.IsPlayerMicrobe) GD.Print("Unsplit ", organelle.Definition.InternalName);
+                    return false;
+                }
+
+                // Nucleus is only ready when fully grown.
+                if (organelle.GrowthValue < 1.0f)
+                {
+                    if (this.IsPlayerMicrobe) GD.Print("Not fully grown ", organelle.Definition.InternalName, ": ", organelle.GrowthValue);
+                    return false;
+                }
+            }
+        }
+
+        // Store readiness for later
+        allOrganellesDivided = true;
+        return true;
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
@@ -1444,6 +1488,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             Rotation = oldRotation - ColonyParent.Rotation;
             Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
         }
+
         UnreadyToReproduce();
     }
 
