@@ -68,6 +68,8 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
+    private Dictionary<Spawner, int> attemptsPerSpawnType;
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
@@ -232,8 +234,7 @@ public class SpawnSystem
 
         int spawned = 0;
 
-        // TODO ugly
-        Dictionary<Spawner, int> attemptsPerSpawnType = new Dictionary<Spawner, int>();
+        attemptsPerSpawnType.Clear();
         int maxAttempts = -1;
         foreach (var spawnType in spawnTypes)
         {
@@ -265,6 +266,8 @@ public class SpawnSystem
             foreach (var spawnType in spawnTypes)
             {
                 int numAttempts = attemptsPerSpawnType[spawnType];
+
+                // Already did max attempts for this type
                 if (i > numAttempts)
                     continue;
 
