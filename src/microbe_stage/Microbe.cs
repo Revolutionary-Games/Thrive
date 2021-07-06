@@ -322,6 +322,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public bool CanBind => organelles.Any(p => p.IsBindingAgent) || Colony != null;
 
     /// <summary>
+    ///   Returns true when this microbe has toxin vacuole and can fire toxins.
+    /// </summary>
+    public bool CanEmitToxin => organelles.Any(p => p.IsAgentVacuole);
+
+    /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
     /// </summary>
     [JsonIgnore]

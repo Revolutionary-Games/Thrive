@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -247,6 +248,8 @@ public class MicrobeHUD : Node
     /// </summary>
     private float hoverInfoTimeElapsed;
 
+    private Dictionary<string, ActionButton> abilitiesHotkey = new Dictionary<string, ActionButton>();
+
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
     /// </summary>
@@ -302,9 +305,12 @@ public class MicrobeHUD : Node
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
         hintText = GetNode<Label>(HintTextPath);
+        hotBar = GetNode<HBoxContainer>(HotBarPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
+
+        InitializeAbilitiesBar();
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -325,6 +331,7 @@ public class MicrobeHUD : Node
             UpdateNeededBars();
             UpdateCompoundBars();
             UpdateReproductionProgress();
+            UpdateAbilitiesBar();
         }
 
         UpdateATP(delta);
@@ -869,6 +876,24 @@ public class MicrobeHUD : Node
         compoundsPanel.RectMinSize = compoundsPanelSize;
     }
 
+    private void InitializeAbilitiesBar()
+    {
+        foreach (ActionButton entry in hotBar.GetChildren())
+        {
+            abilitiesHotkey[entry.Name] = entry;
+        }
+    }
+
+    private void UpdateAbilitiesBar()
+    {
+        abilitiesHotkey["BindingMode"].Visible = stage.Player.CanBind;
+        abilitiesHotkey["FireToxin"].Visible = stage.Player.CanEmitToxin;
+
+        abilitiesHotkey["Engulfment"].Pressed = stage.Player.State == Microbe.MicrobeState.Engulf;
+        abilitiesHotkey["BindingMode"].Pressed = stage.Player.State == Microbe.MicrobeState.Binding;
+        abilitiesHotkey["FireToxin"].Pressed = Input.IsActionPressed(abilitiesHotkey["FireToxin"].ActionName);
+    }
+
     /// <summary>
     ///   Received for button that opens the menu inside the Microbe Stage.
     /// </summary>
@@ -977,37 +1002,5 @@ public class MicrobeHUD : Node
     private void OnProcessPanelClosed()
     {
         processPanelButton.Pressed = false;
-    }
-
-/// Actions performed from the hotbar
-    private void EngulfmentKeyPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        {
-        if (stage.Player == null)
-            return;
-
-        stage.Player.EngulfMode = !stage.Player.EngulfMode;
-        }
-    }
-
-    private void FiretoxinKeyPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        {
-        stage.Player?.EmitToxin();
-        }
-    }
-
-    private void UpdateHotBar()
-    {
-    if (stage.Player.Membrane.Type.CellWall)
-        {
-        hotBar.GetNode<TextureRect>("EngulfmentKey").Hide();
-        }
-    else
-        {
-        hotBar.GetNode<TextureRect>("EngulfmentKey").Show();
-        }
     }
 }
