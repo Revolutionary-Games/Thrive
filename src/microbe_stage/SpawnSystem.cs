@@ -261,7 +261,9 @@ public class SpawnSystem
             spawn cycle, the SpawnSystem attempts to spawn each given
             entity multiple times depending on the spawnFrequency.
             numAttempts stores how many times the SpawnSystem attempts
-            to spawn the given entity.
+            to spawn the given entity. Furthermore, each attempt gives a spawn chance
+            for each spawner (up to their type limit) to still favor diversity,
+            instead of one spawner taking up all the free spawning slots.
             */
 
             foreach (var spawnType in spawnTypes)
