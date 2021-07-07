@@ -784,7 +784,7 @@ public class MicrobeHUD : Node
 
         var atpAmount = 0.0f;
 
-        // Update to the player's current HP, unless the player is dead
+        // Update to the player's current ATP, unless the player is dead
         if (stage.Player != null)
         {
             var compounds = GetPlayerColonyOrPlayerStorage();
@@ -795,6 +795,7 @@ public class MicrobeHUD : Node
 
         atpBar.MaxValue = maxATP * 10.0f;
 
+        // If the current ATP is close to full, just pretend that it is to keep the bar from flickering
         if (maxATP - atpAmount < maxATP / 20.0f)
         {
             atpAmount = maxATP;
