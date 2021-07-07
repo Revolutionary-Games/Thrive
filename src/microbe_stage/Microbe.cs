@@ -2275,8 +2275,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // TODO: it would be perhaps a nicer code approach to only set the Colony after this is re-parented
         var savedColony = Colony;
         Colony = null;
-        
-        this.GetParent().RemoveChild(this);
+
+        GetParent().RemoveChild(this);
         parent.AddChild(this);
 
         // And restore the colony after completing the re-parenting of this node
