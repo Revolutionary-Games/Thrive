@@ -366,6 +366,10 @@ public static class Constants
 
     // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
     public const float AI_COMPOUND_BIAS = -10.0f;
+    /// <summary>
+    /// Threshold to not be stuck in tiny local maxima during gradient ascent algorithms.
+    /// </summary>
+    public const float AI_GRADIENT_DETECTION_THRESHOLD = 0.0f;
 
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;

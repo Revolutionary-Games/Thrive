@@ -410,7 +410,8 @@ public class MicrobeAI
         }
 
         // Implement a detection threshold to possibly rule out too tiny variations
-        float differenceDetectionThreshold = 0;
+        // TODO: possibly include cell capacity correction
+        float differenceDetectionThreshold = Constants.AI_GRADIENT_DETECTION_THRESHOLD;
 
         // If food density is going down, back up and see if there's some more
         if (gradientValue < -differenceDetectionThreshold && random.Next(0, 10) < 9)
