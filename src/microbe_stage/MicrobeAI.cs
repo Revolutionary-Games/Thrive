@@ -306,7 +306,7 @@ public class MicrobeAI
         }
 
         // If this Microbe is right on top of the chunk, stop instead of spinning
-        if (DistanceFromMe(chunk) < 1.0f)
+        if (DistanceFromMe(chunk) < microbe.Radius)
         {
             SetMoveSpeed(0.0f);
         }
