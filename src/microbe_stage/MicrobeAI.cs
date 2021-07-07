@@ -79,7 +79,7 @@ public class MicrobeAI
 
         // Store & clear the absorbed compounds for run and rumble
         previouslyAbsorbedCompounds.Clear();
-        foreach (var compound in microbe.TotalAbsorbedCompounds.ToList())
+        foreach (var compound in microbe.TotalAbsorbedCompounds)
         {
             previouslyAbsorbedCompounds[compound.Key] = compound.Value;
         }
