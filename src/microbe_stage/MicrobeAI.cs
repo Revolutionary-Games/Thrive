@@ -44,6 +44,9 @@ public class MicrobeAI
     [JsonProperty]
     private Dictionary<Compound, float> previouslyAbsorbedCompounds;
 
+    [JsonIgnore]
+    private Dictionary<Compound, float> compoundsSearchWeights;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -53,6 +56,7 @@ public class MicrobeAI
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         iron = SimulationParameters.Instance.GetCompound("iron");
         previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
+        compoundsSearchWeights = new Dictionary<Compound, float>();
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;
@@ -384,10 +388,10 @@ public class MicrobeAI
         microbe.State = Microbe.MicrobeState.Normal;
 
         var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
-        var compoundsWeights = ComputeCompoundsSearchWeights(usefulCompounds.ToList());
+        ComputeCompoundsSearchWeights(usefulCompounds.ToList());
 
         float gradientValue = 0.0f;
-        foreach (var compoundWeight in compoundsWeights.ToList())
+        foreach (var compoundWeight in compoundsSearchWeights)
         {
             // Note this is about absorbed quantities (which is all microbe has access to), not real ones
             float compoundDifference = 0.0f;
@@ -435,9 +439,9 @@ public class MicrobeAI
     ///   Prioritizing compounds that are stored in lesser quantities.
     ///   If ATP-producing compounds are low (less than half storage capacities),
     ///   non ATP-related compounds are discarded.
+    ///   Updates compoundsSearchWeights class dictionary.
     /// </summary>
-    /// <returns> A dictionary of weights for each (useful) compound, to be used in search algorithms.</returns>
-    private Dictionary<Compound, float> ComputeCompoundsSearchWeights(
+    private void ComputeCompoundsSearchWeights(
         List<KeyValuePair<Compound, float>> usefulCompounds)
     {
         // Vital compounds are *direct* ATP producers
@@ -451,17 +455,15 @@ public class MicrobeAI
             usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates).ToList();
         }
 
-        var compoundsPriority = new Dictionary<Compound, float>();
+        compoundsSearchWeights.Clear();
         foreach (var compound in usefulCompounds)
         {
             // The priority of a compound is inversely proportional to its availability
             // Should be tweaked with consumption
             var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound.Key) / microbe.Compounds.Capacity;
 
-            compoundsPriority.Add(compound.Key, compoundPriority);
+            compoundsSearchWeights.Add(compound.Key, compoundPriority);
         }
-
-        return compoundsPriority;
     }
 
     private void SetEngulfIfClose()
