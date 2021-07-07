@@ -489,7 +489,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
                     AddCollisionExceptionWith(child);
                     child.AddCollisionExceptionWith(this);
-
                 }
             }
 
