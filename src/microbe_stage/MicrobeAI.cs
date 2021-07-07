@@ -396,13 +396,11 @@ public class MicrobeAI
             // Note this is about absorbed quantities (which is all microbe has access to), not real ones
             float compoundDifference = 0.0f;
 
-            // No need to add a difference if compound was not absorbed
-            if (microbe.TotalAbsorbedCompounds.ContainsKey(compoundWeight.Key))
-                compoundDifference += microbe.TotalAbsorbedCompounds[compoundWeight.Key];
+            float quantityAbsorbedThisStep, quantityAbsorbedPreviousStep;
+            microbe.TotalAbsorbedCompounds.TryGetValue(compoundWeight.Key, out quantityAbsorbedThisStep);
+            previouslyAbsorbedCompounds.TryGetValue(compoundWeight.Key, out quantityAbsorbedPreviousStep);
 
-            // Idem if not absorbed before
-            if (previouslyAbsorbedCompounds.ContainsKey(compoundWeight.Key))
-                compoundDifference -= previouslyAbsorbedCompounds[compoundWeight.Key];
+            compoundDifference += quantityAbsorbedThisStep - quantityAbsorbedPreviousStep;
 
             compoundDifference *= compoundWeight.Value;
             gradientValue += compoundDifference;
