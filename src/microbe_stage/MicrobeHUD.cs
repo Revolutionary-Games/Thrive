@@ -789,13 +789,18 @@ public class MicrobeHUD : Node
         {
             var compounds = GetPlayerColonyOrPlayerStorage();
 
-            // Only show ATP changes in increments of 0.5
-            atpAmount = Mathf.Ceil(compounds.GetCompoundAmount(atp) * 2) / 2.0f;
+            atpAmount = compounds.GetCompoundAmount(atp);
             maxATP = compounds.Capacity;
         }
 
-        atpBar.MaxValue = maxATP;
-        GUICommon.SmoothlyUpdateBar(atpBar, atpAmount, delta);
+        atpBar.MaxValue = maxATP * 10.0f;
+
+        if (maxATP - atpAmount < maxATP / 10.0f)
+        {
+            atpAmount = maxATP;
+        }
+
+        GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
         atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(maxATP);
     }
 
