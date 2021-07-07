@@ -1388,6 +1388,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Checks if the cell is ready to reproduce (allows editor access on unbind).
             if (allOrganellesDivided)
                 OnReproductionStatus?.Invoke(this, true);
+
             return;
         }
 
