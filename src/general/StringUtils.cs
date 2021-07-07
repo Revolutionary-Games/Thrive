@@ -42,8 +42,14 @@ public static class StringUtils
         return number.ToString("0.#", CultureInfo.CurrentCulture);
     }
 
-    public static string FormatDecimal(this double number)
+    public static string FormatDecimal(this double number, int decimalPlaces)
     {
-        return number.ToString("0.0", CultureInfo.CurrentCulture);
+        var format = "0.";
+        for (var i = 0; i < decimalPlaces; i++)
+        {
+            format += "0";
+        }
+
+        return number.ToString(format, CultureInfo.CurrentCulture);
     }
 }
