@@ -443,8 +443,7 @@ public class MicrobeAI
     ///   non ATP-related compounds are discarded.
     ///   Updates compoundsSearchWeights class dictionary.
     /// </summary>
-    private void ComputeCompoundsSearchWeights(
-        List<KeyValuePair<Compound, float>> usefulCompounds)
+    private void ComputeCompoundsSearchWeights(List<KeyValuePair<Compound, float>> usefulCompounds)
     {
         // Vital compounds are *direct* ATP producers
         // TODO: what is used here is a shortcut linked to the current game state:
