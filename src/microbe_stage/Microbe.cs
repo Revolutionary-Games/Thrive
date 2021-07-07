@@ -1382,13 +1382,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
-            // Colony reset at the end, to allow for previous operations on it.
-            Colony = null;
-
-            // Checks if the cell is ready to reproduce (allows editor access on unbind).
-            if (allOrganellesDivided)
-                OnReproductionStatus?.Invoke(this, true);
-
             return;
         }
 
@@ -1802,6 +1795,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void UnreadyToReproduce()
     {
+        // Sets this flag to false to make full recomputation on next reproduction readiness check
+        // This notably allows to reactivate editor button upon colony unbinding.
+        allOrganellesDivided = false;
         OnReproductionStatus?.Invoke(this, false);
     }
 
