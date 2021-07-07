@@ -473,11 +473,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (ColonyChildren != null)
             {
                 foreach (var child in ColonyChildren)
-                    {
-                        AddChild(child);
-                        this.AddCollisionExceptionWith(child);
-                        child.AddCollisionExceptionWith(this);
-                    }
+                {
+                    AddChild(child);
+                    AddCollisionExceptionWith(child);
+                    child.AddCollisionExceptionWith(this);
+                }
             }
 
             // Need to re-attach our organelles
