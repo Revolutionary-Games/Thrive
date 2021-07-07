@@ -395,7 +395,8 @@ public class MicrobeAI
         float gradientValue = 0.0f;
         foreach (var compoundWeight in compoundsSearchWeights)
         {
-            // Note this is about absorbed quantities (which is all microbe has access to), not real ones
+            // Note this is about absorbed quantities (which is all microbe has access to) not the ones in the clouds.
+            // Gradient computation is therefore cell-centered, and might be different for different cells.
             float compoundDifference = 0.0f;
 
             float quantityAbsorbedThisStep, quantityAbsorbedPreviousStep;
