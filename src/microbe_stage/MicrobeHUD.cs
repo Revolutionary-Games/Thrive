@@ -796,7 +796,7 @@ public class MicrobeHUD : Node
         atpBar.MaxValue = maxATP * 10.0f;
 
         // If the current ATP is close to full, just pretend that it is to keep the bar from flickering
-        if (maxATP - atpAmount < maxATP / 20.0f)
+        if (maxATP - atpAmount < Math.Max(maxATP / 20.0f, 0.1f))
         {
             atpAmount = maxATP;
         }
