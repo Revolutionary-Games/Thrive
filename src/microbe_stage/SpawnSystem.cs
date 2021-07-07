@@ -239,12 +239,12 @@ public class SpawnSystem
         int maxAttempts = -1;
         foreach (var spawnType in spawnTypes)
         {
-            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
+            int attempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
                 maxTriesPerSpawner);
-            attemptsPerSpawnType[spawnType] = numAttempts;
+            attemptsPerSpawnType[spawnType] = attempts;
 
-            if (numAttempts > maxAttempts)
-                maxAttempts = numAttempts;
+            if (attempts > maxAttempts)
+                maxAttempts = attempts;
         }
 
         for (int i = 0; i < maxAttempts; i++)
@@ -269,13 +269,13 @@ public class SpawnSystem
 
             foreach (var spawnType in spawnTypes)
             {
-                int numAttempts = attemptsPerSpawnType[spawnType];
+                int attempts = attemptsPerSpawnType[spawnType];
 
                 // Already did max attempts for this type
-                if (i > numAttempts)
+                if (i > attempts)
                     continue;
 
-                if (random.Next(0, numAttempts + 1) < spawnType.SpawnFrequency)
+                if (random.Next(0, attempts + 1) < spawnType.SpawnFrequency)
                 {
                     /*
                     First condition passed. Choose a location for the entity.
