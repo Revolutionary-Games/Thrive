@@ -242,6 +242,7 @@ public class SpawnSystem
             int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
                 maxTriesPerSpawner);
             attemptsPerSpawnType[spawnType] = numAttempts;
+            
             if (numAttempts > maxAttempts)
                 maxAttempts = numAttempts;
         }
