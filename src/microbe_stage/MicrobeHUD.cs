@@ -795,7 +795,7 @@ public class MicrobeHUD : Node
 
         atpBar.MaxValue = maxATP * 10.0f;
 
-        if (maxATP - atpAmount < maxATP / 10.0f)
+        if (maxATP - atpAmount < maxATP / 20.0f)
         {
             atpAmount = maxATP;
         }
