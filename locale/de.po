@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 09:18-0400\n"
-"PO-Revision-Date: 2021-07-06 09:05+0000\n"
-"Last-Translator: John <philllo030@googlemail.com>\n"
+"PO-Revision-Date: 2021-07-07 09:42+0000\n"
+"Last-Translator: GitHubUser-GER-ENG <tegue@outlook.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -99,7 +99,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Wenn deine Population auf Null sinkt, stirbt sie aus."
+msgstr "Wenn deine Population auf Null sinkt, stirbst du aus."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -483,7 +483,7 @@ msgstr "Kamera zurücksetzen"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "jetzige Aktion abbrechen"
 
 #: ../simulation_parameters/common/input_options.json:139
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -919,7 +919,7 @@ msgstr "Population in Gebieten:"
 
 #: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "ist auf diesem Planeten ausgestorben"
 
 #: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
 msgid "LOADING"
@@ -1360,9 +1360,8 @@ msgid "ARTWORK_TITLE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
 #: ../src/general/Gallery.cs:74
-#, fuzzy
 msgid "ART_BY"
-msgstr "Grafiken/Kunst von"
+msgstr "Grafiken/Kunst von {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
