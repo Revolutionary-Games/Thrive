@@ -152,7 +152,7 @@ public class CustomRichTextLabel : RichTextLabel
                 }
 
                 // The bbcode (and its attributes if this is an opening tag)
-                var splitTagBlock = StringUtils.SplitByWhiteSpace(leftHandSide[1], true);
+                var splitTagBlock = StringUtils.SplitByWhitespace(leftHandSide[1], true);
 
                 // Tag seems okay, next step is to try parse the content and the closing tag
 

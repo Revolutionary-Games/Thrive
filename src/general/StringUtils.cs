@@ -51,11 +51,12 @@ public static class StringUtils
     /// <remarks>
     ///   Only handles a single whitespace ( ) and not tabs, multiple spaces, etc. For quoted
     ///   substrings handling, this only considers double quotes (") and not apostrophes (').
+    ///   If there is no closing quote after an opening quote, the rest of string is considered within quotes.
     /// </remarks>
     /// <param name="input">String to split.</param>
     /// <param name="ignoreWithinQuotes">Ignore whitespace within quotation marks.</param>
     /// <returns>A list of the substrings, starting from the beginning of the input string.</returns>
-    public static List<string> SplitByWhiteSpace(string input, bool ignoreWithinQuotes)
+    public static List<string> SplitByWhitespace(string input, bool ignoreWithinQuotes)
     {
         var result = new List<string>();
 
@@ -68,8 +69,7 @@ public static class StringUtils
 
             var isAnEscapeSequence = i > 0 && input[i - 1] == '\\';
 
-            if (character == '"' && !isAnEscapeSequence && !insideQuote && ignoreWithinQuotes &&
-                input.IndexOf("\"", i + 1, StringComparison.InvariantCulture) != -1)
+            if (character == '"' && !isAnEscapeSequence && !insideQuote && ignoreWithinQuotes)
             {
                 insideQuote = true;
             }
