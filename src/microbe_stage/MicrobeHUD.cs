@@ -802,7 +802,7 @@ public class MicrobeHUD : Node
         }
 
         GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
-        atpLabel.Text = StringUtils.FormatDecimal(atpAmount, 1) + " / " + StringUtils.FormatDecimal(maxATP, 1);
+        atpLabel.Text = atpAmount.ToString("0.0", CultureInfo.CurrentCulture) + " / " + maxATP.ToString("0.0", CultureInfo.CurrentCulture);
     }
 
     private ICompoundStorage GetPlayerColonyOrPlayerStorage()
