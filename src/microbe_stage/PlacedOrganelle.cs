@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -18,6 +19,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private bool growthValueDirty = true;
     private float growthValue;
+
+    private Microbe shapesAttachedTo;
 
     /// <summary>
     ///   Used to update the tint
@@ -220,9 +223,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Remove our sub collisions
         foreach (var shape in shapes)
         {
-            ParentMicrobe.RemoveShapeOwner(shape);
+            shapesAttachedTo.RemoveShapeOwner(shape);
         }
 
+        shapesAttachedTo = null;
         shapes.Clear();
 
         // Remove components
@@ -379,6 +383,40 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
+    public void ReParentShapes(Microbe to, Vector3 offset)
+    {
+        if (to == shapesAttachedTo)
+            return;
+
+        var hexes = Definition.GetRotatedHexes(Orientation).ToArray();
+
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            Vector3 shapePosition = Hex.AxialToCartesian(hexes[i]) + Hex.AxialToCartesian(Position);
+
+            // Scale for bacteria physics.
+            if (ParentMicrobe.Species.IsBacteria)
+                shapePosition *= 0.5f;
+
+            shapePosition += offset;
+            var transform = new Transform(Quat.Identity, shapePosition);
+
+            var ownerId = shapes[i];
+
+            var shape = shapesAttachedTo.ShapeOwnerGetShape(ownerId, 0);
+
+            var newOwnerId = to.CreateShapeOwner(shape);
+            to.ShapeOwnerAddShape(newOwnerId, shape);
+            to.ShapeOwnerSetTransform(newOwnerId, transform);
+
+            shapes[i] = newOwnerId;
+
+            shapesAttachedTo.RemoveShapeOwner(ownerId);
+        }
+
+        shapesAttachedTo = to;
+    }
+
     private static Color CalculateHSVForOrganelle(Color rawColour)
     {
         // Get hue saturation and brightness for the colour
@@ -397,39 +435,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             SetupOrganelleGraphics();
         }
 
-        float hexSize = Constants.DEFAULT_HEX_SIZE;
-
-        // Scale the physics hex size down for bacteria
-        if (ParentMicrobe.Species.IsBacteria)
-            hexSize *= 0.5f;
-
         // Physics
         ParentMicrobe.Mass += Definition.Mass;
 
-        // Add hex collision shapes
-        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
-        {
-            var shape = new SphereShape();
-            shape.Radius = hexSize * 2.0f;
-
-            var ownerId = ParentMicrobe.CreateShapeOwner(shape);
-
-            // This is needed to actually add the shape
-            ParentMicrobe.ShapeOwnerAddShape(ownerId, shape);
-
-            // The shape is in our parent so the final position is our
-            // offset plus the hex offset
-            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Hex.AxialToCartesian(Position);
-
-            // Scale for bacteria physics.
-            if (ParentMicrobe.Species.IsBacteria)
-                shapePosition *= 0.5f;
-
-            var transform = new Transform(Quat.Identity, shapePosition);
-            ParentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
-
-            shapes.Add(ownerId);
-        }
+        MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
 
         // Components
         Components = new List<IOrganelleComponent>();
@@ -447,6 +456,42 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         growthValueDirty = true;
+    }
+
+    private void MakeCollisionShapes(Microbe to)
+    {
+        shapesAttachedTo = to;
+
+        float hexSize = Constants.DEFAULT_HEX_SIZE;
+
+        // Scale the physics hex size down for bacteria
+        if (ParentMicrobe.Species.IsBacteria)
+            hexSize *= 0.5f;
+
+        // Add hex collision shapes
+        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
+        {
+            var shape = new SphereShape();
+            shape.Radius = hexSize * 2.0f;
+
+            var ownerId = to.CreateShapeOwner(shape);
+
+            // This is needed to actually add the shape
+            to.ShapeOwnerAddShape(ownerId, shape);
+
+            // The shape is in our parent so the final position is our
+            // offset plus the hex offset
+            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Hex.AxialToCartesian(Position);
+
+            // Scale for bacteria physics.
+            if (ParentMicrobe.Species.IsBacteria)
+                shapePosition *= 0.5f;
+
+            var transform = new Transform(Quat.Identity, shapePosition);
+            to.ShapeOwnerSetTransform(ownerId, transform);
+
+            shapes.Add(ownerId);
+        }
     }
 
     private void RecalculateGrowthValue()
