@@ -22,7 +22,7 @@ public class SpawnSystem
     /// </summary>
     private Node worldRoot;
 
-    private List<Spawner> spawnTypes = new List<Spawner>();
+    private ShuffleBag<Spawner> spawnTypes;
 
     [JsonProperty]
     private Random random = new Random();
@@ -71,6 +71,7 @@ public class SpawnSystem
     public SpawnSystem(Node root)
     {
         worldRoot = root;
+        spawnTypes = new ShuffleBag<Spawner>(random);
     }
 
     // Needs no params constructor for loading saves?
