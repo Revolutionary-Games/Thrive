@@ -1422,7 +1422,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 Mode = ModeEnum.Static;
 
             foreach (var organelle in organelles)
-                organelle.ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Up, Colony.Master.Rotation.y));
+                organelle.ReParentShapes(Colony.Master, 
+                (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Up, 
+                Colony.Master.Rotation.y));
         }
         else
         {
