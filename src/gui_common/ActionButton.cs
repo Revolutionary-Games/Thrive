@@ -83,8 +83,8 @@ public class ActionButton : Button
 
         iconRect.Texture = ActionIcon;
         iconRect.Modulate = highlighted || Pressed ?
-            new Color(1f, 1f, 1f) :
-            new Color(0.8f, 0.8f, 0.8f);
+            new Color(1f, 1f, 1f, 0.78f) :
+            new Color(0.70f, 0.70f, 0.70f, 0.59f);
     }
 
     private void UpdateKeyPrompt()

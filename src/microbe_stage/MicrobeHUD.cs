@@ -878,6 +878,9 @@ public class MicrobeHUD : Node
 
     private void InitializeAbilitiesBar()
     {
+        OnAbilitiesBarDisplayChanged(Settings.Instance.DisplayAbilitiesBar);
+        Settings.Instance.DisplayAbilitiesBar.OnChanged += OnAbilitiesBarDisplayChanged;
+
         foreach (ActionButton entry in hotBar.GetChildren())
         {
             abilitiesHotkey[entry.Name] = entry;
@@ -1002,5 +1005,10 @@ public class MicrobeHUD : Node
     private void OnProcessPanelClosed()
     {
         processPanelButton.Pressed = false;
+    }
+
+    private void OnAbilitiesBarDisplayChanged(bool displayed)
+    {
+        hotBar.Visible = displayed;
     }
 }

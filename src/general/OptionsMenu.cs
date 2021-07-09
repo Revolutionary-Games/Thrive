@@ -59,6 +59,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath ChromaticAberrationTogglePath;
 
+    [Export]
+    public NodePath DisplayAbilitiesBarTogglePath;
+
     // Sound tab.
     [Export]
     public NodePath SoundTabPath;
@@ -184,6 +187,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting;
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
+    private CheckBox displayAbilitiesBarToggle;
 
     // Sound tab
     private Control soundTab;
@@ -291,6 +295,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
+        displayAbilitiesBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -415,6 +420,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
+        displayAbilitiesBarToggle.Pressed = settings.DisplayAbilitiesBar;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -906,6 +912,13 @@ public class OptionsMenu : ControlWithInput
     private void OnChromaticAberrationValueChanged(float amount)
     {
         Settings.Instance.ChromaticAmount.Value = amount;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDisplayAbilitiesBarToggled(bool toggle)
+    {
+        Settings.Instance.DisplayAbilitiesBar.Value = toggle;
 
         UpdateResetSaveButtonState();
     }

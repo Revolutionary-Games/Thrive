@@ -70,6 +70,11 @@ public class Settings
     /// </summary>
     public SettingValue<bool> ChromaticEnabled { get; set; } = new SettingValue<bool>(true);
 
+    /// <summary>
+    ///   Display or hide abilities bar in the microbe stage HUD.
+    /// </summary>
+    public SettingValue<bool> DisplayAbilitiesBar { get; set; } = new SettingValue<bool>(true);
+
     // Sound Properties
 
     /// <summary>
