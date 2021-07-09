@@ -39,8 +39,12 @@ public class MicrobeAI
     [JsonProperty]
     private float pursuitThreshold;
 
+    /// <summary>
+    ///   Stores the value of microbe.totalAbsorbedCompound at tick t-1 before it is cleared and updated at tick t.
+    ///   Used for compounds gradient computation.
+    /// </summary>
     /// <remarks>
-    ///   Memory of the previous absorption step is required to compute gradient.
+    ///   Memory of the previous absorption step is required to compute gradient (which is a variation).
     ///   Values dictionary rather than single value as they will be combined with variable weights.
     /// </remarks>
     [JsonProperty]
