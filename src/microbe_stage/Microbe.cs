@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -1364,8 +1364,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
+            Mode = ModeEnum.Rigid;
+
             foreach (var organelle in organelles)
-                organelle.ReParentShapes(this);
+                organelle.ReParentShapes(this, Vector3.Zero);
 
             return;
         }
@@ -1382,8 +1384,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             OnIGotAddedToColony();
 
+            if (Colony.Master != this)
+                Mode = ModeEnum.Static;
+
             foreach (var organelle in organelles)
-                organelle.ReParentShapes(Colony.Master);
+                organelle.ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Up, Colony.Master.Rotation.y));
         }
         else
         {

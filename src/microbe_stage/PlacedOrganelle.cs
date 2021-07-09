@@ -383,19 +383,32 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
-    public void ReParentShapes(Microbe to)
+    public void ReParentShapes(Microbe to, Vector3 offset)
     {
         if (to == shapesAttachedTo)
             return;
 
+        var hexes = Definition.GetRotatedHexes(Orientation).ToArray();
+
         for (int i = 0; i < shapes.Count; i++)
         {
+            Vector3 shapePosition = Hex.AxialToCartesian(hexes[i]) + Hex.AxialToCartesian(Position);
+
+            // Scale for bacteria physics.
+            if (ParentMicrobe.Species.IsBacteria)
+                shapePosition *= 0.5f;
+
+            shapePosition += offset;
+            var transform = new Transform(Quat.Identity, shapePosition);
+
+
             var ownerId = shapes[i];
 
             var shape = shapesAttachedTo.ShapeOwnerGetShape(ownerId, 0);
 
             var newOwnerId = to.CreateShapeOwner(shape);
             to.ShapeOwnerAddShape(newOwnerId, shape);
+            to.ShapeOwnerSetTransform(newOwnerId, transform);
 
             shapes[i] = newOwnerId;
 
