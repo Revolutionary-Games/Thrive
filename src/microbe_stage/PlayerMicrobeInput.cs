@@ -132,9 +132,6 @@ public class PlayerMicrobeInput : NodeWithInput
 
         stage.HUD.HintText = string.Empty;
 
-        // In case this is the last colony member being unbonded, return the player's microbe state to normal
-        stage.Player.State = Microbe.MicrobeState.Normal;
-
         return true;
     }
 
