@@ -131,7 +131,6 @@ public class PlayerMicrobeInput : NodeWithInput
         RemoveCellFromColony(target);
 
         stage.HUD.HintText = string.Empty;
-
         return true;
     }
 
