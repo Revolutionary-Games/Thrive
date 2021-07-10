@@ -2,13 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-// TODO Access
 public class ShuffleBag<T> : IEnumerable<T>
 {
     private Random random;
     private List<T> initialContent;
     private List<T> currentContent;
-    int capacity;
+    private int capacity;
 
     public ShuffleBag(Random random)
     {
@@ -32,6 +31,17 @@ public class ShuffleBag<T> : IEnumerable<T>
         capacity += 1;
     }
 
+    public bool Remove(T element)
+    {
+        currentContent.Remove(element);
+        return initialContent.Remove(element);
+    }
+
+    public void RemoveAll(Predicate<T> f)
+    {
+        initialContent.RemoveAll(f);
+    }
+
     public void FillAndShuffle()
     {
         currentContent.Clear();
@@ -42,34 +52,12 @@ public class ShuffleBag<T> : IEnumerable<T>
         Shuffle();
     }
 
-    public T Pick()
+    public T PickAndDrop()
     {
-        if (currentContent.Count == 0)
-        {
-            FillAndShuffle();
-        }
+        var drawnElement = Pick();
+        Drop();
 
-        return currentContent[currentContent.Count - 1];
-    }
-
-    public void Drop()
-    {
-        if (currentContent.Count == 0)
-            throw new NullReferenceException("Cannot drop from empty bag!");
-        currentContent.RemoveAt(currentContent.Count - 1);
-
-        capacity -= 1;
-    }
-
-    public bool Remove(T element)
-    {
-        currentContent.Remove(element);
-        return initialContent.Remove(element);
-    }
-
-    public void RemoveAll(Predicate<T> f)
-    {
-        initialContent.RemoveAll(f);
+        return drawnElement;
     }
 
     public IEnumerator<T> GetEnumerator()
@@ -98,25 +86,21 @@ public class ShuffleBag<T> : IEnumerable<T>
         }
     }
 
-    private T Draw()
+    private T Pick()
     {
-        if (initialContent.Count == 0)
-            throw new NullReferenceException("Can't draw from a bag who can't be filled!");
-
-        // TODO Change implem: RemoveAt makes a copy under the hood
-        var leftSize = currentContent.Count;
-
-        if (leftSize == 0)
+        if (currentContent.Count == 0)
         {
             FillAndShuffle();
-            leftSize = currentContent.Count;
         }
 
-        var drawnElement = currentContent[leftSize - 1];
-        currentContent.RemoveAt(leftSize - 1);
-        capacity -= 1;
+        return currentContent[currentContent.Count - 1];
+    }
 
-        return drawnElement;
+    private void Drop()
+    {
+        if (currentContent.Count == 0)
+            throw new NullReferenceException("Cannot drop from empty bag!");
+        currentContent.RemoveAt(currentContent.Count - 1);
     }
 
     private class ShuffleBagEnumerator<T1> : IEnumerator<T1>
