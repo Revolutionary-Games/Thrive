@@ -1,0 +1,357 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/models/organelles/Cilia.anim" type="Animation" id=1]
+[ext_resource path="res://assets/textures/flagellum.png" type="Texture" id=2]
+[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=3]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=5]
+[ext_resource path="res://assets/models/organelles/Cilia.mesh" type="ArrayMesh" id=6]
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/dissolveValue = 0.0
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
+shader_param/outlineWidth = 0.05
+shader_param/growColor = Color( 0.521569, 0.521569, 0.521569, 1 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/texture = ExtResource( 2 )
+shader_param/dissolveTexture = ExtResource( 5 )
+
+[sub_resource type="Skin" id=5]
+resource_name = "Skin"
+bind_count = 16
+bind/0/name = "bone"
+bind/0/bone = -1
+bind/0/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -1.33227e-16, 0.6, 5.96046e-08 )
+bind/1/name = "bone_4"
+bind/1/bone = -1
+bind/1/pose = Transform( 1, 0, 0, 0, -1.11608e-07, -1, 0, 1, -1.11608e-07, -1.33227e-16, -0.0675697, 4.46128e-08 )
+bind/2/name = "bone_2"
+bind/2/bone = -1
+bind/2/pose = Transform( 1, 7.08056e-30, -7.9302e-23, -7.9302e-23, 1.78572e-07, -1, 7.08056e-30, 1, 1.78572e-07, -1.33227e-16, -0.735139, 1.9088e-07 )
+bind/3/name = "bone_6"
+bind/3/bone = -1
+bind/3/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -1.33227e-16, -1.40271, 1.19209e-07 )
+bind/4/name = "bone_1"
+bind/4/bone = -1
+bind/4/pose = Transform( 1, 0, -3.17207e-22, -3.17207e-22, 0, -1, 0, 1, 0, -1.33227e-16, -2.07028, 0 )
+bind/5/name = "bone_5"
+bind/5/bone = -1
+bind/5/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -1.33227e-16, -2.73785, 0 )
+bind/6/name = "bone_3"
+bind/6/bone = -1
+bind/6/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -1.33227e-16, -3.40542, 2.38419e-07 )
+bind/7/name = "bone_7"
+bind/7/bone = -1
+bind/7/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -1.33227e-16, -4.07299, 0 )
+bind/8/name = "bone_8"
+bind/8/bone = -1
+bind/8/pose = Transform( 1, 0, 0, 0, 2.23215e-08, -1, 0, 1, 2.23215e-08, -1.33227e-16, 0.266215, 5.36623e-08 )
+bind/9/name = "bone_9"
+bind/9/bone = -1
+bind/9/pose = Transform( 1, 0, 0, 0, 8.9286e-08, -1, 0, 1, 8.9286e-08, -1.33227e-16, -0.401355, 1.25242e-07 )
+bind/10/name = "bone_10"
+bind/10/bone = -1
+bind/10/pose = Transform( 1, 1.41611e-29, 7.93019e-23, 7.93019e-23, -3.57144e-07, -1, 1.41611e-29, 1, -3.57144e-07, -1.33227e-16, -1.06892, -3.8176e-07 )
+bind/11/name = "bone_11"
+bind/11/bone = -1
+bind/11/pose = Transform( 1, -1.41611e-29, 7.9302e-23, 7.9302e-23, 3.57144e-07, -1, -1.41611e-29, 1, 3.57144e-07, -1.33227e-16, -1.73649, 7.39388e-07 )
+bind/12/name = "bone_12"
+bind/12/bone = -1
+bind/12/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -1.33227e-16, -2.40406, 0 )
+bind/13/name = "bone_13"
+bind/13/bone = -1
+bind/13/pose = Transform( 1, 5.66444e-29, 1.58604e-22, 1.58604e-22, -7.14288e-07, -1, 5.66444e-29, 1, -7.14288e-07, -1.33226e-16, -3.07163, -2.19403e-06 )
+bind/14/name = "bone_14"
+bind/14/bone = -1
+bind/14/pose = Transform( 1, 0, 0, 0, 7.14289e-07, -1, 0, 1, 7.14289e-07, -1.33227e-16, -3.7392, 2.90929e-06 )
+bind/15/name = "bone_15"
+bind/15/bone = -1
+bind/15/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -1.33227e-16, -4.40677, 0 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "swim"
+length = 1.66667
+
+[node name="Cilia" type="Spatial"]
+transform = Transform( 0.686179, 0, 0.0239182, 0, 0.402829, 0, -0.0314232, 0, 0.522293, 0, 0, 0 )
+
+[node name="Armature001" type="Spatial" parent="."]
+
+[node name="Skeleton" type="Skeleton" parent="Armature001"]
+bones/0/name = "bone"
+bones/0/parent = -1
+bones/0/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0181576, 0.0245926, 0.6 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "bone_4"
+bones/1/parent = -1
+bones/1/rest = Transform( 1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, -0.0772552, -0.0576451, -0.0675697 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "bone_2"
+bones/2/parent = -1
+bones/2/rest = Transform( 1, -7.9302e-23, 1.26218e-29, 1.26218e-29, 2.98023e-07, 1, -7.9302e-23, -1, 2.98023e-07, -0.21558, 0.0351402, -0.735139 )
+bones/2/enabled = true
+bones/2/bound_children = [  ]
+bones/3/name = "bone_6"
+bones/3/parent = -1
+bones/3/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.10268, 0.0717483, -1.40271 )
+bones/3/enabled = true
+bones/3/bound_children = [  ]
+bones/4/name = "bone_1"
+bones/4/parent = -1
+bones/4/rest = Transform( 1, -3.17208e-22, 0, 0, 0, 1, -3.17208e-22, -1, 0, 0.200754, -0.0582605, -2.07028 )
+bones/4/enabled = true
+bones/4/bound_children = [  ]
+bones/5/name = "bone_5"
+bones/5/parent = -1
+bones/5/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.187991, -0.0709027, -2.73785 )
+bones/5/enabled = true
+bones/5/bound_children = [  ]
+bones/6/name = "bone_3"
+bones/6/parent = -1
+bones/6/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.195265, 0.0787557, -3.40542 )
+bones/6/enabled = true
+bones/6/bound_children = [  ]
+bones/7/name = "bone_7"
+bones/7/parent = -1
+bones/7/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.229396, 0.0619306, -4.07299 )
+bones/7/enabled = true
+bones/7/bound_children = [  ]
+bones/8/name = "bone_8"
+bones/8/parent = -1
+bones/8/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0217572, -0.0374796, 0.266215 )
+bones/8/enabled = true
+bones/8/bound_children = [  ]
+bones/9/name = "bone_9"
+bones/9/parent = -1
+bones/9/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.196349, -0.029784, -0.401355 )
+bones/9/enabled = true
+bones/9/bound_children = [  ]
+bones/10/name = "bone_10"
+bones/10/parent = -1
+bones/10/rest = Transform( 1, 7.93019e-23, 1.26218e-29, 1.26218e-29, -3.57628e-07, 1, 7.93019e-23, -1, -3.57628e-07, -0.0712301, 0.0771077, -1.06892 )
+bones/10/enabled = true
+bones/10/bound_children = [  ]
+bones/11/name = "bone_11"
+bones/11/parent = -1
+bones/11/rest = Transform( 1, 7.9302e-23, -1.26218e-29, -1.26218e-29, 2.98023e-07, 1, 7.9302e-23, -1, 2.98023e-07, 0.240594, 0.0212942, -1.73649 )
+bones/11/enabled = true
+bones/11/bound_children = [  ]
+bones/12/name = "bone_12"
+bones/12/parent = -1
+bones/12/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0326823, -0.0992994, -2.40406 )
+bones/12/enabled = true
+bones/12/bound_children = [  ]
+bones/13/name = "bone_13"
+bones/13/parent = -1
+bones/13/rest = Transform( 1, 1.58604e-22, 5.6798e-29, 5.6798e-29, -7.15256e-07, 1, 1.58604e-22, -1, -7.15256e-07, -0.308219, 0.000926835, -3.07163 )
+bones/13/enabled = true
+bones/13/bound_children = [  ]
+bones/14/name = "bone_14"
+bones/14/parent = -1
+bones/14/rest = Transform( 1, 0, 0, 0, 5.96046e-07, 1, 0, -1, 5.96046e-07, 0.0206941, 0.0996006, -3.7392 )
+bones/14/enabled = true
+bones/14/bound_children = [  ]
+bones/15/name = "bone_15"
+bones/15/parent = -1
+bones/15/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.282216, -0.0307745, -4.40677 )
+bones/15/enabled = true
+bones/15/bound_children = [  ]
+
+[node name="cilia" type="MeshInstance" parent="Armature001/Skeleton"]
+material_override = SubResource( 4 )
+mesh = ExtResource( 6 )
+skin = SubResource( 5 )
+material/0 = null
+
+[node name="Armature002" type="Spatial" parent="."]
+transform = Transform( 0.164218, 0, -0.445445, 0, 2.48244, 0, 0.692165, 0, 0.658863, 0, 0, 0 )
+
+[node name="Skeleton" type="Skeleton" parent="Armature002"]
+bones/0/name = "bone"
+bones/0/parent = -1
+bones/0/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0181576, 0.0245926, 0.6 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "bone_4"
+bones/1/parent = -1
+bones/1/rest = Transform( 1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, -0.0772552, -0.0576451, -0.0675697 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "bone_2"
+bones/2/parent = -1
+bones/2/rest = Transform( 1, -7.9302e-23, 1.26218e-29, 1.26218e-29, 2.98023e-07, 1, -7.9302e-23, -1, 2.98023e-07, -0.21558, 0.0351402, -0.735139 )
+bones/2/enabled = true
+bones/2/bound_children = [  ]
+bones/3/name = "bone_6"
+bones/3/parent = -1
+bones/3/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.10268, 0.0717483, -1.40271 )
+bones/3/enabled = true
+bones/3/bound_children = [  ]
+bones/4/name = "bone_1"
+bones/4/parent = -1
+bones/4/rest = Transform( 1, -3.17208e-22, 0, 0, 0, 1, -3.17208e-22, -1, 0, 0.200754, -0.0582605, -2.07028 )
+bones/4/enabled = true
+bones/4/bound_children = [  ]
+bones/5/name = "bone_5"
+bones/5/parent = -1
+bones/5/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.187991, -0.0709027, -2.73785 )
+bones/5/enabled = true
+bones/5/bound_children = [  ]
+bones/6/name = "bone_3"
+bones/6/parent = -1
+bones/6/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.195265, 0.0787557, -3.40542 )
+bones/6/enabled = true
+bones/6/bound_children = [  ]
+bones/7/name = "bone_7"
+bones/7/parent = -1
+bones/7/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.229396, 0.0619306, -4.07299 )
+bones/7/enabled = true
+bones/7/bound_children = [  ]
+bones/8/name = "bone_8"
+bones/8/parent = -1
+bones/8/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0217572, -0.0374796, 0.266215 )
+bones/8/enabled = true
+bones/8/bound_children = [  ]
+bones/9/name = "bone_9"
+bones/9/parent = -1
+bones/9/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.196349, -0.029784, -0.401355 )
+bones/9/enabled = true
+bones/9/bound_children = [  ]
+bones/10/name = "bone_10"
+bones/10/parent = -1
+bones/10/rest = Transform( 1, 7.93019e-23, 1.26218e-29, 1.26218e-29, -3.57628e-07, 1, 7.93019e-23, -1, -3.57628e-07, -0.0712301, 0.0771077, -1.06892 )
+bones/10/enabled = true
+bones/10/bound_children = [  ]
+bones/11/name = "bone_11"
+bones/11/parent = -1
+bones/11/rest = Transform( 1, 7.9302e-23, -1.26218e-29, -1.26218e-29, 2.98023e-07, 1, 7.9302e-23, -1, 2.98023e-07, 0.240594, 0.0212942, -1.73649 )
+bones/11/enabled = true
+bones/11/bound_children = [  ]
+bones/12/name = "bone_12"
+bones/12/parent = -1
+bones/12/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0326823, -0.0992994, -2.40406 )
+bones/12/enabled = true
+bones/12/bound_children = [  ]
+bones/13/name = "bone_13"
+bones/13/parent = -1
+bones/13/rest = Transform( 1, 1.58604e-22, 5.6798e-29, 5.6798e-29, -7.15256e-07, 1, 1.58604e-22, -1, -7.15256e-07, -0.308219, 0.000926835, -3.07163 )
+bones/13/enabled = true
+bones/13/bound_children = [  ]
+bones/14/name = "bone_14"
+bones/14/parent = -1
+bones/14/rest = Transform( 1, 0, 0, 0, 5.96046e-07, 1, 0, -1, 5.96046e-07, 0.0206941, 0.0996006, -3.7392 )
+bones/14/enabled = true
+bones/14/bound_children = [  ]
+bones/15/name = "bone_15"
+bones/15/parent = -1
+bones/15/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.282216, -0.0307745, -4.40677 )
+bones/15/enabled = true
+bones/15/bound_children = [  ]
+
+[node name="cilia" type="MeshInstance" parent="Armature002/Skeleton"]
+material_override = SubResource( 4 )
+mesh = ExtResource( 6 )
+skin = SubResource( 5 )
+material/0 = null
+
+[node name="Armature003" type="Spatial" parent="."]
+transform = Transform( 0.533076, 0, 0.412044, 0, 2.48244, 0, -0.486896, 0, 0.641368, 0, 0, 0 )
+
+[node name="Skeleton" type="Skeleton" parent="Armature003"]
+bones/0/name = "bone"
+bones/0/parent = -1
+bones/0/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0181576, 0.0245926, 0.6 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "bone_4"
+bones/1/parent = -1
+bones/1/rest = Transform( 1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, -0.0772552, -0.0576451, -0.0675697 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "bone_2"
+bones/2/parent = -1
+bones/2/rest = Transform( 1, -7.9302e-23, 1.26218e-29, 1.26218e-29, 2.98023e-07, 1, -7.9302e-23, -1, 2.98023e-07, -0.21558, 0.0351402, -0.735139 )
+bones/2/enabled = true
+bones/2/bound_children = [  ]
+bones/3/name = "bone_6"
+bones/3/parent = -1
+bones/3/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.10268, 0.0717483, -1.40271 )
+bones/3/enabled = true
+bones/3/bound_children = [  ]
+bones/4/name = "bone_1"
+bones/4/parent = -1
+bones/4/rest = Transform( 1, -3.17208e-22, 0, 0, 0, 1, -3.17208e-22, -1, 0, 0.200754, -0.0582605, -2.07028 )
+bones/4/enabled = true
+bones/4/bound_children = [  ]
+bones/5/name = "bone_5"
+bones/5/parent = -1
+bones/5/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.187991, -0.0709027, -2.73785 )
+bones/5/enabled = true
+bones/5/bound_children = [  ]
+bones/6/name = "bone_3"
+bones/6/parent = -1
+bones/6/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.195265, 0.0787557, -3.40542 )
+bones/6/enabled = true
+bones/6/bound_children = [  ]
+bones/7/name = "bone_7"
+bones/7/parent = -1
+bones/7/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.229396, 0.0619306, -4.07299 )
+bones/7/enabled = true
+bones/7/bound_children = [  ]
+bones/8/name = "bone_8"
+bones/8/parent = -1
+bones/8/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0217572, -0.0374796, 0.266215 )
+bones/8/enabled = true
+bones/8/bound_children = [  ]
+bones/9/name = "bone_9"
+bones/9/parent = -1
+bones/9/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.196349, -0.029784, -0.401355 )
+bones/9/enabled = true
+bones/9/bound_children = [  ]
+bones/10/name = "bone_10"
+bones/10/parent = -1
+bones/10/rest = Transform( 1, 7.93019e-23, 1.26218e-29, 1.26218e-29, -3.57628e-07, 1, 7.93019e-23, -1, -3.57628e-07, -0.0712301, 0.0771077, -1.06892 )
+bones/10/enabled = true
+bones/10/bound_children = [  ]
+bones/11/name = "bone_11"
+bones/11/parent = -1
+bones/11/rest = Transform( 1, 7.9302e-23, -1.26218e-29, -1.26218e-29, 2.98023e-07, 1, 7.9302e-23, -1, 2.98023e-07, 0.240594, 0.0212942, -1.73649 )
+bones/11/enabled = true
+bones/11/bound_children = [  ]
+bones/12/name = "bone_12"
+bones/12/parent = -1
+bones/12/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0326823, -0.0992994, -2.40406 )
+bones/12/enabled = true
+bones/12/bound_children = [  ]
+bones/13/name = "bone_13"
+bones/13/parent = -1
+bones/13/rest = Transform( 1, 1.58604e-22, 5.6798e-29, 5.6798e-29, -7.15256e-07, 1, 1.58604e-22, -1, -7.15256e-07, -0.308219, 0.000926835, -3.07163 )
+bones/13/enabled = true
+bones/13/bound_children = [  ]
+bones/14/name = "bone_14"
+bones/14/parent = -1
+bones/14/rest = Transform( 1, 0, 0, 0, 5.96046e-07, 1, 0, -1, 5.96046e-07, 0.0206941, 0.0996006, -3.7392 )
+bones/14/enabled = true
+bones/14/bound_children = [  ]
+bones/15/name = "bone_15"
+bones/15/parent = -1
+bones/15/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.282216, -0.0307745, -4.40677 )
+bones/15/enabled = true
+bones/15/bound_children = [  ]
+
+[node name="cilia" type="MeshInstance" parent="Armature003/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0 )
+material_override = SubResource( 4 )
+mesh = ExtResource( 6 )
+skin = SubResource( 5 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Cilia"
+playback_speed = 0.25
+anims/Cilia = ExtResource( 1 )
+anims/swim = SubResource( 3 )

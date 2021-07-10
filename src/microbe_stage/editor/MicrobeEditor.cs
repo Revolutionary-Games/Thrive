@@ -969,7 +969,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 directionFactor = Math.Max(directionFactor, 0);
 
                 organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement.Momentum / 100.0f
+                    * organelle.Definition.Components.Flagellum.Momentum / 100.0f
                     * directionFactor;
             }
         }

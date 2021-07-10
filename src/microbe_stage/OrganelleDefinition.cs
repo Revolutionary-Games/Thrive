@@ -390,7 +390,8 @@ public class OrganelleDefinition : IRegistryType
         public StorageComponentFactory Storage;
         public AgentVacuoleComponentFactory AgentVacuole;
         public BindingAgentComponentFactory BindingAgent;
-        public MovementComponentFactory Movement;
+        public FlagellumComponentFactory Flagellum;
+        public CiliaComponentFactory Cilia;
         public PilusComponentFactory Pilus;
 
         private readonly List<IOrganelleComponentFactory> allFactories =
@@ -441,10 +442,17 @@ public class OrganelleDefinition : IRegistryType
                 count++;
             }
 
-            if (Movement != null)
+            if (Flagellum != null)
             {
-                Movement.Check(name);
-                allFactories.Add(Movement);
+                Flagellum.Check(name);
+                allFactories.Add(Flagellum);
+                count++;
+            }
+
+            if (Cilia != null)
+            {
+                Cilia.Check(name);
+                allFactories.Add(Cilia);
                 count++;
             }
 
