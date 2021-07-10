@@ -20,7 +20,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     private bool growthValueDirty = true;
     private float growthValue;
 
-    private Microbe shapesAttachedTo;
+    private Microbe currentShapesParent;
 
     /// <summary>
     ///   Used to update the tint
@@ -223,10 +223,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Remove our sub collisions
         foreach (var shape in shapes)
         {
-            shapesAttachedTo.RemoveShapeOwner(shape);
+            currentShapesParent.RemoveShapeOwner(shape);
         }
 
-        shapesAttachedTo = null;
+        currentShapesParent = null;
         shapes.Clear();
 
         // Remove components
@@ -385,7 +385,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     public void ReParentShapes(Microbe to, Vector3 offset)
     {
-        if (to == shapesAttachedTo)
+        if (to == currentShapesParent)
             return;
 
         var hexes = Definition.GetRotatedHexes(Orientation).ToArray();
@@ -406,7 +406,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             var ownerId = shapes[i];
 
-            var shape = shapesAttachedTo.ShapeOwnerGetShape(ownerId, 0);
+            var shape = currentShapesParent.ShapeOwnerGetShape(ownerId, 0);
 
             var newOwnerId = to.CreateShapeOwner(shape);
             to.ShapeOwnerAddShape(newOwnerId, shape);
@@ -414,10 +414,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             shapes[i] = newOwnerId;
 
-            shapesAttachedTo.RemoveShapeOwner(ownerId);
+            currentShapesParent.RemoveShapeOwner(ownerId);
         }
 
-        shapesAttachedTo = to;
+        currentShapesParent = to;
     }
 
     private static Color CalculateHSVForOrganelle(Color rawColour)
@@ -463,7 +463,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private void MakeCollisionShapes(Microbe to)
     {
-        shapesAttachedTo = to;
+        currentShapesParent = to;
 
         float hexSize = Constants.DEFAULT_HEX_SIZE;
 
