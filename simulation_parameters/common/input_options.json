@@ -1,0 +1,196 @@
+[
+    {
+        "EnvironmentId": [
+            "Game"
+        ],
+        "GroupName": "MOVEMENT",
+        "Actions": [
+            {
+                "InputName": "g_move_left",
+                "Name": "MOVE_LEFT"
+            },
+            {
+                "InputName": "g_move_right",
+                "Name": "MOVE_RIGHT"
+            },
+            {
+                "InputName": "g_move_forward",
+                "Name": "MOVE_FORWARD"
+            },
+            {
+                "InputName": "g_move_backwards",
+                "Name": "MOVE_BACKWARDS"
+            },
+            {
+                "InputName": "g_hold_forward",
+                "Name": "AUTO_MOVE_FORWARDS"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game"
+        ],
+        "GroupName": "ABILITIES",
+        "Actions": [
+            {
+                "InputName": "g_fire_toxin",
+                "Name": "FIRE_TOXIN"
+            },
+            {
+                "InputName": "g_toggle_engulf",
+                "Name": "TOGGLE_ENGULF"
+            },
+            {
+                "InputName": "g_toggle_binding",
+                "Name": "TOGGLE_BINDING"
+            },
+            {
+                "InputName": "g_toggle_unbinding",
+                "Name": "TOGGLE_UNBINDING"
+            },
+            {
+                "InputName": "g_unbind_all",
+                "Name": "UNBIND_ALL"
+            },
+            {
+                "InputName": "g_perform_unbinding",
+                "Name": "PERFORM_UNBINDING"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game",
+            "Editor"
+        ],
+        "GroupName": "CAMERA",
+        "Actions": [
+            {
+                "InputName": "g_zoom_out",
+                "Name": "ZOOM_OUT"
+            },
+            {
+                "InputName": "g_zoom_in",
+                "Name": "ZOOM_IN"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Editor"
+        ],
+        "GroupName": "EDITOR",
+        "Actions": [
+            {
+                "InputName": "e_rotate_right",
+                "Name": "ROTATE_RIGHT"
+            },
+            {
+                "InputName": "e_rotate_left",
+                "Name": "ROTATE_LEFT"
+            },
+            {
+                "InputName": "e_undo",
+                "Name": "UNDO"
+            },
+            {
+                "InputName": "e_redo",
+                "Name": "REDO"
+            },
+            {
+                "InputName": "e_primary",
+                "Name": "PLACE_ORGANELLE"
+            },
+            {
+                "InputName": "e_secondary",
+                "Name": "REMOVE_ORGANELLE"
+            },
+            {
+                "InputName": "e_pan_left",
+                "Name": "PAN_CAMERA_LEFT"
+            },
+            {
+                "InputName": "e_pan_right",
+                "Name": "PAN_CAMERA_RIGHT"
+            },
+            {
+                "InputName": "e_pan_up",
+                "Name": "PAN_CAMERA_UP"
+            },
+            {
+                "InputName": "e_pan_down",
+                "Name": "PAN_CAMERA_DOWN"
+            },
+            {
+                "InputName": "e_reset_camera",
+                "Name": "PAN_CAMERA_RESET"
+            },
+            {
+                "InputName": "e_cancel_current_action",
+                "Name": "CANCEL_CURRENT_ACTION"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game"
+        ],
+        "GroupName": "CHEATS",
+        "Actions": [
+            {
+                "InputName": "g_cheat_editor",
+                "Name": "ENABLE_EDITOR"
+            },
+            {
+                "InputName": "g_cheat_glucose",
+                "Name": "SPAWN_GLUCOSE"
+            },
+            {
+                "InputName": "g_cheat_ammonia",
+                "Name": "SPAWN_AMMONIA"
+            },
+            {
+                "InputName": "g_cheat_phosphates",
+                "Name": "SPAWN_PHOSPHATES"
+            },
+            {
+                "InputName": "g_cheat_menu",
+                "Name": "CHEAT_MENU"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game",
+            "Editor"
+        ],
+        "GroupName": "MISCELLANEOUS",
+        "Actions": [
+            {
+                "InputName": "toggle_FPS",
+                "Name": "TOGGLE_FPS"
+            },
+            {
+                "InputName": "g_quick_save",
+                "Name": "QUICK_SAVE"
+            },
+            {
+                "InputName": "quick_load",
+                "Name": "QUICK_LOAD"
+            },
+            {
+                "InputName": "screenshot",
+                "Name": "TAKE_SCREENSHOT"
+            },
+            {
+                "InputName": "help",
+                "Name": "SHOW_HELP"
+            },
+            {
+                "InputName": "toggle_fullscreen",
+                "Name": "TOGGLE_FULLSCREEN"
+            }
+        ]
+    }
+]

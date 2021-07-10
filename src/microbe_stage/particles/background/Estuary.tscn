@@ -46,6 +46,7 @@ hue_variation_random = 0.69
 [sub_resource type="QuadMesh" id=7]
 
 [node name="Estuary" type="Particles"]
+pause_mode = 1
 material_override = SubResource( 1 )
 cast_shadow = 0
 amount = 60

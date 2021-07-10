@@ -1,0 +1,9 @@
+repos:
+-   repo: local
+    hooks:
+    - id: check_formatting
+      name: Run check formatting
+      entry: ./scripts/hooks/precommit_hook.rb
+      language: ruby
+      verbose: true
+      pass_filenames: false  

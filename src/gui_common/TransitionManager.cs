@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Manages the screen transitions, usually used for when
 ///   switching scenes. This is autoloaded
 /// </summary>
-public class TransitionManager : Node
+public class TransitionManager : NodeWithInput
 {
     private static TransitionManager instance;
 
@@ -21,51 +21,46 @@ public class TransitionManager : Node
     {
         instance = this;
 
-        screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/Fade.tscn");
+        screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/ScreenFade.tscn");
         cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
     }
 
     [Signal]
     public delegate void QueuedTransitionsFinished();
 
-    public static TransitionManager Instance
-    {
-        get { return instance; }
-    }
+    public static TransitionManager Instance => instance;
 
     /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
-    public List<ITransition> TransitionSequence { get; private set; } = new List<ITransition>();
+    public List<ITransition> TransitionSequence { get; } = new List<ITransition>();
 
-    public override void _Input(InputEvent @event)
+    public bool HasQueuedTransitions => TransitionSequence.Count > 0;
+
+    [RunOnKeyDown("ui_cancel", OnlyUnhandled = false)]
+    public bool CancelTransitionPressed()
     {
-        if (@event.IsActionPressed("ui_cancel"))
-        {
-            CancelQueuedTransitions();
-        }
+        if (!HasQueuedTransitions)
+            return false;
+
+        CancelQueuedTransitions();
+        return true;
     }
 
     /// <summary>
     ///   Creates and queues a screen fade.
     /// </summary>
-    /// <param name="type">
-    ///   The type of fade to transition to.
-    /// </param>
-    /// <param name="fadeDuration">
-    ///   How long the fade lasts
-    /// </param>
-    /// <param name="allowSkipping">
-    ///   Allow the user to skip this
-    /// </param>
-    public void AddScreenFade(Fade.FadeType type, float fadeDuration, bool allowSkipping = true)
+    /// <param name="type">The type of fade to transition to</param>
+    /// <param name="fadeDuration">How long the fade lasts</param>
+    /// <param name="allowSkipping">Allow the user to skip this</param>
+    public void AddScreenFade(ScreenFade.FadeType type, float fadeDuration, bool allowSkipping = true)
     {
         // Instantiate scene
-        var screenFade = (Fade)screenFadeScene.Instance();
+        var screenFade = (ScreenFade)screenFadeScene.Instance();
         AddChild(screenFade);
 
         screenFade.Skippable = allowSkipping;
-        screenFade.FadeTransition = type;
+        screenFade.CurrentFadeType = type;
         screenFade.FadeDuration = fadeDuration;
 
         screenFade.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
@@ -76,9 +71,8 @@ public class TransitionManager : Node
     /// <summary>
     ///   Creates and queues a cutscene.
     /// </summary>
-    /// <param name="allowSkipping">
-    ///   Allow the user to skip this
-    /// </param>
+    /// <param name="path">The video file to play</param>
+    /// <param name="allowSkipping">Allow the user to skip this</param>
     public void AddCutscene(string path, bool allowSkipping = true)
     {
         // Instantiate scene
@@ -86,10 +80,7 @@ public class TransitionManager : Node
         AddChild(cutscene);
 
         cutscene.Skippable = allowSkipping;
-
-        var stream = GD.Load<VideoStream>(path);
-
-        cutscene.CutsceneVideoPlayer.Stream = stream;
+        cutscene.Stream = GD.Load<VideoStream>(path);
 
         cutscene.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
 
@@ -98,15 +89,15 @@ public class TransitionManager : Node
 
     /// <summary>
     ///   Executes queued transitions.
-    ///   Calls a method when all transitions finished.
+    ///   Calls the specified method when all transitions are finished.
     /// </summary>
     /// <param name="target">The target object to connect to</param>
     /// <param name="onFinishedMethod">The name of the method on the target object</param>
-    public void StartTransitions(Object target, string onFinishedMethod)
+    public void StartTransitions(Object target = null, string onFinishedMethod = null)
     {
         if (queuedTransitions.Count == 0 || queuedTransitions == null)
         {
-            GD.PrintErr("Queued transitions is either empty or null");
+            GD.PrintErr("No transitions found in the queue, can't execute transitions");
             return;
         }
 
@@ -119,13 +110,15 @@ public class TransitionManager : Node
             }
         }
 
-        // Add the transitions to the list for reference
         foreach (var entry in queuedTransitions)
         {
+            entry.Visible = false;
+
+            // Add the transitions to the list for reference
             TransitionSequence.Add(entry);
         }
 
-        // Begin the first queued transition
+        // Begin the first transition in the queue
         StartNextQueuedTransition();
     }
 
@@ -134,7 +127,7 @@ public class TransitionManager : Node
     /// </summary>
     private void CancelQueuedTransitions()
     {
-        if (TransitionSequence.Count == 0 || TransitionSequence == null)
+        if (!HasQueuedTransitions)
             return;
 
         var transitions = new List<ITransition>(TransitionSequence);
@@ -154,7 +147,7 @@ public class TransitionManager : Node
     /// </summary>
     private void StartNextQueuedTransition()
     {
-        // Assume it's finished when queue is empty.
+        // Assume all transitions are finished if the queue is empty.
         if (queuedTransitions.Count == 0)
         {
             EmitSignal(nameof(QueuedTransitionsFinished));
@@ -163,6 +156,7 @@ public class TransitionManager : Node
         }
 
         var currentTransition = queuedTransitions.Dequeue();
+        currentTransition.Visible = true;
         currentTransition.OnStarted();
     }
 }

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Microsoft Managed Recommended Rules" Description="These rules focus on the most critical problems in your code, including potential security holes, application crashes, and other important logic and design errors. It is recommended to include this rule set in any custom rule set you create for your projects." ToolsVersion="10.0">
+  <Localization ResourceAssembly="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.dll" ResourceBaseName="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.Localized">
+    <Name Resource="MinimumRecommendedRules_Name" />
+    <Description Resource="MinimumRecommendedRules_Description" />
+  </Localization>
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1001" Action="None" />
+    <Rule Id="CA1009" Action="None" />
+    <Rule Id="CA1016" Action="None" />
+    <Rule Id="CA1031" Action="None" /> <!-- generic catching -->
+    <Rule Id="CA1033" Action="None" />
+    <Rule Id="CA1034" Action="None" /> <!-- nested types -->
+    <Rule Id="CA1049" Action="None" />
+    <Rule Id="CA1051" Action="None" />
+    <Rule Id="CA1060" Action="None" />
+    <Rule Id="CA1061" Action="None" />
+    <Rule Id="CA1062" Action="None" /> <!-- literally would need everything to be checked against null -->
+    <Rule Id="CA1063" Action="None" />
+    <Rule Id="CA1065" Action="None" />
+    <Rule Id="CA1301" Action="None" />
+    <Rule Id="CA1303" Action="None" /> <!-- resource table usage.
+      probably should use once we implement localization -->
+    <Rule Id="CA1308" Action="None" /> <!-- tells to use ToUpperInvariant instead of ToLower -->
+    <Rule Id="CA1400" Action="None" />
+    <Rule Id="CA1401" Action="None" />
+    <Rule Id="CA1403" Action="None" />
+    <Rule Id="CA1404" Action="None" />
+    <Rule Id="CA1405" Action="None" />
+    <Rule Id="CA1410" Action="None" />
+    <Rule Id="CA1415" Action="None" />
+    <Rule Id="CA1707" Action="None" /> <!-- underscores -->
+    <Rule Id="CA1724" Action="None" /> <!-- Namespace class name conflicts -->
+    <Rule Id="CA1801" Action="None" />
+    <Rule Id="CA1805" Action="None" />
+    <Rule Id="CA1812" Action="None" /> <!-- Unused internal class -->
+    <Rule Id="CA1814" Action="None" /> <!-- don't recommend jagged arrays -->
+    <Rule Id="CA1821" Action="None" />
+    <Rule Id="CA1822" Action="None" /> <!-- don't suggest everything including godot callbacks to be static -->
+    <Rule Id="CA1823" Action="None" /> <!-- allow unused fields -->
+    <Rule Id="CA1900" Action="None" />
+    <Rule Id="CA1901" Action="None" />
+    <Rule Id="CA2000" Action="None" /> <!-- literally everything should be disposed... -->
+    <Rule Id="CA2002" Action="None" />
+    <Rule Id="CA2100" Action="None" />
+    <Rule Id="CA2101" Action="None" />
+    <Rule Id="CA2108" Action="None" />
+    <Rule Id="CA2111" Action="None" />
+    <Rule Id="CA2112" Action="None" />
+    <Rule Id="CA2114" Action="None" />
+    <Rule Id="CA2116" Action="None" />
+    <Rule Id="CA2117" Action="None" />
+    <Rule Id="CA2122" Action="None" />
+    <Rule Id="CA2123" Action="None" />
+    <Rule Id="CA2124" Action="None" />
+    <Rule Id="CA2126" Action="None" />
+    <Rule Id="CA2131" Action="None" />
+    <Rule Id="CA2132" Action="None" />
+    <Rule Id="CA2133" Action="None" />
+    <Rule Id="CA2134" Action="None" />
+    <Rule Id="CA2137" Action="None" />
+    <Rule Id="CA2138" Action="None" />
+    <Rule Id="CA2140" Action="None" />
+    <Rule Id="CA2141" Action="None" />
+    <Rule Id="CA2146" Action="None" />
+    <Rule Id="CA2147" Action="None" />
+    <Rule Id="CA2149" Action="None" />
+    <Rule Id="CA2200" Action="None" />
+    <Rule Id="CA2202" Action="None" />
+    <Rule Id="CA2207" Action="None" />
+    <Rule Id="CA2212" Action="None" />
+    <Rule Id="CA2213" Action="None" />
+    <Rule Id="CA2214" Action="None" />
+    <Rule Id="CA2216" Action="None" />
+    <Rule Id="CA2220" Action="None" />
+    <Rule Id="CA2225" Action="None" /> <!-- alternative names for operators -->
+    <Rule Id="CA2227" Action="None" /> <!-- allow public sets -->
+    <Rule Id="CA2229" Action="None" />
+    <Rule Id="CA2231" Action="None" />
+    <Rule Id="CA2232" Action="None" />
+    <Rule Id="CA2235" Action="None" />
+    <Rule Id="CA2236" Action="None" />
+    <Rule Id="CA2237" Action="None" />
+    <Rule Id="CA2238" Action="None" />
+    <Rule Id="CA2240" Action="None" />
+    <Rule Id="CA2241" Action="None" />
+    <Rule Id="CA2242" Action="None" />
+    <Rule Id="CA9998" Action="None" /> <!-- Warning about deperation of FxCopAnalyzers -->    
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA0001" Action="None" /> <!-- XML comments -->
+    <Rule Id="SA1001" Action="None" />
+    <Rule Id="SA1002" Action="None" />
+    <Rule Id="SA1021" Action="None" />
+    <Rule Id="SA1028" Action="None" /> <!-- No trailing whitespace -->
+    <Rule Id="SA1100" Action="None" /> <!-- DoNotPrefixCallsWithBaseUnlessLocalImplementationExists -->
+    <Rule Id="SA1101" Action="None" /> <!-- Prefix local calls with this -->
+    <Rule Id="SA1106" Action="None" /> <!-- CodeMustNotContainEmptyStatements -->
+    <Rule Id="SA1107" Action="None" /> <!-- Single statement on line -->
+    <Rule Id="SA1108" Action="None" /> <!-- Block statements should not contain embedded comments -->
+    <Rule Id="SA1110" Action="None" /> <!-- Opening parenthesis on the declaration line -->
+    <Rule Id="SA1111" Action="None" /> <!-- Closing parenthesis on the same line as last argument -->
+    <Rule Id="SA1112" Action="None" /> <!-- When empty closing parenthesis on the same line -->
+    <Rule Id="SA1113" Action="None" /> <!-- Comma on same line as previous parameter -->
+    <Rule Id="SA1114" Action="None" /> <!-- ParameterListMustFollowDeclaration -->
+    <Rule Id="SA1115" Action="None" /> <!-- ParameterMustFollowComma -->
+    <Rule Id="SA1116" Action="None" /> <!-- Split parameters should start on line after declaration -->
+    <Rule Id="SA1117" Action="None" /> <!-- Parameters should be on same line or separate lines -->
+    <Rule Id="SA1118" Action="None" /> <!-- Parameter should not span multiple lines -->
+    <Rule Id="SA1120" Action="None" /> <!-- Empty comment -->
+    <Rule Id="SA1121" Action="None" />
+    <Rule Id="SA1122" Action="None" /> <!-- Use string.Empty for empty strings -->
+    <Rule Id="SA1123" Action="None" /> <!-- No regions in elements -->
+    <Rule Id="SA1127" Action="None" /> <!-- Generic type constraints should be on their own line -->
+    <Rule Id="SA1128" Action="None" /> <!-- Put constructor initializers on their own line -->
+    <Rule Id="SA1129" Action="None" /> <!-- Wrong default syntax -->
+    <Rule Id="SA1130" Action="None" /> <!-- UseLambdaSyntax -->
+    <Rule Id="SA1131" Action="None" /> <!-- UseReadableConditions -->
+    <Rule Id="SA1132" Action="None" /> <!-- Do not combine fields -->
+    <Rule Id="SA1133" Action="None" /> <!-- Do not combine attributes -->
+    <Rule Id="SA1134" Action="None" /> <!-- attributes on separate lines -->
+    <Rule Id="SA1135" Action="None" /> <!-- qualify using directives -->
+    <Rule Id="SA1136" Action="None" /> <!-- no multiple enum values on the same line -->
+    <Rule Id="SA1137" Action="None" /> <!-- Elements should have the same indentation -->
+    <Rule Id="SA1141" Action="None" /> <!-- Use tuple syntax -->
+    <Rule Id="SA1142" Action="None" /> <!-- Refer to tuple elements by name -->
+    <Rule Id="SA1200" Action="None" /> <!-- Usings should be in a namespace -->
+    <Rule Id="SA1201" Action="None" /> <!-- Elements should appear in the correct order -->
+    <Rule Id="SA1203" Action="None" />
+    <Rule Id="SA1214" Action="None" /> <!-- Readonly fields should appear before non-readonly fields -->
+    <Rule Id="SA1309" Action="None" /> <!-- Field names should not begin with underscore -->
+    <Rule Id="SA1310" Action="None" /> <!-- Field names should not contain an underscore -->
+    <Rule Id="SA1311" Action="None" /> <!-- StaticReadonlyFieldsMustBeginWithUpperCaseLetter -->
+    <Rule Id="SA1312" Action="None" /> <!-- variable needs to begin with lowercase -->
+    <Rule Id="SA1313" Action="None" /> <!-- parameter needs to begin with lowercase -->
+    <Rule Id="SA1316" Action="None" /> <!-- Tuple value name casing -->
+    <Rule Id="SA1401" Action="None" /> <!-- Fields should be private -->
+    <Rule Id="SA1402" Action="None" /> <!-- File should contain one type -->
+    <Rule Id="SA1403" Action="None" /> <!-- Single namespace -->
+    <Rule Id="SA1407" Action="None" /> <!-- Arithmetic expressions should declare precedence -->
+    <Rule Id="SA1413" Action="None" /> <!-- Trailing comma -->
+    <Rule Id="SA1414" Action="None" /> <!-- TupleTypesInSignaturesShouldHaveElementNames -->
+    <Rule Id="SA1501" Action="None" /> <!-- Statement should not be on a single line -->
+    <Rule Id="SA1502" Action="None" /> <!-- Element should not be on a single line -->
+    <Rule Id="SA1503" Action="None" /> <!-- BracesMustNotBeOmitted -->
+    <Rule Id="SA1504" Action="None" /> <!-- All accessors must be single line or multi line -->
+    <Rule Id="SA1507" Action="None" />
+    <Rule Id="SA1512" Action="None" /> <!-- Single-line comments should not be followed by blank line -->
+    <Rule Id="SA1513" Action="None" />
+    <Rule Id="SA1515" Action="None" /> <!-- Single-line comment should be preceded by blank line -->
+    <Rule Id="SA1516" Action="None" /> <!-- Elements should be separated by blank line -->
+    <Rule Id="SA1520" Action="None" /> <!-- Consistently use braces -->
+    <Rule Id="SA1600" Action="None" /> <!-- Elements should be documented -->
+    <Rule Id="SA1601" Action="None" /> <!-- Partial elements should be documented -->
+    <Rule Id="SA1604" Action="None" /> <!-- Element documentation should have summary -->
+    <Rule Id="SA1611" Action="None" />
+    <Rule Id="SA1612" Action="None" /> <!-- ElementParameterDocumentationMustMatchElementParameters -->
+    <Rule Id="SA1613" Action="None" /> <!-- ElementParameterDocumentationMustDeclareParameterName -->
+    <Rule Id="SA1614" Action="None" /> <!-- ElementParameterDocumentationMustHaveText -->
+    <Rule Id="SA1617" Action="None" /> <!-- VoidReturnValueMustNotBeDocumented -->
+    <Rule Id="SA1622" Action="None" /> <!-- GenericTypeParameterDocumentationMustHaveText -->
+    <Rule Id="SA1625" Action="None" /> <!-- ElementDocumentationMustNotBeCopiedAndPasted -->
+    <Rule Id="SA1626" Action="None" /> <!-- SingleLineCommentsMustNotUseDocumentationStyleSlashes -->
+    <Rule Id="SA1629" Action="None" />    
+    <Rule Id="SA1633" Action="None" /> <!-- File should have header -->
+    <Rule Id="SA1642" Action="None" />
+    <Rule Id="SA1648" Action="None" /> <!-- InheritDocMustBeUsedWithInheritingClass -->
+    <Rule Id="SA1649" Action="None" /> <!-- FileNameMustMatchTypeName -->
+    <Rule Id="SX1101" Action="None" /> <!-- Don't prefix things with this -->
+  </Rules>
+</RuleSet>

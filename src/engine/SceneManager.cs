@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -54,10 +54,8 @@ public class SceneManager : Node
             oldRoot?.QueueFree();
             return null;
         }
-        else
-        {
-            return oldRoot;
-        }
+
+        return oldRoot;
     }
 
     /// <summary>
@@ -65,7 +63,7 @@ public class SceneManager : Node
     /// </summary>
     public void ReturnToMenu()
     {
-        var scene = LoadScene("res://src/gui_common/MainMenu.tscn");
+        var scene = LoadScene("res://src/general/MainMenu.tscn");
 
         var mainMenu = (MainMenu)scene.Instance();
 
@@ -91,6 +89,22 @@ public class SceneManager : Node
     public void DetachScene(Node scene)
     {
         internalRootNode.RemoveChild(scene);
+    }
+
+    /// <summary>
+    ///   Detaches the current scene without attaching a new one
+    /// </summary>
+    public void DetachCurrentScene()
+    {
+        var oldRoot = GetTree().CurrentScene;
+        GetTree().CurrentScene = null;
+
+        if (oldRoot != null)
+        {
+            internalRootNode.RemoveChild(oldRoot);
+        }
+
+        oldRoot?.QueueFree();
     }
 
     public PackedScene LoadScene(MainGameState state)

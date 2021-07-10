@@ -1,23 +1,23 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   An organelle that has been placed in a microbe.
 /// </summary>
-[JsonObject(IsReference = true)]
-public class PlacedOrganelle : Spatial, IPositionedOrganelle
+public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 {
     [JsonIgnore]
     private List<uint> shapes = new List<uint>();
 
     private bool needsColourUpdate = true;
+
+    [JsonProperty]
     private Color colour = new Color(1, 1, 1, 1);
 
     private bool growthValueDirty = true;
-    private float growthValue = 0.0f;
+    private float growthValue;
 
     /// <summary>
     ///   Used to update the tint
@@ -47,7 +47,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     public int Orientation { get; set; }
 
-    [JsonIgnore]
+    [JsonProperty]
     public Microbe ParentMicrobe { get; private set; }
 
     /// <summary>
@@ -67,10 +67,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// </summary>
     public Color Colour
     {
-        get
-        {
-            return colour;
-        }
+        get => colour;
         set
         {
             colour = value;
@@ -95,7 +92,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// <summary>
     ///   True when organelle was split in preparation for reproducing
     /// </summary>
-    public bool WasSplit { get; set; } = false;
+    public bool WasSplit { get; set; }
 
     /// <summary>
     ///   True in the organelle that was created as a result of a split
@@ -107,7 +104,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///     set in the original organelle.
     ///   </para>
     /// </remarks>
-    public bool IsDuplicate { get; set; } = false;
+    public bool IsDuplicate { get; set; }
 
     public PlacedOrganelle SisterOrganelle { get; set; }
 
@@ -146,13 +143,12 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   determine how often a cell can shoot toxins.
     /// </summary>
     [JsonIgnore]
-    public bool IsAgentVacuole
-    {
-        get
-        {
-            return HasComponent<AgentVacuoleComponent>();
-        }
-    }
+    public bool IsAgentVacuole => HasComponent<AgentVacuoleComponent>();
+
+    [JsonIgnore]
+    public bool IsBindingAgent => HasComponent<BindingAgentComponent>();
+
+    public bool IsLoadedFromSave { get; set; }
 
     /// <summary>
     ///   Checks if this organelle has the specified component type
@@ -163,7 +159,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         foreach (var component in Components)
         {
             // TODO: determine if is T or as T is better
-            if (component as T != null)
+            if (component is T)
                 return true;
         }
 
@@ -180,6 +176,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
         if (ParentMicrobe == null)
             GD.PrintErr("PlacedOrganelle not added to scene through OnAddedToMicrobe");
+
+        if (IsLoadedFromSave)
+            FinishAttachToMicrobe();
+
+        ApplyScale();
     }
 
     /// <summary>
@@ -201,60 +202,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
         ParentMicrobe.OrganelleParent.AddChild(this);
 
-        // Graphical display
-        if (Definition.LoadedScene != null)
-        {
-            SetupOrganelleGraphics();
-        }
-
-        float hexSize = Constants.DEFAULT_HEX_SIZE;
-
-        // Scale the physics hex size down for bacteria
-        if (microbe.Species.IsBacteria)
-            hexSize *= 0.5f;
-
-        // Physics
-        ParentMicrobe.Mass += Definition.Mass;
-
-        // Add hex collision shapes
-        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
-        {
-            var shape = new SphereShape();
-            shape.Radius = hexSize * 2.0f;
-
-            var ownerId = ParentMicrobe.CreateShapeOwner(shape);
-
-            // This is needed to actually add the shape
-            ParentMicrobe.ShapeOwnerAddShape(ownerId, shape);
-
-            // The shape is in our parent so the final position is our
-            // offset plus the hex offset
-            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Translation;
-
-            // Scale for bacteria physics.
-            if (microbe.Species.IsBacteria)
-                shapePosition *= 0.5f;
-
-            var transform = new Transform(Quat.Identity, shapePosition);
-            ParentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
-
-            shapes.Add(ownerId);
-        }
-
-        // Components
-        Components = new List<IOrganelleComponent>();
-
-        foreach (var factory in Definition.ComponentFactories)
-        {
-            var component = factory.Create();
-
-            if (component == null)
-                throw new Exception("PlacedOrganelle component factory returned null");
-
-            component.OnAttachToCell(this);
-
-            Components.Add(component);
-        }
+        FinishAttachToMicrobe();
 
         ResetGrowth();
     }
@@ -431,17 +379,74 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         }
     }
 
-    private static Color CalculateHSLForOrganelle(Color rawColour)
+    private static Color CalculateHSVForOrganelle(Color rawColour)
     {
         // Get hue saturation and brightness for the colour
-        float saturation = 0;
-        float brightness = 0;
-        float hue = 0;
 
         // According to stack overflow HSV and HSB are the same thing
-        rawColour.ToHsv(out hue, out saturation, out brightness);
+        rawColour.ToHsv(out var hue, out var saturation, out var brightness);
 
         return Color.FromHsv(hue, saturation * 2, brightness);
+    }
+
+    private void FinishAttachToMicrobe()
+    {
+        // Graphical display
+        if (Definition.LoadedScene != null)
+        {
+            SetupOrganelleGraphics();
+        }
+
+        float hexSize = Constants.DEFAULT_HEX_SIZE;
+
+        // Scale the physics hex size down for bacteria
+        if (ParentMicrobe.Species.IsBacteria)
+            hexSize *= 0.5f;
+
+        // Physics
+        ParentMicrobe.Mass += Definition.Mass;
+
+        // Add hex collision shapes
+        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
+        {
+            var shape = new SphereShape();
+            shape.Radius = hexSize * 2.0f;
+
+            var ownerId = ParentMicrobe.CreateShapeOwner(shape);
+
+            // This is needed to actually add the shape
+            ParentMicrobe.ShapeOwnerAddShape(ownerId, shape);
+
+            // The shape is in our parent so the final position is our
+            // offset plus the hex offset
+            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Hex.AxialToCartesian(Position);
+
+            // Scale for bacteria physics.
+            if (ParentMicrobe.Species.IsBacteria)
+                shapePosition *= 0.5f;
+
+            var transform = new Transform(Quat.Identity, shapePosition);
+            ParentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
+
+            shapes.Add(ownerId);
+        }
+
+        // Components
+        Components = new List<IOrganelleComponent>();
+
+        foreach (var factory in Definition.ComponentFactories)
+        {
+            var component = factory.Create();
+
+            if (component == null)
+                throw new Exception("PlacedOrganelle component factory returned null");
+
+            component.OnAttachToCell(this);
+
+            Components.Add(component);
+        }
+
+        growthValueDirty = true;
     }
 
     private void RecalculateGrowthValue()
@@ -453,19 +458,16 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     private void ApplyScale()
     {
-        // Nucleus isn't scaled
-        if (HasComponent<NucleusComponent>())
+        if (!Definition.ShouldScale)
             return;
 
-        Scale = new Vector3(1 + GrowthValue, 1 + GrowthValue, 1 + GrowthValue);
+        if (OrganelleGraphics != null)
+            OrganelleGraphics.Scale = new Vector3(1 + GrowthValue, 1 + GrowthValue, 1 + GrowthValue);
     }
 
     private void UpdateColour()
     {
-        if (organelleMaterial != null)
-        {
-            organelleMaterial.SetShaderParam("tint", CalculateHSLForOrganelle(Colour));
-        }
+        organelleMaterial?.SetShaderParam("tint", CalculateHSVForOrganelle(Colour));
 
         needsColourUpdate = false;
     }

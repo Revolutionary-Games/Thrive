@@ -45,8 +45,8 @@ public class PatchManager
         {
             if (previousPatch != null)
             {
-                GD.Print("Previous patch (", previousPatch.Name, ") different " +
-                    "to current patch (", currentPatch.Name, ") despawning all entities.");
+                GD.Print("Previous patch (", TranslationServer.Translate(previousPatch.Name), ") different to " +
+                    "current patch (", TranslationServer.Translate(currentPatch.Name), ") despawning all entities.");
             }
             else
             {
@@ -65,7 +65,7 @@ public class PatchManager
 
         previousPatch = currentPatch;
 
-        GD.Print("Applying patch (", currentPatch.Name, ") settings");
+        GD.Print("Applying patch (", TranslationServer.Translate(currentPatch.Name), ") settings");
 
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
@@ -98,7 +98,7 @@ public class PatchManager
                     spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
                         compoundCloudSystem);
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, (int)entry.Value.Density,
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
@@ -111,7 +111,7 @@ public class PatchManager
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Key.InternalName, entry.Value.Density,
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName);
@@ -144,7 +144,7 @@ public class PatchManager
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
-            HandleSpawnHelper(chunkSpawners, name, density,
+            HandleSpawnHelper(microbeSpawners, name, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(name);
@@ -167,7 +167,7 @@ public class PatchManager
             return;
         }
 
-        var existing = existingSpawners.Find((s) => s.Name == itemName);
+        var existing = existingSpawners.Find(s => s.Name == itemName);
 
         if (existing != null)
         {
@@ -235,7 +235,7 @@ public class PatchManager
     /// <param name="spawners">Spawner list to act upon</param>
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
-        spawners.RemoveAll((item) =>
+        spawners.RemoveAll(item =>
         {
             if (!item.Marked)
             {

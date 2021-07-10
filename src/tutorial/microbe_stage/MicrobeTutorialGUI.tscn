@@ -1,0 +1,349 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
+
+[node name="MicrobeTutorialGUI" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+MicrobeWelcomeMessagePath = NodePath("MicrobeWelcome")
+MicrobeMovementKeyPromptsPath = NodePath("MicrobeMovementTutorial/KeyPrompts")
+MicrobeMovementPopupPath = NodePath("MicrobeMovementTutorial/ExplainingPopup")
+MicrobeMovementKeyForwardPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Forward")
+MicrobeMovementKeyLeftPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
+MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
+MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
+GlucoseTutorialPath = NodePath("GlucoseTutorial")
+StayingAlivePath = NodePath("StayingAliveTutorial")
+ReproductionTutorialPath = NodePath("ReproductionTutorial")
+UnbindTutorialPath = NodePath("UnbindTutorial")
+
+[node name="MicrobeWelcome" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -683.0
+margin_top = -384.0
+margin_right = -233.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 450, 450 )
+size_flags_horizontal = 3
+popup_exclusive = true
+window_title = "TUTORIAL"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/ScrollContainer"]
+margin_right = 420.0
+margin_bottom = 420.0
+rect_min_size = Vector2( 420, 420 )
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+margin_right = 420.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_INITIAL"
+autowrap = true
+
+[node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 420.0
+margin_bottom = 346.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+margin_top = 356.0
+margin_right = 420.0
+margin_bottom = 378.0
+
+[node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 14.0
+margin_right = 198.0
+margin_bottom = 22.0
+pressed = true
+text = "SHOW_TUTORIALS"
+
+[node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+margin_left = 131.0
+margin_top = 388.0
+margin_right = 289.0
+margin_bottom = 420.0
+size_flags_horizontal = 4
+text = "BEGIN_THRIVING"
+
+[node name="MicrobeMovementTutorial" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExplainingPopup" type="WindowDialog" parent="MicrobeMovementTutorial"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "TUTORIAL"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="Label" type="Label" parent="MicrobeMovementTutorial/ExplainingPopup/ScrollContainer"]
+margin_right = 230.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_CONTROL_TEXT"
+autowrap = true
+
+[node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
+rect_pivot_offset = Vector2( 640, 360 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Forward" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+margin_left = 620.0
+margin_top = 280.0
+margin_right = -628.0
+margin_bottom = -408.0
+rect_min_size = Vector2( 32, 32 )
+ActionName = "g_move_forward"
+
+[node name="Backwards" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+margin_left = 620.0
+margin_top = 400.0
+margin_right = -628.0
+margin_bottom = -288.0
+rect_min_size = Vector2( 32, 32 )
+ActionName = "g_move_backwards"
+
+[node name="Left" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+margin_left = 560.0
+margin_top = 340.0
+margin_right = -688.0
+margin_bottom = -348.0
+rect_min_size = Vector2( 32, 32 )
+ActionName = "g_move_left"
+
+[node name="Right" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+margin_left = 680.0
+margin_top = 340.0
+margin_right = -568.0
+margin_bottom = -348.0
+rect_min_size = Vector2( 32, 32 )
+ActionName = "g_move_right"
+
+[node name="GlucoseTutorial" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "TUTORIAL"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GlucoseTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="Label" type="Label" parent="GlucoseTutorial/ScrollContainer"]
+margin_right = 230.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_COLLECT_TEXT"
+autowrap = true
+
+[node name="StayingAliveTutorial" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "TUTORIAL"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="StayingAliveTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="Label" type="Label" parent="StayingAliveTutorial/ScrollContainer"]
+margin_right = 230.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_HEALTH_TEXT"
+autowrap = true
+
+[node name="ReproductionTutorial" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "TUTORIAL"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ReproductionTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="Label" type="Label" parent="ReproductionTutorial/ScrollContainer"]
+margin_right = 230.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_REPRODUCE_TEXT"
+autowrap = true
+
+[node name="UnbindTutorial" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "TUTORIAL"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UnbindTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="Label" type="Label" parent="UnbindTutorial/ScrollContainer"]
+margin_right = 230.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_UNBIND_TEXT"
+autowrap = true
+[connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
+[connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
+[connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
+[connection signal="hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
+[connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
+[connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
+[connection signal="popup_hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
+[connection signal="hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
+[connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
+[connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
+[connection signal="popup_hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
+[connection signal="hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
+[connection signal="popup_hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]

@@ -29,8 +29,8 @@ public abstract class Species : ICloneable
     public float Aggression = 100.0f;
     public float Opportunism = 100.0f;
     public float Fear = 100.0f;
-    public float Activity = 0.0f;
-    public float Focus = 0.0f;
+    public float Activity = 100.0f;
+    public float Focus = 100.0f;
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
@@ -41,7 +41,7 @@ public abstract class Species : ICloneable
     ///     from the per patch populations.
     ///   </para>
     /// </remarks>
-    public int Population = 1;
+    public long Population = 1;
 
     public int Generation = 1;
 
@@ -72,7 +72,7 @@ public abstract class Species : ICloneable
     ///   When true this is the player species
     /// </summary>
     [JsonProperty]
-    public bool PlayerSpecies { get; private set; } = false;
+    public bool PlayerSpecies { get; private set; }
 
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
@@ -80,7 +80,12 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
-    public void SetPopulationFromPatches(int population)
+    /// <summary>
+    ///   Repositions the structure of the species according to stage specific rules
+    /// </summary>
+    public abstract void RepositionToOrigin();
+
+    public void SetPopulationFromPatches(long population)
     {
         if (population < 0)
         {
@@ -107,9 +112,9 @@ public abstract class Species : ICloneable
     ///     auto-evo finishes.
     ///   </para>
     /// </remarks>
-    public void ApplyImmediatePopulationChange(int constant, float coefficient)
+    public void ApplyImmediatePopulationChange(long constant, float coefficient)
     {
-        Population = (int)(Population * coefficient);
+        Population = (long)(Population * coefficient);
         Population += constant;
 
         if (Population < 0)

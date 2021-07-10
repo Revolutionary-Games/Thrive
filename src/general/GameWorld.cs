@@ -12,10 +12,12 @@ using Newtonsoft.Json;
 ///     but now this is just a collection of data regarding the world.
 ///   </para>
 /// </remarks>
+[JsonObject(IsReference = true)]
+[UseThriveSerializer]
 public class GameWorld
 {
     [JsonProperty]
-    private uint speciesIdCounter = 0;
+    private uint speciesIdCounter;
 
     [JsonProperty]
     private Mutations mutator = new Mutations();
@@ -56,28 +58,13 @@ public class GameWorld
     /// </summary>
     public GameWorld()
     {
-        // TODO: save timed effects to json as well
+        // TODO: when loading a save this shouldn't be recreated as otherwise that happens all the time
+        // Note that as the properties are applied from a save after the constructor, the save is correctly loaded
+        // but these extra objects get created and garbage collected
         TimedEffects = new TimedWorldOperations();
 
         // Register glucose reduction
-        TimedEffects.RegisterEffect("reduce_glucose", new WorldEffectLambda((elapsed, total) =>
-        {
-            foreach (var key in Map.Patches.Keys)
-            {
-                var patch = Map.Patches[key];
-
-                foreach (var compound in patch.Biome.Compounds.Keys)
-                {
-                    if (compound.InternalName == "glucose")
-                    {
-                        var data = patch.Biome.Compounds[compound];
-
-                        // TODO: verify that this change is picked up by the patch manager
-                        data.Density *= Constants.GLUCOSE_REDUCTION_RATE;
-                    }
-                }
-            }
-        }));
+        TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
     }
 
     [JsonProperty]
@@ -86,8 +73,45 @@ public class GameWorld
     [JsonProperty]
     public PatchMap Map { get; private set; }
 
-    [JsonIgnore]
+    /// <summary>
+    ///   This probably needs to be changed to a huge precision number
+    ///   depending on what timespans we'll end up using.
+    /// </summary>
+    [JsonProperty]
+    public double TotalPassedTime { get; private set; }
+
+    [JsonProperty]
     public TimedWorldOperations TimedEffects { get; private set; }
+
+    /// <summary>
+    ///   The current external effects for the current auto-evo run. This is here to allow saving to work for them.
+    ///   Don't add new effects through this, instead go through the run instead
+    /// </summary>
+    public List<ExternalEffect> CurrentExternalEffects
+    {
+        get
+        {
+            if (autoEvo == null)
+                return new List<ExternalEffect>();
+
+            return autoEvo.ExternalEffects;
+        }
+        set
+        {
+            // Make sure there is an existing run, as that isn't saved, so when loading we need to create the run to
+            // store things in it. Creating the run here doesn't interfere with it being started
+            CreateRunIfMissing();
+
+            var effects = autoEvo.ExternalEffects;
+
+            effects.Clear();
+
+            if (value == null)
+                return;
+
+            effects.AddRange(value);
+        }
+    }
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
@@ -153,7 +177,9 @@ public class GameWorld
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
-        TimedEffects.OnTimePassed(timePassed);
+        TotalPassedTime += timePassed * 100000000;
+
+        TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
     }
 
     /// <summary>
@@ -176,10 +202,10 @@ public class GameWorld
     public bool IsAutoEvoFinished(bool autostart = true)
     {
         if (autoEvo == null && autostart)
-        {
             CreateRunIfMissing();
+
+        if (autoEvo != null && !autoEvo.Running && autostart)
             autoEvo.Start();
-        }
 
         if (autoEvo == null)
             return false;
@@ -210,11 +236,12 @@ public class GameWorld
     ///   Adds an external population effect to a species
     /// </summary>
     /// <param name="species">Target species</param>
-    /// <param name="amount">Change amount</param>
+    /// <param name="constant">Change amount (constant part)</param>
     /// <param name="description">What caused the change</param>
     /// <param name="immediate">
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
+    /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description,
         bool immediate = false, float coefficient = 1)
     {
@@ -238,6 +265,11 @@ public class GameWorld
         CreateRunIfMissing();
 
         autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description);
+    }
+
+    public void RemoveSpecies(Species species)
+    {
+        worldSpecies.Remove(species.ID);
     }
 
     public Species GetSpecies(uint id)

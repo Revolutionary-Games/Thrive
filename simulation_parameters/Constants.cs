@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Reflection;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -26,6 +27,7 @@ public static class Constants
     ///   Don't change this, so much stuff will break
     /// </summary>
     public const int CLOUDS_IN_ONE = 4;
+
     public const int CLOUD_SQUARES_PER_SIDE = 3;
     public const int CLOUD_EDGE_WIDTH = 2;
 
@@ -43,6 +45,9 @@ public static class Constants
 
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
+
+    // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
+    public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
 
     public const int MEMBRANE_RESOLUTION = 10;
 
@@ -67,11 +72,12 @@ public static class Constants
 
     public const int PROCESS_OBJECTS_PER_TASK = 50;
 
-    public const int MICROBE_SPAWN_RADIUS = 150;
-    public const int CLOUD_SPAWN_RADIUS = 150;
+    public const int MICROBE_SPAWN_RADIUS = 170;
+    public const int CLOUD_SPAWN_RADIUS = 170;
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
+    public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
 
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
@@ -79,9 +85,9 @@ public static class Constants
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
 
     /// <summary>
-    ///   Added 2 seconds here to make the random implementation look a bit better
+    ///   How often the microbe AI processes each microbe
     /// </summary>
-    public const float MICROBE_AI_THINK_INTERVAL = 2.3f;
+    public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
     public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
 
@@ -95,11 +101,22 @@ public static class Constants
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
 
     /// <summary>
+    ///   Max number of concurrent audio players that may be spawned per entity.
+    /// </summary>
+    public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>
     public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
 
     public const float OXYTOXY_DAMAGE = 10.0f;
+
+    /// <summary>
+    ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
+    ///   fade so this must always be at least as long as how long the despawn effect takes visually
+    /// </summary>
+    public const float PROJECTILE_DESPAWN_DELAY = 3;
 
     public const float AGENT_EMISSION_DISTANCE_OFFSET = 0.5f;
 
@@ -112,6 +129,7 @@ public static class Constants
     ///   released upon death (between 0.0 and 1.0).
     /// </summary>
     public const float COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
+
     public const float COMPOUND_RELEASE_PERCENTAGE = 0.9f;
 
     /// <summary>
@@ -130,7 +148,7 @@ public static class Constants
     public const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
 
     /// <summary>
-    ///   The time (in seconds) it takes a cloud being absorbed to halve its compunds.
+    ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
     /// </summary>
     public const float CLOUD_ABSORPTION_HALF_LIFE = 0.02291666666f;
 
@@ -154,6 +172,8 @@ public static class Constants
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
 
     public const float FLOATING_CHUNKS_DISSOLVE_SPEED = 0.3f;
+
+    public const int DESPAWNING_CHUNK_LIFETIME = 150;
 
     public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
 
@@ -186,6 +206,16 @@ public static class Constants
     public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
 
     /// <summary>
+    ///   Cost of moving the rigidity slider by one step in the microbe editor
+    /// </summary>
+    public const int MEMBRANE_RIGIDITY_COST_PER_STEP = 2;
+
+    /// <summary>
+    ///   Number used to convert between the value from the rigidity slider and the actual value
+    /// </summary>
+    public const float MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO = 10;
+
+    /// <summary>
     ///   How much fully rigid membrane adds hitpoints
     /// </summary>
     public const float MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER = 30;
@@ -198,7 +228,7 @@ public static class Constants
     /// <summary>
     ///   How much ATP does engulf mode cost per second
     /// </summary>
-    public const float ENGULFING_ATP_COST_SECOND = 1.5f;
+    public const float ENGULFING_ATP_COST_PER_SECOND = 1.5f;
 
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
@@ -221,9 +251,14 @@ public static class Constants
     public const float ENGULF_DAMAGE = 45.0f;
 
     /// <summary>
+    ///   How much ATP does binding mode cost per second
+    /// </summary>
+    public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
+
+    /// <summary>
     ///   Damage a single pilus stab does
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 5.0f;
+    public const float PILUS_BASE_DAMAGE = 3.0f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
@@ -255,11 +290,12 @@ public static class Constants
     public const int BASE_MUTATION_POINTS = 100;
 
     public const int ORGANELLE_REMOVE_COST = 10;
+    public const int ORGANELLE_MOVE_COST = 5;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
-    public const int CORPSE_CHUNK_DIVISER = 3;
-    public const float CORPSE_CHUNK_AMOUNT_DIVISER = 3.0f;
+    public const int CORPSE_CHUNK_DIVISOR = 3;
+    public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
 
     /// <summary>
@@ -267,6 +303,7 @@ public static class Constants
     ///   and multiplying it by this. This must be negative!
     /// </summary>
     public const float CELL_DRAG_MULTIPLIER = -0.12f;
+
     public const float CELL_SIZE_DRAG_MULTIPLIER = -0.003f;
 
     /// <summary>
@@ -278,6 +315,7 @@ public static class Constants
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
     public const int MAX_HOVER_HEXES = 60;
+
     public const int MAX_SYMMETRY = 6;
 
     // Cell Colors
@@ -298,14 +336,13 @@ public static class Constants
     public const float MAX_OPACITY_MUTATION = 0.01f;
 
     // Mutation Variables
-    public const float MUTATION_BACTERIA_TO_EUKARYOTE = 1.0f;
-    public const float MUTATION_CREATION_RATE = 0.1f;
-    public const float MUTATION_EXTRA_CREATION_RATE = 0.1f;
-    public const float MUTATION_DELETION_RATE = 0.1f;
+    public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
+    public const float MUTATION_CREATION_RATE = 0.15f;
+    public const float MUTATION_DELETION_RATE = 0.03f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
-    // Max fear and agression and activity
-    public const float MAX_SPECIES_AGRESSION = 400.0f;
+    // Max fear and aggression and activity
+    public const float MAX_SPECIES_AGGRESSION = 400.0f;
     public const float MAX_SPECIES_FEAR = 400.0f;
     public const float MAX_SPECIES_ACTIVITY = 400.0f;
     public const float MAX_SPECIES_FOCUS = 400.0f;
@@ -318,7 +355,7 @@ public static class Constants
     public const int MAX_BACTERIAL_LINE_SIZE = 7;
 
     // What is divided during fear and aggression calculations in the AI
-    public const float AGRESSION_DIVISOR = 25.0f;
+    public const float AGGRESSION_DIVISOR = 25.0f;
     public const float FEAR_DIVISOR = 25.0f;
     public const float ACTIVITY_DIVISOR = 100.0f;
     public const float FOCUS_DIVISOR = 100.0f;
@@ -332,36 +369,97 @@ public static class Constants
 
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
+    public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
     // Genus splitting and name mutation
-    public const int MUTATION_CHANGE_GENUS = 33;
     public const int MUTATION_WORD_EDIT = 10;
+    public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
     ///   etc. for which is the most beneficial
     /// </summary>
-    public const int AUTOEVO_VARIANT_SIMULATION_STEPS = 10;
+    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 10;
+
+    /// <summary>
+    ///   Populations of species that are under this will be killed off by auto-evo
+    /// </summary>
+    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
-    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.9f;
+    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
 
-    // Some (placeholder) auto-evo algorithm tweak parameters
-    public const int AUTO_EVO_LOW_SPECIES_THRESHOLD = 3;
-    public const int AUTO_EVO_LOW_SPECIES_BOOST = 500;
-    public const int AUTO_EVO_HIGH_SPECIES_THRESHOLD = 11;
-    public const int AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
-    public const int AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
+    // Auto evo population algorithm tweak variables
+    public const float AUTO_EVO_ATP_USE_SCORE_DIVISOR = 300;
+    public const float AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR = 1;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 1;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 1;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.5f;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 6000;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
+    public const float GLUCOSE_MIN = 0.0f;
 
     public const int MAX_SPAWNS_PER_FRAME = 2;
     public const int MAX_DESPAWNS_PER_FRAME = 2;
+
+    public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
+
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 15.0f;
+    public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
+    public const float TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL = 0.2f;
+    public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
+    public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
+    public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 180;
+    public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
+
+    /// <summary>
+    ///   Used to limit how often the hover indicator panel are
+    ///   updated. Default value is every 0.1 seconds.
+    /// </summary>
+    public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
+
+    public const float TOOLTIP_OFFSET = 20;
+    public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
+    public const float TOOLTIP_FADE_SPEED = 0.02f;
+
+    public const float EDITOR_ARROW_OFFSET = 3.5f;
+    public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
+
+    public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
+    public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
+
+    /// <summary>
+    ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
+    ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>
+    /// </summary>
+    public const int MAIN_MENU_CANCEL_PRIORITY = -3;
+
+    /// <summary>
+    ///   Pause menu has lower cancel priority to avoid handling canceling being in the menu if a an open sub menu
+    ///   has special actions it needs to do
+    /// </summary>
+    public const int PAUSE_MENU_CANCEL_PRIORITY = -2;
+
+    public const int SUBMENU_CANCEL_PRIORITY = -1;
+
+    /// <summary>
+    ///   Maximum amount of snapshots to store in patch history.
+    /// </summary>
+    public const int PATCH_HISTORY_RANGE = 10;
+
+    /// <summary>
+    ///   When checking if the mouse is hovering over a microbe, this increments
+    ///   the testing area as an addition to microbe radius, so it's easier to hover
+    ///   over smaller microbes.
+    /// </summary>
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
@@ -379,9 +477,10 @@ public static class Constants
     public const string FLUID_EFFECT_GROUP = "fluid_effect";
 
     /// <summary>
-    ///   All Nodes tagged with this are handled by the process system
+    ///   All Nodes tagged with this are handled by the process system. Can't be just "process" as that conflicts with
+    ///   godot idle_process and process, at least I think it does.
     /// </summary>
-    public const string PROCESS_GROUP = "process";
+    public const string PROCESS_GROUP = "run_processes";
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the ai system
@@ -398,28 +497,82 @@ public static class Constants
     /// </summary>
     public const string AI_TAG_CHUNK = "chunk";
 
+    public const string DELETION_HOLD_LOAD = "load";
+    public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
+
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
     public const string SAVE_FOLDER = "user://saves";
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
+    public const string LOGS_FOLDER_NAME = "logs";
+    public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
+
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
-    public const string SAVE_EXTENSION = "thrivesave";
+    /// <summary>
+    ///   If true diagnostic information about JSON serialization is printed
+    /// </summary>
+    public const bool DEBUG_JSON_SERIALIZE = false;
 
-    public static string Version
+    /// <summary>
+    ///   If set to false, saving related errors are re-thrown to make debugging easier
+    /// </summary>
+    public const bool CATCH_SAVE_ERRORS = true;
+
+    public const string SAVE_EXTENSION = "thrivesave";
+    public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
+
+    public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+
+    public const int KIBIBYTE = 1024;
+    public const int MEBIBYTE = 1024 * KIBIBYTE;
+
+    // Following is a hacky way to ensure some conditions apply on the constants defined here.
+    // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
+    // Or maybe it raises an actual error. Anyway this seems good enough for now to do some stuff
+
+#pragma warning disable CA1823 // unused fields
+
+    // ReSharper disable UnreachableCode
+    private const uint MinimumMovePopIsHigherThanMinimumViable =
+        (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
+            AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
+            0 :
+            -42;
+
+    // ReSharper restore UnreachableCode
+#pragma warning restore CA1823
+
+    /// <summary>
+    ///   This needs to be a separate field to make this only be calculated once needed the first time
+    /// </summary>
+    private static readonly string GameVersion = FetchVersion();
+
+    /// <summary>
+    ///   Game version
+    /// </summary>
+    public static string Version => GameVersion;
+
+    private static string FetchVersion()
     {
-        get
+        try
         {
             var assembly = Assembly.GetExecutingAssembly();
-            Version version = assembly.GetName().Version;
-            var versionSuffix = (AssemblyInformationalVersionAttribute[])assembly.
-                GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false);
+            var version = assembly.GetName().Version;
+            var versionSuffix =
+                (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
+                    typeof(AssemblyInformationalVersionAttribute), false);
             return $"{version}" + versionSuffix[0].InformationalVersion;
+        }
+        catch (Exception error)
+        {
+            GD.Print("Error getting version: ", error);
+            return "error (" + error.GetType().Name + ")";
         }
     }
 }

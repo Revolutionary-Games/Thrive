@@ -1,21 +1,29 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
+using Vector2 = Godot.Vector2;
+using Vector3 = Godot.Vector3;
 
-public class CompoundCloudPlane : CSGMesh, ISaveApplyable
+[SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
+public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 {
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored
     /// </summary>
-    public System.Numerics.Vector4[,] Density;
+    public Vector4[,] Density;
 
     [JsonIgnore]
-    public System.Numerics.Vector4[,] OldDensity;
+    public Vector4[,] OldDensity;
 
     [JsonProperty]
     public Compound[] Compounds;
+
+    // TODO: give each cloud a viscosity value in the
+    // JSON file and use it instead.
+    private const float VISCOSITY = 0.0525f;
 
     private Image image;
     private ImageTexture texture;
@@ -30,37 +38,47 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     [JsonProperty]
     public int Size { get; private set; }
 
-    public bool IsLoadedFromSave { get; set; } = false;
+    public bool IsLoadedFromSave { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        if (IsLoadedFromSave)
-            return;
+        if (!IsLoadedFromSave)
+        {
+            Size = Settings.Instance.CloudSimulationWidth;
+            Resolution = Settings.Instance.CloudResolution;
+            CreateDensityTexture();
 
-        Size = Settings.Instance.CloudSimulationWidth;
-        Resolution = Settings.Instance.CloudResolution;
-        CreateDensityTexture();
+            Density = new Vector4[Size, Size];
+            OldDensity = new Vector4[Size, Size];
+            ClearContents();
+        }
+        else
+        {
+            // Recreate the texture if the size changes
+            // TODO: could resample the density data here to allow changing the cloud resolution or size
+            // without starting a new save
+            CreateDensityTexture();
 
-        Density = new System.Numerics.Vector4[Size, Size];
-        OldDensity = new System.Numerics.Vector4[Size, Size];
-        ClearContents();
+            OldDensity = new Vector4[Size, Size];
+            SetMaterialUVForPosition();
+        }
     }
 
     public void UpdatePosition(Int2 newPosition)
     {
         // Whoever made the modulus operator return negatives: i hate u.
-        int newx = ((newPosition.x % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+        int newX = ((newPosition.x % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
-        int newy = ((newPosition.y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+        int newY = ((newPosition.y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
 
-        if (newx == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        if (newX == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
-        else if (newx == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+        else if (newX == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
             % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(((position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
@@ -68,19 +86,19 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
                 0, Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
 
-        if (newy == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        if (newY == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(0, position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
         }
-        else if (newy == (position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        else if (newY == (position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(0, ((position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
         }
 
-        position = new Int2(newx, newy);
+        position = new Int2(newX, newY);
 
         // This accommodates the texture of the cloud to the new position of the plane.
         SetMaterialUVForPosition();
@@ -347,7 +365,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     /// </summary>
     public void AddCloud(Compound compound, float density, int x, int y)
     {
-        var cloudToAdd = new System.Numerics.Vector4(
+        var cloudToAdd = new Vector4(
             Compounds[0] == compound ? density : 0.0f,
             Compounds[1] == compound ? density : 0.0f,
             Compounds[2] == compound ? density : 0.0f,
@@ -362,7 +380,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAdress(Density[x, y], GetCompoundIndex(compound));
+        float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
         float amountToGive = amountInCloud * fraction;
         if (amountInCloud - amountToGive < 0.1f)
             AddCloud(compound, -amountInCloud, x, y);
@@ -378,7 +396,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     /// <returns>The amount available for taking</returns>
     public float AmountAvailable(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAdress(Density[x, y], GetCompoundIndex(compound));
+        float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
         float amountToGive = amountInCloud * fraction;
         return amountToGive;
     }
@@ -393,7 +411,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             if (Compounds[i] == null)
                 break;
 
-            float amount = HackyAdress(Density[x, y], i);
+            float amount = HackyAddress(Density[x, y], i);
             if (amount > 0)
                 result[Compounds[i]] = amount;
         }
@@ -439,6 +457,19 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     }
 
     /// <summary>
+    ///   Converts cloud local coordinates to world coordinates
+    /// </summary>
+    public Vector3 ConvertToWorld(int cloudX, int cloudY)
+    {
+        return new Vector3(
+            cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            Constants.CLOUD_WIDTH,
+            0,
+            cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            Constants.CLOUD_HEIGHT) + Translation;
+    }
+
+    /// <summary>
     ///   Absorbs compounds from this cloud
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
@@ -451,8 +482,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             if (Compounds[i] == null)
                 break;
 
+            // Skip if compound is non-useful
+            if (!storage.IsUseful(Compounds[i]))
+                continue;
+
             // Overestimate of how much compounds we get
-            float generousAmount = HackyAdress(Density[localX, localY], i) *
+            float generousAmount = HackyAddress(Density[localX, localY], i) *
                 Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
             // Skip if there isn't enough to absorb
@@ -492,40 +527,32 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
         {
             for (int y = 0; y < Size; ++y)
             {
-                Density[x, y] = System.Numerics.Vector4.Zero;
-                OldDensity[x, y] = System.Numerics.Vector4.Zero;
+                Density[x, y] = Vector4.Zero;
+                OldDensity[x, y] = Vector4.Zero;
             }
         }
     }
 
-    public void ApplyPropertiesFromSave(CompoundCloudPlane cloud)
+    /// <summary>
+    ///   Calculates the multipliers for the old density to move to new locations
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The name might not be super accurate as I just picked something to reduce code duplication
+    ///   </para>
+    /// </remarks>
+    private static void CalculateMovementFactors(float dx, float dy, out int q0, out int q1, out int r0, out int r1,
+        out float s1, out float s0, out float t1, out float t0)
     {
-        Density = cloud.Density;
+        q0 = (int)Math.Floor(dx);
+        q1 = q0 + 1;
+        r0 = (int)Math.Floor(dy);
+        r1 = r0 + 1;
 
-        // Re-init with potentially changed compounds
-        Init(fluidSystem, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2], cloud.Compounds[3]);
-
-        position = cloud.position;
-        Transform = cloud.Transform;
-
-        // Recreate the texture if the size changes
-        // TODO: could resample the density data here to allow changing the cloud resolution or size
-        // without starting a new save
-        if (Size != cloud.Size || Resolution != cloud.Resolution)
-        {
-            Size = cloud.Size;
-            Resolution = cloud.Resolution;
-            CreateDensityTexture();
-        }
-
-        OldDensity = new System.Numerics.Vector4[Size, Size];
-        SetMaterialUVForPosition();
-    }
-
-    public void ApplySave(object loaded, ISaveContext context)
-    {
-        ApplyPropertiesFromSave((CompoundCloudPlane)loaded);
-        IsLoadedFromSave = true;
+        s1 = Math.Abs(dx - q0);
+        s0 = 1.0f - s1;
+        t1 = Math.Abs(dy - r0);
+        t0 = 1.0f - t1;
     }
 
     private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)
@@ -572,11 +599,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    // TODO: give each cloud a viscosity value in the
-                    // JSON file and use it instead.
-                    const float viscosity = 0.0525f;
                     var velocity = fluidSystem.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * viscosity;
+                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.x);
@@ -586,15 +610,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
                     dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
                     dy = dy.Clamp(y0 - 0.5f, y0 + height + 0.5f);
 
-                    int q0 = (int)Math.Floor(dx);
-                    int q1 = q0 + 1;
-                    int r0 = (int)Math.Floor(dy);
-                    int r1 = r0 + 1;
-
-                    float s1 = Math.Abs(dx - q0);
-                    float s0 = 1.0f - s1;
-                    float t1 = Math.Abs(dy - r0);
-                    float t0 = 1.0f - t1;
+                    CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
+                        out var s1, out var s0, out var t1, out var t0);
 
                     Density[q0, r0] += OldDensity[x, y] * s0 * t0;
                     Density[q0, r1] += OldDensity[x, y] * s0 * t1;
@@ -613,25 +630,15 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    // TODO: give each cloud a viscosity value in the
-                    // JSON file and use it instead.
-                    const float viscosity = 0.0525f;
                     var velocity = fluidSystem.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * viscosity;
+                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.x);
                     float dy = y + (delta * velocity.y);
 
-                    int q0 = (int)Math.Floor(dx);
-                    int q1 = q0 + 1;
-                    int r0 = (int)Math.Floor(dy);
-                    int r1 = r0 + 1;
-
-                    float s1 = Math.Abs(dx - q0);
-                    float s0 = 1.0f - s1;
-                    float t1 = Math.Abs(dy - r0);
-                    float t0 = 1.0f - t1;
+                    CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
+                        out var s1, out var s0, out var t1, out var t0);
 
                     Density[(q0 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s0 * t0;
                     Density[(q0 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s0 * t1;
@@ -660,7 +667,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
         {
             for (int y = y0; y < y0 + height; y++)
             {
-                Density[x, y] = System.Numerics.Vector4.Zero;
+                Density[x, y] = Vector4.Zero;
             }
         }
     }
@@ -674,7 +681,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta, pos);
     }
 
-    private float HackyAdress(System.Numerics.Vector4 vector, int index)
+    private float HackyAddress(Vector4 vector, int index)
     {
         switch (index)
         {
@@ -712,7 +719,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     private void SetMaterialUVForPosition()
     {
         var material = (ShaderMaterial)Material;
-        material.SetShaderParam("UVoffset", new Vector2(position.x / (float)Constants.CLOUD_SQUARES_PER_SIDE,
+
+        // No clue how this math ends up with the right UV offsets - hhyyrylainen
+        material.SetShaderParam("UVOffset", new Vector2(position.x / (float)Constants.CLOUD_SQUARES_PER_SIDE,
             position.y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
     }
 }

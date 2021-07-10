@@ -8,11 +8,9 @@ using Godot;
 /// </summary>
 public class Jukebox : Node
 {
-    private const float FADE_TIME = 0.6f;
-    private const float FADE_LOW_VOLUME = -24.0f;
-    private const float NORMAL_VOLUME = 0.0f;
-
-    private const float FADE_PER_TIME_UNIT = (FADE_LOW_VOLUME - NORMAL_VOLUME) / FADE_TIME;
+    private const float FADE_TIME = 0.75f;
+    private const float FADE_LOW_VOLUME = 0.0f;
+    private const float NORMAL_VOLUME = 1.0f;
 
     private static Jukebox instance;
 
@@ -24,6 +22,11 @@ public class Jukebox : Node
     private readonly List<AudioPlayer> audioPlayers = new List<AudioPlayer>();
 
     private readonly Queue<Operation> operations = new Queue<Operation>();
+
+    /// <summary>
+    ///   The current jukebox volume level in linear volume range 0-1.0f
+    /// </summary>
+    private float linearVolume = 1.0f;
 
     private bool paused = true;
 
@@ -46,25 +49,20 @@ public class Jukebox : Node
         PauseMode = PauseModeEnum.Process;
     }
 
-    public static Jukebox Instance
-    {
-        get { return instance; }
-    }
+    public static Jukebox Instance => instance;
 
     /// <summary>
     ///   The category to play music tracks from
     /// </summary>
     public string PlayingCategory
     {
-        get
-        {
-            return playingCategory;
-        }
+        get => playingCategory;
 
         set
         {
             if (playingCategory == value)
                 return;
+
             GD.Print("Jukebox now playing from: ", value);
             playingCategory = value;
             OnCategoryChanged();
@@ -73,7 +71,7 @@ public class Jukebox : Node
 
     private List<string> PlayingTracks
     {
-        get { return audioPlayers.Where((player) => player.Playing).Select((player) => player.CurrentTrack).ToList(); }
+        get { return audioPlayers.Where(player => player.Playing).Select(player => player.CurrentTrack).ToList(); }
     }
 
     public override void _Ready()
@@ -117,6 +115,10 @@ public class Jukebox : Node
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (paused)
             return;
 
@@ -126,16 +128,6 @@ public class Jukebox : Node
             if (operations.Peek().Action(delta))
                 operations.Dequeue();
         }
-
-        // // Check if a stream has ended
-        // foreach (var player in audioPlayers)
-        // {
-        //     if (!player.Playing)
-        //     {
-        //         OnSomeTrackEnded();
-        //         break;
-        //     }
-        // }
     }
 
     private void UpdateStreamsPauseStatus()
@@ -154,19 +146,19 @@ public class Jukebox : Node
         }
     }
 
-    private void AdjustVolume(float adjustement)
-    {
-        foreach (var player in audioPlayers)
-        {
-            player.Player.VolumeDb += adjustement;
-        }
-    }
-
     private void SetVolume(float volume)
     {
+        linearVolume = volume;
+        ApplyLinearVolume();
+    }
+
+    private void ApplyLinearVolume()
+    {
+        var dbValue = GD.Linear2Db(linearVolume);
+
         foreach (var player in audioPlayers)
         {
-            player.Player.VolumeDb = volume;
+            player.Player.VolumeDb = dbValue;
         }
     }
 
@@ -177,6 +169,9 @@ public class Jukebox : Node
         AddChild(player);
 
         player.Bus = "Music";
+
+        // Set initial volume to be what the volume should be currently
+        player.VolumeDb = GD.Linear2Db(linearVolume);
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
@@ -196,7 +191,7 @@ public class Jukebox : Node
         return audioPlayers[index];
     }
 
-    private void PlayTrack(AudioPlayer player, TrackList.Track track, float fromPosition = 0)
+    private void PlayTrack(AudioPlayer player, TrackList.Track track, string trackBus, float fromPosition = 0)
     {
         if (player.CurrentTrack != track.ResourcePath)
         {
@@ -204,6 +199,7 @@ public class Jukebox : Node
 
             player.Player.Stream = stream;
             player.CurrentTrack = track.ResourcePath;
+            player.Bus = trackBus;
 
             player.Player.Play(fromPosition);
 
@@ -218,16 +214,13 @@ public class Jukebox : Node
         bool faded = false;
 
         // Add transitions
-        if (previouslyPlayedCategory != null)
+        if (previouslyPlayedCategory?.CategoryTransition == MusicCategory.Transition.Fade)
         {
-            if (previouslyPlayedCategory.CategoryTransition == MusicCategory.Transition.Fade)
-            {
-                AddFadeOut();
-                faded = true;
-            }
+            AddFadeOut();
+            faded = true;
         }
 
-        operations.Enqueue(new Operation((delta) =>
+        operations.Enqueue(new Operation(delta =>
         {
             SetupStreamsFromCategory();
             return true;
@@ -250,51 +243,44 @@ public class Jukebox : Node
 
     private void AddFadeOut()
     {
-        var data = new TimedOperationData(FADE_TIME);
-        operations.Enqueue(new Operation((delta) =>
-        {
-            data.TimeLeft -= delta;
-
-            bool finished = data.TimeLeft <= 0;
-
-            if (finished)
-            {
-                AdjustVolume(FADE_PER_TIME_UNIT * delta);
-            }
-            else
-            {
-                SetVolume(FADE_LOW_VOLUME);
-            }
-
-            return finished;
-        }));
+        AddVolumeChange(FADE_TIME, linearVolume, FADE_LOW_VOLUME);
     }
 
     private void AddFadeIn()
     {
-        var data = new TimedOperationData(FADE_TIME);
-        operations.Enqueue(new Operation((delta) =>
+        AddVolumeChange(FADE_TIME, 0, NORMAL_VOLUME);
+    }
+
+    private void AddVolumeChange(float duration, float startVolume, float endVolume)
+    {
+        var data = new TimedOperationData(duration) { StartVolume = startVolume, EndVolume = endVolume };
+
+        operations.Enqueue(new Operation(delta =>
         {
             data.TimeLeft -= delta;
 
-            bool finished = data.TimeLeft <= 0;
+            if (data.TimeLeft < 0)
+                data.TimeLeft = 0;
 
-            if (finished)
+            float progress = (data.TotalDuration - data.TimeLeft) / data.TotalDuration;
+
+            if (progress >= 1.0f)
             {
-                AdjustVolume(-1 * FADE_PER_TIME_UNIT * delta);
-            }
-            else
-            {
-                SetVolume(NORMAL_VOLUME);
+                SetVolume(data.EndVolume);
+                return true;
             }
 
-            return finished;
+            float targetVolume = data.StartVolume + (data.EndVolume - data.StartVolume) * progress;
+
+            SetVolume(targetVolume);
+
+            return false;
         }));
     }
 
     private void AddVolumeRestore()
     {
-        operations.Enqueue(new Operation((delta) =>
+        operations.Enqueue(new Operation(delta =>
         {
             SetVolume(NORMAL_VOLUME);
             return true;
@@ -303,7 +289,7 @@ public class Jukebox : Node
 
     private void AddVolumeRemove()
     {
-        operations.Enqueue(new Operation((delta) =>
+        operations.Enqueue(new Operation(delta =>
         {
             SetVolume(FADE_LOW_VOLUME);
             return true;
@@ -350,7 +336,7 @@ public class Jukebox : Node
                     // Resume track (but only one per list)
                     if (track.WasPlaying)
                     {
-                        PlayTrack(GetNextPlayer(nextPlayerToUse++), track, track.PreviousPlayedPosition);
+                        PlayTrack(GetNextPlayer(nextPlayerToUse++), track, list.TrackBus, track.PreviousPlayedPosition);
                         break;
                     }
                 }
@@ -366,12 +352,12 @@ public class Jukebox : Node
         var needToStartFrom = new List<TrackList>();
 
         var activeTracks = PlayingTracks;
-        var usablePlayers = audioPlayers.Where((player) => !player.Playing).ToList();
+        var usablePlayers = audioPlayers.Where(player => !player.Playing).ToList();
 
         foreach (var list in target.TrackLists)
         {
-            var trackResources = list.Tracks.Select((track) => track.ResourcePath);
-            if (activeTracks.Any((track) => trackResources.Contains(track)))
+            var trackResources = list.Tracks.Select(track => track.ResourcePath);
+            if (activeTracks.Any(track => trackResources.Contains(track)))
                 continue;
 
             needToStartFrom.Add(list);
@@ -381,16 +367,14 @@ public class Jukebox : Node
 
         foreach (var list in needToStartFrom)
         {
-            PlayNextTrackFromList(list, (index) =>
+            PlayNextTrackFromList(list, index =>
             {
                 if (index < usablePlayers.Count)
                 {
                     return usablePlayers[index];
                 }
-                else
-                {
-                    return NewPlayer();
-                }
+
+                return NewPlayer();
             }, nextPlayerToUse++);
         }
 
@@ -406,7 +390,7 @@ public class Jukebox : Node
         {
             list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.Tracks.Count;
 
-            PlayTrack(getPlayer(playerToUse), list.Tracks[list.LastPlayedIndex]);
+            PlayTrack(getPlayer(playerToUse), list.Tracks[list.LastPlayedIndex], list.TrackBus);
         }
         else
         {
@@ -421,20 +405,17 @@ public class Jukebox : Node
             }
             while (nextIndex == list.LastPlayedIndex && list.Tracks.Count > 1);
 
-            PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex]);
+            PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex], list.TrackBus);
             list.LastPlayedIndex = nextIndex;
         }
     }
 
     private void OnCategoryEnded()
     {
-        if (previouslyPlayedCategory == null)
-            return;
-
         var category = previouslyPlayedCategory;
 
         // Store continue positions
-        if (category.Return == MusicCategory.ReturnType.Continue)
+        if (category?.Return == MusicCategory.ReturnType.Continue)
         {
             var activeTracks = PlayingTracks;
 
@@ -448,8 +429,8 @@ public class Jukebox : Node
 
                         // Store the position to resume from
                         track.PreviousPlayedPosition = audioPlayers.Where(
-                            (player) => player.Playing && player.CurrentTrack == track.ResourcePath).Select(
-                            (player) => player.Player.GetPlaybackPosition()).First();
+                            player => player.Playing && player.CurrentTrack == track.ResourcePath).Select(
+                            player => player.Player.GetPlaybackPosition()).First();
                     }
                     else
                     {
@@ -477,6 +458,12 @@ public class Jukebox : Node
 
         public bool Playing => Player.Playing;
 
+        public string Bus
+        {
+            get => Player.Bus;
+            set => Player.Bus = value;
+        }
+
         public void Stop()
         {
             CurrentTrack = null;
@@ -496,11 +483,17 @@ public class Jukebox : Node
 
     private class TimedOperationData
     {
+        public readonly float TotalDuration;
         public float TimeLeft;
+
+        // Data for timed operations dealing with volumes
+        public float StartVolume;
+        public float EndVolume;
 
         public TimedOperationData(float time)
         {
             TimeLeft = time;
+            TotalDuration = time;
         }
     }
 }

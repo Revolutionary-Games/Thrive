@@ -13,11 +13,12 @@ public class GameProperties
     private readonly Dictionary<string, bool> setBoolStatuses = new Dictionary<string, bool>();
 
     [JsonProperty]
-    private bool freeBuild = false;
+    private bool freeBuild;
 
     private GameProperties()
     {
         GameWorld = new GameWorld(new WorldGenerationSettings());
+        TutorialState = new TutorialState();
     }
 
     /// <summary>
@@ -31,13 +32,13 @@ public class GameProperties
     ///   should be disabled / different.
     /// </summary>
     [JsonIgnore]
-    public bool FreeBuild
-    {
-        get
-        {
-            return freeBuild;
-        }
-    }
+    public bool FreeBuild => freeBuild;
+
+    /// <summary>
+    ///   The tutorial state for this game
+    /// </summary>
+    [JsonProperty]
+    public TutorialState TutorialState { get; private set; }
 
     /// <summary>
     ///   Starts a new game in the microbe stage
@@ -50,6 +51,7 @@ public class GameProperties
         {
             game.EnterFreeBuild();
             game.GameWorld.GenerateRandomSpeciesForFreeBuild();
+            game.TutorialState.Enabled = false;
         }
 
         return game;

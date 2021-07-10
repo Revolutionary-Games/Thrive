@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Definition of a compound in the game. For all other simulation
@@ -14,11 +13,14 @@ public class Compound : IRegistryType
     /// <summary>
     ///   Display name for the user to see
     /// </summary>
+    [TranslateFrom("untranslatedName")]
     public string Name;
 
     public float Volume;
 
     public bool IsCloud;
+
+    public string IconPath;
 
     /// <summary>
     ///   When this is true the compound is always considered to be
@@ -28,7 +30,21 @@ public class Compound : IRegistryType
 
     public bool IsEnvironmental;
 
+    /// <summary>
+    ///   Whether this compound can be distributed in a colony
+    /// </summary>
+    public bool CanBeDistributed;
+
     public Color Colour;
+
+    /// <summary>
+    ///   Loaded icon for display in GUIs
+    /// </summary>
+    public Texture LoadedIcon;
+
+#pragma warning disable 169 // Used through reflection
+    private string untranslatedName;
+#pragma warning restore 169
 
     public string InternalName { get; set; }
 
@@ -38,6 +54,12 @@ public class Compound : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compound has no name");
+        }
+
+        if (string.IsNullOrEmpty(IconPath))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Compound must be provided an icon");
         }
 
         // Guards against uninitialized alpha
@@ -64,6 +86,18 @@ public class Compound : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Volume should be > 0");
         }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+    }
+
+    public void Resolve()
+    {
+        LoadedIcon = GD.Load<Texture>(IconPath);
+    }
+
+    public void ApplyTranslations()
+    {
+        TranslationHelper.ApplyTranslations(this);
     }
 
     public override string ToString()

@@ -58,6 +58,10 @@ public class MusicCategory : IRegistryType
         foreach (var list in TrackLists)
             list.Check();
     }
+
+    public void ApplyTranslations()
+    {
+    }
 }
 
 /// <summary>
@@ -89,6 +93,8 @@ public class TrackList
     public Type ListType { get; set; } = Type.Concurrent;
 
     public Order TrackOrder { get; set; } = Order.Random;
+
+    public string TrackBus { get; set; } = "Music";
 
     public List<Track> Tracks { get; set; }
 

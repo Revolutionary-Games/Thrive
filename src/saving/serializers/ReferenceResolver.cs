@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using Newtonsoft.Json.Serialization;
 
@@ -15,10 +15,17 @@ public class ReferenceResolver : IReferenceResolver
     private readonly Dictionary<string, object> referenceToObject = new Dictionary<string, object>();
     private readonly Dictionary<object, string> objectToReference = new Dictionary<object, string>();
 
-    private long referenceCounter = 0;
+    private long referenceCounter;
 
     public object ResolveReference(object context, string reference)
     {
+        if (!referenceToObject.ContainsKey(reference))
+        {
+            throw new KeyNotFoundException(
+                $"The reference {reference} was not found. " +
+                "Is a child referencing an ancestor? If so, you should add [UseThriveSerializer]");
+        }
+
         return referenceToObject[reference];
     }
 
@@ -45,6 +52,8 @@ public class ReferenceResolver : IReferenceResolver
 
     public void AddReference(object context, string reference, object value)
     {
+        // TODO: when replacing references this first assignment doesn't overwrite the old value, so an outdated
+        // reference is left. Should that be removed?
         objectToReference[value] = reference;
         referenceToObject[reference] = value;
     }

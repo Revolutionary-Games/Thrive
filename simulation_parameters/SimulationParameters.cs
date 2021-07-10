@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Godot;
 using Newtonsoft.Json;
+using File = Godot.File;
 
 /// <summary>
 ///   Contains definitions for global game configuration like Compounds, Organelles etc.
@@ -18,6 +20,9 @@ public class SimulationParameters : Node
     private readonly Dictionary<string, OrganelleDefinition> organelles;
     private readonly Dictionary<string, MusicCategory> musicCategories;
     private readonly Dictionary<string, HelpTexts> helpTexts;
+    private readonly AutoEvoConfiguration autoEvoConfiguration;
+    private readonly List<NamedInputGroup> inputGroups;
+    private readonly Dictionary<string, Gallery> gallery;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -56,12 +61,16 @@ public class SimulationParameters : Node
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");
 
-        EasterEggMessages = LoadDirectObject<EasterEggMessages>(
-            "res://simulation_parameters/common/easter_egg_messages.json");
-
         musicCategories = LoadRegistry<MusicCategory>("res://simulation_parameters/common/music_tracks.json");
 
         helpTexts = LoadRegistry<HelpTexts>("res://simulation_parameters/common/help_texts.json");
+
+        inputGroups = LoadListRegistry<NamedInputGroup>("res://simulation_parameters/common/input_options.json");
+
+        autoEvoConfiguration =
+            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/auto-evo_parameters.json");
+
+        gallery = LoadRegistry<Gallery>("res://simulation_parameters/common/gallery.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -71,17 +80,21 @@ public class SimulationParameters : Node
         GD.Print("SimulationParameters are good");
     }
 
-    public static SimulationParameters Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
+    public static SimulationParameters Instance => instance;
+
+    public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
+
+    public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
     public NameGenerator NameGenerator { get; }
 
-    public EasterEggMessages EasterEggMessages { get; }
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            ApplyTranslations();
+        }
+    }
 
     public OrganelleDefinition GetOrganelleType(string name)
     {
@@ -96,9 +109,24 @@ public class SimulationParameters : Node
         return organelles.Values;
     }
 
+    public bool DoesOrganelleExist(string name)
+    {
+        return organelles.ContainsKey(name);
+    }
+
     public MembraneType GetMembrane(string name)
     {
         return membranes[name];
+    }
+
+    public IEnumerable<MembraneType> GetAllMembranes()
+    {
+        return membranes.Values;
+    }
+
+    public bool DoesMembraneExist(string name)
+    {
+        return membranes.ContainsKey(name);
     }
 
     public Background GetBackground(string name)
@@ -119,6 +147,11 @@ public class SimulationParameters : Node
     public Compound GetCompound(string name)
     {
         return compounds[name];
+    }
+
+    public bool DoesCompoundExist(string name)
+    {
+        return compounds.ContainsKey(name);
     }
 
     /// <summary>
@@ -147,6 +180,11 @@ public class SimulationParameters : Node
     public HelpTexts GetHelpTexts(string name)
     {
         return helpTexts[name];
+    }
+
+    public Gallery GetGallery(string name)
+    {
+        return gallery[name];
     }
 
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
@@ -179,6 +217,23 @@ public class SimulationParameters : Node
         return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
     }
 
+    /// <summary>
+    ///   Applies translations to all registry loaded types. Called whenever the locale is changed
+    /// </summary>
+    public void ApplyTranslations()
+    {
+        ApplyRegistryObjectTranslations(membranes);
+        ApplyRegistryObjectTranslations(backgrounds);
+        ApplyRegistryObjectTranslations(biomes);
+        ApplyRegistryObjectTranslations(bioProcesses);
+        ApplyRegistryObjectTranslations(compounds);
+        ApplyRegistryObjectTranslations(organelles);
+        ApplyRegistryObjectTranslations(musicCategories);
+        ApplyRegistryObjectTranslations(helpTexts);
+        ApplyRegistryObjectTranslations(inputGroups);
+        ApplyRegistryObjectTranslations(gallery);
+    }
+
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
         where T : class, IRegistryType
     {
@@ -189,31 +244,85 @@ public class SimulationParameters : Node
         }
     }
 
+    private static void CheckRegistryType<T>(IEnumerable<T> registry)
+        where T : class, IRegistryType
+    {
+        foreach (var entry in registry)
+        {
+            entry.Check(string.Empty);
+
+            if (string.IsNullOrEmpty(entry.InternalName))
+                throw new Exception("registry list type should set internal name in Check");
+        }
+    }
+
+    private static void ApplyRegistryObjectTranslations<T>(Dictionary<string, T> registry)
+        where T : class, IRegistryType
+    {
+        foreach (var entry in registry)
+        {
+            entry.Value.ApplyTranslations();
+        }
+    }
+
+    private static void ApplyRegistryObjectTranslations<T>(IEnumerable<T> registry)
+        where T : class, IRegistryType
+    {
+        foreach (var entry in registry)
+        {
+            entry.ApplyTranslations();
+        }
+    }
+
     private static string ReadJSONFile(string path)
     {
-        using (var file = new File())
-        {
-            file.Open(path, File.ModeFlags.Read);
-            var result = file.GetAsText();
+        using var file = new File();
+        file.Open(path, File.ModeFlags.Read);
+        var result = file.GetAsText();
 
-            // This might be completely unnecessary
-            file.Close();
+        // This might be completely unnecessary
+        file.Close();
 
-            return result;
-        }
+        return result;
     }
 
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
     {
+        extraConverters ??= Array.Empty<JsonConverter>();
+
         var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path), extraConverters);
+
+        if (result == null)
+            throw new InvalidDataException("Could not load a registry from file: " + path);
 
         GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
         return result;
     }
 
-    private T LoadDirectObject<T>(string path)
+    private List<T> LoadListRegistry<T>(string path, JsonConverter[] extraConverters = null)
     {
-        return JsonConvert.DeserializeObject<T>(ReadJSONFile(path));
+        extraConverters ??= Array.Empty<JsonConverter>();
+
+        var result = JsonConvert.DeserializeObject<List<T>>(ReadJSONFile(path), extraConverters);
+
+        if (result == null)
+            throw new InvalidDataException("Could not load a registry from file: " + path);
+
+        GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
+        return result;
+    }
+
+    private T LoadDirectObject<T>(string path, JsonConverter[] extraConverters = null)
+        where T : class
+    {
+        extraConverters ??= Array.Empty<JsonConverter>();
+
+        var result = JsonConvert.DeserializeObject<T>(ReadJSONFile(path), extraConverters);
+
+        if (result == null)
+            throw new InvalidDataException("Could not load a registry from file: " + path);
+
+        return result;
     }
 
     private void CheckForInvalidValues()
@@ -226,9 +335,11 @@ public class SimulationParameters : Node
         CheckRegistryType(organelles);
         CheckRegistryType(musicCategories);
         CheckRegistryType(helpTexts);
+        CheckRegistryType(inputGroups);
+        CheckRegistryType(gallery);
 
         NameGenerator.Check(string.Empty);
-        EasterEggMessages.Check(string.Empty);
+        autoEvoConfiguration.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()
@@ -249,6 +360,16 @@ public class SimulationParameters : Node
         }
 
         foreach (var entry in membranes)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in compounds)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in gallery)
         {
             entry.Value.Resolve();
         }

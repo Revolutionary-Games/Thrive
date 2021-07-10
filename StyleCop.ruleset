@@ -21,6 +21,7 @@
     <Rule Id="CA1301" Action="Warning" />
     <Rule Id="CA1303" Action="None" /> <!-- resource table usage.
       probably should use once we implement localization -->
+    <Rule Id="CA1308" Action="None" /> <!-- tells to use ToUpperInvariant instead of ToLower -->
     <Rule Id="CA1400" Action="Warning" />
     <Rule Id="CA1401" Action="Warning" />
     <Rule Id="CA1403" Action="Warning" />
@@ -35,6 +36,7 @@
     <Rule Id="CA1814" Action="None" /> <!-- don't recommend jagged arrays -->
     <Rule Id="CA1821" Action="Warning" />
     <Rule Id="CA1822" Action="None" /> <!-- don't suggest everything including godot callbacks to be static -->
+    <Rule Id="CA1823" Action="None" /> <!-- allow unused fields -->
     <Rule Id="CA1900" Action="Warning" />
     <Rule Id="CA1901" Action="Warning" />
     <Rule Id="CA2000" Action="None" /> <!-- literally everything should be disposed... -->
@@ -82,6 +84,7 @@
     <Rule Id="CA2240" Action="Warning" />
     <Rule Id="CA2241" Action="Warning" />
     <Rule Id="CA2242" Action="Warning" />
+    <Rule Id="CA9998" Action="None" /> <!-- Warning about deperation of FxCopAnalyzers -->    
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA0001" Action="None" /> <!-- XML comments -->

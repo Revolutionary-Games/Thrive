@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -14,13 +14,10 @@ public class HelpScreen : Control
     public string Category;
 
     [Export]
-    public NodePath LeftColumPath;
+    public NodePath LeftColumnPath;
 
     [Export]
     public NodePath RightColumnPath;
-
-    [Export]
-    public NodePath LineSeparatorPath;
 
     [Export]
     public NodePath TipMessageLabelPath;
@@ -33,7 +30,6 @@ public class HelpScreen : Control
 
     private VBoxContainer leftColumn;
     private VBoxContainer rightColumn;
-    private HSeparator lineSeparator;
     private Label tipMessageLabel;
     private Timer timer;
 
@@ -44,9 +40,8 @@ public class HelpScreen : Control
 
     public override void _Ready()
     {
-        leftColumn = GetNode<VBoxContainer>(LeftColumPath);
+        leftColumn = GetNode<VBoxContainer>(LeftColumnPath);
         rightColumn = GetNode<VBoxContainer>(RightColumnPath);
-        lineSeparator = GetNode<HSeparator>(LineSeparatorPath);
         tipMessageLabel = GetNode<Label>(TipMessageLabelPath);
         timer = GetNode<Timer>(TimerPath);
 
@@ -58,7 +53,17 @@ public class HelpScreen : Control
         }
         else
         {
-            GD.PrintErr("Help screen has no category, it wouldn't load texts");
+            GD.PrintErr("Help screen has no category, can't load texts");
+        }
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            leftColumn.QueueFreeChildren();
+            rightColumn.QueueFreeChildren();
+            BuildHelpTexts(Category);
         }
     }
 
@@ -68,16 +73,13 @@ public class HelpScreen : Control
     /// </summary>
     public void RandomizeEasterEgg()
     {
-        lineSeparator.Hide();
         tipMessageLabel.Hide();
 
         if (random.Next(0, 6) > 1)
         {
-            var messages = SimulationParameters.Instance.EasterEggMessages;
+            var helpTexts = SimulationParameters.Instance.GetHelpTexts("EasterEgg");
 
-            tipMessageLabel.Text = messages.Messages.Random(random);
-
-            lineSeparator.Show();
+            tipMessageLabel.Text = TranslationServer.Translate(helpTexts.Messages.Random(random));
             tipMessageLabel.Show();
 
             timer.Start(20);
@@ -85,29 +87,30 @@ public class HelpScreen : Control
     }
 
     /// <summary>
-    ///   Load the help screen with texts from the json file
+    ///   Loads the help screen with texts from the json file
+    ///   and turn it into help boxes
     /// </summary>
     private void BuildHelpTexts(string category)
     {
-        var texts = SimulationParameters.Instance.GetHelpTexts(category);
+        var helpTexts = SimulationParameters.Instance.GetHelpTexts(category);
 
-        var leftTexts = texts.LeftTexts;
-        var rightTexts = texts.RightTexts;
+        var middleIndex = Math.Ceiling(helpTexts.Messages.Count / 2.0f);
 
-        // Fill the left column with text boxes
-        foreach (var entry in leftTexts)
+        for (var i = 0; i < helpTexts.Messages.Count; i++)
         {
-            var helpBox = HelpBoxScene.Instance();
-            helpBox.GetNode<Label>("MarginContainer/Label").Text = entry;
-            leftColumn.AddChild(helpBox);
-        }
+            var message = TranslationServer.Translate(helpTexts.Messages[i]);
 
-        // Fill the right column with text boxes
-        foreach (var entry in rightTexts)
-        {
             var helpBox = HelpBoxScene.Instance();
-            helpBox.GetNode<Label>("MarginContainer/Label").Text = entry;
-            rightColumn.AddChild(helpBox);
+            helpBox.GetNode<Label>("MarginContainer/Label").Text = message;
+
+            if (i < middleIndex)
+            {
+                leftColumn.AddChild(helpBox);
+            }
+            else
+            {
+                rightColumn.AddChild(helpBox);
+            }
         }
     }
 
@@ -117,7 +120,6 @@ public class HelpScreen : Control
 
     private void OnTimerTimeout()
     {
-        lineSeparator.Hide();
         tipMessageLabel.Hide();
     }
 

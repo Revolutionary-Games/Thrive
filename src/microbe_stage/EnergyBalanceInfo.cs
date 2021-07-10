@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 /// <summary>
 ///   Info regarding a microbe's energy balance in a patch
@@ -8,8 +8,8 @@ public class EnergyBalanceInfo
     public Dictionary<string, float> Consumption { get; } = new Dictionary<string, float>();
     public Dictionary<string, float> Production { get; } = new Dictionary<string, float>();
 
-    public float BaseMovement { get; set; } = 0.0f;
-    public float Flagella { get; set; } = 0.0f;
+    public float BaseMovement { get; set; }
+    public float Flagella { get; set; }
 
     public float TotalMovement { get; set; }
 
@@ -29,7 +29,7 @@ public class EnergyBalanceInfo
         }
         else
         {
-            Consumption[groupName] = Consumption[groupName] + amount;
+            Consumption[groupName] += amount;
         }
     }
 
@@ -41,7 +41,7 @@ public class EnergyBalanceInfo
         }
         else
         {
-            Production[groupName] = Production[groupName] + amount;
+            Production[groupName] += amount;
         }
     }
 }

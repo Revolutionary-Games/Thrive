@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Text;
     using Godot;
 
@@ -24,14 +25,14 @@
             results[species].MutatedProperties = mutated;
         }
 
-        public void AddPopulationResultForSpecies(Species species, Patch patch, int newPopulation)
+        public void AddPopulationResultForSpecies(Species species, Patch patch, long newPopulation)
         {
             MakeSureResultExistsForSpecies(species);
 
             results[species].NewPopulationInPatches[patch] = Math.Max(newPopulation, 0);
         }
 
-        public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, int populationAmount)
+        public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, long populationAmount)
         {
             AddMigrationResultForSpecies(species, new SpeciesMigration(fromPatch, toPatch, populationAmount));
         }
@@ -79,10 +80,8 @@
                         continue;
                     }
 
-                    var remainingPopulation =
-                        from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
-                    var newPopulation =
-                        to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
+                    long remainingPopulation = from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
+                    long newPopulation = to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
 
                     if (!from.UpdateSpeciesPopulation(entry.Key, remainingPopulation))
                     {
@@ -109,13 +108,53 @@
         ///     Throws an exception if no population is found
         ///   </para>
         /// </remarks>
-        public int GetGlobalPopulation(Species species)
+        public long GetGlobalPopulation(Species species, bool resolveMoves = false)
         {
-            int result = 0;
+            long result = 0;
 
             foreach (var entry in results[species].NewPopulationInPatches)
             {
-                result += Math.Max(entry.Value, 0);
+                var population = entry.Value;
+
+                if (resolveMoves)
+                {
+                    foreach (var migration in results[species].SpreadToPatches)
+                    {
+                        if (migration.From == entry.Key)
+                        {
+                            population -= migration.Population;
+                        }
+                        else if (migration.To == entry.Key)
+                        {
+                            population += migration.Population;
+                        }
+                    }
+                }
+
+                result += Math.Max(population, 0);
+            }
+
+            // Find patches that were moved to but don't include population results
+            if (resolveMoves)
+            {
+                foreach (var migration in results[species].SpreadToPatches)
+                {
+                    bool found = false;
+
+                    foreach (var populationResult in results[species].NewPopulationInPatches)
+                    {
+                        if (migration.To == populationResult.Key)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        result += Math.Max(migration.Population, 0);
+                    }
+                }
             }
 
             return result;
@@ -124,7 +163,7 @@
         /// <summary>
         ///   variant of GetGlobalPopulation for a single patch
         /// </summary>
-        public int GetPopulationInPatch(Species species, Patch patch)
+        public long GetPopulationInPatch(Species species, Patch patch)
         {
             return Math.Max(results[species].NewPopulationInPatches[patch], 0);
         }
@@ -163,28 +202,39 @@
                     builder2.Append(patch.ID);
                 }
 
-                builder2.Append(" ");
-                builder2.Append(patch.Name);
+                builder2.Append(' ');
+                builder2.Append(TranslationServer.Translate(patch.Name));
 
                 return builder2.ToString();
             }
 
-            void OutputPopulationForPatch(Species species, Patch patch, int population)
+            void OutputPopulationForPatch(Species species, Patch patch, long population)
             {
-                builder.Append("  ");
-
-                builder.Append(PatchString(patch));
-
-                builder.Append(" population: ");
-                builder.Append(Math.Max(population, 0));
+                if (population > 0)
+                {
+                    builder.Append("  ");
+                    builder.Append(PatchString(patch));
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("POPULATION"));
+                    builder.Append(' ');
+                    builder.Append(population);
+                }
+                else
+                {
+                    builder.Append("   ");
+                    builder.Append(string.Format(CultureInfo.CurrentCulture,
+                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString(patch)));
+                }
 
                 if (previousPopulations != null)
                 {
-                    builder.Append(" previous: ");
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("PREVIOUS"));
+                    builder.Append(' ');
                     builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
                 }
 
-                builder.Append("\n");
+                builder.Append('\n');
             }
 
             foreach (var entry in results.Values)
@@ -194,52 +244,57 @@
 
                 if (entry.MutatedProperties != null)
                 {
-                    builder.Append(" has a mutation");
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("RUN_RESULT_HAS_A_MUTATION"));
 
                     if (!playerReadable)
                     {
-                        builder.Append(", gene code: ");
+                        builder.Append(", ");
+                        builder.Append(TranslationServer.Translate("RUN_RESULT_GENE_CODE"));
+                        builder.Append(' ');
                         builder.Append(entry.MutatedProperties.StringCode);
                     }
 
-                    builder.Append("\n");
+                    builder.Append('\n');
                 }
 
                 if (entry.SpreadToPatches.Count > 0)
                 {
-                    builder.Append(" spread to patches:\n");
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("RUN_RESULT_SPREAD_TO_PATCHES"));
+                    builder.Append('\n');
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
                         if (playerReadable)
                         {
                             builder.Append("  ");
-                            builder.Append(spreadEntry.To.Name);
-                            builder.Append(" by sending: ");
-                            builder.Append(spreadEntry.Population);
-                            builder.Append(" population");
-                            builder.Append(" from patch: ");
-                            builder.Append(spreadEntry.From.Name);
+                            builder.Append(string.Format(CultureInfo.CurrentCulture,
+                                TranslationServer.Translate("RUN_RESULT_BY_SENDING_POPULATION"),
+                                TranslationServer.Translate(spreadEntry.To.Name), spreadEntry.Population,
+                                TranslationServer.Translate(spreadEntry.From.Name)));
                         }
                         else
                         {
                             builder.Append("  ");
-                            builder.Append(spreadEntry.To.Name);
+                            builder.Append(TranslationServer.Translate(spreadEntry.To.Name));
                             builder.Append(" pop: ");
                             builder.Append(spreadEntry.Population);
                             builder.Append(" from: ");
-                            builder.Append(spreadEntry.From.Name);
+                            builder.Append(TranslationServer.Translate(spreadEntry.From.Name));
                         }
 
-                        builder.Append("\n");
+                        builder.Append('\n');
                     }
                 }
 
-                builder.Append(" population in patches:\n");
+                builder.Append(' ');
+                builder.Append(TranslationServer.Translate("RUN_RESULT_POP_IN_PATCHES"));
+                builder.Append('\n');
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {
-                    var adjustedPopulation = patchPopulation.Value;
+                    long adjustedPopulation = patchPopulation.Value;
 
                     if (resolveMoves)
                     {
@@ -256,7 +311,7 @@
                             if (effect.Species == entry.Species)
                             {
                                 adjustedPopulation +=
-                                    effect.Constant + (int)(effect.Species.Population * effect.Coefficient)
+                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
                                     - effect.Species.Population;
                             }
                         }
@@ -265,15 +320,15 @@
                     // As the populations are added to all patches, even when the species is not there, we remove those
                     // from output if there is currently no population in a patch and there isn't one in
                     // previousPopulations
-                    bool include = false;
+                    var include = false;
 
                     if (adjustedPopulation > 0)
                     {
                         include = true;
                     }
-                    else if (previousPopulations != null)
+                    else
                     {
-                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
+                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
                             0)
                         {
                             include = true;
@@ -290,7 +345,7 @@
                 {
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
-                        bool found = false;
+                        var found = false;
 
                         var to = spreadEntry.To;
 
@@ -311,8 +366,15 @@
                     }
                 }
 
+                if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
+                {
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
+                    builder.Append('\n');
+                }
+
                 if (playerReadable)
-                    builder.Append("\n");
+                    builder.Append('\n');
             }
 
             return builder.ToString();
@@ -326,10 +388,10 @@
             results[species] = new SpeciesResult(species);
         }
 
-        private int CountSpeciesSpreadPopulation(Species species,
+        private long CountSpeciesSpreadPopulation(Species species,
             Patch targetPatch)
         {
-            int totalPopulation = 0;
+            long totalPopulation = 0;
 
             if (!results.ContainsKey(species))
             {
@@ -356,12 +418,12 @@
         {
             public Species Species;
 
-            public Dictionary<Patch, int> NewPopulationInPatches = new Dictionary<Patch, int>();
+            public Dictionary<Patch, long> NewPopulationInPatches = new Dictionary<Patch, long>();
 
             /// <summary>
             ///   null means no changes
             /// </summary>
-            public Species MutatedProperties = null;
+            public Species MutatedProperties;
 
             /// <summary>
             ///   List of patches this species has spread to

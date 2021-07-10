@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 using Godot;
@@ -54,15 +54,38 @@ public class Save
     public Image Screenshot { get; set; }
 
     /// <summary>
+    ///   The scene object to switch to once this save is loaded
+    /// </summary>
+    [JsonIgnore]
+    public ILoadableGameState TargetScene
+    {
+        get
+        {
+            switch (GameState)
+            {
+                case MainGameState.MicrobeStage:
+                    return MicrobeStage;
+                case MainGameState.MicrobeEditor:
+                    return MicrobeEditor;
+                default:
+                    throw new InvalidOperationException("specified game state has no associated scene");
+            }
+        }
+    }
+
+    /// <summary>
     ///   Loads a save from a file or throws an exception
     /// </summary>
     /// <param name="saveName">The name of the save. This is not the full path.</param>
+    /// <param name="readFinished">
+    ///   A callback that is called when reading data has finished and creating objects start.
+    /// </param>
     /// <returns>The loaded save</returns>
-    public static Save LoadFromFile(string saveName)
+    public static Save LoadFromFile(string saveName, Action readFinished = null)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (_, save, screenshot) = LoadFromFile(target, false, true, true);
+        var (_, save, screenshot) = LoadFromFile(target, false, true, true, readFinished);
 
         // Info is already contained in save so it doesn't need to be loaded and assigned here
         save.Screenshot = screenshot;
@@ -74,9 +97,40 @@ public class Save
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (info, _, _) = LoadFromFile(target, true, false, false);
+        try
+        {
+            var (info, _, _) = LoadFromFile(target, true, false, false, null);
 
-        return info;
+            return info;
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to load save info from ${saveName}, error: ${e}");
+            return SaveInformation.CreateInvalid();
+        }
+    }
+
+    public static Save LoadInfoAndScreenshotFromSave(string saveName)
+    {
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+
+        var save = new Save { Name = saveName };
+
+        try
+        {
+            var (info, _, screenshot) = LoadFromFile(target, true, false, true, null);
+
+            save.Info = info;
+            save.Screenshot = screenshot;
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to load save info and screenshot from ${saveName}, error: ${e}");
+            save.Info = SaveInformation.CreateInvalid();
+            save.Screenshot = null;
+        }
+
+        return save;
     }
 
     /// <summary>
@@ -120,45 +174,41 @@ public class Save
 
     private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string tempScreenshot)
     {
-        using (var file = new File())
+        using var file = new File();
+        file.Open(target, File.ModeFlags.Write);
+
+        using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
+        using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
+
+        OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
+
+        if (tempScreenshot != null)
         {
-            file.Open(target, File.ModeFlags.Write);
-            using (Stream gzoStream = new GZipOutputStream(new GodotFileStream(file)))
+            byte[] data = null;
+
+            using (var reader = new File())
             {
-                using (var tar = new TarOutputStream(gzoStream))
+                reader.Open(tempScreenshot, File.ModeFlags.Read);
+
+                if (!reader.IsOpen())
                 {
-                    OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
-
-                    if (tempScreenshot != null)
-                    {
-                        byte[] data = null;
-
-                        using (var reader = new File())
-                        {
-                            reader.Open(tempScreenshot, File.ModeFlags.Read);
-
-                            if (!reader.IsOpen())
-                            {
-                                GD.PrintErr("Failed to open temp screenshot for writing to save");
-                            }
-                            else
-                            {
-                                data = reader.GetBuffer((int)reader.GetLen());
-                            }
-                        }
-
-                        if (data != null && data.Length > 0)
-                            OutputEntry(tar, SAVE_SCREENSHOT, data);
-                    }
-
-                    OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
+                    GD.PrintErr("Failed to open temp screenshot for writing to save");
+                }
+                else
+                {
+                    data = reader.GetBuffer((int)reader.GetLen());
                 }
             }
+
+            if (data?.Length > 0)
+                OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
+
+        OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
     }
 
     private static (SaveInformation info, Save save, Image screenshot) LoadFromFile(string file, bool info,
-        bool save, bool screenshot)
+        bool save, bool screenshot, Action readFinished)
     {
         using (var directory = new Directory())
         {
@@ -167,6 +217,8 @@ public class Save
         }
 
         var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
+
+        readFinished?.Invoke();
 
         SaveInformation infoResult = null;
         Save saveResult = null;
@@ -197,14 +249,12 @@ public class Save
         {
             imageResult = new Image();
 
-            if (screenshotData != null && screenshotData.Length > 0)
+            if (screenshotData?.Length > 0)
             {
                 imageResult.LoadPngFromBuffer(screenshotData);
             }
-            else
-            {
-                // Not a critical error
-            }
+
+            // Not a critical error that screenshot is missing even if it was requested
         }
 
         return (infoResult, saveResult, imageResult);
@@ -234,57 +284,54 @@ public class Save
             throw new ArgumentException("no things to load specified from save");
         }
 
-        using (var reader = new File())
+        using var reader = new File();
+        reader.Open(file, File.ModeFlags.Read);
+
+        if (!reader.IsOpen())
+            throw new ArgumentException("couldn't open the file for reading");
+
+        using var stream = new GodotFileStream(reader);
+        using Stream gzoStream = new GZipInputStream(stream);
+        using var tar = new TarInputStream(gzoStream, Encoding.UTF8);
+
+        TarEntry tarEntry;
+        while ((tarEntry = tar.GetNextEntry()) != null)
         {
-            reader.Open(file, File.ModeFlags.Read);
-            if (!reader.IsOpen())
-                throw new ArgumentException("couldn't open the file for reading");
+            if (tarEntry.IsDirectory)
+                continue;
 
-            using (Stream gzoStream = new GZipInputStream(new GodotFileStream(reader)))
+            if (tarEntry.Name == SAVE_INFO_JSON)
             {
-                using (var tar = new TarInputStream(gzoStream))
-                {
-                    TarEntry tarEntry;
-                    while ((tarEntry = tar.GetNextEntry()) != null)
-                    {
-                        if (tarEntry.IsDirectory)
-                            continue;
+                if (!info)
+                    continue;
 
-                        if (tarEntry.Name == SAVE_INFO_JSON)
-                        {
-                            if (!info)
-                                continue;
-
-                            infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
-                            --itemsToRead;
-                        }
-                        else if (tarEntry.Name == SAVE_SAVE_JSON)
-                        {
-                            if (!save)
-                                continue;
-
-                            saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
-                            --itemsToRead;
-                        }
-                        else if (tarEntry.Name == SAVE_SCREENSHOT)
-                        {
-                            if (!screenshot)
-                                continue;
-
-                            screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
-                            --itemsToRead;
-                        }
-                        else
-                        {
-                            GD.PrintErr("Unknown file in save: ", tarEntry.Name);
-                        }
-
-                        // Early quit if we already got as many things as we want
-                        if (itemsToRead <= 0)
-                            break;
-                    }
-                }
+                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                --itemsToRead;
             }
+            else if (tarEntry.Name == SAVE_SAVE_JSON)
+            {
+                if (!save)
+                    continue;
+
+                saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                --itemsToRead;
+            }
+            else if (tarEntry.Name == SAVE_SCREENSHOT)
+            {
+                if (!screenshot)
+                    continue;
+
+                screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
+                --itemsToRead;
+            }
+            else
+            {
+                GD.PrintErr("Unknown file in save: ", tarEntry.Name);
+            }
+
+            // Early quit if we already got as many things as we want
+            if (itemsToRead <= 0)
+                break;
         }
 
         return (infoStr, saveStr, screenshotData);
@@ -311,8 +358,8 @@ public class Save
     {
         // Pre-allocate storage
         var buffer = new byte[length];
-        using (var stream = new MemoryStream(buffer))
         {
+            using var stream = new MemoryStream(buffer);
             tar.CopyEntryContents(stream);
         }
 
@@ -323,53 +370,11 @@ public class Save
     {
         // Pre-allocate storage
         var buffer = new byte[length];
-        using (var stream = new MemoryStream(buffer))
         {
+            using var stream = new MemoryStream(buffer);
             tar.CopyEntryContents(stream);
         }
 
         return buffer;
     }
-}
-
-/// <summary>
-///   Info embedded in a save file
-/// </summary>
-public class SaveInformation
-{
-    public enum SaveType
-    {
-        /// <summary>
-        ///   Player initiated save
-        /// </summary>
-        Manual,
-
-        /// <summary>
-        ///   Automatic save
-        /// </summary>
-        AutoSave,
-
-        /// <summary>
-        ///   Quick save, separate from manual to make it easier to keep a fixed number of quick saves
-        /// </summary>
-        QuickSave,
-    }
-
-    /// <summary>
-    ///   Version of the game the save was made with, used to detect incompatible versions
-    /// </summary>
-    public string ThriveVersion { get; set; } = Constants.Version;
-
-    public string Platform { get; set; } = FeatureInformation.GetOS();
-
-    public string Creator { get; set; } = System.Environment.UserName;
-
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    /// <summary>
-    ///   Unique ID of this save
-    /// </summary>
-    public Guid ID { get; set; } = Guid.NewGuid();
-
-    public SaveType Type { get; set; } = SaveType.Manual;
 }

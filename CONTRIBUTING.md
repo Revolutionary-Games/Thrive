@@ -39,12 +39,36 @@ currently it is not possible commit changes to Git LFS if you are not
 a team member, so you need to ask someone from the team for help if
 your PR includes changes to assets.
 
+When creating a pull request, include the "closes" or "fixes" keyword followed
+by the issue number that will be closed when the pull request is
+accepted. Example: `closes #1234`.
+
+Before marking your PR as ready for review (not a draft) please work
+through the PR testing checklist to not waste the reviewer's time if
+they have to find basic issues in your PR:
+https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
+
+If you need to alter code for an issue, don't create a new pull request.
+Existing pull requests can be updated. Simply push further commits to
+the same branch.
+
+Unfortunately, Github issues are often created quickly with little detail
+and context. Please do not hesitate to ask questions regarding the
+issue for clarification and details.
 
 If you want to contribute a non-planned feature, then you must add
 code to disable your changes. Note: currently we don't have an options
 menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
 
+## Translating the game
+
+You can find the necessary informations about how to translate the game [here](doc/working_with_translations.md).
+
+## Planning Board
+
+The planning board contains all issues and pull requests grouped
+by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
 
 ## Getting help
 
