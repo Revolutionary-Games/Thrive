@@ -40,7 +40,7 @@ public class HeterotrophicFoodSource : IFoodSource
         var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ
             && !microbeSpecies.MembraneType.CellWall ?
                 Constants.AUTO_EVO_ENGULF_PREDATION_SCORE :
-            0.0f;
+                0.0f;
         engulfScore *= predatorSpeed > preySpeed ? 1.0f : 0.1f;
 
         var pilusScore = 0.0f;
