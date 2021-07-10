@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 09:18-0400\n"
-"PO-Revision-Date: 2021-06-14 16:59+0000\n"
-"Last-Translator: Nate Magid <bku78893@cuoly.com>\n"
+"PO-Revision-Date: 2021-07-03 09:42+0000\n"
+"Last-Translator: Maxonovien <maxime.caute@free.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -118,17 +118,16 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:16
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"En vous liant à d’autres cellules, vous pouvez construire une colonie "
-"cellulaire où les cellules partagent les composés qu’elles absorbent et "
+"En vous liant à d'autres cellules, vous pouvez construire une colonie "
+"cellulaire où les cellules partagent les composés qu'elles absorbent et "
 "produisent les unes avec les autres. Afin de pouvoir se lier à une autre "
-"cellule, vous devez avoir l’organelle des agents de liaison et s’y déplacer "
-"après être entré en mode de liaison. Vous ne pouvez lier qu’avec des "
-"cellules de votre propre espèce. Alors que dans une colonie, vous ne pouvez "
-"pas diviser votre cellule et entrer dans l’éditeur (pour l’instant). Pour "
-"entrer dans l’éditeur, quittez d’abord la colonie une fois que vous avez "
-"collecté suffisamment de composés, puis entrez dans l’éditeur. Les grandes "
-"colonies cellulaires sont la voie vers la multicellularité (pas encore dans "
-"le jeu)."
+"cellule, vous devez disposer des agents de liaison organelle et vous y "
+"déplacer après être entré en mode de liaison. Vous ne pouvez vous lier "
+"qu'avec des cellules de votre propre espèce. En colonie, vous ne pouvez pas "
+"diviser votre cellule et entrer dans l'éditeur (pour l'instant). Pour entrer "
+"dans l'éditeur, quittez d'abord la colonie une fois que vous avez collecté "
+"suffisamment de composés, puis entrez dans l'éditeur. Les grandes colonies "
+"cellulaires sont la voie vers la multicellularité (pas encore dans le jeu)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -165,26 +164,26 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Organites Liées à la Membrane\n"
+"Membranaires organites\n"
 "\n"
-"Noyau : Prends 11 hexagones et permet l'évolution d'organites liée à la "
-"membrane, double aussi la taille de votre cellule (ne peut être évolué "
-"qu'une fois)\n"
+"Noyau : prend 11 hexagones et permet l'évolution des organites liés à la "
+"membrane, et double également la taille de votre cellule (ne peut être "
+"évolué qu'une seule fois)\n"
 "\n"
-"Mitochondrie : Produisent de l'ATP à partir de glucose et de l'O2 "
-"environnant, bien plus efficace que le cytoplasme\n"
+"Agent de liaison : permet la liaison avec d'autres cellules\n"
 "\n"
-"Chloroplaste : Produisent du glucose à partir de rayons solaires et du CO2 "
-"environnant\n"
+"Mitochondrie : produit de l'ATP à partir du glucose et de l'O2 atmosphérique "
+"beaucoup plus efficacement que le cytoplasme\n"
 "\n"
-"Chimioplaste : Produisent du glucose à partir de Sulfure d'Hydrogène\n"
+"Chloroplaste : fabrique du glucose à partir de la lumière du soleil et du "
+"CO2 atmosphérique\n"
 "\n"
-"Plaste Fixeur d'Azote : Produisent de l'ammoniaque à partir d'ATP et "
-"d'Azote et d'Oxygène environnant\n"
+"Chemoplast : fabrique du glucose à partir de sulfure d'hydrogène\n"
 "\n"
-"Vacuole : Stockent 15 éléments collectés\n"
+"Plastide fixateur d'azote : fabrique de l'ammoniac à partir d'ATP et d'azote "
+"et d'oxygène atmosphériques\n"
 "\n"
-"Vacuoles à Toxines : Produisent des toxines (nommées OxyToxy NT)"
+"Vacuole : stocke 15 composés collectés"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -321,7 +320,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "Fait amusant, le Didinium est un cilié qui chasse les paramécies."
+msgstr "Fait amusant, le Didinium est un cilié qui chasse la paramécie."
 
 #: ../simulation_parameters/common/help_texts.json:68
 msgid "EASTEREGG_MESSAGE_20"
@@ -1057,7 +1056,7 @@ msgstr "Verr Num"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr ""
+msgstr "ConRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
@@ -1153,7 +1152,7 @@ msgstr "Média suivant"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
-msgstr ""
+msgstr "MedEnreg"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
@@ -1344,7 +1343,6 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Souris inconnue"
 
 #: ../src/general/Gallery.cs:70
-#, fuzzy
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
@@ -1933,17 +1931,12 @@ msgstr ""
 "cytoplasme, les fluides l'entourant réalisent un peu la glycolyse."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Les Métabolosomes sont des groupes de protéines enfermés dans des cages en "
-"protéines. Ils peuvent convertir le glucose en ATP a un taux bien plus "
-"élevé que ce qui est fait dans le cytoplasme avec le processus nommé "
-"Respiration Aérobique. Elle a, cependant, besoin d'oxygène pour "
-"fonctionner, et de plus faibles niveaux d'oxygènes dans l'environnement "
-"vont ralentir son taux de production d'ATP. Puisque les métabolosomes sont "
-"suspendu directement dans le cytoplasme, les fluides l'entourant réalisent "
-"un peu la fermentation."
+"Transforme [thrive:compound]atp[/thrive:compound] en "
+"[thrive:compound]oxytoxy[/thrive:compound]. Échelles de taux avec "
+"concentration de [thrive:compound]oxygène[/thrive:compound]. Peut libérer "
+"des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -2047,18 +2040,11 @@ msgstr ""
 "production d'ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le chloroplaste est une structure a double membrane contenant des pigments "
-"photosensibles contenus ensemble dans des sacs de membrane. C'est un "
-"procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. "
-"Les pigments dans le chloroplaste sont capable d'utiliser l'énergie de la "
-"lumière pour produire du glucose à partir d'eau et de dioxyde de carbone "
-"gazeux lors d'un processus nommé Photosynthèse. Ces pigments sont aussi ce "
-"qui leur donnent cette couleur particulière. Le taux de glucose produit "
-"est proportionnel avec la concentration de dioxyde de carbone, et "
-"l'intensité de la lumière."
+"Produit [thrive:compound] glucose [/thrive:compound]. Échelles de taux avec "
+"concentration de [thrive:compound] dioxyde de carbone [/thrive:compound] et "
+"intensité de [thrive:compound] lumière solaire [/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2078,15 +2064,11 @@ msgid "THERMOPLAST"
 msgstr "Thermoplaste"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le thermoplaste est une structure à double membrane contenant des pigments "
-"thermosensibles empilés ensemble dans des sacs de membrane. C'est un "
-"procaryote qui a été assimilé pour produire du glucose à partir d'eau et "
-"de dioxyde de carbone gazeux avec un processus nommé Thermosynthèse. Le "
-"taux de glucose produit varie en fonction de la concentration de dioxyde "
-"de carbone et de la température."
+"Production de [thrive:compound]glucose[/thrive:compound]. Taux proportionnel "
+"à la concentration de [thrive:compound]carbondioxide[/thrive:compound] et la "
+"température."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2104,14 +2086,13 @@ msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Aucune action"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le chimioplaste est une structure à double membrane contenant des "
-"protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde "
-"de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de "
-"Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la "
-"concentration en dioxyde de carbone."
+"Le chimioplaste est une structure à double membrane contenant des protéines "
+"capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde de carbone "
+"gazeux en glucose avec un processus nommé Chimiosynthèse de Sulfure "
+"d'Hydrogène. Le taux de glucose produit varie en fonction de la "
+"concentration en dioxyde de carbone"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2123,13 +2104,12 @@ msgstr ""
 "concentration en dioxyde de carbone."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
-#, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le Plaste Fixateur d'Azote est une protéine capable d'utiliser l'azote "
-"gazeux, l'oxygène et l'énergie cellulaire sous forme d'ATP pour produire "
-"de l'ammoniaque, un nutriment de croissance clé pour les cellules. C'est "
-"un processus appelé Fixation Aérobique d'Azote."
+"Transforme [thrive:compound]atp[/thrive:compound] en "
+"[thrive:compound]ammoniac[/thrive:compound]. Échelles de taux avec "
+"concentration de [thrive:compound]azote[/thrive:compound] et "
+"[thrive:compound]oxygène[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2154,13 +2134,12 @@ msgstr ""
 "substances. Leur forme est fluide et peut varier selon les cellules."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"La vacuole à toxines est une vacuole ayant évolué de manière à "
-"spécifiquement produire, contenir et sécréter des toxines oxytoxy. La "
-"vitesse de production et sécrétion augmente proportionellement au nombre "
-"de vacuoles à toxines."
+"Transforme l'[thrive:compound]atp[/thrive:compound] en "
+"[thrive:compound]oxytoxy[/thrive:compound]. Taux proportionnel à la "
+"concentration d'[thrive:compound]oxygène[thrive:compound]. Peut libérer des "
+"toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2301,9 +2280,8 @@ msgid "PLAYER_SPEED"
 msgstr "Vitesse du joueur"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
-#, fuzzy
 msgid "PLAYER_DUPLICATE"
-msgstr "joueur mort"
+msgstr "joueur en double"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:477
 msgid "MICROBE_PATCH_LABEL"
@@ -2418,7 +2396,7 @@ msgstr "Sol Marin Pangonien"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Mode de Délier"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -2695,9 +2673,8 @@ msgid "DELETE"
 msgstr "Supprimer"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-#, fuzzy
 msgid "MOVE"
-msgstr "Mouvement"
+msgstr "Bouge toi"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
@@ -3156,14 +3133,13 @@ msgstr ""
 "Regardez l'indicateur en bas à droite pour voir combien il vous en manque."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Pour contrôler votre cellule utilisez les touches affichées près de votre "
-"cellule (au centre de l'écran) et la souris pour contrôler l'orientation "
-"de votre cellule.\n"
+"You have entered Unlink mode. In this mode, you can click on colony members "
+"to unlink them.\n"
 "\n"
-"Essayez toutes les touches pendant quelques secondes pour continuer."
+"To leave the colony completely, you can click on your own cell or press the "
+"Ungroup All button."
 
 #~ msgid "TURNS"
 #~ msgstr "Devient"

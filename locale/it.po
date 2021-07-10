@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 09:18-0400\n"
-"PO-Revision-Date: 2021-06-21 14:23+0000\n"
+"PO-Revision-Date: 2021-06-30 18:36+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -90,8 +90,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:38
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Per riprodurti, devi dividere ciascuno dei tuoi organuli in due. Per "
-"farlo, essi hanno bisogno di Ammoniaca e Fosfato."
+"Per riprodurti, devi sdoppiare ciascuno dei tuoi organuli. Per farlo, essi "
+"hanno bisogno di Ammoniaca e Fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:36
@@ -109,7 +109,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:39
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Sii prudente, i tuoi avversari si evolvono insieme a te. Ogni volta che "
+"Sii prudente: i tuoi avversari si evolvono insieme a te. Ogni volta che "
 "entri nell'editor, si evolvono anche loro."
 
 #: ../simulation_parameters/common/help_texts.json:16
@@ -229,8 +229,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Una curiosità: nel mondo reale, i procarioti possiedono delle strutture "
-"chiamate Biocompartimenti; esse fungono come se fossero organuli, e sono "
-"infatti chiamate \"organuli poliedrici\"."
+"chiamate Biocompartimenti; esse fungono da organuli, e sono infatti chiamate "
+"\"organuli poliedrici\"."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
@@ -2097,12 +2097,12 @@ msgstr "Aumenta lo spazio di stoccaggio della cellula."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"Il vacuolo è un organulo interno membranoso utilizzato per lo stoccaggio "
-"di sostanze. È composto di diverse vesciche, cioè strutture membranose più "
-"piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono "
-"fuse insieme. Il vacuolo contiene acqua, usata per contenere molecole, "
-"enzimi, solidi e altre sostanze. La sua forma è fluida e può variare da "
-"cellula a cellula."
+"Il vacuolo è un organulo membranoso interno, utilizzato per lo stoccaggio di "
+"sostanze. È composto di diverse vesciche, cioè strutture membranose più "
+"piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono fuse "
+"insieme. Il vacuolo è colmo acqua, usata per contenere molecole, enzimi, "
+"solidi e altre sostanze. La sua forma è fluida e può variare da cellula a "
+"cellula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
@@ -2126,10 +2126,9 @@ msgstr "Vacuolo Bioluminescente"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"La forma più basilare di membrana; offre poca protezione ai danni. "
-"Inoltre, ha bisogno di più energia per evitare di deformarsi. Il vantaggio "
-"è che permette alla cellula di muoversi e di assorbire i nutrienti più "
-"velocemente."
+"La forma più basilare di membrana, offre poca protezione ai danni. Inoltre, "
+"ha bisogno di più energia per evitare di deformarsi. Il vantaggio è che "
+"permette alla cellula di muoversi e di assorbire i nutrienti più velocemente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1935
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2101
@@ -2159,7 +2158,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2803
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3073
 msgid "PHYSICAL_RESISTANCE"
-msgstr "Resistenza fisica"
+msgstr "Resistenza Fisica"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2369
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2604
@@ -2368,7 +2367,7 @@ msgstr "Fondale Marino Pangoniano"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:110
 msgid "UNBIND_HELP_TEXT"
-msgstr "Modalità di slegatura"
+msgstr "Modalità di Slegatura"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -2381,7 +2380,7 @@ msgstr "Bilancio dei Composti"
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "Caricando l'Editor di Microbi"
+msgstr "Caricando l'Editor Microbico"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
@@ -2955,7 +2954,7 @@ msgstr "Tutorial"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Benvenuto all'Editor di Microbi.\n"
+"Benvenuto all'Editor Microbico.\n"
 "Qui puoi vedere cosa è successo dall'inizio del gioco o dall'ultima volta "
 "che eri qui, e poi modificare la tua specie.\n"
 "\n"
@@ -2970,11 +2969,11 @@ msgstr ""
 "Questa è la mappa delle zone.\n"
 "Qui sono mostrate le varie zone dove possono vivere i microbi.\n"
 "La tua zona attuale è evidenziata.\n"
-"Puoi cliccare sulle zone per vederne i dettagli a destra.\n"
+"Puoi cliccare su una zona per vederne i dettagli a destra.\n"
 "\n"
-"Se selezioni una zona limitrofa alla tua, puoi premere il pulsante a "
-"destra per trasferirtici. Ciò permette alla popolazione della tua specie "
-"di espandersi in nuove zone.\n"
+"Se selezioni una zona limitrofa alla tua, puoi premere il pulsante a destra "
+"per trasferirtici. Ciò permette alla popolazione della tua specie di "
+"espandersi in nuove zone.\n"
 "\n"
 "Seleziona una zona per continuare."
 
