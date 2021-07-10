@@ -202,8 +202,8 @@
                     builder2.Append(patch.ID);
                 }
 
-                builder2.Append(" ");
-                builder2.Append(patch.Name);
+                builder2.Append(' ');
+                builder2.Append(TranslationServer.Translate(patch.Name));
 
                 return builder2.ToString();
             }
@@ -214,27 +214,27 @@
                 {
                     builder.Append("  ");
                     builder.Append(PatchString(patch));
-                    builder.Append(" ");
+                    builder.Append(' ');
                     builder.Append(TranslationServer.Translate("POPULATION"));
-                    builder.Append(" ");
+                    builder.Append(' ');
                     builder.Append(population);
                 }
                 else
                 {
-                    builder.Append("  ");
-                    builder.Append(" went extinct in ");
-                    builder.Append(PatchString(patch));
+                    builder.Append("   ");
+                    builder.Append(string.Format(CultureInfo.CurrentCulture,
+                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString(patch)));
                 }
 
                 if (previousPopulations != null)
                 {
-                    builder.Append(" ");
+                    builder.Append(' ');
                     builder.Append(TranslationServer.Translate("PREVIOUS"));
-                    builder.Append(" ");
+                    builder.Append(' ');
                     builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
                 }
 
-                builder.Append("\n");
+                builder.Append('\n');
             }
 
             foreach (var entry in results.Values)
@@ -244,25 +244,25 @@
 
                 if (entry.MutatedProperties != null)
                 {
-                    builder.Append(" ");
-                    builder.Append(TranslationServer.Translate("RUNRESULT_HAS_A_MUTATION"));
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("RUN_RESULT_HAS_A_MUTATION"));
 
                     if (!playerReadable)
                     {
                         builder.Append(", ");
-                        builder.Append(TranslationServer.Translate("RUNRESULT_GENE_CODE"));
-                        builder.Append(" ");
+                        builder.Append(TranslationServer.Translate("RUN_RESULT_GENE_CODE"));
+                        builder.Append(' ');
                         builder.Append(entry.MutatedProperties.StringCode);
                     }
 
-                    builder.Append("\n");
+                    builder.Append('\n');
                 }
 
                 if (entry.SpreadToPatches.Count > 0)
                 {
-                    builder.Append(" ");
-                    builder.Append(TranslationServer.Translate("RUNRESULT_SPREAD_TO_PATCHES"));
-                    builder.Append("\n");
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("RUN_RESULT_SPREAD_TO_PATCHES"));
+                    builder.Append('\n');
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
@@ -270,26 +270,27 @@
                         {
                             builder.Append("  ");
                             builder.Append(string.Format(CultureInfo.CurrentCulture,
-                                TranslationServer.Translate("RUNRESULT_BY_SENDING_POPULATION"),
-                                spreadEntry.To.Name, spreadEntry.Population, spreadEntry.From.Name));
+                                TranslationServer.Translate("RUN_RESULT_BY_SENDING_POPULATION"),
+                                TranslationServer.Translate(spreadEntry.To.Name), spreadEntry.Population,
+                                TranslationServer.Translate(spreadEntry.From.Name)));
                         }
                         else
                         {
                             builder.Append("  ");
-                            builder.Append(spreadEntry.To.Name);
+                            builder.Append(TranslationServer.Translate(spreadEntry.To.Name));
                             builder.Append(" pop: ");
                             builder.Append(spreadEntry.Population);
                             builder.Append(" from: ");
-                            builder.Append(spreadEntry.From.Name);
+                            builder.Append(TranslationServer.Translate(spreadEntry.From.Name));
                         }
 
-                        builder.Append("\n");
+                        builder.Append('\n');
                     }
                 }
 
-                builder.Append(" ");
-                builder.Append(TranslationServer.Translate("RUNRESULT_POP_IN_PATCHES"));
-                builder.Append("\n");
+                builder.Append(' ');
+                builder.Append(TranslationServer.Translate("RUN_RESULT_POP_IN_PATCHES"));
+                builder.Append('\n');
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {
@@ -325,9 +326,9 @@
                     {
                         include = true;
                     }
-                    else if (previousPopulations != null)
+                    else
                     {
-                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
+                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
                             0)
                         {
                             include = true;
@@ -367,13 +368,13 @@
 
                 if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
                 {
-                    builder.Append(" ");
-                    builder.Append("went extinct from the planet");
-                    builder.Append("\n");
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
+                    builder.Append('\n');
                 }
 
                 if (playerReadable)
-                    builder.Append("\n");
+                    builder.Append('\n');
             }
 
             return builder.ToString();

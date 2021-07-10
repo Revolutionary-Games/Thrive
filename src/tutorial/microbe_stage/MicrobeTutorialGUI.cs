@@ -38,6 +38,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath ReproductionTutorialPath;
 
+    [Export]
+    public NodePath UnbindTutorialPath;
+
     private WindowDialog microbeWelcomeMessage;
     private Control microbeMovementKeyPrompts;
     private Control microbeMovementKeyForward;
@@ -48,6 +51,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private WindowDialog glucoseTutorial;
     private WindowDialog stayingAlive;
     private WindowDialog reproductionTutorial;
+    private WindowDialog unbindTutorial;
 
     public ITutorialInput EventReceiver { get; set; }
 
@@ -69,7 +73,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
             if (value)
             {
-                microbeWelcomeMessage.PopupCentered();
+                microbeWelcomeMessage.PopupCenteredShrink();
             }
             else
             {
@@ -160,6 +164,25 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool UnbindTutorialVisible
+    {
+        get => unbindTutorial.Visible;
+        set
+        {
+            if (value == unbindTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                unbindTutorial.Show();
+            }
+            else
+            {
+                unbindTutorial.Visible = false;
+            }
+        }
+    }
+
     public float MicrobeMovementRotation
     {
         get => microbeMovementKeyPrompts.RectRotation;
@@ -208,6 +231,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         glucoseTutorial = GetNode<WindowDialog>(GlucoseTutorialPath);
         stayingAlive = GetNode<WindowDialog>(StayingAlivePath);
         reproductionTutorial = GetNode<WindowDialog>(ReproductionTutorialPath);
+        unbindTutorial = GetNode<WindowDialog>(UnbindTutorialPath);
     }
 
     public override void _Process(float delta)

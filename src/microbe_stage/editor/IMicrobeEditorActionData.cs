@@ -33,6 +33,26 @@ public class RemoveActionData : IMicrobeEditorActionData
 }
 
 [JSONAlwaysDynamicType]
+public class MoveActionData : IMicrobeEditorActionData
+{
+    public OrganelleTemplate Organelle;
+    public Hex OldLocation;
+    public Hex NewLocation;
+    public int OldRotation;
+    public int NewRotation;
+
+    public MoveActionData(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
+        int newRotation)
+    {
+        Organelle = organelle;
+        OldLocation = oldLocation;
+        NewLocation = newLocation;
+        OldRotation = oldRotation;
+        NewRotation = newRotation;
+    }
+}
+
+[JSONAlwaysDynamicType]
 public class MembraneActionData : IMicrobeEditorActionData
 {
     public MembraneType OldMembrane;

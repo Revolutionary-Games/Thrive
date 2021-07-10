@@ -214,13 +214,10 @@ public class Jukebox : Node
         bool faded = false;
 
         // Add transitions
-        if (previouslyPlayedCategory != null)
+        if (previouslyPlayedCategory?.CategoryTransition == MusicCategory.Transition.Fade)
         {
-            if (previouslyPlayedCategory.CategoryTransition == MusicCategory.Transition.Fade)
-            {
-                AddFadeOut();
-                faded = true;
-            }
+            AddFadeOut();
+            faded = true;
         }
 
         operations.Enqueue(new Operation(delta =>
@@ -415,13 +412,10 @@ public class Jukebox : Node
 
     private void OnCategoryEnded()
     {
-        if (previouslyPlayedCategory == null)
-            return;
-
         var category = previouslyPlayedCategory;
 
         // Store continue positions
-        if (category.Return == MusicCategory.ReturnType.Continue)
+        if (category?.Return == MusicCategory.ReturnType.Continue)
         {
             var activeTracks = PlayingTracks;
 

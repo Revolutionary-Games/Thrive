@@ -26,7 +26,7 @@ public class QuickLoadHandler : NodeWithInput
             GD.Print("Quick load pressed, attempting to load latest save");
 
             if (!SaveHelper.QuickLoad())
-                differentVersionDialog.PopupCenteredMinsize();
+                differentVersionDialog.PopupCenteredShrink();
         }
         else
         {

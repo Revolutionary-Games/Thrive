@@ -134,6 +134,10 @@ public class InputEventItem : Node
             if (xButton.IsHovered())
             {
                 Delete();
+
+                // Rebind canceled, alert the InputManager so it can resume getting input
+                InputManager.RebindingIsActive = false;
+
                 return;
             }
 
@@ -158,16 +162,25 @@ public class InputEventItem : Node
             switch (key.Scancode)
             {
                 case (uint)KeyList.Escape:
+                {
+                    InputGroupList.WasListeningForInput = true;
+                    WaitingForInput = false;
+
+                    // Rebind canceled, alert the InputManager so it can resume getting input
+                    InputManager.RebindingIsActive = false;
+
                     if (AssociatedEvent == null)
                     {
                         Delete();
-                        return;
+                    }
+                    else
+                    {
+                        UpdateButtonText();
                     }
 
-                    InputGroupList.WasListeningForInput = true;
-                    WaitingForInput = false;
-                    UpdateButtonText();
                     return;
+                }
+
                 case (uint)KeyList.Alt:
                 case (uint)KeyList.Shift:
                 case (uint)KeyList.Control:
@@ -300,7 +313,7 @@ public class InputEventItem : Node
         xButton.Visible = true;
 
         // Signal to the input manager that a rebinding has started
-        // and it should ignore input untill the rebind is finished
+        // and it should ignore input until the rebind is finished
         InputManager.RebindingIsActive = true;
     }
 

@@ -22,6 +22,7 @@ public class ChemicalEquation : VBoxContainer
     private IProcessDisplayInfo equationFromProcess;
     private bool showSpinner;
     private Texture equationArrowTexture;
+    private Color defaultTitleColour = Colors.White;
 
     /// <summary>
     ///   For some reason resizing the process panel causes the spinner to reset to the initial rotation, so we use
@@ -51,7 +52,7 @@ public class ChemicalEquation : VBoxContainer
             if (equationFromProcess == null && value == null)
                 return;
 
-            if (equationFromProcess != null && equationFromProcess.Equals(value))
+            if (equationFromProcess?.Equals(value) == true)
                 return;
 
             equationFromProcess = value;
@@ -68,7 +69,7 @@ public class ChemicalEquation : VBoxContainer
         {
             showSpinner = value;
             if (spinner != null)
-                spinner.Visible = showSpinner;
+                UpdateHeader();
         }
     }
 
@@ -84,6 +85,25 @@ public class ChemicalEquation : VBoxContainer
 
     public float SpinnerBaseSpeed { get; set; } = Constants.DEFAULT_PROCESS_SPINNER_SPEED;
 
+    public Color DefaultTitleColour
+    {
+        get => defaultTitleColour;
+        set
+        {
+            if (defaultTitleColour == value)
+                return;
+
+            defaultTitleColour = value;
+            if (title != null)
+                UpdateHeader();
+        }
+    }
+
+    /// <summary>
+    ///   If true the title color will be changed to red if EquationFromProcess has any limiting compounds.
+    /// </summary>
+    public bool MarkRedOnLimitingCompounds { get; set; }
+
     public override void _Ready()
     {
         title = GetNode<Label>(TitlePath);
@@ -92,7 +112,6 @@ public class ChemicalEquation : VBoxContainer
 
         equationArrowTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/WhiteArrow.png");
 
-        spinner.Visible = showSpinner;
         UpdateEquation();
     }
 
@@ -112,6 +131,15 @@ public class ChemicalEquation : VBoxContainer
             UpdateEquation();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            if (perSecondLabel != null)
+                perSecondLabel.Text = TranslationServer.Translate("PER_SECOND_SLASH");
+        }
+    }
+
     private void UpdateEquation()
     {
         if (EquationFromProcess == null)
@@ -129,8 +157,8 @@ public class ChemicalEquation : VBoxContainer
 
         Visible = true;
 
-        // title.AddColorOverride("font_color", new Color(1.0f, 0.84f, 0.0f));
-        title.Text = EquationFromProcess.Name;
+        // Title and spinner
+        UpdateHeader();
 
         var normalInputs = EquationFromProcess.Inputs.ToList();
         var environmentalInputs = EquationFromProcess.EnvironmentalInputs.ToList();
@@ -151,6 +179,21 @@ public class ChemicalEquation : VBoxContainer
 
         // Environment conditions
         UpdateEnvironmentPart(environmentalInputs);
+    }
+
+    private void UpdateHeader()
+    {
+        spinner.Visible = ShowSpinner;
+        title.Text = EquationFromProcess.Name;
+
+        if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds.Count > 0)
+        {
+            title.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+        }
+        else
+        {
+            title.AddColorOverride("font_color", DefaultTitleColour);
+        }
     }
 
     private void UpdateLeftSide(List<KeyValuePair<Compound, float>> normalInputs)

@@ -7,7 +7,7 @@ using Environment = System.Environment;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
-public class OptionsMenu : Control
+public class OptionsMenu : ControlWithInput
 {
     /*
       GUI Control Paths
@@ -162,6 +162,10 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CustomUsernamePath;
 
+    private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
+        .OrderBy(i => i, StringComparer.InvariantCulture)
+        .ToList();
+
     private Button resetButton;
     private Button saveButton;
 
@@ -195,7 +199,6 @@ public class OptionsMenu : Control
     private CheckBox guiMuted;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
-    private List<string> languages;
 
     // Performance tab
     private Control performanceTab;
@@ -213,16 +216,16 @@ public class OptionsMenu : Control
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
     private CheckBox tutorialsEnabledOnNewGame;
-    private CheckBox autosave;
-    private SpinBox maxAutosaves;
-    private SpinBox maxQuicksaves;
+    private CheckBox autoSave;
+    private SpinBox maxAutoSaves;
+    private SpinBox maxQuickSaves;
     private CheckBox customUsernameEnabled;
     private LineEdit customUsername;
 
     private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
-    private WindowDialog backConfirmationBox;
+    private AcceptDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
     private AcceptDialog errorAcceptBox;
 
@@ -264,6 +267,8 @@ public class OptionsMenu : Control
         Inputs,
         Miscellaneous,
     }
+
+    private static List<string> Languages => LanguagesCache;
 
     public override void _Ready()
     {
@@ -320,18 +325,30 @@ public class OptionsMenu : Control
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
         tutorialsEnabledOnNewGame = GetNode<CheckBox>(TutorialsEnabledOnNewGamePath);
         cheats = GetNode<CheckBox>(CheatsPath);
-        autosave = GetNode<CheckBox>(AutoSavePath);
-        maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
-        maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
+        autoSave = GetNode<CheckBox>(AutoSavePath);
+        maxAutoSaves = GetNode<SpinBox>(MaxAutoSavesPath);
+        maxQuickSaves = GetNode<SpinBox>(MaxQuickSavesPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
-        backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
+        backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
+
+        // We're only utilizing the AcceptDialog's auto resize functionality,
+        // so hide the default Ok button since it's not needed
+        backConfirmationBox.GetOk().Hide();
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            BuildInputRebindControls();
+        }
     }
 
     /// <summary>
@@ -429,15 +446,43 @@ public class OptionsMenu : Control
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
         tutorialsEnabledOnNewGame.Pressed = settings.TutorialsEnabled;
         cheats.Pressed = settings.CheatsEnabled;
-        autosave.Pressed = settings.AutoSaveEnabled;
-        maxAutosaves.Value = settings.MaxAutoSaves;
-        maxAutosaves.Editable = settings.AutoSaveEnabled;
-        maxQuicksaves.Value = settings.MaxQuickSaves;
+        autoSave.Pressed = settings.AutoSaveEnabled;
+        maxAutoSaves.Value = settings.MaxAutoSaves;
+        maxAutoSaves.Editable = settings.AutoSaveEnabled;
+        maxQuickSaves.Value = settings.MaxQuickSaves;
         customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
         customUsername.Text = settings.CustomUsername.Value != null ?
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+    }
+
+    [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
+    public bool OnEscapePressed()
+    {
+        // Only handle keypress when visible
+        if (!Visible)
+            return false;
+
+        if (InputGroupList.WasListeningForInput)
+        {
+            // Listening for Inputs, should not do anything and should not pass through
+            return true;
+        }
+
+        if (!Exit())
+        {
+            // We are prevented from exiting, consume this input
+            return true;
+        }
+
+        // If it is opened from InGame then let pause menu hide too.
+        if (optionsMode == OptionsMode.InGame)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -677,10 +722,7 @@ public class OptionsMenu : Control
 
     private void LoadLanguages(OptionButton optionButton)
     {
-        languages = TranslationServer.GetLoadedLocales().Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture)
-            .ToList();
-
-        foreach (var locale in languages)
+        foreach (var locale in Languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
@@ -696,15 +738,21 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        Exit();
+    }
+
+    private bool Exit()
+    {
         // If any settings have been changed, show a dialogue asking if the changes should be kept or
         // discarded.
         if (!CompareSettings())
         {
-            backConfirmationBox.PopupCenteredMinsize();
-            return;
+            backConfirmationBox.PopupCenteredShrink();
+            return false;
         }
 
         EmitSignal(nameof(OnOptionsClosed));
+        return true;
     }
 
     private void OnResetPressed()
@@ -733,7 +781,7 @@ public class OptionsMenu : Control
         if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
-            errorAcceptBox.PopupCenteredMinsize();
+            errorAcceptBox.PopupCenteredShrink();
             return;
         }
 
@@ -750,7 +798,7 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        defaultsConfirmationBox.PopupCenteredMinsize();
+        defaultsConfirmationBox.PopupCenteredShrink();
     }
 
     private void BackSaveSelected()
@@ -760,7 +808,7 @@ public class OptionsMenu : Control
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
             backConfirmationBox.Hide();
-            errorAcceptBox.PopupCenteredMinsize();
+            errorAcceptBox.PopupCenteredShrink();
 
             return;
         }
@@ -998,6 +1046,10 @@ public class OptionsMenu : Control
     private void OnCheatsToggled(bool pressed)
     {
         Settings.Instance.CheatsEnabled.Value = pressed;
+        if (!pressed)
+        {
+            CheatManager.OnCheatsDisabled();
+        }
 
         UpdateResetSaveButtonState();
     }
@@ -1005,7 +1057,7 @@ public class OptionsMenu : Control
     private void OnAutoSaveToggled(bool pressed)
     {
         Settings.Instance.AutoSaveEnabled.Value = pressed;
-        maxAutosaves.Editable = pressed;
+        maxAutoSaves.Editable = pressed;
 
         UpdateResetSaveButtonState();
     }
@@ -1066,7 +1118,7 @@ public class OptionsMenu : Control
 
     private void OnLanguageSettingSelected(int item)
     {
-        Settings.Instance.SelectedLanguage.Value = languages[item];
+        Settings.Instance.SelectedLanguage.Value = Languages[item];
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
@@ -1093,25 +1145,31 @@ public class OptionsMenu : Control
     {
         if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
         {
-            int index = languages.IndexOf(Settings.DefaultLanguage);
+            int index = Languages.IndexOf(Settings.DefaultLanguage);
 
             // Inexact match to match things like "fi_FI"
             if (index == -1 && Settings.DefaultLanguage.Contains("_"))
             {
-                index = languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
+                index = Languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
             }
 
             // English is the default language, if the user's default locale didn't match anything
             if (index < 0)
             {
-                index = languages.IndexOf("en");
+                index = Languages.IndexOf("en");
             }
 
             languageSelection.Selected = index;
         }
         else
         {
-            languageSelection.Selected = languages.IndexOf(settings.SelectedLanguage.Value);
+            languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value);
         }
+    }
+
+    private void OnLogButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
     }
 }

@@ -306,6 +306,7 @@ public class Settings
     /// <returns>C# locale name, or null if there is not a premade mapping</returns>
     public static string TranslateLocaleToCSharp(string godotLocale)
     {
+        // ReSharper disable StringLiteralTypo
         switch (godotLocale)
         {
             case "eo":
@@ -316,6 +317,7 @@ public class Settings
                 return "sr-Cyrl-RS";
         }
 
+        // ReSharper restore StringLiteralTypo
         return null;
     }
 
@@ -361,7 +363,7 @@ public class Settings
             object thisValue = property.GetValue(this);
             object objValue = property.GetValue(obj);
 
-            if (thisValue != objValue && (thisValue == null || !thisValue.Equals(objValue)))
+            if (thisValue != objValue && thisValue?.Equals(objValue) != true)
             {
                 return false;
             }
@@ -416,20 +418,18 @@ public class Settings
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()
     {
-        using (var file = new File())
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
+
+        if (error != Error.Ok)
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
-
-            if (error != Error.Ok)
-            {
-                GD.PrintErr("Couldn't open settings file for writing.");
-                return false;
-            }
-
-            file.StoreString(JsonConvert.SerializeObject(this));
-
-            file.Close();
+            GD.PrintErr("Couldn't open settings file for writing.");
+            return false;
         }
+
+        file.StoreString(JsonConvert.SerializeObject(this));
+
+        file.Close();
 
         return true;
     }
@@ -540,13 +540,12 @@ public class Settings
             cultureInfo = GetCultureInfo(language);
         }
 
-        // Set locale for the game.
-        TranslationServer.SetLocale(language);
-
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.CurrentUICulture = cultureInfo;
 
-        SimulationParameters.Instance.ApplyTranslations();
+        // Set locale for the game. Called after C# locale change so that string
+        // formatting uses could also get updated properly.
+        TranslationServer.SetLocale(language);
     }
 
     /// <summary>
@@ -566,6 +565,9 @@ public class Settings
 
             settings.ApplyAll(true);
 
+            // Simulation parameters need to apply the initial translation
+            SimulationParameters.Instance.ApplyTranslations();
+
             return settings;
         }
         catch (Exception e)
@@ -581,39 +583,37 @@ public class Settings
     /// </summary>
     private static Settings LoadSettings()
     {
-        using (var file = new File())
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+
+        if (error != Error.Ok)
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+            GD.Print("Failed to open settings configuration file, file is missing or unreadable. "
+                + "Using default settings instead.");
 
-            if (error != Error.Ok)
-            {
-                GD.Print("Failed to open settings configuration file, file is missing or unreadable. "
-                    + "Using default settings instead.");
+            var settings = new Settings();
+            settings.Save();
 
-                var settings = new Settings();
-                settings.Save();
+            return settings;
+        }
 
-                return settings;
-            }
+        var text = file.GetAsText();
 
-            var text = file.GetAsText();
+        file.Close();
 
-            file.Close();
+        try
+        {
+            return JsonConvert.DeserializeObject<Settings>(text);
+        }
+        catch
+        {
+            GD.Print("Failed to deserialize settings file data, data may be improperly formatted. "
+                + "Using default settings instead.");
 
-            try
-            {
-                return JsonConvert.DeserializeObject<Settings>(text);
-            }
-            catch
-            {
-                GD.Print("Failed to deserialize settings file data, data may be improperly formatted. "
-                    + "Using default settings instead.");
+            var settings = new Settings();
+            settings.Save();
 
-                var settings = new Settings();
-                settings.Save();
-
-                return settings;
-            }
+            return settings;
         }
     }
 

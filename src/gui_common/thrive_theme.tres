@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=47 format=2]
+[gd_resource type="Theme" load_steps=48 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -150,7 +150,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxLine" id=19]
-content_margin_top = 0.0
 color = Color( 0.439216, 0.623529, 0.623529, 1 )
 thickness = 5
 
@@ -304,14 +303,23 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=33]
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=34]
-bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+bg_color = Color( 0.0666667, 1, 0.835294, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -325,17 +333,24 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=36]
-bg_color = Color( 0, 0, 0, 1 )
-border_width_left = 3
-border_width_right = 2
-border_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 3
+border_width_right = 3
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=38]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 10.0
 content_margin_bottom = 15.0
-bg_color = Color( 0.054902, 0.145098, 0.168627, 0.901961 )
+bg_color = Color( 0.054902, 0.145098, 0.168627, 0.941176 )
 border_width_left = 1
 border_width_top = 23
 border_width_right = 1
@@ -419,8 +434,8 @@ ColorPickerButton/styles/focus = null
 ColorPickerButton/styles/hover = null
 ColorPickerButton/styles/normal = null
 ColorPickerButton/styles/pressed = null
-Dialogs/constants/button_margin = 32
-Dialogs/constants/margin = 8
+Dialogs/constants/button_margin = 42
+Dialogs/constants/margin = 10
 FileDialog/colors/files_disabled = Color( 0, 0, 0, 1 )
 FileDialog/colors/folder_icon_modulate = Color( 0, 0, 0, 1 )
 FileDialog/icons/folder = null
@@ -692,12 +707,12 @@ ToolButton/styles/focus = null
 ToolButton/styles/hover = null
 ToolButton/styles/normal = null
 ToolButton/styles/pressed = null
-TooltipLabel/colors/font_color = Color( 0, 0, 0, 1 )
-TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+TooltipLabel/colors/font_color = Color( 1, 1, 1, 1 )
+TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 TooltipLabel/constants/shadow_offset_x = 1
 TooltipLabel/constants/shadow_offset_y = 1
-TooltipLabel/fonts/font = null
-TooltipPanel/styles/panel = null
+TooltipLabel/fonts/font = ExtResource( 10 )
+TooltipPanel/styles/panel = SubResource( 33 )
 Tree/colors/cursor_color = Color( 0, 0, 0, 1 )
 Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
 Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
@@ -741,10 +756,10 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 33 )
-VScrollBar/styles/grabber_highlight = SubResource( 34 )
-VScrollBar/styles/grabber_pressed = SubResource( 35 )
-VScrollBar/styles/scroll = SubResource( 36 )
+VScrollBar/styles/grabber = SubResource( 34 )
+VScrollBar/styles/grabber_highlight = SubResource( 35 )
+VScrollBar/styles/grabber_pressed = SubResource( 36 )
+VScrollBar/styles/scroll = SubResource( 37 )
 VScrollBar/styles/scroll_focus = null
 VSeparator/constants/separation = 4
 VSeparator/styles/separator = null
@@ -766,4 +781,4 @@ WindowDialog/constants/title_height = 16
 WindowDialog/fonts/title_font = ExtResource( 8 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 37 )
+WindowDialog/styles/panel = SubResource( 38 )

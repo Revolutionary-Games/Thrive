@@ -131,17 +131,17 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
+        conflictDialog.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
             inputActionItem.DisplayName,
             inputActionItem.DisplayName);
 
-        conflictDialog.PopupCenteredMinsize();
+        conflictDialog.PopupCenteredShrink();
     }
 
     public void OnResetInputs()
     {
-        resetInputsDialog.PopupCenteredMinsize();
+        resetInputsDialog.PopupCenteredShrink();
     }
 
     public void OnConflictConfirmed()

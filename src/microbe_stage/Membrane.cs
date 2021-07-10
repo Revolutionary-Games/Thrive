@@ -101,7 +101,7 @@ public class Membrane : MeshInstance
         get => wigglyNess;
         set
         {
-            wigglyNess = value;
+            wigglyNess = Mathf.Clamp(value, 0.0f, 1.0f);
             if (MaterialToEdit != null)
                 ApplyWiggly();
         }
@@ -112,7 +112,7 @@ public class Membrane : MeshInstance
         get => movementWigglyNess;
         set
         {
-            movementWigglyNess = value;
+            movementWigglyNess = Mathf.Clamp(value, 0.0f, 1.0f);
             if (MaterialToEdit != null)
                 ApplyMovementWiggly();
         }
@@ -172,8 +172,7 @@ public class Membrane : MeshInstance
 
     public override void _Ready()
     {
-        if (Type == null)
-            Type = SimulationParameters.Instance.GetMembrane("single");
+        Type ??= SimulationParameters.Instance.GetMembrane("single");
 
         if (MaterialToEdit == null)
             GD.PrintErr("MaterialToEdit on Membrane is not set");
@@ -399,10 +398,7 @@ public class Membrane : MeshInstance
     private void InitializeMesh()
     {
         // For preview scenes, add just one organelle
-        if (OrganellePositions == null)
-        {
-            OrganellePositions = new List<Vector2> { new Vector2(0, 0) };
-        }
+        OrganellePositions ??= new List<Vector2> { new Vector2(0, 0) };
 
         foreach (var pos in OrganellePositions)
         {
@@ -524,8 +520,6 @@ public class Membrane : MeshInstance
         float height = 0.1f;
         float multiplier = 2.0f * Mathf.Pi;
         var center = new Vector2(0.5f, 0.5f);
-
-        movementWigglyNess = Type.MovementWigglyness;
 
         // cell walls need obvious inner/outer membranes (we can worry
         // about chitin later)
