@@ -1,10 +1,11 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A hotkey representing and visualizing an input for in-game actions.
 /// </summary>
 public class ActionButton : Button
 {
+    private Panel highlight;
     private TextureRect iconRect;
     private KeyPrompt keyPrompt;
 
@@ -53,6 +54,7 @@ public class ActionButton : Button
 
     public override void _Ready()
     {
+        highlight = GetNode<Panel>("Highlight");
         iconRect = GetNode<TextureRect>("MarginContainer/VBoxContainer/Icon");
         keyPrompt = GetNode<KeyPrompt>("MarginContainer/VBoxContainer/KeyPrompt");
 
@@ -85,11 +87,12 @@ public class ActionButton : Button
         iconRect.Modulate = highlighted || Pressed ?
             new Color(1f, 1f, 1f, 0.78f) :
             new Color(0.70f, 0.70f, 0.70f, 0.59f);
+        highlight.Visible = Pressed;
     }
 
     private void UpdateKeyPrompt()
     {
-        if (keyPrompt == null)
+        if (keyPrompt == null || keyPrompt.ActionName == actionName)
             return;
 
         keyPrompt.ActionName = actionName;
