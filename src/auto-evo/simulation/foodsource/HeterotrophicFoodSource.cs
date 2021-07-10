@@ -37,9 +37,9 @@ public class HeterotrophicFoodSource : IFoodSource
         predatorSpeed += ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles.Organelles.Select(x => x.Definition), patch.Biome, microbeSpecies.MembraneType).FinalBalance;
 
         // It's great if you can engulf this prey, but only if you can catch it
-        var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ 
+        var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ
             && !microbeSpecies.MembraneType.CellWall ?
-            Constants.AUTO_EVO_ENGULF_PREDATION_SCORE :
+                Constants.AUTO_EVO_ENGULF_PREDATION_SCORE :
             0.0f;
         engulfScore *= predatorSpeed > preySpeed ? 1.0f : 0.1f;
 

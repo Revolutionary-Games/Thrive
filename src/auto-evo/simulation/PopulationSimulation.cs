@@ -138,12 +138,12 @@
             }
 
             var niches = new List<IFoodSource>
-        {
-            new PhotosyntheticFoodSource(patch),
-            new ChemosyntheticFoodSource(patch, Glucose),
-            new ChemosyntheticFoodSource(patch, HydrogenSulfide),
-            new ChemosyntheticFoodSource(patch, Iron),
-        };
+            {
+                new PhotosyntheticFoodSource(patch),
+                new ChemosyntheticFoodSource(patch, Glucose),
+                new ChemosyntheticFoodSource(patch, HydrogenSulfide),
+                new ChemosyntheticFoodSource(patch, Iron),
+            };
 
             foreach (var currentSpecies in species)
             {

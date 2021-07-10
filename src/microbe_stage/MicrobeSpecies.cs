@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -145,7 +144,7 @@ public class MicrobeSpecies : Species
                 if (organelle.Orientation == 3)
                 {
                     organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement.Momentum / 100.0f;
+                        * organelle.Definition.Components.Movement.Momentum / 100.0f;
                 }
             }
         }
