@@ -2291,8 +2291,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var savedColony = Colony;
         Colony = null;
 
-        GetParent().RemoveChild(this);
-        parent.AddChild(this);
+        this.ReParent(parent);
 
         // And restore the colony after completing the re-parenting of this node
         Colony = savedColony;
