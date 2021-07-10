@@ -322,7 +322,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public bool CanBind => organelles.Any(p => p.IsBindingAgent) || Colony != null;
 
     /// <summary>
-    ///   Returns true when this microbe has toxin vacuole and can fire toxins.
+    ///   Returns true when this microbe has toxin vacuoles.
     /// </summary>
     public bool CanEmitToxin => organelles.Any(p => p.IsAgentVacuole);
 

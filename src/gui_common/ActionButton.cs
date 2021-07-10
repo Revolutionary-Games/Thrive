@@ -85,7 +85,7 @@ public class ActionButton : Button
 
         iconRect.Texture = ActionIcon;
         iconRect.Modulate = highlighted || Pressed ?
-            new Color(1f, 1f, 1f, 0.78f) :
+            new Color(1.0f, 1.0f, 1.0f, 0.78f) :
             new Color(0.70f, 0.70f, 0.70f, 0.59f);
         highlight.Visible = Pressed;
     }
