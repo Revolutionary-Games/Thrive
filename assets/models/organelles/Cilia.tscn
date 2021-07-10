@@ -1,13 +1,12 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/models/organelles/Flagellum.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/models/organelles/Cilia.anim" type="Animation" id=1]
 [ext_resource path="res://assets/textures/flagellum.png" type="Texture" id=2]
 [ext_resource path="res://shaders/Organelle.shader" type="Shader" id=3]
-[ext_resource path="res://assets/models/organelles/Flagellum.anim" type="Animation" id=4]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=5]
 [ext_resource path="res://assets/models/organelles/Cilia.mesh" type="ArrayMesh" id=6]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/dissolveValue = 0.0
@@ -19,7 +18,7 @@ shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 5 )
 
-[sub_resource type="Skin" id=2]
+[sub_resource type="Skin" id=5]
 resource_name = "Skin"
 bind_count = 16
 bind/0/name = "bone"
@@ -71,14 +70,16 @@ bind/15/name = "bone_15"
 bind/15/bone = -1
 bind/15/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -1.33227e-16, -4.40677, 0 )
 
-[node name="Cilia" instance=ExtResource( 1 )]
+[sub_resource type="Animation" id=3]
+resource_name = "swim"
+length = 1.66667
 
-[node name="Cilia_1" type="Spatial" parent="." index="1"]
+[node name="Cilia" type="Spatial"]
 transform = Transform( 0.686179, 0, 0.0239182, 0, 0.402829, 0, -0.0314232, 0, 0.522293, 0, 0, 0 )
 
-[node name="Armature001" type="Spatial" parent="Cilia_1" index="0"]
+[node name="Armature001" type="Spatial" parent="."]
 
-[node name="Skeleton" type="Skeleton" parent="Cilia_1/Armature001" index="0"]
+[node name="Skeleton" type="Skeleton" parent="Armature001"]
 bones/0/name = "bone"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0181576, 0.0245926, 0.6 )
@@ -160,16 +161,16 @@ bones/15/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.282216, -0.0307745, -4.
 bones/15/enabled = true
 bones/15/bound_children = [  ]
 
-[node name="cilia" type="MeshInstance" parent="Cilia_1/Armature001/Skeleton" index="0"]
-material_override = SubResource( 1 )
+[node name="cilia" type="MeshInstance" parent="Armature001/Skeleton"]
+material_override = SubResource( 4 )
 mesh = ExtResource( 6 )
-skin = SubResource( 2 )
+skin = SubResource( 5 )
 material/0 = null
 
-[node name="Armature002" type="Spatial" parent="Cilia_1" index="1"]
+[node name="Armature002" type="Spatial" parent="."]
 transform = Transform( 0.164218, 0, -0.445445, 0, 2.48244, 0, 0.692165, 0, 0.658863, 0, 0, 0 )
 
-[node name="Skeleton" type="Skeleton" parent="Cilia_1/Armature002" index="0"]
+[node name="Skeleton" type="Skeleton" parent="Armature002"]
 bones/0/name = "bone"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0181576, 0.0245926, 0.6 )
@@ -251,16 +252,16 @@ bones/15/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.282216, -0.0307745, -4.
 bones/15/enabled = true
 bones/15/bound_children = [  ]
 
-[node name="cilia" type="MeshInstance" parent="Cilia_1/Armature002/Skeleton" index="0"]
-material_override = SubResource( 1 )
+[node name="cilia" type="MeshInstance" parent="Armature002/Skeleton"]
+material_override = SubResource( 4 )
 mesh = ExtResource( 6 )
-skin = SubResource( 2 )
+skin = SubResource( 5 )
 material/0 = null
 
-[node name="Armature003" type="Spatial" parent="Cilia_1" index="2"]
+[node name="Armature003" type="Spatial" parent="."]
 transform = Transform( 0.533076, 0, 0.412044, 0, 2.48244, 0, -0.486896, 0, 0.641368, 0, 0, 0 )
 
-[node name="Skeleton" type="Skeleton" parent="Cilia_1/Armature003" index="0"]
+[node name="Skeleton" type="Skeleton" parent="Armature003"]
 bones/0/name = "bone"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0181576, 0.0245926, 0.6 )
@@ -342,14 +343,15 @@ bones/15/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.282216, -0.0307745, -4.
 bones/15/enabled = true
 bones/15/bound_children = [  ]
 
-[node name="cilia" type="MeshInstance" parent="Cilia_1/Armature003/Skeleton" index="0"]
+[node name="cilia" type="MeshInstance" parent="Armature003/Skeleton"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0 )
-material_override = SubResource( 1 )
+material_override = SubResource( 4 )
 mesh = ExtResource( 6 )
-skin = SubResource( 2 )
+skin = SubResource( 5 )
 material/0 = null
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Flagellum"
 playback_speed = 0.25
-anims/Flagellum = ExtResource( 4 )
+anims/Flagellum = ExtResource( 1 )
+anims/swim = SubResource( 3 )
