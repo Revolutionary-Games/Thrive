@@ -75,10 +75,15 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
-    // Used to prevent spawn belt when player doesn't move
+    /// <summary>
+    ///   Estimate count of existing spawn entities within the current spawn radius of the player;
+    ///   Used to prevent spawn belt when player doesn't move.
+    /// </summary>
     private int estimateEntityCountInSpawnRadius;
 
-    // TODO Initialize
+    /// <summary>
+    ///   Last recorded position of the player. Positions are recorded upon leaving the immobility zone.
+    /// </summary>
     private Vector3 lastRecordedPlayerPosition;
 
     public SpawnSystem(Node root)
