@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="T">Type of actions to hold</typeparam>
 public class ActionHistory<T>
-    where T : ReversableAction
+    where T : ReversibleAction
 {
     [JsonProperty]
     private List<T> actions = new List<T>();
@@ -17,7 +17,7 @@ public class ActionHistory<T>
     ///   possibly redone), is 0 if there is none.
     /// </summary>
     [JsonProperty]
-    private int actionIndex = 0;
+    private int actionIndex;
 
     public bool CanRedo()
     {

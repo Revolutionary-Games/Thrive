@@ -2,7 +2,6 @@
 
 [ext_resource path="res://assets/textures/shard_particle.png" type="Texture" id=1]
 
-
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
 vertex_color_use_as_albedo = true
@@ -38,6 +37,7 @@ color_ramp = SubResource( 3 )
 [sub_resource type="QuadMesh" id=5]
 
 [node name="Iceshelf" type="Particles"]
+pause_mode = 1
 material_override = SubResource( 1 )
 amount = 65
 lifetime = 10.0

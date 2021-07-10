@@ -1,50 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using AutoEvo;
 using Godot;
+using Thread = System.Threading.Thread;
 
 /// <summary>
 ///   A single run of the auto-evo system happening in a background thread
 /// </summary>
 public class AutoEvoRun
 {
-    // Configuration parameters for auto evo
-    // TODO: allow loading these from JSON
-    private const int MUTATIONS_PER_SPECIES = 3;
-    private const bool ALLOW_NO_MUTATION = true;
-    private const int MOVE_ATTEMPTS_PER_SPECIES = 5;
-    private const bool ALLOW_NO_MIGRATION = true;
-
-    private readonly AutoEvo.RunParameters parameters;
+    private readonly RunParameters parameters;
 
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
     /// </summary>
-    private readonly AutoEvo.RunResults results = new AutoEvo.RunResults();
+    private readonly RunResults results = new RunResults();
 
     /// <summary>
     ///   Generated steps are stored here until they are executed
     /// </summary>
-    private readonly Queue<AutoEvo.IRunStep> runSteps = new Queue<AutoEvo.IRunStep>();
+    private readonly Queue<IRunStep> runSteps = new Queue<IRunStep>();
 
-    private volatile RunStage state = RunStage.GATHERING_INFO;
+    private volatile RunStage state = RunStage.GatheringInfo;
 
-    private bool started = false;
-    private volatile bool running = false;
-    private volatile bool finished = false;
-    private volatile bool aborted = false;
+    private bool started;
+    private volatile bool running;
+    private volatile bool finished;
+    private volatile bool aborted;
 
     /// <summary>
     ///   -1 means not yet computed
     /// </summary>
     private volatile int totalSteps = -1;
-    private volatile int completeSteps = 0;
+
+    private int completeSteps;
 
     public AutoEvoRun(GameWorld world)
     {
-        parameters = new AutoEvo.RunParameters(world);
+        parameters = new RunParameters(world);
     }
 
     private enum RunStage
@@ -53,17 +51,17 @@ public class AutoEvoRun
         ///   On the first step(s) all the data is loaded (if there is a lot then it is split into multiple steps) and
         ///   the total number of steps is calculated
         /// </summary>
-        GATHERING_INFO,
+        GatheringInfo,
 
         /// <summary>
         ///   Steps are being executed
         /// </summary>
-        STEPPING,
+        Stepping,
 
         /// <summary>
         ///   All the steps are done and the result is written
         /// </summary>
-        ENDED,
+        Ended,
     }
 
     /// <summary>
@@ -95,9 +93,11 @@ public class AutoEvoRun
             if (total <= 0)
                 return 0;
 
-            return (float)completeSteps / total;
+            return (float)CompleteSteps / total;
         }
     }
+
+    public int CompleteSteps => Thread.VolatileRead(ref completeSteps);
 
     public bool WasSuccessful => Finished && !Aborted;
 
@@ -109,13 +109,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return "Aborted.";
+                return TranslationServer.Translate("ABORTED");
 
             if (Finished)
-                return "Finished.";
+                return TranslationServer.Translate("FINISHED");
 
             if (!Running)
-                return "Not running.";
+                return TranslationServer.Translate("NOT_RUNNING");
 
             int total = totalSteps;
 
@@ -123,19 +123,20 @@ public class AutoEvoRun
             {
                 var percentage = CompletionFraction * 100;
 
-                return $"{percentage:F1}% done. {completeSteps:n0}/{total:n0} steps.";
+                // {0:F1}% done. {1:n0}/{2:n0} steps.
+                return string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("AUTO-EVO_STEPS_DONE"),
+                    percentage, CompleteSteps, total);
             }
-            else
-            {
-                return "Starting";
-            }
+
+            return TranslationServer.Translate("STARTING");
         }
     }
 
     /// <summary>
     ///   Run results after this is finished
     /// </summary>
-    public AutoEvo.RunResults Results
+    public RunResults Results
     {
         get
         {
@@ -212,7 +213,7 @@ public class AutoEvoRun
             {
                 try
                 {
-                    int currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
+                    long currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
 
                     results.AddPopulationResultForSpecies(
                         entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
@@ -231,7 +232,8 @@ public class AutoEvoRun
     ///   Adds an external population affecting event (player dying, reproduction, darwinian evo actions)
     /// </summary>
     /// <param name="species">The affected Species.</param>
-    /// <param name="amount">The population change amount.</param>
+    /// <param name="constant">The population change amount (constant part).</param>
+    /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType)
     {
@@ -244,7 +246,7 @@ public class AutoEvoRun
     /// <returns>The summary of external effects.</returns>
     public string MakeSummaryOfExternalEffects()
     {
-        var combinedExternalEffects = new Dictionary<Tuple<Species, string>, int>();
+        var combinedExternalEffects = new Dictionary<Tuple<Species, string>, long>();
 
         foreach (var entry in ExternalEffects)
         {
@@ -253,7 +255,7 @@ public class AutoEvoRun
             if (combinedExternalEffects.ContainsKey(key))
             {
                 combinedExternalEffects[key] +=
-                    entry.Constant + (int)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
+                    entry.Constant + (long)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
             }
             else
             {
@@ -266,12 +268,11 @@ public class AutoEvoRun
 
         foreach (var entry in combinedExternalEffects)
         {
-            builder.Append(entry.Key.Item1.FormattedName);
-            builder.Append(" population changed by ");
-            builder.Append(entry.Value);
-            builder.Append(" because of: ");
-            builder.Append(entry.Key.Item2);
-            builder.Append("\n");
+            // entry.Value is the amount, Item2 is the reason string
+            builder.Append(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED"),
+                entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
+            builder.Append('\n');
         }
 
         return builder.ToString();
@@ -312,34 +313,34 @@ public class AutoEvoRun
     {
         switch (state)
         {
-            case RunStage.GATHERING_INFO:
+            case RunStage.GatheringInfo:
                 GatherInfo();
 
                 // +2 is for this step and the result apply step
-                totalSteps = runSteps.Sum((step) => step.TotalSteps) + 2;
+                totalSteps = runSteps.Sum(step => step.TotalSteps) + 2;
 
-                ++completeSteps;
-                state = RunStage.STEPPING;
+                Interlocked.Increment(ref completeSteps);
+                state = RunStage.Stepping;
                 return false;
-            case RunStage.STEPPING:
+            case RunStage.Stepping:
                 if (runSteps.Count < 1)
                 {
                     // All steps complete
-                    state = RunStage.ENDED;
+                    state = RunStage.Ended;
                 }
                 else
                 {
                     if (runSteps.Peek().RunStep(results))
                         runSteps.Dequeue();
 
-                    ++completeSteps;
+                    Interlocked.Increment(ref completeSteps);
                 }
 
                 return false;
-            case RunStage.ENDED:
+            case RunStage.Ended:
                 // Results are no longer applied here as it's easier to just apply them on the main thread while
                 // moving to the editor
-                ++completeSteps;
+                Interlocked.Increment(ref completeSteps);
                 return true;
         }
 
@@ -354,6 +355,8 @@ public class AutoEvoRun
         var alreadyHandledSpecies = new HashSet<Species>();
 
         var map = parameters.World.Map;
+
+        var autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
 
         foreach (var entry in map.Patches)
         {
@@ -371,10 +374,12 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    runSteps.Enqueue(new AutoEvo.FindBestMutation(map, speciesEntry.Key, MUTATIONS_PER_SPECIES,
-                            ALLOW_NO_MUTATION));
-                    runSteps.Enqueue(new AutoEvo.FindBestMigration(map, speciesEntry.Key, MOVE_ATTEMPTS_PER_SPECIES,
-                            ALLOW_NO_MIGRATION));
+                    runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
+                        autoEvoConfiguration.MutationsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
+                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key,
+                        autoEvoConfiguration.MoveAttemptsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
                 }
             }
         }
@@ -383,24 +388,24 @@ public class AutoEvoRun
         // the player edits their species the other species they are competing
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
-        runSteps.Enqueue(new AutoEvo.CalculatePopulation(map));
+        runSteps.Enqueue(new CalculatePopulation(map));
 
         // Adjust auto-evo results for player species
         // NOTE: currently the population change is random so it is canceled out for
         // the player
-        runSteps.Enqueue(new AutoEvo.LambdaStep(
-                (result) =>
+        runSteps.Enqueue(new LambdaStep(
+            result =>
+            {
+                var species = parameters.World.PlayerSpecies;
+
+                foreach (var entry in map.Patches)
                 {
-                    var species = parameters.World.PlayerSpecies;
+                    if (!entry.Value.SpeciesInPatch.ContainsKey(species))
+                        continue;
 
-                    foreach (var entry in map.Patches)
-                    {
-                        if (!entry.Value.SpeciesInPatch.ContainsKey(species))
-                            continue;
-
-                        result.AddPopulationResultForSpecies(species, entry.Value,
-                            entry.Value.GetSpeciesPopulation(species));
-                    }
-                }));
+                    result.AddPopulationResultForSpecies(species, entry.Value,
+                        entry.Value.GetSpeciesPopulation(species));
+                }
+            }));
     }
 }

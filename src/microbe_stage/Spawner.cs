@@ -18,6 +18,12 @@ public abstract class Spawner
     public int SpawnRadiusSqr { get; set; }
 
     /// <summary>
+    ///   Squared minimum spawn distance allowed
+    /// </summary>
+    /// <value>The minimum allowed spawn radius sqr.</value>
+    public float MinSpawnRadiusSqr { get; set; }
+
+    /// <summary>
     ///   How much stuff spawns
     /// </summary>
     /// <value>The spawn frequency.</value>

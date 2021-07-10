@@ -1,7 +1,6 @@
-using System;
+﻿using System;
 using Godot;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Converter for PackedScene

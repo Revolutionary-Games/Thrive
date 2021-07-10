@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using Godot;
 using Directory = Godot.Directory;
 
@@ -12,14 +12,12 @@ public static class FileHelpers
     /// </summary>
     public static void MakeSureDirectoryExists(string path)
     {
-        using (var directory = new Directory())
-        {
-            var result = directory.MakeDirRecursive(path);
+        using var directory = new Directory();
+        var result = directory.MakeDirRecursive(path);
 
-            if (result != Error.AlreadyExists && result != Error.Ok)
-            {
-                throw new IOException($"can't create folder: {path}");
-            }
+        if (result != Error.AlreadyExists && result != Error.Ok)
+        {
+            throw new IOException($"can't create folder: {path}");
         }
     }
 
@@ -30,10 +28,19 @@ public static class FileHelpers
     /// <returns>True on success</returns>
     public static bool DeleteFile(string path)
     {
-        using (var directory = new Directory())
-        {
-            var result = directory.Remove(path);
-            return result == Error.Ok;
-        }
+        using var directory = new Directory();
+        var result = directory.Remove(path);
+        return result == Error.Ok;
+    }
+
+    /// <summary>
+    ///   Returns true if file exists
+    /// </summary>
+    /// <param name="path">Path to check</param>
+    /// <returns>True if exists, false otherwise</returns>
+    public static bool Exists(string path)
+    {
+        using var directory = new Directory();
+        return directory.FileExists(path);
     }
 }

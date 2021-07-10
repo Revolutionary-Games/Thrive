@@ -1,5 +1,4 @@
-using System;
-using Godot;
+﻿using System;
 
 /// <summary>
 ///   Specific type node converted

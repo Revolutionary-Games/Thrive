@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -6,18 +6,27 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Script for the floating chunks (cell parts, rocks, hazards)
 /// </summary>
-[JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
-public class FloatingChunk : RigidBody, ISpawned
+[SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
+public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 {
     [Export]
+    [JsonProperty]
     public PackedScene GraphicsScene;
+
+    /// <summary>
+    ///   If this is null, a sphere shape is used as a default for collision detections.
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public ConvexPolygonShape ConvexPhysicsMesh;
 
     /// <summary>
     ///   The node path to the mesh of this chunk
     /// </summary>
     public string ModelNodePath;
 
+    [JsonProperty]
     private CompoundCloudSystem compoundClouds;
 
     /// <summary>
@@ -27,20 +36,25 @@ public class FloatingChunk : RigidBody, ISpawned
 
     private MeshInstance chunkMesh;
 
-    private bool isDissolving = false;
+    [JsonProperty]
+    private bool isDissolving;
 
-    private float dissolveEffectValue = 0.0f;
+    [JsonProperty]
+    private bool isFadingParticles;
+
+    [JsonProperty]
+    private float particleFadeTimer;
+
+    [JsonProperty]
+    private float dissolveEffectValue;
+
+    [JsonProperty]
+    private bool isParticles;
 
     public int DespawnRadiusSqr { get; set; }
 
     [JsonIgnore]
-    public Node SpawnedNode
-    {
-        get
-        {
-            return this;
-        }
-    }
+    public Node SpawnedNode => this;
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
@@ -60,21 +74,37 @@ public class FloatingChunk : RigidBody, ISpawned
     /// <summary>
     ///   If true this chunk is destroyed when all compounds are vented
     /// </summary>
-    public bool Dissolves { get; set; } = false;
+    public bool Dissolves { get; set; }
 
     /// <summary>
     ///   If > 0 applies damage to a cell on touch
     /// </summary>
-    public float Damages { get; set; } = 0.0f;
+    public float Damages { get; set; }
+
+    /// <summary>
+    ///   When true, the chunk will despawn when the despawn timer finishes
+    /// </summary>
+    public bool UsesDespawnTimer { get; set; }
+
+    /// <summary>
+    ///   How much time has passed since a chunk that uses this timer has been spawned
+    /// </summary>
+    [JsonProperty]
+    public float DespawnTimer { get; private set; }
 
     /// <summary>
     ///   If true this gets deleted when a cell touches this
     /// </summary>
-    public bool DeleteOnTouch { get; set; } = false;
+    public bool DeleteOnTouch { get; set; }
 
     public float Radius { get; set; }
 
     public float ChunkScale { get; set; }
+
+    public bool IsLoadedFromSave { get; set; }
+
+    [JsonIgnore]
+    public AliveMarker AliveMarker { get; } = new AliveMarker();
 
     /// <summary>
     ///   Grabs data from the type to initialize this
@@ -85,7 +115,7 @@ public class FloatingChunk : RigidBody, ISpawned
     ///   </para>
     /// </remarks>
     public void Init(ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds,
-        string modelPath = null)
+        string modelPath)
     {
         this.compoundClouds = compoundClouds;
 
@@ -104,14 +134,8 @@ public class FloatingChunk : RigidBody, ISpawned
 
         ModelNodePath = modelPath;
 
-        // Apply physics shape
-        var shape = GetNode<CollisionShape>("CollisionShape");
-
-        // This only works as long as the sphere shape type is not changed in the editor
-        ((SphereShape)shape.Shape).Radius = chunkType.Radius;
-
         // Copy compounds to vent
-        if (chunkType.Compounds != null && chunkType.Compounds.Count > 0)
+        if (chunkType.Compounds?.Count > 0)
         {
             // Capacity is set to 0 so that no compounds can be added
             // the normal way to the chunk
@@ -121,14 +145,6 @@ public class FloatingChunk : RigidBody, ISpawned
             {
                 ContainedCompounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
-        }
-
-        // Needs physics callback when this is engulfable or damaging
-        if (Damages > 0 || DeleteOnTouch || Size > 0)
-        {
-            ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-            Connect("body_shape_entered", this, "OnContactBegin");
-            Connect("body_shape_exited", this, "OnContactEnd");
         }
     }
 
@@ -154,17 +170,20 @@ public class FloatingChunk : RigidBody, ISpawned
         config.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
         var item = new ChunkConfiguration.ChunkScene
-        { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath };
+        {
+            LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
+            LoadedConvexShape = ConvexPhysicsMesh, ConvexShapePath = ConvexPhysicsMesh?.ResourcePath,
+        };
 
         config.Meshes.Add(item);
 
-        if (ContainedCompounds != null && ContainedCompounds.Compounds.Count > 0)
+        if (ContainedCompounds?.Compounds.Count > 0)
         {
             config.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
 
             foreach (var entry in ContainedCompounds)
             {
-                config.Compounds.Add(entry.Key, new ChunkConfiguration.ChunkCompound() { Amount = entry.Value });
+                config.Compounds.Add(entry.Key, new ChunkConfiguration.ChunkCompound { Amount = entry.Value });
             }
         }
 
@@ -181,24 +200,44 @@ public class FloatingChunk : RigidBody, ISpawned
 
         if (string.IsNullOrEmpty(ModelNodePath))
         {
-            chunkMesh = (MeshInstance)graphicsNode;
+            if (graphicsNode.IsClass("MeshInstance"))
+            {
+                chunkMesh = (MeshInstance)graphicsNode;
+            }
+            else if (graphicsNode.IsClass("Particles"))
+            {
+                isParticles = true;
+            }
+            else
+            {
+                throw new Exception("Invalid class");
+            }
         }
         else
         {
             chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
         }
 
-        if (chunkMesh == null)
+        if (chunkMesh == null && !isParticles)
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
+
+        InitPhysics();
     }
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (ContainedCompounds != null)
             VentCompounds(delta);
 
         if (isDissolving)
             HandleDissolving(delta);
+
+        if (UsesDespawnTimer)
+            DespawnTimer += delta;
 
         // Check contacts
         foreach (var microbe in touchingMicrobes)
@@ -224,7 +263,7 @@ public class FloatingChunk : RigidBody, ISpawned
             bool disappear = false;
 
             // Engulfing
-            if (Size > 0 && microbe.EngulfMode)
+            if (Size > 0 && microbe.State == Microbe.MicrobeState.Engulf)
             {
                 // Check can engulf based on the size of the chunk compared to the cell size
                 if (microbe.EngulfSize >= Size * Constants.ENGULF_SIZE_RATIO_REQ)
@@ -247,33 +286,29 @@ public class FloatingChunk : RigidBody, ISpawned
 
             if (DeleteOnTouch || disappear)
             {
-                isDissolving = true;
+                DissolveOrRemove();
                 break;
+            }
+        }
+
+        if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
+            DissolveOrRemove();
+
+        if (isFadingParticles)
+        {
+            particleFadeTimer -= delta;
+
+            if (particleFadeTimer <= 0)
+            {
+                OnDestroyed();
+                this.DetachAndFree();
             }
         }
     }
 
-    /// <summary>
-    ///   A bit on the lighter save properties copying,
-    ///   the spawn function used to create this needs to set some stuff beforehand
-    /// </summary>
-    public void ApplyPropertiesFromSave(FloatingChunk chunk)
+    public void OnDestroyed()
     {
-        NodeGroupSaveHelper.CopyGroups(this, chunk);
-
-        VentPerSecond = chunk.VentPerSecond;
-        Dissolves = chunk.Dissolves;
-        Size = chunk.Size;
-        Damages = chunk.Damages;
-        DeleteOnTouch = chunk.DeleteOnTouch;
-        Mass = chunk.Mass;
-        Radius = chunk.Radius;
-        ChunkScale = chunk.ChunkScale;
-
-        ContainedCompounds = chunk.ContainedCompounds;
-        Transform = chunk.Transform;
-        LinearVelocity = chunk.LinearVelocity;
-        AngularVelocity = chunk.AngularVelocity;
+        AliveMarker.Alive = false;
     }
 
     /// <summary>
@@ -334,7 +369,32 @@ public class FloatingChunk : RigidBody, ISpawned
 
         if (dissolveEffectValue >= 1)
         {
-            QueueFree();
+            OnDestroyed();
+            this.DetachAndQueueFree();
+        }
+    }
+
+    private void InitPhysics()
+    {
+        // Apply physics shape
+        var shape = GetNode<CollisionShape>("CollisionShape");
+
+        if (ConvexPhysicsMesh == null)
+        {
+            shape.Shape = new SphereShape { Radius = Radius };
+        }
+        else
+        {
+            shape.Shape = ConvexPhysicsMesh;
+            shape.Transform = chunkMesh.Transform;
+        }
+
+        // Needs physics callback when this is engulfable or damaging
+        if (Damages > 0 || DeleteOnTouch || Size > 0)
+        {
+            ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
+            Connect("body_shape_entered", this, "OnContactBegin");
+            Connect("body_shape_exited", this, "OnContactEnd");
         }
     }
 
@@ -365,6 +425,32 @@ public class FloatingChunk : RigidBody, ISpawned
                 return;
 
             touchingMicrobes.Remove(microbe);
+        }
+    }
+
+    private void DissolveOrRemove()
+    {
+        if (Dissolves)
+        {
+            isDissolving = true;
+        }
+        else if (isParticles && !isFadingParticles)
+        {
+            isFadingParticles = true;
+
+            var particles = GetNode("NodeToScale").GetChild<Particles>(0);
+
+            // Disable collisions
+            CollisionLayer = 0;
+            CollisionMask = 0;
+
+            particles.Emitting = false;
+            particleFadeTimer = particles.Lifetime;
+        }
+        else if (!isParticles)
+        {
+            OnDestroyed();
+            this.DetachAndQueueFree();
         }
     }
 }

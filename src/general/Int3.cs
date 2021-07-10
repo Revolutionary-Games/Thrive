@@ -1,9 +1,10 @@
-﻿// ReSharper disable InconsistentNaming
+﻿using System;
 
+// ReSharper disable InconsistentNaming
 /// <summary>
 ///   Just a basic 3 component integer vector for use before we get Godot.Vector3i
 /// </summary>
-public struct Int3 : System.IEquatable<Int3>
+public struct Int3 : IEquatable<Int3>
 {
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
     public int x;

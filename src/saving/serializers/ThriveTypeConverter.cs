@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -16,7 +16,7 @@ public class ThriveTypeConverter : TypeConverter
     public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
     {
         return typeof(string) == destinationType || destinationType.CustomAttributes.Any(
-            (attr) => attr.AttributeType == typeof(UseThriveConverterAttribute));
+            attr => attr.AttributeType == typeof(UseThriveConverterAttribute));
     }
 
     public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
@@ -30,12 +30,19 @@ public class ThriveTypeConverter : TypeConverter
     {
         if (destinationType == typeof(string))
         {
-            return ThriveJsonConverter.Instance.SerializeObject(value);
+            var type = value.GetType();
+
+            if (type.CustomAttributes.Any(attr =>
+                attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
+                attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
+            {
+                type = type.BaseType;
+            }
+
+            return ThriveJsonConverter.Instance.SerializeObject(value, type);
         }
-        else
-        {
-            throw new NotSupportedException();
-        }
+
+        throw new NotSupportedException();
     }
 }
 

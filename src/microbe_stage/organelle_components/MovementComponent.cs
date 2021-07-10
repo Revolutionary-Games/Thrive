@@ -10,7 +10,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-    private bool movingTail = false;
+    private bool movingTail;
     private Vector3 force;
 
     private AnimationPlayer animation;

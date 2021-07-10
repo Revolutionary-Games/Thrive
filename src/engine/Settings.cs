@@ -1,13 +1,23 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Environment = System.Environment;
 
 /// <summary>
-///   Main object for containing player changeable game settings
+///   Class that handles storing and applying player changeable game settings.
 /// </summary>
 public class Settings
 {
-    private static readonly Settings SingletonInstance = LoadSettings();
+    private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
+    private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
+    private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
+
+    /// <summary>
+    ///   Singleton used for holding the live copy of game settings.
+    /// </summary>
+    private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
     static Settings()
     {
@@ -15,72 +25,106 @@ public class Settings
 
     private Settings()
     {
+        // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
+        if (DefaultLanguage.Length < 1)
+            GD.PrintErr("Default locale is empty");
     }
 
     public static Settings Instance => SingletonInstance;
 
+    public static string DefaultLanguage => DefaultLanguageValue;
+
+    public static CultureInfo DefaultCulture => DefaultCultureValue;
+
+    // Graphics Properties
+
     /// <summary>
-    ///   If true all sounds are muted
+    ///   Sets whether the game window is in fullscreen mode
     /// </summary>
-    public bool VolumeMasterMuted { get; set; } = false;
+    public SettingValue<bool> FullScreen { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Sets whether the game window will use vsync
+    /// </summary>
+    public SettingValue<bool> VSync { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Sets amount of MSAA to apply to the viewport
+    /// </summary>
+    public SettingValue<Viewport.MSAA> MSAAResolution { get; set; } =
+        new SettingValue<Viewport.MSAA>(Viewport.MSAA.Msaa2x);
+
+    /// <summary>
+    ///   Optionally applies a colour filter to the screen to aid colourblind individuals
+    ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
+    /// </summary>
+    public SettingValue<int> ColourblindSetting { get; set; } = new SettingValue<int>(0);
+
+    /// <summary>
+    ///   The amount of Chromatic Aberration to apply to the screen
+    /// </summary>
+    public SettingValue<float> ChromaticAmount { get; set; } = new SettingValue<float>(15.0f);
+
+    /// <summary>
+    ///   Enable or Disable Chromatic Aberration for screen
+    /// </summary>
+    public SettingValue<bool> ChromaticEnabled { get; set; } = new SettingValue<bool>(true);
+
+    // Sound Properties
 
     /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
-    public float VolumeMaster { get; set; } = 0.0f;
+    public SettingValue<float> VolumeMaster { get; set; } = new SettingValue<float>(0.0f);
 
     /// <summary>
-    ///   If true music is muted
+    ///   If true all sounds are muted
     /// </summary>
-    public bool VolumeMusicMuted { get; set; } = false;
+    public SettingValue<bool> VolumeMasterMuted { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
     ///   The Db value to be added to the music audio bus
     /// </summary>
-    public float VolumeMusic { get; set; } = 0.0f;
+    public SettingValue<float> VolumeMusic { get; set; } = new SettingValue<float>(0.0f);
 
     /// <summary>
-    ///   If true tell godot to be in fullscreen mode
+    ///   If true music is muted
     /// </summary>
-    public bool FullScreen { get; set; } = true;
+    public SettingValue<bool> VolumeMusicMuted { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
-    ///   If true tell godot to use vsync
+    ///   The Db value to be added to the ambiance audio bus
     /// </summary>
-    public bool VSync { get; set; } = true;
+    public SettingValue<float> VolumeAmbiance { get; set; } = new SettingValue<float>(0.0f);
 
     /// <summary>
-    ///   When true cheats are enabled
+    ///   If true ambiance is muted
     /// </summary>
-    public bool CheatsEnabled { get; set; } = false;
+    public SettingValue<bool> VolumeAmbianceMuted { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
-    ///   When true the main intro is played
+    ///   The Db value to be added to the sfx audio bus
     /// </summary>
-    public bool PlayIntroVideo { get; set; } = true;
+    public SettingValue<float> VolumeSFX { get; set; } = new SettingValue<float>(0.0f);
 
     /// <summary>
-    ///   When true the microbe intro is played on new game
+    ///   If true sfx is muted
     /// </summary>
-    public bool PlayMicrobeIntroVideo { get; set; } = true;
+    public SettingValue<bool> VolumeSFXMuted { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
-    ///   If true an auto-evo run is started during gameplay,
-    ///   taking up one of the background threads.
+    ///   The Db value to be added to the gui audio bus
     /// </summary>
-    public bool RunAutoEvoDuringGamePlay { get; set; } = true;
+    public SettingValue<float> VolumeGUI { get; set; } = new SettingValue<float>(0.0f);
 
     /// <summary>
-    ///   If false auto saving will be disabled
+    ///   If true gui audio bus is muted
     /// </summary>
-    public bool AutoSaveEnabled { get; set; } = true;
+    public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
-    /// <summary>
-    ///   This can be freely adjusted to adjust the performance The
-    ///   higher this value is the smaller the size of the simulated
-    ///   cloud is and the performance is better.
-    /// </summary>
-    public int CloudResolution { get; set; } = 2;
+    public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
+
+    // Performance Properties
 
     /// <summary>
     ///   If this is over 0 then this limits how often compound clouds
@@ -90,26 +134,283 @@ public class Settings
     /// <remarks>
     ///   <para>
     ///     This should be made user configurable for different
-    ///     computers. The choises should probably be:
+    ///     computers. The choices should probably be:
     ///     0.0f, 0.020f, 0.040f, 0.1f, 0.25f
     ///   </para>
     /// </remarks>
-    public float CloudUpdateInterval { get; set; } = 0.040f;
+    public SettingValue<float> CloudUpdateInterval { get; set; } = new SettingValue<float>(0.040f);
 
     /// <summary>
-    ///   Sets amount of MSAA to apply to the viewport
+    ///   This can be freely adjusted to adjust the performance The
+    ///   higher this value is the smaller the size of the simulated
+    ///   cloud is and the performance is better.
     /// </summary>
-    public Viewport.MSAA MSAAResolution { get; set; } = Viewport.MSAA.Disabled;
+    public SettingValue<int> CloudResolution { get; set; } = new SettingValue<int>(2);
 
     /// <summary>
-    ///   Choose what filter to apply to the screen
-    ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
+    ///   If true an auto-evo run is started during gameplay,
+    ///   taking up one of the background threads.
     /// </summary>
-    public int ColourblindSetting { get; set; } = 0;
+    public SettingValue<bool> RunAutoEvoDuringGamePlay { get; set; } = new SettingValue<bool>(true);
+
+    // Misc Properties
+
+    /// <summary>
+    ///   When true the main intro is played
+    /// </summary>
+    public SettingValue<bool> PlayIntroVideo { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   When true the microbe intro is played on new game
+    /// </summary>
+    public SettingValue<bool> PlayMicrobeIntroVideo { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   If false auto saving will be disabled
+    /// </summary>
+    public SettingValue<bool> AutoSaveEnabled { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Number of auto saves to keep
+    /// </summary>
+    public SettingValue<int> MaxAutoSaves { get; set; } = new SettingValue<int>(5);
+
+    /// <summary>
+    ///   Number of quick saves to keep
+    /// </summary>
+    public SettingValue<int> MaxQuickSaves { get; set; } = new SettingValue<int>(5);
+
+    /// <summary>
+    ///   Saves the current settings by writing them to the settings configuration file.
+    ///   Show tutorial messages
+    /// </summary>
+    public SettingValue<bool> TutorialsEnabled { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   When true cheats are enabled
+    /// </summary>
+    public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   The current controls of the game.
+    ///   It stores the godot actions like g_move_left and
+    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
+    /// </summary>
+    public SettingValue<InputDataList> CurrentControls { get; set; } =
+        new SettingValue<InputDataList>(GetDefaultControls());
+
+    /// <summary>
+    ///   If false username will be set to System username
+    /// </summary>
+    public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Username that the user can choose
+    /// </summary>
+    public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+
+    [JsonIgnore]
+    public string ActiveUsername =>
+        CustomUsernameEnabled &&
+        CustomUsername.Value != null ?
+            CustomUsername.Value :
+            Environment.UserName;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
+
+    public static bool operator ==(Settings lhs, Settings rhs)
+    {
+        return Equals(lhs, rhs);
+    }
+
+    public static bool operator !=(Settings lhs, Settings rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+    /// <summary>
+    ///   Returns the default controls which never change, unless there is a new release.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This relies on the static member holding the default controls to be initialized before the code has a chance
+    ///     to modify the controls.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The default controls</returns>
+    public static InputDataList GetDefaultControls()
+    {
+        return (InputDataList)DefaultControls.Clone();
+    }
+
+    /// <summary>
+    ///   Returns the currently applied controls. Gathers the data from the godot InputMap.
+    ///   Required to get the default controls.
+    /// </summary>
+    /// <returns>The current inputs</returns>
+    public static InputDataList GetCurrentlyAppliedControls()
+    {
+        return new InputDataList(InputMap.GetActions().OfType<string>()
+            .ToDictionary(p => p,
+                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                    x => new SpecifiedInputKey(x)).ToList()));
+    }
+
+    /// <summary>
+    ///   Tries to return a C# culture info from Godot language name
+    /// </summary>
+    /// <param name="language">The language name to try to understand</param>
+    /// <returns>The culture info</returns>
+    public static CultureInfo GetCultureInfo(string language)
+    {
+        // Perform hard coded translations first
+        var translated = TranslateLocaleToCSharp(language);
+        if (translated != null)
+            language = translated;
+
+        try
+        {
+            return new CultureInfo(language);
+        }
+        catch (CultureNotFoundException)
+        {
+            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
+
+            if (!language.Contains("_"))
+                throw;
+
+            // So we first try converting "_" to "-" and go with that
+            language = language.Replace('_', '-');
+
+            try
+            {
+                return new CultureInfo(language);
+            }
+            catch (CultureNotFoundException)
+            {
+                language = language.Split("-")[0];
+
+                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
+                    language);
+                return new CultureInfo(language);
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Translates a Godot locale to C# locale name
+    /// </summary>
+    /// <param name="godotLocale">Godot locale</param>
+    /// <returns>C# locale name, or null if there is not a premade mapping</returns>
+    public static string TranslateLocaleToCSharp(string godotLocale)
+    {
+        // ReSharper disable StringLiteralTypo
+        switch (godotLocale)
+        {
+            case "eo":
+                return "en";
+            case "sr_Latn":
+                return "sr-Latn-RS";
+            case "sr_Cyrl":
+                return "sr-Cyrl-RS";
+        }
+
+        // ReSharper restore StringLiteralTypo
+        return null;
+    }
+
+    /// <summary>
+    ///   Overrides Native name if an override is set
+    /// </summary>
+    /// <param name="godotLocale">Godot locale</param>
+    /// <returns>Native name, or null if there is not a premade mapping</returns>
+    public static string GetLanguageNativeNameOverride(string godotLocale)
+    {
+        switch (godotLocale)
+        {
+            case "eo":
+                return "Esperanto";
+        }
+
+        return null;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        if (GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        return Equals((Settings)obj);
+    }
+
+    public bool Equals(Settings obj)
+    {
+        // Compare all properties in the two objects for equality.
+        var type = GetType();
+
+        foreach (var property in type.GetProperties())
+        {
+            // Returns if any of the properties don't match.
+            object thisValue = property.GetValue(this);
+            object objValue = property.GetValue(obj);
+
+            if (thisValue != objValue && thisValue?.Equals(objValue) != true)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public override int GetHashCode()
+    {
+        int hashCode = 17;
+
+        var type = GetType();
+
+        foreach (var property in type.GetProperties())
+            hashCode ^= property.GetHashCode();
+
+        return hashCode;
+    }
+
+    /// <summary>
+    ///   Returns a cloned deep copy of the settings object.
+    /// </summary>
+    public Settings Clone()
+    {
+        Settings settings = new Settings();
+        settings.CopySettings(this);
+
+        return settings;
+    }
+
+    /// <summary>
+    ///   Loads values from an existing settings object.
+    /// </summary>
+    public void LoadFromObject(Settings settings)
+    {
+        CopySettings(settings);
+    }
+
+    /// <summary>
+    ///   Loads default values.
+    /// </summary>
+    public void LoadDefaults()
+    {
+        Settings settings = new Settings();
+        CopySettings(settings);
+    }
 
     /// <summary>
     ///   Saves the current settings by writing them to the settings file
@@ -117,37 +418,65 @@ public class Settings
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()
     {
-        using (var file = new File())
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
+
+        if (error != Error.Ok)
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
-
-            if (error != Error.Ok)
-            {
-                GD.PrintErr("Couldn't open settings file for writing");
-                return false;
-            }
-
-            file.StoreString(JsonConvert.SerializeObject(this));
-
-            file.Close();
-            return true;
+            GD.PrintErr("Couldn't open settings file for writing.");
+            return false;
         }
+
+        file.StoreString(JsonConvert.SerializeObject(this));
+
+        file.Close();
+
+        return true;
     }
 
     /// <summary>
-    ///   Applies all the general settings
+    ///   Applies all current settings to any applicable engine systems.
     /// </summary>
-    public void ApplyAll()
+    /// <param name="delayedApply">
+    ///   If true things that can't be immediately on game startup be applied, are applied later
+    /// </param>
+    public void ApplyAll(bool delayedApply = false)
     {
-        ApplySoundLevels();
+        if (delayedApply)
+        {
+            GD.Print("Doing delayed apply for some settings");
+            Invoke.Instance.Perform(ApplyGraphicsSettings);
+
+            // These need to be also delay applied, otherwise when debugging these overwrite the default settings
+            Invoke.Instance.Queue(ApplySoundSettings);
+
+            // If this is not delay applied, this also causes some errors in godot editor output when running
+            Invoke.Instance.Queue(ApplyInputSettings);
+        }
+        else
+        {
+            ApplyGraphicsSettings();
+            ApplySoundSettings();
+            ApplyInputSettings();
+        }
+
+        ApplyLanguageSettings();
         ApplyWindowSettings();
-        ApplyGraphicsSettings();
     }
 
     /// <summary>
-    ///   Applies the sound volume and mute settings on the audio bus
+    ///   Applies current graphics related settings.
     /// </summary>
-    public void ApplySoundLevels()
+    public void ApplyGraphicsSettings()
+    {
+        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
+        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
+    }
+
+    /// <summary>
+    ///   Applies current sound settings to any applicable engine systems.
+    /// </summary>
+    public void ApplySoundSettings()
     {
         var master = AudioServer.GetBusIndex("Master");
 
@@ -158,55 +487,168 @@ public class Settings
 
         AudioServer.SetBusVolumeDb(music, VolumeMusic);
         AudioServer.SetBusMute(music, VolumeMusicMuted);
+
+        var ambiance = AudioServer.GetBusIndex("Ambiance");
+
+        AudioServer.SetBusVolumeDb(ambiance, VolumeAmbiance);
+        AudioServer.SetBusMute(ambiance, VolumeAmbianceMuted);
+
+        var sfx = AudioServer.GetBusIndex("SFX");
+
+        AudioServer.SetBusVolumeDb(sfx, VolumeSFX);
+        AudioServer.SetBusMute(sfx, VolumeSFXMuted);
+
+        var gui = AudioServer.GetBusIndex("GUI");
+
+        AudioServer.SetBusVolumeDb(gui, VolumeGUI);
+        AudioServer.SetBusMute(gui, VolumeGUIMuted);
     }
 
+    /// <summary>
+    ///   Applies the current controls to the InputMap.
+    /// </summary>
+    public void ApplyInputSettings()
+    {
+        CurrentControls.Value.ApplyToGodotInputMap();
+    }
+
+    /// <summary>
+    ///   Applies current window settings to any applicable engine systems.
+    /// </summary>
     public void ApplyWindowSettings()
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
     }
 
-    public void ApplyGraphicsSettings()
+    /// <summary>
+    ///   Applies current language settings to any applicable engine systems.
+    /// </summary>
+    public void ApplyLanguageSettings()
     {
-        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
-        ScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
+        string language = SelectedLanguage.Value;
+        CultureInfo cultureInfo;
+
+        // Process locale info in case it isn't exactly right
+        if (string.IsNullOrEmpty(language))
+        {
+            language = DefaultLanguage;
+            cultureInfo = DefaultCulture;
+        }
+        else
+        {
+            cultureInfo = GetCultureInfo(language);
+        }
+
+        CultureInfo.CurrentCulture = cultureInfo;
+        CultureInfo.CurrentUICulture = cultureInfo;
+
+        // Set locale for the game. Called after C# locale change so that string
+        // formatting uses could also get updated properly.
+        TranslationServer.SetLocale(language);
     }
 
     /// <summary>
-    ///   Reset all options to default values
+    ///   Loads, initializes and returns the global settings object.
     /// </summary>
-    public void ResetToDefaults()
+    private static Settings InitializeGlobalSettings()
     {
-        // var defaults = new Settings();
-
-        // TODO: apply the default values
-        throw new NotImplementedException();
-    }
-
-    private static Settings LoadSettings()
-    {
-        var settings = LoadSettingsFileOrDefault();
-        settings.ApplyAll();
-        return settings;
-    }
-
-    private static Settings LoadSettingsFileOrDefault()
-    {
-        using (var file = new File())
+        try
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+            Settings settings = LoadSettings();
 
-            if (error != Error.Ok)
+            if (settings == null)
             {
-                GD.Print("Settings file is missing or unreadable, using default settings");
-                return new Settings();
+                GD.PrintErr("Loading settings from file failed, using default settings");
+                settings = new Settings();
             }
 
-            var text = file.GetAsText();
+            settings.ApplyAll(true);
 
-            file.Close();
+            // Simulation parameters need to apply the initial translation
+            SimulationParameters.Instance.ApplyTranslations();
 
+            return settings;
+        }
+        catch (Exception e)
+        {
+            // Godot doesn't seem to catch this nicely so we print the errors ourselves
+            GD.PrintErr("Error initializing global settings: ", e);
+            throw;
+        }
+    }
+
+    /// <summary>
+    ///   Creates and returns a settings object loaded from the configuration settings file, or defaults if that fails.
+    /// </summary>
+    private static Settings LoadSettings()
+    {
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+
+        if (error != Error.Ok)
+        {
+            GD.Print("Failed to open settings configuration file, file is missing or unreadable. "
+                + "Using default settings instead.");
+
+            var settings = new Settings();
+            settings.Save();
+
+            return settings;
+        }
+
+        var text = file.GetAsText();
+
+        file.Close();
+
+        try
+        {
             return JsonConvert.DeserializeObject<Settings>(text);
+        }
+        catch
+        {
+            GD.Print("Failed to deserialize settings file data, data may be improperly formatted. "
+                + "Using default settings instead.");
+
+            var settings = new Settings();
+            settings.Save();
+
+            return settings;
+        }
+    }
+
+    /// <summary>
+    ///   Debug helper for dumping what C# considers valid locales
+    /// </summary>
+    private static void DumpValidCSharpLocales()
+    {
+        GD.Print("Locales (C#):");
+
+        foreach (var culture in CultureInfo.GetCultures(CultureTypes.AllCultures & ~CultureTypes.NeutralCultures))
+        {
+            GD.Print(culture.DisplayName + " - " + culture.Name);
+        }
+
+        GD.Print(string.Empty);
+    }
+
+    /// <summary>
+    ///   Copies all properties from another settings object to the current one.
+    /// </summary>
+    private void CopySettings(Settings settings)
+    {
+        var type = GetType();
+
+        foreach (var property in type.GetProperties())
+        {
+            if (!property.CanWrite)
+                continue;
+
+            // Since the properties we want to copy are SettingValue generics we use the IAssignableSetting
+            // interface and AssignFrom method to convert the property to the correct concrete class.
+            var setting = (IAssignableSetting)property.GetValue(this);
+
+            setting.AssignFrom(property.GetValue(settings));
         }
     }
 }

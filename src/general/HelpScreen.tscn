@@ -1,103 +1,129 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/textures/gui/scrollbar_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/general/HelpScreen.cs" type="Script" id=4]
 [ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=5]
 
-[sub_resource type="StyleBoxFlat" id=1]
-border_width_top = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 3 )
-
 [node name="HelpScreen" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 1 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-LeftColumPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/LeftColumn")
-RightColumnPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/RightColumn")
-LineSeparatorPath = NodePath("ScrollContainer/VBoxContainer/HSeparator")
-TipMessageLabelPath = NodePath("ScrollContainer/VBoxContainer/TipMessageLabel")
+LeftColumnPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/LeftColumn")
+RightColumnPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/RightColumn")
+TipMessageLabelPath = NodePath("CenterContainer/VBoxContainer/TipMessageLabel")
 HelpBoxScene = ExtResource( 5 )
 TimerPath = NodePath("Timer")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
-
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -378.5
-margin_top = -305.0
-margin_right = 378.5
-margin_bottom = 255.0
-theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 757.0
-margin_bottom = 560.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 234.0
+margin_top = 36.0
+margin_right = 1046.0
+margin_bottom = 683.0
+size_flags_horizontal = 2
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 812.0
+margin_bottom = 562.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 811.0
+margin_bottom = 561.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 805.0
+margin_bottom = 555.0
+custom_constants/separation = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 800.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 800, 550 )
 size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 800.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 795.0
+margin_bottom = 5.0
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_right = 757.0
-custom_constants/separation = 15
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 790.0
 
-[node name="LeftColumn" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
-custom_constants/separation = 15
-
-[node name="RightColumn" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 15.0
-margin_right = 15.0
-custom_constants/separation = 15
-
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
-margin_top = 4.0
-margin_right = 757.0
-margin_bottom = 8.0
-custom_styles/separator = SubResource( 1 )
-
-[node name="TipMessageLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
-margin_top = 12.0
-margin_right = 757.0
-margin_bottom = 30.0
+[node name="LeftColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 393.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 1, 0, 1 )
-text = "Easter egg message goes here"
-autowrap = true
 
-[node name="CloseButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 110.0
-margin_top = 265.0
-margin_right = 360.0
-margin_bottom = 305.0
-theme = ExtResource( 1 )
-text = "Close"
+[node name="RightColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 397.0
+margin_right = 790.0
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_left = 331.0
+margin_top = 577.0
+margin_right = 481.0
+margin_bottom = 612.0
+rect_min_size = Vector2( 150, 35 )
+size_flags_horizontal = 4
+text = "CLOSE"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="TipMessageLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 627.0
+margin_right = 812.0
+margin_bottom = 647.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+text = "Easter egg message goes here"
+align = 1
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
-[connection signal="pressed" from="CloseButton" to="." method="OnCloseButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

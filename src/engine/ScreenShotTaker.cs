@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Globalization;
 using Godot;
 
 /// <summary>
 ///   Singleton handling screenshot taking
 /// </summary>
-public class ScreenShotTaker : Node
+public class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker instance;
 
@@ -22,13 +22,11 @@ public class ScreenShotTaker : Node
         PauseMode = PauseModeEnum.Process;
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKeyDown("screenshot", OnlyUnhandled = false)]
+    public void TakeScreenshotPressed()
     {
-        if (@event.IsActionPressed("screenshot"))
-        {
-            GD.Print("Taking a screenshot");
-            TakeAndSaveScreenShot();
-        }
+        GD.Print("Taking a screenshot");
+        TakeAndSaveScreenShot();
     }
 
     /// <summary>
@@ -40,7 +38,7 @@ public class ScreenShotTaker : Node
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
         var img = TakeScreenshot();
-        var filename = DateTime.Now.ToString("O", CultureInfo.CurrentCulture) + ".png";
+        var filename = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss.ffff", CultureInfo.CurrentCulture) + ".png";
 
         var path = PathUtils.Join(Constants.SCREENSHOT_FOLDER, filename);
 

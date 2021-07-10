@@ -19,9 +19,8 @@ public class NameGenerator : IRegistryType
     public List<string> Suffixes;
 
     /// <summary>
-    /// Unused
+    ///   Unused
     /// </summary>
-    /// <value>The name of the internal.</value>
     public string InternalName { get; set; }
 
     /// <summary>
@@ -29,8 +28,7 @@ public class NameGenerator : IRegistryType
     /// </summary>
     public string GenerateNameSection(Random random = null)
     {
-        if (random == null)
-            random = new Random();
+        random ??= new Random();
 
         string newName;
 
@@ -58,6 +56,7 @@ public class NameGenerator : IRegistryType
         }
         else
         {
+            // ReSharper disable once CommentTypo
             // Developer Easter Eggs and really silly long names here
             // Our own version of wigglesoworthia for example
             switch (random.Next(0, 4))
@@ -138,5 +137,9 @@ public class NameGenerator : IRegistryType
         Suffixes = new List<string>();
         Suffixes.AddRange(SuffixesC);
         Suffixes.AddRange(SuffixesV);
+    }
+
+    public void ApplyTranslations()
+    {
     }
 }
