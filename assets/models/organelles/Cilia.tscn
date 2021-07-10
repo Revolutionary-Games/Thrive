@@ -351,7 +351,7 @@ skin = SubResource( 5 )
 material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Flagellum"
+autoplay = "Cilia"
 playback_speed = 0.25
-anims/Flagellum = ExtResource( 1 )
+anims/Cilia = ExtResource( 1 )
 anims/swim = SubResource( 3 )
