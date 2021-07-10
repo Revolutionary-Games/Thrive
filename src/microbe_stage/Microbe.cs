@@ -1425,7 +1425,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (Colony.Master != this)
                 Mode = ModeEnum.Static;
 
-            Colony.Master.ReParentShapes((GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Up,
+            Colony.Master.ReParentShapes((GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
+                Vector3.Up,
                 Colony.Master.Rotation.y));
         }
         else
