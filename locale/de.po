@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 09:18-0400\n"
-"PO-Revision-Date: 2021-04-27 08:41+0000\n"
+"PO-Revision-Date: 2021-07-07 09:42+0000\n"
 "Last-Translator: GitHubUser-GER-ENG <tegue@outlook.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
@@ -32,8 +32,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Deine Zelle verwendet ATP als Energiequelle. Falls sie zu gering wird, "
-"wirst du sterben."
+"Deine Zelle verwendet ATP als Energiequelle. Falls sie leer wird, wirst du "
+"sterben."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:32
@@ -47,9 +47,9 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Um andere Zellen, Bakterien, Eisenbrocken sowie Zellenbrocken, welche "
-"kleiner sind als du, zu Verschlingen, drücke G. Dies kostet mehr ATP und "
-"wird dich verlangsamen. Drücke G ein zweites Mal, um den "
-"Verschlingungsmodus zu beenden."
+"kleiner als du sind, zu Verschlingen, drücke G. Dies kostet mehr ATP und "
+"wird dich verlangsamen. Drücke G ein zweites Mal, um den Verschlingungsmodus "
+"zu beenden."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:34
@@ -99,14 +99,14 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Wenn deine Population auf Null sinkt, stirbst du zunächst aus."
+msgstr "Wenn deine Population auf Null sinkt, stirbst du aus."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Wenn Du zwanzig Generationen lang Überlebst und eine Population von 300 "
-"hast, gilt das Spiel als gewonnen. Du Wirst dann Benachrichtigt und kannst "
-"danach, nach Wunsch, weiterspielen."
+"Wenn Du zwanzig Generationen lang überlebst und eine Population von 300 "
+"hast, gilt das Spiel als gewonnen. Du wirst benachrichtigt und kannst, nach "
+"Wunsch, weiterspielen."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:39
@@ -128,7 +128,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotische Strukturen\n"
 "\n"
-"Metabolosomen: Produziert ATP aus Glukose\n"
+"Metabolismus: Produziert ATP aus Glukose\n"
 "\n"
 "Chemosynthetisierende Proteine: Produziert die Hälfte der Glukose aus "
 "Schwefelwasserstoff als Chemoplast, führt aber auch die Glykolyse durch. "
@@ -141,17 +141,17 @@ msgstr ""
 "\n"
 "Nitrogenase: Verwandeln atmosphärischen Stickstoff und ATP in Ammoniak um\n"
 "\n"
-"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch "
-"(Produziert kleine Mengen ATP)"
+"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch ("
+"Produziert kleine Mengen ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Externe Organellen\n"
 "\n"
-"Geißel: Erhöht deine Mobilität, verbraucht ATP\n"
+"Geißel: erhöht deine Mobilität, verbraucht ATP\n"
 "\n"
-"Pilus: Kann im nah Kampf gegen andere Zellen verwendent werden"
+"Pilus: kann im Nahkampf andere Zellen stechen"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -184,8 +184,8 @@ msgstr ""
 "Hinzufügen und Entfernen von Organellen kostet MP, das Entfernen von "
 "Organellen, die in der aktuellen Mutationssitzung platziert wurden, "
 "erstattet jedoch MP für diese Organelle zurück. Du kannst eine Organelle "
-"entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst "
-"Ihre Organellen mit A und D drehen."
+"entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst die "
+"Organellen beim Platzieren mit A und D drehen."
 
 #: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -259,13 +259,12 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Interessanter Fakt: Sie können andere Arten bis zur Ausrottung jagen, wenn "
-"Sie nicht vorsichtig genug sind. Arten können auch von anderen Arten bis "
-"zur Ausrottung gejagt werden."
+"Kleiner Tipp: du kannst andere Arten bis zur Ausrottung jagen, wenn du nicht "
+"zimperlich bist. Jedoch können andere Arten das genauso."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "WACKLIGE DINGE!!"
+msgstr "VERRÜCKTES ZEUG!!"
 
 #: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
@@ -278,15 +277,15 @@ msgstr "Diese blauen Zellen jedoch..."
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Kleiner Tipp, Biome sind mehr als nur unterschiedliche Hintergründe, die "
+"Kleiner Tipp, Biome sind mehr als nur unterschiedliche Hintergründe. Die "
 "Verbindungen in verschiedenen Biomen erscheinen manchmal mit "
-"unterschiedlicher Geschwindigkeit."
+"unterschiedlichem Tempo."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Kleiner Tipp, je mehr Flagellen du hast, umso schneller bewegst du dich, "
-"vroom vroom, jedoch kostet es mehr ATP"
+"Kleiner Tipp, je mehr Flagellen du hast, umso schneller bewegst du dich. "
+"Brumm brumm! Jedoch kostet es mehr ATP"
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_15"
@@ -307,9 +306,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"Interessanter Fakt: der Trompetentierchen ist ein Wimpertierchen, das sich "
-"strecken und Beute in einem trompetenartigem Maul fangen kann. Es zieht "
-"die Beute ein, indem es mit den Zilien Wasserströmungen erzeugt."
+"Interessanter Fakt: das Trompetentierchen ist ein Wimpertierchen, das sich "
+"strecken und Beute in einem trompetenartigem Maul fangen kann. Es zieht die "
+"Beute ein, indem es mit den Zilien Wasserströmungen erzeugt."
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
@@ -364,8 +363,8 @@ msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
 #: ../simulation_parameters/common/help_texts.json:75
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von "
-"unserem großartigen Programmierer gemacht, untrustedlife!"
+"Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem "
+"großartigen Programmierer, untrustedlife, gemacht!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -404,14 +403,12 @@ msgid "TOGGLE_ENGULF"
 msgstr "Verschlingen umschalten"
 
 #: ../simulation_parameters/common/input_options.json:46
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Verschlingen umschalten"
+msgstr "Verbinden umschalten"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Verschlingen umschalten"
+msgstr "Verbinden umschalten"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
@@ -486,7 +483,7 @@ msgstr "Kamera zurücksetzen"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "jetzige Aktion abbrechen"
 
 #: ../simulation_parameters/common/input_options.json:139
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -922,7 +919,7 @@ msgstr "Population in Gebieten:"
 
 #: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "ist auf diesem Planeten ausgestorben"
 
 #: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
 msgid "LOADING"
@@ -1364,7 +1361,7 @@ msgstr "DU HAST DICH ENTWICKELT!"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Grafiken/Kunst von {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1543,7 +1540,7 @@ msgstr "(höhere Werte verbessern die Leistung)"
 
 #: ../src/general/OptionsMenu.tscn:683
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
+msgstr "dieser Wert gilt erst bei neugestarteten Spielen"
 
 #: ../src/general/OptionsMenu.tscn:685
 msgid "CLOUD_RESOLUTION_DIVISOR"
