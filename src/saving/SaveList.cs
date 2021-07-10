@@ -68,18 +68,6 @@ public class SaveList : ScrollContainer
     [Signal]
     public delegate void OnItemsChanged();
 
-    public override void _EnterTree()
-    {
-        InputManager.RegisterReceiver(this);
-        base._EnterTree();
-    }
-
-    public override void _ExitTree()
-    {
-        InputManager.UnregisterReceiver(this);
-        base._ExitTree();
-    }
-
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
@@ -164,42 +152,6 @@ public class SaveList : ScrollContainer
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
-    }
-
-    [RunOnKeyDown("ui_cancel", Priority = Constants.DIALOG_CANCEL_PRIORITY)]
-    public bool OnEscapePressedInDialog()
-    {
-        if (deleteConfirmDialog.Visible)
-        {
-            deleteConfirmDialog.Hide();
-            return true;
-        }
-
-        if (loadNewerConfirmDialog.Visible)
-        {
-            loadNewerConfirmDialog.Hide();
-            return true;
-        }
-
-        if (loadOlderConfirmDialog.Visible)
-        {
-            loadOlderConfirmDialog.Hide();
-            return true;
-        }
-
-        if (loadInvalidConfirmDialog.Visible)
-        {
-            loadInvalidConfirmDialog.Hide();
-            return true;
-        }
-
-        if (loadIncompatibleDialog.Visible)
-        {
-            loadIncompatibleDialog.Hide();
-            return true;
-        }
-
-        return false;
     }
 
     private void OnSubItemSelectedChanged()

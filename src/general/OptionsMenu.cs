@@ -485,30 +485,6 @@ public class OptionsMenu : ControlWithInput
         return true;
     }
 
-    [RunOnKeyDown("ui_cancel", Priority = Constants.DIALOG_CANCEL_PRIORITY)]
-    public bool OnEscapePressedInDialogs()
-    {
-        if (backConfirmationBox.Visible)
-        {
-            BackCancelSelected();
-            return true;
-        }
-
-        if (errorAcceptBox.Visible)
-        {
-            errorAcceptBox.Hide();
-            return true;
-        }
-
-        if (defaultsConfirmationBox.Visible)
-        {
-            defaultsConfirmationBox.Hide();
-            return true;
-        }
-
-        return false;
-    }
-
     private void SwitchMode(OptionsMode mode)
     {
         switch (mode)

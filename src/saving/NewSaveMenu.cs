@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   Menu for managing making a new save
 /// </summary>
-public class NewSaveMenu : ControlWithInput
+public class NewSaveMenu : Control
 {
     [Export]
     public NodePath SaveListPath;
@@ -34,18 +34,6 @@ public class NewSaveMenu : ControlWithInput
         saveList = GetNode<SaveList>(SaveListPath);
         saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
         overwriteConfirm = GetNode<ConfirmationDialog>(OverwriteConfirmPath);
-    }
-
-    [RunOnKeyDown("ui_cancel", Priority = Constants.DIALOG_CANCEL_PRIORITY)]
-    public bool OnEscapePressedInOverwriteConfirm()
-    {
-        if (overwriteConfirm.Visible)
-        {
-            overwriteConfirm.Hide();
-            return true;
-        }
-
-        return false;
     }
 
     public void RefreshExisting()

@@ -8,7 +8,7 @@ using Godot;
 /// <summary>
 ///   Shows a GUI to the user that lists the existing saves and allows doing things with them like loading and deleting
 /// </summary>
-public class SaveManagerGUI : ControlWithInput
+public class SaveManagerGUI : Control
 {
     [Export]
     public NodePath SaveListPath;
@@ -125,24 +125,6 @@ public class SaveManagerGUI : ControlWithInput
         UpdateButtonsStatus();
 
         refreshing = false;
-    }
-
-    [RunOnKeyDown("ui_cancel", Priority = Constants.DIALOG_CANCEL_PRIORITY)]
-    public bool OnEscapePressed()
-    {
-        if (deleteOldConfirmDialog.Visible)
-        {
-            deleteOldConfirmDialog.Hide();
-            return true;
-        }
-
-        if (deleteSelectedConfirmDialog.Visible)
-        {
-            deleteSelectedConfirmDialog.Hide();
-            return true;
-        }
-
-        return false;
     }
 
     private void OnSelectedChanged()
