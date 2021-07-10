@@ -8,9 +8,11 @@ public class ShuffleBag<T> : IEnumerable<T>
     private Random random;
     private List<T> initialContent;
     private List<T> currentContent;
+    int capacity;
 
     public ShuffleBag(Random random)
     {
+        capacity = 0;
         initialContent = new List<T>();
         currentContent = new List<T>();
         this.random = random;
@@ -20,12 +22,14 @@ public class ShuffleBag<T> : IEnumerable<T>
     {
         initialContent.Clear();
         currentContent.Clear();
+        capacity = 0;
     }
 
     public void Add(T element)
     {
         initialContent.Add(element);
         currentContent.Add(element);
+        capacity += 1;
     }
 
     public void FillAndShuffle()
@@ -53,6 +57,8 @@ public class ShuffleBag<T> : IEnumerable<T>
         if (currentContent.Count == 0)
             throw new NullReferenceException("Cannot drop from empty bag!");
         currentContent.RemoveAt(currentContent.Count - 1);
+
+        capacity -= 1;
     }
 
     public bool Remove(T element)
@@ -108,6 +114,7 @@ public class ShuffleBag<T> : IEnumerable<T>
 
         var drawnElement = currentContent[leftSize - 1];
         currentContent.RemoveAt(leftSize - 1);
+        capacity -= 1;
 
         return drawnElement;
     }
@@ -133,7 +140,7 @@ public class ShuffleBag<T> : IEnumerable<T>
         public bool MoveNext()
         {
             // WARNING : Given that the bag is refilled, it can infinitely loop.
-            return sourceBag.Draw() != null;
+            return sourceBag.capacity != 0;
         }
 
         public void Reset()
