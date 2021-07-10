@@ -193,9 +193,10 @@ public class SpawnSystem
             elapsed -= interval;
 
             int deletedEntitiesCount = DespawnEntities(playerPosition);
-            // TODO Clear at some point
+
             estimateEntityCount = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP).Count;
             estimateEntityCount -= deletedEntitiesCount;
+
             // Very large overestimation given that most will likely be deleted outside the spawn radius.
             estimateEntityCountInSpawnRadius -= deletedEntitiesCount;
 
@@ -248,8 +249,9 @@ public class SpawnSystem
             estimateEntityCountInSpawnRadius = 0;
         }
 
-        // TODO Somewhere here we want to check that the player move to not basically spawn in circle around him.
-        // Solution inspired by gwen is to check if the player move out of a square/cycle around his precedent registered position
+        // Here we want to check that the player move to not basically spawn in circle around him.
+        // Solution inspired by gwen is to check if the player 
+        // moves out of a square/cycle around his precedent registered position
         // Not perfect however as going on and off could still break this.
         float distanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).Length();
 
@@ -257,7 +259,7 @@ public class SpawnSystem
         float immobilityZoneRadius = 10.0f;
         int maxEntitiesInSpawnRadius = 50;
 
-        //TODO compare to left
+        // If the player is staying inside a circle around he's previous position, only go up to the local spawn cap.
         bool noEntitySpawnLeftInRadius = estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius;
         if (distanceToLastPosition < immobilityZoneRadius && !noEntitySpawnLeftInRadius)
             return;
