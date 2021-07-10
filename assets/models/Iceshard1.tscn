@@ -1,8 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/models/Iceshard1.mesh" type="ArrayMesh" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode specular_toon;
+
+void fragment()
+{
+    float fresnel = sqrt(1.0 - dot(NORMAL, VIEW));
+
+    ALBEDO = vec3(0.1, 0.3, 0.5) + (0.1 * fresnel);
+    METALLIC = 0.5;
+    ROUGHNESS = 0.3 * (1.0 - fresnel);
+    ALPHA = 0.9;
+    RIM = 0.2;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
 [node name="iceshard1" type="MeshInstance"]
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 mesh = ExtResource( 1 )
-material/0 = null
+material/0 = SubResource( 2 )
