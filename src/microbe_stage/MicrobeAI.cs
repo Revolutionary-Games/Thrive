@@ -56,11 +56,13 @@ public class MicrobeAI
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
+
         glucose = SimulationParameters.Instance.GetCompound("glucose");
         iron = SimulationParameters.Instance.GetCompound("iron");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+
         previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
         compoundsSearchWeights = new Dictionary<Compound, float>();
     }
