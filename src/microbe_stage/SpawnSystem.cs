@@ -90,6 +90,8 @@ public class SpawnSystem
     {
         worldRoot = root;
         spawnTypes = new ShuffleBag<Spawner>(random);
+        lastRecordedPlayerPosition = new Vector3(0, 0, 0);
+        estimateEntityCountInSpawnRadius = 0;
     }
 
     // Needs no params constructor for loading saves?
@@ -254,12 +256,6 @@ public class SpawnSystem
         // If  there are already too many entities, don't spawn more
         if (existing >= maxAliveEntities)
             return;
-
-        if (lastRecordedPlayerPosition == null)
-        {
-            lastRecordedPlayerPosition = playerPosition;
-            estimateEntityCountInSpawnRadius = 0;
-        }
 
         // Here we want to check that the player move to not basically spawn in circle around him.
         // Solution inspired by gwen is to check if the player
