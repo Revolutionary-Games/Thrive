@@ -112,16 +112,16 @@ public class ShuffleBag<T> : IEnumerable<T>
         return drawnElement;
     }
 
-    private class ShuffleBagEnumerator<T> : IEnumerator<T>
+    private class ShuffleBagEnumerator<T1> : IEnumerator<T1>
     {
-        private ShuffleBag<T> sourceBag;
+        private ShuffleBag<T1> sourceBag;
 
-        public ShuffleBagEnumerator(ShuffleBag<T> sourceBag)
+        public ShuffleBagEnumerator(ShuffleBag<T1> sourceBag)
         {
             this.sourceBag = sourceBag;
         }
 
-        public T Current => sourceBag.Pick();
+        public T1 Current => sourceBag.Pick();
 
         object IEnumerator.Current => Current;
 
