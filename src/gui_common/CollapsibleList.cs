@@ -156,7 +156,7 @@ public class CollapsibleList : VBoxContainer
     }
 
     /// <summary>
-    ///   Add all the already existing childrens into the item list
+    ///   Add all the already existing children into the item list
     /// </summary>
     private void UpdateLists()
     {

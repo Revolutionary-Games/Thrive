@@ -313,7 +313,7 @@ public class InputEventItem : Node
         xButton.Visible = true;
 
         // Signal to the input manager that a rebinding has started
-        // and it should ignore input untill the rebind is finished
+        // and it should ignore input until the rebind is finished
         InputManager.RebindingIsActive = true;
     }
 

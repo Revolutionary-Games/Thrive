@@ -50,6 +50,7 @@ margin_left = 93.0
 margin_right = 151.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+focus_mode = 0
 disabled = true
 text = "LOAD"
 
@@ -63,6 +64,7 @@ margin_left = 163.0
 margin_right = 259.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+focus_mode = 0
 text = "REFRESH"
 
 [node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
@@ -70,6 +72,7 @@ margin_left = 263.0
 margin_right = 447.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+focus_mode = 0
 disabled = true
 text = "DELETE_SELECTED"
 
@@ -78,6 +81,7 @@ margin_left = 451.0
 margin_right = 670.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+focus_mode = 0
 disabled = true
 text = "CLEAN_UP_OLD_SAVES"
 
@@ -90,6 +94,7 @@ margin_bottom = 37.0
 margin_left = 682.0
 margin_right = 906.0
 margin_bottom = 37.0
+focus_mode = 0
 text = "OPEN_SAVE_DIRECTORY"
 
 [node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -110,6 +115,7 @@ margin_bottom = 600.0
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
+focus_mode = 0
 text = "BACK"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/BottomBox"]
@@ -216,6 +222,7 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSaveButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteSelected" to="." method="DeleteSelectedButtonPressed"]

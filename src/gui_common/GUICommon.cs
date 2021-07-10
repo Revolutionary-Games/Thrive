@@ -130,24 +130,10 @@ public class GUICommon : Node
             RectMinSize = new Vector2(sizeX, sizeY),
             SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-            Texture = GetCompoundIcon(compoundName),
+            Texture = SimulationParameters.Instance.GetCompound(compoundName).LoadedIcon,
         };
 
         return element;
-    }
-
-    /// <summary>
-    ///   Loads compund icon texture from file path
-    /// </summary>
-    public Texture GetCompoundIcon(string compoundName)
-    {
-        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName + ".png");
-
-        // Just use a dummy icon instead if the requested icon is not found
-        if (icon == null)
-            icon = GD.Load<Texture>("res://assets/textures/gui/bevel/TestIcon.png");
-
-        return icon;
     }
 
     private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)

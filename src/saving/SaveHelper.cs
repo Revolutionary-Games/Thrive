@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using Godot;
+using Timer = System.Timers.Timer;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter
@@ -18,6 +20,19 @@ public static class SaveHelper
         "0.5.3.0",
         "0.5.3.1",
     };
+
+    private static Timer recentSaveTimer;
+
+    static SaveHelper()
+    {
+        recentSaveTimer = new Timer
+        {
+            Interval = Constants.RECENT_SAVE_TIMER_INTERVAL,
+            AutoReset = false,
+        };
+
+        recentSaveTimer.Elapsed += OnFreshSaveElapsed;
+    }
 
     public enum SaveOrder
     {
@@ -36,6 +51,11 @@ public static class SaveHelper
         /// </summary>
         FileSystem,
     }
+
+    /// <summary>
+    ///   Returns true whenever the last save is made within a timespan of set duration, false if beyond that.
+    /// </summary>
+    public static bool SaveIsRecentlyPerformed { get; private set; }
 
     /// <summary>
     ///   A save (and not a quick save) that the user triggered
@@ -193,22 +213,18 @@ public static class SaveHelper
         {
             case SaveOrder.LastModifiedFirst:
             {
-                using (var file = new File())
-                {
-                    result = result.OrderByDescending(item =>
-                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
-                }
+                using var file = new File();
+                result = result.OrderByDescending(item =>
+                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
 
             case SaveOrder.FirstModifiedFirst:
             {
-                using (var file = new File())
-                {
-                    result = result.OrderBy(item =>
-                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
-                }
+                using var file = new File();
+                result = result.OrderBy(item =>
+                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
@@ -225,16 +241,14 @@ public static class SaveHelper
         int count = 0;
         long totalSize = 0;
 
-        using (var file = new File())
+        using var file = new File();
+        foreach (var save in CreateListOfSaves())
         {
-            foreach (var save in CreateListOfSaves())
+            if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
             {
-                if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
-                {
-                    file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
-                    ++count;
-                    totalSize += file.GetLen();
-                }
+                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                ++count;
+                totalSize += file.GetLen();
             }
         }
 
@@ -246,10 +260,8 @@ public static class SaveHelper
     /// </summary>
     public static void DeleteSave(string saveName)
     {
-        using (var directory = new Directory())
-        {
-            directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
-        }
+        using var directory = new Directory();
+        directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -372,6 +384,8 @@ public static class SaveHelper
         {
             save.SaveToFile();
             inProgress.ReportStatus(true, TranslationServer.Translate("SAVING_SUCCEEDED"));
+            SaveIsRecentlyPerformed = true;
+            recentSaveTimer.Start();
         }
         catch (Exception e)
         {
@@ -408,5 +422,10 @@ public static class SaveHelper
     {
         TaskExecutor.Instance.AddTask(new Task(() =>
             DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
+    }
+
+    private static void OnFreshSaveElapsed(object source, ElapsedEventArgs e)
+    {
+        SaveIsRecentlyPerformed = false;
     }
 }

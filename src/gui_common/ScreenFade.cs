@@ -5,11 +5,11 @@
 /// </summary>
 public class ScreenFade : CanvasLayer, ITransition
 {
-    public ColorRect Rect;
-    public Tween Fader;
+    private ColorRect rect;
+    private Tween fader;
+    private Control controlNode;
 
-    public float FadeDuration;
-    public FadeType FadeTransition;
+    private FadeType currentFadeType;
 
     [Signal]
     public delegate void OnFinishedSignal();
@@ -17,31 +17,55 @@ public class ScreenFade : CanvasLayer, ITransition
     public enum FadeType
     {
         /// <summary>
-        ///   Screen fades in
+        ///   Screen fades to white (transparent)
         /// </summary>
         FadeIn,
 
         /// <summary>
-        ///   Screen fades out
+        ///   Screen fades to black
         /// </summary>
         FadeOut,
     }
 
-    public Control ControlNode { get; private set; }
-
     public bool Skippable { get; set; } = true;
+
+    public bool Visible
+    {
+        get => controlNode.Visible;
+        set => controlNode.Visible = value;
+    }
+
+    public float FadeDuration { get; set; }
+
+    public FadeType CurrentFadeType
+    {
+        get => currentFadeType;
+        set
+        {
+            currentFadeType = value;
+
+            // Apply initial colors
+            if (currentFadeType == FadeType.FadeIn)
+            {
+                rect.Color = new Color(0, 0, 0, 1);
+            }
+            else if (currentFadeType == FadeType.FadeOut)
+            {
+                rect.Color = new Color(0, 0, 0, 0);
+            }
+        }
+    }
 
     public override void _Ready()
     {
-        ControlNode = GetNode<Control>("Control");
-        Rect = GetNode<ColorRect>("Control/Rect");
-        Fader = GetNode<Tween>("Control/Fader");
-        Fader.Connect("tween_all_completed", this, "OnFinished");
+        controlNode = GetNode<Control>("Control");
+        rect = GetNode<ColorRect>("Control/Rect");
+        fader = GetNode<Tween>("Control/Fader");
 
-        // Keep this node running even while paused
+        fader.Connect("tween_all_completed", this, "OnFinished");
+
+        // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
-
-        ControlNode.Hide();
     }
 
     public void FadeToBlack()
@@ -56,24 +80,22 @@ public class ScreenFade : CanvasLayer, ITransition
 
     public void FadeTo(Color initial, Color final)
     {
-        Rect.Color = initial;
+        rect.Color = initial;
 
-        Fader.InterpolateProperty(Rect, "color", initial, final, FadeDuration);
+        fader.InterpolateProperty(rect, "color", initial, final, FadeDuration);
 
-        Fader.Start();
+        fader.Start();
     }
 
     public void OnStarted()
     {
-        ControlNode.Show();
-
-        switch (FadeTransition)
+        switch (CurrentFadeType)
         {
             case FadeType.FadeIn:
-                FadeToBlack();
+                FadeToWhite();
                 break;
             case FadeType.FadeOut:
-                FadeToWhite();
+                FadeToBlack();
                 break;
         }
     }

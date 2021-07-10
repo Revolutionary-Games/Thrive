@@ -184,10 +184,7 @@ public class ToolTipManager : CanvasLayer
     {
         tooltip.ToolTipVisible = false;
 
-        var groupNode = GetGroup(group, false);
-
-        if (groupNode == null)
-            groupNode = AddGroup(group);
+        var groupNode = GetGroup(group, false) ?? AddGroup(group);
 
         tooltips[groupNode].Add(tooltip);
         groupNode.AddChild(tooltip.ToolTipNode);
@@ -264,8 +261,6 @@ public class ToolTipManager : CanvasLayer
     /// </summary>
     public Control AddGroup(string name)
     {
-        GD.Print("Creating new tooltip group: '" + name + "'");
-
         var groupNode = new Control();
         groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;

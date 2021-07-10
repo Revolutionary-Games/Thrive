@@ -9,7 +9,7 @@ public static class DictionaryUtils
     /// </summary>
     /// <returns>The random item.</returns>
     /// <param name="items">Dictionary to select from</param>
-    /// <param name="random">Randomnes source</param>
+    /// <param name="random">Randomness source</param>
     /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
     /// <typeparam name="T">Type of dictionary items.</typeparam>
     public static T Random<TKey, T>(this Dictionary<TKey, T> items, Random random)
