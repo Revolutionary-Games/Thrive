@@ -74,6 +74,14 @@ public static class Constants
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
+    /// <summary>
+    ///   Radius of the zone where the player is consider immobile as he remains inside.
+    ///   Used to not overgenerate when the player doesn't move.
+    /// </summary>
+    /// <remarks>
+    ///   Roughly MIN_SPAWN_RADIUS_RATIO*max spawn radius defined above, to make spawn zone match when moving.
+    /// </remarks>
+    public const int PLAYER_IMMOBILITY_ZONE_RADIUS = 10;
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;

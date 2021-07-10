@@ -41,6 +41,13 @@ public class SpawnSystem
     private int maxAliveEntities = 1000;
 
     /// <summary>
+    ///   This limits the number of things that can be spawned in a single spawn radius.
+    ///   Used to limit items spawning in one single circle when the player doesn't move.
+    /// </summary>
+    [JsonProperty]
+    private int maxEntitiesInSpawnRadius = 50;
+
+    /// <summary>
     ///   Max tries per spawner to avoid very high spawn densities lagging
     /// </summary>
     [JsonProperty]
@@ -255,13 +262,9 @@ public class SpawnSystem
         // Not perfect however as going on and off could still break this.
         float distanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).Length();
 
-        // TODO Either define in constants or find formula (based on spawn zone width?)
-        float immobilityZoneRadius = 10.0f;
-        int maxEntitiesInSpawnRadius = 50;
-
         // If the player is staying inside a circle around he's previous position, only go up to the local spawn cap.
         bool noEntitySpawnLeftInRadius = estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius;
-        if (distanceToLastPosition < immobilityZoneRadius && !noEntitySpawnLeftInRadius)
+        if (distanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS && !noEntitySpawnLeftInRadius)
             return;
 
         // The player moved, so let's update his position and reset counts in spawn radius
