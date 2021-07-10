@@ -230,20 +230,20 @@ public class PauseMenu : ControlWithInput
         switch (exitType)
         {
             case ExitType.ReturnToMenu:
-                {
-                    // Unpause the game
-                    GetTree().Paused = false;
+            {
+                // Unpause the game
+                GetTree().Paused = false;
 
-                    TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-                    TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
-                    break;
-                }
+                TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
+                TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+                break;
+            }
 
             case ExitType.QuitGame:
-                {
-                    GetTree().Quit();
-                    break;
-                }
+            {
+                GetTree().Quit();
+                break;
+            }
         }
     }
 
