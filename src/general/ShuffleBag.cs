@@ -100,6 +100,7 @@ public class ShuffleBag<T> : IEnumerable<T>
     {
         if (currentContent.Count == 0)
             throw new NullReferenceException("Cannot drop from empty bag!");
+
         currentContent.RemoveAt(currentContent.Count - 1);
     }
 
