@@ -1892,6 +1892,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Finishes an organelle move
     /// </summary>
+    /// <returns>True if the organelle move succeeded.</returns>
     private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation)
     {
@@ -1903,6 +1904,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // or not moved (but can be rotated), then moving it is free
         bool isFreeToMove = organelle.MovedThisSession || oldLocation == newLocation || organelle.PlacedThisSession;
         int cost = isFreeToMove ? 0 : Constants.ORGANELLE_MOVE_COST;
+
+        // Too low mutation points, cancel move
+        if (!isFreeToMove && MutationPoints < Constants.ORGANELLE_MOVE_COST)
+        {
+            CancelCurrentAction();
+            gui.OnInsufficientMp(false);
+            return false;
+        }
 
         var action = new MicrobeEditorAction(this, cost,
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
