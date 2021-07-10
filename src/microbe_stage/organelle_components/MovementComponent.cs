@@ -1,19 +1,18 @@
 ﻿using Godot;
 
 /// <summary>
-///   Flagellum for making cells move faster
+///   Organelles for making cells move faster
 /// </summary>
-public class MovementComponent : ExternallyPositionedComponent
+public abstract class MovementComponent : ExternallyPositionedComponent
 {
     public float Momentum;
     public float Torque;
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+    protected readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-    private bool movingTail;
-    private Vector3 force;
+    protected Vector3 force;
 
-    private AnimationPlayer animation;
+    protected AnimationPlayer animation;
 
     public MovementComponent(float momentum, float torque)
     {
@@ -33,6 +32,18 @@ public class MovementComponent : ExternallyPositionedComponent
 
         if (movement != new Vector3(0, 0, 0))
             microbe.AddMovementForce(movement);
+    }
+
+    /// <summary>
+    ///   Calculate the momentum of the movement organelle based on
+    ///   angle towards middle of cell
+    /// </summary>
+    protected static Vector3 CalculateForce(Hex pos, float momentum)
+    {
+        Vector3 organelle = Hex.AxialToCartesian(pos);
+        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        var delta = middle - organelle;
+        return delta.Normalized() * momentum;
     }
 
     protected override void CustomAttach()
@@ -55,19 +66,7 @@ public class MovementComponent : ExternallyPositionedComponent
         organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
     }
 
-    /// <summary>
-    ///   Calculate the momentum of the movement organelle based on
-    ///   angle towards middle of cell
-    /// </summary>
-    private static Vector3 CalculateForce(Hex pos, float momentum)
-    {
-        Vector3 organelle = Hex.AxialToCartesian(pos);
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organelle;
-        return delta.Normalized() * momentum;
-    }
-
-    private void SetSpeedFactor(float speed)
+    protected void SetSpeedFactor(float speed)
     {
         if (animation != null)
         {
@@ -75,69 +74,20 @@ public class MovementComponent : ExternallyPositionedComponent
         }
     }
 
-    // ReSharper disable once UnusedParameter.Local
     /// <summary>
     ///   The final calculated force is multiplied by elapsed before
     ///   applying. So we don't have to do that. But we need to take
     ///   the right amount of atp.
     /// </summary>
-    private Vector3 CalculateMovementForce(Microbe microbe, float elapsed)
-    {
-        // The movementDirection is the player or AI input
-        Vector3 direction = microbe.MovementDirection;
-
-        var forceMagnitude = force.Dot(direction);
-        if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
-            force.LengthSquared() < MathUtils.EPSILON)
-        {
-            if (movingTail)
-            {
-                movingTail = false;
-
-                SetSpeedFactor(0.25f);
-            }
-
-            return new Vector3(0, 0, 0);
-        }
-
-        var animationSpeed = 2.3f;
-        movingTail = true;
-
-        var requiredEnergy = Constants.FLAGELLA_ENERGY_COST * elapsed;
-
-        var availableEnergy = microbe.Compounds.TakeCompound(atp, requiredEnergy);
-
-        if (availableEnergy < requiredEnergy)
-        {
-            // Not enough energy, scale the force down
-            var fraction = availableEnergy / requiredEnergy;
-
-            forceMagnitude *= fraction;
-
-            animationSpeed = 0.25f + (animationSpeed - 0.25f) * fraction;
-        }
-
-        float impulseMagnitude = Constants.FLAGELLA_BASE_FORCE * microbe.MovementFactor *
-            forceMagnitude / 100.0f;
-
-        // Rotate the 'thrust' based on our orientation
-        direction = microbe.Transform.basis.Xform(direction);
-
-        SetSpeedFactor(animationSpeed);
-
-        return direction * impulseMagnitude;
-    }
+    protected abstract Vector3 CalculateMovementForce(Microbe microbe, float elapsed);
 }
 
-public class MovementComponentFactory : IOrganelleComponentFactory
+public abstract class MovementComponentFactory : IOrganelleComponentFactory
 {
     public float Momentum;
     public float Torque;
 
-    public IOrganelleComponent Create()
-    {
-        return new MovementComponent(Momentum, Torque);
-    }
+    public abstract IOrganelleComponent Create();
 
     public void Check(string name)
     {
