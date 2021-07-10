@@ -51,7 +51,7 @@ SOURCE_ITEMS = [
   'GlobalSuppressions.cs', 'LICENSE.txt', 'project.godot', 'stylecop.json', 'StyleCop.ruleset',
   'Thrive.csproj', 'Thrive.sln', 'Thrive.sln.DotSettings', 'doc', 'docker/ci',
   'docker/jsonlint', 'Properties', 'shaders', 'simulation_parameters', 'src', 'test',
-  'README.md'
+  'third_party', 'README.md'
 ].freeze
 
 ASSEMBLY_VERSION = /AssemblyVersion\("([\d.]+)"\)/.freeze
@@ -94,6 +94,9 @@ end.parse!
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
 
 VALID_TARGETS = @options[:dehydrate] ? DEVBUILD_TARGETS : ALL_TARGETS
+
+# Make sure godot ignores the builds folder in terms of imports
+File.write 'builds/.gdignore', '' unless File.exist? 'builds/.gdignore'
 
 if @options[:dehydrate]
   puts 'Making dehydrated devbuilds'

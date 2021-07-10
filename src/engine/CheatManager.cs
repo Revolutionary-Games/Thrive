@@ -13,6 +13,11 @@ public static class CheatManager
     public static event EventHandler<EventArgs> OnHideCheatMenus;
 
     /// <summary>
+    ///   Fired whenever the user uses the "Duplicate Player" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs> OnPlayerDuplicationCheatUsed;
+
+    /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
     public static bool InfiniteCompounds { get; set; }
@@ -37,6 +42,14 @@ public static class CheatManager
     ///   Freebuild has infinite MP anyway regardless of this variable
     /// </summary>
     public static bool InfiniteMP { get; set; }
+
+    /// <summary>
+    ///   Forces the player microbe to duplicate without going to the editor
+    /// </summary>
+    public static void PlayerDuplication()
+    {
+        OnPlayerDuplicationCheatUsed?.Invoke(null, EventArgs.Empty);
+    }
 
     public static void DisableAllCheats()
     {

@@ -182,6 +182,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private bool microbePreviewMode;
 
     /// <summary>
+    ///   True if auto save should trigger ASAP
+    /// </summary>
+    private bool wantsToSave;
+
+    /// <summary>
     ///   Where the user started panning with the mouse
     ///   Null if the user is not panning with the mouse
     /// </summary>
@@ -360,19 +365,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public MicrobeStage ReturnToStage { get; set; }
 
     [JsonIgnore]
-    public bool HasNucleus
-    {
-        get
-        {
-            foreach (var organelle in editedMicrobeOrganelles.Organelles)
-            {
-                if (organelle.Definition.InternalName == "nucleus")
-                    return true;
-            }
-
-            return false;
-        }
-    }
+    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d.InternalName == "nucleus");
 
     [JsonIgnore]
     public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
@@ -401,6 +394,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return result;
         }
     }
+
+    public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => editedMicrobeOrganelles
+        .Where(p => p.Definition.Unique)
+        .Select(p => p.Definition);
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -600,10 +597,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 return;
             }
 
-            if (!TransitionFinished)
-                return;
-
             OnEditorReady();
+        }
+
+        // Auto save after editor entry is complete
+        if (TransitionFinished && wantsToSave)
+        {
+            if (!CurrentGame.FreeBuild)
+                SaveHelper.AutoSave(this);
+
+            wantsToSave = false;
         }
 
         UpdateEditor(delta);
@@ -1099,6 +1102,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateMutationPointsBar();
     }
 
+    private bool HasOrganelle(OrganelleDefinition organelleDefinition)
+    {
+        return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
+    }
+
     /// <summary>
     ///   Moves the ObjectToFollow of the camera in a direction
     /// </summary>
@@ -1249,6 +1257,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (!IsLoadedFromSave)
         {
+            // Auto save is wanted once possible
+            wantsToSave = true;
+
             InitEditorFresh();
 
             Symmetry = 0;
@@ -1301,6 +1312,18 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void InitEditorFresh()
     {
+        MutationPoints = Constants.BASE_MUTATION_POINTS;
+        editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
+            OnOrganelleAdded, OnOrganelleRemoved);
+
+        organelleRot = 0;
+
+        targetPatch = null;
+
+        playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
+
+        canStillMove = true;
+
         // For now we only show a loading screen if auto-evo is not ready yet
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
@@ -1308,10 +1331,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
                 MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
-        }
-        else if (!TransitionFinished)
-        {
-            ready = false;
         }
         else
         {
@@ -1330,18 +1349,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             // Make sure freebuilding doesn't get stuck on
             FreeBuilding = false;
         }
-
-        MutationPoints = Constants.BASE_MUTATION_POINTS;
-        editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
-            OnOrganelleAdded, OnOrganelleRemoved);
-
-        organelleRot = 0;
-
-        targetPatch = null;
-
-        playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
-
-        canStillMove = true;
 
         var playerSpecies = CurrentGame.GameWorld.PlayerSpecies;
 
@@ -1390,7 +1397,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-        gui.UpdatePartsAvailability(HasNucleus);
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
@@ -1830,7 +1837,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
-        if ((organelle.Definition.InternalName == "nucleus" && HasNucleus) ||
+        if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
                 && organelle.Definition.ChanceToCreate != 0))
             return false;
@@ -1912,6 +1919,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Finishes an organelle move
     /// </summary>
+    /// <returns>True if the organelle move succeeded.</returns>
     private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation)
     {
@@ -1923,6 +1931,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // or not moved (but can be rotated), then moving it is free
         bool isFreeToMove = organelle.MovedThisSession || oldLocation == newLocation || organelle.PlacedThisSession;
         int cost = isFreeToMove ? 0 : Constants.ORGANELLE_MOVE_COST;
+
+        // Too low mutation points, cancel move
+        if (!isFreeToMove && MutationPoints < Constants.ORGANELLE_MOVE_COST)
+        {
+            CancelCurrentAction();
+            gui.OnInsufficientMp(false);
+            return false;
+        }
 
         var action = new MicrobeEditorAction(this, cost,
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
@@ -1998,7 +2014,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
-        gui.UpdatePartsAvailability(HasNucleus);
+
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         UpdatePatchDependentBalanceData();
 
@@ -2253,9 +2270,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateReportTabStatistics(CurrentPatch);
 
-        // Auto save after editor entry is complete
-        if (!CurrentGame.FreeBuild)
-            SaveHelper.AutoSave(this);
+        FadeIn();
     }
 
     private void OnLoadedEditorReady()
@@ -2271,6 +2286,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
+
+        FadeIn();
     }
 
     private void ApplyAutoEvoResults()
@@ -2308,6 +2325,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void UpdatePatchBackgroundImage()
     {
         camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.BiomeTemplate.Background));
+    }
+
+    /// <summary>
+    ///   Starts a fade in transition
+    /// </summary>
+    private void FadeIn()
+    {
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
+        TransitionManager.Instance.StartTransitions(this, nameof(OnFinishTransitioning));
     }
 
     private void SaveGame(string name)

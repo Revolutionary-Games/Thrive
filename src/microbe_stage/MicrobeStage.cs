@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -100,6 +101,18 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [JsonProperty]
     public GameProperties CurrentGame { get; set; }
 
+    /// <summary>
+    ///   All compounds the user is hovering over
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<Compound, float> CompoundsAtMouse { get; private set; }
+
+    /// <summary>
+    ///   All microbes the user is hovering over
+    /// </summary>
+    [JsonIgnore]
+    public List<Microbe> MicrobesAtMouse { get; private set; } = new List<Microbe>();
+
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
 
@@ -132,7 +145,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         get
         {
-            var results = new List<Node>();
+            var results = new HashSet<Node>();
 
             foreach (var node in rootOfDynamicallySpawned.GetChildren())
             {
@@ -167,7 +180,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                     results.Add(casted);
             }
 
-            return results;
+            return results.ToList();
         }
         set
         {
@@ -317,6 +330,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
+        Player.OnUnbound = OnPlayerUnbound;
+
+        Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
+
         Camera.ObjectToFollow = Player;
 
         if (spawnedPlayer)
@@ -349,6 +366,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
         microbeAISystem.Process(delta);
+
+        UpdateMouseHover();
 
         if (gameOver)
         {
@@ -530,6 +549,34 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 
+    /// <summary>
+    ///   Updates CompoundsAtMouse and MicrobesAtMouse
+    /// </summary>
+    private void UpdateMouseHover()
+    {
+        CompoundsAtMouse = Clouds.GetAllAvailableAt(Camera.CursorWorldPos);
+
+        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
+
+        foreach (var microbe in MicrobesAtMouse)
+            microbe.IsHoveredOver = false;
+
+        MicrobesAtMouse.Clear();
+
+        foreach (Microbe entry in microbes)
+        {
+            var distance = (entry.GlobalTransform.origin - Camera.CursorWorldPos).Length();
+
+            // Find only cells that have the mouse
+            // position within their membrane
+            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
+                continue;
+
+            entry.IsHoveredOver = true;
+            MicrobesAtMouse.Add(entry);
+        }
+    }
+
     [DeserializedCallbackAllowed]
     private void OnPlayerDied(Microbe player)
     {
@@ -546,7 +593,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [DeserializedCallbackAllowed]
     private void OnPlayerReproductionStatusChanged(Microbe player, bool ready)
     {
-        if (ready)
+        if (ready && player.Colony == null)
         {
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
 
@@ -558,6 +605,18 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             HUD.HideReproductionDialog();
         }
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerUnbindEnabled(Microbe player)
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerUnbound(Microbe player)
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
     }
 
     private void CreatePatchManagerIfNeeded()
@@ -581,6 +640,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             playerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+
+        HUD.HintText = string.Empty;
 
         // Respawn if not extinct (or freebuild)
         if (playerSpecies.Population <= 0 && !CurrentGame.FreeBuild)

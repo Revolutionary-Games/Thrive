@@ -59,9 +59,11 @@
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
+    <Compile Include="src\general\AliveMarker.cs" />
     <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
+    <Compile Include="src\general\IEntity.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
@@ -110,6 +112,9 @@
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
     <Compile Include="src\microbe_stage\ChunkConfiguration.cs" />
+    <Compile Include="src\microbe_stage\ColonyCompoundBag.cs" />
+    <Compile Include="src\microbe_stage\ICompoundStorage.cs" />
+    <Compile Include="src\microbe_stage\MicrobeColony.cs" />
     <Compile Include="src\microbe_stage\CompoundBalance.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
@@ -131,6 +136,7 @@
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\NucleusMesh.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
@@ -163,7 +169,6 @@
     <Compile Include="src\microbe_stage\CompoundCloudSystem.cs" />
     <Compile Include="src\engine\TaskExecutor.cs" />
     <Compile Include="src\microbe_stage\FluidSystem.cs" />
-    <Compile Include="src\general\PerlinNoise.cs" />
     <Compile Include="src\microbe_stage\Spawner.cs" />
     <Compile Include="src\microbe_stage\ISpawned.cs" />
     <Compile Include="src\microbe_stage\Spawners.cs" />
@@ -281,6 +286,7 @@
     <Compile Include="src\tutorial\microbe_stage\MicrobeReproduction.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeStageWelcome.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeStayingAlive.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeUnbind.cs" />
     <Compile Include="src\tutorial\TutorialEventArgs.cs" />
     <Compile Include="src\tutorial\TutorialEventType.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeTutorialGUI.cs" />
@@ -325,5 +331,8 @@
     <Content Include="simulation_parameters\microbe_stage\membranes.json" />
     <Content Include="simulation_parameters\microbe_stage\organelles.json" />
     <Content Include="simulation_parameters\microbe_stage\species_names.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="third_party\ThirdParty.csproj" />
   </ItemGroup>
 </Project>

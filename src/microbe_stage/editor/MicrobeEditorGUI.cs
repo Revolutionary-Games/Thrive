@@ -384,9 +384,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureRect sizeIndicator;
 
     private Texture symmetryIconDefault;
-    private Texture symmetryIcon2x;
-    private Texture symmetryIcon4x;
-    private Texture symmetryIcon6x;
+    private Texture symmetryIcon2X;
+    private Texture symmetryIcon4X;
+    private Texture symmetryIcon6X;
     private Texture increaseIcon;
     private Texture decreaseIcon;
     private AudioStream unableToPlaceHexSound;
@@ -516,9 +516,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
-        symmetryIcon2x = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
-        symmetryIcon4x = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
-        symmetryIcon6x = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
+        symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
+        symmetryIcon4X = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
+        symmetryIcon6X = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
@@ -553,10 +553,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         ApplySelectionMenuTab();
 
         UpdateMutationPointsBar();
-
-        // Fade out for that smooth satisfying transition
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
     }
 
     public void SetMap(PatchMap map)
@@ -1094,7 +1090,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
-    internal void OnInsufficientMp()
+    internal void OnInsufficientMp(bool playSound = true)
     {
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
@@ -1102,7 +1098,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
 
-        PlayInvalidActionSound();
+        if (playSound)
+            PlayInvalidActionSound();
     }
 
     internal void OnActionBlockedWhileMoving()
@@ -1118,11 +1115,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock the organelles that need a nucleus
     /// </summary>
-    internal void UpdatePartsAvailability(bool hasNucleus)
+    internal void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
-            UpdatePartAvailability(hasNucleus, organelle);
+            UpdatePartAvailability(placedUniqueOrganelleNames, organelle);
         }
     }
 
@@ -1162,6 +1159,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Can't exit the editor with disconnected organelles
+        if (editor.HasIslands)
+        {
+            islandPopup.PopupCenteredShrink();
+            return;
+        }
+
         // Show warning popup if trying to exit with negative atp production
         if (energyBalanceInfo != null &&
             energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
@@ -1170,17 +1174,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             return;
         }
 
-        // Can't exit the editor with disconnected organelles
-        if (editor.HasIslands)
-        {
-            islandPopup.PopupCenteredShrink();
-            return;
-        }
-
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1188,7 +1185,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1310,13 +1307,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 symmetryIcon.Texture = symmetryIconDefault;
                 break;
             case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
-                symmetryIcon.Texture = symmetryIcon2x;
+                symmetryIcon.Texture = symmetryIcon2X;
                 break;
             case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon4x;
+                symmetryIcon.Texture = symmetryIcon4X;
                 break;
             case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon6x;
+                symmetryIcon.Texture = symmetryIcon6X;
                 break;
         }
     }
@@ -1324,16 +1321,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock a single organelle that need a nucleus
     /// </summary>
-    private void UpdatePartAvailability(bool hasNucleus, OrganelleDefinition organelle)
+    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
+        OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
 
-        if (item.Name == nucleus.InternalName)
+        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
         {
-            item.Locked = hasNucleus;
+            item.Locked = true;
         }
         else if (organelle.RequiresNucleus)
         {
+            var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus);
             item.Locked = !hasNucleus;
         }
         else

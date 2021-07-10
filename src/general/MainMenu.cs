@@ -7,7 +7,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
-public class MainMenu : Node
+public class MainMenu : NodeWithInput
 {
     /// <summary>
     ///   Index of the current menu.
@@ -34,7 +34,7 @@ public class MainMenu : Node
     public Array MenuArray;
     public TextureRect Background;
 
-    public bool IsReturningToMenu = false;
+    public bool IsReturningToMenu;
 
     private readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
 
@@ -98,6 +98,32 @@ public class MainMenu : Node
             // Just switch the menu
             SwitchMenu();
         }
+    }
+
+    /// <summary>
+    ///   This is when ESC is pressed. Main menu priority is lower than Options Menu
+    ///   to avoid capturing ESC presses in the Options Menu.
+    /// </summary>
+    [RunOnKeyDown("ui_cancel", Priority = Constants.MAIN_MENU_CANCEL_PRIORITY)]
+    public bool OnEscapePressed()
+    {
+        // In a sub menu (that doesn't have its own class)
+        if (CurrentMenuIndex != 0 && CurrentMenuIndex < uint.MaxValue)
+        {
+            SetCurrentMenu(0);
+
+            // Handled, stop here.
+            return true;
+        }
+
+        if (CurrentMenuIndex == uint.MaxValue && saves.Visible)
+        {
+            OnReturnFromLoadGame();
+            return true;
+        }
+
+        // Not handled, pass through.
+        return false;
     }
 
     /// <summary>
@@ -187,7 +213,7 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, IsReturningToMenu ?
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
             0.3f :
             0.5f, false);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
@@ -231,13 +257,13 @@ public class MainMenu : Node
 
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
             TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
         }
         else
         {
             // People who disable the cutscene are impatient anyway so use a reduced fade time
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.2f);
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.2f);
         }
 
         TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
@@ -256,7 +282,7 @@ public class MainMenu : Node
         // Ignore mouse event on the button to prevent it being clicked twice
         freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.15f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.15f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 

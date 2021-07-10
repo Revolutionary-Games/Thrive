@@ -70,24 +70,26 @@ public class PauseMenu : ControlWithInput
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
     }
 
-    [RunOnKeyDown("ui_cancel")]
-    public void EscapeKeyPressed()
+    [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
+    public bool EscapeKeyPressed()
     {
         if (Visible)
         {
-            // Do not close the window if the user is rebinding the input keys
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/1888
-            if (InputGroupList.WasListeningForInput)
-                return;
-
             SetActiveMenu("primary");
 
             EmitSignal(nameof(OnClosed));
+
+            return true;
         }
-        else if (NoExclusiveTutorialActive())
+
+        if (NoExclusiveTutorialActive())
         {
             EmitSignal(nameof(OnOpenWithKeyPress));
+            return true;
         }
+
+        // Not handled, pass through.
+        return false;
     }
 
     [RunOnKeyDown("help")]
@@ -124,7 +126,7 @@ public class PauseMenu : ControlWithInput
         // Unpause the game
         GetTree().Paused = false;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.1f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
     }
 
@@ -170,10 +172,8 @@ public class PauseMenu : ControlWithInput
         SetActiveMenu("options");
     }
 
-    private void CloseOptionsPressed()
+    private void OnOptionsClosed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         SetActiveMenu("primary");
     }
 

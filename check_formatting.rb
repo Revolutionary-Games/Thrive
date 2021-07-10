@@ -74,7 +74,8 @@ def ide_file?(path)
 end
 
 def explicitly_ignored?(path)
-  path =~ %r{/ThirdParty/}i || path =~ /GlobalSuppressions.cs/ || path =~ %r{/RubySetupSystem/}
+  path =~ %r{/ThirdParty/}i || %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
+    path =~ %r{/RubySetupSystem/}
 end
 
 def cache?(path)
@@ -590,7 +591,7 @@ def run_duplicate_finder
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
             "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=false',
-            '--exclude-by-comment="NO_DUPLICATE_CHECK"', 'Thrive.sln']
+            '--exclude-by-comment="NO_DUPLICATE_CHECK"', 'Thrive.csproj']
 
   # Duplicate code needs to always process all files to detect code
   # from an existing file being duplicated in a new file

@@ -46,6 +46,9 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
+    // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
+    public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>
@@ -225,7 +228,7 @@ public static class Constants
     /// <summary>
     ///   How much ATP does engulf mode cost per second
     /// </summary>
-    public const float ENGULFING_ATP_COST_SECOND = 1.5f;
+    public const float ENGULFING_ATP_COST_PER_SECOND = 1.5f;
 
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
@@ -248,9 +251,14 @@ public static class Constants
     public const float ENGULF_DAMAGE = 45.0f;
 
     /// <summary>
+    ///   How much ATP does binding mode cost per second
+    /// </summary>
+    public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
+
+    /// <summary>
     ///   Damage a single pilus stab does
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 5.0f;
+    public const float PILUS_BASE_DAMAGE = 3.0f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
@@ -328,10 +336,9 @@ public static class Constants
     public const float MAX_OPACITY_MUTATION = 0.01f;
 
     // Mutation Variables
-    public const float MUTATION_BACTERIA_TO_EUKARYOTE = 1.0f;
-    public const float MUTATION_CREATION_RATE = 0.1f;
-    public const float MUTATION_EXTRA_CREATION_RATE = 0.1f;
-    public const float MUTATION_DELETION_RATE = 0.1f;
+    public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
+    public const float MUTATION_CREATION_RATE = 0.15f;
+    public const float MUTATION_DELETION_RATE = 0.03f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
     // Max fear and aggression and activity
@@ -362,14 +369,15 @@ public static class Constants
 
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
+    public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
     // Genus splitting and name mutation
-    public const int MUTATION_CHANGE_GENUS = 33;
     public const int MUTATION_WORD_EDIT = 10;
+    public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
@@ -426,6 +434,20 @@ public static class Constants
 
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
+
+    /// <summary>
+    ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
+    ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>
+    /// </summary>
+    public const int MAIN_MENU_CANCEL_PRIORITY = -3;
+
+    /// <summary>
+    ///   Pause menu has lower cancel priority to avoid handling canceling being in the menu if a an open sub menu
+    ///   has special actions it needs to do
+    /// </summary>
+    public const int PAUSE_MENU_CANCEL_PRIORITY = -2;
+
+    public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.

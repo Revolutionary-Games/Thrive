@@ -252,7 +252,6 @@ public class SaveManagerGUI : Control
     private void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
         EmitSignal(nameof(OnBackPressed));
     }
 }
