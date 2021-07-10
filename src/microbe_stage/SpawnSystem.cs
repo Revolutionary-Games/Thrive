@@ -68,6 +68,12 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
+    // Used to prevent spawn belt when player doesn't move
+    private int estimateEntityCountInSpawnRadius;
+
+    // TODO Initialize
+    private Vector3 lastRecordedPlayerPosition;
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
@@ -186,7 +192,12 @@ public class SpawnSystem
         {
             elapsed -= interval;
 
-            estimateEntityCount = DespawnEntities(playerPosition);
+            int deletedEntitiesCount = DespawnEntities(playerPosition);
+            // TODO Clear at some point
+            estimateEntityCount = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP).Count;
+            estimateEntityCount -= deletedEntitiesCount;
+            // Very large overestimation given that most will likely be deleted outside the spawn radius.
+            estimateEntityCountInSpawnRadius -= deletedEntitiesCount;
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
@@ -230,6 +241,30 @@ public class SpawnSystem
         // If  there are already too many entities, don't spawn more
         if (existing >= maxAliveEntities)
             return;
+
+        if (lastRecordedPlayerPosition == null)
+        {
+            lastRecordedPlayerPosition = playerPosition;
+            estimateEntityCountInSpawnRadius = 0;
+        }
+
+        // TODO Somewhere here we want to check that the player move to not basically spawn in circle around him.
+        // Solution inspired by gwen is to check if the player move out of a square/cycle around his precedent registered position
+        // Not perfect however as going on and off could still break this.
+        float distanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).Length();
+
+        // TODO Either define in constants or find formula (based on spawn zone width?)
+        float immobilityZoneRadius = 10.0f;
+        int maxEntitiesInSpawnRadius = 50;
+
+        //TODO compare to left
+        bool noEntitySpawnLeftInRadius = estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius;
+        if (distanceToLastPosition < immobilityZoneRadius && !noEntitySpawnLeftInRadius)
+            return;
+
+        // The player moved, so let's update his position and reset counts in spawn radius
+        lastRecordedPlayerPosition = playerPosition;
+        estimateEntityCountInSpawnRadius = 0;
 
         int spawned = 0;
 
@@ -342,7 +377,7 @@ public class SpawnSystem
     /// <summary>
     ///   Despawns entities that are far away from the player
     /// </summary>
-    /// <returns>The number of alive entities, used to limit the total</returns>
+    /// <returns>The number of entities deleted used to update counts</returns>
     private int DespawnEntities(Vector3 playerPosition)
     {
         int entitiesDeleted = 0;
@@ -379,7 +414,7 @@ public class SpawnSystem
             }
         }
 
-        return spawnedEntities.Count - entitiesDeleted;
+        return entitiesDeleted;
     }
 
     /// <summary>
