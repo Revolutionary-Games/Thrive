@@ -890,7 +890,7 @@ public class MicrobeHUD : Node
     private void UpdateAbilitiesBar()
     {
         abilitiesHotkey["BindingMode"].Visible = stage.Player.CanBind;
-        abilitiesHotkey["FireToxin"].Visible = stage.Player.CanEmitToxin;
+        abilitiesHotkey["FireToxin"].Visible = stage.Player.AgentVacuoleCount > 0;
 
         abilitiesHotkey["Engulfment"].Pressed = stage.Player.State == Microbe.MicrobeState.Engulf;
         abilitiesHotkey["BindingMode"].Pressed = stage.Player.State == Microbe.MicrobeState.Binding;
