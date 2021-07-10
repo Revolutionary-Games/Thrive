@@ -7,7 +7,7 @@ using Environment = System.Environment;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
-public class OptionsMenu : Control
+public class OptionsMenu : ControlWithInput
 {
     /*
       GUI Control Paths
@@ -457,6 +457,34 @@ public class OptionsMenu : Control
         customUsername.Editable = settings.CustomUsernameEnabled;
     }
 
+    [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
+    public bool OnEscapePressed()
+    {
+        // Only handle keypress when visible
+        if (!Visible)
+            return false;
+
+        if (InputGroupList.WasListeningForInput)
+        {
+            // Listening for Inputs, should not do anything and should not pass through
+            return true;
+        }
+
+        if (!Exit())
+        {
+            // We are prevented from exiting, consume this input
+            return true;
+        }
+
+        // If it is opened from InGame then let pause menu hide too.
+        if (optionsMode == OptionsMode.InGame)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     private void SwitchMode(OptionsMode mode)
     {
         switch (mode)
@@ -710,15 +738,21 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        Exit();
+    }
+
+    private bool Exit()
+    {
         // If any settings have been changed, show a dialogue asking if the changes should be kept or
         // discarded.
         if (!CompareSettings())
         {
             backConfirmationBox.PopupCenteredShrink();
-            return;
+            return false;
         }
 
         EmitSignal(nameof(OnOptionsClosed));
+        return true;
     }
 
     private void OnResetPressed()
