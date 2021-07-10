@@ -57,6 +57,16 @@ public class CustomRichTextLabel : RichTextLabel
         BbcodeEnabled = true;
     }
 
+    public override void _Draw()
+    {
+        // A workaround to get RichTextLabel's height properly update on tooltip size change
+        // See https://github.com/Revolutionary-Games/Thrive/issues/2236
+        // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
+#pragma warning disable CA2245 // Necessary for workaround
+        Invoke.Instance.Queue(() => BbcodeText = BbcodeText);
+#pragma warning restore CA2245
+    }
+
     /// <summary>
     ///   Parses ExtendedBbcode for any custom Thrive tags and applying the final result
     ///   into this RichTextLabel's bbcode text.

@@ -153,14 +153,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             UpdateProcessesDescription();
         }
-
-        if (what == NotificationResized)
-        {
-            // A workaround to get RichTextLabel's height properly update on tooltip size change
-            // See https://github.com/Revolutionary-Games/Thrive/issues/2236
-            if (processesDescriptionLabel != null)
-                processesDescriptionLabel.BbcodeText = processesDescriptionLabel.BbcodeText;
-        }
     }
 
     /// <summary>
