@@ -686,11 +686,6 @@ public abstract class BaseThriveConverter : JsonConverter
             throw new JsonException($"no suitable constructor found for current type: {objectType}");
         }
 
-        if ( item == null)
-        {
-            throw new ArgumentNullException($" Non existing key from JObject: {item} ");
-        }
-
         alreadyConsumedItems = new HashSet<string>();
 
         foreach (var param in constructor.GetParameters())
