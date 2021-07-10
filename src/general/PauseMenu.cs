@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -27,17 +27,17 @@ public class PauseMenu : ControlWithInput
     [Export]
     public NodePath LoadSaveListPath;
 
-	[Export]
-	public NodePath ExitConfirmationDialogPath;
+    [Export]
+    public NodePath ExitConfirmationDialogPath;
 
     private Control primaryMenu;
     private HelpScreen helpScreen;
     private Control loadMenu;
     private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
-	private ConfirmationDialog exitConfirmationDialog;
+    private ConfirmationDialog exitConfirmationDialog;
 
-	private ExitType exitType;
+    private ExitType exitType;
 
     [Signal]
     public delegate void OnClosed();
@@ -55,14 +55,14 @@ public class PauseMenu : ControlWithInput
     [Signal]
     public delegate void MakeSave(string name);
 
-	/// <summary>
-	///	  Types of exit the player requests. Mainly used for game exit confirmation.
-	/// </summary>
-	public enum ExitType
-	{
-		ReturnToMenu,
-		QuitGame,
-	}
+    /// <summary>
+    ///	  Types of exit the player requests. Mainly used for game exit confirmation.
+    /// </summary>
+    public enum ExitType
+    {
+        ReturnToMenu,
+        QuitGame,
+    }
 
     /// <summary>
     ///   The GameProperties object holding settings and state for the current game session.
@@ -83,10 +83,10 @@ public class PauseMenu : ControlWithInput
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
-		exitConfirmationDialog = GetNode<ConfirmationDialog>(ExitConfirmationDialogPath);
+        exitConfirmationDialog = GetNode<ConfirmationDialog>(ExitConfirmationDialogPath);
 
-		exitConfirmationDialog.GetOk().Text = TranslationServer.Translate("YES");
-		exitConfirmationDialog.GetCancel().Text = TranslationServer.Translate("NO");
+        exitConfirmationDialog.GetOk().Text = TranslationServer.Translate("YES");
+        exitConfirmationDialog.GetCancel().Text = TranslationServer.Translate("NO");
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -142,32 +142,32 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-		exitType = ExitType.ReturnToMenu;
+        exitType = ExitType.ReturnToMenu;
 
-		if (SaveHelper.SaveIsRecentlyPerformed)
-		{
-			ConfirmExit();
-		}
-		else
-		{
-			ShowExitConfirmationDialog(TranslationServer.Translate("RETURN_TO_MENU_WARNING"));
-		}
+        if (SaveHelper.SaveIsRecentlyPerformed)
+        {
+            ConfirmExit();
+        }
+        else
+        {
+            ShowExitConfirmationDialog(TranslationServer.Translate("RETURN_TO_MENU_WARNING"));
+        }
     }
 
     private void ExitPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        
-		exitType = ExitType.QuitGame;
 
-		if (SaveHelper.SaveIsRecentlyPerformed)
-		{
-			ConfirmExit();
-		}
-		else
-		{
-			ShowExitConfirmationDialog(TranslationServer.Translate("QUIT_GAME_WARNING"));
-		}
+        exitType = ExitType.QuitGame;
+
+        if (SaveHelper.SaveIsRecentlyPerformed)
+        {
+            ConfirmExit();
+        }
+        else
+        {
+            ShowExitConfirmationDialog(TranslationServer.Translate("QUIT_GAME_WARNING"));
+        }
     }
 
     private void OpenHelpPressed()
@@ -225,27 +225,27 @@ public class PauseMenu : ControlWithInput
         SetActiveMenu("primary");
     }
 
-	private void ConfirmExit()
-	{
-		switch (exitType)
-		{
-			case ExitType.ReturnToMenu:
-			{
-				// Unpause the game
-				GetTree().Paused = false;
+    private void ConfirmExit()
+    {
+        switch (exitType)
+        {
+            case ExitType.ReturnToMenu:
+                {
+                    // Unpause the game
+                    GetTree().Paused = false;
 
-				TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-				TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
-				break;
-			}
+                    TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
+                    TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+                    break;
+                }
 
-			case ExitType.QuitGame:
-			{
-				GetTree().Quit();
-				break;
-			}
-		}
-	}
+            case ExitType.QuitGame:
+                {
+                    GetTree().Quit();
+                    break;
+                }
+        }
+    }
 
     private void ForwardSaveAction(string name)
     {
@@ -294,10 +294,10 @@ public class PauseMenu : ControlWithInput
         SceneManager.Instance.ReturnToMenu();
     }
 
-	private void ShowExitConfirmationDialog(string message)
-	{
-		exitConfirmationDialog.GetNode<Label>("DialogText").Text = message;
-		exitConfirmationDialog.PopupCenteredShrink();
-		exitConfirmationDialog.GetOk().ReleaseFocus();
-	}
+    private void ShowExitConfirmationDialog(string message)
+    {
+        exitConfirmationDialog.GetNode<Label>("DialogText").Text = message;
+        exitConfirmationDialog.PopupCenteredShrink();
+        exitConfirmationDialog.GetOk().ReleaseFocus();
+    }
 }
