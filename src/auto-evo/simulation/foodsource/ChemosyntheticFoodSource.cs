@@ -2,8 +2,8 @@
 
 public class ChemosyntheticFoodSource : IFoodSource
 {
-    private readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private Compound compound;
     private float totalCompound;
@@ -33,15 +33,15 @@ public class ChemosyntheticFoodSource : IFoodSource
             {
                 if (process.Process.Inputs.ContainsKey(compound))
                 {
-                    if (process.Process.Outputs.ContainsKey(Glucose))
+                    if (process.Process.Outputs.ContainsKey(glucose))
                     {
-                        compoundUseScore += process.Process.Outputs[Glucose]
+                        compoundUseScore += process.Process.Outputs[glucose]
                             / process.Process.Inputs[compound] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
                     }
 
-                    if (process.Process.Outputs.ContainsKey(ATP))
+                    if (process.Process.Outputs.ContainsKey(atp))
                     {
-                        compoundUseScore += process.Process.Outputs[ATP]
+                        compoundUseScore += process.Process.Outputs[atp]
                             / process.Process.Inputs[compound] / Constants.AUTO_EVO_ATP_USE_SCORE_DIVISOR;
                     }
                 }

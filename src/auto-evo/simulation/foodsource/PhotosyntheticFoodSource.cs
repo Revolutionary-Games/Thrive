@@ -1,14 +1,14 @@
 ﻿public class PhotosyntheticFoodSource : IFoodSource
 {
-    private readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-    private readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private float totalSunlight;
 
     public PhotosyntheticFoodSource(Patch patch)
     {
-        totalSunlight = patch.Biome.Compounds[Sunlight].Dissolved * Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT;
+        totalSunlight = patch.Biome.Compounds[sunlight].Dissolved * Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT;
     }
 
     public float FitnessScore(Species species)
@@ -20,18 +20,18 @@
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                if (process.Process.Inputs.ContainsKey(Sunlight))
+                if (process.Process.Inputs.ContainsKey(sunlight))
                 {
-                    if (process.Process.Outputs.ContainsKey(Glucose))
+                    if (process.Process.Outputs.ContainsKey(glucose))
                     {
-                        photosynthesisingScore += process.Process.Outputs[Glucose]
-                            / process.Process.Inputs[Sunlight] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
+                        photosynthesisingScore += process.Process.Outputs[glucose]
+                            / process.Process.Inputs[sunlight] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
                     }
 
-                    if (process.Process.Outputs.ContainsKey(ATP))
+                    if (process.Process.Outputs.ContainsKey(atp))
                     {
-                        photosynthesisingScore += process.Process.Outputs[ATP]
-                            / process.Process.Inputs[Sunlight] / Constants.AUTO_EVO_ATP_USE_SCORE_DIVISOR;
+                        photosynthesisingScore += process.Process.Outputs[atp]
+                            / process.Process.Inputs[sunlight] / Constants.AUTO_EVO_ATP_USE_SCORE_DIVISOR;
                     }
                 }
             }

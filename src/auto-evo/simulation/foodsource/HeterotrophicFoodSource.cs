@@ -2,7 +2,7 @@
 
 public class HeterotrophicFoodSource : IFoodSource
 {
-    private readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+    private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
     private MicrobeSpecies prey;
     private Patch patch;
@@ -37,7 +37,7 @@ public class HeterotrophicFoodSource : IFoodSource
         predatorSpeed += ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles.Organelles.Select(x => x.Definition), patch.Biome, microbeSpecies.MembraneType).FinalBalance;
 
         // It's great if you can engulf this prey, but only if you can catch it
-        var engulfScore = (float)predatorSize / (float)preySize > Constants.ENGULF_SIZE_RATIO_REQ 
+        var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ 
             && !microbeSpecies.MembraneType.CellWall ?
             Constants.AUTO_EVO_ENGULF_PREDATION_SCORE :
             0.0f;
@@ -55,7 +55,7 @@ public class HeterotrophicFoodSource : IFoodSource
 
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                if (process.Process.Outputs.ContainsKey(Oxytoxy))
+                if (process.Process.Outputs.ContainsKey(oxytoxy))
                 {
                     oxytoxyScore += Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
