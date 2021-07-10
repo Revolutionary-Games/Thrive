@@ -394,6 +394,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         {
             Vector3 shapePosition = Hex.AxialToCartesian(hexes[i]) + Hex.AxialToCartesian(Position);
 
+            if (ParentMicrobe.Colony != null)
+                shapePosition = shapePosition.Rotated(Vector3.Up, ParentMicrobe.Rotation.y);
+
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
                 shapePosition *= 0.5f;
