@@ -1899,7 +1899,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Add(data.Organelle);
         }
 
-        ++data.Organelle.NumberOfTimesMoved;
+        if (data.OldLocation != data.NewLocation)
+            ++data.Organelle.NumberOfTimesMoved;
     }
 
     [DeserializedCallbackAllowed]
@@ -1910,7 +1911,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         data.Organelle.Orientation = data.OldRotation;
         UpdateAlreadyPlacedVisuals();
 
-        --data.Organelle.NumberOfTimesMoved;
+        if (data.OldLocation != data.NewLocation)
+            --data.Organelle.NumberOfTimesMoved;
     }
 
     /// <summary>
