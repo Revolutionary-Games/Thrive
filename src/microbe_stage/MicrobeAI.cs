@@ -396,8 +396,8 @@ public class MicrobeAI
         // If we are still engulfing for some reason, stop
         microbe.State = Microbe.MicrobeState.Normal;
 
-        var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
-        ComputeCompoundsSearchWeights(usefulCompounds.ToList());
+        var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key)).ToList();
+        ComputeCompoundsSearchWeights(usefulCompounds);
 
         float gradientValue = 0.0f;
         foreach (var compoundWeight in compoundsSearchWeights)
