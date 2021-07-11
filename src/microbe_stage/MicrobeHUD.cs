@@ -820,7 +820,7 @@ public class MicrobeHUD : Node
         var hp = 0.0f;
 
         // Update to the player's current HP, unless the player is dead
-        if (stage.Player != null)
+        if (stage.Player?.Dead == false)
         {
             hp = stage.Player.Hitpoints;
             maxHP = stage.Player.MaxHitpoints;
