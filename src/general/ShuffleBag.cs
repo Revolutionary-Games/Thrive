@@ -11,7 +11,6 @@ public class ShuffleBag<T> : IEnumerable<T>
 
     public ShuffleBag(Random random)
     {
-        GD.Print("CreatedShuffleBag");
         initialContent = new List<T>();
         currentContent = new List<T>();
         this.random = random;
@@ -25,21 +24,18 @@ public class ShuffleBag<T> : IEnumerable<T>
 
     public void Add(T element)
     {
-        GD.Print("Add");
         initialContent.Add(element);
         currentContent.Add(element);
     }
 
     public bool Remove(T element)
     {
-        GD.Print("Remove");
         currentContent.Remove(element);
         return initialContent.Remove(element);
     }
 
     public void RemoveAll(Predicate<T> f)
     {
-        GD.Print("RemoveAll");
         initialContent.RemoveAll(f);
     }
 
@@ -64,7 +60,6 @@ public class ShuffleBag<T> : IEnumerable<T>
 
     public IEnumerator<T> GetEnumerator()
     {
-        GD.Print("GetEnumerator");
         return new ShuffleBagEnumerator<T>(this);
     }
 
@@ -91,8 +86,6 @@ public class ShuffleBag<T> : IEnumerable<T>
 
     private T Pick()
     {
-        GD.Print("Pick");
-
         if (currentContent.Count == 0)
         {
             FillAndShuffle();
@@ -103,13 +96,11 @@ public class ShuffleBag<T> : IEnumerable<T>
 
     private bool Drop()
     {
-        GD.Print("Drop");
         if (currentContent.Count == 0)
-            //throw new NullReferenceException("Cannot drop from empty bag!");
-            return false;
+            throw new NullReferenceException("Cannot drop from empty bag!");
 
         currentContent.RemoveAt(currentContent.Count - 1);
-        return true;
+        return currentContent.Count == 0;
     }
 
     private class ShuffleBagEnumerator<T1> : IEnumerator<T1>
@@ -118,7 +109,6 @@ public class ShuffleBag<T> : IEnumerable<T>
 
         public ShuffleBagEnumerator(ShuffleBag<T1> sourceBag)
         {
-            GD.Print("Enumerator");
             this.sourceBag = sourceBag;
         }
 
@@ -128,19 +118,21 @@ public class ShuffleBag<T> : IEnumerable<T>
 
         public void Dispose()
         {
-            GD.Print("Dispose");
-            //TODO CLEAR MEMORY
+            // If we have exhausted the bag, fill and shuffle it for the next one.
+            if (sourceBag.currentContent.Count == 0)
+                sourceBag.FillAndShuffle();
+
+            // TODO CLEAR MEMORY
         }
 
         public bool MoveNext()
         {
-            GD.Print("MoveNext");
-            return sourceBag.Drop();
+            var result = !sourceBag.Drop();
+            return result;
         }
 
         public void Reset()
         {
-            GD.Print("Reset");
             sourceBag.FillAndShuffle();
         }
     }
