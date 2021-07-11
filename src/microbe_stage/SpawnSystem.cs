@@ -206,13 +206,7 @@ public class SpawnSystem
         {
             elapsed -= interval;
 
-            int deletedEntitiesCount = DespawnEntities(playerPosition);
-
-            estimateEntityCount = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP).Count;
-            estimateEntityCount -= deletedEntitiesCount;
-
-            // Very large overestimation given that most will likely be deleted outside the spawn radius.
-            //estimateEntityCountInSpawnRadius -= deletedEntitiesCount;
+            estimateEntityCount = DespawnEntities(playerPosition);
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
@@ -392,7 +386,7 @@ public class SpawnSystem
     /// <summary>
     ///   Despawns entities that are far away from the player
     /// </summary>
-    /// <returns>The number of entities deleted used to update counts</returns>
+    /// <returns>The number of alive entities, used to limit the total</returns>
     private int DespawnEntities(Vector3 playerPosition)
     {
         int entitiesDeleted = 0;
@@ -429,7 +423,7 @@ public class SpawnSystem
             }
         }
 
-        return entitiesDeleted;
+        return spawnedEntities.Count - entitiesDeleted;
     }
 
     /// <summary>
