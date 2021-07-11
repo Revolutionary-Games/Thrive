@@ -1653,7 +1653,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // This is now just for applying changes in the species to the preview cell
         previewMicrobe.ApplySpecies(previewMicrobe.Species);
         previewMicrobe.RecalculateExteriorOrganellesPosition();
-        
+
         membraneOrganellePositionsAreDirty = false;
     }
 
