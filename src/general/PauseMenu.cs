@@ -54,6 +54,57 @@ public class PauseMenu : ControlWithInput
     /// </summary>
     public GameProperties GameProperties { get; set; }
 
+    private string ActiveMenu
+    {
+        get
+        {
+            if (primaryMenu.Visible)
+                return "primary";
+            if (helpScreen.Visible)
+                return "help";
+            if (loadMenu.Visible)
+                return "load";
+            if (optionsMenu.Visible)
+                return "options";
+            if (saveMenu.Visible)
+                return "save";
+
+            return null;
+        }
+        set
+        {
+            if (value == ActiveMenu)
+                return;
+
+            primaryMenu.Hide();
+            helpScreen.Hide();
+            loadMenu.Hide();
+            optionsMenu.Hide();
+            saveMenu.Hide();
+
+            switch (value)
+            {
+                case "primary":
+                    primaryMenu.Show();
+                    break;
+                case "help":
+                    helpScreen.Show();
+                    break;
+                case "load":
+                    loadMenu.Show();
+                    break;
+                case "options":
+                    optionsMenu.OpenFromInGame(GameProperties);
+                    break;
+                case "save":
+                    saveMenu.Show();
+                    break;
+                default:
+                    throw new ArgumentException("unknown menu", nameof(value));
+            }
+        }
+    }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -75,7 +126,7 @@ public class PauseMenu : ControlWithInput
     {
         if (Visible)
         {
-            SetActiveMenu("primary");
+            ActiveMenu = "primary";
 
             EmitSignal(nameof(OnClosed));
 
@@ -104,7 +155,10 @@ public class PauseMenu : ControlWithInput
 
     public void ShowHelpScreen()
     {
-        SetActiveMenu("help");
+        if (ActiveMenu == "help")
+            return;
+
+        ActiveMenu = "help";
         helpScreen.RandomizeEasterEgg();
     }
 
@@ -140,7 +194,7 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("help");
+        ActiveMenu = "help";
         helpScreen.RandomizeEasterEgg();
     }
 
@@ -148,86 +202,56 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = "primary";
     }
 
     private void OpenLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("load");
+        ActiveMenu = "load";
     }
 
     private void CloseLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = "primary";
     }
 
     private void OpenOptionsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("options");
+        ActiveMenu = "options";
     }
 
     private void OnOptionsClosed()
     {
-        SetActiveMenu("primary");
+        ActiveMenu = "primary";
     }
 
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("save");
+        ActiveMenu = "save";
     }
 
     private void CloseSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = "primary";
     }
 
     private void ForwardSaveAction(string name)
     {
-        SetActiveMenu("primary");
+        ActiveMenu = "primary";
 
         // Close this first to get the menus out of the way to capture the save screenshot
         EmitSignal(nameof(OnClosed));
         EmitSignal(nameof(MakeSave), name);
-    }
-
-    private void SetActiveMenu(string menu)
-    {
-        helpScreen.Hide();
-        primaryMenu.Hide();
-        loadMenu.Hide();
-        optionsMenu.Hide();
-        saveMenu.Hide();
-
-        switch (menu)
-        {
-            case "primary":
-                primaryMenu.Show();
-                break;
-            case "help":
-                helpScreen.Show();
-                break;
-            case "load":
-                loadMenu.Show();
-                break;
-            case "options":
-                optionsMenu.OpenFromInGame(GameProperties);
-                break;
-            case "save":
-                saveMenu.Show();
-                break;
-            default:
-                throw new ArgumentException("unknown menu", nameof(menu));
-        }
     }
 
     /// <summary>
