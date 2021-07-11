@@ -88,7 +88,6 @@ public class DialogInputHelper : NodeWithInput
         {
             if (dialog.Visible)
             {
-                GD.Print(dialog.Name);
                 dialog.Hide();
                 return true;
             }
