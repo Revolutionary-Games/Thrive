@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-10 21:04+0700\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-05-22 12:21+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -610,36 +610,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1215
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
 msgid "AMMONIA"
 msgstr "Ammoniakki"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1215
+#: ../src/microbe_stage/MicrobeStage.tscn:1269
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "PHOSPHATE"
 msgstr "Fosfaatti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1269
+#: ../src/microbe_stage/MicrobeStage.tscn:1323
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "HYDROGEN_SULFIDE"
 msgstr "Rikkivety"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1107
+#: ../src/microbe_stage/MicrobeStage.tscn:1161
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
 msgid "GLUCOSE"
 msgstr "Glukoosi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1455
+#: ../src/microbe_stage/MicrobeStage.tscn:1509
 msgid "OXYTOXY_NT"
 msgstr "Happimyrkky"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1323
+#: ../src/microbe_stage/MicrobeStage.tscn:1377
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
 msgid "IRON"
 msgstr "Rauta"
@@ -1291,11 +1291,11 @@ msgstr "Peruuta"
 msgid "NEW_GAME"
 msgstr "Uusi Peli"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Lataa Peli"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:97
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Asetukset"
 
@@ -1324,7 +1324,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrobien vapaa rakentelu"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:137 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Takaisin"
@@ -1564,52 +1564,52 @@ msgstr "Virhe"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 
-#: ../src/general/PauseMenu.cs:95
-#, fuzzy
-msgid "YES"
-msgstr "vuotta"
-
-#: ../src/general/PauseMenu.cs:96
-#, fuzzy
-msgid "NO"
-msgstr "Kumoa"
-
-#: ../src/general/PauseMenu.cs:160
+#: ../src/general/PauseMenu.cs:154
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Palaa Päävalikkoon"
 
-#: ../src/general/PauseMenu.cs:177
+#: ../src/general/PauseMenu.cs:170
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "GLES2-moodi Varoitus"
 
-#: ../src/general/PauseMenu.tscn:60
+#: ../src/general/PauseMenu.cs:308
+#, fuzzy
+msgid "YES"
+msgstr "vuotta"
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "Kumoa"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Jatka"
 
-#: ../src/general/PauseMenu.tscn:67
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Tallenna Peli"
 
-#: ../src/general/PauseMenu.tscn:82
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistiikkaa"
 
-#: ../src/general/PauseMenu.tscn:90
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Apua"
 
-#: ../src/general/PauseMenu.tscn:104
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "Palaa Päävalikkoon"
 
-#: ../src/general/PauseMenu.tscn:111
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Poistu"
 
-#: ../src/general/PauseMenu.tscn:164
+#: ../src/general/PauseMenu.tscn:163
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "VAHVISTA"
@@ -2074,50 +2074,50 @@ msgstr "pelaaja jatkoi sukuaan"
 msgid "PLAYER_DIED"
 msgstr "pelaaja kuoli"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:379
+#: ../src/microbe_stage/MicrobeStage.tscn:433
 msgid "AT_CURSOR"
 msgstr "Kursorin alla:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:404
+#: ../src/microbe_stage/MicrobeStage.tscn:458
 msgid "NOTHING_HERE"
 msgstr "Ei mitään täällä"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:429
+#: ../src/microbe_stage/MicrobeStage.tscn:483
 msgid "COMPOUNDS_COLON"
 msgstr "Yhdisteet:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:467
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "SPECIES_COLON"
 msgstr "Lajit:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:602
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:815
+#: ../src/microbe_stage/MicrobeStage.tscn:869
 msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:871
+#: ../src/microbe_stage/MicrobeStage.tscn:925
 msgid "LIGHT"
 msgstr "Valo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:926
+#: ../src/microbe_stage/MicrobeStage.tscn:980
 msgid "PRESSURE_SHORT"
 msgstr "Paine"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1009
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr "Yhdisteet"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1393
+#: ../src/microbe_stage/MicrobeStage.tscn:1447
 msgid "AGENTS"
 msgstr "Välittäjäaineet"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1710
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAATIO:"
 
@@ -2552,11 +2552,11 @@ msgstr "Korvaa aikaisempi tallennus:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Korvaa aikaisempi tallennus?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "Tallennus onnistui"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 

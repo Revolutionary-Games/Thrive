@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-10 21:04+0700\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -626,36 +626,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1215
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1215
+#: ../src/microbe_stage/MicrobeStage.tscn:1269
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "PHOSPHATE"
 msgstr "磷酸鹽"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1269
+#: ../src/microbe_stage/MicrobeStage.tscn:1323
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氫"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1107
+#: ../src/microbe_stage/MicrobeStage.tscn:1161
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1455
+#: ../src/microbe_stage/MicrobeStage.tscn:1509
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1323
+#: ../src/microbe_stage/MicrobeStage.tscn:1377
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
 msgid "IRON"
 msgstr "鐵"
@@ -1323,11 +1323,11 @@ msgstr "取消"
 msgid "NEW_GAME"
 msgstr "新遊戲"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "讀取遊戲"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:97
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "選項"
 
@@ -1356,7 +1356,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:137 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "返回"
@@ -1598,52 +1598,52 @@ msgstr "錯誤"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "錯誤：無法將新設置保存至配置文件。"
 
-#: ../src/general/PauseMenu.cs:95
-#, fuzzy
-msgid "YES"
-msgstr "年"
-
-#: ../src/general/PauseMenu.cs:96
-#, fuzzy
-msgid "NO"
-msgstr "撤回"
-
-#: ../src/general/PauseMenu.cs:160
+#: ../src/general/PauseMenu.cs:154
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "返回目錄"
 
-#: ../src/general/PauseMenu.cs:177
+#: ../src/general/PauseMenu.cs:170
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/PauseMenu.tscn:60
+#: ../src/general/PauseMenu.cs:308
+#, fuzzy
+msgid "YES"
+msgstr "年"
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "撤回"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "返回"
 
-#: ../src/general/PauseMenu.tscn:67
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "保存遊戲"
 
-#: ../src/general/PauseMenu.tscn:82
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "統計數據"
 
-#: ../src/general/PauseMenu.tscn:90
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "幫助"
 
-#: ../src/general/PauseMenu.tscn:104
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "返回目錄"
 
-#: ../src/general/PauseMenu.tscn:111
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "退出"
 
-#: ../src/general/PauseMenu.tscn:164
+#: ../src/general/PauseMenu.tscn:163
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "確認"
@@ -2185,50 +2185,50 @@ msgstr ""
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:379
+#: ../src/microbe_stage/MicrobeStage.tscn:433
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:404
+#: ../src/microbe_stage/MicrobeStage.tscn:458
 msgid "NOTHING_HERE"
 msgstr "這裡什麼都沒有"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:429
+#: ../src/microbe_stage/MicrobeStage.tscn:483
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:467
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "SPECIES_COLON"
 msgstr "種類："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:602
 msgid "ENVIRONMENT"
 msgstr "環境"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:815
+#: ../src/microbe_stage/MicrobeStage.tscn:869
 msgid "TEMPERATURE_SHORT"
 msgstr "溫度"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:871
+#: ../src/microbe_stage/MicrobeStage.tscn:925
 msgid "LIGHT"
 msgstr "光"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:926
+#: ../src/microbe_stage/MicrobeStage.tscn:980
 msgid "PRESSURE_SHORT"
 msgstr "壓強"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1009
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr "化合物"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1393
+#: ../src/microbe_stage/MicrobeStage.tscn:1447
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1710
 msgid "POPULATION_CAPITAL"
 msgstr "人口："
 
@@ -2658,11 +2658,11 @@ msgstr "覆寫現有的存檔："
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "覆寫現有的存檔？"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "保存失敗！發生了一個異常"
 
