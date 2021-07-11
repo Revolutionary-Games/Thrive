@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/"
@@ -1306,11 +1306,11 @@ msgstr "ศิลปะโดย {0}"
 msgid "CLOSE"
 msgstr "ปิด"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "ตกลง"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "ยกเลิก"
 
@@ -1318,11 +1318,11 @@ msgstr "ยกเลิก"
 msgid "NEW_GAME"
 msgstr "เกมส์ใหม่"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "โหลดเกม"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "ตั้งค่า"
 
@@ -1351,7 +1351,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "กลับ"
@@ -1595,40 +1595,63 @@ msgstr "ผิดพลาด"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ผิดพลาด: บันทึกการตั้งค่าใหม่ลงในไฟล์กำหนดค่าไม่สำเร็จ"
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "กลับไปที่เมนู"
+
+#: ../src/general/PauseMenu.cs:170
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "คำเตือนโหมด GLES2"
+
+#: ../src/general/PauseMenu.cs:308
+msgid "YES"
+msgstr ""
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "เลิกทำ"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "บันทึกเกม"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "สถิติ"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "ช่วยเหลือ"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "กลับไปที่เมนู"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "ออก"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+msgid "CONFIRM_EXIT"
+msgstr ""
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -2153,23 +2176,23 @@ msgstr "อุณหภูมิ"
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2325,11 +2348,11 @@ msgstr ""
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -2678,11 +2701,11 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr ""
 

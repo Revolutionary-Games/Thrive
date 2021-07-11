@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-06-24 08:42+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -104,9 +104,11 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:16
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"你可以通过与其他细胞连接来建立细胞群。细胞群中的所有细胞共享它们吸收和产生的化合物。要跟其他细胞连接，你需要拥有连接器细胞器并在进入连接模式后接触你想要连"
-"接的细胞。你只能连接同物种细胞。（目前）你在细胞群中无法复制并进入细胞编辑器。如果在收集了足够多化合物后你想要进入细胞编辑器，你需要先脱离原细胞群。大的细"
-"胞群是形成多细胞生物（开发中）的基础。"
+"你可以通过与其他细胞连接来建立细胞群。细胞群中的所有细胞共享它们吸收和产生"
+"的化合物。要跟其他细胞连接，你需要拥有连接器细胞器并在进入连接模式后接触你"
+"想要连接的细胞。你只能连接同物种细胞。（目前）你在细胞群中无法复制并进入细"
+"胞编辑器。如果在收集了足够多化合物后你想要进入细胞编辑器，你需要先脱离原细"
+"胞群。大的细胞群是形成多细胞生物（开发中）的基础。"
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -141,7 +143,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "膜细胞器\n"
 "\n"
-"细胞核：占用十一个六角格并允许你进化膜细胞器，同时使你的细胞大小翻倍。（只能被进化一次）\n"
+"细胞核：占用十一个六角格并允许你进化膜细胞器，同时使你的细胞大小翻倍。（只"
+"能被进化一次）\n"
 "\n"
 "连接器：允许和其它细胞连接在一起。\n"
 "\n"
@@ -1287,11 +1290,11 @@ msgstr "由{0}创作"
 msgid "CLOSE"
 msgstr "关闭"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "好的"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "取消"
 
@@ -1299,11 +1302,11 @@ msgstr "取消"
 msgid "NEW_GAME"
 msgstr "新游戏"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "载入游戏"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "选项"
 
@@ -1332,7 +1335,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "返回"
@@ -1572,40 +1575,65 @@ msgstr "错误"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "错误：无法将新设置保存到配置文件。"
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "返回主菜单"
+
+#: ../src/general/PauseMenu.cs:170
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "GLES2模式警告"
+
+#: ../src/general/PauseMenu.cs:308
+#, fuzzy
+msgid "YES"
+msgstr "年"
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "撤销"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "返回"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "保存游戏"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "统计数据"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "帮助"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "返回主菜单"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "退出"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "确认"
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} *10^9"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0}*10^6"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0}*10^3"
 
@@ -1868,13 +1896,16 @@ msgstr "仍在开发中。"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"按[thrive:input]g_toggle_binding[/thrive:input]来切换连接模式。在连接模式中，通过接触同种细胞，你可以让它成为"
-"你的细胞群的一员。要离开细胞群，按[thrive:input]g_unbind_all[/thrive:input]。"
+"按[thrive:input]g_toggle_binding[/thrive:input]来切换连接模式。在连接模式"
+"中，通过接触同种细胞，你可以让它成为你的细胞群的一员。要离开细胞群，按"
+"[thrive:input]g_unbind_all[/thrive:input]。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"允许与其他细胞连接。这是迈向多细胞的第一步。在连接形成的细胞群中，资源是共享的。在细胞群中你无法进入细胞编辑器，你需要在收集足够的物质后离开细胞群再分裂。"
+"允许与其他细胞连接。这是迈向多细胞的第一步。在连接形成的细胞群中，资源是共"
+"享的。在细胞群中你无法进入细胞编辑器，你需要在收集足够的物质后离开细胞群再"
+"分裂。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2073,23 +2104,23 @@ msgstr "温度"
 msgid "N_A_MP"
 msgstr "不消耗变异点"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "死亡数"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "繁殖次数"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -2111,7 +2142,7 @@ msgstr ""
 "玩家\n"
 "速度"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
 msgstr "玩家分裂"
 
@@ -2247,11 +2278,11 @@ msgstr "载入微生物编辑器中"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo中："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
@@ -2608,11 +2639,11 @@ msgstr "覆写已有的存档："
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "覆写已有的存档？"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "保存失败！发生了一个异常"
 

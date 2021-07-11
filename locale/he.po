@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-06-20 16:48+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 "
+"&& n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -111,13 +111,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:16
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"על ידי קשירה עם תאים אחרי, אתה יכול ליצור מושבת תאים בה התאים חולקים תרכובות "
-"שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, אתה צריך שהיה לך "
-"אברון מקשר ולעבור דרכם אחרי שנכנסת למצב קישור. אתה יכול לקשר רק עם תאים "
-"מהמין שלך. בזמן שאתה במושבה, אתה לא יכול לחלק את התאים שלך ולהיכנס לעורך ("
-"נכון לעכשיו). בשביל להיכנס לעורך, ראשית אתה חייב לעזוב את המושבה וכשיש לך "
-"מספיק תרכובות, אז תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך ליצירת רב-"
-"תאים (עדין לא במשחק)."
+"על ידי קשירה עם תאים אחרי, אתה יכול ליצור מושבת תאים בה התאים חולקים "
+"תרכובות שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, אתה צריך "
+"שהיה לך אברון מקשר ולעבור דרכם אחרי שנכנסת למצב קישור. אתה יכול לקשר רק עם "
+"תאים מהמין שלך. בזמן שאתה במושבה, אתה לא יכול לחלק את התאים שלך ולהיכנס "
+"לעורך (נכון לעכשיו). בשביל להיכנס לעורך, ראשית אתה חייב לעזוב את המושבה "
+"וכשיש לך מספיק תרכובות, אז תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך "
+"ליצירת רב-תאים (עדין לא במשחק)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -1313,11 +1313,11 @@ msgstr "ציור מאת {0}"
 msgid "CLOSE"
 msgstr "סגור"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "בסדר"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -1325,11 +1325,11 @@ msgstr "ביטול"
 msgid "NEW_GAME"
 msgstr "משחק חדש"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "טען שמירה"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "אפשרויות"
 
@@ -1358,7 +1358,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "עורך ארגז חול המיקרובי"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "חזור"
@@ -1601,40 +1601,65 @@ msgstr "שגיאה"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "שגיאה: נכשל הניסיון לשמור ההגדרות החדשות לקובץ התצורה."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "חזור לתפריט"
+
+#: ../src/general/PauseMenu.cs:170
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "אזהרת GLES2"
+
+#: ../src/general/PauseMenu.cs:308
+#, fuzzy
+msgid "YES"
+msgstr "שנים"
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "בטל"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "להמשיך"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "שמור משחק"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "סטטיסטיקה"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "עזרה"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "חזור לתפריט"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "יציאה"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "אשר"
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} מיליארד"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} מיליון"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} אלפים"
 
@@ -1911,15 +1936,16 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 "לחץ על [thrive:input]g_toggle_binding[/thrive:input] על מנת להחליף למצב "
 "קישור. בזמן מצב קישור אתה יכול להיצמד לתאים אחרים מאותו בני מינך על מנת "
-"ליצור מושבות על ידי תזוזה אליהם. על מנת לעזוב את המושבה לחץ "
-"[thrive:input]g_unbind_all[/thrive:input]."
+"ליצור מושבות על ידי תזוזה אליהם. על מנת לעזוב את המושבה לחץ [thrive:"
+"input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "מאפשר להתחבר לתאים אחרים. זהו הצד הראשון לכיוון רב-תאים. בזמן שאתה חלק "
-"ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה חלק "
-"ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא שלך."
+"ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה "
+"חלק ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא "
+"שלך."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2136,23 +2162,23 @@ msgstr "טמפרטורה"
 msgid "N_A_MP"
 msgstr "אין נקמ\"ו"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "מוות"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "ליקוט מוצלח"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "הרג מוצלח"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "התרבה"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
@@ -2174,7 +2200,7 @@ msgstr ""
 "מהירות\n"
 "שחקן"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
 msgstr "שכפל שחקן"
 
@@ -2310,11 +2336,11 @@ msgstr "טוען עורך המיקרובי"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -2671,11 +2697,11 @@ msgstr "משכתב שמירה קיימת:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "לשכתב מחדש שמירה קיימת?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "נשמר בהצלחה"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "השמירה נכשלה! קרה משהו חריג"
 
@@ -3000,11 +3026,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"אתהנכנסת ל\"מצב שחרר\". בזמן שאתה במצב זה אתה יכול ללחוץ על חברי המושבה שלך "
-"על מנת להשתחרר מהם.\n"
+"אתהנכנסת ל\"מצב שחרר\". בזמן שאתה במצב זה אתה יכול ללחוץ על חברי המושבה "
+"שלך על מנת להשתחרר מהם.\n"
 "\n"
-"על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל\""
-"."
+"על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל"
+"\"."
 
 #~ msgid "TURNS"
 #~ msgstr "הפוך ל"

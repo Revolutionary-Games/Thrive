@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -1356,11 +1356,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Fermu"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "JES"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "Nuligi"
 
@@ -1368,11 +1368,11 @@ msgstr "Nuligi"
 msgid "NEW_GAME"
 msgstr "Nova ludo"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Ŝarĝu"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Agordoj"
 
@@ -1401,7 +1401,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Libra Redaktilo de"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Reen"
@@ -1647,40 +1647,65 @@ msgstr "Eraro"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Eraro: Malsukcesis konservi novajn agordojn en agorda dosiero."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "Revenu al Menuo"
+
+#: ../src/general/PauseMenu.cs:170
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "Averto Modo GLES2"
+
+#: ../src/general/PauseMenu.cs:308
+#, fuzzy
+msgid "YES"
+msgstr "jaroj"
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "Malfaru"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Rekomenci"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Konservu"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistiko"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Helpu"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "Revenu al Menuo"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Eliri"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "KONFIRMU"
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mrd"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -2280,23 +2305,23 @@ msgstr "Temperaturo"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "morto"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "sukcesa ordaranĝado"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "sukcesa"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "reproduktis"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "eskapu englutadon"
 
@@ -2455,11 +2480,11 @@ msgstr "Ŝarĝante Mikrobredaktilon"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Atendante aŭtomata evolucion:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Aŭtomata evolucio malsukcesis"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Lanĉa stato:"
 
@@ -2822,11 +2847,11 @@ msgstr "Anstataŭigi ekzistantan konservadon:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Ĉu anstataŭigi ekzistantan konservadon?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "Konservado sukcesis"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "Konservado malsukcesis! Escepto okazis"
 

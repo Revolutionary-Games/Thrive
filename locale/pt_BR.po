@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-06-18 16:30+0000\n"
 "Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -118,13 +118,13 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Se unindo com outras células, você pode construir uma colônia onde as "
 "células compartilham compostos que absorvem e produzem com cada uma. Para "
-"poder unir com outra célula, você deve ter o agente de ligação e se mover à "
-"ela após entrar o modo de ligação. Você só pode se unir com células de sua "
-"própria espécie. Enquanto em uma colônia, você não pode dividir sua célula e "
-"entrar no editor (por enquanto). Para entrar no editor, primeiro deixe a "
-"colônia após coletar compostos suficientes, e então entre no editor. "
-"Colônias grandes de células são o caminho em direção à multicelularidade ("
-"ainda não adicionado)."
+"poder unir com outra célula, você deve ter o agente de ligação e se mover "
+"à ela após entrar o modo de ligação. Você só pode se unir com células de "
+"sua própria espécie. Enquanto em uma colônia, você não pode dividir sua "
+"célula e entrar no editor (por enquanto). Para entrar no editor, primeiro "
+"deixe a colônia após coletar compostos suficientes, e então entre no "
+"editor. Colônias grandes de células são o caminho em direção à "
+"multicelularidade (ainda não adicionado)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -1340,11 +1340,11 @@ msgstr "Arte por {0}"
 msgid "CLOSE"
 msgstr "Fechar"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1352,11 +1352,11 @@ msgstr "Cancelar"
 msgid "NEW_GAME"
 msgstr "Novo Jogo"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Carregar Jogo"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Opções"
 
@@ -1385,7 +1385,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor de Micróbio Livre"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Voltar"
@@ -1630,40 +1630,65 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Erro: Falha ao salvar as novas opções para o arquivo de configurações."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "Voltar ao Menu"
+
+#: ../src/general/PauseMenu.cs:170
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "Aviso do Modo GLES2"
+
+#: ../src/general/PauseMenu.cs:308
+#, fuzzy
+msgid "YES"
+msgstr "anos"
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "Desfazer"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Retomar"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Salvar Jogo"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Estatísticas"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Ajuda"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "Voltar ao Menu"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Sair"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "CONFIRMAR"
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Bi"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mi"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1958,17 +1983,17 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 "Aperte [thrive:input]g_toggle_binding[/thrive:input] para ativar o modo de "
 "ligação. Enquanto em modo de ligação, você pode conectar outras células de "
-"sua espécie se movendo à elas. Para sair da colônia, pressione "
-"[thrive:input]g_unbind_all[/thrive:input]."
+"sua espécie se movendo à elas. Para sair da colônia, pressione [thrive:"
+"input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "Permite a ligação com outras células. Este é o primeiro passo até a "
 "multicelularidade. Quando sua célula é parte de uma colônia, os compostos "
-"são compartilhados entre as células. Você não pode entrar no editor enquanto "
-"faz parte de uma colônia, por isso precisa se desconectar após coletar "
-"compostos suficientes para dividir sua célula."
+"são compartilhados entre as células. Você não pode entrar no editor "
+"enquanto faz parte de uma colônia, por isso precisa se desconectar após "
+"coletar compostos suficientes para dividir sua célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2211,23 +2236,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "morte"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "busca de recursos bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "caça bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "reproduziu"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "escapou de predação"
 
@@ -2385,11 +2410,11 @@ msgstr "Carregando Editor de Micróbios"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Esperando pela auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "A auto-evo falhou"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estado da auto-evo:"
 
@@ -2749,11 +2774,11 @@ msgstr "Sobrescrever jogo que já existe:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Sobrescrever salvamento existente?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvo com sucesso"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "O salvamento falhou! Uma exceção ocorreu"
 

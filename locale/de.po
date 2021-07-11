@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-07-07 09:42+0000\n"
 "Last-Translator: GitHubUser-GER-ENG <tegue@outlook.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -48,8 +48,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Um andere Zellen, Bakterien, Eisenbrocken sowie Zellenbrocken, welche "
 "kleiner als du sind, zu Verschlingen, drücke G. Dies kostet mehr ATP und "
-"wird dich verlangsamen. Drücke G ein zweites Mal, um den Verschlingungsmodus "
-"zu beenden."
+"wird dich verlangsamen. Drücke G ein zweites Mal, um den "
+"Verschlingungsmodus zu beenden."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:34
@@ -105,8 +105,8 @@ msgstr "Wenn deine Population auf Null sinkt, stirbst du aus."
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
 "Wenn Du zwanzig Generationen lang überlebst und eine Population von 300 "
-"hast, gilt das Spiel als gewonnen. Du wirst benachrichtigt und kannst, nach "
-"Wunsch, weiterspielen."
+"hast, gilt das Spiel als gewonnen. Du wirst benachrichtigt und kannst, "
+"nach Wunsch, weiterspielen."
 
 #: ../simulation_parameters/common/help_texts.json:15
 #: ../simulation_parameters/common/help_texts.json:39
@@ -141,8 +141,8 @@ msgstr ""
 "\n"
 "Nitrogenase: Verwandeln atmosphärischen Stickstoff und ATP in Ammoniak um\n"
 "\n"
-"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch ("
-"Produziert kleine Mengen ATP)"
+"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch "
+"(Produziert kleine Mengen ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -184,8 +184,8 @@ msgstr ""
 "Hinzufügen und Entfernen von Organellen kostet MP, das Entfernen von "
 "Organellen, die in der aktuellen Mutationssitzung platziert wurden, "
 "erstattet jedoch MP für diese Organelle zurück. Du kannst eine Organelle "
-"entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst die "
-"Organellen beim Platzieren mit A und D drehen."
+"entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst "
+"die Organellen beim Platzieren mit A und D drehen."
 
 #: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -259,8 +259,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Kleiner Tipp: du kannst andere Arten bis zur Ausrottung jagen, wenn du nicht "
-"zimperlich bist. Jedoch können andere Arten das genauso."
+"Kleiner Tipp: du kannst andere Arten bis zur Ausrottung jagen, wenn du "
+"nicht zimperlich bist. Jedoch können andere Arten das genauso."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
@@ -307,8 +307,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "Interessanter Fakt: das Trompetentierchen ist ein Wimpertierchen, das sich "
-"strecken und Beute in einem trompetenartigem Maul fangen kann. Es zieht die "
-"Beute ein, indem es mit den Zilien Wasserströmungen erzeugt."
+"strecken und Beute in einem trompetenartigem Maul fangen kann. Es zieht "
+"die Beute ein, indem es mit den Zilien Wasserströmungen erzeugt."
 
 #: ../simulation_parameters/common/help_texts.json:67
 msgid "EASTEREGG_MESSAGE_19"
@@ -363,8 +363,8 @@ msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
 #: ../simulation_parameters/common/help_texts.json:75
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem "
-"großartigen Programmierer, untrustedlife, gemacht!"
+"Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von "
+"unserem großartigen Programmierer, untrustedlife, gemacht!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1368,11 +1368,11 @@ msgstr "Grafiken/Kunst von {0}"
 msgid "CLOSE"
 msgstr "Schließen"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "Abbruch"
 
@@ -1380,11 +1380,11 @@ msgstr "Abbruch"
 msgid "NEW_GAME"
 msgstr "Neues Spiel"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Spiel laden"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Einstellungen"
 
@@ -1413,7 +1413,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Zurück"
@@ -1663,40 +1663,64 @@ msgstr ""
 "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist "
 "fehlgeschlagen."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+msgid "RETURN_TO_MENU_WARNING"
+msgstr ""
+"Sind Sie sicher, dass Sie zum Hauptmenü zurückkehren möchten?\n"
+"Alle nicht gespeicherten Fortschritte gehen verloren."
+
+#: ../src/general/PauseMenu.cs:170
+msgid "QUIT_GAME_WARNING"
+msgstr ""
+"Sind Sie sicher, dass Sie zum Desktop zurückkehren wollen?\n"
+"Alle nicht gespeicherten Fortschritte gehen verloren."
+
+#: ../src/general/PauseMenu.cs:308
+msgid "YES"
+msgstr "Ja"
+
+#: ../src/general/PauseMenu.cs:309
+msgid "NO"
+msgstr "Nein"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Fortsetzen"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Spiel speichern"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistiken"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Hilfe"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "Zurück zum Hauptmenü"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Verlassen"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+msgid "CONFIRM_EXIT"
+msgstr "Verlassen bestätigen"
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mrd."
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mio."
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} Tsd."
 
@@ -2330,23 +2354,23 @@ msgstr "Temperatur"
 msgid "N_A_MP"
 msgstr "N/V MP"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "Tot"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "erfolgreiche Plünderung"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "erfolgreiche Tötung"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "Reproduziert"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "Entfliehe der Verschlingung"
 
@@ -2504,11 +2528,11 @@ msgstr "Lade Mikrobeneditor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Warte für auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo fehlgeschlagen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Laufstatus:"
 
@@ -2871,11 +2895,11 @@ msgstr "Vorhandenen Speicherstand überschreiben:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Vorhandenen Speicherstand überschreiben?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "Speichern erfolgreich"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "Speichern fehlgeschlagen! Eine Ausnahme ist aufgetreten"
 

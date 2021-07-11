@@ -529,6 +529,11 @@ public static class Constants
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 
+    /// <summary>
+    ///   The duration in milliseconds for which a save is considered recently performed.
+    /// </summary>
+    public const double RECENT_SAVE_TIMER_INTERVAL = 10000;
+
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
 

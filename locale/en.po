@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-06-20 16:48+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -114,14 +114,14 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "By binding with other cells, you can build a cell colony where the cells "
-"share the compounds they absorb and produce with each other. In order to be "
-"able to bind with another cell, you need to have the binding agents "
-"organelle and move into them after entering binding mode. You can only bind "
-"with cells of your own species. While in a colony, you can't divide your "
-"cell and enter the editor (for now). To enter the editor, first leave the "
-"colony once you have collected enough compounds, and then enter the editor. "
-"Large cell colonies are the way towards multicellularity (not in the game "
-"yet)."
+"share the compounds they absorb and produce with each other. In order to "
+"be able to bind with another cell, you need to have the binding agents "
+"organelle and move into them after entering binding mode. You can only "
+"bind with cells of your own species. While in a colony, you can't divide "
+"your cell and enter the editor (for now). To enter the editor, first leave "
+"the colony once you have collected enough compounds, and then enter the "
+"editor. Large cell colonies are the way towards multicellularity (not in "
+"the game yet)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -170,8 +170,8 @@ msgstr ""
 "\n"
 "Chemoplast: Makes glucose out of Hydrogen Sulfide\n"
 "\n"
-"Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and "
-"Oxygen\n"
+"Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen "
+"and Oxygen\n"
 "\n"
 "Vacuole: Stores 15 collected compounds\n"
 "\n"
@@ -1334,11 +1334,11 @@ msgstr "Art by {0}"
 msgid "CLOSE"
 msgstr "Close"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -1346,11 +1346,11 @@ msgstr "Cancel"
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Options"
 
@@ -1379,7 +1379,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Back"
@@ -1623,40 +1623,64 @@ msgstr "Error"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Failed to save new settings to configuration file."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+msgid "RETURN_TO_MENU_WARNING"
+msgstr ""
+"Are you sure you want to exit to the main menu?\n"
+"You will lose any unsaved progress."
+
+#: ../src/general/PauseMenu.cs:170
+msgid "QUIT_GAME_WARNING"
+msgstr ""
+"Are you sure you want to quit to the desktop?\n"
+"You will lose any unsaved progress."
+
+#: ../src/general/PauseMenu.cs:308
+msgid "YES"
+msgstr "Yes"
+
+#: ../src/general/PauseMenu.cs:309
+msgid "NO"
+msgstr "No"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Resume"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Save Game"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistics"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Help"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "Return to Menu"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Exit"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+msgid "CONFIRM_EXIT"
+msgstr "Confirm Exit"
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1949,18 +1973,18 @@ msgstr "To be Implemented."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Press [thrive:input]g_toggle_binding[/thrive:input] to toggle binding mode. "
-"When in binding mode you can attach other cells of your species to your "
-"colony by moving into them. To leave a colony press "
-"[thrive:input]g_unbind_all[/thrive:input]."
+"Press [thrive:input]g_toggle_binding[/thrive:input] to toggle binding "
+"mode. When in binding mode you can attach other cells of your species to "
+"your colony by moving into them. To leave a colony press [thrive:"
+"input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "Allows binding with other cells. This is the first step towards "
 "multicellularity. When your cell is part of a colony, compounds are shared "
-"between cells. You can't enter the editor while part of a colony so you need "
-"to unbind once collecting enough compounds to divide your cell."
+"between cells. You can't enter the editor while part of a colony so you "
+"need to unbind once collecting enough compounds to divide your cell."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2197,23 +2221,23 @@ msgstr "Temperature"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "death"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "reproduced"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -2371,11 +2395,11 @@ msgstr "Loading Microbe Editor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
@@ -2735,11 +2759,11 @@ msgstr "Overwrite existing save:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Overwrite existing save?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "Saving succeeded"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "Saving failed! An exception happened"
 

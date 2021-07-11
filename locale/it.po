@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-06-30 18:36+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -115,13 +115,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:16
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, le "
-"cellule si scambiano liberamente i composti prodotti e assorbiti, ma non "
-"possono dividersi (per ora); per poterti duplicare, devi prima slegarti. "
-"Puoi legarti solo a cellule della tua stessa specie; per farlo, devi entrare "
-"in modalità di legatura (assicurati di avere l'organulo apposito). Le "
-"colonie sono il primo passo verso la multicellularità (che però non è ancora "
-"nel gioco)."
+"Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, "
+"le cellule si scambiano liberamente i composti prodotti e assorbiti, ma "
+"non possono dividersi (per ora); per poterti duplicare, devi prima "
+"slegarti. Puoi legarti solo a cellule della tua stessa specie; per farlo, "
+"devi entrare in modalità di legatura (assicurati di avere l'organulo "
+"apposito). Le colonie sono il primo passo verso la multicellularità (che "
+"però non è ancora nel gioco)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -159,9 +159,9 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Organuli membranosi\n"
 "\n"
-"Nucleo: Occupa 11 esagoni; permette l'evoluzione degli organuli membranosi. "
-"Inoltre, raddoppia le dimensioni della tua cellula (può essere evoluto solo "
-"una volta)\n"
+"Nucleo: Occupa 11 esagoni; permette l'evoluzione degli organuli "
+"membranosi. Inoltre, raddoppia le dimensioni della tua cellula (può essere "
+"evoluto solo una volta)\n"
 "\n"
 "Agente Legante: permette di legarsi ad altre cellule\n"
 "\n"
@@ -173,8 +173,8 @@ msgstr ""
 "\n"
 "Chemioplasto: Produce glucosio consumando Idrogeno Solforato\n"
 "\n"
-"Plastidio Azotofissante: Produce Ammoniaca consumando ATP, Azoto e Ossigeno "
-"atmosferico\n"
+"Plastidio Azotofissante: Produce Ammoniaca consumando ATP, Azoto e "
+"Ossigeno atmosferico\n"
 "\n"
 "Vacuolo: Può conservare fino a 15 composti raccolti\n"
 "\n"
@@ -229,8 +229,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Una curiosità: nel mondo reale, i procarioti possiedono delle strutture "
-"chiamate Biocompartimenti; esse fungono da organuli, e sono infatti chiamate "
-"\"organuli poliedrici\"."
+"chiamate Biocompartimenti; esse fungono da organuli, e sono infatti "
+"chiamate \"organuli poliedrici\"."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
@@ -1341,11 +1341,11 @@ msgstr "Di {0}"
 msgid "CLOSE"
 msgstr "Chiudi"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -1353,11 +1353,11 @@ msgstr "Annulla"
 msgid "NEW_GAME"
 msgstr "Nuova Partita"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Carica Partita"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Impostazioni"
 
@@ -1386,7 +1386,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Microbico Libero"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Indietro"
@@ -1633,40 +1633,65 @@ msgstr ""
 "Errore: è stato impossibile salvare le nuove impostazioni su file di "
 "configurazione."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "Ritorna al Menù"
+
+#: ../src/general/PauseMenu.cs:170
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "Avvertimento Modalità GLES2"
+
+#: ../src/general/PauseMenu.cs:308
+#, fuzzy
+msgid "YES"
+msgstr "anni"
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "Annulla azione"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Riprendi"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Salva Partita"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistiche"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Aiuto"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "Ritorna al Menù"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Esci"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "CONFERMA"
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mrd"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mil"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1960,9 +1985,9 @@ msgstr "Da implementare."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Premi [thrive:input]g_toggle_binding[/thrive:input] per attivare la modalità "
-"di legatura. In essa, puoi attaccarti ad altre cellule della tua specie e "
-"formare così una colonia. Per abbandonare la colonia premi "
+"Premi [thrive:input]g_toggle_binding[/thrive:input] per attivare la "
+"modalità di legatura. In essa, puoi attaccarti ad altre cellule della tua "
+"specie e formare così una colonia. Per abbandonare la colonia premi "
 "[thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
@@ -2097,12 +2122,12 @@ msgstr "Aumenta lo spazio di stoccaggio della cellula."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"Il vacuolo è un organulo membranoso interno, utilizzato per lo stoccaggio di "
-"sostanze. È composto di diverse vesciche, cioè strutture membranose più "
-"piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono fuse "
-"insieme. Il vacuolo è colmo acqua, usata per contenere molecole, enzimi, "
-"solidi e altre sostanze. La sua forma è fluida e può variare da cellula a "
-"cellula."
+"Il vacuolo è un organulo membranoso interno, utilizzato per lo stoccaggio "
+"di sostanze. È composto di diverse vesciche, cioè strutture membranose più "
+"piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono "
+"fuse insieme. Il vacuolo è colmo acqua, usata per contenere molecole, "
+"enzimi, solidi e altre sostanze. La sua forma è fluida e può variare da "
+"cellula a cellula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
@@ -2126,9 +2151,10 @@ msgstr "Vacuolo Bioluminescente"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"La forma più basilare di membrana, offre poca protezione ai danni. Inoltre, "
-"ha bisogno di più energia per evitare di deformarsi. Il vantaggio è che "
-"permette alla cellula di muoversi e di assorbire i nutrienti più velocemente."
+"La forma più basilare di membrana, offre poca protezione ai danni. "
+"Inoltre, ha bisogno di più energia per evitare di deformarsi. Il vantaggio "
+"è che permette alla cellula di muoversi e di assorbire i nutrienti più "
+"velocemente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1935
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2101
@@ -2212,23 +2238,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "morte"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "rovistamento riuscito"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "uccisione riuscita"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "si è riprodotto"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "fuga dalla fagocitosi"
 
@@ -2250,7 +2276,7 @@ msgstr ""
 "Velocità\n"
 "Giocatore"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplica Giocatore"
 
@@ -2386,11 +2412,11 @@ msgstr "Caricando l'Editor Microbico"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Aspettando l'Auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-evo non ha funzionato"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Stato dell'Auto-evo:"
 
@@ -2752,11 +2778,11 @@ msgstr "Sovrascrivi salvataggio esistente:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Vuoi sovrascrivere il salvataggio esistente?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvataggio riuscito"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "Salvataggio fallito! Si è verificata un'eccezione"
 
@@ -2971,9 +2997,9 @@ msgstr ""
 "La tua zona attuale è evidenziata.\n"
 "Puoi cliccare su una zona per vederne i dettagli a destra.\n"
 "\n"
-"Se selezioni una zona limitrofa alla tua, puoi premere il pulsante a destra "
-"per trasferirtici. Ciò permette alla popolazione della tua specie di "
-"espandersi in nuove zone.\n"
+"Se selezioni una zona limitrofa alla tua, puoi premere il pulsante a "
+"destra per trasferirtici. Ciò permette alla popolazione della tua specie "
+"di espandersi in nuove zone.\n"
 "\n"
 "Seleziona una zona per continuare."
 
@@ -3094,11 +3120,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Sei in modalità di slegatura: clicca sui membri della colonia per separarti "
-"da essi.\n"
+"Sei in modalità di slegatura: clicca sui membri della colonia per "
+"separarti da essi.\n"
 "\n"
-"Per abbandonare la colonia, clicca sulla tua stessa cellula, oppure premi il "
-"tasto per slegare tutti."
+"Per abbandonare la colonia, clicca sulla tua stessa cellula, oppure premi "
+"il tasto per slegare tutti."
 
 #~ msgid "TURNS"
 #~ msgstr "Trasforma"

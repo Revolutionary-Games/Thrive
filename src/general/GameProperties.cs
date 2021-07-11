@@ -54,6 +54,8 @@ public class GameProperties
             game.TutorialState.Enabled = false;
         }
 
+        SaveHelper.ResetSaveFreshness();
+
         return game;
     }
 

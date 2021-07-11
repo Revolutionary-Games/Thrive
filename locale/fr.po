@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-11 19:50+0700\n"
 "PO-Revision-Date: 2021-07-03 09:42+0000\n"
 "Last-Translator: Maxonovien <maxime.caute@free.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -123,11 +123,12 @@ msgstr ""
 "produisent les unes avec les autres. Afin de pouvoir se lier à une autre "
 "cellule, vous devez disposer des agents de liaison organelle et vous y "
 "déplacer après être entré en mode de liaison. Vous ne pouvez vous lier "
-"qu'avec des cellules de votre propre espèce. En colonie, vous ne pouvez pas "
-"diviser votre cellule et entrer dans l'éditeur (pour l'instant). Pour entrer "
-"dans l'éditeur, quittez d'abord la colonie une fois que vous avez collecté "
-"suffisamment de composés, puis entrez dans l'éditeur. Les grandes colonies "
-"cellulaires sont la voie vers la multicellularité (pas encore dans le jeu)."
+"qu'avec des cellules de votre propre espèce. En colonie, vous ne pouvez "
+"pas diviser votre cellule et entrer dans l'éditeur (pour l'instant). Pour "
+"entrer dans l'éditeur, quittez d'abord la colonie une fois que vous avez "
+"collecté suffisamment de composés, puis entrez dans l'éditeur. Les grandes "
+"colonies cellulaires sont la voie vers la multicellularité (pas encore "
+"dans le jeu)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -172,16 +173,16 @@ msgstr ""
 "\n"
 "Agent de liaison : permet la liaison avec d'autres cellules\n"
 "\n"
-"Mitochondrie : produit de l'ATP à partir du glucose et de l'O2 atmosphérique "
-"beaucoup plus efficacement que le cytoplasme\n"
+"Mitochondrie : produit de l'ATP à partir du glucose et de l'O2 "
+"atmosphérique beaucoup plus efficacement que le cytoplasme\n"
 "\n"
 "Chloroplaste : fabrique du glucose à partir de la lumière du soleil et du "
 "CO2 atmosphérique\n"
 "\n"
 "Chemoplast : fabrique du glucose à partir de sulfure d'hydrogène\n"
 "\n"
-"Plastide fixateur d'azote : fabrique de l'ammoniac à partir d'ATP et d'azote "
-"et d'oxygène atmosphériques\n"
+"Plastide fixateur d'azote : fabrique de l'ammoniac à partir d'ATP et "
+"d'azote et d'oxygène atmosphériques\n"
 "\n"
 "Vacuole : stocke 15 composés collectés"
 
@@ -1355,11 +1356,11 @@ msgstr "Œuvre de {0}"
 msgid "CLOSE"
 msgstr "Fermer"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -1367,11 +1368,11 @@ msgstr "Annuler"
 msgid "NEW_GAME"
 msgstr "Nouvelle partie"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Charger une partie"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Options"
 
@@ -1400,7 +1401,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Éditeur Libre de Microbe"
 
 #: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:136 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Revenir"
@@ -1649,40 +1650,65 @@ msgstr ""
 "Erreur : les nouveaux paramètres n'ont pas été sauvegardés dans le fichier "
 "de configuration."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.cs:154
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "Retour au menu"
+
+#: ../src/general/PauseMenu.cs:170
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "Alerte Mode GLES2"
+
+#: ../src/general/PauseMenu.cs:308
+#, fuzzy
+msgid "YES"
+msgstr "années"
+
+#: ../src/general/PauseMenu.cs:309
+#, fuzzy
+msgid "NO"
+msgstr "Annuler"
+
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Reprendre"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Sauvegarder"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:81
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistiques"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Aide"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:103
 msgid "RETURN_TO_MENU"
 msgstr "Retour au menu"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Quitter"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/PauseMenu.tscn:163
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "ACCEPTER"
+
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mrd"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1933,10 +1959,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme [thrive:compound]atp[/thrive:compound] en "
-"[thrive:compound]oxytoxy[/thrive:compound]. Échelles de taux avec "
-"concentration de [thrive:compound]oxygène[/thrive:compound]. Peut libérer "
-"des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
+"Transforme [thrive:compound]atp[/thrive:compound] en [thrive:"
+"compound]oxytoxy[/thrive:compound]. Échelles de taux avec concentration de "
+"[thrive:compound]oxygène[/thrive:compound]. Peut libérer des toxines en "
+"appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1947,8 +1973,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Utilise [thrive:compound]atp[/thrive:compound] pour augmenter la vitesse de "
-"déplacement de la cellule"
+"Utilise [thrive:compound]atp[/thrive:compound] pour augmenter la vitesse "
+"de déplacement de la cellule"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1956,10 +1982,11 @@ msgstr ""
 "Le flagelle (pluriel: flagelle) est un faisceau de fibres protéiques en "
 "forme de fouet s’étendant de la membrane de la cellule qui utilisent l’ATP "
 "pour onduler et propulser la cellule dans une direction. La position du "
-"flagelle détermine la direction dans laquelle il fournit la poussée pour le "
-"mouvement de la cellule. La direction de poussée est opposée à la direction "
-"vers laquelle pointe le flagelle, par exemple un flagelle placé sur le côté "
-"gauche d’une cellule fournit une poussée lors du déplacement vers la droite."
+"flagelle détermine la direction dans laquelle il fournit la poussée pour "
+"le mouvement de la cellule. La direction de poussée est opposée à la "
+"direction vers laquelle pointe le flagelle, par exemple un flagelle placé "
+"sur le côté gauche d’une cellule fournit une poussée lors du déplacement "
+"vers la droite."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "SPEED"
@@ -1983,17 +2010,17 @@ msgstr "Doit être implémenté."
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en "
-"mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules "
-"de votre espèce à votre colonie en vous y déplaçant. Pour quitter une "
-"colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+"mode de liaison. En mode de liaison, vous pouvez attacher d’autres "
+"cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter "
+"une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en "
-"mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules "
-"de votre espèce à votre colonie en vous y déplaçant. Pour quitter une "
-"colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+"mode de liaison. En mode de liaison, vous pouvez attacher d’autres "
+"cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter "
+"une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2042,9 +2069,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produit [thrive:compound] glucose [/thrive:compound]. Échelles de taux avec "
-"concentration de [thrive:compound] dioxyde de carbone [/thrive:compound] et "
-"intensité de [thrive:compound] lumière solaire [/thrive:compound]"
+"Produit [thrive:compound] glucose [/thrive:compound]. Échelles de taux "
+"avec concentration de [thrive:compound] dioxyde de carbone [/thrive:"
+"compound] et intensité de [thrive:compound] lumière solaire [/thrive:"
+"compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2066,9 +2094,9 @@ msgstr "Thermoplaste"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Production de [thrive:compound]glucose[/thrive:compound]. Taux proportionnel "
-"à la concentration de [thrive:compound]carbondioxide[/thrive:compound] et la "
-"température."
+"Production de [thrive:compound]glucose[/thrive:compound]. Taux "
+"proportionnel à la concentration de [thrive:compound]carbondioxide[/thrive:"
+"compound] et la température."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2088,10 +2116,10 @@ msgstr "Aucune action"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le chimioplaste est une structure à double membrane contenant des protéines "
-"capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde de carbone "
-"gazeux en glucose avec un processus nommé Chimiosynthèse de Sulfure "
-"d'Hydrogène. Le taux de glucose produit varie en fonction de la "
+"Le chimioplaste est une structure à double membrane contenant des "
+"protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde "
+"de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de "
+"Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la "
 "concentration en dioxyde de carbone"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
@@ -2106,10 +2134,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme [thrive:compound]atp[/thrive:compound] en "
-"[thrive:compound]ammoniac[/thrive:compound]. Échelles de taux avec "
-"concentration de [thrive:compound]azote[/thrive:compound] et "
-"[thrive:compound]oxygène[/thrive:compound]"
+"Transforme [thrive:compound]atp[/thrive:compound] en [thrive:"
+"compound]ammoniac[/thrive:compound]. Échelles de taux avec concentration "
+"de [thrive:compound]azote[/thrive:compound] et [thrive:compound]oxygène[/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2136,10 +2164,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme l'[thrive:compound]atp[/thrive:compound] en "
-"[thrive:compound]oxytoxy[/thrive:compound]. Taux proportionnel à la "
-"concentration d'[thrive:compound]oxygène[thrive:compound]. Peut libérer des "
-"toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
+"Transforme l'[thrive:compound]atp[/thrive:compound] en [thrive:"
+"compound]oxytoxy[/thrive:compound]. Taux proportionnel à la concentration "
+"d'[thrive:compound]oxygène[thrive:compound]. Peut libérer des toxines en "
+"appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2243,23 +2271,23 @@ msgstr "Température"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "mort"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "récupération réussie"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "reproduit"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
@@ -2415,11 +2443,11 @@ msgstr "Chargement de l'Éditeur de Microbes"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Attente pour l'auto-évo :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 
@@ -2780,11 +2808,11 @@ msgstr "Réécriture sur la sauvegarde existante :"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Réécrire la sauvegarde existante?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:397
 msgid "SAVING_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:410
 msgid "SAVING_FAILED"
 msgstr "Sauvegarde échoué! Une exception a eu lieu"
 
@@ -3135,11 +3163,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"You have entered Unlink mode. In this mode, you can click on colony members "
-"to unlink them.\n"
+"You have entered Unlink mode. In this mode, you can click on colony "
+"members to unlink them.\n"
 "\n"
-"To leave the colony completely, you can click on your own cell or press the "
-"Ungroup All button."
+"To leave the colony completely, you can click on your own cell or press "
+"the Ungroup All button."
 
 #~ msgid "TURNS"
 #~ msgstr "Devient"

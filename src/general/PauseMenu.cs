@@ -27,11 +27,21 @@ public class PauseMenu : ControlWithInput
     [Export]
     public NodePath LoadSaveListPath;
 
+    [Export]
+    public NodePath ExitConfirmationDialogPath;
+
     private Control primaryMenu;
     private HelpScreen helpScreen;
     private Control loadMenu;
     private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
+    private ConfirmationDialog exitConfirmationDialog;
+
+    /// <summary>
+    ///   The assigned pending exit type, will be used to specify what kind of
+    ///   game exit will be performed on exit confirmation.
+    /// </summary>
+    private ExitType exitType;
 
     [Signal]
     public delegate void OnClosed();
@@ -48,6 +58,15 @@ public class PauseMenu : ControlWithInput
     /// <param name="name">Name of the save to make or empty string</param>
     [Signal]
     public delegate void MakeSave(string name);
+
+    /// <summary>
+    ///   Types of exit the player requests. Mainly used for game exit confirmation.
+    /// </summary>
+    public enum ExitType
+    {
+        ReturnToMenu,
+        QuitGame,
+    }
 
     /// <summary>
     ///   The GameProperties object holding settings and state for the current game session.
@@ -68,6 +87,7 @@ public class PauseMenu : ControlWithInput
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
+        exitConfirmationDialog = GetNode<ConfirmationDialog>(ExitConfirmationDialogPath);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -123,17 +143,32 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Unpause the game
-        GetTree().Paused = false;
+        exitType = ExitType.ReturnToMenu;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+        if (SaveHelper.SaveIsRecentlyPerformed)
+        {
+            ConfirmExit();
+        }
+        else
+        {
+            ShowExitConfirmationDialog(TranslationServer.Translate("RETURN_TO_MENU_WARNING"));
+        }
     }
 
     private void ExitPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        GetTree().Quit();
+
+        exitType = ExitType.QuitGame;
+
+        if (SaveHelper.SaveIsRecentlyPerformed)
+        {
+            ConfirmExit();
+        }
+        else
+        {
+            ShowExitConfirmationDialog(TranslationServer.Translate("QUIT_GAME_WARNING"));
+        }
     }
 
     private void OpenHelpPressed()
@@ -191,6 +226,33 @@ public class PauseMenu : ControlWithInput
         SetActiveMenu("primary");
     }
 
+    private void ConfirmExit()
+    {
+        switch (exitType)
+        {
+            case ExitType.ReturnToMenu:
+                ReturnToMenu();
+                break;
+            case ExitType.QuitGame:
+                Quit();
+                break;
+        }
+    }
+
+    private void ReturnToMenu()
+    {
+        // Unpause the game
+        GetTree().Paused = false;
+
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
+        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+    }
+
+    private void Quit()
+    {
+        GetTree().Quit();
+    }
+
     private void ForwardSaveAction(string name)
     {
         SetActiveMenu("primary");
@@ -236,5 +298,14 @@ public class PauseMenu : ControlWithInput
     private void OnSwitchToMenu()
     {
         SceneManager.Instance.ReturnToMenu();
+    }
+
+    private void ShowExitConfirmationDialog(string message)
+    {
+        exitConfirmationDialog.GetNode<Label>("DialogText").Text = message;
+        exitConfirmationDialog.PopupCenteredShrink();
+        exitConfirmationDialog.GetOk().ReleaseFocus();
+        exitConfirmationDialog.GetOk().Text = TranslationServer.Translate("YES");
+        exitConfirmationDialog.GetCancel().Text = TranslationServer.Translate("NO");
     }
 }
