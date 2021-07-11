@@ -72,7 +72,7 @@ public class CustomRichTextLabel : RichTextLabel
         var isIteratingContent = false;
 
         // The index of a closing bracket in a last iterated opening tag, used
-        // to retrieve the tagged substring
+        // to retrieve the substring enclosed between start and end tag
         var lastStartingTagEndIndex = 0;
 
         for (int index = 0; index < extendedBbcode.Length; ++index)
@@ -229,28 +229,27 @@ public class CustomRichTextLabel : RichTextLabel
         {
             case ThriveBbCode.Compound:
             {
-                if (!SimulationParameters.Instance.DoesCompoundExist(input))
-                {
-                    GD.Print($"Compound: \"{input}\" doesn't exist, referenced in bbcode");
-                    break;
-                }
-
-                var compound = SimulationParameters.Instance.GetCompound(input);
-
-                var name = compound.Name;
-
                 var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
-                // Parse attributes if there are any
-                if (pairs.TryGetValue("text", out string value))
+                var internalName = string.Empty;
+
+                if (pairs.TryGetValue("type", out string value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
 
-                    name = value.Substring(1, value.Length - 2);
+                    internalName = value.Substring(1, value.Length - 2);
                 }
 
-                output = $"[b]{name}[/b] [font=res://src/gui_common/fonts/" +
+                if (!SimulationParameters.Instance.DoesCompoundExist(internalName))
+                {
+                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    break;
+                }
+
+                var compound = SimulationParameters.Instance.GetCompound(internalName);
+
+                output = $"[b]{input}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
                 break;
