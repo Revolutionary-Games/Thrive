@@ -1443,7 +1443,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         Rotation = oldRotation - ColonyParent.Rotation;
         Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
-
     }
 
     private void SetScaleFromSpecies()
