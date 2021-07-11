@@ -31,7 +31,7 @@ public static class SaveHelper
             AutoReset = false,
         };
 
-        recentSaveTimer.Elapsed += OnFreshSaveElapsed;
+        recentSaveTimer.Elapsed += OnSaveFreshnessElapsed;
     }
 
     public enum SaveOrder
@@ -424,7 +424,7 @@ public static class SaveHelper
             DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
     }
 
-    private static void OnFreshSaveElapsed(object source, ElapsedEventArgs e)
+    private static void OnSaveFreshnessElapsed(object source, ElapsedEventArgs e)
     {
         SaveIsRecentlyPerformed = false;
     }

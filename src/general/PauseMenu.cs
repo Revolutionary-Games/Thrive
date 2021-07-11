@@ -37,6 +37,10 @@ public class PauseMenu : ControlWithInput
     private NewSaveMenu saveMenu;
     private ConfirmationDialog exitConfirmationDialog;
 
+    /// <summary>
+    ///   The assigned pending exit type, will be used to specify what kind of
+    ///   game exit will be performed on exit confirmation.
+    /// </summary>
     private ExitType exitType;
 
     [Signal]
@@ -230,21 +234,26 @@ public class PauseMenu : ControlWithInput
         switch (exitType)
         {
             case ExitType.ReturnToMenu:
-            {
-                // Unpause the game
-                GetTree().Paused = false;
-
-                TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-                TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+                ReturnToMenu();
                 break;
-            }
-
             case ExitType.QuitGame:
-            {
-                GetTree().Quit();
+                Quit();
                 break;
-            }
         }
+    }
+
+    private void ReturnToMenu()
+    {
+        // Unpause the game
+        GetTree().Paused = false;
+
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
+        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+    }
+
+    private void Quit()
+    {
+        GetTree().Quit();
     }
 
     private void ForwardSaveAction(string name)
