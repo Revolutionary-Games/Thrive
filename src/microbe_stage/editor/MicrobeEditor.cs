@@ -1652,7 +1652,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // This is now just for applying changes in the species to the preview cell
         previewMicrobe.ApplySpecies(previewMicrobe.Species);
-
+        previewMicrobe.RecalculateExteriorOrganellesPosition();
+        
         membraneOrganellePositionsAreDirty = false;
     }
 
@@ -1841,6 +1842,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         organelle.PlacedThisSession = true;
 
+        if (organelle.Position == new Hex(0, 0))
+            organelle.FalsePosition = organelle.Position;
+        else
+            organelle.FalsePosition = new Hex(1, 1);
+
         var action = new MicrobeEditorAction(this, organelle.Definition.MPCost,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
 
@@ -1942,7 +1948,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             new MoveActionData(organelle, oldLocation, newLocation, oldRotation, newRotation));
 
         EnqueueAction(action);
-        previewMicrobe.RecalculateExteriorOrganellesPosition();
 
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingOrganelle may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingOrganelle to null
