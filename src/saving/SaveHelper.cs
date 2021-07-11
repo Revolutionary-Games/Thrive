@@ -53,8 +53,9 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Returns true whenever the last save is made within a timespan of set duration, false if beyond that.
+    ///   Checks whether the last save is made within a timespan of set duration.
     /// </summary>
+    /// <returns>True if the last save is still recent, false if otherwise or reset.</returns>
     public static bool SaveIsRecentlyPerformed { get; private set; }
 
     /// <summary>
@@ -141,6 +142,7 @@ public static class SaveHelper
     {
         GD.Print("Starting load of save: ", name);
         new InProgressLoad(name).Start();
+        ResetSaveFreshness();
     }
 
     /// <summary>
@@ -355,6 +357,15 @@ public static class SaveHelper
         return currentVersionPlaceInList != savePlaceInList;
     }
 
+    /// <summary>
+    ///   Sets SaveIsRecentlyPerformed to false and stops the save freshness timer.
+    /// </summary>
+    public static void ResetSaveFreshness()
+    {
+        SaveIsRecentlyPerformed = false;
+        recentSaveTimer.Stop();
+    }
+
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
@@ -385,6 +396,7 @@ public static class SaveHelper
             save.SaveToFile();
             inProgress.ReportStatus(true, TranslationServer.Translate("SAVING_SUCCEEDED"));
             SaveIsRecentlyPerformed = true;
+            recentSaveTimer.Stop();
             recentSaveTimer.Start();
         }
         catch (Exception e)

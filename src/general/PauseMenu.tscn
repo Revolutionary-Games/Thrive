@@ -158,9 +158,8 @@ visible = false
 [node name="ExitConfirmation" type="ConfirmationDialog" parent="."]
 margin_right = 384.0
 margin_bottom = 84.0
-rect_min_size = Vector2( 384, 84 )
+rect_min_size = Vector2( 391, 84 )
 theme = ExtResource( 2 )
-popup_exclusive = true
 window_title = "CONFIRM_EXIT"
 __meta__ = {
 "_edit_use_anchors_": false,
