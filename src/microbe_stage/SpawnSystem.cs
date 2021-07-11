@@ -256,8 +256,9 @@ public class SpawnSystem
         // moves out of a square/cycle around his precedent registered position
         // Not perfect however as going on and off could still break this.
         float distanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).Length();
+        bool immobilePlayer = distanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS;
 
-        if (distanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS)
+        if (immobilePlayer)
         {
             // If the player is staying inside a circle around he's previous position, only go up to the local spawn cap
             if (estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius)
@@ -306,7 +307,10 @@ public class SpawnSystem
                     spawn within the spawning region.
                     */
                     float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
-                    float displacementRotation = WeightedRandomRotation(playerRotation.y);
+
+                    // If the player moves, weight the rotation to be in front of him for encounter.
+                    // Else compute a uniform rotation to avoid clustering
+                    float displacementRotation = ComputeRandomRadianRotation(playerRotation.y, !immobilePlayer);
 
                     float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
                     float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
@@ -441,21 +445,25 @@ public class SpawnSystem
 
     /// <summary>
     ///   Returns a random rotation (in radians)
-    ///   It is more likely to return a rotation closer to the target rotation than not
+    ///   If weihted, it is more likely to return a rotation closer to the target rotation than not
     /// </summary>
-    private float WeightedRandomRotation(float targetRotation)
+    private float ComputeRandomRadianRotation(float targetRotation, bool weighted)
     {
-        targetRotation = WithNegativesToNormalRadians(targetRotation);
-
         float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
-        float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
 
-        if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
-            return NormalToWithNegativesRadians(rotation1);
+        if (weighted)
+        {
+            targetRotation = WithNegativesToNormalRadians(targetRotation);
+            float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
 
-        return NormalToWithNegativesRadians(rotation2);
+            if (DistanceBetweenRadians(rotation2, targetRotation) < DistanceBetweenRadians(rotation1, targetRotation))
+                return NormalToWithNegativesRadians(rotation2);
+        }
+
+        return NormalToWithNegativesRadians(rotation1);
     }
 
+    // TODO Could use to be move to mathUtils?
     private float NormalToWithNegativesRadians(float radian)
     {
         return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
