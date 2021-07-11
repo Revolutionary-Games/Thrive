@@ -290,8 +290,7 @@ public class SpawnSystem
             numAttempts stores how many times the SpawnSystem attempts
             to spawn the given entity.
             */
-            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
-                maxTriesPerSpawner);
+            int numAttempts = Mathf.Clamp(spawnType.SpawnFrequency * 2, 1, maxTriesPerSpawner);
 
             for (int i = 0; i < numAttempts; i++)
             {
