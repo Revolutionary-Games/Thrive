@@ -1,5 +1,4 @@
-﻿using Godot;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -41,7 +40,6 @@ public class ShuffleBag<T> : IEnumerable<T>
 
     public void FillAndShuffle()
     {
-        GD.Print("FillShuffle");
         currentContent.Clear();
 
         foreach (var element in initialContent)

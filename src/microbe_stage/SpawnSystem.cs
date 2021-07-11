@@ -257,7 +257,6 @@ public class SpawnSystem
         // Not perfect however as going on and off could still break this.
         float distanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).Length();
 
-
         if (distanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS)
         {
             // If the player is staying inside a circle around he's previous position, only go up to the local spawn cap
