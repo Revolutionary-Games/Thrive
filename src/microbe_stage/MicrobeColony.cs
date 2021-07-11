@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
@@ -55,6 +56,9 @@ public class MicrobeColony
         if (!Equals(microbe.Colony, this))
             throw new ArgumentException("Cannot remove a colony member who isn't a member");
 
+        if (State == Microbe.MicrobeState.Unbinding)
+            State = Microbe.MicrobeState.Normal;
+
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
 
@@ -74,9 +78,6 @@ public class MicrobeColony
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
-
-        if (State == Microbe.MicrobeState.Unbinding)
-            State = Microbe.MicrobeState.Normal;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -93,5 +94,8 @@ public class MicrobeColony
 
         master.OnColonyMemberAdded(microbe);
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
+
+        foreach (var colonyMember in ColonyMembers)
+            colonyMember.ReParentShapes(Vector3.Zero);
     }
 }

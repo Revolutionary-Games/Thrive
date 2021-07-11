@@ -488,7 +488,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
                     AddCollisionExceptionWith(child);
                     child.AddCollisionExceptionWith(this);
-
                 }
             }
 
@@ -1398,6 +1397,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
+            Mode = ModeEnum.Rigid;
+            ReParentShapes(Vector3.Zero);
+
             return;
         }
 
@@ -1407,11 +1409,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RemoveCollisionExceptionWith(microbe);
     }
 
+    internal void ReParentShapes(Vector3 offset)
+    {
+        foreach (var organelle in organelles)
+            organelle.ReParentShapes(this, offset);
+    }
+
     internal void OnColonyMemberAdded(Microbe microbe)
     {
         if (microbe == this)
         {
             OnIGotAddedToColony();
+
+            if (Colony.Master != this)
+                Mode = ModeEnum.Static;
+
+            Colony.Master.ReParentShapes((GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
+                Vector3.Up,
+                Colony.Master.Rotation.y));
         }
         else
         {
