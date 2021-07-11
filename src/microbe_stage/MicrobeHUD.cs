@@ -784,7 +784,7 @@ public class MicrobeHUD : Node
 
         var atpAmount = 0.0f;
 
-        // Update to the player's current ATP, unless the player is dead
+        // Update to the player's current ATP, unless the player is already disposed
         if (stage.Player != null)
         {
             var compounds = GetPlayerColonyOrPlayerStorage();
@@ -819,8 +819,8 @@ public class MicrobeHUD : Node
 
         var hp = 0.0f;
 
-        // Update to the player's current HP, unless the player is dead
-        if (stage.Player?.Dead == false)
+        // Update to the player's current HP, unless the player is already disposed
+        if (stage.Player != null)
         {
             hp = stage.Player.Hitpoints;
             maxHP = stage.Player.MaxHitpoints;
