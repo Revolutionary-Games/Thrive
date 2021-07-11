@@ -445,7 +445,7 @@ public class SpawnSystem
 
     /// <summary>
     ///   Returns a random rotation (in radians)
-    ///   If weihted, it is more likely to return a rotation closer to the target rotation than not
+    ///   If weighted, it is more likely to return a rotation closer to the target rotation than not
     /// </summary>
     private float ComputeRandomRadianRotation(float targetRotation, bool weighted)
     {
