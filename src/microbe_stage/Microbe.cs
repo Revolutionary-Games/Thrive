@@ -1421,29 +1421,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void OnIGotAddedToColony()
     {
         State = MicrobeState.Normal;
-
-        if (ColonyParent != null)
-        {
-            var oldRotation = Rotation;
-            var vectorToParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
-            ChangeNodeParent(ColonyParent);
-
-            var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
-            var vectorToMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
-
-            vectorToParentRotated = (-vectorToParent).Rotated(Vector3.Down, ColonyParent.Rotation.y);
-            var parentVectorToItsMembrane =
-                ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
-
-            var requiredDistance = vectorToMembrane.Length() + parentVectorToItsMembrane.Length();
-
-            var offset = vectorToParent.Normalized() * requiredDistance;
-
-            Rotation = oldRotation - ColonyParent.Rotation;
-            Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
-        }
-
         UnreadyToReproduce();
+
+        if (ColonyParent == null)
+            return;
+
+        var oldRotation = Rotation;
+        var vectorToParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
+        ChangeNodeParent(ColonyParent);
+
+        var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
+        var vectorToMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+
+        vectorToParentRotated = (-vectorToParent).Rotated(Vector3.Down, ColonyParent.Rotation.y);
+        var parentVectorToItsMembrane =
+            ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+
+        var requiredDistance = vectorToMembrane.Length() + parentVectorToItsMembrane.Length();
+
+        var offset = vectorToParent.Normalized() * requiredDistance;
+
+        Rotation = oldRotation - ColonyParent.Rotation;
+        Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
+
     }
 
     private void SetScaleFromSpecies()
