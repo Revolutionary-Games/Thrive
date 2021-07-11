@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=2]
+[gd_scene load_steps=121 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://shaders/EditorHexGrid.shader" type="Shader" id=13]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/textures/editor_grid.png" type="Texture" id=15]
+[ext_resource path="res://src/general/DialogInputHelper.cs" type="Script" id=16]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=27]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=28]
@@ -1670,10 +1671,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 314.0
-margin_bottom = 512.0
+margin_left = 28.0
+margin_top = 28.0
+margin_right = 318.0
+margin_bottom = 516.0
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
@@ -3415,6 +3416,9 @@ hide_on_checkable_item_selection = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DialogInputHelper" type="Node" parent="."]
+script = ExtResource( 16 )
 
 [connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/TopLeft" to="MicrobeEditorGUI" method="OnMouseExit"]

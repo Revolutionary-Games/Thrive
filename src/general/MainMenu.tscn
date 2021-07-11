@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
-[ext_resource path="res://src/general/DialogHelper.cs" type="Script" id=11]
+[ext_resource path="res://src/general/DialogInputHelper.cs" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -366,7 +366,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DialogHelper" type="Node" parent="."]
+[node name="DialogInputHelper" type="Node" parent="."]
 script = ExtResource( 11 )
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
