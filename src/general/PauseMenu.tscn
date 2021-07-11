@@ -156,9 +156,9 @@ Category = "MicrobeStage"
 visible = false
 
 [node name="ExitConfirmation" type="ConfirmationDialog" parent="."]
-margin_right = 363.0
+margin_right = 384.0
 margin_bottom = 84.0
-rect_min_size = Vector2( 363, 84 )
+rect_min_size = Vector2( 384, 84 )
 theme = ExtResource( 2 )
 popup_exclusive = true
 window_title = "CONFIRM_EXIT"
@@ -170,7 +170,7 @@ __meta__ = {
 [node name="DialogText" type="Label" parent="ExitConfirmation"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 353.0
+margin_right = 374.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
