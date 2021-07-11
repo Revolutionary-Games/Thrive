@@ -88,9 +88,6 @@ public class PauseMenu : ControlWithInput
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
         exitConfirmationDialog = GetNode<ConfirmationDialog>(ExitConfirmationDialogPath);
-
-        exitConfirmationDialog.GetOk().Text = TranslationServer.Translate("YES");
-        exitConfirmationDialog.GetCancel().Text = TranslationServer.Translate("NO");
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -308,5 +305,7 @@ public class PauseMenu : ControlWithInput
         exitConfirmationDialog.GetNode<Label>("DialogText").Text = message;
         exitConfirmationDialog.PopupCenteredShrink();
         exitConfirmationDialog.GetOk().ReleaseFocus();
+        exitConfirmationDialog.GetOk().Text = TranslationServer.Translate("YES");
+        exitConfirmationDialog.GetCancel().Text = TranslationServer.Translate("NO");
     }
 }
