@@ -45,7 +45,7 @@ public class SpawnSystem
     ///   Used to limit items spawning in one single circle when the player doesn't move.
     /// </summary>
     [JsonProperty]
-    private int maxEntitiesInSpawnRadius = 50;
+    private int maxEntitiesInSpawnRadius = 15;
 
     /// <summary>
     ///   Max tries per spawner to avoid very high spawn densities lagging
@@ -212,7 +212,7 @@ public class SpawnSystem
             estimateEntityCount -= deletedEntitiesCount;
 
             // Very large overestimation given that most will likely be deleted outside the spawn radius.
-            estimateEntityCountInSpawnRadius -= deletedEntitiesCount;
+            //estimateEntityCountInSpawnRadius -= deletedEntitiesCount;
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
@@ -263,14 +263,19 @@ public class SpawnSystem
         // Not perfect however as going on and off could still break this.
         float distanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).Length();
 
-        // If the player is staying inside a circle around he's previous position, only go up to the local spawn cap.
-        bool noEntitySpawnLeftInRadius = estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius;
-        if (distanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS && !noEntitySpawnLeftInRadius)
-            return;
 
-        // The player moved, so let's update his position and reset counts in spawn radius
-        lastRecordedPlayerPosition = playerPosition;
-        estimateEntityCountInSpawnRadius = 0;
+        if (distanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS)
+        {
+            // If the player is staying inside a circle around he's previous position, only go up to the local spawn cap
+            if (estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius)
+                return;
+        }
+        else
+        {
+            // The player moved, so let's update his position and reset counts in spawn radius
+            lastRecordedPlayerPosition = playerPosition;
+            estimateEntityCountInSpawnRadius = 0;
+        }
 
         int spawned = 0;
 
@@ -324,12 +329,16 @@ public class SpawnSystem
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
                             ref spawnsLeftThisFrame, ref spawned))
                         {
+                            estimateEntityCountInSpawnRadius += spawned;
+
                             return;
                         }
                     }
                 }
             }
         }
+
+        estimateEntityCountInSpawnRadius += spawned;
     }
 
     /// <summary>
