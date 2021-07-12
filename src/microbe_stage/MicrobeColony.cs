@@ -94,8 +94,5 @@ public class MicrobeColony
 
         master.OnColonyMemberAdded(microbe);
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
-
-        foreach (var colonyMember in ColonyMembers)
-            colonyMember.ReParentShapes(Vector3.Zero);
     }
 }

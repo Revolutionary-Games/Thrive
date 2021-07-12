@@ -407,7 +407,12 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             var ownerId = shapes[i];
 
             var shape = currentShapesParent.ShapeOwnerGetShape(ownerId, 0);
-
+            var b = ownerId switch
+            {
+                1 => 2,
+                2 => 2,
+                _ => throw new NotSupportedException(),
+            };
             var newOwnerId = to.CreateShapeOwner(shape);
             to.ShapeOwnerAddShape(newOwnerId, shape);
             to.ShapeOwnerSetTransform(newOwnerId, transform);
