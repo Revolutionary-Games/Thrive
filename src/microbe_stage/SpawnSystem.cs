@@ -462,7 +462,7 @@ public class SpawnSystem
         return NormalToWithNegativesRadians(rotation1);
     }
 
-    // TODO Could use to be move to mathUtils?
+    // TODO Could use to be moved to mathUtils?
     private float NormalToWithNegativesRadians(float radian)
     {
         return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
