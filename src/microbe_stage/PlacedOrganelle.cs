@@ -160,6 +160,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             if (shape == searchShape)
                 return true;
         }
+
         return false;
     }
 
