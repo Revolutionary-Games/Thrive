@@ -225,12 +225,15 @@ public class CustomRichTextLabel : RichTextLabel
         // Defaults to input so if something fails output returns unchanged
         var output = input;
 
+        var simulationParameters = SimulationParameters.Instance;
+
         switch (bbcode)
         {
             case ThriveBbCode.Compound:
             {
                 var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
+                var fallback = false;
                 var internalName = string.Empty;
 
                 if (pairs.TryGetValue("type", out string value))
@@ -241,15 +244,24 @@ public class CustomRichTextLabel : RichTextLabel
                     internalName = value.Substring(1, value.Length - 2);
                 }
 
-                if (!SimulationParameters.Instance.DoesCompoundExist(internalName))
+                if (!string.IsNullOrEmpty(internalName) && !simulationParameters.DoesCompoundExist(internalName))
                 {
                     GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
                     break;
                 }
 
-                var compound = SimulationParameters.Instance.GetCompound(internalName);
+                // If type attribute is not specified but input is valid internal name, fallback to the old method
+                if (string.IsNullOrEmpty(internalName) && simulationParameters.DoesCompoundExist(input))
+                {
+                    GD.Print($"Compound type not specified in bbcode, fallback to using input as " +
+                        $"the internal name: {input}");
+                    internalName = input;
+                    fallback = true;
+                }
 
-                output = $"[b]{input}[/b] [font=res://src/gui_common/fonts/" +
+                var compound = simulationParameters.GetCompound(internalName);
+
+                output = $"[b]{(fallback ? compound.Name : input)}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
                 break;
