@@ -1399,7 +1399,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             ai?.ResetAI();
 
             Mode = ModeEnum.Rigid;
-            ReParentShapes(this, Vector3.Zero);
 
             return;
         }
@@ -1425,8 +1424,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (Colony.Master != this)
                 Mode = ModeEnum.Static;
 
-            Colony.Master.ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
-                Vector3.Up,
+            ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
+                Vector3.Down,
                 Colony.Master.Rotation.y));
         }
         else
