@@ -1899,8 +1899,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Add(data.Organelle);
         }
 
-        if (data.OldLocation != data.NewLocation)
-            ++data.Organelle.NumberOfTimesMoved;
+        ++data.Organelle.NumberOfTimesMoved;
     }
 
     [DeserializedCallbackAllowed]
@@ -1911,8 +1910,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         data.Organelle.Orientation = data.OldRotation;
         UpdateAlreadyPlacedVisuals();
 
-        if (data.OldLocation != data.NewLocation)
-            --data.Organelle.NumberOfTimesMoved;
+        --data.Organelle.NumberOfTimesMoved;
     }
 
     /// <summary>
@@ -1937,6 +1935,17 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             CancelCurrentAction();
             gui.OnInsufficientMp(false);
             return false;
+        }
+
+        // Don't register the action if the final location is the same as previous. This is so the player can't exploit
+        // the MovedThisSession flag allowing them to freely move an organelle that were placed in another session
+        // while on zero mutation points. Also it makes more sense to not count that organelle as moved either way.
+        if (oldLocation == newLocation)
+        {
+            CancelCurrentAction();
+
+            // Assume this is a successful move (some operation in the above call may be repeated)
+            return true;
         }
 
         var action = new MicrobeEditorAction(this, cost,
