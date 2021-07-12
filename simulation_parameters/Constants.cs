@@ -76,7 +76,7 @@ public static class Constants
     public const int CLOUD_SPAWN_RADIUS = 170;
 
     /// <summary>
-    ///   Radius of the zone where the player is consider immobile as he remains inside.
+    ///   Radius of the zone where the player is considered immobile as he remains inside.
     ///   Used to not overgenerate when the player doesn't move.
     /// </summary>
     /// <remarks>
