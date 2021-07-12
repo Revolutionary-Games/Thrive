@@ -2290,9 +2290,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var savedColony = Colony;
         Colony = null;
 
-        this.GetParent().RemoveChild(this);
-        parent.AddChild(this);
-        // this.ReParent(parent);
+        this.ReParent(parent);
 
         // And restore the colony after completing the re-parenting of this node
         Colony = savedColony;
@@ -2356,23 +2354,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (touchedMicrobes.Add(microbe))
             {
                 var touchedMicrobe = this;
-                if(ColonyChildren != null && microbe.ColonyParent == null)
+                if (ColonyChildren != null && microbe.ColonyParent == null)
                 {
                     foreach (var searchMember in ColonyChildren)
                     {
                         foreach (var organelle in searchMember.organelles)
                         {
-                            if (organelle.HasShape((uint)ShapeFindOwner(localShape)))
+                            if (organelle.HasShape(ShapeFindOwner(localShape)))
                             {
                                 touchedMicrobe = searchMember;
                                 break;
                             }
-                            
+
                         }
+
                         if (touchedMicrobe != this)
-                                break;
+                            break;
                     }
+
                 }
+
                 touchedMicrobe.touchedMicrobes = touchedMicrobes;
                 touchedMicrobe.CheckStartEngulfingOnCandidates();
                 touchedMicrobe.CheckBinding();
@@ -2437,7 +2438,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Cannot hijack the player, other species or other colonies (TODO: yet)
         if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
             return;
-        
+
         // Invoke this on the next frame to avoid crashing when adding a third cell
         Invoke.Instance.Perform(BeginBind);
     }
