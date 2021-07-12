@@ -1398,7 +1398,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             ai?.ResetAI();
 
             Mode = ModeEnum.Rigid;
-            ReParentShapes(Vector3.Zero);
+            ReParentShapes(this, Vector3.Zero);
 
             return;
         }
@@ -1409,10 +1409,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RemoveCollisionExceptionWith(microbe);
     }
 
-    internal void ReParentShapes(Vector3 offset)
+    internal void ReParentShapes(Microbe to, Vector3 offset)
     {
         foreach (var organelle in organelles)
-            organelle.ReParentShapes(this, offset);
+            organelle.ReParentShapes(to, offset);
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
@@ -1424,7 +1424,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (Colony.Master != this)
                 Mode = ModeEnum.Static;
 
-            Colony.Master.ReParentShapes((GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
+            Colony.Master.ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
                 Vector3.Up,
                 Colony.Master.Rotation.y));
         }
