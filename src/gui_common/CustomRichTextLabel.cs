@@ -258,6 +258,11 @@ public class CustomRichTextLabel : RichTextLabel
                     internalName = input;
                     fallback = true;
                 }
+                else if (string.IsNullOrEmpty(internalName) && !simulationParameters.DoesCompoundExist(input))
+                {
+                    // No valid internal name found for the compound
+                    break;
+                }
 
                 var compound = simulationParameters.GetCompound(internalName);
 
