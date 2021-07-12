@@ -251,7 +251,7 @@ public class SpawnSystem
         if (existing >= maxAliveEntities)
             return;
 
-        // Here we want to check that the player move to not basically spawn in circle around him.
+        // Here we want to check that the player moved to not basically spawn in circle around him.
         // Solution inspired by gwen is to check if the player
         // moves out of a square/cycle around his precedent registered position
         // Not perfect however as going on and off could still break this.
