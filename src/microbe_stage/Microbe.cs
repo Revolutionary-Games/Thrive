@@ -2355,8 +2355,27 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Pili don't stop engulfing
             if (touchedMicrobes.Add(microbe))
             {
-                CheckStartEngulfingOnCandidates();
-                CheckBinding();
+                var touchedMicrobe = this;
+                if(ColonyChildren != null && microbe.ColonyParent == null)
+                {
+                    foreach (var searchMember in ColonyChildren)
+                    {
+                        foreach (var organelle in searchMember.organelles)
+                        {
+                            if (organelle.HasShape((uint)ShapeFindOwner(localShape)))
+                            {
+                                touchedMicrobe = searchMember;
+                                break;
+                            }
+                            
+                        }
+                        if (touchedMicrobe != this)
+                                break;
+                    }
+                }
+                touchedMicrobe.touchedMicrobes = touchedMicrobes;
+                touchedMicrobe.CheckStartEngulfingOnCandidates();
+                touchedMicrobe.CheckBinding();
             }
         }
     }
@@ -2413,13 +2432,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             State = MicrobeState.Normal;
             return;
         }
-
         var other = touchedMicrobes.FirstOrDefault();
 
         // Cannot hijack the player, other species or other colonies (TODO: yet)
         if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
             return;
-
+        
         // Invoke this on the next frame to avoid crashing when adding a third cell
         Invoke.Instance.Perform(BeginBind);
     }

@@ -153,6 +153,16 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     public bool IsLoadedFromSave { get; set; }
 
+    public bool HasShape(uint searchShape)
+    {
+        foreach (var shape in shapes)
+        {
+            if (shape == searchShape)
+                return true;
+        }
+        return false;
+    }
+
     /// <summary>
     ///   Checks if this organelle has the specified component type
     /// </summary>
@@ -405,7 +415,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             var transform = new Transform(Quat.Identity, shapePosition);
 
             var ownerId = shapes[i];
-
+            
             var shape = currentShapesParent.ShapeOwnerGetShape(ownerId, 0);
             var newOwnerId = to.CreateShapeOwner(shape);
             to.ShapeOwnerAddShape(newOwnerId, shape);
