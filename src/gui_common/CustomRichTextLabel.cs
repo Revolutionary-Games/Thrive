@@ -253,7 +253,7 @@ public class CustomRichTextLabel : RichTextLabel
                 // If type attribute is not specified but input is valid internal name, fallback to the old method
                 if (string.IsNullOrEmpty(internalName) && simulationParameters.DoesCompoundExist(input))
                 {
-                    GD.Print($"Compound type not specified in bbcode, fallback to using input as " +
+                    GD.Print("Compound type not specified in bbcode, fallback to using input as " +
                         $"the internal name: {input}");
                     internalName = input;
                     fallback = true;
