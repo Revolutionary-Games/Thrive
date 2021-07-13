@@ -187,7 +187,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting;
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
-    private CheckBox displayAbilitiesBarToggle;
+    private CheckBox displayAbilitiesHotBarToggle;
 
     // Sound tab
     private Control soundTab;
@@ -295,7 +295,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
-        displayAbilitiesBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
+        displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -420,7 +420,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
-        displayAbilitiesBarToggle.Pressed = settings.DisplayAbilitiesBar;
+        displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -916,9 +916,9 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
-    private void OnDisplayAbilitiesBarToggled(bool toggle)
+    private void OnDisplayAbilitiesHotBarToggled(bool toggle)
     {
-        Settings.Instance.DisplayAbilitiesBar.Value = toggle;
+        Settings.Instance.DisplayAbilitiesHotBar.Value = toggle;
 
         UpdateResetSaveButtonState();
     }

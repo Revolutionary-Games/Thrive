@@ -310,7 +310,7 @@ public class MicrobeHUD : Node
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
-        InitializeAbilitiesBar();
+        InitializeAbilitiesHotBar();
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -331,7 +331,7 @@ public class MicrobeHUD : Node
             UpdateNeededBars();
             UpdateCompoundBars();
             UpdateReproductionProgress();
-            UpdateAbilitiesBar();
+            UpdateAbilitiesHotBar();
         }
 
         UpdateATP(delta);
@@ -876,10 +876,10 @@ public class MicrobeHUD : Node
         compoundsPanel.RectMinSize = compoundsPanelSize;
     }
 
-    private void InitializeAbilitiesBar()
+    private void InitializeAbilitiesHotBar()
     {
-        OnAbilitiesBarDisplayChanged(Settings.Instance.DisplayAbilitiesBar);
-        Settings.Instance.DisplayAbilitiesBar.OnChanged += OnAbilitiesBarDisplayChanged;
+        OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
+        Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
 
         foreach (ActionButton entry in hotBar.GetChildren())
         {
@@ -887,7 +887,7 @@ public class MicrobeHUD : Node
         }
     }
 
-    private void UpdateAbilitiesBar()
+    private void UpdateAbilitiesHotBar()
     {
         abilitiesHotkey["BindingMode"].Visible = stage.Player.CanBind;
         abilitiesHotkey["FireToxin"].Visible = stage.Player.AgentVacuoleCount > 0;
@@ -1007,7 +1007,7 @@ public class MicrobeHUD : Node
         processPanelButton.Pressed = false;
     }
 
-    private void OnAbilitiesBarDisplayChanged(bool displayed)
+    private void OnAbilitiesHotBarDisplayChanged(bool displayed)
     {
         hotBar.Visible = displayed;
     }
