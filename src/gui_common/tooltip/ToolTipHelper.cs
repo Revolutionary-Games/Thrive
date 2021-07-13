@@ -18,11 +18,11 @@ public static class ToolTipHelper
     }
 
     /// <summary>
-    ///   Registers a Control mouse enter/exit event to display a custom tooltip
+    ///   Registers a Control mouse enter/exit event to display a custom tooltip.
     /// </summary>
-    /// <param name="control">The Control to register the tooltip to</param>
-    /// <param name="tooltip">The tooltip to register with</param>
-    /// <param name="callbackData">List to store the callbacks to keep them from unloading</param>
+    /// <param name="control">The Control to register the tooltip to.</param>
+    /// <param name="tooltip">The tooltip to register with.</param>
+    /// <param name="callbackData">List to store the callbacks to keep them from unloading.</param>
     public static void RegisterToolTipForControl(this Control control, ICustomToolTip tooltip,
         List<ToolTipCallbackData> callbackData)
     {
@@ -44,5 +44,14 @@ public static class ToolTipHelper
         control.Connect("tree_exiting", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
 
         callbackData.Add(toolTipCallbackData);
+    }
+
+    /// <summary>
+    ///   Registers a Control mouse enter/exit event to display a custom tooltip from the given tooltip and group name.
+    /// </summary>
+    public static void RegisterToolTipForControl(this Control control, string tooltipName, string groupName,
+        List<ToolTipCallbackData> callbackDatas)
+    {
+        control.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltipName, groupName), callbackDatas);
     }
 }

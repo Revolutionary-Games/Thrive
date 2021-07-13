@@ -3290,6 +3290,14 @@ margin_bottom = 40.0
 [node name="addInputButton" parent="GroupHolder/options" instance=ExtResource( 1 )]
 visible = false
 Description = "ADD_INPUT_BUTTON_TOOLTIP"
+DisplayDelay = 0.5
+DescriptionLabelPath = NodePath("../cloudResolution/MarginContainer/VBoxContainer/Description")
+
+[node name="cloudResolution" parent="GroupHolder/options" instance=ExtResource( 1 )]
+visible = false
+Description = "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
+DisplayDelay = 0.5
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="chartLegendPhysConds" type="Control" parent="GroupHolder"]
 margin_right = 40.0
