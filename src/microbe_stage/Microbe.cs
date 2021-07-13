@@ -1380,7 +1380,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         foreach (var organelle in organelles.Organelles)
         {
-            if ((organelle.Definition.Name == "Flagellum" || organelle.Definition.Name == "Pilus") &&
+            if ( (organelle.Definition.HasComponentFactory<MovementComponentFactory>() ||
+                organelle.Definition.HasComponentFactory<MovementComponentFactory>()) &&
                 organelle.FalsePosition == new Hex(0, 0))
             {
                 organelle.Position = organelle.FalsePosition;
