@@ -70,6 +70,13 @@ public class Settings
     /// </summary>
     public SettingValue<bool> ChromaticEnabled { get; set; } = new SettingValue<bool>(true);
 
+    /// <summary>
+    ///   Enable or disable lighting on the editor/evolve button when flashing. Used to workaround a
+    ///   bug where the HUD area sorrounding the button sometimes disappearing with the light effect
+    ///   enabled.
+    /// </summary>
+    public SettingValue<bool> EditorButtonFlashEffectEnabled { get; set; } = new SettingValue<bool>(true);
+
     // Sound Properties
 
     /// <summary>

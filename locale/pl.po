@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-13 13:51+0700\n"
 "PO-Revision-Date: 2021-03-24 16:58+0000\n"
 "Last-Translator: Szymon Ignaczak <supszym01@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -670,36 +670,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1215
+#: ../src/microbe_stage/MicrobeStage.tscn:1216
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
 msgid "AMMONIA"
 msgstr "Amoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1269
+#: ../src/microbe_stage/MicrobeStage.tscn:1270
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "PHOSPHATE"
 msgstr "Fosforan"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1323
+#: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "HYDROGEN_SULFIDE"
 msgstr "Siarkowodór"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1162
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
 msgid "GLUCOSE"
 msgstr "Glukoza"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1509
+#: ../src/microbe_stage/MicrobeStage.tscn:1510
 msgid "OXYTOXY_NT"
 msgstr "OxyToksy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1377
+#: ../src/microbe_stage/MicrobeStage.tscn:1378
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
 msgid "IRON"
 msgstr "Żelazo"
@@ -1359,11 +1359,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Zamknij"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -1403,7 +1403,7 @@ msgstr "Wyjdź"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Kreatywny Edytor Mikroba"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1005
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1420,234 +1420,247 @@ msgstr ""
 "spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie "
 "grafiki AMD lub Nvidia do uruchamiania Trive."
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.tscn:126
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:137
 msgid "SOUND"
 msgstr "Dźwięk"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:148
 msgid "PERFORMANCE"
 msgstr "Wydajność"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:159
 msgid "INPUTS"
 msgstr "Wejścia"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:170
 msgid "MISC"
 msgstr "Inne"
 
-#: ../src/general/OptionsMenu.tscn:208
+#: ../src/general/OptionsMenu.tscn:209
 msgid "VSYNC"
 msgstr "Synchronizacja pionowa"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "Pełny ekran"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Wygładzanie krawędzi:"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(wyższe wartością mogą obniżyć wydajność)"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "Rozdzielczość:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "Maksymalna ilość klatek na sekundę:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekta kolorów dla daltonistów:"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:357
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberracja chromatyczna:"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:381
+#, fuzzy
+msgid "EDITOR_BUTTON_FLASH_EFFECT_OPTION_DESCRIPTION"
+msgstr ""
+"Plastyd Wiążący Azot to białko używające gazowego azotu i tlenu oraz "
+"energii komórkowej w formie ATP do produkcji amoniaku, składnika "
+"kluczowego dla wzrostu komórek. Ten proces nazywa się Tlenowe Wiązanie "
+"Azotu."
+
+#: ../src/general/OptionsMenu.tscn:385
+msgid "ENABLE_EDITOR_BUTTON_FLASH_EFFECT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:408
 msgid "MASTER_VOLUME"
 msgstr "Główna głośność"
 
-#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:465
-#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:531
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:435 ../src/general/OptionsMenu.tscn:476
+#: ../src/general/OptionsMenu.tscn:509 ../src/general/OptionsMenu.tscn:542
+#: ../src/general/OptionsMenu.tscn:575
 msgid "MUTE"
 msgstr "Wycisz"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:449
 msgid "MUSIC_VOLUME"
 msgstr "Głośność muzyki"
 
-#: ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:482
 msgid "AMBIANCE_VOLUME"
 msgstr "Głośność otoczenia"
 
-#: ../src/general/OptionsMenu.tscn:504
+#: ../src/general/OptionsMenu.tscn:515
 msgid "SFX_VOLUME"
 msgstr "Głośność efektów dźwiękowych"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:548
 msgid "GUI_VOLUME"
 msgstr "Głośność interfejsu"
 
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:593
 msgid "LANGUAGE"
 msgstr "Język:"
 
-#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:608 ../src/general/OptionsMenu.tscn:1016
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:617
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Pomóż W Tłumaczeniu Gry"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:637
 msgid "COMPOUND_CLOUDS"
 msgstr "Chmury związków"
 
-#: ../src/general/OptionsMenu.tscn:641
+#: ../src/general/OptionsMenu.tscn:652
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Minimalna Przerwa Symulacji\n"
 "Chmur:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:659 ../src/general/OptionsMenu.tscn:703
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(większe wartości zwiększają wydajność)"
 
-#: ../src/general/OptionsMenu.tscn:683
+#: ../src/general/OptionsMenu.tscn:694
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:696
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Dzielnik Rozdzielczości Chmur:"
 
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:738
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
-#: ../src/general/OptionsMenu.tscn:794
+#: ../src/general/OptionsMenu.tscn:805
 msgid "RESET_INPUTS"
 msgstr "Zresetuj Wejścia"
 
-#: ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:829
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Odtwórz wideo intro"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:838
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Odtwórz Intro Mikroba przy Nowej Grze"
 
-#: ../src/general/OptionsMenu.tscn:836
+#: ../src/general/OptionsMenu.tscn:847
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autozapis w trakcie gry"
 
-#: ../src/general/OptionsMenu.tscn:847
+#: ../src/general/OptionsMenu.tscn:858
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Zachowana ilość autozapisów:"
 
-#: ../src/general/OptionsMenu.tscn:875
+#: ../src/general/OptionsMenu.tscn:886
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Zachowana ilość szybkich zapisów:"
 
-#: ../src/general/OptionsMenu.tscn:901
+#: ../src/general/OptionsMenu.tscn:912
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Pokazuj samouczki (w nowych grach)"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:920
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Pokazuj samouczki (w aktualnej grze)"
 
-#: ../src/general/OptionsMenu.tscn:925
+#: ../src/general/OptionsMenu.tscn:936
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Klawisze oszustw włączone"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:948
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Użyj własnej nazwy użytkownika"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:959
 msgid "CUSTOM_USERNAME"
 msgstr "Własna Nazwa Użytkownika:"
 
-#: ../src/general/OptionsMenu.tscn:974
+#: ../src/general/OptionsMenu.tscn:985
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otwórz Folder Zrzutów Ekranu"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:993
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
-#: ../src/general/OptionsMenu.tscn:1017 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1028 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Zapisz"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1045
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Domyślne"
 
-#: ../src/general/OptionsMenu.tscn:1046
+#: ../src/general/OptionsMenu.tscn:1057
 msgid "RESET_TO_DEFAULTS"
 msgstr "Przywrócić do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1066
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości "
 "domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1069
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Zresetować wejścia do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1089
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości "
 "domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1103
 msgid "CLOSE_OPTIONS"
 msgstr "Zamknąć opcje?"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Masz niezapisane zmiany które zostaną odrzucone.\n"
 "Czy chcesz kontynuować?"
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "SAVE_AND_CONTINUE"
 msgstr "Zapisz i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1143
+#: ../src/general/OptionsMenu.tscn:1154
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Odrzuć i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1159
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "CANCEL"
 msgstr "Anuluj"
 
-#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1194
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1229
 msgid "ERROR"
 msgstr "Błąd"
 
-#: ../src/general/OptionsMenu.tscn:1180 ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1230
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Błąd: Nie udało się zapisać nowych ustawień w pliku konfiguracji."
 
@@ -1676,15 +1689,15 @@ msgstr "Wróć do Menu"
 msgid "EXIT"
 msgstr "Wyjdź"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} MD"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} MN"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -2286,24 +2299,24 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "udane zabicie"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Produkuje"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2330,15 +2343,15 @@ msgstr "gracz zginął"
 msgid "PLAYER_DUPLICATE"
 msgstr "gracz zginął"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:477
+#: ../src/microbe_stage/MicrobeHUD.cs:485
 msgid "MICROBE_PATCH_LABEL"
 msgstr "Obszar: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:621
+#: ../src/microbe_stage/MicrobeHUD.cs:629
 msgid "STUFF_AT"
 msgstr "Rzecz w {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:671
+#: ../src/microbe_stage/MicrobeHUD.cs:679
 msgid "PLAYER_CELL"
 msgstr "Komórka Gracza"
 
@@ -2350,50 +2363,50 @@ msgstr "gracz się rozmnożył"
 msgid "PLAYER_DIED"
 msgstr "gracz zginął"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:433
+#: ../src/microbe_stage/MicrobeStage.tscn:434
 msgid "AT_CURSOR"
 msgstr "Pod kursorem:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:458
+#: ../src/microbe_stage/MicrobeStage.tscn:459
 msgid "NOTHING_HERE"
 msgstr "Nic tu nie ma"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:484
 msgid "COMPOUNDS_COLON"
 msgstr "Związki:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:521
+#: ../src/microbe_stage/MicrobeStage.tscn:522
 msgid "SPECIES_COLON"
 msgstr "Gatunek:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:602
+#: ../src/microbe_stage/MicrobeStage.tscn:603
 msgid "ENVIRONMENT"
 msgstr "Środowisko"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:870
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:926
 msgid "LIGHT"
 msgstr "Światło"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:981
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1064
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr "Związki"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1447
+#: ../src/microbe_stage/MicrobeStage.tscn:1448
 msgid "AGENTS"
 msgstr "Czynniki"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1710
+#: ../src/microbe_stage/MicrobeStage.tscn:1711
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
 
@@ -2462,11 +2475,11 @@ msgstr "Wczytywanie edytora mikrobów"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Czekanie na auto-ewolucje:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-ewolucja nie może się uruchomić"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Status działania:"
 
