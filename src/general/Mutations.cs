@@ -140,9 +140,9 @@ public class Mutations
         var part1 = newName.ToString(index - 1, 2);
         var part2 = newName.ToString(index - 2, 2);
         var part3 = newName.ToString(index, 2);
-        if (PronounceablePermutation.Any(item => item == part1) ||
-            PronounceablePermutation.Any(item => item == part2) ||
-            PronounceablePermutation.Any(item => item == part3))
+        if (PronounceablePermutation.Contains(part1) ||
+            PronounceablePermutation.Contains(part2) ||
+            PronounceablePermutation.Contains(part3))
         {
             return true;
         }
@@ -444,7 +444,7 @@ public class Mutations
         if (newName.Length == 1)
         {
             var letter = newName.ToString(0, 1);
-            bool isVowel = Vowels.Any(item => item == letter);
+            bool isVowel = Vowels.Contains(letter);
             List<string> letterPool;
 
             // 50% chance to just take another consonant/vowel
@@ -496,7 +496,7 @@ public class Mutations
 
                 // Are we a vowel or are we a consonant?
                 var part = newName.ToString(index, 2);
-                bool isPermute = PronounceablePermutation.Any(item => item == part);
+                bool isPermute = PronounceablePermutation.Contains(part);
                 if (random.Next(0, 21) <= 10 && isPermute)
                 {
                     newName.Erase(index, 2);
@@ -516,7 +516,7 @@ public class Mutations
 
                 // Are we a vowel or are we a consonant?
                 var part = newName.ToString(index, 1);
-                bool isVowel = Vowels.Any(item => item == part);
+                bool isVowel = Vowels.Contains(part);
 
                 bool isPermute = false;
                 if (i > 1 && index - 2 >= 0)
@@ -592,7 +592,7 @@ public class Mutations
 
             // Are we a vowel or are we a consonant?
             var part = newName.ToString(index, 1);
-            bool isVowel = Vowels.Any(item => item == part);
+            bool isVowel = Vowels.Contains(part);
 
             // 50 percent chance replace
             if (random.Next(0, 21) <= 10 && changes <= changeLimit)
