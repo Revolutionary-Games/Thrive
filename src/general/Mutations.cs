@@ -452,13 +452,16 @@ public class Mutations
             {
                 // 33% Chance to replace the letter by a similar one - Primum P
                 case 0:
+                {
                     letterPool = isVowel ? Vowels : Consonants;
                     newName.Erase(0, 1);
                     newName.Insert(0, letterPool.Random(random));
                     break;
+                }
 
                 // 33% Chance to replace the letter by the next similar one - Primum C
                 case 1:
+                {
                     letterPool = isVowel ? Vowels : Consonants;
 
                     // Take next letter in the pool (cycle if necessary);
@@ -470,12 +473,15 @@ public class Mutations
                     newName.Erase(0, 1);
                     newName.Insert(0, nextLetterInPool);
                     break;
+                }
 
                 // 33% Chance to add a second letter - Primum Ba
                 case 2:
+                {
                     letterPool = !isVowel ? Vowels : Consonants;
                     newName.Insert(1, letterPool.Random(random));
                     break;
+                }
             }
 
             changes++;
