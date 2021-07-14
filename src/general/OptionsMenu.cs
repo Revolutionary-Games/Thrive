@@ -360,6 +360,7 @@ public class OptionsMenu : ControlWithInput
         backConfirmationBox.GetOk().Hide();
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options", toolTipCallbacks);
+        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", toolTipCallbacks);
     }
 
     public override void _Notification(int what)
