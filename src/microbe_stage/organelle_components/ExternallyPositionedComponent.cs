@@ -11,7 +11,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     ///   Needed to calculate final pos on update
     /// </summary>
     protected Vector3 organellePos;
-
+    protected Vector3 defaultVisualPos;
     /// <summary>
     ///   Last calculated position, Used to not have to recreate the physics all the time
     /// </summary>
@@ -21,7 +21,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     {
         this.organelle = organelle;
         organellePos = Hex.AxialToCartesian(organelle.Position);
-
+        defaultVisualPos = new Vector3(0, 0, -1);
         CustomAttach();
     }
 
@@ -39,13 +39,17 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePos;
+        GD.Print(delta);
+        if (delta == new Vector3(0, 0, 0))
+            delta = defaultVisualPos;
+        GD.Print(delta);
         Vector3 exit = middle - delta;
         var membraneCoords = organelle.ParentMicrobe.Membrane.GetExternalOrganelle(exit.x,
             exit.z);
-
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
             float angle = Mathf.Atan2(-delta.z, delta.x);
+
             if (angle < 0)
             {
                 angle = angle + (2 * Mathf.Pi);

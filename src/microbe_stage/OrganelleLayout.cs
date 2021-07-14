@@ -70,7 +70,7 @@ public class OrganelleLayout<T> : ICollection<T>
     public void Add(T organelle)
     {
         if (!CanPlace(organelle))
-            throw new ArgumentException("organelle can't be placed at this location");
+            throw new ArgumentException(organelle.Definition+ "organelle can't be placed at this location");
 
         Organelles.Add(organelle);
         onAdded?.Invoke(organelle);

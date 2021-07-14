@@ -13,13 +13,13 @@ public class MovementComponent : ExternallyPositionedComponent
     private int countInitialization = 6;
     private bool movingTail;
     private Vector3 force;
-
     private AnimationPlayer animation;
 
     public MovementComponent(float momentum, float torque)
     {
         Momentum = momentum;
         Torque = torque;
+
     }
 
     public override void Update(float elapsed)
@@ -38,7 +38,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
-        force = CalculateForce(organelle.Position, Momentum);
+        force = CalculateForce(organelle.Position, Momentum, defaultVisualPos);
 
         animation = organelle.OrganelleAnimation;
 
@@ -67,11 +67,13 @@ public class MovementComponent : ExternallyPositionedComponent
     ///   Calculate the momentum of the movement organelle based on
     ///   angle towards middle of cell
     /// </summary>
-    private static Vector3 CalculateForce(Hex pos, float momentum)
+    private static Vector3 CalculateForce(Hex pos, float momentum, Vector3 defaultPos)
     {
-        Vector3 organelle = Hex.AxialToCartesian(pos);
+        Vector3 organellePoz = Hex.AxialToCartesian(pos);
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organelle;
+        var delta = middle - organellePoz;
+        if (delta == new Vector3(0, 0, 0))
+            delta = defaultPos;
         return delta.Normalized() * momentum;
     }
 
