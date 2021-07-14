@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-07-14 20:54+0700\n"
 "PO-Revision-Date: 2021-06-20 16:48+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 "
+"&& n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -111,13 +111,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:16
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"על ידי קשירה עם תאים אחרי, אתה יכול ליצור מושבת תאים בה התאים חולקים תרכובות "
-"שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, אתה צריך שהיה לך "
-"אברון מקשר ולעבור דרכם אחרי שנכנסת למצב קישור. אתה יכול לקשר רק עם תאים "
-"מהמין שלך. בזמן שאתה במושבה, אתה לא יכול לחלק את התאים שלך ולהיכנס לעורך ("
-"נכון לעכשיו). בשביל להיכנס לעורך, ראשית אתה חייב לעזוב את המושבה וכשיש לך "
-"מספיק תרכובות, אז תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך ליצירת רב-"
-"תאים (עדין לא במשחק)."
+"על ידי קשירה עם תאים אחרי, אתה יכול ליצור מושבת תאים בה התאים חולקים "
+"תרכובות שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, אתה צריך "
+"שהיה לך אברון מקשר ולעבור דרכם אחרי שנכנסת למצב קישור. אתה יכול לקשר רק עם "
+"תאים מהמין שלך. בזמן שאתה במושבה, אתה לא יכול לחלק את התאים שלך ולהיכנס "
+"לעורך (נכון לעכשיו). בשביל להיכנס לעורך, ראשית אתה חייב לעזוב את המושבה "
+"וכשיש לך מספיק תרכובות, אז תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך "
+"ליצירת רב-תאים (עדין לא במשחק)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -647,36 +647,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1215
+#: ../src/microbe_stage/MicrobeStage.tscn:1216
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
 msgid "AMMONIA"
 msgstr "אמוניה"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1269
+#: ../src/microbe_stage/MicrobeStage.tscn:1270
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "PHOSPHATE"
 msgstr "פוספט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1323
+#: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1162
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
 msgid "GLUCOSE"
 msgstr "גלוקוז"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1509
+#: ../src/microbe_stage/MicrobeStage.tscn:1510
 msgid "OXYTOXY_NT"
 msgstr "אוקסיטוקסי נ\"ט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1377
+#: ../src/microbe_stage/MicrobeStage.tscn:1378
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
 msgid "IRON"
 msgstr "ברזל"
@@ -1313,11 +1313,11 @@ msgstr "ציור מאת {0}"
 msgid "CLOSE"
 msgstr "סגור"
 
-#: ../src/general/MainMenu.cs:336
+#: ../src/general/MainMenu.cs:362
 msgid "OK"
 msgstr "בסדר"
 
-#: ../src/general/MainMenu.cs:337
+#: ../src/general/MainMenu.cs:363
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -1357,7 +1357,7 @@ msgstr "יציאה"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "עורך ארגז חול המיקרובי"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1005
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1374,230 +1374,243 @@ msgstr ""
 "אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או "
 "Nvidia על מנת להפעלת את Thrive."
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.tscn:126
 msgid "GRAPHICS"
 msgstr "גרפיקה"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:137
 msgid "SOUND"
 msgstr "קול"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:148
 msgid "PERFORMANCE"
 msgstr "ביצועים"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:159
 msgid "INPUTS"
 msgstr "קלטים"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:170
 msgid "MISC"
 msgstr "שונות"
 
-#: ../src/general/OptionsMenu.tscn:208
+#: ../src/general/OptionsMenu.tscn:209
 msgid "VSYNC"
 msgstr "סנכרון אנכי"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "מסך מלא"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "החלקת גרפיקה:"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ערכים גבוהים מדרדר ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "רזולוציה:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "אוטו"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "תיקון לעיוורון צבעים:"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:357
 msgid "CHROMATIC_ABERRATION"
 msgstr "אברציה כרומטית:"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:381
+#, fuzzy
+msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+msgstr ""
+"פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש בחנקן ,חמצן ובאנרגיה תאית בצורת "
+"ATP כדי לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע "
+"חנקן אירובי."
+
+#: ../src/general/OptionsMenu.tscn:385
+#, fuzzy
+msgid "ENABLE_GUI_LIGHT_EFFECTS"
+msgstr "השפעות חיצוניות:"
+
+#: ../src/general/OptionsMenu.tscn:408
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
 
-#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:465
-#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:531
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:435 ../src/general/OptionsMenu.tscn:476
+#: ../src/general/OptionsMenu.tscn:509 ../src/general/OptionsMenu.tscn:542
+#: ../src/general/OptionsMenu.tscn:575
 msgid "MUTE"
 msgstr "השתק"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:449
 msgid "MUSIC_VOLUME"
 msgstr "עוצמת מוזיקה"
 
-#: ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:482
 msgid "AMBIANCE_VOLUME"
 msgstr "עוצמת אווירה"
 
-#: ../src/general/OptionsMenu.tscn:504
+#: ../src/general/OptionsMenu.tscn:515
 msgid "SFX_VOLUME"
 msgstr "עוצמת אפקטים"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:548
 msgid "GUI_VOLUME"
 msgstr "עוצמת ממשק עזרים"
 
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:593
 msgid "LANGUAGE"
 msgstr "שפה:"
 
-#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:608 ../src/general/OptionsMenu.tscn:1016
 msgid "RESET"
 msgstr "איפוס"
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:617
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "עזור לתרגם את המשחק"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:637
 msgid "COMPOUND_CLOUDS"
 msgstr "ענני תרכובות"
 
-#: ../src/general/OptionsMenu.tscn:641
+#: ../src/general/OptionsMenu.tscn:652
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "סימולציית ענן מינימלית\n"
 "רווח:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:659 ../src/general/OptionsMenu.tscn:703
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(ערכים גבוהים יותר מגדילים ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:683
+#: ../src/general/OptionsMenu.tscn:694
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "ערך זה חל רק על שמירות חדשות לאחר שינויו"
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:696
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "מחליק רזולוציית ענן:"
 
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:738
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "הפעל התפתחות אוטומטית במהלך המשחק"
 
-#: ../src/general/OptionsMenu.tscn:794
+#: ../src/general/OptionsMenu.tscn:805
 msgid "RESET_INPUTS"
 msgstr "איפוס קלטים"
 
-#: ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:829
 msgid "PLAY_INTRO_VIDEO"
 msgstr "הפעל סרטון פתיחה"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:838
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "הפעל פתיח שלב המיקרוב במשחק חדש"
 
-#: ../src/general/OptionsMenu.tscn:836
+#: ../src/general/OptionsMenu.tscn:847
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "שמירה אוטומטית במהלך המשחק"
 
-#: ../src/general/OptionsMenu.tscn:847
+#: ../src/general/OptionsMenu.tscn:858
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "כמות שמירה אוטומטית שניתן לשמור:"
 
-#: ../src/general/OptionsMenu.tscn:875
+#: ../src/general/OptionsMenu.tscn:886
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "כמות שמירה מהירה שניתן לשמור:"
 
-#: ../src/general/OptionsMenu.tscn:901
+#: ../src/general/OptionsMenu.tscn:912
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "הצג מדריך (בשמירות חדשות)"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:920
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "הצג מדריך (בשמירה נוכחית)"
 
-#: ../src/general/OptionsMenu.tscn:925
+#: ../src/general/OptionsMenu.tscn:936
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "מקשי קודים מופעלים"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:948
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "השתמש בשם משתמש מותאמת אישית"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:959
 msgid "CUSTOM_USERNAME"
 msgstr "שם משתמש מותאם אישית:"
 
-#: ../src/general/OptionsMenu.tscn:974
+#: ../src/general/OptionsMenu.tscn:985
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "פתח תיקיית צילומי מסך"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:993
 msgid "OPEN_LOGS_FOLDER"
 msgstr "פתח תקיית קבצי לוג"
 
-#: ../src/general/OptionsMenu.tscn:1017 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1028 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "שמור"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1045
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ברירת מחדל"
 
-#: ../src/general/OptionsMenu.tscn:1046
+#: ../src/general/OptionsMenu.tscn:1057
 msgid "RESET_TO_DEFAULTS"
 msgstr "איפוס לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1066
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1069
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "איפוס קלטים לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1089
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות הקלטים לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1103
 msgid "CLOSE_OPTIONS"
 msgstr "לסגור אפשרויות?"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "ישנם שינויים שלא נשמרו שיימחקו.\n"
 "האם ברצונך להמשיך?"
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "SAVE_AND_CONTINUE"
 msgstr "שמור והמשך"
 
-#: ../src/general/OptionsMenu.tscn:1143
+#: ../src/general/OptionsMenu.tscn:1154
 msgid "DISCARD_AND_CONTINUE"
 msgstr "מחק והמשך"
 
-#: ../src/general/OptionsMenu.tscn:1159
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "CANCEL"
 msgstr "ביטול"
 
-#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1194
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1229
 msgid "ERROR"
 msgstr "שגיאה"
 
-#: ../src/general/OptionsMenu.tscn:1180 ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1230
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "שגיאה: נכשל הניסיון לשמור ההגדרות החדשות לקובץ התצורה."
 
@@ -1626,15 +1639,15 @@ msgstr "חזור לתפריט"
 msgid "EXIT"
 msgstr "יציאה"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} מיליארד"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} מיליון"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} אלפים"
 
@@ -1911,15 +1924,16 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 "לחץ על [thrive:input]g_toggle_binding[/thrive:input] על מנת להחליף למצב "
 "קישור. בזמן מצב קישור אתה יכול להיצמד לתאים אחרים מאותו בני מינך על מנת "
-"ליצור מושבות על ידי תזוזה אליהם. על מנת לעזוב את המושבה לחץ "
-"[thrive:input]g_unbind_all[/thrive:input]."
+"ליצור מושבות על ידי תזוזה אליהם. על מנת לעזוב את המושבה לחץ [thrive:"
+"input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "מאפשר להתחבר לתאים אחרים. זהו הצד הראשון לכיוון רב-תאים. בזמן שאתה חלק "
-"ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה חלק "
-"ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא שלך."
+"ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה "
+"חלק ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא "
+"שלך."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2136,23 +2150,23 @@ msgstr "טמפרטורה"
 msgid "N_A_MP"
 msgstr "אין נקמ\"ו"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr "מוות"
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "ליקוט מוצלח"
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "הרג מוצלח"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 msgid "REPRODUCED"
 msgstr "התרבה"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
@@ -2174,19 +2188,19 @@ msgstr ""
 "מהירות\n"
 "שחקן"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
 msgstr "שכפל שחקן"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:477
+#: ../src/microbe_stage/MicrobeHUD.cs:485
 msgid "MICROBE_PATCH_LABEL"
 msgstr "אזור: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:621
+#: ../src/microbe_stage/MicrobeHUD.cs:629
 msgid "STUFF_AT"
 msgstr "דברים ב {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:671
+#: ../src/microbe_stage/MicrobeHUD.cs:679
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
@@ -2198,50 +2212,50 @@ msgstr "השחקן התרבה"
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:433
+#: ../src/microbe_stage/MicrobeStage.tscn:434
 msgid "AT_CURSOR"
 msgstr "בסמן העכבר:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:458
+#: ../src/microbe_stage/MicrobeStage.tscn:459
 msgid "NOTHING_HERE"
 msgstr "אין פה שום דבר"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:484
 msgid "COMPOUNDS_COLON"
 msgstr "תרכובות:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:521
+#: ../src/microbe_stage/MicrobeStage.tscn:522
 msgid "SPECIES_COLON"
 msgstr "מינים:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:602
+#: ../src/microbe_stage/MicrobeStage.tscn:603
 msgid "ENVIRONMENT"
 msgstr "סביבה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:870
 msgid "TEMPERATURE_SHORT"
 msgstr "טמפ'."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:926
 msgid "LIGHT"
 msgstr "אור"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:981
 msgid "PRESSURE_SHORT"
 msgstr "לחץ."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1064
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "COMPOUNDS"
 msgstr "תרכובות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1447
+#: ../src/microbe_stage/MicrobeStage.tscn:1448
 msgid "AGENTS"
 msgstr "שליחים"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1710
+#: ../src/microbe_stage/MicrobeStage.tscn:1711
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
@@ -2310,11 +2324,11 @@ msgstr "טוען עורך המיקרובי"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -3000,11 +3014,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"אתהנכנסת ל\"מצב שחרר\". בזמן שאתה במצב זה אתה יכול ללחוץ על חברי המושבה שלך "
-"על מנת להשתחרר מהם.\n"
+"אתהנכנסת ל\"מצב שחרר\". בזמן שאתה במצב זה אתה יכול ללחוץ על חברי המושבה "
+"שלך על מנת להשתחרר מהם.\n"
 "\n"
-"על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל\""
-"."
+"על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל"
+"\"."
 
 #~ msgid "TURNS"
 #~ msgstr "הפוך ל"
