@@ -440,7 +440,7 @@ public class Mutations
         int letterChanges = 0;
         int changes = 0;
 
-        // Case of 1-letter words, e.g. Primum B
+        // Case of 1-letter words, e.g. Primum B - necessary as it otherwise triggers infinite recursion
         if (newName.Length == 1)
         {
             var letter = newName.ToString(0, 1);
