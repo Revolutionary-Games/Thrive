@@ -1489,37 +1489,37 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             switch (effectiveSymmetry)
             {
                 case MicrobeSymmetry.None:
-                    {
-                        RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
-                        break;
-                    }
+                {
+                    RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
+                    break;
+                }
 
                 case MicrobeSymmetry.XAxisSymmetry:
-                    {
-                        RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
-                        RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
-                        break;
-                    }
+                {
+                    RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
+                    RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
+                    break;
+                }
 
                 case MicrobeSymmetry.FourWaySymmetry:
-                    {
-                        RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
-                        RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
-                        RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 3) % 6, shownOrganelle);
-                        RenderHighlightedOrganelle(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6, shownOrganelle);
-                        break;
-                    }
+                {
+                    RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
+                    RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
+                    RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 3) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6, shownOrganelle);
+                    break;
+                }
 
                 case MicrobeSymmetry.SixWaySymmetry:
-                    {
-                        RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
-                        RenderHighlightedOrganelle(-1 * r, r + q, (organelleRot + 1) % 6, shownOrganelle);
-                        RenderHighlightedOrganelle(-1 * (r + q), q, (organelleRot + 2) % 6, shownOrganelle);
-                        RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 3) % 6, shownOrganelle);
-                        RenderHighlightedOrganelle(r, -1 * (r + q), (organelleRot + 4) % 6, shownOrganelle);
-                        RenderHighlightedOrganelle(r + q, -1 * q, (organelleRot + 5) % 6, shownOrganelle);
-                        break;
-                    }
+                {
+                    RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
+                    RenderHighlightedOrganelle(-1 * r, r + q, (organelleRot + 1) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(-1 * (r + q), q, (organelleRot + 2) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 3) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(r, -1 * (r + q), (organelleRot + 4) % 6, shownOrganelle);
+                    RenderHighlightedOrganelle(r + q, -1 * q, (organelleRot + 5) % 6, shownOrganelle);
+                    break;
+                }
             }
         }
     }
@@ -1718,7 +1718,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6, ref placedSomething);
 
                 break;
-                }
+            }
 
             default:
             {
