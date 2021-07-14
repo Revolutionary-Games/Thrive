@@ -451,18 +451,14 @@ public class MicrobeAI
     /// </summary>
     private void ComputeCompoundsSearchWeights()
     {
-        // Vital compounds are *direct* ATP producers
-        // TODO: what is used here is a shortcut linked to the current game state:
-        // such compounds could be used for other processes in future versions
-        var usefulCompounds = microbe.TotalAbsorbedCompounds.ToList();
-        var usefulVitalCompounds = usefulCompounds.Where(x => x.Key == glucose || x.Key == iron);
+        IEnumerable<Compound> usefulCompounds = microbe.TotalAbsorbedCompounds.Keys;
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
-        // This algorithm doesn't try to determine if iron and hydrogen sulfide is useful to this microbe
-        if (usefulVitalCompounds.Any(
-            compound => microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity))
+        if (microbe.TotalAbsorbedCompounds.Keys.Any(
+            compound => IsVitalCompound(compound) && 
+            microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
         {
-            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates).ToList();
+            usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
         }
 
         compoundsSearchWeights.Clear();
@@ -470,10 +466,22 @@ public class MicrobeAI
         {
             // The priority of a compound is inversely proportional to its availability
             // Should be tweaked with consumption
-            var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound.Key) / microbe.Compounds.Capacity;
+            var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound) / microbe.Compounds.Capacity;
 
-            compoundsSearchWeights.Add(compound.Key, compoundPriority);
+            compoundsSearchWeights.Add(compound, compoundPriority);
         }
+    }
+
+    /// <summary>
+    ///   Tells if a compound is vital to this microbe.
+    ///   Vital compounds are* direct* ATP producers
+    ///   TODO: what is used here is a shortcut linked to the current game state:
+    ///     such compounds could be used for other processes in future versions
+    ///   TODO: currently, vital compounds are not necessarily useful (e.g. no use of iron)!
+    /// </summary>
+    private bool IsVitalCompound(Compound compound)
+    {
+        return compound == glucose || compound == iron;
     }
 
     private void SetEngulfIfClose()
