@@ -44,10 +44,8 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePos;
-        GD.Print(delta);
         if (delta == new Vector3(0, 0, 0))
             delta = defaultVisualPos;
-        GD.Print(delta);
         Vector3 exit = middle - delta;
         var membraneCoords = organelle.ParentMicrobe.Membrane.GetExternalOrganelle(exit.x,
             exit.z);
