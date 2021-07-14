@@ -6,6 +6,9 @@ using Godot;
 /// </summary>
 public abstract class Spawner
 {
+    /// What this spawner spawns e.g. cloud, chunk, cell
+    public string Type;
+
     /// <summary>
     ///   The distance at which spawning happens
     /// </summary>
@@ -45,6 +48,7 @@ public abstract class Spawner
 
     public void SetFrequencyFromDensity(float spawnDensity)
     {
+        GD.Print(spawnDensity);
         SpawnFrequency = (int)(spawnDensity * SpawnRadiusSqr * 4);
     }
 }

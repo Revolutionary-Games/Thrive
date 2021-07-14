@@ -35,6 +35,16 @@ public class SpawnSystem
     private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
 
     /// <summary>
+    ///   Tracks recent movement percentage to set likelihood of clouds spawning
+    ///   This prevents a player from merely staying still long enough for clouds to spawn
+    /// </summary>
+    [JsonProperty]
+    private float cloudSpawnFactor;
+
+    [JsonProperty]
+    private Vector3 lastPlayerPos;
+
+    /// <summary>
     ///   This limits the total number of things that can be spawned.
     /// </summary>
     [JsonProperty]
@@ -226,7 +236,7 @@ public class SpawnSystem
 
     private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
     {
-        // If  there are already too many entities, don't spawn more
+        // If there are already too many entities, don't spawn more
         if (existing >= maxAliveEntities)
             return;
 
@@ -234,6 +244,18 @@ public class SpawnSystem
 
         foreach (var spawnType in spawnTypes)
         {
+            // Prevents too many clouds from spawning when stationary
+            if (spawnType.Type == "cloud")
+            {
+                var positionDelta = lastPlayerPos - playerPosition;
+                cloudSpawnFactor -= Constants.PLAYER_STATIONARY_CLOUD_SPAWN_PENALTY;
+                cloudSpawnFactor += positionDelta.LengthSquared();
+                lastPlayerPos = playerPosition;
+
+                if (cloudSpawnFactor >= 0 && cloudSpawnFactor <= Constants.MAX_CLOUD_SPAWN_PENALTY)
+                    spawnType.SetFrequencyFromDensity(cloudSpawnFactor);
+            }
+
             /*
             To actually spawn a given entity for a given attempt, two
             conditions should be met. The first condition is a random
