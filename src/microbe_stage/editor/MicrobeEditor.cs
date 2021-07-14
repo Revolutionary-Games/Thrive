@@ -623,6 +623,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
+            gui.UpdateMutationPointsBar();
 
             // TODO: AutoEvo run results summary
         }
