@@ -396,7 +396,7 @@ public class MicrobeAI
         // If we are still engulfing for some reason, stop
         microbe.State = Microbe.MicrobeState.Normal;
 
-        var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key)).ToList();
+        var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
         ComputeCompoundsSearchWeights(usefulCompounds);
 
         float gradientValue = 0.0f;
@@ -450,7 +450,7 @@ public class MicrobeAI
     ///   non ATP-related compounds are discarded.
     ///   Updates compoundsSearchWeights class dictionary.
     /// </summary>
-    private void ComputeCompoundsSearchWeights(List<KeyValuePair<Compound, float>> usefulCompounds)
+    private void ComputeCompoundsSearchWeights(IEnumerable<KeyValuePair<Compound, float>> usefulCompounds)
     {
         // Vital compounds are *direct* ATP producers
         // TODO: what is used here is a shortcut linked to the current game state:
@@ -462,7 +462,7 @@ public class MicrobeAI
         if (usefulVitalCompounds.Any(
             compound => microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity))
         {
-            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates).ToList();
+            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
         }
 
         compoundsSearchWeights.Clear();
