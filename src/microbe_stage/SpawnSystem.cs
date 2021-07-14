@@ -68,9 +68,12 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
+    private Dictionary<Spawner, int> attemptsPerSpawnType;
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
+        attemptsPerSpawnType = new Dictionary<Spawner, int>();
     }
 
     // Needs no params constructor for loading saves?
@@ -232,7 +235,18 @@ public class SpawnSystem
 
         int spawned = 0;
 
+        attemptsPerSpawnType.Clear();
+        int maxAttempts = -1;
         foreach (var spawnType in spawnTypes)
+        {
+            int attempts = Mathf.Clamp(spawnType.SpawnFrequency * 2, 1, maxTriesPerSpawner);
+            attemptsPerSpawnType[spawnType] = attempts;
+
+            if (attempts > maxAttempts)
+                maxAttempts = attempts;
+        }
+
+        for (int i = 0; i < maxAttempts; i++)
         {
             /*
             To actually spawn a given entity for a given attempt, two
@@ -247,14 +261,20 @@ public class SpawnSystem
             spawn cycle, the SpawnSystem attempts to spawn each given
             entity multiple times depending on the spawnFrequency.
             numAttempts stores how many times the SpawnSystem attempts
-            to spawn the given entity.
+            to spawn the given entity. Furthermore, each attempt gives a spawn chance
+            for each spawner (up to their type limit) to still favor diversity,
+            instead of one spawner taking up all the free spawning slots.
             */
-            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
-                maxTriesPerSpawner);
 
-            for (int i = 0; i < numAttempts; i++)
+            foreach (var spawnType in spawnTypes)
             {
-                if (random.Next(0, numAttempts + 1) < spawnType.SpawnFrequency)
+                int attempts = attemptsPerSpawnType[spawnType];
+
+                // Already did max attempts for this type
+                if (i > attempts)
+                    continue;
+
+                if (random.Next(0, attempts + 1) < spawnType.SpawnFrequency)
                 {
                     /*
                     First condition passed. Choose a location for the entity.
