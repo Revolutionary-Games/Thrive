@@ -57,8 +57,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Osmoregulation kostet ATP, was bedeutet, dass je größer deine Zelle ist, "
 "desto mehr Mitochondrium, Metabolosomen oder Rusticyanin (oder Zytoplasma, "
-"welches Glykolyse herstellt) benötigst du, um kein ATP zu verlieren, "
-"selbst, wenn du stillstehst."
+"welches Glykolyse herstellt) benötigst du, um kein ATP zu verlieren, selbst, "
+"wenn du stillstehst."
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:35
@@ -116,12 +116,18 @@ msgstr ""
 "wenn der Editor betreten wird, entwickeln sie sich auch."
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"W,A,S,D und Maus zum Bewegen. E drücken um Oxytocin NT zu schießen, falls "
-"eine Giftvakuole vorhanden ist. G drücken um den Verschlingungsmodus "
-"umzuschalten."
+"Durch die Bindung mit anderen Zellen können Sie eine Zellkolonie bilden, in "
+"der die Zellen die Verbindungen, die sie aufnehmen und produzieren, "
+"miteinander teilen. Um sich mit einer anderen Zelle binden zu können, müssen "
+"Sie die Bindemittel-Organelle besitzen und sich nach dem Eintritt in den "
+"Bindungsmodus diese berühren. Sie können nur mit Zellen Ihrer eigenen "
+"Spezies binden. Während Sie sich in einer Kolonie befinden, können Sie Ihre "
+"Zelle nicht teilen und den Editor betreten (vorerst). Um den Editor zu "
+"betreten, müssen Sie die Kolonie erst verlassen, wenn Sie genug Verbindungen "
+"gesammelt haben, und dann den Editor betreten. Große Zellkolonien sind der "
+"Weg zur Multizellularität (noch nicht im Spiel)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -159,8 +165,10 @@ msgstr ""
 "Membran-gebundene Organellen\n"
 "\n"
 "Nukleus : Nimmt 11 Felder ein und ermöglicht die Evolution von "
-"membrangebundenen Organellen. Außerdem verdoppelt er die Größe Ihrer "
-"Zelle. (Kann nur einmal entwickelt werden)\n"
+"membrangebundenen Organellen. Außerdem verdoppelt er die Größe Ihrer Zelle. ("
+"Kann nur einmal entwickelt werden)\n"
+"\n"
+"Bindemittel: Ermöglicht die Bindung mit anderen Zellen\n"
 "\n"
 "Mitochondrium: Produziert ATP aus Glukose und atmosphärischem O2. Viel "
 "effizienter als Zytoplasma.\n"
@@ -207,8 +215,8 @@ msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Interessanter Fakt: Das Nasentierchen und Pantoffeltierchen sind ein "
 "Musterbeispiel für ein Raubtier-Beute-Verhältnis, das jahrzehntelang "
-"untersucht wurde. Bist du nun das Nasentierchen oder das "
-"Pantoffeltierchen? Jäger oder Gejagter?"
+"untersucht wurde. Bist du nun das Nasentierchen oder das Pantoffeltierchen? "
+"Jäger oder Gejagter?"
 
 #: ../simulation_parameters/common/help_texts.json:50
 msgid "EASTEREGG_MESSAGE_2"
@@ -220,9 +228,9 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Kleiner Tipp, Osmoregulation kostet 1 ATP pro Sekunde und Feld, das deine "
-"Zelle hat. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. "
-"wenn Sie ATP durch Osmoregulation verlieren, fügen Sie einfach ein paar "
-"leere Felder Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
+"Zelle hat. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn "
+"Sie ATP durch Osmoregulation verlieren, fügen Sie einfach ein paar leere "
+"Felder Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
 
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
@@ -253,8 +261,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
 "Kleiner Tipp, Bakterien können stärker sein, als sie aussehen. Sie sehen "
-"vielleicht klein aus, aber einige von ihnen können sich in Sie eingraben "
-"und Sie auf diese Weise töten!"
+"vielleicht klein aus, aber einige von ihnen können sich in Sie eingraben und "
+"Sie auf diese Weise töten!"
 
 #: ../simulation_parameters/common/help_texts.json:57
 msgid "EASTEREGG_MESSAGE_9"
@@ -412,12 +420,11 @@ msgstr "Verbinden umschalten"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Alle entbinden"
 
 #: ../simulation_parameters/common/input_options.json:58
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Fehler beim Laden"
+msgstr "Entbinden durchführen"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -508,9 +515,8 @@ msgid "SPAWN_PHOSPHATES"
 msgstr "Phosphat erzeugen"
 
 #: ../simulation_parameters/common/input_options.json:159
-#, fuzzy
 msgid "CHEAT_MENU"
-msgstr "Menü"
+msgstr "Cheatmenü"
 
 #: ../simulation_parameters/common/input_options.json:168
 msgid "MISCELLANEOUS"
@@ -543,7 +549,7 @@ msgstr "Vollbild"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Atmung"
+msgstr "Aerobe Atmung"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -840,11 +846,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"Es besteht ein Konflikt mit {0}.\n"
-"Wollen Sie die Eingabe von {1} entfernen?"
+msgstr "Bindemittel"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
@@ -936,9 +939,8 @@ msgstr ""
 "Wollen Sie die Eingabe von {1} entfernen?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
-#, fuzzy
 msgid "KEY_FORWARD"
-msgstr "Nach vorne bewegen"
+msgstr "Vorwärts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
@@ -953,7 +955,6 @@ msgid "KEY_INSERT"
 msgstr "Einfg"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
-#, fuzzy
 msgid "KEY_DELETE"
 msgstr "Löschen"
 
@@ -963,7 +964,7 @@ msgstr "Pause"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Entf"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
@@ -971,21 +972,19 @@ msgstr "Pos1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
-msgstr ""
+msgstr "Ende"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
-#, fuzzy
 msgid "KEY_LEFT"
-msgstr "Nach links bewegen"
+msgstr "Links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
 msgstr "Hoch"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
-#, fuzzy
 msgid "KEY_RIGHT"
-msgstr "Nach rechts bewegen"
+msgstr "Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
@@ -996,12 +995,10 @@ msgid "KEY_MENU"
 msgstr "Menü"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
-#, fuzzy
 msgid "KEY_HELP"
 msgstr "Hilfe"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
-#, fuzzy
 msgid "KEY_BACK"
 msgstr "Zurück"
 
@@ -1010,7 +1007,6 @@ msgid "KEY_STOP"
 msgstr "Stopp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
-#, fuzzy
 msgid "KEY_REFRESH"
 msgstr "Aktualisieren"
 
@@ -1043,18 +1039,16 @@ msgid "SPACE"
 msgstr "Leertaste"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "Zurück"
+msgstr "Backslash"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
 msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Zurück"
+msgstr "Rücktaste"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
@@ -1069,9 +1063,8 @@ msgid "PAGEUP"
 msgstr "Bild auf"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-#, fuzzy
 msgid "PAGEDOWN"
-msgstr "Nach unten schwenken"
+msgstr "Bild Ab"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
@@ -1110,19 +1103,16 @@ msgid "DIRECTIONR"
 msgstr "Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "Effektlautstärke"
+msgstr "Lautstärke runter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "Effektlautstärke"
+msgstr "Lautstärke stumm"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "Effektlautstärke"
+msgstr "Lautstärke hoch"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
@@ -1141,9 +1131,8 @@ msgid "TREBLEUP"
 msgstr "Hoch drei"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Mausrad runter"
+msgstr "Audio Höhen runter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
@@ -1298,9 +1287,8 @@ msgid "KP9"
 msgstr "Num 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
-#, fuzzy
 msgid "UNKNOWN"
-msgstr "Unbekannte Maus"
+msgstr "Unbekannt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -1355,9 +1343,8 @@ msgid "UNKNOWN_MOUSE"
 msgstr "Unbekannte Maus"
 
 #: ../src/general/Gallery.cs:70
-#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
@@ -1737,11 +1724,8 @@ msgstr "Darf nicht mehr als {0} Datensets zeigen!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:910
 #: ../src/gui_common/charts/line/LineChart.cs:938
-#, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist "
-"du sicher, dass du {0} dauerhaft löschen willst?"
+msgstr "Nicht erlaubt, weniger als {0} Datensatz(e) anzuzeigen!"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -1806,16 +1790,10 @@ msgid "HEALTH"
 msgstr "Gesundheit"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung "
-"aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das "
-"Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die "
-"Glykolyse, die Umwandlung von Glukose in ATP-Energie. Damit Zellen, denen "
-"Organellen fehlen, einen fortgeschritteneren Stoffwechsel haben, sind sie "
-"auf diese Energie angewiesen. Sie wird auch dazu verwendet, Moleküle in "
-"der Zelle zu speichern und die Zelle zu vergrössern."
+"Wandelt [thrive:compound]Glukose[/thrive:compound] in "
+"[thrive:compound]Atp[/thrive:compound] um"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1872,17 +1850,11 @@ msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulierungskosten"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt "
-"sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung "
-"genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, "
-"als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch "
-"Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung "
-"verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen "
-"direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit "
-"glykolyse durch."
+"Wandelt [thrive:compound]Glukose[/thrive:compound] in "
+"[thrive:compound]Atp[/thrive:compound] um. Rate skaliert mit der "
+"[thrive:compound]Sauerstoffkonzentration[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1901,16 +1873,11 @@ msgid "THYLAKOID"
 msgstr "Thylakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Chemosynthetisierende Proteine sind kleine Proteincluster im Zytoplasma, "
-"die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges "
-"Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in "
-"Glukose umzuwandeln. Die Rate der Glukoseproduktion skaliert mit der "
-"Konzentration von Kohlendioxid. Da die chemosynthetisierenden Proteine "
-"direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit "
-"glykolyse durch."
+"Produziert [thrive:compound]Glukose[/thrive:compound]. Rate skaliert mit der "
+"Konzentration von [thrive:compound]Kohlendioxid[/thrive:compound] und der "
+"Intensität des [thrive:compound]Sonnenlichts[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1925,16 +1892,13 @@ msgstr ""
 "sind, führt die umgebende Flüssigkeit glykolyse durch."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Chemosynthetisierende Proteine sind kleine Proteincluster im Zytoplasma, "
-"die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges "
-"Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in "
-"Glukose umzuwandeln. Die Rate der Glukoseproduktion skaliert mit der "
-"Konzentration von Kohlendioxid. Da die chemosynthetisierenden Proteine "
-"direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit "
-"glykolyse durch."
+"Wandelt [thrive:compound]Schwefelwasserstoff[/thrive:compound] in "
+"[thrive:compound]Glukose[/thrive:compound] um. Die Rate skaliert mit der "
+"Konzentration von [thrive:compound]Kohlendioxid[/thrive:compound]. Wandelt "
+"[thrive:compound]Glukose[/thrive:compound] auch in "
+"[thrive:compound]Atp[/thrive:compound] um"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1948,13 +1912,12 @@ msgstr ""
 "glykolyse durch."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Rusticyanin ist ein Protein, das in der Lage ist, gasförmiges Kohlendioxid "
-"und Sauerstoff zu nutzen, um Eisen von einem chemischen Zustand in einen "
-"anderen zu oxidieren. Dieser Prozess, der Eisenatmung genannt wird, setzt "
-"Energie frei, die die Zelle dann sammeln kann."
+"Wandelt [thrive:compound]Eisen[/thrive:compound] in "
+"[thrive:compound]Atp[/thrive:compound] um. Rate skaliert mit der "
+"Konzentration von [thrive:compound]Kohlendioxid[/thrive:compound] und "
+"[thrive:compound]Sauerstoff[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1965,15 +1928,11 @@ msgstr ""
 "Energie frei, die die Zelle dann sammeln kann."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff "
-"und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen "
-"wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein "
-"Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die "
-"Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende "
-"Flüssigkeit glykolyse durch."
+"Wandelt [thrive:compound]Atp[/thrive:compound] in "
+"[thrive:compound]Ammoniak[/thrive:compound] um. Rate skaliert mit der "
+"Konzentration von [thrive:compound]Stickstoff[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
