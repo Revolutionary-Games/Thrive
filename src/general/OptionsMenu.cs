@@ -926,7 +926,7 @@ public class OptionsMenu : ControlWithInput
     {
         Settings.Instance.DisplayAbilitiesHotBar.Value = toggle;
 
-         UpdateResetSaveButtonState();
+        UpdateResetSaveButtonState();
     }
 
     private void OnGUILightEffectsToggled(bool toggle)
