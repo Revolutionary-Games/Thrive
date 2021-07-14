@@ -454,7 +454,7 @@ public class MicrobeAI
         // Vital compounds are *direct* ATP producers
         // TODO: what is used here is a shortcut linked to the current game state:
         // such compounds could be used for other processes in future versions
-        var usefulCompounds = microbe.TotalAbsorbedCompounds.Where(x => microbe.Compounds.IsUseful(x.Key));
+        var usefulCompounds = microbe.TotalAbsorbedCompounds.ToList();
         var usefulVitalCompounds = usefulCompounds.Where(x => x.Key == glucose || x.Key == iron);
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
@@ -462,7 +462,7 @@ public class MicrobeAI
         if (usefulVitalCompounds.Any(
             compound => microbe.Compounds.GetCompoundAmount(compound.Key) < 0.5f * microbe.Compounds.Capacity))
         {
-            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates);
+            usefulCompounds = usefulCompounds.Where(x => x.Key != ammonia && x.Key != phosphates).ToList();
         }
 
         compoundsSearchWeights.Clear();
