@@ -307,8 +307,8 @@ public class MicrobeHUD : Node
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
-        SetEditorButtonFlashEffect(Settings.Instance.EditorButtonFlashEffectEnabled);
-        Settings.Instance.EditorButtonFlashEffectEnabled.OnChanged += SetEditorButtonFlashEffect;
+        SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
+        Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
     }
 
     public void OnEnterStageTransition(bool longerDuration)

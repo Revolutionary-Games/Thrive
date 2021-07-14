@@ -60,7 +60,7 @@ public class OptionsMenu : ControlWithInput
     public NodePath ChromaticAberrationTogglePath;
 
     [Export]
-    public NodePath FlashEditorButtonTogglePath;
+    public NodePath GUILightEffectsTogglePath;
 
     // Sound tab.
     [Export]
@@ -187,7 +187,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting;
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
-    private CheckBox flashEditorButtonToggle;
+    private CheckBox guiLightEffectsToggle;
 
     // Sound tab
     private Control soundTab;
@@ -295,7 +295,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
-        flashEditorButtonToggle = GetNode<CheckBox>(FlashEditorButtonTogglePath);
+        guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -420,7 +420,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
-        flashEditorButtonToggle.Pressed = settings.EditorButtonFlashEffectEnabled;
+        guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -916,9 +916,9 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
-    private void OnFlashEditorButtonToggled(bool toggle)
+    private void OnGUILightEffectsToggled(bool toggle)
     {
-        Settings.Instance.EditorButtonFlashEffectEnabled.Value = toggle;
+        Settings.Instance.GUILightEffectsEnabled.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
