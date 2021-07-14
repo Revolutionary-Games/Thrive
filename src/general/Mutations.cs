@@ -448,7 +448,7 @@ public class Mutations
             List<string> letterPool;
 
             // 50% chance to just take another consonant/vowel
-            switch (random.Next(0,3))
+            switch (random.Next(0, 3))
             {
                 // 33% Chance to replace the letter by a similar one - Primum P
                 case 0:
