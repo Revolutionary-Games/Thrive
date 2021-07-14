@@ -11,7 +11,12 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     ///   Needed to calculate final pos on update
     /// </summary>
     protected Vector3 organellePos;
+
+    /// <summary>
+    /// The default visual posistion if the organelle is in teh microbes center
+    /// </summary>
     protected Vector3 defaultVisualPos;
+
     /// <summary>
     ///   Last calculated position, Used to not have to recreate the physics all the time
     /// </summary>

@@ -1373,7 +1373,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Colony?.RemoveFromColony(this);
     }
 
-
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
         if (microbe == this)
@@ -2106,7 +2105,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(PlacedOrganelle organelle)
     {
-
         if (organelle.Position == new Hex(0, 0))
             organelle.FalsePosition = organelle.Position;
         else

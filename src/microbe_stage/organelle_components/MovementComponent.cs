@@ -19,7 +19,6 @@ public class MovementComponent : ExternallyPositionedComponent
     {
         Momentum = momentum;
         Torque = torque;
-
     }
 
     public override void Update(float elapsed)
