@@ -21,6 +21,36 @@ public class MovementComponent : ExternallyPositionedComponent
         Torque = torque;
     }
 
+    public static Vector3 GetForceVector(int orientation)
+    {
+        if (orientation == 0)
+        {
+            return Constants.VectorDown;
+        }
+
+        if (orientation == 1)
+        {
+            return Constants.VectorDownLeft;
+        }
+
+        if (orientation == 2)
+        {
+            return Constants.VectorUpLeft;
+        }
+
+        if (orientation == 3)
+        {
+            return Constants.VectorUp;
+        }
+
+        if (orientation == 4)
+        {
+            return Constants.VectorUpRight;
+        }
+
+        return Constants.VectorDownRight;
+    }
+
     public override void Update(float elapsed)
     {
         // Visual positioning code
@@ -37,7 +67,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
-        force = CalculateForce(organelle.Position, Momentum);
+        force = CalculateForce(Momentum);
 
         animation = organelle.OrganelleAnimation;
 
@@ -56,15 +86,13 @@ public class MovementComponent : ExternallyPositionedComponent
     }
 
     /// <summary>
-    ///   Calculate the momentum of the movement organelle based on
-    ///   angle towards middle of cell
+    ///   Calculate the vector of the thrust force provided by the flagellum based on its orientation.
     /// </summary>
-    private static Vector3 CalculateForce(Hex pos, float momentum)
+    private Vector3 CalculateForce(float momentum)
     {
-        Vector3 organelle = Hex.AxialToCartesian(pos);
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organelle;
-        return delta.Normalized() * momentum;
+        Vector3 forceVector = GetForceVector(organelle.Orientation);
+        forceVector = forceVector * momentum;
+        return forceVector;
     }
 
     private void SetSpeedFactor(float speed)

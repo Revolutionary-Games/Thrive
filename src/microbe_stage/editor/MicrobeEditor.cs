@@ -947,6 +947,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
+    /// <summary>
+    ///   Calculate the forward speed of the microbe. It is merely displayed in the microbe editor.
+    ///   The code in MovementComponent.CalculateForce handles the actual (in-game) speed.
+    /// </summary>
     public float CalculateSpeed()
     {
         float microbeMass = Constants.MICROBE_BASE_MASS;
@@ -961,10 +965,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
-                    - Hex.AxialToCartesian(organelle.Position)).Normalized();
-
-                float directionFactor = organelleDirection.Dot(forwardsDirection);
+                Vector3 forceVector = MovementComponent.GetForceVector(organelle.Orientation);
+                float directionFactor = forceVector.Dot(forwardsDirection);
 
                 // Flagella pointing backwards don't slow you down
                 directionFactor = Math.Max(directionFactor, 0);
