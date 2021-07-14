@@ -120,6 +120,9 @@ public class MicrobeHUD : Node
     public NodePath PhosphateReproductionBarPath;
 
     [Export]
+    public NodePath EditorButtonFlashPath;
+
+    [Export]
     public NodePath ProcessPanelPath;
 
     [Export]
@@ -210,6 +213,7 @@ public class MicrobeHUD : Node
     private TextureProgress healthBar;
     private TextureProgress ammoniaReproductionBar;
     private TextureProgress phosphateReproductionBar;
+    private Light2D editorButtonFlash;
 
     private PauseMenu menu;
     private TextureButton pauseButton;
@@ -302,6 +306,7 @@ public class MicrobeHUD : Node
         healthBar = GetNode<TextureProgress>(HealthBarPath);
         ammoniaReproductionBar = GetNode<TextureProgress>(AmmoniaReproductionBarPath);
         phosphateReproductionBar = GetNode<TextureProgress>(PhosphateReproductionBarPath);
+        editorButtonFlash = GetNode<Light2D>(EditorButtonFlashPath);
 
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
@@ -325,6 +330,9 @@ public class MicrobeHUD : Node
 
         OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
         Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
+
+        SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
+        Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -842,6 +850,11 @@ public class MicrobeHUD : Node
         healthBar.MaxValue = maxHP;
         healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.1f);
         hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+    }
+
+    private void SetEditorButtonFlashEffect(bool enabled)
+    {
+        editorButtonFlash.Visible = enabled;
     }
 
     private void UpdatePopulation()

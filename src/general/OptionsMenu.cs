@@ -62,6 +62,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath DisplayAbilitiesBarTogglePath;
 
+    [Export]
+    public NodePath GUILightEffectsTogglePath;
+
     // Sound tab.
     [Export]
     public NodePath SoundTabPath;
@@ -188,6 +191,7 @@ public class OptionsMenu : ControlWithInput
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
     private CheckBox displayAbilitiesHotBarToggle;
+    private CheckBox guiLightEffectsToggle;
 
     // Sound tab
     private Control soundTab;
@@ -296,6 +300,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
+        guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -421,6 +426,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
+        guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -919,6 +925,13 @@ public class OptionsMenu : ControlWithInput
     private void OnDisplayAbilitiesHotBarToggled(bool toggle)
     {
         Settings.Instance.DisplayAbilitiesHotBar.Value = toggle;
+
+         UpdateResetSaveButtonState();
+    }
+
+    private void OnGUILightEffectsToggled(bool toggle)
+    {
+        Settings.Instance.GUILightEffectsEnabled.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
