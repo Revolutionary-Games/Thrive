@@ -152,6 +152,15 @@ public class MicrobeHUD : Node
     [Export]
     public NodePath HotBarPath;
 
+    [Export]
+    public NodePath EngulfHotkeyPath;
+
+    [Export]
+    public NodePath FireToxinHotkeyPath;
+
+    [Export]
+    public NodePath BindingModeHotkeyPath;
+
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -173,6 +182,9 @@ public class MicrobeHUD : Node
     private GridContainer environmentPanelBarContainer;
     private Panel compoundsPanel;
     private HBoxContainer hotBar;
+    private ActionButton engulfHotkey;
+    private ActionButton fireToxinHotkey;
+    private ActionButton bindingModeHotkey;
 
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
@@ -247,9 +259,6 @@ public class MicrobeHUD : Node
     /// </summary>
     private float hoverInfoTimeElapsed;
 
-    private System.Collections.Generic.Dictionary<string, ActionButton> abilitiesHotkey =
-        new System.Collections.Generic.Dictionary<string, ActionButton>();
-
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
     /// </summary>
@@ -307,10 +316,15 @@ public class MicrobeHUD : Node
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
 
+        engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
+        fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
+        bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
+
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
-        InitializeAbilitiesHotBar();
+        OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
+        Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -876,25 +890,14 @@ public class MicrobeHUD : Node
         compoundsPanel.RectMinSize = compoundsPanelSize;
     }
 
-    private void InitializeAbilitiesHotBar()
-    {
-        OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
-        Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
-
-        foreach (ActionButton entry in hotBar.GetChildren())
-        {
-            abilitiesHotkey[entry.Name] = entry;
-        }
-    }
-
     private void UpdateAbilitiesHotBar()
     {
-        abilitiesHotkey["BindingMode"].Visible = stage.Player.CanBind;
-        abilitiesHotkey["FireToxin"].Visible = stage.Player.AgentVacuoleCount > 0;
+        bindingModeHotkey.Visible = stage.Player.CanBind;
+        fireToxinHotkey.Visible = stage.Player.AgentVacuoleCount > 0;
 
-        abilitiesHotkey["Engulfment"].Pressed = stage.Player.State == Microbe.MicrobeState.Engulf;
-        abilitiesHotkey["BindingMode"].Pressed = stage.Player.State == Microbe.MicrobeState.Binding;
-        abilitiesHotkey["FireToxin"].Pressed = Input.IsActionPressed(abilitiesHotkey["FireToxin"].ActionName);
+        engulfHotkey.Pressed = stage.Player.State == Microbe.MicrobeState.Engulf;
+        bindingModeHotkey.Pressed = stage.Player.State == Microbe.MicrobeState.Binding;
+        fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
     }
 
     /// <summary>

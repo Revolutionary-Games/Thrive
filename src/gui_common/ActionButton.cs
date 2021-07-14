@@ -39,7 +39,7 @@ public class ActionButton : Button
     }
 
     /// <summary>
-    ///   The assgined Godot action event for the input.
+    ///   The assigned Godot action event for the input.
     /// </summary>
     [Export]
     public string ActionName
