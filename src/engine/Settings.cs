@@ -71,6 +71,11 @@ public class Settings
     public SettingValue<bool> ChromaticEnabled { get; set; } = new SettingValue<bool>(true);
 
     /// <summary>
+    ///   Display or hide the abilities hotbar in the microbe stage HUD.
+    /// </summary>
+    public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
     ///   Enable or disable lighting effects on the GUI. Mainly Used to workaround a bug where the HUD area
     ///   surrounding the editor button sometimes disappearing with the light effect turned on.
     /// </summary>
