@@ -12,7 +12,7 @@ public class CustomRichTextLabel : RichTextLabel
     private string extendedBbcode;
 
     /// <summary>
-    ///   Custom Bbcodes exclusive for Thrive. Acts more like an extension to the built-in tags.
+    ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
     public enum ThriveBbCode
     {
@@ -189,7 +189,7 @@ public class CustomRichTextLabel : RichTextLabel
                     }
                     else
                     {
-                        // BBcode is not present in the enum
+                        // BBCode is not present in the enum
                         result.Append(input);
                         GD.PrintErr($"Failed parsing custom thrive bbcode: {bbcode}, it probably doesn't exist");
                     }
