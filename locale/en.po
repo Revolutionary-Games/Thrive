@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
-"PO-Revision-Date: 2021-07-11 22:10+0700\n"
+"POT-Crea\"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"PO-Revision-Date: 2021-07-15 00:31+0700\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -20,6 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
+"POT-Creation-Date: \n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 #: ../simulation_parameters/common/help_texts.json:30
@@ -1748,8 +1749,8 @@ msgstr "Health"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"glucose\"]Glucose[/thrive:compound] into "
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1807,9 +1808,9 @@ msgstr "Osmoregulation Cost"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"glucose\"]Glucose[/thrive:compound] into "
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"oxygen\"]Oxygen[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1829,10 +1830,10 @@ msgstr "Thylakoid"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound type=\"glucose\"]Glucose[/thrive:compound]. Rate "
-"scales with concentration of [thrive:compound type=\"carbondioxide\"]Carbon "
-"Dioxide[/thrive:compound] and intensity of [thrive:compound type=\"sunlight"
-"\"]Sunlight[/thrive:compound]"
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:"
+"compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1848,12 +1849,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"hydrogensulfide\"]Hydrogen Sulfide[/thrive:"
-"compound] into [thrive:compound type=\"glucose\"]Glucose[/thrive:compound]. "
-"Rate scales with concentration of [thrive:compound type=\"carbondioxide"
-"\"]Carbon Dioxide[/thrive:compound]. Also turns [thrive:compound type="
-"\"glucose\"]Glucose[/thrive:compound] into [thrive:compound type=\"atp"
-"\"]ATP[/thrive:compound]"
+"Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
+"Also turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1868,10 +1868,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"iron\"]Iron[/thrive:compound] into [thrive:"
-"compound type=\"atp\"]ATP[/thrive:compound]. Rate scales with concentration "
-"of [thrive:compound type=\"carbondioxide\"]Carbon Dioxide[/thrive:compound] "
-"and [thrive:compound type=\"oxygen\"]Oxygen[/thrive:compound]"
+"Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1883,10 +1883,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"atp\"]ATP[/thrive:compound] into [thrive:"
-"compound type=\"ammonia\"]Ammonia[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"nitrogen\"]Nitrogen[/thrive:"
-"compound]"
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1900,10 +1899,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"atp\"]ATP[/thrive:compound] into [thrive:"
-"compound type=\"oxytoxy\"]OxyToxy NT[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"oxygen\"]Oxygen[/thrive:compound]. "
-"Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by "
+"pressing [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1914,7 +1913,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Uses [thrive:compound type=\"atp\"]ATP[/thrive:compound] to increase the "
+"Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the "
 "movement speed of the cell"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
@@ -1985,9 +1984,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"glucose\"]Glucose[/thrive:compound] into "
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"oxygen\"]Oxygen[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2003,10 +2002,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound type=\"glucose\"]Glucose[/thrive:compound]. Rate "
-"scales with concentration of [thrive:compound type=\"carbondioxide\"]Carbon "
-"Dioxide[/thrive:compound] and intensity of [thrive:compound type=\"sunlight"
-"\"]Sunlight[/thrive:compound]"
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:"
+"compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2027,9 +2026,9 @@ msgstr "Thermoplast"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound type=\"glucose\"]Glucose[/thrive:compound]. Rate "
-"scales with concentration of [thrive:compound type=\"carbondioxide\"]Carbon "
-"Dioxide[/thrive:compound] and temperature."
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and temperature."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2050,10 +2049,9 @@ msgstr "No processes"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"hydrogensulfide\"]Hydrogen Sulfide[/thrive:"
-"compound] into [thrive:compound type=\"glucose\"]Glucose[/thrive:compound]. "
-"Rate scales with concentration of [thrive:compound type=\"carbondioxide"
-"\"]Carbon Dioxide[/thrive:compound]"
+"Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2066,10 +2064,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"atp\"]ATP[/thrive:compound] into [thrive:"
-"compound type=\"ammonia\"]Ammonia[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"nitrogen\"]Nitrogen[/thrive:"
-"compound] and [thrive:compound type=\"oxygen\"]Oxygen[/thrive:compound]"
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound "
+"type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2095,10 +2093,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"atp\"]ATP[/thrive:compound] into [thrive:"
-"compound type=\"oxytoxy\"]OxyToxy NT[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"oxygen\"]Oxygen[/thrive:compound]. "
-"Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by "
+"pressing [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3020,363 +3018,7 @@ msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "On a distant alien planet, eons of volcanic activity and meteor impacts have "
 "lead to the development of a new phenomenon in the universe.\n"
-"\n"
-"Life.\n"
-"\n"
-"Simple microbes reside in the deep regions of the ocean. You are the last "
-"universal common ancestor (LUCA) on this planet.\n"
-"\n"
-"To survive in this hostile world, you will need to collect any compounds "
-"that you can find and evolve each generation to compete against the other "
-"species of microbes."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
-msgid "SHOW_TUTORIALS"
-msgstr "Show tutorials"
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
-msgid "BEGIN_THRIVING"
-msgstr "Begin Thriving"
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
-msgid "MICROBE_STAGE_CONTROL_TEXT"
-msgstr ""
-"To control your cell use the keys shown near your cell (center of screen) "
-"and the mouse to control the cell orientation.\n"
-"\n"
-"Try all of the keys for a few seconds to continue."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
-msgid "MICROBE_STAGE_COLLECT_TEXT"
-msgstr ""
-"Collect glucose (white clouds) by moving over them.\n"
-"Your cell needs glucose in order to produce energy to stay alive.\n"
-"Follow the line from your cell to nearby glucose."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
-msgid "MICROBE_STAGE_HEALTH_TEXT"
-msgstr ""
-"Keep an eye on your health bar next to the ATP bar (bottom right).\n"
-"Your cell dies if it runs out of health.\n"
-"You regenerate health while you have ATP.\n"
-"Make sure to collect enough glucose to produce ATP."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
-msgstr ""
-"In order to reproduce you need to duplicate all of your organelles by "
-"collecting enough ammonia and phosphates.\n"
-"Look at the indicator in the bottom right to see how much more you need."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-msgid "MICROBE_STAGE_UNBIND_TEXT"
-msgstr ""
-"You have entered unbind mode. In this mode you can click on colony members "
-"to unbind them.\n"
-"\n"
-"To leave the colony entirely you can click on your own cell or press the "
-"unbind all key."
-
-#~ msgid "TURNS"
-#~ msgstr "Turns"
-
-#~ msgid "INTO"
-#~ msgstr "into"
-
-#~ msgid "OXYTOXY"
-#~ msgstr "OxyToxy"
-
-#~ msgid "DOT_CAN_RELEASE"
-#~ msgstr ". Can release"
-
-#~ msgid "TOXINS_BY_PRESSING_E"
-#~ msgstr "toxins by pressing E. Rate scales with"
-
-#~ msgid "CONCENTRATION_OF"
-#~ msgstr "concentration of"
-
-#~ msgid "USES"
-#~ msgstr "Uses"
-
-#~ msgid "TO_INCREASE_THE_MOVEMENT"
-#~ msgstr "to increase the movement"
-
-#~ msgid "SPEED_OF_THE_CELL"
-#~ msgstr "speed of the cell."
-
-#~ msgid "ALLOWS_BINDING"
-#~ msgstr "Allows binding"
-
-#~ msgid "DOT_RATE"
-#~ msgstr ". Rate"
-
-#~ msgid "SCALES_WITH_CONCENTRATION_OF"
-#~ msgstr "scales with concentration of"
-
-#~ msgid "PRODUCES"
-#~ msgstr "Produces"
-
-#~ msgid "DOT_RATE_SCALES_WITH"
-#~ msgstr ". Rate scales with"
-
-#~ msgid "AND"
-#~ msgstr "and"
-
-#~ msgid "INTENSITY_OF"
-#~ msgstr "intensity of"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Rate scales"
-
-#~ msgid "WITH_CONCENTRATION_OF"
-#~ msgstr "with concentration of"
-
-#~ msgid "OXYGEN_DOT"
-#~ msgstr "Oxygen."
-
-#~ msgid "DOT_RATE_SCALES_WITH_CONCENTRATION_OF"
-#~ msgstr ". Rate scales with concentration of"
-
-#~ msgid "ALSO_TURNS"
-#~ msgstr "Also turns"
-
-#~ msgid "INREASE_STORAGE_SPACE"
-#~ msgstr "Increases the storage space of the cell."
-
-#~ msgid "DOT_CAN"
-#~ msgstr ". Can"
-
-#~ msgid "RELEASE_TOXINS_BY_PRESSING"
-#~ msgstr "release toxins by pressing"
-
-#~ msgid "E_DOT"
-#~ msgstr "E."
-
-#~ msgid "RATE"
-#~ msgstr "Rate"
-
-#~ msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
-#~ msgstr ""
-#~ "Chemosynth-\n"
-#~ "esizing Proteins"
-
-#~ msgid "BIOLUMESCENT_VACUOLE"
-#~ msgstr ""
-#~ "Bioluminescent \n"
-#~ "Vacuole"
-
-#~ msgid "TAB"
-#~ msgstr "Tab"
-
-#~ msgid "ENTER"
-#~ msgstr "Enter"
-
-#~ msgid "END"
-#~ msgstr "End"
-
-#~ msgid "LEFT"
-#~ msgstr "Left"
-
-#~ msgid "UP"
-#~ msgstr "Up"
-
-#~ msgid "RIGHT"
-#~ msgstr "Right"
-
-#~ msgid "DOWN"
-#~ msgstr "Down"
-
-#~ msgid "FORWARD"
-#~ msgstr "Forward"
-
-#~ msgid "EXCLAM"
-#~ msgstr "!"
-
-#~ msgid "QUOTEDBL"
-#~ msgstr "\""
-
-#~ msgid "NUMBERSIGN"
-#~ msgstr "#"
-
-#~ msgid "DOLLAR"
-#~ msgstr "$"
-
-#~ msgid "PERCENT"
-#~ msgstr "%"
-
-#~ msgid "AMPERSAND"
-#~ msgstr "&"
-
-#~ msgid "APOSTROPHE"
-#~ msgstr "'"
-
-#~ msgid "PARENLEFT"
-#~ msgstr "("
-
-#~ msgid "PARENRIGHT"
-#~ msgstr ")"
-
-#~ msgid "ASTERISK"
-#~ msgstr "*"
-
-#~ msgid "PLUS"
-#~ msgstr "+"
-
-#~ msgid "COMMA"
-#~ msgstr ","
-
-#~ msgid "MINUS"
-#~ msgstr "-"
-
-#~ msgid "PERIOD"
-#~ msgstr "."
-
-#~ msgid "SLASH"
-#~ msgstr "/"
-
-#~ msgid "KEY0"
-#~ msgstr "0"
-
-#~ msgid "KEY1"
-#~ msgstr "1"
-
-#~ msgid "KEY2"
-#~ msgstr "2"
-
-#~ msgid "KEY3"
-#~ msgstr "3"
-
-#~ msgid "KEY4"
-#~ msgstr "4"
-
-#~ msgid "KEY5"
-#~ msgstr "5"
-
-#~ msgid "KEY6"
-#~ msgstr "6"
-
-#~ msgid "KEY7"
-#~ msgstr "7"
-
-#~ msgid "KEY8"
-#~ msgstr "8"
-
-#~ msgid "KEY9"
-#~ msgstr "9"
-
-#~ msgid "COLON"
-#~ msgstr ":"
-
-#~ msgid "SEMICOLON"
-#~ msgstr ";"
-
-#~ msgid "LESS"
-#~ msgstr "<"
-
-#~ msgid "EQUAL"
-#~ msgstr "="
-
-#~ msgid "GREATER"
-#~ msgstr ">"
-
-#~ msgid "QUESTION"
-#~ msgstr "?"
-
-#~ msgid "AT"
-#~ msgstr "@"
-
-#~ msgid "BRACKETLEFT"
-#~ msgstr "["
-
-#~ msgid "BRACKETRIGHT"
-#~ msgstr "]"
-
-#~ msgid "ASCIICIRCUM"
-#~ msgstr "^"
-
-#~ msgid "UNDERSCORE"
-#~ msgstr "_"
-
-#~ msgid "QUOTELEFT"
-#~ msgstr "`"
-
-#~ msgid "BRACELEFT"
-#~ msgstr "{"
-
-#~ msgid "BAR"
-#~ msgstr "|"
-
-#~ msgid "BRACERIGHT"
-#~ msgstr "}"
-
-#~ msgid "ASCIITILDE"
-#~ msgstr "~"
-
-#~ msgid "EXCLAMDOWN"
-#~ msgstr "¡"
-
-#~ msgid "CENT"
-#~ msgstr "¢"
-
-#~ msgid "STERLING"
-#~ msgstr "£"
-
-#~ msgid "CURRENCY"
-#~ msgstr "¤"
-
-#~ msgid "YEN"
-#~ msgstr "¥"
-
-#~ msgid "BROKENBAR"
-#~ msgstr "¦"
-
-#~ msgid "SECTION"
-#~ msgstr "§"
-
-#~ msgid "DIAERESIS"
-#~ msgstr "¨"
-
-#~ msgid "COPYRIGHT"
-#~ msgstr "©"
-
-#~ msgid "ORDFEMININE"
-#~ msgstr "ª"
-
-#~ msgid "GUILLEMOTLEFT"
-#~ msgstr "«"
-
-#~ msgid "NOTSIGN"
-#~ msgstr "¬"
-
-#~ msgid "HYPHEN"
-#~ msgstr "-"
-
-#~ msgid "REGISTERED"
-#~ msgstr "®"
-
-#~ msgid "MACRON"
-#~ msgstr "¯"
-
-#~ msgid "DEGREE"
-#~ msgstr "°"
-
-#~ msgid "PLUSMINUS"
-#~ msgstr "±"
-
-#~ msgid "TWOSUPERIOR"
-#~ msgstr "²"
-
-#~ msgid "THREESUPERIOR"
-#~ msgstr "³"
-
-#~ msgid "ACUTE"
-#~ msgstr "´"
-
-#~ msgid "MU"
-#~ msgstr "µ"
-
-#~ msgid "PARAGRAPH"
-#~ msgstr "¶"
+"¶"
 
 #~ msgid "PERIODCENTERED"
 #~ msgstr "·"

@@ -266,6 +266,10 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var compound = simulationParameters.GetCompound(internalName);
 
+                // Just use the default compound's display name if input text is not specified
+                if (!fallback && string.IsNullOrEmpty(input))
+                    input = compound.Name;
+
                 output = $"[b]{(fallback ? compound.Name : input)}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
