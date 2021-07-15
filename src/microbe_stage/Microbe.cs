@@ -2114,10 +2114,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (transform == target)
             return;
 
-        float strength = Constants.CELL_BASE_THRUST + Constants.CELL_BASE_THRUST * (HexCount/2);
-        float maxVelocity = 5.0f;
+        var strength = Constants.CELL_BASE_THRUST + Constants.CELL_BASE_THRUST * (HexCount/2);
+        var maxVelocity = 5.0f;
 
-        float distance = target.basis.GetEuler().y - transform.basis.GetEuler().y;
+        var distance = target.basis.GetEuler().y - transform.basis.GetEuler().y;
         distance = (float)(distance * (180/Math.PI));
         if (distance > 180) {
             distance = -360 - distance;
@@ -2125,8 +2125,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             distance = 360 + distance;
         }
 
-        float force = 0;
-        float velocity = physicsState.AngularVelocity.y;
+        var force = 0.0f;
+        var velocity = physicsState.AngularVelocity.y;
 
         if (velocity < -maxVelocity) {
             force = 1;
@@ -2138,28 +2138,36 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 velocityTo90 = ((velocity)/maxVelocity) * 90;
             
             if (velocityTo90 < 0.1f && velocityTo90 > 0.0f || velocityTo90 > -0.1f && velocityTo90 < 0.0f ){
-                if (distance > 2.0f)
+                if (distance > 2.0f) {
                     force = 1;
-                else if (distance < -2.0f)
+                }
+                else if (distance < -2.0f) {
                     force = -1;
-            } else if (distance >= 90 && velocity < maxVelocity * 0.8f)
+                }
+            } else if (distance >= 90 && velocity < maxVelocity * 0.8f) {
                 force = 1;
-            else if (distance <= -90 && velocity > -maxVelocity * 0.8f)
+            }
+            else if (distance <= -90 && velocity > -maxVelocity * 0.8f) {
                 force = -1;
+            }
             else if (velocityTo90 > 0) {
-                if (0 < distance && distance < 90 && velocityTo90/distance > 0.7f)
+                if (0 < distance && distance < 90 && velocityTo90/distance > 0.7f) {
                     force = -(velocityTo90/distance) * 1.5f;
-                else if (2.0f < distance && distance < 90 && velocityTo90/distance < 0.7f)
+                } else if (2.0f < distance && distance < 90 && velocityTo90/distance < 0.7f) {
                     force = (distance/velocityTo90);
-                else if (-2.0f > distance && distance > -90)
-                    force = -90/velocityTo90;               
-            } else if (velocityTo90 < 0) {
-                if (0 > distance && distance > -90 && velocityTo90/distance > 0.7f)
-                    force = (velocityTo90/distance) * 1.5f;
-                else if (-2.0f > distance && distance > -90 && velocityTo90/distance < 0.7f)
-                    force = -(distance/velocityTo90);
-                else if (2.0f < distance && distance < 90)
+                } else if (-2.0f > distance && distance > -90) {
                     force = -90/velocityTo90;
+                }              
+            } else if (velocityTo90 < 0) {
+                if (0 > distance && distance > -90 && velocityTo90/distance > 0.7f) {
+                    force = (velocityTo90/distance) * 1.5f;
+                }
+                else if (-2.0f > distance && distance > -90 && velocityTo90/distance < 0.7f) {
+                    force = -(distance/velocityTo90);
+                }
+                else if (2.0f < distance && distance < 90) {
+                    force = -90/velocityTo90;
+                }
             }
         }
 
