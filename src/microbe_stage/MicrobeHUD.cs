@@ -189,6 +189,10 @@ public class MicrobeHUD : Node
     private ActionButton fireToxinHotkey;
     private ActionButton bindingModeHotkey;
 
+    // Store these statefully for after player death
+    private float maxHP = 1.0f;
+    private float maxATP = 1.0f;
+
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
     private ProgressBar nitrogenBar;
@@ -812,19 +816,27 @@ public class MicrobeHUD : Node
             return;
 
         var atpAmount = 0.0f;
-        var capacity = 4.0f;
 
+        // Update to the player's current ATP, unless the player does not exist
         if (stage.Player != null)
         {
             var compounds = GetPlayerColonyOrPlayerStorage();
 
-            atpAmount = Mathf.Ceil(compounds.GetCompoundAmount(atp));
-            capacity = compounds.Capacity;
+            atpAmount = compounds.GetCompoundAmount(atp);
+            maxATP = compounds.Capacity;
         }
 
-        atpBar.MaxValue = capacity;
-        atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.1f);
-        atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(capacity);
+        atpBar.MaxValue = maxATP * 10.0f;
+
+        // If the current ATP is close to full, just pretend that it is to keep the bar from flickering
+        if (maxATP - atpAmount < Math.Max(maxATP / 20.0f, 0.1f))
+        {
+            atpAmount = maxATP;
+        }
+
+        GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
+        atpLabel.Text = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
+            + maxATP.ToString("F1", CultureInfo.CurrentCulture);
     }
 
     private ICompoundStorage GetPlayerColonyOrPlayerStorage()
@@ -839,8 +851,8 @@ public class MicrobeHUD : Node
             return;
 
         var hp = 0.0f;
-        var maxHP = 100.0f;
 
+        // Update to the player's current HP, unless the player does not exist
         if (stage.Player != null)
         {
             hp = stage.Player.Hitpoints;
@@ -848,7 +860,7 @@ public class MicrobeHUD : Node
         }
 
         healthBar.MaxValue = maxHP;
-        healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.1f);
+        GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
         hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
     }
 
