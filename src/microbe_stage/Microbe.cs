@@ -1352,7 +1352,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // TODO: should movement also be applied here?
 
-        //physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
+        // physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
 
         ApplyPhysicsRotation(physicsState);
     }
@@ -2120,70 +2120,125 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (transform == target)
             return;
 
-        var strength = Constants.CELL_BASE_THRUST + Constants.CELL_BASE_THRUST * (HexCount/2);
-        var maxVelocity = 5.0f;
+        // Strength can later be affected by other values
+        // More strength is required to rotate larger microbes
+        var strength = Constants.CELL_BASE_THRUST * (1.0f + HexCount * 0.8f);
 
+        // Calculate the distance to reach the target rotation in degrees
         var distance = target.basis.GetEuler().y - transform.basis.GetEuler().y;
-        distance = (float)(distance * (180/Math.PI));
-        if (distance > 180) {
-            distance = -360 - distance;
-        } else if (distance < -180) {
-            distance = 360 + distance;
+        distance = (float)(distance * (180.0f / Math.PI));
+        if (distance > 180.0f)
+        {
+            distance = -360.0f + distance;
+        }
+        else if (distance < -180.0f)
+        {
+            distance = 360.0f + distance;
         }
 
         var force = 0.0f;
+
+        // Angular velocity of the microbe
         var velocity = physicsState.AngularVelocity.y;
 
-        if (velocity < -maxVelocity) {
-            force = 1;
-        } else if (velocity > maxVelocity) {
-            force = -1;
-        } else {
-            float velocityTo90 = 0.0f;
-            if (velocity != 0)
-                velocityTo90 = ((velocity)/maxVelocity) * 90;
-            
-            if (velocityTo90 < 0.1f && velocityTo90 > 0.0f || velocityTo90 > -0.1f && velocityTo90 < 0.0f ){
-                if (distance > 2.0f) {
-                    force = 1;
+        // Maximum desired angular velocity
+        var maxVelocity = 5.0f;
+
+        // Brake if velocity exceeds maxVelocity
+        if (velocity < -maxVelocity)
+        {
+            force = 1.0f;
+        }
+        else if (velocity > maxVelocity)
+        {
+            force = -1.0f;
+        }
+        else
+        {
+            // Velocity in a range from -90(-maxVelocity) to 90(maxVelocity)
+            var velocityTo90 = 0.0f;
+            if (velocity != 0.0f)
+                velocityTo90 = velocity / maxVelocity * 90.0f;
+
+            // What to do if velocity is nearly zero
+            if (velocityTo90 > -0.1f && velocityTo90 < 0.1f)
+            {
+                // Rotate the microbe if it is not near the target rotation
+                if (distance > 2.0f)
+                {
+                    force = 1.0f;
                 }
-                else if (distance < -2.0f) {
-                    force = -1;
+                else if (distance < -2.0f)
+                {
+                    force = -1.0f;
                 }
-            } else if (distance >= 90 && velocity < maxVelocity * 0.8f) {
-                force = 1;
             }
-            else if (distance <= -90 && velocity > -maxVelocity * 0.8f) {
-                force = -1;
+
+            // Accelerate to maxVelocity if distance > 90
+            // Use only 95% of maxVelocity to not exceed it
+            else if (distance >= 90 && velocity < maxVelocity * 0.95f)
+            {
+                force = 1.0f;
             }
-            else if (velocityTo90 > 0) {
-                if (0 < distance && distance < 90 && velocityTo90/distance > 0.7f) {
-                    force = -(velocityTo90/distance) * 1.5f;
-                } else if (2.0f < distance && distance < 90 && velocityTo90/distance < 0.7f) {
-                    force = (distance/velocityTo90);
-                } else if (-2.0f > distance && distance > -90) {
-                    force = -90/velocityTo90;
-                }              
-            } else if (velocityTo90 < 0) {
-                if (0 > distance && distance > -90 && velocityTo90/distance > 0.7f) {
-                    force = (velocityTo90/distance) * 1.5f;
+            else if (distance <= -90 && velocity > -maxVelocity * 0.95f)
+            {
+                force = -1.0f;
+            }
+
+            // If microbe is rotating left
+            else if (velocityTo90 > 0.0f)
+            {
+                // Brake if rotating to fast
+                if (distance > 0.0f && distance < 90.0f && velocityTo90 / distance > 0.7f)
+                {
+                    force = -(velocityTo90 / distance) * 1.5f;
                 }
-                else if (-2.0f > distance && distance > -90 && velocityTo90/distance < 0.7f) {
-                    force = -(distance/velocityTo90);
+
+                // Accelerate if rotating to slow
+                else if (distance > 1.5f && distance < 90.0f && velocityTo90 / distance < 0.7f)
+                {
+                    force = distance / velocityTo90;
                 }
-                else if (2.0f < distance && distance < 90) {
-                    force = -90/velocityTo90;
+
+                // Change direction if rotating in wrong direction
+                else if (distance < -1.5f && distance > -90.0f)
+                {
+                    force = -90.0f / velocityTo90;
+                }
+            }
+
+            // If microbe is rotating right
+            else if (velocityTo90 < 0)
+            {
+                // Brake
+                if (distance < 0.0f && distance > -90.0f && velocityTo90 / distance > 0.7f)
+                {
+                    force = (velocityTo90 / distance) * 1.5f;
+                }
+
+                // Accelerate
+                else if (distance < -1.5f && distance > -90.0f && velocityTo90 / distance < 0.7f)
+                {
+                    force = -(distance / velocityTo90);
+                }
+
+                // Change direction
+                else if (distance > 1.5f && distance < 90.0f)
+                {
+                    force = -90.0f / velocityTo90;
                 }
             }
         }
 
-        if (force > 1)
-            force = 1;
-        if (force < -1)
-            force = -1;
+        // Force must be between -1 and 1
+        if (force > 1.0f)
+            force = 1.0f;
+        if (force < -1.0f)
+            force = -1.0f;
 
-        var torque = new Vector3(0, strength * force  * physicsState.Step, 0);
-        physicsState.AddTorque(torque);        
+        // Apply torque
+        var torque = new Vector3(0, strength * force * physicsState.Step, 0);
+        physicsState.AddTorque(torque);
     }
 
     [DeserializedCallbackAllowed]
