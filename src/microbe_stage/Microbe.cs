@@ -1352,7 +1352,68 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // TODO: should movement also be applied here?
 
-        physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
+        //physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
+
+        var transform = physicsState.Transform;
+        var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
+        if (transform == target)
+            return;
+
+        float strength = Constants.CELL_BASE_THRUST + Constants.CELL_BASE_THRUST * (HexCount/2);
+        float maxRotationVelocity = 5.0f;
+        float distance = target.basis.GetEuler().y - transform.basis.GetEuler().y;
+        distance = (float)(distance * (180/Math.PI));
+        if (distance > 180) {
+            distance = -360 - distance;
+        } else if (distance < -180) {
+            distance = 360 + distance;
+        }
+
+        float force = 0;
+        float velocity = physicsState.AngularVelocity.y;
+        if (velocity < -maxRotationVelocity) {
+            force = 1;
+        } else if (velocity > maxRotationVelocity) {
+            force = -1;
+        } else {
+            float velocityTo90 = 0.0f;
+            if (velocity != 0)
+                velocityTo90 = ((velocity)/maxRotationVelocity) * 90;
+            
+            if (velocityTo90 < 0.1f && velocityTo90 > 0.0f || velocityTo90 > -0.1f && velocityTo90 < 0.0f ){
+                if (distance > 2.0f)
+                    force = 1;
+                else if (distance < -2.0f)
+                    force = -1;
+            } else if (distance >= 90 && velocity < maxRotationVelocity * 0.8f)
+                force = 1;
+            else if (distance <= -90 && velocity > -maxRotationVelocity * 0.8f)
+                force = -1;
+            else if (velocityTo90 > 0) {
+                if (0 < distance && distance < 90 && velocityTo90/distance > 0.7f)
+                    force = -(velocityTo90/distance) * 1.5f;
+                else if (2.0f < distance && distance < 90 && velocityTo90/distance < 0.7f)
+                    force = (distance/velocityTo90);
+                else if (-2.0f > distance && distance > -90)
+                    force = -90/velocityTo90;               
+            } else if (velocityTo90 < 0) {
+                if (0 > distance && distance > -90 && velocityTo90/distance > 0.7f)
+                    force = (velocityTo90/distance) * 1.5f;
+                else if (-2.0f > distance && distance > -90 && velocityTo90/distance < 0.7f)
+                    force = -(distance/velocityTo90);
+                else if (2.0f < distance && distance < 90)
+                    force = -90/velocityTo90;
+            }
+        }
+
+        if (force > 1)
+            force = 1;
+        if (force < -1)
+            force = -1;
+
+        //Apply torque
+        var torque = new Vector3(0, strength * force  * physicsState.Step, 0);
+        physicsState.AddTorque(torque);
     }
 
     /// <summary>
@@ -2100,6 +2161,74 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             target.basis.Quat().Normalized(), 0.2f);
 
         return new Transform(new Basis(slerped), transform.origin);
+    }
+
+    /// <summary>
+    ///   Adds torque to reach the targeted rotation
+    /// </summary>
+    private void ApplyPhysicsRotation(PhysicsDirectBodyState physicsState)
+    {
+        var transform = physicsState.Transform;
+        var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
+        if (transform == target)
+            return;
+
+        float strength = Constants.CELL_BASE_THRUST + Constants.CELL_BASE_THRUST * (HexCount/2);
+        float maxVelocity = 5.0f;
+
+        float distance = target.basis.GetEuler().y - transform.basis.GetEuler().y;
+        distance = (float)(distance * (180/Math.PI));
+        if (distance > 180) {
+            distance = -360 - distance;
+        } else if (distance < -180) {
+            distance = 360 + distance;
+        }
+
+        float force = 0;
+        float velocity = physicsState.AngularVelocity.y;
+
+        if (velocity < -maxVelocity) {
+            force = 1;
+        } else if (velocity > maxVelocity) {
+            force = -1;
+        } else {
+            float velocityTo90 = 0.0f;
+            if (velocity != 0)
+                velocityTo90 = ((velocity)/maxVelocity) * 90;
+            
+            if (velocityTo90 < 0.1f && velocityTo90 > 0.0f || velocityTo90 > -0.1f && velocityTo90 < 0.0f ){
+                if (distance > 2.0f)
+                    force = 1;
+                else if (distance < -2.0f)
+                    force = -1;
+            } else if (distance >= 90 && velocity < maxVelocity * 0.8f)
+                force = 1;
+            else if (distance <= -90 && velocity > -maxVelocity * 0.8f)
+                force = -1;
+            else if (velocityTo90 > 0) {
+                if (0 < distance && distance < 90 && velocityTo90/distance > 0.7f)
+                    force = -(velocityTo90/distance) * 1.5f;
+                else if (2.0f < distance && distance < 90 && velocityTo90/distance < 0.7f)
+                    force = (distance/velocityTo90);
+                else if (-2.0f > distance && distance > -90)
+                    force = -90/velocityTo90;               
+            } else if (velocityTo90 < 0) {
+                if (0 > distance && distance > -90 && velocityTo90/distance > 0.7f)
+                    force = (velocityTo90/distance) * 1.5f;
+                else if (-2.0f > distance && distance > -90 && velocityTo90/distance < 0.7f)
+                    force = -(distance/velocityTo90);
+                else if (2.0f < distance && distance < 90)
+                    force = -90/velocityTo90;
+            }
+        }
+
+        if (force > 1)
+            force = 1;
+        if (force < -1)
+            force = -1;
+
+        var torque = new Vector3(0, strength * force  * physicsState.Step, 0);
+        physicsState.AddTorque(torque);        
     }
 
     [DeserializedCallbackAllowed]
