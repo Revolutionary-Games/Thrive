@@ -233,7 +233,10 @@ public class CustomRichTextLabel : RichTextLabel
             {
                 var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
+                // Used to fallback to the old method if type attribute is not specified. Should be removed in
+                // roughly 6 months to give time for translations to be updated
                 var fallback = false;
+
                 var internalName = string.Empty;
 
                 if (pairs.TryGetValue("type", out string value))
@@ -244,23 +247,19 @@ public class CustomRichTextLabel : RichTextLabel
                     internalName = value.Substring(1, value.Length - 2);
                 }
 
-                if (!string.IsNullOrEmpty(internalName) && !simulationParameters.DoesCompoundExist(internalName))
-                {
-                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
-                    break;
-                }
-
-                // If type attribute is not specified but input is valid internal name, fallback to the old method
-                if (string.IsNullOrEmpty(internalName) && simulationParameters.DoesCompoundExist(input))
+                // Handle fallback
+                if (!string.IsNullOrEmpty(input) && string.IsNullOrEmpty(internalName))
                 {
                     GD.Print("Compound type not specified in bbcode, fallback to using input as " +
                         $"the internal name: {input}");
                     internalName = input;
                     fallback = true;
                 }
-                else if (string.IsNullOrEmpty(internalName) && !simulationParameters.DoesCompoundExist(input))
+
+                // Check compound existence and aborts if it's not valid
+                if (!simulationParameters.DoesCompoundExist(internalName))
                 {
-                    // No valid internal name found for the compound
+                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
                     break;
                 }
 
