@@ -2177,13 +2177,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 // Brake if rotating to fast
                 else if (velocityTo90 / angleToTarget > Constants.ANGULAR_BRAKE_THRESHOLD)
                 {
-                    force = Mathf.Sign(-angleToTarget) * (velocityTo90 / angleToTarget) * Constants.ANGULAR_BRAKE_FORCE_MULTIPLIER;
+                    force = Mathf.Sign(-angleToTarget) * (velocityTo90 / angleToTarget) *
+                        Constants.ANGULAR_BRAKE_FORCE_MULTIPLIER;
                 }
 
                 // Accelerate if rotating to slow
                 else if (velocityTo90 / angleToTarget < Constants.ANGULAR_BRAKE_THRESHOLD)
                 {
-                    force = Mathf.Sign(angleToTarget) * (velocityTo90 / angleToTarget) * Constants.ANGULAR_ACCELERATION_FORCE_MULTIPLIER;
+                    force = Mathf.Sign(angleToTarget) * (velocityTo90 / angleToTarget) *
+                        Constants.ANGULAR_ACCELERATION_FORCE_MULTIPLIER;
                 }
             }
         }
