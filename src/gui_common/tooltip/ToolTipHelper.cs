@@ -50,7 +50,7 @@ public static class ToolTipHelper
     ///   Registers a Control mouse enter/exit event to display a custom tooltip from the given tooltip and group name.
     /// </summary>
     public static void RegisterToolTipForControl(this Control control, string tooltipName, string groupName,
-        List<ToolTipCallbackData> callbackDatas)
+        List<ToolTipCallbackData> callbackData)
     {
         control.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltipName, groupName), callbackDatas);
     }
