@@ -2153,7 +2153,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var velocityTo90 = velocity / maxVelocity * 90.0f;
 
             // What to do if velocity is nearly zero
-            if (Math.Abs(velocityTo90) < 0.3f)
+            if (Math.Abs(velocityTo90) < 0.1f)
             {
                 // Rotate the microbe if it is not near the target rotation
                 if (Math.Abs(angleToTarget) > 2.0f)
@@ -2166,25 +2166,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             {
                 force = Mathf.Sign(angleToTarget) * 1.0f;
             }
-            else if (Math.Abs(velocityTo90) > 0.0f)
+            else if (Math.Abs(velocityTo90) > 0.0f && Math.Abs(angleToTarget) < 90.0f)
             {
                 // Change direction if rotating in wrong direction
-                if (Mathf.Sign(velocityTo90) != Mathf.Sign(angleToTarget) &&
-                    Math.Abs(angleToTarget) > 0.0f && Math.Abs(angleToTarget) < 90.0f)
+                if (Mathf.Sign(velocityTo90) != Mathf.Sign(angleToTarget))
                 {
                     force = Mathf.Sign(velocity) * -1.0f;
                 }
 
                 // Brake if rotating to fast
-                else if (Math.Abs(angleToTarget) > 0.0f && Math.Abs(angleToTarget) < 90.0f &&
-                    velocityTo90 / angleToTarget > Constants.ANGULAR_BRAKE_THRESHOLD)
+                else if (velocityTo90 / angleToTarget > Constants.ANGULAR_BRAKE_THRESHOLD)
                 {
                     force = Mathf.Sign(-angleToTarget) * (velocityTo90 / angleToTarget) * Constants.ANGULAR_BRAKE_FORCE_MULTIPLIER;
                 }
 
                 // Accelerate if rotating to slow
-                else if (Math.Abs(angleToTarget) > 1.5f && Math.Abs(angleToTarget) < 90.0f &&
-                    velocityTo90 / angleToTarget < Constants.ANGULAR_BRAKE_THRESHOLD)
+                else if (velocityTo90 / angleToTarget < Constants.ANGULAR_BRAKE_THRESHOLD)
                 {
                     force = Mathf.Sign(angleToTarget) * (velocityTo90 / angleToTarget) * Constants.ANGULAR_ACCELERATION_FORCE_MULTIPLIER;
                 }
