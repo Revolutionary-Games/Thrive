@@ -557,6 +557,8 @@ public class Settings
         // Set locale for the game. Called after C# locale change so that string
         // formatting uses could also get updated properly.
         TranslationServer.SetLocale(language);
+
+        GD.Print("Set C# locale to: ", cultureInfo, " Godot locale is: ", TranslationServer.GetLocale());
     }
 
     /// <summary>
