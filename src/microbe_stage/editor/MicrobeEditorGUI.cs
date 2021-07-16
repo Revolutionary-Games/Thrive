@@ -1090,7 +1090,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
-    internal void OnInsufficientMp()
+    internal void OnInsufficientMp(bool playSound = true)
     {
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
@@ -1098,7 +1098,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
 
-        PlayInvalidActionSound();
+        if (playSound)
+            PlayInvalidActionSound();
     }
 
     internal void OnActionBlockedWhileMoving()
@@ -1114,11 +1115,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock the organelles that need a nucleus
     /// </summary>
-    internal void UpdatePartsAvailability(bool hasNucleus)
+    internal void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
-            UpdatePartAvailability(hasNucleus, organelle);
+            UpdatePartAvailability(placedUniqueOrganelleNames, organelle);
         }
     }
 
@@ -1158,18 +1159,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Can't exit the editor with disconnected organelles
+        if (editor.HasIslands)
+        {
+            islandPopup.PopupCenteredShrink();
+            return;
+        }
+
         // Show warning popup if trying to exit with negative atp production
         if (energyBalanceInfo != null &&
             energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredShrink();
-            return;
-        }
-
-        // Can't exit the editor with disconnected organelles
-        if (editor.HasIslands)
-        {
-            islandPopup.PopupCenteredShrink();
             return;
         }
 
@@ -1320,16 +1321,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock a single organelle that need a nucleus
     /// </summary>
-    private void UpdatePartAvailability(bool hasNucleus, OrganelleDefinition organelle)
+    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
+        OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
 
-        if (item.Name == nucleus.InternalName)
+        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
         {
-            item.Locked = hasNucleus;
+            item.Locked = true;
         }
         else if (organelle.RequiresNucleus)
         {
+            var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus);
             item.Locked = !hasNucleus;
         }
         else

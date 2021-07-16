@@ -365,19 +365,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public MicrobeStage ReturnToStage { get; set; }
 
     [JsonIgnore]
-    public bool HasNucleus
-    {
-        get
-        {
-            foreach (var organelle in editedMicrobeOrganelles.Organelles)
-            {
-                if (organelle.Definition.InternalName == "nucleus")
-                    return true;
-            }
-
-            return false;
-        }
-    }
+    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d.InternalName == "nucleus");
 
     [JsonIgnore]
     public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
@@ -406,6 +394,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return result;
         }
     }
+
+    public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => editedMicrobeOrganelles
+        .Where(p => p.Definition.Unique)
+        .Select(p => p.Definition);
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -631,6 +623,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
+            gui.UpdateMutationPointsBar();
 
             // TODO: AutoEvo run results summary
         }
@@ -715,6 +708,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_redo")]
     public void Redo()
     {
+        if (MovingOrganelle != null)
+            return;
+
         if (history.Redo())
         {
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorRedo, EventArgs.Empty, this);
@@ -726,6 +722,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_undo")]
     public void Undo()
     {
+        if (MovingOrganelle != null)
+            return;
+
         if (history.Undo())
         {
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo, EventArgs.Empty, this);
@@ -751,6 +750,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 // TODO: could come up with a bit nicer design here
                 int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
                 gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+
+                // Re-enable undo/redo button
+                UpdateUndoRedoButtons();
             }
             else
             {
@@ -875,6 +877,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         MovingOrganelle = selectedOrganelle;
         editedMicrobeOrganelles.Remove(MovingOrganelle);
+
+        // Disable undo/redo button while moving (enabled after finishing move)
+        UpdateUndoRedoButtons();
     }
 
     /// <summary>
@@ -889,6 +894,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Add(MovingOrganelle);
             MovingOrganelle = null;
             gui.UpdateCancelButtonVisibility();
+
+            // Re-enable undo/redo button
+            UpdateUndoRedoButtons();
+
             return true;
         }
 
@@ -1105,6 +1114,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
 
         gui.UpdateMutationPointsBar();
+    }
+
+    private bool HasOrganelle(OrganelleDefinition organelleDefinition)
+    {
+        return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
     }
 
     /// <summary>
@@ -1397,7 +1411,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-        gui.UpdatePartsAvailability(HasNucleus);
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
@@ -1837,7 +1851,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
-        if ((organelle.Definition.InternalName == "nucleus" && HasNucleus) ||
+        if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
                 && organelle.Definition.ChanceToCreate != 0))
             return false;
@@ -1919,6 +1933,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Finishes an organelle move
     /// </summary>
+    /// <returns>True if the organelle move succeeded.</returns>
     private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation)
     {
@@ -1930,6 +1945,25 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // or not moved (but can be rotated), then moving it is free
         bool isFreeToMove = organelle.MovedThisSession || oldLocation == newLocation || organelle.PlacedThisSession;
         int cost = isFreeToMove ? 0 : Constants.ORGANELLE_MOVE_COST;
+
+        // Too low mutation points, cancel move
+        if (!isFreeToMove && MutationPoints < Constants.ORGANELLE_MOVE_COST)
+        {
+            CancelCurrentAction();
+            gui.OnInsufficientMp(false);
+            return false;
+        }
+
+        // Don't register the action if the final location is the same as previous. This is so the player can't exploit
+        // the MovedThisSession flag allowing them to freely move an organelle that was placed in another session
+        // while on zero mutation points. Also it makes more sense to not count that organelle as moved either way.
+        if (oldLocation == newLocation)
+        {
+            CancelCurrentAction();
+
+            // Assume this is a successful move (some operation in the above call may be repeated)
+            return true;
+        }
 
         var action = new MicrobeEditorAction(this, cost,
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
@@ -2005,7 +2039,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Send to gui current status of cell
         gui.UpdateSize(MicrobeHexSize);
-        gui.UpdatePartsAvailability(HasNucleus);
+
+        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         UpdatePatchDependentBalanceData();
 
@@ -2219,8 +2254,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void UpdateUndoRedoButtons()
     {
-        gui.SetUndoButtonStatus(history.CanUndo());
-        gui.SetRedoButtonStatus(history.CanRedo());
+        gui.SetUndoButtonStatus(history.CanUndo() && MovingOrganelle == null);
+        gui.SetRedoButtonStatus(history.CanRedo() && MovingOrganelle == null);
     }
 
     /// <summary>
