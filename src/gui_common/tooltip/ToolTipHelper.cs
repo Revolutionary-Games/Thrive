@@ -52,6 +52,6 @@ public static class ToolTipHelper
     public static void RegisterToolTipForControl(this Control control, string tooltipName, string groupName,
         List<ToolTipCallbackData> callbackData)
     {
-        control.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltipName, groupName), callbackDatas);
+        control.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltipName, groupName), callbackData);
     }
 }
