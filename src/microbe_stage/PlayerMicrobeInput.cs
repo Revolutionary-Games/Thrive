@@ -4,6 +4,13 @@ using Godot;
 /// <summary>
 ///   Handles key input in the microbe stage
 /// </summary>
+/// <remarks>
+///   <para>
+///     Note that callbacks from other places directly call some methods in this class, so
+///     an extra care should be taken while modifying the methods as otherwise some stuff
+///     may no longer work.
+///   </para>
+/// </remarks>
 public class PlayerMicrobeInput : NodeWithInput
 {
     private bool autoMove;

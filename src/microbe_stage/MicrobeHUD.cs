@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -120,6 +120,9 @@ public class MicrobeHUD : Node
     public NodePath PhosphateReproductionBarPath;
 
     [Export]
+    public NodePath EditorButtonFlashPath;
+
+    [Export]
     public NodePath ProcessPanelPath;
 
     [Export]
@@ -149,6 +152,18 @@ public class MicrobeHUD : Node
     [Export]
     public Texture PhosphatesInv;
 
+    [Export]
+    public NodePath HotBarPath;
+
+    [Export]
+    public NodePath EngulfHotkeyPath;
+
+    [Export]
+    public NodePath FireToxinHotkeyPath;
+
+    [Export]
+    public NodePath BindingModeHotkeyPath;
+
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -169,6 +184,10 @@ public class MicrobeHUD : Node
     private Panel environmentPanel;
     private GridContainer environmentPanelBarContainer;
     private Panel compoundsPanel;
+    private HBoxContainer hotBar;
+    private ActionButton engulfHotkey;
+    private ActionButton fireToxinHotkey;
+    private ActionButton bindingModeHotkey;
 
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
@@ -194,6 +213,7 @@ public class MicrobeHUD : Node
     private TextureProgress healthBar;
     private TextureProgress ammoniaReproductionBar;
     private TextureProgress phosphateReproductionBar;
+    private Light2D editorButtonFlash;
 
     private PauseMenu menu;
     private TextureButton pauseButton;
@@ -286,6 +306,7 @@ public class MicrobeHUD : Node
         healthBar = GetNode<TextureProgress>(HealthBarPath);
         ammoniaReproductionBar = GetNode<TextureProgress>(AmmoniaReproductionBarPath);
         phosphateReproductionBar = GetNode<TextureProgress>(PhosphateReproductionBarPath);
+        editorButtonFlash = GetNode<Light2D>(EditorButtonFlashPath);
 
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
@@ -298,9 +319,20 @@ public class MicrobeHUD : Node
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
         hintText = GetNode<Label>(HintTextPath);
+        hotBar = GetNode<HBoxContainer>(HotBarPath);
+
+        engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
+        fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
+        bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
+
+        OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
+        Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
+
+        SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
+        Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -321,6 +353,7 @@ public class MicrobeHUD : Node
             UpdateNeededBars();
             UpdateCompoundBars();
             UpdateReproductionProgress();
+            UpdateAbilitiesHotBar();
         }
 
         UpdateATP(delta);
@@ -819,6 +852,11 @@ public class MicrobeHUD : Node
         hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
     }
 
+    private void SetEditorButtonFlashEffect(bool enabled)
+    {
+        editorButtonFlash.Visible = enabled;
+    }
+
     private void UpdatePopulation()
     {
         populationLabel.Text = StringUtils.FormatNumber(stage.GameWorld.PlayerSpecies.Population);
@@ -863,6 +901,16 @@ public class MicrobeHUD : Node
 
         environmentPanel.RectMinSize = environmentPanelSize;
         compoundsPanel.RectMinSize = compoundsPanelSize;
+    }
+
+    private void UpdateAbilitiesHotBar()
+    {
+        bindingModeHotkey.Visible = stage.Player.CanBind;
+        fireToxinHotkey.Visible = stage.Player.AgentVacuoleCount > 0;
+
+        engulfHotkey.Pressed = stage.Player.State == Microbe.MicrobeState.Engulf;
+        bindingModeHotkey.Pressed = stage.Player.State == Microbe.MicrobeState.Binding;
+        fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
     }
 
     /// <summary>
@@ -973,5 +1021,10 @@ public class MicrobeHUD : Node
     private void OnProcessPanelClosed()
     {
         processPanelButton.Pressed = false;
+    }
+
+    private void OnAbilitiesHotBarDisplayChanged(bool displayed)
+    {
+        hotBar.Visible = displayed;
     }
 }
