@@ -398,6 +398,12 @@ public class ModLoaderUI : Control
 
     private void OnCheckPressed()
     {
+        //REMOVE THIS ONCE FINISHED TESTING
+        if (ResourceLoader.Exists("res://Scene2.tscn"))
+        {
+            GD.Print("asasassasaas");
+            GetTree().ChangeScene("res://Scene2.tscn");
+        }
         GUICommon.Instance.PlayButtonPressSound();
         var loadedItemList = modItemLists[(int)ItemLists.LoadedItemList];
 
@@ -705,7 +711,6 @@ public class ModLoaderUI : Control
         GD.Print("All mods loaded");
         if (ModLoader.StartupMods.Count > 0)
         {
-            GD.Print("FLY ME TO THE MOOON");
             loadReminderPopup.PopupCenteredShrink();
         }
         else
