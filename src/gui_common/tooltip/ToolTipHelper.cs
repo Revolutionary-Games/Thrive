@@ -12,7 +12,7 @@ public static class ToolTipHelper
     /// <summary>
     ///   A helper static member to store enter/exit callback for registered tooltips to keep it from unloading.
     /// </summary>
-    private static readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
+    private static readonly List<ToolTipCallbackData> ToolTipCallbacks = new List<ToolTipCallbackData>();
 
     /// <summary>
     ///   Instantiates a default tooltip scene
@@ -46,7 +46,7 @@ public static class ToolTipHelper
         control.Connect("hide", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
         control.Connect("tree_exiting", toolTipCallbackData, nameof(ToolTipCallbackData.OnToolTipableExitingTree));
 
-        toolTipCallbacks.Add(toolTipCallbackData);
+        ToolTipCallbacks.Add(toolTipCallbackData);
     }
 
     /// <summary>
@@ -58,20 +58,18 @@ public static class ToolTipHelper
             return;
 
         var data = GetToolTipCallbackData(control, tooltip);
-        toolTipCallbacks.Remove(data);
+        ToolTipCallbacks.Remove(data);
         Invoke.Instance.Queue(data.Free);
     }
 
     public static bool IsToolTipRegistered(this Control control, ICustomToolTip tooltip)
     {
-        return toolTipCallbacks.Contains(GetToolTipCallbackData(control, tooltip));
+        return ToolTipCallbacks.Contains(GetToolTipCallbackData(control, tooltip));
     }
 
     /// <summary>
     ///   Registers a Control mouse enter/exit event to display a custom tooltip from the given tooltip and group name.
     /// </summary>
-    /// <param name="tooltip">The internal node name of the tooltip.</param>
-    /// <param name="group">Name of the tooltip group the tooltip is part of.</param>
     public static void RegisterToolTipForControl(this Control control, string tooltip, string group =
         ToolTipManager.DEFAULT_GROUP_NAME)
     {
@@ -80,6 +78,6 @@ public static class ToolTipHelper
 
     private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
     {
-        return toolTipCallbacks.Find(match => match.ToolTipable == control && match.ToolTip == tooltip);
+        return ToolTipCallbacks.Find(match => match.ToolTipable == control && match.ToolTip == tooltip);
     }
 }

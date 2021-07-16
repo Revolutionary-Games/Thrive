@@ -1720,8 +1720,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     private void RegisterTooltips()
     {
-        var toolTipManager = ToolTipManager.Instance;
-
         rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
         helpButton.RegisterToolTipForControl("helpButton");
         symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
