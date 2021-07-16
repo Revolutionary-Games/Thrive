@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-14 22:48+0700\n"
+"POT-Creation-Date: 2021-07-15 00:52+0700\n"
 "PO-Revision-Date: 2021-04-28 19:41+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -654,7 +654,7 @@ msgid "NITROGEN"
 msgstr "Slāpeklis"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
 msgid "SUNLIGHT"
 msgstr "Saules gaisma"
@@ -1276,11 +1276,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Aizvērt"
 
-#: ../src/general/MainMenu.cs:362
+#: ../src/general/MainMenu.cs:361
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:363
+#: ../src/general/MainMenu.cs:362
 msgid "Cancel"
 msgstr "Atcelt"
 
@@ -1288,11 +1288,11 @@ msgstr "Atcelt"
 msgid "NEW_GAME"
 msgstr "Jauna spēle"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
 msgid "OPTIONS"
 msgstr "Opcijas"
 
@@ -1320,8 +1320,8 @@ msgstr "Iziet"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1028
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1023
+#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Atpakaļ"
@@ -1334,266 +1334,258 @@ msgstr ""
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:127
+#: ../src/general/OptionsMenu.tscn:125
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:138
+#: ../src/general/OptionsMenu.tscn:136
 msgid "SOUND"
 msgstr "Audio"
 
-#: ../src/general/OptionsMenu.tscn:149
+#: ../src/general/OptionsMenu.tscn:147
 msgid "PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:160
+#: ../src/general/OptionsMenu.tscn:158
 msgid "INPUTS"
 msgstr "Ievade"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:169
 msgid "MISC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:204
+#: ../src/general/OptionsMenu.tscn:202
 msgid "VSYNC"
 msgstr "Vertikālā sinhronizācija"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:210
 msgid "FULLSCREEN"
 msgstr "Pilnekrāna režīms"
 
-#: ../src/general/OptionsMenu.tscn:234
+#: ../src/general/OptionsMenu.tscn:232
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Vairāku paraugu kropļojumnovērse:"
 
-#: ../src/general/OptionsMenu.tscn:241
+#: ../src/general/OptionsMenu.tscn:239
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:269
 msgid "RESOLUTION"
 msgstr "Izšķirtspēja:"
 
-#: ../src/general/OptionsMenu.tscn:284
+#: ../src/general/OptionsMenu.tscn:282
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:294
+#: ../src/general/OptionsMenu.tscn:292
 msgid "MAX_FPS"
 msgstr "Augstākais FPS:"
 
-#: ../src/general/OptionsMenu.tscn:320
+#: ../src/general/OptionsMenu.tscn:318
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Krāsu korekcija krāsu aklumam:"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:350
 msgid "CHROMATIC_ABERRATION"
 msgstr "Hromatiskā aberācija:"
 
-#: ../src/general/OptionsMenu.tscn:379
+#: ../src/general/OptionsMenu.tscn:377
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:385
-msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:386
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Ārējie efekti:"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:412
 msgid "MASTER_VOLUME"
 msgstr "Skaļums"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
-#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:439 ../src/general/OptionsMenu.tscn:480
+#: ../src/general/OptionsMenu.tscn:513 ../src/general/OptionsMenu.tscn:546
+#: ../src/general/OptionsMenu.tscn:579
 msgid "MUTE"
 msgstr "Izslēgt skaņu"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:453
 msgid "MUSIC_VOLUME"
 msgstr "Mūzikas skaļums"
 
-#: ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:486
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:519
 msgid "SFX_VOLUME"
 msgstr "SFX skaļums"
 
-#: ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:552
 msgid "GUI_VOLUME"
 msgstr "Interfeisa skaļums"
 
-#: ../src/general/OptionsMenu.tscn:600
+#: ../src/general/OptionsMenu.tscn:597
 msgid "LANGUAGE"
 msgstr "Valoda:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:612 ../src/general/OptionsMenu.tscn:1034
 msgid "RESET"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:621
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Palīdziet tulkot spēli"
 
-#: ../src/general/OptionsMenu.tscn:650
+#: ../src/general/OptionsMenu.tscn:647
 msgid "COMPOUND_CLOUDS"
 msgstr "Savienojumu mākonis"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:662
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Mākoņa simulācijas minimālais\n"
 "intervāls:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:669 ../src/general/OptionsMenu.tscn:711
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:707
-msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:709
+#: ../src/general/OptionsMenu.tscn:704
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Mākoņa izšķirtspējas dalītājs:"
 
-#: ../src/general/OptionsMenu.tscn:751
+#: ../src/general/OptionsMenu.tscn:746
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:819
 msgid "RESET_INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:847
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:861
+#: ../src/general/OptionsMenu.tscn:856
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:870
+#: ../src/general/OptionsMenu.tscn:865
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automātiski saglabāt progresu spēles laikā"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:876
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Automātisko saglabāšanas failu daudzums:"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:904
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Ātru saglabāšanas failu daudzums:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:930
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Rādīt tutoriālus (jaunās spēlēs)"
 
-#: ../src/general/OptionsMenu.tscn:943
+#: ../src/general/OptionsMenu.tscn:938
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Rādīt tutoriālus (pašreizējā spēlē)"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:954
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:971
+#: ../src/general/OptionsMenu.tscn:966
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Izmantot pielāgotu lietotājvārdu"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:977
 msgid "CUSTOM_USERNAME"
 msgstr "Pielāgots lietotājvards:"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1003
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Atvērt ekrānuzņēmumu mapi"
 
-#: ../src/general/OptionsMenu.tscn:1016
+#: ../src/general/OptionsMenu.tscn:1011
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Atvērt logu mapi"
 
-#: ../src/general/OptionsMenu.tscn:1051 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1046 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Saglabāt"
 
-#: ../src/general/OptionsMenu.tscn:1068
+#: ../src/general/OptionsMenu.tscn:1063
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1075
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1089
+#: ../src/general/OptionsMenu.tscn:1084
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1098
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1121
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1146
+#: ../src/general/OptionsMenu.tscn:1141
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1168
+#: ../src/general/OptionsMenu.tscn:1163
 msgid "SAVE_AND_CONTINUE"
 msgstr "Saglabāt un turpināt"
 
-#: ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/OptionsMenu.tscn:1172
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Atlaist un turpināt"
 
-#: ../src/general/OptionsMenu.tscn:1193
+#: ../src/general/OptionsMenu.tscn:1188
 msgid "CANCEL"
 msgstr "Atcelt"
 
-#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1228
-#: ../src/general/OptionsMenu.tscn:1252
+#: ../src/general/OptionsMenu.tscn:1200 ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "ERROR"
 msgstr "Kļūda"
 
-#: ../src/general/OptionsMenu.tscn:1214 ../src/general/OptionsMenu.tscn:1253
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1248
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
 msgstr "Turpināt"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:65
 msgid "SAVE_GAME"
 msgstr "Saglabāt spēli"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:80
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistika"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:87
 msgid "HELP"
 msgstr "Palīdzība"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:101
 msgid "RETURN_TO_MENU"
 msgstr "Atgriezties izvēlnē"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:108
 msgid "EXIT"
 msgstr "Iziet"
 
@@ -1972,7 +1964,15 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
+msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
+msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
 msgid "TEMPERATURE"
