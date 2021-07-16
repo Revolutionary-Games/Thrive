@@ -70,11 +70,11 @@ public static class Constants
 
     public const float CELL_BASE_THRUST = 50.6f;
 
-    public const float ANGULAR_BRAKE_THRESHOLD = 0.9f;
+    public const float ANGULAR_BRAKE_THRESHOLD = 0.7f;
 
-    public const float ANGULAR_BRAKE_FORCE_MULTIPLIER = 1.5f;
+    public const float ANGULAR_BRAKE_FORCE_MULTIPLIER = 2.0f;
 
-    public const float ANGULAR_ACCELERATION_FORCE_MULTIPLIER = 1.5f;
+    public const float ANGULAR_ACCELERATION_FORCE_MULTIPLIER = 2.0f;
 
     public const int PROCESS_OBJECTS_PER_TASK = 50;
 

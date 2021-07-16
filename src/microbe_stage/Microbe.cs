@@ -2140,7 +2140,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var velocity = physicsState.AngularVelocity.y;
 
         // Maximum desired angular velocity
-        var maxVelocity = strength / (HexCount * 30.0f);
+        var maxVelocity = 0.6f + (strength * 0.7f) / (HexCount * 40.0f);
 
         // Brake if velocity exceeds maxVelocity
         if (Math.Abs(velocity) > Math.Abs(maxVelocity))
@@ -2153,7 +2153,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var velocityTo90 = velocity / maxVelocity * 90.0f;
 
             // What to do if velocity is nearly zero
-            if (Math.Abs(velocityTo90) < 0.1f)
+            if (Math.Abs(velocityTo90) < 0.3f)
             {
                 // Rotate the microbe if it is not near the target rotation
                 if (Math.Abs(angleToTarget) > 2.0f)
