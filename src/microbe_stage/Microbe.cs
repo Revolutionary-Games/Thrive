@@ -1352,8 +1352,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // TODO: should movement also be applied here?
 
-        // physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
-
         ApplyPhysicsRotation(physicsState);
     }
 
@@ -2122,18 +2120,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Strength can later be affected by other values
         // More strength is required to rotate larger microbes
-        var strength = Constants.CELL_BASE_THRUST * (1.0f + HexCount * 0.8f);
+        var strength = Constants.CELL_BASE_THRUST * (1.0f + HexCount);
 
-        // Calculate the distance to reach the target rotation in degrees
-        var distance = target.basis.GetEuler().y - transform.basis.GetEuler().y;
-        distance = (float)(distance * (180.0f / Math.PI));
-        if (distance > 180.0f)
+        // Calculate the angle to reach the target rotation in degrees
+        var angleToTarget = target.basis.GetEuler().y - transform.basis.GetEuler().y;
+        angleToTarget = (float)(angleToTarget * (180.0f / Math.PI));
+        if (angleToTarget > 180.0f)
         {
-            distance = -360.0f + distance;
+            angleToTarget = -360.0f + angleToTarget;
         }
-        else if (distance < -180.0f)
+        else if (angleToTarget < -180.0f)
         {
-            distance = 360.0f + distance;
+            angleToTarget = 360.0f + angleToTarget;
         }
 
         var force = 0.0f;
@@ -2142,99 +2140,60 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var velocity = physicsState.AngularVelocity.y;
 
         // Maximum desired angular velocity
-        var maxVelocity = 5.0f;
+        var maxVelocity = strength / (HexCount * 30.0f);
 
         // Brake if velocity exceeds maxVelocity
-        if (velocity < -maxVelocity)
+        if (Math.Abs(velocity) > Math.Abs(maxVelocity))
         {
-            force = 1.0f;
-        }
-        else if (velocity > maxVelocity)
-        {
-            force = -1.0f;
+            force = Mathf.Sign(velocity) * -1.0f;
         }
         else
         {
             // Velocity in a range from -90(-maxVelocity) to 90(maxVelocity)
-            var velocityTo90 = 0.0f;
-            if (velocity != 0.0f)
-                velocityTo90 = velocity / maxVelocity * 90.0f;
+            var velocityTo90 = velocity / maxVelocity * 90.0f;
 
             // What to do if velocity is nearly zero
-            if (velocityTo90 > -0.1f && velocityTo90 < 0.1f)
+            if (Math.Abs(velocityTo90) < 0.1f)
             {
                 // Rotate the microbe if it is not near the target rotation
-                if (distance > 2.0f)
-                {
-                    force = 1.0f;
-                }
-                else if (distance < -2.0f)
-                {
-                    force = -1.0f;
-                }
+                if (Math.Abs(angleToTarget) > 2.0f)
+                    force = Mathf.Sign(angleToTarget) * 1.0f;
             }
 
             // Accelerate to maxVelocity if distance > 90
-            // Use only 95% of maxVelocity to not exceed it
-            else if (distance >= 90 && velocity < maxVelocity * 0.95f)
+            // Use only 87 and not 90 to not exceed maxVelocity
+            else if (Math.Abs(angleToTarget) >= 90 && Math.Abs(velocityTo90) < 87.0f)
             {
-                force = 1.0f;
+                force = Mathf.Sign(angleToTarget) * 1.0f;
             }
-            else if (distance <= -90 && velocity > -maxVelocity * 0.95f)
+            else if (Math.Abs(velocityTo90) > 0.0f)
             {
-                force = -1.0f;
-            }
-
-            // If microbe is rotating left
-            else if (velocityTo90 > 0.0f)
-            {
-                // Brake if rotating to fast
-                if (distance > 0.0f && distance < 90.0f && velocityTo90 / distance > 0.7f)
+                // Change direction if rotating in wrong direction
+                if (Mathf.Sign(velocityTo90) != Mathf.Sign(angleToTarget) &&
+                    Math.Abs(angleToTarget) > 0.0f && Math.Abs(angleToTarget) < 90.0f)
                 {
-                    force = -(velocityTo90 / distance) * 1.5f;
+                    force = Mathf.Sign(velocity) * -1.0f;
+                }
+
+                // Brake if rotating to fast
+                else if (Math.Abs(angleToTarget) > 0.0f && Math.Abs(angleToTarget) < 90.0f &&
+                    velocityTo90 / angleToTarget > Constants.ANGULAR_BRAKE_THRESHOLD)
+                {
+                    force = Mathf.Sign(-angleToTarget) * (velocityTo90 / angleToTarget) * Constants.ANGULAR_BRAKE_FORCE_MULTIPLIER;
                 }
 
                 // Accelerate if rotating to slow
-                else if (distance > 1.5f && distance < 90.0f && velocityTo90 / distance < 0.7f)
+                else if (Math.Abs(angleToTarget) > 1.5f && Math.Abs(angleToTarget) < 90.0f &&
+                    velocityTo90 / angleToTarget < Constants.ANGULAR_BRAKE_THRESHOLD)
                 {
-                    force = distance / velocityTo90;
-                }
-
-                // Change direction if rotating in wrong direction
-                else if (distance < -1.5f && distance > -90.0f)
-                {
-                    force = -90.0f / velocityTo90;
-                }
-            }
-
-            // If microbe is rotating right
-            else if (velocityTo90 < 0)
-            {
-                // Brake
-                if (distance < 0.0f && distance > -90.0f && velocityTo90 / distance > 0.7f)
-                {
-                    force = (velocityTo90 / distance) * 1.5f;
-                }
-
-                // Accelerate
-                else if (distance < -1.5f && distance > -90.0f && velocityTo90 / distance < 0.7f)
-                {
-                    force = -(distance / velocityTo90);
-                }
-
-                // Change direction
-                else if (distance > 1.5f && distance < 90.0f)
-                {
-                    force = -90.0f / velocityTo90;
+                    force = Mathf.Sign(angleToTarget) * (velocityTo90 / angleToTarget) * Constants.ANGULAR_ACCELERATION_FORCE_MULTIPLIER;
                 }
             }
         }
 
         // Force must be between -1 and 1
-        if (force > 1.0f)
-            force = 1.0f;
-        if (force < -1.0f)
-            force = -1.0f;
+        if (Math.Abs(force) > 1.0f)
+            force = Mathf.Sign(force) * 1.0f;
 
         // Apply torque
         var torque = new Vector3(0, strength * force * physicsState.Step, 0);
