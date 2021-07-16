@@ -3,12 +3,15 @@
 /// <summary>
 ///   Helper class to contain the OnMouseEnter and OnMouseExit callback for the custom tooltips
 /// </summary>
-public class ToolTipCallbackData : Reference
+public class ToolTipCallbackData : Object
 {
-    public ToolTipCallbackData(ICustomToolTip tooltip)
+    public ToolTipCallbackData(Control tooltipable, ICustomToolTip tooltip)
     {
+        ToolTipable = tooltipable;
         ToolTip = tooltip;
     }
+
+    public Control ToolTipable { get; private set; }
 
     public ICustomToolTip ToolTip { get; private set; }
 
@@ -22,5 +25,11 @@ public class ToolTipCallbackData : Reference
     {
         ToolTipManager.Instance.MainToolTip = null;
         ToolTipManager.Instance.Display = false;
+    }
+
+    public void OnToolTipableExitingTree()
+    {
+        OnMouseExit();
+        ToolTipable.UnRegisterToolTipForControl(ToolTip);
     }
 }

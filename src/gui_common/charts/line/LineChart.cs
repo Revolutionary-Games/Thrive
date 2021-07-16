@@ -86,8 +86,6 @@ public class LineChart : VBoxContainer
     private string xAxisName;
     private string yAxisName;
 
-    private List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
-
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
@@ -342,7 +340,7 @@ public class LineChart : VBoxContainer
                 toolTip.HideOnMousePress = false;
                 toolTip.UseFadeIn = false;
 
-                point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
+                point.RegisterToolTipForControl(toolTip);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
 
                 drawArea.AddChild(point);
@@ -382,8 +380,6 @@ public class LineChart : VBoxContainer
     /// </summary>
     public void ClearChart()
     {
-        toolTipCallbacks.Clear();
-
         foreach (var data in dataSets)
         {
             ToolTipManager.Instance.ClearToolTips("chartMarkers" + ChartName + data.Key);
@@ -496,7 +492,7 @@ public class LineChart : VBoxContainer
             toolTip.DisplayName = data.Key;
             toolTip.Description = data.Key;
 
-            icon.RegisterToolTipForControl(toolTip, toolTipCallbacks);
+            icon.RegisterToolTipForControl(toolTip);
             ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + ChartName);
         }
     }
@@ -635,7 +631,7 @@ public class LineChart : VBoxContainer
             tooltip.Description = datasetName;
             tooltip.DisplayDelay = 0.5f;
 
-            newCollisionRect.RegisterToolTipForControl(tooltip, toolTipCallbacks);
+            newCollisionRect.RegisterToolTipForControl(tooltip);
             ToolTipManager.Instance.AddToolTip(tooltip, "chartMarkers");
 
             dataLine.CollisionBoxes[firstPoint] = newCollisionRect;

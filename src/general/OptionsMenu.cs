@@ -359,8 +359,8 @@ public class OptionsMenu : ControlWithInput
         // so hide the default Ok button since it's not needed
         backConfirmationBox.GetOk().Hide();
 
-        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options", toolTipCallbacks);
-        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", toolTipCallbacks);
+        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
+        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
     }
 
     public override void _Notification(int what)
