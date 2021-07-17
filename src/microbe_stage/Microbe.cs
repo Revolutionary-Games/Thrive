@@ -2170,7 +2170,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Accelerate if rotating to slow
         if (velocityTo90 / angleToTarget < 1.0f)
         {
-           return Mathf.Sign(angleToTarget) * 1.0f;
+            return Mathf.Sign(angleToTarget) * 1.0f;
         }
 
         // Brake if rotating to fast
