@@ -369,6 +369,7 @@ public static class Constants
 
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
+    public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
@@ -447,6 +448,8 @@ public static class Constants
     public const int PAUSE_MENU_CANCEL_PRIORITY = -2;
 
     public const int SUBMENU_CANCEL_PRIORITY = -1;
+
+    public const int DIALOG_WINDOW_CANCEL_PRIORITY = 1;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
