@@ -367,6 +367,14 @@ public class MicrobeAI
     // For doing run and tumble
     private void RunAndTumble(Random random)
     {
+        // If this microbe is actually immobile, just initialize by moving in a random direction.
+        // Used to get newly spawned microbes to move.
+        if (microbe.MovementDirection.Length() == 0)
+        {
+            MoveWithRandomTurn(0, 2 * Mathf.Pi, random);
+            return;
+        }
+
         // Run and tumble
         // A biased random walk, they turn more if they are picking up less compounds.
         // The scientifically accurate algorithm has been flipped to account for the compound
