@@ -623,6 +623,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
+            gui.UpdateMutationPointsBar();
 
             // TODO: AutoEvo run results summary
         }
@@ -707,6 +708,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_redo")]
     public void Redo()
     {
+        if (MovingOrganelle != null)
+            return;
+
         if (history.Redo())
         {
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorRedo, EventArgs.Empty, this);
@@ -718,6 +722,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_undo")]
     public void Undo()
     {
+        if (MovingOrganelle != null)
+            return;
+
         if (history.Undo())
         {
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo, EventArgs.Empty, this);
@@ -743,6 +750,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 // TODO: could come up with a bit nicer design here
                 int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
                 gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+
+                // Re-enable undo/redo button
+                UpdateUndoRedoButtons();
             }
             else
             {
@@ -867,6 +877,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         MovingOrganelle = selectedOrganelle;
         editedMicrobeOrganelles.Remove(MovingOrganelle);
+
+        // Disable undo/redo button while moving (enabled after finishing move)
+        UpdateUndoRedoButtons();
     }
 
     /// <summary>
@@ -881,6 +894,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Add(MovingOrganelle);
             MovingOrganelle = null;
             gui.UpdateCancelButtonVisibility();
+
+            // Re-enable undo/redo button
+            UpdateUndoRedoButtons();
+
             return true;
         }
 
@@ -1937,6 +1954,17 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return false;
         }
 
+        // Don't register the action if the final location is the same as previous. This is so the player can't exploit
+        // the MovedThisSession flag allowing them to freely move an organelle that was placed in another session
+        // while on zero mutation points. Also it makes more sense to not count that organelle as moved either way.
+        if (oldLocation == newLocation)
+        {
+            CancelCurrentAction();
+
+            // Assume this is a successful move (some operation in the above call may be repeated)
+            return true;
+        }
+
         var action = new MicrobeEditorAction(this, cost,
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
             new MoveActionData(organelle, oldLocation, newLocation, oldRotation, newRotation));
@@ -2226,8 +2254,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void UpdateUndoRedoButtons()
     {
-        gui.SetUndoButtonStatus(history.CanUndo());
-        gui.SetRedoButtonStatus(history.CanRedo());
+        gui.SetUndoButtonStatus(history.CanUndo() && MovingOrganelle == null);
+        gui.SetRedoButtonStatus(history.CanRedo() && MovingOrganelle == null);
     }
 
     /// <summary>
