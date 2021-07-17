@@ -2118,9 +2118,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (transform == target)
             return;
 
-        // Strength can later be affected by other values
-        // More strength is required to rotate larger microbes
-        var strength = Constants.CELL_BASE_THRUST * (1.0f + HexCount);
+        // For now strength uses only base strength
+        // Can later be affected by cilia
+        var strength = BaseRotationalStrength();
 
         // Calculate the angle to reach the target rotation in degrees
         var angleToTarget = target.basis.GetEuler().y - transform.basis.GetEuler().y;
@@ -2134,69 +2134,47 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             angleToTarget = 360.0f + angleToTarget;
         }
 
-        var force = 0.0f;
-
-        // Angular velocity of the microbe
-        var velocity = physicsState.AngularVelocity.y;
-
         // Maximum desired angular velocity
-        var maxVelocity = 0.6f + (strength * 0.7f) / (HexCount * 40.0f);
+        // If the value is to high the microbe will not brake in time
+        // If it is to low the microbe is rotating slower than it could
+        var maxVelocity = 1.0f + (strength * 0.3f) / (HexCount * 40.0f);
 
-        // Brake if velocity exceeds maxVelocity
-        if (Math.Abs(velocity) > Math.Abs(maxVelocity))
-        {
-            force = Mathf.Sign(velocity) * -1.0f;
-        }
-        else
-        {
-            // Velocity in a range from -90(-maxVelocity) to 90(maxVelocity)
-            var velocityTo90 = velocity / maxVelocity * 90.0f;
-
-            // What to do if velocity is nearly zero
-            if (Math.Abs(velocityTo90) < 0.1f)
-            {
-                // Rotate the microbe if it is not near the target rotation
-                if (Math.Abs(angleToTarget) > 2.0f)
-                    force = Mathf.Sign(angleToTarget) * 1.0f;
-            }
-
-            // Accelerate to maxVelocity if distance > 90
-            // Use only 87 and not 90 to not exceed maxVelocity
-            else if (Math.Abs(angleToTarget) >= 90 && Math.Abs(velocityTo90) < 87.0f)
-            {
-                force = Mathf.Sign(angleToTarget) * 1.0f;
-            }
-            else if (Math.Abs(velocityTo90) > 0.0f && Math.Abs(angleToTarget) < 90.0f)
-            {
-                // Change direction if rotating in wrong direction
-                if (Mathf.Sign(velocityTo90) != Mathf.Sign(angleToTarget))
-                {
-                    force = Mathf.Sign(velocity) * -1.0f;
-                }
-
-                // Brake if rotating to fast
-                else if (velocityTo90 / angleToTarget > Constants.ANGULAR_BRAKE_THRESHOLD)
-                {
-                    force = Mathf.Sign(-angleToTarget) * (velocityTo90 / angleToTarget) *
-                        Constants.ANGULAR_BRAKE_FORCE_MULTIPLIER;
-                }
-
-                // Accelerate if rotating to slow
-                else if (velocityTo90 / angleToTarget < Constants.ANGULAR_BRAKE_THRESHOLD)
-                {
-                    force = Mathf.Sign(angleToTarget) * (velocityTo90 / angleToTarget) *
-                        Constants.ANGULAR_ACCELERATION_FORCE_MULTIPLIER;
-                }
-            }
-        }
-
-        // Force must be between -1 and 1
-        if (Math.Abs(force) > 1.0f)
-            force = Mathf.Sign(force) * 1.0f;
+        // Angular velocity of the microbe in a range from -90(-maxVelocity) to 90(maxVelocity)
+        var velocityTo90 = physicsState.AngularVelocity.y / maxVelocity * 90.0f;
 
         // Apply torque
-        var torque = new Vector3(0, strength * force * physicsState.Step, 0);
+        var torque = new Vector3(0, strength * RotationalForce(velocityTo90, angleToTarget) * physicsState.Step, 0);
         physicsState.AddTorque(torque);
+    }
+
+    private float BaseRotationalStrength()
+    {
+        // More strength is required to rotate larger microbes
+        // Value should be lowered if cilia is implemented
+        // Uses CELL_BASE_THRUST for now, the same as for movement
+        var strength = Constants.CELL_BASE_THRUST * (1.0f + HexCount);
+
+        // Currently uses same modifiers as for movement
+        return strength * (Species.MembraneType.MovementFactor - (Species.MembraneRigidity *
+            Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+    }
+
+    private float RotationalForce(float velocityTo90, float angleToTarget)
+    {
+        // Do nothing if velocity is nearly zero and rotation is nearly correct
+        if (Math.Abs(velocityTo90) < 0.1f && Math.Abs(angleToTarget) < 1.0f)
+        {
+            return 0.0f;
+        }
+
+        // Accelerate if rotating to slow
+        if (velocityTo90 / angleToTarget < 1.0f)
+        {
+           return Mathf.Sign(angleToTarget) * 1.0f;
+        }
+
+        // Brake if rotating to fast
+        return Mathf.Sign(angleToTarget) * -1.0f;
     }
 
     [DeserializedCallbackAllowed]
