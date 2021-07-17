@@ -367,7 +367,7 @@ public class MicrobeAI
     // For doing run and tumble
     private void RunAndTumble(Random random)
     {
-        // If this microbe is actually immobile, just initialize by moving in a random direction.
+        // If this microbe is currently stationary, just initialize by moving in a random direction.
         // Used to get newly spawned microbes to move.
         if (microbe.MovementDirection.Length() == 0)
         {
