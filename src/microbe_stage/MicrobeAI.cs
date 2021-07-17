@@ -371,7 +371,7 @@ public class MicrobeAI
         // Used to get newly spawned microbes to move.
         if (microbe.MovementDirection.Length() == 0)
         {
-            MoveWithRandomTurn(0, 2 * Mathf.Pi, random);
+            MoveWithRandomTurn(0, Mathf.Pi, random);
             return;
         }
 
