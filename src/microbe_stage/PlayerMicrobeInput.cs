@@ -4,6 +4,13 @@ using Godot;
 /// <summary>
 ///   Handles key input in the microbe stage
 /// </summary>
+/// <remarks>
+///   <para>
+///     Note that callbacks from other places directly call some methods in this class, so
+///     an extra care should be taken while modifying the methods as otherwise some stuff
+///     may no longer work.
+///   </para>
+/// </remarks>
 public class PlayerMicrobeInput : NodeWithInput
 {
     private bool autoMove;
@@ -115,15 +122,7 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_unbind_all")]
     public void UnbindAll()
     {
-        if (stage.Player?.State == Microbe.MicrobeState.Unbinding)
-            stage.Player.State = Microbe.MicrobeState.Normal;
-
-        if (stage.Player?.Colony != null)
-        {
-            // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
-            // disband entire colony functionality
-            RemoveCellFromColony(stage.Player);
-        }
+        stage.Player?.UnbindAll();
     }
 
     [RunOnKeyDown("g_perform_unbinding", Priority = 1)]

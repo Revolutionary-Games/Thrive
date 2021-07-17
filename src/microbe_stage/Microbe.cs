@@ -1355,6 +1355,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
     }
 
+    /// <summary>
+    ///   Removes this cell and child cells from the colony.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     If this is the colony master, this disbands the whole colony
+    ///   </para>
+    /// </remarks>
+    public void UnbindAll()
+    {
+        if (State == MicrobeState.Unbinding || State == MicrobeState.Binding)
+            State = MicrobeState.Normal;
+
+        // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
+        // disband entire colony functionality
+        Colony?.RemoveFromColony(this);
+    }
+
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
         if (microbe == this)
@@ -1402,11 +1420,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void OnIGotAddedToColony()
     {
+        State = MicrobeState.Normal;
+        UnreadyToReproduce();
+
+        if (ColonyParent == null)
+            return;
+
         var oldRotation = Rotation;
         var vectorToParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
         ChangeNodeParent(ColonyParent);
-
-        State = MicrobeState.Normal;
 
         var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
         var vectorToMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
@@ -1421,7 +1443,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         Rotation = oldRotation - ColonyParent.Rotation;
         Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
-        UnreadyToReproduce();
     }
 
     private void SetScaleFromSpecies()
@@ -1773,6 +1794,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void UnreadyToReproduce()
     {
+        // Sets this flag to false to make full recomputation on next reproduction readiness check
+        // This notably allows to reactivate editor button upon colony unbinding.
+        allOrganellesDivided = false;
         OnReproductionStatus?.Invoke(this, false);
     }
 

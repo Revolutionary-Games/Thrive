@@ -7,7 +7,7 @@ using Environment = System.Environment;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
-public class OptionsMenu : Control
+public class OptionsMenu : ControlWithInput
 {
     /*
       GUI Control Paths
@@ -58,6 +58,12 @@ public class OptionsMenu : Control
 
     [Export]
     public NodePath ChromaticAberrationTogglePath;
+
+    [Export]
+    public NodePath DisplayAbilitiesBarTogglePath;
+
+    [Export]
+    public NodePath GUILightEffectsTogglePath;
 
     // Sound tab.
     [Export]
@@ -184,6 +190,8 @@ public class OptionsMenu : Control
     private OptionButton colourblindSetting;
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
+    private CheckBox displayAbilitiesHotBarToggle;
+    private CheckBox guiLightEffectsToggle;
 
     // Sound tab
     private Control soundTab;
@@ -291,6 +299,8 @@ public class OptionsMenu : Control
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
+        displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
+        guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -415,6 +425,8 @@ public class OptionsMenu : Control
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
+        displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
+        guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -455,6 +467,34 @@ public class OptionsMenu : Control
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+    }
+
+    [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
+    public bool OnEscapePressed()
+    {
+        // Only handle keypress when visible
+        if (!Visible)
+            return false;
+
+        if (InputGroupList.WasListeningForInput)
+        {
+            // Listening for Inputs, should not do anything and should not pass through
+            return true;
+        }
+
+        if (!Exit())
+        {
+            // We are prevented from exiting, consume this input
+            return true;
+        }
+
+        // If it is opened from InGame then let pause menu hide too.
+        if (optionsMode == OptionsMode.InGame)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -710,15 +750,21 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        Exit();
+    }
+
+    private bool Exit()
+    {
         // If any settings have been changed, show a dialogue asking if the changes should be kept or
         // discarded.
         if (!CompareSettings())
         {
             backConfirmationBox.PopupCenteredShrink();
-            return;
+            return false;
         }
 
         EmitSignal(nameof(OnOptionsClosed));
+        return true;
     }
 
     private void OnResetPressed()
@@ -872,6 +918,20 @@ public class OptionsMenu : Control
     private void OnChromaticAberrationValueChanged(float amount)
     {
         Settings.Instance.ChromaticAmount.Value = amount;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDisplayAbilitiesHotBarToggled(bool toggle)
+    {
+        Settings.Instance.DisplayAbilitiesHotBar.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnGUILightEffectsToggled(bool toggle)
+    {
+        Settings.Instance.GUILightEffectsEnabled.Value = toggle;
 
         UpdateResetSaveButtonState();
     }

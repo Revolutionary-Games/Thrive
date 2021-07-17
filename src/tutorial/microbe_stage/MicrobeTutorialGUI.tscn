@@ -168,7 +168,7 @@ margin_left = 620.0
 margin_top = 280.0
 margin_right = -628.0
 margin_bottom = -408.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_forward"
 
 [node name="Backwards" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
@@ -176,7 +176,7 @@ margin_left = 620.0
 margin_top = 400.0
 margin_right = -628.0
 margin_bottom = -288.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_backwards"
 
 [node name="Left" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
@@ -184,7 +184,7 @@ margin_left = 560.0
 margin_top = 340.0
 margin_right = -688.0
 margin_bottom = -348.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_left"
 
 [node name="Right" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
@@ -192,7 +192,7 @@ margin_left = 680.0
 margin_top = 340.0
 margin_right = -568.0
 margin_bottom = -348.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_right"
 
 [node name="GlucoseTutorial" type="WindowDialog" parent="."]
@@ -334,6 +334,7 @@ rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_UNBIND_TEXT"
 autowrap = true
+
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
