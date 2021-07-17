@@ -792,7 +792,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
                 dataset.AddPoint(dataPoint);
             }
-            GD.Print("--");
+
             foreach (var entry in snapshot.SpeciesInPatch)
             {
                 var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
@@ -803,13 +803,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 // Clamp population number so it doesn't go into the negatives
                 var population = extinctInPatch ? 0 : entry.Value;
 
-                GD.Print(snapshot.SpeciesGoneDefinitelyExtinct.Count);
-
                 var dataPoint = new DataPoint
                 {
                     Value = new Vector2((float)snapshot.TimePeriod, population),
-                    Size = extinctInPatch ? 12 : 7,
-                    //TEMP
+                    Size = extinctInPatch ? extinctEverywhere ? 24 : 12 : 7,
+
                     IconType = extinctInPatch ? extinctEverywhere ?
                        DataPoint.MarkerIcon.Skull : DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
                     MarkerColour = dataset.DataColour,

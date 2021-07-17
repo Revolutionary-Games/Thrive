@@ -229,16 +229,15 @@ public class PatchMap
                 if (!nonExtinctSpecies.Contains(speciesEntry.Key))
                 {
                     result.Add(speciesEntry.Key);
-                    GD.Print("extinct ", speciesEntry.Key.Genus, " ", speciesEntry.Key.Epithet, ": ", speciesEntry.Key.Population);
                 }
             }
         }
 
-        // Add forever extinct species to patches snapshots
+        // Add forever extinct species to patches snapshots - which were already saved
         foreach (var patch in Patches)
         {
-            //TODO Use hashset here - not working anyways
-            patch.Value.SetSpeciesGoneDefinitivelyExtinct(result.ToList());
+            //TODO Use hashset here I guess
+            patch.Value.SetSpeciesGoneDefinitivelyExtinctInLastSnapshot(result.ToList());
         }
 
         return result.ToList();

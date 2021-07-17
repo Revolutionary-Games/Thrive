@@ -172,17 +172,18 @@ public class Patch
         var conditions = (PatchSnapshot)currentSnapshot.Clone();
         history.AddToFront(conditions);
 
-        foreach (var species in SpeciesGoneDefinitivelyExtinct)
-        {
-            GD.Print("Rec!", species.Genus, " ", species.Epithet, ": ", species.Population);
-        }
-
         SpeciesGoneDefinitivelyExtinct.Clear();
     }
 
-    public void SetSpeciesGoneDefinitivelyExtinct(List<Species> extinctList)
+    /// <remarks> 
+    ///   Defines the list of species that went extinct across the whole world in the last saved snapshot.
+    ///   Extinct species computation are done after the save of the snapshot.
+    /// </remarks>
+    public void SetSpeciesGoneDefinitivelyExtinctInLastSnapshot(List<Species> extinctList)
     {
-        currentSnapshot.SpeciesGoneDefinitelyExtinct = extinctList;
+        var lastSnapshot = history.RemoveFromFront();
+        lastSnapshot.SpeciesGoneDefinitelyExtinct = extinctList;
+        history.AddToFront(lastSnapshot);
     }
 
     public override string ToString()
