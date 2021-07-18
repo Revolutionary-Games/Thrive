@@ -172,6 +172,11 @@ public class Patch
         var conditions = (PatchSnapshot)currentSnapshot.Clone();
         history.AddToFront(conditions);
 
+        foreach (var species in SpeciesGoneDefinitivelyExtinct)
+        {
+            GD.Print("Rec!", species.Genus, " ", species.Epithet, ": ", species.Population);
+        }
+
         SpeciesGoneDefinitivelyExtinct.Clear();
     }
 

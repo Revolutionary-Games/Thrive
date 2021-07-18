@@ -236,7 +236,6 @@ public class PatchMap
         // Add forever extinct species to patches snapshots - which were already saved
         foreach (var patch in Patches)
         {
-            //TODO Use hashset here I guess
             patch.Value.SetSpeciesGoneDefinitivelyExtinctInLastSnapshot(result.ToList());
         }
 

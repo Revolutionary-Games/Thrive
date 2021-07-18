@@ -95,7 +95,8 @@ public class DataPoint : Control
     {
         graphMarkerCircle = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
         graphMarkerCross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
-        //TEMP
+
+        // Used an old icon here
         graphMarkerSkull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
         Connect("mouse_entered", this, nameof(OnMouseEnter));
