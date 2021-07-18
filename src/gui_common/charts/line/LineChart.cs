@@ -67,6 +67,30 @@ public class LineChart : VBoxContainer
     public int MinDisplayedDataSet;
 
     /// <summary>
+    ///   Specifies how the X axis value display should be formatted on the datapoint tooltip.
+    ///   Leave this null/empty to use the default.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Format should have maximum of one format item (e.g "{0}%") where it will be inserted with the actual value.
+    ///     This will only be applied after calling Plot().
+    ///   </para>
+    /// </remarks>
+    public string TooltipXAxisFormat;
+
+    /// <summary>
+    ///   Specifies how the Y axis value display should be formatted on the datapoint tooltip.
+    ///   Leave this null/empty to use the default.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Format should have maximum of one format item (e.g "{0}%") where it will be inserted with the actual value.
+    ///     This will only be applied after calling Plot().
+    ///   </para>
+    /// </remarks>
+    public string TooltipYAxisFormat;
+
+    /// <summary>
     ///   Fallback icon for the legend display mode using icons
     /// </summary>
     private Texture defaultIconLegendTexture;
@@ -272,7 +296,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Plots the chart from available datasets
+    ///   Plots and constructs the chart from available datasets
     /// </summary>
     /// <param name="xAxisName">Overrides the horizontal axis label title</param>
     /// <param name="yAxisName">Overrides the vertical axis label title</param>
@@ -335,9 +359,17 @@ public class LineChart : VBoxContainer
                 // Create tooltip for the point markers
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
+                var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
+                    $"{((double)point.Value.x).FormatNumber()} {XAxisName}" : string.Format(CultureInfo.CurrentCulture,
+                        TooltipXAxisFormat, point.Value.x);
+
+                var yValueForm = string.IsNullOrEmpty(TooltipYAxisFormat) ?
+                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}" : string.Format(CultureInfo.CurrentCulture,
+                        TooltipYAxisFormat, point.Value.y);
+
                 toolTip.DisplayName = data.Key + point.Value;
-                toolTip.Description = $"{data.Key}\n{((double)point.Value.x).FormatNumber()} {XAxisName}\n" +
-                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}";
+                toolTip.Description = $"{data.Key}\n{xValueForm}\n{yValueForm}";
+
                 toolTip.DisplayDelay = 0;
                 toolTip.HideOnMousePress = false;
                 toolTip.UseFadeIn = false;

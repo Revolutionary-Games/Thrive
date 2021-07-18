@@ -815,6 +815,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+
+        sunlightChart.TooltipYAxisFormat = percentageFormat + " lx";
+        atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
+        compoundsChart.TooltipYAxisFormat = percentageFormat;
+
         sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5);
         temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5);
         atmosphericGassesChart.Plot(
