@@ -809,7 +809,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                     Size = extinctInPatch ? extinctEverywhere ? 28 : 12 : 7,
 
                     IconType = extinctInPatch ? extinctEverywhere ?
-                       DataPoint.MarkerIcon.Skull : DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
+                        DataPoint.MarkerIcon.Skull : DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
                     MarkerColour = dataset.DataColour,
                 };
 
