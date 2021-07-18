@@ -808,8 +808,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                     Value = new Vector2((float)snapshot.TimePeriod, population),
                     Size = extinctInPatch ? extinctEverywhere ? 28 : 12 : 7,
 
-                    IconType = extinctInPatch ? extinctEverywhere ?
-                        DataPoint.MarkerIcon.Skull : DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
+                    IconType = extinctInPatch ?
+                        extinctEverywhere ?
+                            DataPoint.MarkerIcon.Skull :
+                            DataPoint.MarkerIcon.Cross :
+                        DataPoint.MarkerIcon.Circle,
                     MarkerColour = dataset.DataColour,
                 };
 
