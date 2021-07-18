@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-16 15:11+0300\n"
-"PO-Revision-Date: 2021-06-18 16:30+0000\n"
-"Last-Translator: MGS_Oficial <mgamersilva9@gmail.com>\n"
+"POT-Creation-Date: 2021-07-14 22:48+0700\n"
+"PO-Revision-Date: 2021-07-16 17:42+0000\n"
+"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -163,7 +163,9 @@ msgstr ""
 "Organelas com membrana\n"
 "\n"
 "Núcleo: Ocupa 11 espaços e permite a evolução de organelas com membranas. "
-"Também dobra o tamanho de sua célula (Só pode ser evoluído uma vez).\n"
+"Também dobra o tamanho de sua célula (Só pode ser evoluído uma vez)\n"
+"\n"
+"Agente de Ligação: Permite ligar-se com outras células\n"
 "\n"
 "Mitocôndria: Produz ATP da glicose e O2 atmosférico. Muito mais eficiente "
 "que o citoplasma\n"
@@ -1461,26 +1463,20 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Aberração Cromática:"
 
 #: ../src/general/OptionsMenu.tscn:379
-#, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Habilidades"
+msgstr "Exibir Barra de Habilidades"
 
 #: ../src/general/OptionsMenu.tscn:385
-#, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
-"A usina de energia da célula. A mitocôndria é uma estrutura de membrana "
-"dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado "
-"pelo seu hospedeiro eucariótico para seu uso. É capaz de converter Glicose "
-"em ATP com maior eficiência do que feito no citoplasma em um processo "
-"chamado Respiração Aeróbica. No entanto, precisa de oxigênio para "
-"funcionar, e níveis menores de oxigênio no ambiente irá diminuir a taxa da "
-"produção de ATP."
+"Habilita os efeitos de luz na interface (e.g botão do editor)\n"
+"\n"
+"Se você tiver um bug onde partes do botão do editor desaparecem,\n"
+"você pode tentar desabilitar essa opção para ver se o problema desaparece."
 
 #: ../src/general/OptionsMenu.tscn:389
-#, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Efeitos externos:"
+msgstr "Habilitar efeitos de luz na interface"
 
 #: ../src/general/OptionsMenu.tscn:415
 msgid "MASTER_VOLUME"
