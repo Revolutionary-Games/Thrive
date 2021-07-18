@@ -360,11 +360,13 @@ public class LineChart : VBoxContainer
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
                 var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
-                    $"{((double)point.Value.x).FormatNumber()} {XAxisName}" : string.Format(CultureInfo.CurrentCulture,
+                    $"{((double)point.Value.x).FormatNumber()} {XAxisName}" :
+                    string.Format(CultureInfo.CurrentCulture,
                         TooltipXAxisFormat, point.Value.x);
 
                 var yValueForm = string.IsNullOrEmpty(TooltipYAxisFormat) ?
-                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}" : string.Format(CultureInfo.CurrentCulture,
+                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}" :
+                    string.Format(CultureInfo.CurrentCulture,
                         TooltipYAxisFormat, point.Value.y);
 
                 toolTip.DisplayName = data.Key + point.Value;
