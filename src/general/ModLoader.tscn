@@ -59,8 +59,8 @@ ResetPopupPath = NodePath("ResetDialog")
 ReloadReminderPopupPath = NodePath("ReloadReminderDialog")
 ModCheckPopupPath = NodePath("ModCheckPopup")
 LoadWarningPopupPath = NodePath("LoadWarningPopup")
-SafeModeButtonPath = NodePath("Checkbox Corner/Vertical Organizer/SafeModeCheckBox")
-OneShotButtonPath = NodePath("Checkbox Corner/Vertical Organizer/OneShotCheckBox")
+SafeModeButtonPath = NodePath("Left Checkbox Corner/Vertical Organizer/SafeModeCheckBox")
+OneShotButtonPath = NodePath("Left Checkbox Corner/Vertical Organizer/OneShotCheckBox")
 InfoPopupPath = NodePath("InfoPopup")
 InfoButtonContainerPath = NodePath("MarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons")
 LoadReminderPopupPath = NodePath("LoadReminderPopup")
@@ -626,7 +626,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Checkbox Corner" type="MarginContainer" parent="."]
+[node name="Left Checkbox Corner" type="MarginContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -58.0
@@ -637,7 +637,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Vertical Organizer" type="VBoxContainer" parent="Checkbox Corner"]
+[node name="Vertical Organizer" type="VBoxContainer" parent="Left Checkbox Corner"]
 margin_left = 10.0
 margin_right = 133.0
 margin_bottom = 48.0
@@ -645,7 +645,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OneShotCheckBox" type="CheckBox" parent="Checkbox Corner/Vertical Organizer"]
+[node name="OneShotCheckBox" type="CheckBox" parent="Left Checkbox Corner/Vertical Organizer"]
 margin_right = 123.0
 margin_bottom = 22.0
 grow_horizontal = 0
@@ -657,7 +657,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="SafeModeCheckBox" type="CheckBox" parent="Checkbox Corner/Vertical Organizer"]
+[node name="SafeModeCheckBox" type="CheckBox" parent="Left Checkbox Corner/Vertical Organizer"]
 margin_top = 26.0
 margin_right = 123.0
 margin_bottom = 48.0
@@ -671,6 +671,24 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
+
+[node name="Right Checkbox Corner" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -198.0
+margin_top = -58.0
+custom_constants/margin_right = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Open Mods Folder Button" type="Button" parent="Right Checkbox Corner"]
+margin_right = 188.0
+margin_bottom = 48.0
+text = "Open Mods Folder"
 
 [node name="ResetDialog" type="ConfirmationDialog" parent="."]
 margin_right = 209.0
@@ -741,6 +759,7 @@ __meta__ = {
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Check" to="." method="OnCheckPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Refresh" to="." method="OnRefreshPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Load" to="." method="OnLoadPressed"]
+[connection signal="pressed" from="Right Checkbox Corner/Open Mods Folder Button" to="." method="OnOpenModsFolderButtonPressed"]
 [connection signal="confirmed" from="ResetDialog" to="." method="ResetGame"]
 [connection signal="confirmed" from="LoadReminderPopup" to="." method="LoadReminderPopupConfirmed"]
 [connection signal="confirmed" from="LoadWarningPopup" to="." method="LoadAllMods"]

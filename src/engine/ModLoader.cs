@@ -154,8 +154,7 @@ public class ModLoader : Reference
         {
             if (file.FileExists(ProjectSettings.GlobalizePath(currentMod.Location + "/" + currentMod.Dll)))
             {
-                //Assembly.LoadFile(ProjectSettings.GlobalizePath(currentMod.Location + "/" + currentMod.Dll));
-                GD.Print(Assembly.LoadFile(ProjectSettings.GlobalizePath("res://ModTestBench.dll")).CreateInstance("Scene2"));
+                Assembly.LoadFile(ProjectSettings.GlobalizePath(currentMod.Location + "/" + currentMod.Dll));
                 GD.Print("ADJ_DLL: " + currentMod.Dll);
             }
         }

@@ -398,12 +398,6 @@ public class ModLoaderUI : Control
 
     private void OnCheckPressed()
     {
-        //REMOVE THIS ONCE FINISHED TESTING
-        if (ResourceLoader.Exists("res://Scene2.tscn"))
-        {
-            GD.Print("asasassasaas");
-            GetTree().ChangeScene("res://Scene2.tscn");
-        }
         GUICommon.Instance.PlayButtonPressSound();
         var loadedItemList = modItemLists[(int)ItemLists.LoadedItemList];
 
@@ -671,6 +665,11 @@ public class ModLoaderUI : Control
                 index++;
             }
         }
+    }
+
+    private void OnOpenModsFolderButtonPressed()
+    {
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.MOD_FOLDER));
     }
 
     private void OnLoadPressed()
