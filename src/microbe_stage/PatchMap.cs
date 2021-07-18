@@ -215,7 +215,7 @@ public class PatchMap
 
         foreach (var patch in Patches)
         {
-            // Looks like player species is selected iff not playercantgoextinct... 
+            // Looks like player species is selected iff not playercantgoextinct...
             var toRemove = patch.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
                 (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
 

@@ -180,7 +180,7 @@ public class Patch
         SpeciesGoneDefinitivelyExtinct.Clear();
     }
 
-    /// <remarks> 
+    /// <remarks>
     ///   Defines the list of species that went extinct across the whole world in the last saved snapshot.
     ///   Extinct species computation are done after the save of the snapshot.
     /// </remarks>
