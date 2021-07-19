@@ -1,6 +1,4 @@
-﻿using System;
-
-public class ChemosyntheticFoodSource : IFoodSource
+﻿public class ChemosyntheticFoodSource : IFoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
