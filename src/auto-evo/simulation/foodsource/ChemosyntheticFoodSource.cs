@@ -17,7 +17,6 @@ public class ChemosyntheticFoodSource : IFoodSource
         }
         else
         {
-            Console.Error.WriteLine("Compound " + compound.Name + "Not found!");
             totalCompound = 0.0f;
         }
     }
