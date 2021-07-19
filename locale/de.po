@@ -32,8 +32,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Deine Zelle verwendet ATP als Energiequelle. Falls sie leer wird, wirst du "
-"sterben."
+"Deine Zelle verwendet ATP als Energiequelle. Falls sie zu gering wird, "
+"wirst du sterben."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:32
@@ -99,7 +99,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:13
 #: ../simulation_parameters/common/help_texts.json:36
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Wenn deine Population auf Null sinkt, stirbst du aus."
+msgstr "Wenn deine Population auf Null sinkt, stirbst du zunächst aus."
 
 #: ../simulation_parameters/common/help_texts.json:14
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -134,7 +134,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotische Strukturen\n"
 "\n"
-"Metabolismus: Produziert ATP aus Glukose\n"
+"Metabolosomen: Produziert ATP aus Glukose\n"
 "\n"
 "Chemosynthetisierende Proteine: Produziert die Hälfte der Glukose aus "
 "Schwefelwasserstoff als Chemoplast, führt aber auch die Glykolyse durch. "
@@ -155,9 +155,9 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Externe Organellen\n"
 "\n"
-"Geißel: erhöht deine Mobilität, verbraucht ATP\n"
+"Geißel: Erhöht deine Mobilität, verbraucht ATP\n"
 "\n"
-"Pilus: kann im Nahkampf andere Zellen stechen"
+"Pilus: Kann im nah Kampf gegen andere Zellen verwendent werden"
 
 #: ../simulation_parameters/common/help_texts.json:23
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -272,7 +272,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "VERRÜCKTES ZEUG!!"
+msgstr "WACKLIGE DINGE!!"
 
 #: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
@@ -285,15 +285,15 @@ msgstr "Diese blauen Zellen jedoch..."
 #: ../simulation_parameters/common/help_texts.json:61
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Kleiner Tipp, Biome sind mehr als nur unterschiedliche Hintergründe. Die "
+"Kleiner Tipp, Biome sind mehr als nur unterschiedliche Hintergründe, die "
 "Verbindungen in verschiedenen Biomen erscheinen manchmal mit "
-"unterschiedlichem Tempo."
+"unterschiedlicher Geschwindigkeit."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Kleiner Tipp, je mehr Flagellen du hast, umso schneller bewegst du dich. "
-"Brumm brumm! Jedoch kostet es mehr ATP"
+"Kleiner Tipp, je mehr Flagellen du hast, umso schneller bewegst du dich, "
+"vroom vroom, jedoch kostet es mehr ATP"
 
 #: ../simulation_parameters/common/help_texts.json:63
 msgid "EASTEREGG_MESSAGE_15"
@@ -415,11 +415,12 @@ msgstr "Verschlingen umschalten"
 #: ../simulation_parameters/common/input_options.json:46
 #: ../src/microbe_stage/MicrobeStage.tscn:2062
 msgid "TOGGLE_BINDING"
-msgstr "Verbinden umschalten"
+msgstr "Verschlingen umschalten"
 
 #: ../simulation_parameters/common/input_options.json:50
+#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Verbinden umschalten"
+msgstr "Verschlingen umschalten"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
@@ -493,7 +494,7 @@ msgstr "Kamera zurücksetzen"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr "jetzige Aktion abbrechen"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:139
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -925,7 +926,7 @@ msgstr "Population in Gebieten:"
 
 #: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr "ist auf diesem Planeten ausgestorben"
+msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
 msgid "LOADING"
@@ -1351,7 +1352,7 @@ msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr "Grafiken/Kunst von {0}"
+msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1553,7 +1554,7 @@ msgstr "(höhere Werte verbessern die Leistung)"
 
 #: ../src/general/OptionsMenu.tscn:707
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr "dieser Wert gilt erst bei neugestarteten Spielen"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:709
 msgid "CLOUD_RESOLUTION_DIVISOR"
