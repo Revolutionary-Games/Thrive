@@ -402,8 +402,8 @@ public static class Constants
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 10;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 600000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
