@@ -314,6 +314,9 @@ public class SpawnSystem
             spawned += 1;
             --spawnsLeftThisFrame;
 
+            if (spawnType.SpawnedEntities.Count + spawned > spawnType.MaxOnScreen)
+                return true;
+
             // Check if we are out of quota for this frame
 
             // TODO: this is a bit awkward if this
@@ -369,6 +372,12 @@ public class SpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (squaredDistance > spawned.DespawnRadiusSqr)
             {
+                foreach (var spawnType in spawnTypes)
+                {
+                    if (spawnType.SpawnedEntities.Remove(spawned))
+                        break;
+                }
+
                 entitiesDeleted++;
                 spawned.OnDestroyed();
                 entity.DetachAndQueueFree();

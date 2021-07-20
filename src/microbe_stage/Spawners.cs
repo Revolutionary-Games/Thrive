@@ -46,7 +46,7 @@ public static class SpawnHelpers
     {
         var microbe = (Microbe)microbeScene.Instance();
 
-        // The second parameter is (isPlayer), and we assume that if the
+        // The third parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
         microbe.Init(cloudSystem, currentGame, !aiControlled);
 
@@ -320,11 +320,15 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
+    public override int MaxOnScreen => 45;
+
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
         // The true here is that this is AI controlled
         var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
+
+        SpawnedEntities.Add(first);
 
         yield return first;
 
@@ -333,6 +337,7 @@ public class MicrobeSpawner : Spawner
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
                 cloudSystem, currentGame, random))
             {
+                SpawnedEntities.Add(colonyMember);
                 yield return colonyMember;
             }
         }
@@ -354,6 +359,8 @@ public class CompoundCloudSpawner : Spawner
         this.clouds = clouds ?? throw new ArgumentException("clouds is null");
         this.amount = amount;
     }
+
+    public override int MaxOnScreen => 350;
 
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
@@ -380,6 +387,8 @@ public class ChunkSpawner : Spawner
         this.cloudSystem = cloudSystem;
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
+
+    public override int MaxOnScreen => 60;
 
     public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {

@@ -6,6 +6,8 @@ using Godot;
 /// </summary>
 public abstract class Spawner
 {
+    public List<ISpawned> SpawnedEntities { get; } = new List<ISpawned>();
+
     /// <summary>
     ///   The distance at which spawning happens
     /// </summary>
@@ -34,6 +36,12 @@ public abstract class Spawner
     /// </summary>
     /// <value><c>true</c> if destroy queued; otherwise, <c>false</c>.</value>
     public bool DestroyQueued { get; set; }
+
+    /// <summary>
+    ///   How many spawned entities may be on screen at once.
+    ///   Not 100% accurate, but a rough limit.
+    /// </summary>
+    public abstract int MaxOnScreen { get; }
 
     /// <summary>
     ///   Spawns the next thing. This is an enumerator to be able to control how many things to spawn per frame easily
