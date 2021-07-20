@@ -361,5 +361,27 @@ public class MainMenu : NodeWithInput
     {
         _ = TranslationServer.Translate("OK");
         _ = TranslationServer.Translate("Cancel");
+
+        _ = TranslationServer.Translate("Membrane Types");
+        _ = TranslationServer.Translate("Fluidity");
+        _ = TranslationServer.Translate("Rigidity");
+        _ = TranslationServer.Translate("Coulour");
+
+        _ = TranslationServer.Translate("Mobility");
+        _ = TranslationServer.Translate("Osmoregulation Cost");
+        _ = TranslationServer.Translate("Resource Absorption Speed");
+        _ = TranslationServer.Translate("Health");
+        _ = TranslationServer.Translate("Phyical Resistance");
+        _ = TranslationServer.Translate("Toxin Resistance");
+
+        _ = TranslationServer.Translate("The most basic form of membrane, it has little protection against damage.");
+        _ = TranslationServer.Translate("It also needs more energy to not deform.");
+        _ = TranslationServer.Translate("The advantage is that it allows the cell to move and absorb nutrients swiftly.");
+        _ = TranslationServer.Translate("A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources.");
+        _ = TranslationServer.Translate("This membrane has a wall, resulting in better protection againts overall damage and especially against physical damage. It also costs loss energy to retain its form, but cannot absorb resources quickly and is slower.");
+        _ = TranslationServer.Translate("This membrane has a wall, which means it has better protections against overall damage and especially against toxin damage.It also costs less energy to retain its form, but it is slower and cannotabsorb resources quickly.");
+        _ = TranslationServer.Translate("This membrane has a strong shell made from calcium carbonate. It can easily resist damage and requiresless energy to not deform.The disadvantages of having sich a heavy shell is that the cell is muchslower and takes a while to absorb resources.");
+        _ = TranslationServer.Translate("This membrane has a strong wall of silica.It can resist overall damage well and is very resistant to physicaldamage.It also requires less energy to maintain its form.However, it slows the cell down by a large factorand the celll absorbs resources at a reduced rate.");
+
     }
 }
