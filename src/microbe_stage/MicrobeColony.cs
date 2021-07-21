@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
@@ -65,6 +66,8 @@ public class MicrobeColony
 
         microbe.Colony = null;
 
+        microbe.ReParentShapes(microbe, Vector3.Zero);
+
         while (microbe.ColonyChildren.Count != 0)
             RemoveFromColony(microbe.ColonyChildren[0]);
 
@@ -93,6 +96,7 @@ public class MicrobeColony
         microbe.Colony = this;
         microbe.ColonyChildren = new List<Microbe>();
 
+        master.OnColonyMemberAdded(microbe);
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
     }
 }

@@ -473,7 +473,23 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (ColonyChildren != null)
             {
                 foreach (var child in ColonyChildren)
+                {
                     AddChild(child);
+
+                    // Re-adds the colony members to collision exception list of each microbe in colony
+                    // Then with the master collision exception list
+                    foreach (var member in ColonyChildren)
+                    {
+                        if (member != child)
+                        {
+                            member.AddCollisionExceptionWith(child);
+                            child.AddCollisionExceptionWith(member);
+                        }
+                    }
+
+                    AddCollisionExceptionWith(child);
+                    child.AddCollisionExceptionWith(this);
+                }
             }
 
             // Need to re-attach our organelles
@@ -1382,6 +1398,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
+            Mode = ModeEnum.Rigid;
+
             return;
         }
 
@@ -1391,11 +1409,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RemoveCollisionExceptionWith(microbe);
     }
 
+    internal void ReParentShapes(Microbe to, Vector3 offset)
+    {
+        foreach (var organelle in organelles)
+            organelle.ReParentShapes(to, offset);
+    }
+
     internal void OnColonyMemberAdded(Microbe microbe)
     {
         if (microbe == this)
         {
             OnIGotAddedToColony();
+
+            if (Colony.Master != this)
+                Mode = ModeEnum.Static;
+
+            ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
+                Vector3.Down,
+                Colony.Master.Rotation.y));
         }
         else
         {
@@ -2329,8 +2360,28 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Pili don't stop engulfing
             if (touchedMicrobes.Add(microbe))
             {
-                CheckStartEngulfingOnCandidates();
-                CheckBinding();
+                var touchedMicrobe = this;
+                if (ColonyChildren != null && microbe.ColonyParent == null)
+                {
+                    foreach (var searchMember in ColonyChildren)
+                    {
+                        foreach (var organelle in searchMember.organelles)
+                        {
+                            if (organelle.HasShape(ShapeFindOwner(localShape)))
+                            {
+                                touchedMicrobe = searchMember;
+                                break;
+                            }
+                        }
+
+                        if (touchedMicrobe != this)
+                            break;
+                    }
+                }
+
+                touchedMicrobe.touchedMicrobes = touchedMicrobes;
+                touchedMicrobe.CheckStartEngulfingOnCandidates();
+                touchedMicrobe.CheckBinding();
             }
         }
     }
