@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -30,6 +33,11 @@ public class ModInfo : Resource
 
     [JsonProperty("Load After")]
     public string[] LoadAfter;
+
+    public ModConfigItemInfo[] ConfigurationList;
+
+    [JsonProperty]
+    public Dictionary<string, object> Configuration;
 
     [JsonProperty]
     public string Author { get; set; }
@@ -75,6 +83,17 @@ public class ModInfo : Resource
         }
 
         return Name == item.Name && Location == item.Location && Version == item.Version && Author == item.Author;
+    }
+
+    public T GetConfigValue<T>(string id)
+    {
+        if (Configuration != null)
+        {
+            var configValue = Configuration[id];
+            return (T)Convert.ChangeType(configValue, typeof(T), new CultureInfo(string.Empty));
+        }
+
+        return default(T);
     }
 
     public override int GetHashCode()

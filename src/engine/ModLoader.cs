@@ -553,6 +553,23 @@ public class ModLoader : Reference
             currentModInfo.PreviewImage = previewTexture;
         }
 
+        if (file.FileExists(location + "/mod_config.json"))
+        {
+            var currentConfigList = JsonConvert.DeserializeObject<ModConfigItemInfo[]>(ReadJSONFile(location + "/mod_config.json"));
+            Dictionary<string, object> tempDictionary = new Dictionary<string, object>();
+
+            for (int index = 0; index < currentConfigList.Length; index++)
+            {
+                if (currentConfigList[index].ID != null)
+                {
+                    tempDictionary[currentConfigList[index].ID] = currentConfigList[index].Value;
+                }
+            }
+
+            currentModInfo.ConfigurationList = currentConfigList;
+            currentModInfo.Configuration = tempDictionary;
+        }
+
         return currentModInfo;
     }
 
@@ -607,6 +624,18 @@ public class ModLoader : Reference
     {
         ReloadedMods.Clear();
         SaveReloadedModsList();
+    }
+
+    public ModConfigItemInfo[] GetModConfigList(ModInfo currentMod)
+    {
+        if (FileHelpers.Exists(currentMod.Location + "/mod_config.json"))
+        {
+            return JsonConvert.DeserializeObject<ModConfigItemInfo[]>(ReadJSONFile(currentMod.Location + "/mod_config.json"));
+        }
+        else
+        {
+            return null;
+        }
     }
 
     private static string ReadJSONFile(string path)

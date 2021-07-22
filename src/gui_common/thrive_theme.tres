@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=44 format=2]
+[gd_resource type="Theme" load_steps=47 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
@@ -95,6 +95,12 @@ expand_margin_right = 3.0
 [sub_resource type="StyleBoxEmpty" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=41]
+
+[sub_resource type="StyleBoxEmpty" id=45]
+
+[sub_resource type="StyleBoxEmpty" id=46]
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0.0666667, 1, 0.835294, 1 )
@@ -418,24 +424,24 @@ CheckBox/styles/hover = SubResource( 8 )
 CheckBox/styles/hover_pressed = SubResource( 9 )
 CheckBox/styles/normal = SubResource( 10 )
 CheckBox/styles/pressed = SubResource( 11 )
-CheckButton/colors/font_color = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_hover = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 4
-CheckButton/fonts/font = null
+CheckButton/fonts/font = ExtResource( 8 )
 CheckButton/icons/off = null
 CheckButton/icons/off_disabled = null
 CheckButton/icons/on = null
 CheckButton/icons/on_disabled = null
-CheckButton/styles/disabled = null
+CheckButton/styles/disabled = SubResource( 41 )
 CheckButton/styles/focus = null
 CheckButton/styles/hover = null
 CheckButton/styles/hover_pressed = null
-CheckButton/styles/normal = null
-CheckButton/styles/pressed = null
+CheckButton/styles/normal = SubResource( 45 )
+CheckButton/styles/pressed = SubResource( 46 )
 ColorPicker/constants/h_width = 30
 ColorPicker/constants/label_width = 10
 ColorPicker/constants/margin = 4

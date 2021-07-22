@@ -74,6 +74,15 @@ public class ModLoaderUI : Control
     [Export]
     public NodePath LoadReminderPopupPath;
 
+    [Export]
+    public NodePath ConfigItemListPath;
+
+    [Export]
+    public NodePath ConfigContainerPath;
+
+    [Export]
+    public PackedScene ConfigItemScene;
+
     // The array is used for getting all of the ItemList
     private ItemList[] modItemLists;
 
@@ -101,6 +110,7 @@ public class ModLoaderUI : Control
     private MarginContainer errorInfoContainer;
     private BoxContainer compatibleVersionContainer;
     private BoxContainer infoButtonContainer;
+    private BoxContainer configContainer;
 
     private ModLoader loader = new ModLoader();
     private ModInfo currentSelectedMod;
@@ -114,6 +124,7 @@ public class ModLoaderUI : Control
         LoadedItemList,
         AutoloadedItemlist,
         ErrorItemList,
+        ConfigItemList,
     }
 
     public override void _Ready()
@@ -122,20 +133,23 @@ public class ModLoaderUI : Control
         errorInfoContainer = GetNode<MarginContainer>(ErrorInfoContainerPath);
         compatibleVersionContainer = GetNode<BoxContainer>(CompatibleVersionContainerPath);
         infoButtonContainer = GetNode<BoxContainer>(InfoButtonContainerPath);
+        configContainer = GetNode<BoxContainer>(ConfigContainerPath);
 
         // Temporary variables to hold all the ItemList to put it in the modItemLists
         ItemList unloadedItemList;
         ItemList loadedItemList;
         ItemList errorItemList;
         ItemList autoLoadedItemList;
+        ItemList configItemList;
 
         // Temporary variables are used to not make the array initialization too long
         unloadedItemList = GetNode<ItemList>(UnloadedItemListPath);
         loadedItemList = GetNode<ItemList>(LoadedItemListPath);
         errorItemList = GetNode<ItemList>(ErrorItemListPath);
         autoLoadedItemList = GetNode<ItemList>(AutoLoadedItemListPath);
+        configItemList = GetNode<ItemList>(ConfigItemListPath);
 
-        modItemLists = new[] { unloadedItemList, loadedItemList, autoLoadedItemList, errorItemList };
+        modItemLists = new[] { unloadedItemList, loadedItemList, autoLoadedItemList, errorItemList, configItemList };
         errorLabel = GetNode<Label>(ErrorLabelPath);
         compatibleVersionLabel = GetNode<Label>(CompatibleVersionLabelPath);
 
@@ -243,6 +257,106 @@ public class ModLoaderUI : Control
             else
             {
                 errorInfoContainer.Visible = false;
+            }
+
+            if (modItemLists[(int)ItemLists.ConfigItemList].GetSelectedItems().Length > 0)
+            {
+                if (configContainer.GetChildCount() > 0)
+                {
+                    configContainer.QueueFreeChildren();
+                }
+
+                if (tempModInfo.ConfigurationList == null)
+                {
+                    if (FileHelpers.Exists(tempModInfo.Location + "/mod_config.json"))
+                    {
+                        tempModInfo.ConfigurationList = loader.GetModConfigList(tempModInfo);
+                    }
+                    else
+                    {
+                        //Replace With something else
+                        GD.Print("Mod Missing Config File: " + tempModInfo.Name);
+                        return;
+                    }
+                }
+
+                ModConfigItemInfo[] tempConfigList = tempModInfo.ConfigurationList;
+                //Consoldate to a fucntion later
+                foreach (var currentItemInfo in tempConfigList)
+                {
+                    var currentItem = ConfigItemScene.Instance() as BoxContainer;
+                    var currentItemLabel = currentItem.GetChild(0) as Label;
+
+                    currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
+                    currentItem.HintTooltip = currentItemInfo.Description;
+                    switch (currentItemInfo.Type.ToLower())
+                    {
+                        case "int":
+                        case "integer":
+                        case "i":
+                            var intNumberSpinner = new SpinBox();
+                            intNumberSpinner.Rounded = true;
+                            intNumberSpinner.MinValue = currentItemInfo.MinimumValue;
+                            intNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
+                            currentItem.AddChild(intNumberSpinner);
+                            break;
+                        case "float":
+                        case "f":
+                            var floatNumberSpinner = new SpinBox();
+                            floatNumberSpinner.Rounded = false;
+                            floatNumberSpinner.Step = 0.1;
+                            floatNumberSpinner.MinValue = currentItemInfo.MinimumValue;
+                            floatNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
+                            currentItem.AddChild(floatNumberSpinner);
+                            break;
+                        case "bool":
+                        case "boolean":
+                        case "b":
+                            var booleanCheckbutton = new CheckButton();
+                            currentItem.AddChild(booleanCheckbutton);
+                            break;
+                        case "string":
+                        case "s":
+                            var stringLineEdit = new LineEdit();
+                            stringLineEdit.SizeFlagsHorizontal = 3;
+                            stringLineEdit.MaxLength = (int)currentItemInfo.MaximumValue;
+                            currentItem.AddChild(stringLineEdit);
+                            break;
+                        case "title":
+                        case "t":
+                            currentItemLabel.Text = currentItemInfo.DisplayName ?? currentItemInfo.ID;
+                            currentItem.SetAlignment(BoxContainer.AlignMode.Center);
+                            break;
+                        case "option":
+                        case "enum":
+                        case "o":
+                            var optionButton = new OptionButton();
+                            foreach(var optionItem in currentItemInfo.getAllOptions())
+                            {
+                                optionButton.AddItem(optionItem);
+                            }
+
+                            currentItem.AddChild(optionButton);
+                            break;
+                        case "color":
+                        case "colour":
+                        case "c":
+                            var regularColorPickerButton = new ColorPickerButton();
+                            regularColorPickerButton.EditAlpha = false;
+                            regularColorPickerButton.Text = "Color";
+                            currentItem.AddChild(regularColorPickerButton);
+                            break;
+                        case "alphacolor":
+                        case "alphacolour":
+                        case "ac":
+                            var colorAlphaPickerButton = new ColorPickerButton();
+                            colorAlphaPickerButton.Text = "Color";
+                            currentItem.AddChild(colorAlphaPickerButton);
+                            break;
+                    }
+
+                    configContainer.AddChild(currentItem);
+                }
             }
         }
     }
@@ -631,7 +745,7 @@ public class ModLoaderUI : Control
     /// <summary>
     ///   This get the mods from the mod directory and updates the UnloadedItemList
     /// </summary>
-    private void ReloadModLists(bool unloadedModList = true, bool autoLoadedModList = true, bool errorModList = true)
+    private void ReloadModLists(bool unloadedModList = true, bool autoLoadedModList = true, bool errorModList = true, bool configModList = true)
     {
         if (unloadedModList)
         {
@@ -647,7 +761,7 @@ public class ModLoaderUI : Control
         {
             int index = 0;
 
-            foreach (ModInfo currentModInfo in loader.LoadModList(false, true))
+            foreach (ModInfo currentModInfo in loader.LoadModList(false, true, false))
             {
                 AddModToItemList((int)ItemLists.AutoloadedItemlist, index, currentModInfo);
 
@@ -663,6 +777,20 @@ public class ModLoaderUI : Control
             {
                 AddModToItemList((int)ItemLists.ErrorItemList, index, currentModInfo);
                 index++;
+            }
+        }
+
+        if (configModList)
+        {
+            int index = 0;
+
+            foreach (ModInfo currentModInfo in ModLoader.LoadedMods)
+            {
+                if (currentModInfo.Configuration != null)
+                {
+                    AddModToItemList((int)ItemLists.ConfigItemList, index, currentModInfo);
+                    index++;
+                }
             }
         }
     }
