@@ -59,12 +59,18 @@ public class InProgressSave : IDisposable
         Finished,
     }
 
+    /// <summary>
+    ///   True when a save is currently being made. Used to prevent another save or load starting
+    /// </summary>
+    public static bool IsSaving { get; private set; }
+
     public SaveInformation.SaveType Type { get; }
 
     public void Start()
     {
         currentGameRoot.Invoke().GetTree().Paused = true;
 
+        IsSaving = true;
         Invoke.Instance.Perform(Step);
     }
 
@@ -191,6 +197,7 @@ public class InProgressSave : IDisposable
                         message, exception);
                 }
 
+                IsSaving = false;
                 return;
             }
 
