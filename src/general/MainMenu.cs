@@ -361,5 +361,6 @@ public class MainMenu : NodeWithInput
     {
         _ = TranslationServer.Translate("OK");
         _ = TranslationServer.Translate("Cancel");
+        _ = TranslationServer.Translate("MEMBRANE_TYPES");
     }
 }
