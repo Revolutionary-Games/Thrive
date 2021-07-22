@@ -504,10 +504,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         TransitionFinished = true;
     }
 
-    /// <summary>
-    ///   Applies the changes done and exits the editor
-    /// </summary>
-    public void OnFinishEditing()
+    public void ApplyEditsToSpecies()
     {
         GD.Print("MicrobeEditor: applying changes to edited Species");
 
@@ -563,6 +560,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedSpecies.MembraneType = Membrane;
         editedSpecies.Colour = Colour;
         editedSpecies.MembraneRigidity = Rigidity;
+    }
+
+    /// <summary>
+    ///   Applies the changes done and exits the editor
+    /// </summary>
+    public void OnFinishEditing()
+    {
+        ApplyEditsToSpecies();
 
         // Move patches
         if (targetPatch != null)
@@ -965,38 +970,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public float CalculateSpeed()
     {
-        float microbeMass = Constants.MICROBE_BASE_MASS;
-
-        float organelleMovementForce = 0;
-
-        Vector3 forwardsDirection = new Vector3(0, 0, -1);
-
-        foreach (var organelle in editedMicrobeOrganelles.Organelles)
-        {
-            microbeMass += organelle.Definition.Mass;
-
-            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
-            {
-                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
-                    - Hex.AxialToCartesian(organelle.Position)).Normalized();
-
-                float directionFactor = organelleDirection.Dot(forwardsDirection);
-
-                // Flagella pointing backwards don't slow you down
-                directionFactor = Math.Max(directionFactor, 0);
-
-                organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement.Momentum / 100.0f
-                    * directionFactor;
-            }
-        }
-
-        float baseMovementForce = Constants.CELL_BASE_THRUST *
-            (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
-
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
-
-        return finalSpeed;
+        // TODO: Have this occur in a more central place
+        ApplyEditsToSpecies();
+        return ((MicrobeSpecies)editedSpecies.Clone()).BaseSpeed();
     }
 
     public float CalculateHitpoints()

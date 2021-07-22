@@ -121,4 +121,39 @@ public class MicrobeSpecies : Species
 
         return result;
     }
+
+    public float BaseOsmoregulationCost()
+    {
+        return Organelles.Sum(organelle => organelle.Definition.HexCount)
+            * MembraneType.OsmoregulationFactor
+            * Constants.ATP_COST_FOR_OSMOREGULATION;
+    }
+
+    public float BaseSpeed()
+    {
+        float microbeMass = Constants.MICROBE_BASE_MASS;
+
+        float organelleMovementForce = 0;
+
+        foreach (var organelle in Organelles)
+        {
+            microbeMass += organelle.Definition.Mass;
+
+            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
+            {
+                if (organelle.Orientation == 3)
+                {
+                    organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
+                        * organelle.Definition.Components.Movement.Momentum / 100.0f;
+                }
+            }
+        }
+
+        float baseMovementForce = Constants.CELL_BASE_THRUST *
+            (MembraneType.MovementFactor - MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
+
+        float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
+
+        return finalSpeed;
+    }
 }
