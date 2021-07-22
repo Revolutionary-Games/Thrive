@@ -2111,6 +2111,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(PlacedOrganelle organelle)
     {
+        if (organelle.Position == new Hex(0, 0))
+            organelle.FalsePosition = organelle.Position;
+        else
+            organelle.FalsePosition = new Hex(1, 1);
         organelle.OnAddedToMicrobe(this);
         processesDirty = true;
         cachedHexCountDirty = true;

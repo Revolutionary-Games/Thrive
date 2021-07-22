@@ -13,6 +13,11 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     protected Vector3 organellePos;
 
     /// <summary>
+    /// The default visual posistion if the organelle is in teh microbes center
+    /// </summary>
+    protected Vector3 defaultVisualPos;
+
+    /// <summary>
     ///   Last calculated position, Used to not have to recreate the physics all the time
     /// </summary>
     protected Vector3 lastCalculatedPosition = new Vector3(0, 0, 0);
@@ -21,7 +26,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     {
         this.organelle = organelle;
         organellePos = Hex.AxialToCartesian(organelle.Position);
-
+        defaultVisualPos = new Vector3(0, 0, -1);
         CustomAttach();
     }
 
@@ -39,13 +44,15 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePos;
+        if (delta == new Vector3(0, 0, 0))
+            delta = defaultVisualPos;
         Vector3 exit = middle - delta;
         var membraneCoords = organelle.ParentMicrobe.Membrane.GetExternalOrganelle(exit.x,
             exit.z);
-
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
             float angle = Mathf.Atan2(-delta.z, delta.x);
+
             if (angle < 0)
             {
                 angle = angle + (2 * Mathf.Pi);

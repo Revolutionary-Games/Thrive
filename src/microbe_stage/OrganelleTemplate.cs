@@ -34,6 +34,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     public bool MovedThisSession => NumberOfTimesMoved > 0;
 
     public Hex Position { get; set; }
+    public Hex FalsePosition { get; set; }
 
     /// <summary>
     ///   This is now the number of times to rotate. This used to be the angle in degrees
