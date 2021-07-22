@@ -189,6 +189,10 @@ public class MicrobeHUD : Node
     private ActionButton fireToxinHotkey;
     private ActionButton bindingModeHotkey;
 
+    // Store these statefully for after player death
+    private float maxHP = 1.0f;
+    private float maxATP = 1.0f;
+
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
     private ProgressBar nitrogenBar;
@@ -599,19 +603,25 @@ public class MicrobeHUD : Node
         var sunlightPercentage = biome.Compounds[sunlight].Dissolved * 100;
         var averageTemperature = biome.AverageTemperature;
 
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
-        oxygenBar.GetNode<Label>("Value").Text = oxygenPercentage + "%";
+        oxygenBar.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, percentageFormat, oxygenPercentage);
 
         co2Bar.MaxValue = 100;
         co2Bar.Value = co2Percentage;
-        co2Bar.GetNode<Label>("Value").Text = co2Percentage + "%";
+        co2Bar.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, percentageFormat, co2Percentage);
 
         nitrogenBar.MaxValue = 100;
         nitrogenBar.Value = nitrogenPercentage;
-        nitrogenBar.GetNode<Label>("Value").Text = nitrogenPercentage + "%";
+        nitrogenBar.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, percentageFormat, nitrogenPercentage);
 
-        sunlightLabel.GetNode<Label>("Value").Text = sunlightPercentage + "%";
+        sunlightLabel.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
         temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
 
         // TODO: pressure?
@@ -812,19 +822,27 @@ public class MicrobeHUD : Node
             return;
 
         var atpAmount = 0.0f;
-        var capacity = 4.0f;
 
+        // Update to the player's current ATP, unless the player does not exist
         if (stage.Player != null)
         {
             var compounds = GetPlayerColonyOrPlayerStorage();
 
-            atpAmount = Mathf.Ceil(compounds.GetCompoundAmount(atp));
-            capacity = compounds.Capacity;
+            atpAmount = compounds.GetCompoundAmount(atp);
+            maxATP = compounds.Capacity;
         }
 
-        atpBar.MaxValue = capacity;
-        atpBar.Value = MathUtils.Lerp((float)atpBar.Value, atpAmount, 3.0f * delta, 0.1f);
-        atpLabel.Text = StringUtils.FormatNumber(atpAmount) + " / " + StringUtils.FormatNumber(capacity);
+        atpBar.MaxValue = maxATP * 10.0f;
+
+        // If the current ATP is close to full, just pretend that it is to keep the bar from flickering
+        if (maxATP - atpAmount < Math.Max(maxATP / 20.0f, 0.1f))
+        {
+            atpAmount = maxATP;
+        }
+
+        GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
+        atpLabel.Text = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
+            + maxATP.ToString("F1", CultureInfo.CurrentCulture);
     }
 
     private ICompoundStorage GetPlayerColonyOrPlayerStorage()
@@ -839,8 +857,8 @@ public class MicrobeHUD : Node
             return;
 
         var hp = 0.0f;
-        var maxHP = 100.0f;
 
+        // Update to the player's current HP, unless the player does not exist
         if (stage.Player != null)
         {
             hp = stage.Player.Hitpoints;
@@ -848,7 +866,7 @@ public class MicrobeHUD : Node
         }
 
         healthBar.MaxValue = maxHP;
-        healthBar.Value = MathUtils.Lerp((float)healthBar.Value, hp, 3.0f * delta, 0.1f);
+        GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
         hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
     }
 

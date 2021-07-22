@@ -2148,16 +2148,44 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void RefreshProcesses()
     {
-        processes = new List<TweakedProcess>();
-        processesDirty = false;
+        if (processes == null)
+        {
+            processes = new List<TweakedProcess>();
+        }
+        else
+        {
+            processes.Clear();
+        }
 
         if (organelles == null)
             return;
 
         foreach (var entry in organelles.Organelles)
         {
-            processes.AddRange(entry.Definition.RunnableProcesses);
+            // Duplicate processes need to be combined into a single TweakedProcess
+            foreach (var process in entry.Definition.RunnableProcesses)
+            {
+                bool found = false;
+
+                foreach (var existing in processes)
+                {
+                    if (existing.Process == process.Process)
+                    {
+                        existing.Rate += process.Rate;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    // Because we modify the process, we must duplicate the object for each microbe
+                    processes.Add((TweakedProcess)process.Clone());
+                }
+            }
         }
+
+        processesDirty = false;
     }
 
     private void CountHexes()
