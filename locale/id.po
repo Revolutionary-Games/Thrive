@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-14 22:48+0700\n"
+"POT-Creation-Date: 2021-07-16 15:11+0300\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: Rizky Pramudya <rizkypramudyacj@outlook.co.id>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -1630,6 +1630,14 @@ msgstr ""
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
+#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:254
+#: ../src/microbe_stage/MicrobeHUD.cs:606
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:573
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+msgid "PERCENTAGE_VALUE"
+msgstr ""
+
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr ""
@@ -1980,7 +1988,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:749
 msgid "TEMPERATURE"
 msgstr ""
 
@@ -2029,15 +2037,15 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:510
+#: ../src/microbe_stage/MicrobeHUD.cs:514
 msgid "MICROBE_PATCH_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:654
+#: ../src/microbe_stage/MicrobeHUD.cs:664
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:704
+#: ../src/microbe_stage/MicrobeHUD.cs:714
 msgid "PLAYER_CELL"
 msgstr ""
 
@@ -2084,7 +2092,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -2308,7 +2316,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
@@ -2341,65 +2349,65 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:579
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:586
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:590
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:632
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:638
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:690
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:702
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:934
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:939
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:978
 msgid "WITH_POPULATION"
 msgstr ""
 
