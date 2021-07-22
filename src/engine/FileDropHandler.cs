@@ -8,7 +8,7 @@ public class FileDropHandler : Node
 {
     public override void _Ready()
     {
-        GetTree().Connect("files_dropped", this, "OnFilesDropped");
+        GetTree().Connect("files_dropped", this, nameof(OnFilesDropped));
     }
 
     private void OnFilesDropped(string[] files, int screen)
@@ -64,7 +64,7 @@ public class FileDropHandler : Node
                 return;
             }
 
-            if (info.ThriveVersion == Constants.Version)
+            if (info.ThriveVersion != Constants.Version)
             {
                 // TODO: would be nice to show a confirmation dialog here
                 GD.Print("The dropped save version is not exactly the same as current game version");
