@@ -578,9 +578,6 @@ public class Settings
 
             settings.ApplyAll(true);
 
-            // Simulation parameters need to apply the initial translation
-            SimulationParameters.Instance.ApplyTranslations();
-
             return settings;
         }
         catch (Exception e)

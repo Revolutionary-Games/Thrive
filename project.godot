@@ -30,9 +30,9 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 [autoload]
 
 Invoke="*res://src/engine/Invoke.cs"
+StartupActions="*res://src/engine/StartupActions.cs"
 AutoModLoader="*res://src/engine/AutoModLoader.cs"
 SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
-StartupActions="*res://src/engine/StartupActions.cs"
 InputManager="*res://src/engine/input/InputManager.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
 SceneManager="*res://src/engine/SceneManager.cs"
@@ -44,6 +44,7 @@ ScreenShotTaker="*res://src/engine/ScreenShotTaker.cs"
 FullScreenToggle="*res://src/engine/FullScreenToggle.cs"
 Jukebox="*res://src/general/Jukebox.cs"
 TemporaryLoadedNodeDeleter="*res://src/saving/TemporaryLoadedNodeDeleter.cs"
+FileDropHandler="*res://src/engine/FileDropHandler.cs"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
 
 [debug]
