@@ -215,6 +215,7 @@ public class PatchMap
 
         foreach (var patch in Patches)
         {
+            // Looks like player species is selected iff not playercantgoextinct...
             var toRemove = patch.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
                 (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
 
@@ -230,6 +231,12 @@ public class PatchMap
                     result.Add(speciesEntry.Key);
                 }
             }
+        }
+
+        // Add forever extinct species to patches snapshots - which were already saved
+        foreach (var patch in Patches)
+        {
+            patch.Value.SetSpeciesGoneDefinitivelyExtinctInLastSnapshot(result.ToList());
         }
 
         return result.ToList();
