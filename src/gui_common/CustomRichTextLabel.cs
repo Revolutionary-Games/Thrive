@@ -235,6 +235,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                 // Used to fallback to the old method if type attribute is not specified. Should be removed in
                 // roughly 6 months to give time for translations to be updated
+                // TODO: remove this fallback once it makes sense to do so
+                // https://github.com/Revolutionary-Games/Thrive/issues/2434
                 var fallback = false;
 
                 var internalName = string.Empty;
