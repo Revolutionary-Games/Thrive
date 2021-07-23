@@ -252,7 +252,6 @@ public class SaveManagerGUI : Control
     private void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        Selected.ForEach(item => item.Selected = false);
         RefreshList();
         EmitSignal(nameof(OnBackPressed));
     }
