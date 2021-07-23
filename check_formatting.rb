@@ -32,6 +32,9 @@ FUZZY_TRANSLATION_REGEX = /^#, fuzzy/.freeze
 PLAIN_QUOTED_MESSAGE = /^"(.*)"/.freeze
 GETTEXT_HEADER_NAME = /^([\w-]+):\s+/.freeze
 TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
+NODE_NAME_REGEX = /\[node\s+name="([^"]+)"/.freeze
+NODE_NAME_UPPERCASE_REQUIRED_LENGTH = 25
+NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
 
 CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
 ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
@@ -290,6 +293,38 @@ def handle_tscn_file(path)
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} contains embedded font. "\
               "Don't embed fonts in scenes, instead place font resources in a separate .tres"
+        errors = true
+      end
+    end
+
+    matches = line.match(NODE_NAME_REGEX)
+
+    if matches
+      name = matches[1]
+
+      if name =~ /\s/
+        error "Line #{line_number + 1} contains a name (#{name}) that has a space."
+        errors = true
+      end
+
+      if name.include? '_'
+        error "Line #{line_number + 1} contains a name (#{name}) that has an underscore."
+        errors = true
+      end
+
+      # Single word names can be without upper case letters so we use a length heuristic here
+      if name.length > NODE_NAME_UPPERCASE_REQUIRED_LENGTH && name.downcase == name
+        error "Line #{line_number + 1} contains a name (#{name}) that has no capital letters."
+        errors = true
+      end
+
+      # Short acronyms are ignored here if the name starts with a capital
+      # TODO: in the future might only want to allow node names that start with a
+      # lowercase letter
+      if name.upcase == name && (name.length > NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH ||
+                                 name !~ /^[A-Z]/)
+        error "Line #{line_number + 1} contains a name (#{name}) that doesn't " \
+              "contain lowercase letters (and isn't a short acronym)."
         errors = true
       end
     end
