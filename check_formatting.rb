@@ -33,6 +33,10 @@ PLAIN_QUOTED_MESSAGE = /^"(.*)"/.freeze
 GETTEXT_HEADER_NAME = /^([\w-]+):\s+/.freeze
 TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
 
+CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
+ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
+ASSEMBLY_VERSION_REGEX = /AssemblyVersion\("([\d.]+)"\)/.freeze
+
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
 OUTPUT_MUTEX = Mutex.new
@@ -137,6 +141,22 @@ def process_file?(filepath)
 
     false
   end
+end
+
+@game_version = nil
+
+def game_version
+  return @game_version if @game_version
+
+  File.foreach(ASSEMBLY_VERSION_FILE) do |line|
+    next unless line
+
+    matches = line.match(ASSEMBLY_VERSION_REGEX)
+
+    return @game_version = matches[1] if matches
+  end
+
+  raise 'Could not find AssemblyVersion'
 end
 
 def file_begins_with_bom(path)
@@ -295,6 +315,39 @@ def handle_csproj_file(path)
   errors
 end
 
+def handle_export_presets(path)
+  errors = false
+  found = false
+
+  required_version = game_version
+
+  File.foreach(path).with_index do |line, line_number|
+    matches = line.match(CFG_VERSION_LINE)
+
+    if matches
+
+      found = true
+
+      if matches[1] != required_version
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has incorrect version. "\
+                "#{matches[1]} is not equal to #{required_version}"
+          errors = true
+        end
+      end
+    end
+  end
+
+  unless found
+    OUTPUT_MUTEX.synchronize do
+      error 'No line specifying version numbers was found'
+      errors = true
+    end
+  end
+
+  errors
+end
+
 def handle_po_file(path)
   errors = false
 
@@ -433,6 +486,8 @@ def handle_file(path)
     handle_tscn_file path
   elsif path =~ /\.po$/
     handle_po_file path
+  elsif path =~ /export_presets.cfg$/
+    handle_export_presets path
   else
     false
   end
