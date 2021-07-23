@@ -197,7 +197,7 @@ def handle_cs_file(path)
     end
   end
 
-  original = File.read(path)
+  original = File.read(path, encoding: 'utf-8')
   line_number = 0
 
   OUTPUT_MUTEX.synchronize do
@@ -228,7 +228,7 @@ def handle_cs_file(path)
 end
 
 def handle_json_file(path)
-  digest_before = Digest::MD5.hexdigest File.read(path)
+  digest_before = Digest::MD5.hexdigest File.read(path, encoding: 'utf-8')
 
   if runSystemSafe('jsonlint', '-i', path, '--indent', '    ') != 0
     OUTPUT_MUTEX.synchronize do
@@ -237,7 +237,7 @@ def handle_json_file(path)
     return true
   end
 
-  digest_after = Digest::MD5.hexdigest File.read(path)
+  digest_after = Digest::MD5.hexdigest File.read(path, encoding: 'utf-8')
 
   if digest_before != digest_after
     OUTPUT_MUTEX.synchronize do
@@ -252,7 +252,7 @@ end
 def handle_shader_file(path)
   errors = false
 
-  File.foreach(path).with_index do |line, line_number|
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
     if line.include? "\t"
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} contains a tab"
@@ -277,7 +277,7 @@ end
 def handle_tscn_file(path)
   errors = false
 
-  File.foreach(path).with_index do |line, line_number|
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
     # For some reason this reports 1 too high
     length = line.length - 1
 
@@ -363,7 +363,7 @@ def handle_export_presets(path)
 
   required_version = game_version
 
-  File.foreach(path).with_index do |line, line_number|
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
     matches = line.match(CFG_VERSION_LINE)
 
     if matches
