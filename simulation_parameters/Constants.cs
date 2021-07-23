@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
@@ -501,8 +501,11 @@ public static class Constants
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
+    public const string MOD_CONFIGURATION = "user://mods_settings.json";
 
     public const string SAVE_FOLDER = "user://saves";
+
+    public const string MOD_FOLDER = "user://mods";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 

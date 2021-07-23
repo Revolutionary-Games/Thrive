@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
@@ -31,6 +31,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath GLES2PopupPath;
 
+    [Export]
+    public NodePath ModErrorPopupPath;
+
     public Array MenuArray;
     public TextureRect Background;
 
@@ -42,11 +45,13 @@ public class MainMenu : NodeWithInput
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
     private SaveManagerGUI saves;
+    private ModLoaderUI modLoader;
 
     private Button newGameButton;
     private Button freebuildButton;
 
     private AcceptDialog gles2Popup;
+    private AcceptDialog modErrorPopup;
 
     public override void _Ready()
     {
@@ -152,7 +157,9 @@ public class MainMenu : NodeWithInput
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
+        modLoader = GetNode<ModLoaderUI>("ModLoader");
         gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
+        modErrorPopup = GetNode<AcceptDialog>(ModErrorPopupPath);
 
         // Set initial menu
         SwitchMenu();
@@ -220,6 +227,8 @@ public class MainMenu : NodeWithInput
 
         // Start music after the video
         StartMusic();
+
+        GetNode<AutoModLoader>("/root/AutoModLoader").OpenModErrorPopup(modErrorPopup);
     }
 
     private void OnMicrobeIntroEnded()
@@ -342,6 +351,28 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromLoadGame()
     {
         saves.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void ModLoaderPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the Mod Loader
+        modLoader.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnModLoaderClosed()
+    {
+        modLoader.Visible = false;
 
         SetCurrentMenu(0, false);
 
