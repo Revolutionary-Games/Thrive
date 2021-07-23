@@ -38,7 +38,7 @@ public class ModConfigItemInfo : Resource
         return ID == item.ID && Type == item.Type;
     }
 
-    public List<string> getAllOptions()
+    public List<string> GetAllOptions()
     {
         var optionsJArray = Options as JArray;
         return optionsJArray.ToObject<List<string>>();

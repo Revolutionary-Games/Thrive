@@ -67,6 +67,7 @@ InfoButtonContainerPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxS
 LoadReminderPopupPath = NodePath("LoadReminderPopup")
 ConfigItemListPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/ModConfigItemList")
 ConfigContainerPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer")
+ConfigPanelContainerPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer")
 ConfigItemScene = ExtResource( 7 )
 
 [node name="Main Margin Container" type="MarginContainer" parent="."]
@@ -335,12 +336,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ConfigSplitContainer" type="HSplitContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer"]
-margin_right = 1094.0
+margin_right = 1123.0
 margin_bottom = 253.0
 size_flags_horizontal = 3
 
 [node name="ModConfigItemList" type="ItemList" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer"]
-margin_right = 541.0
+margin_right = 555.0
 margin_bottom = 253.0
 size_flags_horizontal = 3
 custom_styles/bg = SubResource( 2 )
@@ -353,15 +354,15 @@ __meta__ = {
 }
 
 [node name="Config Panel" type="PanelContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer"]
-margin_left = 553.0
-margin_right = 1094.0
+margin_left = 567.0
+margin_right = 1123.0
 margin_bottom = 253.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 540.0
+margin_right = 555.0
 margin_bottom = 252.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
@@ -371,18 +372,26 @@ custom_constants/margin_bottom = 5
 [node name="ScrollContainer" type="ScrollContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 534.0
+margin_right = 549.0
 margin_bottom = 246.0
 scroll_horizontal_enabled = false
 
 [node name="ConfigContainer" type="VBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer"]
-margin_right = 529.0
-margin_bottom = 182.0
+margin_right = 544.0
+margin_bottom = 234.0
 size_flags_horizontal = 3
 
+[node name="ConfigItem2" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 544.0
+margin_bottom = 22.0
+alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer"]
-margin_right = 529.0
-margin_bottom = 27.0
+margin_top = 26.0
+margin_right = 544.0
+margin_bottom = 53.0
 
 [node name="Label" type="Label" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer/HBoxContainer"]
 margin_top = 2.0
@@ -392,15 +401,15 @@ text = "Spin Boy:"
 
 [node name="SpinBox" type="SpinBox" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer/HBoxContainer"]
 margin_left = 96.0
-margin_right = 529.0
+margin_right = 544.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 max_value = 999.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer"]
-margin_top = 31.0
-margin_right = 529.0
-margin_bottom = 58.0
+margin_top = 57.0
+margin_right = 544.0
+margin_bottom = 84.0
 
 [node name="Label" type="Label" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer/HBoxContainer3"]
 margin_top = 2.0
@@ -410,15 +419,15 @@ text = "Line Man:"
 
 [node name="LineEdit" type="LineEdit" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer/HBoxContainer3"]
 margin_left = 94.0
-margin_right = 529.0
+margin_right = 544.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 56, 0 )
 size_flags_horizontal = 3
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer"]
-margin_top = 62.0
-margin_right = 529.0
-margin_bottom = 84.0
+margin_top = 88.0
+margin_right = 544.0
+margin_bottom = 110.0
 
 [node name="Label" type="Label" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer/HBoxContainer4"]
 margin_right = 114.0
@@ -432,9 +441,9 @@ margin_bottom = 22.0
 text = "Testing Child"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer"]
-margin_top = 88.0
-margin_right = 529.0
-margin_bottom = 120.0
+margin_top = 114.0
+margin_right = 544.0
+margin_bottom = 146.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -454,15 +463,15 @@ size_flags_horizontal = 0
 [node name="ConfigItem" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 124.0
-margin_right = 529.0
-margin_bottom = 146.0
+margin_top = 150.0
+margin_right = 544.0
+margin_bottom = 172.0
 alignment = 1
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer"]
-margin_top = 150.0
-margin_right = 529.0
-margin_bottom = 182.0
+margin_top = 176.0
+margin_right = 544.0
+margin_bottom = 208.0
 
 [node name="Label" type="Label" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer/HBoxContainer5"]
 margin_top = 5.0
@@ -476,29 +485,46 @@ margin_right = 193.0
 margin_bottom = 32.0
 text = "Color"
 
+[node name="HBoxContainer6" type="HBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer"]
+margin_top = 212.0
+margin_right = 544.0
+margin_bottom = 234.0
+
+[node name="Label" type="Label" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer/HBoxContainer6"]
+margin_right = 98.0
+margin_bottom = 22.0
+text = "Slide Boy:"
+
+[node name="SpinBox" type="HSlider" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer/HBoxContainer6"]
+margin_left = 102.0
+margin_right = 544.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 99.0
+
 [node name="Config Button Container" type="VBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer"]
-margin_left = 1098.0
+margin_left = 1127.0
 margin_right = 1194.0
 margin_bottom = 253.0
 alignment = 1
 
 [node name="ApplyButton" type="Button" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/Config Button Container"]
 margin_top = 74.0
-margin_right = 96.0
+margin_right = 67.0
 margin_bottom = 106.0
 text = "Apply"
 
 [node name="ClearConfigButton" type="Button" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/Config Button Container"]
 margin_top = 110.0
-margin_right = 96.0
+margin_right = 67.0
 margin_bottom = 142.0
 text = "Clear"
 
-[node name="ResetAllConfigButton" type="Button" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/Config Button Container"]
+[node name="ResetConfigButton" type="Button" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/Config Button Container"]
 margin_top = 146.0
-margin_right = 96.0
+margin_right = 67.0
 margin_bottom = 178.0
-text = "Reset All"
+text = "Reset"
 
 [node name="ModInfoPanel" type="PanelContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit"]
 margin_top = 309.0

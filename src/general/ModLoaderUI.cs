@@ -81,6 +81,9 @@ public class ModLoaderUI : Control
     public NodePath ConfigContainerPath;
 
     [Export]
+    public NodePath ConfigPanelContainerPath;
+
+    [Export]
     public PackedScene ConfigItemScene;
 
     // The array is used for getting all of the ItemList
@@ -108,6 +111,7 @@ public class ModLoaderUI : Control
 
     private MarginContainer modInfoContainer;
     private MarginContainer errorInfoContainer;
+    private MarginContainer configPanelContainer;
     private BoxContainer compatibleVersionContainer;
     private BoxContainer infoButtonContainer;
     private BoxContainer configContainer;
@@ -131,6 +135,7 @@ public class ModLoaderUI : Control
     {
         modInfoContainer = GetNode<MarginContainer>(ModInfoContainerPath);
         errorInfoContainer = GetNode<MarginContainer>(ErrorInfoContainerPath);
+        configPanelContainer = GetNode<MarginContainer>(ConfigPanelContainerPath);
         compatibleVersionContainer = GetNode<BoxContainer>(CompatibleVersionContainerPath);
         infoButtonContainer = GetNode<BoxContainer>(InfoButtonContainerPath);
         configContainer = GetNode<BoxContainer>(ConfigContainerPath);
@@ -261,6 +266,7 @@ public class ModLoaderUI : Control
 
             if (modItemLists[(int)ItemLists.ConfigItemList].GetSelectedItems().Length > 0)
             {
+                configPanelContainer.Visible = true;
                 if (configContainer.GetChildCount() > 0)
                 {
                     configContainer.QueueFreeChildren();
@@ -288,7 +294,7 @@ public class ModLoaderUI : Control
                     var currentItemLabel = currentItem.GetChild(0) as Label;
 
                     currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
-                    currentItem.HintTooltip = currentItemInfo.Description;
+                    currentItem.HintTooltip = currentItemInfo.Description ?? string.Empty;
                     switch (currentItemInfo.Type.ToLower())
                     {
                         case "int":
@@ -309,6 +315,26 @@ public class ModLoaderUI : Control
                             floatNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
                             currentItem.AddChild(floatNumberSpinner);
                             break;
+                        case "int range":
+                        case "integer range":
+                        case "ir":
+                            var intNumberSlider = new HSlider();
+                            intNumberSlider.Rounded = true;
+                            intNumberSlider.MinValue = currentItemInfo.MinimumValue;
+                            intNumberSlider.MaxValue = currentItemInfo.MaximumValue;
+                            intNumberSlider.SizeFlagsHorizontal = 3;
+                            currentItem.AddChild(intNumberSlider);
+                            break;
+                        case "float range":
+                        case "fr":
+                            var floatNumberSlider = new HSlider();
+                            floatNumberSlider.Rounded = false;
+                            floatNumberSlider.Step = 0.1;
+                            floatNumberSlider.MinValue = currentItemInfo.MinimumValue;
+                            floatNumberSlider.MaxValue = currentItemInfo.MaximumValue;
+                            floatNumberSlider.SizeFlagsHorizontal = 3;
+                            currentItem.AddChild(floatNumberSlider);
+                            break;
                         case "bool":
                         case "boolean":
                         case "b":
@@ -325,13 +351,13 @@ public class ModLoaderUI : Control
                         case "title":
                         case "t":
                             currentItemLabel.Text = currentItemInfo.DisplayName ?? currentItemInfo.ID;
-                            currentItem.SetAlignment(BoxContainer.AlignMode.Center);
+                            currentItem.Alignment = BoxContainer.AlignMode.Center;
                             break;
                         case "option":
                         case "enum":
                         case "o":
                             var optionButton = new OptionButton();
-                            foreach(var optionItem in currentItemInfo.getAllOptions())
+                            foreach (var optionItem in currentItemInfo.GetAllOptions())
                             {
                                 optionButton.AddItem(optionItem);
                             }
@@ -358,13 +384,18 @@ public class ModLoaderUI : Control
                     configContainer.AddChild(currentItem);
                 }
             }
+            else
+            {
+                configPanelContainer.Visible = false;
+            }
         }
     }
 
     private void OnBackPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        modInfoContainer.Visible = false;
+        ResetLoaderUI();
+
         for (int i = 0; i < modItemLists.Length; ++i)
         {
             modItemLists[i].UnselectAll();
@@ -377,6 +408,13 @@ public class ModLoaderUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         resetPopup.PopupCenteredShrink();
+    }
+
+    private void ResetLoaderUI()
+    {
+        modInfoContainer.Visible = false;
+        configPanelContainer.Visible = false;
+        errorInfoContainer.Visible = false;
     }
 
     private void OnMoveToLoadPressed()
@@ -713,6 +751,7 @@ public class ModLoaderUI : Control
     private void OnRefreshPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
+        ResetLoaderUI();
 
         for (int i = 0; i < modItemLists.Length; ++i)
         {
@@ -724,6 +763,7 @@ public class ModLoaderUI : Control
 
     private void LoadReminderPopupConfirmed()
     {
+        ResetLoaderUI();
         SceneManager.Instance.ReturnToMenu();
     }
 
@@ -735,8 +775,12 @@ public class ModLoaderUI : Control
         GUICommon.Instance.PlayButtonPressSound();
         loader.ResetGame();
 
-        modItemLists[(int)ItemLists.UnloadedItemList].Clear();
-        modItemLists[(int)ItemLists.LoadedItemList].Clear();
+        for (int i = 0; i < modItemLists.Length; ++i)
+        {
+            modItemLists[i].Clear();
+        }
+
+        ResetLoaderUI();
         ReloadModLists();
 
         reloadReminderPopup.PopupCenteredShrink();
@@ -783,8 +827,9 @@ public class ModLoaderUI : Control
         if (configModList)
         {
             int index = 0;
+            loader.LoadReloadedModsList();
 
-            foreach (ModInfo currentModInfo in ModLoader.LoadedMods)
+            foreach (ModInfo currentModInfo in ModLoader.ReloadedMods)
             {
                 if (currentModInfo.Configuration != null)
                 {
@@ -842,6 +887,7 @@ public class ModLoaderUI : Control
         }
         else
         {
+            ResetLoaderUI();
             SceneManager.Instance.ReturnToMenu();
         }
     }
