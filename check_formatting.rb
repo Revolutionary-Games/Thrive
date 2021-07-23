@@ -176,6 +176,13 @@ def handle_gd_file(_path)
   true
 end
 
+def handle_mo_file(_path)
+  OUTPUT_MUTEX.synchronize do
+    error '.mo files are not allowed'
+  end
+  true
+end
+
 def handle_cs_file(path)
   errors = false
 
@@ -486,6 +493,8 @@ def handle_file(path)
     handle_tscn_file path
   elsif path =~ /\.po$/
     handle_po_file path
+  elsif path =~ /\.mo$/
+    handle_mo_file path
   elsif path =~ /export_presets.cfg$/
     handle_export_presets path
   else
