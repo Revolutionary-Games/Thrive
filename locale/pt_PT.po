@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-16 15:11+0300\n"
-"PO-Revision-Date: 2021-07-23 14:19+0000\n"
-"Last-Translator: mrcsilva <mario156silva@gmail.com>\n"
+"PO-Revision-Date: 2021-07-23 17:01+0000\n"
+"Last-Translator: TomDev03 <chumbosilva200@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -123,7 +123,7 @@ msgstr ""
 "modo de adesão. Apenas te podes conectar com células da tua própria espécie. "
 "Enquanto permaneceres numa colónia, não serás capaz de dividir a tua célula "
 "e entrar no editor (por agora). Para entrar no editor, primeiro deixa a "
-"colónia assim que tenhas coletado compostos suficientes, e depois entra no "
+"colónia assim que tenhas acumulado compostos suficientes, e depois entra no "
 "mesmo. Grandes colónias de células são precursoras da multicelularidade ("
 "ainda ausente no jogo)."
 
@@ -400,7 +400,7 @@ msgstr "Disparar toxina"
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "TOGGLE_ENGULF"
-msgstr "Engolfar"
+msgstr "Engolir"
 
 #: ../simulation_parameters/common/input_options.json:46
 #: ../src/microbe_stage/MicrobeStage.tscn:2062
@@ -867,7 +867,7 @@ msgstr "Concluído."
 
 #: ../src/auto-evo/AutoEvoRun.cs:118
 msgid "NOT_RUNNING"
-msgstr "Parado."
+msgstr "Não está a funcionar."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "AUTO-EVO_STEPS_DONE"
@@ -911,7 +911,7 @@ msgstr "{0} enviando: {1} indivíduos da região: {2}"
 
 #: ../src/auto-evo/RunResults.cs:292
 msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr ""
+msgstr "população nas regiões:"
 
 #: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -1157,67 +1157,67 @@ msgstr "Multimédia"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Launch 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Launch 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Launch 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Launch 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Launch 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Launch 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Launch 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Launch 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Launch 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Launch 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Launch A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Launch B"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Launch C"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Launch D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Launch E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Launch F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
@@ -1423,11 +1423,11 @@ msgstr "Desempenho"
 
 #: ../src/general/OptionsMenu.tscn:160
 msgid "INPUTS"
-msgstr "Entradas"
+msgstr "Teclado"
 
 #: ../src/general/OptionsMenu.tscn:171
 msgid "MISC"
-msgstr ""
+msgstr "Diversos"
 
 #: ../src/general/OptionsMenu.tscn:204
 msgid "VSYNC"
@@ -1545,11 +1545,11 @@ msgstr "Divisor da Resolução de Nuvens:"
 
 #: ../src/general/OptionsMenu.tscn:751
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "Utilizar evolução automática durante o jogo"
+msgstr "Utilizar auto-evo durante o jogo"
 
 #: ../src/general/OptionsMenu.tscn:824
 msgid "RESET_INPUTS"
-msgstr "Reset Entradas"
+msgstr "Repor Entradas"
 
 #: ../src/general/OptionsMenu.tscn:852
 msgid "PLAY_INTRO_VIDEO"
@@ -2349,35 +2349,35 @@ msgstr "POPULAÇÃO:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr ""
+msgstr "Chaminés Pangonianas"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr ""
+msgstr "Mesopelágico Pangoniano"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:143
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr ""
+msgstr "Epipelágico Pangoniano"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:144
 msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr ""
+msgstr "Poça de Maré Pangoniana"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:145
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr ""
+msgstr "Batipelágico Pangoniano"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:146
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr ""
+msgstr "Abissopelágico Pangoniano"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:147
 msgid "PATCH_PANGONIAN_COAST"
-msgstr ""
+msgstr "Costa Pangoniana"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:148
 msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr ""
+msgstr "Estuário Pangoniano"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_CAVE"
@@ -2389,11 +2389,11 @@ msgstr "Plataforma de gelo"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:151
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
+msgstr "Fundo do Oceano Pangoniano"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:117
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Modo de Desconexão"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -2401,7 +2401,7 @@ msgstr "Processos de Célula"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Equilíbrio de Compostos"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1345
@@ -2410,11 +2410,11 @@ msgstr "A carregar o Editor de Micróbio"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr "A aguardar por evolução automática:"
+msgstr "A aguardar por auto-evo:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2281
 msgid "AUTO_EVO_FAILED"
-msgstr "A evolução automática falhou ao executar"
+msgstr "A auto-evo falhou"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2282
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2426,7 +2426,7 @@ msgstr "Relatório"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:530
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "Mapa de Regiões"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:610
 msgid "ORGANISM_STATISTICS"
@@ -2438,7 +2438,7 @@ msgstr "Velocidade:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:701
 msgid "HP_COLON"
-msgstr ""
+msgstr "HP:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:731
 msgid "SIZE_COLON"
@@ -2505,13 +2505,12 @@ msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nome da espécie..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "EXTINÇÃO"
+msgstr "CANCELAR AÇÃO"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1850
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "CONFIRMAR"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1860
 msgid "NEGATIVE_ATP_BALANCE"
@@ -2536,7 +2535,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2008
 msgid "FOOD_CHAIN"
@@ -2548,7 +2547,7 @@ msgstr "Linha temporal"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2074
 msgid "AUTO_EVO_RESULTS"
-msgstr "Resultados da evolução automática:"
+msgstr "Resultados da auto-evo:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
 msgid "EXTERNAL_EFFECTS"
@@ -2576,7 +2575,7 @@ msgstr "PRÓXIMO"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2496
 msgid "SELECT_A_PATCH"
-msgstr ""
+msgstr "Seleciona uma região para mostrar detalhes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2531
 msgid "CURRENT_LOCATION_CAPITAL"
@@ -2592,7 +2591,7 @@ msgstr "Espécies presentes"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
 msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
+msgstr "Mover para esta região"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
@@ -2604,7 +2603,7 @@ msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:586
 msgid "MEGA_YEARS"
-msgstr ""
+msgstr "milhões de anos"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:590
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
@@ -2626,7 +2625,7 @@ msgstr "PRODUÇÃO DE ATP MUITO BAIXA!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
+msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "OSMOREGULATION"
@@ -2638,16 +2637,15 @@ msgstr "Movimento Base"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:702
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr ""
+msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "SPECIES_LIST"
 msgstr "Lista de Espécies"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
-#, fuzzy
 msgid "FREEBUILDING"
-msgstr "Construção Livre"
+msgstr "Modo livre"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:934
 msgid "BIOME_LABEL"
@@ -2870,7 +2868,7 @@ msgstr "Criado em:"
 #: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
 #: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:150
 msgid "TYPE"
@@ -2993,6 +2991,17 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
+"Este é o mapa de regiões.\n"
+"Aqui poderás ver as diferentes regiões em que os micróbios vivem.\n"
+"A região em que te encontras está destacada.\n"
+"Podes também clicar nas regiões com o rato para as selecionar e ver os "
+"detalhes no lado direito.\n"
+"\n"
+"Caso seleciones uma região próxima à que te encontras atualmente, poderás "
+"clicar no botão à direita para te moveres até lá. Isso permite que a tua "
+"espécie se espalhe pelas novas regiões.\n"
+"\n"
+"Seleciona uma região para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
@@ -3010,42 +3019,94 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
+"Remover organelos também custa PM, já que também conta como uma mutação. A "
+"menos que tenhas colocado na mesma seção de edição. \n"
+"\n"
+"Podes clicar com o botão direito para abrir o menu de organelos para "
+"removê-los.\n"
+"\n"
+"Se cometeres um erro, podes desfazer qualquer alteração que fizeste no "
+"editor.\n"
+"\n"
+"Clica no botão de desfazer para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
+"Ao escolher quais organelos a adicionar, presta atenção às suas descrições "
+"para saberes quais processos eles realizam e quais compostos eles usam e "
+"produzem.\n"
+"\n"
+"Também presta atenção ao saldo de ATP no canto superior para teres a certeza "
+"de que a célula pode sobreviver.\n"
+"\n"
+"Podes rotacionar os organelos ao clicares nas teclas A e D antes de os "
+"colocar.\n"
+"\n"
+"Aperta o botão de refazer para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
+"Isto é o básico do editor das espécies. Podes verificar as outras abas no "
+"editor de células para ainda mais opções.\n"
+"\n"
+"Podes renomear a espécie ao clicares no nome dela e editar o texto.\n"
+"\n"
+"Inicialmente, deves manter a tua célula pequena e ir para as regiões da "
+"superfície.\n"
+"\n"
+"Boa sorte!"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "GOT_IT"
-msgstr ""
+msgstr "Entendi"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
+"Em um planeta alienígena distante, eras de atividades vulcânicas e impactos "
+"de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
+"\n"
+"A vida.\n"
+"\n"
+"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o último "
+"ancestral comum (LUCA) no planeta.\n"
+"\n"
+"Para sobreviver neste mundo hostil, precisarás de acumular compostos e "
+"evoluir para competir contra outras espécies de micróbios."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
 msgid "SHOW_TUTORIALS"
-msgstr ""
+msgstr "Mostrar tutoriais"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Começar a prosperar"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
+"Para controlar a tua célula usa as teclas mostradas perto da célula (centro "
+"da ecrã) e o rato para controlar a sua orientação.\n"
+"\n"
+"Testa todas as teclas por alguns segundos para continuar."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
+"Acumula glicose (nuvens brancas) movendo-te na direção delas.\n"
+"A tua célula precisa de glicose para produzir energia e sobreviver.\n"
+"Segue a linha da tua célula até a glicose."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
+"Fica atento à barra de saúde próximo da barra de ATP (canto inferior "
+"direito).\n"
+"A tua célula morre quando não tens mais saúde.\n"
+"Tu regeneras saúde enquanto tiveres ATP.\n"
+"Certifica-te de que consegues glicose suficiente para produzires ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
