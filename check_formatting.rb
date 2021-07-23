@@ -148,7 +148,7 @@ end
 def game_version
   return @game_version if @game_version
 
-  File.foreach(ASSEMBLY_VERSION_FILE) do |line|
+  File.foreach(ASSEMBLY_VERSION_FILE, encoding: 'utf-8') do |line|
     next unless line
 
     matches = line.match(ASSEMBLY_VERSION_REGEX)
