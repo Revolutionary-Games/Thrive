@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/gui_common/QuickLoadHandler.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/AcceptDialogWithDefaultFunctions.tscn" type="PackedScene" id=2]
 
 [node name="QuickLoadHandler" type="Control"]
 anchor_right = 1.0
@@ -12,7 +13,7 @@ __meta__ = {
 }
 DifferentVersionDialogPath = NodePath("DifferentVersionDialog")
 
-[node name="DifferentVersionDialog" type="AcceptDialog" parent="."]
+[node name="DifferentVersionDialog" parent="." instance=ExtResource( 2 )]
 margin_right = 83.0
 margin_bottom = 58.0
 window_title = "SAVE_HAS_DIFFERENT_VERSION"

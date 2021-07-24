@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
 [ext_resource path="res://src/engine/input/key_mapping/InputGroupList.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/ConfirmationDialogWithDefaultFunctions.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/gui_common/AcceptDialogWithDefaultFunctions.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -1068,7 +1070,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DefaultsConfirm" type="ConfirmationDialog" parent="CenterContainer"]
+[node name="DefaultsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 340.0
 margin_top = 318.0
 margin_right = 940.0
@@ -1091,7 +1095,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DefaultsInputsConfirm" type="ConfirmationDialog" parent="CenterContainer"]
+[node name="DefaultsInputsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 340.0
 margin_top = 318.0
 margin_right = 940.0
@@ -1114,7 +1120,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackConfirm" type="AcceptDialog" parent="CenterContainer"]
+[node name="BackConfirm" parent="CenterContainer" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 340.0
 margin_top = 296.0
 margin_right = 940.0
@@ -1193,7 +1201,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
+[node name="ErrorAccept" parent="CenterContainer" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 440.0
 margin_top = 318.0
 margin_right = 840.0
@@ -1216,7 +1226,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConflictDialog" type="ConfirmationDialog" parent="CenterContainer"]
+[node name="ConflictDialog" parent="CenterContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 390.0
 margin_top = 318.0
 margin_right = 890.0
@@ -1224,9 +1236,6 @@ margin_bottom = 402.0
 rect_min_size = Vector2( 500, 70 )
 popup_exclusive = true
 window_title = "ERROR"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="DialogText" type="Label" parent="CenterContainer/ConflictDialog"]
 margin_left = 10.0
@@ -1241,7 +1250,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
+[node name="ErrorAccept" parent="CenterContainer" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 443.0
 margin_top = 318.0
 margin_right = 837.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
+[ext_resource path="res://src/gui_common/AcceptDialogWithDefaultFunctions.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -341,22 +342,19 @@ __meta__ = {
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
 
-[node name="GLES2 Popup" type="AcceptDialog" parent="."]
+[node name="GLES2 Popup" parent="." instance=ExtResource( 11 )]
 margin_right = 500.0
 margin_bottom = 78.0
 rect_min_size = Vector2( 500, 0 )
 theme = ExtResource( 1 )
 window_title = "GLES2_MODE_WARNING"
 dialog_autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DialogText" type="Label" parent="GLES2 Popup"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 490.0
-margin_bottom = 32.0
+margin_right = 1770.0
+margin_bottom = 746.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "GLES2_MODE_WARNING_TEXT"

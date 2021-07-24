@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/AcceptDialogWithDefaultFunctions.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "SavingStatusFadeOut"
@@ -108,8 +109,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ErrorPopup" type="AcceptDialog" parent="CenterContainer2"]
-visible = true
+[node name="ErrorPopup" parent="CenterContainer2" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 315.0
 margin_top = 185.0
 margin_right = 965.0
@@ -181,5 +183,6 @@ margin_bottom = 32.0
 size_flags_horizontal = 5
 size_flags_vertical = 9
 text = "COPY_ERROR_TO_CLIPBOARD"
+
 [connection signal="popup_hide" from="CenterContainer2/ErrorPopup" to="." method="OnErrorDialogDismissed"]
 [connection signal="pressed" from="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/saving/SaveList.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/ConfirmationDialogWithDefaultFunctions.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/AcceptDialogWithDefaultFunctions.tscn" type="PackedScene" id=5]
 
 [node name="SaveList" type="ScrollContainer"]
 anchor_right = 1.0
@@ -50,7 +52,7 @@ align = 1
 [node name="ItemList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 1270.0
 
-[node name="DeleteSaveConfirmDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+[node name="DeleteSaveConfirmDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 4.0
 margin_right = 450.0
 margin_bottom = 88.0
@@ -63,8 +65,8 @@ window_title = "DELETE_THIS_SAVE"
 [node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 440.0
-margin_bottom = 32.0
+margin_right = 1710.0
+margin_bottom = 742.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 align = 1
@@ -73,7 +75,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoadNewerSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+[node name="LoadNewerSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 4.0
 margin_right = 600.0
 margin_bottom = 88.0
@@ -86,8 +88,8 @@ window_title = "LOAD_INCOMPATIBLE_SAVE"
 [node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadNewerSaveDialog"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 590.0
-margin_bottom = 32.0
+margin_right = 1860.0
+margin_bottom = 742.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "NEWER_VERSION_LOADING_WARNING"
@@ -97,7 +99,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoadOlderSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+[node name="LoadOlderSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 4.0
 margin_right = 700.0
 margin_bottom = 88.0
@@ -110,8 +112,8 @@ window_title = "LOAD_INCOMPATIBLE_SAVE"
 [node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadOlderSaveDialog"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 690.0
-margin_bottom = 32.0
+margin_right = 1960.0
+margin_bottom = 742.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "OLDER_VERSION_LOADING_WARNING"
@@ -121,7 +123,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoadInvalidSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+[node name="LoadInvalidSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 4.0
 margin_right = 600.0
 margin_bottom = 88.0
@@ -134,8 +136,8 @@ window_title = "LOAD_INVALID_SAVE"
 [node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadInvalidSaveDialog"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 590.0
-margin_bottom = 32.0
+margin_right = 1860.0
+margin_bottom = 742.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "LOAD_INVALID_SAVE_WARNING"
@@ -145,7 +147,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoadKnownIncompatibleDialog" type="AcceptDialog" parent="MarginContainer/VBoxContainer"]
+[node name="LoadKnownIncompatibleDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_left = 284.0
 margin_top = 4.0
 margin_right = 984.0
@@ -159,8 +161,8 @@ dialog_autowrap = true
 [node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 690.0
-margin_bottom = 32.0
+margin_right = 1960.0
+margin_bottom = 742.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "LOAD_INCOMPATIBLE_SAVE_WARNING"
@@ -169,6 +171,7 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]
