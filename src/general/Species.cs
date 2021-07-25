@@ -199,6 +199,7 @@ public abstract class Species : ICloneable
     {
         var info = new SpeciesInfo
         {
+            ID = ID;
             Population = Population,
         };
 
