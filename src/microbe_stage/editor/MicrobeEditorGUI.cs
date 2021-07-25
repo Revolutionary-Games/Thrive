@@ -798,7 +798,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
 
                 var extinctInPatch = entry.Value <= 0;
-                var extinctEverywhere = snapshot.SpeciesGoneDefinitelyExtinct.Contains(entry.Key);
+                var extinctEverywhere = snapshot.RecordedSpeciesInfo[entry.Key].Population <= 0;
 
                 // Clamp population number so it doesn't go into the negatives
                 var population = extinctInPatch ? 0 : entry.Value;
