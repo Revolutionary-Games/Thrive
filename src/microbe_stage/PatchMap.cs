@@ -233,12 +233,6 @@ public class PatchMap
             }
         }
 
-        // Add forever extinct species to patches snapshots - which were already saved
-        foreach (var patch in Patches)
-        {
-            patch.Value.SetSpeciesGoneDefinitivelyExtinctInLastSnapshot(result.ToList());
-        }
-
         return result.ToList();
     }
 

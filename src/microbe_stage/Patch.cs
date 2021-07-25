@@ -67,13 +67,6 @@ public class Patch
     [JsonIgnore]
     public Dictionary<Species, long> SpeciesInPatch => currentSnapshot.SpeciesInPatch;
 
-    /// <summary>
-    ///    List of all species that went extinct in this patch and are not present elsewhere.
-    ///    Used for snapshots.
-    /// </summary>
-    [JsonIgnore]
-    public List<Species> SpeciesGoneDefinitivelyExtinct => currentSnapshot.SpeciesGoneDefinitelyExtinct;
-
     [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
 
@@ -176,19 +169,6 @@ public class Patch
 
         var conditions = (PatchSnapshot)currentSnapshot.Clone();
         history.AddToFront(conditions);
-
-        SpeciesGoneDefinitivelyExtinct.Clear();
-    }
-
-    /// <remarks>
-    ///   Defines the list of species that went extinct across the whole world in the last saved snapshot.
-    ///   Extinct species computation are done after the save of the snapshot.
-    /// </remarks>
-    public void SetSpeciesGoneDefinitivelyExtinctInLastSnapshot(List<Species> extinctList)
-    {
-        var lastSnapshot = history.RemoveFromFront();
-        lastSnapshot.SpeciesGoneDefinitelyExtinct = extinctList;
-        history.AddToFront(lastSnapshot);
     }
 
     public override string ToString()
@@ -205,7 +185,6 @@ public class PatchSnapshot : ICloneable
     public double TimePeriod;
 
     public Dictionary<Species, long> SpeciesInPatch = new Dictionary<Species, long>();
-    public List<Species> SpeciesGoneDefinitelyExtinct = new List<Species>();
     public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>();
 
     public BiomeConditions Biome;
@@ -218,7 +197,6 @@ public class PatchSnapshot : ICloneable
             TimePeriod = TimePeriod,
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
-            SpeciesGoneDefinitelyExtinct = new List<Species>(SpeciesGoneDefinitelyExtinct),
             Biome = (BiomeConditions)Biome.Clone(),
         };
 
