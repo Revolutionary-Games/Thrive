@@ -105,7 +105,7 @@ public class SaveManagerGUI : Control
 
         if (!getTotalSaveCountTask.IsCompleted)
             return;
-        
+
         var info = getTotalSaveCountTask.Result;
         currentAutoSaveCount = getAutoSaveCountTask.Result.count;
         currentQuickSaveCount = getQuickSaveCountTask.Result.count;
