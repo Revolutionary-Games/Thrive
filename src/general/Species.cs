@@ -156,6 +156,22 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
+    /// Gets info specific to the species for saving.
+    /// Used for patch snapshots, but could be expanded
+    /// </summary>
+    /// <remarks> TODO: Check overlap with ClonePropertiesTo </remarks>
+    public SpeciesInfo RecordSpeciesInfo()
+    {
+        var info = new SpeciesInfo
+        {
+            ID = ID,
+            Population = Population,
+        };
+
+        return info;
+    }
+
+    /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
     ///   referring to the old data. In for example the Mutations
@@ -188,21 +204,5 @@ public abstract class Species : ICloneable
         species.Generation = Generation;
         species.ID = ID;
         species.PlayerSpecies = PlayerSpecies;
-    }
-
-    /// <summary>
-    /// Gets info specific to the species for saving.
-    /// Used for patch snapshots, but could be expanded
-    /// </summary>
-    /// <remarks> TODO: Check overlap with ClonePropertiesTo </remarks>
-    public SpeciesInfo recordSpeciesInfo()
-    {
-        var info = new SpeciesInfo
-        {
-            ID = ID,
-            Population = Population,
-        };
-
-        return info;
     }
 }

@@ -164,7 +164,7 @@ public class Patch
 
         foreach (var species in currentSnapshot.SpeciesInPatch.Keys)
         {
-            currentSnapshot.RecordedSpeciesInfo[species] = species.recordSpeciesInfo();
+            currentSnapshot.RecordedSpeciesInfo[species] = species.RecordSpeciesInfo();
         }
 
         var conditions = (PatchSnapshot)currentSnapshot.Clone();
