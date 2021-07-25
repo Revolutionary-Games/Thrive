@@ -189,4 +189,19 @@ public abstract class Species : ICloneable
         species.ID = ID;
         species.PlayerSpecies = PlayerSpecies;
     }
+
+    /// <summary>
+    /// Gets info specific to the species for saving.
+    /// Used for patch snapshots, but could be expanded
+    /// </summary>
+    /// <remarks> TODO: Check overlap with ClonePropertiesTo </remarks>
+    public SpeciesInfo recordSpeciesInfo()
+    {
+        var info = new SpeciesInfo
+        {
+            Population = Population,
+        };
+
+        return info;
+    }
 }
