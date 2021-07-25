@@ -126,6 +126,7 @@ public class SaveList : ScrollContainer
             savesList.AddChild(item);
         }
 
+        EmitSignal(nameof(OnItemsChanged));
         loadingItem.Visible = false;
         refreshing = false;
     }
@@ -180,7 +181,6 @@ public class SaveList : ScrollContainer
         SaveHelper.DeleteSave(saveToBeDeleted);
         saveToBeDeleted = null;
 
-        Refresh();
         EmitSignal(nameof(OnItemsChanged));
     }
 

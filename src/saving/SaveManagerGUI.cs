@@ -105,7 +105,7 @@ public class SaveManagerGUI : Control
 
         if (!getTotalSaveCountTask.IsCompleted)
             return;
-
+        
         var info = getTotalSaveCountTask.Result;
         currentAutoSaveCount = getAutoSaveCountTask.Result.count;
         currentQuickSaveCount = getQuickSaveCountTask.Result.count;
@@ -142,8 +142,6 @@ public class SaveManagerGUI : Control
 
     private void RefreshList()
     {
-        selectedDirty = true;
-
         saveList.Refresh();
         RefreshSaveCounts();
     }
@@ -153,6 +151,7 @@ public class SaveManagerGUI : Control
         if (refreshing)
             return;
 
+        selectedDirty = true;
         saveCountRefreshed = true;
         refreshing = true;
 
@@ -252,7 +251,6 @@ public class SaveManagerGUI : Control
     private void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        RefreshList();
         EmitSignal(nameof(OnBackPressed));
     }
 }
