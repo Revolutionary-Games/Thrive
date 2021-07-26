@@ -155,13 +155,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     public bool HasShape(uint searchShape)
     {
-        foreach (var shape in shapes)
-        {
-            if (shape == searchShape)
-                return true;
-        }
-
-        return false;
+        return shapes.Any(shape => shape == searchShape);
     }
 
     /// <summary>
