@@ -745,13 +745,19 @@ public class OptionsMenu : ControlWithInput
         saveButton.Disabled = result;
     }
 
+    private void UpdateDefaultOutputDeviceText(OptionButton optionButton)
+    {
+        optionButton.SetItemText(0, TranslationServer.Translate("DEFAULT_fOUTPUT_DEVICE"));
+    }
+
     private void LoadOutputDevices(OptionButton optionButton)
     {
-        for (var i = 0; i < OutputDevices.Count; i++)
+        foreach (var outputDevice in OutputDevices)
         {
-            var outputDevice = i == 0 ? TranslationServer.Translate("DEFAULT_OUTPUT_DEVICE") : OutputDevices[i];
             optionButton.AddItem(outputDevice);
         }
+
+        UpdateDefaultOutputDeviceText(optionButton);
     }
 
     private void LoadLanguages(OptionButton optionButton)
@@ -1178,6 +1184,7 @@ public class OptionsMenu : ControlWithInput
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
+        UpdateDefaultOutputDeviceText(outputDeviceSelection);
         UpdateResetSaveButtonState();
     }
 
@@ -1188,6 +1195,7 @@ public class OptionsMenu : ControlWithInput
 
         Settings.Instance.ApplyLanguageSettings();
         UpdateSelectedLanguage(Settings.Instance);
+        UpdateDefaultOutputDeviceText(outputDeviceSelection);
         UpdateResetSaveButtonState();
     }
 
