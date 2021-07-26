@@ -27,7 +27,7 @@ public abstract class ReversibleAction
     /// <summary>
     ///   Undoes this action
     /// </summary>
-    public void PreformUndo()
+    public void PerformUndo()
     {
         if (!Performed)
             throw new InvalidOperationException("cannot undo not performed action");

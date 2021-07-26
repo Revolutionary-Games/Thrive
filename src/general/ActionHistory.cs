@@ -45,7 +45,7 @@ public class ActionHistory<T>
             return false;
 
         var action = actions[--actionIndex];
-        action.PreformUndo();
+        action.PerformUndo();
         return true;
     }
 
