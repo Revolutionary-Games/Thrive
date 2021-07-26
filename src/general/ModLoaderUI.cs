@@ -313,7 +313,8 @@ public class ModLoaderUI : Control
                     floatNumberSpinner.Rounded = false;
                     floatNumberSpinner.Step = 0.1;
                     floatNumberSpinner.MinValue = currentItemInfo.MinimumValue;
-                    floatNumberSpinner.Value = Convert.ToDouble(modConfigDictionary[currentItemInfo.ID] ?? default(double),
+                    floatNumberSpinner.Value = Convert.ToDouble(
+                        modConfigDictionary[currentItemInfo.ID] ?? default(double),
                         CultureInfo.InvariantCulture);
                     floatNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
                     currentItem.AddChild(floatNumberSpinner);
@@ -336,7 +337,8 @@ public class ModLoaderUI : Control
                     floatNumberSlider.Rounded = false;
                     floatNumberSlider.Step = 0.1;
                     floatNumberSlider.MinValue = currentItemInfo.MinimumValue;
-                    floatNumberSlider.Value = Convert.ToDouble(modConfigDictionary[currentItemInfo.ID] ?? default(double),
+                    floatNumberSlider.Value = Convert.ToDouble(
+                        modConfigDictionary[currentItemInfo.ID] ?? default(double),
                         CultureInfo.InvariantCulture);
                     floatNumberSlider.MaxValue = currentItemInfo.MaximumValue;
                     floatNumberSlider.SizeFlagsHorizontal = 3;
@@ -380,7 +382,8 @@ public class ModLoaderUI : Control
                 case "c":
                     var regularColorPickerButton = new ColorPickerButton();
                     regularColorPickerButton.EditAlpha = false;
-                    regularColorPickerButton.Color = new Color((string)modConfigDictionary[currentItemInfo.ID] ?? default(string));
+                    regularColorPickerButton.Color =
+                        new Color((string)modConfigDictionary[currentItemInfo.ID] ?? default(string));
                     regularColorPickerButton.Text = "Color";
                     currentItem.AddChild(regularColorPickerButton);
                     break;
@@ -388,7 +391,8 @@ public class ModLoaderUI : Control
                 case "alphacolour":
                 case "ac":
                     var colorAlphaPickerButton = new ColorPickerButton();
-                    colorAlphaPickerButton.Color = new Color((string)modConfigDictionary[currentItemInfo.ID] ?? default(string));
+                    colorAlphaPickerButton.Color =
+                        new Color((string)modConfigDictionary[currentItemInfo.ID] ?? default(string));
                     colorAlphaPickerButton.Text = "Color";
                     currentItem.AddChild(colorAlphaPickerButton);
                     break;
@@ -888,7 +892,7 @@ public class ModLoaderUI : Control
         foreach (var currentItem in configContainer.GetChildren())
         {
             var currentItemInfo = currentItem as ModConfigItemInfo;
-            currentItemInfo.UpdateUI();
+            currentItemInfo?.UpdateUI();
         }
     }
 
@@ -900,7 +904,7 @@ public class ModLoaderUI : Control
         {
             var currentItemInfo = configItemArray[i] as ModConfigItemInfo;
 
-            if (currentSelectedMod != null)
+            if (currentSelectedMod != null && currentItemInfo != null)
             {
                 VerifyConfigFileExist(currentSelectedMod);
                 currentItemInfo.Value = currentSelectedMod.ConfigurationList[i].Value;
@@ -925,15 +929,18 @@ public class ModLoaderUI : Control
         for (int i = 0; i < configItemArray.Count; i++)
         {
             var currentItemInfo = configItemArray[i] as ModConfigItemInfo;
-            currentItemInfo.UpdateInternalValue();
-
-            if (currentSelectedMod != null && currentItemInfo.ID != null)
+            if (currentItemInfo != null)
             {
-                currentSelectedMod.Configuration[currentItemInfo.ID] = currentItemInfo.Value;
+                currentItemInfo.UpdateInternalValue();
+
+                if (currentSelectedMod != null && currentItemInfo.ID != null)
+                {
+                    currentSelectedMod.Configuration[currentItemInfo.ID] = currentItemInfo.Value;
+                }
             }
         }
 
-        loader.SaveReloadedModsList();
+        loader?.SaveReloadedModsList();
     }
 
     private void OnLoadPressed()

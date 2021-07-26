@@ -58,24 +58,40 @@ public class ModConfigItemInfo : HBoxContainer
                 case "float range":
                 case "fr":
                     var numberUIElement = childUIElement as Range;
-                    Value = numberUIElement.Value;
+                    if (numberUIElement != null)
+                    {
+                        Value = numberUIElement.Value;
+                    }
+
                     break;
                 case "option":
                 case "enum":
                 case "o":
                     var optionUIElement = childUIElement as OptionButton;
-                    Value = optionUIElement.Selected;
+                    if (optionUIElement != null)
+                    {
+                        Value = optionUIElement.Selected;
+                    }
+
                     break;
                 case "bool":
                 case "boolean":
                 case "b":
                     var buttonUIElement = childUIElement as Button;
-                    Value = buttonUIElement.Pressed;
+                    if (buttonUIElement != null)
+                    {
+                        Value = buttonUIElement.Pressed;
+                    }
+
                     break;
                 case "string":
                 case "s":
                     var stringUIElement = childUIElement as LineEdit;
-                    Value = stringUIElement.Text;
+                    if (stringUIElement != null)
+                    {
+                        Value = stringUIElement.Text;
+                    }
+
                     break;
                 case "color":
                 case "colour":
@@ -84,7 +100,11 @@ public class ModConfigItemInfo : HBoxContainer
                 case "alphacolour":
                 case "ac":
                     var colorUIElement = childUIElement as ColorPickerButton;
-                    Value = colorUIElement.Color.ToHtml();
+                    if (colorUIElement != null)
+                    {
+                        Value = colorUIElement.Color.ToHtml();
+                    }
+
                     break;
             }
         }
@@ -102,47 +122,65 @@ public class ModConfigItemInfo : HBoxContainer
         var childUIElement = GetChild(1);
         switch (Type.ToLower(CultureInfo.InvariantCulture))
         {
-                case "int":
-                case "integer":
-                case "i":
-                case "int range":
-                case "integer range":
-                case "ir":
-                case "float":
-                case "f":
-                case "float range":
-                case "fr":
-                    var numberUIElement = childUIElement as Range;
+            case "int":
+            case "integer":
+            case "i":
+            case "int range":
+            case "integer range":
+            case "ir":
+            case "float":
+            case "f":
+            case "float range":
+            case "fr":
+                var numberUIElement = childUIElement as Range;
+                if (numberUIElement != null)
+                {
                     numberUIElement.Value = Convert.ToDouble(Value ?? default(double), CultureInfo.InvariantCulture);
-                    break;
-                case "bool":
-                case "boolean":
-                case "b":
-                    var buttonUIElement = childUIElement as Button;
+                }
+
+                break;
+            case "bool":
+            case "boolean":
+            case "b":
+                var buttonUIElement = childUIElement as Button;
+                if (buttonUIElement != null)
+                {
                     buttonUIElement.Pressed = (bool)(Value ?? default(bool));
-                    break;
-                case "string":
-                case "s":
-                    var stringUIElement = childUIElement as LineEdit;
-                    stringUIElement.Text = (string)(Value ?? default(string));
-                    break;
-                case "option":
-                case "enum":
-                case "o":
-                    var optionUIElement = childUIElement as OptionButton;
+                }
+
+                break;
+            case "string":
+            case "s":
+                var stringUIElement = childUIElement as LineEdit;
+                if (stringUIElement != null)
+                {
+                    stringUIElement.Text = (string)Value;
+                }
+
+                break;
+            case "option":
+            case "enum":
+            case "o":
+                var optionUIElement = childUIElement as OptionButton;
+                if (optionUIElement != null)
+                {
                     optionUIElement.Selected = Convert.ToInt32(Value ?? default(int), CultureInfo.InvariantCulture);
-                    break;
-                case "color":
-                case "colour":
-                case "c":
-                case "alphacolor":
-                case "alphacolour":
-                case "ac":
-                    var colorUIElement = childUIElement as ColorPickerButton;
-                    colorUIElement.Color = new Color((string)Value ?? default(string));
-                    break;
-                default:
-                    break;
+                }
+
+                break;
+            case "color":
+            case "colour":
+            case "c":
+            case "alphacolor":
+            case "alphacolour":
+            case "ac":
+                var colorUIElement = childUIElement as ColorPickerButton;
+                if (colorUIElement != null)
+                {
+                    colorUIElement.Color = new Color((string)Value);
+                }
+
+                break;
         }
     }
 
