@@ -75,6 +75,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     private float rigidity;
 
+    private float initialRigidity;
+
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -806,6 +808,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public void SetRigidity(int rigidity)
     {
         int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        int intInitialRigidity = (int)Math.Round(initialRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         if (MovingOrganelle != null)
         {
@@ -817,7 +820,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (intRigidity == rigidity)
             return;
 
-        int cost = Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+        int cost = (Math.Abs(rigidity - intInitialRigidity) - Math.Abs(intRigidity - intInitialRigidity))
+            * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
 
         if (cost > MutationPoints)
         {
@@ -1383,7 +1387,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // bar can take it into account (the bar is updated when
         // organelles are added)
         Membrane = species.MembraneType;
-        Rigidity = species.MembraneRigidity;
+        initialRigidity = Rigidity = species.MembraneRigidity;
         Colour = species.Colour;
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
