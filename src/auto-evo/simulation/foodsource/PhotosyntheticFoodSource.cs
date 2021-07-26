@@ -1,4 +1,6 @@
-﻿public class PhotosyntheticFoodSource : IFoodSource
+﻿using System.Linq;
+
+public class PhotosyntheticFoodSource : IFoodSource
 {
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
