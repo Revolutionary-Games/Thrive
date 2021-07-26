@@ -54,7 +54,7 @@ public class PauseMenu : ControlWithInput
         Primary,
         Help,
         Load,
-        Options,y
+        Options,
         Save,
         None,
     }
