@@ -785,6 +785,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public bool AddPilus(uint shapeOwner)
     {
         return pilusPhysicsShapes.Add(shapeOwner);
+        return pilusPhysicsShapes.Add(shapeOwner);
     }
 
     public bool RemovePilus(uint shapeOwner)
@@ -2317,18 +2318,34 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GlobalTransform = pos;
     }
 
+    private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    {
+        return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
+    }
+
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
         _ = bodyID;
 
-        if (body is Microbe microbe)
+        if (body is Microbe touchedColonyMaster)
         {
+            var touchedOwnerId = touchedColonyMaster.ShapeFindOwner(bodyShape);
+            var thisOwnerId = ShapeFindOwner(localShape);
+
+            var touchedMicrobe = touchedColonyMaster;
+            if (touchedMicrobe.Colony != null)
+                touchedMicrobe = GetColonyMemberWithShapeOwner(touchedOwnerId, touchedMicrobe.Colony);
+
+            var thisMicrobe = this;
+            if (Colony != null)
+                thisMicrobe = GetColonyMemberWithShapeOwner(thisOwnerId, Colony);
+
             // TODO: does this need to check for disposed exception?
-            if (microbe.Dead || (Colony != null && Colony == microbe.Colony))
+            if (touchedMicrobe.Dead || (Colony != null && Colony == touchedMicrobe.Colony))
                 return;
 
-            bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
-            bool oursIsPilus = IsPilus(ShapeFindOwner(localShape));
+            bool otherIsPilus = touchedMicrobe.IsPilus(touchedOwnerId);
+            bool oursIsPilus = thisMicrobe.IsPilus(thisOwnerId);
 
             // Pilus logic
             if (otherIsPilus && oursIsPilus)
@@ -2342,40 +2359,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 // Us attacking the other microbe, or it is attacking us
 
                 // Disallow cannibalism
-                if (microbe.Species == Species)
+                if (touchedMicrobe.Species == thisMicrobe.Species)
                     return;
 
-                var target = otherIsPilus ? this : microbe;
+                var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
 
                 target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
                 return;
             }
 
             // Pili don't stop engulfing
-            if (touchedMicrobes.Add(microbe))
+            if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
-                var touchedMicrobe = this;
-                if (ColonyChildren != null && microbe.ColonyParent == null)
-                {
-                    foreach (var searchMember in ColonyChildren)
-                    {
-                        foreach (var organelle in searchMember.organelles)
-                        {
-                            if (organelle.HasShape(ShapeFindOwner(localShape)))
-                            {
-                                touchedMicrobe = searchMember;
-                                break;
-                            }
-                        }
-
-                        if (touchedMicrobe != this)
-                            break;
-                    }
-                }
-
-                touchedMicrobe.touchedMicrobes = touchedMicrobes;
-                touchedMicrobe.CheckStartEngulfingOnCandidates();
-                touchedMicrobe.CheckBinding();
+                thisMicrobe.CheckStartEngulfingOnCandidates();
+                thisMicrobe.CheckBinding();
             }
         }
     }
