@@ -295,7 +295,7 @@ public class MicrobeAI
     private void PursueAndConsumeChunks(Vector3 chunk, Random random)
     {
         // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
-        targetPosition = chunk + new Vector3(0.2f * microbe.EngulfSize, 0.0f, 0.2f * microbe.EngulfSize);
+        targetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
         microbe.LookAtPoint = targetPosition;
         SetEngulfIfClose();
 
@@ -305,8 +305,15 @@ public class MicrobeAI
             MoveWithRandomTurn(0.1f, 0.2f, random);
         }
 
-        // Always set target Position, for use later in AI
-        microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
+        // If this Microbe is right on top of the chunk, stop instead of spinning
+        if (DistanceFromMe(chunk) < Constants.AI_ENGULF_STOP_DISTANCE)
+        {
+            SetMoveSpeed(0.0f);
+        }
+        else
+        {
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+        }
     }
 
     private void FleeFromPredators(Random random, Vector3 predatorLocation)
@@ -360,6 +367,14 @@ public class MicrobeAI
     // For doing run and tumble
     private void RunAndTumble(Random random)
     {
+        // If this microbe is currently stationary, just initialize by moving in a random direction.
+        // Used to get newly spawned microbes to move.
+        if (microbe.MovementDirection.Length() == 0)
+        {
+            MoveWithRandomTurn(0, Mathf.Pi, random);
+            return;
+        }
+
         // Run and tumble
         // A biased random walk, they turn more if they are picking up less compounds.
         // The scientifically accurate algorithm has been flipped to account for the compound

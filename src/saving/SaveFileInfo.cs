@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Info about a save file on disk
@@ -41,6 +42,10 @@ public class SaveFileInfo
 
     public static string SaveNameToPath(string name)
     {
+        // If the name begins with the file protocol it's already a full path
+        if (name.StartsWith(Constants.EXPLICIT_PATH_PREFIX, StringComparison.InvariantCulture))
+            return name.Substring(Constants.EXPLICIT_PATH_PREFIX.Length);
+
         return PathUtils.Join(Constants.SAVE_FOLDER, name);
     }
 

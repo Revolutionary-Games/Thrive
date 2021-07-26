@@ -152,6 +152,7 @@ public class SaveList : ScrollContainer
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
+        EmitSignal(nameof(OnItemsChanged));
     }
 
     private void OnSubItemSelectedChanged()
