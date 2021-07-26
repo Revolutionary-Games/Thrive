@@ -64,7 +64,7 @@ public class PauseMenu : ControlWithInput
     /// </summary>
     public GameProperties GameProperties { get; set; }
 
-    private ActiveMenuType ActiveActiveMenu
+    private ActiveMenuType ActiveMenu
     {
         get
         {
@@ -78,10 +78,11 @@ public class PauseMenu : ControlWithInput
         }
         set
         {
-            if (value == ActiveActiveMenu)
+            var currentActiveMenu = ActiveMenu;
+            if (value == currentActiveMenu)
                 return;
 
-            GetControlFromMenuEnum(ActiveActiveMenu)?.Hide();
+            GetControlFromMenuEnum(currentActiveMenu)?.Hide();
 
             switch (value)
             {
@@ -119,7 +120,7 @@ public class PauseMenu : ControlWithInput
     {
         if (Visible)
         {
-            ActiveActiveMenu = ActiveMenuType.Primary;
+            ActiveMenu = ActiveMenuType.Primary;
 
             EmitSignal(nameof(OnClosed));
 
@@ -148,10 +149,10 @@ public class PauseMenu : ControlWithInput
 
     public void ShowHelpScreen()
     {
-        if (ActiveActiveMenu == ActiveMenuType.Help)
+        if (ActiveMenu == ActiveMenuType.Help)
             return;
 
-        ActiveActiveMenu = ActiveMenuType.Help;
+        ActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
     }
 
@@ -201,7 +202,7 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveActiveMenu = ActiveMenuType.Help;
+        ActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
     }
 
@@ -209,52 +210,52 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveActiveMenu = ActiveMenuType.Primary;
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveActiveMenu = ActiveMenuType.Load;
+        ActiveMenu = ActiveMenuType.Load;
     }
 
     private void CloseLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveActiveMenu = ActiveMenuType.Primary;
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenOptionsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveActiveMenu = ActiveMenuType.Options;
+        ActiveMenu = ActiveMenuType.Options;
     }
 
     private void OnOptionsClosed()
     {
-        ActiveActiveMenu = ActiveMenuType.Primary;
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveActiveMenu = ActiveMenuType.Save;
+        ActiveMenu = ActiveMenuType.Save;
     }
 
     private void CloseSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveActiveMenu = ActiveMenuType.Primary;
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void ForwardSaveAction(string name)
     {
-        ActiveActiveMenu = ActiveMenuType.Primary;
+        ActiveMenu = ActiveMenuType.Primary;
 
         // Close this first to get the menus out of the way to capture the save screenshot
         EmitSignal(nameof(OnClosed));
