@@ -555,7 +555,8 @@ public class ModLoader : Reference
 
         if (file.FileExists(location + "/mod_config.json"))
         {
-            var currentConfigList = JsonConvert.DeserializeObject<ModConfigItemInfo[]>(ReadJSONFile(location + "/mod_config.json"));
+            var currentConfigList =
+                JsonConvert.DeserializeObject<ModConfigItemInfo[]>(ReadJSONFile(location + "/mod_config.json"));
             Dictionary<string, object> tempDictionary = new Dictionary<string, object>();
 
             for (int index = 0; index < currentConfigList.Length; index++)
@@ -630,12 +631,11 @@ public class ModLoader : Reference
     {
         if (FileHelpers.Exists(currentMod.Location + "/mod_config.json"))
         {
-            return JsonConvert.DeserializeObject<ModConfigItemInfo[]>(ReadJSONFile(currentMod.Location + "/mod_config.json"));
+            return JsonConvert.DeserializeObject<ModConfigItemInfo[]>(
+                ReadJSONFile(currentMod.Location + "/mod_config.json"));
         }
-        else
-        {
-            return null;
-        }
+
+        return null;
     }
 
     private static string ReadJSONFile(string path)

@@ -90,7 +90,7 @@ public class ModInfo : Resource
         if (Configuration != null)
         {
             var configValue = Configuration[id];
-            return (T)Convert.ChangeType(configValue, typeof(T), new CultureInfo(string.Empty));
+            return (T)Convert.ChangeType(configValue, typeof(T), CultureInfo.InvariantCulture);
         }
 
         return default(T);

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -272,122 +275,140 @@ public class ModLoaderUI : Control
                     configContainer.QueueFreeChildren();
                 }
 
-                if (tempModInfo.ConfigurationList == null)
-                {
-                    if (FileHelpers.Exists(tempModInfo.Location + "/mod_config.json"))
-                    {
-                        tempModInfo.ConfigurationList = loader.GetModConfigList(tempModInfo);
-                    }
-                    else
-                    {
-                        //Replace With something else
-                        GD.Print("Mod Missing Config File: " + tempModInfo.Name);
-                        return;
-                    }
-                }
-
-                ModConfigItemInfo[] tempConfigList = tempModInfo.ConfigurationList;
-                //Consoldate to a fucntion later
-                foreach (var currentItemInfo in tempConfigList)
-                {
-                    var currentItem = ConfigItemScene.Instance() as BoxContainer;
-                    var currentItemLabel = currentItem.GetChild(0) as Label;
-
-                    currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
-                    currentItem.HintTooltip = currentItemInfo.Description ?? string.Empty;
-                    switch (currentItemInfo.Type.ToLower())
-                    {
-                        case "int":
-                        case "integer":
-                        case "i":
-                            var intNumberSpinner = new SpinBox();
-                            intNumberSpinner.Rounded = true;
-                            intNumberSpinner.MinValue = currentItemInfo.MinimumValue;
-                            intNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
-                            currentItem.AddChild(intNumberSpinner);
-                            break;
-                        case "float":
-                        case "f":
-                            var floatNumberSpinner = new SpinBox();
-                            floatNumberSpinner.Rounded = false;
-                            floatNumberSpinner.Step = 0.1;
-                            floatNumberSpinner.MinValue = currentItemInfo.MinimumValue;
-                            floatNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
-                            currentItem.AddChild(floatNumberSpinner);
-                            break;
-                        case "int range":
-                        case "integer range":
-                        case "ir":
-                            var intNumberSlider = new HSlider();
-                            intNumberSlider.Rounded = true;
-                            intNumberSlider.MinValue = currentItemInfo.MinimumValue;
-                            intNumberSlider.MaxValue = currentItemInfo.MaximumValue;
-                            intNumberSlider.SizeFlagsHorizontal = 3;
-                            currentItem.AddChild(intNumberSlider);
-                            break;
-                        case "float range":
-                        case "fr":
-                            var floatNumberSlider = new HSlider();
-                            floatNumberSlider.Rounded = false;
-                            floatNumberSlider.Step = 0.1;
-                            floatNumberSlider.MinValue = currentItemInfo.MinimumValue;
-                            floatNumberSlider.MaxValue = currentItemInfo.MaximumValue;
-                            floatNumberSlider.SizeFlagsHorizontal = 3;
-                            currentItem.AddChild(floatNumberSlider);
-                            break;
-                        case "bool":
-                        case "boolean":
-                        case "b":
-                            var booleanCheckbutton = new CheckButton();
-                            currentItem.AddChild(booleanCheckbutton);
-                            break;
-                        case "string":
-                        case "s":
-                            var stringLineEdit = new LineEdit();
-                            stringLineEdit.SizeFlagsHorizontal = 3;
-                            stringLineEdit.MaxLength = (int)currentItemInfo.MaximumValue;
-                            currentItem.AddChild(stringLineEdit);
-                            break;
-                        case "title":
-                        case "t":
-                            currentItemLabel.Text = currentItemInfo.DisplayName ?? currentItemInfo.ID;
-                            currentItem.Alignment = BoxContainer.AlignMode.Center;
-                            break;
-                        case "option":
-                        case "enum":
-                        case "o":
-                            var optionButton = new OptionButton();
-                            foreach (var optionItem in currentItemInfo.GetAllOptions())
-                            {
-                                optionButton.AddItem(optionItem);
-                            }
-
-                            currentItem.AddChild(optionButton);
-                            break;
-                        case "color":
-                        case "colour":
-                        case "c":
-                            var regularColorPickerButton = new ColorPickerButton();
-                            regularColorPickerButton.EditAlpha = false;
-                            regularColorPickerButton.Text = "Color";
-                            currentItem.AddChild(regularColorPickerButton);
-                            break;
-                        case "alphacolor":
-                        case "alphacolour":
-                        case "ac":
-                            var colorAlphaPickerButton = new ColorPickerButton();
-                            colorAlphaPickerButton.Text = "Color";
-                            currentItem.AddChild(colorAlphaPickerButton);
-                            break;
-                    }
-
-                    configContainer.AddChild(currentItem);
-                }
+                VerifyConfigFileExist(tempModInfo);
+                ConfigMenuSetup(tempModInfo.ConfigurationList, tempModInfo.Configuration);
             }
             else
             {
                 configPanelContainer.Visible = false;
             }
+        }
+    }
+
+    private void ConfigMenuSetup(ModConfigItemInfo[] modConfigList, Dictionary<string, object> modConfigDictionary)
+    {
+        foreach (var currentItemInfo in modConfigList)
+        {
+            var currentItem = ConfigItemScene.Instance() as HBoxContainer;
+            var currentItemLabel = currentItem.GetChild(0) as Label;
+
+            currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
+            currentItem.HintTooltip = currentItemInfo.Description ?? string.Empty;
+            switch (currentItemInfo.Type.ToLower(CultureInfo.InvariantCulture))
+            {
+                case "int":
+                case "integer":
+                case "i":
+                    var intNumberSpinner = new SpinBox();
+                    intNumberSpinner.Rounded = true;
+                    intNumberSpinner.MinValue = currentItemInfo.MinimumValue;
+                    intNumberSpinner.Value = Convert.ToInt32(modConfigDictionary[currentItemInfo.ID] ?? default(int),
+                        CultureInfo.InvariantCulture);
+                    intNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
+                    currentItem.AddChild(intNumberSpinner);
+                    break;
+                case "float":
+                case "f":
+                    var floatNumberSpinner = new SpinBox();
+                    floatNumberSpinner.Rounded = false;
+                    floatNumberSpinner.Step = 0.1;
+                    floatNumberSpinner.MinValue = currentItemInfo.MinimumValue;
+                    floatNumberSpinner.Value = Convert.ToDouble(modConfigDictionary[currentItemInfo.ID] ?? default(double),
+                        CultureInfo.InvariantCulture);
+                    floatNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
+                    currentItem.AddChild(floatNumberSpinner);
+                    break;
+                case "int range":
+                case "integer range":
+                case "ir":
+                    var intNumberSlider = new HSlider();
+                    intNumberSlider.Rounded = true;
+                    intNumberSlider.MinValue = currentItemInfo.MinimumValue;
+                    intNumberSlider.Value = Convert.ToInt32(modConfigDictionary[currentItemInfo.ID] ?? default(int),
+                        CultureInfo.InvariantCulture);
+                    intNumberSlider.MaxValue = currentItemInfo.MaximumValue;
+                    intNumberSlider.SizeFlagsHorizontal = 3;
+                    currentItem.AddChild(intNumberSlider);
+                    break;
+                case "float range":
+                case "fr":
+                    var floatNumberSlider = new HSlider();
+                    floatNumberSlider.Rounded = false;
+                    floatNumberSlider.Step = 0.1;
+                    floatNumberSlider.MinValue = currentItemInfo.MinimumValue;
+                    floatNumberSlider.Value = Convert.ToDouble(modConfigDictionary[currentItemInfo.ID] ?? default(double),
+                        CultureInfo.InvariantCulture);
+                    floatNumberSlider.MaxValue = currentItemInfo.MaximumValue;
+                    floatNumberSlider.SizeFlagsHorizontal = 3;
+                    currentItem.AddChild(floatNumberSlider);
+                    break;
+                case "bool":
+                case "boolean":
+                case "b":
+                    var booleanCheckbutton = new CheckButton();
+                    booleanCheckbutton.Pressed = (bool)(modConfigDictionary[currentItemInfo.ID] ?? default(bool));
+                    currentItem.AddChild(booleanCheckbutton);
+                    break;
+                case "string":
+                case "s":
+                    var stringLineEdit = new LineEdit();
+                    stringLineEdit.SizeFlagsHorizontal = 3;
+                    stringLineEdit.Text = (string)(modConfigDictionary[currentItemInfo.ID] ?? default(string));
+                    stringLineEdit.MaxLength = (int)currentItemInfo.MaximumValue;
+                    currentItem.AddChild(stringLineEdit);
+                    break;
+                case "title":
+                case "t":
+                    currentItemLabel.Text = currentItemInfo.DisplayName ?? currentItemInfo.ID;
+                    currentItem.Alignment = BoxContainer.AlignMode.Center;
+                    break;
+                case "option":
+                case "enum":
+                case "o":
+                    var optionButton = new OptionButton();
+                    foreach (var optionItem in currentItemInfo.GetAllOptions())
+                    {
+                        optionButton.AddItem(optionItem);
+                    }
+
+                    optionButton.Selected = Convert.ToInt32(modConfigDictionary[currentItemInfo.ID] ?? default(int),
+                        CultureInfo.InvariantCulture);
+                    currentItem.AddChild(optionButton);
+                    break;
+                case "color":
+                case "colour":
+                case "c":
+                    var regularColorPickerButton = new ColorPickerButton();
+                    regularColorPickerButton.EditAlpha = false;
+                    regularColorPickerButton.Color = new Color((string)modConfigDictionary[currentItemInfo.ID] ?? default(string));
+                    regularColorPickerButton.Text = "Color";
+                    currentItem.AddChild(regularColorPickerButton);
+                    break;
+                case "alphacolor":
+                case "alphacolour":
+                case "ac":
+                    var colorAlphaPickerButton = new ColorPickerButton();
+                    colorAlphaPickerButton.Color = new Color((string)modConfigDictionary[currentItemInfo.ID] ?? default(string));
+                    colorAlphaPickerButton.Text = "Color";
+                    currentItem.AddChild(colorAlphaPickerButton);
+                    break;
+            }
+
+            var currentItemNodeInfo = currentItem as ModConfigItemInfo;
+            if (currentItemInfo.ID != null)
+            {
+                currentItemNodeInfo.Value = modConfigDictionary[currentItemInfo.ID];
+            }
+
+            currentItemNodeInfo.ID = currentItemInfo.ID;
+            currentItemNodeInfo.DisplayName = currentItemInfo.DisplayName;
+            currentItemNodeInfo.Description = currentItemInfo.Description;
+            currentItemNodeInfo.MaximumValue = currentItemInfo.MaximumValue;
+            currentItemNodeInfo.MinimumValue = currentItemInfo.MinimumValue;
+            currentItemNodeInfo.Type = currentItemInfo.Type;
+            currentItemNodeInfo.Options = currentItemInfo.Options;
+
+            configContainer.AddChild(currentItem);
         }
     }
 
@@ -761,6 +782,22 @@ public class ModLoaderUI : Control
         ReloadModLists();
     }
 
+    private void VerifyConfigFileExist(ModInfo checkedModInfo)
+    {
+        if (checkedModInfo.ConfigurationList == null || checkedModInfo.ConfigurationList.Length < 1)
+        {
+            if (FileHelpers.Exists(checkedModInfo.Location + "/mod_config.json"))
+            {
+                checkedModInfo.ConfigurationList = loader.GetModConfigList(checkedModInfo);
+            }
+            else
+            {
+                GD.Print("Mod Missing Config File: " + checkedModInfo.Name);
+                checkedModInfo.ConfigurationList = Array.Empty<ModConfigItemInfo>();
+            }
+        }
+    }
+
     private void LoadReminderPopupConfirmed()
     {
         ResetLoaderUI();
@@ -789,7 +826,8 @@ public class ModLoaderUI : Control
     /// <summary>
     ///   This get the mods from the mod directory and updates the UnloadedItemList
     /// </summary>
-    private void ReloadModLists(bool unloadedModList = true, bool autoLoadedModList = true, bool errorModList = true, bool configModList = true)
+    private void ReloadModLists(bool unloadedModList = true, bool autoLoadedModList = true, bool errorModList = true,
+        bool configModList = true)
     {
         if (unloadedModList)
         {
@@ -843,6 +881,59 @@ public class ModLoaderUI : Control
     private void OnOpenModsFolderButtonPressed()
     {
         OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.MOD_FOLDER));
+    }
+
+    private void OnClearConfigButtonPressed()
+    {
+        foreach (var currentItem in configContainer.GetChildren())
+        {
+            var currentItemInfo = currentItem as ModConfigItemInfo;
+            currentItemInfo.UpdateUI();
+        }
+    }
+
+    private void OnResetConfigButtonPressed()
+    {
+        var configItemArray = configContainer.GetChildren();
+
+        for (int i = 0; i < configItemArray.Count; i++)
+        {
+            var currentItemInfo = configItemArray[i] as ModConfigItemInfo;
+
+            if (currentSelectedMod != null)
+            {
+                VerifyConfigFileExist(currentSelectedMod);
+                currentItemInfo.Value = currentSelectedMod.ConfigurationList[i].Value;
+                if (currentItemInfo.ID != null)
+                {
+                    currentSelectedMod.Configuration[currentItemInfo.ID] = currentItemInfo.Value;
+                }
+
+                currentItemInfo.UpdateUI();
+            }
+        }
+
+        if (currentSelectedMod != null)
+        {
+            loader.SaveReloadedModsList();
+        }
+    }
+
+    private void OnApplyButtonPressed()
+    {
+        var configItemArray = configContainer.GetChildren();
+        for (int i = 0; i < configItemArray.Count; i++)
+        {
+            var currentItemInfo = configItemArray[i] as ModConfigItemInfo;
+            currentItemInfo.UpdateInternalValue();
+
+            if (currentSelectedMod != null && currentItemInfo.ID != null)
+            {
+                currentSelectedMod.Configuration[currentItemInfo.ID] = currentItemInfo.Value;
+            }
+        }
+
+        loader.SaveReloadedModsList();
     }
 
     private void OnLoadPressed()
