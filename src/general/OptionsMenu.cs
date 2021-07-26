@@ -100,6 +100,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath GUIMutedPath;
 
     [Export]
+    public NodePath OutputDeviceSelectionPath;
+
+    [Export]
     public NodePath LanguageSelectionPath;
 
     [Export]
@@ -172,6 +175,8 @@ public class OptionsMenu : ControlWithInput
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
 
+    private static readonly List<string> OutputDevicesCache = AudioServer.GetDeviceList().OfType<string>().ToList();
+
     private Button resetButton;
     private Button saveButton;
 
@@ -205,6 +210,7 @@ public class OptionsMenu : ControlWithInput
     private CheckBox sfxMuted;
     private Slider guiVolume;
     private CheckBox guiMuted;
+    private OptionButton outputDeviceSelection;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
 
@@ -277,6 +283,7 @@ public class OptionsMenu : ControlWithInput
     }
 
     private static List<string> Languages => LanguagesCache;
+    private static List<string> OutputDevices => OutputDevicesCache;
 
     public override void _Ready()
     {
@@ -314,9 +321,11 @@ public class OptionsMenu : ControlWithInput
         sfxMuted = GetNode<CheckBox>(SFXMutedPath);
         guiVolume = GetNode<Slider>(GUIVolumePath);
         guiMuted = GetNode<CheckBox>(GUIMutedPath);
+        outputDeviceSelection = GetNode<OptionButton>(OutputDeviceSelectionPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
         LoadLanguages(languageSelection);
+        LoadOutputDevices(outputDeviceSelection);
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
@@ -440,6 +449,7 @@ public class OptionsMenu : ControlWithInput
         guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
         UpdateSelectedLanguage(settings);
+        UpdateSelectedOutputDevice(settings);
 
         // Hide or show the reset language button based on the selected language
         resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
@@ -730,6 +740,14 @@ public class OptionsMenu : ControlWithInput
 
         resetButton.Disabled = result;
         saveButton.Disabled = result;
+    }
+
+    private void LoadOutputDevices(OptionButton optionButton)
+    {
+        foreach (var outputDevice in OutputDevices)
+        {
+            optionButton.AddItem(outputDevice);
+        }
     }
 
     private void LoadLanguages(OptionButton optionButton)
@@ -1142,6 +1160,14 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnOutputDeviceSettingSelected(int item)
+    {
+        Settings.Instance.SelectedOutputDevice.Value = OutputDevices[item];
+
+        Settings.Instance.ApplyOutputDeviceSettings();
+        UpdateResetSaveButtonState();
+    }
+
     private void OnLanguageSettingSelected(int item)
     {
         Settings.Instance.SelectedLanguage.Value = Languages[item];
@@ -1165,6 +1191,11 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         OS.ShellOpen("https://translate.revolutionarygamesstudio.com/engage/thrive/");
+    }
+
+    private void UpdateSelectedOutputDevice(Settings settings)
+    {
+        outputDeviceSelection.Selected = OutputDevices.IndexOf(settings.SelectedOutputDevice.Value ?? "Default");
     }
 
     private void UpdateSelectedLanguage(Settings settings)
