@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-16 15:11+0300\n"
-"PO-Revision-Date: 2021-07-26 13:26+0000\n"
-"Last-Translator: TomDev03 <chumbosilva200@gmail.com>\n"
+"PO-Revision-Date: 2021-07-26 15:56+0000\n"
+"Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -401,7 +401,7 @@ msgstr "Disparar toxina"
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 #, fuzzy
 msgid "TOGGLE_ENGULF"
-msgstr "Engolir"
+msgstr "Engolfar"
 
 #: ../simulation_parameters/common/input_options.json:46
 #: ../src/microbe_stage/MicrobeStage.tscn:2062
@@ -916,9 +916,8 @@ msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "população nas regiões:"
 
 #: ../src/auto-evo/RunResults.cs:372
-#, fuzzy
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr "extinto no planeta"
+msgstr "extinguiram-se no planeta"
 
 #: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
 msgid "LOADING"
@@ -929,7 +928,6 @@ msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Pressiona uma tecla..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
-#, fuzzy
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Há um conflito com {0}.\n"
@@ -1026,10 +1024,12 @@ msgid "KEY_HOMEPAGE"
 msgstr "Homepage"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
+#, fuzzy
 msgid "KEY_FAVORITES"
 msgstr "Favoritos"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
+#, fuzzy
 msgid "KEY_PRINT"
 msgstr "Print Screen"
 
@@ -1051,7 +1051,7 @@ msgstr "Backspace"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
-msgstr "Enter numérico"
+msgstr "Num Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
@@ -1059,11 +1059,11 @@ msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr "Subir página"
+msgstr "Page Up"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
-msgstr "Descer página"
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
@@ -1079,19 +1079,19 @@ msgstr "Scroll Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr "Windows/Command esquerdo"
+msgstr "Super Esquerdo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr "Windows/Command direito"
+msgstr "Super Direito"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr "Hyper esquerdo"
+msgstr "Hyper Esquerdo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr "Hyper direito"
+msgstr "Hyper Direito"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
