@@ -99,6 +99,12 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath GUIMutedPath;
 
+    [Export]
+    public NodePath LanguageSelectionPath;
+
+    [Export]
+    public NodePath ResetLanguageButtonPath;
+
     // Performance tab.
     [Export]
     public NodePath PerformanceTabPath;
@@ -155,12 +161,6 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath ErrorAcceptBoxPath;
-
-    [Export]
-    public NodePath LanguageSelectionPath;
-
-    [Export]
-    public NodePath ResetLanguageButtonPath;
 
     [Export]
     public NodePath CustomUsernameEnabledPath;
