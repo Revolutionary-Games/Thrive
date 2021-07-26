@@ -41,7 +41,8 @@ public class PhotosyntheticFoodSource : IFoodSource
             }
         }
 
-        var energyCost = ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles.Organelles.Select(organelle => organelle.Definition),
+        var energyCost = ProcessSystem.ComputeEnergyBalance(
+            microbeSpecies.Organelles.Organelles.Select(organelle => organelle.Definition),
             biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
 
         return photosynthesisingScore / energyCost;
