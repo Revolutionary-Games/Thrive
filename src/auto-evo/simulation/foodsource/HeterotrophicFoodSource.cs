@@ -43,7 +43,7 @@ public class HeterotrophicFoodSource : IFoodSource
             && !microbeSpecies.MembraneType.CellWall ?
                 Constants.AUTO_EVO_ENGULF_PREDATION_SCORE :
                 0.0f;
-        engulfScore *= predatorSpeed > preySpeed ? 1.0f : 0.1f;
+        engulfScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_SLOW_ENGULF_MULTIPLIER;
 
         var pilusScore = 0.0f;
         var oxytoxyScore = 0.0f;
