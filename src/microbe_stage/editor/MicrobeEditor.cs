@@ -504,7 +504,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         TransitionFinished = true;
     }
 
-    public void ApplyEditsToSpecies()
+    /// <summary>
+    ///   Applies the changes done and exits the editor
+    /// </summary>
+    public void OnFinishEditing()
     {
         GD.Print("MicrobeEditor: applying changes to edited Species");
 
@@ -560,14 +563,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedSpecies.MembraneType = Membrane;
         editedSpecies.Colour = Colour;
         editedSpecies.MembraneRigidity = Rigidity;
-    }
-
-    /// <summary>
-    ///   Applies the changes done and exits the editor
-    /// </summary>
-    public void OnFinishEditing()
-    {
-        ApplyEditsToSpecies();
 
         // Move patches
         if (targetPatch != null)
@@ -970,9 +965,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public float CalculateSpeed()
     {
-        // TODO: Have this occur in a more central place
-        ApplyEditsToSpecies();
-        return ((MicrobeSpecies)editedSpecies.Clone()).BaseSpeed();
+        return ProcessSystem.CalculateSpeed(editedMicrobeOrganelles, Membrane, Rigidity);
     }
 
     public float CalculateHitpoints()
