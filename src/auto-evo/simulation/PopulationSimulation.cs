@@ -187,7 +187,7 @@
                 // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
                     / ProcessSystem.ComputeEnergyBalance(currentSpecies.Organelles.Organelles.Select(organelle => organelle.Definition),
-                    patch.Biome, currentSpecies.MembraneType).FinalBalanceStationary);
+                        patch.Biome, currentSpecies.MembraneType).FinalBalanceStationary);
 
                 // Severely penalize a species that can't osmoregulate
                 if (ProcessSystem.ComputeEnergyBalance(currentSpecies.Organelles.Select(i => i.Definition),

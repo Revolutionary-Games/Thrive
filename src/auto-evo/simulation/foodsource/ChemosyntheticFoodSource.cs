@@ -50,7 +50,7 @@ public class ChemosyntheticFoodSource : IFoodSource
         }
 
         var energyCost = ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles.Organelles.Select(organelle => organelle.Definition),
-                    biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
+            biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
 
         return compoundUseScore / energyCost;
     }
