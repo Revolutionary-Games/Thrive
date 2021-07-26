@@ -49,12 +49,12 @@ public class PauseMenu : ControlWithInput
     [Signal]
     public delegate void MakeSave(string name);
 
-    private enum MenuEnum
+    private enum ActiveMenuType
     {
         Primary,
         Help,
         Load,
-        Options,
+        Options,y
         Save,
         None,
     }
@@ -64,31 +64,31 @@ public class PauseMenu : ControlWithInput
     /// </summary>
     public GameProperties GameProperties { get; set; }
 
-    private MenuEnum ActiveMenu
+    private ActiveMenuType ActiveActiveMenu
     {
         get
         {
-            foreach (MenuEnum menuEnumValue in Enum.GetValues(typeof(MenuEnum)))
+            foreach (ActiveMenuType menuEnumValue in Enum.GetValues(typeof(ActiveMenuType)))
             {
                 if (GetControlFromMenuEnum(menuEnumValue)?.Visible == true)
                     return menuEnumValue;
             }
 
-            return MenuEnum.None;
+            return ActiveMenuType.None;
         }
         set
         {
-            if (value == ActiveMenu)
+            if (value == ActiveActiveMenu)
                 return;
 
-            GetControlFromMenuEnum(ActiveMenu)?.Hide();
+            GetControlFromMenuEnum(ActiveActiveMenu)?.Hide();
 
             switch (value)
             {
-                case MenuEnum.Options:
+                case ActiveMenuType.Options:
                     optionsMenu.OpenFromInGame(GameProperties);
                     break;
-                case MenuEnum.None:
+                case ActiveMenuType.None:
                     // just close the current menu
                     break;
                 default:
@@ -119,7 +119,7 @@ public class PauseMenu : ControlWithInput
     {
         if (Visible)
         {
-            ActiveMenu = MenuEnum.Primary;
+            ActiveActiveMenu = ActiveMenuType.Primary;
 
             EmitSignal(nameof(OnClosed));
 
@@ -148,23 +148,23 @@ public class PauseMenu : ControlWithInput
 
     public void ShowHelpScreen()
     {
-        if (ActiveMenu == MenuEnum.Help)
+        if (ActiveActiveMenu == ActiveMenuType.Help)
             return;
 
-        ActiveMenu = MenuEnum.Help;
+        ActiveActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
     }
 
-    private Control GetControlFromMenuEnum(MenuEnum value)
+    private Control GetControlFromMenuEnum(ActiveMenuType value)
     {
         return value switch
         {
-            MenuEnum.Primary => primaryMenu,
-            MenuEnum.Help => helpScreen,
-            MenuEnum.Load => loadMenu,
-            MenuEnum.Options => optionsMenu,
-            MenuEnum.Save => saveMenu,
-            MenuEnum.None => null,
+            ActiveMenuType.Primary => primaryMenu,
+            ActiveMenuType.Help => helpScreen,
+            ActiveMenuType.Load => loadMenu,
+            ActiveMenuType.Options => optionsMenu,
+            ActiveMenuType.Save => saveMenu,
+            ActiveMenuType.None => null,
             _ => throw new NotSupportedException($"{value} is not supported"),
         };
     }
@@ -201,7 +201,7 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = MenuEnum.Help;
+        ActiveActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
     }
 
@@ -209,52 +209,52 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = MenuEnum.Primary;
+        ActiveActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = MenuEnum.Load;
+        ActiveActiveMenu = ActiveMenuType.Load;
     }
 
     private void CloseLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = MenuEnum.Primary;
+        ActiveActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenOptionsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = MenuEnum.Options;
+        ActiveActiveMenu = ActiveMenuType.Options;
     }
 
     private void OnOptionsClosed()
     {
-        ActiveMenu = MenuEnum.Primary;
+        ActiveActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = MenuEnum.Save;
+        ActiveActiveMenu = ActiveMenuType.Save;
     }
 
     private void CloseSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        ActiveMenu = MenuEnum.Primary;
+        ActiveActiveMenu = ActiveMenuType.Primary;
     }
 
     private void ForwardSaveAction(string name)
     {
-        ActiveMenu = MenuEnum.Primary;
+        ActiveActiveMenu = ActiveMenuType.Primary;
 
         // Close this first to get the menus out of the way to capture the save screenshot
         EmitSignal(nameof(OnClosed));
