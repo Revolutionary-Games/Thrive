@@ -175,7 +175,10 @@ public class OptionsMenu : ControlWithInput
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
 
-    private static readonly List<string> OutputDevicesCache = AudioServer.GetDeviceList().OfType<string>().ToList();
+    private static readonly List<string> OutputDevicesCache = AudioServer
+        .GetDeviceList()
+        .OfType<string>()
+        .ToList();
 
     private Button resetButton;
     private Button saveButton;
@@ -744,8 +747,9 @@ public class OptionsMenu : ControlWithInput
 
     private void LoadOutputDevices(OptionButton optionButton)
     {
-        foreach (var outputDevice in OutputDevices)
+        for (var i = 0; i < OutputDevices.Count; i++)
         {
+            var outputDevice = i == 0 ? TranslationServer.Translate("DEFAULT_OUTPUT_DEVICE") : OutputDevices[i];
             optionButton.AddItem(outputDevice);
         }
     }
