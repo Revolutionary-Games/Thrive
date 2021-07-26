@@ -1281,8 +1281,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         UpdateMembraneButtons(membrane.InternalName);
         SetMembraneTooltips(membrane);
 
-        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
-            editor.MutationPoints);
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -1294,17 +1293,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    internal void UpdateRigiditySlider(int value, int mutationPoints)
+    internal void UpdateRigiditySlider(int value)
     {
-        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelle == null)
-        {
-            rigiditySlider.Editable = true;
-        }
-        else
-        {
-            rigiditySlider.Editable = false;
-        }
-
         rigiditySlider.Value = value;
         SetRigiditySliderTooltip(value);
     }

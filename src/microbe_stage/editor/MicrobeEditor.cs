@@ -751,7 +751,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 // Update rigidity slider in case it was disabled
                 // TODO: could come up with a bit nicer design here
                 int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
-                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                gui.UpdateRigiditySlider(intRigidity);
 
                 // Re-enable undo/redo button
                 UpdateUndoRedoButtons();
@@ -813,7 +813,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (MovingOrganelle != null)
         {
             gui.OnActionBlockedWhileMoving();
-            gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+            gui.UpdateRigiditySlider(intRigidity);
             return;
         }
 
@@ -828,7 +828,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             int stepsLeft = MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
             if (stepsLeft < 1)
             {
-                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                gui.UpdateRigiditySlider(intRigidity);
                 return;
             }
 
@@ -2223,8 +2223,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void OnRigidityChanged()
     {
-        gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
-            MutationPoints);
+        gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
