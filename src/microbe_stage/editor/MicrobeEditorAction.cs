@@ -12,29 +12,29 @@ public class MicrobeEditorAction : ReversibleAction
     [JsonProperty]
     public readonly int Cost;
 
+    [JsonProperty]
+    public readonly Action<MicrobeEditorAction> Redo;
+
+    [JsonProperty]
+    public readonly Action<MicrobeEditorAction> Undo;
+
+    [JsonProperty]
+    public readonly MicrobeEditor Editor;
+
     /// <summary>
     ///   Action specific data
     /// </summary>
     [JsonProperty]
     public IMicrobeEditorActionData Data;
 
-    [JsonProperty]
-    private readonly Action<MicrobeEditorAction> redo;
-
-    [JsonProperty]
-    private readonly Action<MicrobeEditorAction> undo;
-
-    [JsonProperty]
-    private readonly MicrobeEditor editor;
-
     public MicrobeEditorAction(MicrobeEditor editor, int cost,
         Action<MicrobeEditorAction> redo,
         Action<MicrobeEditorAction> undo, IMicrobeEditorActionData data = null)
     {
-        this.editor = editor;
+        Editor = editor;
         Cost = cost;
-        this.redo = redo;
-        this.undo = undo;
+        Redo = redo;
+        Undo = undo;
         Data = data;
     }
 
@@ -43,13 +43,13 @@ public class MicrobeEditorAction : ReversibleAction
 
     public override void DoAction()
     {
-        editor.ChangeMutationPoints(-Cost);
-        redo(this);
+        Editor.ChangeMutationPoints(-Cost);
+        Redo(this);
     }
 
     public override void UndoAction()
     {
-        editor.ChangeMutationPoints(Cost);
-        undo(this);
+        Editor.ChangeMutationPoints(Cost);
+        Undo(this);
     }
 }

@@ -10,14 +10,14 @@ public class ActionHistory<T>
     where T : ReversibleAction
 {
     [JsonProperty]
-    private List<T> actions = new List<T>();
+    protected List<T> actions = new List<T>();
 
     /// <summary>
     ///   marks the last action that has been done (not undone, but
     ///   possibly redone), is 0 if there is none.
     /// </summary>
     [JsonProperty]
-    private int actionIndex;
+    protected int actionIndex;
 
     public bool CanRedo()
     {
@@ -45,7 +45,7 @@ public class ActionHistory<T>
             return false;
 
         var action = actions[--actionIndex];
-        action.Undo();
+        action.PreformUndo();
         return true;
     }
 

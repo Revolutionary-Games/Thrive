@@ -58,7 +58,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Where all user actions will  be registered
     /// </summary>
     [JsonProperty]
-    private ActionHistory<MicrobeEditorAction> history;
+    private MicrobeEditorActionHistory history;
 
     private Material invalidMaterial;
     private Material validMaterial;
@@ -1160,7 +1160,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (!IsLoadedFromSave)
         {
-            history = new ActionHistory<MicrobeEditorAction>();
+            history = new MicrobeEditorActionHistory();
 
             // Start a new game if no game has been started
             if (CurrentGame == null)
