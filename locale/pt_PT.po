@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-16 15:11+0300\n"
+"POT-Creation-Date: 2021-07-26 23:17+0200\n"
 "PO-Revision-Date: 2021-07-23 17:01+0000\n"
 "Last-Translator: TomDev03 <chumbosilva200@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -117,15 +117,15 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Ao te conectares com outras células podes formar uma colónia de células, "
-"onde as células partilham os compostos que absorvem e produzem entre si. De "
-"modo a te poderes conectar com outra célula, necessitas de possuir o "
+"onde as células partilham os compostos que absorvem e produzem entre si. "
+"De modo a te poderes conectar com outra célula, necessitas de possuir o "
 "organelo \"agentes de adesão\" e de te aproximar da mesma após entrares no "
-"modo de adesão. Apenas te podes conectar com células da tua própria espécie. "
-"Enquanto permaneceres numa colónia, não serás capaz de dividir a tua célula "
-"e entrar no editor (por agora). Para entrar no editor, primeiro deixa a "
-"colónia assim que tenhas acumulado compostos suficientes, e depois entra no "
-"mesmo. Grandes colónias de células são precursoras da multicelularidade ("
-"ainda ausente no jogo)."
+"modo de adesão. Apenas te podes conectar com células da tua própria "
+"espécie. Enquanto permaneceres numa colónia, não serás capaz de dividir a "
+"tua célula e entrar no editor (por agora). Para entrar no editor, primeiro "
+"deixa a colónia assim que tenhas acumulado compostos suficientes, e depois "
+"entra no mesmo. Grandes colónias de células são precursoras da "
+"multicelularidade (ainda ausente no jogo)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -164,13 +164,13 @@ msgstr ""
 "Organelos Limitados por Membrana\n"
 "\n"
 "Núcleo: Ocupa 11 hexágonos e permite a evolução de organelos limitados por "
-"membrana. Também duplica o tamanho da tua célula. (apenas pode ser evoluído "
-"uma única vez)\n"
+"membrana. Também duplica o tamanho da tua célula. (apenas pode ser "
+"evoluído uma única vez)\n"
 "\n"
 "Agente de ligação: Permite a ligação com outras células\n"
 "\n"
-"Mitocôndria: Produz ATP a partir de glicose e O2 atmosférico. Bastante mais "
-"eficiente que o citoplasma\n"
+"Mitocôndria: Produz ATP a partir de glicose e O2 atmosférico. Bastante "
+"mais eficiente que o citoplasma\n"
 "\n"
 "Cloroplasto: Produz glicose a partir de luz solar e CO2 atmosférico\n"
 "\n"
@@ -231,8 +231,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Curiosidade, na vida real os procariotas têm algo chamado Biocompartimentos, "
-"que atuam como organelos, e são de facto chamados organelos poliédricos."
+"Curiosidade, na vida real os procariotas têm algo chamado "
+"Biocompartimentos, que atuam como organelos, e são de facto chamados "
+"organelos poliédricos."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
@@ -921,7 +922,7 @@ msgstr "foram extintos do planeta"
 msgid "LOADING"
 msgstr "A carregar"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:312
+#: ../src/engine/input/key_mapping/InputEventItem.cs:320
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Pressiona uma tecla..."
 
@@ -1392,7 +1393,7 @@ msgstr "Sair"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor livre para micróbios"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1028
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1056
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1405,254 +1406,265 @@ msgstr "Aviso do modo GLES2"
 #: ../src/general/MainMenu.tscn:362
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"Estás a executar o Thrive com GLES2. Esta versão não foi testada severamente "
-"e pode causar problemas. Experimente atualizar os drivers da placa gráfica e/"
-"ou forçar a utilização da placa gráfica da AMD ou Nvidia."
+"Estás a executar o Thrive com GLES2. Esta versão não foi testada "
+"severamente e pode causar problemas. Experimente atualizar os drivers da "
+"placa gráfica e/ou forçar a utilização da placa gráfica da AMD ou Nvidia."
 
-#: ../src/general/OptionsMenu.tscn:127
+#: ../src/general/OptionsMenu.cs:752
+msgid "DEFAULT_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
-#: ../src/general/OptionsMenu.tscn:138
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "Som"
 
-#: ../src/general/OptionsMenu.tscn:149
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "Desempenho"
 
-#: ../src/general/OptionsMenu.tscn:160
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "Teclado"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "Diversos"
 
-#: ../src/general/OptionsMenu.tscn:204
+#: ../src/general/OptionsMenu.tscn:205
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:213
 msgid "FULLSCREEN"
 msgstr "Tela cheia"
 
-#: ../src/general/OptionsMenu.tscn:234
+#: ../src/general/OptionsMenu.tscn:235
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:241
+#: ../src/general/OptionsMenu.tscn:242
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores mais altos pioram o desempenho)"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:272
 msgid "RESOLUTION"
 msgstr "Resolução:"
 
-#: ../src/general/OptionsMenu.tscn:284
+#: ../src/general/OptionsMenu.tscn:285
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:294
+#: ../src/general/OptionsMenu.tscn:295
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:320
+#: ../src/general/OptionsMenu.tscn:321
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correção de cor para daltónicos:"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:353
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberração Cromática:"
 
-#: ../src/general/OptionsMenu.tscn:379
+#: ../src/general/OptionsMenu.tscn:380
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostrar barra de habilidades"
 
-#: ../src/general/OptionsMenu.tscn:385
+#: ../src/general/OptionsMenu.tscn:386
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
-"Ativa os efeitos de flash de luz na interface gráfica (por exemplo, flash do "
-"botão do editor).\n"
+"Ativa os efeitos de flash de luz na interface gráfica (por exemplo, flash "
+"do botão do editor).\n"
 "\n"
 "Se tiveres problemas em que partes do botão do editor desaparecem,\n"
 "podes tentar desabilitar os efeitos de flash de luz para ver se o problema "
 "desaparece."
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Ativar efeitos de luz da interface gráfica"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
-#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
+#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.tscn:583
 msgid "MUTE"
 msgstr "Silenciar"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:457
 msgid "MUSIC_VOLUME"
 msgstr "Volume da música"
 
-#: ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:490
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume Ambiente"
 
-#: ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:523
 msgid "SFX_VOLUME"
 msgstr "Volume de Efeitos"
 
-#: ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI_VOLUME"
 msgstr "Volume da GUI"
 
-#: ../src/general/OptionsMenu.tscn:600
+#: ../src/general/OptionsMenu.tscn:601
+msgid "DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
 msgstr "Idioma:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1067
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:652
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Ajude a traduzir o jogo"
 
-#: ../src/general/OptionsMenu.tscn:650
+#: ../src/general/OptionsMenu.tscn:678
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:693
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Intervalo mínimo da\n"
 "simulação de nuvens:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:744
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valores mais altos melhoram o desempenho)"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:735
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr "Este valor só se aplica a novos jogos iniciados após alterar esta opção"
+msgstr ""
+"Este valor só se aplica a novos jogos iniciados após alterar esta opção"
 
-#: ../src/general/OptionsMenu.tscn:709
+#: ../src/general/OptionsMenu.tscn:737
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor da Resolução de Nuvens:"
 
-#: ../src/general/OptionsMenu.tscn:751
+#: ../src/general/OptionsMenu.tscn:779
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Utilizar auto-evo durante o jogo"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:852
 msgid "RESET_INPUTS"
 msgstr "Repor Entradas"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:880
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Reproduzir o vídeo de introdução"
 
-#: ../src/general/OptionsMenu.tscn:861
+#: ../src/general/OptionsMenu.tscn:889
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Jogar a Introdução ao Micróbio num Novo Jogo"
 
-#: ../src/general/OptionsMenu.tscn:870
+#: ../src/general/OptionsMenu.tscn:898
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Guardar automaticamente durante o jogo"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:909
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Quantidade de jogos guardados automaticamente a manter:"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:937
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Quantidade de jogos guardados rapidamente a manter:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:963
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriais (em novos jogos)"
 
-#: ../src/general/OptionsMenu.tscn:943
+#: ../src/general/OptionsMenu.tscn:971
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriais (no jogo atual)"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:987
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Chaves de Cheats ativadas"
 
-#: ../src/general/OptionsMenu.tscn:971
+#: ../src/general/OptionsMenu.tscn:999
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use um username personalizado"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:1010
 msgid "CUSTOM_USERNAME"
 msgstr "Username personalizado:"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Abrir pasta de capturas de tela"
 
-#: ../src/general/OptionsMenu.tscn:1016
+#: ../src/general/OptionsMenu.tscn:1044
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Abrir pasta de Logs"
 
-#: ../src/general/OptionsMenu.tscn:1051 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1079 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Gravar"
 
-#: ../src/general/OptionsMenu.tscn:1068
+#: ../src/general/OptionsMenu.tscn:1096
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Repor Definições por Defeito"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1108
 msgid "RESET_TO_DEFAULTS"
 msgstr "Repor as definições por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1089
+#: ../src/general/OptionsMenu.tscn:1117
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Tem a certeza que deseja repor todas as definições por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Repor as entradas por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1140
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Tem certeza de que deseja repor as definições de entrada por defeito?"
+msgstr ""
+"Tem certeza de que deseja repor as definições de entrada por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1154
 msgid "CLOSE_OPTIONS"
 msgstr "Fechar as opções?"
 
-#: ../src/general/OptionsMenu.tscn:1146
+#: ../src/general/OptionsMenu.tscn:1174
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Existem alterações não guardadas que serão perdidas.\n"
 "Desejas continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1168
+#: ../src/general/OptionsMenu.tscn:1196
 msgid "SAVE_AND_CONTINUE"
 msgstr "Gravar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1193
+#: ../src/general/OptionsMenu.tscn:1221
 msgid "CANCEL"
 msgstr "Cancelar"
 
-#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1228
-#: ../src/general/OptionsMenu.tscn:1252
+#: ../src/general/OptionsMenu.tscn:1233 ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1280
 msgid "ERROR"
 msgstr "Erro"
 
-#: ../src/general/OptionsMenu.tscn:1214 ../src/general/OptionsMenu.tscn:1253
+#: ../src/general/OptionsMenu.tscn:1242 ../src/general/OptionsMenu.tscn:1281
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Erro: Falha ao gravar as novas definições no ficheiro de configuração."
+msgstr ""
+"Erro: Falha ao gravar as novas definições no ficheiro de configuração."
 
 #: ../src/general/PauseMenu.tscn:57
 msgid "RESUME"
@@ -1700,7 +1712,8 @@ msgstr "/segundo"
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:254
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:573
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:949
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1714,13 +1727,13 @@ msgstr ""
 "A versão do jogo guardado não corresponde à versão do jogo.\n"
 "Por favor faz a leitura do jogo guardado manualmente através do menu."
 
-#: ../src/gui_common/charts/line/LineChart.cs:901
-#: ../src/gui_common/charts/line/LineChart.cs:930
+#: ../src/gui_common/charts/line/LineChart.cs:935
+#: ../src/gui_common/charts/line/LineChart.cs:964
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Não é permitido mostrar mais de {0} conjuntos de dados!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:910
-#: ../src/gui_common/charts/line/LineChart.cs:938
+#: ../src/gui_common/charts/line/LineChart.cs:944
+#: ../src/gui_common/charts/line/LineChart.cs:972
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Não é permitido mostrar menos de {0} conjunto(s) de dados!"
 
@@ -1798,10 +1811,10 @@ msgstr ""
 "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de "
 "iões, proteínas e outras substâncias dissolvidas na água que preenchem o "
 "interior da célula. Uma das funções que desempenha é a glicólise, a "
-"conversão de glicose em energia ATP. Para que células onde faltam organelos "
-"tenham metabolismos mais avançados, esta é a sua dependência para obter "
-"energia. O citoplasma é também usado para armazenar moléculas na célula e "
-"aumentar o seu tamanho."
+"conversão de glicose em energia ATP. Para que células onde faltam "
+"organelos tenham metabolismos mais avançados, esta é a sua dependência "
+"para obter energia. O citoplasma é também usado para armazenar moléculas "
+"na célula e aumentar o seu tamanho."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:344
@@ -1850,8 +1863,8 @@ msgstr "Custo de Osmorregulação"
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em[thrive:"
-"compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a concentração "
-"de [thrive:compound type=\"oxygen\"][/thrive:compound]"
+"compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a "
+"concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1860,8 +1873,8 @@ msgstr ""
 "proteínas. Eles são capazes de converter glicose em ATP a uma taxa muito "
 "mais alta do que pode ser feito no citoplasma num processo chamado "
 "Respiração Aeróbica. No entanto, ele requer oxigênio para funcionar, e "
-"níveis mais baixos de oxigênio no ambiente diminuirão a taxa de produção de "
-"ATP. Uma vez que os metabolossomas estão suspensos diretamente no "
+"níveis mais baixos de oxigênio no ambiente diminuirão a taxa de produção "
+"de ATP. Uma vez que os metabolossomas estão suspensos diretamente no "
 "citoplasma, o fluido circundante realiza alguma glicólise."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
@@ -1871,10 +1884,10 @@ msgstr "Tilacoide"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa aumenta "
-"coma concentração de [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound] e a intensidade de [thrive:compound type=\"sunlight\""
-"][/thrive:compound]"
+"Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa "
+"aumenta coma concentração de [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] e a intensidade de [thrive:compound type=\"sunlight\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1883,43 +1896,44 @@ msgstr ""
 "pigmentos são capazes de utilizar a energia presente na luz para produzir "
 "glicose a parir de água e gás carbónico num processo denominado "
 "Fotossíntese. Estes pigmentos são também o que lhes fornece uma cor "
-"característica. A sua taxa de produção de glicose aumenta com a concentração "
-"de dióxido de carbono e intensidade da luz. Como os tilacoides estão "
-"diretamente suspensos no citoplasma, o fluido circundante realiza alguma "
-"glicólise."
+"característica. A sua taxa de produção de glicose aumenta com a "
+"concentração de dióxido de carbono e intensidade da luz. Como os "
+"tilacoides estão diretamente suspensos no citoplasma, o fluido circundante "
+"realiza alguma glicólise."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em "
 "[thrive:compound type=\"glucose\"][/thrive:compound]. A taxa aumenta com a "
-"concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
-"Também converte [thrive:compound type=\"glucose\"][/thrive:compound] em "
-"[thrive:compound type=\"atp\"][/thrive:compound]"
+"concentração de [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound]. Também converte [thrive:compound type=\"glucose\"][/thrive:"
+"compound] em [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Proteínas quimiossintetizantes são pequenos conjuntos de proteínas no "
-"citoplasma capazes de converter sulfeto de hidrogénio, água e gás carbónico "
-"em glicose num processo chamado quimiossíntese de sulfeto de hidrogénio. A "
-"taxa de produção de glicose aumenta com a concentração de dióxido de "
-"carbono. Uma vez que as proteínas quimiossintetizantes estão suspensas "
-"diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+"citoplasma capazes de converter sulfeto de hidrogénio, água e gás "
+"carbónico em glicose num processo chamado quimiossíntese de sulfeto de "
+"hidrogénio. A taxa de produção de glicose aumenta com a concentração de "
+"dióxido de carbono. Uma vez que as proteínas quimiossintetizantes estão "
+"suspensas diretamente no citoplasma, o fluído envolvente efetua alguma "
+"glicólise."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:"
-"compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a concentração "
-"de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:"
-"compound type=\"oxygen\"][/thrive:compound]"
+"compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a "
+"concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] "
+"e [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
-"Rusticianina é uma proteína capaz de utilizar gás carbónico e oxigénio para "
-"oxidar ferro de um estado químico para outro. Este processo, chamado "
+"Rusticianina é uma proteína capaz de utilizar gás carbónico e oxigénio "
+"para oxidar ferro de um estado químico para outro. Este processo, chamado "
 "Quimiossíntese litoautotrófica, liberta energia que a célula pode "
 "posteriormente recolher."
 
@@ -1933,11 +1947,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia "
-"celular na forma de ATP para produzir amoníaco, um nutriente chave para o "
-"crescimento das células. Isto é um processo referido como Fixação Anaeróbica "
-"de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no "
-"citoplasma, o fluído envolvente efetua alguma glicólise."
+"Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a "
+"energia celular na forma de ATP para produzir amoníaco, um nutriente chave "
+"para o crescimento das células. Isto é um processo referido como Fixação "
+"Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso "
+"diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
@@ -1950,8 +1964,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
 msgstr ""
-"Um metabolossoma modificado responsável pela produção da forma primitiva do "
-"agente tóxico OxiToxi NT."
+"Um metabolossoma modificado responsável pela produção da forma primitiva "
+"do agente tóxico OxiToxi NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -1963,12 +1977,12 @@ msgstr ""
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "O Flagelo (plural: Flagelos) é um feixe de fibras proteicas em forma de "
-"chicote que se estende da membrana da célula e que utiliza ATP para ondular "
-"e impulsionar a célula numa direção. A posição do flagelo determina a "
-"direção em que fornece impulso para movimentar a célula. A direção de "
-"impulso é oposta à direção para a qual o flagelo está direcionado, por "
-"exemplo, um flagelo posicionado no lado esquerdo de uma célula fornece "
-"impulso quando se move para a direita."
+"chicote que se estende da membrana da célula e que utiliza ATP para "
+"ondular e impulsionar a célula numa direção. A posição do flagelo "
+"determina a direção em que fornece impulso para movimentar a célula. A "
+"direção de impulso é oposta à direção para a qual o flagelo está "
+"direcionado, por exemplo, um flagelo posicionado no lado esquerdo de uma "
+"célula fornece impulso quando se move para a direita."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "SPEED"
@@ -1991,19 +2005,19 @@ msgstr "A ser implementado."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Pressione [thrive:input]g_toggle_binding[/thrive:input] para alternar o modo "
-"de adesão. Quando em modo de adesão podes anexar outras células da mesma "
-"espécie à tua colónia movendo-as para elas. Para sair de uma colónia "
+"Pressione [thrive:input]g_toggle_binding[/thrive:input] para alternar o "
+"modo de adesão. Quando em modo de adesão podes anexar outras células da "
+"mesma espécie à tua colónia movendo-as para elas. Para sair de uma colónia "
 "pressione [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "Permite conectar com outras células. Este é o primeiro passo para o "
-"multicelularidade. Quando a tua célula pertence a uma colónia, os compostos "
-"são partilhados entre células. Não é possível entrar no editor enquanto "
-"pertenceres a uma colónia, então é necessário sair assim que tenhas coletado "
-"compostos suficientes para dividires a tua célula."
+"multicelularidade. Quando a tua célula pertence a uma colónia, os "
+"compostos são partilhados entre células. Não é possível entrar no editor "
+"enquanto pertenceres a uma colónia, então é necessário sair assim que "
+"tenhas coletado compostos suficientes para dividires a tua célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2014,40 +2028,42 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
-"A principal característica das células eucarióticas. O núcleo também inclui "
-"o retículo endoplasmático e o complexo de golgi. É uma evolução das células "
-"procarióticas para desenvolver um sistema de membranas internas, assimilando "
-"outros procariontes dentro deles. Isso permite-os compartimentar, ou repelir "
-"os diferentes processos que acontecem dentro das células prevenindo-os de se "
-"sobrepor. Isso permite que os seus novos organelos com membranas sejamm mais "
-"complexos, eficientes, e especializados do que se estivessem a flutuar no "
-"citoplasma. No entanto, isso tem o custo de fazer a célula muito maior e "
-"necessitando de muita da energia da célula para se manter."
+"A principal característica das células eucarióticas. O núcleo também "
+"inclui o retículo endoplasmático e o complexo de golgi. É uma evolução das "
+"células procarióticas para desenvolver um sistema de membranas internas, "
+"assimilando outros procariontes dentro deles. Isso permite-os "
+"compartimentar, ou repelir os diferentes processos que acontecem dentro "
+"das células prevenindo-os de se sobrepor. Isso permite que os seus novos "
+"organelos com membranas sejamm mais complexos, eficientes, e "
+"especializados do que se estivessem a flutuar no citoplasma. No entanto, "
+"isso tem o custo de fazer a célula muito maior e necessitando de muita da "
+"energia da célula para se manter."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:"
-"compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a concentração "
-"de [thrive:compound type=\"oxygen\"][/thrive:compound]"
+"compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a "
+"concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 "A central de energia da célula. A mitocôndria é uma estrutura de membrana "
-"dupla cheia de proteínas e enzimas. É um procariota que foi reconhecido pelo "
-"seu hospedeiro eucariótico para uso. É capaz de converter Glicose em ATP com "
-"maior eficiência do que feito no citoplasma num processo chamado Respiração "
-"Aeróbica. Precisa, no entanto, de oxigénio para funcionar, e níveis menores "
-"de oxigénio no ambiente irão diminuir a taxa da produção de ATP."
+"dupla cheia de proteínas e enzimas. É um procariota que foi reconhecido "
+"pelo seu hospedeiro eucariótico para uso. É capaz de converter Glicose em "
+"ATP com maior eficiência do que feito no citoplasma num processo chamado "
+"Respiração Aeróbica. Precisa, no entanto, de oxigénio para funcionar, e "
+"níveis menores de oxigénio no ambiente irão diminuir a taxa da produção de "
+"ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa aumenta "
-"com a concentração de [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound] e intensidade da [thrive:compound type=\"sunlight\""
-"][/thrive:compound]"
+"Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa "
+"aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] e intensidade da [thrive:compound type=\"sunlight\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2067,9 +2083,9 @@ msgstr "Termoplasto"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa aumenta "
-"com a concentração de [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound] e temperatura."
+"Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa "
+"aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] e temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2077,9 +2093,9 @@ msgstr ""
 "O termoplasto é uma estrutura de membrana dupla que contém pigmentos "
 "termossensíveis. É um procariota que foi reconhecido para uso do seu "
 "hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a "
-"energia das diferenças de calor no ambiente para produzir glicose da água e "
-"gás carbónico num processo chamado Termossíntese. A taxa da sua produção de "
-"glicose aumenta com a concentração de dióxido de carbono e temperatura."
+"energia das diferenças de calor no ambiente para produzir glicose da água "
+"e gás carbónico num processo chamado Termossíntese. A taxa da sua produção "
+"de glicose aumenta com a concentração de dióxido de carbono e temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1339
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:196
@@ -2097,9 +2113,10 @@ msgstr ""
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "O quimioplasto é uma estrutura de membrana dupla que contém proteínas "
-"capazes de converter sulfeto de hidrogénio, água, e gás carbónico em glicose "
-"num processo chamado Quimiossíntese de Sulfeto de Hidrogénio. A taxa de sua "
-"produção de glicose aumenta com a concentração de dióxido de carbono."
+"capazes de converter sulfeto de hidrogénio, água, e gás carbónico em "
+"glicose num processo chamado Quimiossíntese de Sulfeto de Hidrogénio. A "
+"taxa de sua produção de glicose aumenta com a concentração de dióxido de "
+"carbono."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
@@ -2153,8 +2170,8 @@ msgstr "Vacúolo Bioluminescente"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "A forma mais básica da membrana, tem pouca proteção contra danos. Também "
-"precisa de mais energia para não se deformar. A vantagem é que permite que a "
-"célula se mova e absorva nutrientes rapidamente."
+"precisa de mais energia para não se deformar. A vantagem é que permite que "
+"a célula se mova e absorva nutrientes rapidamente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1935
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2101
@@ -2175,10 +2192,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2172
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Essa membrana possui uma parede, resulta em uma melhor proteção contra danos "
-"gerais e principalmente contra danos físicos. Também custa menos energia "
-"para manter a forma, mas não consegue absorver recursos rapidamente e é mais "
-"lento."
+"Essa membrana possui uma parede, resulta em uma melhor proteção contra "
+"danos gerais e principalmente contra danos físicos. Também custa menos "
+"energia para manter a forma, mas não consegue absorver recursos "
+"rapidamente e é mais lento."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2803
@@ -2212,8 +2229,8 @@ msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Esta membrana tem uma casca forte feita de carbonato de cálcio. Ele pode "
 "resistir facilmente a danos e requer menos energia para não se deformar. A "
-"desvantagem de ter um invólucro tão pesado é que a célula é muito mais lenta "
-"e demora um pouco para absorver os recursos."
+"desvantagem de ter um invólucro tão pesado é que a célula é muito mais "
+"lenta e demora um pouco para absorver os recursos."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2910
 msgid "SILICA_MEMBRANE_DESCRIPTION"
@@ -2335,7 +2352,7 @@ msgstr "Press."
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
@@ -2529,8 +2546,8 @@ msgstr "Organelos desconectados"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
-"Existem organelos colocados que não estão conectadas aos restantes organelos."
-"\n"
+"Existem organelos colocados que não estão conectadas aos restantes "
+"organelos.\n"
 "Conecte todos os organelos entre si ou reverta as alterações feitas."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
@@ -2564,7 +2581,7 @@ msgstr "Condições físicas"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gases Atmosféricos"
 
@@ -2599,18 +2616,19 @@ msgstr "PM infinito"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:579
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."
+msgstr ""
+"A quantidade de glicose foi reduzida para {0} da quantidade anterior."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:586
 msgid "MEGA_YEARS"
 msgstr "milhões de anos"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:590
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
 msgid "YEARS"
 msgstr "anos"
 
@@ -2639,23 +2657,23 @@ msgstr "Movimento Base"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
 msgid "SPECIES_LIST"
 msgstr "Lista de Espécies"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:855
 msgid "FREEBUILDING"
 msgstr "Modo livre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:934
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:940
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:939
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:945
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m abaixo do nível do mar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:978
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:984
 msgid "WITH_POPULATION"
 msgstr "{0} com população: {1}"
 
@@ -2739,15 +2757,15 @@ msgstr "Carregamento terminado"
 msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
-#: ../src/saving/InProgressSave.cs:159
+#: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
 msgstr "A gravar..."
 
-#: ../src/saving/InProgressSave.cs:189
+#: ../src/saving/InProgressSave.cs:195
 msgid "SAVE_FAILED"
 msgstr "Falha ao guardar"
 
-#: ../src/saving/InProgressSave.cs:190
+#: ../src/saving/InProgressSave.cs:196
 msgid "ERROR_SAVING"
 msgstr "Erro ao gravar"
 
@@ -2775,11 +2793,11 @@ msgstr "Substituir o jogo guardado existente:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Substituir o jogo guardado existente?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:378
 msgid "SAVING_SUCCEEDED"
 msgstr "Guardado com sucesso"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:388
 msgid "SAVING_FAILED"
 msgstr "Falha ao gravar! Ocorreu um erro"
 
@@ -2802,8 +2820,8 @@ msgstr "Inválido"
 #: ../src/saving/SaveList.cs:170
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-"Apagar este jogo guardado não pode ser revertido, tens a certeza que desejas "
-"apagar permanentemente {0}?"
+"Apagar este jogo guardado não pode ser revertido, tens a certeza que "
+"desejas apagar permanentemente {0}?"
 
 #: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -2827,12 +2845,12 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:117
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Este jogo guardado é de uma versão antiga do Thrive e pode ser incompatível."
-"\n"
+"Este jogo guardado é de uma versão antiga do Thrive e pode ser "
+"incompatível.\n"
 "Como o Thrive está atualmente no início do desenvolvimento, a "
 "compatibilidade de jogos guardados não é uma prioridade.\n"
-"Podes reportar quaisquer problemas que encontrares, no entanto eles não têm "
-"uma prioridade alta no momento.\n"
+"Podes reportar quaisquer problemas que encontrares, no entanto eles não "
+"têm uma prioridade alta no momento.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
 
 #: ../src/saving/SaveList.tscn:132
@@ -2843,8 +2861,8 @@ msgstr "Carregar jogo guardado inválido?"
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Não foi possível carregar as informações guardadas neste arquivo.\n"
-"Este jogo guardado provavelmente está corrompido ou num formato mais recente "
-"que não é compreendido por esta versão do Thrive.\n"
+"Este jogo guardado provavelmente está corrompido ou num formato mais "
+"recente que não é compreendido por esta versão do Thrive.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
 
 #: ../src/saving/SaveList.tscn:156
@@ -2854,11 +2872,11 @@ msgstr "O jogo guardado selecionado é incompatível"
 #: ../src/saving/SaveList.tscn:166
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Foi detetado que o jogo guardado selecionado é incompatível com esta versão "
-"do Thrive.\n"
-"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de "
-"jogos guardados não é uma prioridade alta, como tal, não existe um conversor "
-"de jogos guardados para atualizar jogos guardados antigos."
+"Foi detetado que o jogo guardado selecionado é incompatível com esta "
+"versão do Thrive.\n"
+"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade "
+"de jogos guardados não é uma prioridade alta, como tal, não existe um "
+"conversor de jogos guardados para atualizar jogos guardados antigos."
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
@@ -2897,8 +2915,8 @@ msgstr "Carregar"
 #: ../src/saving/SaveListItem.tscn:292
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
-"Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas "
-"apagar permanentemente?"
+"Apagar o jogo guardado não pode ser revertido, tens a certeza que o "
+"desejas apagar permanentemente?"
 
 #: ../src/saving/SaveManagerGUI.cs:208
 msgid "DELETE_SELECTED_SAVE_WARNING"
@@ -2978,12 +2996,12 @@ msgstr "Tutorial"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Bem-vindo ao Editor de Microrganismos.\n"
-"Aqui podes rever o que aconteceu desde o início do jogo ou quando estiveste "
-"no editor pela última vez. E então fazer mudanças na espécie.\n"
+"Aqui podes rever o que aconteceu desde o início do jogo ou quando "
+"estiveste no editor pela última vez. E então fazer mudanças na espécie.\n"
 "\n"
-"Neste separador podes ver um relatório sobre quais espécies existentes, onde "
-"e quais são as suas populações. Podes também ver as mudanças ambientais no "
-"topo.\n"
+"Neste separador podes ver um relatório sobre quais espécies existentes, "
+"onde e quais são as suas populações. Podes também ver as mudanças "
+"ambientais no topo.\n"
 "\n"
 "Para ir para o próximo separador do editor, pressiona o botão próximo no "
 "canto inferior direito."
@@ -3013,8 +3031,9 @@ msgstr ""
 "do editor de células.\n"
 "\n"
 "Para continuar, seleciona um organelo no painel à esquerda (o citoplasma é "
-"uma boa escolha). Em seguida, clica com o botão esquerdo próximo ao hexágono "
-"mostrado no meio da tela para adicionar aquele organelo à tua espécie."
+"uma boa escolha). Em seguida, clica com o botão esquerdo próximo ao "
+"hexágono mostrado no meio da tela para adicionar aquele organelo à tua "
+"espécie."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
@@ -3037,8 +3056,8 @@ msgstr ""
 "para saberes quais processos eles realizam e quais compostos eles usam e "
 "produzem.\n"
 "\n"
-"Também presta atenção ao saldo de ATP no canto superior para teres a certeza "
-"de que a célula pode sobreviver.\n"
+"Também presta atenção ao saldo de ATP no canto superior para teres a "
+"certeza de que a célula pode sobreviver.\n"
 "\n"
 "Podes rotacionar os organelos ao clicares nas teclas A e D antes de os "
 "colocar.\n"
@@ -3065,13 +3084,14 @@ msgstr "Entendi"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Em um planeta alienígena distante, eras de atividades vulcânicas e impactos "
-"de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
+"Em um planeta alienígena distante, eras de atividades vulcânicas e "
+"impactos de meteoros causaram o desenvolvimento de um novo fenómeno no "
+"universo.\n"
 "\n"
 "A vida.\n"
 "\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o último "
-"ancestral comum (LUCA) no planeta.\n"
+"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o "
+"último ancestral comum (LUCA) no planeta.\n"
 "\n"
 "Para sobreviver neste mundo hostil, precisarás de acumular compostos e "
 "evoluir para competir contra outras espécies de micróbios."
@@ -3087,8 +3107,8 @@ msgstr "Começar a prosperar"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Para controlar a tua célula usa as teclas mostradas perto da célula (centro "
-"da ecrã) e o rato para controlar a sua orientação.\n"
+"Para controlar a tua célula usa as teclas mostradas perto da célula "
+"(centro da ecrã) e o rato para controlar a sua orientação.\n"
 "\n"
 "Testa todas as teclas por alguns segundos para continuar."
 
