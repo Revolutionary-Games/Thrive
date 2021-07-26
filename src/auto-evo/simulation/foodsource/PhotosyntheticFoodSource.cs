@@ -31,12 +31,6 @@ public class PhotosyntheticFoodSource : IFoodSource
                         photosynthesisingScore += process.Process.Outputs[glucose]
                             / process.Process.Inputs[sunlight] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
                     }
-
-                    if (process.Process.Outputs.ContainsKey(atp))
-                    {
-                        photosynthesisingScore += process.Process.Outputs[atp]
-                            / process.Process.Inputs[sunlight] / Constants.AUTO_EVO_ATP_USE_SCORE_DIVISOR;
-                    }
                 }
             }
         }
