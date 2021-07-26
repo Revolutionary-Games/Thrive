@@ -4,10 +4,12 @@
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
+    private BiomeConditions biomeConditions;
     private float totalSunlight;
 
     public PhotosyntheticFoodSource(Patch patch)
     {
+        biomeConditions = patch.Biome;
         totalSunlight = patch.Biome.Compounds[sunlight].Dissolved * Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT;
     }
 
@@ -37,9 +39,8 @@
             }
         }
 
-        // Moving too much can be harmfull
-        var energyCost = microbeSpecies.BaseOsmoregulationCost();
-        energyCost *= 1 + (microbeSpecies.Activity / Constants.MAX_SPECIES_ACTIVITY);
+        var energyCost = ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles.Organelles.Select(organelle => organelle.Definition),
+                    biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
 
         return photosynthesisingScore / energyCost;
     }

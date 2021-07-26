@@ -122,13 +122,6 @@ public class MicrobeSpecies : Species
         return result;
     }
 
-    public float BaseOsmoregulationCost()
-    {
-        return Organelles.Sum(organelle => organelle.Definition.HexCount)
-            * MembraneType.OsmoregulationFactor
-            * Constants.ATP_COST_FOR_OSMOREGULATION;
-    }
-
     public float BaseSpeed()
     {
         float microbeMass = Constants.MICROBE_BASE_MASS;

@@ -17,7 +17,7 @@ public class HeterotrophicFoodSource : IFoodSource
         preySpeed = prey.BaseSpeed();
         preySize = prey.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         patch.SpeciesInPatch.TryGetValue(prey, out long population);
-        totalEnergy = population * prey.BaseOsmoregulationCost() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+        totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
     }
 
     public float FitnessScore(Species species)

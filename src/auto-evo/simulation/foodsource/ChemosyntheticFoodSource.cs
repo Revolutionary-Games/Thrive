@@ -3,11 +3,13 @@
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
+    private BiomeConditions biomeConditions;
     private Compound compound;
     private float totalCompound;
 
     public ChemosyntheticFoodSource(Patch patch, Compound compound)
     {
+        biomeConditions = patch.Biome;
         this.compound = compound;
         if (patch.Biome.Compounds.ContainsKey(compound))
         {
@@ -45,7 +47,8 @@
             }
         }
 
-        var energyCost = microbeSpecies.BaseOsmoregulationCost();
+        var energyCost = ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles.Organelles.Select(organelle => organelle.Definition),
+                    biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
 
         return compoundUseScore / energyCost;
     }
