@@ -133,9 +133,9 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
-    public SettingValue<string> SelectedOutputDevice { get; set; } = new SettingValue<string>(null);
+    public SettingValue<string> SelectedOutputDevice { get; set; } = new SettingValue<string>("Default");
 
-    public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>("Default");
+    public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
 
     // Performance Properties
 
