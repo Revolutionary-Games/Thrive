@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-14 22:48+0700\n"
-"PO-Revision-Date: 2021-07-21 12:42+0000\n"
-"Last-Translator: Shizome <artemg.sadovnikovg.2004g@gmail.com>\n"
+"PO-Revision-Date: 2021-07-24 09:05+0000\n"
+"Last-Translator: FrisKisDr <vow.kireew2016@yandex.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -229,6 +229,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
+"Забавный факт, В реальной жизни у прокариот есть нечто, называемое "
+"Биокомпонентами, которые действуют как органеллы, но самом деле называются "
+"многогранными органеллами."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
@@ -261,7 +264,7 @@ msgstr "ВОЛНИСТЫЕ СУЩЕСТВА!!"
 
 #: ../simulation_parameters/common/help_texts.json:59
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
+msgstr "Маленький металл."
 
 #: ../simulation_parameters/common/help_texts.json:60
 msgid "EASTEREGG_MESSAGE_12"
@@ -409,7 +412,7 @@ msgstr "Переключить поглощение"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Отвязать всё"
 
 #: ../simulation_parameters/common/input_options.json:58
 #, fuzzy
@@ -480,7 +483,7 @@ msgstr "Сбросить камеру"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Отменить текущие действие"
 
 #: ../simulation_parameters/common/input_options.json:139
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -946,31 +949,31 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
 msgid "KEY_ENTER"
-msgstr ""
+msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr ""
+msgstr "Insert"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
-msgstr ""
+msgstr "Delete"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr ""
+msgstr "Пауза"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Очистка"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
-msgstr ""
+msgstr "Home"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
-msgstr ""
+msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 #, fuzzy
@@ -979,7 +982,7 @@ msgstr "Двигаться влево"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr ""
+msgstr "Вверх"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 #, fuzzy
@@ -993,7 +996,7 @@ msgstr "Колёсико вниз"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr ""
+msgstr "Меню"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 #, fuzzy
@@ -1007,7 +1010,7 @@ msgstr "Назад"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Стоп"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 #, fuzzy
@@ -1016,31 +1019,31 @@ msgstr "Обновить"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Поиск"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Ожидание"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "Открыть URL-ссылку"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
-msgstr ""
+msgstr "Домашняя страница"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
-msgstr ""
+msgstr "Избранное"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Скриншот"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Пробел"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 #, fuzzy
@@ -1061,12 +1064,13 @@ msgid "KPENTER"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
+#, fuzzy
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "Page Up"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 #, fuzzy
@@ -1075,31 +1079,31 @@ msgstr "Двигать вниз"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr ""
+msgstr "Супер влево"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr ""
+msgstr "Супер вправо"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr ""
+msgstr "Гипер влево"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr ""
+msgstr "Гипер вправо"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 #, fuzzy
@@ -1128,7 +1132,7 @@ msgstr "Громкость звуковых эффектов"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr ""
+msgstr "Усиление басов"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
@@ -1140,7 +1144,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
-msgstr ""
+msgstr "Трижды вверх"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 #, fuzzy
@@ -1149,72 +1153,71 @@ msgstr "Колёсико вниз"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Проиграть медиа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Остановить медиа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "предыдущее:"
+msgstr "Предыдущие медиа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Следующие медиа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
-msgstr ""
+msgstr "Запись медиа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "Почта"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "Медиа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Запуск 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Запуск 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Запуск 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Запуск 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Запуск 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Запуск 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Запуск 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Запуск 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Запуск 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Запуск 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
