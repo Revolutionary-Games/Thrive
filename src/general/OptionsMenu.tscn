@@ -178,7 +178,6 @@ margin_bottom = 640.0
 rect_min_size = Vector2( 0, 600 )
 
 [node name="Graphics" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
-visible = false
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 679.0
@@ -391,6 +390,7 @@ pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
+visible = false
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 679.0
@@ -602,6 +602,8 @@ text = "DEVICE"
 align = 1
 
 [node name="OutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
+anchor_left = -0.00308642
+anchor_right = -0.00308642
 margin_left = 70.0
 margin_right = 648.0
 margin_bottom = 22.0
