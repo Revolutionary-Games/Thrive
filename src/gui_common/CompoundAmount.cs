@@ -163,7 +163,8 @@ public class CompoundAmount : HBoxContainer
         string numberPart;
         if (UsePercentageDisplay)
         {
-            numberPart = Math.Round(amount * 100, 1) + "%";
+            numberPart = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
+                Math.Round(amount * 100, 1));
         }
         else
         {
