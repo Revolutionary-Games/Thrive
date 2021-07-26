@@ -785,7 +785,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public bool AddPilus(uint shapeOwner)
     {
         return pilusPhysicsShapes.Add(shapeOwner);
-        return pilusPhysicsShapes.Add(shapeOwner);
     }
 
     public bool RemovePilus(uint shapeOwner)
