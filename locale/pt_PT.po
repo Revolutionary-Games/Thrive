@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-16 15:11+0300\n"
-"PO-Revision-Date: 2021-07-23 17:35+0000\n"
-"Last-Translator: TomDev03 <chumbosilva200@gmail.com>\n"
+"PO-Revision-Date: 2021-07-26 13:26+0000\n"
+"Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -113,7 +113,6 @@ msgstr ""
 "que entrares no editor, eles também evoluem."
 
 #: ../simulation_parameters/common/help_texts.json:16
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Ao te conectares com outras células podes formar uma colónia de células, "
@@ -123,7 +122,7 @@ msgstr ""
 "modo de adesão. Apenas te podes conectar com células da tua própria espécie. "
 "Enquanto permaneceres numa colónia, não serás capaz de dividir a tua célula "
 "e entrar no editor (por agora). Para entrar no editor, primeiro deixa a "
-"colónia assim que tenhas acumulado compostos suficientes, e depois entra no "
+"colónia assim que tenhas recolhido compostos suficientes, e depois entra no "
 "mesmo. Grandes colónias de células são precursoras da multicelularidade ("
 "ainda ausente no jogo)."
 
@@ -167,7 +166,7 @@ msgstr ""
 "membrana. Também duplica o tamanho da tua célula. (apenas pode ser evoluído "
 "uma única vez)\n"
 "\n"
-"Agente de ligação: Permite a ligação com outras células\n"
+"Agente de Adesão: Permite a ligação com outras células\n"
 "\n"
 "Mitocôndria: Produz ATP a partir de glicose e O2 atmosférico. Bastante mais "
 "eficiente que o citoplasma\n"
@@ -186,8 +185,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Para cada geração, tens 100 pontos de mutação (PM) para gastar, e cada "
-"mudança custará uma certa quantia desses pontos. Adicionar e remover "
+"A cada geração, tens 100 pontos de mutação (PM) para gastar, e cada mudança ("
+"ou mutação) custará uma certa quantia desses pontos. Adicionar e remover "
 "organelos custa PM. Porém, remover organelos que foram inseridos na sessão "
 "de mutação atual reembolsa os PM dos mesmos. Tu podes mover ou remover "
 "completamente um organelo ao clicar no mesmo com o botão direito do rato e "
@@ -231,8 +230,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:52
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Curiosidade, na vida real os procariotas têm algo chamado Biocompartimentos, "
-"que atuam como organelos, e são de facto chamados organelos poliédricos."
+"Curiosidade, na vida real os procariotas possuem algo chamado "
+"Biocompartimentos, que atuam como organelos, e são de facto chamados "
+"organelos poliédricos."
 
 #: ../simulation_parameters/common/help_texts.json:53
 msgid "EASTEREGG_MESSAGE_5"
@@ -293,7 +293,7 @@ msgstr "Eis uma dica, tu podes en[g]olfar pedaços, de ferro ou outros."
 #: ../simulation_parameters/common/help_texts.json:64
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Eis uma dica, prepara-te antes de adicionar um núcleo. Essas coisas são "
+"Eis uma dica, prepara-te antes de adicionares um núcleo. Essas coisas são "
 "caras! Em manutenção e no custo inicial."
 
 #: ../simulation_parameters/common/help_texts.json:65
@@ -399,6 +399,7 @@ msgstr "Disparar toxina"
 
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
+#, fuzzy
 msgid "TOGGLE_ENGULF"
 msgstr "Engolir"
 
@@ -413,11 +414,11 @@ msgstr "Desconectar"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr "Desvincular tudo"
+msgstr "Desconectar todos"
 
 #: ../simulation_parameters/common/input_options.json:58
 msgid "PERFORM_UNBINDING"
-msgstr "Efetuar a desvinculação"
+msgstr "Efetuar a desconexão"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -627,7 +628,7 @@ msgstr "Grande Pedaço de Ferro"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:146
 msgid "VOLCANIC_VENT"
-msgstr "Chaminé vulcânica"
+msgstr "Fonte hidrotermal"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:205
 #: ../simulation_parameters/microbe_stage/biomes.json:572
@@ -663,11 +664,11 @@ msgstr "Caverna Subaquática"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1378
 msgid "ICESHELF"
-msgstr "Plataforma de gelo"
+msgstr "Plataforma de Gelo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1441
 msgid "ICESHARD"
-msgstr "Fragmento de gelo"
+msgstr "Fragmento de Gelo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1528
 msgid "ESTUARY"
@@ -675,7 +676,7 @@ msgstr "Estuário"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1660
 msgid "SEA_FLOOR"
-msgstr "Fundo do oceano"
+msgstr "Fundo Oceânico"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
@@ -866,8 +867,9 @@ msgid "FINISHED"
 msgstr "Concluído."
 
 #: ../src/auto-evo/AutoEvoRun.cs:118
+#, fuzzy
 msgid "NOT_RUNNING"
-msgstr "Não está a funcionar."
+msgstr "Não está a decorrer."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "AUTO-EVO_STEPS_DONE"
@@ -903,7 +905,7 @@ msgstr "código do gene:"
 
 #: ../src/auto-evo/RunResults.cs:264
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
-msgstr "migrou para:"
+msgstr "migrou para as regiões:"
 
 #: ../src/auto-evo/RunResults.cs:273
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
@@ -914,8 +916,9 @@ msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "população nas regiões:"
 
 #: ../src/auto-evo/RunResults.cs:372
+#, fuzzy
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr "foram extintos do planeta"
+msgstr "extinto no planeta"
 
 #: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
 msgid "LOADING"
@@ -926,6 +929,7 @@ msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Pressiona uma tecla..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:135
+#, fuzzy
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Há um conflito com {0}.\n"
@@ -933,7 +937,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
-msgstr "Frente"
+msgstr "Forward"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
@@ -945,11 +949,11 @@ msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr "Inserir"
+msgstr "Insert"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
-msgstr "Apagar"
+msgstr "Delete"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
@@ -957,7 +961,7 @@ msgstr "Pause"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr "Limpar"
+msgstr "Clear"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
@@ -989,35 +993,37 @@ msgstr "Menu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
-msgstr "Ajuda"
+msgstr "Help"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "KEY_BACK"
-msgstr "Voltar"
+msgstr "Back"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr "Parar"
+msgstr "Stop"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr "Atualizar"
+msgstr "Refresh"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr "Pesquisar"
+msgstr "Search"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr "Espera"
+msgstr "Standby"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
+#, fuzzy
 msgid "KEY_OPENURL"
 msgstr "Abrir URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
+#, fuzzy
 msgid "KEY_HOMEPAGE"
-msgstr "Pagina inicial"
+msgstr "Homepage"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
@@ -1991,19 +1997,19 @@ msgstr "A ser implementado."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Pressione [thrive:input]g_toggle_binding[/thrive:input] para alternar o modo "
-"de adesão. Quando em modo de adesão podes anexar outras células da mesma "
-"espécie à tua colónia movendo-as para elas. Para sair de uma colónia "
+"Pressione [thrive:input]g_toggle_binding[/thrive:input] para ativar o modo "
+"de adesão. Quando em modo de adesão podes anexar outras células da tua "
+"espécie à tua colónia ao te aproximares das mesmas. Para deixar uma colónia "
 "pressione [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Permite conectar com outras células. Este é o primeiro passo para o "
+"Permite conectar com outras células. Este é o primeiro passo para a "
 "multicelularidade. Quando a tua célula pertence a uma colónia, os compostos "
 "são partilhados entre células. Não é possível entrar no editor enquanto "
-"pertenceres a uma colónia, então é necessário sair assim que tenhas coletado "
-"compostos suficientes para dividires a tua célula."
+"pertenceres a uma colónia, sendo necessário desconectar-te da mesma assim "
+"que tenhas coletado compostos suficientes para dividires a tua célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
