@@ -1451,11 +1451,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void OnIGotAddedToColony()
     {
+        State = MicrobeState.Normal;
+        UnreadyToReproduce();
+
+        if (ColonyParent == null)
+            return;
+
         var oldRotation = Rotation;
         var vectorToParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
         ChangeNodeParent(ColonyParent);
-
-        State = MicrobeState.Normal;
 
         var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
         var vectorToMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
@@ -1470,7 +1474,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         Rotation = oldRotation - ColonyParent.Rotation;
         Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
-        UnreadyToReproduce();
     }
 
     private void SetScaleFromSpecies()
@@ -1822,6 +1825,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void UnreadyToReproduce()
     {
+        // Sets this flag to false to make full recomputation on next reproduction readiness check
+        // This notably allows to reactivate editor button upon colony unbinding.
+        allOrganellesDivided = false;
         OnReproductionStatus?.Invoke(this, false);
     }
 
@@ -2173,16 +2179,44 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private void RefreshProcesses()
     {
-        processes = new List<TweakedProcess>();
-        processesDirty = false;
+        if (processes == null)
+        {
+            processes = new List<TweakedProcess>();
+        }
+        else
+        {
+            processes.Clear();
+        }
 
         if (organelles == null)
             return;
 
         foreach (var entry in organelles.Organelles)
         {
-            processes.AddRange(entry.Definition.RunnableProcesses);
+            // Duplicate processes need to be combined into a single TweakedProcess
+            foreach (var process in entry.Definition.RunnableProcesses)
+            {
+                bool found = false;
+
+                foreach (var existing in processes)
+                {
+                    if (existing.Process == process.Process)
+                    {
+                        existing.Rate += process.Rate;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    // Because we modify the process, we must duplicate the object for each microbe
+                    processes.Add((TweakedProcess)process.Clone());
+                }
+            }
         }
+
+        processesDirty = false;
     }
 
     private void CountHexes()

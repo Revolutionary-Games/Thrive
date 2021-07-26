@@ -543,6 +543,12 @@ before committing.
 When running the script like that it can take a long time to run. See
 the pre-commit hook section for how to speed things up.
 
+Alternatively you can run the script `create_changes_list.rb` each
+time before you run the formatting check. That script will build a
+list of changed files that the formatting checks will use to skip
+checking non-changed files. But the pre-commit hook is recommended as
+it is easier to use.
+
 Pre-commit hook
 ---------------
 

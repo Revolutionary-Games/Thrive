@@ -15,6 +15,8 @@ public class MicrobeColony
         master.ColonyChildren = new List<Microbe>();
         ColonyMembers = new List<Microbe> { master };
         ColonyCompounds = new ColonyCompoundBag(this);
+
+        master.OnColonyMemberAdded(master);
     }
 
     [JsonProperty]
