@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-27 12:03+0200\n"
-"PO-Revision-Date: 2021-07-22 15:44+0000\n"
+"POT-Creation-Date: 2021-07-27 18:51+0200\n"
+"PO-Revision-Date: 2021-07-26 13:26+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/he/>\n"
@@ -1762,8 +1762,8 @@ msgstr "חיים"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]גלוקוז[/thrive:compound] ל[thrive:compound]ATP[/"
-"thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1820,8 +1820,9 @@ msgstr "עלות ויסות אוסמטי"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]גלוקוז[/thrive:compound] ל[thrive:compound]ATP[/"
-"thrive:compound]. בהתאם לריכוז של ה[thrive:compound]חמצן[/thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]. בהתאם לריכוז של ה[thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1839,9 +1840,9 @@ msgstr "תילקואיד"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר [thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוז של [thrive:"
-"compound]פחמן דו חמצני[/thrive:compound] ועוצמת ה[thrive:compound]אור[/"
-"thrive:compound]"
+"מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ועוצמת "
+"ה[thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1855,10 +1856,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]מימן גופרתי[/thrive:compound] ל[thrive:"
-"compound]גלוקוז[/thrive:compound]. בהתאם לריכוז של [thrive:compound]פחמן "
-"דו חמצני[/thrive:compound]. בנוסף הופך [thrive:compound]גלוקוז[/thrive:"
-"compound] ל[thrive:compound]ATP[/thrive:compound]"
+"הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:"
+"compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז של [thrive:"
+"compound type=\"carbondioxide\"][/thrive:compound]. בנוסף הופך [thrive:"
+"compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1872,9 +1874,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ברזל[/thrive:compound] ל[thrive:compound]ATP[/thrive:"
-"compound]. בהתאם לריכוזם של [thrive:compound]פחמן דו חמצני[/thrive:"
-"compound] ו[thrive:compound]חמצן[/thrive:compound]"
+"הופך [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound "
+"type=\"atp\"][/thrive:compound]. בהתאם לריכוזם של [thrive:compound type="
+"\"carbondioxide\"][/thrive:compound] ו[thrive:compound type=\"oxygen\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1886,8 +1889,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ATP[/thrive:compound] ל[thrive:compound]אמוניה[/"
-"thrive:compound]. בהתאם לריכוזו של ה[thrive:compound]חנקן[/thrive:compound]"
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1900,9 +1904,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ATP[/thrive:compound] ל[thrive:compound]רעלן[/thrive:"
-"compound]. בהתאם לריכוזו של ה[thrive:compound]חמצן[/thrive:compound].ניתן "
-"לשחררו על ידי [thrive:input]g_fire_toxin[/thrive:input]."
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"oxygen\"][/thrive:compound].ניתן לשחררו על ידי [thrive:"
+"input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1913,8 +1918,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"משתמש ב[thrive:compound]ATP[/thrive:compound] על מנת להגביר את מהירותו של "
-"התא"
+"משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] על מנת להגביר את "
+"מהירותו של התא"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1978,8 +1983,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]גלוקוז[/thrive:compound] ל[thrive:compound]ATP[/"
-"thrive:compound]. בהתאם לריכוזו של ה[thrive:compound]חמצן[/thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1993,9 +1999,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר[thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של [thrive:"
-"compound]פחמן דו חמצני[/thrive:compound] ושל עוצמת ה[thrive:compound]אור[/"
-"thrive:compound]"
+"מייצר[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל עוצמת "
+"ה[thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2014,8 +2020,9 @@ msgstr "תרמופלסט"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר [thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של [thrive:"
-"compound]פחמן דו חמצני[/thrive:compound] ושל הטמפרטורה."
+"מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל "
+"הטמפרטורה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2034,9 +2041,9 @@ msgstr "אין תהליכים"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]מימן גופרתי[/thrive:compound] ל[thrive:"
-"compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של [thrive:compound]פחמן "
-"דו חמצני[/thrive:compound]"
+"הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:"
+"compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:"
+"compoundtype=\"carbondioxide\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2048,9 +2055,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ATP[/thrive:compound] ל[thrive:compound]אמוניה[/"
-"thrive:compound]. בהתאם לריכוזם של ה[thrive:compound]חנקן[/thrive:"
-"compound] וה[thrive:compound]חמצן[/thrive:compound]"
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound "
+"type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2074,9 +2082,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך[thrive:compound]ATP[/thrive:compound] ל[thrive:compound]רעלן[/thrive:"
-"compound]. בהתאם לריכוזו של ה[thrive:compound]חמצן[/thrive:compound]. ניתן "
-"לשחרר את הרעלן על ידי לחיצה על [thrive:input]g_fire_toxin[/thrive:input]."
+"הופך[thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"oxygen\"][/thrive:compound]. ניתן לשחרר את הרעלן על ידי לחיצה על "
+"[thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
