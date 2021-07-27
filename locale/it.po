@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-14 22:48+0700\n"
-"PO-Revision-Date: 2021-07-18 18:42+0000\n"
+"PO-Revision-Date: 2021-07-26 13:26+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -1702,7 +1702,7 @@ msgstr "al secondo"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:573
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1790,8 +1790,8 @@ msgstr "Salute"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma il [thrive:compound]glucose[/thrive:compound] in [thrive:"
-"compound]atp[/thrive:compound]"
+"Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1849,9 +1849,9 @@ msgstr "Costo di osmoregolazione"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma il [thrive:compound]glucose[/thrive:compound] in [thrive:"
-"compound]atp[/thrive:compound]. Il tasso aumenta con la concentrazione di "
-"[thrive:compound]oxygen[/thrive:compound]"
+"Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1871,9 +1871,10 @@ msgstr "Tilacoide"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con "
-"la concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e "
-"con l'intensità di [thrive:compound]sunlight[/thrive:compound]"
+"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
+"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] e con l'intensità di [thrive:compound type=\"sunlight\""
+"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1890,11 +1891,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]hydrogensulfide[/thrive:compound] in [thrive:"
-"compound]glucose[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]carbondioxide[/thrive:compound]. Inoltre, trasforma il "
-"[thrive:compound]glucose[/thrive:compound] in [thrive:compound]atp[/thrive:"
-"compound]"
+"Trasforma l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta con "
+"la concentrazione di [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound]. Inoltre, trasforma il [thrive:compound type=\"glucose\""
+"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1910,10 +1911,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma il [thrive:compound]iron[/thrive:compound] in [thrive:"
-"compound]atp[/thrive:compound]. Il tasso aumenta con la concentrazione di "
-"[thrive:compound]carbondioxide[/thrive:compound] e di [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Trasforma il [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound] "
+"e di [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1926,9 +1927,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]ammonia[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]nitrogen[/thrive:compound]"
+"Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1942,10 +1943,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]oxytoxy[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]oxygen[/thrive:compound]. Puoi rilasciare le tossine "
-"premendo [thrive:input]g_fire_toxin[/thrive:input]."
+"Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi "
+"rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1956,7 +1957,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Utilizza l'[thrive:compound]atp[/thrive:compound] per aumentare la "
+"Utilizza l'[thrive:compound type=\"atp\"][/thrive:compound] per aumentare la "
 "velocità di movimento della cellula"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
@@ -2024,9 +2025,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma il [thrive:compound]glucose[/thrive:compound] in [thrive:"
-"compound]atp[/thrive:compound]. Il tasso aumenta con la concentrazione di "
-"[thrive:compound]oxygen[/thrive:compound]"
+"Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2042,9 +2043,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con "
-"la concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e "
-"con l'intensità della [thrive:compound]sunlight[/thrive:compound]"
+"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
+"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] e con l'intensità della [thrive:compound type=\"sunlight"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2066,9 +2068,9 @@ msgstr "Termoplasto"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con "
-"la concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e "
-"con la temperatura."
+"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
+"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] e con la temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2090,9 +2092,10 @@ msgstr "Nessun processo"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]hydrogensulfide[/thrive:compound] in [thrive:"
-"compound]glucose[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]carbondioxide[/thrive:compound]"
+"Trasforma l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta con "
+"la concentrazione di [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2106,10 +2109,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]ammonia[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]nitrogen[/thrive:compound] e di [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound] e di "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2136,10 +2139,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]oxytoxy[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]oxygen[/thrive:compound]. Puoi rilasciare le tossine "
-"premendo [thrive:input]g_fire_toxin[/thrive:input]."
+"Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi "
+"rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
