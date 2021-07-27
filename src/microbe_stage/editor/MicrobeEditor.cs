@@ -840,6 +840,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
+        DirtyMutationPointsCache();
     }
 
     /// <summary>
@@ -1102,6 +1103,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editorArrow.Visible = shown;
         editorGrid.Visible = shown;
         rootOfDynamicallySpawned.Visible = shown;
+    }
+
+    internal void DirtyMutationPointsCache()
+    {
+        mutationPointsCache = null;
+        gui.UpdateMutationPointsBar();
     }
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
@@ -1419,12 +1426,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             GD.PrintErr("Failed to create a mutated version of the edited species");
         }
-    }
-
-    private void DirtyMutationPointsCache()
-    {
-        mutationPointsCache = null;
-        gui.UpdateMutationPointsBar();
     }
 
     /// <summary>

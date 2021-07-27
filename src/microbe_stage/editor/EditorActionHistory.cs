@@ -36,7 +36,6 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                     case MicrobeActionInterferenceMode.CancelsOut:
                         copy.RemoveAt(y);
                         copy.RemoveAt(i);
-                        i--;
                         y--;
                         copyLength -= 2;
                         break;
