@@ -60,7 +60,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Where all user actions will  be registered
     /// </summary>
     [JsonProperty]
-    private EditorActionHistory history;
+    private EditorActionHistory history = new EditorActionHistory();
 
     private Material invalidMaterial;
     private Material validMaterial;
@@ -298,7 +298,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   The number of mutation points left
     /// </summary>
-    [JsonProperty]
+    [JsonIgnore]
     public int MutationPoints => mutationPointsCache ?? CalculateMutationPointsLeft();
 
     /// <summary>
@@ -436,6 +436,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             camera.ObjectToFollow = cameraFollow;
 
         tutorialGUI.Visible = true;
+
         gui.Init(this);
 
         TransitionFinished = false;
@@ -1143,8 +1144,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (!IsLoadedFromSave)
         {
-            history = new EditorActionHistory();
-
             // Start a new game if no game has been started
             if (CurrentGame == null)
             {
