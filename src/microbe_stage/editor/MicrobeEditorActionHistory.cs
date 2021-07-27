@@ -5,9 +5,10 @@
         // If action is RigidityChange, try to combine it with the previous one.
         if (CanUndo())
         {
-            if (action is MicrobeRigidityChangeAction && actions[actionIndex - 1] is MicrobeRigidityChangeAction)
+            if (action is MicrobeRigidityChangeAction newAction
+                && actions[actionIndex - 1] is MicrobeRigidityChangeAction previousAction)
             {
-                ((MicrobeRigidityChangeAction)actions[actionIndex - 1]).Combine((MicrobeRigidityChangeAction)action);
+                previousAction.Combine(newAction);
                 return;
             }
         }
