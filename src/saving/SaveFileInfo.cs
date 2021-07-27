@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Info about a save file on disk
@@ -33,19 +34,18 @@ public class SaveFileInfo
     {
         get
         {
-            if (info == null)
-            {
-                // Load from file
-                info = Save.LoadJustInfoFromSave(Name);
-            }
-
-            return info;
+            // Load from file if missing
+            return info ??= Save.LoadJustInfoFromSave(Name);
         }
         set => info = value;
     }
 
     public static string SaveNameToPath(string name)
     {
+        // If the name begins with the file protocol it's already a full path
+        if (name.StartsWith(Constants.EXPLICIT_PATH_PREFIX, StringComparison.InvariantCulture))
+            return name.Substring(Constants.EXPLICIT_PATH_PREFIX.Length);
+
         return PathUtils.Join(Constants.SAVE_FOLDER, name);
     }
 
@@ -56,9 +56,7 @@ public class SaveFileInfo
     {
         info = null;
 
-        using (var file = new File())
-        {
-            LastModified = file.GetModifiedTime(Path);
-        }
+        using var file = new File();
+        LastModified = file.GetModifiedTime(Path);
     }
 }

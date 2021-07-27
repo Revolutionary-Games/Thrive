@@ -1,5 +1,7 @@
-﻿using Godot;
-using Godot.Collections;
+﻿using System;
+using Godot;
+using Array = Godot.Collections.Array;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
@@ -53,6 +55,18 @@ public class GUICommon : Node
         var top = popup.MarginTop;
         popup.PopupCenteredMinsize();
         popup.RectPosition = new Vector2(left, top);
+    }
+
+    public static void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
+    {
+        if (delta <= 0)
+        {
+            GD.PrintErr("Tried to run SmoothlyUpdateBar with non-positive delta!");
+            return;
+        }
+
+        var weight = Math.Min(3.0f * delta + 0.2f, 1.0f);
+        bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 1.0f / (float)bar.MaxValue);
     }
 
     /// <summary>
@@ -130,24 +144,10 @@ public class GUICommon : Node
             RectMinSize = new Vector2(sizeX, sizeY),
             SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-            Texture = GetCompoundIcon(compoundName),
+            Texture = SimulationParameters.Instance.GetCompound(compoundName).LoadedIcon,
         };
 
         return element;
-    }
-
-    /// <summary>
-    ///   Loads compund icon texture from file path
-    /// </summary>
-    public Texture GetCompoundIcon(string compoundName)
-    {
-        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName + ".png");
-
-        // Just use a dummy icon instead if the requested icon is not found
-        if (icon == null)
-            icon = GD.Load<Texture>("res://assets/textures/gui/bevel/TestIcon.png");
-
-        return icon;
     }
 
     private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)

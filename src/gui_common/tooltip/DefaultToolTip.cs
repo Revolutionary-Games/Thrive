@@ -16,7 +16,7 @@ public class DefaultToolTip : Control, ICustomToolTip
     /// <summary>
     ///   If true, the tooltip fades out smoothly on hide.
     /// </summary>
-    public bool UseFadeOut = false;
+    public bool UseFadeOut;
 
     /// <summary>
     ///   TODO: Use RichTextLabel once its sizing issue is fixed

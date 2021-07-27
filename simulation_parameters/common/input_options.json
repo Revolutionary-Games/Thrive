@@ -40,6 +40,22 @@
             {
                 "InputName": "g_toggle_engulf",
                 "Name": "TOGGLE_ENGULF"
+            },
+            {
+                "InputName": "g_toggle_binding",
+                "Name": "TOGGLE_BINDING"
+            },
+            {
+                "InputName": "g_toggle_unbinding",
+                "Name": "TOGGLE_UNBINDING"
+            },
+            {
+                "InputName": "g_unbind_all",
+                "Name": "UNBIND_ALL"
+            },
+            {
+                "InputName": "g_perform_unbinding",
+                "Name": "PERFORM_UNBINDING"
             }
         ]
     },
@@ -109,6 +125,10 @@
             {
                 "InputName": "e_reset_camera",
                 "Name": "PAN_CAMERA_RESET"
+            },
+            {
+                "InputName": "e_cancel_current_action",
+                "Name": "CANCEL_CURRENT_ACTION"
             }
         ]
     },

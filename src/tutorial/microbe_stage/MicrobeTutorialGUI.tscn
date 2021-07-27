@@ -25,6 +25,7 @@ MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/B
 GlucoseTutorialPath = NodePath("GlucoseTutorial")
 StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
+UnbindTutorialPath = NodePath("UnbindTutorial")
 
 [node name="MicrobeWelcome" type="WindowDialog" parent="."]
 anchor_left = 0.5
@@ -167,7 +168,7 @@ margin_left = 620.0
 margin_top = 280.0
 margin_right = -628.0
 margin_bottom = -408.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_forward"
 
 [node name="Backwards" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
@@ -175,7 +176,7 @@ margin_left = 620.0
 margin_top = 400.0
 margin_right = -628.0
 margin_bottom = -288.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_backwards"
 
 [node name="Left" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
@@ -183,7 +184,7 @@ margin_left = 560.0
 margin_top = 340.0
 margin_right = -688.0
 margin_bottom = -348.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_left"
 
 [node name="Right" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
@@ -191,7 +192,7 @@ margin_left = 680.0
 margin_top = 340.0
 margin_right = -568.0
 margin_bottom = -348.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_right"
 
 [node name="GlucoseTutorial" type="WindowDialog" parent="."]
@@ -298,6 +299,42 @@ rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
+
+[node name="UnbindTutorial" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "TUTORIAL"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UnbindTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="Label" type="Label" parent="UnbindTutorial/ScrollContainer"]
+margin_right = 230.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_UNBIND_TEXT"
+autowrap = true
+
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
@@ -309,3 +346,5 @@ autowrap = true
 [connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
 [connection signal="popup_hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
+[connection signal="hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
+[connection signal="popup_hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]

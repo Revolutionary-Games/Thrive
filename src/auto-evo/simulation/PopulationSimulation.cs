@@ -153,7 +153,7 @@
 
             var totalPhotosynthesisScore = 0.0f;
             var totalChemosynthesisScore = 0.0f;
-            var totalChemolithautotrophyScore = 0.0f;
+            var totalChemolithoautotrophyScore = 0.0f;
             var totalGlucoseScore = 0.0f;
 
             var totalPredationScore = 0.0f;
@@ -163,7 +163,7 @@
             {
                 totalPhotosynthesisScore += GetCompoundUseScore(currentSpecies, Sunlight);
                 totalChemosynthesisScore += GetCompoundUseScore(currentSpecies, HydrogenSulfide);
-                totalChemolithautotrophyScore += GetCompoundUseScore(currentSpecies, Iron);
+                totalChemolithoautotrophyScore += GetCompoundUseScore(currentSpecies, Iron);
                 totalGlucoseScore += GetCompoundUseScore(currentSpecies, Glucose);
                 totalPredationScore += GetPredationScore(currentSpecies);
             }
@@ -171,7 +171,7 @@
             // Avoid division by 0
             totalPhotosynthesisScore = Math.Max(MathUtils.EPSILON, totalPhotosynthesisScore);
             totalChemosynthesisScore = Math.Max(MathUtils.EPSILON, totalChemosynthesisScore);
-            totalChemolithautotrophyScore = Math.Max(MathUtils.EPSILON, totalChemolithautotrophyScore);
+            totalChemolithoautotrophyScore = Math.Max(MathUtils.EPSILON, totalChemolithoautotrophyScore);
             totalGlucoseScore = Math.Max(MathUtils.EPSILON, totalGlucoseScore);
             totalPredationScore = Math.Max(MathUtils.EPSILON, totalPredationScore);
 
@@ -189,7 +189,7 @@
                     * GetCompoundUseScore(currentSpecies, HydrogenSulfide) / totalChemosynthesisScore;
 
                 currentSpeciesEnergy += ironInPatch
-                    * GetCompoundUseScore(currentSpecies, Iron) / totalChemolithautotrophyScore;
+                    * GetCompoundUseScore(currentSpecies, Iron) / totalChemolithoautotrophyScore;
 
                 currentSpeciesEnergy += glucoseInPatch
                     * GetCompoundUseScore(currentSpecies, Glucose) / totalGlucoseScore;

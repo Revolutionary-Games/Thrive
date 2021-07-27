@@ -84,13 +84,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     {
         get
         {
-            if (precomputedEnvironmentInputs == null)
-            {
-                precomputedEnvironmentInputs = Process.Inputs.Where(p => p.Key.IsEnvironmental)
-                    .ToDictionary(p => p.Key, p => p.Value);
-            }
-
-            return precomputedEnvironmentInputs;
+            return precomputedEnvironmentInputs ??= Process.Inputs
+                .Where(p => p.Key.IsEnvironmental)
+                .ToDictionary(p => p.Key, p => p.Value);
         }
     }
 
@@ -239,9 +235,8 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     {
         if (ReferenceEquals(this, obj))
             return true;
-        if (ReferenceEquals(obj, null))
-            return false;
 
+        // This also checks for obj being null
         if (obj is SingleProcessStatistics statistics)
         {
             return Process.Equals(statistics.Process);
@@ -315,9 +310,8 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     {
         if (ReferenceEquals(this, obj))
             return true;
-        if (ReferenceEquals(obj, null))
-            return false;
 
+        // This also checks for obj being null
         if (obj is AverageProcessStatistics statistics)
         {
             return owner.Equals(statistics.owner);

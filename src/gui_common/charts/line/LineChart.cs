@@ -8,7 +8,7 @@ using DataSetDictionary = System.Collections.Generic.Dictionary<string, LineChar
 
 /// <summary>
 ///   A custom widget for multi-line chart with hoverable data points tooltip. Uses <see cref="LineChartData"/>
-///   as dataset; currently only support numerical datas.
+///   as dataset; currently only support numerical data.
 /// </summary>
 public class LineChart : VBoxContainer
 {
@@ -65,6 +65,30 @@ public class LineChart : VBoxContainer
     ///   Limits how many dataset lines should be hidden.
     /// </summary>
     public int MinDisplayedDataSet;
+
+    /// <summary>
+    ///   Specifies how the X axis value display should be formatted on the datapoint tooltip.
+    ///   Leave this null/empty to use the default.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Format should have maximum of one format item (e.g "{0}%") where it will be inserted with the actual value.
+    ///     This will only be applied after calling Plot().
+    ///   </para>
+    /// </remarks>
+    public string TooltipXAxisFormat;
+
+    /// <summary>
+    ///   Specifies how the Y axis value display should be formatted on the datapoint tooltip.
+    ///   Leave this null/empty to use the default.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Format should have maximum of one format item (e.g "{0}%") where it will be inserted with the actual value.
+    ///     This will only be applied after calling Plot().
+    ///   </para>
+    /// </remarks>
+    public string TooltipYAxisFormat;
 
     /// <summary>
     ///   Fallback icon for the legend display mode using icons
@@ -135,7 +159,7 @@ public class LineChart : VBoxContainer
         MinVisibleLimitReached,
 
         /// <summary>
-        ///   The dataset visibility is succesfully changed.
+        ///   The dataset visibility is successfully changed.
         /// </summary>
         Success,
     }
@@ -233,6 +257,7 @@ public class LineChart : VBoxContainer
                 {
                     // Hide the marker as its positioning won't be pretty at zero coordinate
                     point.Visible = false;
+                    data.Value.Draw = false;
                 }
 
                 point.Coordinate = point.Coordinate.LinearInterpolate(coordinate, 3.0f * delta);
@@ -271,7 +296,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Plots the chart from available datasets
+    ///   Plots and constructs the chart from available datasets
     /// </summary>
     /// <param name="xAxisName">Overrides the horizontal axis label title</param>
     /// <param name="yAxisName">Overrides the vertical axis label title</param>
@@ -334,9 +359,19 @@ public class LineChart : VBoxContainer
                 // Create tooltip for the point markers
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
+                var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
+                    $"{((double)point.Value.x).FormatNumber()} {XAxisName}" :
+                    string.Format(CultureInfo.CurrentCulture,
+                        TooltipXAxisFormat, point.Value.x);
+
+                var yValueForm = string.IsNullOrEmpty(TooltipYAxisFormat) ?
+                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}" :
+                    string.Format(CultureInfo.CurrentCulture,
+                        TooltipYAxisFormat, point.Value.y);
+
                 toolTip.DisplayName = data.Key + point.Value;
-                toolTip.Description = $"{data.Key}\n{((double)point.Value.x).FormatNumber()} {XAxisName}\n" +
-                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}";
+                toolTip.Description = $"{data.Key}\n{xValueForm}\n{yValueForm}";
+
                 toolTip.DisplayDelay = 0;
                 toolTip.HideOnMousePress = false;
                 toolTip.UseFadeIn = false;
@@ -506,7 +541,7 @@ public class LineChart : VBoxContainer
         {
             Flat = false,
             Text = title,
-            EnabledFocusMode = FocusModeEnum.None,
+            FocusMode = FocusModeEnum.None,
         };
 
         var itemId = 0;
@@ -652,7 +687,7 @@ public class LineChart : VBoxContainer
         // Set pivot at the center of the rect
         mouseCollider.RectPivotOffset = mouseCollider.RectSize / 2;
 
-        // Use the distance between two coordinates as the collider's length
+        // Use the distance between two coordinates as the length of the collider
         mouseCollider.RectScale = new Vector2(
             firstPoint.Coordinate.DistanceTo(secondPoint.Coordinate) - firstPoint.RectSize.x,
             dataSets[datasetName].LineWidth + 10);
@@ -675,7 +710,7 @@ public class LineChart : VBoxContainer
             // Had to apply the coordinate on the next frame to compensate with Godot's UI update delay,
             // so the coordinates could be correctly calculated (since it depends on the Control container
             // rect sizes) just after Plot() call. This may result to a subtle glitchy look in the first
-            // few frame where all the points were postioned at the top-left. But this works just fine for now.
+            // few frame where all the points were positioned at the top-left. But this works just fine for now.
             Invoke.Instance.Queue(() =>
             {
                 if (!IsInstanceValid(point))
@@ -994,7 +1029,7 @@ public class LineChart : VBoxContainer
             IsUsingFallbackIcon = isUsingFallbackIcon;
             Expand = true;
             RectMinSize = new Vector2(18, 18);
-            EnabledFocusMode = FocusModeEnum.None;
+            FocusMode = FocusModeEnum.None;
             ToggleMode = true;
             Pressed = true;
             TextureNormal = data.IconTexture;

@@ -25,8 +25,7 @@ public static class MathUtils
         return val;
     }
 
-    public static double
-        Sigmoid(double x)
+    public static double Sigmoid(double x)
     {
         return 1 / (1 + Math.Exp(-x));
     }

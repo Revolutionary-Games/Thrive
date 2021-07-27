@@ -33,7 +33,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath StructureTabPath;
 
     [Export]
-    public NodePath ApperanceTabPath;
+    public NodePath AppearanceTabPath;
 
     [Export]
     public NodePath SizeLabelPath;
@@ -91,6 +91,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     [Export]
     public NodePath FinishButtonPath;
+
+    [Export]
+    public NodePath CancelButtonPath;
 
     [Export]
     public NodePath SymmetryButtonPath;
@@ -322,6 +325,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private LineEdit speciesNameEdit;
 
     private Button finishButton;
+    private Button cancelButton;
 
     // ReSharper disable once NotAccessedField.Local
     private TextureButton symmetryButton;
@@ -380,9 +384,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureRect sizeIndicator;
 
     private Texture symmetryIconDefault;
-    private Texture symmetryIcon2x;
-    private Texture symmetryIcon4x;
-    private Texture symmetryIcon6x;
+    private Texture symmetryIcon2X;
+    private Texture symmetryIcon4X;
+    private Texture symmetryIcon6X;
     private Texture increaseIcon;
     private Texture decreaseIcon;
     private AudioStream unableToPlaceHexSound;
@@ -431,7 +435,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         structureTabButton = GetNode<Button>(StructureTabButtonPath);
 
-        appearanceTab = GetNode<PanelContainer>(ApperanceTabPath);
+        appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
         appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
 
         sizeLabel = GetNode<Label>(SizeLabelPath);
@@ -457,6 +461,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         newCellButton = GetNode<TextureButton>(NewCellButtonPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         finishButton = GetNode<Button>(FinishButtonPath);
+        cancelButton = GetNode<Button>(CancelButtonPath);
 
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
@@ -511,9 +516,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
-        symmetryIcon2x = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
-        symmetryIcon4x = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
-        symmetryIcon6x = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
+        symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
+        symmetryIcon4X = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
+        symmetryIcon6X = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
@@ -548,10 +553,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         ApplySelectionMenuTab();
 
         UpdateMutationPointsBar();
-
-        // Fade out for that smooth satisfying transition
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
     }
 
     public void SetMap(PatchMap map)
@@ -561,14 +562,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdatePlayerPatch(Patch patch)
     {
-        if (patch == null)
-        {
-            mapDrawer.PlayerPatch = editor.CurrentPatch;
-        }
-        else
-        {
-            mapDrawer.PlayerPatch = patch;
-        }
+        mapDrawer.PlayerPatch = patch ?? editor.CurrentPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
@@ -576,7 +570,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdateGlucoseReduction(float value)
     {
-        var percentage = value * 100 + "%";
+        var percentage = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
+            value * 100);
 
         // The amount of glucose has been reduced to {0} of the previous amount.
         glucoseReductionLabel.Text =
@@ -759,7 +754,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 var dataset = new LineChartData
                 {
-                    IconTexture = GUICommon.Instance.GetCompoundIcon(entry.Key.InternalName),
+                    IconTexture = entry.Key.LoadedIcon,
                     DataColour = entry.Key.Colour,
                 };
 
@@ -773,7 +768,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
-        // Populate charts with datas from patch history
+        // Populate charts with data from patch history
         foreach (var snapshot in patch.History)
         {
             temperatureData.AddPoint(new DataPoint
@@ -791,7 +786,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
                 var dataPoint = new DataPoint
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, GetCompoundAmount(patch, entry.Key.InternalName)),
+                    Value = new Vector2((float)snapshot.TimePeriod, GetCompoundAmount(
+                        patch, snapshot.Biome, entry.Key.InternalName)),
                     MarkerColour = dataset.DataColour,
                 };
 
@@ -818,6 +814,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 dataset.AddPoint(dataPoint);
             }
         }
+
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+
+        sunlightChart.TooltipYAxisFormat = percentageFormat + " lx";
+        atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
+        compoundsChart.TooltipYAxisFormat = percentageFormat;
 
         sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5);
         temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5);
@@ -944,20 +946,31 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             patch.Depth[0], patch.Depth[1]);
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+
         // Atmospheric gasses
         patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
-        patchLight.Text = GetCompoundAmount(patch, sunlight.InternalName) + "% lx";
-        patchOxygen.Text = GetCompoundAmount(patch, oxygen.InternalName) + "%";
-        patchNitrogen.Text = GetCompoundAmount(patch, nitrogen.InternalName) + "%";
-        patchCO2.Text = GetCompoundAmount(patch, carbondioxide.InternalName) + "%";
+        patchLight.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, sunlight.InternalName)) + " lx";
+        patchOxygen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, oxygen.InternalName));
+        patchNitrogen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, nitrogen.InternalName));
+        patchCO2.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, carbondioxide.InternalName));
 
         // Compounds
-        patchHydrogenSulfide.Text = Math.Round(GetCompoundAmount(patch, hydrogensulfide.InternalName), 3) + "%";
-        patchAmmonia.Text = Math.Round(GetCompoundAmount(patch, ammonia.InternalName), 3) + "%";
-        patchGlucose.Text = Math.Round(GetCompoundAmount(patch, glucose.InternalName), 3) + "%";
-        patchPhosphate.Text = Math.Round(GetCompoundAmount(patch, phosphates.InternalName), 3) + "%";
-        patchIron.Text = GetCompoundAmount(patch, iron.InternalName) + "%";
+        patchHydrogenSulfide.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            Math.Round(GetCompoundAmount(patch, hydrogensulfide.InternalName), 3));
+        patchAmmonia.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            Math.Round(GetCompoundAmount(patch, ammonia.InternalName), 3));
+        patchGlucose.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            Math.Round(GetCompoundAmount(patch, glucose.InternalName), 3));
+        patchPhosphate.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            Math.Round(GetCompoundAmount(patch, phosphates.InternalName), 3));
+        patchIron.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, iron.InternalName));
 
         // Refresh species list
         speciesListBox.ClearItems();
@@ -1000,6 +1013,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
+    /// <summary>
+    ///   Updates the visibility of the current action cancel button.
+    /// </summary>
+    public void UpdateCancelButtonVisibility()
+    {
+        cancelButton.Visible = editor.CanCancelAction;
+    }
+
     public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
     {
         organelleMenu.SelectedOrganelle = selectedOrganelle;
@@ -1022,6 +1043,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public void OnMovePressed()
     {
         editor.StartOrganelleMove(organelleMenu.SelectedOrganelle);
+
+        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
+        UpdateCancelButtonVisibility();
     }
 
     public void OnDeletePressed()
@@ -1084,7 +1108,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
     }
 
-    internal void OnInsufficientMp()
+    internal void OnInsufficientMp(bool playSound = true)
     {
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
@@ -1092,7 +1116,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
 
-        PlayInvalidActionSound();
+        if (playSound)
+            PlayInvalidActionSound();
     }
 
     internal void OnActionBlockedWhileMoving()
@@ -1108,11 +1133,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock the organelles that need a nucleus
     /// </summary>
-    internal void UpdatePartsAvailability(bool hasNucleus)
+    internal void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
-            UpdatePartAvailability(hasNucleus, organelle);
+            UpdatePartAvailability(placedUniqueOrganelleNames, organelle);
         }
     }
 
@@ -1129,8 +1154,21 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         GD.Print("Editor action is now: " + editor.ActiveActionName);
     }
 
+    internal void OnCancelActionClicked()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        editor.CancelCurrentAction();
+    }
+
     internal void OnFinishEditingClicked()
     {
+        // Prevent exiting when the transition hasn't finished
+        if (!editor.TransitionFinished)
+        {
+            return;
+        }
+
+        // Can't finish an organism edit if an organelle is being moved
         if (editor.MovingOrganelle != null)
         {
             OnActionBlockedWhileMoving();
@@ -1139,13 +1177,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
-        {
-            negativeAtpPopup.PopupCenteredShrink();
-            return;
-        }
-
         // Can't exit the editor with disconnected organelles
         if (editor.HasIslands)
         {
@@ -1153,10 +1184,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             return;
         }
 
+        // Show warning popup if trying to exit with negative atp production
+        if (energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        {
+            negativeAtpPopup.PopupCenteredShrink();
+            return;
+        }
+
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.4f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1164,7 +1203,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.4f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -1286,13 +1325,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 symmetryIcon.Texture = symmetryIconDefault;
                 break;
             case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
-                symmetryIcon.Texture = symmetryIcon2x;
+                symmetryIcon.Texture = symmetryIcon2X;
                 break;
             case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon4x;
+                symmetryIcon.Texture = symmetryIcon4X;
                 break;
             case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon6x;
+                symmetryIcon.Texture = symmetryIcon6X;
                 break;
         }
     }
@@ -1300,16 +1339,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Lock / unlock a single organelle that need a nucleus
     /// </summary>
-    private void UpdatePartAvailability(bool hasNucleus, OrganelleDefinition organelle)
+    private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
+        OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
 
-        if (item.Name == nucleus.InternalName)
+        if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
         {
-            item.Locked = hasNucleus;
+            item.Locked = true;
         }
         else if (organelle.RequiresNucleus)
         {
+            var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus);
             item.Locked = !hasNucleus;
         }
         else
@@ -1423,6 +1464,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 report.Show();
                 reportTabButton.Pressed = true;
+                editor.SetEditorCellVisibility(false);
                 break;
             }
 
@@ -1430,6 +1472,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 patchMap.Show();
                 patchMapButton.Pressed = true;
+                editor.SetEditorCellVisibility(false);
                 break;
             }
 
@@ -1437,6 +1480,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 cellEditor.Show();
                 cellEditorButton.Pressed = true;
+                editor.SetEditorCellVisibility(true);
                 break;
             }
 
@@ -1471,6 +1515,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 structureTab.Show();
                 structureTabButton.Pressed = true;
+                editor.MicrobePreviewMode = false;
                 break;
             }
 
@@ -1478,6 +1523,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             {
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
+                editor.MicrobePreviewMode = true;
                 break;
             }
 
@@ -1718,16 +1764,23 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             toolTipManager.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
         finishButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
+        cancelButton.RegisterToolTipForControl(
+            toolTipManager.GetToolTip("cancelButton", "editor"), tooltipCallbacks);
         menuButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
 
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
 
+        // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
+        // ReSharper disable StringLiteralTypo
         temperatureButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("temperature", "chartLegendPhysConds"), tooltipCallbacks);
+
         sunlightButton.RegisterToolTipForControl(
             toolTipManager.GetToolTip("sunlight", "chartLegendPhysConds"), tooltipCallbacks);
+
+        // ReSharper restore StringLiteralTypo
     }
 
     private void OnSpeciesNameTextChanged(string newText)
@@ -1861,23 +1914,28 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private float GetCompoundAmount(Patch patch, string compoundName)
     {
+        return GetCompoundAmount(patch, patch.Biome, compoundName);
+    }
+
+    private float GetCompoundAmount(Patch patch, BiomeConditions biome, string compoundName)
+    {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 
         switch (compoundName)
         {
             case "sunlight":
-                return patch.Biome.Compounds[compound].Dissolved * 100;
+                return biome.Compounds[compound].Dissolved * 100;
             case "oxygen":
-                return patch.Biome.Compounds[compound].Dissolved * 100;
+                return biome.Compounds[compound].Dissolved * 100;
             case "carbondioxide":
-                return patch.Biome.Compounds[compound].Dissolved * 100;
+                return biome.Compounds[compound].Dissolved * 100;
             case "nitrogen":
-                return patch.Biome.Compounds[compound].Dissolved * 100;
+                return biome.Compounds[compound].Dissolved * 100;
             case "iron":
                 return patch.GetTotalChunkCompoundAmount(compound);
             default:
-                return patch.Biome.Compounds[compound].Density *
-                    patch.Biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
+                return biome.Compounds[compound].Density *
+                    biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
                         compound);
         }
     }
