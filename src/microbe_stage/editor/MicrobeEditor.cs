@@ -23,6 +23,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
+    private int? mutationPointsCache;
+
     /// <summary>
     ///   Object camera is over. Needs to be defined before camera for saving to work
     /// </summary>
@@ -58,7 +60,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Where all user actions will  be registered
     /// </summary>
     [JsonProperty]
-    private ActionHistory<MicrobeEditorAction> history;
+    private EditorActionHistory history;
 
     private Material invalidMaterial;
     private Material validMaterial;
@@ -1155,7 +1157,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (!IsLoadedFromSave)
         {
-            history = new ActionHistory<MicrobeEditorAction>();
+            history = new EditorActionHistory();
 
             // Start a new game if no game has been started
             if (CurrentGame == null)
@@ -1433,6 +1435,20 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             GD.PrintErr("Failed to create a mutated version of the edited species");
         }
+    }
+
+    private void DirtyMutationPointsCache()
+    {
+        mutationPointsCache = null;
+    }
+
+    /// <summary>
+    ///   Calculates the remaining MP from the action history
+    /// </summary>
+    /// <returns>The remaining MP</returns>
+    private int CalculateMutationPointsLeft()
+    {
+        return history.CalculateMutationPointsLeft();
     }
 
     private void UpdateEditor(float delta)

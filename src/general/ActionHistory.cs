@@ -6,18 +6,18 @@ using Newtonsoft.Json;
 ///   General implementation of an action history and undo / redo for use by editors
 /// </summary>
 /// <typeparam name="T">Type of actions to hold</typeparam>
-public class ActionHistory<T>
+public abstract class ActionHistory<T>
     where T : ReversibleAction
 {
     [JsonProperty]
-    private List<T> actions = new List<T>();
+    protected List<T> actions = new List<T>();
 
     /// <summary>
     ///   marks the last action that has been done (not undone, but
     ///   possibly redone), is 0 if there is none.
     /// </summary>
     [JsonProperty]
-    private int actionIndex;
+    protected int actionIndex;
 
     public bool CanRedo()
     {
