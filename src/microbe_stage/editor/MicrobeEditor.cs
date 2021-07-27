@@ -1869,8 +1869,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var action = new MicrobeEditorAction(this,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
 
-        EnqueueAction(action);
-        return true;
+        return EnqueueAction(action);
     }
 
     [DeserializedCallbackAllowed]
@@ -1975,12 +1974,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
             new MoveActionData(organelle, oldLocation, newLocation, oldRotation, newRotation));
 
-        EnqueueAction(action);
-
-        // It's assumed that the above enqueue can't fail, otherwise the reference to MovingOrganelle may be
-        // permanently lost (as the code that calls this assumes it's safe to set MovingOrganelle to null
-        // when we return true)
-        return true;
+        return EnqueueAction(action);
     }
 
     [DeserializedCallbackAllowed]
@@ -2233,17 +2227,20 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Perform all actions through this to make undo and redo work
     /// </summary>
-    private void EnqueueAction(MicrobeEditorAction action)
+    /// <returns>True when the action was successful</returns>
+    private bool EnqueueAction(MicrobeEditorAction action)
     {
-        var historyClone = (EditorActionHistory) history.Clone();
+        var historyClone = (EditorActionHistory)history.Clone();
         historyClone.AddAction(action);
 
         // A sanity check to not let an action proceed if we don't have enough mutation points
         if (historyClone.CalculateMutationPointsLeft() < 0)
         {
+            action.UndoAction();
+
             // Flash the MP bar and play sound
             gui.OnInsufficientMp();
-            return;
+            return false;
         }
 
         // Or if they are in the process of moving an organelle
@@ -2251,12 +2248,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             // Play sound
             gui.OnActionBlockedWhileMoving();
-            return;
+            return false;
         }
 
         history = historyClone;
 
         UpdateUndoRedoButtons();
+        return true;
     }
 
     private void UpdateUndoRedoButtons()
