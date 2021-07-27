@@ -51,14 +51,16 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 
     public override bool Redo()
     {
+        var result = base.Redo();
         cache = GetActionHistorySinceLastNewMicrobePress();
-        return base.Redo();
+        return result;
     }
 
     public override bool Undo()
     {
+        var result = base.Undo();
         cache = GetActionHistorySinceLastNewMicrobePress();
-        return base.Undo();
+        return result;
     }
 
     public override void AddAction(MicrobeEditorAction action)
