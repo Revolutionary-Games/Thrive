@@ -22,22 +22,23 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                         break;
                     case MicrobeActionInterferenceMode.Combinable:
                         var combinedValue = copy[y].Combine(copy[i]);
-                        copy.RemoveAt(i);
                         copy.RemoveAt(y);
-                        copyLength--;
+                        copy.RemoveAt(i);
                         y--;
                         copy.Insert(y, combinedValue);
+                        copyLength--;
                         break;
                     case MicrobeActionInterferenceMode.ReplacesOther:
                         copy.RemoveAt(i);
-                        i--;
                         y = i;
+                        copyLength--;
                         break;
                     case MicrobeActionInterferenceMode.CancelsOut:
-                        copy.RemoveAt(i);
                         copy.RemoveAt(y);
+                        copy.RemoveAt(i);
                         i--;
                         y--;
+                        copyLength -= 2;
                         break;
                     default:
                         throw new NotImplementedException();
