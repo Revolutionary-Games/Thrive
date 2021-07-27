@@ -176,8 +176,9 @@ public class MembraneActionData : MicrobeEditorActionData
 
     public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
     {
-        if (other is MembraneActionData membraneActionData)
-            return MicrobeActionInterferenceMode.Replaces;
+        if (other is MembraneActionData membraneActionData &&
+            (membraneActionData.NewMembrane == OldMembrane || NewMembrane == membraneActionData.OldMembrane))
+            return MicrobeActionInterferenceMode.Combinable;
 
         return MicrobeActionInterferenceMode.NoInterference;
     }
@@ -185,6 +186,15 @@ public class MembraneActionData : MicrobeEditorActionData
     public override int CalculateCost()
     {
         return NewMembrane.EditorCost;
+    }
+
+    protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
+    {
+        var membraneActionData = (MembraneActionData)other;
+        if (OldMembrane == membraneActionData.NewMembrane)
+            return new MembraneActionData(membraneActionData.OldMembrane, NewMembrane);
+
+        return new MembraneActionData(membraneActionData.NewMembrane, OldMembrane);
     }
 }
 
