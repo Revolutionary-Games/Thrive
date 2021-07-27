@@ -11,14 +11,17 @@ public enum MicrobeActionInterferenceMode
     ///   The two actions are completely independent
     /// </summary>
     NoInterference,
+
     /// <summary>
     ///   The other action replaces the this one
     /// </summary>
     ReplacesOther,
+
     /// <summary>
     ///   The two actions cancel out each other
     /// </summary>
     CancelsOut,
+
     /// <summary>
     ///   The two actions can be combined to a whole different action.
     ///   Call <see cref="MicrobeEditorActionData.Combine"/> to get this action.
@@ -93,6 +96,11 @@ public class PlacementActionData : MicrobeEditorActionData
         return MicrobeActionInterferenceMode.NoInterference;
     }
 
+    public override int CalculateCost()
+    {
+        return Organelle.Definition.MPCost;
+    }
+
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
         var removeActionData = (RemoveActionData)other;
@@ -100,12 +108,8 @@ public class PlacementActionData : MicrobeEditorActionData
         var oldRotation = removeActionData.Organelle.Orientation;
         removeActionData.Organelle.Position = Organelle.Position;
         removeActionData.Organelle.Orientation = Organelle.Orientation;
-        return new MoveActionData(removeActionData.Organelle, oldPosition, Organelle.Position, oldRotation, Organelle.Orientation);
-    }
-
-    public override int CalculateCost()
-    {
-        return Organelle.Definition.MPCost;
+        return new MoveActionData(removeActionData.Organelle, oldPosition, Organelle.Position, oldRotation,
+            Organelle.Orientation);
     }
 }
 
@@ -140,6 +144,11 @@ public class RemoveActionData : MicrobeEditorActionData
         return MicrobeActionInterferenceMode.NoInterference;
     }
 
+    public override int CalculateCost()
+    {
+        return Constants.ORGANELLE_REMOVE_COST;
+    }
+
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
         var placementActionData = (PlacementActionData)other;
@@ -148,11 +157,6 @@ public class RemoveActionData : MicrobeEditorActionData
             placementActionData.Organelle.Position,
             Organelle.Orientation,
             placementActionData.Organelle.Orientation);
-    }
-
-    public override int CalculateCost()
-    {
-        return Constants.ORGANELLE_REMOVE_COST;
     }
 }
 
@@ -193,6 +197,11 @@ public class MoveActionData : MicrobeEditorActionData
         return MicrobeActionInterferenceMode.NoInterference;
     }
 
+    public override int CalculateCost()
+    {
+        return Constants.ORGANELLE_MOVE_COST;
+    }
+
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
         if (other is PlacementActionData placementActionData)
@@ -204,15 +213,13 @@ public class MoveActionData : MicrobeEditorActionData
 
         var moveActionData = (MoveActionData)other;
         if (moveActionData.NewLocation == OldLocation)
-            return new MoveActionData(Organelle, moveActionData.OldLocation, NewLocation, moveActionData.OldRotation, NewRotation);
+        {
+            return new MoveActionData(Organelle, moveActionData.OldLocation, NewLocation, moveActionData.OldRotation,
+                NewRotation);
+        }
 
         return new MoveActionData(moveActionData.Organelle, OldLocation, moveActionData.NewLocation, OldRotation,
             moveActionData.NewRotation);
-    }
-
-    public override int CalculateCost()
-    {
-        return Constants.ORGANELLE_MOVE_COST;
     }
 }
 
@@ -287,7 +294,8 @@ public class RigidityChangeActionData : MicrobeEditorActionData
 
     public override int CalculateCost()
     {
-        return (int)Math.Abs((NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+        return (int)Math.Abs((NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) *
+            Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
     }
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
