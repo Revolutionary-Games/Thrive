@@ -29,7 +29,7 @@ public abstract class ActionHistory<T>
         return actionIndex > 0;
     }
 
-    public bool Redo()
+    public virtual bool Redo()
     {
         if (!CanRedo())
             return false;
@@ -39,7 +39,7 @@ public abstract class ActionHistory<T>
         return true;
     }
 
-    public bool Undo()
+    public virtual bool Undo()
     {
         if (!CanUndo())
             return false;
@@ -52,7 +52,7 @@ public abstract class ActionHistory<T>
     /// <summary>
     ///   Adds a new action and performs it
     /// </summary>
-    public void AddAction(T action)
+    public virtual void AddAction(T action)
     {
         // Throw away old actions if we are not at the end of the action list
         while (actionIndex < actions.Count)

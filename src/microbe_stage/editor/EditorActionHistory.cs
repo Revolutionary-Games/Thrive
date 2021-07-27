@@ -4,38 +4,39 @@ using System.Linq;
 
 public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 {
+    private List<MicrobeEditorActionData> cache = new List<MicrobeEditorActionData>();
+
     /// <summary>
     ///   Calculates the remaining MP from the action history
     /// </summary>
     /// <returns>The remaining MP</returns>
     public int CalculateMutationPointsLeft()
     {
-        var copy = GetActionHistorySinceLastNewMicrobePress().Select(p => p.Data).ToList();
-        var copyLength = copy.Count;
+        var copyLength = cache.Count;
         for (int i = 0; i < copyLength - 1; i++)
         {
             for (int y = i + 1; y < copyLength; y++)
             {
-                switch (copy[y].GetInterferenceModeWith(copy[i]))
+                switch (cache[y].GetInterferenceModeWith(cache[i]))
                 {
                     case MicrobeActionInterferenceMode.NoInterference:
                         break;
                     case MicrobeActionInterferenceMode.Combinable:
-                        var combinedValue = copy[y].Combine(copy[i]);
-                        copy.RemoveAt(y);
-                        copy.RemoveAt(i);
+                        var combinedValue = cache[y].Combine(cache[i]);
+                        cache.RemoveAt(y);
+                        cache.RemoveAt(i);
                         y--;
-                        copy.Insert(y, combinedValue);
+                        cache.Insert(y, combinedValue);
                         copyLength--;
                         break;
                     case MicrobeActionInterferenceMode.ReplacesOther:
-                        copy.RemoveAt(i);
+                        cache.RemoveAt(i);
                         y = i;
                         copyLength--;
                         break;
                     case MicrobeActionInterferenceMode.CancelsOut:
-                        copy.RemoveAt(y);
-                        copy.RemoveAt(i);
+                        cache.RemoveAt(y);
+                        cache.RemoveAt(i);
                         y--;
                         copyLength -= 2;
                         break;
@@ -45,13 +46,35 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
             }
         }
 
-        return Constants.BASE_MUTATION_POINTS - copy.Sum(p => p.CalculateCost());
+        return Constants.BASE_MUTATION_POINTS - cache.Sum(p => p.CalculateCost());
     }
 
-    private List<MicrobeEditorAction> GetActionHistorySinceLastNewMicrobePress()
+    public override bool Redo()
     {
-        var relevantActions = actions.Take(actionIndex).ToList();
-        var lastNewMicrobeActionIndex = relevantActions.FindLastIndex(p => p.Data is NewMicrobeActionData);
-        return lastNewMicrobeActionIndex == -1 ? relevantActions : actions.Skip(lastNewMicrobeActionIndex).ToList();
+        cache = GetActionHistorySinceLastNewMicrobePress();
+        return base.Redo();
+    }
+
+    public override bool Undo()
+    {
+        cache = GetActionHistorySinceLastNewMicrobePress();
+        return base.Undo();
+    }
+
+    public override void AddAction(MicrobeEditorAction action)
+    {
+        if (action.Data is NewMicrobeActionData)
+            cache.Clear();
+        else
+            cache.Add(action.Data);
+
+        base.AddAction(action);
+    }
+
+    private List<MicrobeEditorActionData> GetActionHistorySinceLastNewMicrobePress()
+    {
+        var relevantActions = actions.Take(actionIndex).Select(p => p.Data).ToList();
+        var lastNewMicrobeActionIndex = relevantActions.FindLastIndex(p => p is NewMicrobeActionData);
+        return lastNewMicrobeActionIndex == -1 ? relevantActions : actions.Skip(lastNewMicrobeActionIndex).Select(p => p.Data).ToList();
     }
 }
