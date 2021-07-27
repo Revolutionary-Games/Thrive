@@ -177,8 +177,11 @@ public class ModLoaderUI : Control
         infoPopup = GetNode<AcceptDialog>(InfoPopupPath);
         loadReminderPopup = GetNode<AcceptDialog>(LoadReminderPopupPath);
 
+        // Set the text for the Load Warning to make more sense
         loadWarningPopup.GetOk().Text = "Yes";
         loadWarningPopup.GetCancel().Text = "No";
+
+        // Setup all of the ItemLists
         ReloadModLists();
     }
 
@@ -267,6 +270,7 @@ public class ModLoaderUI : Control
                 errorInfoContainer.Visible = false;
             }
 
+            // If a mod selected on the config screen is selected show it's configuration option
             if (modItemLists[(int)ItemLists.ConfigItemList].GetSelectedItems().Length > 0)
             {
                 configPanelContainer.Visible = true;
@@ -285,6 +289,9 @@ public class ModLoaderUI : Control
         }
     }
 
+    /// <summary>
+    ///   Fills the ConfigContainer with all of ConfigItems
+    /// </summary>
     private void ConfigMenuSetup(ModConfigItemInfo[] modConfigList, Dictionary<string, object> modConfigDictionary)
     {
         foreach (var currentItemInfo in modConfigList)
@@ -292,8 +299,11 @@ public class ModLoaderUI : Control
             var currentItem = ConfigItemScene.Instance() as HBoxContainer;
             var currentItemLabel = currentItem.GetChild(0) as Label;
 
+            // Set the name and tooltip of the item
             currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
             currentItem.HintTooltip = currentItemInfo.Description ?? string.Empty;
+
+            // Setup the UI based on it type
             switch (currentItemInfo.Type.ToLower(CultureInfo.InvariantCulture))
             {
                 case "int":
@@ -398,7 +408,10 @@ public class ModLoaderUI : Control
                     break;
             }
 
+            // Get the script from the current item
             var currentItemNodeInfo = currentItem as ModConfigItemInfo;
+
+            // Set all of the data from current item to the node
             if (currentItemInfo.ID != null)
             {
                 currentItemNodeInfo.Value = modConfigDictionary[currentItemInfo.ID];
@@ -412,6 +425,7 @@ public class ModLoaderUI : Control
             currentItemNodeInfo.Type = currentItemInfo.Type;
             currentItemNodeInfo.Options = currentItemInfo.Options;
 
+            // Finally adds to the SceneTree
             configContainer.AddChild(currentItem);
         }
     }
@@ -778,6 +792,7 @@ public class ModLoaderUI : Control
         GUICommon.Instance.PlayButtonPressSound();
         ResetLoaderUI();
 
+        // Clear all of the ItemLists
         for (int i = 0; i < modItemLists.Length; ++i)
         {
             modItemLists[i].Clear();
@@ -786,8 +801,13 @@ public class ModLoaderUI : Control
         ReloadModLists();
     }
 
+    /// <summary>
+    ///   Make sure the ConfigurationList variable is not null and if it can't find it
+    ///   Then it returns a blank array of ModConfigItemInfo
+    /// </summary>
     private void VerifyConfigFileExist(ModInfo checkedModInfo)
     {
+        // Checks if it null or empty
         if (checkedModInfo.ConfigurationList == null || checkedModInfo.ConfigurationList.Length < 1)
         {
             if (FileHelpers.Exists(checkedModInfo.Location + "/mod_config.json"))
@@ -931,6 +951,7 @@ public class ModLoaderUI : Control
             var currentItemInfo = configItemArray[i] as ModConfigItemInfo;
             if (currentItemInfo != null)
             {
+                // Update the values from UI
                 currentItemInfo.UpdateInternalValue();
 
                 if (currentSelectedMod != null && currentItemInfo.ID != null)
@@ -940,6 +961,7 @@ public class ModLoaderUI : Control
             }
         }
 
+        // Save the config changes
         loader?.SaveReloadedModsList();
     }
 

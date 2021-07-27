@@ -141,12 +141,20 @@ public class ModLoader : Reference
             return currentMod.Status;
         }
 
+        // The string to be appended at the end of folder location
+        var modLocationSuffix = "/mod.pck";
         if (!file.FileExists(currentMod.Location + "/mod.pck"))
         {
-            GD.Print("Fail to find mod file: " + currentMod.Name);
-            currentMod.Status = (int)ModStatus.ModFileCanNotBeFound;
-            FailedToLoadMods.Add(currentMod);
-            return currentMod.Status;
+            if (!file.FileExists(currentMod.Location + "/mod.zip"))
+            {
+                GD.Print("Fail to find mod file: " + currentMod.Name);
+                currentMod.Status = (int)ModStatus.ModFileCanNotBeFound;
+                FailedToLoadMods.Add(currentMod);
+                return currentMod.Status;
+            }
+
+            // load a zip file if it can find the mod.zip
+            modLocationSuffix = "/mod.zip";
         }
 
         // Checks if a Dll file needs to be loaded
@@ -159,7 +167,8 @@ public class ModLoader : Reference
             }
         }
 
-        if (ProjectSettings.LoadResourcePack(currentMod.Location + "/mod.pck", true))
+        // Actually loads the mod, it will replace files if there are any to replace
+        if (ProjectSettings.LoadResourcePack(currentMod.Location + modLocationSuffix, true))
         {
             GD.Print("Loaded mod: " + currentMod.Name);
             LoadedMods.Add(currentMod);
@@ -186,6 +195,7 @@ public class ModLoader : Reference
         int[] isValidList = { (int)CheckErrorStatus.Unknown };
         Dictionary<string, ModInfo> tempModDictionary;
 
+        // Make sure the list is not empty
         if (modsToCheck.Length < 1)
         {
             return new[] { (int)CheckErrorStatus.EmptyList };
@@ -231,6 +241,7 @@ public class ModLoader : Reference
         int[] isValidList = { (int)CheckErrorStatus.Unknown };
         Dictionary<string, ModInfo> tempModDictionary;
 
+        // Make sure the list is not empty
         if (modsToCheck.Count < 1)
         {
             return new[] { (int)CheckErrorStatus.EmptyList };
@@ -276,6 +287,7 @@ public class ModLoader : Reference
         int[] isValidList = { (int)CheckErrorStatus.Unknown };
         Dictionary<string, ModInfo> tempModDictionary = new Dictionary<string, ModInfo>();
 
+        // Make sure the ItemList is not empty
         if (modListCount < 1)
         {
             return new[] { (int)CheckErrorStatus.EmptyList };
@@ -340,6 +352,7 @@ public class ModLoader : Reference
             {
                 if (modDictionary.ContainsKey(dependencyName))
                 {
+                    // See if the dependency is loaded before this mod
                     if (currentMod.LoadPosition < modDictionary[dependencyName].LoadPosition)
                     {
                         return new[]
@@ -527,6 +540,8 @@ public class ModLoader : Reference
             JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(location + "/mod_info.json"));
 
         currentModInfo.Location = location;
+
+        // Gets the icon image if it exists
         if (file.FileExists(location + "/icon.png") || file.FileExists(location + "/icon.jpg"))
         {
             var iconTexture = new ImageTexture();
@@ -540,6 +555,7 @@ public class ModLoader : Reference
             currentModInfo.IconImage = iconTexture;
         }
 
+        // Gets the preview image if it exists
         if (file.FileExists(location + "/preview.png") || file.FileExists(location + "/preview.jpg"))
         {
             var previewTexture = new ImageTexture();
@@ -553,6 +569,7 @@ public class ModLoader : Reference
             currentModInfo.PreviewImage = previewTexture;
         }
 
+        // Gets the config file if it exists
         if (file.FileExists(location + "/mod_config.json"))
         {
             var currentConfigList =
@@ -627,6 +644,9 @@ public class ModLoader : Reference
         SaveReloadedModsList();
     }
 
+    /// <summary>
+    ///   Gets a array of ModConfigItemInfo from a ModInfo
+    /// </summary>
     public ModConfigItemInfo[] GetModConfigList(ModInfo currentMod)
     {
         if (FileHelpers.Exists(currentMod.Location + "/mod_config.json"))

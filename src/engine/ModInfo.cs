@@ -85,12 +85,18 @@ public class ModInfo : Resource
         return Name == item.Name && Location == item.Location && Version == item.Version && Author == item.Author;
     }
 
+    /// <summary>
+    ///   Safely gets the value of a config based on a ID
+    /// </summary>
     public T GetConfigValue<T>(string id)
     {
         if (Configuration != null)
         {
-            var configValue = Configuration[id];
-            return (T)Convert.ChangeType(configValue, typeof(T), CultureInfo.InvariantCulture);
+            object configValue;
+            if (Configuration.TryGetValue(id, out configValue))
+            {
+                return (T)Convert.ChangeType(configValue, typeof(T), CultureInfo.InvariantCulture);
+            }
         }
 
         return default(T);

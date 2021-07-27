@@ -5,6 +5,9 @@ using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+/// <summary>
+///   Class that holds the info of a mod config item from a 'mod_config.json' file
+/// </summary>
 public class ModConfigItemInfo : HBoxContainer
 {
     public string ID { get; set; }
@@ -39,6 +42,9 @@ public class ModConfigItemInfo : HBoxContainer
         return ID == item.ID && Type == item.Type;
     }
 
+    /// <summary>
+    ///   Updates the Value variable based on the gui element
+    /// </summary>
     public object UpdateInternalValue()
     {
         var nodeChildren = GetChildren();
@@ -112,6 +118,9 @@ public class ModConfigItemInfo : HBoxContainer
         return Value;
     }
 
+    /// <summary>
+    ///   Updates the UI element based on the Value variable
+    /// </summary>
     public void UpdateUI()
     {
         if (GetChildCount() < 2)
@@ -184,6 +193,9 @@ public class ModConfigItemInfo : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Returns a list of string based on the options the OptionButton can have
+    /// </summary>
     public List<string> GetAllOptions()
     {
         var optionsJArray = Options as JArray;
