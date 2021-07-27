@@ -747,7 +747,7 @@ public class OptionsMenu : ControlWithInput
 
     private void UpdateDefaultOutputDeviceText(OptionButton optionButton)
     {
-        optionButton.SetItemText(0, TranslationServer.Translate("DEFAULT_fOUTPUT_DEVICE"));
+        optionButton.SetItemText(0, TranslationServer.Translate("DEFAULT_OUTPUT_DEVICE"));
     }
 
     private void LoadOutputDevices(OptionButton optionButton)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-26 23:30+0200\n"
+"POT-Creation-Date: 2021-07-27 12:03+0200\n"
 "PO-Revision-Date: 2021-07-16 17:42+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1354,7 +1354,7 @@ msgstr ""
 "该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
 #: ../src/general/OptionsMenu.cs:750
-msgid "DEFAULT_fOUTPUT_DEVICE"
+msgid "DEFAULT_OUTPUT_DEVICE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:128
@@ -2674,7 +2674,7 @@ msgstr "快速保存"
 msgid "SAVE_INVALID"
 msgstr "存档无效"
 
-#: ../src/saving/SaveList.cs:170
+#: ../src/saving/SaveList.cs:171
 msgid "SAVE_DELETE_WARNING"
 msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
 
@@ -2765,11 +2765,11 @@ msgstr "载入"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "删除此存档将无法撤消，确定要永久删除吗？"
 
-#: ../src/saving/SaveManagerGUI.cs:208
+#: ../src/saving/SaveManagerGUI.cs:206
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "删除被选中的这些存档将无法撤消，确定要永久删除这{0}个存档吗？"
 
-#: ../src/saving/SaveManagerGUI.cs:220
+#: ../src/saving/SaveManagerGUI.cs:218
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "删除所有自动和快速存档将无法撤消，确定要永久删除这些存档吗？\n"
