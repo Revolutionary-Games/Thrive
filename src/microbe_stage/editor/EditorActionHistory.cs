@@ -44,6 +44,8 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                 }
             }
         }
+
+        return Constants.BASE_MUTATION_POINTS - copy.Sum(p => p.CalculateCost());
     }
 
     private List<MicrobeEditorAction> GetActionHistorySinceLastNewMicrobePress()
