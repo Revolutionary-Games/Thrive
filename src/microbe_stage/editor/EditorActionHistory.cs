@@ -87,6 +87,8 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     {
         var relevantActions = actions.Take(actionIndex).Select(p => p.Data).ToList();
         var lastNewMicrobeActionIndex = relevantActions.FindLastIndex(p => p is NewMicrobeActionData);
-        return lastNewMicrobeActionIndex == -1 ? relevantActions : actions.Skip(lastNewMicrobeActionIndex).Select(p => p.Data).ToList();
+        return lastNewMicrobeActionIndex == -1 ?
+            relevantActions :
+            actions.Skip(lastNewMicrobeActionIndex).Select(p => p.Data).ToList();
     }
 }
