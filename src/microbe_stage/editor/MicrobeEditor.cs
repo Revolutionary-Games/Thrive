@@ -646,9 +646,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             oldEditedMicrobeOrganelles.Add(organelle);
         }
 
-        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, previousMP, oldMembrane);
+        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane);
 
-        var action = new MicrobeEditorAction(this, 0, DoNewMicrobeAction, UndoNewMicrobeAction, data);
+        var action = new MicrobeEditorAction(this, DoNewMicrobeAction, UndoNewMicrobeAction, data);
 
         EnqueueAction(action);
     }
@@ -794,7 +794,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (Membrane.Equals(membrane))
             return;
 
-        var action = new MicrobeEditorAction(this, membrane.EditorCost, DoMembraneChangeAction,
+        var action = new MicrobeEditorAction(this, DoMembraneChangeAction,
             UndoMembraneChangeAction, new MembraneActionData(Membrane, membrane));
 
         EnqueueAction(action);
@@ -829,13 +829,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             }
 
             rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
-            cost = stepsLeft * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new MicrobeEditorAction(this, cost, DoRigidityChangeAction, UndoRigidityChangeAction,
+        var action = new MicrobeEditorAction(this, DoRigidityChangeAction, UndoRigidityChangeAction,
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
@@ -1858,7 +1857,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         organelle.PlacedThisSession = true;
 
-        var action = new MicrobeEditorAction(this, organelle.Definition.MPCost,
+        var action = new MicrobeEditorAction(this,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
 
         EnqueueAction(action);
@@ -1889,12 +1888,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
             return;
 
-        // If it was placed this session, just refund the cost of adding it.
-        int cost = organelleHere.PlacedThisSession ?
-            -organelleHere.Definition.MPCost :
-            Constants.ORGANELLE_REMOVE_COST;
-
-        var action = new MicrobeEditorAction(this, cost,
+        var action = new MicrobeEditorAction(this,
             DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(organelleHere));
 
         EnqueueAction(action);
@@ -1944,7 +1938,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // If the organelle was already moved this session, added (placed) this session,
         // or not moved (but can be rotated), then moving it is free
         bool isFreeToMove = organelle.MovedThisSession || oldLocation == newLocation || organelle.PlacedThisSession;
-        int cost = isFreeToMove ? 0 : Constants.ORGANELLE_MOVE_COST;
 
         // Too low mutation points, cancel move
         if (!isFreeToMove && MutationPoints < Constants.ORGANELLE_MOVE_COST)
@@ -1965,7 +1958,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return true;
         }
 
-        var action = new MicrobeEditorAction(this, cost,
+        var action = new MicrobeEditorAction(this,
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
             new MoveActionData(organelle, oldLocation, newLocation, oldRotation, newRotation));
 
@@ -1999,7 +1992,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var data = (NewMicrobeActionData)action.Data;
 
         editedMicrobeOrganelles.Clear();
-        MutationPoints = data.PreviousMP;
         Membrane = data.OldMembrane;
 
         foreach (var organelle in data.OldEditedMicrobeOrganelles)

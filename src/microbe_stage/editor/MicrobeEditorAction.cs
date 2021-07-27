@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class MicrobeEditorAction : ReversibleAction
 {
     [JsonProperty]
-    public readonly int Cost;
+    public int Cost { get => Data.CalculateCost(); }
 
     /// <summary>
     ///   Action specific data
@@ -27,12 +27,11 @@ public class MicrobeEditorAction : ReversibleAction
     [JsonProperty]
     private readonly MicrobeEditor editor;
 
-    public MicrobeEditorAction(MicrobeEditor editor, int cost,
+    public MicrobeEditorAction(MicrobeEditor editor,
         Action<MicrobeEditorAction> redo,
         Action<MicrobeEditorAction> undo, MicrobeEditorActionData data = null)
     {
         this.editor = editor;
-        Cost = cost;
         this.redo = redo;
         this.undo = undo;
         Data = data;

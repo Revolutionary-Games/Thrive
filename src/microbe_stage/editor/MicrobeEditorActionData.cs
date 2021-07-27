@@ -56,6 +56,8 @@ public abstract class MicrobeEditorActionData
         return CombineGuaranteed(other);
     }
 
+    public abstract int CalculateCost();
+
     /// <summary>
     ///   Combines two actions to one
     /// </summary>
@@ -86,6 +88,11 @@ public class PlacementActionData : MicrobeEditorActionData
 
         return MicrobeActionInterferenceMode.NoInterference;
     }
+
+    public override int CalculateCost()
+    {
+        return Organelle.Definition.MPCost;
+    }
 }
 
 [JSONAlwaysDynamicType]
@@ -105,6 +112,11 @@ public class RemoveActionData : MicrobeEditorActionData
             return MicrobeActionInterferenceMode.CancelsOut;
 
         return MicrobeActionInterferenceMode.NoInterference;
+    }
+
+    public override int CalculateCost()
+    {
+        return Constants.ORGANELLE_REMOVE_COST;
     }
 }
 
@@ -143,6 +155,11 @@ public class MoveActionData : MicrobeEditorActionData
 
         return MicrobeActionInterferenceMode.NoInterference;
     }
+
+    public override int CalculateCost()
+    {
+        return Constants.ORGANELLE_MOVE_COST;
+    }
 }
 
 [JSONAlwaysDynamicType]
@@ -163,6 +180,11 @@ public class MembraneActionData : MicrobeEditorActionData
             return MicrobeActionInterferenceMode.Replaces;
 
         return MicrobeActionInterferenceMode.NoInterference;
+    }
+
+    public override int CalculateCost()
+    {
+        return NewMembrane.EditorCost;
     }
 }
 
@@ -190,6 +212,11 @@ public class RigidityChangeActionData : MicrobeEditorActionData
         return MicrobeActionInterferenceMode.NoInterference;
     }
 
+    public override int CalculateCost()
+    {
+        return (int)Math.Abs(NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+    }
+
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
         var rigidityChangeActionData = (RigidityChangeActionData)other;
@@ -205,19 +232,21 @@ public class RigidityChangeActionData : MicrobeEditorActionData
 public class NewMicrobeActionData : MicrobeEditorActionData
 {
     public OrganelleLayout<OrganelleTemplate> OldEditedMicrobeOrganelles;
-    public int PreviousMP;
     public MembraneType OldMembrane;
 
-    public NewMicrobeActionData(OrganelleLayout<OrganelleTemplate> oldEditedMicrobeOrganelles, int previousMP,
-        MembraneType oldMembrane)
+    public NewMicrobeActionData(OrganelleLayout<OrganelleTemplate> oldEditedMicrobeOrganelles, MembraneType oldMembrane)
     {
         OldEditedMicrobeOrganelles = oldEditedMicrobeOrganelles;
-        PreviousMP = previousMP;
         OldMembrane = oldMembrane;
     }
 
     public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
     {
         return MicrobeActionInterferenceMode.NoInterference;
+    }
+
+    public override int CalculateCost()
+    {
+        return -Constants.BASE_MUTATION_POINTS;
     }
 }
