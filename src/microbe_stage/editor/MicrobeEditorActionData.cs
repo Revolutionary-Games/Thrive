@@ -12,10 +12,6 @@ public enum MicrobeActionInterferenceMode
     /// </summary>
     NoInterference,
     /// <summary>
-    ///   This action replaces the other one
-    /// </summary>
-    Replaces,
-    /// <summary>
     ///   The other action replaces the this one
     /// </summary>
     ReplacesOther,
@@ -39,8 +35,7 @@ public abstract class MicrobeEditorActionData
     ///   Does this action cancel out with the <paramref name="other"/> action?
     /// </summary>
     /// <returns>
-    ///   Returns the interference mode with <paramref name="other"/>.
-    ///   <see cref="MicrobeActionInterferenceMode.Replaces"/> means that <paramref name="other"/> replaces this.
+    ///   Returns the interference mode with <paramref name="other"/>
     /// </returns>
     /// <para>Do not call with itself</para>
     public abstract MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other);
@@ -131,7 +126,7 @@ public class RemoveActionData : MicrobeEditorActionData
             return MicrobeActionInterferenceMode.CancelsOut;
 
         // If this organelle got moved in this session
-        if (other is MoveActionData moveActionData && moveActionData.Organelle == Organelle)
+        if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition && moveActionData.NewLocation == Organelle.Position)
             return MicrobeActionInterferenceMode.ReplacesOther;
 
         return MicrobeActionInterferenceMode.NoInterference;
@@ -165,8 +160,13 @@ public class MoveActionData : MicrobeEditorActionData
     public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
     {
         // If this organelle got moved in the same session again
-        if (other is MoveActionData moveActionData && moveActionData.Organelle == Organelle)
-            return MicrobeActionInterferenceMode.Replaces;
+        if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
+        {
+            if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation)
+                return MicrobeActionInterferenceMode.CancelsOut;
+            if (moveActionData.NewLocation == OldLocation || NewLocation == moveActionData.OldLocation)
+                return MicrobeActionInterferenceMode.Combinable;
+        }
 
         // If this organelle got placed in this session
         if (other is PlacementActionData placementActionData && placementActionData.Organelle == Organelle)
@@ -177,10 +177,19 @@ public class MoveActionData : MicrobeEditorActionData
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
-        var placementActionData = (PlacementActionData)other;
-        placementActionData.Organelle.Position = NewLocation;
-        placementActionData.Organelle.Orientation = NewRotation;
-        return new PlacementActionData(placementActionData.Organelle);
+        if (other is PlacementActionData placementActionData)
+        {
+            placementActionData.Organelle.Position = NewLocation;
+            placementActionData.Organelle.Orientation = NewRotation;
+            return new PlacementActionData(placementActionData.Organelle);
+        }
+
+        var moveActionData = (MoveActionData)other;
+        if (moveActionData.NewLocation == OldLocation)
+            return new MoveActionData(Organelle, moveActionData.OldLocation, NewLocation, moveActionData.OldRotation, NewRotation);
+
+        return new MoveActionData(moveActionData.Organelle, OldLocation, moveActionData.NewLocation, OldRotation,
+            moveActionData.NewRotation);
     }
 
     public override int CalculateCost()
