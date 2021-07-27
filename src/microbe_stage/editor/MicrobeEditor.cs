@@ -835,7 +835,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new MicrobeEditorAction(this, cost, DoRigidityChangeAction, UndoRigidityChangeAction,
+        var action = new MicrobeRigidityChangeAction(this, cost, DoRigidityChangeAction, UndoRigidityChangeAction,
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
