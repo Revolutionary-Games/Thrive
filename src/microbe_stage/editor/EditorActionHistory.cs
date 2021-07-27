@@ -4,7 +4,7 @@ using System.Linq;
 
 public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 {
-    private List<MicrobeEditorActionData> cache = new List<MicrobeEditorActionData>();
+    private List<MicrobeEditorActionData> cache;
 
     /// <summary>
     ///   Calculates the remaining MP from the action history
@@ -12,7 +12,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     /// <returns>The remaining MP</returns>
     public int CalculateMutationPointsLeft()
     {
-        var copyLength = cache.Count;
+        var copyLength = (cache ??= GetActionHistorySinceLastNewMicrobePress()).Count;
         for (int i = 0; i < copyLength - 1; i++)
         {
             for (int y = i + 1; y < copyLength; y++)
