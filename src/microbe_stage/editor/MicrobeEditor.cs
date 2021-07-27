@@ -299,7 +299,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   The number of mutation points left
     /// </summary>
     [JsonProperty]
-    public int MutationPoints { get; private set; }
+    public int MutationPoints => mutationPointsCache ?? CalculateMutationPointsLeft();
 
     /// <summary>
     ///   The symmetry setting of the microbe editor.
@@ -639,7 +639,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (!FreeBuilding)
             throw new InvalidOperationException("can't reset cell when not freebuilding");
 
-        var previousMP = MutationPoints;
         var oldEditedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>();
         var oldMembrane = Membrane;
 
@@ -1104,19 +1103,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         rootOfDynamicallySpawned.Visible = shown;
     }
 
-    /// <summary>
-    ///   Changes the number of mutation points left. Should only be called by MicrobeEditorAction
-    /// </summary>
-    internal void ChangeMutationPoints(int change)
-    {
-        if (FreeBuilding || CheatManager.InfiniteMP)
-            return;
-
-        MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
-
-        gui.UpdateMutationPointsBar();
-    }
-
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
     {
         return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
@@ -1327,7 +1313,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void InitEditorFresh()
     {
-        MutationPoints = Constants.BASE_MUTATION_POINTS;
         editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
 
@@ -1448,7 +1433,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <returns>The remaining MP</returns>
     private int CalculateMutationPointsLeft()
     {
-        return history.CalculateMutationPointsLeft();
+        if (FreeBuilding || CheatManager.InfiniteMP)
+            return Constants.BASE_MUTATION_POINTS;
+
+        mutationPointsCache = history.CalculateMutationPointsLeft().Clamp(0, Constants.BASE_MUTATION_POINTS);
+
+        gui.UpdateMutationPointsBar();
+
+        return mutationPointsCache.Value;
     }
 
     private void UpdateEditor(float delta)
@@ -1927,6 +1919,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         ++data.Organelle.NumberOfTimesMoved;
+
+        OnMembraneChanged();
     }
 
     [DeserializedCallbackAllowed]
@@ -1938,6 +1932,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         UpdateAlreadyPlacedVisuals();
 
         --data.Organelle.NumberOfTimesMoved;
+
+        OnMembraneChanged();
     }
 
     /// <summary>
@@ -1993,11 +1989,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // against weird situations where it might be possible if the undo / redo system is changed to restore
         // the wrong organelles
 
-        MutationPoints = Constants.BASE_MUTATION_POINTS;
         Membrane = SimulationParameters.Instance.GetMembrane("single");
         editedMicrobeOrganelles.Clear();
         editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
             new Hex(0, 0), 0));
+        DirtyMutationPointsCache();
 
         OnPostNewMicrobeChange();
     }
@@ -2055,6 +2051,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateSpeed(CalculateSpeed());
 
         UpdateCellVisualization();
+
+        DirtyMutationPointsCache();
     }
 
     private void UpdatePatchDependentBalanceData()
@@ -2170,19 +2168,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var membrane = data.NewMembrane;
         GD.Print("Changing membrane to '", membrane.InternalName, "'");
         Membrane = membrane;
-        gui.UpdateMembraneButtons(Membrane.InternalName);
-        gui.UpdateSpeed(CalculateSpeed());
-        gui.UpdateHitpoints(CalculateHitpoints());
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
-        gui.SetMembraneTooltips(Membrane);
-
-        if (previewMicrobe != null)
-        {
-            previewMicrobe.Membrane.Type = membrane;
-            previewMicrobe.Membrane.Dirty = true;
-            previewMicrobe.ApplyMembraneWigglyness();
-        }
+        OnMembraneChanged();
     }
 
     [DeserializedCallbackAllowed]
@@ -2191,6 +2177,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var data = (MembraneActionData)action.Data;
         Membrane = data.OldMembrane;
         GD.Print("Changing membrane back to '", Membrane.InternalName, "'");
+        OnMembraneChanged();
+    }
+
+    private void OnMembraneChanged()
+    {
         gui.UpdateMembraneButtons(Membrane.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
@@ -2204,6 +2195,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             previewMicrobe.Membrane.Dirty = true;
             previewMicrobe.ApplyMembraneWigglyness();
         }
+
+        DirtyMutationPointsCache();
     }
 
     [DeserializedCallbackAllowed]
@@ -2232,6 +2225,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
+
+        DirtyMutationPointsCache();
     }
 
     /// <summary>

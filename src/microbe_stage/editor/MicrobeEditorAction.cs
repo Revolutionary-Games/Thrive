@@ -10,15 +10,6 @@ using Newtonsoft.Json;
 public class MicrobeEditorAction : ReversibleAction
 {
     [JsonProperty]
-    public int Cost { get => Data.CalculateCost(); }
-
-    /// <summary>
-    ///   Action specific data
-    /// </summary>
-    [JsonProperty]
-    public MicrobeEditorActionData Data;
-
-    [JsonProperty]
     private readonly Action<MicrobeEditorAction> redo;
 
     [JsonProperty]
@@ -26,6 +17,8 @@ public class MicrobeEditorAction : ReversibleAction
 
     [JsonProperty]
     private readonly MicrobeEditor editor;
+
+    private MicrobeEditorActionData data;
 
     public MicrobeEditorAction(MicrobeEditor editor,
         Action<MicrobeEditorAction> redo,
@@ -37,18 +30,33 @@ public class MicrobeEditorAction : ReversibleAction
         Data = data;
     }
 
+    [JsonProperty]
+    public int Cost { get; private set; }
+
+    /// <summary>
+    ///   Action specific data
+    /// </summary>
+    [JsonProperty]
+    public MicrobeEditorActionData Data
+    {
+        get => data;
+        set
+        {
+            data = value;
+            value.CalculateCost();
+        }
+    }
+
     [JsonIgnore]
     public bool IsMoveAction => Data is MoveActionData;
 
     public override void DoAction()
     {
-        editor.ChangeMutationPoints(-Cost);
         redo(this);
     }
 
     public override void UndoAction()
     {
-        editor.ChangeMutationPoints(Cost);
         undo(this);
     }
 }
