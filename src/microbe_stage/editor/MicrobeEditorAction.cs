@@ -30,9 +30,6 @@ public class MicrobeEditorAction : ReversibleAction
         Data = data;
     }
 
-    [JsonProperty]
-    public int Cost { get; private set; }
-
     /// <summary>
     ///   Action specific data
     /// </summary>

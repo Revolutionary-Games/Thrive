@@ -2235,8 +2235,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     private void EnqueueAction(MicrobeEditorAction action)
     {
+        var historyClone = (EditorActionHistory) history.Clone();
+        historyClone.AddAction(action);
+
         // A sanity check to not let an action proceed if we don't have enough mutation points
-        if (MutationPoints < action.Cost)
+        if (historyClone.CalculateMutationPointsLeft() < 0)
         {
             // Flash the MP bar and play sound
             gui.OnInsufficientMp();
@@ -2251,7 +2254,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
         }
 
-        history.AddAction(action);
+        history = historyClone;
 
         UpdateUndoRedoButtons();
     }
