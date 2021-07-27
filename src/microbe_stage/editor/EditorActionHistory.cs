@@ -9,7 +9,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     /// <returns>The remaining MP</returns>
     public int CalculateMutationPointsLeft()
     {
-        return 0;
+        return GetActionHistorySinceLastNewMicrobePress().Count;
     }
 
     private List<MicrobeEditorAction> GetActionHistorySinceLastNewMicrobePress()

@@ -1424,6 +1424,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private void DirtyMutationPointsCache()
     {
         mutationPointsCache = null;
+        gui.UpdateMutationPointsBar();
     }
 
     /// <summary>
