@@ -99,16 +99,6 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
         base.AddAction(action);
     }
 
-    protected override ActionHistory<MicrobeEditorAction> CloneActionHistory()
-    {
-        return new EditorActionHistory
-        {
-            cache = new List<MicrobeEditorActionData>(cache),
-            actions = new List<MicrobeEditorAction>(actions),
-            actionIndex = actionIndex,
-        };
-    }
-
     private List<MicrobeEditorActionData> GetActionHistorySinceLastNewMicrobePress()
     {
         var relevantActions = actions.Take(actionIndex).Select(p => p.Data).ToList();

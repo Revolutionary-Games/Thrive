@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   General implementation of an action history and undo / redo for use by editors
 /// </summary>
 /// <typeparam name="T">Type of actions to hold</typeparam>
-public abstract class ActionHistory<T> : ICloneable
+public abstract class ActionHistory<T>
     where T : ReversibleAction
 {
     [JsonProperty]
@@ -65,11 +65,4 @@ public abstract class ActionHistory<T> : ICloneable
         actions.Add(action);
         ++actionIndex;
     }
-
-    public object Clone()
-    {
-        return CloneActionHistory();
-    }
-
-    protected abstract ActionHistory<T> CloneActionHistory();
 }
