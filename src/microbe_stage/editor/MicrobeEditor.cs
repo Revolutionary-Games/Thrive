@@ -2236,18 +2236,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <returns>True when the action was successful</returns>
     private bool EnqueueAction(MicrobeEditorAction action)
     {
-        var historyClone = (EditorActionHistory)history.Clone();
-        historyClone.AddAction(action);
-
         // A sanity check to not let an action proceed if we don't have enough mutation points
-        if (historyClone.CalculateMutationPointsLeft() < 0)
+        if (history.WhatWouldActionCost(action.Data) > MutationPoints)
         {
-            action.UndoAction();
-
             // Flash the MP bar and play sound
             gui.OnInsufficientMp();
             return false;
         }
+
+        history.AddAction(action);
 
         // Or if they are in the process of moving an organelle
         if (MovingOrganelle != null && !action.IsMoveAction)
@@ -2256,8 +2253,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.OnActionBlockedWhileMoving();
             return false;
         }
-
-        history = historyClone;
 
         UpdateUndoRedoButtons();
         return true;

@@ -6,6 +6,32 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 {
     private List<MicrobeEditorActionData> cache;
 
+    public int WhatWouldActionCost(MicrobeEditorActionData action)
+    {
+        int actionCost = action.CalculateCost();
+        int result = actionCost;
+        foreach (var historyAction in cache ??= GetActionHistorySinceLastNewMicrobePress())
+        {
+            switch (action.GetInterferenceModeWith(historyAction))
+            {
+                case MicrobeActionInterferenceMode.Combinable:
+                    result -= actionCost;
+                    result -= historyAction.CalculateCost();
+                    result += action.Combine(historyAction).CalculateCost();
+                    break;
+                case MicrobeActionInterferenceMode.CancelsOut:
+                    result -= actionCost;
+                    result -= historyAction.CalculateCost();
+                    return result;
+                case MicrobeActionInterferenceMode.ReplacesOther:
+                    result -= historyAction.CalculateCost();
+                    break;
+            }
+        }
+
+        return result;
+    }
+
     /// <summary>
     ///   Calculates the remaining MP from the action history
     /// </summary>
@@ -87,8 +113,8 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     {
         var relevantActions = actions.Take(actionIndex).Select(p => p.Data).ToList();
         var lastNewMicrobeActionIndex = relevantActions.FindLastIndex(p => p is NewMicrobeActionData);
-        return lastNewMicrobeActionIndex == -1 ?
+        return (lastNewMicrobeActionIndex == -1 ?
             relevantActions :
-            actions.Skip(lastNewMicrobeActionIndex).Select(p => p.Data).ToList();
+            actions.Skip(lastNewMicrobeActionIndex).Select(p => p.Data)).ToList();
     }
 }
