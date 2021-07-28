@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 ///   Describes how two microbe actions interference with each other.
@@ -98,7 +99,7 @@ public class PlacementActionData : MicrobeEditorActionData
 
     public override int CalculateCost()
     {
-        return Organelle.Definition.MPCost;
+        return Organelle.Definition.MPCost - (ReplacedCytoplasm?.Sum(p => p.Definition.MPCost) ?? 0);
     }
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
@@ -208,7 +209,10 @@ public class MoveActionData : MicrobeEditorActionData
         {
             placementActionData.Organelle.Position = NewLocation;
             placementActionData.Organelle.Orientation = NewRotation;
-            return new PlacementActionData(placementActionData.Organelle);
+            return new PlacementActionData(placementActionData.Organelle)
+            {
+                ReplacedCytoplasm = placementActionData.ReplacedCytoplasm,
+            };
         }
 
         var moveActionData = (MoveActionData)other;
