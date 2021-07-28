@@ -504,6 +504,8 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
 
+    public const string EXPLICIT_PATH_PREFIX = "file://";
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";

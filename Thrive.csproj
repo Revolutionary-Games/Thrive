@@ -26,6 +26,7 @@
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
+    <Compile Include="src\engine\FileDropHandler.cs" />
     <Compile Include="src\engine\FullScreenToggle.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
     <Compile Include="src\engine\GuidanceLine.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\DataPoint.cs" />
+    <Compile Include="src\gui_common\ActionButton.cs" />
     <Compile Include="src\gui_common\CheatMenu.cs" />
     <Compile Include="src\gui_common\ChemicalEquation.cs" />
     <Compile Include="src\gui_common\CompoundAmount.cs" />

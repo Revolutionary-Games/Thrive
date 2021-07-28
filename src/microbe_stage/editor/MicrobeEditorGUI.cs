@@ -570,7 +570,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdateGlucoseReduction(float value)
     {
-        var percentage = value * 100 + "%";
+        var percentage = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
+            value * 100);
 
         // The amount of glucose has been reduced to {0} of the previous amount.
         glucoseReductionLabel.Text =
@@ -814,6 +815,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             }
         }
 
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+
+        sunlightChart.TooltipYAxisFormat = percentageFormat + " lx";
+        atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
+        compoundsChart.TooltipYAxisFormat = percentageFormat;
+
         sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5);
         temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5);
         atmosphericGassesChart.Plot(
@@ -939,20 +946,31 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             patch.Depth[0], patch.Depth[1]);
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+
         // Atmospheric gasses
         patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
-        patchLight.Text = GetCompoundAmount(patch, sunlight.InternalName) + "% lx";
-        patchOxygen.Text = GetCompoundAmount(patch, oxygen.InternalName) + "%";
-        patchNitrogen.Text = GetCompoundAmount(patch, nitrogen.InternalName) + "%";
-        patchCO2.Text = GetCompoundAmount(patch, carbondioxide.InternalName) + "%";
+        patchLight.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, sunlight.InternalName)) + " lx";
+        patchOxygen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, oxygen.InternalName));
+        patchNitrogen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, nitrogen.InternalName));
+        patchCO2.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, carbondioxide.InternalName));
 
         // Compounds
-        patchHydrogenSulfide.Text = Math.Round(GetCompoundAmount(patch, hydrogensulfide.InternalName), 3) + "%";
-        patchAmmonia.Text = Math.Round(GetCompoundAmount(patch, ammonia.InternalName), 3) + "%";
-        patchGlucose.Text = Math.Round(GetCompoundAmount(patch, glucose.InternalName), 3) + "%";
-        patchPhosphate.Text = Math.Round(GetCompoundAmount(patch, phosphates.InternalName), 3) + "%";
-        patchIron.Text = GetCompoundAmount(patch, iron.InternalName) + "%";
+        patchHydrogenSulfide.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            Math.Round(GetCompoundAmount(patch, hydrogensulfide.InternalName), 3));
+        patchAmmonia.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            Math.Round(GetCompoundAmount(patch, ammonia.InternalName), 3));
+        patchGlucose.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            Math.Round(GetCompoundAmount(patch, glucose.InternalName), 3));
+        patchPhosphate.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            Math.Round(GetCompoundAmount(patch, phosphates.InternalName), 3));
+        patchIron.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            GetCompoundAmount(patch, iron.InternalName));
 
         // Refresh species list
         speciesListBox.ClearItems();

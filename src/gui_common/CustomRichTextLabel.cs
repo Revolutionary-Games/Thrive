@@ -12,7 +12,7 @@ public class CustomRichTextLabel : RichTextLabel
     private string extendedBbcode;
 
     /// <summary>
-    ///   Custom Bbcodes exclusive for Thrive. Acts more like an extension to the built-in tags.
+    ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
     public enum ThriveBbCode
     {
@@ -72,7 +72,7 @@ public class CustomRichTextLabel : RichTextLabel
         var isIteratingContent = false;
 
         // The index of a closing bracket in a last iterated opening tag, used
-        // to retrieve the tagged substring
+        // to retrieve the substring enclosed between start and end tag
         var lastStartingTagEndIndex = 0;
 
         for (int index = 0; index < extendedBbcode.Length; ++index)
@@ -189,7 +189,7 @@ public class CustomRichTextLabel : RichTextLabel
                     }
                     else
                     {
-                        // BBcode is not present in the enum
+                        // BBCode is not present in the enum
                         result.Append(input);
                         GD.PrintErr($"Failed parsing custom thrive bbcode: {bbcode}, it probably doesn't exist");
                     }
@@ -225,32 +225,53 @@ public class CustomRichTextLabel : RichTextLabel
         // Defaults to input so if something fails output returns unchanged
         var output = input;
 
+        var simulationParameters = SimulationParameters.Instance;
+
         switch (bbcode)
         {
             case ThriveBbCode.Compound:
             {
-                if (!SimulationParameters.Instance.DoesCompoundExist(input))
-                {
-                    GD.Print($"Compound: \"{input}\" doesn't exist, referenced in bbcode");
-                    break;
-                }
-
-                var compound = SimulationParameters.Instance.GetCompound(input);
-
-                var name = compound.Name;
-
                 var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
-                // Parse attributes if there are any
-                if (pairs.TryGetValue("text", out string value))
+                // Used to fallback to the old method if type attribute is not specified. Should be removed in
+                // roughly 6 months to give time for translations to be updated
+                // TODO: remove this fallback once it makes sense to do so
+                // https://github.com/Revolutionary-Games/Thrive/issues/2434
+                var fallback = false;
+
+                var internalName = string.Empty;
+
+                if (pairs.TryGetValue("type", out string value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
 
-                    name = value.Substring(1, value.Length - 2);
+                    internalName = value.Substring(1, value.Length - 2);
                 }
 
-                output = $"[b]{name}[/b] [font=res://src/gui_common/fonts/" +
+                // Handle fallback
+                if (!string.IsNullOrEmpty(input) && string.IsNullOrEmpty(internalName))
+                {
+                    GD.Print("Compound type not specified in bbcode, fallback to using input as " +
+                        $"the internal name: {input}");
+                    internalName = input;
+                    fallback = true;
+                }
+
+                // Check compound existence and aborts if it's not valid
+                if (!simulationParameters.DoesCompoundExist(internalName))
+                {
+                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    break;
+                }
+
+                var compound = simulationParameters.GetCompound(internalName);
+
+                // Just use the default compound's display name if input text is not specified
+                if (!fallback && string.IsNullOrEmpty(input))
+                    input = compound.Name;
+
+                output = $"[b]{(fallback ? compound.Name : input)}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
                 break;
