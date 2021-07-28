@@ -2244,8 +2244,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return false;
         }
 
-        history.AddAction(action);
-
         // Or if they are in the process of moving an organelle
         if (MovingOrganelle != null && !action.IsMoveAction)
         {
@@ -2253,6 +2251,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.OnActionBlockedWhileMoving();
             return false;
         }
+
+        history.AddAction(action);
 
         UpdateUndoRedoButtons();
         return true;
