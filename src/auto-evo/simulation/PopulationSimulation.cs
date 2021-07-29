@@ -140,9 +140,9 @@
             var niches = new List<IFoodSource>
             {
                 new PhotosyntheticFoodSource(patch),
-                new ChemosyntheticFoodSource(patch, Glucose),
-                new ChemosyntheticFoodSource(patch, HydrogenSulfide),
-                new ChemosyntheticFoodSource(patch, Iron),
+                new CompoundFoodSource(patch, Glucose),
+                new CompoundFoodSource(patch, HydrogenSulfide),
+                new CompoundFoodSource(patch, Iron),
             };
 
             foreach (var currentSpecies in species)

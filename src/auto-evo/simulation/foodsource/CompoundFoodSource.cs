@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-public class ChemosyntheticFoodSource : IFoodSource
+public class CompoundFoodSource : IFoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
@@ -9,7 +9,7 @@ public class ChemosyntheticFoodSource : IFoodSource
     private Compound compound;
     private float totalCompound;
 
-    public ChemosyntheticFoodSource(Patch patch, Compound compound)
+    public CompoundFoodSource(Patch patch, Compound compound)
     {
         biomeConditions = patch.Biome;
         this.compound = compound;
