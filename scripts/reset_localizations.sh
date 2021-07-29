@@ -7,13 +7,13 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     if test -f "Thrive.sln"; then
         currentBranch=`git rev-parse --abbrev-ref HEAD`
         git stash
-	git checkout master
+        git checkout master
         git pull
         git checkout ${currentBranch}
         git stash pop
-	git checkout master locale/
+        git checkout master locale/
         ruby scripts/update_localization.rb
-	poedit locale/en.po || $(git config --global core.editor) locale/en.po || $(git config --global core.visual) locale/en.po || vi locale/en.po
+        poedit locale/en.po || $(git config --global core.editor) locale/en.po || $(git config --global core.visual) locale/en.po || vi locale/en.po
     else
         echo "I told you to run this script from the root Thrive folder!!"
     fi
