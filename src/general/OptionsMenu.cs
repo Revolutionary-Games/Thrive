@@ -745,28 +745,28 @@ public class OptionsMenu : ControlWithInput
         saveButton.Disabled = result;
     }
 
-    private void UpdateDefaultAudioOutputDeviceText(OptionButton optionButton)
+    private void UpdateDefaultAudioOutputDeviceText(OptionButton audioOutputDeviceOptionButton)
     {
-        optionButton.SetItemText(0, TranslationServer.Translate("DEFAULT_OUTPUT_DEVICE"));
+        audioOutputDeviceOptionButton.SetItemText(0, TranslationServer.Translate("DEFAULT_OUTPUT_DEVICE"));
     }
 
-    private void LoadAudioOutputDevices(OptionButton optionButton)
+    private void LoadAudioOutputDevices(OptionButton audioOutputDeviceOptionButton)
     {
         foreach (var audioOutputDevice in AudioOutputDevices)
         {
-            optionButton.AddItem(audioOutputDevice);
+            audioOutputDeviceOptionButton.AddItem(audioOutputDevice);
         }
 
-        UpdateDefaultAudioOutputDeviceText(optionButton);
+        UpdateDefaultAudioOutputDeviceText(audioOutputDeviceOptionButton);
     }
 
-    private void LoadLanguages(OptionButton optionButton)
+    private void LoadLanguages(OptionButton languageOptionButton)
     {
         foreach (var locale in Languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
-            optionButton.AddItem(locale + " - " + native);
+            languageOptionButton.AddItem(locale + " - " + native);
         }
     }
 
