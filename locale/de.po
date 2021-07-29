@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-16 15:11+0300\n"
+"POT-Creation-Date: 2021-07-29 17:00+0700\n"
 "PO-Revision-Date: 2021-07-11 07:18+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -742,7 +742,7 @@ msgid "NITROGEN"
 msgstr "Stickstoff"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
 msgid "SUNLIGHT"
 msgstr "Sonnenlicht"
@@ -931,7 +931,7 @@ msgstr "ist auf diesem Planeten ausgestorben"
 msgid "LOADING"
 msgstr "Lädt"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:312
+#: ../src/engine/input/key_mapping/InputEventItem.cs:320
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Drücke eine Taste..."
 
@@ -1358,11 +1358,11 @@ msgstr "Grafiken/Kunst von {0}"
 msgid "CLOSE"
 msgstr "Schließen"
 
-#: ../src/general/MainMenu.cs:362
+#: ../src/general/MainMenu.cs:359
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:363
+#: ../src/general/MainMenu.cs:360
 msgid "Cancel"
 msgstr "Abbruch"
 
@@ -1370,11 +1370,11 @@ msgstr "Abbruch"
 msgid "NEW_GAME"
 msgstr "Neues Spiel"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
 msgid "LOAD_GAME"
 msgstr "Spiel laden"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
 msgid "OPTIONS"
 msgstr "Einstellungen"
 
@@ -1402,8 +1402,8 @@ msgstr "Verlassen"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1028
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Zurück"
@@ -1420,79 +1420,66 @@ msgstr ""
 "aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur "
 "Ausführung von Thrive zu erzwingen."
 
-#: ../src/general/OptionsMenu.tscn:127
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "Grafik"
 
-#: ../src/general/OptionsMenu.tscn:138
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:149
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "Leistung"
 
-#: ../src/general/OptionsMenu.tscn:160
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "Eingaben"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "Sonstiges"
 
-#: ../src/general/OptionsMenu.tscn:204
+#: ../src/general/OptionsMenu.tscn:205
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:213
 msgid "FULLSCREEN"
 msgstr "Vollbild"
 
-#: ../src/general/OptionsMenu.tscn:234
+#: ../src/general/OptionsMenu.tscn:235
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample Anti-Aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:241
+#: ../src/general/OptionsMenu.tscn:242
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(höhere Werte verschlechtern die Leistung)"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:272
 msgid "RESOLUTION"
 msgstr "Auflösung:"
 
-#: ../src/general/OptionsMenu.tscn:284
+#: ../src/general/OptionsMenu.tscn:285
 msgid "AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:294
+#: ../src/general/OptionsMenu.tscn:295
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:320
+#: ../src/general/OptionsMenu.tscn:321
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Farbenblindheits-Korrektur:"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:353
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:379
+#: ../src/general/OptionsMenu.tscn:380
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Fähigkeiten"
-
-#: ../src/general/OptionsMenu.tscn:385
-#, fuzzy
-msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
-msgstr ""
-"Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist "
-"eine doppelte Membranstruktur, die mit Proteinen und Enzymen gefüllt ist. "
-"Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen "
-"eukaryotischen Wirt assimiliert wurde. Es ist in der Lage, Glukose mit "
-"einer viel höheren Effizienz in ATP umzuwandeln, als dies im Zytoplasma in "
-"einem Prozess namens Aerobe Atmung möglich ist. Es benötigt jedoch "
-"Sauerstoff, um zu funktionieren, und niedrigere Sauerstoffkonzentrationen "
-"in der Umgebung verlangsamen die Geschwindigkeit seiner ATP-Produktion."
 
 #: ../src/general/OptionsMenu.tscn:389
 #, fuzzy
@@ -1529,7 +1516,7 @@ msgstr "Menülautstärke"
 msgid "LANGUAGE"
 msgstr "Sprache:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
 msgid "RESET"
 msgstr "Zurücksetzen"
 
@@ -1547,157 +1534,153 @@ msgstr ""
 "Wolkensimulation\n"
 "Minimumintervall:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(höhere Werte verbessern die Leistung)"
 
 #: ../src/general/OptionsMenu.tscn:707
-msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr "dieser Wert gilt erst bei neugestarteten Spielen"
-
-#: ../src/general/OptionsMenu.tscn:709
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolkenauflösungsteiler:"
 
-#: ../src/general/OptionsMenu.tscn:751
+#: ../src/general/OptionsMenu.tscn:749
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Auto-Evo während des Spielens ausführen"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:822
 msgid "RESET_INPUTS"
 msgstr "Eingaben zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:850
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Intro-Video abspielen"
 
-#: ../src/general/OptionsMenu.tscn:861
+#: ../src/general/OptionsMenu.tscn:859
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mikroben-Intro beim neuen Spiel abspielen"
 
-#: ../src/general/OptionsMenu.tscn:870
+#: ../src/general/OptionsMenu.tscn:868
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisches speichern während des Spieles"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:879
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Anzahl der Autospeicherungen:"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Anzahl der Schnellspeicherungen:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:933
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
 
-#: ../src/general/OptionsMenu.tscn:943
+#: ../src/general/OptionsMenu.tscn:941
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:957
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-Tasten aktiviert"
 
-#: ../src/general/OptionsMenu.tscn:971
+#: ../src/general/OptionsMenu.tscn:969
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Eigenen Nuternamen verwenden"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:980
 msgid "CUSTOM_USERNAME"
 msgstr "Eigener Nutzername:"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Bildschirmfoto-Ordner öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1016
+#: ../src/general/OptionsMenu.tscn:1014
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Ordner der Log-Dateien öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1051 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Speichern"
 
-#: ../src/general/OptionsMenu.tscn:1068
+#: ../src/general/OptionsMenu.tscn:1066
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standardeinstellungen"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "RESET_TO_DEFAULTS"
 msgstr "Auf Standardeinstellungen zurücksetzen?"
 
-#: ../src/general/OptionsMenu.tscn:1089
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Bist du sicher, dass du ALLE Einstellungen auf ihre Standardwerte "
 "zurücksetzen willst?"
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Standardeingaben laden?"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Bist du sicher, dass du die Eingaben auf ihre Standardwerte zurücksetzen "
 "willst?"
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "CLOSE_OPTIONS"
 msgstr "Optionen schließen?"
 
-#: ../src/general/OptionsMenu.tscn:1146
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Es wurden ungespeicherte Änderungen vorgenommen.\n"
 "Möchtest du fortfahren?"
 
-#: ../src/general/OptionsMenu.tscn:1168
+#: ../src/general/OptionsMenu.tscn:1166
 msgid "SAVE_AND_CONTINUE"
 msgstr "Speichern und fortfahren"
 
-#: ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/OptionsMenu.tscn:1175
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Verwerfen und fortfahren"
 
-#: ../src/general/OptionsMenu.tscn:1193
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "CANCEL"
 msgstr "Abbrechen"
 
-#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1228
-#: ../src/general/OptionsMenu.tscn:1252
+#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
+#: ../src/general/OptionsMenu.tscn:1250
 msgid "ERROR"
 msgstr "Fehler"
 
-#: ../src/general/OptionsMenu.tscn:1214 ../src/general/OptionsMenu.tscn:1253
+#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist "
 "fehlgeschlagen."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
 msgstr "Fortsetzen"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:65
 msgid "SAVE_GAME"
 msgstr "Spiel speichern"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:80
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistiken"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:87
 msgid "HELP"
 msgstr "Hilfe"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:101
 msgid "RETURN_TO_MENU"
 msgstr "Zurück zum Hauptmenü"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:108
 msgid "EXIT"
 msgstr "Verlassen"
 
@@ -1721,7 +1704,8 @@ msgstr "/Sekunde"
 #: ../src/gui_common/CompoundAmount.cs:166
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:254
 #: ../src/microbe_stage/MicrobeHUD.cs:606
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:573
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -1737,13 +1721,13 @@ msgstr ""
 "Spielversion überein.\n"
 "Um den Speicherstand trozdem zu laden, lade ihn über das Menü."
 
-#: ../src/gui_common/charts/line/LineChart.cs:901
-#: ../src/gui_common/charts/line/LineChart.cs:930
+#: ../src/gui_common/charts/line/LineChart.cs:931
+#: ../src/gui_common/charts/line/LineChart.cs:960
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Darf nicht mehr als {0} Datensets zeigen!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:910
-#: ../src/gui_common/charts/line/LineChart.cs:938
+#: ../src/gui_common/charts/line/LineChart.cs:940
+#: ../src/gui_common/charts/line/LineChart.cs:968
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Nicht erlaubt, weniger als {0} Datensatz(e) anzuzeigen!"
 
@@ -2312,9 +2296,26 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Eingabemethode hinzufügen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
+msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
+msgstr "dieser Wert gilt erst bei neugestarteten Spielen"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
+#, fuzzy
+msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+msgstr ""
+"Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist "
+"eine doppelte Membranstruktur, die mit Proteinen und Enzymen gefüllt ist. "
+"Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen "
+"eukaryotischen Wirt assimiliert wurde. Es ist in der Lage, Glukose mit "
+"einer viel höheren Effizienz in ATP umzuwandeln, als dies im Zytoplasma in "
+"einem Prozess namens Aerobe Atmung möglich ist. Es benötigt jedoch "
+"Sauerstoff, um zu funktionieren, und niedrigere Sauerstoffkonzentrationen "
+"in der Umgebung verlangsamen die Geschwindigkeit seiner ATP-Produktion."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:749
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Temperatur"
 
@@ -2684,15 +2685,15 @@ msgstr "In dieses Gebiet wechseln"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:579
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:586
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
 msgstr "Mya"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:590
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
@@ -2701,28 +2702,28 @@ msgstr "Mya"
 msgid "YEARS"
 msgstr "Jahre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:632
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktion"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTION ZU NIEDRIG!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:690
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "BASE_MOVEMENT"
 msgstr "Basisbewegung"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:702
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -2828,15 +2829,15 @@ msgstr "Laden beendet"
 msgid "ERROR_LOADING"
 msgstr "Fehler beim Laden"
 
-#: ../src/saving/InProgressSave.cs:159
+#: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
 msgstr "Speichert..."
 
-#: ../src/saving/InProgressSave.cs:189
+#: ../src/saving/InProgressSave.cs:195
 msgid "SAVE_FAILED"
 msgstr "Speichern fehlgeschlagen"
 
-#: ../src/saving/InProgressSave.cs:190
+#: ../src/saving/InProgressSave.cs:196
 msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
@@ -2864,11 +2865,11 @@ msgstr "Vorhandenen Speicherstand überschreiben:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Vorhandenen Speicherstand überschreiben?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:378
 msgid "SAVING_SUCCEEDED"
 msgstr "Speichern erfolgreich"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:388
 msgid "SAVING_FAILED"
 msgstr "Speichern fehlgeschlagen! Eine Ausnahme ist aufgetreten"
 
@@ -2888,7 +2889,7 @@ msgstr "Schnell"
 msgid "SAVE_INVALID"
 msgstr "Ungülig"
 
-#: ../src/saving/SaveList.cs:170
+#: ../src/saving/SaveList.cs:171
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist "
@@ -2989,14 +2990,14 @@ msgstr ""
 "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, "
 "bist du sicher, dass du ihn dauerhaft löschen willst?"
 
-#: ../src/saving/SaveManagerGUI.cs:208
+#: ../src/saving/SaveManagerGUI.cs:206
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Das Löschen des/der ausgewählten Spielstandes/Spielständen kann nicht "
 "rückgängig gemacht werden. Bist du sicher, dass du die {0} Speicherung(en) "
 "dauerhaft löschen möchten?"
 
-#: ../src/saving/SaveManagerGUI.cs:220
+#: ../src/saving/SaveManagerGUI.cs:218
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Das Löschen aller alten Auto- und Schnellspeicherungen kann nicht "
