@@ -176,9 +176,8 @@ public class OptionsMenu : ControlWithInput
         .ToList();
 
     private static readonly List<string> AudioOutputDevicesCache = AudioServer
-        .GetDeviceList()
-        .OfType<string>()
-        .ToList();
+        .GetDeviceList().OfType<string>().Where(p => p != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
+        .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
     private Button resetButton;
     private Button saveButton;
