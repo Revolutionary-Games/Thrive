@@ -14,7 +14,7 @@ public class HeterotrophicFoodSource : IFoodSource
     {
         this.prey = prey;
         this.patch = patch;
-        preySpeed = prey.BaseSpeed();
+        preySpeed = prey.BaseSpeed;
         preySize = prey.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         patch.SpeciesInPatch.TryGetValue(prey, out long population);
         totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
@@ -33,7 +33,7 @@ public class HeterotrophicFoodSource : IFoodSource
         var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
         var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
-        var predatorSpeed = microbeSpecies.BaseSpeed();
+        var predatorSpeed = microbeSpecies.BaseSpeed;
         predatorSpeed += ProcessSystem
             .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles.Select(x => x.Definition), patch.Biome,
                 microbeSpecies.MembraneType).FinalBalance;
