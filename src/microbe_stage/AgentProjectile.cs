@@ -42,7 +42,7 @@ public class AgentProjectile : RigidBody, ITimedLife
             Destroy();
     }
 
-    public void OnBodyEntered(Node body)
+    private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
         if (body is Microbe microbe)
         {
@@ -50,7 +50,13 @@ public class AgentProjectile : RigidBody, ITimedLife
             {
                 // If more stuff needs to be damaged we
                 // could make an IAgentDamageable interface.
-                microbe.Damage(Constants.OXYTOXY_DAMAGE, Properties.AgentType);
+                var touchedMicrobe = microbe;
+                if (microbe.Colony != null) 
+                {
+                    var touchedOwnerId = microbe.ShapeFindOwner(bodyShape);
+                    touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId,microbe.Colony);
+                }
+                touchedMicrobe.Damage(Constants.OXYTOXY_DAMAGE, Properties.AgentType);
             }
         }
 

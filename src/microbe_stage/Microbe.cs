@@ -2351,7 +2351,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GlobalTransform = pos;
     }
 
-    private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    public Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
     {
         return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
     }
@@ -2498,6 +2498,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (Colony == null)
         {
             Colony = new MicrobeColony(this);
+            OnColonyMemberAdded(this);
             GD.Print("Created a new colony");
         }
 
