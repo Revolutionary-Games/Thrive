@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 21:33+0200\n"
+"POT-Creation-Date: 2021-07-29 21:39+0200\n"
 "PO-Revision-Date: 2021-07-16 17:42+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1398,7 +1398,7 @@ msgstr ""
 "to cause issues. Try to update your video drivers and/or force AMD or "
 "Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/OptionsMenu.cs:750
+#: ../src/general/OptionsMenu.cs:749
 #, fuzzy
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
@@ -1502,8 +1502,9 @@ msgid "GUI_VOLUME"
 msgstr "GUI Volume"
 
 #: ../src/general/OptionsMenu.tscn:601
-msgid "DEVICE"
-msgstr "Output device:"
+#, fuzzy
+msgid "AUDIO_OUTPUT_DEVICE"
+msgstr "Default output device"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
@@ -3116,6 +3117,9 @@ msgstr ""
 "\n"
 "To leave the colony entirely you can click on your own cell or press the "
 "unbind all key."
+
+#~ msgid "DEVICE"
+#~ msgstr "Output device:"
 
 #~ msgid "TURNS"
 #~ msgstr "Turns"
