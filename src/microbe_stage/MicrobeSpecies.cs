@@ -34,13 +34,7 @@ public class MicrobeSpecies : Species
     }
 
     [JsonIgnore]
-    public float BaseSpeed
-    {
-        get
-        {
-            return ProcessSystem.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
-        }
-    }
+    public float BaseSpeed => ProcessSystem.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
 
     public override void RepositionToOrigin()
     {
