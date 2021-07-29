@@ -747,7 +747,7 @@ public class OptionsMenu : ControlWithInput
 
     private void UpdateDefaultAudioOutputDeviceText(OptionButton audioOutputDeviceOptionButton)
     {
-        audioOutputDeviceOptionButton.SetItemText(0, TranslationServer.Translate("DEFAULT_OUTPUT_DEVICE"));
+        audioOutputDeviceOptionButton.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
     }
 
     private void LoadAudioOutputDevices(OptionButton audioOutputDeviceOptionButton)
