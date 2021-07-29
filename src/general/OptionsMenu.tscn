@@ -66,7 +66,7 @@ SFXVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBo
 SFXMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted")
 GUIVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume")
 GUIMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted")
-OutputDeviceSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/OutputDevicesButton")
+AudioOutputDeviceSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/AudioOutputDevicesButton")
 LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
 ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 PerformanceTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance")
@@ -601,7 +601,7 @@ margin_bottom = 22.0
 text = "DEVICE"
 align = 1
 
-[node name="OutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
+[node name="AudioOutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
 anchor_left = -0.00308642
 anchor_right = -0.00308642
 margin_left = 70.0
@@ -1303,7 +1303,7 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted" to="." method="OnSFXMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume" to="." method="OnGUIVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted" to="." method="OnGUIMutedToggled"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/OutputDevicesButton" to="." method="OnOutputDeviceSettingSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/AudioOutputDevicesButton" to="." method="OnAudioOutputDeviceSettingSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton" to="." method="OnLanguageSettingSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton" to="." method="OnResetLanguagePressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/TranslationSiteButton" to="." method="OnTranslationSitePressed"]
