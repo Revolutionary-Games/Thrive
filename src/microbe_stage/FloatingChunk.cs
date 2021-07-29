@@ -438,6 +438,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
             }
             touchingMicrobes.Remove(touchedMicrobe);
+
         }
     }
 
