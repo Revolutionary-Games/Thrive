@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 21:39+0200\n"
+"POT-Creation-Date: 2021-07-29 21:44+0200\n"
 "PO-Revision-Date: 2021-07-11 07:18+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -1421,7 +1421,6 @@ msgstr ""
 "Ausführung von Thrive zu erzwingen."
 
 #: ../src/general/OptionsMenu.cs:749
-#, fuzzy
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standardausgabegerät"
 
@@ -1531,9 +1530,8 @@ msgid "GUI_VOLUME"
 msgstr "Menülautstärke"
 
 #: ../src/general/OptionsMenu.tscn:601
-#, fuzzy
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr "Standardausgabegerät"
+msgstr "Audiogerät:"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
@@ -3234,9 +3232,6 @@ msgstr ""
 "steuern.\n"
 "\n"
 "Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
-
-#~ msgid "DEVICE"
-#~ msgstr "Ausgabegerät:"
 
 #~ msgid "TURNS"
 #~ msgstr "Verwandelt sich"
