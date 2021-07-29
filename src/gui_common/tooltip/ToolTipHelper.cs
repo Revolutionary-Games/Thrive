@@ -23,7 +23,8 @@ public static class ToolTipHelper
     }
 
     /// <summary>
-    ///   Registers a Control mouse enter/exit event to display a custom tooltip.
+    ///   Registers a Control mouse enter and exit event if hasn't already yet to the callbacks for the given
+    ///   custom tooltip.
     /// </summary>
     /// <param name="control">The Control to register the tooltip to.</param>
     /// <param name="tooltip">The tooltip to register with.</param>
@@ -44,13 +45,13 @@ public static class ToolTipHelper
         control.Connect("mouse_entered", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter));
         control.Connect("mouse_exited", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
         control.Connect("hide", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
-        control.Connect("tree_exiting", toolTipCallbackData, nameof(ToolTipCallbackData.OnToolTipableExitingTree));
+        control.Connect("tree_exiting", toolTipCallbackData, nameof(ToolTipCallbackData.OnExitingTree));
 
         ToolTipCallbacks.Add(toolTipCallbackData);
     }
 
     /// <summary>
-    ///   Deletes stored callback data for the given tooltip.
+    ///   Removes stored callback data for the given tooltip.
     /// </summary>
     public static void UnRegisterToolTipForControl(this Control control, ICustomToolTip tooltip)
     {
@@ -59,7 +60,6 @@ public static class ToolTipHelper
 
         var data = GetToolTipCallbackData(control, tooltip);
         ToolTipCallbacks.Remove(data);
-        Invoke.Instance.Queue(data.Free);
     }
 
     public static bool IsToolTipRegistered(this Control control, ICustomToolTip tooltip)
