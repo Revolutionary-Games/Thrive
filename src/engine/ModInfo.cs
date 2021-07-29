@@ -54,6 +54,12 @@ public class ModInfo : Resource
     [JsonProperty]
     public string Dll { get; set; }
 
+    [JsonProperty("Entry Script")]
+    public string EntryScriptPath { get; set; }
+
+    [JsonProperty("Entry Function")]
+    public string EntryFunctionName { get; set; } = "OnModLoaded";
+
     [JsonProperty]
     public bool AutoLoad { get; set; }
 

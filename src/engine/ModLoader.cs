@@ -16,8 +16,9 @@ public class ModLoader : Reference
     {
         ModFileCanNotBeFound = -2,
         FailedModLoading = -1,
-        ModAlreadyBeenLoaded = 0,
+        Unknown = 0,
         ModLoadedSuccessfully = 1,
+        ModAlreadyBeenLoaded = 2,
     }
 
     /// <summary>
@@ -110,8 +111,9 @@ public class ModLoader : Reference
     ///   Returns a postive integer when successful and negative when it fails
     ///   -2: Returns when the mod file can not be found
     ///   -1: Returns when the mod file fails to be loaded
-    ///    0: Returns when the mod is already loaded
+    ///    0: Returns when the status is unknown (Most likely still loading)
     ///    1: Returns when the mod is successfully loaded
+    ///    2: Returns when the mod is already loaded
     /// </returns>
     public int LoadMod(ModInfo currentMod, bool addToReloadedModList = false, bool clearReloadedModList = true,
         bool clearFailedToLoadModsList = true)
@@ -163,7 +165,6 @@ public class ModLoader : Reference
             if (file.FileExists(ProjectSettings.GlobalizePath(currentMod.Location + "/" + currentMod.Dll)))
             {
                 Assembly.LoadFile(ProjectSettings.GlobalizePath(currentMod.Location + "/" + currentMod.Dll));
-                GD.Print("ADJ_DLL: " + currentMod.Dll);
             }
         }
 
@@ -172,6 +173,42 @@ public class ModLoader : Reference
         {
             GD.Print("Loaded mod: " + currentMod.Name);
             LoadedMods.Add(currentMod);
+
+            // Entry Script Loading
+            if (currentMod.EntryScriptPath != null && ResourceLoader.Exists(currentMod.EntryScriptPath))
+            {
+                var entryScript = ResourceLoader.Load(currentMod.EntryScriptPath) as Script;
+
+                Object entryScriptInstance = new Godot.Object();
+
+                if (entryScript.CanInstance())
+                {
+                    // Need to create an instance of the resource create a object of the class
+                    switch (System.IO.Path.GetExtension(ProjectSettings.GlobalizePath(currentMod.EntryScriptPath)))
+                    {
+                        case ".gd":
+                            var gdEntryScript = entryScript as GDScript;
+                            entryScriptInstance = (Godot.Object)gdEntryScript.New();
+                            break;
+                        case ".csx":
+                        case ".cs":
+                            var cSharpEntryScript = entryScript as CSharpScript;
+                            entryScriptInstance = (Godot.Object)cSharpEntryScript.New();
+                            break;
+                        case ".c":
+                        case ".cpp":
+                        case ".cc":
+                        case ".cxx":
+                            var nativeScriptEntryScript = entryScript as NativeScript;
+                            entryScriptInstance = (Godot.Object)nativeScriptEntryScript.New();
+                            break;
+                    }
+
+                    // Calls the intialization method, passing in the ModInfo, so that mods can get their own config
+                    entryScriptInstance.Call(currentMod.EntryFunctionName, currentMod);
+                }
+            }
+
             currentMod.Status = (int)ModStatus.ModLoadedSuccessfully;
             return currentMod.Status;
         }
