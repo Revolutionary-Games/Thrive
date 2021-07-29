@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-04 23:22+0700\n"
-"PO-Revision-Date: 2021-06-21 14:23+0000\n"
+"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"PO-Revision-Date: 2021-07-26 13:26+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -90,8 +90,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Per riprodurti, devi dividere ciascuno dei tuoi organuli in due. Per "
-"farlo, essi hanno bisogno di Ammoniaca e Fosfato."
+"Per riprodurti, devi sdoppiare ciascuno dei tuoi organuli. Per farlo, essi "
+"hanno bisogno di Ammoniaca e Fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
@@ -109,7 +109,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Sii prudente, i tuoi avversari si evolvono insieme a te. Ogni volta che "
+"Sii prudente: i tuoi avversari si evolvono insieme a te. Ogni volta che "
 "entri nell'editor, si evolvono anche loro."
 
 #: ../simulation_parameters/common/help_texts.json:54
@@ -229,8 +229,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Una curiosità: nel mondo reale, i procarioti possiedono delle strutture "
-"chiamate Biocompartimenti; esse fungono come se fossero organuli, e sono "
-"infatti chiamate \"organuli poliedrici\"."
+"chiamate Biocompartimenti; esse fungono da organuli, e sono infatti "
+"chiamate \"organuli poliedrici\"."
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
@@ -389,14 +389,17 @@ msgid "ABILITIES"
 msgstr "Abilità"
 
 #: ../simulation_parameters/common/input_options.json:38
+#: ../src/microbe_stage/MicrobeStage.tscn:2052
 msgid "FIRE_TOXIN"
 msgstr "Lancia tossina"
 
 #: ../simulation_parameters/common/input_options.json:42
+#: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "TOGGLE_ENGULF"
 msgstr "Attiva/disattiva fagocitosi"
 
 #: ../simulation_parameters/common/input_options.json:46
+#: ../src/microbe_stage/MicrobeStage.tscn:2062
 msgid "TOGGLE_BINDING"
 msgstr "Attiva la modalità di legatura"
 
@@ -675,36 +678,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1215
+#: ../src/microbe_stage/MicrobeStage.tscn:1222
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
 msgid "AMMONIA"
 msgstr "Ammoniaca"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1269
+#: ../src/microbe_stage/MicrobeStage.tscn:1276
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1323
+#: ../src/microbe_stage/MicrobeStage.tscn:1330
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "HYDROGEN_SULFIDE"
 msgstr "Idrogeno Solforato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1168
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
 msgid "GLUCOSE"
 msgstr "Glucosio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1509
+#: ../src/microbe_stage/MicrobeStage.tscn:1516
 msgid "OXYTOXY_NT"
 msgstr "OssiTossi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1377
+#: ../src/microbe_stage/MicrobeStage.tscn:1384
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
 msgid "IRON"
 msgstr "Ferro"
@@ -725,7 +728,7 @@ msgid "NITROGEN"
 msgstr "Azoto"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
 msgid "SUNLIGHT"
 msgstr "Luce solare"
@@ -914,7 +917,7 @@ msgstr "si è estinto dal pianeta"
 msgid "LOADING"
 msgstr "Caricamento"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:312
+#: ../src/engine/input/key_mapping/InputEventItem.cs:320
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Premi un tasto..."
 
@@ -1341,11 +1344,11 @@ msgstr "Di {0}"
 msgid "CLOSE"
 msgstr "Chiudi"
 
-#: ../src/general/MainMenu.cs:362
+#: ../src/general/MainMenu.cs:359
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:363
+#: ../src/general/MainMenu.cs:360
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -1353,11 +1356,11 @@ msgstr "Annulla"
 msgid "NEW_GAME"
 msgstr "Nuova Partita"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
 msgid "LOAD_GAME"
 msgstr "Carica Partita"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
 msgid "OPTIONS"
 msgstr "Impostazioni"
 
@@ -1385,8 +1388,8 @@ msgstr "Chiudi"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Microbico Libero"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Indietro"
@@ -1402,271 +1405,274 @@ msgstr ""
 "probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o "
 "a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "Grafica"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "Suono"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "Prestazioni"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "Controlli"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "Varie"
 
-#: ../src/general/OptionsMenu.tscn:208
+#: ../src/general/OptionsMenu.tscn:205
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:213
 msgid "FULLSCREEN"
 msgstr "Schermo intero"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:235
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multicampionamento (MSAA):"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:242
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valori più elevati compromettono le prestazioni)"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:272
 msgid "RESOLUTION"
 msgstr "Risoluzione:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:285
 msgid "AUTO"
 msgstr "automatica"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:295
 msgid "MAX_FPS"
 msgstr "FPS massimi:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:321
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correzione colore:"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:353
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberrazione Cromatica:"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:380
+msgid "DISPLAY_ABILITIES_BAR"
+msgstr "Mostra la Barra delle Abilità"
+
+#: ../src/general/OptionsMenu.tscn:389
+msgid "ENABLE_GUI_LIGHT_EFFECTS"
+msgstr "Abilita gli effetti di luce della GUI"
+
+#: ../src/general/OptionsMenu.tscn:415
 msgid "MASTER_VOLUME"
 msgstr "Volume principale"
 
-#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:465
-#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:531
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
+#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
+#: ../src/general/OptionsMenu.tscn:582
 msgid "MUTE"
 msgstr "Muto"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:456
 msgid "MUSIC_VOLUME"
 msgstr "Volume della musica"
 
-#: ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:489
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume degli effetti ambientali"
 
-#: ../src/general/OptionsMenu.tscn:504
+#: ../src/general/OptionsMenu.tscn:522
 msgid "SFX_VOLUME"
 msgstr "Volume degli effetti sonori"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:555
 msgid "GUI_VOLUME"
 msgstr "Volume della GUI"
 
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:600
 msgid "LANGUAGE"
 msgstr "Lingua:"
 
-#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
 msgid "RESET"
 msgstr "Ripristina"
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:624
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Aiuta a tradurre il gioco"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:650
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvole di composti"
 
-#: ../src/general/OptionsMenu.tscn:641
+#: ../src/general/OptionsMenu.tscn:665
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Intervallo Minimo\n"
 "Simulazione Nuvole:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valori più elevati migliorano le prestazioni)"
 
-#: ../src/general/OptionsMenu.tscn:683
-msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
-"Se modifichi questo valore, l'effetto si applica solo alle nuove partite"
-
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:707
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisore Risoluzione Nuvole:"
 
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:749
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Esegui auto-evo in gioco"
 
-#: ../src/general/OptionsMenu.tscn:794
+#: ../src/general/OptionsMenu.tscn:822
 msgid "RESET_INPUTS"
 msgstr "Ripristina i comandi"
 
-#: ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:850
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Riproduci video introduttivo"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:859
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Riproduci filmato microbico iniziale in Nuova Partita"
 
-#: ../src/general/OptionsMenu.tscn:836
+#: ../src/general/OptionsMenu.tscn:868
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvataggio automatico durante il gioco"
 
-#: ../src/general/OptionsMenu.tscn:847
+#: ../src/general/OptionsMenu.tscn:879
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Numero di salvataggi automatici da conservare:"
 
-#: ../src/general/OptionsMenu.tscn:875
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Numero di salvataggi rapidi da conservare:"
 
-#: ../src/general/OptionsMenu.tscn:901
+#: ../src/general/OptionsMenu.tscn:933
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostra i tutorial (in nuove partite)"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:941
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostra i tutorial (nella partita attuale)"
 
-#: ../src/general/OptionsMenu.tscn:925
+#: ../src/general/OptionsMenu.tscn:957
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Trucchi abilitati"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:969
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utilizza uno username personalizzato"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:980
 msgid "CUSTOM_USERNAME"
 msgstr "Username Personalizzato:"
 
-#: ../src/general/OptionsMenu.tscn:974
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Apri Cartella degli Screenshot"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:1014
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Apri Cartella dei Report"
 
-#: ../src/general/OptionsMenu.tscn:1017 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Salva"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1066
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predefinite"
 
-#: ../src/general/OptionsMenu.tscn:1046
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ripristinare le impostazioni predefinite?"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Sicuro di voler ripristinare TUTTE le impostazioni ai valori predefiniti?"
 
-#: ../src/general/OptionsMenu.tscn:1069
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ripristina i comandi?"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Sei sicuro di voler ripristinare i comandi ai valori iniziali?"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "CLOSE_OPTIONS"
 msgstr "Chiudi impostazioni?"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Hai modifiche non salvate. Saranno eliminate.\n"
 "Vuoi procedere?"
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1166
 msgid "SAVE_AND_CONTINUE"
 msgstr "Salva e continua"
 
-#: ../src/general/OptionsMenu.tscn:1143
+#: ../src/general/OptionsMenu.tscn:1175
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Continua senza salvare"
 
-#: ../src/general/OptionsMenu.tscn:1159
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "CANCEL"
 msgstr "Annulla"
 
-#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1194
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
+#: ../src/general/OptionsMenu.tscn:1250
 msgid "ERROR"
 msgstr "Errore"
 
-#: ../src/general/OptionsMenu.tscn:1180 ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Errore: è stato impossibile salvare le nuove impostazioni su file di "
 "configurazione."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
 msgstr "Riprendi"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:65
 msgid "SAVE_GAME"
 msgstr "Salva Partita"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:80
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistiche"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:87
 msgid "HELP"
 msgstr "Aiuto"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:101
 msgid "RETURN_TO_MENU"
 msgstr "Ritorna al Menù"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:108
 msgid "EXIT"
 msgstr "Esci"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mrd"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mil"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1674,6 +1680,15 @@ msgstr "{0} K"
 #: ../src/gui_common/ChemicalEquation.cs:176
 msgid "PER_SECOND_SLASH"
 msgstr "al secondo"
+
+#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
+#: ../src/microbe_stage/MicrobeHUD.cs:606
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+msgid "PERCENTAGE_VALUE"
+msgstr "{0}%"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1686,13 +1701,13 @@ msgstr ""
 "a quella del gioco.\n"
 "Carica il salvataggio manualmente dal menù."
 
-#: ../src/gui_common/charts/line/LineChart.cs:901
-#: ../src/gui_common/charts/line/LineChart.cs:930
+#: ../src/gui_common/charts/line/LineChart.cs:931
+#: ../src/gui_common/charts/line/LineChart.cs:960
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Impossibile mostrare più di {0} set di dati!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:910
-#: ../src/gui_common/charts/line/LineChart.cs:938
+#: ../src/gui_common/charts/line/LineChart.cs:940
+#: ../src/gui_common/charts/line/LineChart.cs:968
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Impossibile mostrare meno di {0} set di dati!"
 
@@ -1761,8 +1776,8 @@ msgstr "Salute"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma il [thrive:compound]glucose[/thrive:compound] in [thrive:"
-"compound]atp[/thrive:compound]"
+"Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in "
+"[thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1820,9 +1835,9 @@ msgstr "Costo di osmoregolazione"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma il [thrive:compound]glucose[/thrive:compound] in [thrive:"
-"compound]atp[/thrive:compound]. Il tasso aumenta con la concentrazione di "
-"[thrive:compound]oxygen[/thrive:compound]"
+"Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1842,9 +1857,10 @@ msgstr "Tilacoide"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con "
-"la concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e "
-"con l'intensità di [thrive:compound]sunlight[/thrive:compound]"
+"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
+"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] e con l'intensità di [thrive:compound type=\"sunlight\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1861,11 +1877,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]hydrogensulfide[/thrive:compound] in [thrive:"
-"compound]glucose[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]carbondioxide[/thrive:compound]. Inoltre, trasforma il "
-"[thrive:compound]glucose[/thrive:compound] in [thrive:compound]atp[/thrive:"
-"compound]"
+"Trasforma l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
+"in [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta "
+"con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound]. Inoltre, trasforma il [thrive:compound type=\"glucose\"][/"
+"thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1881,10 +1897,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma il [thrive:compound]iron[/thrive:compound] in [thrive:"
-"compound]atp[/thrive:compound]. Il tasso aumenta con la concentrazione di "
-"[thrive:compound]carbondioxide[/thrive:compound] e di [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Trasforma il [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] e di [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1897,9 +1913,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]ammonia[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]nitrogen[/thrive:compound]"
+"Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1913,10 +1929,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]oxytoxy[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]oxygen[/thrive:compound]. Puoi rilasciare le tossine "
-"premendo [thrive:input]g_fire_toxin[/thrive:input]."
+"Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. "
+"Puoi rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:"
+"input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1927,8 +1944,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Utilizza l'[thrive:compound]atp[/thrive:compound] per aumentare la "
-"velocità di movimento della cellula"
+"Utilizza l'[thrive:compound type=\"atp\"][/thrive:compound] per aumentare "
+"la velocità di movimento della cellula"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1995,9 +2012,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma il [thrive:compound]glucose[/thrive:compound] in [thrive:"
-"compound]atp[/thrive:compound]. Il tasso aumenta con la concentrazione di "
-"[thrive:compound]oxygen[/thrive:compound]"
+"Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2013,9 +2030,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con "
-"la concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e "
-"con l'intensità della [thrive:compound]sunlight[/thrive:compound]"
+"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
+"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] e con l'intensità della [thrive:compound type=\"sunlight"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2037,9 +2055,9 @@ msgstr "Termoplasto"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produce [thrive:compound]glucose[/thrive:compound]. Il tasso aumenta con "
-"la concentrazione di [thrive:compound]carbondioxide[/thrive:compound] e "
-"con la temperatura."
+"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
+"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] e con la temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2061,9 +2079,10 @@ msgstr "Nessun processo"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]hydrogensulfide[/thrive:compound] in [thrive:"
-"compound]glucose[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]carbondioxide[/thrive:compound]"
+"Trasforma l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
+"in [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta "
+"con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2077,10 +2096,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]ammonia[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]nitrogen[/thrive:compound] e di [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound] e "
+"di [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2097,20 +2116,21 @@ msgstr "Aumenta lo spazio di stoccaggio della cellula."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"Il vacuolo è un organulo interno membranoso utilizzato per lo stoccaggio "
+"Il vacuolo è un organulo membranoso interno, utilizzato per lo stoccaggio "
 "di sostanze. È composto di diverse vesciche, cioè strutture membranose più "
 "piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono "
-"fuse insieme. Il vacuolo contiene acqua, usata per contenere molecole, "
+"fuse insieme. Il vacuolo è colmo acqua, usata per contenere molecole, "
 "enzimi, solidi e altre sostanze. La sua forma è fluida e può variare da "
 "cellula a cellula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Trasforma l'[thrive:compound]atp[/thrive:compound] in [thrive:"
-"compound]oxytoxy[/thrive:compound]. Il tasso aumenta con la concentrazione "
-"di [thrive:compound]oxygen[/thrive:compound]. Puoi rilasciare le tossine "
-"premendo [thrive:input]g_fire_toxin[/thrive:input]."
+"Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la "
+"concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. "
+"Puoi rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:"
+"input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2126,7 +2146,7 @@ msgstr "Vacuolo Bioluminescente"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1840
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"La forma più basilare di membrana; offre poca protezione ai danni. "
+"La forma più basilare di membrana, offre poca protezione ai danni. "
 "Inoltre, ha bisogno di più energia per evitare di deformarsi. Il vantaggio "
 "è che permette alla cellula di muoversi e di assorbire i nutrienti più "
 "velocemente."
@@ -2159,7 +2179,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2803
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3073
 msgid "PHYSICAL_RESISTANCE"
-msgstr "Resistenza fisica"
+msgstr "Resistenza Fisica"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2369
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2604
@@ -2202,9 +2222,24 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Aggiungi tasto"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
+msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
+msgstr ""
+"Se modifichi questo valore, l'effetto si applica solo alle nuove partite"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
+msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+msgstr ""
+"Abilita gli effetti di luce nella GUI (graphical user interface), come ad "
+"esempio il flash del pulsante di editor.\n"
+"\n"
+"Nel caso dovessi incontrare un bug per cui alcune parti del pulsante di "
+"editor spariscono,\n"
+"puoi provare a disattivare questa opzione per risolverlo."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Temperatura"
 
@@ -2225,11 +2260,11 @@ msgstr "rovistamento riuscito"
 msgid "SUCCESSFUL_KILL"
 msgstr "uccisione riuscita"
 
-#: ../src/microbe_stage/Microbe.cs:1779
+#: ../src/microbe_stage/Microbe.cs:1782
 msgid "REPRODUCED"
 msgstr "si è riprodotto"
 
-#: ../src/microbe_stage/Microbe.cs:1920
+#: ../src/microbe_stage/Microbe.cs:1926
 msgid "ESCAPE_ENGULFING"
 msgstr "fuga dalla fagocitosi"
 
@@ -2255,15 +2290,15 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplica Giocatore"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:477
+#: ../src/microbe_stage/MicrobeHUD.cs:514
 msgid "MICROBE_PATCH_LABEL"
 msgstr "Zona: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:621
+#: ../src/microbe_stage/MicrobeHUD.cs:664
 msgid "STUFF_AT"
 msgstr "Roba alle coordinate {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:671
+#: ../src/microbe_stage/MicrobeHUD.cs:714
 msgid "PLAYER_CELL"
 msgstr "Cellula del Giocatore"
 
@@ -2275,50 +2310,50 @@ msgstr "il giocatore si è riprodotto"
 msgid "PLAYER_DIED"
 msgstr "il giocatore è morto"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:433
+#: ../src/microbe_stage/MicrobeStage.tscn:440
 msgid "AT_CURSOR"
 msgstr "Presso il Cursore:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:458
+#: ../src/microbe_stage/MicrobeStage.tscn:465
 msgid "NOTHING_HERE"
 msgstr "Qui non c'è niente"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "COMPOUNDS_COLON"
 msgstr "Composti:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:521
+#: ../src/microbe_stage/MicrobeStage.tscn:528
 msgid "SPECIES_COLON"
 msgstr "Specie:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:602
+#: ../src/microbe_stage/MicrobeStage.tscn:609
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:876
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:932
 msgid "LIGHT"
 msgstr "Luce"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:987
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "COMPOUNDS"
 msgstr "Composti"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1447
+#: ../src/microbe_stage/MicrobeStage.tscn:1454
 msgid "AGENTS"
 msgstr "Agenti"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1710
+#: ../src/microbe_stage/MicrobeStage.tscn:1706
 msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
 
@@ -2366,9 +2401,9 @@ msgstr "Banchina Glaciale"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Fondale Marino Pangoniano"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:117
 msgid "UNBIND_HELP_TEXT"
-msgstr "Modalità di slegatura"
+msgstr "Modalità di Slegatura"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
@@ -2379,19 +2414,19 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bilancio dei Composti"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1345
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "Caricando l'Editor di Microbi"
+msgstr "Caricando l'Editor Microbico"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Aspettando l'Auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2281
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-evo non ha funzionato"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2282
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Stato dell'Auto-evo:"
 
@@ -2539,7 +2574,7 @@ msgstr "Condizioni Fisiche"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gas Atmosferici"
 
@@ -2572,66 +2607,66 @@ msgstr "Trasferisciti in Questa Zona"
 msgid "INFINITE_MP"
 msgstr "PM Infiniti"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 "La quantità di glucosio è stata ridotta al {0} della quantità precedente."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "YEARS"
 msgstr "anni"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "ATP_PRODUCTION"
 msgstr "Produzione di ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUZIONE DI ATP TROPPO BASSA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
 msgstr "Osmoregolazione"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "BASE_MOVEMENT"
 msgstr "Movimento di Base"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "SPECIES_LIST"
 msgstr "Lista delle Specie"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "FREEBUILDING"
 msgstr "Modifica Libera"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:934
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:939
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sotto il livello del mare"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:978
 msgid "WITH_POPULATION"
 msgstr "{0} con popolazione: {1}"
 
@@ -2717,15 +2752,15 @@ msgstr "Caricamento completato"
 msgid "ERROR_LOADING"
 msgstr "Errore di Caricamento"
 
-#: ../src/saving/InProgressSave.cs:159
+#: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
 msgstr "Salvataggio..."
 
-#: ../src/saving/InProgressSave.cs:189
+#: ../src/saving/InProgressSave.cs:195
 msgid "SAVE_FAILED"
 msgstr "Salvataggio fallito"
 
-#: ../src/saving/InProgressSave.cs:190
+#: ../src/saving/InProgressSave.cs:196
 msgid "ERROR_SAVING"
 msgstr "Errore di Salvataggio"
 
@@ -2753,11 +2788,11 @@ msgstr "Sovrascrivi salvataggio esistente:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Vuoi sovrascrivere il salvataggio esistente?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:378
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvataggio riuscito"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:388
 msgid "SAVING_FAILED"
 msgstr "Salvataggio fallito! Si è verificata un'eccezione"
 
@@ -2777,7 +2812,7 @@ msgstr "Salvataggio Rapido"
 msgid "SAVE_INVALID"
 msgstr "Non valido"
 
-#: ../src/saving/SaveList.cs:170
+#: ../src/saving/SaveList.cs:171
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Cancellare questo salvataggio è un'azione irreversibile, sei sicuro di "
@@ -2879,13 +2914,13 @@ msgstr ""
 "Eliminare questo salvataggio è irreversibile. Sei sicuro di volerlo "
 "eliminare definitivamente?"
 
-#: ../src/saving/SaveManagerGUI.cs:208
+#: ../src/saving/SaveManagerGUI.cs:206
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Eliminare i file selezionati è un'azione irreversibile. Sei sicuro di "
 "voler eliminare definitivamente {0} salvataggi(o)?"
 
-#: ../src/saving/SaveManagerGUI.cs:220
+#: ../src/saving/SaveManagerGUI.cs:218
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Eliminare tutti i vecchi salvataggi automatici e rapidi è un'azione "
@@ -2955,7 +2990,7 @@ msgstr "Tutorial"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Benvenuto all'Editor di Microbi.\n"
+"Benvenuto all'Editor Microbico.\n"
 "Qui puoi vedere cosa è successo dall'inizio del gioco o dall'ultima volta "
 "che eri qui, e poi modificare la tua specie.\n"
 "\n"
@@ -2970,7 +3005,7 @@ msgstr ""
 "Questa è la mappa delle zone.\n"
 "Qui sono mostrate le varie zone dove possono vivere i microbi.\n"
 "La tua zona attuale è evidenziata.\n"
-"Puoi cliccare sulle zone per vederne i dettagli a destra.\n"
+"Puoi cliccare su una zona per vederne i dettagli a destra.\n"
 "\n"
 "Se selezioni una zona limitrofa alla tua, puoi premere il pulsante a "
 "destra per trasferirtici. Ciò permette alla popolazione della tua specie "

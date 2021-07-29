@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-04 23:22+0700\n"
-"PO-Revision-Date: 2021-06-20 16:48+0000\n"
+"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"PO-Revision-Date: 2021-07-26 13:26+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/he/>\n"
@@ -361,14 +361,17 @@ msgid "ABILITIES"
 msgstr "יכולות"
 
 #: ../simulation_parameters/common/input_options.json:38
+#: ../src/microbe_stage/MicrobeStage.tscn:2052
 msgid "FIRE_TOXIN"
 msgstr "שחרר רעלנים"
 
 #: ../simulation_parameters/common/input_options.json:42
+#: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "TOGGLE_ENGULF"
 msgstr "החלף מצב בליעה"
 
 #: ../simulation_parameters/common/input_options.json:46
+#: ../src/microbe_stage/MicrobeStage.tscn:2062
 msgid "TOGGLE_BINDING"
 msgstr "החלף מצב קישור"
 
@@ -647,36 +650,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1215
+#: ../src/microbe_stage/MicrobeStage.tscn:1222
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
 msgid "AMMONIA"
 msgstr "אמוניה"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1269
+#: ../src/microbe_stage/MicrobeStage.tscn:1276
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "PHOSPHATE"
 msgstr "פוספט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1323
+#: ../src/microbe_stage/MicrobeStage.tscn:1330
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1168
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
 msgid "GLUCOSE"
 msgstr "גלוקוז"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1509
+#: ../src/microbe_stage/MicrobeStage.tscn:1516
 msgid "OXYTOXY_NT"
 msgstr "אוקסיטוקסי נ\"ט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1377
+#: ../src/microbe_stage/MicrobeStage.tscn:1384
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
 msgid "IRON"
 msgstr "ברזל"
@@ -697,7 +700,7 @@ msgid "NITROGEN"
 msgstr "חנקן"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
 msgid "SUNLIGHT"
 msgstr "אור שמש"
@@ -886,7 +889,7 @@ msgstr "נכחד מהכוכב"
 msgid "LOADING"
 msgstr "טוען"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:312
+#: ../src/engine/input/key_mapping/InputEventItem.cs:320
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "לחץ על מקש..."
 
@@ -1313,11 +1316,11 @@ msgstr "ציור מאת {0}"
 msgid "CLOSE"
 msgstr "סגור"
 
-#: ../src/general/MainMenu.cs:362
+#: ../src/general/MainMenu.cs:359
 msgid "OK"
 msgstr "בסדר"
 
-#: ../src/general/MainMenu.cs:363
+#: ../src/general/MainMenu.cs:360
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -1325,11 +1328,11 @@ msgstr "ביטול"
 msgid "NEW_GAME"
 msgstr "משחק חדש"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
 msgid "LOAD_GAME"
 msgstr "טען שמירה"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
 msgid "OPTIONS"
 msgstr "אפשרויות"
 
@@ -1357,8 +1360,8 @@ msgstr "יציאה"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "עורך ארגז חול המיקרובי"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "חזור"
@@ -1374,267 +1377,271 @@ msgstr ""
 "אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או "
 "Nvidia על מנת להפעלת את Thrive."
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "גרפיקה"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "קול"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "ביצועים"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "קלטים"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "שונות"
 
-#: ../src/general/OptionsMenu.tscn:208
+#: ../src/general/OptionsMenu.tscn:205
 msgid "VSYNC"
 msgstr "סנכרון אנכי"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:213
 msgid "FULLSCREEN"
 msgstr "מסך מלא"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:235
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "החלקת גרפיקה:"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:242
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ערכים גבוהים מדרדר ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:272
 msgid "RESOLUTION"
 msgstr "רזולוציה:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:285
 msgid "AUTO"
 msgstr "אוטו"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:295
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:321
 msgid "COLOURBLIND_CORRECTION"
 msgstr "תיקון לעיוורון צבעים:"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:353
 msgid "CHROMATIC_ABERRATION"
 msgstr "אברציה כרומטית:"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:380
+msgid "DISPLAY_ABILITIES_BAR"
+msgstr "הצג רשימת יכולות"
+
+#: ../src/general/OptionsMenu.tscn:389
+msgid "ENABLE_GUI_LIGHT_EFFECTS"
+msgstr "אפשר תצוגת אור בממשק משתמש"
+
+#: ../src/general/OptionsMenu.tscn:415
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
 
-#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:465
-#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:531
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
+#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
+#: ../src/general/OptionsMenu.tscn:582
 msgid "MUTE"
 msgstr "השתק"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:456
 msgid "MUSIC_VOLUME"
 msgstr "עוצמת מוזיקה"
 
-#: ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:489
 msgid "AMBIANCE_VOLUME"
 msgstr "עוצמת אווירה"
 
-#: ../src/general/OptionsMenu.tscn:504
+#: ../src/general/OptionsMenu.tscn:522
 msgid "SFX_VOLUME"
 msgstr "עוצמת אפקטים"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:555
 msgid "GUI_VOLUME"
 msgstr "עוצמת ממשק עזרים"
 
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:600
 msgid "LANGUAGE"
 msgstr "שפה:"
 
-#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
 msgid "RESET"
 msgstr "איפוס"
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:624
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "עזור לתרגם את המשחק"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:650
 msgid "COMPOUND_CLOUDS"
 msgstr "ענני תרכובות"
 
-#: ../src/general/OptionsMenu.tscn:641
+#: ../src/general/OptionsMenu.tscn:665
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "סימולציית ענן מינימלית\n"
 "רווח:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(ערכים גבוהים יותר מגדילים ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:683
-msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr "ערך זה חל רק על שמירות חדשות לאחר שינויו"
-
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:707
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "מחליק רזולוציית ענן:"
 
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:749
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "הפעל התפתחות אוטומטית במהלך המשחק"
 
-#: ../src/general/OptionsMenu.tscn:794
+#: ../src/general/OptionsMenu.tscn:822
 msgid "RESET_INPUTS"
 msgstr "איפוס קלטים"
 
-#: ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:850
 msgid "PLAY_INTRO_VIDEO"
 msgstr "הפעל סרטון פתיחה"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:859
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "הפעל פתיח שלב המיקרוב במשחק חדש"
 
-#: ../src/general/OptionsMenu.tscn:836
+#: ../src/general/OptionsMenu.tscn:868
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "שמירה אוטומטית במהלך המשחק"
 
-#: ../src/general/OptionsMenu.tscn:847
+#: ../src/general/OptionsMenu.tscn:879
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "כמות שמירה אוטומטית שניתן לשמור:"
 
-#: ../src/general/OptionsMenu.tscn:875
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "כמות שמירה מהירה שניתן לשמור:"
 
-#: ../src/general/OptionsMenu.tscn:901
+#: ../src/general/OptionsMenu.tscn:933
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "הצג מדריך (בשמירות חדשות)"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:941
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "הצג מדריך (בשמירה נוכחית)"
 
-#: ../src/general/OptionsMenu.tscn:925
+#: ../src/general/OptionsMenu.tscn:957
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "מקשי קודים מופעלים"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:969
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "השתמש בשם משתמש מותאמת אישית"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:980
 msgid "CUSTOM_USERNAME"
 msgstr "שם משתמש מותאם אישית:"
 
-#: ../src/general/OptionsMenu.tscn:974
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "פתח תיקיית צילומי מסך"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:1014
 msgid "OPEN_LOGS_FOLDER"
 msgstr "פתח תקיית קבצי לוג"
 
-#: ../src/general/OptionsMenu.tscn:1017 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "שמור"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1066
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ברירת מחדל"
 
-#: ../src/general/OptionsMenu.tscn:1046
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "RESET_TO_DEFAULTS"
 msgstr "איפוס לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1069
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "איפוס קלטים לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות הקלטים לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "CLOSE_OPTIONS"
 msgstr "לסגור אפשרויות?"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "ישנם שינויים שלא נשמרו שיימחקו.\n"
 "האם ברצונך להמשיך?"
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1166
 msgid "SAVE_AND_CONTINUE"
 msgstr "שמור והמשך"
 
-#: ../src/general/OptionsMenu.tscn:1143
+#: ../src/general/OptionsMenu.tscn:1175
 msgid "DISCARD_AND_CONTINUE"
 msgstr "מחק והמשך"
 
-#: ../src/general/OptionsMenu.tscn:1159
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "CANCEL"
 msgstr "ביטול"
 
-#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1194
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
+#: ../src/general/OptionsMenu.tscn:1250
 msgid "ERROR"
 msgstr "שגיאה"
 
-#: ../src/general/OptionsMenu.tscn:1180 ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "שגיאה: נכשל הניסיון לשמור ההגדרות החדשות לקובץ התצורה."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
 msgstr "להמשיך"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:65
 msgid "SAVE_GAME"
 msgstr "שמור משחק"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:80
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "סטטיסטיקה"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:87
 msgid "HELP"
 msgstr "עזרה"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:101
 msgid "RETURN_TO_MENU"
 msgstr "חזור לתפריט"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:108
 msgid "EXIT"
 msgstr "יציאה"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} מיליארד"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} מיליון"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} אלפים"
 
@@ -1642,6 +1649,15 @@ msgstr "{0} אלפים"
 #: ../src/gui_common/ChemicalEquation.cs:176
 msgid "PER_SECOND_SLASH"
 msgstr "\\לשנייה"
+
+#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
+#: ../src/microbe_stage/MicrobeHUD.cs:606
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+msgid "PERCENTAGE_VALUE"
+msgstr "{0}%"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1653,13 +1669,13 @@ msgstr ""
 "הגרסה שאתה מנסה לטעון אינה תואמת את גרסת המשחק.\n"
 "אנא טען את השמירה באופן ידני דרך התפריט."
 
-#: ../src/gui_common/charts/line/LineChart.cs:901
-#: ../src/gui_common/charts/line/LineChart.cs:930
+#: ../src/gui_common/charts/line/LineChart.cs:931
+#: ../src/gui_common/charts/line/LineChart.cs:960
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "לא ניתן להציג יותר מ{0} נתונים!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:910
-#: ../src/gui_common/charts/line/LineChart.cs:938
+#: ../src/gui_common/charts/line/LineChart.cs:940
+#: ../src/gui_common/charts/line/LineChart.cs:968
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "לא ניתן להציג פחות מ{0} נתונים!"
 
@@ -1726,8 +1742,8 @@ msgstr "חיים"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]גלוקוז[/thrive:compound] ל[thrive:compound]ATP[/"
-"thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1784,8 +1800,9 @@ msgstr "עלות ויסות אוסמטי"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]גלוקוז[/thrive:compound] ל[thrive:compound]ATP[/"
-"thrive:compound]. בהתאם לריכוז של ה[thrive:compound]חמצן[/thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]. בהתאם לריכוז של ה[thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1803,9 +1820,9 @@ msgstr "תילקואיד"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר [thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוז של [thrive:"
-"compound]פחמן דו חמצני[/thrive:compound] ועוצמת ה[thrive:compound]אור[/"
-"thrive:compound]"
+"מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ועוצמת "
+"ה[thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1819,10 +1836,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]מימן גופרתי[/thrive:compound] ל[thrive:"
-"compound]גלוקוז[/thrive:compound]. בהתאם לריכוז של [thrive:compound]פחמן "
-"דו חמצני[/thrive:compound]. בנוסף הופך [thrive:compound]גלוקוז[/thrive:"
-"compound] ל[thrive:compound]ATP[/thrive:compound]"
+"הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:"
+"compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז של [thrive:"
+"compound type=\"carbondioxide\"][/thrive:compound]. בנוסף הופך [thrive:"
+"compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1836,9 +1854,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ברזל[/thrive:compound] ל[thrive:compound]ATP[/thrive:"
-"compound]. בהתאם לריכוזם של [thrive:compound]פחמן דו חמצני[/thrive:"
-"compound] ו[thrive:compound]חמצן[/thrive:compound]"
+"הופך [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound "
+"type=\"atp\"][/thrive:compound]. בהתאם לריכוזם של [thrive:compound type="
+"\"carbondioxide\"][/thrive:compound] ו[thrive:compound type=\"oxygen\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1850,8 +1869,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ATP[/thrive:compound] ל[thrive:compound]אמוניה[/"
-"thrive:compound]. בהתאם לריכוזו של ה[thrive:compound]חנקן[/thrive:compound]"
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1864,9 +1884,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ATP[/thrive:compound] ל[thrive:compound]רעלן[/thrive:"
-"compound]. בהתאם לריכוזו של ה[thrive:compound]חמצן[/thrive:compound].ניתן "
-"לשחררו על ידי [thrive:input]g_fire_toxin[/thrive:input]."
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"oxygen\"][/thrive:compound].ניתן לשחררו על ידי [thrive:"
+"input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1877,8 +1898,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"משתמש ב[thrive:compound]ATP[/thrive:compound] על מנת להגביר את מהירותו של "
-"התא"
+"משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] על מנת להגביר את "
+"מהירותו של התא"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -1942,8 +1963,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]גלוקוז[/thrive:compound] ל[thrive:compound]ATP[/"
-"thrive:compound]. בהתאם לריכוזו של ה[thrive:compound]חמצן[/thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -1957,9 +1979,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר[thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של [thrive:"
-"compound]פחמן דו חמצני[/thrive:compound] ושל עוצמת ה[thrive:compound]אור[/"
-"thrive:compound]"
+"מייצר[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל עוצמת "
+"ה[thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -1978,8 +2000,9 @@ msgstr "תרמופלסט"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר [thrive:compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של [thrive:"
-"compound]פחמן דו חמצני[/thrive:compound] ושל הטמפרטורה."
+"מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל "
+"הטמפרטורה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -1998,9 +2021,9 @@ msgstr "אין תהליכים"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]מימן גופרתי[/thrive:compound] ל[thrive:"
-"compound]גלוקוז[/thrive:compound]. בהתאם לריכוזו של [thrive:compound]פחמן "
-"דו חמצני[/thrive:compound]"
+"הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:"
+"compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:"
+"compoundtype=\"carbondioxide\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2012,9 +2035,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound]ATP[/thrive:compound] ל[thrive:compound]אמוניה[/"
-"thrive:compound]. בהתאם לריכוזם של ה[thrive:compound]חנקן[/thrive:"
-"compound] וה[thrive:compound]חמצן[/thrive:compound]"
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound "
+"type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2038,9 +2062,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך[thrive:compound]ATP[/thrive:compound] ל[thrive:compound]רעלן[/thrive:"
-"compound]. בהתאם לריכוזו של ה[thrive:compound]חמצן[/thrive:compound]. ניתן "
-"לשחרר את הרעלן על ידי לחיצה על [thrive:input]g_fire_toxin[/thrive:input]."
+"הופך[thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"oxygen\"][/thrive:compound]. ניתן לשחרר את הרעלן על ידי לחיצה על "
+"[thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2126,9 +2151,21 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "הוסף מקשר חדש"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
+msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
+msgstr "ערך זה חל רק על שמירות חדשות לאחר שינויו"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
+msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+msgstr ""
+"אפשר את אפקט הבהוב אורות על ממשק משתמש (למשל הבהוב כפתור העורך)\n"
+"\n"
+"אם אתה נתקל בבאג בזמן שחלקים מהכפתור העורך נעלמים,\n"
+"נסה להשבות את זה בשביל לראות אם הבעיה נעלמה."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "טמפרטורה"
 
@@ -2149,11 +2186,11 @@ msgstr "ליקוט מוצלח"
 msgid "SUCCESSFUL_KILL"
 msgstr "הרג מוצלח"
 
-#: ../src/microbe_stage/Microbe.cs:1779
+#: ../src/microbe_stage/Microbe.cs:1782
 msgid "REPRODUCED"
 msgstr "התרבה"
 
-#: ../src/microbe_stage/Microbe.cs:1920
+#: ../src/microbe_stage/Microbe.cs:1926
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
@@ -2179,15 +2216,15 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr "שכפל שחקן"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:477
+#: ../src/microbe_stage/MicrobeHUD.cs:514
 msgid "MICROBE_PATCH_LABEL"
 msgstr "אזור: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:621
+#: ../src/microbe_stage/MicrobeHUD.cs:664
 msgid "STUFF_AT"
 msgstr "דברים ב {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:671
+#: ../src/microbe_stage/MicrobeHUD.cs:714
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
@@ -2199,50 +2236,50 @@ msgstr "השחקן התרבה"
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:433
+#: ../src/microbe_stage/MicrobeStage.tscn:440
 msgid "AT_CURSOR"
 msgstr "בסמן העכבר:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:458
+#: ../src/microbe_stage/MicrobeStage.tscn:465
 msgid "NOTHING_HERE"
 msgstr "אין פה שום דבר"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "COMPOUNDS_COLON"
 msgstr "תרכובות:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:521
+#: ../src/microbe_stage/MicrobeStage.tscn:528
 msgid "SPECIES_COLON"
 msgstr "מינים:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:602
+#: ../src/microbe_stage/MicrobeStage.tscn:609
 msgid "ENVIRONMENT"
 msgstr "סביבה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:876
 msgid "TEMPERATURE_SHORT"
 msgstr "טמפ'."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:932
 msgid "LIGHT"
 msgstr "אור"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:987
 msgid "PRESSURE_SHORT"
 msgstr "לחץ."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "COMPOUNDS"
 msgstr "תרכובות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1447
+#: ../src/microbe_stage/MicrobeStage.tscn:1454
 msgid "AGENTS"
 msgstr "שליחים"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1710
+#: ../src/microbe_stage/MicrobeStage.tscn:1706
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
@@ -2290,7 +2327,7 @@ msgstr "מדף קרח"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "אזור קרקעית הים"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:117
 msgid "UNBIND_HELP_TEXT"
 msgstr "מצב שחרר"
 
@@ -2303,7 +2340,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "מאזן תרכובות"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1345
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "טוען עורך המיקרובי"
 
@@ -2311,11 +2348,11 @@ msgstr "טוען עורך המיקרובי"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2281
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2282
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -2462,7 +2499,7 @@ msgstr "מצב פיזי"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "ATMOSPHERIC_GASSES"
 msgstr "גזים אטמוספריים"
 
@@ -2495,65 +2532,65 @@ msgstr "תעבור לאזור זה"
 msgid "INFINITE_MP"
 msgstr "אינסוף נקמ\"ו"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
 msgstr "מיליון שנה"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "YEARS"
 msgstr "שנים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "ATP_PRODUCTION"
 msgstr "ייצור ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ייצור ATP נמוך מדי!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
 msgstr "ויסות אוסמטי"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "BASE_MOVEMENT"
 msgstr "מהירות בסיסית"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: {1}- ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "SPECIES_LIST"
 msgstr "רשימת מינים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "FREEBUILDING"
 msgstr "ארגז חול"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:934
 msgid "BIOME_LABEL"
 msgstr "ביומה: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:939
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}מ' מתחת פני הים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:978
 msgid "WITH_POPULATION"
 msgstr "{0} עם אוכלוסיה: {1}"
 
@@ -2636,15 +2673,15 @@ msgstr "טעינה הסתיימה"
 msgid "ERROR_LOADING"
 msgstr "טוען שגיאה"
 
-#: ../src/saving/InProgressSave.cs:159
+#: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
 msgstr "שומר..."
 
-#: ../src/saving/InProgressSave.cs:189
+#: ../src/saving/InProgressSave.cs:195
 msgid "SAVE_FAILED"
 msgstr "שמירה נכשלה"
 
-#: ../src/saving/InProgressSave.cs:190
+#: ../src/saving/InProgressSave.cs:196
 msgid "ERROR_SAVING"
 msgstr "שומר שגיאה"
 
@@ -2672,11 +2709,11 @@ msgstr "משכתב שמירה קיימת:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "לשכתב מחדש שמירה קיימת?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:378
 msgid "SAVING_SUCCEEDED"
 msgstr "נשמר בהצלחה"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:388
 msgid "SAVING_FAILED"
 msgstr "השמירה נכשלה! קרה משהו חריג"
 
@@ -2696,7 +2733,7 @@ msgstr "שמירה מהירה"
 msgid "SAVE_INVALID"
 msgstr "לא תקף"
 
-#: ../src/saving/SaveList.cs:170
+#: ../src/saving/SaveList.cs:171
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק "
@@ -2791,13 +2828,13 @@ msgstr ""
 "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק אתה "
 "לצמיתות?"
 
-#: ../src/saving/SaveManagerGUI.cs:208
+#: ../src/saving/SaveManagerGUI.cs:206
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "מחיקת שמירות שנבחרו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק "
 "את {0} לצמיתות ?"
 
-#: ../src/saving/SaveManagerGUI.cs:220
+#: ../src/saving/SaveManagerGUI.cs:218
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "מחיקת כל השמירות האוטומטיות והמהירות הישנות היינו בלתי הפיך, האם אתה בטוח "

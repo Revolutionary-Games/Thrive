@@ -369,6 +369,7 @@ public static class Constants
 
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
+    public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
@@ -502,6 +503,8 @@ public static class Constants
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
     public const string SAVE_FOLDER = "user://saves";
+
+    public const string EXPLICIT_PATH_PREFIX = "file://";
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 

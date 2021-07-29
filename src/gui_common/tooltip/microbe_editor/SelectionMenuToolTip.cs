@@ -242,8 +242,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             }
             else
             {
-                modifier.ModifierValue = ((deltaValue >= 0) ? "+" : string.Empty)
-                    + (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture) + "%";
+                modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
+                    + string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
+                        (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
             }
 
             if (modifier.Name == "osmoregulation_cost")

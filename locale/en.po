@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-04 23:22+0700\n"
-"PO-Revision-Date: 2021-06-20 16:48+0000\n"
+"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"PO-Revision-Date: 2021-07-16 17:42+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -25,46 +25,37 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
-"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
-"input]g_move_right[/thrive:input] and mouse to move. [thrive:"
-"input]g_fire_toxin[/thrive:input] to shoot [thrive:compound]oxytoxy[/"
-"thrive:compound] if you have a toxin vacuole. [thrive:"
-"input]g_toggle_engulf[/thrive:input] to toggle engulf mode."
+"W,A,S,D and mouse to move. E to shoot OxyToxy NT if you have a toxin "
+"vacuole. G to toggle engulf mode."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Your cell uses [thrive:compound]atp[/thrive:compound] as its energy "
-"source, if it runs out you will die."
+"Your cell uses ATP as its energy source, if it runs out you will die."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"To unlock the editor and reproduce you need to gather [thrive:"
-"compound]ammonia[/thrive:compound] (Orange Cloud) and [thrive:"
-"compound]phosphates[/thrive:compound] (Purple Cloud)."
+"To unlock the editor and reproduce you need to gather Ammonia (Orange "
+"Cloud) and Phosphate (Purple Cloud)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"You can also engulf cells, bacteria, iron chunks and cell chunks that "
-"are smaller than you by pressing [thrive:input]g_toggle_engulf[/thrive:"
-"input]. This will cost additional [thrive:compound]atp[/thrive:"
-"compound] and will slow you down. Don't forget to press [thrive:"
-"input]g_toggle_engulf[/thrive:input] a second time to stop engulfing."
+"You can also engulf cells, bacteria, iron chunks and cell chunks that are "
+"smaller than you by pressing G. This will cost additional ATP and will "
+"slow you down. Don't forget to press G a second time to stop engulfing."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulation costs [thrive:compound]atp[/thrive:compound], which "
-"means the bigger your cell is, the more Mitochondria, Metabolosomes or "
-"Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid "
-"losing [thrive:compound]atp[/thrive:compound] when you are stationary."
+"Osmoregulation costs ATP, which means the bigger your cell is, the more "
+"Mitochondria, Metabolosomes or Rusticyanin (or cytoplasm, which does "
+"Glycolysis) you need to avoid losing ATP when you are stationary."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -78,24 +69,20 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "The various compound clouds are:\n"
 "\n"
-"White – [thrive:compound]glucose[/thrive:compound]\n"
-"Yellow – [thrive:compound]hydrogensulfide[/thrive:compound]\n"
-"Orange – [thrive:compound]ammonia[/thrive:compound]\n"
-"Purple – [thrive:compound]phosphates[/thrive:compound]\n"
-"Rust Brown – [thrive:compound]iron[/thrive:compound]\n"
+"White – Glucose\n"
+"Yellow – Hydrogen Sulfide\n"
+"Orange – Ammonia\n"
+"Purple – Phosphate\n"
+"Rust Brown – Iron\n"
 "\n"
-"[thrive:compound]glucose[/thrive:compound] makes [thrive:compound]atp[/"
-"thrive:compound]"
+"Glucose makes ATP"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"[thrive:compound]hydrogensulfide[/thrive:compound] can be converted "
-"into [thrive:compound]glucose[/thrive:compound] via chemoplasts and "
-"chemosynthesizing proteins. [thrive:compound]iron[/thrive:compound] can "
-"be converted via rusticyanin into [thrive:compound]atp[/thrive:"
-"compound]."
+"Hydrogen Sulfide can be converted into glucose via chemoplasts and "
+"chemosynthesizing proteins. Iron can be converted via rusticyanin into ATP."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
@@ -141,35 +128,28 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotic Structures\n"
 "\n"
-"Metabolosomes: Produces [thrive:compound]atp[/thrive:compound] from "
-"[thrive:compound]glucose[/thrive:compound]\n"
+"Metabolosomes: Produces ATP from glucose\n"
 "\n"
-"Chemosynthisizing Proteins: Produces half of the [thrive:"
-"compound]glucose[/thrive:compound] out of [thrive:"
-"compound]hydrogensulfide[/thrive:compound] as a chemoplast, but also "
-"performs glycolysis, and takes up 1 Hex\n"
+"Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen "
+"Sulfide as a chemoplast, but also performs glycolysis, and takes up 1 Hex\n"
 "\n"
-"Thylakoids: Produces 1/3rd the amount of [thrive:compound]glucose[/"
-"thrive:compound] as a normal chloroplast, but also performs glycolysis, "
-"and takes up 1 Hex\n"
+"Thylakoids: Produces 1/3rd the amount of glucose as a normal chloroplast, "
+"but also performs glycolysis, and takes up 1 Hex\n"
 "\n"
-"Rusticyanin: Converts [thrive:compound]iron[/thrive:compound] into "
-"[thrive:compound]atp[/thrive:compound]\n"
+"Rusticyanin: Converts iron into ATP\n"
 "\n"
-"Nitrogenase: Converts atmospheric nitrogen and [thrive:compound]atp[/"
-"thrive:compound] into [thrive:compound]ammonia[/thrive:compound] "
+"Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
 "anaerobically\n"
 "\n"
 "Cytoplasm: Has storage space and performs glycolysis (Produces small "
-"amounts of [thrive:compound]atp[/thrive:compound])"
+"amounts of ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "External Organelles\n"
 "\n"
-"Flagellum: Moves your cell faster by consuming [thrive:compound]atp[/"
-"thrive:compound]\n"
+"Flagellum: Moves your cell faster by consuming ATP\n"
 "\n"
 "Pilus: Can be used to stab other cells"
 
@@ -179,29 +159,23 @@ msgstr ""
 "Membrane Bound Organelles\n"
 "\n"
 "Nucleus: Takes up 11 hexes and allows for evolution of membrane bound "
-"organelles, and also doubles your cell's size (can only be evolved "
-"once)\n"
+"organelles, and also doubles your cell's size (can only be evolved once)\n"
 "\n"
 "Binding Agent: Allows binding with other cells\n"
 "\n"
-"Mitochondrion: Produces [thrive:compound]atp[/thrive:compound] out of "
-"[thrive:compound]glucose[/thrive:compound] and atmospheric O2 much more "
+"Mitochondrion: Produces ATP out of glucose and atmospheric O2 much more "
 "efficiently than cytoplasm\n"
 "\n"
-"Chloroplast: Makes [thrive:compound]glucose[/thrive:compound] out of "
-"sunlight and atmospheric CO2\n"
+"Chloroplast: Makes glucose out of sunlight and atmospheric CO2\n"
 "\n"
-"Chemoplast: Makes [thrive:compound]glucose[/thrive:compound] out of "
-"[thrive:compound]hydrogensulfide[/thrive:compound]\n"
+"Chemoplast: Makes glucose out of Hydrogen Sulfide\n"
 "\n"
-"Nitrogen Fixing Plastid: Makes [thrive:compound]ammonia[/thrive:"
-"compound] from [thrive:compound]atp[/thrive:compound] and atmospheric "
-"Nitrogen and Oxygen\n"
+"Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen "
+"and Oxygen\n"
 "\n"
 "Vacuole: Stores 15 collected compounds\n"
 "\n"
-"Toxin Vacuoles: Produces toxins (called [thrive:compound]oxytoxy[/"
-"thrive:compound])"
+"Toxin Vacuoles: Produces toxins (called OxyToxy NT)"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -209,12 +183,10 @@ msgstr ""
 "Each generation, you have 100 mutation points (MP) to spend, and each "
 "change (or mutation) will cost a certain amount of that MP. Adding and "
 "removing organelles costs MP. However, removing organelles that were "
-"placed in the current mutation session refunds MP for that organelle. "
-"You can move or completely remove an organelle by right-clicking on it "
-"and selecting the appropriate action from the pop-up menu. You can "
-"rotate your organelles while placing them with [thrive:"
-"input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/"
-"thrive:input]."
+"placed in the current mutation session refunds MP for that organelle. You "
+"can move or completely remove an organelle by right-clicking on it and "
+"selecting the appropriate action from the pop-up menu. You can rotate your "
+"organelles while placing them with A and D."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -410,14 +382,17 @@ msgid "ABILITIES"
 msgstr "Abilities"
 
 #: ../simulation_parameters/common/input_options.json:38
+#: ../src/microbe_stage/MicrobeStage.tscn:2052
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
 
 #: ../simulation_parameters/common/input_options.json:42
+#: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "TOGGLE_ENGULF"
 msgstr "Toggle engulf"
 
 #: ../simulation_parameters/common/input_options.json:46
+#: ../src/microbe_stage/MicrobeStage.tscn:2062
 msgid "TOGGLE_BINDING"
 msgstr "Toggle binding"
 
@@ -696,36 +671,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1215
+#: ../src/microbe_stage/MicrobeStage.tscn:1222
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
 msgid "AMMONIA"
 msgstr "Ammonia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1269
+#: ../src/microbe_stage/MicrobeStage.tscn:1276
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1323
+#: ../src/microbe_stage/MicrobeStage.tscn:1330
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hydrogen Sulfide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1168
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
 msgid "GLUCOSE"
 msgstr "Glucose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1509
+#: ../src/microbe_stage/MicrobeStage.tscn:1516
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1377
+#: ../src/microbe_stage/MicrobeStage.tscn:1384
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
 msgid "IRON"
 msgstr "Iron"
@@ -746,7 +721,7 @@ msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
 msgid "SUNLIGHT"
 msgstr "Sunlight"
@@ -935,7 +910,7 @@ msgstr "went extinct from the planet"
 msgid "LOADING"
 msgstr "Loading"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:312
+#: ../src/engine/input/key_mapping/InputEventItem.cs:320
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Press a key..."
 
@@ -1362,11 +1337,11 @@ msgstr "Art by {0}"
 msgid "CLOSE"
 msgstr "Close"
 
-#: ../src/general/MainMenu.cs:362
+#: ../src/general/MainMenu.cs:359
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:363
+#: ../src/general/MainMenu.cs:360
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -1374,11 +1349,11 @@ msgstr "Cancel"
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:71
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
 msgid "OPTIONS"
 msgstr "Options"
 
@@ -1406,8 +1381,8 @@ msgstr "Quit"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
-#: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Back"
@@ -1423,268 +1398,271 @@ msgstr ""
 "to cause issues. Try to update your video drivers and/or force AMD or "
 "Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "Graphics"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "Inputs"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "Misc"
 
-#: ../src/general/OptionsMenu.tscn:208
+#: ../src/general/OptionsMenu.tscn:205
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:213
 msgid "FULLSCREEN"
 msgstr "FullScreen"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:235
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:242
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(higher values worsen performance)"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:272
 msgid "RESOLUTION"
 msgstr "Resolution:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:285
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:295
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:321
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Colourblind Correction:"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:353
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:380
+msgid "DISPLAY_ABILITIES_BAR"
+msgstr "Display Abilities Bar"
+
+#: ../src/general/OptionsMenu.tscn:389
+msgid "ENABLE_GUI_LIGHT_EFFECTS"
+msgstr "Enable GUI Light Effects"
+
+#: ../src/general/OptionsMenu.tscn:415
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
 
-#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:465
-#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:531
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
+#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
+#: ../src/general/OptionsMenu.tscn:582
 msgid "MUTE"
 msgstr "Mute"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:456
 msgid "MUSIC_VOLUME"
 msgstr "Music volume"
 
-#: ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:489
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance Volume"
 
-#: ../src/general/OptionsMenu.tscn:504
+#: ../src/general/OptionsMenu.tscn:522
 msgid "SFX_VOLUME"
 msgstr "SFX Volume"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:555
 msgid "GUI_VOLUME"
 msgstr "GUI Volume"
 
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:600
 msgid "LANGUAGE"
 msgstr "Language:"
 
-#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:624
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help Translate The Game"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:650
 msgid "COMPOUND_CLOUDS"
 msgstr "Compound clouds"
 
-#: ../src/general/OptionsMenu.tscn:641
+#: ../src/general/OptionsMenu.tscn:665
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Cloud Simulation Minimum\n"
 "Interval:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(higher values increase performance)"
 
-#: ../src/general/OptionsMenu.tscn:683
-msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
-"This value only applies to new games started after changing this option"
-
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:707
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Cloud Resolution Divisor:"
 
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:749
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Run auto-evo during gameplay"
 
-#: ../src/general/OptionsMenu.tscn:794
+#: ../src/general/OptionsMenu.tscn:822
 msgid "RESET_INPUTS"
 msgstr "Reset Inputs"
 
-#: ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:850
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Play intro video"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:859
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Play Microbe Intro on New Game"
 
-#: ../src/general/OptionsMenu.tscn:836
+#: ../src/general/OptionsMenu.tscn:868
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave during the game"
 
-#: ../src/general/OptionsMenu.tscn:847
+#: ../src/general/OptionsMenu.tscn:879
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Amount of autosaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:875
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Amount of quicksaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:901
+#: ../src/general/OptionsMenu.tscn:933
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Show tutorials (in new games)"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:941
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Show tutorials (in current game)"
 
-#: ../src/general/OptionsMenu.tscn:925
+#: ../src/general/OptionsMenu.tscn:957
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat keys enabled"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:969
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:980
 msgid "CUSTOM_USERNAME"
 msgstr "Custom Username:"
 
-#: ../src/general/OptionsMenu.tscn:974
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open Screenshot Folder"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:1014
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open Logs Folder"
 
-#: ../src/general/OptionsMenu.tscn:1017 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Save"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1066
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaults"
 
-#: ../src/general/OptionsMenu.tscn:1046
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "RESET_TO_DEFAULTS"
 msgstr "Reset to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Are you sure you want to reset ALL settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1069
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Reset inputs to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Are you sure you want to reset the input settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "CLOSE_OPTIONS"
 msgstr "Close options?"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "You have unsaved changes that will be discarded.\n"
 "Do you wish to continue?"
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1166
 msgid "SAVE_AND_CONTINUE"
 msgstr "Save and continue"
 
-#: ../src/general/OptionsMenu.tscn:1143
+#: ../src/general/OptionsMenu.tscn:1175
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Discard and continue"
 
-#: ../src/general/OptionsMenu.tscn:1159
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1194
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
+#: ../src/general/OptionsMenu.tscn:1250
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1180 ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Failed to save new settings to configuration file."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
 msgstr "Resume"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:65
 msgid "SAVE_GAME"
 msgstr "Save Game"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:80
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "STATISTICS"
 msgstr "Statistics"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:87
 msgid "HELP"
 msgstr "Help"
 
-#: ../src/general/PauseMenu.tscn:100
+#: ../src/general/PauseMenu.tscn:101
 msgid "RETURN_TO_MENU"
 msgstr "Return to Menu"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:108
 msgid "EXIT"
 msgstr "Exit"
 
-#: ../src/general/StringUtils.cs:19
+#: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../src/general/StringUtils.cs:28
+#: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -1692,6 +1670,15 @@ msgstr "{0} K"
 #: ../src/gui_common/ChemicalEquation.cs:176
 msgid "PER_SECOND_SLASH"
 msgstr "/second"
+
+#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
+#: ../src/microbe_stage/MicrobeHUD.cs:606
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+msgid "PERCENTAGE_VALUE"
+msgstr "{0}%"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1704,13 +1691,13 @@ msgstr ""
 "version.\n"
 "Please load the save manually through the menu."
 
-#: ../src/gui_common/charts/line/LineChart.cs:901
-#: ../src/gui_common/charts/line/LineChart.cs:930
+#: ../src/gui_common/charts/line/LineChart.cs:931
+#: ../src/gui_common/charts/line/LineChart.cs:960
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Not allowed to show more than {0} datasets!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:910
-#: ../src/gui_common/charts/line/LineChart.cs:938
+#: ../src/gui_common/charts/line/LineChart.cs:940
+#: ../src/gui_common/charts/line/LineChart.cs:968
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Not allowed to show less than {0} dataset(s)!"
 
@@ -1779,8 +1766,8 @@ msgstr "Health"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1838,9 +1825,9 @@ msgstr "Osmoregulation Cost"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1860,9 +1847,10 @@ msgstr "Thylakoid"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound]glucose[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound]carbondioxide[/thrive:compound] and "
-"intensity of [thrive:compound]sunlight[/thrive:compound]"
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:"
+"compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1878,11 +1866,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]hydrogensulfide[/thrive:compound] into [thrive:"
-"compound]glucose[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]carbondioxide[/thrive:compound]. Also turns [thrive:"
-"compound]glucose[/thrive:compound] into [thrive:compound]atp[/thrive:"
-"compound]"
+"Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound]. Also turns [thrive:compound type=\"glucose\"][/thrive:compound] "
+"into [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1897,10 +1885,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]iron[/thrive:compound] into [thrive:compound]atp[/"
-"thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]carbondioxide[/thrive:compound] and [thrive:compound]oxygen[/"
-"thrive:compound]"
+"Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1912,9 +1900,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]ammonia[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]nitrogen[/thrive:compound]"
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1928,10 +1916,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]oxytoxy[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]oxygen[/thrive:compound]. Can release toxins by pressing "
-"[thrive:input]g_fire_toxin[/thrive:input]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can "
+"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1942,8 +1930,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Uses [thrive:compound]atp[/thrive:compound] to increase the movement speed "
-"of the cell"
+"Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the "
+"movement speed of the cell"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2013,9 +2001,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2031,9 +2019,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound]glucose[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound]carbondioxide[/thrive:compound] and "
-"intensity of [thrive:compound]sunlight[/thrive:compound]"
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:"
+"compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2054,9 +2043,9 @@ msgstr "Thermoplast"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound]glucose[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound]carbondioxide[/thrive:compound] and "
-"temperature."
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and temperature."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2077,9 +2066,9 @@ msgstr "No processes"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]hydrogensulfide[/thrive:compound] into [thrive:"
-"compound]glucose[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]carbondioxide[/thrive:compound]"
+"Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2092,10 +2081,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]ammonia[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]nitrogen[/thrive:compound] and [thrive:compound]oxygen[/"
-"thrive:compound]"
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound] and "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2121,10 +2110,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]oxytoxy[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]oxygen[/thrive:compound]. Can release toxins by pressing "
-"[thrive:input]g_fire_toxin[/thrive:input]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can "
+"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2214,9 +2203,22 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Add a new key binding"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3300
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
+msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
+msgstr ""
+"This value only applies to new games started after changing this option"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
+msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+msgstr ""
+"Enables the light flashing effects on GUIs (e.g editor button flash).\n"
+"\n"
+"If you experience a bug where parts of the editor button is disappearing,\n"
+"you can try disabling this to see if the problem is gone."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Temperature"
 
@@ -2237,11 +2239,11 @@ msgstr "successful scavenge"
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.cs:1779
+#: ../src/microbe_stage/Microbe.cs:1782
 msgid "REPRODUCED"
 msgstr "reproduced"
 
-#: ../src/microbe_stage/Microbe.cs:1920
+#: ../src/microbe_stage/Microbe.cs:1926
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -2267,15 +2269,15 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplicate Player"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:477
+#: ../src/microbe_stage/MicrobeHUD.cs:514
 msgid "MICROBE_PATCH_LABEL"
 msgstr "Patch: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:621
+#: ../src/microbe_stage/MicrobeHUD.cs:664
 msgid "STUFF_AT"
 msgstr "Stuff at {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:671
+#: ../src/microbe_stage/MicrobeHUD.cs:714
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
 
@@ -2287,50 +2289,50 @@ msgstr "player reproduced"
 msgid "PLAYER_DIED"
 msgstr "player died"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:433
+#: ../src/microbe_stage/MicrobeStage.tscn:440
 msgid "AT_CURSOR"
 msgstr "At Cursor:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:458
+#: ../src/microbe_stage/MicrobeStage.tscn:465
 msgid "NOTHING_HERE"
 msgstr "Nothing here"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "COMPOUNDS_COLON"
 msgstr "Compounds:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:521
+#: ../src/microbe_stage/MicrobeStage.tscn:528
 msgid "SPECIES_COLON"
 msgstr "Species:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:602
+#: ../src/microbe_stage/MicrobeStage.tscn:609
 msgid "ENVIRONMENT"
 msgstr "Environment"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeStage.tscn:876
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeStage.tscn:932
 msgid "LIGHT"
 msgstr "Light"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeStage.tscn:987
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "COMPOUNDS"
 msgstr "Compounds"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1447
+#: ../src/microbe_stage/MicrobeStage.tscn:1454
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1710
+#: ../src/microbe_stage/MicrobeStage.tscn:1706
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -2378,7 +2380,7 @@ msgstr "Ice Shelf"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian Sea Floor"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:110
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:117
 msgid "UNBIND_HELP_TEXT"
 msgstr "Unbind Mode"
 
@@ -2391,7 +2393,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1328
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1345
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
@@ -2399,11 +2401,11 @@ msgstr "Loading Microbe Editor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2281
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2282
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
@@ -2550,7 +2552,7 @@ msgstr "Physical Conditions"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmospheric Gasses"
 
@@ -2583,66 +2585,66 @@ msgstr "Move to This Patch"
 msgid "INFINITE_MP"
 msgstr "Infinite MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:578
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 "The amount of glucose has been reduced to {0} of the previous amount."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:585
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
 msgstr "Myr"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:817
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "YEARS"
 msgstr "years"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:636
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "ATP_PRODUCTION"
 msgstr "ATP Production"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTION TOO LOW!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:689
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
 msgid "SPECIES_LIST"
 msgstr "Species List"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:848
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "FREEBUILDING"
 msgstr "Freebuilding"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:933
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:934
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:938
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:939
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:978
 msgid "WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
@@ -2727,15 +2729,15 @@ msgstr "Load finished"
 msgid "ERROR_LOADING"
 msgstr "Error Loading"
 
-#: ../src/saving/InProgressSave.cs:159
+#: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
 msgstr "Saving..."
 
-#: ../src/saving/InProgressSave.cs:189
+#: ../src/saving/InProgressSave.cs:195
 msgid "SAVE_FAILED"
 msgstr "Save failed"
 
-#: ../src/saving/InProgressSave.cs:190
+#: ../src/saving/InProgressSave.cs:196
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
 
@@ -2763,11 +2765,11 @@ msgstr "Overwrite existing save:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Overwrite existing save?"
 
-#: ../src/saving/SaveHelper.cs:366
+#: ../src/saving/SaveHelper.cs:378
 msgid "SAVING_SUCCEEDED"
 msgstr "Saving succeeded"
 
-#: ../src/saving/SaveHelper.cs:376
+#: ../src/saving/SaveHelper.cs:388
 msgid "SAVING_FAILED"
 msgstr "Saving failed! An exception happened"
 
@@ -2787,7 +2789,7 @@ msgstr "Quicksave"
 msgid "SAVE_INVALID"
 msgstr "Invalid"
 
-#: ../src/saving/SaveList.cs:170
+#: ../src/saving/SaveList.cs:171
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Deleting this save cannot be undone, are you sure you want to permanently "
@@ -2885,13 +2887,13 @@ msgstr ""
 "Deleting this save cannot be undone, are you sure you want to permanently "
 "delete this?"
 
-#: ../src/saving/SaveManagerGUI.cs:208
+#: ../src/saving/SaveManagerGUI.cs:206
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Deleting the selected save(s) cannot be undone, are you sure you want to "
 "permanently delete {0} save(s)?"
 
-#: ../src/saving/SaveManagerGUI.cs:220
+#: ../src/saving/SaveManagerGUI.cs:218
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Deleting all old Auto and Quick saves cannot be undone, are you sure you "
@@ -3229,9 +3231,6 @@ msgstr ""
 
 #~ msgid "DOLLAR"
 #~ msgstr "$"
-
-#~ msgid "PERCENT"
-#~ msgstr "%"
 
 #~ msgid "AMPERSAND"
 #~ msgstr "&"
