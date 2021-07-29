@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Class that manages all the loading, getting the mods from the directory, and other things
@@ -179,33 +180,33 @@ public class ModLoader : Reference
             {
                 var entryScript = ResourceLoader.Load(currentMod.EntryScriptPath) as Script;
 
-                Object entryScriptInstance = new Godot.Object();
+                Object entryScriptInstance = new Object();
 
-                if (entryScript.CanInstance())
+                if (entryScript?.CanInstance() == true)
                 {
                     // Need to create an instance of the resource create a object of the class
-                    switch (System.IO.Path.GetExtension(ProjectSettings.GlobalizePath(currentMod.EntryScriptPath)))
+                    switch (Path.GetExtension(ProjectSettings.GlobalizePath(currentMod.EntryScriptPath)))
                     {
                         case ".gd":
                             var gdEntryScript = entryScript as GDScript;
-                            entryScriptInstance = (Godot.Object)gdEntryScript.New();
+                            entryScriptInstance = (Object)gdEntryScript?.New();
                             break;
                         case ".csx":
                         case ".cs":
                             var cSharpEntryScript = entryScript as CSharpScript;
-                            entryScriptInstance = (Godot.Object)cSharpEntryScript.New();
+                            entryScriptInstance = (Object)cSharpEntryScript?.New();
                             break;
                         case ".c":
                         case ".cpp":
                         case ".cc":
                         case ".cxx":
                             var nativeScriptEntryScript = entryScript as NativeScript;
-                            entryScriptInstance = (Godot.Object)nativeScriptEntryScript.New();
+                            entryScriptInstance = (Object)nativeScriptEntryScript?.New();
                             break;
                     }
 
                     // Calls the intialization method, passing in the ModInfo, so that mods can get their own config
-                    entryScriptInstance.Call(currentMod.EntryFunctionName, currentMod);
+                    entryScriptInstance?.Call(currentMod.EntryFunctionName, currentMod);
                 }
             }
 
