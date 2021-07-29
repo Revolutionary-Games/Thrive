@@ -13,7 +13,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         git stash pop
 	git checkout master locale/
         ruby scripts/update_localization.rb
-	$(git config --global core.editor) locale/en.po || $(git config --global core.visual) locale/en.po || vi locale/en.po
+	poedit locale/en.po || $(git config --global core.editor) locale/en.po || $(git config --global core.visual) locale/en.po || vi locale/en.po
     else
         echo "I told you to run this script from the root Thrive folder!!"
     fi
