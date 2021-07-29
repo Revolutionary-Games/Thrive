@@ -133,7 +133,7 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
-    public SettingValue<string> SelectedOutputDevice { get; set; } = new SettingValue<string>("Default");
+    public SettingValue<string> SelectedOutputDevice { get; set; } = new SettingValue<string>(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
 
     public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
 
@@ -543,7 +543,7 @@ public class Settings
         string outputDevice = SelectedOutputDevice.Value;
         if (string.IsNullOrEmpty(outputDevice))
         {
-            outputDevice = "Default";
+            outputDevice = Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME;
         }
 
         // If the selected output device is invalid Godot resets AudioServer.Device to Default.

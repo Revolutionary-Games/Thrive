@@ -1207,7 +1207,8 @@ public class OptionsMenu : ControlWithInput
 
     private void UpdateSelectedOutputDevice(Settings settings)
     {
-        outputDeviceSelection.Selected = OutputDevices.IndexOf(settings.SelectedOutputDevice.Value ?? "Default");
+        outputDeviceSelection.Selected = OutputDevices.IndexOf(settings.SelectedOutputDevice.Value ??
+            Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
     }
 
     private void UpdateSelectedLanguage(Settings settings)
