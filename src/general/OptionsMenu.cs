@@ -258,8 +258,6 @@ public class OptionsMenu : ControlWithInput
 
     private GameProperties gameProperties;
 
-    private List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
-
     /*
       Signals
     */
