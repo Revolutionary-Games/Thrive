@@ -89,7 +89,7 @@ public class SaveManagerGUI : Control
         deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
         deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
 
-        saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshList));
+        saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
 
     public override void _Process(float delta)
@@ -142,10 +142,7 @@ public class SaveManagerGUI : Control
 
     private void RefreshList()
     {
-        selectedDirty = true;
-
         saveList.Refresh();
-        RefreshSaveCounts();
     }
 
     private void RefreshSaveCounts()
@@ -153,6 +150,7 @@ public class SaveManagerGUI : Control
         if (refreshing)
             return;
 
+        selectedDirty = true;
         saveCountRefreshed = true;
         refreshing = true;
 

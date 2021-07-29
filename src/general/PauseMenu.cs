@@ -49,10 +49,55 @@ public class PauseMenu : ControlWithInput
     [Signal]
     public delegate void MakeSave(string name);
 
+    private enum ActiveMenuType
+    {
+        Primary,
+        Help,
+        Load,
+        Options,
+        Save,
+        None,
+    }
+
     /// <summary>
     ///   The GameProperties object holding settings and state for the current game session.
     /// </summary>
     public GameProperties GameProperties { get; set; }
+
+    private ActiveMenuType ActiveMenu
+    {
+        get
+        {
+            foreach (ActiveMenuType menuEnumValue in Enum.GetValues(typeof(ActiveMenuType)))
+            {
+                if (GetControlFromMenuEnum(menuEnumValue)?.Visible == true)
+                    return menuEnumValue;
+            }
+
+            return ActiveMenuType.None;
+        }
+        set
+        {
+            var currentActiveMenu = ActiveMenu;
+            if (value == currentActiveMenu)
+                return;
+
+            GetControlFromMenuEnum(currentActiveMenu)?.Hide();
+
+            switch (value)
+            {
+                case ActiveMenuType.Options:
+                    optionsMenu.OpenFromInGame(GameProperties);
+                    break;
+                case ActiveMenuType.None:
+                    // just close the current menu
+                    break;
+                default:
+                    GetControlFromMenuEnum(value).Show();
+                    break;
+            }
+        }
+    }
 
     public override void _EnterTree()
     {
@@ -75,7 +120,7 @@ public class PauseMenu : ControlWithInput
     {
         if (Visible)
         {
-            SetActiveMenu("primary");
+            ActiveMenu = ActiveMenuType.Primary;
 
             EmitSignal(nameof(OnClosed));
 
@@ -104,8 +149,25 @@ public class PauseMenu : ControlWithInput
 
     public void ShowHelpScreen()
     {
-        SetActiveMenu("help");
+        if (ActiveMenu == ActiveMenuType.Help)
+            return;
+
+        ActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
+    }
+
+    private Control GetControlFromMenuEnum(ActiveMenuType value)
+    {
+        return value switch
+        {
+            ActiveMenuType.Primary => primaryMenu,
+            ActiveMenuType.Help => helpScreen,
+            ActiveMenuType.Load => loadMenu,
+            ActiveMenuType.Options => optionsMenu,
+            ActiveMenuType.Save => saveMenu,
+            ActiveMenuType.None => null,
+            _ => throw new NotSupportedException($"{value} is not supported"),
+        };
     }
 
     private bool NoExclusiveTutorialActive()
@@ -140,7 +202,7 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("help");
+        ActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
     }
 
@@ -148,86 +210,56 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("load");
+        ActiveMenu = ActiveMenuType.Load;
     }
 
     private void CloseLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenOptionsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("options");
+        ActiveMenu = ActiveMenuType.Options;
     }
 
     private void OnOptionsClosed()
     {
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("save");
+        ActiveMenu = ActiveMenuType.Save;
     }
 
     private void CloseSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void ForwardSaveAction(string name)
     {
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
 
         // Close this first to get the menus out of the way to capture the save screenshot
         EmitSignal(nameof(OnClosed));
         EmitSignal(nameof(MakeSave), name);
-    }
-
-    private void SetActiveMenu(string menu)
-    {
-        helpScreen.Hide();
-        primaryMenu.Hide();
-        loadMenu.Hide();
-        optionsMenu.Hide();
-        saveMenu.Hide();
-
-        switch (menu)
-        {
-            case "primary":
-                primaryMenu.Show();
-                break;
-            case "help":
-                helpScreen.Show();
-                break;
-            case "load":
-                loadMenu.Show();
-                break;
-            case "options":
-                optionsMenu.OpenFromInGame(GameProperties);
-                break;
-            case "save":
-                saveMenu.Show();
-                break;
-            default:
-                throw new ArgumentException("unknown menu", nameof(menu));
-        }
     }
 
     /// <summary>
