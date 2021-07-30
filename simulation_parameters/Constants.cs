@@ -528,6 +528,7 @@ public static class Constants
 
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
+    public const string SAVE_BACKUP_SUFFIX = ".backup";
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 
