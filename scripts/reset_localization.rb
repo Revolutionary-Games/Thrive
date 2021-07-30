@@ -1,24 +1,11 @@
 #!/usr/bin/env ruby
 require 'highline'
-
-# Cross-platform way of finding an executable in the $PATH.
-#
-#   which('ruby') #=> /usr/bin/ruby
-def which(cmd)
-  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
-  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
-    exts.each do |ext|
-      exe = File.join(path, "#{cmd}#{ext}")
-      return exe if File.executable?(exe) && !File.directory?(exe)
-    end
-  end
-  nil
-end
-
+require_relative '../RubySetupSystem/RubyCommon'
 
 puts "This will reset all translations made in this branch."
 puts "Run this script from the root Thrive folder."
-exit unless HighLine.agree('Are you sure you want to continue? (Y/N)')
+puts "Are you sure you want to continue?"
+waitForKeyPress()
 if (File.exist?('Thrive.sln'))
     currentBranch = `git rev-parse --abbrev-ref HEAD`
     system "git stash"
