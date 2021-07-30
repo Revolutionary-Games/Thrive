@@ -1754,9 +1754,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
         // ReSharper disable StringLiteralTypo
-        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysConds");
+        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
 
-        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysConds");
+        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
 
         // ReSharper restore StringLiteralTypo
     }
