@@ -29,8 +29,8 @@ if (File.exist?('Thrive.sln'))
     system "git checkout master locale/"
     system "ruby scripts/update_localization.rb"
     poeditEditor = which('poedit')
-    if (poeditEditor.empty?)
-        coreEditor = `git config --global core.editor`
+    if which('poedit').nil?  
+      coreEditor = `git config --global core.editor`
         if (coreEditor.empty?)
             visualEditor = `git config --global core.visual`
             if (visualEditor.empty?)
