@@ -149,6 +149,8 @@ public class CompoundAmount : HBoxContainer
         {
             if (icon != null)
                 UpdateTooltip();
+
+            UpdateLabel();
         }
     }
 
