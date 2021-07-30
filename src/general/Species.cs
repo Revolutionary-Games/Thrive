@@ -156,10 +156,10 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
-    /// Gets info specific to the species for saving.
-    /// Used for patch snapshots, but could be expanded
+    ///   Gets info specific to the species for storing into a new container class.
+    ///   Used for patch snapshots, but could be expanded
     /// </summary>
-    /// <remarks> TODO: Check overlap with ClonePropertiesTo </remarks>
+    /// <remarks>TODO: Check overlap with ClonePropertiesTo</remarks>
     public SpeciesInfo RecordSpeciesInfo()
     {
         var info = new SpeciesInfo
