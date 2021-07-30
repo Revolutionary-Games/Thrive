@@ -1,42 +1,38 @@
 #!/usr/bin/env ruby
-require 'highline'
+# frozen_string_literal: true
+
 require_relative '../RubySetupSystem/RubyCommon'
 
-puts "This will reset all translations made in this branch."
-puts "Run this script from the root Thrive folder."
-puts "Are you sure you want to continue?"
-waitForKeyPress()
-if (File.exist?('Thrive.sln'))
-    currentBranch = `git rev-parse --abbrev-ref HEAD`
-    system "git stash"
-    system "git checkout master"
-    system "git pull"
-    system "git checkout #{currentBranch}"
-    system "git stash pop"
-    system "git checkout master locale/"
-    system "ruby scripts/update_localization.rb"
-    poeditEditor = which('poedit')
-    if which('poedit').nil?  
-      coreEditor = `git config --global core.editor`
-        if (coreEditor.empty?)
-            visualEditor = `git config --global core.visual`
-            if (visualEditor.empty?)
-                if (Gem.win_platform?)
-                    editor = "notepad.exe"
-                else
-                    editor = "vi"
-                end
-            else
-                editor = visualEditor
-            end
-        else
-            editor = coreEditor
-        end
-    else
-        editor = poeditEditor
-    end
+def editor
+  return 'poedit' unless which('poedit').nil?
 
-    system(editor, "locale/en.po")
-else
-    puts "I told you to run this script from the root Thrive folder!!"
+  core_editor = `git config --global core.editor`
+  return core_editor unless core_editor.nil?
+
+  visual_editor = `git config --global core.visual`
+  return visual_editor unless visual_editor.nil?
+
+  if Gem.win_platform?
+    'notepad.exe'
+  else
+    'vi'
+  end
 end
+
+puts 'This will reset all translations made in this branch.'
+puts 'Run this script from the root Thrive folder.'
+puts 'Are you sure you want to continue?'
+waitForKeyPress
+unless File.exist?('Thrive.sln')
+  puts 'I told you to run this script from the root Thrive folder!'
+  exit
+end
+current_branch = `git rev-parse --abbrev-ref HEAD`
+system 'git stash'
+system 'git checkout master'
+system 'git pull'
+system "git checkout #{current_branch}"
+system 'git stash pop'
+system 'git checkout master locale/'
+system 'ruby scripts/update_localization.rb'
+system(editor, 'locale/en.po')
