@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-public class CompoundFoodSource : IFoodSource
+﻿public class CompoundFoodSource : IFoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");

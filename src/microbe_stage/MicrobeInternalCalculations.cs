@@ -3,7 +3,7 @@
 public static class MicrobeInternalCalculations
 {
     public static float CalculateSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType,
-    float membraneRigidity)
+        float membraneRigidity)
     {
         float microbeMass = Constants.MICROBE_BASE_MASS;
 
