@@ -98,12 +98,19 @@ public class PlacementActionData : MicrobeEditorActionData
             return MicrobeActionInterferenceMode.Combinable;
         }
 
+        if (other is MoveActionData moveActionData && ReplacedCytoplasm?.Contains(moveActionData.Organelle) == true)
+            return MicrobeActionInterferenceMode.ReplacesOther;
+
+        if (other is PlacementActionData placementActionData &&
+            ReplacedCytoplasm?.Contains(placementActionData.Organelle) == true)
+            return MicrobeActionInterferenceMode.ReplacesOther;
+
         return MicrobeActionInterferenceMode.NoInterference;
     }
 
     public override int CalculateCost()
     {
-        return Organelle.Definition.MPCost - (ReplacedCytoplasm?.Sum(p => p.Definition.MPCost) ?? 0);
+        return Organelle.Definition.MPCost;
     }
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
