@@ -64,7 +64,7 @@ public class HeterotrophicFoodSource : IFoodSource
             }
         }
 
-        // Piluses are much more usefull if the microbe can close to melee
+        // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed;
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
