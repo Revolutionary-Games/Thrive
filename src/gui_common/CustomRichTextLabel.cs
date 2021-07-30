@@ -229,9 +229,9 @@ public class CustomRichTextLabel : RichTextLabel
     /// <summary>
     ///   Returns a templated bbcode string for the given custom tag.
     /// </summary>
-    /// <param name="input">The string tagged by custom tags</param>
+    /// <param name="input">The string enclosed by the custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
-    /// <param name="attributes">Attributes specifying an additional functionality to the bbcode.</param>
+    /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
     private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes = null)
     {
         // Defaults to input so if something fails output returns unchanged
