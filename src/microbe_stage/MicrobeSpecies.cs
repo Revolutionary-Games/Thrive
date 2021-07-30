@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
-using Thrive.src.microbe_stage;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
