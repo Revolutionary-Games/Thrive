@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 /// <summary>
 ///   Describes how two microbe actions interference with each other.
