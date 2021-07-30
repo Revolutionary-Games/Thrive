@@ -77,10 +77,14 @@ public class PlacementActionData : MicrobeEditorActionData
 {
     public List<OrganelleTemplate> ReplacedCytoplasm;
     public OrganelleTemplate Organelle;
+    public Hex Location;
+    public int Orientation;
 
-    public PlacementActionData(OrganelleTemplate organelle)
+    public PlacementActionData(OrganelleTemplate organelle, Hex location, int orientation)
     {
         Organelle = organelle;
+        Location = location;
+        Orientation = orientation;
     }
 
     public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
@@ -88,7 +92,7 @@ public class PlacementActionData : MicrobeEditorActionData
         // If this organelle got removed in this session
         if (other is RemoveActionData removeActionData && removeActionData.Organelle.Definition == Organelle.Definition)
         {
-            if (removeActionData.Organelle.Position == Organelle.Position)
+            if (removeActionData.Location == Location)
                 return MicrobeActionInterferenceMode.CancelsOut;
 
             return MicrobeActionInterferenceMode.Combinable;
@@ -105,12 +109,8 @@ public class PlacementActionData : MicrobeEditorActionData
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
         var removeActionData = (RemoveActionData)other;
-        var oldPosition = removeActionData.Organelle.Position;
-        var oldRotation = removeActionData.Organelle.Orientation;
-        removeActionData.Organelle.Position = Organelle.Position;
-        removeActionData.Organelle.Orientation = Organelle.Orientation;
-        return new MoveActionData(removeActionData.Organelle, oldPosition, Organelle.Position, oldRotation,
-            Organelle.Orientation);
+        return new MoveActionData(removeActionData.Organelle, removeActionData.Location, Location,
+            removeActionData.Orientation, Orientation);
     }
 }
 
@@ -118,10 +118,14 @@ public class PlacementActionData : MicrobeEditorActionData
 public class RemoveActionData : MicrobeEditorActionData
 {
     public OrganelleTemplate Organelle;
+    public Hex Location;
+    public int Orientation;
 
-    public RemoveActionData(OrganelleTemplate organelle)
+    public RemoveActionData(OrganelleTemplate organelle, Hex location, int orientation)
     {
         Organelle = organelle;
+        Location = location;
+        Orientation = orientation;
     }
 
     public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
@@ -130,7 +134,7 @@ public class RemoveActionData : MicrobeEditorActionData
         if (other is PlacementActionData placementActionData &&
             placementActionData.Organelle.Definition == Organelle.Definition)
         {
-            if (placementActionData.Organelle.Position == Organelle.Position)
+            if (placementActionData.Location == Location)
                 return MicrobeActionInterferenceMode.CancelsOut;
 
             return MicrobeActionInterferenceMode.Combinable;
@@ -139,7 +143,7 @@ public class RemoveActionData : MicrobeEditorActionData
         // If this organelle got moved in this session
         if (other is MoveActionData moveActionData &&
             moveActionData.Organelle.Definition == Organelle.Definition &&
-            moveActionData.NewLocation == Organelle.Position)
+            moveActionData.NewLocation == Location)
             return MicrobeActionInterferenceMode.ReplacesOther;
 
         return MicrobeActionInterferenceMode.NoInterference;
@@ -154,10 +158,10 @@ public class RemoveActionData : MicrobeEditorActionData
     {
         var placementActionData = (PlacementActionData)other;
         return new MoveActionData(placementActionData.Organelle,
-            Organelle.Position,
-            placementActionData.Organelle.Position,
-            Organelle.Orientation,
-            placementActionData.Organelle.Orientation);
+            Location,
+            placementActionData.Location,
+            Orientation,
+            placementActionData.Orientation);
     }
 }
 
@@ -207,9 +211,7 @@ public class MoveActionData : MicrobeEditorActionData
     {
         if (other is PlacementActionData placementActionData)
         {
-            placementActionData.Organelle.Position = NewLocation;
-            placementActionData.Organelle.Orientation = NewRotation;
-            return new PlacementActionData(placementActionData.Organelle)
+            return new PlacementActionData(placementActionData.Organelle, NewLocation, NewRotation)
             {
                 ReplacedCytoplasm = placementActionData.ReplacedCytoplasm,
             };

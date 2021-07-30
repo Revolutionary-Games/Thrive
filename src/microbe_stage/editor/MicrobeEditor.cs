@@ -1867,7 +1867,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         organelle.PlacedThisSession = true;
 
         var action = new MicrobeEditorAction(this,
-            DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
+            DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle, organelle.Position,
+                organelle.Orientation));
 
         EnqueueAction(action);
         return true;
@@ -1898,7 +1899,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
 
         var action = new MicrobeEditorAction(this,
-            DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(organelleHere));
+            DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(organelleHere, location,
+                organelleHere.Orientation));
 
         EnqueueAction(action);
     }

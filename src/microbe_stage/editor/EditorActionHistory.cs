@@ -52,7 +52,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                         cache.RemoveAt(y);
                         cache.RemoveAt(i);
                         y--;
-                        cache.Insert(y, combinedValue);
+                        cache.Insert(y--, combinedValue);
                         copyLength--;
                         break;
                     case MicrobeActionInterferenceMode.ReplacesOther:
