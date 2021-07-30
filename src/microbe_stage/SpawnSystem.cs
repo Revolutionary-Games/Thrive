@@ -260,7 +260,7 @@ public class SpawnSystem
 
         if (immobilePlayer)
         {
-            // If the player is staying inside a circle around he's previous position, only go up to the local spawn cap
+            // If the player is staying inside a circle around his previous position, only spawn up to the local spawn cap
             if (estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius)
                 return;
         }
