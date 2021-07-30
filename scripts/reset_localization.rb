@@ -28,12 +28,12 @@ unless File.exist?('Thrive.sln')
   puts 'I told you to run this script from the root Thrive folder!'
   exit
 end
-current_branch = `git rev-parse --abbrev-ref HEAD`
-system 'git stash'
-system 'git checkout master'
-system 'git pull'
-system "git checkout #{current_branch}"
-system 'git stash pop'
-system 'git checkout master locale/'
-system 'ruby scripts/update_localization.rb'
-system(editor, 'locale/en.po')
+current_branch = `git rev-parse --abbrev-ref HEAD`.strip!
+runOpen3Checked('git', 'stash')
+runOpen3Checked('git', 'checkout', 'master')
+runOpen3Checked('git', 'pull')
+runOpen3Checked('git', 'checkout', current_branch)
+runOpen3Checked('git', 'stash', 'pop')
+runOpen3Checked('git', 'checkout', 'master', 'locale/')
+runOpen3Checked('ruby', 'scripts/update_localization.rb')
+runOpen3Checked(editor, 'locale/en.po')
