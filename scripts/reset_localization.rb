@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'os'
 require_relative '../RubySetupSystem/RubyCommon'
 
 def editor
@@ -12,7 +13,7 @@ def editor
   visual_editor = `git config --global core.visual`
   return visual_editor unless visual_editor.nil?
 
-  if Gem.win_platform?
+  if OS.win?
     'notepad.exe'
   else
     'vi'
