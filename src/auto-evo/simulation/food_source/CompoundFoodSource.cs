@@ -50,7 +50,7 @@ public class CompoundFoodSource : IFoodSource
         }
 
         var energyCost = ProcessSystem.ComputeEnergyBalance(
-            microbeSpecies.Organelles.Organelles.Select(organelle => organelle.Definition),
+            microbeSpecies.Organelles.Organelles,
             biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
 
         return compoundUseScore / energyCost;

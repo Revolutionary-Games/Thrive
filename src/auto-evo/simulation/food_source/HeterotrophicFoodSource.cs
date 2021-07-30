@@ -35,7 +35,7 @@ public class HeterotrophicFoodSource : IFoodSource
         var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         var predatorSpeed = microbeSpecies.BaseSpeed;
         predatorSpeed += ProcessSystem
-            .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles.Select(x => x.Definition), patch.Biome,
+            .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
                 microbeSpecies.MembraneType).FinalBalance;
 
         // It's great if you can engulf this prey, but only if you can catch it

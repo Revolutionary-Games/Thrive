@@ -1218,14 +1218,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         patch ??= CurrentPatch;
 
         gui.UpdateEnergyBalance(
-            ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome, membrane));
+            ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane));
     }
 
     private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)
     {
         patch ??= CurrentPatch;
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Biome);
+        var result = ProcessSystem.ComputeCompoundBalance(organelles, patch.Biome);
 
         gui.UpdateCompoundBalances(result);
     }
