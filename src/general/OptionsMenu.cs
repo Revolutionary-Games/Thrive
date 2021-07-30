@@ -176,7 +176,7 @@ public class OptionsMenu : ControlWithInput
         .ToList();
 
     private static readonly List<string> AudioOutputDevicesCache = AudioServer
-        .GetDeviceList().OfType<string>().Where(p => p != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
+        .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
     private Button resetButton;
@@ -369,6 +369,7 @@ public class OptionsMenu : ControlWithInput
         if (what == NotificationTranslationChanged)
         {
             BuildInputRebindControls();
+            UpdateDefaultAudioOutputDeviceText(audioOutputDeviceSelection);
         }
     }
 
@@ -1183,7 +1184,6 @@ public class OptionsMenu : ControlWithInput
         resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
-        UpdateDefaultAudioOutputDeviceText(audioOutputDeviceSelection);
         UpdateResetSaveButtonState();
     }
 
@@ -1194,7 +1194,6 @@ public class OptionsMenu : ControlWithInput
 
         Settings.Instance.ApplyLanguageSettings();
         UpdateSelectedLanguage(Settings.Instance);
-        UpdateDefaultAudioOutputDeviceText(audioOutputDeviceSelection);
         UpdateResetSaveButtonState();
     }
 
