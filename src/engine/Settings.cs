@@ -133,7 +133,8 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
-    public SettingValue<string> SelectedAudioOutputDevice { get; set; } = new SettingValue<string>(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
+    public SettingValue<string> SelectedAudioOutputDevice { get; set; } =
+        new SettingValue<string>(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
 
     public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
 
