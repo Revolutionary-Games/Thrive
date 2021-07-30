@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Thrive.src.microbe_stage;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
@@ -34,7 +35,7 @@ public class MicrobeSpecies : Species
     }
 
     [JsonIgnore]
-    public float BaseSpeed => ProcessSystem.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
+    public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
 
     public override void RepositionToOrigin()
     {

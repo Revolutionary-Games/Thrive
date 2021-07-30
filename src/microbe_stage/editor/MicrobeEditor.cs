@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Thrive.src.microbe_stage;
 
 /// <summary>
 ///   Main class of the microbe editor
@@ -965,7 +966,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public float CalculateSpeed()
     {
-        return ProcessSystem.CalculateSpeed(editedMicrobeOrganelles, Membrane, Rigidity);
+        return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles, Membrane, Rigidity);
     }
 
     public float CalculateHitpoints()
