@@ -162,13 +162,11 @@ public abstract class Species : ICloneable
     /// <remarks>TODO: Check overlap with ClonePropertiesTo</remarks>
     public SpeciesInfo RecordSpeciesInfo()
     {
-        var info = new SpeciesInfo
+        return new SpeciesInfo
         {
             ID = ID,
             Population = Population,
         };
-
-        return info;
     }
 
     /// <summary>
