@@ -191,7 +191,7 @@ public class PatchSnapshot : ICloneable
 
     public object Clone()
     {
-        // We only do a shallow copy of RecordedSpeciesInfo here, but SpeciesInfo are never modified.
+        // We only do a shallow copy of RecordedSpeciesInfo here as SpeciesInfo objects are never modified.
         var result = new PatchSnapshot
         {
             TimePeriod = TimePeriod,
