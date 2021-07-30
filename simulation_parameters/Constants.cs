@@ -391,6 +391,7 @@ public static class Constants
     /// </summary>
     public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
+    // Auto evo population algorithm tweak variables
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
