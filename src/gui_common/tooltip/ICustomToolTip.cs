@@ -54,7 +54,7 @@ public interface ICustomToolTip
     string Description { get; set; }
 
     /// <summary>
-    ///   Used to delay how long it takes for this tooltip to appear
+    ///   Used to delay how long it takes for this tooltip to appear. Set this to zero for no delay.
     /// </summary>
     float DisplayDelay { get; set; }
 

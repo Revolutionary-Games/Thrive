@@ -58,8 +58,8 @@ public class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
-    ///   Displays the current tooltip if set true. It's preferable to set this
-    ///   rather than directly from the tooltip
+    ///   If true displays the current tooltip with a set delay <see cref="ICustomToolTip.DisplayDelay"/>.
+    ///   It's preferable to set this rather than directly from the tooltip
     /// </summary>
     public bool Display
     {
@@ -345,6 +345,7 @@ public class ToolTipManager : CanvasLayer
             case ToolTipTransitioning.Fade when visible:
                 GUICommon.Instance.ModulateFadeIn(tooltip.ToolTipNode, Constants.TOOLTIP_FADE_SPEED);
                 break;
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             case ToolTipTransitioning.Fade when !visible:
                 GUICommon.Instance.ModulateFadeOut(tooltip.ToolTipNode, Constants.TOOLTIP_FADE_SPEED);
                 break;
