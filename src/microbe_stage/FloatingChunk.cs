@@ -434,7 +434,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.Colony != null) 
             {
                 var touchedOwnerId = microbe.ShapeFindOwner(bodyShape);
-                touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId,microbe.Colony);
+                if (touchedOwnerId != 0)
+                    touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId,microbe.Colony);
 
             }
             touchingMicrobes.Remove(touchedMicrobe);

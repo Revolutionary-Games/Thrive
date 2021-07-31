@@ -44,6 +44,8 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
+        _ = bodyID;
+
         if (body is Microbe microbe)
         {
             if (microbe.Species != Properties.Species)
@@ -56,6 +58,7 @@ public class AgentProjectile : RigidBody, ITimedLife
                     var touchedOwnerId = microbe.ShapeFindOwner(bodyShape);
                     touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId,microbe.Colony);
                 }
+
                 touchedMicrobe.Damage(Constants.OXYTOXY_DAMAGE, Properties.AgentType);
             }
         }
