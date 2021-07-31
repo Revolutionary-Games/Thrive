@@ -2424,7 +2424,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         _ = bodyID;
         _ = bodyShape;
 
-
         if (body is Microbe microbe)
         {
             var thisOwnerId = ShapeFindOwner(localShape);
