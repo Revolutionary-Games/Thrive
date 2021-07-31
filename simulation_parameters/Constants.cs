@@ -450,6 +450,11 @@ public static class Constants
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
+    ///   Window dialogs have a highest priority to ensure it can be modified first.
+    /// </summary>
+    public const int WINDOW_DIALOG_CANCEL_PRIORITY = int.MaxValue;
+
+    /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
     /// </summary>
     public const int PATCH_HISTORY_RANGE = 10;
