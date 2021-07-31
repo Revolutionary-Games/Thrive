@@ -2360,7 +2360,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GlobalTransform = pos;
     }
 
-    public Microbe GetColonyMemberWithShapeOwner (uint ownerID, MicrobeColony colony)
+    public Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
     {
         return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
     }
@@ -2409,7 +2409,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
                 return;
             }
-            
+
             // Pili don't stop engulfing
             if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
