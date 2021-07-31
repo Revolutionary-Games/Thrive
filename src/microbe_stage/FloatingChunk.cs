@@ -410,10 +410,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                 return;
 
             var touchedMicrobe = microbe;
-            if (microbe.Colony != null) 
+            if (microbe.Colony != null)
             {
                 var touchedOwnerId = microbe.ShapeFindOwner(bodyShape);
-                touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId,microbe.Colony);
+                touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId, microbe.Colony);
             }
 
             touchingMicrobes.Add(touchedMicrobe);
@@ -430,12 +430,13 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             // This might help in a case where the cell is touching with both a pilus and non-pilus part
             if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
                 return;
+
             var touchedMicrobe = microbe;
-            if (microbe.Colony != null) 
+            if (microbe.Colony != null)
             {
                 var touchedOwnerId = microbe.ShapeFindOwner(bodyShape);
                 if (touchedOwnerId != 0)
-                    touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId,microbe.Colony);
+                    touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId, microbe.Colony);
 
             }
             touchingMicrobes.Remove(touchedMicrobe);
