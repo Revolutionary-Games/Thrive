@@ -497,14 +497,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 OrganelleParent.AddChild(organelle);
 
             //Colony children shapes need reparenting to their master
-            if (!IsPlayerMicrobe && Colony!=null)
+            if (!IsPlayerMicrobe && Colony != null)
             {
                 ReParentShapes(this, Vector3.Zero);
                 ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
                     Vector3.Down,
                     Colony.Master.Rotation.y));
             }
- 
+
             // And recompute storage
             RecomputeOrganelleCapacity();
 
@@ -2423,10 +2423,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         _ = bodyID;
         _ = bodyShape;
-        
+
 
         if (body is Microbe microbe)
-        {   
+        {
             var thisOwnerId = ShapeFindOwner(localShape);
             var thisMicrobe = this;
             if (Colony != null && thisOwnerId != 0)
