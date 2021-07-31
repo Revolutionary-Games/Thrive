@@ -496,6 +496,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
 
+            //Colony children shapes need reparenting to their master
+            if (!IsPlayerMicrobe && Colony!=null)
+               {
+                ReParentShapes(this, Vector3.Zero);
+                ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
+                Vector3.Down,
+                Colony.Master.Rotation.y));
+               }
+ 
             // And recompute storage
             RecomputeOrganelleCapacity();
 
@@ -2351,7 +2360,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GlobalTransform = pos;
     }
 
-    public Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    public Microbe GetColonyMemberWithShapeOwner (uint ownerID, MicrobeColony colony)
     {
         return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
     }
@@ -2400,7 +2409,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
                 return;
             }
-
+            
             // Pili don't stop engulfing
             if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
@@ -2414,12 +2423,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         _ = bodyID;
         _ = bodyShape;
-        _ = localShape;
+        
 
         if (body is Microbe microbe)
-        {
+        {   
+            var thisOwnerId = ShapeFindOwner(localShape);
+            var thisMicrobe = this;
+            if (Colony != null && thisOwnerId != 0)
+                thisMicrobe = GetColonyMemberWithShapeOwner(thisOwnerId, Colony);
+
             // TODO: should this also check for pilus before removing the collision?
-            touchedMicrobes.Remove(microbe);
+            thisMicrobe.touchedMicrobes.Remove(microbe);
         }
     }
 
