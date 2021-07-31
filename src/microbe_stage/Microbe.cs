@@ -496,7 +496,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
 
-            //Colony children shapes need reparenting to their master
+            // Colony children shapes need reparenting to their master
             if (!IsPlayerMicrobe && Colony != null)
             {
                 ReParentShapes(this, Vector3.Zero);
@@ -607,6 +607,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             Membrane.Type.BaseWigglyness) * 0.2f;
         Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (Species.MembraneRigidity /
             Membrane.Type.MovementWigglyness) * 0.2f;
+    }
+
+    public Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    {
+        return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
     }
 
     /// <summary>
@@ -2358,11 +2363,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         GlobalTransform = pos;
-    }
-
-    public Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
-    {
-        return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
     }
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
