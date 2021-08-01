@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 public class CustomAcceptDialog : AcceptDialog
 {
@@ -9,7 +8,7 @@ public class CustomAcceptDialog : AcceptDialog
 
     private static int exclusiveDialogOpenCount;
 
-    public static bool HasExclusiveDialogOpen { get => exclusiveDialogOpenCount > 0; }
+    public static bool HasExclusiveDialogOpen => exclusiveDialogOpenCount > 0;
 
     public void OnAboutToShow()
     {

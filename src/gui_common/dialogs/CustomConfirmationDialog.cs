@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class CustomConfirmationDialog : CustomAcceptDialog
 {
