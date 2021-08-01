@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindowDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 
 [node name="MicrobeTutorialGUI" type="Control"]
@@ -28,7 +27,7 @@ StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
 
-[node name="MicrobeWelcome" parent="." instance=ExtResource( 4 )]
+[node name="MicrobeWelcome" type="WindowDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -42,6 +41,9 @@ size_flags_horizontal = 3
 popup_exclusive = true
 window_title = "TUTORIAL"
 resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
 anchor_right = 1.0
@@ -110,7 +112,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExplainingPopup" parent="MicrobeMovementTutorial" instance=ExtResource( 4 )]
+[node name="ExplainingPopup" type="WindowDialog" parent="MicrobeMovementTutorial"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -123,6 +125,9 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
 window_title = "TUTORIAL"
 resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
 anchor_right = 1.0
@@ -190,7 +195,7 @@ margin_bottom = -348.0
 rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_right"
 
-[node name="GlucoseTutorial" parent="." instance=ExtResource( 4 )]
+[node name="GlucoseTutorial" type="WindowDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -203,6 +208,9 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
 window_title = "TUTORIAL"
 resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GlucoseTutorial"]
 anchor_right = 1.0
@@ -222,7 +230,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_COLLECT_TEXT"
 autowrap = true
 
-[node name="StayingAliveTutorial" parent="." instance=ExtResource( 4 )]
+[node name="StayingAliveTutorial" type="WindowDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -235,6 +243,9 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
 window_title = "TUTORIAL"
 resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="StayingAliveTutorial"]
 anchor_right = 1.0
@@ -254,7 +265,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_HEALTH_TEXT"
 autowrap = true
 
-[node name="ReproductionTutorial" parent="." instance=ExtResource( 4 )]
+[node name="ReproductionTutorial" type="WindowDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -267,6 +278,9 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
 window_title = "TUTORIAL"
 resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ReproductionTutorial"]
 anchor_right = 1.0
@@ -286,7 +300,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 
-[node name="UnbindTutorial" parent="." instance=ExtResource( 4 )]
+[node name="UnbindTutorial" type="WindowDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -299,6 +313,9 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 3
 window_title = "TUTORIAL"
 resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UnbindTutorial"]
 anchor_right = 1.0
