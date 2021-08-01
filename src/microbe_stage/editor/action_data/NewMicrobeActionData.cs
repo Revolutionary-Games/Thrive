@@ -1,4 +1,6 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System;
+
+[JSONAlwaysDynamicType]
 public class NewMicrobeActionData : MicrobeEditorActionData
 {
     public OrganelleLayout<OrganelleTemplate> OldEditedMicrobeOrganelles;
@@ -22,6 +24,6 @@ public class NewMicrobeActionData : MicrobeEditorActionData
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }
