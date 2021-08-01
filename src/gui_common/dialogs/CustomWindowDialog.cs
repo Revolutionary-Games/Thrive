@@ -4,8 +4,9 @@ public class CustomWindowDialog : CustomAcceptDialog
 {
     public override void _EnterTree()
     {
+        // WindowDialog is not regarded as exclusive by default.
+        isExclusive = false;
         GetOk().Hide();
-        RectSize = new Vector2(RectSize.x, RectSize.y - 10);
         base._EnterTree();
     }
 }

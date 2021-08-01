@@ -1,9 +1,18 @@
 ﻿using Godot;
 
+/// <summary>
+///   Custom dialog base.
+/// </summary>
 public class CustomAcceptDialog : AcceptDialog
 {
+    /// <summary>
+    ///   Determine if to regard it as a model one.
+    /// </summary>
     protected bool isExclusive = true;
 
+    /// <summary>
+    ///   Determine if to attach InputManager.
+    /// </summary>
     protected bool isEscapeCloseable = true;
 
     private static int exclusiveDialogOpenCount;
