@@ -29,8 +29,8 @@ unless File.exist?('Thrive.sln')
   exit
 end
 current_branch = `git rev-parse --abbrev-ref HEAD`.strip!
-has_changes = system('git diff-index --quiet HEAD --')
-runOpen3Checked('git', 'stash')
+has_changes = system('git diff-index --quiet HEAD --') == false
+runOpen3Checked('git', 'stash') if has_changes
 runOpen3Checked('git', 'checkout', 'master')
 runOpen3Checked('git', 'pull')
 runOpen3Checked('git', 'checkout', current_branch)
