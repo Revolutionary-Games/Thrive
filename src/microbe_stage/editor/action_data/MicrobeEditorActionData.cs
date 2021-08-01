@@ -36,8 +36,5 @@ public abstract class MicrobeEditorActionData
     /// </summary>
     /// <param name="other">The action this should be combined with. Guaranteed to be combinable</param>
     /// <returns>Returns the combined action</returns>
-    protected virtual MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
-    {
-        throw new NotImplementedException();
-    }
+    protected abstract MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other);
 }

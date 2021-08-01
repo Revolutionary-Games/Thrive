@@ -19,4 +19,9 @@ public class NewMicrobeActionData : MicrobeEditorActionData
     {
         return -Constants.BASE_MUTATION_POINTS;
     }
+
+    protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
+    {
+        throw new System.NotImplementedException();
+    }
 }
