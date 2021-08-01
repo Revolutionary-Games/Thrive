@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using ICSharpCode.SharpZipLib;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -1437,7 +1438,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (FreeBuilding || CheatManager.InfiniteMP)
             return Constants.BASE_MUTATION_POINTS;
 
-        mutationPointsCache = history.CalculateMutationPointsLeft().Clamp(0, Constants.BASE_MUTATION_POINTS);
+        mutationPointsCache = history.CalculateMutationPointsLeft();
+
+        if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
+            throw new ValueOutOfRangeException($"Invalid MP amount: {mutationPointsCache}");
 
         gui.UpdateMutationPointsBar();
 
