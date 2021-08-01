@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -58,7 +58,7 @@ public class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
-    ///   If true displays the current tooltip with a set delay <see cref="ICustomToolTip.DisplayDelay"/>.
+    ///   If true displays the current tooltip with a set delay of <see cref="ICustomToolTip.DisplayDelay"/>.
     ///   It's preferable to set this rather than directly from the tooltip
     /// </summary>
     public bool Display
