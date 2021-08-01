@@ -1,4 +1,6 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System;
+
+[JSONAlwaysDynamicType]
 public class MoveActionData : MicrobeEditorActionData
 {
     public OrganelleTemplate Organelle;
@@ -45,22 +47,18 @@ public class MoveActionData : MicrobeEditorActionData
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
-        if (other is PlacementActionData placementActionData)
+        return other switch
         {
-            return new PlacementActionData(placementActionData.Organelle, NewLocation, NewRotation)
-            {
-                ReplacedCytoplasm = placementActionData.ReplacedCytoplasm,
-            };
-        }
+            PlacementActionData placementActionData => new PlacementActionData(placementActionData.Organelle,
+                NewLocation, NewRotation) { ReplacedCytoplasm = placementActionData.ReplacedCytoplasm },
 
-        var moveActionData = (MoveActionData)other;
-        if (moveActionData.NewLocation == OldLocation)
-        {
-            return new MoveActionData(Organelle, moveActionData.OldLocation, NewLocation, moveActionData.OldRotation,
-                NewRotation);
-        }
+            MoveActionData moveActionData when moveActionData.NewLocation == OldLocation => new MoveActionData(
+                Organelle, moveActionData.OldLocation, NewLocation, moveActionData.OldRotation, NewRotation),
 
-        return new MoveActionData(moveActionData.Organelle, OldLocation, moveActionData.NewLocation, OldRotation,
-            moveActionData.NewRotation);
+            MoveActionData moveActionData => new MoveActionData(moveActionData.Organelle, OldLocation,
+                moveActionData.NewLocation, OldRotation, moveActionData.NewRotation),
+
+            _ => throw new NotSupportedException(),
+        };
     }
 }
