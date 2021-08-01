@@ -39,31 +39,31 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     public int CalculateMutationPointsLeft()
     {
         var copyLength = (cache ??= GetActionHistorySinceLastNewMicrobePress()).Count;
-        for (int i = 0; i < copyLength - 1; i++)
+        for (int compareToIndex = 0; compareToIndex < copyLength - 1; compareToIndex++)
         {
-            for (int y = i + 1; y < copyLength; y++)
+            for (int compareIndex = compareToIndex + 1; compareIndex < copyLength; compareIndex++)
             {
-                switch (cache[y].GetInterferenceModeWith(cache[i]))
+                switch (cache[compareIndex].GetInterferenceModeWith(cache[compareToIndex]))
                 {
                     case MicrobeActionInterferenceMode.NoInterference:
                         break;
                     case MicrobeActionInterferenceMode.Combinable:
-                        var combinedValue = cache[y].Combine(cache[i]);
-                        cache.RemoveAt(y);
-                        cache.RemoveAt(i);
-                        y--;
-                        cache.Insert(y--, combinedValue);
+                        var combinedValue = cache[compareIndex].Combine(cache[compareToIndex]);
+                        cache.RemoveAt(compareIndex);
+                        cache.RemoveAt(compareToIndex);
+                        compareIndex--;
+                        cache.Insert(compareIndex--, combinedValue);
                         copyLength--;
                         break;
                     case MicrobeActionInterferenceMode.ReplacesOther:
-                        cache.RemoveAt(i);
-                        y = i;
+                        cache.RemoveAt(compareToIndex);
+                        compareIndex = compareToIndex;
                         copyLength--;
                         break;
                     case MicrobeActionInterferenceMode.CancelsOut:
-                        cache.RemoveAt(y);
-                        cache.RemoveAt(i);
-                        y--;
+                        cache.RemoveAt(compareIndex);
+                        cache.RemoveAt(compareToIndex);
+                        compareIndex--;
                         copyLength -= 2;
                         break;
                     default:
