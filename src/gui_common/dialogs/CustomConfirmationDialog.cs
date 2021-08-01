@@ -7,13 +7,13 @@ public class CustomConfirmationDialog : CustomAcceptDialog
 
     public override void _EnterTree()
     {
-        cancelButton = AddButton("Cancel");
+        cancelButton = AddButton("Cancel", true, nameof(cancelButton));
         base._EnterTree();
     }
 
     public virtual void OnCustomAction(string buttonPressed)
     {
-        if (buttonPressed == cancelButton.Name)
+        if (buttonPressed == nameof(cancelButton))
         {
             GUICommon.Instance.PlayButtonPressSound();
             Hide();

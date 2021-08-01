@@ -12,5 +12,6 @@ window_title = ""
 script = ExtResource( 2 )
 
 [connection signal="about_to_show" from="." to="." method="OnAboutToShow"]
+[connection signal="confirmed" from="." to="." method="OnConfirmed"]
 [connection signal="custom_action" from="." to="." method="OnCustomAction"]
 [connection signal="popup_hide" from="." to="." method="OnHide"]

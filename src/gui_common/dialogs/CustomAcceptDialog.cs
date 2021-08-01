@@ -22,7 +22,10 @@ public class CustomAcceptDialog : AcceptDialog
         if (isExclusive)
         {
             if (exclusiveDialogOpenCount <= 0)
-                throw new InvalidOperationException("Should not be any other open dialogs.");
+            {
+                GD.PrintErr("Should not exist any other open dialogs.");
+                return;
+            }
 
             exclusiveDialogOpenCount--;
         }
