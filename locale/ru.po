@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-01 12:36+0800\n"
+"POT-Creation-Date: 2021-08-01 17:27+0800\n"
 "PO-Revision-Date: 2021-07-26 13:26+0000\n"
 "Last-Translator: Maximilian <italianoebalo@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -20,6 +20,349 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:85
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr ""
+"W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если есть "
+"токсиновая вакуоль. G - режим поглощения."
+
+#: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:88
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr ""
+"Ваша клетка использует АТФ как источник энергии, если она закончится - "
+"ваша клетка погибнет."
+
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:91
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr ""
+"Для того, чтобы воспользоваться редактором и размножиться, вам нужно "
+"собрать Аммиак (Оранжевое Облако) и Фосфат (Фиолетовое Облако)."
+
+#: ../simulation_parameters/common/help_texts.json:18
+#: ../simulation_parameters/common/help_texts.json:94
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr ""
+"Нажимая G, вы также можете поглощать клетки, бактерии и молекулы железа "
+"меньше вас. Это стоит дополнительной затраты АТФ и уменьшит скорость "
+"перемещения. Не забудь нажать G снова, чтобы прекратить поглощение."
+
+#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:97
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr ""
+"Осморегуляция стоит АТФ, что значит, что чем ваша клетка больше, тем "
+"больше вам нужно Митохондрий, Метаболосом или Рустицианина (или "
+"цитоплазмы, которая делает Гликолиз), чтобы избежать потери АТФ, когда вы "
+"неподвижны."
+
+#: ../simulation_parameters/common/help_texts.json:26
+#: ../simulation_parameters/common/help_texts.json:100
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr ""
+"В редакторе вам доступен обширный ряд органелл, которые вы можете "
+"развивать. Это позволяет вам выбрать свой стиль игры."
+
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Различные облака соединений:\n"
+"\n"
+"Белый - Глюкоза\n"
+"Жёлтый - Сероводород\n"
+"Оранжевый - Аммиак\n"
+"Пурпурный - Фосфат\n"
+"Ржаво-коричневый - Железо\n"
+"\n"
+"Из Глюкозы делается АТФ"
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:106
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr ""
+"Сероводород может быть превращён в глюкозу с помощью хемопластов или "
+"белков-хемосинтетиков. Железо может преобразоваться в АТФ при помощи "
+"рустицианина."
+
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:109
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr ""
+"Для размножения вам необходимо поделить каждую органеллу надвое. Для этого "
+"понадобится большее количество аммиака и фосфата."
+
+#: ../simulation_parameters/common/help_texts.json:42
+#: ../simulation_parameters/common/help_texts.json:103
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Если число особей упадёт до нуля, ваш вид вымрет."
+
+#: ../simulation_parameters/common/help_texts.json:46
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr ""
+"Вы победите в этой игре, если выживете на протяжении 20 поколений с "
+"популяцией не менее 300 особей своего вида. После победы всплывёт окошко, "
+"но вы сможете продолжить играть."
+
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:112
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr ""
+"Развивайтесь с умом - ваши конкуренты не дремлют. Всякий раз, когда вы "
+"пользуетесь редактором, они эволюционируют."
+
+#: ../simulation_parameters/common/help_texts.json:54
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если есть "
+"токсиновая вакуоль. G - режим поглощения. Связываясь с другими клетками, "
+"вы можете построить колонию клеток, в которой клетки делятся друг с другом "
+"соединениями, которые они поглощают и производят. Чтобы иметь возможность "
+"связываться с другой клеткой, вам необходимо иметь органеллы связывающих "
+"агентов и перемещаться в них после перехода в режим связывания. Вы можете "
+"связываться только с клетками вашего собственного вида. Находясь в "
+"колонии, вы не можете разделить свою ячейку и войти в редактор (пока). "
+"Чтобы войти в редактор, сначала покиньте колонию, как только вы соберете "
+"достаточно соединений, а затем войдите в редактор. Большие колонии клеток "
+"- путь к многоклеточности (пока не в игре)."
+
+#: ../simulation_parameters/common/help_texts.json:62
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Прокариотические структуры\n"
+"\n"
+"Метаболосомы: Производят АТФ из глюкозы\n"
+"\n"
+"Хемосинтезирующие белки: Производят вдвое меньше глюкозы из сероводорода, "
+"чем хемопласты, но также участвуют в гликолизе. Занимают 1 ячейку\n"
+"\n"
+"Тилакоиды: Производят в три раза меньше глюкозы чем обычный хлоропласт, "
+"также участвуют в гликолизе. Занимают 1 ячейку\n"
+"\n"
+"Рустицианин: Превращает железо в АТФ\n"
+"\n"
+"Нитрогеназа: Превращает атмосферный азот и АТФ в аммиак в процессе "
+"анаэробного дыхания\n"
+"\n"
+"Цитоплазма: Имеет свободное место и выполняет процесс гликолиза "
+"(Производит небольшое количество АТФ)"
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Внешние органеллы\n"
+"\n"
+"Жгутик: Двигает вашу клетку быстрее потребляя АТФ\n"
+"\n"
+"Пили: Может использоваться для прокалывания других клеток"
+
+#: ../simulation_parameters/common/help_texts.json:70
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Мембранные органеллы\n"
+"\n"
+"Ядро: Занимает 11 ячеек и позволяет развить мембранные органеллы, и также "
+"удваивает размер вашей клетки (можно развить только единожды)\n"
+"\n"
+"Связывающий Агент: Позволяет связываться с другими клетками\n"
+"\n"
+"Митохондрия: Производит АТФ из глюкозы и атмосферного кислорода, делает "
+"это намного эффективнее цитоплазмы\n"
+"\n"
+"Хлоропласт: Создает глюкозу из солнечного света и атмосферного углекислого "
+"газа\n"
+"\n"
+"Хемопласт: Создает глюкозу из сероводорода\n"
+"\n"
+"Азотфиксирующий пластид: Создает аммиак из АТФ, атмосферного азота и "
+"кислорода\n"
+"\n"
+"Вакуоль: Вмещает до 15 соединений\n"
+"\n"
+"Токсиновая вакуоль: Производит токсины (в игре - OxyToxy NT)"
+
+#: ../simulation_parameters/common/help_texts.json:74
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr ""
+"Каждое поколение у вас есть 100 очков мутации (MP), которые вы можете "
+"потратить, и каждое изменение (или мутация) будет стоить определенное "
+"количество этих очков. Добавление и удаление органелл требует "
+"дополнительных затрат MP. Однако удаление органелл, которые были помещены "
+"в текущий сеанс мутации, возвращает MP для этой органеллы. Вы можете "
+"переместить или полностью удалить органеллу, щелкнув ее правой кнопкой "
+"мыши и выбрав соответствующее действие во всплывающем меню. Вы можете "
+"вращать органеллы, размещая их с помощью кнопок A и D."
+
+#: ../simulation_parameters/common/help_texts.json:78
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr ""
+"Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы "
+"можете изменить свой вида (добавляя, передвигая или удаляя органеллы), "
+"чтобы повысить успех вашего вида. Каждое посещение редактора в Микробной "
+"Фазе представляет 100 миллионов лет эволюции."
+
+#: ../simulation_parameters/common/help_texts.json:119
+msgid "LOADING_TIP"
+msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+
+#: ../simulation_parameters/common/help_texts.json:126
+msgid "EASTEREGG_MESSAGE_1"
+msgstr ""
+"Забавный Факт: Дидинии и Парамеции - наглядный пример взаимоотношений "
+"\"хищник - жертва\", которые изучали на протяжении десятилетий. А кто же "
+"вы - хищник или жертва?"
+
+#: ../simulation_parameters/common/help_texts.json:129
+msgid "EASTEREGG_MESSAGE_2"
+msgstr ""
+"Вот совет: токсины можно выпустить, чтобы оттолкнуть от себя другие "
+"токсины, если вы достаточно быстры."
+
+#: ../simulation_parameters/common/help_texts.json:132
+msgid "EASTEREGG_MESSAGE_3"
+msgstr ""
+"Вот совет: Осморегуляция тратит 1 АТФ в секунду на каждую заполненную "
+"ячейку, которая есть у вашей клетки, каждая пустая ячейка цитоплазмы "
+"генерирует 5 АТФ в секунду, что значит, что если вы теряете АТФ из-за "
+"осморегуляции, просто добавьте пару пустых ячеек цитоплазмы или удалите "
+"некоторые органеллы."
+
+#: ../simulation_parameters/common/help_texts.json:135
+msgid "EASTEREGG_MESSAGE_4"
+msgstr ""
+"Забавный факт, В реальной жизни у прокариот есть нечто, называемое "
+"Биокомпонентами, которые действуют как органеллы, но самом деле называются "
+"Многогранными органеллами."
+
+#: ../simulation_parameters/common/help_texts.json:138
+msgid "EASTEREGG_MESSAGE_5"
+msgstr "Забавный Факт, Метаболосома является Многогранной органеллой."
+
+#: ../simulation_parameters/common/help_texts.json:141
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "Вот совет: иногда лучше просто убежать от других клеток."
+
+#: ../simulation_parameters/common/help_texts.json:144
+msgid "EASTEREGG_MESSAGE_7"
+msgstr "Вот совет: если клетка вдвое меньше вас, то вы можете её поглотить."
+
+#: ../simulation_parameters/common/help_texts.json:147
+msgid "EASTEREGG_MESSAGE_8"
+msgstr ""
+"Вот совет: бактерии могут быть сильнее, чем кажутся, они могут казаться "
+"маленькими, но некоторые из них могут проникнуть внутрь вас и таким "
+"образом убить!"
+
+#: ../simulation_parameters/common/help_texts.json:150
+msgid "EASTEREGG_MESSAGE_9"
+msgstr ""
+"Вот совет: вы можете охотиться на другие виды до их истребления, если не "
+"будете достаточно осторожны. Другие виды могут делать то же самое."
+
+#: ../simulation_parameters/common/help_texts.json:153
+msgid "EASTEREGG_MESSAGE_10"
+msgstr "ИЗВИЛИСТЫЕ ТВАРИ!!"
+
+#: ../simulation_parameters/common/help_texts.json:156
+msgid "EASTEREGG_MESSAGE_11"
+msgstr "Плавик плавитель."
+
+#: ../simulation_parameters/common/help_texts.json:159
+msgid "EASTEREGG_MESSAGE_12"
+msgstr "Те синие клетки однако."
+
+#: ../simulation_parameters/common/help_texts.json:162
+msgid "EASTEREGG_MESSAGE_13"
+msgstr ""
+"Вот совет: Биомы - это больше, чем просто разные фоны, соединения в разных "
+"биомах, иногда, появляются с разной скоростью."
+
+#: ../simulation_parameters/common/help_texts.json:165
+msgid "EASTEREGG_MESSAGE_14"
+msgstr ""
+"Вот совет: чем больше у вас жгутиков, тем быстрее вы двигаетесь, но также "
+"это требует больше АТФ"
+
+#: ../simulation_parameters/common/help_texts.json:168
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "Вот совет: вы можете поглощать куски, железные и прочие."
+
+#: ../simulation_parameters/common/help_texts.json:171
+msgid "EASTEREGG_MESSAGE_16"
+msgstr ""
+"вот совет: хорошо подготовьтесь перед добавлением ядра. Эта вещь дорогая! "
+"В содержании и первоначальной стоимости."
+
+#: ../simulation_parameters/common/help_texts.json:174
+msgid "EASTEREGG_MESSAGE_17"
+msgstr ""
+"Забавный факт: Знаете ли вы, что на планете Земля существует более 8000 "
+"видов инфузорий?"
+
+#: ../simulation_parameters/common/help_texts.json:177
+msgid "EASTEREGG_MESSAGE_18"
+msgstr ""
+"Забавный факт: Трубачи - инфузории, способные растягивать себя и ловить "
+"добычу в подобный трубе рот, который засасывает жертву, создавая водные "
+"потоки с помощью ресничек."
+
+#: ../simulation_parameters/common/help_texts.json:180
+msgid "EASTEREGG_MESSAGE_19"
+msgstr ""
+"Интересный факт: Дидиниум - это инфузория, которая охотится на парамеции."
+
+#: ../simulation_parameters/common/help_texts.json:183
+msgid "EASTEREGG_MESSAGE_20"
+msgstr ""
+"Забавный факт: Амёба охотится и ловит добычу с помощью \"ног\", состоящих "
+"из цитоплазмы, которые называются псевдоподиями, когда-нибудь мы бы хотели "
+"добавить их в Thrive."
+
+#: ../simulation_parameters/common/help_texts.json:186
+msgid "EASTEREGG_MESSAGE_21"
+msgstr ""
+"Вот совет: Опасайтесь более крупных клеток и бактерий, быть съеденным не "
+"весело, а они вас съедят."
+
+#: ../simulation_parameters/common/help_texts.json:189
+msgid "EASTEREGG_MESSAGE_22"
+msgstr ""
+"Звуковая команда Thrive'а сделала много песен, которые ещё не были "
+"добавлены в игру. Вы можете послушать их, или посмотреть стримы с их "
+"написанием на его YouTube канале, Oliver Lugg."
+
+#: ../simulation_parameters/common/help_texts.json:192
+msgid "EASTEREGG_MESSAGE_23"
+msgstr ""
+"Вот совет: если ваша клетка составляет 150 ячеек, вы можете поглотить "
+"большие куски железа."
+
+#: ../simulation_parameters/common/help_texts.json:195
+msgid "EASTEREGG_MESSAGE_24"
+msgstr ""
+"Thrive - это симуляция инопланетной жизни, поэтому имеет смысл, что "
+"большинство существ, которые вы найдете, будут родственны одному или двумя "
+"другим видами из-за эволюции, происходящей вокруг вас, посмотрим, сможете "
+"ли вы их идентифицировать!"
+
+#: ../simulation_parameters/common/help_texts.json:198
+msgid "EASTEREGG_MESSAGE_25"
+msgstr ""
+"Интересный факт: команда Thrive время от времени выпускает подкасты, вам "
+"стоит их послушать!"
+
+#: ../simulation_parameters/common/help_texts.json:201
+msgid "EASTEREGG_MESSAGE_26"
+msgstr ""
+"Интересный факт: Thrive создан на движке с открытым исходным кодом Godot!"
+
+#: ../simulation_parameters/common/help_texts.json:204
+msgid "EASTEREGG_MESSAGE_27"
+msgstr ""
+"Забавный факт: Один из первых рабочих прототипов игрового процесса был "
+"создан нашим замечательным программистом - untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1001,7 +1344,7 @@ msgid "ART_BY"
 msgstr "Картина от {0}"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/microbe_stage/ProcessPanel.tscn:76
+#: ../src/microbe_stage/ProcessPanel.tscn:73
 msgid "CLOSE"
 msgstr "Закрыть"
 
@@ -2639,22 +2982,22 @@ msgstr "Ошибка Сохранения"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копировать Ошибку в Буфер Обмена"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:110
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:34
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:96
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:124
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:183
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:279
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:121
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 msgid "TUTORIAL"
 msgstr "Руководство"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:55
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добро пожаловать в Микробный Редактор.\n"
@@ -2668,7 +3011,7 @@ msgstr ""
 "Чтобы перейти на следующий экран создания нажмите кнопку в виде стрелки "
 "справа снизу."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:86
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Это карта биомов.\n"
@@ -2683,7 +3026,7 @@ msgstr ""
 "\n"
 "Выберите биом для продолжения."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:114
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "Это редактор клеток, в котором вы можете добавлять или удалять органеллы "
@@ -2696,7 +3039,7 @@ msgstr ""
 "хороший выбор). Затем кликните рядом с шестигранником в центре экрана, "
 "чтобы добавить эту органеллу к вашей клетке."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:142
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Удаление органелл также стоит MP так как это мутация вашего вида. \n"
@@ -2708,7 +3051,7 @@ msgstr ""
 "\n"
 "Нажми кнопку отмены для продолжения."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:173
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "При выборе, какие органеллы добавлять, обратите внимание на подсказки о "
@@ -2723,7 +3066,7 @@ msgstr ""
 "\n"
 "Нажмите кнопку возвращения (рядом с кнопкой отмены), чтобы продолжить."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:210
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "Это основы редактирования вашей клетки. Вы можете проверить другие вкладки "
@@ -2737,11 +3080,11 @@ msgstr ""
 "\n"
 "Удачи!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:226
 msgid "GOT_IT"
 msgstr "Всё понятно"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:70
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "На далекой чужой планете, эоны вулканической активности и метеоритных "
@@ -2756,15 +3099,15 @@ msgstr ""
 "соединения, которые вы сможете найти, и эволюционировать каждое поколение, "
 "чтобы конкурировать с другими видами микробов."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:94
 msgid "SHOW_TUTORIALS"
 msgstr "Показать руководство"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:102
 msgid "BEGIN_THRIVING"
 msgstr "Начать Процветание"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:142
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Для управления клеткой используйте клавиши, показанные рядом с клеткой (в "
@@ -2772,7 +3115,7 @@ msgstr ""
 "\n"
 "Попробуйте все клавиши в течении нескольких секунд, чтобы продолжить."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:218
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Собирайте глюкозу (белые облака), перемещаясь по ней.\n"
@@ -2780,7 +3123,7 @@ msgstr ""
 "поддержания жизни.\n"
 "Следуйте по линии от вашей клетки к ближайшей глюкозе."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Следите за своей шкалой здоровья рядом со шкалой АТФ (снизу справа).\n"
@@ -2788,7 +3131,7 @@ msgstr ""
 "Вы восстанавливаете здоровье, пока у вас есть АТФ.\n"
 "Убедитесь, что собрано достаточно глюкозы для производства АТФ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для размножения вам нужно продублировать все ваши органеллы, собрав "
@@ -2796,7 +3139,7 @@ msgstr ""
 "Посмотрите на индикатор в правом нижнем углу, чтобы увидеть, сколько еще "
 "вам осталось."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:303
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вы вошли в режим развязки. В этом режиме вы можете нажимать на членов "
@@ -2804,298 +3147,6 @@ msgstr ""
 "\n"
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную "
 "клетку или нажать клавишу \"Отвязать всех\"."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если "
-#~ "есть токсиновая вакуоль. G - режим поглощения."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Ваша клетка использует АТФ как источник энергии, если она закончится - "
-#~ "ваша клетка погибнет."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Для того, чтобы воспользоваться редактором и размножиться, вам нужно "
-#~ "собрать Аммиак (Оранжевое Облако) и Фосфат (Фиолетовое Облако)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Нажимая G, вы также можете поглощать клетки, бактерии и молекулы железа "
-#~ "меньше вас. Это стоит дополнительной затраты АТФ и уменьшит скорость "
-#~ "перемещения. Не забудь нажать G снова, чтобы прекратить поглощение."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Осморегуляция стоит АТФ, что значит, что чем ваша клетка больше, тем "
-#~ "больше вам нужно Митохондрий, Метаболосом или Рустицианина (или "
-#~ "цитоплазмы, которая делает Гликолиз), чтобы избежать потери АТФ, когда "
-#~ "вы неподвижны."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "В редакторе вам доступен обширный ряд органелл, которые вы можете "
-#~ "развивать. Это позволяет вам выбрать свой стиль игры."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Различные облака соединений:\n"
-#~ "\n"
-#~ "Белый - Глюкоза\n"
-#~ "Жёлтый - Сероводород\n"
-#~ "Оранжевый - Аммиак\n"
-#~ "Пурпурный - Фосфат\n"
-#~ "Ржаво-коричневый - Железо\n"
-#~ "\n"
-#~ "Из Глюкозы делается АТФ"
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-#~ msgstr ""
-#~ "Сероводород может быть превращён в глюкозу с помощью хемопластов или "
-#~ "белков-хемосинтетиков. Железо может преобразоваться в АТФ при помощи "
-#~ "рустицианина."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr ""
-#~ "Для размножения вам необходимо поделить каждую органеллу надвое. Для "
-#~ "этого понадобится большее количество аммиака и фосфата."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr "Если число особей упадёт до нуля, ваш вид вымрет."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr ""
-#~ "Вы победите в этой игре, если выживете на протяжении 20 поколений с "
-#~ "популяцией не менее 300 особей своего вида. После победы всплывёт "
-#~ "окошко, но вы сможете продолжить играть."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-#~ msgstr ""
-#~ "Развивайтесь с умом - ваши конкуренты не дремлют. Всякий раз, когда вы "
-#~ "пользуетесь редактором, они эволюционируют."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr ""
-#~ "W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если "
-#~ "есть токсиновая вакуоль. G - режим поглощения. Связываясь с другими "
-#~ "клетками, вы можете построить колонию клеток, в которой клетки делятся "
-#~ "друг с другом соединениями, которые они поглощают и производят. Чтобы "
-#~ "иметь возможность связываться с другой клеткой, вам необходимо иметь "
-#~ "органеллы связывающих агентов и перемещаться в них после перехода в "
-#~ "режим связывания. Вы можете связываться только с клетками вашего "
-#~ "собственного вида. Находясь в колонии, вы не можете разделить свою "
-#~ "ячейку и войти в редактор (пока). Чтобы войти в редактор, сначала "
-#~ "покиньте колонию, как только вы соберете достаточно соединений, а затем "
-#~ "войдите в редактор. Большие колонии клеток - путь к многоклеточности "
-#~ "(пока не в игре)."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Прокариотические структуры\n"
-#~ "\n"
-#~ "Метаболосомы: Производят АТФ из глюкозы\n"
-#~ "\n"
-#~ "Хемосинтезирующие белки: Производят вдвое меньше глюкозы из "
-#~ "сероводорода, чем хемопласты, но также участвуют в гликолизе. Занимают "
-#~ "1 ячейку\n"
-#~ "\n"
-#~ "Тилакоиды: Производят в три раза меньше глюкозы чем обычный хлоропласт, "
-#~ "также участвуют в гликолизе. Занимают 1 ячейку\n"
-#~ "\n"
-#~ "Рустицианин: Превращает железо в АТФ\n"
-#~ "\n"
-#~ "Нитрогеназа: Превращает атмосферный азот и АТФ в аммиак в процессе "
-#~ "анаэробного дыхания\n"
-#~ "\n"
-#~ "Цитоплазма: Имеет свободное место и выполняет процесс гликолиза "
-#~ "(Производит небольшое количество АТФ)"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Внешние органеллы\n"
-#~ "\n"
-#~ "Жгутик: Двигает вашу клетку быстрее потребляя АТФ\n"
-#~ "\n"
-#~ "Пили: Может использоваться для прокалывания других клеток"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Мембранные органеллы\n"
-#~ "\n"
-#~ "Ядро: Занимает 11 ячеек и позволяет развить мембранные органеллы, и "
-#~ "также удваивает размер вашей клетки (можно развить только единожды)\n"
-#~ "\n"
-#~ "Связывающий Агент: Позволяет связываться с другими клетками\n"
-#~ "\n"
-#~ "Митохондрия: Производит АТФ из глюкозы и атмосферного кислорода, делает "
-#~ "это намного эффективнее цитоплазмы\n"
-#~ "\n"
-#~ "Хлоропласт: Создает глюкозу из солнечного света и атмосферного "
-#~ "углекислого газа\n"
-#~ "\n"
-#~ "Хемопласт: Создает глюкозу из сероводорода\n"
-#~ "\n"
-#~ "Азотфиксирующий пластид: Создает аммиак из АТФ, атмосферного азота и "
-#~ "кислорода\n"
-#~ "\n"
-#~ "Вакуоль: Вмещает до 15 соединений\n"
-#~ "\n"
-#~ "Токсиновая вакуоль: Производит токсины (в игре - OxyToxy NT)"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Каждое поколение у вас есть 100 очков мутации (MP), которые вы можете "
-#~ "потратить, и каждое изменение (или мутация) будет стоить определенное "
-#~ "количество этих очков. Добавление и удаление органелл требует "
-#~ "дополнительных затрат MP. Однако удаление органелл, которые были "
-#~ "помещены в текущий сеанс мутации, возвращает MP для этой органеллы. Вы "
-#~ "можете переместить или полностью удалить органеллу, щелкнув ее правой "
-#~ "кнопкой мыши и выбрав соответствующее действие во всплывающем меню. Вы "
-#~ "можете вращать органеллы, размещая их с помощью кнопок A и D."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы "
-#~ "можете изменить свой вида (добавляя, передвигая или удаляя органеллы), "
-#~ "чтобы повысить успех вашего вида. Каждое посещение редактора в "
-#~ "Микробной Фазе представляет 100 миллионов лет эволюции."
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
-
-#~ msgid "EASTEREGG_MESSAGE_1"
-#~ msgstr ""
-#~ "Забавный Факт: Дидинии и Парамеции - наглядный пример взаимоотношений "
-#~ "\"хищник - жертва\", которые изучали на протяжении десятилетий. А кто "
-#~ "же вы - хищник или жертва?"
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr ""
-#~ "Вот совет: токсины можно выпустить, чтобы оттолкнуть от себя другие "
-#~ "токсины, если вы достаточно быстры."
-
-#~ msgid "EASTEREGG_MESSAGE_3"
-#~ msgstr ""
-#~ "Вот совет: Осморегуляция тратит 1 АТФ в секунду на каждую заполненную "
-#~ "ячейку, которая есть у вашей клетки, каждая пустая ячейка цитоплазмы "
-#~ "генерирует 5 АТФ в секунду, что значит, что если вы теряете АТФ из-за "
-#~ "осморегуляции, просто добавьте пару пустых ячеек цитоплазмы или удалите "
-#~ "некоторые органеллы."
-
-#~ msgid "EASTEREGG_MESSAGE_4"
-#~ msgstr ""
-#~ "Забавный факт, В реальной жизни у прокариот есть нечто, называемое "
-#~ "Биокомпонентами, которые действуют как органеллы, но самом деле "
-#~ "называются Многогранными органеллами."
-
-#~ msgid "EASTEREGG_MESSAGE_5"
-#~ msgstr "Забавный Факт, Метаболосома является Многогранной органеллой."
-
-#~ msgid "EASTEREGG_MESSAGE_6"
-#~ msgstr "Вот совет: иногда лучше просто убежать от других клеток."
-
-#~ msgid "EASTEREGG_MESSAGE_7"
-#~ msgstr ""
-#~ "Вот совет: если клетка вдвое меньше вас, то вы можете её поглотить."
-
-#~ msgid "EASTEREGG_MESSAGE_8"
-#~ msgstr ""
-#~ "Вот совет: бактерии могут быть сильнее, чем кажутся, они могут казаться "
-#~ "маленькими, но некоторые из них могут проникнуть внутрь вас и таким "
-#~ "образом убить!"
-
-#~ msgid "EASTEREGG_MESSAGE_9"
-#~ msgstr ""
-#~ "Вот совет: вы можете охотиться на другие виды до их истребления, если "
-#~ "не будете достаточно осторожны. Другие виды могут делать то же самое."
-
-#~ msgid "EASTEREGG_MESSAGE_10"
-#~ msgstr "ИЗВИЛИСТЫЕ ТВАРИ!!"
-
-#~ msgid "EASTEREGG_MESSAGE_11"
-#~ msgstr "Плавик плавитель."
-
-#~ msgid "EASTEREGG_MESSAGE_12"
-#~ msgstr "Те синие клетки однако."
-
-#~ msgid "EASTEREGG_MESSAGE_13"
-#~ msgstr ""
-#~ "Вот совет: Биомы - это больше, чем просто разные фоны, соединения в "
-#~ "разных биомах, иногда, появляются с разной скоростью."
-
-#~ msgid "EASTEREGG_MESSAGE_14"
-#~ msgstr ""
-#~ "Вот совет: чем больше у вас жгутиков, тем быстрее вы двигаетесь, но "
-#~ "также это требует больше АТФ"
-
-#~ msgid "EASTEREGG_MESSAGE_15"
-#~ msgstr "Вот совет: вы можете поглощать куски, железные и прочие."
-
-#~ msgid "EASTEREGG_MESSAGE_16"
-#~ msgstr ""
-#~ "вот совет: хорошо подготовьтесь перед добавлением ядра. Эта вещь "
-#~ "дорогая! В содержании и первоначальной стоимости."
-
-#~ msgid "EASTEREGG_MESSAGE_17"
-#~ msgstr ""
-#~ "Забавный факт: Знаете ли вы, что на планете Земля существует более 8000 "
-#~ "видов инфузорий?"
-
-#~ msgid "EASTEREGG_MESSAGE_18"
-#~ msgstr ""
-#~ "Забавный факт: Трубачи - инфузории, способные растягивать себя и ловить "
-#~ "добычу в подобный трубе рот, который засасывает жертву, создавая водные "
-#~ "потоки с помощью ресничек."
-
-#~ msgid "EASTEREGG_MESSAGE_19"
-#~ msgstr ""
-#~ "Интересный факт: Дидиниум - это инфузория, которая охотится на "
-#~ "парамеции."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr ""
-#~ "Забавный факт: Амёба охотится и ловит добычу с помощью \"ног\", "
-#~ "состоящих из цитоплазмы, которые называются псевдоподиями, когда-нибудь "
-#~ "мы бы хотели добавить их в Thrive."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr ""
-#~ "Вот совет: Опасайтесь более крупных клеток и бактерий, быть съеденным "
-#~ "не весело, а они вас съедят."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr ""
-#~ "Звуковая команда Thrive'а сделала много песен, которые ещё не были "
-#~ "добавлены в игру. Вы можете послушать их, или посмотреть стримы с их "
-#~ "написанием на его YouTube канале, Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr ""
-#~ "Вот совет: если ваша клетка составляет 150 ячеек, вы можете поглотить "
-#~ "большие куски железа."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr ""
-#~ "Thrive - это симуляция инопланетной жизни, поэтому имеет смысл, что "
-#~ "большинство существ, которые вы найдете, будут родственны одному или "
-#~ "двумя другим видами из-за эволюции, происходящей вокруг вас, посмотрим, "
-#~ "сможете ли вы их идентифицировать!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr ""
-#~ "Интересный факт: команда Thrive время от времени выпускает подкасты, "
-#~ "вам стоит их послушать!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr ""
-#~ "Интересный факт: Thrive создан на движке с открытым исходным кодом "
-#~ "Godot!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr ""
-#~ "Забавный факт: Один из первых рабочих прототипов игрового процесса был "
-#~ "создан нашим замечательным программистом - untrustedlife!"
 
 #~ msgid "TURNS"
 #~ msgstr "Включая"

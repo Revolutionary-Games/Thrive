@@ -19,13 +19,13 @@ public class CustomAcceptDialog : AcceptDialog
 
     public static bool HasExclusiveDialogOpen => exclusiveDialogOpenCount > 0;
 
-    public void OnAboutToShow()
+    public virtual void OnAboutToShow()
     {
         if (isExclusive)
             exclusiveDialogOpenCount++;
     }
 
-    public void OnHide()
+    public virtual void OnHide()
     {
         if (isExclusive)
         {
