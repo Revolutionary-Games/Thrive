@@ -2375,11 +2375,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var thisOwnerId = ShapeFindOwner(localShape);
 
             var touchedMicrobe = touchedColonyMaster;
-            if (touchedMicrobe.Colony != null)
+            if (touchedMicrobe.Colony != null && touchedOwnerId != 0)
                 touchedMicrobe = GetColonyMemberWithShapeOwner(touchedOwnerId, touchedMicrobe.Colony);
 
             var thisMicrobe = this;
-            if (Colony != null)
+            if (Colony != null && thisOwnerId != 0)
                 thisMicrobe = GetColonyMemberWithShapeOwner(thisOwnerId, Colony);
 
             // TODO: does this need to check for disposed exception?
