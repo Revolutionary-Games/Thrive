@@ -25,14 +25,11 @@ CellEditorRedoPath = NodePath("RedoTutorial")
 CellEditorClosingWordsPath = NodePath("CellEditorClosingWords")
 
 [node name="EditorEntryReport" parent="." instance=ExtResource( 4 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 107.0
-margin_top = -184.0
-margin_right = 467.0
-margin_bottom = 176.0
+visible = true
+margin_left = 747.0
+margin_top = 176.0
+margin_right = 1107.0
+margin_bottom = 568.0
 rect_min_size = Vector2( 360, 360 )
 window_title = "TUTORIAL"
 resizable = true
@@ -40,10 +37,10 @@ resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="EditorEntryReport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -52.0
 rect_min_size = Vector2( 330, 330 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -59,14 +56,11 @@ text = "EDITOR_TUTORIAL_EDITOR_TEXT"
 autowrap = true
 
 [node name="PatchMapTutorial" parent="." instance=ExtResource( 4 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 107.0
-margin_top = -184.0
-margin_right = 457.0
-margin_bottom = 166.0
+visible = true
+margin_left = 747.0
+margin_top = 176.0
+margin_right = 1097.0
+margin_bottom = 558.0
 rect_min_size = Vector2( 350, 350 )
 window_title = "TUTORIAL"
 resizable = true
@@ -74,10 +68,10 @@ resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="PatchMapTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -52.0
 rect_min_size = Vector2( 320, 320 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -93,14 +87,11 @@ text = "EDITOR_TUTORIAL_PATCH_TEXT"
 autowrap = true
 
 [node name="CellEditorIntro" parent="." instance=ExtResource( 4 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 237.0
-margin_top = -134.0
-margin_right = 587.0
-margin_bottom = 216.0
+visible = true
+margin_left = 877.0
+margin_top = 226.0
+margin_right = 1227.0
+margin_bottom = 608.0
 rect_min_size = Vector2( 350, 350 )
 window_title = "TUTORIAL"
 resizable = true
@@ -108,10 +99,10 @@ resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorIntro"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -52.0
 rect_min_size = Vector2( 320, 320 )
 scroll_horizontal_enabled = false
 
@@ -124,14 +115,11 @@ text = "EDITOR_TUTORIAL_CELL_TEXT"
 autowrap = true
 
 [node name="UndoTutorial" parent="." instance=ExtResource( 4 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 237.0
-margin_top = -134.0
-margin_right = 527.0
-margin_bottom = 208.0
+visible = true
+margin_left = 877.0
+margin_top = 226.0
+margin_right = 1167.0
+margin_bottom = 568.0
 rect_min_size = Vector2( 290, 342 )
 window_title = "TUTORIAL"
 resizable = true
@@ -139,10 +127,10 @@ resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -52.0
 rect_min_size = Vector2( 260, 260 )
 scroll_horizontal_enabled = false
 
@@ -158,14 +146,11 @@ autowrap = true
 visible = false
 
 [node name="RedoTutorial" parent="." instance=ExtResource( 4 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 185.0
-margin_top = -125.0
-margin_right = 555.0
-margin_bottom = 245.0
+visible = true
+margin_left = 825.0
+margin_top = 235.0
+margin_right = 1195.0
+margin_bottom = 637.0
 rect_min_size = Vector2( 370, 370 )
 window_title = "TUTORIAL"
 resizable = true
@@ -173,10 +158,10 @@ resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="RedoTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -52.0
 rect_min_size = Vector2( 340, 340 )
 scroll_horizontal_enabled = false
 
@@ -189,14 +174,11 @@ text = "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 autowrap = true
 
 [node name="CellEditorClosingWords" parent="." instance=ExtResource( 4 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 185.0
-margin_top = -125.0
-margin_right = 555.0
-margin_bottom = 245.0
+visible = true
+margin_left = 825.0
+margin_top = 235.0
+margin_right = 1195.0
+margin_bottom = 605.0
 rect_min_size = Vector2( 370, 370 )
 window_title = "TUTORIAL"
 resizable = true
@@ -204,10 +186,10 @@ resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -52.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
