@@ -24,7 +24,7 @@
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\IFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
-    <Compile Include="src\auto-evo\simulation\food_source\PhotosyntheticFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
@@ -309,7 +309,6 @@
   <ItemGroup>
     <Folder Include="shaders\" />
     <Folder Include="src\microbe_stage\organelle_components\" />
-	<Folder Include="src\auto-evo\simulation\" />
     <Folder Include="src\auto-evo\steps\" />
   </ItemGroup>
   <ItemGroup>

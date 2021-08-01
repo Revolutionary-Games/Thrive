@@ -139,7 +139,7 @@
 
             var niches = new List<IFoodSource>
             {
-                new PhotosyntheticFoodSource(patch),
+                new EnvironmentalFoodSource(patch, "sunlight", Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT),
                 new CompoundFoodSource(patch, Glucose),
                 new CompoundFoodSource(patch, HydrogenSulfide),
                 new CompoundFoodSource(patch, Iron),
