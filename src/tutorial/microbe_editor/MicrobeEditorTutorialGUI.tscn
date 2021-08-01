@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindowDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 
 [node name="MicrobeEditorTutorialGUI" type="Control"]
@@ -23,7 +24,7 @@ CellEditorUndoHighlightPath = NodePath("UndoButtonHighlight")
 CellEditorRedoPath = NodePath("RedoTutorial")
 CellEditorClosingWordsPath = NodePath("CellEditorClosingWords")
 
-[node name="EditorEntryReport" type="WindowDialog" parent="."]
+[node name="EditorEntryReport" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -35,9 +36,6 @@ margin_bottom = 176.0
 rect_min_size = Vector2( 360, 360 )
 window_title = "TUTORIAL"
 resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="EditorEntryReport"]
 anchor_right = 1.0
@@ -60,7 +58,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_EDITOR_TEXT"
 autowrap = true
 
-[node name="PatchMapTutorial" type="WindowDialog" parent="."]
+[node name="PatchMapTutorial" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -72,9 +70,6 @@ margin_bottom = 166.0
 rect_min_size = Vector2( 350, 350 )
 window_title = "TUTORIAL"
 resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PatchMapTutorial"]
 anchor_right = 1.0
@@ -97,7 +92,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_PATCH_TEXT"
 autowrap = true
 
-[node name="CellEditorIntro" type="WindowDialog" parent="."]
+[node name="CellEditorIntro" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -109,9 +104,6 @@ margin_bottom = 216.0
 rect_min_size = Vector2( 350, 350 )
 window_title = "TUTORIAL"
 resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorIntro"]
 anchor_right = 1.0
@@ -131,7 +123,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_CELL_TEXT"
 autowrap = true
 
-[node name="UndoTutorial" type="WindowDialog" parent="."]
+[node name="UndoTutorial" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -143,9 +135,6 @@ margin_bottom = 208.0
 rect_min_size = Vector2( 290, 342 )
 window_title = "TUTORIAL"
 resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
 anchor_right = 1.0
@@ -168,7 +157,7 @@ autowrap = true
 [node name="UndoButtonHighlight" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[node name="RedoTutorial" type="WindowDialog" parent="."]
+[node name="RedoTutorial" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -180,9 +169,6 @@ margin_bottom = 245.0
 rect_min_size = Vector2( 370, 370 )
 window_title = "TUTORIAL"
 resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="RedoTutorial"]
 anchor_right = 1.0
@@ -202,7 +188,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 autowrap = true
 
-[node name="CellEditorClosingWords" type="WindowDialog" parent="."]
+[node name="CellEditorClosingWords" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -214,9 +200,6 @@ margin_bottom = 245.0
 rect_min_size = Vector2( 370, 370 )
 window_title = "TUTORIAL"
 resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords"]
 anchor_right = 1.0
@@ -259,6 +242,7 @@ margin_bottom = 340.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
 text = "GOT_IT"
+
 [connection signal="hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="popup_hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="hide" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= [ "PatchMap" ]]
