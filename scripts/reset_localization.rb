@@ -29,11 +29,12 @@ unless File.exist?('Thrive.sln')
   exit
 end
 current_branch = `git rev-parse --abbrev-ref HEAD`.strip!
+has_changes = system('git diff-index --quiet HEAD --')
 runOpen3Checked('git', 'stash')
 runOpen3Checked('git', 'checkout', 'master')
 runOpen3Checked('git', 'pull')
 runOpen3Checked('git', 'checkout', current_branch)
-runOpen3Checked('git', 'stash', 'pop')
+runOpen3Checked('git', 'stash', 'pop') if has_changes
 runOpen3Checked('git', 'checkout', 'master', 'locale/')
 runOpen3Checked('ruby', 'scripts/update_localization.rb')
 runOpen3Checked(editor, 'locale/en.po')
