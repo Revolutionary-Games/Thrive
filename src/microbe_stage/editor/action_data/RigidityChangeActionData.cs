@@ -16,10 +16,12 @@ public class RigidityChangeActionData : MicrobeEditorActionData
     {
         if (other is RigidityChangeActionData rigidityChangeActionData)
         {
+            // If the value has been changed back to a previous value
             if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON &&
                 Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
                 return MicrobeActionInterferenceMode.CancelsOut;
 
+            // If the value has been changed twice
             if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON ||
                 Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
                 return MicrobeActionInterferenceMode.Combinable;

@@ -22,8 +22,11 @@ public class MoveActionData : MicrobeEditorActionData
         // If this organelle got moved in the same session again
         if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
         {
+            // If this organelle got moved back and forth
             if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation)
                 return MicrobeActionInterferenceMode.CancelsOut;
+
+            // If this organelle got moved twice
             if (moveActionData.NewLocation == OldLocation || NewLocation == moveActionData.OldLocation)
                 return MicrobeActionInterferenceMode.Combinable;
         }

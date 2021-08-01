@@ -14,9 +14,11 @@ public class MembraneActionData : MicrobeEditorActionData
     {
         if (other is MembraneActionData membraneActionData)
         {
+            // If changed back to the old membrane
             if (membraneActionData.NewMembrane == OldMembrane && NewMembrane == membraneActionData.OldMembrane)
                 return MicrobeActionInterferenceMode.CancelsOut;
 
+            // If changed membrane twice
             if (membraneActionData.NewMembrane == OldMembrane || NewMembrane == membraneActionData.OldMembrane)
                 return MicrobeActionInterferenceMode.Combinable;
         }

@@ -20,9 +20,11 @@ public class PlacementActionData : MicrobeEditorActionData
         // If this organelle got removed in this session
         if (other is RemoveActionData removeActionData && removeActionData.Organelle.Definition == Organelle.Definition)
         {
+            // If the placed organelle has been placed on the same position where it got removed before
             if (removeActionData.Location == Location)
                 return MicrobeActionInterferenceMode.CancelsOut;
 
+            // Removing and placing an organelle is a move operation
             return MicrobeActionInterferenceMode.Combinable;
         }
 
