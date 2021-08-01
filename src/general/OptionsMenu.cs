@@ -238,7 +238,7 @@ public class OptionsMenu : ControlWithInput
 
     // Confirmation Boxes
     private AcceptDialog backConfirmationBox;
-    private ConfirmationDialog defaultsConfirmationBox;
+    private AcceptDialog defaultsConfirmationBox;
     private AcceptDialog errorAcceptBox;
 
     /*
@@ -348,7 +348,7 @@ public class OptionsMenu : ControlWithInput
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
         backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
-        defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
+        defaultsConfirmationBox = GetNode<AcceptDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;

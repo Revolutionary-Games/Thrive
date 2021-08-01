@@ -36,6 +36,18 @@ public class CustomAcceptDialog : AcceptDialog
         GUICommon.Instance.PlayButtonPressSound();
     }
 
+    public override void _EnterTree()
+    {
+        InputManager.RegisterReceiver(this);
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        InputManager.UnregisterReceiver(this);
+        base._ExitTree();
+    }
+
     [RunOnKeyDown("ui_cancel", Priority = Constants.WINDOW_DIALOG_CANCEL_PRIORITY)]
     public bool OnEscapePressed()
     {

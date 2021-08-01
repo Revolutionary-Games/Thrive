@@ -346,15 +346,14 @@ anims/MenuSlide = SubResource( 1 )
 margin_right = 500.0
 margin_bottom = 78.0
 rect_min_size = Vector2( 500, 0 )
-theme = ExtResource( 1 )
 window_title = "GLES2_MODE_WARNING"
 dialog_autowrap = true
 
 [node name="DialogText" type="Label" parent="GLES2 Popup"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 1770.0
-margin_bottom = 746.0
+margin_right = 490.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "GLES2_MODE_WARNING_TEXT"

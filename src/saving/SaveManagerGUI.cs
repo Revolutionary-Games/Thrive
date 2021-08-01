@@ -44,8 +44,8 @@ public class SaveManagerGUI : Control
     private Button loadButton;
     private Button deleteSelectedButton;
     private Button deleteOldButton;
-    private ConfirmationDialog deleteSelectedConfirmDialog;
-    private ConfirmationDialog deleteOldConfirmDialog;
+    private AcceptDialog deleteSelectedConfirmDialog;
+    private AcceptDialog deleteOldConfirmDialog;
 
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
@@ -86,8 +86,8 @@ public class SaveManagerGUI : Control
         loadButton = GetNode<Button>(LoadButtonPath);
         deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
-        deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
-        deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
+        deleteSelectedConfirmDialog = GetNode<AcceptDialog>(DeleteSelectedConfirmDialogPath);
+        deleteOldConfirmDialog = GetNode<AcceptDialog>(DeleteOldConfirmDialogPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }

@@ -185,14 +185,13 @@ margin_bottom = 600.0
 rect_min_size = Vector2( 500, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
-popup_exclusive = true
 window_title = "DELETE_SELECTED_SAVES"
 
 [node name="DialogText" type="Label" parent="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 1990.0
-margin_bottom = 632.0
+margin_right = 990.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 align = 1
@@ -208,14 +207,13 @@ margin_bottom = 600.0
 rect_min_size = Vector2( 550, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
-popup_exclusive = true
 window_title = "DELETE_OLD_SAVES"
 
 [node name="DialogText" type="Label" parent="CenterContainer/VBoxContainer/DeleteOldConfirmDialog"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 1990.0
-margin_bottom = 632.0
+margin_right = 990.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 align = 1
