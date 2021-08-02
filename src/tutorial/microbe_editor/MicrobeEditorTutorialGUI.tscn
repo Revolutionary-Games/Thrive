@@ -25,7 +25,6 @@ CellEditorRedoPath = NodePath("RedoTutorial")
 CellEditorClosingWordsPath = NodePath("CellEditorClosingWords")
 
 [node name="EditorEntryReport" parent="." instance=ExtResource( 4 )]
-visible = true
 margin_left = 747.0
 margin_top = 176.0
 margin_right = 1107.0
@@ -56,7 +55,6 @@ text = "EDITOR_TUTORIAL_EDITOR_TEXT"
 autowrap = true
 
 [node name="PatchMapTutorial" parent="." instance=ExtResource( 4 )]
-visible = true
 margin_left = 747.0
 margin_top = 176.0
 margin_right = 1097.0
@@ -87,7 +85,6 @@ text = "EDITOR_TUTORIAL_PATCH_TEXT"
 autowrap = true
 
 [node name="CellEditorIntro" parent="." instance=ExtResource( 4 )]
-visible = true
 margin_left = 877.0
 margin_top = 226.0
 margin_right = 1227.0
@@ -115,7 +112,6 @@ text = "EDITOR_TUTORIAL_CELL_TEXT"
 autowrap = true
 
 [node name="UndoTutorial" parent="." instance=ExtResource( 4 )]
-visible = true
 margin_left = 877.0
 margin_top = 226.0
 margin_right = 1167.0
@@ -146,7 +142,6 @@ autowrap = true
 visible = false
 
 [node name="RedoTutorial" parent="." instance=ExtResource( 4 )]
-visible = true
 margin_left = 825.0
 margin_top = 235.0
 margin_right = 1195.0
@@ -174,7 +169,6 @@ text = "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 autowrap = true
 
 [node name="CellEditorClosingWords" parent="." instance=ExtResource( 4 )]
-visible = true
 margin_left = 825.0
 margin_top = 235.0
 margin_right = 1195.0

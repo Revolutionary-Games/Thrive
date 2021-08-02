@@ -102,7 +102,6 @@ size_flags_horizontal = 4
 text = "BEGIN_THRIVING"
 
 [node name="MicrobeMovementTutorial" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -111,7 +110,6 @@ __meta__ = {
 }
 
 [node name="ExplainingPopup" parent="MicrobeMovementTutorial" instance=ExtResource( 4 )]
-visible = true
 margin_left = 1007.0
 margin_top = 150.0
 margin_right = 1267.0
@@ -275,7 +273,6 @@ text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 
 [node name="UnbindTutorial" parent="." instance=ExtResource( 4 )]
-visible = true
 margin_left = 1007.0
 margin_top = 150.0
 margin_right = 1267.0
