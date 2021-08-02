@@ -19,7 +19,7 @@ public class NewSaveMenu : Control
 
     private SaveList saveList;
     private LineEdit saveNameBox;
-    private AcceptDialog overwriteConfirm;
+    private CustomConfirmationDialog overwriteConfirm;
 
     private bool usingSelectedSaveName;
 
@@ -33,7 +33,7 @@ public class NewSaveMenu : Control
     {
         saveList = GetNode<SaveList>(SaveListPath);
         saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
-        overwriteConfirm = GetNode<AcceptDialog>(OverwriteConfirmPath);
+        overwriteConfirm = GetNode<CustomConfirmationDialog>(OverwriteConfirmPath);
     }
 
     public void RefreshExisting()

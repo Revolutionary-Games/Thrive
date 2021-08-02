@@ -23,8 +23,8 @@ public class InputGroupList : VBoxContainer
     private InputEventItem latestDialogConflict;
     private InputEventWithModifiers latestDialogNewEvent;
 
-    private AcceptDialog conflictDialog;
-    private AcceptDialog resetInputsDialog;
+    private CustomAcceptDialog conflictDialog;
+    private CustomAcceptDialog resetInputsDialog;
 
     public delegate void ControlsChangedDelegate(InputDataList data);
 
@@ -68,8 +68,8 @@ public class InputGroupList : VBoxContainer
         InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
         InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
 
-        conflictDialog = GetNode<AcceptDialog>(ConflictDialogPath);
-        resetInputsDialog = GetNode<AcceptDialog>(ResetInputsDialog);
+        conflictDialog = GetNode<CustomAcceptDialog>(ConflictDialogPath);
+        resetInputsDialog = GetNode<CustomAcceptDialog>(ResetInputsDialog);
     }
 
     /// <summary>

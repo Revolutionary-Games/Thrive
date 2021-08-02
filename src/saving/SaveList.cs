@@ -44,11 +44,11 @@ public class SaveList : ScrollContainer
 
     private Control loadingItem;
     private BoxContainer savesList;
-    private AcceptDialog deleteConfirmDialog;
-    private AcceptDialog loadNewerConfirmDialog;
-    private AcceptDialog loadOlderConfirmDialog;
-    private AcceptDialog loadInvalidConfirmDialog;
-    private AcceptDialog loadIncompatibleDialog;
+    private CustomConfirmationDialog deleteConfirmDialog;
+    private CustomConfirmationDialog loadNewerConfirmDialog;
+    private CustomConfirmationDialog loadOlderConfirmDialog;
+    private CustomConfirmationDialog loadInvalidConfirmDialog;
+    private CustomAcceptDialog loadIncompatibleDialog;
 
     private PackedScene listItemScene;
 
@@ -72,11 +72,11 @@ public class SaveList : ScrollContainer
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
         savesList = GetNode<BoxContainer>(SavesListPath);
-        deleteConfirmDialog = GetNode<AcceptDialog>(DeleteConfirmDialogPath);
-        loadOlderConfirmDialog = GetNode<AcceptDialog>(LoadOlderSaveDialogPath);
-        loadNewerConfirmDialog = GetNode<AcceptDialog>(LoadNewerSaveDialogPath);
-        loadInvalidConfirmDialog = GetNode<AcceptDialog>(LoadInvalidSaveDialogPath);
-        loadIncompatibleDialog = GetNode<AcceptDialog>(LoadIncompatibleDialogPath);
+        deleteConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmDialogPath);
+        loadOlderConfirmDialog = GetNode<CustomConfirmationDialog>(LoadOlderSaveDialogPath);
+        loadNewerConfirmDialog = GetNode<CustomConfirmationDialog>(LoadNewerSaveDialogPath);
+        loadInvalidConfirmDialog = GetNode<CustomConfirmationDialog>(LoadInvalidSaveDialogPath);
+        loadIncompatibleDialog = GetNode<CustomAcceptDialog>(LoadIncompatibleDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }

@@ -237,9 +237,9 @@ public class OptionsMenu : ControlWithInput
     private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
-    private AcceptDialog backConfirmationBox;
-    private AcceptDialog defaultsConfirmationBox;
-    private AcceptDialog errorAcceptBox;
+    private CustomWindowDialog backConfirmationBox;
+    private CustomConfirmationDialog defaultsConfirmationBox;
+    private CustomAcceptDialog errorAcceptBox;
 
     /*
       Misc
@@ -347,15 +347,11 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
-        backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
-        defaultsConfirmationBox = GetNode<AcceptDialog>(DefaultsConfirmationBoxPath);
-        errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
+        backConfirmationBox = GetNode<CustomWindowDialog>(BackConfirmationBoxPath);
+        defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
+        errorAcceptBox = GetNode<CustomAcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
-
-        // We're only utilizing the AcceptDialog's auto resize functionality,
-        // so hide the default Ok button since it's not needed
-        backConfirmationBox.GetOk().Hide();
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");

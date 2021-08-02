@@ -26,12 +26,12 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath CellEditorClosingWordsPath;
 
-    private WindowDialog editorEntryReport;
-    private WindowDialog patchMap;
-    private WindowDialog cellEditorIntroduction;
-    private WindowDialog cellEditorUndo;
-    private WindowDialog cellEditorRedo;
-    private WindowDialog cellEditorClosingWords;
+    private CustomWindowDialog editorEntryReport;
+    private CustomWindowDialog patchMap;
+    private CustomWindowDialog cellEditorIntroduction;
+    private CustomWindowDialog cellEditorUndo;
+    private CustomWindowDialog cellEditorRedo;
+    private CustomWindowDialog cellEditorClosingWords;
 
     public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeEditor;
     public ITutorialInput EventReceiver { get; set; }
@@ -157,12 +157,12 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        editorEntryReport = GetNode<WindowDialog>(EditorEntryReportPath);
-        patchMap = GetNode<WindowDialog>(PatchMapPath);
-        cellEditorIntroduction = GetNode<WindowDialog>(CellEditorIntroductionPath);
-        cellEditorUndo = GetNode<WindowDialog>(CellEditorUndoPath);
-        cellEditorRedo = GetNode<WindowDialog>(CellEditorRedoPath);
-        cellEditorClosingWords = GetNode<WindowDialog>(CellEditorClosingWordsPath);
+        editorEntryReport = GetNode<CustomWindowDialog>(EditorEntryReportPath);
+        patchMap = GetNode<CustomWindowDialog>(PatchMapPath);
+        cellEditorIntroduction = GetNode<CustomWindowDialog>(CellEditorIntroductionPath);
+        cellEditorUndo = GetNode<CustomWindowDialog>(CellEditorUndoPath);
+        cellEditorRedo = GetNode<CustomWindowDialog>(CellEditorRedoPath);
+        cellEditorClosingWords = GetNode<CustomWindowDialog>(CellEditorClosingWordsPath);
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
     }
 

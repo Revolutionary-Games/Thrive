@@ -44,7 +44,7 @@ public class MainMenu : NodeWithInput
     private Button newGameButton;
     private Button freebuildButton;
 
-    private AcceptDialog gles2Popup;
+    private CustomAcceptDialog gles2Popup;
 
     public override void _Ready()
     {
@@ -150,7 +150,7 @@ public class MainMenu : NodeWithInput
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-        gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
+        gles2Popup = GetNode<CustomAcceptDialog>(GLES2PopupPath);
 
         // Set initial menu
         SwitchMenu();

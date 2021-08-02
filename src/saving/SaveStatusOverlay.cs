@@ -28,7 +28,7 @@ public class SaveStatusOverlay : Control
     private Label extraDescriptionLabel;
     private Label exceptionLabel;
 
-    private WindowDialog errorDialog;
+    private CustomAcceptDialog errorDialog;
 
     private float hideTimer;
     private bool hidden;
@@ -52,7 +52,7 @@ public class SaveStatusOverlay : Control
     {
         statusLabel = GetNode<Label>(StatusLabelPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
-        errorDialog = GetNode<WindowDialog>(ErrorDialogPath);
+        errorDialog = GetNode<CustomAcceptDialog>(ErrorDialogPath);
         extraDescriptionLabel = GetNode<Label>(ExtraErrorDescriptionPath);
         exceptionLabel = GetNode<Label>(ExceptionPath);
 

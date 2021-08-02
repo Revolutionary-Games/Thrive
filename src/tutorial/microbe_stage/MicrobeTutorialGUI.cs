@@ -41,17 +41,17 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath UnbindTutorialPath;
 
-    private WindowDialog microbeWelcomeMessage;
+    private CustomWindowDialog microbeWelcomeMessage;
     private Control microbeMovementKeyPrompts;
     private Control microbeMovementKeyForward;
     private Control microbeMovementKeyLeft;
     private Control microbeMovementKeyRight;
     private Control microbeMovementKeyBackwards;
-    private WindowDialog microbeMovementPopup;
-    private WindowDialog glucoseTutorial;
-    private WindowDialog stayingAlive;
-    private WindowDialog reproductionTutorial;
-    private WindowDialog unbindTutorial;
+    private CustomWindowDialog microbeMovementPopup;
+    private CustomWindowDialog glucoseTutorial;
+    private CustomWindowDialog stayingAlive;
+    private CustomWindowDialog reproductionTutorial;
+    private CustomWindowDialog unbindTutorial;
 
     public ITutorialInput EventReceiver { get; set; }
 
@@ -221,17 +221,17 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<WindowDialog>(MicrobeWelcomeMessagePath);
+        microbeWelcomeMessage = GetNode<CustomWindowDialog>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
-        microbeMovementPopup = GetNode<WindowDialog>(MicrobeMovementPopupPath);
+        microbeMovementPopup = GetNode<CustomWindowDialog>(MicrobeMovementPopupPath);
         microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
         microbeMovementKeyLeft = GetNode<Control>(MicrobeMovementKeyLeftPath);
         microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
-        glucoseTutorial = GetNode<WindowDialog>(GlucoseTutorialPath);
-        stayingAlive = GetNode<WindowDialog>(StayingAlivePath);
-        reproductionTutorial = GetNode<WindowDialog>(ReproductionTutorialPath);
-        unbindTutorial = GetNode<WindowDialog>(UnbindTutorialPath);
+        glucoseTutorial = GetNode<CustomWindowDialog>(GlucoseTutorialPath);
+        stayingAlive = GetNode<CustomWindowDialog>(StayingAlivePath);
+        reproductionTutorial = GetNode<CustomWindowDialog>(ReproductionTutorialPath);
+        unbindTutorial = GetNode<CustomWindowDialog>(UnbindTutorialPath);
     }
 
     public override void _Process(float delta)

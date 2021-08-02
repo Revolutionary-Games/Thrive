@@ -8,11 +8,11 @@ public class QuickLoadHandler : NodeWithInput
     [Export]
     public NodePath DifferentVersionDialogPath;
 
-    private AcceptDialog differentVersionDialog;
+    private CustomAcceptDialog differentVersionDialog;
 
     public override void _Ready()
     {
-        differentVersionDialog = GetNode<AcceptDialog>(DifferentVersionDialogPath);
+        differentVersionDialog = GetNode<CustomAcceptDialog>(DifferentVersionDialogPath);
 
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;

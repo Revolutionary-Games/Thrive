@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/dialogs/CustomAcceptDialog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindowDialog.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -1071,14 +1072,11 @@ __meta__ = {
 }
 
 [node name="DefaultsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 340.0
 margin_top = 318.0
 margin_right = 940.0
 margin_bottom = 402.0
 rect_min_size = Vector2( 600, 70 )
-popup_exclusive = true
 window_title = "RESET_TO_DEFAULTS"
 
 [node name="DialogText" type="Label" parent="CenterContainer/DefaultsConfirm"]
@@ -1096,14 +1094,11 @@ __meta__ = {
 }
 
 [node name="DefaultsInputsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 340.0
 margin_top = 318.0
 margin_right = 940.0
 margin_bottom = 402.0
 rect_min_size = Vector2( 600, 70 )
-popup_exclusive = true
 window_title = "RESET_INPUTS_TO_DEFAULTS"
 
 [node name="DialogText" type="Label" parent="CenterContainer/DefaultsInputsConfirm"]
@@ -1120,15 +1115,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackConfirm" parent="CenterContainer" instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="BackConfirm" parent="CenterContainer" instance=ExtResource( 8 )]
 margin_left = 340.0
 margin_top = 296.0
 margin_right = 940.0
 margin_bottom = 423.0
 rect_min_size = Vector2( 600, 0 )
-popup_exclusive = true
 window_title = "CLOSE_OPTIONS"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/BackConfirm"]
@@ -1202,14 +1194,11 @@ __meta__ = {
 }
 
 [node name="ErrorAccept" parent="CenterContainer" instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 440.0
 margin_top = 318.0
 margin_right = 840.0
 margin_bottom = 402.0
 rect_min_size = Vector2( 400, 0 )
-popup_exclusive = true
 window_title = "ERROR"
 
 [node name="DialogText" type="Label" parent="CenterContainer/ErrorAccept"]
@@ -1227,14 +1216,11 @@ __meta__ = {
 }
 
 [node name="ConflictDialog" parent="CenterContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 390.0
 margin_top = 318.0
 margin_right = 890.0
 margin_bottom = 402.0
 rect_min_size = Vector2( 500, 70 )
-popup_exclusive = true
 window_title = "ERROR"
 
 [node name="DialogText" type="Label" parent="CenterContainer/ConflictDialog"]
@@ -1251,13 +1237,10 @@ __meta__ = {
 }
 
 [node name="ErrorAccept" parent="CenterContainer" instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 443.0
 margin_top = 318.0
 margin_right = 837.0
 margin_bottom = 402.0
-popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 
