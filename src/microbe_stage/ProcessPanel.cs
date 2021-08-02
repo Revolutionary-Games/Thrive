@@ -55,4 +55,10 @@ public class ProcessPanel : CustomWindowDialog
         EmitSignal(nameof(OnClosed));
         base.OnHide();
     }
+
+    public void OnClose()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        Hide();
+    }
 }
