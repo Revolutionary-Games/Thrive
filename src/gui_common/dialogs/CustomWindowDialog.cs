@@ -1,5 +1,3 @@
-using Godot;
-
 public class CustomWindowDialog : CustomAcceptDialog
 {
     public override void _EnterTree()
