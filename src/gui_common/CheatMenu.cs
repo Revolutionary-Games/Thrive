@@ -1,10 +1,9 @@
 ﻿using System;
-using Godot;
 
 /// <summary>
 ///   Handles the opening, closing and operations of the cheat menus
 /// </summary>
-public abstract class CheatMenu : Popup
+public abstract class CheatMenu : CustomWindowDialog
 {
     /// <summary>
     ///   Whether the cheat menu may be opened or not
@@ -50,20 +49,23 @@ public abstract class CheatMenu : Popup
 
     public override void _Ready()
     {
+        isEscapeCloseable = false;
         ReloadGUI();
         base._Ready();
     }
 
     public override void _EnterTree()
     {
-        InputManager.RegisterReceiver(this);
+        // InputManager.RegisterReceiver(this);
         CheatManager.OnHideCheatMenus += OnHideCheatMenus;
+        base._EnterTree();
     }
 
     public override void _ExitTree()
     {
-        InputManager.UnregisterReceiver(this);
+        // InputManager.UnregisterReceiver(this);
         CheatManager.OnHideCheatMenus -= OnHideCheatMenus;
+        base._EnterTree();
     }
 
     public void SetInfiniteMP(bool value)
