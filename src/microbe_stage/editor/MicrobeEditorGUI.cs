@@ -539,6 +539,13 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         UpdateMicrobePartSelections();
 
         RegisterTooltips();
+
+        // Alpha channel is not used currently.
+        membraneColorPicker.EditAlpha = false;
+
+        // Disable Raw view.
+        // As Godot doesn't seem to give a method to disable it, have to use this way.
+        membraneColorPicker.GetChild(4).GetChild(4).GetChild<CheckButton>(1).Disabled = true;
     }
 
     public void Init(MicrobeEditor editor)
