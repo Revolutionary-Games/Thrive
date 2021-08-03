@@ -26,6 +26,7 @@ public class ProcessPanel : CustomWindowDialog
 
     public override void _Ready()
     {
+        isExclusive = true;
         isEscapeCloseable = false;
 
         processList = GetNode<ProcessList>(ProcessListPath);

@@ -49,6 +49,7 @@ public abstract class CheatMenu : CustomWindowDialog
 
     public override void _Ready()
     {
+        isExclusive = true;
         isEscapeCloseable = false;
         ReloadGUI();
         base._Ready();
