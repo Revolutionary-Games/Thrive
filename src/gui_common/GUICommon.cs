@@ -6,7 +6,7 @@ using Object = Godot.Object;
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
-public class GUICommon : Node
+public class GUICommon : NodeWithInput
 {
     private static GUICommon instance;
 
@@ -42,6 +42,11 @@ public class GUICommon : Node
     /// </summary>
     public Tween Tween { get; }
 
+    /// <summary>
+    ///   Checks whether the top-most modal on stack is an exclusive popup.
+    /// </summary>
+    public bool IsAnyExclusivePopupVisible => GetCurrentlyActiveExclusivePopup() != null;
+
     public static Vector2 GetFirstChildMinSize(Control control)
     {
         var child = control.GetChild<Control>(0);
@@ -67,6 +72,45 @@ public class GUICommon : Node
 
         var weight = Math.Min(3.0f * delta + 0.2f, 1.0f);
         bar.Value = MathUtils.Lerp((float)bar.Value, target, weight, 1.0f / (float)bar.MaxValue);
+    }
+
+    /// <summary>
+    ///   Closes any currently active exclusive modal popup.
+    /// </summary>
+    [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]
+    public bool HideCurrentlyActiveExclusivePopup()
+    {
+        var popup = GetCurrentlyActiveExclusivePopup();
+        var customPopup = popup as ICustomPopup;
+
+        if (!IsAnyExclusivePopupVisible || (customPopup != null &&
+            !customPopup.ExclusiveAllowCloseOnEscape))
+        {
+            return false;
+        }
+
+        if (customPopup != null)
+        {
+            customPopup.ClosePopup();
+        }
+        else
+        {
+            popup.Hide();
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
+    /// </summary>
+
+    public Popup GetCurrentlyActiveExclusivePopup()
+    {
+        if (GetViewport().GetModalStackTop() is Popup popup && popup.PopupExclusive)
+            return popup;
+
+        return null;
     }
 
     /// <summary>
@@ -109,21 +153,23 @@ public class GUICommon : Node
         Tween.Start();
     }
 
-    public void ModulateFadeIn(Control control, float duration)
+    public void ModulateFadeIn(Control control, float duration,
+        Tween.TransitionType transitionType = Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In)
     {
         // Make sure the control is visible
         control.Show();
         control.Modulate = new Color(1, 1, 1, 0);
 
-        Tween.InterpolateProperty(control, "modulate:a", 0, 1, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
+        Tween.InterpolateProperty(control, "modulate:a", 0, 1, duration, transitionType, easeType);
         Tween.Start();
     }
 
-    public void ModulateFadeOut(Control control, float duration, bool hideOnFinished = true)
+    public void ModulateFadeOut(Control control, float duration, Tween.TransitionType transitionType =
+        Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In, bool hideOnFinished = true)
     {
         control.Modulate = new Color(1, 1, 1, 1);
 
-        Tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, Tween.TransitionType.Sine, Tween.EaseType.In);
+        Tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, transitionType, easeType);
         Tween.Start();
 
         if (!Tween.IsConnected("tween_completed", this, nameof(HideControlOnFadeOutComplete)) && hideOnFinished)

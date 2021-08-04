@@ -26,12 +26,12 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath CellEditorClosingWordsPath;
 
-    private CustomWindowDialog editorEntryReport;
-    private CustomWindowDialog patchMap;
-    private CustomWindowDialog cellEditorIntroduction;
-    private CustomWindowDialog cellEditorUndo;
-    private CustomWindowDialog cellEditorRedo;
-    private CustomWindowDialog cellEditorClosingWords;
+    private CustomDialog editorEntryReport;
+    private CustomDialog patchMap;
+    private CustomDialog cellEditorIntroduction;
+    private CustomDialog cellEditorUndo;
+    private CustomDialog cellEditorRedo;
+    private CustomDialog cellEditorClosingWords;
 
     public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeEditor;
     public ITutorialInput EventReceiver { get; set; }
@@ -55,7 +55,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                editorEntryReport.Visible = false;
+                editorEntryReport.ClosePopup();
             }
         }
     }
@@ -74,7 +74,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                patchMap.Visible = false;
+                patchMap.ClosePopup();
             }
         }
     }
@@ -93,7 +93,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorIntroduction.Visible = false;
+                cellEditorIntroduction.ClosePopup();
             }
         }
     }
@@ -112,7 +112,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorUndo.Visible = false;
+                cellEditorUndo.ClosePopup();
             }
         }
     }
@@ -131,7 +131,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorRedo.Visible = false;
+                cellEditorRedo.ClosePopup();
             }
         }
     }
@@ -150,19 +150,19 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorClosingWords.Visible = false;
+                cellEditorClosingWords.ClosePopup();
             }
         }
     }
 
     public override void _Ready()
     {
-        editorEntryReport = GetNode<CustomWindowDialog>(EditorEntryReportPath);
-        patchMap = GetNode<CustomWindowDialog>(PatchMapPath);
-        cellEditorIntroduction = GetNode<CustomWindowDialog>(CellEditorIntroductionPath);
-        cellEditorUndo = GetNode<CustomWindowDialog>(CellEditorUndoPath);
-        cellEditorRedo = GetNode<CustomWindowDialog>(CellEditorRedoPath);
-        cellEditorClosingWords = GetNode<CustomWindowDialog>(CellEditorClosingWordsPath);
+        editorEntryReport = GetNode<CustomDialog>(EditorEntryReportPath);
+        patchMap = GetNode<CustomDialog>(PatchMapPath);
+        cellEditorIntroduction = GetNode<CustomDialog>(CellEditorIntroductionPath);
+        cellEditorUndo = GetNode<CustomDialog>(CellEditorUndoPath);
+        cellEditorRedo = GetNode<CustomDialog>(CellEditorRedoPath);
+        cellEditorClosingWords = GetNode<CustomDialog>(CellEditorClosingWordsPath);
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
     }
 

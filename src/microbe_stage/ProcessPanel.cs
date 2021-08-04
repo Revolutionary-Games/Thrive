@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Controls the process panel contents
 /// </summary>
-public class ProcessPanel : CustomWindowDialog
+public class ProcessPanel : CustomDialog
 {
     [Export]
     public NodePath ProcessListPath;
@@ -26,8 +26,6 @@ public class ProcessPanel : CustomWindowDialog
 
     public override void _Ready()
     {
-        isEscapeCloseable = false;
-
         processList = GetNode<ProcessList>(ProcessListPath);
         closeButtonContainer = GetNode<Container>(CloseButtonContainerPath);
 
@@ -50,15 +48,15 @@ public class ProcessPanel : CustomWindowDialog
         }
     }
 
-    public override void OnHide()
+    protected override void OnHide()
     {
         EmitSignal(nameof(OnClosed));
         base.OnHide();
     }
 
-    public void OnClose()
+    private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        Hide();
+        ClosePopup();
     }
 }

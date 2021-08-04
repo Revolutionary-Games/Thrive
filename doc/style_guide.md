@@ -285,6 +285,11 @@ Godot usage
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
 
+- When adding window dialogs to the game, consider using the
+  `CustomDialog` type rather than the built-in `WindowDialog` to ensure
+  consistency across the GUIs. This is because the custom implementation
+  offers a much more customized style and additional functionality.
+
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also
   end with a question.

@@ -9,7 +9,6 @@
     {
         public MicrobeStageWelcome()
         {
-            Exclusive = true;
             Pauses = true;
         }
 

@@ -201,7 +201,7 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        deleteSelectedConfirmDialog.GetNode<Label>("DialogText").Text =
+        deleteSelectedConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
                 Selected.Count);
@@ -213,7 +213,7 @@ public class SaveManagerGUI : Control
         int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
-        deleteOldConfirmDialog.GetNode<Label>("DialogText").Text =
+        deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount);

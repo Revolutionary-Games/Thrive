@@ -389,8 +389,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private AudioStream unableToPlaceHexSound;
     private Texture temperatureIcon;
 
-    private CustomAcceptDialog negativeAtpPopup;
-    private CustomAcceptDialog islandPopup;
+    private CustomConfirmationDialog negativeAtpPopup;
+    private CustomConfirmationDialog islandPopup;
 
     private OrganellePopupMenu organelleMenu;
 
@@ -521,8 +521,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
         temperatureIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/Temperature.png");
 
-        negativeAtpPopup = GetNode<CustomAcceptDialog>(NegativeAtpPopupPath);
-        islandPopup = GetNode<CustomAcceptDialog>(IslandErrorPath);
+        negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
+        islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
@@ -1195,8 +1195,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void ConfirmFinishEditingPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }

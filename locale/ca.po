@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-01 17:27+0800\n"
+"POT-Creation-Date: 2021-08-04 15:17+0700\n"
 "PO-Revision-Date: 2021-06-22 20:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -453,7 +453,7 @@ msgid "ZOOM_IN"
 msgstr "Enfocar la visió de la càmera"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:553
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:548
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -507,8 +507,8 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancel·la l'acció actual"
 
 #: ../simulation_parameters/common/input_options.json:139
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:14
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:14
 msgid "CHEATS"
 msgstr "Trucs"
 
@@ -704,25 +704,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3035
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3005
 msgid "AMMONIA"
 msgstr "Amoníac"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3106
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3076
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3000
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2970
 msgid "HYDROGEN_SULFIDE"
 msgstr "Àcid Sulfhídric"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3070
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3040
 msgid "GLUCOSE"
 msgstr "Glucosa"
 
@@ -733,28 +733,28 @@ msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3141
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3111
 msgid "IRON"
 msgstr "Ferro"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2836
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2806
 msgid "OXYGEN"
 msgstr "Oxigen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2860
 msgid "CARBON_DIOXIDE"
 msgstr "Diòxid de Carboni"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2863
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2833
 msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2716
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2686
 msgid "SUNLIGHT"
 msgstr "Llum solar"
 
@@ -1367,65 +1367,57 @@ msgid "ART_BY"
 msgstr "Art per {0}"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/microbe_stage/ProcessPanel.tscn:73
+#: ../src/microbe_stage/ProcessPanel.tscn:72
 msgid "CLOSE"
 msgstr "Tancar"
 
-#: ../src/general/MainMenu.cs:359
-msgid "OK"
-msgstr "D'acord"
-
-#: ../src/general/MainMenu.cs:360
-msgid "Cancel"
-msgstr "Cancel·lar"
-
-#: ../src/general/MainMenu.tscn:147
+#: ../src/general/MainMenu.tscn:146
 msgid "NEW_GAME"
 msgstr "Nova partida"
 
-#: ../src/general/MainMenu.tscn:160 ../src/general/PauseMenu.tscn:72
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Carregar una partida"
 
-#: ../src/general/MainMenu.tscn:171 ../src/general/PauseMenu.tscn:94
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:95
 msgid "OPTIONS"
 msgstr "Opcions"
 
-#: ../src/general/MainMenu.tscn:182
+#: ../src/general/MainMenu.tscn:181
 msgid "TOOLS"
 msgstr "Eines"
 
-#: ../src/general/MainMenu.tscn:193
+#: ../src/general/MainMenu.tscn:192
 msgid "VIEW_SOURCE_CODE"
 msgstr "Veure Codi Font"
 
-#: ../src/general/MainMenu.tscn:205
+#: ../src/general/MainMenu.tscn:204
 msgid "EXTRAS"
 msgstr "Extres"
 
-#: ../src/general/MainMenu.tscn:217
+#: ../src/general/MainMenu.tscn:216
 msgid "CREDITS"
 msgstr "Crèdits"
 
-#: ../src/general/MainMenu.tscn:228
+#: ../src/general/MainMenu.tscn:227
 msgid "QUIT"
 msgstr "Sortir"
 
-#: ../src/general/MainMenu.tscn:250
+#: ../src/general/MainMenu.tscn:249
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Lliure de Microbi"
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/OptionsMenu.tscn:1028
-#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:109
-#: ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1030
+#: ../src/general/PauseMenu.tscn:135 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Enrere"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:348
 msgid "GLES2_MODE_WARNING"
 msgstr "Mode d'Alerta GLES2"
 
-#: ../src/general/MainMenu.tscn:359
+#: ../src/general/MainMenu.tscn:349
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no "
@@ -1433,267 +1425,263 @@ msgstr ""
 "Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de "
 "gràfics AMD o Nvidia per executar Thrive."
 
-#: ../src/general/OptionsMenu.tscn:130
+#: ../src/general/OptionsMenu.tscn:132
 msgid "GRAPHICS"
 msgstr "Gràfics"
 
-#: ../src/general/OptionsMenu.tscn:141
+#: ../src/general/OptionsMenu.tscn:143
 msgid "SOUND"
 msgstr "Só"
 
-#: ../src/general/OptionsMenu.tscn:152
+#: ../src/general/OptionsMenu.tscn:154
 msgid "PERFORMANCE"
 msgstr "Rendiment"
 
-#: ../src/general/OptionsMenu.tscn:163
+#: ../src/general/OptionsMenu.tscn:165
 msgid "INPUTS"
 msgstr "Inputs"
 
-#: ../src/general/OptionsMenu.tscn:174
+#: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
 msgstr "Misc"
 
-#: ../src/general/OptionsMenu.tscn:207
+#: ../src/general/OptionsMenu.tscn:209
 msgid "VSYNC"
 msgstr "V-sinc"
 
-#: ../src/general/OptionsMenu.tscn:215
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "Pantalla completa"
 
-#: ../src/general/OptionsMenu.tscn:237
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Antialiàsing Multimostres (MSAA):"
 
-#: ../src/general/OptionsMenu.tscn:244
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valors més alts empitjoren el rendiment)"
 
-#: ../src/general/OptionsMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "Resolució:"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:297
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "Màxim FPS:"
 
-#: ../src/general/OptionsMenu.tscn:323
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correcció 'Colourblind':"
 
-#: ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:357
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberració cromàtica:"
 
-#: ../src/general/OptionsMenu.tscn:382
+#: ../src/general/OptionsMenu.tscn:384
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Habilitats"
 
-#: ../src/general/OptionsMenu.tscn:391
+#: ../src/general/OptionsMenu.tscn:393
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Efectes externs:"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:419
 msgid "MASTER_VOLUME"
 msgstr "Master del volum"
 
-#: ../src/general/OptionsMenu.tscn:444 ../src/general/OptionsMenu.tscn:485
-#: ../src/general/OptionsMenu.tscn:518 ../src/general/OptionsMenu.tscn:551
-#: ../src/general/OptionsMenu.tscn:584
+#: ../src/general/OptionsMenu.tscn:446 ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.tscn:520 ../src/general/OptionsMenu.tscn:553
+#: ../src/general/OptionsMenu.tscn:586
 msgid "MUTE"
 msgstr "Mut"
 
-#: ../src/general/OptionsMenu.tscn:458
+#: ../src/general/OptionsMenu.tscn:460
 msgid "MUSIC_VOLUME"
 msgstr "Volum de la música"
 
-#: ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:493
 msgid "AMBIANCE_VOLUME"
 msgstr "Volum de l'ambient"
 
-#: ../src/general/OptionsMenu.tscn:524
+#: ../src/general/OptionsMenu.tscn:526
 msgid "SFX_VOLUME"
 msgstr "Volum SFX"
 
-#: ../src/general/OptionsMenu.tscn:557
+#: ../src/general/OptionsMenu.tscn:559
 msgid "GUI_VOLUME"
 msgstr "Volum de la interfície GUI"
 
-#: ../src/general/OptionsMenu.tscn:602
+#: ../src/general/OptionsMenu.tscn:604
 msgid "LANGUAGE"
 msgstr "Llengua:"
 
-#: ../src/general/OptionsMenu.tscn:617 ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:619 ../src/general/OptionsMenu.tscn:1041
 msgid "RESET"
 msgstr "Resetejar"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:628
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Ajuda'ns a traduïr el joc"
 
-#: ../src/general/OptionsMenu.tscn:652
+#: ../src/general/OptionsMenu.tscn:654
 msgid "COMPOUND_CLOUDS"
 msgstr "Núvols de Compostos"
 
-#: ../src/general/OptionsMenu.tscn:667
+#: ../src/general/OptionsMenu.tscn:669
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Mínim Interval de Simulació\n"
 "de Núvols:"
 
-#: ../src/general/OptionsMenu.tscn:674 ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:676 ../src/general/OptionsMenu.tscn:718
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valors més alts augmenten el rendiment)"
 
-#: ../src/general/OptionsMenu.tscn:709
+#: ../src/general/OptionsMenu.tscn:711
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor de Resolució dels Núvols:"
 
-#: ../src/general/OptionsMenu.tscn:751
+#: ../src/general/OptionsMenu.tscn:753
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Activa la simulació auto-evo durant el joc"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:826
 msgid "RESET_INPUTS"
 msgstr "Resetejar Inputs"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:854
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Mostra el vídeo introductori"
 
-#: ../src/general/OptionsMenu.tscn:861
+#: ../src/general/OptionsMenu.tscn:863
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 "Mostra la cinemàtica d'entrada a l'Estadi de Microbi en començar una nova "
 "partida"
 
-#: ../src/general/OptionsMenu.tscn:870
+#: ../src/general/OptionsMenu.tscn:872
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Guardat automàtic durant el joc"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:883
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius d'autoguardat:"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:911
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius de guardat ràpid:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:937
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutorials (en noves partides)"
 
-#: ../src/general/OptionsMenu.tscn:943
+#: ../src/general/OptionsMenu.tscn:945
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutorials (a la partida actual)"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:961
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Trucs activats"
 
-#: ../src/general/OptionsMenu.tscn:971
+#: ../src/general/OptionsMenu.tscn:973
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:984
 msgid "CUSTOM_USERNAME"
 msgstr "Nom d'usuari:"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1010
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Obrir la carpeta de captures de pantalla"
 
-#: ../src/general/OptionsMenu.tscn:1016
+#: ../src/general/OptionsMenu.tscn:1018
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Obrir Carpeta de Registres"
 
-#: ../src/general/OptionsMenu.tscn:1051 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1053 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Guardar"
 
-#: ../src/general/OptionsMenu.tscn:1068
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Per defecte"
 
-#: ../src/general/OptionsMenu.tscn:1082
+#: ../src/general/OptionsMenu.tscn:1081
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetejar als valors per defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1091
+#: ../src/general/OptionsMenu.tscn:1082
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Esteu segur que voleu resetejar TOTA la configuració als seus valors per "
 "defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1090
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetejar els inputs a valors per defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1091
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Esteu segur que voleu resetejar els inputs de configuració a valors per "
 "defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1132
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "CLOSE_OPTIONS"
 msgstr "Tancar opcions?"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1122
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Hi ha canvis no guardats. Si continueu, es perdran tots.\n"
 "Voleu continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1174
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "SAVE_AND_CONTINUE"
 msgstr "Guardar i continuar"
 
-#: ../src/general/OptionsMenu.tscn:1183
+#: ../src/general/OptionsMenu.tscn:1155
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar i continuar"
 
-#: ../src/general/OptionsMenu.tscn:1199
+#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 msgid "CANCEL"
 msgstr "Cancel·lar"
 
-#: ../src/general/OptionsMenu.tscn:1213 ../src/general/OptionsMenu.tscn:1238
-#: ../src/general/OptionsMenu.tscn:1261
+#: ../src/general/OptionsMenu.tscn:1183 ../src/general/OptionsMenu.tscn:1191
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1262
-msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Error: No s'ha pogut guardar la nova configuració."
-
-#: ../src/general/PauseMenu.tscn:58
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Reprendre"
 
-#: ../src/general/PauseMenu.tscn:65
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Guardar la partida"
 
-#: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2140
+#: ../src/general/PauseMenu.tscn:81
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2110
 msgid "STATISTICS"
 msgstr "Estadístiques"
 
-#: ../src/general/PauseMenu.tscn:87
+#: ../src/general/PauseMenu.tscn:88
 msgid "HELP"
 msgstr "Ajuda"
 
-#: ../src/general/PauseMenu.tscn:101
+#: ../src/general/PauseMenu.tscn:102
 msgid "RETURN_TO_MENU"
 msgstr "Tornar al Menú"
 
-#: ../src/general/PauseMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:109
 msgid "EXIT"
 msgstr "Sortir"
 
@@ -1723,11 +1711,11 @@ msgstr "/segon"
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/gui_common/QuickLoadHandler.tscn:19
+#: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Aquest arxiu de guardat pertany a una versió diferent del joc"
 
-#: ../src/gui_common/QuickLoadHandler.tscn:20
+#: ../src/gui_common/QuickLoadHandler.tscn:22
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 "La versió del fitxer de guardat que voleu carregar no coincideix amb la "
@@ -1744,9 +1732,14 @@ msgstr "No està permès mostrar més de {0} datasets!"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "No està permès mostrar menys de {0} dataset(s)!"
 
-#: ../src/gui_common/dialogs/CustomAcceptDialog.tscn:11
-msgid "Dialog"
-msgstr ""
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:119
+msgid "OK"
+msgstr "D'acord"
+
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:110
+msgid "COPY_ERROR_TO_CLIPBOARD"
+msgstr "Copiar l'Error al Porta-Retalls"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2282,7 +2275,7 @@ msgstr ""
 "eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2653
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2623
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Temperatura"
@@ -2312,25 +2305,25 @@ msgstr "reproducció"
 msgid "ESCAPE_ENGULFING"
 msgstr "evasió d'un intent d'engolició"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
 msgstr "Compostos infinits"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:43
 msgid "GODMODE"
 msgstr "Mode Déu"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:53
 msgid "NO_AI"
 msgstr "No IA"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:70
 msgid "PLAYER_SPEED"
 msgstr ""
 "Jugador\n"
 "Velocitat"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:91
 msgid "PLAYER_DUPLICATE"
 msgstr "Jugador Duplicat"
 
@@ -2387,8 +2380,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Pressió"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2324
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2960
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2294
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2930
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "COMPOUNDS"
 msgstr "Compostos"
@@ -2449,7 +2442,7 @@ msgstr "Llit Marí de Pangònia"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Mode de Desunió"
 
-#: ../src/microbe_stage/ProcessPanel.tscn:15
+#: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Processos de la Cèl·lula"
 
@@ -2474,179 +2467,179 @@ msgstr "L'algorisme auto-evo ha tingut un error"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "estat d'execució:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:511
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:506
 msgid "REPORT"
 msgstr "Informe"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:532
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:527
 msgid "PATCH_MAP"
 msgstr "Mapa d'Indrets del món"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:612
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:607
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:668
 msgid "SPEED_COLON"
 msgstr "Velocitat:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:703
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:698
 msgid "HP_COLON"
 msgstr "Punts de salut:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:728
 msgid "SIZE_COLON"
 msgstr "Mida:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:749
 msgid "GENERATION_COLON"
 msgstr "Generació:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:796
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:791
 msgid "ATP_BALANCE"
 msgstr "Equilibri d'ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:997
 msgid "MUTATION_POINTS"
 msgstr "Punts de Mutació"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1137
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1132
 msgid "STRUCTURE"
 msgstr "Estructura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1154
 msgid "MEMBRANE"
 msgstr "Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1177
 msgid "BEHAVIOR"
 msgstr "Comportament"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1234
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1229
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Cerca..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1241
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1236
 msgid "STRUCTURAL"
 msgstr "Estructural"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1277
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1272
 msgid "PROTEINS"
 msgstr "Proteïnes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1348
 msgid "EXTERNAL"
 msgstr "Extern"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1402
 msgid "ORGANELLES"
 msgstr "Orgànuls"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1551
 msgid "MEMBRANE_TYPES"
 msgstr "Tipus de Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1626
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1621
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidesa / Rigidesa"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1660
 msgid "COLOUR"
 msgstr "Color"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1804
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1799
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l'Espècie..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1840
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1835
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCEL·LAR ACCIÓ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1854
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1849
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRMAR"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1857
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Equilibri d'ATP Negatiu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1873
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1858
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "El teu Microbi no consumeix més ATP que no pas pot arribar a produïr!\n"
 "Vols continuar?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1884
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1863
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Orgànuls Desconnectats"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1893
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Hi ha orgànuls que no han estat físicament connectats a la resta.\n"
 "Siusplau, connecta tots els orgànuls o bé desfés els teus canvis."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1993
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1963
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2006
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1976
 msgid "FOOD_CHAIN"
 msgstr "Cadena Alimentària o Tròfica"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2019
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1989
 msgid "TIMELINE"
 msgstr "Cronologia"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2072
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2042
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultats de l'algorisme Auto-Evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2091
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2061
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efectes externs:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2149
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2119
 msgid "SPECIES_POPULATION"
 msgstr "Població de les Espècies"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2182
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2612
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2152
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2582
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condicions Físiques"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2286
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2795
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2256
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2765
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gasos Atmosfèrics"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2379
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3304
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2349
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3274
 msgid "NEXT_CAPITAL"
 msgstr "SEGÜENT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2494
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2464
 msgid "SELECT_A_PATCH"
 msgstr "Selecciona un Indret per a veure'n els detalls"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2529
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2499
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "INDRET ACTUAL"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2689
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2659
 msgid "PRESSURE"
 msgstr "Pressió"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3220
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3190
 msgid "SPECIES_PRESENT"
 msgstr "Espècies presents"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3277
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3247
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moure a aquest Indret"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:26
 msgid "INFINITE_MP"
 msgstr "MP Infinit"
 
@@ -2820,23 +2813,23 @@ msgstr ""
 "El nom de l'arxiu ({0}) coincideix amb el d'un altre ja guardat. Voleu "
 "sobreescriure-ho?"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:30
 msgid "CREATE_NEW_SAVE"
 msgstr "Crear un nou arxiu de guardat"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
 msgstr "Nom:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
 msgstr "Opcions Extra"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Sobreescriure l'arxiu de guardat existent:"
 
-#: ../src/saving/NewSaveMenu.tscn:119
+#: ../src/saving/NewSaveMenu.tscn:115
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Voleu sobreescriure l'arxiu de guardat actual?"
 
@@ -2870,26 +2863,26 @@ msgstr ""
 "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur "
 "que voleu eliminar permanentment l'arxiu {0}?"
 
-#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Carregant..."
 
-#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Eliminar aquest arxiu de guardat?"
 
-#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
+#: ../src/saving/SaveList.tscn:67 ../src/saving/SaveList.tscn:76
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Carregar arxiu de guardat incompatible?"
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:68
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Aquest arxiu de guardat pertany a una versió de Thrive més nova que "
 "l'actual i, probablement, sigui incompatible.\n"
 "Voleu intentar carregar l'arxiu igualment?"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:77
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Aquest arxiu de guardat pertany a una versió de Thrive antiga i, "
@@ -2901,11 +2894,11 @@ msgstr ""
 "però, no obstant, actualment no són de màxima prioritat.\n"
 "Voleu intentar carregar l'arxiu igualment?"
 
-#: ../src/saving/SaveList.tscn:134
+#: ../src/saving/SaveList.tscn:85
 msgid "LOAD_INVALID_SAVE"
 msgstr "Carregar arxiu de guardat no vàlid?"
 
-#: ../src/saving/SaveList.tscn:143
+#: ../src/saving/SaveList.tscn:86
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "La informació de guardat no ha pogut ser carregada des d'aquest arxiu.\n"
@@ -2913,11 +2906,11 @@ msgstr ""
 "un format nou, no entès per aquesta versió de Thrive.\n"
 "Voleu intentar carregar l'arxiu igualment?"
 
-#: ../src/saving/SaveList.tscn:158
+#: ../src/saving/SaveList.tscn:95
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "L'arxiu de guardat seleccionat és incompatible"
 
-#: ../src/saving/SaveList.tscn:168
+#: ../src/saving/SaveList.tscn:96
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "L'arxiu de guardat seleccionat no és compatible amb la present versió de "
@@ -2926,41 +2919,41 @@ msgstr ""
 "compatibilitat entre versions no és la major prioritat. Per això, encara "
 "no s'ha implementat un programa convertidor d'arxius de guardat."
 
-#: ../src/saving/SaveListItem.tscn:131
+#: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
 msgstr "Creat a:"
 
-#: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
-#: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
-#: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
+#: ../src/saving/SaveListItem.tscn:137 ../src/saving/SaveListItem.tscn:156
+#: ../src/saving/SaveListItem.tscn:175 ../src/saving/SaveListItem.tscn:198
+#: ../src/saving/SaveListItem.tscn:227 ../src/saving/SaveListItem.tscn:246
 msgid "DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/saving/SaveListItem.tscn:150
+#: ../src/saving/SaveListItem.tscn:149
 msgid "TYPE"
 msgstr "Tipus:"
 
-#: ../src/saving/SaveListItem.tscn:169
+#: ../src/saving/SaveListItem.tscn:168
 msgid "DESCRIPTION"
 msgstr "Descripció:"
 
-#: ../src/saving/SaveListItem.tscn:192
+#: ../src/saving/SaveListItem.tscn:191
 msgid "VERSION"
 msgstr "Versió:"
 
-#: ../src/saving/SaveListItem.tscn:221
+#: ../src/saving/SaveListItem.tscn:220
 msgid "BY"
 msgstr "Per:"
 
-#: ../src/saving/SaveListItem.tscn:240
+#: ../src/saving/SaveListItem.tscn:239
 msgid "CREATED_ON_PLATFORM"
 msgstr "Creat a la Plataforma:"
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:271 ../src/saving/SaveManagerGUI.tscn:55
 msgid "LOAD"
 msgstr "Carregar"
 
-#: ../src/saving/SaveListItem.tscn:292
+#: ../src/saving/SaveListItem.tscn:278
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur "
@@ -2982,66 +2975,58 @@ msgstr ""
 " - {0} Guardat(s) automàtic(s)\n"
 " - {1} Guardat(s) ràpid(s)"
 
-#: ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
 msgstr "Refrescar"
 
-#: ../src/saving/SaveManagerGUI.tscn:78
+#: ../src/saving/SaveManagerGUI.tscn:77
 msgid "DELETE_SELECTED"
 msgstr "Eliminar tot el que ha estat seleccionat"
 
-#: ../src/saving/SaveManagerGUI.tscn:87
+#: ../src/saving/SaveManagerGUI.tscn:86
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Netejar els arxius de guardat antics"
 
-#: ../src/saving/SaveManagerGUI.tscn:99
+#: ../src/saving/SaveManagerGUI.tscn:98
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Obrir el directori de guardats"
 
-#: ../src/saving/SaveManagerGUI.tscn:132
+#: ../src/saving/SaveManagerGUI.tscn:131
 msgid "TOTAL_SAVES"
 msgstr "Nombre total d'arxius guardats:"
 
-#: ../src/saving/SaveManagerGUI.tscn:152
+#: ../src/saving/SaveManagerGUI.tscn:151
 msgid "SAVE_SPACE_USED"
 msgstr "Espai emprat pels arxius:"
 
-#: ../src/saving/SaveManagerGUI.tscn:172
+#: ../src/saving/SaveManagerGUI.tscn:171
 msgid "SELECTED_COLON"
 msgstr "Seleccionat:"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:185
 msgid "DELETE_SELECTED_SAVES"
 msgstr "Eliminar arxiu(s) de guardat seleccionat(s)?"
 
-#: ../src/saving/SaveManagerGUI.tscn:210
+#: ../src/saving/SaveManagerGUI.tscn:192
 msgid "DELETE_OLD_SAVES"
 msgstr "Eliminar arxiu(s) de guardat antic(s)?"
 
-#: ../src/saving/SaveStatusOverlay.tscn:123
-msgid "SAVING_ERROR"
-msgstr "Error en l'acció de guardat"
-
-#: ../src/saving/SaveStatusOverlay.tscn:185
-msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr "Copiar l'Error al Porta-Retalls"
-
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:34
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:96
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:124
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:183
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:98
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:162
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:241
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:55
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvingut a l'Editor de Microbi.\n"
@@ -3057,7 +3042,7 @@ msgstr ""
 "Per tal d'accedir a la següent pestanya de l'Editor, fes clic al botó "
 "SEGÜENT, a baix a la dreta."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:86
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Aquest és el mapa dels Indrets d'aquest món.\n"
@@ -3072,7 +3057,7 @@ msgstr ""
 "\n"
 "Selecciona un Indret per tal de continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "Aquest és l'Editor de Microbi, on pots afegir, treure o modificar "
@@ -3087,7 +3072,7 @@ msgstr ""
 "l'Hexàgon mostrat al bell mig de la pantalla (que representa l'interior de "
 "la teva cèl·lula) per tal d'afegir aquest orgànul a la teva espècie."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:142
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:149
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Eliminar orgànuls també costa una certa quantitat de Punts de Mutació, a "
@@ -3100,7 +3085,7 @@ msgstr ""
 "\n"
 "Clica el botó de desfer per tal de prosseguir."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:173
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:184
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Quan seleccionis els orgànuls que vulguis afegir, estigues atent als "
@@ -3118,7 +3103,7 @@ msgstr ""
 "Prem el botó de refer l'acció (a la vora del botó de desfer l'acció) per "
 "tal de prosseguir."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:210
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "Aquests són els fonaments i consells bàsics per tal d'editar la teva "
@@ -3137,11 +3122,11 @@ msgstr ""
 "\n"
 "Bona sort!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:226
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
 msgid "GOT_IT"
 msgstr "Ho he entès tot"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:70
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Fa molt de temps, en un planeta molt i molt llunyà...\n"
@@ -3167,15 +3152,15 @@ msgstr ""
 "aquestes espècies hauran evolucionat a partir del darrer avantpassat "
 "universal comú."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:94
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar els tutorials"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:102
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 msgid "BEGIN_THRIVING"
 msgstr "Començar a prosperar"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:142
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "La teva cèl·lula, el darrer avantpassat universal comú, és al centre de la "
@@ -3184,7 +3169,7 @@ msgstr ""
 "\n"
 "Prova totes les tecles durant uns instants per tal de continuar."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:218
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Has de recol·lectar la Glucosa que hi ha dissolta a l'oceà (núvols de "
@@ -3195,7 +3180,7 @@ msgstr ""
 "Segueix la línia de la pantalla, que s'estén des de la teva cèl·lula fins "
 "al núvol de Glucosa més proper."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP "
@@ -3205,7 +3190,7 @@ msgstr ""
 "d'ATP.\n"
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per tal de reproduïr-te, has de dividir la teva cèl·lula en dos organismes "
@@ -3214,7 +3199,7 @@ msgstr ""
 "Estigueu atents a l'indicador a la part inferior dreta per veure quina "
 "quantitat d'Amoníac i Fosfats et falta encara."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:303
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Has entrar en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre "
@@ -3222,6 +3207,15 @@ msgstr ""
 "\n"
 "Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia "
 "cèl·lula o pressionar la tecla per desunir-les a totes."
+
+#~ msgid "Cancel"
+#~ msgstr "Cancel·lar"
+
+#~ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+#~ msgstr "Error: No s'ha pogut guardar la nova configuració."
+
+#~ msgid "SAVING_ERROR"
+#~ msgstr "Error en l'acció de guardat"
 
 #~ msgid "TURNS"
 #~ msgstr "Girs"

@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
 [ext_resource path="res://src/engine/input/key_mapping/InputGroupList.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/gui_common/dialogs/CustomAcceptDialog.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/gui_common/dialogs/CustomWindowDialog.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -87,7 +88,7 @@ MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/
 BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
 TutorialsEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/TutorialsEnabled")
 DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
-ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
+ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorDialog")
 LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
 ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 CustomUsernameEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled")
@@ -1073,55 +1074,32 @@ __meta__ = {
 
 [node name="DefaultsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
 margin_left = 340.0
-margin_top = 318.0
+margin_top = 322.0
 margin_right = 940.0
-margin_bottom = 402.0
-rect_min_size = Vector2( 600, 70 )
-window_title = "RESET_TO_DEFAULTS"
-
-[node name="DialogText" type="Label" parent="CenterContainer/DefaultsConfirm"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 590.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 5 )
-text = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 397.0
+rect_min_size = Vector2( 600, 0 )
+WindowTitle = "RESET_TO_DEFAULTS"
+DialogText = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 
 [node name="DefaultsInputsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
 margin_left = 340.0
-margin_top = 318.0
+margin_top = 322.0
 margin_right = 940.0
-margin_bottom = 402.0
-rect_min_size = Vector2( 600, 70 )
-window_title = "RESET_INPUTS_TO_DEFAULTS"
-
-[node name="DialogText" type="Label" parent="CenterContainer/DefaultsInputsConfirm"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 590.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 5 )
-text = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 397.0
+rect_min_size = Vector2( 600, 0 )
+WindowTitle = "RESET_INPUTS_TO_DEFAULTS"
+DialogText = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 
 [node name="BackConfirm" parent="CenterContainer" instance=ExtResource( 8 )]
+visible = false
 margin_left = 340.0
-margin_top = 296.0
+margin_top = 319.0
 margin_right = 940.0
-margin_bottom = 423.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 600, 0 )
-window_title = "CLOSE_OPTIONS"
+popup_exclusive = true
+WindowTitle = "CLOSE_OPTIONS"
+Resizable = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/BackConfirm"]
 anchor_right = 1.0
@@ -1129,7 +1107,7 @@ anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
-margin_bottom = -52.0
+margin_bottom = -10.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -1156,93 +1134,63 @@ custom_styles/separator = SubResource( 7 )
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
 margin_top = 33.0
 margin_right = 580.0
-margin_bottom = 65.0
+margin_bottom = 63.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SaveButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_right = 205.0
-margin_bottom = 32.0
+margin_right = 181.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 7 )
 text = "SAVE_AND_CONTINUE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DiscardButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 209.0
-margin_right = 445.0
-margin_bottom = 32.0
+margin_left = 185.0
+margin_right = 396.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 7 )
 text = "DISCARD_AND_CONTINUE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 449.0
-margin_right = 494.0
-margin_bottom = 32.0
+margin_left = 400.0
+margin_right = 504.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 8 )
 
 [node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 498.0
+margin_left = 508.0
 margin_right = 580.0
-margin_bottom = 32.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 7 )
 text = "CANCEL"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ErrorAccept" parent="CenterContainer" instance=ExtResource( 7 )]
-margin_left = 440.0
-margin_top = 318.0
-margin_right = 840.0
-margin_bottom = 402.0
-rect_min_size = Vector2( 400, 0 )
-window_title = "ERROR"
-
-[node name="DialogText" type="Label" parent="CenterContainer/ErrorAccept"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 390.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 5 )
-text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-align = 1
-autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ConflictDialog" parent="CenterContainer" instance=ExtResource( 6 )]
 margin_left = 390.0
-margin_top = 318.0
+margin_top = 322.0
 margin_right = 890.0
-margin_bottom = 402.0
-rect_min_size = Vector2( 500, 70 )
-window_title = "ERROR"
+margin_bottom = 397.0
+rect_min_size = Vector2( 500, 0 )
+WindowTitle = "ERROR"
 
-[node name="DialogText" type="Label" parent="CenterContainer/ConflictDialog"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 490.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 5 )
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ErrorAccept" parent="CenterContainer" instance=ExtResource( 7 )]
-margin_left = 443.0
-margin_top = 318.0
-margin_right = 837.0
-margin_bottom = 402.0
-window_title = "ERROR"
-dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+[node name="ErrorDialog" parent="CenterContainer" instance=ExtResource( 9 )]
+margin_left = 440.0
+margin_top = 320.0
+margin_right = 840.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "ERROR"
+ErrorMessage = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+Resizable = false
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
@@ -1290,9 +1238,9 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Defaults" to="." method="OnDefaultsPressed"]
-[connection signal="confirmed" from="CenterContainer/DefaultsConfirm" to="." method="DefaultsConfirmSelected"]
-[connection signal="confirmed" from="CenterContainer/DefaultsInputsConfirm" to="." method="InputDefaultsConfirm"]
+[connection signal="Confirmed" from="CenterContainer/DefaultsConfirm" to="." method="DefaultsConfirmSelected"]
+[connection signal="Confirmed" from="CenterContainer/DefaultsInputsConfirm" to="." method="InputDefaultsConfirm"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/SaveButton" to="." method="BackSaveSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
-[connection signal="confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnConflictConfirmed"]
+[connection signal="Confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnConflictConfirmed"]

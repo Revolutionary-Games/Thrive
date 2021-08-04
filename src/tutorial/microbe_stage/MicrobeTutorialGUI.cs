@@ -41,17 +41,17 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath UnbindTutorialPath;
 
-    private CustomWindowDialog microbeWelcomeMessage;
+    private CustomDialog microbeWelcomeMessage;
     private Control microbeMovementKeyPrompts;
     private Control microbeMovementKeyForward;
     private Control microbeMovementKeyLeft;
     private Control microbeMovementKeyRight;
     private Control microbeMovementKeyBackwards;
-    private CustomWindowDialog microbeMovementPopup;
-    private CustomWindowDialog glucoseTutorial;
-    private CustomWindowDialog stayingAlive;
-    private CustomWindowDialog reproductionTutorial;
-    private CustomWindowDialog unbindTutorial;
+    private CustomDialog microbeMovementPopup;
+    private CustomDialog glucoseTutorial;
+    private CustomDialog stayingAlive;
+    private CustomDialog reproductionTutorial;
+    private CustomDialog unbindTutorial;
 
     public ITutorialInput EventReceiver { get; set; }
 
@@ -77,7 +77,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                microbeWelcomeMessage.Visible = false;
+                microbeWelcomeMessage.ClosePopup();
             }
         }
     }
@@ -102,7 +102,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                microbeMovementPopup.Visible = false;
+                microbeMovementPopup.ClosePopup();
             }
         }
     }
@@ -121,7 +121,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                glucoseTutorial.Visible = false;
+                glucoseTutorial.ClosePopup();
             }
         }
     }
@@ -140,7 +140,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                stayingAlive.Visible = false;
+                stayingAlive.ClosePopup();
             }
         }
     }
@@ -159,7 +159,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                reproductionTutorial.Visible = false;
+                reproductionTutorial.ClosePopup();
             }
         }
     }
@@ -178,7 +178,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                unbindTutorial.Visible = false;
+                unbindTutorial.ClosePopup();
             }
         }
     }
@@ -221,17 +221,17 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<CustomWindowDialog>(MicrobeWelcomeMessagePath);
+        microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
-        microbeMovementPopup = GetNode<CustomWindowDialog>(MicrobeMovementPopupPath);
+        microbeMovementPopup = GetNode<CustomDialog>(MicrobeMovementPopupPath);
         microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
         microbeMovementKeyLeft = GetNode<Control>(MicrobeMovementKeyLeftPath);
         microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
-        glucoseTutorial = GetNode<CustomWindowDialog>(GlucoseTutorialPath);
-        stayingAlive = GetNode<CustomWindowDialog>(StayingAlivePath);
-        reproductionTutorial = GetNode<CustomWindowDialog>(ReproductionTutorialPath);
-        unbindTutorial = GetNode<CustomWindowDialog>(UnbindTutorialPath);
+        glucoseTutorial = GetNode<CustomDialog>(GlucoseTutorialPath);
+        stayingAlive = GetNode<CustomDialog>(StayingAlivePath);
+        reproductionTutorial = GetNode<CustomDialog>(ReproductionTutorialPath);
+        unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
     }
 
     public override void _Process(float delta)

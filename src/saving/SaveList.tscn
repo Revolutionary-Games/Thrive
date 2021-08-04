@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/saving/SaveList.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/dialogs/CustomAcceptDialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
 
 [node name="SaveList" type="ScrollContainer"]
 anchor_right = 1.0
@@ -52,127 +50,52 @@ align = 1
 [node name="ItemList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 1270.0
 
-[node name="DeleteSaveConfirmDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
+[node name="DeleteSaveConfirmDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+visible = false
 margin_top = 4.0
-margin_right = 450.0
-margin_bottom = 88.0
+margin_right = 1270.0
+margin_bottom = 81.0
 rect_min_size = Vector2( 450, 70 )
-size_flags_horizontal = 0
-size_flags_vertical = 5
-popup_exclusive = true
-window_title = "DELETE_THIS_SAVE"
+WindowTitle = "DELETE_THIS_SAVE"
 
-[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1710.0
-margin_bottom = 742.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LoadNewerSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 4.0
-margin_right = 600.0
-margin_bottom = 88.0
+[node name="LoadNewerSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+visible = false
+margin_top = 85.0
+margin_right = 1270.0
+margin_bottom = 162.0
 rect_min_size = Vector2( 600, 70 )
-size_flags_horizontal = 0
-size_flags_vertical = 5
-popup_exclusive = true
-window_title = "LOAD_INCOMPATIBLE_SAVE"
+WindowTitle = "LOAD_INCOMPATIBLE_SAVE"
+DialogText = "NEWER_VERSION_LOADING_WARNING"
 
-[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadNewerSaveDialog"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1860.0
-margin_bottom = 742.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
-text = "NEWER_VERSION_LOADING_WARNING"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LoadOlderSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
+[node name="LoadOlderSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+visible = false
 margin_top = 4.0
-margin_right = 700.0
-margin_bottom = 88.0
-rect_min_size = Vector2( 700, 70 )
-size_flags_horizontal = 0
-size_flags_vertical = 5
-popup_exclusive = true
-window_title = "LOAD_INCOMPATIBLE_SAVE"
-
-[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadOlderSaveDialog"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1960.0
-margin_bottom = 742.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
-text = "OLDER_VERSION_LOADING_WARNING"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LoadInvalidSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 4.0
-margin_right = 600.0
-margin_bottom = 88.0
-rect_min_size = Vector2( 600, 70 )
-size_flags_horizontal = 0
-size_flags_vertical = 5
-popup_exclusive = true
-window_title = "LOAD_INVALID_SAVE"
-
-[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadInvalidSaveDialog"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1860.0
-margin_bottom = 742.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
-text = "LOAD_INVALID_SAVE_WARNING"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LoadKnownIncompatibleDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
-margin_left = 284.0
-margin_top = 4.0
-margin_right = 984.0
-margin_bottom = 88.0
+margin_right = 1270.0
+margin_bottom = 81.0
 rect_min_size = Vector2( 700, 0 )
-size_flags_horizontal = 4
-size_flags_vertical = 5
-window_title = "SELECTED_SAVE_IS_INCOMPATIBLE"
-dialog_autowrap = true
+WindowTitle = "LOAD_INCOMPATIBLE_SAVE"
+DialogText = "OLDER_VERSION_LOADING_WARNING"
 
-[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1960.0
-margin_bottom = 742.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
-text = "LOAD_INCOMPATIBLE_SAVE_WARNING"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="LoadInvalidSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+visible = false
+margin_top = 4.0
+margin_right = 1270.0
+margin_bottom = 81.0
+rect_min_size = Vector2( 600, 0 )
+WindowTitle = "LOAD_INVALID_SAVE"
+DialogText = "LOAD_INVALID_SAVE_WARNING"
 
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmLoadInvalid"]
+[node name="LoadKnownIncompatibleDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+visible = false
+margin_top = 4.0
+margin_right = 1270.0
+margin_bottom = 81.0
+rect_min_size = Vector2( 700, 0 )
+HideCancelButton = true
+WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE"
+DialogText = "LOAD_INCOMPATIBLE_SAVE_WARNING"
+
+[connection signal="Confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
+[connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]
+[connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]
+[connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmLoadInvalid"]

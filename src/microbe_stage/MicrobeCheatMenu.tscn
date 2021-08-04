@@ -4,13 +4,15 @@
 [ext_resource path="res://src/microbe_stage/MicrobeCheatMenu.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
 
-[node name="MicrobeCheatMenu" type="AcceptDialog"]
-margin_right = 197.0
-margin_bottom = 234.0
+[node name="MicrobeCheatMenu" type="Popup"]
 theme = ExtResource( 1 )
 popup_exclusive = true
-window_title = "CHEATS"
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+WindowTitle = "CHEATS"
+Resizable = true
 InfiniteCompoundsPath = NodePath("VBoxContainer/InfiniteCompounds")
 GodModePath = NodePath("VBoxContainer/GodMode")
 DisableAIPath = NodePath("VBoxContainer/DisableAI")
@@ -18,19 +20,14 @@ SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
 PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 195.0
-margin_bottom = 182.0
-rect_min_size = Vector2( 185, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_right = 177.0
+margin_bottom = 111.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="InfiniteCompounds" type="CheckBox" parent="VBoxContainer"]
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "INFINITE_COMPOUNDS"
@@ -40,7 +37,7 @@ __meta__ = {
 
 [node name="GodMode" type="CheckBox" parent="VBoxContainer"]
 margin_top = 21.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 3 )
 text = "GODMODE"
@@ -50,7 +47,7 @@ __meta__ = {
 
 [node name="DisableAI" type="CheckBox" parent="VBoxContainer"]
 margin_top = 42.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 59.0
 custom_fonts/font = ExtResource( 3 )
 text = "NO_AI"
@@ -60,7 +57,7 @@ __meta__ = {
 
 [node name="Speed" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 63.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 80.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -77,7 +74,7 @@ __meta__ = {
 
 [node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Speed"]
 margin_left = 105.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -88,7 +85,7 @@ value = 1.0
 
 [node name="PlayerDuplicate" type="Button" parent="VBoxContainer"]
 margin_top = 84.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 111.0
 custom_fonts/font = ExtResource( 3 )
 text = "PLAYER_DUPLICATE"

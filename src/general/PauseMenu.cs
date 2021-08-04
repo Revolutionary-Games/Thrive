@@ -127,7 +127,7 @@ public class PauseMenu : ControlWithInput
             return true;
         }
 
-        if (NoExclusiveTutorialActive())
+        if (!GUICommon.Instance.IsAnyExclusivePopupVisible)
         {
             EmitSignal(nameof(OnOpenWithKeyPress));
             return true;
@@ -140,7 +140,7 @@ public class PauseMenu : ControlWithInput
     [RunOnKeyDown("help")]
     public void ShowHelpPressed()
     {
-        if (NoExclusiveTutorialActive())
+        if (!GUICommon.Instance.IsAnyExclusivePopupVisible)
         {
             EmitSignal(nameof(OnOpenWithKeyPress));
             ShowHelpScreen();
@@ -168,11 +168,6 @@ public class PauseMenu : ControlWithInput
             ActiveMenuType.None => null,
             _ => throw new NotSupportedException($"{value} is not supported"),
         };
-    }
-
-    private bool NoExclusiveTutorialActive()
-    {
-        return GameProperties.TutorialState?.ExclusiveTutorialActive() != true;
     }
 
     private void ClosePressed()

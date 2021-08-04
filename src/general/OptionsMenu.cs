@@ -237,9 +237,9 @@ public class OptionsMenu : ControlWithInput
     private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
-    private CustomWindowDialog backConfirmationBox;
+    private CustomDialog backConfirmationBox;
     private CustomConfirmationDialog defaultsConfirmationBox;
-    private CustomAcceptDialog errorAcceptBox;
+    private ErrorDialog errorAcceptBox;
 
     /*
       Misc
@@ -347,9 +347,9 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
-        backConfirmationBox = GetNode<CustomWindowDialog>(BackConfirmationBoxPath);
+        backConfirmationBox = GetNode<CustomDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
-        errorAcceptBox = GetNode<CustomAcceptDialog>(ErrorAcceptBoxPath);
+        errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
 
@@ -823,7 +823,7 @@ public class OptionsMenu : ControlWithInput
         if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
-            backConfirmationBox.Hide();
+            backConfirmationBox.ClosePopup();
             errorAcceptBox.PopupCenteredShrink();
 
             return;
@@ -831,7 +831,7 @@ public class OptionsMenu : ControlWithInput
 
         // Copy over the new saved settings.
         savedSettings = Settings.Instance.Clone();
-        backConfirmationBox.Hide();
+        backConfirmationBox.ClosePopup();
 
         UpdateResetSaveButtonState();
         EmitSignal(nameof(OnOptionsClosed));
@@ -849,7 +849,7 @@ public class OptionsMenu : ControlWithInput
             tutorialsEnabled.Pressed = savedTutorialsEnabled;
         }
 
-        backConfirmationBox.Hide();
+        backConfirmationBox.ClosePopup();
 
         UpdateResetSaveButtonState();
         EmitSignal(nameof(OnOptionsClosed));
@@ -857,7 +857,7 @@ public class OptionsMenu : ControlWithInput
 
     private void BackCancelSelected()
     {
-        backConfirmationBox.Hide();
+        backConfirmationBox.ClosePopup();
     }
 
     private void InputDefaultsConfirm()

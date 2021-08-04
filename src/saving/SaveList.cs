@@ -48,7 +48,7 @@ public class SaveList : ScrollContainer
     private CustomConfirmationDialog loadNewerConfirmDialog;
     private CustomConfirmationDialog loadOlderConfirmDialog;
     private CustomConfirmationDialog loadInvalidConfirmDialog;
-    private CustomAcceptDialog loadIncompatibleDialog;
+    private CustomConfirmationDialog loadIncompatibleDialog;
 
     private PackedScene listItemScene;
 
@@ -76,7 +76,7 @@ public class SaveList : ScrollContainer
         loadOlderConfirmDialog = GetNode<CustomConfirmationDialog>(LoadOlderSaveDialogPath);
         loadNewerConfirmDialog = GetNode<CustomConfirmationDialog>(LoadNewerSaveDialogPath);
         loadInvalidConfirmDialog = GetNode<CustomConfirmationDialog>(LoadInvalidSaveDialogPath);
-        loadIncompatibleDialog = GetNode<CustomAcceptDialog>(LoadIncompatibleDialogPath);
+        loadIncompatibleDialog = GetNode<CustomConfirmationDialog>(LoadIncompatibleDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -167,7 +167,7 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = saveName;
 
         // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
-        deleteConfirmDialog.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
+        deleteConfirmDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("SAVE_DELETE_WARNING"),
             saveName);
         deleteConfirmDialog.PopupCenteredShrink();

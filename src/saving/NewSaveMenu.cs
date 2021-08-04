@@ -57,7 +57,7 @@ public class NewSaveMenu : Control
         if (FileHelpers.Exists(PathUtils.Join(Constants.SAVE_FOLDER, name)))
         {
             // The chosen filename ({0}) already exists. Overwrite?
-            overwriteConfirm.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
+            overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
                 name);
             overwriteConfirm.PopupCenteredShrink();

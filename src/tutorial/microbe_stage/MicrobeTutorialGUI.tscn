@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/dialogs/TutorialDialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=6]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -33,38 +34,40 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -683.0
-margin_top = -384.0
-margin_right = -233.0
-margin_bottom = 66.0
+margin_left = -640.0
+margin_top = -332.0
+margin_right = -190.0
+margin_bottom = 118.0
 rect_min_size = Vector2( 450, 450 )
-size_flags_horizontal = 3
-window_title = "TUTORIAL"
-resizable = true
+popup_exclusive = true
+ExclusiveAllowCloseOnEscape = false
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -52.0
+margin_right = 440.0
+margin_bottom = 440.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/ScrollContainer"]
-margin_right = 420.0
-margin_bottom = 420.0
-rect_min_size = Vector2( 420, 420 )
+margin_right = 880.0
+margin_bottom = 880.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_right = 420.0
+margin_right = 430.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_INITIAL"
@@ -72,33 +75,35 @@ autowrap = true
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
 margin_top = 30.0
-margin_right = 420.0
-margin_bottom = 346.0
+margin_right = 430.0
+margin_bottom = 360.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_top = 356.0
-margin_right = 420.0
-margin_bottom = 378.0
+margin_top = 370.0
+margin_right = 430.0
+margin_bottom = 390.0
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_right = 10.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_left = 14.0
-margin_right = 198.0
-margin_bottom = 22.0
+margin_right = 174.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 5 )
 pressed = true
 text = "SHOW_TUTORIALS"
 
 [node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_left = 131.0
-margin_top = 388.0
-margin_right = 289.0
-margin_bottom = 420.0
+margin_left = 144.0
+margin_top = 400.0
+margin_right = 285.0
+margin_bottom = 430.0
 size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 6 )
 text = "BEGIN_THRIVING"
 
 [node name="MicrobeMovementTutorial" type="Control" parent="."]
@@ -110,14 +115,17 @@ __meta__ = {
 }
 
 [node name="ExplainingPopup" parent="MicrobeMovementTutorial" instance=ExtResource( 4 )]
-margin_left = 1007.0
-margin_top = 150.0
-margin_right = 1267.0
-margin_bottom = 442.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -210.0
+margin_right = 409.0
+margin_bottom = -190.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 3
-window_title = "TUTORIAL"
-resizable = true
+ExclusiveAllowCloseOnEscape = false
+WindowTitle = "TUTORIAL"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
 anchor_right = 1.0
@@ -125,7 +133,7 @@ anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
-margin_bottom = -52.0
+margin_bottom = -10.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -189,113 +197,130 @@ rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_right"
 
 [node name="GlucoseTutorial" parent="." instance=ExtResource( 4 )]
-margin_left = 1007.0
-margin_top = 150.0
-margin_right = 1267.0
-margin_bottom = 442.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -210.0
+margin_right = 627.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 3
-window_title = "TUTORIAL"
-resizable = true
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GlucoseTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -52.0
+margin_right = 250.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="GlucoseTutorial/ScrollContainer"]
-margin_right = 230.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 230, 0 )
+margin_right = 500.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_COLLECT_TEXT"
 autowrap = true
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource( 4 )]
-margin_left = 1007.0
-margin_top = 150.0
-margin_right = 1267.0
-margin_bottom = 442.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -210.0
+margin_right = 627.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 3
-window_title = "TUTORIAL"
-resizable = true
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="StayingAliveTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -52.0
+margin_right = 250.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="StayingAliveTutorial/ScrollContainer"]
-margin_right = 230.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 230, 0 )
+margin_right = 500.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_HEALTH_TEXT"
 autowrap = true
 
 [node name="ReproductionTutorial" parent="." instance=ExtResource( 4 )]
-margin_left = 1007.0
-margin_top = 150.0
-margin_right = 1267.0
-margin_bottom = 442.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -210.0
+margin_right = 627.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 3
-window_title = "TUTORIAL"
-resizable = true
+rect_pivot_offset = Vector2( 640.124, 474.665 )
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ReproductionTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -52.0
+margin_right = 250.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="ReproductionTutorial/ScrollContainer"]
-margin_right = 230.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 230, 0 )
+margin_right = 500.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 
 [node name="UnbindTutorial" parent="." instance=ExtResource( 4 )]
-margin_left = 1007.0
-margin_top = 150.0
-margin_right = 1267.0
-margin_bottom = 442.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -210.0
+margin_right = 627.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 3
-window_title = "TUTORIAL"
-resizable = true
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UnbindTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -52.0
+margin_right = 250.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="UnbindTutorial/ScrollContainer"]
-margin_right = 230.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 230, 0 )
+margin_right = 500.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_UNBIND_TEXT"
 autowrap = true
@@ -311,5 +336,5 @@ autowrap = true
 [connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
 [connection signal="popup_hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
-[connection signal="hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
+[connection signal="hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
 [connection signal="popup_hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
