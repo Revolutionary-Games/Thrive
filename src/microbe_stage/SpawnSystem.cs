@@ -90,7 +90,7 @@ public class SpawnSystem
     {
         worldRoot = root;
         spawnTypes = new ShuffleBag<Spawner>(random);
-        lastRecordedPlayerPosition = new Vector3(0, 0, 0);
+        lastRecordedPlayerPosition = Vector3.Zero;
         estimateEntityCountInSpawnRadius = 0;
     }
 
