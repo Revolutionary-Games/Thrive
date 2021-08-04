@@ -349,11 +349,11 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Forgets when the last save happened.
+    ///   Pretends that the game has just saved
     /// </summary>
     public static void ResetSaveFreshness()
     {
-        lastSave = null;
+        lastSave = DateTime.Now;
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
