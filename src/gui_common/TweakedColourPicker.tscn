@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 1 )
@@ -432,11 +433,12 @@ WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = null
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 294.0
-margin_bottom = 492.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 298.0
+margin_bottom = 496.0
 theme = SubResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "A color picker with a custom theme."

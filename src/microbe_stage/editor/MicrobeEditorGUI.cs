@@ -314,7 +314,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private ProgressBar mutationPointsSubtractBar;
 
     private Slider rigiditySlider;
-    private ColorPicker membraneColorPicker;
+    private TweakedColourPicker membraneColorPicker;
 
     private TextureButton undoButton;
     private TextureButton redoButton;
@@ -448,7 +448,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
 
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
+        membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
         menuButton = GetNode<TextureButton>(MenuButtonPath);
         helpButton = GetNode<TextureButton>(HelpButtonPath);
@@ -540,12 +540,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         RegisterTooltips();
 
-        // Alpha channel is not used currently.
-        membraneColorPicker.EditAlpha = false;
-
         // Disable Raw view.
-        // As Godot doesn't seem to give a method to disable it, have to use this way.
-        membraneColorPicker.GetChild(4).GetChild(4).GetChild<CheckButton>(1).Disabled = true;
+        membraneColorPicker.RawCheckButtonDisabled = true;
     }
 
     public void Init(MicrobeEditor editor)
