@@ -266,7 +266,7 @@ have build errors, check if this is setup properly.
 On Linux dotnet is the recommended build tool.
 
 Even if you do not use the Godot script editor, Godot automatically opens some files and replaces the spaces with tabs.
-To stop Godot from messing with you files, go to Text Editor -> Indent and set Type to spaces
+To stop Godot from messing with your files, go to Text Editor -> Indent and set Type to spaces
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_use_spaces.png" alt="set intend to spaces" width="550px">
 
@@ -542,6 +542,12 @@ before committing.
 
 When running the script like that it can take a long time to run. See
 the pre-commit hook section for how to speed things up.
+
+Alternatively you can run the script `create_changes_list.rb` each
+time before you run the formatting check. That script will build a
+list of changed files that the formatting checks will use to skip
+checking non-changed files. But the pre-commit hook is recommended as
+it is easier to use.
 
 Pre-commit hook
 ---------------
