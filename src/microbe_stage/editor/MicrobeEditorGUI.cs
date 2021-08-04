@@ -268,9 +268,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
     private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
-    private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
-    private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
-
     private EnergyBalanceInfo energyBalanceInfo;
 
     [JsonProperty]
@@ -654,14 +651,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdateEnergyBalanceToolTips(EnergyBalanceInfo energyBalance)
     {
-        // Clear previous callbacks
-        processesTooltipCallbacks.Clear();
-
         foreach (var subBar in atpProductionBar.SubBars)
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
 
-            subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
+            subBar.RegisterToolTipForControl(tooltip);
 
             tooltip.Description = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION"),
@@ -673,7 +667,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesConsumption");
 
-            subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
+            subBar.RegisterToolTipForControl(tooltip);
 
             string displayName;
 
@@ -1372,8 +1366,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         foreach (var entry in organelleSelections)
         {
             // Special case with registering the tooltip here for item with no associated organelle
-            entry.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
-                entry.Name, "organelleSelection"), tooltipCallbacks);
+            entry.RegisterToolTipForControl(entry.Name, "organelleSelection");
 
             if (!SimulationParameters.Instance.DoesOrganelleExist(entry.Name))
             {
@@ -1393,8 +1386,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         foreach (var entry in membraneSelections)
         {
             // Special case with registering the tooltip here for item with no associated membrane
-            entry.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
-                entry.Name, "membraneSelection"), tooltipCallbacks);
+            entry.RegisterToolTipForControl(entry.Name, "membraneSelection");
 
             if (!SimulationParameters.Instance.DoesMembraneExist(entry.Name))
             {
@@ -1746,39 +1738,25 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     private void RegisterTooltips()
     {
-        var toolTipManager = ToolTipManager.Instance;
-
-        rigiditySlider.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
-        helpButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("helpButton"), tooltipCallbacks);
-        symmetryButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("symmetryButton", "editor"), tooltipCallbacks);
-        undoButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("undoButton", "editor"), tooltipCallbacks);
-        redoButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("redoButton", "editor"), tooltipCallbacks);
-        newCellButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("newCellButton", "editor"), tooltipCallbacks);
-        timeIndicator.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
-        finishButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
-        cancelButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("cancelButton", "editor"), tooltipCallbacks);
-        menuButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
+        rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
+        helpButton.RegisterToolTipForControl("helpButton");
+        symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
+        undoButton.RegisterToolTipForControl("undoButton", "editor");
+        redoButton.RegisterToolTipForControl("redoButton", "editor");
+        newCellButton.RegisterToolTipForControl("newCellButton", "editor");
+        timeIndicator.RegisterToolTipForControl("timeIndicator", "editor");
+        finishButton.RegisterToolTipForControl("finishButton", "editor");
+        cancelButton.RegisterToolTipForControl("cancelButton", "editor");
+        menuButton.RegisterToolTipForControl("menuButton");
 
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
 
         // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
         // ReSharper disable StringLiteralTypo
-        temperatureButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("temperature", "chartLegendPhysConds"), tooltipCallbacks);
+        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysConds");
 
-        sunlightButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("sunlight", "chartLegendPhysConds"), tooltipCallbacks);
+        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysConds");
 
         // ReSharper restore StringLiteralTypo
     }
