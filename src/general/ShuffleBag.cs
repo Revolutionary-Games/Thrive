@@ -182,12 +182,6 @@ public class ShuffleBag<T> : IEnumerable<T>
         /// <summary>
         ///   Handles the disposal of the enumerator, i.e. when closing the foreach loop that was using it.
         /// </summary>
-        /// <remarks>
-        ///   <para>
-        ///     There may be some memory cleaning to do to improve performances,
-        ///     rather than waiting for garbage collector.
-        ///   </para>
-        /// </remarks>
         public void Dispose()
         {
             // If we have exhausted the bag, fill and shuffle it for the next one.
