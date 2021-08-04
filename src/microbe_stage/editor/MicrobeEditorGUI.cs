@@ -803,15 +803,28 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 // Clamp population number so it doesn't go into the negatives
                 var population = extinctInPatch ? 0 : entry.Value;
 
+                var iconType = DataPoint.MarkerIcon.Circle;
+                var iconSize = 7;
+
+                if (extinctInPatch)
+                {
+                    if (extinctEverywhere)
+                    {
+                        iconType = DataPoint.MarkerIcon.Skull;
+                        iconSize = 28;
+                    }
+                    else
+                    {
+                        iconType = DataPoint.MarkerIcon.Cross;
+                        iconSize = 12;
+                    }
+                }
+
                 var dataPoint = new DataPoint
                 {
                     Value = new Vector2((float)snapshot.TimePeriod, population),
-                    Size = extinctInPatch ? extinctEverywhere ? 28 : 12 : 7,
-                    IconType = extinctInPatch ?
-                        extinctEverywhere ?
-                            DataPoint.MarkerIcon.Skull :
-                            DataPoint.MarkerIcon.Cross :
-                        DataPoint.MarkerIcon.Circle,
+                    Size = iconSize,
+                    IconType = iconType,
                     MarkerColour = dataset.DataColour,
                 };
 
