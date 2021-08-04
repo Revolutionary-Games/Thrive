@@ -60,7 +60,7 @@ public class PauseMenu : ControlWithInput
     public delegate void MakeSave(string name);
 
     /// <summary>
-    ///   Types of exit the player requests. Mainly used for game exit confirmation.
+    ///   Types of exit the player requests. Used for game exit confirmation.
     /// </summary>
     public enum ExitType
     {
