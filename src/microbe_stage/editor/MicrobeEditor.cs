@@ -1841,11 +1841,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         organelle.PlacedThisSession = true;
 
-        if (organelle.Position == new Hex(0, 0))
-            organelle.FalsePosition = organelle.Position;
-        else
-            organelle.FalsePosition = new Hex(1, 1);
-
         var action = new MicrobeEditorAction(this, organelle.Definition.MPCost,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
 

@@ -10,7 +10,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-    private int countInitialization = 6;
+    private int initialUpdatesCount = 6;
     private bool movingTail;
     private Vector3 force;
     private AnimationPlayer animation;
@@ -51,9 +51,9 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override bool NeedsUpdateAnyway()
     {
-        if (countInitialization > 0)
-            countInitialization--;
-        return countInitialization > 0;
+        if (initialUpdatesCount > 0)
+            initialUpdatesCount--;
+        return initialUpdatesCount > 0;
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle,
@@ -65,13 +65,15 @@ public class MovementComponent : ExternallyPositionedComponent
     /// <summary>
     ///   Calculate the momentum of the movement organelle based on
     ///   angle towards middle of cell
+    ///   If the flagella is  placed in the microbes center ,hence delta equals 0,
+    ///   consider defaultPos as the organelles "false" position.
     /// </summary>
     private static Vector3 CalculateForce(Hex pos, float momentum, Vector3 defaultPos)
     {
-        Vector3 organellePoz = Hex.AxialToCartesian(pos);
+        Vector3 organellePosition = Hex.AxialToCartesian(pos);
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organellePoz;
-        if (delta == new Vector3(0, 0, 0))
+        var delta = middle - organellePosition;
+        if (delta == Vector3.Zero)
             delta = defaultPos;
         return delta.Normalized() * momentum;
     }

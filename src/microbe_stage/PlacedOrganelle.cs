@@ -42,7 +42,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     public OrganelleDefinition Definition { get; set; }
-    public Hex FalsePosition { get; set; }
     public Hex Position { get; set; }
 
     public int Orientation { get; set; }

@@ -26,7 +26,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     {
         this.organelle = organelle;
         organellePos = Hex.AxialToCartesian(organelle.Position);
-        defaultVisualPos = new Vector3(0, 0, -1);
+        defaultVisualPos = Vector3.Forward;
         CustomAttach();
     }
 
