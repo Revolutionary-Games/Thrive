@@ -13,7 +13,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     protected Vector3 organellePos;
 
     /// <summary>
-    /// The default visual posistion if the organelle is in teh microbes center
+    ///   The default visual position if the organelle is on the microbe's center
     /// </summary>
     protected Vector3 defaultVisualPos;
 
