@@ -1427,22 +1427,23 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
 
         var oldRotation = Rotation;
-        var vectorToParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
+
+        var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
+
+        var vectorFromParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
+        var vectorFromParentRotated =
+            vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+
+        var vectorToParentRotated = vectorFromParent.Rotated(Vector3.Up, Rotation.y);
+
+        var correctedVectorToParent = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.z).Rotated(Vector3.Down, Rotation.y);
+        correctedVectorToParent += ColonyParent.Membrane.GetExternalOrganelle(vectorFromParentRotated.x, vectorFromParentRotated.z).Rotated(Vector3.Up, globalParentRotation.y);
+
         ChangeNodeParent(ColonyParent);
 
-        var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
-        var vectorToMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+        Rotation = oldRotation - globalParentRotation;
 
-        vectorToParentRotated = (-vectorToParent).Rotated(Vector3.Down, ColonyParent.Rotation.y);
-        var parentVectorToItsMembrane =
-            ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
-
-        var requiredDistance = vectorToMembrane.Length() + parentVectorToItsMembrane.Length();
-
-        var offset = vectorToParent.Normalized() * requiredDistance;
-
-        Rotation = oldRotation - ColonyParent.Rotation;
-        Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
+        Translation = correctedVectorToParent.Rotated(Vector3.Down, globalParentRotation.y);
     }
 
     private void SetScaleFromSpecies()
