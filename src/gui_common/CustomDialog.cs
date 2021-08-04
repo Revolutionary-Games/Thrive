@@ -1,3 +1,4 @@
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -25,6 +26,7 @@ public class CustomDialog : Popup, ICustomPopup
 
     private DragType dragType = DragType.None;
 
+    [Flags]
     private enum DragType
     {
         None = 0,
@@ -338,7 +340,7 @@ public class CustomDialog : Popup, ICustomPopup
         }
         else
         {
-            if (((int)dragType & (int)DragType.ResizeTop) != 0)
+            if (dragType.HasFlag(DragType.ResizeTop))
             {
                 var bottom = RectPosition.y + RectSize.y;
                 var maxY = bottom - minSize.y;
@@ -346,12 +348,12 @@ public class CustomDialog : Popup, ICustomPopup
                 RectPosition = new Vector2(RectPosition.x, Mathf.Min(globalMousePos.y - dragOffset.y, maxY));
                 RectSize = new Vector2(RectSize.x, bottom - RectPosition.y);
             }
-            else if (((int)dragType & (int)DragType.ResizeBottom) != 0)
+            else if (dragType.HasFlag(DragType.ResizeBottom))
             {
                 RectSize = new Vector2(RectSize.x, globalMousePos.y - RectPosition.y + dragOffsetFar.y);
             }
 
-            if (((int)dragType & (int)DragType.ResizeLeft) != 0)
+            if (dragType.HasFlag(DragType.ResizeLeft))
             {
                 var right = RectPosition.x + RectSize.x;
                 var maxX = right - minSize.x;
@@ -359,7 +361,7 @@ public class CustomDialog : Popup, ICustomPopup
                 RectPosition = new Vector2(Mathf.Min(globalMousePos.x - dragOffset.x, maxX), RectPosition.y);
                 RectSize = new Vector2(right - RectPosition.x, RectSize.y);
             }
-            else if (((int)dragType & (int)DragType.ResizeRight) != 0)
+            else if (dragType.HasFlag(DragType.ResizeRight))
             {
                 RectSize = new Vector2(globalMousePos.x - RectPosition.x + dragOffsetFar.x, RectSize.y);
             }
@@ -373,8 +375,8 @@ public class CustomDialog : Popup, ICustomPopup
 
             // Clamp position to ensure window stays inside the screen
             RectPosition = new Vector2(
-                    Mathf.Clamp(RectPosition.x, 0, screenSize.x - minSize.x),
-                    Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - minSize.y));
+                Mathf.Clamp(RectPosition.x, 0, screenSize.x - minSize.x),
+                Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - minSize.y));
         }
     }
 

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Interface for any custom popups inheriting Popup.
