@@ -145,7 +145,7 @@ public class PauseMenu : ControlWithInput
 
         exitType = ExitType.ReturnToMenu;
 
-        if (SaveHelper.SaveIsRecentlyPerformed)
+        if (SaveHelper.SavedRecently)
         {
             ConfirmExit();
         }
@@ -161,7 +161,7 @@ public class PauseMenu : ControlWithInput
 
         exitType = ExitType.QuitGame;
 
-        if (SaveHelper.SaveIsRecentlyPerformed)
+        if (SaveHelper.SavedRecently)
         {
             ConfirmExit();
         }

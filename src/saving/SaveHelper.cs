@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Timers;
 using Godot;
-using Timer = System.Timers.Timer;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter
@@ -21,18 +19,7 @@ public static class SaveHelper
         "0.5.3.1",
     };
 
-    private static Timer recentSaveTimer;
-
-    static SaveHelper()
-    {
-        recentSaveTimer = new Timer
-        {
-            Interval = Constants.RECENT_SAVE_TIMER_INTERVAL,
-            AutoReset = false,
-        };
-
-        recentSaveTimer.Elapsed += OnSaveFreshnessElapsed;
-    }
+    private static DateTime? lastSave;
 
     public enum SaveOrder
     {
@@ -53,10 +40,14 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Checks whether the last save is made within a timespan of set duration.
+    ///   Has the game been saved recently?
     /// </summary>
-    /// <returns>True if the last save is still recent, false if otherwise or reset.</returns>
-    public static bool SaveIsRecentlyPerformed { get; private set; }
+    /// <remarks>
+    ///   <para>
+    ///     Used for knowing whether or not to show the exit confirmation menu
+    ///   </para>
+    /// </remarks>
+    public static bool SavedRecently => DateTime.Now - lastSave < Constants.RecentSaveTime;
 
     /// <summary>
     ///   A save (and not a quick save) that the user triggered
@@ -358,12 +349,11 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Sets SaveIsRecentlyPerformed to false and stops the save freshness timer.
+    ///   Forgets when the last save happened.
     /// </summary>
     public static void ResetSaveFreshness()
     {
-        SaveIsRecentlyPerformed = false;
-        recentSaveTimer.Stop();
+        lastSave = null;
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
@@ -395,9 +385,7 @@ public static class SaveHelper
         {
             save.SaveToFile();
             inProgress.ReportStatus(true, TranslationServer.Translate("SAVING_SUCCEEDED"));
-            SaveIsRecentlyPerformed = true;
-            recentSaveTimer.Stop();
-            recentSaveTimer.Start();
+            lastSave = DateTime.Now;
         }
         catch (Exception e)
         {
@@ -434,10 +422,5 @@ public static class SaveHelper
     {
         TaskExecutor.Instance.AddTask(new Task(() =>
             DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
-    }
-
-    private static void OnSaveFreshnessElapsed(object source, ElapsedEventArgs e)
-    {
-        SaveIsRecentlyPerformed = false;
     }
 }

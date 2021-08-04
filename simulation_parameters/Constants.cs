@@ -55,7 +55,9 @@ public static class Constants
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
     /// </summary>
     /// <remarks>
-    ///   this is applied *per* hex
+    ///   <para>
+    ///     this is applied *per* hex
+    ///   </para>
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
@@ -529,13 +531,18 @@ public static class Constants
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 
-    /// <summary>
-    ///   The duration in milliseconds for which a save is considered recently performed.
-    /// </summary>
-    public const double RECENT_SAVE_TIMER_INTERVAL = 10000;
-
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
+
+    /// <summary>
+    ///   The duration for which a save is considered recently performed.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Not a const because TimeSpan is not a primitive
+    ///   </para>
+    /// </remarks>
+    public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(10);
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
