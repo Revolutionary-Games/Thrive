@@ -348,7 +348,7 @@ border_width_right = 3
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=38]
-bg_color = Color( 1, 0.466667, 0.466667, 0.588235 )
+bg_color = Color( 0, 0, 0, 0.588235 )
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -808,6 +808,7 @@ VSplitContainer/constants/autohide = 1
 VSplitContainer/constants/separation = 12
 VSplitContainer/icons/grabber = null
 VSplitContainer/styles/bg = null
+WindowDialog/colors/custom_close_color = Color( 0, 0, 0, 1 )
 WindowDialog/colors/custom_title_color = Color( 0, 0, 0, 1 )
 WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
 WindowDialog/constants/close_h_ofs = 18

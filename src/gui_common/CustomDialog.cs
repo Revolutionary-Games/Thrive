@@ -69,6 +69,10 @@ public class CustomDialog : Popup, ICustomPopup
 
     public override void _EnterTree()
     {
+        // To make popup position readjustment react to window resizing
+        if (!GetTree().Root.IsConnected("size_changed", this, nameof(FixPosition)))
+            GetTree().Root.Connect("size_changed", this, nameof(FixPosition));
+
         SetupCloseButton();
         UpdateChildRects();
     }
@@ -367,17 +371,25 @@ public class CustomDialog : Popup, ICustomPopup
             }
         }
 
-        if (BoundToScreenArea)
-        {
-            var screenSize = GetViewport().GetVisibleRect().Size;
+        FixPosition();
+    }
 
-            var titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
+    /// <summary>
+    ///   Applies final adjustments to the popup's position.
+    /// </summary>
+    private void FixPosition()
+    {
+        if (!BoundToScreenArea)
+            return;
 
-            // Clamp position to ensure window stays inside the screen
-            RectPosition = new Vector2(
-                Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
-                Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
-        }
+        var screenSize = GetViewport().GetVisibleRect().Size;
+
+        var titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
+
+        // Clamp position to ensure window stays inside the screen
+        RectPosition = new Vector2(
+            Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
+            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
     }
 
     private void SetupCloseButton()
@@ -385,11 +397,13 @@ public class CustomDialog : Popup, ICustomPopup
         if (closeButton != null)
             return;
 
+        var closeColor = GetColor("custom_close_color", "WindowDialog");
+
         closeButton = new TextureButton
         {
             Expand = true,
             RectMinSize = new Vector2(14, 14),
-            SelfModulate = new Color(0.85f, 0.0f, 0.0f),
+            SelfModulate = closeColor,
             MouseFilter = MouseFilterEnum.Pass,
             TextureNormal = GetIcon("custom_close", "WindowDialog"),
         };
