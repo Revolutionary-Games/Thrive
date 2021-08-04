@@ -69,9 +69,9 @@ public class CustomDialog : Popup, ICustomPopup
 
     public override void _EnterTree()
     {
-        // To make popup position readjustment react to window resizing
-        if (!GetTree().Root.IsConnected("size_changed", this, nameof(FixPosition)))
-            GetTree().Root.Connect("size_changed", this, nameof(FixPosition));
+        // To make popup rect readjustment react to window resizing
+        if (!GetTree().Root.IsConnected("size_changed", this, nameof(OnViewportResized)))
+            GetTree().Root.Connect("size_changed", this, nameof(OnViewportResized));
 
         SetupCloseButton();
         UpdateChildRects();
@@ -371,25 +371,23 @@ public class CustomDialog : Popup, ICustomPopup
             }
         }
 
-        FixPosition();
+        if (BoundToScreenArea)
+            FixRect();
     }
 
     /// <summary>
-    ///   Applies final adjustments to the popup's position.
+    ///   Applies final adjustments to the popup's rect.
     /// </summary>
-    private void FixPosition()
+    private void FixRect()
     {
-        if (!BoundToScreenArea)
-            return;
-
-        var screenSize = GetViewport().GetVisibleRect().Size;
+        var screenSize = GetViewport()?.GetVisibleRect().Size;
 
         var titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
 
         // Clamp position to ensure window stays inside the screen
         RectPosition = new Vector2(
-            Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
-            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
+            Mathf.Clamp(RectPosition.x, 0, screenSize.GetValueOrDefault().x - RectSize.x),
+            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.GetValueOrDefault().y - RectSize.y));
     }
 
     private void SetupCloseButton()
@@ -455,5 +453,11 @@ public class CustomDialog : Popup, ICustomPopup
     private void OnCloseButtonPressed()
     {
         ClosePopup();
+    }
+
+    private void OnViewportResized()
+    {
+        if (BoundToScreenArea)
+            FixRect();
     }
 }
