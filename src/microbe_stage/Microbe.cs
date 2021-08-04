@@ -1436,13 +1436,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var vectorToParentRotated = vectorFromParent.Rotated(Vector3.Up, Rotation.y);
 
-        var correctedVectorToParent = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.z).Rotated(Vector3.Down, Rotation.y);
-        correctedVectorToParent += ColonyParent.Membrane.GetExternalOrganelle(vectorFromParentRotated.x, vectorFromParentRotated.z).Rotated(Vector3.Up, globalParentRotation.y);
+        var correctedVectorToParent = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.z)
+            .Rotated(Vector3.Down, Rotation.y);
+        correctedVectorToParent += ColonyParent.Membrane
+            .GetExternalOrganelle(vectorFromParentRotated.x, vectorFromParentRotated.z)
+            .Rotated(Vector3.Up, globalParentRotation.y);
 
         ChangeNodeParent(ColonyParent);
 
         Rotation = oldRotation - globalParentRotation;
-
         Translation = correctedVectorToParent.Rotated(Vector3.Down, globalParentRotation.y);
     }
 
