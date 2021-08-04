@@ -8,10 +8,10 @@ def editor
   return 'poedit' unless which('poedit').nil?
 
   core_editor = `git config --global core.editor`
-  return core_editor unless core_editor.nil?
+  return core_editor unless core_editor.empty?
 
   visual_editor = `git config --global core.visual`
-  return visual_editor unless visual_editor.nil?
+  return visual_editor unless visual_editor.empty?
 
   if OS.win?
     'notepad.exe'
