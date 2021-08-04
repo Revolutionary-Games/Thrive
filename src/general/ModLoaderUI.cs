@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
+using System.Threading.Tasks;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Class managing the Mod Manager UI
@@ -87,6 +90,11 @@ public class ModLoaderUI : Control
     public NodePath ConfigPanelContainerPath;
 
     [Export]
+    public NodePath ModDownloadButtonPath;
+    [Export]
+    public NodePath ModVersionRequesterPath;
+
+    [Export]
     public PackedScene ConfigItemScene;
 
     // The array is used for getting all of the ItemList
@@ -112,6 +120,9 @@ public class ModLoaderUI : Control
     private CheckBox safeModeButton;
     private CheckBox oneShotButton;
 
+    private TextureButton modDownloadButton;
+    private HTTPRequest modVersionRequester;
+
     private MarginContainer modInfoContainer;
     private MarginContainer errorInfoContainer;
     private MarginContainer configPanelContainer;
@@ -121,6 +132,7 @@ public class ModLoaderUI : Control
 
     private ModLoader loader = new ModLoader();
     private ModInfo currentSelectedMod;
+    private List<ModUpdateInfo> currentModUpdateInfo;
 
     [Signal]
     public delegate void OnModLoaderClosed();
@@ -164,6 +176,9 @@ public class ModLoaderUI : Control
         safeModeButton = GetNode<CheckBox>(SafeModeButtonPath);
         oneShotButton = GetNode<CheckBox>(OneShotButtonPath);
 
+        modDownloadButton = GetNode<TextureButton>(ModDownloadButtonPath);
+        modVersionRequester = GetNode<HTTPRequest>(ModVersionRequesterPath);
+
         modInfoName = GetNode<Label>(ModInfoNamePath);
         modInfoAuthor = GetNode<Label>(ModInfoAuthorPath);
         modInfoVersion = GetNode<Label>(ModInfoVersionPath);
@@ -185,7 +200,7 @@ public class ModLoaderUI : Control
         ReloadModLists();
     }
 
-    private void OnModSelected(int itemIndex, int selectedItemList)
+    private async Task OnModSelected(int itemIndex, int selectedItemList)
     {
         ModInfo tempModInfo = (ModInfo)modItemLists[selectedItemList].GetItemMetadata(itemIndex);
         currentSelectedMod = tempModInfo;
@@ -203,6 +218,11 @@ public class ModLoaderUI : Control
 
         if (tempModInfo != null)
         {
+            // Reset the Version Label
+            modInfoVersion.Modulate = new Color(1, 1, 1);
+            modInfoVersion.HintTooltip = string.Empty;
+            modDownloadButton.Visible = false;
+
             modInfoName.Text = tempModInfo.DisplayName ?? tempModInfo.Name;
             modInfoAuthor.Text = tempModInfo.Author;
             modInfoVersion.Text = tempModInfo.Version;
@@ -242,6 +262,67 @@ public class ModLoaderUI : Control
             else
             {
                 infoButtonContainer.Visible = false;
+            }
+
+            if (tempModInfo.UpdateURL != null && tempModInfo.Version != null)
+            {
+                if (tempModInfo.IsLatestVersion == 0 && tempModInfo.IsValidUpdateURL())
+                {
+                    var requestCreationStatus = modVersionRequester.Request(tempModInfo.UpdateURL.ToString());
+                    if (requestCreationStatus == Error.Ok)
+                    {
+                        currentModUpdateInfo = null;
+
+                        var updateInfo = await GetModUpdateInfo().ConfigureAwait(false);
+                        if (updateInfo != null)
+                        {
+                            if (updateInfo.DownloadURL != null)
+                            {
+                                tempModInfo.DownloadURL = updateInfo.DownloadURL;
+                                modDownloadButton.Visible = true;
+                            }
+                            else
+                            {
+                                modDownloadButton.Visible = false;
+                            }
+
+                            if (updateInfo.LatestStableVersion != tempModInfo.Version && updateInfo.LatestUnstableVersion != tempModInfo.Version)
+                            {
+                                tempModInfo.IsLatestVersion = -1;
+                            }
+                            else if (updateInfo.LatestStableVersion == tempModInfo.Version)
+                            {
+                                tempModInfo.IsLatestVersion = 1;
+                            }
+                            else if (updateInfo.LatestUnstableVersion == tempModInfo.Version)
+                            {
+                                tempModInfo.IsLatestVersion = 2;
+                            }
+                        }
+                    }
+                }
+
+                if (tempModInfo.IsLatestVersion <= 0)
+                {
+                    // Set the color of the label to red
+                    modInfoVersion.Modulate = new Color(1, 0, 0);
+                    modInfoVersion.HintTooltip = "You are using an out of date mod.\nPlease download the latest version.";
+                }
+                else if (tempModInfo.IsLatestVersion == 1)
+                {
+                    modInfoVersion.HintTooltip = "You are using the latest version of the mod.";
+                    modInfoVersion.Modulate = new Color(1, 1, 1);
+                }
+                else if (tempModInfo.IsLatestVersion == 2)
+                {
+                    modInfoVersion.HintTooltip = "You are using the latest unstable version of the mod.";
+                    modInfoVersion.Modulate = new Color(1, 1, 1);
+                }
+
+                if (tempModInfo.DownloadURL != null)
+                {
+                    modDownloadButton.Visible = true;
+                }
             }
 
             // Checks if the ErrorItemList was selected and if so display the error
@@ -428,6 +509,24 @@ public class ModLoaderUI : Control
             // Finally adds to the SceneTree
             configContainer.AddChild(currentItem);
         }
+    }
+
+    private async Task<ModUpdateInfo> GetModUpdateInfo()
+    {
+        while (currentModUpdateInfo == null)
+        {
+            await Task.Delay(25).ConfigureAwait(false);
+        }
+
+        foreach (var currentInfo in currentModUpdateInfo)
+        {
+            if (currentInfo.ThriveVersion == Constants.Version)
+            {
+                return currentInfo;
+            }
+        }
+
+        return null;
     }
 
     private void OnBackPressed()
@@ -987,6 +1086,27 @@ public class ModLoaderUI : Control
             warningText += "\n\n Are you sure you want to load these mods?";
             loadWarningPopup.DialogText = warningText;
             loadWarningPopup.PopupCenteredShrink();
+        }
+    }
+
+    private void OnModVersionRequesterRequestCompleted(int result, int response_code, string[] headers, byte[] body)
+    {
+
+        if (response_code == (int)HTTPClient.ResponseCode.Ok && result == (int)HTTPRequest.Result.Success && headers != null)
+        {
+            var bodyString = Encoding.UTF8.GetString(body);
+            currentModUpdateInfo = JsonConvert.DeserializeObject<List<ModUpdateInfo>>(bodyString);
+        }
+    }
+
+    private void OnDownloadButtonPressed()
+    {
+        if (currentSelectedMod != null)
+        {
+            if (currentSelectedMod.DownloadURL != null)
+            {
+                OS.ShellOpen(currentSelectedMod.DownloadURL.ToString());
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/textures/DiscoBall.jpg" type="Texture" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://assets/textures/gui/bevel/ExpandDownIcon.png" type="Texture" id=6]
 [ext_resource path="res://src/engine/ModConfigItem.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/ExpandUpIcon.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonDisabled.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonActive.png" type="Texture" id=12]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -40,6 +44,7 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 UnloadedItemListPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList")
@@ -68,6 +73,8 @@ LoadReminderPopupPath = NodePath("LoadReminderPopup")
 ConfigItemListPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/ModConfigItemList")
 ConfigContainerPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer/ScrollContainer/ConfigContainer")
 ConfigPanelContainerPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/ConfigSplitContainer/Config Panel/MarginContainer")
+ModDownloadButtonPath = NodePath("Main Margin Container/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer/DownloadButton")
+ModVersionRequesterPath = NodePath("ModVersionRequester")
 ConfigItemScene = ExtResource( 7 )
 
 [node name="Main Margin Container" type="MarginContainer" parent="."]
@@ -78,6 +85,7 @@ custom_constants/margin_top = 37
 custom_constants/margin_left = 37
 custom_constants/margin_bottom = 37
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -102,7 +110,6 @@ __meta__ = {
 }
 
 [node name="Mod Loader" type="MarginContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -134,14 +141,14 @@ __meta__ = {
 
 [node name="VSeparator" type="VSeparator" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/LabelContainer"]
 margin_left = 157.0
-margin_right = 624.0
+margin_right = 652.0
 margin_bottom = 22.0
 custom_styles/separator = SubResource( 1 )
-custom_constants/separation = 467
+custom_constants/separation = 495
 
 [node name="LoadedModsLabel" type="Label" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/LabelContainer"]
-margin_left = 628.0
-margin_right = 760.0
+margin_left = 656.0
+margin_right = 788.0
 margin_bottom = 22.0
 text = "Loaded Mods"
 __meta__ = {
@@ -313,6 +320,7 @@ __meta__ = {
 }
 
 [node name="Mod Configuration" type="MarginContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -526,10 +534,26 @@ __meta__ = {
 margin_left = 135.0
 margin_right = 164.0
 margin_bottom = 22.0
+mouse_filter = 1
 text = "1.0"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
+
+[node name="DownloadButton" type="TextureButton" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer"]
+visible = false
+margin_left = 152.0
+margin_right = 187.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+hint_tooltip = "Downloads the latest version of the mod."
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 10 )
+texture_disabled = ExtResource( 11 )
+texture_focused = ExtResource( 10 )
+expand = true
+stretch_mode = 4
 
 [node name="CompatibleGameVersion" type="HBoxContainer" parent="Main Margin Container/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
 margin_left = 754.0
@@ -708,6 +732,7 @@ margin_left = 578.0
 margin_right = 648.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
+hint_tooltip = "Checks if the mods being loaded will not cause errors."
 text = "Check"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -853,6 +878,9 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="ModVersionRequester" type="HTTPRequest" parent="."]
+use_threads = true
+
 [connection signal="item_selected" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList" to="." method="OnModSelected" binds= [ 0 ]]
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/MoveLeftButton" to="." method="OnMoveToUnloadPressed"]
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/OrderButtonContainer/MoveUpButton" to="." method="OnMoveUpPressed"]
@@ -865,6 +893,7 @@ __meta__ = {
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/Config Button Container/ApplyButton" to="." method="OnApplyButtonPressed"]
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/Config Button Container/ClearConfigButton" to="." method="OnClearConfigButtonPressed"]
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Configuration/HBoxContainer/Config Button Container/ResetConfigButton" to="." method="OnResetConfigButtonPressed"]
+[connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer/DownloadButton" to="." method="OnDownloadButtonPressed"]
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/DependencyButton" to="." method="OnDependencyPressed"]
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/IncompatibleButton" to="." method="OnIncompatiblePressed"]
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/LoadOrderButton" to="." method="OnLoadOrderPressed"]
@@ -877,3 +906,4 @@ __meta__ = {
 [connection signal="confirmed" from="ResetDialog" to="." method="ResetGame"]
 [connection signal="confirmed" from="LoadReminderPopup" to="." method="LoadReminderPopupConfirmed"]
 [connection signal="confirmed" from="LoadWarningPopup" to="." method="LoadAllMods"]
+[connection signal="request_completed" from="ModVersionRequester" to="." method="OnModVersionRequesterRequestCompleted"]
