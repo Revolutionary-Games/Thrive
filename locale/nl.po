@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-06-24 08:42+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
@@ -1632,14 +1632,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr "GLES2 moduswaarschuwing"
 
 #: ../src/general/PauseMenu.cs:308
-#, fuzzy
-msgid "YES"
-msgstr "Zuurstof"
+msgid "YES_CONFIRM"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "Undo"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2645,11 +2643,11 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr ""
 
@@ -2875,6 +2873,10 @@ msgstr ""
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe vrij bouwen"
 
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "Capaciteiten"
+
 #~ msgid "TURNS"
 #~ msgstr "Verandert"
 
@@ -2966,6 +2968,10 @@ msgstr "Microbe vrij bouwen"
 #, fuzzy
 #~ msgid "EXCLAMDOWN"
 #~ msgstr "Scroll omlaag"
+
+#, fuzzy
+#~ msgid "YEN"
+#~ msgstr "Zuurstof"
 
 #, fuzzy
 #~ msgid "SECTION"

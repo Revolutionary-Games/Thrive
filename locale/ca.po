@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-06-22 20:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -1676,14 +1676,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr "Mode d'Alerta GLES2"
 
 #: ../src/general/PauseMenu.cs:308
-#, fuzzy
-msgid "YES"
-msgstr "anys"
+msgid "YES_CONFIRM"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "Desfer l'acció"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2828,11 +2826,11 @@ msgstr "Sobreescriure l'arxiu de guardat existent:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Voleu sobreescriure l'arxiu de guardat actual?"
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr "Acció de guardat exitosa"
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr "Acció de guardat fallida! Hi ha hagut un problema"
 
@@ -3210,6 +3208,24 @@ msgstr ""
 "\n"
 "Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia "
 "cèl·lula o pressionar la tecla per desunir-les a totes."
+
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "Habilitats"
+
+#, fuzzy
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "Efectes externs:"
+
+#, fuzzy
+#~ msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+#~ msgstr ""
+#~ "És el pal de paller de la generació d'energia per la cèl·lula. Els "
+#~ "Mitocondris són una estructura de membrana doble curulla de proteïnes i "
+#~ "enzims. En realitat, és un petit organisme procariota que ha estat "
+#~ "engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. "
+#~ "Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una "
+#~ "gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
 #~ msgid "TURNS"
 #~ msgstr "Girs"

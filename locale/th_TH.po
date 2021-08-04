@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/"
@@ -1606,13 +1606,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr "คำเตือนโหมด GLES2"
 
 #: ../src/general/PauseMenu.cs:308
-msgid "YES"
+msgid "YES_CONFIRM"
 msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "เลิกทำ"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2701,11 +2700,11 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr ""
 
@@ -2930,6 +2929,21 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
+
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "ความสามารถ"
+
+#, fuzzy
+#~ msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+#~ msgstr ""
+#~ "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) "
+#~ "เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ "
+#~ "เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP "
+#~ "ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic "
+#~ "Respiration "
+#~ "อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต "
+#~ "ATP ช้าลง"
 
 #~ msgid "TURNS"
 #~ msgstr "เลี้ยว"

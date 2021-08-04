@@ -2,13 +2,13 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
-"PO-Revision-Date: 2021-05-22 12:21+0000\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
+"PO-Revision-Date: 2021-07-23 08:24+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -1576,13 +1576,12 @@ msgstr "GLES2-moodi Varoitus"
 
 #: ../src/general/PauseMenu.cs:308
 #, fuzzy
-msgid "YES"
-msgstr "vuotta"
+msgid "YES_CONFIRM"
+msgstr "Vahvista"
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "Kumoa"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -1767,6 +1766,10 @@ msgstr "Osmoregulaation energiantarve"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
+"Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] "
+"[thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Nopeus skaalautuu "
+"[thrive:compound type=\"oxygen\"]hapen[/thrive:compound] pitoisuuden "
+"mukaan."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -2552,11 +2555,11 @@ msgstr "Korvaa aikaisempi tallennus:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Korvaa aikaisempi tallennus?"
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr "Tallennus onnistui"
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
@@ -2795,6 +2798,14 @@ msgstr ""
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Mikrobien vapaa rakentelu"
 
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "Kyvyt"
+
+#, fuzzy
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "Ulkoiset vaikutukset:"
+
 #~ msgid "TURNS"
 #~ msgstr "Muuntaa"
 
@@ -2962,6 +2973,3 @@ msgstr "Mikrobien vapaa rakentelu"
 
 #~ msgid "PLASTID"
 #~ msgstr "Plasti"
-
-#~ msgid "CONFIRM"
-#~ msgstr "Vahvista"

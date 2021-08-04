@@ -2,13 +2,13 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
-"PO-Revision-Date: 2021-06-20 16:48+0000\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
+"PO-Revision-Date: 2021-07-29 18:05+0700\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -18,44 +18,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:4
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"W,A,S,D and mouse to move. E to shoot OxyToxy NT if you have a toxin "
-"vacuole. G to toggle engulf mode."
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] and mouse to move. [thrive:"
+"input]g_fire_toxin[/thrive:input] to shoot [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound] if you have a toxin vacuole. [thrive:"
+"input]g_toggle_engulf[/thrive:input] to toggle engulf mode."
 
 #: ../simulation_parameters/common/help_texts.json:5
 #: ../simulation_parameters/common/help_texts.json:31
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Your cell uses ATP as its energy source, if it runs out you will die."
+"Your cell uses [thrive:compound type=\"atp\"][/thrive:compound] as its "
+"energy source, if it runs out you will die."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:32
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"To unlock the editor and reproduce you need to gather Ammonia (Orange "
-"Cloud) and Phosphate (Purple Cloud)."
+"To unlock the editor and reproduce you need to gather [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] (Orange Cloud) and [thrive:compound "
+"type=\"phosphates\"][/thrive:compound] (Purple Cloud)."
 
 #: ../simulation_parameters/common/help_texts.json:7
 #: ../simulation_parameters/common/help_texts.json:33
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "You can also engulf cells, bacteria, iron chunks and cell chunks that are "
-"smaller than you by pressing G. This will cost additional ATP and will "
-"slow you down. Don't forget to press G a second time to stop engulfing."
+"smaller than you by pressing [thrive:input]g_toggle_engulf[/thrive:input]. "
+"This will cost additional [thrive:compound type=\"atp\"][/thrive:compound] "
+"and will slow you down. Don't forget to press [thrive:"
+"input]g_toggle_engulf[/thrive:input] a second time to stop engulfing."
 
 #: ../simulation_parameters/common/help_texts.json:8
 #: ../simulation_parameters/common/help_texts.json:34
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulation costs ATP, which means the bigger your cell is, the more "
-"Mitochondria, Metabolosomes or Rusticyanin (or cytoplasm, which does "
-"Glycolysis) you need to avoid losing ATP when you are stationary."
+"Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], "
+"which means the bigger your cell is, the more Mitochondria, Metabolosomes "
+"or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid "
+"losing [thrive:compound type=\"atp\"][/thrive:compound] when you are "
+"stationary."
 
 #: ../simulation_parameters/common/help_texts.json:9
 #: ../simulation_parameters/common/help_texts.json:35
@@ -69,20 +79,24 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "The various compound clouds are:\n"
 "\n"
-"White – Glucose\n"
-"Yellow – Hydrogen Sulfide\n"
-"Orange – Ammonia\n"
-"Purple – Phosphate\n"
-"Rust Brown – Iron\n"
+"White – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Yellow – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Orange – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Purple – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Rust Brown – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"Glucose makes ATP"
+"[thrive:compound type=\"glucose\"][/thrive:compound] makes [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:11
 #: ../simulation_parameters/common/help_texts.json:37
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"Hydrogen Sulfide can be converted into glucose via chemoplasts and "
-"chemosynthesizing proteins. Iron can be converted via rusticyanin into ATP."
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] can be "
+"converted into [thrive:compound type=\"glucose\"][/thrive:compound] via "
+"chemoplasts and chemosynthesizing proteins. [thrive:compound type=\"iron\"]"
+"[/thrive:compound] can be converted via rusticyanin into [thrive:compound "
+"type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:12
 #: ../simulation_parameters/common/help_texts.json:38
@@ -128,28 +142,35 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotic Structures\n"
 "\n"
-"Metabolosomes: Produces ATP from glucose\n"
+"Metabolosomes: Produces [thrive:compound type=\"atp\"][/thrive:compound] "
+"from [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen "
-"Sulfide as a chemoplast, but also performs glycolysis, and takes up 1 Hex\n"
+"Chemosynthisizing Proteins: Produces half of the [thrive:compound type="
+"\"glucose\"][/thrive:compound] out of [thrive:compound type="
+"\"hydrogensulfide\"][/thrive:compound] as a chemoplast, but also performs "
+"glycolysis, and takes up 1 Hex\n"
 "\n"
-"Thylakoids: Produces 1/3rd the amount of glucose as a normal chloroplast, "
-"but also performs glycolysis, and takes up 1 Hex\n"
+"Thylakoids: Produces 1/3rd the amount of [thrive:compound type=\"glucose\"]"
+"[/thrive:compound] as a normal chloroplast, but also performs glycolysis, "
+"and takes up 1 Hex\n"
 "\n"
-"Rusticyanin: Converts iron into ATP\n"
+"Rusticyanin: Converts [thrive:compound type=\"iron\"][/thrive:compound] "
+"into [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia "
-"anaerobically\n"
+"Nitrogenase: Converts atmospheric nitrogen and [thrive:compound type=\"atp"
+"\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] anaerobically\n"
 "\n"
 "Cytoplasm: Has storage space and performs glycolysis (Produces small "
-"amounts of ATP)"
+"amounts of [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "External Organelles\n"
 "\n"
-"Flagellum: Moves your cell faster by consuming ATP\n"
+"Flagellum: Moves your cell faster by consuming [thrive:compound type=\"atp"
+"\"][/thrive:compound]\n"
 "\n"
 "Pilus: Can be used to stab other cells"
 
@@ -163,19 +184,24 @@ msgstr ""
 "\n"
 "Binding Agent: Allows binding with other cells\n"
 "\n"
-"Mitochondrion: Produces ATP out of glucose and atmospheric O2 much more "
-"efficiently than cytoplasm\n"
+"Mitochondrion: Produces [thrive:compound type=\"atp\"][/thrive:compound] "
+"out of [thrive:compound type=\"glucose\"][/thrive:compound] and "
+"atmospheric O2 much more efficiently than cytoplasm\n"
 "\n"
-"Chloroplast: Makes glucose out of sunlight and atmospheric CO2\n"
+"Chloroplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] "
+"out of sunlight and atmospheric CO2\n"
 "\n"
-"Chemoplast: Makes glucose out of Hydrogen Sulfide\n"
+"Chemoplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] out "
+"of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen "
-"and Oxygen\n"
+"Nitrogen Fixing Plastid: Makes [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] from [thrive:compound type=\"atp\"][/thrive:compound] and "
+"atmospheric Nitrogen and Oxygen\n"
 "\n"
 "Vacuole: Stores 15 collected compounds\n"
 "\n"
-"Toxin Vacuoles: Produces toxins (called OxyToxy NT)"
+"Toxin Vacuoles: Produces toxins (called [thrive:compound type=\"oxytoxy\"]"
+"[/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:24
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -186,7 +212,8 @@ msgstr ""
 "placed in the current mutation session refunds MP for that organelle. You "
 "can move or completely remove an organelle by right-clicking on it and "
 "selecting the appropriate action from the pop-up menu. You can rotate your "
-"organelles while placing them with A and D."
+"organelles while placing them with [thrive:input]e_rotate_left[/thrive:"
+"input] and [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:25
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1636,11 +1663,11 @@ msgstr ""
 "You will lose any unsaved progress."
 
 #: ../src/general/PauseMenu.cs:308
-msgid "YES"
+msgid "YES_CONFIRM"
 msgstr "Yes"
 
 #: ../src/general/PauseMenu.cs:309
-msgid "NO"
+msgid "NO_DECLINE"
 msgstr "No"
 
 #: ../src/general/PauseMenu.tscn:59
@@ -1669,8 +1696,9 @@ msgid "EXIT"
 msgstr "Exit"
 
 #: ../src/general/PauseMenu.tscn:163
+#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "Confirm Exit"
+msgstr "CONFIRM"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1775,8 +1803,8 @@ msgstr "Health"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1834,9 +1862,9 @@ msgstr "Osmoregulation Cost"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1856,9 +1884,10 @@ msgstr "Thylakoid"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound]glucose[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound]carbondioxide[/thrive:compound] and "
-"intensity of [thrive:compound]sunlight[/thrive:compound]"
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:"
+"compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1874,11 +1903,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]hydrogensulfide[/thrive:compound] into [thrive:"
-"compound]glucose[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]carbondioxide[/thrive:compound]. Also turns [thrive:"
-"compound]glucose[/thrive:compound] into [thrive:compound]atp[/thrive:"
-"compound]"
+"Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound]. Also turns [thrive:compound type=\"glucose\"][/thrive:compound] "
+"into [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1893,10 +1922,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]iron[/thrive:compound] into [thrive:compound]atp[/"
-"thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]carbondioxide[/thrive:compound] and [thrive:compound]oxygen[/"
-"thrive:compound]"
+"Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1908,9 +1937,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]ammonia[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]nitrogen[/thrive:compound]"
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1924,10 +1953,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]oxytoxy[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]oxygen[/thrive:compound]. Can release toxins by pressing "
-"[thrive:input]g_fire_toxin[/thrive:input]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can "
+"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1938,8 +1967,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Uses [thrive:compound]atp[/thrive:compound] to increase the movement speed "
-"of the cell"
+"Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the "
+"movement speed of the cell"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2009,9 +2038,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]glucose[/thrive:compound] into [thrive:"
-"compound]atp[/thrive:compound]. Rate scales with concentration of [thrive:"
-"compound]oxygen[/thrive:compound]"
+"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
+"of [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2027,9 +2056,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound]glucose[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound]carbondioxide[/thrive:compound] and "
-"intensity of [thrive:compound]sunlight[/thrive:compound]"
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:"
+"compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2050,9 +2080,9 @@ msgstr "Thermoplast"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produces [thrive:compound]glucose[/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound]carbondioxide[/thrive:compound] and "
-"temperature."
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
+"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] and temperature."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2073,9 +2103,9 @@ msgstr "No processes"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]hydrogensulfide[/thrive:compound] into [thrive:"
-"compound]glucose[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]carbondioxide[/thrive:compound]"
+"Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2088,10 +2118,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]ammonia[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]nitrogen[/thrive:compound] and [thrive:compound]oxygen[/"
-"thrive:compound]"
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound] and "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2117,10 +2147,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound]atp[/thrive:compound] into [thrive:"
-"compound]oxytoxy[/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound]oxygen[/thrive:compound]. Can release toxins by pressing "
-"[thrive:input]g_fire_toxin[/thrive:input]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with "
+"concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can "
+"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2759,11 +2789,11 @@ msgstr "Overwrite existing save:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Overwrite existing save?"
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr "Saving succeeded"
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr "Saving failed! An exception happened"
 
@@ -3102,6 +3132,23 @@ msgstr ""
 "To leave the colony entirely you can click on your own cell or press the "
 "unbind all key."
 
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "Display Abilities Bar"
+
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "Enable GUI Light Effects"
+
+#~ msgid "PERCENTAGE_VALUE"
+#~ msgstr "{0}%"
+
+#~ msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+#~ msgstr ""
+#~ "Enables the light flashing effects on GUIs (e.g editor button flash).\n"
+#~ "\n"
+#~ "If you experience a bug where parts of the editor button is "
+#~ "disappearing,\n"
+#~ "you can try disabling this to see if the problem is gone."
+
 #~ msgid "TURNS"
 #~ msgstr "Turns"
 
@@ -3225,9 +3272,6 @@ msgstr ""
 
 #~ msgid "DOLLAR"
 #~ msgstr "$"
-
-#~ msgid "PERCENT"
-#~ msgstr "%"
 
 #~ msgid "AMPERSAND"
 #~ msgstr "&"

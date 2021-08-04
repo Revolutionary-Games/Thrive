@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-05-09 17:45+0000\n"
 "Last-Translator: rob-katt <gabbe.carlin@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/"
@@ -1656,14 +1656,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr "GLES2 Läges Varning"
 
 #: ../src/general/PauseMenu.cs:308
-#, fuzzy
-msgid "YES"
-msgstr "år"
+msgid "YES_CONFIRM"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "Ångra"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2773,11 +2771,11 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr ""
 
@@ -3002,6 +3000,14 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "Förmågor"
+
+#, fuzzy
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "Externa effekter:"
 
 #~ msgid "TURNS"
 #~ msgstr "Svänger"

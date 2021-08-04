@@ -305,7 +305,7 @@ public class PauseMenu : ControlWithInput
         exitConfirmationDialog.GetNode<Label>("DialogText").Text = message;
         exitConfirmationDialog.PopupCenteredShrink();
         exitConfirmationDialog.GetOk().ReleaseFocus();
-        exitConfirmationDialog.GetOk().Text = TranslationServer.Translate("YES");
-        exitConfirmationDialog.GetCancel().Text = TranslationServer.Translate("NO");
+        exitConfirmationDialog.GetOk().Text = TranslationServer.Translate("YES_CONFIRM");
+        exitConfirmationDialog.GetCancel().Text = TranslationServer.Translate("NO_DECLINE");
     }
 }

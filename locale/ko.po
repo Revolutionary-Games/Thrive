@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -1630,14 +1630,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr "GLES2 모드 경고"
 
 #: ../src/general/PauseMenu.cs:308
-#, fuzzy
-msgid "YES"
-msgstr "년"
+msgid "YES_CONFIRM"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "실행 취소"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2777,11 +2775,11 @@ msgstr "저장 덮어쓰기:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "덮어쓰겠습니까?"
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr "저장 성공"
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr "저장 실패! 예외 발생"
 
@@ -3104,6 +3102,23 @@ msgstr ""
 "세요.\n"
 "\n"
 "모든 키로 수 초간 움직여서 진행하세요."
+
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "능력"
+
+#, fuzzy
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "외부 효과:"
+
+#, fuzzy
+#~ msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+#~ msgstr ""
+#~ "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어"
+#~ "진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. "
+#~ "호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도"
+#~ "당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수"
+#~ "준이 낮으면 ATP 생산 속도가 느려집니다."
 
 #~ msgid "TURNS"
 #~ msgstr "턴"

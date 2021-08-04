@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio."
@@ -1647,14 +1647,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr "Upozorenje u režimu GLES2"
 
 #: ../src/general/PauseMenu.cs:308
-#, fuzzy
-msgid "YES"
-msgstr "Kiseonik"
+msgid "YES_CONFIRM"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "Poništi"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2827,11 +2825,11 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr ""
 
@@ -3057,6 +3055,25 @@ msgstr ""
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "Sposobnosti"
+
+#, fuzzy
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "Spoljni efekti:"
+
+#, fuzzy
+#~ msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+#~ msgstr ""
+#~ "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka "
+#~ "membranska struktura ispunjena proteinima i enzimima. To je prokariot "
+#~ "koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju "
+#~ "je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to "
+#~ "može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. "
+#~ "Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi "
+#~ "kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
+
 #~ msgid "TURNS"
 #~ msgstr "Pretvara"
 
@@ -3205,6 +3222,10 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 #, fuzzy
 #~ msgid "EXCLAMDOWN"
 #~ msgstr "Pomerite nadole"
+
+#, fuzzy
+#~ msgid "YEN"
+#~ msgstr "Kiseonik"
 
 #, fuzzy
 #~ msgid "SECTION"

@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-04-28 19:41+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -1566,14 +1566,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 
 #: ../src/general/PauseMenu.cs:308
-#, fuzzy
-msgid "YES"
-msgstr "Skābeklis"
+msgid "YES_CONFIRM"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "Atsaukt"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2523,11 +2521,11 @@ msgstr "Pārrakstīt esošo saglabāšanas failu:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Pārrakstīt esošo saglabāšanas failu?"
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr "Saglabāšana izdevās"
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr ""
 
@@ -2761,6 +2759,10 @@ msgstr ""
 "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
 
 #, fuzzy
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "Ārējie efekti:"
+
+#, fuzzy
 #~ msgid "OXYTOXY"
 #~ msgstr "OxyToxy NT"
 
@@ -2842,6 +2844,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "EXCLAMDOWN"
 #~ msgstr "Rullīte uz leju"
+
+#, fuzzy
+#~ msgid "YEN"
+#~ msgstr "Skābeklis"
 
 #, fuzzy
 #~ msgid "SECTION"

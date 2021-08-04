@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -1658,14 +1658,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr "Averto Modo GLES2"
 
 #: ../src/general/PauseMenu.cs:308
-#, fuzzy
-msgid "YES"
-msgstr "jaroj"
+msgid "YES_CONFIRM"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "Malfaru"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2847,11 +2845,11 @@ msgstr "Anstataŭigi ekzistantan konservadon:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Ĉu anstataŭigi ekzistantan konservadon?"
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr "Konservado sukcesis"
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr "Konservado malsukcesis! Escepto okazis"
 
@@ -3197,6 +3195,25 @@ msgstr ""
 "(centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
+
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "Kapabloj"
+
+#, fuzzy
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "Eksteraj efikoj:"
+
+#, fuzzy
+#~ msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+#~ msgstr ""
+#~ "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) "
+#~ "estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi "
+#~ "estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi "
+#~ "povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni "
+#~ "povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. "
+#~ "Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de "
+#~ "oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
 #~ msgid "TURNS"
 #~ msgstr "Turniĝi"

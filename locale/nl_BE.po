@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-11 19:50+0700\n"
+"POT-Creation-Date: 2021-08-05 00:46+0200\n"
 "PO-Revision-Date: 2021-04-18 08:40+0000\n"
 "Last-Translator: EzraZebra <ezra.zebra@protonmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -1673,14 +1673,12 @@ msgid "QUIT_GAME_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
 
 #: ../src/general/PauseMenu.cs:308
-#, fuzzy
-msgid "YES"
-msgstr "jaren"
+msgid "YES_CONFIRM"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:309
-#, fuzzy
-msgid "NO"
-msgstr "Ongedaan maken"
+msgid "NO_DECLINE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -2879,11 +2877,11 @@ msgstr "Bestaande opgeslagen bestand overschrijven:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Bestaande opgeslagen bestand overschrijven?"
 
-#: ../src/saving/SaveHelper.cs:397
+#: ../src/saving/SaveHelper.cs:387
 msgid "SAVING_SUCCEEDED"
 msgstr "Opslaan geslaagd"
 
-#: ../src/saving/SaveHelper.cs:410
+#: ../src/saving/SaveHelper.cs:398
 msgid "SAVING_FAILED"
 msgstr "Opslaan mislukt! Een uitzondering is opgetreden"
 
@@ -3194,6 +3192,27 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
+
+#, fuzzy
+#~ msgid "DISPLAY_ABILITIES_BAR"
+#~ msgstr "Vaardigheden"
+
+#, fuzzy
+#~ msgid "ENABLE_GUI_LIGHT_EFFECTS"
+#~ msgstr "Externe effecten:"
+
+#, fuzzy
+#~ msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+#~ msgstr ""
+#~ "De krachtcentrale van de cel. Het mitochondrium (meervoud: "
+#~ "mitochondria) is een door twee membranen omsloten celorganel dat met "
+#~ "proteïnen en enzymen gevuld is. Het is een prokaryoot die werd "
+#~ "geabsorbeerd door zijn eukaryotische gastheer voor het gebruik. Het is "
+#~ "in staat om glucose in ATP om te zetten aan een veel grotere "
+#~ "efficiëntie dan in het cytoplasma mogelijk is, in een proces dat "
+#~ "celademhaling heet. Hier komt tegenover dat het zuurstof nodig heeft om "
+#~ "te kunnen werken en dat een lager zuurstoflevel de ATP-productie "
+#~ "vertraagt."
 
 #~ msgid "TURNS"
 #~ msgstr "Bochten"
