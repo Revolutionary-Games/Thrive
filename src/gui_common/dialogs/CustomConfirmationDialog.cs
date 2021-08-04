@@ -112,10 +112,11 @@ public class CustomConfirmationDialog : CustomDialog
     private void OnConfirmPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(Confirmed));
 
         if (HideOnOk)
             ClosePopup();
+
+        EmitSignal(nameof(Confirmed));
     }
 
     private void OnCancelPressed()
