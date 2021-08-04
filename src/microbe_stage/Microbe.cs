@@ -1428,23 +1428,37 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var oldRotation = Rotation;
 
+        // Gets the global rotation of the parent
         var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
 
+        // A vector from the parent to me
         var vectorFromParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
+
+        // This vector gets as if I had no rotation.
+        // This is important, because GetExternalOrganelle only works with non-rotated microbes
+        var vectorToParentRotated = vectorFromParent.Rotated(Vector3.Up, Rotation.y);
+
+        // This vector gets rotated as if the parent had no rotation.
         var vectorFromParentRotated =
             vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
 
-        var vectorToParentRotated = vectorFromParent.Rotated(Vector3.Up, Rotation.y);
-
+        // Calculates the vector from my center to my membrane towards the parent.
+        // This vector gets rotated back, because I've rotated it two calls above.
         var correctedVectorToParent = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.z)
             .Rotated(Vector3.Down, Rotation.y);
+
+        // Calculates the vector from the parents' center to his membrane towards me.
+        // This gets added to the vector calculated one call before.
         correctedVectorToParent += ColonyParent.Membrane
             .GetExternalOrganelle(vectorFromParentRotated.x, vectorFromParentRotated.z)
             .Rotated(Vector3.Up, globalParentRotation.y);
 
         ChangeNodeParent(ColonyParent);
 
+        // Reset the rotation so that it is the same before entering the colony.
         Rotation = oldRotation - globalParentRotation;
+
+        // Apply the translation. Rotated because due to the parent change the rotational scope is different.
         Translation = correctedVectorToParent.Rotated(Vector3.Down, globalParentRotation.y);
     }
 
