@@ -76,7 +76,6 @@ public class ShuffleBag<T> : IEnumerable<T>
     ///   Picks an element from the bag and return it.
     ///   The element is dropped from the bag but not removed: it will be put back in it at next refill.
     /// </summary>
-    /// <returns></returns>
     public T PickAndDrop()
     {
         var drawnElement = Pick();
@@ -172,7 +171,7 @@ public class ShuffleBag<T> : IEnumerable<T>
         }
 
         /// <summary>
-        ///   Returns the current element for the enumerator, 
+        ///   Returns the current element for the enumerator,
         ///   effectively picking the front element of the shuffle bag without dropping it.
         /// </summary>
         public T1 Current => sourceBag.Pick();
