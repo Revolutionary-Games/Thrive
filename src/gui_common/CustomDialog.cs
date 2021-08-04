@@ -375,8 +375,8 @@ public class CustomDialog : Popup, ICustomPopup
 
             // Clamp position to ensure window stays inside the screen
             RectPosition = new Vector2(
-                Mathf.Clamp(RectPosition.x, 0, screenSize.x - minSize.x),
-                Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - minSize.y));
+                Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
+                Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
         }
     }
 
