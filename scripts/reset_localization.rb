@@ -13,7 +13,7 @@ def editor
   visual_editor = `git config --global core.visual`
   return visual_editor.strip unless visual_editor.empty?
 
-  if OS.win?
+  if OS.windows?
     'notepad.exe'
   else
     'vi'
