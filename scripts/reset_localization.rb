@@ -37,4 +37,4 @@ runOpen3Checked('git', 'checkout', current_branch)
 runOpen3Checked('git', 'stash', 'pop') if has_changes
 runOpen3Checked('git', 'checkout', 'master', 'locale/')
 runOpen3Checked('ruby', 'scripts/update_localization.rb')
-runOpen3Checked(editor, 'locale/en.po')
+system(editor, 'locale/en.po')
