@@ -255,12 +255,13 @@ public class SpawnSystem
         // Solution inspired by gwen is to check if the player
         // moves out of a square/cycle around his precedent registered position
         // Not perfect however as going on and off could still break this.
-        float distanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).Length();
-        bool immobilePlayer = distanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS;
+        float squaredDistanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).LengthSquared();
+        bool immobilePlayer = squaredDistanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED;
 
         if (immobilePlayer)
         {
-            // If the player is staying inside a circle around his previous position, only spawn up to the local spawn cap
+            // If the player is staying inside a circle around his previous position,
+            // only spawn up to the local spawn cap
             if (estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius)
                 return;
         }
