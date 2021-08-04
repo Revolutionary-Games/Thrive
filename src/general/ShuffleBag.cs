@@ -150,7 +150,7 @@ public class ShuffleBag<T> : IEnumerable<T>
     private bool Drop()
     {
         if (currentContent.Count == 0)
-            throw new InvalidOperationException("Cannot drop from empty bag!");
+            throw new InvalidOperationException("Cannot drop from an empty bag!");
 
         currentContent.RemoveAt(currentContent.Count - 1);
         return currentContent.Count == 0;
