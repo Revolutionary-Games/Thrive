@@ -1436,7 +1436,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // This vector gets as if I had no rotation.
         // This is important, because GetExternalOrganelle only works with non-rotated microbes
-        var vectorToParentRotated = vectorFromParent.Rotated(Vector3.Up, Rotation.y);
+        var vectorToParentRotated = (-vectorFromParent).Rotated(Vector3.Down, Rotation.y);
 
         // This vector gets rotated as if the parent had no rotation.
         var vectorFromParentRotated =
@@ -1445,11 +1445,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Calculates the vector from my center to my membrane towards the parent.
         // This vector gets rotated back, because I've rotated it two calls above.
         var correctedVectorToParent = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.z)
-            .Rotated(Vector3.Down, Rotation.y);
+            .Rotated(Vector3.Up, Rotation.y);
 
         // Calculates the vector from the parents' center to his membrane towards me.
         // This gets added to the vector calculated one call before.
-        correctedVectorToParent += ColonyParent.Membrane
+        correctedVectorToParent -= ColonyParent.Membrane
             .GetExternalOrganelle(vectorFromParentRotated.x, vectorFromParentRotated.z)
             .Rotated(Vector3.Up, globalParentRotation.y);
 
@@ -1459,7 +1459,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Rotation = oldRotation - globalParentRotation;
 
         // Apply the translation. Rotated because due to the parent change the rotational scope is different.
-        Translation = correctedVectorToParent.Rotated(Vector3.Down, globalParentRotation.y);
+        Translation = (-correctedVectorToParent).Rotated(Vector3.Down, globalParentRotation.y);
     }
 
     private void SetScaleFromSpecies()
