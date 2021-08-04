@@ -87,7 +87,8 @@ public class ErrorDialog : CustomDialog
 
     private void UpdateMessage()
     {
-        extraDescriptionLabel.SizeFlagsVertical = exceptionBox.Visible ? (int)SizeFlags.Fill :
+        extraDescriptionLabel.SizeFlagsVertical = exceptionBox.Visible ?
+            (int)SizeFlags.Fill :
             (int)SizeFlags.ExpandFill;
         extraDescriptionLabel.Text = errorMessage;
     }

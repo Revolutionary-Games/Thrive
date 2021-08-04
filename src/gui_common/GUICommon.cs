@@ -104,7 +104,6 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
     /// </summary>
-
     public Popup GetCurrentlyActiveExclusivePopup()
     {
         if (GetViewport().GetModalStackTop() is Popup popup && popup.PopupExclusive)
