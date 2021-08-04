@@ -165,9 +165,17 @@ public class ShuffleBag<T> : IEnumerable<T>
     {
         private ShuffleBag<T1> sourceBag;
 
+        /// <summary>
+        ///   Instantiate the enumerator to loop through what is left in the bag.
+        ///   If the bag was emptied, fills it again.
+        /// </summary>
         public ShuffleBagEnumerator(ShuffleBag<T1> sourceBag)
         {
             this.sourceBag = sourceBag;
+
+            // If the shuffle bag is empty, just fill and shuffle it, else just use whatever is left in it.
+            if (sourceBag.currentContent.Count == 0)
+                sourceBag.FillAndShuffle();
         }
 
         /// <summary>
@@ -181,12 +189,7 @@ public class ShuffleBag<T> : IEnumerable<T>
         /// <summary>
         ///   Handles the disposal of the enumerator, i.e. when closing the foreach loop that was using it.
         /// </summary>
-        public void Dispose()
-        {
-            // If we have exhausted the bag, fill and shuffle it for the next one.
-            if (sourceBag.currentContent.Count == 0)
-                sourceBag.FillAndShuffle();
-        }
+        public void Dispose() { }
 
         /// <summary>
         ///   Moves to the next element in the bag.
