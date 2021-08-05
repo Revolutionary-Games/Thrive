@@ -1434,26 +1434,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // A vector from the parent to me
         var vectorFromParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
 
-        // This vector gets as if I had no rotation.
-        // This is important, because GetExternalOrganelle only works with non-rotated microbes
-        var vectorToParentRotated = (-vectorFromParent).Rotated(Vector3.Down, Rotation.y);
+        // A vector from me to the parent
+        var vectorToParent = -vectorFromParent;
 
-        // This vector gets rotated as if the parent had no rotation.
-        var vectorFromParentRotated =
-            vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+        // This vector represents the vectorToParent as if I had no rotation.
+        // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
+        // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
+        var vectorToParentWithoutRotation = vectorToParent.Rotated(Vector3.Down, Rotation.y);
+
+        // This vector represents the vectorFromParent as if he had no rotation.
+        var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
 
         // Calculates the vector from my center to my membrane towards the parent.
-        // This vector gets rotated back, because I've rotated it two calls above.
+        // This vector gets rotated back to cancel out the rotation applied two calls above.
         var correctedVectorToParent = Membrane
-            .GetVectorTowardsNearestPointOfMembrane(vectorToParentRotated.x, vectorToParentRotated.z)
+            .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x, vectorToParentWithoutRotation.z)
             .Rotated(Vector3.Up, Rotation.y);
 
-        // Calculates the vector from the parents' center to his membrane towards me.
+        // Calculates the vector from the parents' center to his membrane towards me with canceled out rotation.
         // This gets added to the vector calculated one call before.
-        // -= to negate the vector.
+        // -= to negate the vector, so that the two membrane vectors amplify
         correctedVectorToParent -= ColonyParent.Membrane
-            .GetVectorTowardsNearestPointOfMembrane(vectorFromParentRotated.x, vectorFromParentRotated.z)
-            .Rotated(Vector3.Up, globalParentRotation.y);
+            .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
+                vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
 
         // Reset the rotation so that it is the same before entering the colony.
         Rotation = oldRotation - globalParentRotation;
