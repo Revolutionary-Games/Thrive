@@ -91,11 +91,11 @@ public class CustomDialog : Popup, ICustomPopup
             {
                 if (Visible)
                 {
-                    OnShow();
+                    OnShown();
                 }
                 else
                 {
-                    OnHide();
+                    OnHidden();
                 }
 
                 UpdateChildRects();
@@ -255,12 +255,18 @@ public class CustomDialog : Popup, ICustomPopup
         Hide();
     }
 
-    protected virtual void OnShow()
+    /// <summary>
+    ///   Called after the popup is made visible.
+    /// </summary>
+    protected virtual void OnShown()
     {
         // TODO: implement show animation(?)
     }
 
-    protected virtual void OnHide()
+    /// <summary>
+    ///   Called after popup is made invisible.
+    /// </summary>
+    protected virtual void OnHidden()
     {
         closeHovered = false;
     }
