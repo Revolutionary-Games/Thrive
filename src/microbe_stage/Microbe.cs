@@ -1444,11 +1444,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Calculates the vector from my center to my membrane towards the parent.
         // This vector gets rotated back, because I've rotated it two calls above.
-        var correctedVectorToParent = Membrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentRotated.x, vectorToParentRotated.z)
+        var correctedVectorToParent = Membrane
+            .GetVectorTowardsNearestPointOfMembrane(vectorToParentRotated.x, vectorToParentRotated.z)
             .Rotated(Vector3.Up, Rotation.y);
 
         // Calculates the vector from the parents' center to his membrane towards me.
         // This gets added to the vector calculated one call before.
+        // -= to negate the vector.
         correctedVectorToParent -= ColonyParent.Membrane
             .GetVectorTowardsNearestPointOfMembrane(vectorFromParentRotated.x, vectorFromParentRotated.z)
             .Rotated(Vector3.Up, globalParentRotation.y);
