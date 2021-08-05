@@ -19,7 +19,7 @@ public class EnvironmentalFoodSource : IFoodSource
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        var photosynthesisingScore = 0.0f;
+        var energyCreationScore = 0.0f;
         foreach (var organelle in microbeSpecies.Organelles)
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
@@ -28,7 +28,7 @@ public class EnvironmentalFoodSource : IFoodSource
                 {
                     if (process.Process.Outputs.ContainsKey(glucose))
                     {
-                        photosynthesisingScore += process.Process.Outputs[glucose]
+                        energyCreationScore += process.Process.Outputs[glucose]
                             / process.Process.Inputs[compound] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
                     }
                 }
@@ -39,7 +39,7 @@ public class EnvironmentalFoodSource : IFoodSource
             microbeSpecies.Organelles.Organelles.Select(organelle => organelle.Definition),
             biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
 
-        return photosynthesisingScore / energyCost;
+        return energyCreationScore / energyCost;
     }
 
     public float TotalEnergyAvailable()
