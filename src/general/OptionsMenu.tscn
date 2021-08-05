@@ -75,6 +75,7 @@ ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer
 PerformanceTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance")
 CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval")
 CloudResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution")
+CloudResolutionTitlePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer")
 RunAutoEvoDuringGameplayPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs")
 InputGroupListPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList")
