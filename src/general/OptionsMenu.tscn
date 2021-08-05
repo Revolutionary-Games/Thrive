@@ -55,7 +55,7 @@ ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelCon
 ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
 CurrentGpuPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer6/GpuInfo")
 VideoMemoryPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer8/VideoMemory")
-DisplayRendererPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7/DisplayDriver")
+DisplayRendererPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7/DisplayRenderer")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
@@ -382,12 +382,12 @@ margin_right = 648.0
 margin_bottom = 283.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer6"]
-margin_right = 42.0
+margin_right = 266.0
 margin_bottom = 22.0
-text = "GPU:"
+text = "GRAPHICS_PROCESSING_UNIT"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer6"]
-margin_left = 46.0
+margin_left = 270.0
 margin_right = 564.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
@@ -397,6 +397,9 @@ margin_left = 568.0
 margin_right = 648.0
 margin_bottom = 22.0
 text = "GPU Info"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 293.0
@@ -404,21 +407,24 @@ margin_right = 648.0
 margin_bottom = 315.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7"]
-margin_right = 176.0
+margin_right = 183.0
 margin_bottom = 22.0
-text = "Display Renderer:"
+text = "DISPLAY_RENDERER"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7"]
-margin_left = 180.0
+margin_left = 187.0
 margin_right = 451.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 
-[node name="DisplayDriver" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7"]
+[node name="DisplayRenderer" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7"]
 margin_left = 455.0
 margin_right = 648.0
 margin_bottom = 22.0
 text = "Display Render Info"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 325.0
@@ -426,12 +432,12 @@ margin_right = 648.0
 margin_bottom = 347.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer8"]
-margin_right = 211.0
+margin_right = 189.0
 margin_bottom = 22.0
-text = "Video Memory Usage:"
+text = "VIDEO_MEMORY_INFO"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer8"]
-margin_left = 215.0
+margin_left = 193.0
 margin_right = 497.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
@@ -441,6 +447,9 @@ margin_left = 501.0
 margin_right = 648.0
 margin_bottom = 22.0
 text = "Video Mem Info"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Sound" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
