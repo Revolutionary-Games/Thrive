@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"POT-Creation-Date: 2021-08-05 12:35+0200\n"
 "PO-Revision-Date: 2021-07-26 13:26+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -19,346 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"Usa W, A, S, D e il mouse per muoverti. Se possiedi un vacuolo tossina, "
-"premi E per rilasciare OssiTossi NT. Premi G per attivare e disattivare la "
-"modalità di fagocitosi."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"La tua cellula usa l'ATP come fonte di energia; se la finisci, essa morirà."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Per sbloccare l'editor e riprodurti, devi raccogliere Ammoniaca (Nuvole "
-"Arancioni) e Fosfato (Nuvole Viola)."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Puoi consumare cellule, batteri, ferro solido e pezzi di cellule che sono "
-"più piccoli di te premendo G. Tenere la modalità attiva spenderà più ATP e "
-"ti rallenterà. Non scordarti di premere G per disabilitarla quando hai "
-"finito."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"L'osmoregolazione costa ATP: più grande è la tua cellula, più Mitocondri, "
-"Metabolosomi, Rusticianina (o citoplasma, per fare la glicolisi) servono "
-"per evitare la perdita di ATP mentre sei fermo."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"Nell'editor ci sono diversi organuli da poter evolvere; ciò permette una "
-"grande varietà di stili di gioco."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Le varie nuvole di composti sono le seguenti:\n"
-"\n"
-"Bianco - Glucosio\n"
-"Giallo - Idrogeno Solforato\n"
-"Arancione - Ammoniaca\n"
-"Viola - Fosfato\n"
-"Marrone - Ferro\n"
-"\n"
-"Il glucosio è necessario per la produzione di ATP"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"L'Idrogeno Solforato può essere convertito in glucosio dai chemioplasti e "
-"dalle proteine chemiosintetizzanti. Il ferro può essere convertito in ATP "
-"dalla rusticianina."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Per riprodurti, devi sdoppiare ciascuno dei tuoi organuli. Per farlo, essi "
-"hanno bisogno di Ammoniaca e Fosfato."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Per ora, se la tua popolazione cala a zero, ti estinguerai."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Ma se sopravvivi per 20 generazioni con l'indicatore della popolazione a "
-"300, il gioco è considerato vinto. Al momento della vittoria sarai "
-"avvisato, dopodiché potrai continuare a giocare."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Sii prudente: i tuoi avversari si evolvono insieme a te. Ogni volta che "
-"entri nell'editor, si evolvono anche loro."
-
-#: ../simulation_parameters/common/help_texts.json:54
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, "
-"le cellule si scambiano liberamente i composti prodotti e assorbiti, ma "
-"non possono dividersi (per ora); per poterti duplicare, devi prima "
-"slegarti. Puoi legarti solo a cellule della tua stessa specie; per farlo, "
-"devi entrare in modalità di legatura (assicurati di avere l'organulo "
-"apposito). Le colonie sono il primo passo verso la multicellularità (che "
-"però non è ancora nel gioco)."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Strutture Procariotiche\n"
-"\n"
-"Metabolosoma: Produce ATP consumando glucosio\n"
-"\n"
-"Proteine chemiosintetizzanti: Producono, a partire dall'Idrogeno "
-"Solforato, metà del glucosio rispetto a un chemioplasto; tuttavia fanno la "
-"glicolisi. Occupano un esagono\n"
-"\n"
-"Tilacoide: Produce 1/3 del glucosio normalmente prodotto da un "
-"cloroplasto, ma svolge anche la glicolisi. Occupa un esagono\n"
-"\n"
-"Rusticianina: Produce ATP consumando ferro\n"
-"\n"
-"Nitrogenasi: Converte, anaerobicamente, l'azoto atmosferico e l'ATP in "
-"ammoniaca\n"
-"\n"
-"Citoplasma: Possiede spazio di stoccaggio. Fa anche la glicolisi (produce "
-"piccole quantità di ATP)"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Organuli Esterni\n"
-"\n"
-"Flagello: Muove la tua cellula più velocemente consumando ATP\n"
-"\n"
-"Pilo: Può essere usato per pungere altre cellule"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Organuli membranosi\n"
-"\n"
-"Nucleo: Occupa 11 esagoni; permette l'evoluzione degli organuli "
-"membranosi. Inoltre, raddoppia le dimensioni della tua cellula (può essere "
-"evoluto solo una volta)\n"
-"\n"
-"Agente Legante: permette di legarsi ad altre cellule\n"
-"\n"
-"Mitocondrio: Produce ATP consumando glucosio e O2 atmosferico, molto più "
-"efficientemente rispetto al citoplasma\n"
-"\n"
-"Cloroplasto: Produce glucosio a partire dalla luce del sole e da CO2 "
-"atmosferico\n"
-"\n"
-"Chemioplasto: Produce glucosio consumando Idrogeno Solforato\n"
-"\n"
-"Plastidio Azotofissante: Produce Ammoniaca consumando ATP, Azoto e "
-"Ossigeno atmosferico\n"
-"\n"
-"Vacuolo: Può conservare fino a 15 composti raccolti\n"
-"\n"
-"Vacuolo Tossina: Produce tossine (ovvero OssiTossi NT)"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Ogni generazione possiedi 100 punti mutazione (PM) da spendere, e ogni "
-"modifica (o mutazione) costerà una certa quantità di PM. Aggiungere e "
-"rimuovere organuli costa PM; tuttavia, rimuovere organuli che erano stati "
-"piazzati nella sessione di mutazione corrente non costa PM. Puoi spostare "
-"o rimuovere completamente un organulo facendo clic destro su di esso e "
-"selezionando l'azione dal menu a comparsa. Puoi ruotare i tuoi organuli "
-"mentre li posizioni con A e D."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Ogni volta che ti riproduci, entrerai nell'Editor Microbico, dove potrai "
-"fare cambiamenti alla tua specie (aggiungere, muovere o rimuovere "
-"organuli) per aumentarne il successo. Ogni visita all'editor nella Fase "
-"Microbica rappresenta 100 milioni di anni di evoluzione."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Premi il tasto annulla nell'editor per correggere gli errori"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Curiosità: il Didinio e il Paramecio sono un esempio da manuale, studiato "
-"per decenni, di relazione predatore-preda. Ora, quale sei tu: Didinio, o "
-"Paramecio? Predatore, o Preda?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Un suggerimento: le tossine possono essere usate per allontanare altre "
-"tossine se sei abbastanza veloce."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Un suggerimento: l'Osmoregolazione consuma 1 ATP per secondo per ogni "
-"spazio esagonale occupato dalla tua cellula; allo stesso modo, ogni spazio "
-"esagonale occupato da citoplasma genera 5 ATP per secondo. Ciò significa "
-"che se stai perdendo ATP a causa dell'osmoregolazione, ti basterà "
-"aggiungere degli esagoni di citoplasma o rimuovere alcuni organuli."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Una curiosità: nel mondo reale, i procarioti possiedono delle strutture "
-"chiamate Biocompartimenti; esse fungono da organuli, e sono infatti "
-"chiamate \"organuli poliedrici\"."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-"Una curiosità: il metabolosoma è ciò che è chiamato un organulo poliedrico."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Un suggerimento: a volte è meglio scappare dalle altre cellule."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Un suggerimento: se una cellula è grande circa la metà di te, quello è il "
-"momento di fagocitarla."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Un suggerimento: i batteri possono essere più forti di quanto appaiono; "
-"sembrano piccoli, ma alcuni di essi possono scavare dentro di te, e "
-"ucciderti così!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Un suggerimento: puoi cacciare altre specie fino all'estinzione se non "
-"stai abbastanza attento. Anche altre specie possono farlo."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "COSE ONDULANTI!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Squagliallo il metallo."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Quelle cellule blu però."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Un suggerimento: i biomi sono più che semplici sfondi differenti; a volte, "
-"i composti in biomi differenti appaiono a ritmi differenti."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Un suggerimento: più flagelli hai, più veloce vai, brum brum, ma ti costa "
-"anche più ATP"
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Un suggerimento: puoi in[g]hiottire pezzi di ferro o altro."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Un suggerimento: preparati prima di aggiungere un nucleo. Quelle cose sono "
-"costose! In manutenzione e costi iniziali."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Una curiosità: Sapevi che ci sono oltre 8000 specie di ciliati sul pianeta "
-"Terra?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Una curiosità: Lo Stentor è un ciliato che può allungarsi e catturare la "
-"preda in una specie di bocca a forma di tromba, che attira la preda "
-"generando correnti d'acqua con le ciglia."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Curiosità: il Didinio è un ciliato che va a caccia di parameci."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Curiosità: L'ameba caccia e cattura la preda con 'gambe' fatte di "
-"citoplasma chiamate pseudopodi. Prima o poi li vorremmo avere in Thrive."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Un suggerimento: fai attenzione alle cellule e batteri più grandi, non è "
-"divertente essere digeriti, ti mangeranno."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Il capo fonico di Thrive ha composto molte canzoni che non sono state "
-"ancora aggiunte al gioco. Puoi ascoltarle, o guardare le sue composizioni "
-"in stream sul suo canale YouTube, Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Un suggerimento: se la tua cellula è grande 150 esagoni, puoi inghiottire "
-"quei pezzi di ferro grandi."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive è pensato come simulazione di un pianeta alieno, quindi ha senso "
-"che la maggior parte delle creature che trovi saranno imparentate a una o "
-"due altre specie, a causa dell'evoluzione che avviene intorno a te! Prova "
-"a identificarle!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"Una curiosità: la squadra di Thrive fa dei podcast ogni tanto, dovresti "
-"dar loro un'occhiata!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Curiosità: Thrive è fatto con il motore grafico open source Godot!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Una curiosità: uno dei primi prototipi giocabili del gioco è stato creato "
-"dal nostro eccezionale programmatore, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -580,44 +240,44 @@ msgid "EPIPELAGIC"
 msgstr "Epipelagico"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:168
+#: ../simulation_parameters/microbe_stage/biomes.json:395
+#: ../simulation_parameters/microbe_stage/biomes.json:542
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1509
+#: ../simulation_parameters/microbe_stage/biomes.json:1674
+#: ../simulation_parameters/microbe_stage/biomes.json:1821
 msgid "FLOATING_HAZARD"
 msgstr "Pericolo Galleggiante"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:185
+#: ../simulation_parameters/microbe_stage/biomes.json:412
+#: ../simulation_parameters/microbe_stage/biomes.json:559
+#: ../simulation_parameters/microbe_stage/biomes.json:782
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1236
+#: ../simulation_parameters/microbe_stage/biomes.json:1379
+#: ../simulation_parameters/microbe_stage/biomes.json:1526
+#: ../simulation_parameters/microbe_stage/biomes.json:1691
+#: ../simulation_parameters/microbe_stage/biomes.json:1838
 msgid "SMALL_IRON_CHUNK"
 msgstr "Pezzo di Ferro Piccolo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:300
+#: ../simulation_parameters/microbe_stage/biomes.json:447
+#: ../simulation_parameters/microbe_stage/biomes.json:594
+#: ../simulation_parameters/microbe_stage/biomes.json:817
+#: ../simulation_parameters/microbe_stage/biomes.json:1044
+#: ../simulation_parameters/microbe_stage/biomes.json:1271
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1579
+#: ../simulation_parameters/microbe_stage/biomes.json:1726
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "BIG_IRON_CHUNK"
 msgstr "Pezzo di Ferro Grande"
 
@@ -625,51 +285,51 @@ msgstr "Pezzo di Ferro Grande"
 msgid "VOLCANIC_VENT"
 msgstr "Camino vulcanico"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:220
+#: ../simulation_parameters/microbe_stage/biomes.json:617
+#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:1067
+#: ../simulation_parameters/microbe_stage/biomes.json:1896
 msgid "MARINE_SNOW"
 msgstr "Neve marina"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:369
 msgid "TIDEPOOL"
 msgstr "Pozza di marea"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:516
 msgid "BATHYPELAGIC"
 msgstr "Batipelagico"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:743
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelagico"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:966
 msgid "MESOPELAGIC"
 msgstr "Mesopelagico"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
 msgstr "Costiero"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
 msgstr "Caverna Sottomarina"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1483
 msgid "ICESHELF"
 msgstr "Banchina Glaciale"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "ICESHARD"
 msgstr "Scheggia di Ghiaccio"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
 msgid "ESTUARY"
 msgstr "Estuario"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1795
 msgid "SEA_FLOOR"
 msgstr "Fondale Oceanico"
 
@@ -1388,7 +1048,7 @@ msgstr "Chiudi"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Microbico Libero"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1405,235 +1065,243 @@ msgstr ""
 "probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o "
 "a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
-#: ../src/general/OptionsMenu.tscn:128
+#: ../src/general/OptionsMenu.cs:758
+msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
 msgstr "Grafica"
 
-#: ../src/general/OptionsMenu.tscn:139
+#: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
 msgstr "Suono"
 
-#: ../src/general/OptionsMenu.tscn:150
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "Prestazioni"
 
-#: ../src/general/OptionsMenu.tscn:161
+#: ../src/general/OptionsMenu.tscn:162
 msgid "INPUTS"
 msgstr "Controlli"
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:173
 msgid "MISC"
 msgstr "Varie"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:206
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "FULLSCREEN"
 msgstr "Schermo intero"
 
-#: ../src/general/OptionsMenu.tscn:235
+#: ../src/general/OptionsMenu.tscn:236
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multicampionamento (MSAA):"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valori più elevati compromettono le prestazioni)"
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:273
 msgid "RESOLUTION"
 msgstr "Risoluzione:"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:286
 msgid "AUTO"
 msgstr "automatica"
 
-#: ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MAX_FPS"
 msgstr "FPS massimi:"
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:322
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correzione colore:"
 
-#: ../src/general/OptionsMenu.tscn:353
+#: ../src/general/OptionsMenu.tscn:354
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberrazione Cromatica:"
 
-#: ../src/general/OptionsMenu.tscn:380
+#: ../src/general/OptionsMenu.tscn:381
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostra la Barra delle Abilità"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Abilita gli effetti di luce della GUI"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "Volume principale"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
-#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
+#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.tscn:583
 msgid "MUTE"
 msgstr "Muto"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:457
 msgid "MUSIC_VOLUME"
 msgstr "Volume della musica"
 
-#: ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:490
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume degli effetti ambientali"
 
-#: ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:523
 msgid "SFX_VOLUME"
 msgstr "Volume degli effetti sonori"
 
-#: ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI_VOLUME"
 msgstr "Volume della GUI"
 
-#: ../src/general/OptionsMenu.tscn:600
+#: ../src/general/OptionsMenu.tscn:601
+msgid "AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
 msgstr "Lingua:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
+#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
 msgid "RESET"
 msgstr "Ripristina"
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:652
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Aiuta a tradurre il gioco"
 
-#: ../src/general/OptionsMenu.tscn:650
+#: ../src/general/OptionsMenu.tscn:678
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvole di composti"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:693
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Intervallo Minimo\n"
 "Simulazione Nuvole:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valori più elevati migliorano le prestazioni)"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:735
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisore Risoluzione Nuvole:"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:777
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Esegui auto-evo in gioco"
 
-#: ../src/general/OptionsMenu.tscn:822
+#: ../src/general/OptionsMenu.tscn:850
 msgid "RESET_INPUTS"
 msgstr "Ripristina i comandi"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:878
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Riproduci video introduttivo"
 
-#: ../src/general/OptionsMenu.tscn:859
+#: ../src/general/OptionsMenu.tscn:887
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Riproduci filmato microbico iniziale in Nuova Partita"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:896
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvataggio automatico durante il gioco"
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Numero di salvataggi automatici da conservare:"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:935
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Numero di salvataggi rapidi da conservare:"
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:961
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostra i tutorial (in nuove partite)"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:969
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostra i tutorial (nella partita attuale)"
 
-#: ../src/general/OptionsMenu.tscn:957
+#: ../src/general/OptionsMenu.tscn:985
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Trucchi abilitati"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:997
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utilizza uno username personalizzato"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "CUSTOM_USERNAME"
 msgstr "Username Personalizzato:"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Apri Cartella degli Screenshot"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Apri Cartella dei Report"
 
-#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Salva"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predefinite"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ripristinare le impostazioni predefinite?"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Sicuro di voler ripristinare TUTTE le impostazioni ai valori predefiniti?"
 
-#: ../src/general/OptionsMenu.tscn:1101
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ripristina i comandi?"
 
-#: ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1138
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Sei sicuro di voler ripristinare i comandi ai valori iniziali?"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "CLOSE_OPTIONS"
 msgstr "Chiudi impostazioni?"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1172
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Hai modifiche non salvate. Saranno eliminate.\n"
 "Vuoi procedere?"
 
-#: ../src/general/OptionsMenu.tscn:1166
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "SAVE_AND_CONTINUE"
 msgstr "Salva e continua"
 
-#: ../src/general/OptionsMenu.tscn:1175
+#: ../src/general/OptionsMenu.tscn:1203
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Continua senza salvare"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "CANCEL"
 msgstr "Annulla"
 
-#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "ERROR"
 msgstr "Errore"
 
-#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
+#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Errore: è stato impossibile salvare le nuove impostazioni su file di "
@@ -1681,7 +1349,7 @@ msgstr "{0} K"
 msgid "PER_SECOND_SLASH"
 msgstr "al secondo"
 
-#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
@@ -3135,6 +2803,294 @@ msgstr ""
 "\n"
 "Per abbandonare la colonia, clicca sulla tua stessa cellula, oppure premi "
 "il tasto per slegare tutti."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Usa W, A, S, D e il mouse per muoverti. Se possiedi un vacuolo tossina, "
+#~ "premi E per rilasciare OssiTossi NT. Premi G per attivare e disattivare "
+#~ "la modalità di fagocitosi."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "La tua cellula usa l'ATP come fonte di energia; se la finisci, essa "
+#~ "morirà."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Per sbloccare l'editor e riprodurti, devi raccogliere Ammoniaca (Nuvole "
+#~ "Arancioni) e Fosfato (Nuvole Viola)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Puoi consumare cellule, batteri, ferro solido e pezzi di cellule che "
+#~ "sono più piccoli di te premendo G. Tenere la modalità attiva spenderà "
+#~ "più ATP e ti rallenterà. Non scordarti di premere G per disabilitarla "
+#~ "quando hai finito."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "L'osmoregolazione costa ATP: più grande è la tua cellula, più "
+#~ "Mitocondri, Metabolosomi, Rusticianina (o citoplasma, per fare la "
+#~ "glicolisi) servono per evitare la perdita di ATP mentre sei fermo."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Nell'editor ci sono diversi organuli da poter evolvere; ciò permette "
+#~ "una grande varietà di stili di gioco."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Le varie nuvole di composti sono le seguenti:\n"
+#~ "\n"
+#~ "Bianco - Glucosio\n"
+#~ "Giallo - Idrogeno Solforato\n"
+#~ "Arancione - Ammoniaca\n"
+#~ "Viola - Fosfato\n"
+#~ "Marrone - Ferro\n"
+#~ "\n"
+#~ "Il glucosio è necessario per la produzione di ATP"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "L'Idrogeno Solforato può essere convertito in glucosio dai chemioplasti "
+#~ "e dalle proteine chemiosintetizzanti. Il ferro può essere convertito in "
+#~ "ATP dalla rusticianina."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "Per riprodurti, devi sdoppiare ciascuno dei tuoi organuli. Per farlo, "
+#~ "essi hanno bisogno di Ammoniaca e Fosfato."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Per ora, se la tua popolazione cala a zero, ti estinguerai."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "Ma se sopravvivi per 20 generazioni con l'indicatore della popolazione "
+#~ "a 300, il gioco è considerato vinto. Al momento della vittoria sarai "
+#~ "avvisato, dopodiché potrai continuare a giocare."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "Sii prudente: i tuoi avversari si evolvono insieme a te. Ogni volta che "
+#~ "entri nell'editor, si evolvono anche loro."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "Legandoti ad altre cellule puoi formare una colonia. All'interno di "
+#~ "essa, le cellule si scambiano liberamente i composti prodotti e "
+#~ "assorbiti, ma non possono dividersi (per ora); per poterti duplicare, "
+#~ "devi prima slegarti. Puoi legarti solo a cellule della tua stessa "
+#~ "specie; per farlo, devi entrare in modalità di legatura (assicurati di "
+#~ "avere l'organulo apposito). Le colonie sono il primo passo verso la "
+#~ "multicellularità (che però non è ancora nel gioco)."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Strutture Procariotiche\n"
+#~ "\n"
+#~ "Metabolosoma: Produce ATP consumando glucosio\n"
+#~ "\n"
+#~ "Proteine chemiosintetizzanti: Producono, a partire dall'Idrogeno "
+#~ "Solforato, metà del glucosio rispetto a un chemioplasto; tuttavia fanno "
+#~ "la glicolisi. Occupano un esagono\n"
+#~ "\n"
+#~ "Tilacoide: Produce 1/3 del glucosio normalmente prodotto da un "
+#~ "cloroplasto, ma svolge anche la glicolisi. Occupa un esagono\n"
+#~ "\n"
+#~ "Rusticianina: Produce ATP consumando ferro\n"
+#~ "\n"
+#~ "Nitrogenasi: Converte, anaerobicamente, l'azoto atmosferico e l'ATP in "
+#~ "ammoniaca\n"
+#~ "\n"
+#~ "Citoplasma: Possiede spazio di stoccaggio. Fa anche la glicolisi "
+#~ "(produce piccole quantità di ATP)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Organuli Esterni\n"
+#~ "\n"
+#~ "Flagello: Muove la tua cellula più velocemente consumando ATP\n"
+#~ "\n"
+#~ "Pilo: Può essere usato per pungere altre cellule"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Organuli membranosi\n"
+#~ "\n"
+#~ "Nucleo: Occupa 11 esagoni; permette l'evoluzione degli organuli "
+#~ "membranosi. Inoltre, raddoppia le dimensioni della tua cellula (può "
+#~ "essere evoluto solo una volta)\n"
+#~ "\n"
+#~ "Agente Legante: permette di legarsi ad altre cellule\n"
+#~ "\n"
+#~ "Mitocondrio: Produce ATP consumando glucosio e O2 atmosferico, molto "
+#~ "più efficientemente rispetto al citoplasma\n"
+#~ "\n"
+#~ "Cloroplasto: Produce glucosio a partire dalla luce del sole e da CO2 "
+#~ "atmosferico\n"
+#~ "\n"
+#~ "Chemioplasto: Produce glucosio consumando Idrogeno Solforato\n"
+#~ "\n"
+#~ "Plastidio Azotofissante: Produce Ammoniaca consumando ATP, Azoto e "
+#~ "Ossigeno atmosferico\n"
+#~ "\n"
+#~ "Vacuolo: Può conservare fino a 15 composti raccolti\n"
+#~ "\n"
+#~ "Vacuolo Tossina: Produce tossine (ovvero OssiTossi NT)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Ogni generazione possiedi 100 punti mutazione (PM) da spendere, e ogni "
+#~ "modifica (o mutazione) costerà una certa quantità di PM. Aggiungere e "
+#~ "rimuovere organuli costa PM; tuttavia, rimuovere organuli che erano "
+#~ "stati piazzati nella sessione di mutazione corrente non costa PM. Puoi "
+#~ "spostare o rimuovere completamente un organulo facendo clic destro su "
+#~ "di esso e selezionando l'azione dal menu a comparsa. Puoi ruotare i "
+#~ "tuoi organuli mentre li posizioni con A e D."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Ogni volta che ti riproduci, entrerai nell'Editor Microbico, dove "
+#~ "potrai fare cambiamenti alla tua specie (aggiungere, muovere o "
+#~ "rimuovere organuli) per aumentarne il successo. Ogni visita all'editor "
+#~ "nella Fase Microbica rappresenta 100 milioni di anni di evoluzione."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Premi il tasto annulla nell'editor per correggere gli errori"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "Curiosità: il Didinio e il Paramecio sono un esempio da manuale, "
+#~ "studiato per decenni, di relazione predatore-preda. Ora, quale sei tu: "
+#~ "Didinio, o Paramecio? Predatore, o Preda?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "Un suggerimento: le tossine possono essere usate per allontanare altre "
+#~ "tossine se sei abbastanza veloce."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "Un suggerimento: l'Osmoregolazione consuma 1 ATP per secondo per ogni "
+#~ "spazio esagonale occupato dalla tua cellula; allo stesso modo, ogni "
+#~ "spazio esagonale occupato da citoplasma genera 5 ATP per secondo. Ciò "
+#~ "significa che se stai perdendo ATP a causa dell'osmoregolazione, ti "
+#~ "basterà aggiungere degli esagoni di citoplasma o rimuovere alcuni "
+#~ "organuli."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "Una curiosità: nel mondo reale, i procarioti possiedono delle strutture "
+#~ "chiamate Biocompartimenti; esse fungono da organuli, e sono infatti "
+#~ "chiamate \"organuli poliedrici\"."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr ""
+#~ "Una curiosità: il metabolosoma è ciò che è chiamato un organulo "
+#~ "poliedrico."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Un suggerimento: a volte è meglio scappare dalle altre cellule."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr ""
+#~ "Un suggerimento: se una cellula è grande circa la metà di te, quello è "
+#~ "il momento di fagocitarla."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "Un suggerimento: i batteri possono essere più forti di quanto appaiono; "
+#~ "sembrano piccoli, ma alcuni di essi possono scavare dentro di te, e "
+#~ "ucciderti così!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "Un suggerimento: puoi cacciare altre specie fino all'estinzione se non "
+#~ "stai abbastanza attento. Anche altre specie possono farlo."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "COSE ONDULANTI!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Squagliallo il metallo."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Quelle cellule blu però."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "Un suggerimento: i biomi sono più che semplici sfondi differenti; a "
+#~ "volte, i composti in biomi differenti appaiono a ritmi differenti."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "Un suggerimento: più flagelli hai, più veloce vai, brum brum, ma ti "
+#~ "costa anche più ATP"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Un suggerimento: puoi in[g]hiottire pezzi di ferro o altro."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "Un suggerimento: preparati prima di aggiungere un nucleo. Quelle cose "
+#~ "sono costose! In manutenzione e costi iniziali."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr ""
+#~ "Una curiosità: Sapevi che ci sono oltre 8000 specie di ciliati sul "
+#~ "pianeta Terra?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "Una curiosità: Lo Stentor è un ciliato che può allungarsi e catturare "
+#~ "la preda in una specie di bocca a forma di tromba, che attira la preda "
+#~ "generando correnti d'acqua con le ciglia."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Curiosità: il Didinio è un ciliato che va a caccia di parameci."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "Curiosità: L'ameba caccia e cattura la preda con 'gambe' fatte di "
+#~ "citoplasma chiamate pseudopodi. Prima o poi li vorremmo avere in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "Un suggerimento: fai attenzione alle cellule e batteri più grandi, non "
+#~ "è divertente essere digeriti, ti mangeranno."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "Il capo fonico di Thrive ha composto molte canzoni che non sono state "
+#~ "ancora aggiunte al gioco. Puoi ascoltarle, o guardare le sue "
+#~ "composizioni in stream sul suo canale YouTube, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "Un suggerimento: se la tua cellula è grande 150 esagoni, puoi "
+#~ "inghiottire quei pezzi di ferro grandi."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "Thrive è pensato come simulazione di un pianeta alieno, quindi ha senso "
+#~ "che la maggior parte delle creature che trovi saranno imparentate a una "
+#~ "o due altre specie, a causa dell'evoluzione che avviene intorno a te! "
+#~ "Prova a identificarle!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr ""
+#~ "Una curiosità: la squadra di Thrive fa dei podcast ogni tanto, dovresti "
+#~ "dar loro un'occhiata!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr ""
+#~ "Curiosità: Thrive è fatto con il motore grafico open source Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "Una curiosità: uno dei primi prototipi giocabili del gioco è stato "
+#~ "creato dal nostro eccezionale programmatore, untrustedlife!"
 
 #~ msgid "TURNS"
 #~ msgstr "Trasforma"

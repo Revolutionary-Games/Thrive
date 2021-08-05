@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"POT-Creation-Date: 2021-08-05 12:35+0200\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -19,310 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.9.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E 키로 OxyToxy NT를 발사"
-"합니다. G 키로 삼키기 모드로 전환합니다."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"당신의 세포는 에너지원으로써 ATP를 사용하며, 전부 바닥나면 죽게 될 것입니"
-"다."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"편집기를 해금하고 복제하려면 암모니아(주황색 구름) 와 인산염(자주색 구름)"
-"을 모아야 합니다."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"G 키를 눌러 자신보다 작은 세포나 박테리아 또는 철과 세포 조각들을 삼킬 수 "
-"있습니다. 이것은 추가적인 ATP를 소모하며 더 느려지게 만듭니다. G 키를 한번 "
-"더 눌러 삼키기를 멈추는 것을 잊지 마십시오."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"삼투압 조절은 ATP를 소모하므로, 당신의 세포가 더 클수록, 미토콘드리아나 대"
-"사체나 루스티시아닌(또는 해당을 수행하는 세포질)이 정지해있을 때 ATP 손실"
-"을 방지해야 합니다."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"편집기에 있는 수많은 진화 가능한 세포 기관들로, 다양한 종류의 게임 진행 방"
-"식을 만들 수 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"화합물 구름은 다음과 같습니다:\n"
-"\n"
-"흰색 – 포도당\n"
-"노란색 – 황화수소\n"
-"주황색 – 암모니아\n"
-"자주색 – 인산염\n"
-"적갈색 – 철\n"
-"\n"
-"포도당은 ATP를 생산합니다"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"황화수소는 화학세포와 화학 합성 단백질을 통해 포도당으로 전환될 수 있습니"
-"다. 철은 루스티시아닌을 통해 ATP로 전환될 수 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"번식하려면 세포 기관을 각각 두개로 나눠야 합니다. 세포 기관을 반으로 나누"
-"기 위해 암모니아와 인산염이 필요합니다."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "지금부터 개체 수가 전부 사라지면 멸종하게 됩니다."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"그러나 300 명의 개체 수로 20 세대 동안 생존했다면 현재 게임에서 승리 한 것"
-"으로 간주되며, 승리 후 팝업이 나타나고 원한다면 계속 플레이 할 수 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"당신의 경쟁자 또한 당신처럼 진화한다는 것을 명심하십시오. 당신이 편집기에 "
-"들어갈 때마다 그들도 진화할 것입니다."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E 키로 OxyToxy NT를 발사"
-"합니다. G 키로 삼키기 모드로 전환합니다."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"원핵 구조체\n"
-"\n"
-"대사체: 포도당으로부터 ATP 생산\n"
-"\n"
-"화학 합성 단백질: 포도당의 절반을 황화수소로부터 화학 세포로 생성하고, 해"
-"당 과정 또한 수행하며, 세포 1칸을 차지\n"
-"\n"
-"틸라코이드: 정상적인 엽록체로 1/3의 포도당을 생성하고, 해당 과정 또한 수행"
-"하며, 세포 1칸을 차지\n"
-"\n"
-"루스티시아닌: 철을 ATP로 전환\n"
-"\n"
-"니트로게나아제: 분자상 질소와 ATP를 혐기성 암모니아로 전환\n"
-"\n"
-"세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"외부 세포 기관\n"
-"\n"
-"편모: ATP를 소모하여 세포를 더 빠르게 이동\n"
-"\n"
-"선모: 다른 세포를 찌를 수 있음"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"세포 소 기관\n"
-"\n"
-"핵: 세포 11칸을 차지하며 세포 소 기관의 진화를 가능하게 함. 또한 세포 크기"
-"를 두 배로 늘림. (한 번만 진화 할 수 있음)\n"
-"\n"
-"미토콘드리아: 포도당과 대기 중 산소로 ATP를 생성. 세포질보다 더욱 효율적\n"
-"\n"
-"엽록체: 햇빛과 대기 중 이산화탄소로 포도당을 생성\n"
-"\n"
-"화학세포: 황화수소로 포도당을 생성\n"
-"\n"
-"질소 고정 색소체: ATP와 대기 중 질소와 산소로 암모니아를 생성\n"
-"\n"
-"액포: 화합물 15개 저장\n"
-"\n"
-"독성 액포: 독소 생성 (OxyToxy NT라 불림)"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"각 세대마다, 100 변이 점수(MP)를 사용할 수 있으며, 각각의 변화(또는 변이)"
-"는 그에 맞는 MP를 소모합니다. 세포 기관의 추가나 제거는 MP를 소모하지만, 현"
-"재 변이 세션에서 배치된 세포 기관의 제거 시 MP를 돌려받을 수 있습니다. 오른"
-"쪽-클릭 후 팝업 창의 확인을 통해 세포 기관을 이동하거나 완전히 제거할 수 있"
-"습니다. A 키와 D 키로 배치 중인 세포 기관을 회전시킬 수 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"당신이 번식할 때마다, 미생물 편집기에 입장하며, 당신의 종을 변화하여(세포 "
-"기관의 추가, 이동, 제거를 통해) 성공적인 종의 종속을 이어갈 수 있습니다. 미"
-"생물 단계에서의 편집기 입장은 수백만년 분의 진화에 해당 됩니다."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"농담 하나, 강섬모충속과 짚신벌레속은 수십 년 간 연구된 포식자와 피식자 관계"
-"의 교과서입니다, 당신은 강섬모충속입니까 아니면 짚신벌레속입니까? 사냥꾼입"
-"니까 아니면 사냥감입니까?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"팁 하나, 당신이 충분히 빠르다면 독소를 이용하여 다른 독소를 멀리 떨어 뜨릴 "
-"수 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"팁 하나, 삼투압 조절은 세포 한 칸에 초당 1의 ATP를 소모하며, 빈 세포질은 초"
-"당 5 ATP를 생산하므로, 삼투압 조절 중 ATP를 잃고 있다면 빈 세포질을 추가하"
-"거나 세포 기관을 제거하면 됩니다."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"농담 하나, 현실에서 원핵 생물은 세포 기관처럼 행동하는 생체 구획이 있으며, "
-"다면 세포라 불립니다."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "농담 하나, 대사체는 다면 세포라 불립니다."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-"팁 하나, 가끔은 다른 세포로부터 도망치는 것이 가장 좋을 때도 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "팁 하나, 당신 크기의 절반 정도인 세포가 있다면, 삼킬 수 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"팁 하나, 박테리아는 보이는 것보다 더 강할 수 있으며, 보이기에는 작지만, 몇"
-"몇은 당신에게 파고들어 그대로 죽일 수도 있습니다!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"팁 하나, 다른 종들이 그랬던 것 처럼, 조심하지 않는다면 당신의 손으로 멸종"
-"을 초래할 수 도 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "으후루꾸꾸루후으!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "꿀꺽꿀꺽."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "저 파란 세포 봐봐."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"팁 하나, 생물군계는 배경만 다른게 아니라, 화합물 또한 생물군계 별로 비율이 "
-"다를 수 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"팁 하나, 편모가 많을 수록, 더 빨리 가지, 부릉 부릉, ATP도 더 많이 쓰지"
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "팁 하나, 철이나 다른 덩어리들을 보면 삼키[지] 않을 수 없죠."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"팁 하나, 핵을 추가하려면 준비부터 하세요. 비싸니까요! 유지비와 선행비가요."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "농담 하나, 지구에는 8000 종이 넘는 섬모충이 있다는 것을 아시나요?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"농담 하나, 나팔벌레는 스스로 섬모로 급류를 만들어 먹이를 일종의 나팔과 같"
-"은 입으로 잡을 수 있는 섬모충입니다."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "농담 하나, 강섬모충속은 짚신벌레를 사냥하는 섬모충입니다."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠"
-"간 Thrive 에서도 보고 싶군요."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"팁 하나, 커다란 세포와 박테리아를 조심하지 않으면, 진짜 먹힐 수도 있으며, "
-"당신은 흡수당할 것 입니다."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Thrive의 사운드 팀 리더는 게임에 아직 추가되지 않은 많은 곡을 작성했습니"
-"다. Oliver Lugg의 YouTube 채널에서 이 곡들이나 작곡 스트리밍을 감상하세요."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "팁 하나, 당신의 세포가 150칸이라면, 큰 철 덩어리를 삼킬 수 있습니다."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive란 외계 행성의 시뮬레이션이란 뜻으로써, 여러분이 발견하는 대부분의 생"
-"물들은 여러분 주변에서 진화한 한 두 종의 다른 생물들과 연관이 있을 것이라"
-"고 생각됩니다, 맞는지 알아보세요!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "농담 하나, Thrive 팀은 자주 팟캐스트를 합니다, 꼭 확인해 보세요!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "농담 하나, Thrive는 오픈 소스 Godot 엔진으로 제작되었습니다!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"농담 하나, 실행 가능한 수준의 첫 게임 시제품은 우리 놀라운 프로그래머, "
-"untrustedlife가 만들었습니다!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -548,44 +244,44 @@ msgid "EPIPELAGIC"
 msgstr "표해수층"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:168
+#: ../simulation_parameters/microbe_stage/biomes.json:395
+#: ../simulation_parameters/microbe_stage/biomes.json:542
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1509
+#: ../simulation_parameters/microbe_stage/biomes.json:1674
+#: ../simulation_parameters/microbe_stage/biomes.json:1821
 msgid "FLOATING_HAZARD"
 msgstr "부동 위험"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:185
+#: ../simulation_parameters/microbe_stage/biomes.json:412
+#: ../simulation_parameters/microbe_stage/biomes.json:559
+#: ../simulation_parameters/microbe_stage/biomes.json:782
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1236
+#: ../simulation_parameters/microbe_stage/biomes.json:1379
+#: ../simulation_parameters/microbe_stage/biomes.json:1526
+#: ../simulation_parameters/microbe_stage/biomes.json:1691
+#: ../simulation_parameters/microbe_stage/biomes.json:1838
 msgid "SMALL_IRON_CHUNK"
 msgstr "작은 철 덩어리"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:300
+#: ../simulation_parameters/microbe_stage/biomes.json:447
+#: ../simulation_parameters/microbe_stage/biomes.json:594
+#: ../simulation_parameters/microbe_stage/biomes.json:817
+#: ../simulation_parameters/microbe_stage/biomes.json:1044
+#: ../simulation_parameters/microbe_stage/biomes.json:1271
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1579
+#: ../simulation_parameters/microbe_stage/biomes.json:1726
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "BIG_IRON_CHUNK"
 msgstr "큰 철 덩어리"
 
@@ -593,51 +289,51 @@ msgstr "큰 철 덩어리"
 msgid "VOLCANIC_VENT"
 msgstr "화산 분출구"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:220
+#: ../simulation_parameters/microbe_stage/biomes.json:617
+#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:1067
+#: ../simulation_parameters/microbe_stage/biomes.json:1896
 msgid "MARINE_SNOW"
 msgstr "바다눈"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:369
 msgid "TIDEPOOL"
 msgstr "조수 웅덩이"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:516
 msgid "BATHYPELAGIC"
 msgstr "심해수층"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:743
 msgid "ABYSSOPELAGIC"
 msgstr "심해원양성"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:966
 msgid "MESOPELAGIC"
 msgstr "중해수층"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
 msgstr "해안"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
 msgstr "수중 동굴"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1483
 msgid "ICESHELF"
 msgstr "빙붕"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "ICESHARD"
 msgstr "빙상"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
 msgid "ESTUARY"
 msgstr "어귀"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1795
 msgid "SEA_FLOOR"
 msgstr "해저"
 
@@ -1378,7 +1074,7 @@ msgstr "종료"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1395,236 +1091,244 @@ msgstr ""
 "할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래"
 "픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
-#: ../src/general/OptionsMenu.tscn:128
+#: ../src/general/OptionsMenu.cs:758
+msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
 msgstr "그래픽"
 
-#: ../src/general/OptionsMenu.tscn:139
+#: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
 msgstr "소리"
 
-#: ../src/general/OptionsMenu.tscn:150
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "성능"
 
-#: ../src/general/OptionsMenu.tscn:161
+#: ../src/general/OptionsMenu.tscn:162
 msgid "INPUTS"
 msgstr "입력"
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:173
 msgid "MISC"
 msgstr "기타"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:206
 msgid "VSYNC"
 msgstr "수직동기화"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "FULLSCREEN"
 msgstr "전체화면"
 
-#: ../src/general/OptionsMenu.tscn:235
+#: ../src/general/OptionsMenu.tscn:236
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "멀티샘플 안티-앨리어싱:"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(값이 커질수록 성능이 저하됩니다)"
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:273
 msgid "RESOLUTION"
 msgstr "해상도:"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:286
 msgid "AUTO"
 msgstr "자동"
 
-#: ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MAX_FPS"
 msgstr "최대 FPS:"
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:322
 msgid "COLOURBLIND_CORRECTION"
 msgstr "색맹 교정:"
 
-#: ../src/general/OptionsMenu.tscn:353
+#: ../src/general/OptionsMenu.tscn:354
 msgid "CHROMATIC_ABERRATION"
 msgstr "색수차:"
 
-#: ../src/general/OptionsMenu.tscn:380
+#: ../src/general/OptionsMenu.tscn:381
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "능력"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "외부 효과:"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
-#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
+#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.tscn:583
 msgid "MUTE"
 msgstr "음소거"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:457
 msgid "MUSIC_VOLUME"
 msgstr "음악 음량"
 
-#: ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:490
 msgid "AMBIANCE_VOLUME"
 msgstr "배경 음량"
 
-#: ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:523
 msgid "SFX_VOLUME"
 msgstr "효과음 음량"
 
-#: ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI_VOLUME"
 msgstr "GUI 음량"
 
-#: ../src/general/OptionsMenu.tscn:600
+#: ../src/general/OptionsMenu.tscn:601
+msgid "AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
 msgstr "언어:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
+#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
 msgid "RESET"
 msgstr "초기화"
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:652
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "게임을 번역하는 것을 도와주세요"
 
-#: ../src/general/OptionsMenu.tscn:650
+#: ../src/general/OptionsMenu.tscn:678
 msgid "COMPOUND_CLOUDS"
 msgstr "화합물 구름"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:693
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "최소 구름 시뮬레이션\n"
 "간격:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(높은 값일수록 더 나은 성능)"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:735
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "구름 해상도 인자:"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:777
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "게임 플레이 중 자동 진화 실행"
 
-#: ../src/general/OptionsMenu.tscn:822
+#: ../src/general/OptionsMenu.tscn:850
 msgid "RESET_INPUTS"
 msgstr "키 설정 초기화"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:878
 msgid "PLAY_INTRO_VIDEO"
 msgstr "인트로 영상 재생"
 
-#: ../src/general/OptionsMenu.tscn:859
+#: ../src/general/OptionsMenu.tscn:887
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "새 게임 시 미생물 인트로 재생"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:896
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "진행 중 자동 저장"
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "저장할 수 있는 자동저장 갯수:"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:935
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "저장할 수 있는 빠른저장 갯수:"
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:961
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "튜토리얼 보기(새 게임 시작 시)"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:969
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "튜토리얼 보기(현재 진행중인 게임)"
 
-#: ../src/general/OptionsMenu.tscn:957
+#: ../src/general/OptionsMenu.tscn:985
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "치트 키 활성화"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:997
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "CUSTOM_USERNAME"
 msgstr "임의 사용자 이름:"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "스크린샷 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "OPEN_LOGS_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "저장"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "기본값"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "RESET_TO_DEFAULTS"
 msgstr "기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1101
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1138
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "CLOSE_OPTIONS"
 msgstr "설정을 종료합니까?"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1172
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
 "계속하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1166
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "SAVE_AND_CONTINUE"
 msgstr "저장 및 계속"
 
-#: ../src/general/OptionsMenu.tscn:1175
+#: ../src/general/OptionsMenu.tscn:1203
 msgid "DISCARD_AND_CONTINUE"
 msgstr "취소 및 계속"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "CANCEL"
 msgstr "취소"
 
-#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "ERROR"
 msgstr "오류"
 
-#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
+#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하였습니다."
 
@@ -1670,7 +1374,7 @@ msgstr "{0} 천"
 msgid "PER_SECOND_SLASH"
 msgstr "/초"
 
-#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
@@ -3111,6 +2815,260 @@ msgstr ""
 "세요.\n"
 "\n"
 "모든 키로 수 초간 움직여서 진행하세요."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E 키로 OxyToxy NT를 "
+#~ "발사합니다. G 키로 삼키기 모드로 전환합니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "당신의 세포는 에너지원으로써 ATP를 사용하며, 전부 바닥나면 죽게 될 것입"
+#~ "니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "편집기를 해금하고 복제하려면 암모니아(주황색 구름) 와 인산염(자주색 구"
+#~ "름)을 모아야 합니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "G 키를 눌러 자신보다 작은 세포나 박테리아 또는 철과 세포 조각들을 삼킬 "
+#~ "수 있습니다. 이것은 추가적인 ATP를 소모하며 더 느려지게 만듭니다. G 키"
+#~ "를 한번 더 눌러 삼키기를 멈추는 것을 잊지 마십시오."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "삼투압 조절은 ATP를 소모하므로, 당신의 세포가 더 클수록, 미토콘드리아나 "
+#~ "대사체나 루스티시아닌(또는 해당을 수행하는 세포질)이 정지해있을 때 ATP "
+#~ "손실을 방지해야 합니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "편집기에 있는 수많은 진화 가능한 세포 기관들로, 다양한 종류의 게임 진행 "
+#~ "방식을 만들 수 있습니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "화합물 구름은 다음과 같습니다:\n"
+#~ "\n"
+#~ "흰색 – 포도당\n"
+#~ "노란색 – 황화수소\n"
+#~ "주황색 – 암모니아\n"
+#~ "자주색 – 인산염\n"
+#~ "적갈색 – 철\n"
+#~ "\n"
+#~ "포도당은 ATP를 생산합니다"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "황화수소는 화학세포와 화학 합성 단백질을 통해 포도당으로 전환될 수 있습"
+#~ "니다. 철은 루스티시아닌을 통해 ATP로 전환될 수 있습니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "번식하려면 세포 기관을 각각 두개로 나눠야 합니다. 세포 기관을 반으로 나"
+#~ "누기 위해 암모니아와 인산염이 필요합니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "지금부터 개체 수가 전부 사라지면 멸종하게 됩니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "그러나 300 명의 개체 수로 20 세대 동안 생존했다면 현재 게임에서 승리 한 "
+#~ "것으로 간주되며, 승리 후 팝업이 나타나고 원한다면 계속 플레이 할 수 있습"
+#~ "니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "당신의 경쟁자 또한 당신처럼 진화한다는 것을 명심하십시오. 당신이 편집기"
+#~ "에 들어갈 때마다 그들도 진화할 것입니다."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E 키로 OxyToxy NT를 "
+#~ "발사합니다. G 키로 삼키기 모드로 전환합니다."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "원핵 구조체\n"
+#~ "\n"
+#~ "대사체: 포도당으로부터 ATP 생산\n"
+#~ "\n"
+#~ "화학 합성 단백질: 포도당의 절반을 황화수소로부터 화학 세포로 생성하고, "
+#~ "해당 과정 또한 수행하며, 세포 1칸을 차지\n"
+#~ "\n"
+#~ "틸라코이드: 정상적인 엽록체로 1/3의 포도당을 생성하고, 해당 과정 또한 수"
+#~ "행하며, 세포 1칸을 차지\n"
+#~ "\n"
+#~ "루스티시아닌: 철을 ATP로 전환\n"
+#~ "\n"
+#~ "니트로게나아제: 분자상 질소와 ATP를 혐기성 암모니아로 전환\n"
+#~ "\n"
+#~ "세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "외부 세포 기관\n"
+#~ "\n"
+#~ "편모: ATP를 소모하여 세포를 더 빠르게 이동\n"
+#~ "\n"
+#~ "선모: 다른 세포를 찌를 수 있음"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "세포 소 기관\n"
+#~ "\n"
+#~ "핵: 세포 11칸을 차지하며 세포 소 기관의 진화를 가능하게 함. 또한 세포 크"
+#~ "기를 두 배로 늘림. (한 번만 진화 할 수 있음)\n"
+#~ "\n"
+#~ "미토콘드리아: 포도당과 대기 중 산소로 ATP를 생성. 세포질보다 더욱 효율"
+#~ "적\n"
+#~ "\n"
+#~ "엽록체: 햇빛과 대기 중 이산화탄소로 포도당을 생성\n"
+#~ "\n"
+#~ "화학세포: 황화수소로 포도당을 생성\n"
+#~ "\n"
+#~ "질소 고정 색소체: ATP와 대기 중 질소와 산소로 암모니아를 생성\n"
+#~ "\n"
+#~ "액포: 화합물 15개 저장\n"
+#~ "\n"
+#~ "독성 액포: 독소 생성 (OxyToxy NT라 불림)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "각 세대마다, 100 변이 점수(MP)를 사용할 수 있으며, 각각의 변화(또는 변"
+#~ "이)는 그에 맞는 MP를 소모합니다. 세포 기관의 추가나 제거는 MP를 소모하지"
+#~ "만, 현재 변이 세션에서 배치된 세포 기관의 제거 시 MP를 돌려받을 수 있습"
+#~ "니다. 오른쪽-클릭 후 팝업 창의 확인을 통해 세포 기관을 이동하거나 완전"
+#~ "히 제거할 수 있습니다. A 키와 D 키로 배치 중인 세포 기관을 회전시킬 수 "
+#~ "있습니다."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "당신이 번식할 때마다, 미생물 편집기에 입장하며, 당신의 종을 변화하여(세"
+#~ "포 기관의 추가, 이동, 제거를 통해) 성공적인 종의 종속을 이어갈 수 있습니"
+#~ "다. 미생물 단계에서의 편집기 입장은 수백만년 분의 진화에 해당 됩니다."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "농담 하나, 강섬모충속과 짚신벌레속은 수십 년 간 연구된 포식자와 피식자 "
+#~ "관계의 교과서입니다, 당신은 강섬모충속입니까 아니면 짚신벌레속입니까? 사"
+#~ "냥꾼입니까 아니면 사냥감입니까?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "팁 하나, 당신이 충분히 빠르다면 독소를 이용하여 다른 독소를 멀리 떨어 뜨"
+#~ "릴 수 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "팁 하나, 삼투압 조절은 세포 한 칸에 초당 1의 ATP를 소모하며, 빈 세포질"
+#~ "은 초당 5 ATP를 생산하므로, 삼투압 조절 중 ATP를 잃고 있다면 빈 세포질"
+#~ "을 추가하거나 세포 기관을 제거하면 됩니다."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "농담 하나, 현실에서 원핵 생물은 세포 기관처럼 행동하는 생체 구획이 있으"
+#~ "며, 다면 세포라 불립니다."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "농담 하나, 대사체는 다면 세포라 불립니다."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr ""
+#~ "팁 하나, 가끔은 다른 세포로부터 도망치는 것이 가장 좋을 때도 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "팁 하나, 당신 크기의 절반 정도인 세포가 있다면, 삼킬 수 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "팁 하나, 박테리아는 보이는 것보다 더 강할 수 있으며, 보이기에는 작지만, "
+#~ "몇몇은 당신에게 파고들어 그대로 죽일 수도 있습니다!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "팁 하나, 다른 종들이 그랬던 것 처럼, 조심하지 않는다면 당신의 손으로 멸"
+#~ "종을 초래할 수 도 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "으후루꾸꾸루후으!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "꿀꺽꿀꺽."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "저 파란 세포 봐봐."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "팁 하나, 생물군계는 배경만 다른게 아니라, 화합물 또한 생물군계 별로 비율"
+#~ "이 다를 수 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "팁 하나, 편모가 많을 수록, 더 빨리 가지, 부릉 부릉, ATP도 더 많이 쓰지"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "팁 하나, 철이나 다른 덩어리들을 보면 삼키[지] 않을 수 없죠."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "팁 하나, 핵을 추가하려면 준비부터 하세요. 비싸니까요! 유지비와 선행비가"
+#~ "요."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "농담 하나, 지구에는 8000 종이 넘는 섬모충이 있다는 것을 아시나요?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "농담 하나, 나팔벌레는 스스로 섬모로 급류를 만들어 먹이를 일종의 나팔과 "
+#~ "같은 입으로 잡을 수 있는 섬모충입니다."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "농담 하나, 강섬모충속은 짚신벌레를 사냥하는 섬모충입니다."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언"
+#~ "젠간 Thrive 에서도 보고 싶군요."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "팁 하나, 커다란 세포와 박테리아를 조심하지 않으면, 진짜 먹힐 수도 있으"
+#~ "며, 당신은 흡수당할 것 입니다."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "Thrive의 사운드 팀 리더는 게임에 아직 추가되지 않은 많은 곡을 작성했습니"
+#~ "다. Oliver Lugg의 YouTube 채널에서 이 곡들이나 작곡 스트리밍을 감상하세"
+#~ "요."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "팁 하나, 당신의 세포가 150칸이라면, 큰 철 덩어리를 삼킬 수 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "Thrive란 외계 행성의 시뮬레이션이란 뜻으로써, 여러분이 발견하는 대부분"
+#~ "의 생물들은 여러분 주변에서 진화한 한 두 종의 다른 생물들과 연관이 있을 "
+#~ "것이라고 생각됩니다, 맞는지 알아보세요!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "농담 하나, Thrive 팀은 자주 팟캐스트를 합니다, 꼭 확인해 보세요!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "농담 하나, Thrive는 오픈 소스 Godot 엔진으로 제작되었습니다!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "농담 하나, 실행 가능한 수준의 첫 게임 시제품은 우리 놀라운 프로그래머, "
+#~ "untrustedlife가 만들었습니다!"
 
 #~ msgid "TURNS"
 #~ msgstr "턴"

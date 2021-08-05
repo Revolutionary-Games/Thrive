@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"POT-Creation-Date: 2021-08-05 12:35+0200\n"
 "PO-Revision-Date: 2021-06-24 08:42+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
@@ -19,323 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.9.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"Gebruik WASD en de muis om te bewegen, E om OxyToxy te schieten en G om "
-"Overspoelmodus aan te zetten."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"Je cel gebruikt ATP als energie. Als je geen ATP meer hebt, sterft je cel."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Om de editor te ontgrendelen en om jezelf voort te planten, heb je "
-"ammoniak (oranje wolken) en fosfaat (paarse wolken) nodig."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Je kan andere cellen, bacteriën en ijzer deeltjes opnemen die kleiner zijn "
-"dan jezelf door op G te drukken. Dit gebruikt extra ATP en maakt je "
-"langzamer. Vergeet niet nog een keer op G te drukken om te stoppen."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Osmoregulatie kost ATP. Dat betekent, hoe groter je cel is, hoe meer "
-"mitochondriën, metabolosomen of rusticyanine je nodig hebt om te kunnen "
-"overleven."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"Er zijn veel organellen in de editor om te evolueren, wat voor een brede "
-"selectie aan speelwijzes zorgt."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"De verschillende wolken met benodigdheden zijn:\n"
-"\n"
-"Wit - Glucose\n"
-"Geel - Waterstofsulfide\n"
-"Oranje - Ammoniak\n"
-"Paars - Fosfaat\n"
-"Roestbruin - IJzer\n"
-"\n"
-"Glucose maakt ATP"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"Waterstofsulfide can worden omgezet naar glucose door middel van "
-"chemoplasten en chemosynthese eiwitten. IJzer kan worden omgezet naar ATP "
-"via rusticyanine."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Om jezelf voort te planten moet je al je organellen in tweeën delen. "
-"Organellen hebben ammoniak en fosfaat nodig om in tweeën te splitsen."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Voor nu, als je populatie naar nul zakt, sterf je uit."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Maar als je voor twintig generaties met 300 populatie overleeft, win je de "
-"game. Nadat je hebt gewonnen kan je nog verder spelen als je dat wilt."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Wees gewaarschuwd voor je vijanden die ook evolueren. Elke keer als je in "
-"de editor komt, evolueren zij zich ook."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Gebruik WASD en de muis om te bewegen, E om OxyToxy te schieten en G om "
-"Overspoelmodus aan te zetten."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Procaryote samenstellingen\n"
-"\n"
-"Metabolosomen: produceren ATP uit glucose\n"
-"\n"
-"Chemosynthese-eiwitten: produceert de helft van de glucose uit "
-"waterstofsulfide als een chemoplast, maar voert ook glycolise uit. Neemt 1 "
-"Hex in beslag\n"
-"\n"
-"Thylakoïden: produceert 1/3 van de hoeveelheid glucose als een normale "
-"chloroplast, maar voert ook glycolise uit. Neemt 1 Hex in beslag\n"
-"\n"
-"Rusticyanine: zet ijzer om in ATP\n"
-"\n"
-"Nitrogenase: zet stikstof uit de atmosfeer en ATP anaeroob om in ammoniak\n"
-"\n"
-"Cytoplasma: heeft opslagruimte en voert glycolyse uit (produceert een "
-"kleine hoeveelheid ATP)"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Externe organellen\n"
-"\n"
-"Flagellum: maakt het bewegen sneller door ATP te verbruiken\n"
-"\n"
-"Pilus: kan worden gebruikt om andere cellen mee te steken"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membraangebonden organellen\n"
-"\n"
-"Kern: neemt elf hexes in beslag en zorgt ervoor dat andere "
-"membraangebonden organellen kunnen evolueren, en verdubbelt de grootte van "
-"je cel (kan maar één keer geëvolueerd worden)\n"
-"\n"
-"Mitochondrion: produceert ATP veel efficiënter uit glucose en "
-"atmosferische O2 dan cytoplasma\n"
-"\n"
-"Chloroplast: maakt glucose uit zonlicht en CO2\n"
-"\n"
-"Chemoplast: maakt glucose uit waterstofsulfide\n"
-"\n"
-"Stikstof fixerende plastid: maakt ammoniak uit ATP, stikstof en zuurstof\n"
-"\n"
-"Vacuole: slaat vijftien verzamelde samenstellingen op\n"
-"\n"
-"Toxine vacuolen: produceert toxine (OxyToxy NT genoemd)"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke "
-"verandering kost een beetje MP. Je kan een organelle verplaatsen of "
-"verwijderen met rechtsklik. Je kan organellen ook draaien met A en D."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Telkens als je jezelf voortplant, open je de microbe editor waar je "
-"veranderingen aan je cel kan maken om je succes te verhogen. Elk bezoek "
-"aan de editor telt als 100 miljoen jaar."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Klik de undo-knop in de editor om een fout te corrigeren"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-"
-"prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een "
-"nakomeling van het roofdier of de prooi?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Een tip: toxine kan worden gebruikt om andere toxinen af te stoten als je "
-"snel genoeg bent."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke "
-"lege hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent dat "
-"als je ATP verliest door osmoregulatie je gewoon wat lege hexes aan "
-"cytoplasma moet toevoegen of wat organellen moet verwijderen."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Wist je dat in het echte leven prokaryoten iets hebben die "
-"biocompartementen worden genoemd? Ze gedragen zich als organellen en hun "
-"echte naam is veelvlakkig organel."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Wist je dat de metabolosoom een veelvlakkig organel is."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Een tip, soms is het beter om weg te rennen van andere cellen."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Een tip, als een cel de helft van jouw maat is, kan je die overspoelen."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit, "
-"maar sommigen van hen kunnen zich in je ingraven en je op die manier doden!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Een tip, je kan andere cellen uitroeien als je niet voorichtig bent. "
-"Anderen kunnen dat ook."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "WIEBELIGE DINGEN!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Smelt al het metaal."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Dat zijn wel blauwe cellen."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Een tip, biomen zijn meer dan andere achtergronden. De behoeften spawnen "
-"op verschillende manieren."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Een tip, hoe meer flagella je hebt, hoe sneller je gaat, vroom vroom, het "
-"kost wel veel meer ATP"
-
-#: ../simulation_parameters/common/help_texts.json:168
-#, fuzzy
-msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"Een tip, je kan stukken overspoelen zoals ijzer of organel van dode cellen "
-"door op G te drukken."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Een tip, bereid je voor voordat je een kern plaatst. Ze zijn duur om te "
-"plaatsen en te onderhouden."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "Wist je dat er meer dan 8000 soorten ciliaat op Aarde zijn?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Wist je dat: Stentors zijn wimperdieren die zich uit te strekken en met "
-"een trompetachtige mond prooien vangen. Dit doen ze door waterstromingen "
-"te maken met hun trilharen en daarmee de prooi naar binnen zuigen."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
-"Wist je dat: Didinium is een trilhaardiertje die op pantoffeldieren jaagt."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Wist je dat: Amoeben jagen en vangen hun prooi met 'benen' van cytoplasma, "
-"genaamd pseudopodia of schijnvoetjes. Ooit willen we ze deze in Thrive."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Een tip, kijk uit voor grotere cellen en bacterien, want het is niet fijn "
-"om verteerd te worden, ze zullen je eten."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Het geluidsteam van Thrive heeft veel nummers gemaakt die nog niet in de "
-"game zitten. Je kan ze luisteren op het Youtube-kanaal Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Wist je dat: Als je cel 150 zeshoeken/velden groot is, dan kan je de grote "
-"ijzerklompen opslokken."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive is bedoelt als een simulatie van een buitenaardse planeet, waardoor "
-"het logisch is dat de meeste wezens die je vind verwant zijn aan één of "
-"twee andere soorten die zich door evolutie hebben aangepast, kijk of je ze "
-"kan herkennen!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Weetje, het team van Thrive doer regelmatic podcasts, luister ze!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Weetje, Thrive is gemaakt met de open-source Godot engine!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Weetje, de eerste speelbare prototypes waren gemaakt door untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -560,44 +243,44 @@ msgid "EPIPELAGIC"
 msgstr "Epipelechisch"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:168
+#: ../simulation_parameters/microbe_stage/biomes.json:395
+#: ../simulation_parameters/microbe_stage/biomes.json:542
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1509
+#: ../simulation_parameters/microbe_stage/biomes.json:1674
+#: ../simulation_parameters/microbe_stage/biomes.json:1821
 msgid "FLOATING_HAZARD"
 msgstr "Drijvend gevaar"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:185
+#: ../simulation_parameters/microbe_stage/biomes.json:412
+#: ../simulation_parameters/microbe_stage/biomes.json:559
+#: ../simulation_parameters/microbe_stage/biomes.json:782
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1236
+#: ../simulation_parameters/microbe_stage/biomes.json:1379
+#: ../simulation_parameters/microbe_stage/biomes.json:1526
+#: ../simulation_parameters/microbe_stage/biomes.json:1691
+#: ../simulation_parameters/microbe_stage/biomes.json:1838
 msgid "SMALL_IRON_CHUNK"
 msgstr "Klein stuk ijzer"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:300
+#: ../simulation_parameters/microbe_stage/biomes.json:447
+#: ../simulation_parameters/microbe_stage/biomes.json:594
+#: ../simulation_parameters/microbe_stage/biomes.json:817
+#: ../simulation_parameters/microbe_stage/biomes.json:1044
+#: ../simulation_parameters/microbe_stage/biomes.json:1271
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1579
+#: ../simulation_parameters/microbe_stage/biomes.json:1726
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "BIG_IRON_CHUNK"
 msgstr "Groot stuk ijzer"
 
@@ -605,51 +288,51 @@ msgstr "Groot stuk ijzer"
 msgid "VOLCANIC_VENT"
 msgstr "Vulkanische opening"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:220
+#: ../simulation_parameters/microbe_stage/biomes.json:617
+#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:1067
+#: ../simulation_parameters/microbe_stage/biomes.json:1896
 msgid "MARINE_SNOW"
 msgstr "Mariene sneeuw"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:369
 msgid "TIDEPOOL"
 msgstr "Getijdenmeer"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:516
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagisch"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:743
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopelagisch"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:966
 msgid "MESOPELAGIC"
 msgstr "Mesopelagisch"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
 msgstr "Kust"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
 msgstr "Onderwatergrot"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1483
 msgid "ICESHELF"
 msgstr "Ijsplaat"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "ICESHARD"
 msgstr "Ijsscherf"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
 msgid "ESTUARY"
 msgstr "Estuarium"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1795
 msgid "SEA_FLOOR"
 msgstr "Zeebodem"
 
@@ -1381,7 +1064,7 @@ msgstr "Stop"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1397,235 +1080,243 @@ msgstr ""
 "Je gebruikt Thrive met GLES2. Dit is niet getest en veroorzaakt problemen. "
 "Update je drivers of gebruik een AMD of Nvidia videokaart met Thrive."
 
-#: ../src/general/OptionsMenu.tscn:128
+#: ../src/general/OptionsMenu.cs:758
+msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
 msgstr "Kwaliteit"
 
-#: ../src/general/OptionsMenu.tscn:139
+#: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
 msgstr "Geluid"
 
-#: ../src/general/OptionsMenu.tscn:150
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "Prestatie"
 
-#: ../src/general/OptionsMenu.tscn:161
+#: ../src/general/OptionsMenu.tscn:162
 msgid "INPUTS"
 msgstr "Invoer"
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:173
 msgid "MISC"
 msgstr "Overig"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:206
 msgid "VSYNC"
 msgstr "vSync"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "FULLSCREEN"
 msgstr "Fullscreen"
 
-#: ../src/general/OptionsMenu.tscn:235
+#: ../src/general/OptionsMenu.tscn:236
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-Aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(hogere instelling verlaagt de prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:273
 msgid "RESOLUTION"
 msgstr "Resolutie:"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:286
 msgid "AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:322
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Kleurenblindheid-correctie:"
 
-#: ../src/general/OptionsMenu.tscn:353
+#: ../src/general/OptionsMenu.tscn:354
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
-#: ../src/general/OptionsMenu.tscn:380
+#: ../src/general/OptionsMenu.tscn:381
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Capaciteiten"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "Volume"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
-#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
+#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.tscn:583
 msgid "MUTE"
 msgstr "Demp"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:457
 msgid "MUSIC_VOLUME"
 msgstr "Volume muziek"
 
-#: ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:490
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume omgeving"
 
-#: ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:523
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
-#: ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
-#: ../src/general/OptionsMenu.tscn:600
+#: ../src/general/OptionsMenu.tscn:601
+msgid "AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
 msgstr "Taal:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
+#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:652
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help met vertalen"
 
-#: ../src/general/OptionsMenu.tscn:650
+#: ../src/general/OptionsMenu.tscn:678
 msgid "COMPOUND_CLOUDS"
 msgstr "Samenstellings-wolken"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:693
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Wolksimulatie minimum\n"
 "interval:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(hogere instelling verlaagt de prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:735
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolk resolutiedeler:"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:777
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Voer auto-evo uit tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:822
+#: ../src/general/OptionsMenu.tscn:850
 msgid "RESET_INPUTS"
 msgstr "Reset invoer"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:878
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Speel intro"
 
-#: ../src/general/OptionsMenu.tscn:859
+#: ../src/general/OptionsMenu.tscn:887
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Speel intro bij nieuw spel"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:896
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sla automatisch op tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Aantal automatische savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:935
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aantal savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:961
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Laat tutorial zien bij nieuw spel"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:969
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Laat tutorial zien in huidig spel"
 
-#: ../src/general/OptionsMenu.tscn:957
+#: ../src/general/OptionsMenu.tscn:985
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-toetsen ingeschakeld"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:997
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "CUSTOM_USERNAME"
 msgstr "Gebruikersnaam:"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open screenshots"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open logs"
 
-#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Sla op"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaard"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetten naar standaard?"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Weet je zeker dat je ALLE instellingen wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1101
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Invoer resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1138
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Weet je zeker dat je de invoer wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "CLOSE_OPTIONS"
 msgstr "Opties sluiten?"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1172
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen instellingen.\n"
 "Doorgaan?"
 
-#: ../src/general/OptionsMenu.tscn:1166
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "SAVE_AND_CONTINUE"
 msgstr "Opslaan en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1175
+#: ../src/general/OptionsMenu.tscn:1203
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuleren en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "CANCEL"
 msgstr "Annuleer"
 
-#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
+#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
 
@@ -1671,7 +1362,7 @@ msgstr "{0} K"
 msgid "PER_SECOND_SLASH"
 msgstr "/seconde"
 
-#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
@@ -2875,6 +2566,275 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe vrij bouwen"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Gebruik WASD en de muis om te bewegen, E om OxyToxy te schieten en G om "
+#~ "Overspoelmodus aan te zetten."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Je cel gebruikt ATP als energie. Als je geen ATP meer hebt, sterft je "
+#~ "cel."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Om de editor te ontgrendelen en om jezelf voort te planten, heb je "
+#~ "ammoniak (oranje wolken) en fosfaat (paarse wolken) nodig."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Je kan andere cellen, bacteriën en ijzer deeltjes opnemen die kleiner "
+#~ "zijn dan jezelf door op G te drukken. Dit gebruikt extra ATP en maakt "
+#~ "je langzamer. Vergeet niet nog een keer op G te drukken om te stoppen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Osmoregulatie kost ATP. Dat betekent, hoe groter je cel is, hoe meer "
+#~ "mitochondriën, metabolosomen of rusticyanine je nodig hebt om te kunnen "
+#~ "overleven."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Er zijn veel organellen in de editor om te evolueren, wat voor een "
+#~ "brede selectie aan speelwijzes zorgt."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "De verschillende wolken met benodigdheden zijn:\n"
+#~ "\n"
+#~ "Wit - Glucose\n"
+#~ "Geel - Waterstofsulfide\n"
+#~ "Oranje - Ammoniak\n"
+#~ "Paars - Fosfaat\n"
+#~ "Roestbruin - IJzer\n"
+#~ "\n"
+#~ "Glucose maakt ATP"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "Waterstofsulfide can worden omgezet naar glucose door middel van "
+#~ "chemoplasten en chemosynthese eiwitten. IJzer kan worden omgezet naar "
+#~ "ATP via rusticyanine."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "Om jezelf voort te planten moet je al je organellen in tweeën delen. "
+#~ "Organellen hebben ammoniak en fosfaat nodig om in tweeën te splitsen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Voor nu, als je populatie naar nul zakt, sterf je uit."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "Maar als je voor twintig generaties met 300 populatie overleeft, win je "
+#~ "de game. Nadat je hebt gewonnen kan je nog verder spelen als je dat "
+#~ "wilt."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "Wees gewaarschuwd voor je vijanden die ook evolueren. Elke keer als je "
+#~ "in de editor komt, evolueren zij zich ook."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "Gebruik WASD en de muis om te bewegen, E om OxyToxy te schieten en G om "
+#~ "Overspoelmodus aan te zetten."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Procaryote samenstellingen\n"
+#~ "\n"
+#~ "Metabolosomen: produceren ATP uit glucose\n"
+#~ "\n"
+#~ "Chemosynthese-eiwitten: produceert de helft van de glucose uit "
+#~ "waterstofsulfide als een chemoplast, maar voert ook glycolise uit. "
+#~ "Neemt 1 Hex in beslag\n"
+#~ "\n"
+#~ "Thylakoïden: produceert 1/3 van de hoeveelheid glucose als een normale "
+#~ "chloroplast, maar voert ook glycolise uit. Neemt 1 Hex in beslag\n"
+#~ "\n"
+#~ "Rusticyanine: zet ijzer om in ATP\n"
+#~ "\n"
+#~ "Nitrogenase: zet stikstof uit de atmosfeer en ATP anaeroob om in "
+#~ "ammoniak\n"
+#~ "\n"
+#~ "Cytoplasma: heeft opslagruimte en voert glycolyse uit (produceert een "
+#~ "kleine hoeveelheid ATP)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Externe organellen\n"
+#~ "\n"
+#~ "Flagellum: maakt het bewegen sneller door ATP te verbruiken\n"
+#~ "\n"
+#~ "Pilus: kan worden gebruikt om andere cellen mee te steken"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membraangebonden organellen\n"
+#~ "\n"
+#~ "Kern: neemt elf hexes in beslag en zorgt ervoor dat andere "
+#~ "membraangebonden organellen kunnen evolueren, en verdubbelt de grootte "
+#~ "van je cel (kan maar één keer geëvolueerd worden)\n"
+#~ "\n"
+#~ "Mitochondrion: produceert ATP veel efficiënter uit glucose en "
+#~ "atmosferische O2 dan cytoplasma\n"
+#~ "\n"
+#~ "Chloroplast: maakt glucose uit zonlicht en CO2\n"
+#~ "\n"
+#~ "Chemoplast: maakt glucose uit waterstofsulfide\n"
+#~ "\n"
+#~ "Stikstof fixerende plastid: maakt ammoniak uit ATP, stikstof en "
+#~ "zuurstof\n"
+#~ "\n"
+#~ "Vacuole: slaat vijftien verzamelde samenstellingen op\n"
+#~ "\n"
+#~ "Toxine vacuolen: produceert toxine (OxyToxy NT genoemd)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke "
+#~ "verandering kost een beetje MP. Je kan een organelle verplaatsen of "
+#~ "verwijderen met rechtsklik. Je kan organellen ook draaien met A en D."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Telkens als je jezelf voortplant, open je de microbe editor waar je "
+#~ "veranderingen aan je cel kan maken om je succes te verhogen. Elk bezoek "
+#~ "aan de editor telt als 100 miljoen jaar."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Klik de undo-knop in de editor om een fout te corrigeren"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-"
+#~ "prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een "
+#~ "nakomeling van het roofdier of de prooi?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "Een tip: toxine kan worden gebruikt om andere toxinen af te stoten als "
+#~ "je snel genoeg bent."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke "
+#~ "lege hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent "
+#~ "dat als je ATP verliest door osmoregulatie je gewoon wat lege hexes aan "
+#~ "cytoplasma moet toevoegen of wat organellen moet verwijderen."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "Wist je dat in het echte leven prokaryoten iets hebben die "
+#~ "biocompartementen worden genoemd? Ze gedragen zich als organellen en "
+#~ "hun echte naam is veelvlakkig organel."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "Wist je dat de metabolosoom een veelvlakkig organel is."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Een tip, soms is het beter om weg te rennen van andere cellen."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr ""
+#~ "Een tip, als een cel de helft van jouw maat is, kan je die overspoelen."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit, "
+#~ "maar sommigen van hen kunnen zich in je ingraven en je op die manier "
+#~ "doden!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "Een tip, je kan andere cellen uitroeien als je niet voorichtig bent. "
+#~ "Anderen kunnen dat ook."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "WIEBELIGE DINGEN!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Smelt al het metaal."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Dat zijn wel blauwe cellen."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "Een tip, biomen zijn meer dan andere achtergronden. De behoeften "
+#~ "spawnen op verschillende manieren."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "Een tip, hoe meer flagella je hebt, hoe sneller je gaat, vroom vroom, "
+#~ "het kost wel veel meer ATP"
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr ""
+#~ "Een tip, je kan stukken overspoelen zoals ijzer of organel van dode "
+#~ "cellen door op G te drukken."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "Een tip, bereid je voor voordat je een kern plaatst. Ze zijn duur om te "
+#~ "plaatsen en te onderhouden."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "Wist je dat er meer dan 8000 soorten ciliaat op Aarde zijn?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "Wist je dat: Stentors zijn wimperdieren die zich uit te strekken en met "
+#~ "een trompetachtige mond prooien vangen. Dit doen ze door "
+#~ "waterstromingen te maken met hun trilharen en daarmee de prooi naar "
+#~ "binnen zuigen."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr ""
+#~ "Wist je dat: Didinium is een trilhaardiertje die op pantoffeldieren "
+#~ "jaagt."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "Wist je dat: Amoeben jagen en vangen hun prooi met 'benen' van "
+#~ "cytoplasma, genaamd pseudopodia of schijnvoetjes. Ooit willen we ze "
+#~ "deze in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "Een tip, kijk uit voor grotere cellen en bacterien, want het is niet "
+#~ "fijn om verteerd te worden, ze zullen je eten."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "Het geluidsteam van Thrive heeft veel nummers gemaakt die nog niet in "
+#~ "de game zitten. Je kan ze luisteren op het Youtube-kanaal Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "Wist je dat: Als je cel 150 zeshoeken/velden groot is, dan kan je de "
+#~ "grote ijzerklompen opslokken."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "Thrive is bedoelt als een simulatie van een buitenaardse planeet, "
+#~ "waardoor het logisch is dat de meeste wezens die je vind verwant zijn "
+#~ "aan één of twee andere soorten die zich door evolutie hebben aangepast, "
+#~ "kijk of je ze kan herkennen!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Weetje, het team van Thrive doer regelmatic podcasts, luister ze!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Weetje, Thrive is gemaakt met de open-source Godot engine!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "Weetje, de eerste speelbare prototypes waren gemaakt door untrustedlife!"
 
 #~ msgid "TURNS"
 #~ msgstr "Verandert"
