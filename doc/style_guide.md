@@ -150,6 +150,10 @@ Code style rules
   bodies are just a single line. Just a single if (without else) with
   a single line body can be written without braces, and this style
   should be preferred.
+  
+- Ternary operators (`a ? b : c`) can be used instead of `if ... else`
+  statements as long as they are kept readable. Nested ternaries are 
+  always banned and should be systematically replaced by if-blocks.
 
 - Single line variables (and properties) can be next to each other
   without a blank line. Other variables and class elements should have
