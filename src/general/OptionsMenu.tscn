@@ -53,6 +53,9 @@ MSAAResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Grap
 ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting")
 ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount")
 ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
+CurrentGpuPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6/GpuInfo")
+VideoMemoryPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8/VideoMemoryInfo")
+DisplayRendererPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7/DisplayRendererInfo")
 DisplayAbilitiesBarTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar")
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound")
@@ -71,7 +74,6 @@ LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/S
 ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 PerformanceTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance")
 CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval")
-CloudResolutionTitlePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer")
 CloudResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution")
 RunAutoEvoDuringGameplayPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs")
@@ -388,6 +390,89 @@ size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 325.0
+margin_right = 648.0
+margin_bottom = 347.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_right = 266.0
+margin_bottom = 22.0
+text = "GRAPHICS_PROCESSING_UNIT"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_left = 270.0
+margin_right = 607.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 3 )
+
+[node name="GpuInfo" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_left = 611.0
+margin_right = 648.0
+margin_bottom = 22.0
+text = "GPU"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 357.0
+margin_right = 648.0
+margin_bottom = 379.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7"]
+margin_right = 183.0
+margin_bottom = 22.0
+text = "DISPLAY_RENDERER"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7"]
+margin_left = 187.0
+margin_right = 465.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 3 )
+
+[node name="DisplayRendererInfo" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7"]
+margin_left = 469.0
+margin_right = 648.0
+margin_bottom = 22.0
+text = "DISPLAY RENDERER"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 389.0
+margin_right = 648.0
+margin_bottom = 411.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
+margin_right = 138.0
+margin_bottom = 22.0
+text = "VIDEO_MEMORY"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
+margin_left = 142.0
+margin_right = 470.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 3 )
+
+[node name="VideoMemoryInfo" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
+margin_left = 474.0
+margin_right = 648.0
+margin_bottom = 22.0
+text = "Video Memory MiB"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false

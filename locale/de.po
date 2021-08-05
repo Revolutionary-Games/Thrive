@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 12:51+0200\n"
+"POT-Creation-Date: 2021-08-05 18:04+0200\n"
 "PO-Revision-Date: 2021-08-05 13:09+0000\n"
 "Last-Translator: John <philllo030@googlemail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -24,12 +24,12 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive"
-":input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_ri"
-"ght[/thrive:input] und Maus zum Bewegen. "
-"[thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden "
-"ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den "
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:"
+"input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole "
+"vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den "
 "Verschlingungsmodus umzuschalten."
 
 #: ../simulation_parameters/common/help_texts.json:10
@@ -53,21 +53,21 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Um andere Zellen, Bakterien, Eisenbrocken sowie Zellenbrocken, welche "
-"kleiner als du sind, zu Verschlingen, drücke "
-"[thrive:input]g_toggle_engulf[/thrive:input]. Dies kostet mehr [thrive:"
-"compound type=\"atp\"][/thrive:compound] und wird dich verlangsamen. Drücke "
-"[thrive:input]g_toggle_engulf[/thrive:input] ein zweites Mal, um den "
+"kleiner als du sind, zu Verschlingen, drücke [thrive:"
+"input]g_toggle_engulf[/thrive:input]. Dies kostet mehr [thrive:compound "
+"type=\"atp\"][/thrive:compound] und wird dich verlangsamen. Drücke [thrive:"
+"input]g_toggle_engulf[/thrive:input] ein zweites Mal, um den "
 "Verschlingungsmodus zu beenden."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulation kostet [thrive:compound type=\"atp\"][/thrive:compound], was "
-"bedeutet, dass je größer deine Zelle ist, desto mehr Mitochondrien, "
-"Metabolosomen oder Rusticyanin (oder Zytoplasma, welches Glukose herstellt) "
-"benötigst du, um kein [thrive:compound type=\"atp\"][/thrive:compound] zu "
-"verlieren, selbst, wenn du still stehst."
+"Osmoregulation kostet [thrive:compound type=\"atp\"][/thrive:compound], "
+"was bedeutet, dass je größer deine Zelle ist, desto mehr Mitochondrien, "
+"Metabolosomen oder Rusticyanin (oder Zytoplasma, welches Glukose "
+"herstellt) benötigst du, um kein [thrive:compound type=\"atp\"][/thrive:"
+"compound] zu verlieren, selbst, wenn du still stehst."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -154,27 +154,27 @@ msgstr ""
 "\"hydrogensulfide\"][/thrive:compound] als Chemoplast, führt aber auch die "
 "Glykolyse durch. Nimmt ein Feld ein\n"
 "\n"
-"Thylakoide: Produziert 1/3 der [thrive:compound type=\"glucose\""
-"][/thrive:compound] wie ein normaler Chloroplast, führt aber auch die "
-"Glykolyse durch. Nimmt ein Feld ein\n"
+"Thylakoide: Produziert 1/3 der [thrive:compound type=\"glucose\"][/thrive:"
+"compound] wie ein normaler Chloroplast, führt aber auch die Glykolyse "
+"durch. Nimmt ein Feld ein\n"
 "\n"
 "Rusticyanin: Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in "
 "[thrive:compound type=\"atp\"][/thrive:compound] um\n"
 "\n"
-"Nitrogenase: Verwandeln atmosphärischen Stickstoff und [thrive:compound type="
-"\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\""
-"][/thrive:compound] um\n"
+"Nitrogenase: Verwandeln atmosphärischen Stickstoff und [thrive:compound "
+"type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] um\n"
 "\n"
-"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch ("
-"Produziert kleine Mengen [thrive:compound type=\"atp\"][/thrive:compound])"
+"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch "
+"(Produziert kleine Mengen [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Externe Organellen\n"
 "\n"
-"Geißel: erhöht deine Mobilität, verbraucht [thrive:compound type=\"atp\""
-"][/thrive:compound]\n"
+"Geißel: erhöht deine Mobilität, verbraucht [thrive:compound type=\"atp\"][/"
+"thrive:compound]\n"
 "\n"
 "Pilus: kann im Nahkampf andere Zellen stechen"
 
@@ -184,29 +184,29 @@ msgstr ""
 "Membran-gebundene Organellen\n"
 "\n"
 "Nukleus : Nimmt 11 Felder ein und ermöglicht die Evolution von "
-"membrangebundenen Organellen. Außerdem verdoppelt er die Größe Ihrer Zelle. ("
-"Kann nur einmal entwickelt werden)\n"
+"membrangebundenen Organellen. Außerdem verdoppelt er die Größe Ihrer "
+"Zelle. (Kann nur einmal entwickelt werden)\n"
 "\n"
 "Bindemittel: Ermöglicht die Bindung mit anderen Zellen\n"
 "\n"
 "Mitochondrium: Produziert [thrive:compound type=\"atp\"][/thrive:compound] "
-"aus [thrive:compound type=\"glucose\"][/thrive:compound] und atmosphärischem "
-"O2. Viel effizienter als Zytoplasma.\n"
+"aus [thrive:compound type=\"glucose\"][/thrive:compound] und "
+"atmosphärischem O2. Viel effizienter als Zytoplasma.\n"
 "\n"
-"Chloroplast: Macht [thrive:compound type=\"glucose\"][/thrive:compound] aus "
-"Sonnenlicht und atmosphärischem CO2\n"
+"Chloroplast: Macht [thrive:compound type=\"glucose\"][/thrive:compound] "
+"aus Sonnenlicht und atmosphärischem CO2\n"
 "\n"
 "Chemoplast: Macht [thrive:compound type=\"glucose\"][/thrive:compound] aus "
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Stickstofffixier-Plastid: Stellt [thrive:compound type=\"ammonia\""
-"][/thrive:compound] aus [thrive:compound type=\"atp\"][/thrive:compound], "
+"Stickstofffixier-Plastid: Stellt [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] aus [thrive:compound type=\"atp\"][/thrive:compound], "
 "atmosphärischem Stickstoff und Sauerstoff her\n"
 "\n"
 "Vakuole: Lagert 15 gesammelte Verbindungen\n"
 "\n"
-"Toxin-Vakuolen: Produziert Toxine (genannt [thrive:compound type=\"oxytoxy\""
-"][/thrive:compound])"
+"Toxin-Vakuolen: Produziert Toxine (genannt [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -216,9 +216,9 @@ msgstr ""
 "Hinzufügen und Entfernen von Organellen kostet MP, das Entfernen von "
 "Organellen, die in der aktuellen Mutationssitzung platziert wurden, "
 "erstattet jedoch MP für diese Organelle zurück. Du kannst eine Organelle "
-"entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst die "
-"Organellen beim Platzieren mit [thrive:input]e_rotate_left[/thrive:input] "
-"und [thrive:input]e_rotate_right[/thrive:input] drehen."
+"entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst "
+"die Organellen beim Platzieren mit [thrive:input]e_rotate_left[/thrive:"
+"input] und [thrive:input]e_rotate_right[/thrive:input] drehen."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -253,9 +253,9 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Kleiner Tipp, Osmoregulierung kostet 1 ATP pro Sekunde und Feld deiner "
-"Zelle. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn Sie "
-"ATP durch Osmoregulierung verlieren, fügen Sie einfach ein paar leere Felder "
-"Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
+"Zelle. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn "
+"Sie ATP durch Osmoregulierung verlieren, fügen Sie einfach ein paar leere "
+"Felder Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
@@ -292,8 +292,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Kleiner Tipp: du kannst andere Arten bis zur Ausrottung jagen, wenn du nicht "
-"vorsichtig genug sind. Arten können auch von anderen Arten bis zur "
+"Kleiner Tipp: du kannst andere Arten bis zur Ausrottung jagen, wenn du "
+"nicht vorsichtig genug sind. Arten können auch von anderen Arten bis zur "
 "Ausrottung gejagt werden."
 
 #: ../simulation_parameters/common/help_texts.json:153
@@ -359,8 +359,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Kleiner Tipp, achte auf größere Zellen und große Bakterien, es macht keinen "
-"Spaß verdaut zu werden. Und sie werden dich fressen."
+"Kleiner Tipp, achte auf größere Zellen und große Bakterien, es macht "
+"keinen Spaß verdaut zu werden. Und sie werden dich fressen."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
@@ -1428,7 +1428,7 @@ msgstr "Verlassen"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1133
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1446,246 +1446,258 @@ msgstr ""
 "aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur "
 "Ausführung von Thrive zu erzwingen."
 
-#: ../src/general/OptionsMenu.cs:758
+#: ../src/general/OptionsMenu.cs:774
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standardausgabegerät"
 
-#: ../src/general/OptionsMenu.tscn:129
+#: ../src/general/OptionsMenu.tscn:125
 msgid "GRAPHICS"
 msgstr "Grafik"
 
-#: ../src/general/OptionsMenu.tscn:140
+#: ../src/general/OptionsMenu.tscn:136
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:147
 msgid "PERFORMANCE"
 msgstr "Leistung"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:158
 msgid "INPUTS"
 msgstr "Eingaben"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:169
 msgid "MISC"
 msgstr "Sonstiges"
 
-#: ../src/general/OptionsMenu.tscn:206
+#: ../src/general/OptionsMenu.tscn:202
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:210
 msgid "FULLSCREEN"
 msgstr "Vollbild"
 
-#: ../src/general/OptionsMenu.tscn:236
+#: ../src/general/OptionsMenu.tscn:232
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample Anti-Aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:239
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(höhere Werte verschlechtern die Leistung)"
 
-#: ../src/general/OptionsMenu.tscn:273
+#: ../src/general/OptionsMenu.tscn:269
 msgid "RESOLUTION"
 msgstr "Auflösung:"
 
-#: ../src/general/OptionsMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:282
 msgid "AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:296
+#: ../src/general/OptionsMenu.tscn:292
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:322
+#: ../src/general/OptionsMenu.tscn:318
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Farbenblindheits-Korrektur:"
 
-#: ../src/general/OptionsMenu.tscn:354
+#: ../src/general/OptionsMenu.tscn:350
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:377
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Fähigkeitenleiste anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:386
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI-Lichteffekte aktivieren"
 
-#: ../src/general/OptionsMenu.tscn:416
+#: ../src/general/OptionsMenu.tscn:397
+msgid "GRAPHICS_PROCESSING_UNIT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:424
+msgid "DISPLAY_RENDERER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:452
+msgid "VIDEO_MEMORY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:495
 msgid "MASTER_VOLUME"
 msgstr "Gesamtlautstärke"
 
-#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
-#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
-#: ../src/general/OptionsMenu.tscn:583
+#: ../src/general/OptionsMenu.tscn:522 ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:596 ../src/general/OptionsMenu.tscn:629
+#: ../src/general/OptionsMenu.tscn:662
 msgid "MUTE"
 msgstr "Stumm"
 
-#: ../src/general/OptionsMenu.tscn:457
+#: ../src/general/OptionsMenu.tscn:536
 msgid "MUSIC_VOLUME"
 msgstr "Musiklautstärke"
 
-#: ../src/general/OptionsMenu.tscn:490
+#: ../src/general/OptionsMenu.tscn:569
 msgid "AMBIANCE_VOLUME"
 msgstr "Umgebungslautstärke"
 
-#: ../src/general/OptionsMenu.tscn:523
+#: ../src/general/OptionsMenu.tscn:602
 msgid "SFX_VOLUME"
 msgstr "Effektlautstärke"
 
-#: ../src/general/OptionsMenu.tscn:556
+#: ../src/general/OptionsMenu.tscn:635
 msgid "GUI_VOLUME"
 msgstr "Menülautstärke"
 
-#: ../src/general/OptionsMenu.tscn:601
+#: ../src/general/OptionsMenu.tscn:680
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Ausgabegerät:"
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:707
 msgid "LANGUAGE"
 msgstr "Sprache:"
 
-#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:722 ../src/general/OptionsMenu.tscn:1144
 msgid "RESET"
 msgstr "Zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:652
+#: ../src/general/OptionsMenu.tscn:731
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Hilf das Spiel zu übersetzen"
 
-#: ../src/general/OptionsMenu.tscn:678
+#: ../src/general/OptionsMenu.tscn:757
 msgid "COMPOUND_CLOUDS"
 msgstr "Verbindungswolken"
 
-#: ../src/general/OptionsMenu.tscn:693
+#: ../src/general/OptionsMenu.tscn:772
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Wolkensimulation\n"
 "Minimumintervall:"
 
-#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:779 ../src/general/OptionsMenu.tscn:821
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(höhere Werte verbessern die Leistung)"
 
-#: ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:814
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolkenauflösungsteiler:"
 
-#: ../src/general/OptionsMenu.tscn:777
+#: ../src/general/OptionsMenu.tscn:856
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Auto-Evo während des Spielens ausführen"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:929
 msgid "RESET_INPUTS"
 msgstr "Eingaben zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:957
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Intro-Video abspielen"
 
-#: ../src/general/OptionsMenu.tscn:887
+#: ../src/general/OptionsMenu.tscn:966
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mikroben-Intro beim neuen Spiel abspielen"
 
-#: ../src/general/OptionsMenu.tscn:896
+#: ../src/general/OptionsMenu.tscn:975
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisches speichern während des Spieles"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:986
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Anzahl der Autospeicherungen:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:1014
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Anzahl der Schnellspeicherungen:"
 
-#: ../src/general/OptionsMenu.tscn:961
+#: ../src/general/OptionsMenu.tscn:1040
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:1048
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
-#: ../src/general/OptionsMenu.tscn:985
+#: ../src/general/OptionsMenu.tscn:1064
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-Tasten aktiviert"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1076
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Eigenen Nuternamen verwenden"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "CUSTOM_USERNAME"
 msgstr "Eigener Nutzername:"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1113
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Bildschirmfoto-Ordner öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1121
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Ordner der Log-Dateien öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1156 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Speichern"
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1173
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standardeinstellungen"
 
-#: ../src/general/OptionsMenu.tscn:1106
+#: ../src/general/OptionsMenu.tscn:1185
 msgid "RESET_TO_DEFAULTS"
 msgstr "Auf Standardeinstellungen zurücksetzen?"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Bist du sicher, dass du ALLE Einstellungen auf ihre Standardwerte "
 "zurücksetzen willst?"
 
-#: ../src/general/OptionsMenu.tscn:1129
+#: ../src/general/OptionsMenu.tscn:1208
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Standardeingaben laden?"
 
-#: ../src/general/OptionsMenu.tscn:1138
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Bist du sicher, dass du die Eingaben auf ihre Standardwerte zurücksetzen "
 "willst?"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1231
 msgid "CLOSE_OPTIONS"
 msgstr "Optionen schließen?"
 
-#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/OptionsMenu.tscn:1251
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Es wurden ungespeicherte Änderungen vorgenommen.\n"
 "Möchtest du fortfahren?"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1273
 msgid "SAVE_AND_CONTINUE"
 msgstr "Speichern und fortfahren"
 
-#: ../src/general/OptionsMenu.tscn:1203
+#: ../src/general/OptionsMenu.tscn:1282
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Verwerfen und fortfahren"
 
-#: ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1298
 msgid "CANCEL"
 msgstr "Abbrechen"
 
-#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1333
+#: ../src/general/OptionsMenu.tscn:1357
 msgid "ERROR"
 msgstr "Fehler"
 
-#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1358
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist "
@@ -1912,9 +1924,9 @@ msgstr "Thylakoid"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Rate "
-"skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound] und der Intensität des [thrive:compound type=\"sunlight\""
-"][/thrive:compound]"
+"skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\"]"
+"[/thrive:compound] und der Intensität des [thrive:compound type=\"sunlight"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1933,10 +1945,9 @@ msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 "Wandelt [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
 "[thrive:compound type=\"glucose\"][/thrive:compound] um. Die Rate skaliert "
-"mit der Konzentration von [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound]. Wandelt [thrive:compound type=\"glucose\""
-"][/thrive:compound] auch in [thrive:compound type=\"atp\"][/thrive:compound] "
-"um"
+"mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound]. Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] "
+"auch in [thrive:compound type=\"atp\"][/thrive:compound] um"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1954,8 +1965,8 @@ msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 "Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:"
 "compound type=\"atp\"][/thrive:compound] um. Rate skaliert mit der "
-"Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] "
-"und [thrive:compound type=\"oxygen\"][/thrive:compound]"
+"Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] und [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1968,9 +1979,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound "
-"type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration "
-"von [thrive:compound type=\"nitrogen\"][/thrive:compound]"
+"Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der "
+"Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1985,10 +1996,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound "
-"type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration "
-"von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch "
-"Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen."
+"Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der "
+"Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. "
+"Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] "
+"Giftstoffe freisetzen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -2005,14 +2017,15 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein peitschenartiges "
-"Bündel von Proteinfasern, das sich von der Zellmembran aus erstreckt und mit "
-"Hilfe von [thrive:compound type=\"atp\"][/thrive:compound] die Zelle "
-"wellenförmig in eine Richtung treiben kann. Die Position des Flagellums "
-"bestimmt die Richtung, in der es den Schub für die Zellbewegung liefert. Die "
-"Schubrichtung ist entgegengesetzt zu der Richtung, in die das Flagellum "
-"zeigt. Ein Flagellum, das sich auf der linken Seite einer Zelle befindet, "
-"gibt beispielsweise Schub, wenn es sich nach rechts bewegt."
+"Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein "
+"peitschenartiges Bündel von Proteinfasern, das sich von der Zellmembran "
+"aus erstreckt und mit Hilfe von [thrive:compound type=\"atp\"][/thrive:"
+"compound] die Zelle wellenförmig in eine Richtung treiben kann. Die "
+"Position des Flagellums bestimmt die Richtung, in der es den Schub für die "
+"Zellbewegung liefert. Die Schubrichtung ist entgegengesetzt zu der "
+"Richtung, in die das Flagellum zeigt. Ein Flagellum, das sich auf der "
+"linken Seite einer Zelle befindet, gibt beispielsweise Schub, wenn es sich "
+"nach rechts bewegt."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:854
 msgid "SPEED"
@@ -2043,8 +2056,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur "
-"Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die "
+"Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt "
+"zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die "
 "Verbindungen zwischen den Zellen geteilt. Du kannst den Editor nicht "
 "betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie "
 "verlassen, sobald du genug Verbindungen gesammelt hast, um deine Zelle zu "
@@ -2094,9 +2107,9 @@ msgstr ""
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate "
-"hängt von der Konzentration von [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound] und der Intensität des [thrive:compound type=\"sunlight\""
-"][/thrive:compound]s ab"
+"hängt von der Konzentration von [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] und der Intensität des [thrive:compound type=\"sunlight\"]"
+"[/thrive:compound]s ab"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2119,8 +2132,8 @@ msgstr "Thermoplaste"
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate "
-"hängt von der Konzentration von [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound] und der Temperatur ab."
+"hängt von der Konzentration von [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] und der Temperatur ab."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2143,9 +2156,9 @@ msgstr "Keine Prozesse"
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Verwandelt [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate hängt von der "
-"Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] "
-"ab"
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate hängt von "
+"der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] ab"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2159,10 +2172,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound "
-"type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration "
-"von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:"
-"compound type=\"oxygen\"][/thrive:compound] ab"
+"Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der "
+"Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] "
+"und [thrive:compound type=\"oxygen\"][/thrive:compound] ab"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2190,10 +2203,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound "
-"type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration "
-"von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch "
-"Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen."
+"Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der "
+"Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. "
+"Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] "
+"Giftstoffe freisetzen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2296,8 +2310,8 @@ msgstr "dieser Wert gilt erst bei neugestarteten Spielen"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
-"Aktiviert die Blinkeffekte auf GUIs (z.B. blinken von Editor-Schaltflächen)."
-"\n"
+"Aktiviert die Blinkeffekte auf GUIs (z.B. blinken von Editor-"
+"Schaltflächen).\n"
 "\n"
 "Wenn Sie einen Fehler feststellen, bei dem Teile von Editor-Schaltflächen "
 "verschwinden,\n"
@@ -3107,8 +3121,8 @@ msgstr ""
 "Editor-Sitzung platziert.\n"
 "\n"
 "Du kannst mit der rechten Maustaste auf Organellen klicken, um das "
-"Organellenmenü aufzurufen und die Option \"Löschen\" auszuwählen, um sie zu "
-"entfernen.\n"
+"Organellenmenü aufzurufen und die Option \"Löschen\" auszuwählen, um sie "
+"zu entfernen.\n"
 "\n"
 "Wenn du einen Fehler gemacht hast, kannst du jede Änderung im Editor "
 "rückgängig machen.\n"
@@ -3209,8 +3223,8 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Du hast den Modus \"Bindung aufheben\" aufgerufen. In diesem Modus kannst du "
-"auf die Mitglieder der Kolonie klicken, um sie zu entbinden.\n"
+"Du hast den Modus \"Bindung aufheben\" aufgerufen. In diesem Modus kannst "
+"du auf die Mitglieder der Kolonie klicken, um sie zu entbinden.\n"
 "\n"
 "Um die Kolonie ganz zu verlassen, können Sie auf Ihre eigene Zelle klicken "
 "oder [thrive:input]g_unbind_all[/thrive:input] drücken."
