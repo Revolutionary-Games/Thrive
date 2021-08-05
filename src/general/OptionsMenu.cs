@@ -326,8 +326,8 @@ public class OptionsMenu : ControlWithInput
         audioOutputDeviceSelection = GetNode<OptionButton>(AudioOutputDeviceSelectionPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
-        LoadLanguages(languageSelection);
-        LoadAudioOutputDevices(audioOutputDeviceSelection);
+        LoadLanguages();
+        LoadAudioOutputDevices();
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
@@ -369,7 +369,7 @@ public class OptionsMenu : ControlWithInput
         if (what == NotificationTranslationChanged)
         {
             BuildInputRebindControls();
-            UpdateDefaultAudioOutputDeviceText(audioOutputDeviceSelection);
+            UpdateDefaultAudioOutputDeviceText();
         }
     }
 
@@ -745,28 +745,28 @@ public class OptionsMenu : ControlWithInput
         saveButton.Disabled = result;
     }
 
-    private void UpdateDefaultAudioOutputDeviceText(OptionButton audioOutputDeviceOptionButton)
+    private void UpdateDefaultAudioOutputDeviceText()
     {
-        audioOutputDeviceOptionButton.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
+        audioOutputDeviceSelection.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
     }
 
-    private void LoadAudioOutputDevices(OptionButton audioOutputDeviceOptionButton)
+    private void LoadAudioOutputDevices()
     {
         foreach (var audioOutputDevice in AudioOutputDevices)
         {
-            audioOutputDeviceOptionButton.AddItem(audioOutputDevice);
+            audioOutputDeviceSelection.AddItem(audioOutputDevice);
         }
 
-        UpdateDefaultAudioOutputDeviceText(audioOutputDeviceOptionButton);
+        UpdateDefaultAudioOutputDeviceText();
     }
 
-    private void LoadLanguages(OptionButton languageOptionButton)
+    private void LoadLanguages()
     {
         foreach (var locale in Languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
-            languageOptionButton.AddItem(locale + " - " + native);
+            languageSelection.AddItem(locale + " - " + native);
         }
     }
 
