@@ -134,7 +134,7 @@ public class ProcessSystem
     ///   Computes the compound balances for given organelle list in a patch
     /// </summary>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
 
@@ -146,7 +146,7 @@ public class ProcessSystem
             }
         }
 
-        foreach (var organelle in organelles)
+        foreach (var organelle in organelles.Select(organelle => organelle.Definition))
         {
             foreach (var process in organelle.RunnableProcesses)
             {

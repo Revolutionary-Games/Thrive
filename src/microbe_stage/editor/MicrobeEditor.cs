@@ -1225,7 +1225,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         patch ??= CurrentPatch;
 
         var result = ProcessSystem
-            .ComputeCompoundBalance(organelles.Select(organelle => organelle.Definition), patch.Biome);
+            .ComputeCompoundBalance(organelles, patch.Biome);
 
         gui.UpdateCompoundBalances(result);
     }
