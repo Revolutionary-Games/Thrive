@@ -539,9 +539,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         UpdateMicrobePartSelections();
 
         RegisterTooltips();
-
-        // Disable Raw view.
-        membraneColorPicker.RawCheckButtonDisabled = true;
     }
 
     public void Init(MicrobeEditor editor)

@@ -433,13 +433,15 @@ WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = null
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 298.0
-margin_bottom = 496.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 306.0
+margin_bottom = 504.0
 theme = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "A color picker with a custom theme."
 }
+HSVModeDisabled = false
+RawModeDisabled = false

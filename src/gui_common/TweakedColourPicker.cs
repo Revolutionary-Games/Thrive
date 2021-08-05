@@ -6,58 +6,97 @@ using Godot;
 /// </summary>
 public class TweakedColourPicker : ColorPicker
 {
-    private CheckButton hsvCheckButton;
-    private CheckButton rawCheckButton;
+    private readonly CheckButton hsvCheckButton;
 
-    public bool HSVCheckButtonDisabled
-    {
-        get
-        {
-            // In case that HSV Check is removed (moved) by Godot.
-            if (hsvCheckButton == null)
-                return true;
+    private readonly CheckButton rawCheckButton;
 
-            return hsvCheckButton.Disabled;
-        }
-        set
-        {
-            if (hsvCheckButton == null)
-                return;
+    private bool hsvModeDisabled;
 
-            hsvCheckButton.Disabled = value;
-        }
-    }
+    private bool rawModeDisabled;
 
-    public bool RawCheckButtonDisabled
-    {
-        get
-        {
-            // In case that Raw Check is removed / moved by Godot.
-            if (rawCheckButton == null)
-                return true;
-
-            return rawCheckButton.Disabled;
-        }
-        set
-        {
-            if (rawCheckButton == null)
-                return;
-
-            rawCheckButton.Disabled = value;
-        }
-    }
-
-    public override void _Ready()
+    public TweakedColourPicker()
     {
         try
         {
             var baseNode = GetChild(4).GetChild(4);
             hsvCheckButton = baseNode.GetChild<CheckButton>(0);
+            hsvCheckButton.Connect("toggled", this, nameof(OnHSVButtonToggled));
             rawCheckButton = baseNode.GetChild<CheckButton>(1);
+            rawCheckButton.Connect("toggled", this, nameof(OnRawButtonToggled));
         }
         catch (Exception e)
         {
-            GD.PrintErr("Failed to retrieve TweakedColorPicker's components:", e.Message);
+            GD.PrintErr(e.Message, "Godot may have moved this elsewhere.");
         }
+    }
+
+    [Export]
+    public bool HSVModeDisabled
+    {
+        get => hsvModeDisabled;
+        set
+        {
+            hsvModeDisabled = value;
+            UpdateControl();
+        }
+    }
+
+    [Export]
+    public bool RawModeDisabled
+    {
+        get => rawCheckButton.Disabled;
+        set
+        {
+            rawModeDisabled = value;
+            UpdateControl();
+        }
+    }
+
+    public new bool HsvMode
+    {
+        get => base.HsvMode;
+        set
+        {
+            if (hsvModeDisabled)
+                return;
+
+            base.HsvMode = value;
+        }
+    }
+
+    public new bool RawMode
+    {
+        get => base.RawMode;
+        set
+        {
+            if (rawModeDisabled)
+                return;
+
+            base.RawMode = value;
+        }
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+        UpdateControl();
+    }
+
+    private void OnHSVButtonToggled(bool isOn)
+    {
+        if (!isOn && rawModeDisabled)
+            rawCheckButton.Disabled = true;
+    }
+
+    private void OnRawButtonToggled(bool isOn)
+    {
+        if (!isOn && hsvModeDisabled)
+            hsvCheckButton.Disabled = true;
+    }
+
+    private void UpdateControl()
+    {
+        hsvCheckButton.Disabled = hsvModeDisabled;
+        rawCheckButton.Disabled = rawModeDisabled;
     }
 }
