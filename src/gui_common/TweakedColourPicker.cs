@@ -47,7 +47,6 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         try
@@ -58,7 +57,7 @@ public class TweakedColourPicker : ColorPicker
         }
         catch (Exception e)
         {
-            GD.PrintErr(e.Message, "Godot may have moved this elsewhere.");
+            GD.PrintErr("Failed to retrieve TweakedColorPicker's components:", e.Message);
         }
     }
 }
