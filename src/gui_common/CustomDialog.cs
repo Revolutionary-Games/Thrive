@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   A reimplementation of WindowDialog for a much more customized style and functionality. Suitable for direct use
+///   A reimplementation of WindowDialog for a much more customized style and functionality. Suitable for general use
 ///   or as a base class for any custom window dialog derived types.
 /// </summary>
 /// <remarks>
@@ -187,6 +187,10 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
+    /// <summary>
+    ///   This is overriden so mouse position could take the titlebar into account due to it being drawn
+    ///   outside of the normal Control's rect bounds.
+    /// </summary>
     public override bool HasPoint(Vector2 point)
     {
         var rect = new Rect2(Vector2.Zero, RectSize);
@@ -211,13 +215,17 @@ public class CustomDialog : Popup, ICustomPopup
         return adjustedRect.HasPoint(point);
     }
 
+    /// <summary>
+    ///   Overrides the minimum size to account for default elements (e.g title, close button, margin) rect size
+    ///   and for the other custom added contents on the window.
+    /// </summary>
     public override Vector2 _GetMinimumSize()
     {
         var margin = GetConstant("custom_margin", "Dialogs");
         var font = GetFont("custom_title_font", "WindowDialog");
 
         var buttonWidth = closeButton?.GetCombinedMinimumSize().x;
-        var titleWidth = font.GetStringSize(windowTitle).x;
+        var titleWidth = font.GetStringSize(TranslationServer.Translate(windowTitle)).x;
         var buttonArea = buttonWidth + (buttonWidth / 2);
 
         var contentSize = Vector2.Zero;
@@ -236,6 +244,7 @@ public class CustomDialog : Popup, ICustomPopup
                 Mathf.Max(childMinSize.y, contentSize.y));
         }
 
+        // Redecide whether the largest rect is the default elements' or the contents'
         return new Vector2(Mathf.Max(2 * buttonArea.GetValueOrDefault() + titleWidth,
             contentSize.x + margin * 2), contentSize.y + margin * 2);
     }
@@ -338,23 +347,28 @@ public class CustomDialog : Popup, ICustomPopup
 
         var minSize = GetCombinedMinimumSize();
 
+        var newPosition = new Vector2(RectPosition);
+        var newSize = new Vector2(RectSize);
+
         if (dragType == DragType.Move)
         {
-            RectPosition = globalMousePos - dragOffset;
+            newPosition = globalMousePos - dragOffset;
         }
         else
         {
+            // Handle border dragging
+
             if (dragType.HasFlag(DragType.ResizeTop))
             {
                 var bottom = RectPosition.y + RectSize.y;
                 var maxY = bottom - minSize.y;
 
-                RectPosition = new Vector2(RectPosition.x, Mathf.Min(globalMousePos.y - dragOffset.y, maxY));
-                RectSize = new Vector2(RectSize.x, bottom - RectPosition.y);
+                newPosition.y = Mathf.Min(globalMousePos.y - dragOffset.y, maxY);
+                newSize.y = bottom - newPosition.y;
             }
             else if (dragType.HasFlag(DragType.ResizeBottom))
             {
-                RectSize = new Vector2(RectSize.x, globalMousePos.y - RectPosition.y + dragOffsetFar.y);
+                newSize.y = globalMousePos.y - newPosition.y + dragOffsetFar.y;
             }
 
             if (dragType.HasFlag(DragType.ResizeLeft))
@@ -362,32 +376,43 @@ public class CustomDialog : Popup, ICustomPopup
                 var right = RectPosition.x + RectSize.x;
                 var maxX = right - minSize.x;
 
-                RectPosition = new Vector2(Mathf.Min(globalMousePos.x - dragOffset.x, maxX), RectPosition.y);
-                RectSize = new Vector2(right - RectPosition.x, RectSize.y);
+                newPosition.x = Mathf.Min(globalMousePos.x - dragOffset.x, maxX);
+                newSize.x = right - newPosition.x;
             }
             else if (dragType.HasFlag(DragType.ResizeRight))
             {
-                RectSize = new Vector2(globalMousePos.x - RectPosition.x + dragOffsetFar.x, RectSize.y);
+                newSize.x = globalMousePos.x - newPosition.x + dragOffsetFar.x;
             }
         }
+
+        RectPosition = newPosition;
+        RectSize = newSize;
 
         if (BoundToScreenArea)
             FixRect();
     }
 
     /// <summary>
-    ///   Applies final adjustments to the popup's rect.
+    ///   Applies final adjustments to the window's rect.
     /// </summary>
     private void FixRect()
     {
         var screenSize = GetViewport()?.GetVisibleRect().Size;
+        var screenSizeValue = screenSize.GetValueOrDefault();
 
         var titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
 
         // Clamp position to ensure window stays inside the screen
         RectPosition = new Vector2(
-            Mathf.Clamp(RectPosition.x, 0, screenSize.GetValueOrDefault().x - RectSize.x),
-            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.GetValueOrDefault().y - RectSize.y));
+            Mathf.Clamp(RectPosition.x, 0, screenSizeValue.x - RectSize.x),
+            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSizeValue.y - RectSize.y));
+
+        if (Resizable)
+        {
+            // Size can't be bigger than the viewport
+            RectSize = new Vector2(
+                Mathf.Min(RectSize.x, screenSizeValue.x), Mathf.Min(RectSize.y, screenSizeValue.y - titleBarHeight));
+        }
     }
 
     private void SetupCloseButton()
