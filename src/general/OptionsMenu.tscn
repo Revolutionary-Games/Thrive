@@ -391,6 +391,7 @@ margin_left = 270.0
 margin_right = 564.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
+custom_styles/separator = SubResource( 3 )
 
 [node name="GpuInfo" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer6"]
 margin_left = 568.0
@@ -416,6 +417,7 @@ margin_left = 187.0
 margin_right = 451.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
+custom_styles/separator = SubResource( 3 )
 
 [node name="DisplayRenderer" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7"]
 margin_left = 455.0
@@ -441,6 +443,7 @@ margin_left = 193.0
 margin_right = 497.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
+custom_styles/separator = SubResource( 3 )
 
 [node name="VideoMemory" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer8"]
 margin_left = 501.0
