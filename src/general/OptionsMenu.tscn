@@ -54,8 +54,8 @@ ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/
 ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount")
 ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
 CurrentGpuPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer6/GpuInfo")
-VideoMemPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer8/VideoMemory")
-DisplayDriverPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7/DisplayDriver")
+VideoMemoryPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer8/VideoMemory")
+DisplayRendererPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer7/DisplayDriver")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
@@ -1292,7 +1292,6 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= [ "Performance" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/InputsButton" to="." method="ChangeSettingsTab" binds= [ "Inputs" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= [ "Miscellaneous" ]]
-[connection signal="focus_entered" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics" to="." method="_on_Graphics_focus_entered"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/Vsync" to="." method="OnVSyncToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/Fullscreen" to="." method="OnFullScreenToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]

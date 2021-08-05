@@ -63,10 +63,10 @@ public class OptionsMenu : Control
     public NodePath CurrentGpuPath;
 
     [Export]
-    public NodePath VideoMemPath;
+    public NodePath VideoMemoryPath;
 
     [Export]
-    public NodePath DisplayDriverPath;
+    public NodePath DisplayRendererPath;
 
     // Sound tab.
     [Export]
@@ -194,8 +194,8 @@ public class OptionsMenu : Control
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
     private Label currentGpu;
-    private Label displayDriver;
-    private Label videoMem;
+    private Label displayRenderer;
+    private Label videoMemory;
 
     // Sound tab
     private Control soundTab;
@@ -304,8 +304,8 @@ public class OptionsMenu : Control
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         currentGpu = GetNode<Label>(CurrentGpuPath);
-        displayDriver = GetNode<Label>(DisplayDriverPath);
-        videoMem = GetNode<Label>(VideoMemPath);
+        displayRenderer = GetNode<Label>(DisplayRendererPath);
+        videoMemory = GetNode<Label>(VideoMemoryPath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -357,7 +357,6 @@ public class OptionsMenu : Control
         // We're only utilizing the AcceptDialog's auto resize functionality,
         // so hide the default Ok button since it's not needed
         backConfirmationBox.GetOk().Hide();
-
     }
 
     public override void _Notification(int what)
@@ -1158,10 +1157,10 @@ public class OptionsMenu : Control
 
     private void GetSystemInfo()
     {
-        ulong videoMemUsed = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / Constants.MEBIBYTE;
+        var videoMemoryUsed = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / Constants.MEBIBYTE;
 
         currentGpu.Text = VisualServer.GetVideoAdapterName();
-        displayDriver.Text = OS.GetCurrentVideoDriver().ToString();
-        videoMem.Text = videoMemUsed.ToString() + " MB";
+        displayRenderer.Text = OS.GetCurrentVideoDriver().ToString();
+        videoMemory.Text = videoMemoryUsed + " MiB";
     }
 }
