@@ -185,7 +185,7 @@ public class LoadingScreen : Control
         }
 
         var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState + "Tips");
-        var selectedTip = tips.Messages.Random(random);
+        var selectedTip = tips.Messages.Random(random).Message;
         Tip = selectedTip;
     }
 

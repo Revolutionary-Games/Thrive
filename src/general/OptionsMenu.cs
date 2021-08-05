@@ -116,6 +116,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath CloudIntervalPath;
 
     [Export]
+    public NodePath CloudResolutionTitlePath;
+
+    [Export]
     public NodePath CloudResolutionPath;
 
     [Export]
@@ -219,6 +222,7 @@ public class OptionsMenu : ControlWithInput
     // Performance tab
     private Control performanceTab;
     private OptionButton cloudInterval;
+    private VBoxContainer cloudResolutionTitle;
     private OptionButton cloudResolution;
     private CheckBox runAutoEvoDuringGameplay;
 
@@ -332,6 +336,7 @@ public class OptionsMenu : ControlWithInput
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
+        cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
         runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
 
@@ -362,6 +367,9 @@ public class OptionsMenu : ControlWithInput
         // We're only utilizing the AcceptDialog's auto resize functionality,
         // so hide the default Ok button since it's not needed
         backConfirmationBox.GetOk().Hide();
+
+        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
+        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
     }
 
     public override void _Notification(int what)

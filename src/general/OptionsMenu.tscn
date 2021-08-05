@@ -71,6 +71,7 @@ LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/S
 ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 PerformanceTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance")
 CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval")
+CloudResolutionTitlePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer")
 CloudResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution")
 RunAutoEvoDuringGameplayPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs")
@@ -383,7 +384,6 @@ text = "DISPLAY_ABILITIES_BAR"
 margin_top = 293.0
 margin_right = 286.0
 margin_bottom = 315.0
-hint_tooltip = "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 pressed = true
@@ -732,8 +732,6 @@ margin_bottom = 42.0
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_right = 274.0
 margin_bottom = 22.0
-hint_tooltip = "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-mouse_filter = 0
 text = "CLOUD_RESOLUTION_DIVISOR"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
