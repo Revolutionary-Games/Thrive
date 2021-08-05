@@ -16,18 +16,11 @@ public class TweakedColourPicker : ColorPicker
 
     public TweakedColourPicker()
     {
-        try
-        {
-            var baseNode = GetChild(4).GetChild(4);
-            hsvCheckButton = baseNode.GetChild<CheckButton>(0);
-            hsvCheckButton.Connect("toggled", this, nameof(OnHSVButtonToggled));
-            rawCheckButton = baseNode.GetChild<CheckButton>(1);
-            rawCheckButton.Connect("toggled", this, nameof(OnRawButtonToggled));
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr(e.Message, "Godot may have moved this elsewhere.");
-        }
+        var baseNode = GetChild(4).GetChild(4);
+        hsvCheckButton = baseNode.GetChild<CheckButton>(0);
+        hsvCheckButton.Connect("toggled", this, nameof(OnHSVButtonToggled));
+        rawCheckButton = baseNode.GetChild<CheckButton>(1);
+        rawCheckButton.Connect("toggled", this, nameof(OnRawButtonToggled));
     }
 
     [Export]
