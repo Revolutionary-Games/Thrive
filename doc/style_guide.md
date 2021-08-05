@@ -31,6 +31,16 @@ Code style rules
   math), e used in `catch` blocks as the exception name. Other
   variables in loops and elsewhere need to be named with actually
   descriptive variable names.
+  
+- Similarly, some very common abbreviations are used in the code,
+  and can (and should) thus be used when naming variables. These are
+  however *rare* exceptions, not the rule. The allowed abbreviations 
+  are listed below. No other abbreviation should be used without prior
+  discussion (and good reasons).
+  - `min`
+  - `max`
+  - `pos`
+  - `rect` (when related to class names and instances)
 
 - Variables and functions are camelCase or PascalCase depending on
   their visibilty. Classes are PascalCase with leading upper
