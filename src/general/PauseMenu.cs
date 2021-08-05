@@ -127,7 +127,7 @@ public class PauseMenu : ControlWithInput
             return true;
         }
 
-        if (!GUICommon.Instance.IsAnyExclusivePopupVisible)
+        if (!GUICommon.Instance.IsAnyExclusivePopupActive)
         {
             EmitSignal(nameof(OnOpenWithKeyPress));
             return true;
@@ -140,7 +140,7 @@ public class PauseMenu : ControlWithInput
     [RunOnKeyDown("help")]
     public void ShowHelpPressed()
     {
-        if (!GUICommon.Instance.IsAnyExclusivePopupVisible)
+        if (!GUICommon.Instance.IsAnyExclusivePopupActive)
         {
             EmitSignal(nameof(OnOpenWithKeyPress));
             ShowHelpScreen();

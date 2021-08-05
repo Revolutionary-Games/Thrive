@@ -45,7 +45,7 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   Checks whether the top-most modal on stack is an exclusive popup.
     /// </summary>
-    public bool IsAnyExclusivePopupVisible => GetCurrentlyActiveExclusivePopup() != null;
+    public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
@@ -83,7 +83,7 @@ public class GUICommon : NodeWithInput
         var popup = GetCurrentlyActiveExclusivePopup();
         var customPopup = popup as ICustomPopup;
 
-        if (!IsAnyExclusivePopupVisible || (customPopup != null &&
+        if (!IsAnyExclusivePopupActive || (customPopup != null &&
             !customPopup.ExclusiveAllowCloseOnEscape))
         {
             return false;
