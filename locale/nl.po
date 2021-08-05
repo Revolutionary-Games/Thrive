@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 18:04+0200\n"
+"POT-Creation-Date: 2021-08-05 18:18+0200\n"
 "PO-Revision-Date: 2021-06-24 08:42+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
@@ -1381,7 +1381,7 @@ msgstr "Stop"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1133
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1140
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1401,251 +1401,255 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.cs:1275
+msgid "COULD_NOT_LOAD_GRAPHICS_PROCESSING_UNIT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:132
 msgid "GRAPHICS"
 msgstr "Kwaliteit"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:143
 msgid "SOUND"
 msgstr "Geluid"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:154
 msgid "PERFORMANCE"
 msgstr "Prestatie"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:165
 msgid "INPUTS"
 msgstr "Invoer"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
 msgstr "Overig"
 
-#: ../src/general/OptionsMenu.tscn:202
+#: ../src/general/OptionsMenu.tscn:209
 msgid "VSYNC"
 msgstr "vSync"
 
-#: ../src/general/OptionsMenu.tscn:210
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "Fullscreen"
 
-#: ../src/general/OptionsMenu.tscn:232
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-Aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:239
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(hogere instelling verlaagt de prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:269
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "Resolutie:"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:318
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Kleurenblindheid-correctie:"
 
-#: ../src/general/OptionsMenu.tscn:350
+#: ../src/general/OptionsMenu.tscn:357
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
-#: ../src/general/OptionsMenu.tscn:377
+#: ../src/general/OptionsMenu.tscn:384
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Capaciteiten"
 
-#: ../src/general/OptionsMenu.tscn:386
+#: ../src/general/OptionsMenu.tscn:393
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:404
 msgid "GRAPHICS_PROCESSING_UNIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:424
+#: ../src/general/OptionsMenu.tscn:431
 msgid "DISPLAY_RENDERER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:452
+#: ../src/general/OptionsMenu.tscn:459
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:495
+#: ../src/general/OptionsMenu.tscn:502
 msgid "MASTER_VOLUME"
 msgstr "Volume"
 
-#: ../src/general/OptionsMenu.tscn:522 ../src/general/OptionsMenu.tscn:563
-#: ../src/general/OptionsMenu.tscn:596 ../src/general/OptionsMenu.tscn:629
-#: ../src/general/OptionsMenu.tscn:662
+#: ../src/general/OptionsMenu.tscn:529 ../src/general/OptionsMenu.tscn:570
+#: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:636
+#: ../src/general/OptionsMenu.tscn:669
 msgid "MUTE"
 msgstr "Demp"
 
-#: ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:543
 msgid "MUSIC_VOLUME"
 msgstr "Volume muziek"
 
-#: ../src/general/OptionsMenu.tscn:569
+#: ../src/general/OptionsMenu.tscn:576
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume omgeving"
 
-#: ../src/general/OptionsMenu.tscn:602
+#: ../src/general/OptionsMenu.tscn:609
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
-#: ../src/general/OptionsMenu.tscn:635
+#: ../src/general/OptionsMenu.tscn:642
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
-#: ../src/general/OptionsMenu.tscn:680
+#: ../src/general/OptionsMenu.tscn:687
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:714
 msgid "LANGUAGE"
 msgstr "Taal:"
 
-#: ../src/general/OptionsMenu.tscn:722 ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:729 ../src/general/OptionsMenu.tscn:1151
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:731
+#: ../src/general/OptionsMenu.tscn:738
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help met vertalen"
 
-#: ../src/general/OptionsMenu.tscn:757
+#: ../src/general/OptionsMenu.tscn:764
 msgid "COMPOUND_CLOUDS"
 msgstr "Samenstellings-wolken"
 
-#: ../src/general/OptionsMenu.tscn:772
+#: ../src/general/OptionsMenu.tscn:779
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Wolksimulatie minimum\n"
 "interval:"
 
-#: ../src/general/OptionsMenu.tscn:779 ../src/general/OptionsMenu.tscn:821
+#: ../src/general/OptionsMenu.tscn:786 ../src/general/OptionsMenu.tscn:828
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(hogere instelling verlaagt de prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:814
+#: ../src/general/OptionsMenu.tscn:821
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolk resolutiedeler:"
 
-#: ../src/general/OptionsMenu.tscn:856
+#: ../src/general/OptionsMenu.tscn:863
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Voer auto-evo uit tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:929
+#: ../src/general/OptionsMenu.tscn:936
 msgid "RESET_INPUTS"
 msgstr "Reset invoer"
 
-#: ../src/general/OptionsMenu.tscn:957
+#: ../src/general/OptionsMenu.tscn:964
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Speel intro"
 
-#: ../src/general/OptionsMenu.tscn:966
+#: ../src/general/OptionsMenu.tscn:973
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Speel intro bij nieuw spel"
 
-#: ../src/general/OptionsMenu.tscn:975
+#: ../src/general/OptionsMenu.tscn:982
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sla automatisch op tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:986
+#: ../src/general/OptionsMenu.tscn:993
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Aantal automatische savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1021
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aantal savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:1040
+#: ../src/general/OptionsMenu.tscn:1047
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Laat tutorial zien bij nieuw spel"
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Laat tutorial zien in huidig spel"
 
-#: ../src/general/OptionsMenu.tscn:1064
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-toetsen ingeschakeld"
 
-#: ../src/general/OptionsMenu.tscn:1076
+#: ../src/general/OptionsMenu.tscn:1083
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "CUSTOM_USERNAME"
 msgstr "Gebruikersnaam:"
 
-#: ../src/general/OptionsMenu.tscn:1113
+#: ../src/general/OptionsMenu.tscn:1120
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open screenshots"
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1128
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open logs"
 
-#: ../src/general/OptionsMenu.tscn:1156 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1163 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Sla op"
 
-#: ../src/general/OptionsMenu.tscn:1173
+#: ../src/general/OptionsMenu.tscn:1180
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaard"
 
-#: ../src/general/OptionsMenu.tscn:1185
+#: ../src/general/OptionsMenu.tscn:1192
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetten naar standaard?"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1201
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Weet je zeker dat je ALLE instellingen wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1208
+#: ../src/general/OptionsMenu.tscn:1215
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Invoer resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1217
+#: ../src/general/OptionsMenu.tscn:1224
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Weet je zeker dat je de invoer wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1231
+#: ../src/general/OptionsMenu.tscn:1238
 msgid "CLOSE_OPTIONS"
 msgstr "Opties sluiten?"
 
-#: ../src/general/OptionsMenu.tscn:1251
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen instellingen.\n"
 "Doorgaan?"
 
-#: ../src/general/OptionsMenu.tscn:1273
+#: ../src/general/OptionsMenu.tscn:1280
 msgid "SAVE_AND_CONTINUE"
 msgstr "Opslaan en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1282
+#: ../src/general/OptionsMenu.tscn:1289
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuleren en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1298
+#: ../src/general/OptionsMenu.tscn:1305
 msgid "CANCEL"
 msgstr "Annuleer"
 
-#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1333
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1364
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1358
+#: ../src/general/OptionsMenu.tscn:1326 ../src/general/OptionsMenu.tscn:1365
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
 

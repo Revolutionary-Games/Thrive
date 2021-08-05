@@ -1269,7 +1269,12 @@ public class OptionsMenu : ControlWithInput
     {
         var videoMemoryUsed = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / Constants.MEBIBYTE;
 
-        currentGpu.Text = VisualServer.GetVideoAdapterName();
+        var gpu = VisualServer.GetVideoAdapterName();
+
+        if (string.IsNullOrEmpty(gpu))
+            gpu = TranslationServer.Translate("COULD_NOT_LOAD_GRAPHICS_PROCESSING_UNIT");
+
+        currentGpu.Text = gpu;
         displayRenderer.Text = OS.GetCurrentVideoDriver().ToString();
         videoMemory.Text = videoMemoryUsed + " MiB";
     }

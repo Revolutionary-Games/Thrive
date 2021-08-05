@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 18:04+0200\n"
+"POT-Creation-Date: 2021-08-05 18:18+0200\n"
 "PO-Revision-Date: 2021-08-05 13:09+0000\n"
 "Last-Translator: John <philllo030@googlemail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -1428,7 +1428,7 @@ msgstr "Verlassen"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1133
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1140
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1450,254 +1450,258 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standardausgabegerät"
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.cs:1275
+msgid "COULD_NOT_LOAD_GRAPHICS_PROCESSING_UNIT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:132
 msgid "GRAPHICS"
 msgstr "Grafik"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:143
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:154
 msgid "PERFORMANCE"
 msgstr "Leistung"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:165
 msgid "INPUTS"
 msgstr "Eingaben"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:176
 msgid "MISC"
 msgstr "Sonstiges"
 
-#: ../src/general/OptionsMenu.tscn:202
+#: ../src/general/OptionsMenu.tscn:209
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:210
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "Vollbild"
 
-#: ../src/general/OptionsMenu.tscn:232
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample Anti-Aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:239
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(höhere Werte verschlechtern die Leistung)"
 
-#: ../src/general/OptionsMenu.tscn:269
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "Auflösung:"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:318
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Farbenblindheits-Korrektur:"
 
-#: ../src/general/OptionsMenu.tscn:350
+#: ../src/general/OptionsMenu.tscn:357
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:377
+#: ../src/general/OptionsMenu.tscn:384
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Fähigkeitenleiste anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:386
+#: ../src/general/OptionsMenu.tscn:393
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI-Lichteffekte aktivieren"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:404
 msgid "GRAPHICS_PROCESSING_UNIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:424
+#: ../src/general/OptionsMenu.tscn:431
 msgid "DISPLAY_RENDERER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:452
+#: ../src/general/OptionsMenu.tscn:459
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:495
+#: ../src/general/OptionsMenu.tscn:502
 msgid "MASTER_VOLUME"
 msgstr "Gesamtlautstärke"
 
-#: ../src/general/OptionsMenu.tscn:522 ../src/general/OptionsMenu.tscn:563
-#: ../src/general/OptionsMenu.tscn:596 ../src/general/OptionsMenu.tscn:629
-#: ../src/general/OptionsMenu.tscn:662
+#: ../src/general/OptionsMenu.tscn:529 ../src/general/OptionsMenu.tscn:570
+#: ../src/general/OptionsMenu.tscn:603 ../src/general/OptionsMenu.tscn:636
+#: ../src/general/OptionsMenu.tscn:669
 msgid "MUTE"
 msgstr "Stumm"
 
-#: ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:543
 msgid "MUSIC_VOLUME"
 msgstr "Musiklautstärke"
 
-#: ../src/general/OptionsMenu.tscn:569
+#: ../src/general/OptionsMenu.tscn:576
 msgid "AMBIANCE_VOLUME"
 msgstr "Umgebungslautstärke"
 
-#: ../src/general/OptionsMenu.tscn:602
+#: ../src/general/OptionsMenu.tscn:609
 msgid "SFX_VOLUME"
 msgstr "Effektlautstärke"
 
-#: ../src/general/OptionsMenu.tscn:635
+#: ../src/general/OptionsMenu.tscn:642
 msgid "GUI_VOLUME"
 msgstr "Menülautstärke"
 
-#: ../src/general/OptionsMenu.tscn:680
+#: ../src/general/OptionsMenu.tscn:687
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Ausgabegerät:"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:714
 msgid "LANGUAGE"
 msgstr "Sprache:"
 
-#: ../src/general/OptionsMenu.tscn:722 ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:729 ../src/general/OptionsMenu.tscn:1151
 msgid "RESET"
 msgstr "Zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:731
+#: ../src/general/OptionsMenu.tscn:738
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Hilf das Spiel zu übersetzen"
 
-#: ../src/general/OptionsMenu.tscn:757
+#: ../src/general/OptionsMenu.tscn:764
 msgid "COMPOUND_CLOUDS"
 msgstr "Verbindungswolken"
 
-#: ../src/general/OptionsMenu.tscn:772
+#: ../src/general/OptionsMenu.tscn:779
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Wolkensimulation\n"
 "Minimumintervall:"
 
-#: ../src/general/OptionsMenu.tscn:779 ../src/general/OptionsMenu.tscn:821
+#: ../src/general/OptionsMenu.tscn:786 ../src/general/OptionsMenu.tscn:828
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(höhere Werte verbessern die Leistung)"
 
-#: ../src/general/OptionsMenu.tscn:814
+#: ../src/general/OptionsMenu.tscn:821
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolkenauflösungsteiler:"
 
-#: ../src/general/OptionsMenu.tscn:856
+#: ../src/general/OptionsMenu.tscn:863
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Auto-Evo während des Spielens ausführen"
 
-#: ../src/general/OptionsMenu.tscn:929
+#: ../src/general/OptionsMenu.tscn:936
 msgid "RESET_INPUTS"
 msgstr "Eingaben zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:957
+#: ../src/general/OptionsMenu.tscn:964
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Intro-Video abspielen"
 
-#: ../src/general/OptionsMenu.tscn:966
+#: ../src/general/OptionsMenu.tscn:973
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mikroben-Intro beim neuen Spiel abspielen"
 
-#: ../src/general/OptionsMenu.tscn:975
+#: ../src/general/OptionsMenu.tscn:982
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisches speichern während des Spieles"
 
-#: ../src/general/OptionsMenu.tscn:986
+#: ../src/general/OptionsMenu.tscn:993
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Anzahl der Autospeicherungen:"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1021
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Anzahl der Schnellspeicherungen:"
 
-#: ../src/general/OptionsMenu.tscn:1040
+#: ../src/general/OptionsMenu.tscn:1047
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
-#: ../src/general/OptionsMenu.tscn:1064
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-Tasten aktiviert"
 
-#: ../src/general/OptionsMenu.tscn:1076
+#: ../src/general/OptionsMenu.tscn:1083
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Eigenen Nuternamen verwenden"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "CUSTOM_USERNAME"
 msgstr "Eigener Nutzername:"
 
-#: ../src/general/OptionsMenu.tscn:1113
+#: ../src/general/OptionsMenu.tscn:1120
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Bildschirmfoto-Ordner öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1128
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Ordner der Log-Dateien öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1156 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1163 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Speichern"
 
-#: ../src/general/OptionsMenu.tscn:1173
+#: ../src/general/OptionsMenu.tscn:1180
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standardeinstellungen"
 
-#: ../src/general/OptionsMenu.tscn:1185
+#: ../src/general/OptionsMenu.tscn:1192
 msgid "RESET_TO_DEFAULTS"
 msgstr "Auf Standardeinstellungen zurücksetzen?"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1201
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Bist du sicher, dass du ALLE Einstellungen auf ihre Standardwerte "
 "zurücksetzen willst?"
 
-#: ../src/general/OptionsMenu.tscn:1208
+#: ../src/general/OptionsMenu.tscn:1215
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Standardeingaben laden?"
 
-#: ../src/general/OptionsMenu.tscn:1217
+#: ../src/general/OptionsMenu.tscn:1224
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Bist du sicher, dass du die Eingaben auf ihre Standardwerte zurücksetzen "
 "willst?"
 
-#: ../src/general/OptionsMenu.tscn:1231
+#: ../src/general/OptionsMenu.tscn:1238
 msgid "CLOSE_OPTIONS"
 msgstr "Optionen schließen?"
 
-#: ../src/general/OptionsMenu.tscn:1251
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Es wurden ungespeicherte Änderungen vorgenommen.\n"
 "Möchtest du fortfahren?"
 
-#: ../src/general/OptionsMenu.tscn:1273
+#: ../src/general/OptionsMenu.tscn:1280
 msgid "SAVE_AND_CONTINUE"
 msgstr "Speichern und fortfahren"
 
-#: ../src/general/OptionsMenu.tscn:1282
+#: ../src/general/OptionsMenu.tscn:1289
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Verwerfen und fortfahren"
 
-#: ../src/general/OptionsMenu.tscn:1298
+#: ../src/general/OptionsMenu.tscn:1305
 msgid "CANCEL"
 msgstr "Abbrechen"
 
-#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1333
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1364
 msgid "ERROR"
 msgstr "Fehler"
 
-#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1358
+#: ../src/general/OptionsMenu.tscn:1326 ../src/general/OptionsMenu.tscn:1365
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist "
