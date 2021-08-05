@@ -1,5 +1,4 @@
-﻿
-public class EnvironmentalFoodSource : IFoodSource
+﻿public class EnvironmentalFoodSource : IFoodSource
 {
     private readonly Compound compound;
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
