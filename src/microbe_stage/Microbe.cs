@@ -1444,13 +1444,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Calculates the vector from my center to my membrane towards the parent.
         // This vector gets rotated back, because I've rotated it two calls above.
-        var correctedVectorToParent = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.z)
+        var correctedVectorToParent = Membrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentRotated.x, vectorToParentRotated.z)
             .Rotated(Vector3.Up, Rotation.y);
 
         // Calculates the vector from the parents' center to his membrane towards me.
         // This gets added to the vector calculated one call before.
         correctedVectorToParent -= ColonyParent.Membrane
-            .GetExternalOrganelle(vectorFromParentRotated.x, vectorFromParentRotated.z)
+            .GetVectorTowardsNearestPointOfMembrane(vectorFromParentRotated.x, vectorFromParentRotated.z)
             .Rotated(Vector3.Up, globalParentRotation.y);
 
         // Reset the rotation so that it is the same before entering the colony.
@@ -2271,7 +2271,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // The back of the microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
-        var membraneCoords = Membrane.GetExternalOrganelle(exit.x, exit.z);
+        var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
 
         // Get the distance to eject the compounds
         var ejectionDistance = Membrane.EncompassingCircleRadius;
