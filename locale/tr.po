@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"POT-Creation-Date: 2021-08-05 15:55+0800\n"
 "PO-Revision-Date: 2021-07-16 17:42+0000\n"
 "Last-Translator: angelbisector <m.eypoglu@gmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -19,349 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"Hareket etmek için W,A,S,D tuşlarını ve fareyi kullan. Eğer toksin "
-"kofuluna sahipsen, OksiToksi NT'yi ateş etmek için E tuşuna bas. Yutma "
-"moduna geçmek için G tuşuna bas."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"Hücren enerji kaynağı olarak ATP'yi kullanır, eğer ATP tükenirse hücren "
-"ölür."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Editörü açmak ve hücreni çoğaltmak için Amonyak (Turuncu Bulut) ve Fosfat "
-"(Mor Bulut) biriktirmen gerekir."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Ayrıca senden küçük hücreleri, bakterileri ve demir parçalarını G tuşuna "
-"basarak yutabilirsin. Bu fazladan ATP'ye mal olur ve hücreni yavaşlatır. "
-"Yutmayı sona erdirmek için G tuşuna ikinci kez basmayı unutma."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Ozmoregülasyon ATP'ye mal olur. Bu demek oluyor ki hücren ne kadar "
-"büyükse, o kadar çok Mitokondri, Metabolozom ya da Rustisiyanine (veya "
-"glikoliz yapan sitoplazmaya) ihtiyacın var. Böylece hücren durgun "
-"haldeyken ATP kaybını önleyebilirsin."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"Editörde, evrimleşmeni sağlayan birçok Organel bulunuyor. Böylece geniş "
-"kapsamda, farklı oynama şekillerine olanak var."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Çeşitli bileşik bulutları:\n"
-"\n"
-"Beyaz – Glukoz\n"
-"Sarı – Hidrojen Sülfür\n"
-"Turuncu – Amonyak\n"
-"Mor – Fosfat\n"
-"Pas Rengi – Demir\n"
-"\n"
-"Glukoz ATP oluşturur"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"Hidrojen Sülfür; kemoplastlar ve kemosentez yapan proteinler aracılığıyla "
-"glukoza dönüştürülür. Demir, rustisiyanin aracılığıyla ATP'ye dönüştürülür."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. Organeller "
-"bölünmek için amonyak ve fosfat gerektirir."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Şu an için, eğer popülasyonun sıfıra düşerse neslin tükenir."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Ama eğer 300 popülasyonla yirmi kuşak boyunca hayatta kalırsan, mevcut "
-"oyunu kazanmış sayılırsın. Kazandıktan sonra karşına açılır bir pencere "
-"çıkar, ondan sonra oyunu istediğin kadar oynamaya devam edebilirsin."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre girdiğin "
-"her an onlar da evrimleşiyor."
-
-#: ../simulation_parameters/common/help_texts.json:54
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle "
-"üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir "
-"hücre ile bağ kurmak için, bağlayıcı madde organeline sahip olman ve "
-"bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca "
-"kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni "
-"bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, "
-"yeterli bileşik toplamalı ve koloniden ayrılmalısın. Böylece editöre "
-"girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur "
-"(henüz oyunda değil)."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokaryotik Yapılar\n"
-"\n"
-"Metabolozomlar: Glukozdan ATP üretir\n"
-"\n"
-"Kemosentez Yapan Proteinler: Bir kemoplast gibi Hidrojen Sülfürden "
-"glukozun yarısını üretir ve glikoliz yapar. 1 Altıgenlik yer kaplar\n"
-"\n"
-"Tilakoidler: Normal bir kloroplast gibi glukozun 3'te 1'ini üretir ve "
-"glikoliz yapar. 1 Altıgenlik yer kaplar\n"
-"\n"
-"Rustisiyanin: Demiri ATP'ye çevirir\n"
-"\n"
-"Nitrojenaz: Atmosferdeki azotu ve ATP'yi oksijen olmadan amonyağa çevirir\n"
-"\n"
-"Sitoplazma: Depo alanına sahiptir ve glikoliz yapar (Az miktarda ATP "
-"üretir)"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Dış Organeller\n"
-"\n"
-"Kamçı: ATP tüketerek hücreni daha hızlı hareket ettirir\n"
-"\n"
-"Pilus: Diğer hücreleri delmek için kullanılabilir"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Zarlı Organeller\n"
-"\n"
-"Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini sağlar. "
-"Ayrıca hücrenin büyüklüğünü iki katına çıkarır. (Yalnızca bir kez "
-"evrimleşilir)\n"
-"\n"
-"Bağlayıcı Madde: Diğer hücrelerle bağ kurmaya izin verir\n"
-"\n"
-"Mitokondri: Glukoz ve atmosferdeki O2 gazından ATP üretir. Sitoplazmadan "
-"çok daha verimli şekilde yapar.\n"
-"\n"
-"Kloroplast: Güneş ışığı ve atmosferdeki CO2 gazından glukoz üretir\n"
-"\n"
-"Kemoplast: Hidrojen Sülfürden glukoz üretir\n"
-"\n"
-"Azot Fiksasyon Plastidi: ATP ile atmosferdeki Azot ve Oksijenden amonyak "
-"yapar\n"
-"\n"
-"Koful: Toplanan 15 bileşiği depolar\n"
-"\n"
-"Toksin Kofulları: Toksinler üretir (OksiToksi NT diye adlandırılır)"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Her kuşakta, harcanacak 100 mutasyon puanın var ve her değişim (ya da "
-"mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da "
-"kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen "
-"organelleri kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade "
-"eder. Bir organelin üzerine sağ tıklayarak onu taşıyabilir ya da tamamen "
-"kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi "
-"seçebilirsin. A ve D tuşları ile organellerini döndürebilirsin."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Hücren her çoğaldığında, Mikrop Editörüne giriş yaparsın. Burada, türünün "
-"başarısını arttırmak için onda değişiklikler yapabilirsin (organelleri "
-"ekleyerek, taşıyarak veya kaldırarak). Editöre yapılan her ziyaret, Mikrop "
-"Evresinde 100 milyon yıllık evrimi temsil eder."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Editördeyken yanlışlıkları düzeltmek için geri al butonuna bas"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı "
-"ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa "
-"Didinyum mu? Av mı, avcı mı?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"İşte sana bir ipucu. Toksinler, yeterince hızlı davranıldığında, diğer "
-"toksinleri vurup uzaklaştırmak için kullanılabilir."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında her "
-"saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik "
-"alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; eğer "
-"ozmoregülasyondan dolayı ATP kaybediyorsan, birkaç altıgenlik alanı "
-"yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"İlginç Gerçek: Gerçek hayatta prokaryotlar, organeller gibi davranan "
-"Biyokompartman adı verilen yapılara sahiptir ve bunlar aslında Çok Yüzeyli "
-"organeller olarak adlandırılır."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-"İlginç Gerçek: Metabolozom, Çok yüzeyli bir organel olarak adlandırılır."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "İşte sana ipucu. Bazen en iyisi yalnızca diğer hücrelerden kaçmak."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"İşte sana ipucu. Eğer bir hücre senin büyüklüğünün yarısı kadarsa, bu onu "
-"yutabileceğin anlamına gelir."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"İşte sana ipucu. Bakteriler göründüğünden daha güçlü olabilir. Küçük "
-"duruyor görünebilirler ama bazıları arkandan çukur kazıp seni bu şekilde "
-"öldürebilir!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"İşte sana ipucu. Eğer yeterince dikkatli olmazsan, diğer türleri avlayarak "
-"soylarının tükenmesine neden olabilirsin. Bu duruma ayrıca başka türler de "
-"neden olabilir."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "KIMILDAYAN ŞEYLER!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Metali eritalim."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Ama şu mavi hücreler var ya."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı "
-"biyomlardaki bileşikler farklı oranlarda oluşuyor."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"İşte sana ipucu. Ne kadar kamçıya sahipsen, o kadar hızlı gidersin, vınn "
-"vınnn, ama ayrıca daha fazla ATP'ye mal olur"
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"İşte sana ipucu. Demir veya başka tür parçaları [g]irdap gibi içine "
-"çekebilirsin."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"İşte sana ipucu. Çekirdeği eklemeden önce bir hazırlık yap. Bu tür şeyler "
-"pahalı! Bakım ve önden ödeme ücretiyle."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"İlginç Gerçek: Dünya üzerinde 8000'in üzerinde silli türü olduğunu biliyor "
-"muydun?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"İlginç Gerçek: Stentor, kendini esnetebilen ve siliyle su akıntısı meydana "
-"getirerek, bir tür trompete benzeyen ağzıyla avını yakalayabilen bir silli "
-"türüdür."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "İlginç Gerçek: Didinyum, paramesyumları avlayan bir silli türüdür."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"İlginç Gerçek: Amip, avını yalancı ayak adı verilen sitoplazmadan yapma "
-"'bacaklar' ile yakalar ve avlar. Bunları er ya da geç Thrive'a eklemek "
-"istiyoruz."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"İşte sana ipucu. Büyük hücrelere ve bakterilere dikkat et. Bir şeyler "
-"tarafından sindirilmek eğlenceli değil ki, seni yerler."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Thrive'ın ses ekip kaptanı oyuna henüz eklenmeyen birçok şarkı yaptı. Bu "
-"şarkıları dinleyebilirsin veya sahibi Oliver Lugg'ın YouTube kanalından "
-"beste yaptığı sırada çekilen yayın akışlarını izleyebilirsin."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"İşte sana ipucu. Eğer hücren 150 altıgenlik alan büyüklüğündeyse, büyük "
-"demir parçalarını yutabilirsin."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğun çoğu "
-"canlının, etrafında gerçekleşen evrimden dolayı, bir ya da iki farklı türe "
-"benzemesi mümkün. Onları tanıyabiliyor musun bir gör!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"İlginç Gerçek: Thrive ekibi ara sıra podcastler yayınlıyor, onları "
-"incelemeyi unutma!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-"İlginç Gerçek: Thrive, açık kaynak kodlu Godot oyun motoru ile yapıldı!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerden biri bizim müthiş "
-"programcımız untrustedlife tarafından yapıldı!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -583,44 +240,44 @@ msgid "EPIPELAGIC"
 msgstr "Epipelajik"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:168
+#: ../simulation_parameters/microbe_stage/biomes.json:395
+#: ../simulation_parameters/microbe_stage/biomes.json:542
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1509
+#: ../simulation_parameters/microbe_stage/biomes.json:1674
+#: ../simulation_parameters/microbe_stage/biomes.json:1821
 msgid "FLOATING_HAZARD"
 msgstr "Uçan Tehlike"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:185
+#: ../simulation_parameters/microbe_stage/biomes.json:412
+#: ../simulation_parameters/microbe_stage/biomes.json:559
+#: ../simulation_parameters/microbe_stage/biomes.json:782
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1236
+#: ../simulation_parameters/microbe_stage/biomes.json:1379
+#: ../simulation_parameters/microbe_stage/biomes.json:1526
+#: ../simulation_parameters/microbe_stage/biomes.json:1691
+#: ../simulation_parameters/microbe_stage/biomes.json:1838
 msgid "SMALL_IRON_CHUNK"
 msgstr "Küçük Demir Parçası"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:300
+#: ../simulation_parameters/microbe_stage/biomes.json:447
+#: ../simulation_parameters/microbe_stage/biomes.json:594
+#: ../simulation_parameters/microbe_stage/biomes.json:817
+#: ../simulation_parameters/microbe_stage/biomes.json:1044
+#: ../simulation_parameters/microbe_stage/biomes.json:1271
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1579
+#: ../simulation_parameters/microbe_stage/biomes.json:1726
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "BIG_IRON_CHUNK"
 msgstr "Büyük Demir Parçası"
 
@@ -628,51 +285,51 @@ msgstr "Büyük Demir Parçası"
 msgid "VOLCANIC_VENT"
 msgstr "Yanardağ bacası"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:220
+#: ../simulation_parameters/microbe_stage/biomes.json:617
+#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:1067
+#: ../simulation_parameters/microbe_stage/biomes.json:1896
 msgid "MARINE_SNOW"
 msgstr "Deniz karı"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:369
 msgid "TIDEPOOL"
 msgstr "Gelgit havuzu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:516
 msgid "BATHYPELAGIC"
 msgstr "Batipelajik"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:743
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelajik"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:966
 msgid "MESOPELAGIC"
 msgstr "Mezopelajik"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
 msgstr "Sahil"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
 msgstr "Yeraltı Mağarası"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1483
 msgid "ICESHELF"
 msgstr "Buz Sahanlığı"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "ICESHARD"
 msgstr "Buz Parçası"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
 msgid "ESTUARY"
 msgstr "Haliç"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1795
 msgid "SEA_FLOOR"
 msgstr "Deniz Tabanı"
 
@@ -682,25 +339,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3038
 msgid "AMMONIA"
 msgstr "Amonyak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3109
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3003
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3073
 msgid "GLUCOSE"
 msgstr "Glukoz"
 
@@ -711,28 +368,28 @@ msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3144
 msgid "IRON"
 msgstr "Demir"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2839
 msgid "OXYGEN"
 msgstr "Oksijen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2892
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2893
 msgid "CARBON_DIOXIDE"
 msgstr "Karbondioksit"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
 msgid "NITROGEN"
 msgstr "Azot"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2719
 msgid "SUNLIGHT"
 msgstr "Güneş ışığı"
 
@@ -1651,7 +1308,7 @@ msgid "SAVE_GAME"
 msgstr "Oyunu Kaydet"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
 msgid "STATISTICS"
 msgstr "İstatistikler"
 
@@ -1684,7 +1341,7 @@ msgstr "{0} Kilo"
 msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
 
-#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
@@ -2227,7 +1884,7 @@ msgstr ""
 "bunu kapatarak problemin çözülüp çözülmediğine bakabilirsiniz."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2656
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Sıcaklık"
@@ -2332,8 +1989,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2327
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2963
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
@@ -2499,96 +2156,96 @@ msgstr "Akışkanlık / Sertlik"
 msgid "COLOUR"
 msgstr "Renk"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1801
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Tür ismi..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1837
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "EYLEMİ İPTAL ET"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1850
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
 msgid "CONFIRM_CAPITAL"
 msgstr "ONAYLA"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1860
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1861
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatif ATP Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1872
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1873
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobun, hayatta kalmak için yeterli ATP üretmiyor!\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1883
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1884
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Bağlı Olmayan Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1896
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, eklenmiş organeller var.\n"
 "Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya "
 "değişikliklerini geri al."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1996
 msgid "AUTO_EVO"
 msgstr "Oto-Evrim"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2008
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2009
 msgid "FOOD_CHAIN"
 msgstr "Besin Zinciri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2021
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2022
 msgid "TIMELINE"
 msgstr "Tarih Şeridi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2074
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2075
 msgid "AUTO_EVO_RESULTS"
 msgstr "Oto-evrim sonuçları:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2094
 msgid "EXTERNAL_EFFECTS"
 msgstr "Dış etkenler:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2151
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2152
 msgid "SPECIES_POPULATION"
 msgstr "Tür Popülasyonu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2184
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2614
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2185
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2615
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziksel Koşullar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2798
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2381
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2382
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3307
 msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2496
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2497
 msgid "SELECT_A_PATCH"
 msgstr "Detayları görmek için bir arazi seçin"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2531
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2532
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
 msgid "PRESSURE"
 msgstr "Basınç"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3223
 msgid "SPECIES_PRESENT"
 msgstr "Mevcut Türler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3280
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Bu Araziye Git"
 
@@ -3120,6 +2777,299 @@ msgstr ""
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin "
 "bağını çöz\" tuşuna basabilirsin."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Hareket etmek için W,A,S,D tuşlarını ve fareyi kullan. Eğer toksin "
+#~ "kofuluna sahipsen, OksiToksi NT'yi ateş etmek için E tuşuna bas. Yutma "
+#~ "moduna geçmek için G tuşuna bas."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Hücren enerji kaynağı olarak ATP'yi kullanır, eğer ATP tükenirse hücren "
+#~ "ölür."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Editörü açmak ve hücreni çoğaltmak için Amonyak (Turuncu Bulut) ve "
+#~ "Fosfat (Mor Bulut) biriktirmen gerekir."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Ayrıca senden küçük hücreleri, bakterileri ve demir parçalarını G "
+#~ "tuşuna basarak yutabilirsin. Bu fazladan ATP'ye mal olur ve hücreni "
+#~ "yavaşlatır. Yutmayı sona erdirmek için G tuşuna ikinci kez basmayı "
+#~ "unutma."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Ozmoregülasyon ATP'ye mal olur. Bu demek oluyor ki hücren ne kadar "
+#~ "büyükse, o kadar çok Mitokondri, Metabolozom ya da Rustisiyanine (veya "
+#~ "glikoliz yapan sitoplazmaya) ihtiyacın var. Böylece hücren durgun "
+#~ "haldeyken ATP kaybını önleyebilirsin."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Editörde, evrimleşmeni sağlayan birçok Organel bulunuyor. Böylece geniş "
+#~ "kapsamda, farklı oynama şekillerine olanak var."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Çeşitli bileşik bulutları:\n"
+#~ "\n"
+#~ "Beyaz – Glukoz\n"
+#~ "Sarı – Hidrojen Sülfür\n"
+#~ "Turuncu – Amonyak\n"
+#~ "Mor – Fosfat\n"
+#~ "Pas Rengi – Demir\n"
+#~ "\n"
+#~ "Glukoz ATP oluşturur"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "Hidrojen Sülfür; kemoplastlar ve kemosentez yapan proteinler "
+#~ "aracılığıyla glukoza dönüştürülür. Demir, rustisiyanin aracılığıyla "
+#~ "ATP'ye dönüştürülür."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. "
+#~ "Organeller bölünmek için amonyak ve fosfat gerektirir."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Şu an için, eğer popülasyonun sıfıra düşerse neslin tükenir."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "Ama eğer 300 popülasyonla yirmi kuşak boyunca hayatta kalırsan, mevcut "
+#~ "oyunu kazanmış sayılırsın. Kazandıktan sonra karşına açılır bir pencere "
+#~ "çıkar, ondan sonra oyunu istediğin kadar oynamaya devam edebilirsin."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre "
+#~ "girdiğin her an onlar da evrimleşiyor."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve "
+#~ "birbiriyle üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. "
+#~ "Başka bir hücre ile bağ kurmak için, bağlayıcı madde organeline sahip "
+#~ "olman ve bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. "
+#~ "Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, "
+#~ "hücreni bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, "
+#~ "ilk önce, yeterli bileşik toplamalı ve koloniden ayrılmalısın. Böylece "
+#~ "editöre girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru "
+#~ "giden yoldur (henüz oyunda değil)."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokaryotik Yapılar\n"
+#~ "\n"
+#~ "Metabolozomlar: Glukozdan ATP üretir\n"
+#~ "\n"
+#~ "Kemosentez Yapan Proteinler: Bir kemoplast gibi Hidrojen Sülfürden "
+#~ "glukozun yarısını üretir ve glikoliz yapar. 1 Altıgenlik yer kaplar\n"
+#~ "\n"
+#~ "Tilakoidler: Normal bir kloroplast gibi glukozun 3'te 1'ini üretir ve "
+#~ "glikoliz yapar. 1 Altıgenlik yer kaplar\n"
+#~ "\n"
+#~ "Rustisiyanin: Demiri ATP'ye çevirir\n"
+#~ "\n"
+#~ "Nitrojenaz: Atmosferdeki azotu ve ATP'yi oksijen olmadan amonyağa "
+#~ "çevirir\n"
+#~ "\n"
+#~ "Sitoplazma: Depo alanına sahiptir ve glikoliz yapar (Az miktarda ATP "
+#~ "üretir)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Dış Organeller\n"
+#~ "\n"
+#~ "Kamçı: ATP tüketerek hücreni daha hızlı hareket ettirir\n"
+#~ "\n"
+#~ "Pilus: Diğer hücreleri delmek için kullanılabilir"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Zarlı Organeller\n"
+#~ "\n"
+#~ "Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini "
+#~ "sağlar. Ayrıca hücrenin büyüklüğünü iki katına çıkarır. (Yalnızca bir "
+#~ "kez evrimleşilir)\n"
+#~ "\n"
+#~ "Bağlayıcı Madde: Diğer hücrelerle bağ kurmaya izin verir\n"
+#~ "\n"
+#~ "Mitokondri: Glukoz ve atmosferdeki O2 gazından ATP üretir. "
+#~ "Sitoplazmadan çok daha verimli şekilde yapar.\n"
+#~ "\n"
+#~ "Kloroplast: Güneş ışığı ve atmosferdeki CO2 gazından glukoz üretir\n"
+#~ "\n"
+#~ "Kemoplast: Hidrojen Sülfürden glukoz üretir\n"
+#~ "\n"
+#~ "Azot Fiksasyon Plastidi: ATP ile atmosferdeki Azot ve Oksijenden "
+#~ "amonyak yapar\n"
+#~ "\n"
+#~ "Koful: Toplanan 15 bileşiği depolar\n"
+#~ "\n"
+#~ "Toksin Kofulları: Toksinler üretir (OksiToksi NT diye adlandırılır)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Her kuşakta, harcanacak 100 mutasyon puanın var ve her değişim (ya da "
+#~ "mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da "
+#~ "kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen "
+#~ "organelleri kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade "
+#~ "eder. Bir organelin üzerine sağ tıklayarak onu taşıyabilir ya da "
+#~ "tamamen kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi "
+#~ "seçebilirsin. A ve D tuşları ile organellerini döndürebilirsin."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Hücren her çoğaldığında, Mikrop Editörüne giriş yaparsın. Burada, "
+#~ "türünün başarısını arttırmak için onda değişiklikler yapabilirsin "
+#~ "(organelleri ekleyerek, taşıyarak veya kaldırarak). Editöre yapılan her "
+#~ "ziyaret, Mikrop Evresinde 100 milyon yıllık evrimi temsil eder."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Editördeyken yanlışlıkları düzeltmek için geri al butonuna bas"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı "
+#~ "ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa "
+#~ "Didinyum mu? Av mı, avcı mı?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "İşte sana bir ipucu. Toksinler, yeterince hızlı davranıldığında, diğer "
+#~ "toksinleri vurup uzaklaştırmak için kullanılabilir."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında "
+#~ "her saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş "
+#~ "altıgenlik alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; "
+#~ "eğer ozmoregülasyondan dolayı ATP kaybediyorsan, birkaç altıgenlik "
+#~ "alanı yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri "
+#~ "kaldırmalısın."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "İlginç Gerçek: Gerçek hayatta prokaryotlar, organeller gibi davranan "
+#~ "Biyokompartman adı verilen yapılara sahiptir ve bunlar aslında Çok "
+#~ "Yüzeyli organeller olarak adlandırılır."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr ""
+#~ "İlginç Gerçek: Metabolozom, Çok yüzeyli bir organel olarak adlandırılır."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr ""
+#~ "İşte sana ipucu. Bazen en iyisi yalnızca diğer hücrelerden kaçmak."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr ""
+#~ "İşte sana ipucu. Eğer bir hücre senin büyüklüğünün yarısı kadarsa, bu "
+#~ "onu yutabileceğin anlamına gelir."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "İşte sana ipucu. Bakteriler göründüğünden daha güçlü olabilir. Küçük "
+#~ "duruyor görünebilirler ama bazıları arkandan çukur kazıp seni bu "
+#~ "şekilde öldürebilir!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "İşte sana ipucu. Eğer yeterince dikkatli olmazsan, diğer türleri "
+#~ "avlayarak soylarının tükenmesine neden olabilirsin. Bu duruma ayrıca "
+#~ "başka türler de neden olabilir."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "KIMILDAYAN ŞEYLER!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Metali eritalim."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Ama şu mavi hücreler var ya."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı "
+#~ "biyomlardaki bileşikler farklı oranlarda oluşuyor."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "İşte sana ipucu. Ne kadar kamçıya sahipsen, o kadar hızlı gidersin, "
+#~ "vınn vınnn, ama ayrıca daha fazla ATP'ye mal olur"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr ""
+#~ "İşte sana ipucu. Demir veya başka tür parçaları [g]irdap gibi içine "
+#~ "çekebilirsin."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "İşte sana ipucu. Çekirdeği eklemeden önce bir hazırlık yap. Bu tür "
+#~ "şeyler pahalı! Bakım ve önden ödeme ücretiyle."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr ""
+#~ "İlginç Gerçek: Dünya üzerinde 8000'in üzerinde silli türü olduğunu "
+#~ "biliyor muydun?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "İlginç Gerçek: Stentor, kendini esnetebilen ve siliyle su akıntısı "
+#~ "meydana getirerek, bir tür trompete benzeyen ağzıyla avını "
+#~ "yakalayabilen bir silli türüdür."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr ""
+#~ "İlginç Gerçek: Didinyum, paramesyumları avlayan bir silli türüdür."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "İlginç Gerçek: Amip, avını yalancı ayak adı verilen sitoplazmadan yapma "
+#~ "'bacaklar' ile yakalar ve avlar. Bunları er ya da geç Thrive'a eklemek "
+#~ "istiyoruz."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "İşte sana ipucu. Büyük hücrelere ve bakterilere dikkat et. Bir şeyler "
+#~ "tarafından sindirilmek eğlenceli değil ki, seni yerler."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "Thrive'ın ses ekip kaptanı oyuna henüz eklenmeyen birçok şarkı yaptı. "
+#~ "Bu şarkıları dinleyebilirsin veya sahibi Oliver Lugg'ın YouTube "
+#~ "kanalından beste yaptığı sırada çekilen yayın akışlarını izleyebilirsin."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "İşte sana ipucu. Eğer hücren 150 altıgenlik alan büyüklüğündeyse, büyük "
+#~ "demir parçalarını yutabilirsin."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğun çoğu "
+#~ "canlının, etrafında gerçekleşen evrimden dolayı, bir ya da iki farklı "
+#~ "türe benzemesi mümkün. Onları tanıyabiliyor musun bir gör!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr ""
+#~ "İlginç Gerçek: Thrive ekibi ara sıra podcastler yayınlıyor, onları "
+#~ "incelemeyi unutma!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr ""
+#~ "İlginç Gerçek: Thrive, açık kaynak kodlu Godot oyun motoru ile yapıldı!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerden biri bizim "
+#~ "müthiş programcımız untrustedlife tarafından yapıldı!"
 
 #, fuzzy
 #~ msgid "TURNS"

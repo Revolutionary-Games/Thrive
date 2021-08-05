@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"POT-Creation-Date: 2021-08-05 15:55+0800\n"
 "PO-Revision-Date: 2021-06-22 20:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -19,371 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"Fes servir les tecles W,A,S,D i el ratolí per moure't per la pantalla. "
-"Clica la tecla E per a disparar la toxina OxyToxy NT; per fer-ho, cal que "
-"tinguis un vacúol de toxines. Clica la tecla G per a activar el mode "
-"d'engolir."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"La vostra cèl·lula fa servir els nucleòtids ATP com a font d'energia; si "
-"se li n'esgoten totes les reserves, es morirà."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Per tal de desbloquejar l'editor i reproduïr-vos, heu de recol·lectar "
-"Amoníac (núvols de color taronja) i Fosfats (núvols de color violeta)."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"També pots engolir cèl·lules, bocins de cèl·lules i trossos de ferro, "
-"sempre que siguin més petits que la teva cèl·lula. Per fer-ho, clica la "
-"tecla G per a activar el mode d'engolir. Això farà que gastis més ATP i "
-"que et moguis més a poc a poc. No t'oblidis, per tant, de tornar a clicar "
-"la tecla G una altra vegada per a desactivar el mode d'engolir."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"L'osmoregulació consumeix molt ATP. Per tant, com més gran sigui la teva "
-"cèl·lula, més orgànuls (com els Mitocondris) o proteïnes (com el "
-"Metabolosoma i la Rusticianina) o citoplasma necessitaràs per tal de no "
-"perdre ATP quan estigueu quiets."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; "
-"un munt de possibilitats jugables."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Els núvols que et pots trobar contenen els següents compostos:\n"
-"\n"
-"Blanc - Glucosa\n"
-"Groc - Àcid Sulfhídric\n"
-"Taronja - Amoníac\n"
-"Violeta - Fosfats\n"
-"Marró bru - Ferro\n"
-"\n"
-"La Glucosa produeix ATP"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"L'Àcid Sulfhídric pot ser transformat en Glucosa mitjançant Quimioplasts i "
-"Proteïnes Quimiosintetitzadores. El Ferro pot ser transformat en ATP "
-"mitjançant Rusticianina."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. "
-"Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
-"Per a la versió actual del joc, si la teva població baixa fins a 0 "
-"t'hauràs extingit."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Però si sobrevius durant 20 generacions i la teva població té més de 300 "
-"individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà "
-"una finestreta d'enhorabona i, després, podràs seguir jugant."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en "
-"cap moment. Cada vegada que entris a l'editor, ells també faran un salt "
-"evolutiu."
-
-#: ../simulation_parameters/common/help_texts.json:54
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on "
-"les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb "
-"les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir "
-"l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, "
-"tot seguit, entrar en el \"mode d'unió\". Només et pots unir a cèl·lules "
-"de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr "
-"i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis "
-"recollit prou compostos hauràs d'abandonar la teva colònia. Les grans "
-"colònies de cèl·lules són la via per a esdevenir un organisme "
-"multicel·lular (però encara no ha estat implementat al joc)."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Estructures procariòtiques\n"
-"\n"
-"Metabolosomes: Produeixen ATP a partir de Glucosa\n"
-"\n"
-"Proteïnes Quimiosintetitzadores: Produeixen una petita quantitat de "
-"Glucosa, la meitat respecte a un Quimioplast, a partir d'Àcid Sulfhídric. "
-"També duu a terme el procés de Glicòlisi. A l'editor ocupa 1 Hexàgon\n"
-"\n"
-"Tilacoide: Produeixen una petita quantitat de Glucosa, una tercera part "
-"respecte a un Cloroplast. També duu a terme el procés de Glicòlisi. A "
-"l'editor ocupa 1 Hexàgon\n"
-"\n"
-"Rusticianina: Produeix ATP a partir de Ferro\n"
-"\n"
-"Nitrogenasa: Produeix Amoníac, mitjançant un procés anaeròbic, a partir de "
-"l'ATP i del Nitrogen ambiental\n"
-"\n"
-"Citoplasma: Permet, fins a un cert límit, emmagatzemar recursos a "
-"l'interior de la cèl·lula. També duu a terme el procés de Glicòlisi"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Orgànuls externs\n"
-"\n"
-"Flagel: Fa que la teva cèl·lula sigui més ràpida. Consumeix ATP\n"
-"\n"
-"Pilus: Estructura per punxar altres cèl·lules"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Orgànuls adherits a la membrana\n"
-"\n"
-"Nucli: Ocupa 11 hexàgons i permet desbloquejar la resta d'orgànuls "
-"adherits a la membrana. A més a més, fa que la teva cèl·lula es faci més "
-"grossa per un factor de 2. (Només es pot col·locar una vegada)\n"
-"\n"
-"Agent d'Unió: Permet ajuntar-se amb altres cèl·lules\n"
-"\n"
-"Mitocondri: Produeix ATP a partir de Glucosa i Oxigen (O2) atmosfèric. És "
-"molt més eficient que no pas el Citoplasma\n"
-"\n"
-"Cloroplast: Produeix Glucosa a partir de Llum solar i Diòxid de Carboni "
-"(CO2) atmosfèric\n"
-"\n"
-"Quimioplast: Produeix Glucosa a partir d'Àcid Sulfhídric\n"
-"\n"
-"Plastidi de Fixació de Nitrogen: Produeix Amoníac a partir d'ATP i "
-"Nitrogen (N2) i Oxigen (O2) atmosfèric\n"
-"\n"
-"Vacúol: Emmagatzema 15 unitats de qualsevol compost recol·lectat\n"
-"\n"
-"Vacúol de Toxines: Produeix toxines (anomenades OxyToxy NT)"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"A cada generació pots invertir fins a 100 Punts de Mutació (MP, per les "
-"seves sigles en Anglès). Qualsevol canvi (mutació) que facis a la teva "
-"cèl·lula et costarà una certa quantitat d'aquests MP. Més concretament, "
-"gastaràs Punts de Mutació tant si afegeixes com si elimines qualsevol "
-"orgànul. No obstant, pots eliminar qualsevol orgànul que hagis col·locat "
-"en la sessió d'edició actual sense cap cost. Pots eliminar qualsevol "
-"orgànul tot fent-hi clic dret a sobre amb el ratolí. Pots fer girar els "
-"orgànuls per canviar-ne la orientació mitjançant les tecles A i D."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs "
-"fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de "
-"millorar-la. Cada sessió de l'editor de microbi representa 100 milions "
-"d'anys d'evolució."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"A mode de curiositat, la relació entre les cèl·lules de l'espècie Didinium "
-"i les cèl·lules Paramecium és un exemple típic i clar, que ha estat "
-"estudiat durant dècades, d'una relació entre depredador i presa. Ara bé, "
-"la teva espècie, és l'equivalent de Didinium o de Paramecium? Ets un "
-"depredador, o bé la presa?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies "
-"toxines per a bloquejar-ne d'altres."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Un petit consell, la Osmoregulació consumeix, cada segon, 1 unitat d'ATP "
-"per nombre d'hexàgons de la teva cèl·lula. Alhora, cada hexàgon de "
-"citoplasma produeix 5 unitats d'ATP cada segon. Per tant, si estas perdent "
-"ATP degut a la Osmoregulació, afegeix un parell d'hexàgons de citoplasma o "
-"bé elimina alguns orgànuls."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"A mode de curiositat, al planeta Terra, els organismes procariotes tenen "
-"unes estructures anomenades Biocompartiments que actuen com orgànuls. En "
-"realitat, s'anomenen Orgànuls Polihèdrics."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-"A mode de curiositat, els Metabolosomes són el que s'anomena Orgànuls "
-"Polihèdrics."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-"Un petit consell, de vegades és millor fugir ràpidament de les altres "
-"cèl·lules."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Recorda que, si et creues amb una cèl·lula almenys dues vegades més petita "
-"que tu, la pots engolir per alimentar-te'n."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Vés amb compte. Els bacteris, malgrat ser molt petits, poden resultar "
-"perillosos. Alguns t'atacaran agressivament per devorar-te sense pensar-"
-"s'ho dues vegades!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Un petit consell, si caçes altres espècies i no vas amb compte, es poden "
-"extingir. També es poden extingir si són caçades per altres espècies "
-"depredadores."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "ÉSSERS LLEFISCOSOS!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
-"Smeltal the meltal: frase satírica en anglès, amb un lèxic deformat a "
-"propòsit, que vol dir \"Fondre els metalls\"."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "No obstant, aquestes cèl·lules de color blau."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Un petit consell: els diferents Biomes no són tan sols diferents fons, "
-"sinó que en cadascun hi ha diferents proporcions de compostos."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Un petit consell: com més Flagels tinguis, més ràpid et podràs moure, però "
-"també més ATP consumiràs"
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"Un petit consell: no només et pots empassar cèl·lules, sinó també trossos "
-"de Ferro."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Un petit consell: prepara bé la teva cèl·lula abans d'afegir-li un Nucli. "
-"Els Nuclis són cars i consumeixen una gran quantitat d'ATP."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"A mode de curiositat, sabies que hi ha més de 8000 espècies d'organismes "
-"ciliats al planeta Terra?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"A mode de curiositat, l'Stentor és un ciliat que es pot estendre per tal "
-"d'atrapar preses amb una boca amb forma de trompeta. Mitjançant Cilis, "
-"genera corrents d'aigua que atrapen a les preses."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' "
-"fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran "
-"implementades al joc."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Un petit consell: vés amb compte amb les cèl·lules més grans que la teva, "
-"no és gens divertit ser engolit per una d'aquestes bestioles."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"L'equip de so de Thrive ha composat moltes cançons, algunes de les quals "
-"encara no s'han afegit al joc. No obstant, les pots escoltar, i fins i tot "
-"veure emissions en directe al canal de YouTube 'Oliver Lugg'."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et podràs "
-"empassar fins i tot el trossos de ferro més grans del joc."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive representa una simulació d'un planeta alienígena. Per tant, la "
-"majoria de criatures que vagis trobant, estaran emparentades i mostraran "
-"similituds amb d'altres espècies degut al procés d'evolució. Intenta "
-"identificar-les!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"A mode de curiositat, l'equip de Thrive fa podcasts en directe cada cert "
-"temps. Estigues amatent i no te'n perdis ni un!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-"A mode de curiositat, Thrive està essent desenvolupat amb el motor de "
-"videojoc de codi obert anomenat Godot!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"A mode de curiositat, un dels primers prototips jugables d'aquest joc va "
-"ser desenvolupat pel nostre gran programador untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -605,44 +240,44 @@ msgid "EPIPELAGIC"
 msgstr "Zona epipelàgica"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:168
+#: ../simulation_parameters/microbe_stage/biomes.json:395
+#: ../simulation_parameters/microbe_stage/biomes.json:542
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1509
+#: ../simulation_parameters/microbe_stage/biomes.json:1674
+#: ../simulation_parameters/microbe_stage/biomes.json:1821
 msgid "FLOATING_HAZARD"
 msgstr "Perill flotant"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:185
+#: ../simulation_parameters/microbe_stage/biomes.json:412
+#: ../simulation_parameters/microbe_stage/biomes.json:559
+#: ../simulation_parameters/microbe_stage/biomes.json:782
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1236
+#: ../simulation_parameters/microbe_stage/biomes.json:1379
+#: ../simulation_parameters/microbe_stage/biomes.json:1526
+#: ../simulation_parameters/microbe_stage/biomes.json:1691
+#: ../simulation_parameters/microbe_stage/biomes.json:1838
 msgid "SMALL_IRON_CHUNK"
 msgstr "Petit tros de Ferro"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:300
+#: ../simulation_parameters/microbe_stage/biomes.json:447
+#: ../simulation_parameters/microbe_stage/biomes.json:594
+#: ../simulation_parameters/microbe_stage/biomes.json:817
+#: ../simulation_parameters/microbe_stage/biomes.json:1044
+#: ../simulation_parameters/microbe_stage/biomes.json:1271
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1579
+#: ../simulation_parameters/microbe_stage/biomes.json:1726
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "BIG_IRON_CHUNK"
 msgstr "Gran tros de Ferro"
 
@@ -650,51 +285,51 @@ msgstr "Gran tros de Ferro"
 msgid "VOLCANIC_VENT"
 msgstr "Fissura volcànica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:220
+#: ../simulation_parameters/microbe_stage/biomes.json:617
+#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:1067
+#: ../simulation_parameters/microbe_stage/biomes.json:1896
 msgid "MARINE_SNOW"
 msgstr "Neu marina"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:369
 msgid "TIDEPOOL"
 msgstr "Toll o bassa de marea"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:516
 msgid "BATHYPELAGIC"
 msgstr "Zona batipelàgica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:743
 msgid "ABYSSOPELAGIC"
 msgstr "Zona abissal"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:966
 msgid "MESOPELAGIC"
 msgstr "Zona mesopelàgica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
 msgstr "Zona costanera"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
 msgstr "Cova submarina"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1483
 msgid "ICESHELF"
 msgstr "Plataforma de gel"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "ICESHARD"
 msgstr "Fragment de gel"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
 msgid "ESTUARY"
 msgstr "Estuari"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1795
 msgid "SEA_FLOOR"
 msgstr "Llit marí"
 
@@ -704,25 +339,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3038
 msgid "AMMONIA"
 msgstr "Amoníac"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3109
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3003
 msgid "HYDROGEN_SULFIDE"
 msgstr "Àcid Sulfhídric"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3073
 msgid "GLUCOSE"
 msgstr "Glucosa"
 
@@ -733,28 +368,28 @@ msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3144
 msgid "IRON"
 msgstr "Ferro"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2839
 msgid "OXYGEN"
 msgstr "Oxigen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2892
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2893
 msgid "CARBON_DIOXIDE"
 msgstr "Diòxid de Carboni"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
 msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2719
 msgid "SUNLIGHT"
 msgstr "Llum solar"
 
@@ -1681,7 +1316,7 @@ msgid "SAVE_GAME"
 msgstr "Guardar la partida"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
 msgid "STATISTICS"
 msgstr "Estadístiques"
 
@@ -1714,7 +1349,7 @@ msgstr "{0} K"
 msgid "PER_SECOND_SLASH"
 msgstr "/segon"
 
-#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
@@ -2278,7 +1913,7 @@ msgstr ""
 "eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2656
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Temperatura"
@@ -2383,8 +2018,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Pressió"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2327
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2963
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "COMPOUNDS"
 msgstr "Compostos"
@@ -2550,95 +2185,95 @@ msgstr "Fluidesa / Rigidesa"
 msgid "COLOUR"
 msgstr "Color"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1801
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l'Espècie..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1837
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCEL·LAR ACCIÓ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1850
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRMAR"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1860
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1861
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Equilibri d'ATP Negatiu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1872
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1873
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "El teu Microbi no consumeix més ATP que no pas pot arribar a produïr!\n"
 "Vols continuar?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1883
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1884
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Orgànuls Desconnectats"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1896
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Hi ha orgànuls que no han estat físicament connectats a la resta.\n"
 "Siusplau, connecta tots els orgànuls o bé desfés els teus canvis."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1996
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2008
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2009
 msgid "FOOD_CHAIN"
 msgstr "Cadena Alimentària o Tròfica"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2021
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2022
 msgid "TIMELINE"
 msgstr "Cronologia"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2074
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2075
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultats de l'algorisme Auto-Evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2094
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efectes externs:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2151
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2152
 msgid "SPECIES_POPULATION"
 msgstr "Població de les Espècies"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2184
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2614
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2185
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2615
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condicions Físiques"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2798
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gasos Atmosfèrics"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2381
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2382
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3307
 msgid "NEXT_CAPITAL"
 msgstr "SEGÜENT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2496
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2497
 msgid "SELECT_A_PATCH"
 msgstr "Selecciona un Indret per a veure'n els detalls"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2531
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2532
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "INDRET ACTUAL"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
 msgid "PRESSURE"
 msgstr "Pressió"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3223
 msgid "SPECIES_PRESENT"
 msgstr "Espècies presents"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3280
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moure a aquest Indret"
 
@@ -3218,6 +2853,319 @@ msgstr ""
 "\n"
 "Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia "
 "cèl·lula o pressionar la tecla per desunir-les a totes."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Fes servir les tecles W,A,S,D i el ratolí per moure't per la pantalla. "
+#~ "Clica la tecla E per a disparar la toxina OxyToxy NT; per fer-ho, cal "
+#~ "que tinguis un vacúol de toxines. Clica la tecla G per a activar el "
+#~ "mode d'engolir."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "La vostra cèl·lula fa servir els nucleòtids ATP com a font d'energia; "
+#~ "si se li n'esgoten totes les reserves, es morirà."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Per tal de desbloquejar l'editor i reproduïr-vos, heu de recol·lectar "
+#~ "Amoníac (núvols de color taronja) i Fosfats (núvols de color violeta)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "També pots engolir cèl·lules, bocins de cèl·lules i trossos de ferro, "
+#~ "sempre que siguin més petits que la teva cèl·lula. Per fer-ho, clica la "
+#~ "tecla G per a activar el mode d'engolir. Això farà que gastis més ATP i "
+#~ "que et moguis més a poc a poc. No t'oblidis, per tant, de tornar a "
+#~ "clicar la tecla G una altra vegada per a desactivar el mode d'engolir."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "L'osmoregulació consumeix molt ATP. Per tant, com més gran sigui la "
+#~ "teva cèl·lula, més orgànuls (com els Mitocondris) o proteïnes (com el "
+#~ "Metabolosoma i la Rusticianina) o citoplasma necessitaràs per tal de no "
+#~ "perdre ATP quan estigueu quiets."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "A l'editor hi ha un munt d'Orgànuls que pots fer servir per "
+#~ "evolucionar; un munt de possibilitats jugables."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Els núvols que et pots trobar contenen els següents compostos:\n"
+#~ "\n"
+#~ "Blanc - Glucosa\n"
+#~ "Groc - Àcid Sulfhídric\n"
+#~ "Taronja - Amoníac\n"
+#~ "Violeta - Fosfats\n"
+#~ "Marró bru - Ferro\n"
+#~ "\n"
+#~ "La Glucosa produeix ATP"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "L'Àcid Sulfhídric pot ser transformat en Glucosa mitjançant "
+#~ "Quimioplasts i Proteïnes Quimiosintetitzadores. El Ferro pot ser "
+#~ "transformat en ATP mitjançant Rusticianina."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en "
+#~ "2. Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr ""
+#~ "Per a la versió actual del joc, si la teva població baixa fins a 0 "
+#~ "t'hauràs extingit."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "Però si sobrevius durant 20 generacions i la teva població té més de "
+#~ "300 individus, hauràs guanyat el joc actual. Després de guanyar, "
+#~ "apareixerà una finestreta d'enhorabona i, després, podràs seguir jugant."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar "
+#~ "en cap moment. Cada vegada que entris a l'editor, ells també faran un "
+#~ "salt evolutiu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular "
+#~ "on les cèl·lules comparteixen els compostos que absorbeixen i "
+#~ "produeixen amb les altres. Per poder unir-te a una altra cèl·lula, has "
+#~ "d'aconseguir l'orgànul \"agents d'unió\", entrar en contacte amb "
+#~ "l'altra cèl·lula i, tot seguit, entrar en el \"mode d'unió\". Només et "
+#~ "pots unir a cèl·lules de la teva espècie. Mentre formis part d'una "
+#~ "colònia, no et pots reproduïr i entrar a l'editor (de moment). Per "
+#~ "entrar a l'editor, un cop hagis recollit prou compostos hauràs "
+#~ "d'abandonar la teva colònia. Les grans colònies de cèl·lules són la via "
+#~ "per a esdevenir un organisme multicel·lular (però encara no ha estat "
+#~ "implementat al joc)."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Estructures procariòtiques\n"
+#~ "\n"
+#~ "Metabolosomes: Produeixen ATP a partir de Glucosa\n"
+#~ "\n"
+#~ "Proteïnes Quimiosintetitzadores: Produeixen una petita quantitat de "
+#~ "Glucosa, la meitat respecte a un Quimioplast, a partir d'Àcid "
+#~ "Sulfhídric. També duu a terme el procés de Glicòlisi. A l'editor ocupa "
+#~ "1 Hexàgon\n"
+#~ "\n"
+#~ "Tilacoide: Produeixen una petita quantitat de Glucosa, una tercera part "
+#~ "respecte a un Cloroplast. També duu a terme el procés de Glicòlisi. A "
+#~ "l'editor ocupa 1 Hexàgon\n"
+#~ "\n"
+#~ "Rusticianina: Produeix ATP a partir de Ferro\n"
+#~ "\n"
+#~ "Nitrogenasa: Produeix Amoníac, mitjançant un procés anaeròbic, a partir "
+#~ "de l'ATP i del Nitrogen ambiental\n"
+#~ "\n"
+#~ "Citoplasma: Permet, fins a un cert límit, emmagatzemar recursos a "
+#~ "l'interior de la cèl·lula. També duu a terme el procés de Glicòlisi"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Orgànuls externs\n"
+#~ "\n"
+#~ "Flagel: Fa que la teva cèl·lula sigui més ràpida. Consumeix ATP\n"
+#~ "\n"
+#~ "Pilus: Estructura per punxar altres cèl·lules"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Orgànuls adherits a la membrana\n"
+#~ "\n"
+#~ "Nucli: Ocupa 11 hexàgons i permet desbloquejar la resta d'orgànuls "
+#~ "adherits a la membrana. A més a més, fa que la teva cèl·lula es faci "
+#~ "més grossa per un factor de 2. (Només es pot col·locar una vegada)\n"
+#~ "\n"
+#~ "Agent d'Unió: Permet ajuntar-se amb altres cèl·lules\n"
+#~ "\n"
+#~ "Mitocondri: Produeix ATP a partir de Glucosa i Oxigen (O2) atmosfèric. "
+#~ "És molt més eficient que no pas el Citoplasma\n"
+#~ "\n"
+#~ "Cloroplast: Produeix Glucosa a partir de Llum solar i Diòxid de Carboni "
+#~ "(CO2) atmosfèric\n"
+#~ "\n"
+#~ "Quimioplast: Produeix Glucosa a partir d'Àcid Sulfhídric\n"
+#~ "\n"
+#~ "Plastidi de Fixació de Nitrogen: Produeix Amoníac a partir d'ATP i "
+#~ "Nitrogen (N2) i Oxigen (O2) atmosfèric\n"
+#~ "\n"
+#~ "Vacúol: Emmagatzema 15 unitats de qualsevol compost recol·lectat\n"
+#~ "\n"
+#~ "Vacúol de Toxines: Produeix toxines (anomenades OxyToxy NT)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "A cada generació pots invertir fins a 100 Punts de Mutació (MP, per les "
+#~ "seves sigles en Anglès). Qualsevol canvi (mutació) que facis a la teva "
+#~ "cèl·lula et costarà una certa quantitat d'aquests MP. Més concretament, "
+#~ "gastaràs Punts de Mutació tant si afegeixes com si elimines qualsevol "
+#~ "orgànul. No obstant, pots eliminar qualsevol orgànul que hagis "
+#~ "col·locat en la sessió d'edició actual sense cap cost. Pots eliminar "
+#~ "qualsevol orgànul tot fent-hi clic dret a sobre amb el ratolí. Pots fer "
+#~ "girar els orgànuls per canviar-ne la orientació mitjançant les tecles A "
+#~ "i D."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on "
+#~ "podràs fer canvis a la teva espècie (afegir, moure o treure orgànuls) "
+#~ "per tal de millorar-la. Cada sessió de l'editor de microbi representa "
+#~ "100 milions d'anys d'evolució."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr ""
+#~ "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "A mode de curiositat, la relació entre les cèl·lules de l'espècie "
+#~ "Didinium i les cèl·lules Paramecium és un exemple típic i clar, que ha "
+#~ "estat estudiat durant dècades, d'una relació entre depredador i presa. "
+#~ "Ara bé, la teva espècie, és l'equivalent de Didinium o de Paramecium? "
+#~ "Ets un depredador, o bé la presa?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies "
+#~ "toxines per a bloquejar-ne d'altres."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "Un petit consell, la Osmoregulació consumeix, cada segon, 1 unitat "
+#~ "d'ATP per nombre d'hexàgons de la teva cèl·lula. Alhora, cada hexàgon "
+#~ "de citoplasma produeix 5 unitats d'ATP cada segon. Per tant, si estas "
+#~ "perdent ATP degut a la Osmoregulació, afegeix un parell d'hexàgons de "
+#~ "citoplasma o bé elimina alguns orgànuls."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "A mode de curiositat, al planeta Terra, els organismes procariotes "
+#~ "tenen unes estructures anomenades Biocompartiments que actuen com "
+#~ "orgànuls. En realitat, s'anomenen Orgànuls Polihèdrics."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr ""
+#~ "A mode de curiositat, els Metabolosomes són el que s'anomena Orgànuls "
+#~ "Polihèdrics."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr ""
+#~ "Un petit consell, de vegades és millor fugir ràpidament de les altres "
+#~ "cèl·lules."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr ""
+#~ "Recorda que, si et creues amb una cèl·lula almenys dues vegades més "
+#~ "petita que tu, la pots engolir per alimentar-te'n."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "Vés amb compte. Els bacteris, malgrat ser molt petits, poden resultar "
+#~ "perillosos. Alguns t'atacaran agressivament per devorar-te sense pensar-"
+#~ "s'ho dues vegades!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "Un petit consell, si caçes altres espècies i no vas amb compte, es "
+#~ "poden extingir. També es poden extingir si són caçades per altres "
+#~ "espècies depredadores."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "ÉSSERS LLEFISCOSOS!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr ""
+#~ "Smeltal the meltal: frase satírica en anglès, amb un lèxic deformat a "
+#~ "propòsit, que vol dir \"Fondre els metalls\"."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "No obstant, aquestes cèl·lules de color blau."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "Un petit consell: els diferents Biomes no són tan sols diferents fons, "
+#~ "sinó que en cadascun hi ha diferents proporcions de compostos."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "Un petit consell: com més Flagels tinguis, més ràpid et podràs moure, "
+#~ "però també més ATP consumiràs"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr ""
+#~ "Un petit consell: no només et pots empassar cèl·lules, sinó també "
+#~ "trossos de Ferro."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "Un petit consell: prepara bé la teva cèl·lula abans d'afegir-li un "
+#~ "Nucli. Els Nuclis són cars i consumeixen una gran quantitat d'ATP."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr ""
+#~ "A mode de curiositat, sabies que hi ha més de 8000 espècies "
+#~ "d'organismes ciliats al planeta Terra?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "A mode de curiositat, l'Stentor és un ciliat que es pot estendre per "
+#~ "tal d'atrapar preses amb una boca amb forma de trompeta. Mitjançant "
+#~ "Cilis, genera corrents d'aigua que atrapen a les preses."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "A mode de curiositat, les Amebes caçen i atrapen preses amb unes "
+#~ "'potes' fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, "
+#~ "seran implementades al joc."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "Un petit consell: vés amb compte amb les cèl·lules més grans que la "
+#~ "teva, no és gens divertit ser engolit per una d'aquestes bestioles."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "L'equip de so de Thrive ha composat moltes cançons, algunes de les "
+#~ "quals encara no s'han afegit al joc. No obstant, les pots escoltar, i "
+#~ "fins i tot veure emissions en directe al canal de YouTube 'Oliver Lugg'."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et "
+#~ "podràs empassar fins i tot el trossos de ferro més grans del joc."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "Thrive representa una simulació d'un planeta alienígena. Per tant, la "
+#~ "majoria de criatures que vagis trobant, estaran emparentades i "
+#~ "mostraran similituds amb d'altres espècies degut al procés d'evolució. "
+#~ "Intenta identificar-les!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr ""
+#~ "A mode de curiositat, l'equip de Thrive fa podcasts en directe cada "
+#~ "cert temps. Estigues amatent i no te'n perdis ni un!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr ""
+#~ "A mode de curiositat, Thrive està essent desenvolupat amb el motor de "
+#~ "videojoc de codi obert anomenat Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "A mode de curiositat, un dels primers prototips jugables d'aquest joc "
+#~ "va ser desenvolupat pel nostre gran programador untrustedlife!"
 
 #~ msgid "TURNS"
 #~ msgstr "Girs"

@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:39+0700\n"
+"POT-Creation-Date: 2021-08-05 15:55+0800\n"
 "PO-Revision-Date: 2021-07-23 08:24+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -19,340 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"Използвайте „W“, „A“, „S“, „D“ и мишката за да се придвижвате. "
-"Окситоксинът се изстрелва с „Е“, ако имате токсична вакуола. Режимът на "
-"поглъщане се включва с „G“."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Вашата клетка използва АТФ за да оцелее, ако той свърши тя ще умре."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"За възпроизвеждане и влизане в редактора, трябва да съберете амоняк "
-"(оранжевите облаци) и фосфат (лилавите облаци)."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"С натискане на „G“ може да поглъщате другите клетки, клетъчните останки, "
-"бактериите и железните късове, ако те са по-малки от Вас. Това ще отнеме "
-"допълнителен АТФ и ще Ви забави. Когато приключите, не забравяйте да "
-"натиснете „G“ още веднъж за да спрете режима на поглъщане."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Осморегулацията отнема АТФ, това означава, че колкото е по-голяма Вашата "
-"клетка, толкова повече митохондрии, метаболозоми или рустицианин (или "
-"цитоплазма, която извършва процеса гликолиза) ще са Ви нужни за да не "
-"губите АТФ, докато не се движите."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"В редактора имате на разположение различни органели, които дават "
-"възможност за различни стилове на игра."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Видовете облаци са:\n"
-"\n"
-"Бял – Глюкоза\n"
-"Жълт – Сероводород\n"
-"Оранжев – Амоняк\n"
-"Лилав – Фосфат\n"
-"Ръждивокафяв - Желязо\n"
-"\n"
-"Глюкозата създава АТФ"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"Водородният сулфид може да се превърне в глюкоза чрез хемопласти и "
-"хемосинтезиращи протеини. Желязото може да се превърне в АТФ чрез "
-"рустицианин."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"За възпроизвеждане, органелите на клетката трябва да се разделят на две. "
-"За да го направят, те се нуждаят от амоняк и фосфат."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Ако популацията Ви спадне до нула, Вашите създания ще изчезнат."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Но ако оцелеете в продължение на 20 поколения с популация от 300 индивида, "
-"Вие ще победите. След това ще се появи изскачащ прозорец, който ще се "
-"затвори и играта ще продължи."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Внимавайте, защото Вие не сте единствените, които еволюират. Всеки път, "
-"когато отворите редактора, Вашите съперници също еволюират."
-
-#: ../simulation_parameters/common/help_texts.json:54
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Чрез свързването с други клетки, може да създадете клетъчна колония, в "
-"която клетките споделят химичните съединения помежду си. За да се свържете "
-"с друга клетка, трябва да имате свързващ агент и да сте в режим на "
-"свързване. Може да се свържете само с индивиди от Вашите създания. Засега, "
-"докато сте част от клетъчната колония, възпроизвеждането не е възможно. За "
-"да се възпроизведете, трябва да напуснете клетъчната колония и да съберете "
-"нужните химични съединения. Големите клетъчни колонии са първата стъпка "
-"към многоклетъчните организми, но те са все още в процес на разработка."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Прокариотни структури\n"
-"\n"
-"Метаболозоми: Произвеждат АТФ от глюкоза\n"
-"\n"
-"Хемосинтезиращи протеини: Произвеждат 1/2 от глюкозата, чрез хемопласт от "
-"водороден сулфид и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
-"\n"
-"Тилакоиди: Произвеждат 1/3 от глюкозата като обикновен хлоропласт и "
-"извършват процеса гликолиза, заемат 1 шестоъгълник\n"
-"\n"
-"Рустицианин: Превръща желязото в АТФ\n"
-"\n"
-"Нитрогеназа: Превръща атмософерния азот и АТФ в амоняк, чрез анаеробен "
-"процес\n"
-"\n"
-"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза "
-"(произвежда малки количества АТФ)"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Външни органели\n"
-"\n"
-"Флагела: Осигурява по-бързо движение на клетката, използвайки АТФ\n"
-"\n"
-"Пили: Използва се за пробождане на другите клетки"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Вътрешни органели\n"
-"\n"
-"Ядро: Заема 11 шестоъгълника и позволява използването на другите вътрешни "
-"органели. Също така, удвоява размера на клетката (може да се сложи само "
-"веднъж)\n"
-"\n"
-"Свързващ агент: Позволява свързването с други клетки\n"
-"\n"
-"Митохондрия: Произвежда АТФ, чрез глюкоза и атмосферен O2, много по-"
-"ефективно от цитоплазмата\n"
-"\n"
-"Хлоропласт: Създава глюкоза, чрез слънчева светлина и атмосферен СО2\n"
-"\n"
-"Хемопласт: Създава глюкоза от сероводород\n"
-"\n"
-"Пластид за азотна фиксация: Създава амоняк от АТФ, атмосферен азот и "
-"кислород\n"
-"\n"
-"Вакуола: Съхранява до 15 хранителни вещества\n"
-"\n"
-"Токсични вакуоли: Произвеждат токсини, известни като окситоксини"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Всяко поколение разполага със 100 мутационни точки (МТ), всяка негова "
-"промяна (или мутация) струва определен брой МТ. Добавянето или "
-"премахването на органели струва МТ, но премахването на органели, които са "
-"добавени в текущата сесия на редактора, връща тяхната стойност. Може да "
-"преместите или премахнете органелите като натиснете с десния бутон на "
-"мишката върху тях. Може да ги завъртите, преди добавяне, чрез натискане на "
-"„A“ или „D“."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"По време на възпроизвеждане, микробният редактор ще бъде отворен, в него "
-"може да променяте Вашето създание (като добавяте, премествате или "
-"премахвате органели) за да увеличите шанса му за оцеляване. Всяко отваряне "
-"на редактора е равно на 100 милиона години еволюция."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и "
-"плячка. Вие от коя страна сте – ловецът или плячката?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Ето един съвет – токсините може да се използват за да спрат токсините на "
-"противника, ако сте достатъчно бързи, разбира се."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Ето един съвет – осморегулацията струва 1 АТФ на секунда за всеки "
-"шестоъгълник на Вашата клетка, всеки празен шестоъгълник от цитоплазма "
-"създава 5 АТФ на секунда, с други думи, ако губите АТФ по време на "
-"осморегулация, просто добавете няколко празни шестоъгълника цитоплазма или "
-"премахнете някои органели."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Забавен факт е, че истинските прокариоти имат биоотделения, които "
-"функционират като органели и всъщност се наричат многостенни органели."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Забавен факт е, че метаболозомата представлява многостенен органел."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Ето един съвет – понякога просто бягайте от другите клетки."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Ето един съвет – ако дадена клетка е 1/2 от Вашия размер, може да я "
-"погълнете."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Ето един съвет – бактериите може да са малки, но някои от тях са много "
-"опасни, могат да Ви убият!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Ето един съвет – ако ловувате дадени създания, без да искате, може напълно "
-"да ги унищожите, но не само Вие сте способни на това."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "КАК САМО СЕ ИЗВИВАТ!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Претопете метала."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Ех тези сини клетки."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Ето един съвет – биомите са нещо повече от фонове, химичните съединения в "
-"различните биоми не се появяват по едно и също време."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Ето един съвет – с повече флагели ще се движите по-бързо, бръм, бръм, но "
-"това ще Ви струва повече АТФ"
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Ето един съвет – може да поглъщате дори и железните късове."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Ето един съвет – подгответе се преди да добавите ядрото. Това нещо е адски "
-"скъпо! И не е лесно да се поддържа."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Забавен факт е, че има над 8 000 ресничести създания на нашата планета, а "
-"Вие не го знаехте, нали?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Забавен факт е, че Тромпетът е ресничест вид, който може да се разтяга и "
-"да улавя плячката в устата си, която е с формата на тромпет, създавайки "
-"водно течение чрез своите реснички."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Забавен факт е, че Дидиний е ресничест вид, който ловува чехълчета."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ "
-"от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в "
-"„Thrive“."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Ето един съвет – пазете се от големите клетки и големите бактерии, няма да "
-"е приятно, ако станете част от менюто им."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"„Thrive“ има много мелодии, които все още не са добавени в играта. Може да "
-"ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Ето един съвет – може да поглъщате големите железни късове, ако Вашата "
-"клетка е с размер от 150 шестоъгълника."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"„Thrive“ се развива на извънземна планета, следователно повечето създания, "
-"които ще видите имат общи черти с едно или две определени създания, "
-"благодарение на еволюционният процес, опитайте се да познаете кои са те!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"Забавен факт е, че екипът на „Thrive“ прави аудио конференции от време на "
-"време, може да им хвърлите едно око!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Забавен факт е, че „Thrive“ е базиранa на „Godot“!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Забавен факт е, че един от първите работещи прототипи на играта е създаден "
-"от нашия страхотен програмист, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -574,44 +240,44 @@ msgid "EPIPELAGIC"
 msgstr "Епипелагичен"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:168
+#: ../simulation_parameters/microbe_stage/biomes.json:395
+#: ../simulation_parameters/microbe_stage/biomes.json:542
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1509
+#: ../simulation_parameters/microbe_stage/biomes.json:1674
+#: ../simulation_parameters/microbe_stage/biomes.json:1821
 msgid "FLOATING_HAZARD"
 msgstr "Опасен обект"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:185
+#: ../simulation_parameters/microbe_stage/biomes.json:412
+#: ../simulation_parameters/microbe_stage/biomes.json:559
+#: ../simulation_parameters/microbe_stage/biomes.json:782
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1236
+#: ../simulation_parameters/microbe_stage/biomes.json:1379
+#: ../simulation_parameters/microbe_stage/biomes.json:1526
+#: ../simulation_parameters/microbe_stage/biomes.json:1691
+#: ../simulation_parameters/microbe_stage/biomes.json:1838
 msgid "SMALL_IRON_CHUNK"
 msgstr "Малък железен къс"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:300
+#: ../simulation_parameters/microbe_stage/biomes.json:447
+#: ../simulation_parameters/microbe_stage/biomes.json:594
+#: ../simulation_parameters/microbe_stage/biomes.json:817
+#: ../simulation_parameters/microbe_stage/biomes.json:1044
+#: ../simulation_parameters/microbe_stage/biomes.json:1271
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1579
+#: ../simulation_parameters/microbe_stage/biomes.json:1726
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "BIG_IRON_CHUNK"
 msgstr "Голям железен къс"
 
@@ -619,51 +285,51 @@ msgstr "Голям железен къс"
 msgid "VOLCANIC_VENT"
 msgstr "Вулканичен отвор"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:220
+#: ../simulation_parameters/microbe_stage/biomes.json:617
+#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:1067
+#: ../simulation_parameters/microbe_stage/biomes.json:1896
 msgid "MARINE_SNOW"
 msgstr "Морски сняг"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:369
 msgid "TIDEPOOL"
 msgstr "Тидален басейн"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:516
 msgid "BATHYPELAGIC"
 msgstr "Батипелагичен"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:743
 msgid "ABYSSOPELAGIC"
 msgstr "Абисопелагичен"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:966
 msgid "MESOPELAGIC"
 msgstr "Мезопелагичен"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
 msgstr "Крайбрежен"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
 msgstr "Подводна пещера"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1483
 msgid "ICESHELF"
 msgstr "Шелфов ледник"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "ICESHARD"
 msgstr "Леден къс"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
 msgid "ESTUARY"
 msgstr "Естуар"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1795
 msgid "SEA_FLOOR"
 msgstr "Морско дъно"
 
@@ -673,25 +339,25 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3038
 msgid "AMMONIA"
 msgstr "Амоняк"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3109
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3003
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3073
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -702,28 +368,28 @@ msgstr "Окситоксин"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3144
 msgid "IRON"
 msgstr "Желязо"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2839
 msgid "OXYGEN"
 msgstr "Кислород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2892
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2893
 msgid "CARBON_DIOXIDE"
 msgstr "Въглероден диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2719
 msgid "SUNLIGHT"
 msgstr "Слънчева светлина"
 
@@ -1642,7 +1308,7 @@ msgid "SAVE_GAME"
 msgstr "Запазване"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -1675,7 +1341,7 @@ msgstr "{0} хил"
 msgid "PER_SECOND_SLASH"
 msgstr "/в секунда"
 
-#: ../src/gui_common/CompoundAmount.cs:166
+#: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
@@ -2226,7 +1892,7 @@ msgstr ""
 "трябва да изключите светлинните ефекти."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2656
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Температура"
@@ -2331,8 +1997,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2327
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2963
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
@@ -2498,95 +2164,95 @@ msgstr "Мека / Твърда"
 msgid "COLOUR"
 msgstr "Цвят"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1801
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Наименование на създанието..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1837
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТКАЗ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1850
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
 msgid "CONFIRM_CAPITAL"
 msgstr "ГОТОВО"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1860
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1861
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицателен баланс на АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1872
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1873
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Вашият микроб не произвежда достатъчно АТФ за да оцелее!\n"
 "Искате ли да продължите?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1883
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1884
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Несвързани органели"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1896
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Има органели, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1996
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2008
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2009
 msgid "FOOD_CHAIN"
 msgstr "Хранителна верига"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2021
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2022
 msgid "TIMELINE"
 msgstr "Хронология"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2074
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2075
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2094
 msgid "EXTERNAL_EFFECTS"
 msgstr "Странични ефекти:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2151
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2152
 msgid "SPECIES_POPULATION"
 msgstr "Популация на създанията"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2184
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2614
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2185
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2615
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физически условия"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2798
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферни газове"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2381
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2382
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3307
 msgid "NEXT_CAPITAL"
 msgstr "НАПРЕД"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2496
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2497
 msgid "SELECT_A_PATCH"
 msgstr "Изберете зона"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2531
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2532
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
 msgid "PRESSURE"
 msgstr "Налягане"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3223
 msgid "SPECIES_PRESENT"
 msgstr "Настоящи създания"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3280
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Преселване"
 
@@ -3110,6 +2776,291 @@ msgstr ""
 "\n"
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
 "Вашата клетка или да натиснете съответния клавиш."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Използвайте „W“, „A“, „S“, „D“ и мишката за да се придвижвате. "
+#~ "Окситоксинът се изстрелва с „Е“, ако имате токсична вакуола. Режимът на "
+#~ "поглъщане се включва с „G“."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Вашата клетка използва АТФ за да оцелее, ако той свърши тя ще умре."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "За възпроизвеждане и влизане в редактора, трябва да съберете амоняк "
+#~ "(оранжевите облаци) и фосфат (лилавите облаци)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "С натискане на „G“ може да поглъщате другите клетки, клетъчните "
+#~ "останки, бактериите и железните късове, ако те са по-малки от Вас. Това "
+#~ "ще отнеме допълнителен АТФ и ще Ви забави. Когато приключите, не "
+#~ "забравяйте да натиснете „G“ още веднъж за да спрете режима на поглъщане."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Осморегулацията отнема АТФ, това означава, че колкото е по-голяма "
+#~ "Вашата клетка, толкова повече митохондрии, метаболозоми или рустицианин "
+#~ "(или цитоплазма, която извършва процеса гликолиза) ще са Ви нужни за да "
+#~ "не губите АТФ, докато не се движите."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "В редактора имате на разположение различни органели, които дават "
+#~ "възможност за различни стилове на игра."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Видовете облаци са:\n"
+#~ "\n"
+#~ "Бял – Глюкоза\n"
+#~ "Жълт – Сероводород\n"
+#~ "Оранжев – Амоняк\n"
+#~ "Лилав – Фосфат\n"
+#~ "Ръждивокафяв - Желязо\n"
+#~ "\n"
+#~ "Глюкозата създава АТФ"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "Водородният сулфид може да се превърне в глюкоза чрез хемопласти и "
+#~ "хемосинтезиращи протеини. Желязото може да се превърне в АТФ чрез "
+#~ "рустицианин."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "За възпроизвеждане, органелите на клетката трябва да се разделят на "
+#~ "две. За да го направят, те се нуждаят от амоняк и фосфат."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Ако популацията Ви спадне до нула, Вашите създания ще изчезнат."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "Но ако оцелеете в продължение на 20 поколения с популация от 300 "
+#~ "индивида, Вие ще победите. След това ще се появи изскачащ прозорец, "
+#~ "който ще се затвори и играта ще продължи."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "Внимавайте, защото Вие не сте единствените, които еволюират. Всеки път, "
+#~ "когато отворите редактора, Вашите съперници също еволюират."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "Чрез свързването с други клетки, може да създадете клетъчна колония, в "
+#~ "която клетките споделят химичните съединения помежду си. За да се "
+#~ "свържете с друга клетка, трябва да имате свързващ агент и да сте в "
+#~ "режим на свързване. Може да се свържете само с индивиди от Вашите "
+#~ "създания. Засега, докато сте част от клетъчната колония, "
+#~ "възпроизвеждането не е възможно. За да се възпроизведете, трябва да "
+#~ "напуснете клетъчната колония и да съберете нужните химични съединения. "
+#~ "Големите клетъчни колонии са първата стъпка към многоклетъчните "
+#~ "организми, но те са все още в процес на разработка."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Прокариотни структури\n"
+#~ "\n"
+#~ "Метаболозоми: Произвеждат АТФ от глюкоза\n"
+#~ "\n"
+#~ "Хемосинтезиращи протеини: Произвеждат 1/2 от глюкозата, чрез хемопласт "
+#~ "от водороден сулфид и извършват процеса гликолиза, заемат 1 "
+#~ "шестоъгълник\n"
+#~ "\n"
+#~ "Тилакоиди: Произвеждат 1/3 от глюкозата като обикновен хлоропласт и "
+#~ "извършват процеса гликолиза, заемат 1 шестоъгълник\n"
+#~ "\n"
+#~ "Рустицианин: Превръща желязото в АТФ\n"
+#~ "\n"
+#~ "Нитрогеназа: Превръща атмософерния азот и АТФ в амоняк, чрез анаеробен "
+#~ "процес\n"
+#~ "\n"
+#~ "Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза "
+#~ "(произвежда малки количества АТФ)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Външни органели\n"
+#~ "\n"
+#~ "Флагела: Осигурява по-бързо движение на клетката, използвайки АТФ\n"
+#~ "\n"
+#~ "Пили: Използва се за пробождане на другите клетки"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Вътрешни органели\n"
+#~ "\n"
+#~ "Ядро: Заема 11 шестоъгълника и позволява използването на другите "
+#~ "вътрешни органели. Също така, удвоява размера на клетката (може да се "
+#~ "сложи само веднъж)\n"
+#~ "\n"
+#~ "Свързващ агент: Позволява свързването с други клетки\n"
+#~ "\n"
+#~ "Митохондрия: Произвежда АТФ, чрез глюкоза и атмосферен O2, много по-"
+#~ "ефективно от цитоплазмата\n"
+#~ "\n"
+#~ "Хлоропласт: Създава глюкоза, чрез слънчева светлина и атмосферен СО2\n"
+#~ "\n"
+#~ "Хемопласт: Създава глюкоза от сероводород\n"
+#~ "\n"
+#~ "Пластид за азотна фиксация: Създава амоняк от АТФ, атмосферен азот и "
+#~ "кислород\n"
+#~ "\n"
+#~ "Вакуола: Съхранява до 15 хранителни вещества\n"
+#~ "\n"
+#~ "Токсични вакуоли: Произвеждат токсини, известни като окситоксини"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Всяко поколение разполага със 100 мутационни точки (МТ), всяка негова "
+#~ "промяна (или мутация) струва определен брой МТ. Добавянето или "
+#~ "премахването на органели струва МТ, но премахването на органели, които "
+#~ "са добавени в текущата сесия на редактора, връща тяхната стойност. Може "
+#~ "да преместите или премахнете органелите като натиснете с десния бутон "
+#~ "на мишката върху тях. Може да ги завъртите, преди добавяне, чрез "
+#~ "натискане на „A“ или „D“."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "По време на възпроизвеждане, микробният редактор ще бъде отворен, в "
+#~ "него може да променяте Вашето създание (като добавяте, премествате или "
+#~ "премахвате органели) за да увеличите шанса му за оцеляване. Всяко "
+#~ "отваряне на редактора е равно на 100 милиона години еволюция."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и "
+#~ "плячка. Вие от коя страна сте – ловецът или плячката?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "Ето един съвет – токсините може да се използват за да спрат токсините "
+#~ "на противника, ако сте достатъчно бързи, разбира се."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "Ето един съвет – осморегулацията струва 1 АТФ на секунда за всеки "
+#~ "шестоъгълник на Вашата клетка, всеки празен шестоъгълник от цитоплазма "
+#~ "създава 5 АТФ на секунда, с други думи, ако губите АТФ по време на "
+#~ "осморегулация, просто добавете няколко празни шестоъгълника цитоплазма "
+#~ "или премахнете някои органели."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "Забавен факт е, че истинските прокариоти имат биоотделения, които "
+#~ "функционират като органели и всъщност се наричат многостенни органели."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr ""
+#~ "Забавен факт е, че метаболозомата представлява многостенен органел."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Ето един съвет – понякога просто бягайте от другите клетки."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr ""
+#~ "Ето един съвет – ако дадена клетка е 1/2 от Вашия размер, може да я "
+#~ "погълнете."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "Ето един съвет – бактериите може да са малки, но някои от тях са много "
+#~ "опасни, могат да Ви убият!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "Ето един съвет – ако ловувате дадени създания, без да искате, може "
+#~ "напълно да ги унищожите, но не само Вие сте способни на това."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "КАК САМО СЕ ИЗВИВАТ!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Претопете метала."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Ех тези сини клетки."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "Ето един съвет – биомите са нещо повече от фонове, химичните съединения "
+#~ "в различните биоми не се появяват по едно и също време."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "Ето един съвет – с повече флагели ще се движите по-бързо, бръм, бръм, "
+#~ "но това ще Ви струва повече АТФ"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Ето един съвет – може да поглъщате дори и железните късове."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "Ето един съвет – подгответе се преди да добавите ядрото. Това нещо е "
+#~ "адски скъпо! И не е лесно да се поддържа."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr ""
+#~ "Забавен факт е, че има над 8 000 ресничести създания на нашата планета, "
+#~ "а Вие не го знаехте, нали?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "Забавен факт е, че Тромпетът е ресничест вид, който може да се разтяга "
+#~ "и да улавя плячката в устата си, която е с формата на тромпет, "
+#~ "създавайки водно течение чрез своите реснички."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr ""
+#~ "Забавен факт е, че Дидиний е ресничест вид, който ловува чехълчета."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "Забавен факт е, че Амебата ловува и хваща плячката си със своите "
+#~ "„крачета“ от цитоплазма, които се наричат псевдоподи, очаквайте ги "
+#~ "скоро и в „Thrive“."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "Ето един съвет – пазете се от големите клетки и големите бактерии, няма "
+#~ "да е приятно, ако станете част от менюто им."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "„Thrive“ има много мелодии, които все още не са добавени в играта. Може "
+#~ "да ги чуете или да гледате как се правят в „YouTube“ канала на Oliver "
+#~ "Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "Ето един съвет – може да поглъщате големите железни късове, ако Вашата "
+#~ "клетка е с размер от 150 шестоъгълника."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "„Thrive“ се развива на извънземна планета, следователно повечето "
+#~ "създания, които ще видите имат общи черти с едно или две определени "
+#~ "създания, благодарение на еволюционният процес, опитайте се да познаете "
+#~ "кои са те!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr ""
+#~ "Забавен факт е, че екипът на „Thrive“ прави аудио конференции от време "
+#~ "на време, може да им хвърлите едно око!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Забавен факт е, че „Thrive“ е базиранa на „Godot“!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "Забавен факт е, че един от първите работещи прототипи на играта е "
+#~ "създаден от нашия страхотен програмист, untrustedlife!"
 
 #~ msgid "TURNS"
 #~ msgstr "Превръща"
