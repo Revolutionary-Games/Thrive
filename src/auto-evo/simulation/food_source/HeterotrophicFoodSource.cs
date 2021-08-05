@@ -59,7 +59,7 @@ public class HeterotrophicFoodSource : IFoodSource
             {
                 if (process.Process.Outputs.ContainsKey(oxytoxy))
                 {
-                    oxytoxyScore += Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                    oxytoxyScore += process.Process.Outputs[oxytoxy] * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
             }
         }
