@@ -378,7 +378,7 @@ public class OptionsMenu : ControlWithInput
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
-        GetSystemInfo();
+        UpdateSystemInfo();
 
         // We're only utilizing the AcceptDialog's auto resize functionality,
         // so hide the default Ok button since it's not needed
@@ -1265,7 +1265,7 @@ public class OptionsMenu : ControlWithInput
         OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
     }
 
-    private void GetSystemInfo()
+    private void UpdateSystemInfo()
     {
         var videoMemoryUsed = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / Constants.MEBIBYTE;
 
