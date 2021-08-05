@@ -514,6 +514,11 @@ public static class Constants
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
 
     /// <summary>
+    ///   Internal Godot name for the default audio output device
+    /// </summary>
+    public const string DEFAULT_AUDIO_OUTPUT_DEVICE_NAME = "Default";
+
+    /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
     public const Formatting SAVE_FORMATTING = Formatting.None;
