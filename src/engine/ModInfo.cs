@@ -61,7 +61,7 @@ public class ModInfo : Resource
     public string EntryFunctionName { get; set; } = "OnModLoaded";
 
     [JsonProperty("Update URL")]
-    public System.Uri UpdateURL { get; set; }
+    public Uri UpdateUrl { get; set; }
 
     [JsonProperty]
     public bool AutoLoad { get; set; }
@@ -80,7 +80,7 @@ public class ModInfo : Resource
     public int IsLatestVersion { get; set; }
 
     // URL to download the latest version of the mod
-    public System.Uri DownloadURL { get; set; }
+    public Uri DownloadUrl { get; set; }
 
     // The index of the mod is loaded in
     public int LoadPosition { get; set; }
@@ -100,9 +100,9 @@ public class ModInfo : Resource
         return Name == item.Name && Location == item.Location && Version == item.Version && Author == item.Author;
     }
 
-    public bool IsValidUpdateURL()
+    public bool IsValidUpdateUrl()
     {
-        return UpdateURL != null && UpdateURL.IsWellFormedOriginalString();
+        return UpdateUrl != null && UpdateUrl.IsWellFormedOriginalString();
     }
 
     /// <summary>

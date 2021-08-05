@@ -14,7 +14,7 @@ public class ModUpdateInfo : Resource
     public string LatestUnstableVersion { get; set; }
 
     [JsonProperty("Download URL")]
-    public System.Uri DownloadURL { get; set; }
+    public Uri DownloadUrl { get; set; }
 
     public override bool Equals(object other)
     {
@@ -25,11 +25,12 @@ public class ModUpdateInfo : Resource
             return false;
         }
 
-        return ThriveVersion == item.ThriveVersion && LatestStableVersion == item.LatestStableVersion && LatestUnstableVersion == item.LatestUnstableVersion && DownloadURL == item.DownloadURL;
+        return ThriveVersion == item.ThriveVersion && LatestStableVersion == item.LatestStableVersion &&
+            LatestUnstableVersion == item.LatestUnstableVersion && DownloadUrl == item.DownloadUrl;
     }
 
     public override int GetHashCode()
     {
-        return (ThriveVersion, LatestStableVersion, LatestUnstableVersion, DownloadURL).GetHashCode();
+        return (ThriveVersion, LatestStableVersion, LatestUnstableVersion, DownloadUrl).GetHashCode();
     }
 }

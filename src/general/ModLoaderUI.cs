@@ -91,6 +91,7 @@ public class ModLoaderUI : Control
 
     [Export]
     public NodePath ModDownloadButtonPath;
+
     [Export]
     public NodePath ModVersionRequesterPath;
 
@@ -264,11 +265,11 @@ public class ModLoaderUI : Control
                 infoButtonContainer.Visible = false;
             }
 
-            if (tempModInfo.UpdateURL != null && tempModInfo.Version != null)
+            if (tempModInfo.UpdateUrl != null && tempModInfo.Version != null)
             {
-                if (tempModInfo.IsLatestVersion == 0 && tempModInfo.IsValidUpdateURL())
+                if (tempModInfo.IsLatestVersion == 0 && tempModInfo.IsValidUpdateUrl())
                 {
-                    var requestCreationStatus = modVersionRequester.Request(tempModInfo.UpdateURL.ToString());
+                    var requestCreationStatus = modVersionRequester.Request(tempModInfo.UpdateUrl.ToString());
                     if (requestCreationStatus == Error.Ok)
                     {
                         currentModUpdateInfo = null;
@@ -276,9 +277,9 @@ public class ModLoaderUI : Control
                         var updateInfo = await GetModUpdateInfo().ConfigureAwait(false);
                         if (updateInfo != null)
                         {
-                            if (updateInfo.DownloadURL != null)
+                            if (updateInfo.DownloadUrl != null)
                             {
-                                tempModInfo.DownloadURL = updateInfo.DownloadURL;
+                                tempModInfo.DownloadUrl = updateInfo.DownloadUrl;
                                 modDownloadButton.Visible = true;
                             }
                             else
@@ -286,7 +287,8 @@ public class ModLoaderUI : Control
                                 modDownloadButton.Visible = false;
                             }
 
-                            if (updateInfo.LatestStableVersion != tempModInfo.Version && updateInfo.LatestUnstableVersion != tempModInfo.Version)
+                            if (updateInfo.LatestStableVersion != tempModInfo.Version &&
+                                updateInfo.LatestUnstableVersion != tempModInfo.Version)
                             {
                                 tempModInfo.IsLatestVersion = -1;
                             }
@@ -306,7 +308,8 @@ public class ModLoaderUI : Control
                 {
                     // Set the color of the label to red
                     modInfoVersion.Modulate = new Color(1, 0, 0);
-                    modInfoVersion.HintTooltip = "You are using an out of date mod.\nPlease download the latest version.";
+                    modInfoVersion.HintTooltip =
+                        "You are using an out of date mod.\nPlease download the latest version.";
                 }
                 else if (tempModInfo.IsLatestVersion == 1)
                 {
@@ -319,7 +322,7 @@ public class ModLoaderUI : Control
                     modInfoVersion.Modulate = new Color(1, 1, 1);
                 }
 
-                if (tempModInfo.DownloadURL != null)
+                if (tempModInfo.DownloadUrl != null)
                 {
                     modDownloadButton.Visible = true;
                 }
@@ -1089,10 +1092,10 @@ public class ModLoaderUI : Control
         }
     }
 
-    private void OnModVersionRequesterRequestCompleted(int result, int response_code, string[] headers, byte[] body)
+    private void OnModVersionRequesterRequestCompleted(int result, int responseCode, string[] headers, byte[] body)
     {
-
-        if (response_code == (int)HTTPClient.ResponseCode.Ok && result == (int)HTTPRequest.Result.Success && headers != null)
+        if (responseCode == (int)HTTPClient.ResponseCode.Ok && result == (int)HTTPRequest.Result.Success &&
+            headers != null)
         {
             var bodyString = Encoding.UTF8.GetString(body);
             currentModUpdateInfo = JsonConvert.DeserializeObject<List<ModUpdateInfo>>(bodyString);
@@ -1103,9 +1106,9 @@ public class ModLoaderUI : Control
     {
         if (currentSelectedMod != null)
         {
-            if (currentSelectedMod.DownloadURL != null)
+            if (currentSelectedMod.DownloadUrl != null)
             {
-                OS.ShellOpen(currentSelectedMod.DownloadURL.ToString());
+                OS.ShellOpen(currentSelectedMod.DownloadUrl.ToString());
             }
         }
     }
