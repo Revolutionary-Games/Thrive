@@ -40,7 +40,7 @@ Code style rules
   - `min`
   - `max`
   - `pos`
-  - `rect` (when related to class names and instances)
+  - `rect` (when related to class names and variables holding instances of those classes)
 
 - Variables and functions are camelCase or PascalCase depending on
   their visibilty. Classes are PascalCase with leading upper
