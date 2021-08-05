@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 15:55+0800\n"
+"POT-Creation-Date: 2021-08-05 16:13+0800\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: Rizky Pramudya <rizkypramudyacj@outlook.co.id>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -19,6 +19,410 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.3.2\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:85
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr ""
+"Tekan W,A,S,D dan mouse untuk bergerak. E untuk menembakkan OksiToksi NT "
+"jika kamu punya vakula toksin. G untuk menyalakan/mematikan mode penelanan "
+"(engulf)."
+
+#: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:88
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr ""
+"Sel kamu menggunakan ATP sebagai sumber energinya, jika habis maka kamu "
+"akan mati."
+
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:91
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr ""
+"Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah "
+"Amonia (Awan Oranye) dan Fosfat (Awan Ungu)."
+
+#: ../simulation_parameters/common/help_texts.json:18
+#: ../simulation_parameters/common/help_texts.json:94
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr ""
+"Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan "
+"potongan sel yang lebih kecil dari sel kamu dengan cara menekan tombol G. "
+"Proses ini membutuhkan ATP dan memperlambat sel kamu. Jangan lupa tekan "
+"lagi G untuk menghentikan penelanan."
+
+#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:97
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr ""
+"Osmoregulasi memerlukan ATP, yang berarti semakin besar sel kamu, semakin "
+"banyak Mitokondria, Metabolosom, atau Rusticyanin (atau sitoplasma, yang "
+"melakukan proses Glikolisis) yang kamu butuhkan agar terhindar dari "
+"kehilangan ATP saat kamu tidak bergerak."
+
+#: ../simulation_parameters/common/help_texts.json:26
+#: ../simulation_parameters/common/help_texts.json:100
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr ""
+"Ada banyak organel di editormu buat kamu kembangkan yang memungkinkan gaya "
+"permainan yang luas."
+
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Jenis-jenis awan senyawa adalah sebagai berikut:\n"
+"\n"
+"Putih - Glukosa\n"
+"Kuning - Hidrogen Sulfida\n"
+"Oranye - Amonia\n"
+"Ungu - Fosfat\n"
+"Coklat Karat - Besi\n"
+"\n"
+"Glukosalah yang membuat ATP"
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:106
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr ""
+"Hidrogen Sulfida dapat dikonversi menjadi glukosa dengan cara melalui "
+"kemoplas yang menjalankan proses kemosintesis protein. Besi dapat "
+"dikonversi menjadi ATP melalui rusticyanin."
+
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:109
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr ""
+"Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi "
+"dua. Diperlukan amonia dan fosfat untuk membelah semua organel menjadi dua."
+
+#: ../simulation_parameters/common/help_texts.json:42
+#: ../simulation_parameters/common/help_texts.json:103
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Untuk saat ini jika populasi turun menjadi nol maka kamu akan punah."
+
+#: ../simulation_parameters/common/help_texts.json:46
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr ""
+"Namun jika kamu dapat bertahan hingga 20 generasi dengan populasi sebesar "
+"300, kamu dianggap telah memenangkan sebuah permainan saat ini, saat kamu "
+"menang sebuah popup muncul dan kamu dapat melanjutkan permainan semau kamu."
+
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:112
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr ""
+"Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar "
+"kamu. Setiap kamu memasuki sesi editor, para kompetitor juga ikut "
+"berkembang."
+
+#: ../simulation_parameters/common/help_texts.json:54
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"Tekan W,A,S,D dan mouse untuk bergerak. E untuk menembakkan OksiToksi NT "
+"jika kamu punya vakula toksin. G untuk menyalakan/mematikan mode penelanan "
+"(engulf)."
+
+#: ../simulation_parameters/common/help_texts.json:62
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Struktur Prokariotik\n"
+"\n"
+"Metabolosom: Menghasilkan ATP dari glukosa\n"
+"\n"
+"Kemosintisasi Protein: Menghasilkan setengah glukosa dari Hidrogen Sulfida "
+"sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
+"\n"
+"Tilakoid: Menghasilkan 1/3 dari jumlah glukosa sebagai kloroplas normal, "
+"tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
+"\n"
+"Rusticyanin: Ubah besi menjadi ATP\n"
+"\n"
+"Nitrogenase: Ubah udara nitrogen dan ATP menjadi amonia secara anaerob\n"
+"\n"
+"Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis "
+"(Menghasilkan sedikit ATP)"
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Organel Eksternal\n"
+"\n"
+"Flagelum: Menggerakkan sel kamu dengan lebih cepat dengan mengonsumsi ATP\n"
+"\n"
+"Pilus: Dapat digunakan untuk menusuk sel lain"
+
+#: ../simulation_parameters/common/help_texts.json:70
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Organel Terikat Membran\n"
+"\n"
+"Nukleus: Memerlukan 11 heksa dan memungkinkan evolusi organel terikat "
+"membran yang juga menggandakan ukuran sel kamu sebesar dua kali lipat. "
+"(Hanya dapat berevolusi sekali saja)\n"
+"\n"
+"Mitokondria: Menghasilkan ATP dari glukosa dan gas CO2. Jauh lebih efisien "
+"dari sitoplasma.\n"
+"\n"
+"Kloroplas: Membuat glukosa dari sinar matahari dan gas CO2.\n"
+"\n"
+"Kemoplas: Membuat glukosa dari Hidrogen Sulfida.\n"
+"\n"
+"Pengikat Nitrogen Plastida: Membuat amonia dari ATP serta atmosfer "
+"Nitrogen dan Oksigen\n"
+"\n"
+"Vakula: Menyimpan senyawa yang dikumpulkan sebesar 15\n"
+"\n"
+"Vakula Toksin: Menghasilkan toksin (Disebut OksiToksi NT)"
+
+#: ../simulation_parameters/common/help_texts.json:74
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr ""
+"Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untuk "
+"digunakan, dan setiap perubahan (atau mutasi) membutuhkan MP sebesar "
+"organel yang kamu tambahkan/lepas. Menambah dan melepas organel juga "
+"membutuhkan MP, namun melepas organel yang sudah ditempatkan di sesi "
+"mutasi saat ini akan mengembalikan MP dari organel tersebut. Kamu bisa "
+"melepas sebuah organel dengan cara mengklik kanan pada organel tersebut. "
+"Kamu bisa memutar organelmu dengan cara mengklik A dan D."
+
+#: ../simulation_parameters/common/help_texts.json:78
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr ""
+"Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat "
+"untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, "
+"memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan "
+"spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili 100 juta tahun "
+"evolusi."
+
+#: ../simulation_parameters/common/help_texts.json:119
+msgid "LOADING_TIP"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#: ../simulation_parameters/common/help_texts.json:126
+msgid "EASTEREGG_MESSAGE_1"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:129
+msgid "EASTEREGG_MESSAGE_2"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
+
+#: ../simulation_parameters/common/help_texts.json:132
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_3"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:135
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_4"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:138
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_5"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:141
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_6"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:144
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_7"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:147
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_8"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:150
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_9"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:153
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_10"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:156
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_11"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:159
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_12"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:162
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_13"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:165
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_14"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:168
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_15"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:171
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_16"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:174
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_17"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:177
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_18"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:180
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_19"
+msgstr ""
+"Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
+"hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, "
+"sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau "
+"Mangsa?"
+
+#: ../simulation_parameters/common/help_texts.json:183
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_20"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
+
+#: ../simulation_parameters/common/help_texts.json:186
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_21"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
+
+#: ../simulation_parameters/common/help_texts.json:189
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_22"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
+
+#: ../simulation_parameters/common/help_texts.json:192
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_23"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
+
+#: ../simulation_parameters/common/help_texts.json:195
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_24"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
+
+#: ../simulation_parameters/common/help_texts.json:198
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_25"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
+
+#: ../simulation_parameters/common/help_texts.json:201
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_26"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
+
+#: ../simulation_parameters/common/help_texts.json:204
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_27"
+msgstr ""
+"Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
+"sekitarmu jika kamu cepat menangkisnya."
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -2460,172 +2864,3 @@ msgstr ""
 "Tekan W,A,S,D dan mouse untuk bergerak. E untuk menembakkan OksiToksi NT "
 "jika kamu punya vakula toksin. G untuk menyalakan/mematikan mode penelanan "
 "(engulf)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Tekan W,A,S,D dan mouse untuk bergerak. E untuk menembakkan OksiToksi "
-#~ "NT jika kamu punya vakula toksin. G untuk menyalakan/mematikan mode "
-#~ "penelanan (engulf)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Sel kamu menggunakan ATP sebagai sumber energinya, jika habis maka kamu "
-#~ "akan mati."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah "
-#~ "Amonia (Awan Oranye) dan Fosfat (Awan Ungu)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan "
-#~ "potongan sel yang lebih kecil dari sel kamu dengan cara menekan tombol "
-#~ "G. Proses ini membutuhkan ATP dan memperlambat sel kamu. Jangan lupa "
-#~ "tekan lagi G untuk menghentikan penelanan."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Osmoregulasi memerlukan ATP, yang berarti semakin besar sel kamu, "
-#~ "semakin banyak Mitokondria, Metabolosom, atau Rusticyanin (atau "
-#~ "sitoplasma, yang melakukan proses Glikolisis) yang kamu butuhkan agar "
-#~ "terhindar dari kehilangan ATP saat kamu tidak bergerak."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Ada banyak organel di editormu buat kamu kembangkan yang memungkinkan "
-#~ "gaya permainan yang luas."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Jenis-jenis awan senyawa adalah sebagai berikut:\n"
-#~ "\n"
-#~ "Putih - Glukosa\n"
-#~ "Kuning - Hidrogen Sulfida\n"
-#~ "Oranye - Amonia\n"
-#~ "Ungu - Fosfat\n"
-#~ "Coklat Karat - Besi\n"
-#~ "\n"
-#~ "Glukosalah yang membuat ATP"
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-#~ msgstr ""
-#~ "Hidrogen Sulfida dapat dikonversi menjadi glukosa dengan cara melalui "
-#~ "kemoplas yang menjalankan proses kemosintesis protein. Besi dapat "
-#~ "dikonversi menjadi ATP melalui rusticyanin."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr ""
-#~ "Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi "
-#~ "dua. Diperlukan amonia dan fosfat untuk membelah semua organel menjadi "
-#~ "dua."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr ""
-#~ "Untuk saat ini jika populasi turun menjadi nol maka kamu akan punah."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr ""
-#~ "Namun jika kamu dapat bertahan hingga 20 generasi dengan populasi "
-#~ "sebesar 300, kamu dianggap telah memenangkan sebuah permainan saat ini, "
-#~ "saat kamu menang sebuah popup muncul dan kamu dapat melanjutkan "
-#~ "permainan semau kamu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-#~ msgstr ""
-#~ "Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar "
-#~ "kamu. Setiap kamu memasuki sesi editor, para kompetitor juga ikut "
-#~ "berkembang."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr ""
-#~ "Tekan W,A,S,D dan mouse untuk bergerak. E untuk menembakkan OksiToksi "
-#~ "NT jika kamu punya vakula toksin. G untuk menyalakan/mematikan mode "
-#~ "penelanan (engulf)."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Struktur Prokariotik\n"
-#~ "\n"
-#~ "Metabolosom: Menghasilkan ATP dari glukosa\n"
-#~ "\n"
-#~ "Kemosintisasi Protein: Menghasilkan setengah glukosa dari Hidrogen "
-#~ "Sulfida sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 "
-#~ "Heks\n"
-#~ "\n"
-#~ "Tilakoid: Menghasilkan 1/3 dari jumlah glukosa sebagai kloroplas "
-#~ "normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
-#~ "\n"
-#~ "Rusticyanin: Ubah besi menjadi ATP\n"
-#~ "\n"
-#~ "Nitrogenase: Ubah udara nitrogen dan ATP menjadi amonia secara anaerob\n"
-#~ "\n"
-#~ "Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan "
-#~ "glikolisis (Menghasilkan sedikit ATP)"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Organel Eksternal\n"
-#~ "\n"
-#~ "Flagelum: Menggerakkan sel kamu dengan lebih cepat dengan mengonsumsi "
-#~ "ATP\n"
-#~ "\n"
-#~ "Pilus: Dapat digunakan untuk menusuk sel lain"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Organel Terikat Membran\n"
-#~ "\n"
-#~ "Nukleus: Memerlukan 11 heksa dan memungkinkan evolusi organel terikat "
-#~ "membran yang juga menggandakan ukuran sel kamu sebesar dua kali lipat. "
-#~ "(Hanya dapat berevolusi sekali saja)\n"
-#~ "\n"
-#~ "Mitokondria: Menghasilkan ATP dari glukosa dan gas CO2. Jauh lebih "
-#~ "efisien dari sitoplasma.\n"
-#~ "\n"
-#~ "Kloroplas: Membuat glukosa dari sinar matahari dan gas CO2.\n"
-#~ "\n"
-#~ "Kemoplas: Membuat glukosa dari Hidrogen Sulfida.\n"
-#~ "\n"
-#~ "Pengikat Nitrogen Plastida: Membuat amonia dari ATP serta atmosfer "
-#~ "Nitrogen dan Oksigen\n"
-#~ "\n"
-#~ "Vakula: Menyimpan senyawa yang dikumpulkan sebesar 15\n"
-#~ "\n"
-#~ "Vakula Toksin: Menghasilkan toksin (Disebut OksiToksi NT)"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) "
-#~ "untuk digunakan, dan setiap perubahan (atau mutasi) membutuhkan MP "
-#~ "sebesar organel yang kamu tambahkan/lepas. Menambah dan melepas organel "
-#~ "juga membutuhkan MP, namun melepas organel yang sudah ditempatkan di "
-#~ "sesi mutasi saat ini akan mengembalikan MP dari organel tersebut. Kamu "
-#~ "bisa melepas sebuah organel dengan cara mengklik kanan pada organel "
-#~ "tersebut. Kamu bisa memutar organelmu dengan cara mengklik A dan D."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat "
-#~ "untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, "
-#~ "memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan "
-#~ "spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili 100 juta "
-#~ "tahun evolusi."
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
-
-#~ msgid "EASTEREGG_MESSAGE_1"
-#~ msgstr ""
-#~ "Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang "
-#~ "hubungan mangsa dan predator yang telah dipelajari selama puluhan "
-#~ "tahun, sekarang apakah kamu merupakan Didinium atau Paramecium? "
-#~ "Predator atau Mangsa?"
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr ""
-#~ "Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di "
-#~ "sekitarmu jika kamu cepat menangkisnya."
