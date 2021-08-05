@@ -11,6 +11,7 @@
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -117,15 +118,15 @@ rect_min_size = Vector2( 1000, 600 )
 [node name="SaveList" parent="CenterContainer/LoadMenu" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 800.0
+margin_right = 1000.0
 margin_bottom = 559.0
 size_flags_vertical = 3
 AutoRefreshOnFirstVisible = false
 
 [node name="Back" type="Button" parent="CenterContainer/LoadMenu"]
-margin_left = 350.0
+margin_left = 450.0
 margin_top = 563.0
-margin_right = 450.0
+margin_right = 550.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 100, 37 )
 size_flags_horizontal = 4
@@ -151,6 +152,7 @@ Category = "MicrobeStage"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
 visible = false
+
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
@@ -162,4 +164,4 @@ visible = false
 [connection signal="OnClosed" from="CenterContainer/NewSaveMenu" to="." method="CloseSavePressed"]
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
-[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="CloseOptionsPressed"]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]

@@ -12,6 +12,7 @@ require 'set'
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
+require_relative 'scripts/check_file_list'
 
 MAX_LINE_LENGTH = 120
 DUPLICATE_THRESSHOLD = 105
@@ -24,8 +25,6 @@ SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
 
 VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
 DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
-
-ONLY_FILE_LIST = 'files_to_check.txt'
 
 LOCALE_TEMP_SUFFIX = '.temp_check'
 MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
@@ -74,7 +73,7 @@ def ide_file?(path)
 end
 
 def explicitly_ignored?(path)
-  path =~ %r{/ThirdParty/}i || %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
+  path =~ %r{/ThirdParty/}i || path =~ %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
     path =~ %r{/RubySetupSystem/}
 end
 
@@ -467,15 +466,15 @@ def run_files
     begin
       if handle_file path
         OUTPUT_MUTEX.synchronize  do
-          puts 'Problems found in file (see above): ' + path
+          puts "Problems found in file (see above): #{path}"
           puts ''
         end
         issues_found = true
       end
     rescue StandardError => e
       OUTPUT_MUTEX.synchronize do
-        puts 'Failed to handle path: ' + path
-        puts 'Error: ' + e.message
+        puts "Failed to handle path: #{path}"
+        puts "Error: #{e.message}"
       end
       raise e
     end
