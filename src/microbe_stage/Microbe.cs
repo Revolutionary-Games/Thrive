@@ -1453,13 +1453,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             .GetExternalOrganelle(vectorFromParentRotated.x, vectorFromParentRotated.z)
             .Rotated(Vector3.Up, globalParentRotation.y);
 
-        ChangeNodeParent(ColonyParent);
-
         // Reset the rotation so that it is the same before entering the colony.
         Rotation = oldRotation - globalParentRotation;
 
         // Apply the translation. Rotated because due to the parent change the rotational scope is different.
         Translation = (-correctedVectorToParent).Rotated(Vector3.Down, globalParentRotation.y);
+
+        ChangeNodeParent(ColonyParent);
     }
 
     private void SetScaleFromSpecies()
