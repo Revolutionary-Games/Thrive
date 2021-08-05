@@ -1,5 +1,4 @@
-﻿using System.Linq;
-
+﻿
 public class EnvironmentalFoodSource : IFoodSource
 {
     private readonly Compound compound;
