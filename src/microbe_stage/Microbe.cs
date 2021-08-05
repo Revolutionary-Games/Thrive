@@ -1426,8 +1426,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (ColonyParent == null)
             return;
 
-        var oldRotation = Rotation;
-
         // Gets the global rotation of the parent
         var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
 
@@ -1458,8 +1456,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
                 vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
 
-        // Reset the rotation so that it is the same before entering the colony.
-        Rotation = oldRotation - globalParentRotation;
+        // Reset the rotation so that it is visually the same as before entering the colony.
+        Rotation -= globalParentRotation;
 
         // Apply the translation. Rotated because due to the parent change the rotational scope is different.
         Translation = (-correctedVectorToParent).Rotated(Vector3.Down, globalParentRotation.y);
