@@ -12,7 +12,7 @@ public interface ICustomPopup
     bool ExclusiveAllowCloseOnEscape { get; }
 
     /// <summary>
-    ///   Custom hide action to be implemented by custom popup.
+    ///   Custom hide action to be implemented by custom popup. Suitable for a closing animation.
     /// </summary>
     void ClosePopup();
 }

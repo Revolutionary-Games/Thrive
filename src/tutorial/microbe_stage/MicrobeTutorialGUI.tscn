@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -39,26 +40,29 @@ margin_top = -332.0
 margin_right = -190.0
 margin_bottom = 118.0
 rect_min_size = Vector2( 450, 450 )
+rect_pivot_offset = Vector2( 225, 225 )
 popup_exclusive = true
-Resizable = true
+script = ExtResource( 7 )
 ExclusiveAllowCloseOnEscape = false
+Resizable = true
 WindowTitle = "TUTORIAL"
+ShowDelay = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 440.0
-margin_bottom = 440.0
+margin_right = -10.0
+margin_bottom = -10.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/ScrollContainer"]
-margin_right = 880.0
-margin_bottom = 880.0
+margin_right = 430.0
+margin_bottom = 430.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -124,7 +128,8 @@ margin_top = -210.0
 margin_right = -231.0
 margin_bottom = -190.0
 rect_min_size = Vector2( 260, 260 )
-ExclusiveAllowCloseOnEscape = false
+script = ExtResource( 7 )
+Resizable = true
 WindowTitle = "TUTORIAL"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
@@ -206,6 +211,7 @@ margin_top = -210.0
 margin_right = -13.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
+script = ExtResource( 7 )
 Resizable = true
 WindowTitle = "TUTORIAL"
 
@@ -238,6 +244,7 @@ margin_top = -210.0
 margin_right = -13.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
+script = ExtResource( 7 )
 Resizable = true
 WindowTitle = "TUTORIAL"
 
@@ -271,6 +278,7 @@ margin_right = -13.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
 rect_pivot_offset = Vector2( 640.124, 474.665 )
+script = ExtResource( 7 )
 Resizable = true
 WindowTitle = "TUTORIAL"
 
@@ -303,6 +311,7 @@ margin_top = -210.0
 margin_right = -13.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
+script = ExtResource( 7 )
 Resizable = true
 WindowTitle = "TUTORIAL"
 
