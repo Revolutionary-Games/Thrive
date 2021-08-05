@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 09:18-0400\n"
+"POT-Creation-Date: 2021-08-05 17:50+0200\n"
 "PO-Revision-Date: 2021-06-18 08:54+0000\n"
 "Last-Translator: NiceFlowey <cfraticellipetro1@aces.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -116,16 +116,16 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если есть "
-"токсиновая вакуоль. G - режим поглощения. Связываясь с другими клетками, вы "
-"можете построить колонию клеток, в которой клетки делятся друг с другом "
+"токсиновая вакуоль. G - режим поглощения. Связываясь с другими клетками, "
+"вы можете построить колонию клеток, в которой клетки делятся друг с другом "
 "соединениями, которые они поглощают и производят. Чтобы иметь возможность "
 "связываться с другой клеткой, вам необходимо иметь органеллы связывающих "
 "агентов и перемещаться в них после перехода в режим связывания. Вы можете "
-"связываться только с клетками вашего собственного вида. Находясь в колонии, "
-"вы не можете разделить свою ячейку и войти в редактор (пока). Чтобы войти в "
-"редактор, сначала покиньте колонию, как только вы соберете достаточно "
-"соединений, а затем войдите в редактор. Большие колонии клеток - путь к "
-"многоклеточности (пока не в игре)."
+"связываться только с клетками вашего собственного вида. Находясь в "
+"колонии, вы не можете разделить свою ячейку и войти в редактор (пока). "
+"Чтобы войти в редактор, сначала покиньте колонию, как только вы соберете "
+"достаточно соединений, а затем войдите в редактор. Большие колонии клеток "
+"- путь к многоклеточности (пока не в игре)."
 
 #: ../simulation_parameters/common/help_texts.json:21
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -1413,7 +1413,7 @@ msgstr "Выйти"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробный Свободностроительный Редактор"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:994
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1072
 #: ../src/general/PauseMenu.tscn:133 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1430,232 +1430,244 @@ msgstr ""
 "проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD "
 "или Nvidia графику для запуска Thrive."
 
-#: ../src/general/OptionsMenu.tscn:125
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "Графика"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "Звук"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "Производительность"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "Дополнительное"
 
-#: ../src/general/OptionsMenu.tscn:208
+#: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
 msgstr "Вертикальная синхронизация"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:219
 msgid "FULLSCREEN"
 msgstr "Полный экран"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:241
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множественная выборка сглаживания:"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:248
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(высокие значения ухудшают производительность)"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:278
 msgid "RESOLUTION"
 msgstr "Разрешение:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:291
 msgid "AUTO"
 msgstr "авто"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Цветокоррекция для проблем цветовосприятия:"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:359
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматическая аберрация:"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:387
+msgid "GRAPHICS_PROCESSING_UNIT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:412
+msgid "DISPLAY_RENDERER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:437
+msgid "VIDEO_MEMORY_INFO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:475
 msgid "MASTER_VOLUME"
 msgstr "Основная громкость"
 
-#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:465
-#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:531
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:502 ../src/general/OptionsMenu.tscn:543
+#: ../src/general/OptionsMenu.tscn:576 ../src/general/OptionsMenu.tscn:609
+#: ../src/general/OptionsMenu.tscn:642
 msgid "MUTE"
 msgstr "Заглушить"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:516
 msgid "MUSIC_VOLUME"
 msgstr "Музыкальная громкость"
 
-#: ../src/general/OptionsMenu.tscn:471
+#: ../src/general/OptionsMenu.tscn:549
 msgid "AMBIANCE_VOLUME"
 msgstr "Громкость окружения"
 
-#: ../src/general/OptionsMenu.tscn:504
+#: ../src/general/OptionsMenu.tscn:582
 msgid "SFX_VOLUME"
 msgstr "Громкость звуковых эффектов"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:615
 msgid "GUI_VOLUME"
 msgstr "Громкость интерфейса"
 
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:660
 msgid "LANGUAGE"
 msgstr "Язык:"
 
-#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:675 ../src/general/OptionsMenu.tscn:1083
 msgid "RESET"
 msgstr "Сбросить"
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:684
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Помогите Перевести Игру"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:704
 msgid "COMPOUND_CLOUDS"
 msgstr "Компоненты облаков"
 
-#: ../src/general/OptionsMenu.tscn:641
+#: ../src/general/OptionsMenu.tscn:719
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Минимум облачной симуляции\n"
 "Интервал:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:726 ../src/general/OptionsMenu.tscn:770
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(высокие значения могут ухудшить производительность)"
 
-#: ../src/general/OptionsMenu.tscn:683
+#: ../src/general/OptionsMenu.tscn:761
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:763
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитель разрешения облаков:"
 
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:805
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать авто-эво во время игры"
 
-#: ../src/general/OptionsMenu.tscn:794
+#: ../src/general/OptionsMenu.tscn:872
 msgid "RESET_INPUTS"
 msgstr "Сбросить Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:896
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:905
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать Вступление Микроба при Новой Игре"
 
-#: ../src/general/OptionsMenu.tscn:836
+#: ../src/general/OptionsMenu.tscn:914
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
 
-#: ../src/general/OptionsMenu.tscn:847
+#: ../src/general/OptionsMenu.tscn:925
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количество автосохранений для хранения:"
 
-#: ../src/general/OptionsMenu.tscn:875
+#: ../src/general/OptionsMenu.tscn:953
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество быстрых сохранений на хранение:"
 
-#: ../src/general/OptionsMenu.tscn:901
+#: ../src/general/OptionsMenu.tscn:979
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать руководство (в новых играх)"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:987
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показывать руководство (в текущей игре)"
 
-#: ../src/general/OptionsMenu.tscn:925
+#: ../src/general/OptionsMenu.tscn:1003
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Читерские ключи включены"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать настраиваемое имя пользователя"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "CUSTOM_USERNAME"
 msgstr "Имя пользователя:"
 
-#: ../src/general/OptionsMenu.tscn:974
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Открыть папку с Изображениями экрана"
 
-#: ../src/general/OptionsMenu.tscn:982
+#: ../src/general/OptionsMenu.tscn:1060
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Открыть папку логов"
 
-#: ../src/general/OptionsMenu.tscn:1017 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1095 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Сохранить"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1112
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По умолчанию"
 
-#: ../src/general/OptionsMenu.tscn:1046
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "RESET_TO_DEFAULTS"
 msgstr "Сбросить по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1133
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Ты действительно хочешь сбросить ВСЕ настройки до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1069
+#: ../src/general/OptionsMenu.tscn:1147
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Восстановить по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1156
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Ты действительно хочешь сбросить настройки клавиш до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "CLOSE_OPTIONS"
 msgstr "Закрыть настройки?"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Ты имеешь несохранённые изменения, которые можешь потерять.\n"
 "Ты хочешь продолжить?"
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1212
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сохранить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1143
+#: ../src/general/OptionsMenu.tscn:1221
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Забыть и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1159
+#: ../src/general/OptionsMenu.tscn:1237
 msgid "CANCEL"
 msgstr "Отмена"
 
-#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1194
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1249 ../src/general/OptionsMenu.tscn:1272
+#: ../src/general/OptionsMenu.tscn:1296
 msgid "ERROR"
 msgstr "Ошибка"
 
-#: ../src/general/OptionsMenu.tscn:1180 ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1258 ../src/general/OptionsMenu.tscn:1297
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
@@ -2197,24 +2209,24 @@ msgstr "Температура"
 msgid "N_A_MP"
 msgstr "Н/Д МО"
 
-#: ../src/microbe_stage/Microbe.cs:938
+#: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1385
+#: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1392
+#: ../src/microbe_stage/Microbe.cs:1418
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/Microbe.cs:1753
+#: ../src/microbe_stage/Microbe.cs:1779
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Производит"
 
-#: ../src/microbe_stage/Microbe.cs:1894
+#: ../src/microbe_stage/Microbe.cs:1920
 #, fuzzy
 msgid "ESCAPE_ENGULFING"
 msgstr "избегать поглощения"
@@ -2375,11 +2387,11 @@ msgstr "Загрузка редактора микроба"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2244
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2245
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
