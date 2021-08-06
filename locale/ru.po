@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 12:51+0200\n"
+"POT-Creation-Date: 2021-08-06 14:17+0300\n"
 "PO-Revision-Date: 2021-07-26 13:26+0000\n"
 "Last-Translator: Maximilian <italianoebalo@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -2830,31 +2830,42 @@ msgstr "Быстрое Сохранение"
 msgid "SAVE_INVALID"
 msgstr "Недействительно"
 
-#: ../src/saving/SaveList.cs:171
+#: ../src/saving/SaveList.cs:185
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Удаление текущего сохранения невозможно отменить, вы действительно желаете "
 "перманентно удалить {0}?"
 
-#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.cs:281
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"Вакуоль - это внутренняя одномембранная органелла, используемая для "
+"хранения соединений в клетке. Она состоит из нескольких пузырьков, более "
+"мелких мембранных структур, широко используемых в клетках для хранения, "
+"которые слились вместе. Она заполнен водой, которая используется для "
+"содержания молекул, ферментов, твердых и других веществ. Форма вакуоли "
+"подвижна и может варьироваться в зависимости от клетки."
+
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "Загрузка..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "Удалить это Сохранение?"
 
-#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
+#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Загрузить несовместимое сохранение?"
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Это сохранение из новых версий Thrive и скорее всего несовместимо.\n"
 "Всё равно попробовать загрузить сохранение?"
 
-#: ../src/saving/SaveList.tscn:117
+#: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Это сохранение из старой версии Thrive и оно может быть несовместимо.\n"
@@ -2864,11 +2875,11 @@ msgstr ""
 "данный момент.\n"
 "Всё равно попробовать загрузить это сохранение?"
 
-#: ../src/saving/SaveList.tscn:132
+#: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
 msgstr "Загрузить недействительное сохранение?"
 
-#: ../src/saving/SaveList.tscn:141
+#: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Сохранённая информация не может быть загружена из этого файла.\n"
@@ -2876,17 +2887,38 @@ msgstr ""
 "понимается текущей версией Thrive.\n"
 "Всё равно попробовать загрузить сохранение?"
 
-#: ../src/saving/SaveList.tscn:156
+#: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Выбранное сохранение несовместимо"
 
-#: ../src/saving/SaveList.tscn:166
+#: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Выбранный файл сохранения несовместим с текущей версий Thrive.\n"
 "Так как Thrive находится на ранней стадии разработки, совместимость файлов "
 "сохранения не является задачей высокого приоритета, поэтому пока нет "
 "встроенного конвертера для обновления старых файлов сохранения."
+
+#: ../src/saving/SaveList.tscn:183
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "Выбранное сохранение несовместимо"
+
+#: ../src/saving/SaveList.tscn:192
+#, fuzzy
+msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+msgstr ""
+"Вакуоль - это внутренняя одномембранная органелла, используемая для "
+"хранения соединений в клетке. Она состоит из нескольких пузырьков, более "
+"мелких мембранных структур, широко используемых в клетках для хранения, "
+"которые слились вместе. Она заполнен водой, которая используется для "
+"содержания молекул, ферментов, твердых и других веществ. Форма вакуоли "
+"подвижна и может варьироваться в зависимости от клетки."
+
+#: ../src/saving/SaveList.tscn:207
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED"
+msgstr "Сохранение не удалось"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"

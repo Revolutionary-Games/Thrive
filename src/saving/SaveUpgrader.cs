@@ -26,6 +26,13 @@ public static class SaveUpgrader
         return nextStep != null;
     }
 
+    public static void PerformSaveUpgrade(string saveToUpgrade, bool backup = true, string targetVersion = null)
+    {
+        var saveInfo = Save.LoadJustInfoFromSave(saveToUpgrade);
+
+        PerformSaveUpgrade(saveInfo, saveToUpgrade, backup, targetVersion);
+    }
+
     public static void PerformSaveUpgrade(SaveInformation saveInfo, string inputSave, bool backup = true,
         string targetVersion = null)
     {
@@ -39,18 +46,19 @@ public static class SaveUpgrader
 
         if (backup)
         {
-            if (inputSave.Contains(Constants.SAVE_BACKUP_SUFFIX))
+            if (IsSaveABackup(inputSave))
             {
                 // Already backed up file
                 fromSave = inputSave;
-                toSave = inputSave.Remove(
-                    inputSave.IndexOf(Constants.SAVE_BACKUP_SUFFIX, StringComparison.InvariantCulture),
-                    Constants.SAVE_BACKUP_SUFFIX.Length);
+                toSave = RemoveBackupSuffix(inputSave);
             }
             else
             {
                 toSave = inputSave;
-                fromSave = inputSave + Constants.SAVE_BACKUP_SUFFIX;
+                fromSave = inputSave.Remove(
+                        inputSave.IndexOf(Constants.SAVE_EXTENSION_WITH_DOT, StringComparison.InvariantCulture),
+                        Constants.SAVE_EXTENSION_WITH_DOT.Length) +
+                    Constants.SAVE_BACKUP_SUFFIX;
 
                 using var folder = new Directory();
 
@@ -70,7 +78,6 @@ public static class SaveUpgrader
         var fromVersion = saveInfo.ThriveVersion;
         GD.Print("Beginning save upgrade from version ", fromVersion, " from save: ", fromSave, " to save: ", toSave);
 
-        // TODO: upgrading over multiple versions at once is not tested
         while (true)
         {
             // Here we also need to do this hacky store thing
@@ -85,7 +92,6 @@ public static class SaveUpgrader
                 break;
             }
 
-            saveInfo.ThriveVersion = fromVersion;
             var upgradedVersion = nextStep.PerformUpgrade(saveInfo, fromSave, toSave);
             GD.Print("Performed upgrade step from ", fromVersion, " to ", upgradedVersion);
 
@@ -95,6 +101,18 @@ public static class SaveUpgrader
             // After the first step the target save is upgraded in-place so we need to overwrite the old source
             fromSave = toSave;
         }
+    }
+
+    public static bool IsSaveABackup(string saveName)
+    {
+        return saveName.Contains(Constants.SAVE_BACKUP_SUFFIX);
+    }
+
+    public static string RemoveBackupSuffix(string saveName)
+    {
+        return saveName.Remove(
+            saveName.IndexOf(Constants.SAVE_BACKUP_SUFFIX, StringComparison.InvariantCulture),
+            Constants.SAVE_BACKUP_SUFFIX.Length) + Constants.SAVE_EXTENSION_WITH_DOT;
     }
 
     private static ISaveUpgradeStep FindPathToVersion(SaveInformation saveInfo, string fromVersion, string toVersion)

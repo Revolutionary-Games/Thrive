@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 12:51+0200\n"
+"POT-Creation-Date: 2021-08-06 14:17+0300\n"
 "PO-Revision-Date: 2021-04-20 08:07+0000\n"
 "Last-Translator: Pajoš <fractvival@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -2830,32 +2830,42 @@ msgstr "Rychlé uložení"
 msgid "SAVE_INVALID"
 msgstr "Uložená pozice je neplatná"
 
-#: ../src/saving/SaveList.cs:171
+#: ../src/saving/SaveList.cs:185
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Smazání této uložené pozice nemůže být navráceno, jsi si jistý/á že chceš "
 "navždy smazat {0}?"
 
-#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.cs:281
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"Vakuola je vnitřní membránová organela používaná pro skladování v buňce. "
+"Skládají se z několika vezikul, menších membránových struktur široce "
+"používaných v buňkách pro skladování, které se spojily. Je naplněna vodou, "
+"která obsahuje molekuly, enzymy, pevné látky a další látky. Jejich tvar je "
+"tekutý a může se mezi buňkami lišit."
+
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "Načítání..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "Smazat tuto uloženou pozici?"
 
-#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
+#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Načíst nekompatibilní uloženou pozici?"
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Toto uložení pochází z novější verze a je velmi pravděpodobně "
 "nekompatibilní.\n"
 "Chceš přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:117
+#: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Toto uložení pochází ze staré verze a může být nekompatibilní.\n"
@@ -2865,11 +2875,11 @@ msgstr ""
 "nemají nejvyšší prioritu.\n"
 "Chceš přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:132
+#: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
 msgstr "Načíst neplatné uložení?"
 
-#: ../src/saving/SaveList.tscn:141
+#: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Z tohoto souboru nelze načíst informace o uložení.\n"
@@ -2877,11 +2887,11 @@ msgstr ""
 "tato verze nerozumí.\n"
 "Chceš přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:156
+#: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Vybrané uložení je nekompatibilní"
 
-#: ../src/saving/SaveList.tscn:166
+#: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O vybraném uložení, které se má načíst, je známo, že je nekompatibilní s "
@@ -2889,6 +2899,26 @@ msgstr ""
 "Protože Thrive je stále na počátku vývoje, kompatibilita ukládání nemá "
 "vysokou prioritu, protože neexistuje žádný vestavěný převodník ukládání, "
 "který by upgradoval staré uložení."
+
+#: ../src/saving/SaveList.tscn:183
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "Vybrané uložení je nekompatibilní"
+
+#: ../src/saving/SaveList.tscn:192
+#, fuzzy
+msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+msgstr ""
+"Vakuola je vnitřní membránová organela používaná pro skladování v buňce. "
+"Skládají se z několika vezikul, menších membránových struktur široce "
+"používaných v buňkách pro skladování, které se spojily. Je naplněna vodou, "
+"která obsahuje molekuly, enzymy, pevné látky a další látky. Jejich tvar je "
+"tekutý a může se mezi buňkami lišit."
+
+#: ../src/saving/SaveList.tscn:207
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED"
+msgstr "Chyba ukládání"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"

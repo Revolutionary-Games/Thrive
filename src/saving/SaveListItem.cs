@@ -70,6 +70,7 @@ public class SaveListItem : PanelContainer
 
     private bool isBroken;
     private bool isKnownIncompatible;
+    private bool isUpgradeable;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -79,6 +80,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnOldSaveLoaded();
+
+    [Signal]
+    public delegate void OnUpgradeableSaveLoaded();
 
     [Signal]
     public delegate void OnBrokenSaveLoaded();
@@ -189,8 +193,14 @@ public class SaveListItem : PanelContainer
 
         if (versionDifference != 0)
         {
-            if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+            if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
+            {
+                isUpgradeable = true;
+            }
+            else if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+            {
                 isKnownIncompatible = true;
+            }
         }
 
         version.Text = save.Info.ThriveVersion;
@@ -232,7 +242,8 @@ public class SaveListItem : PanelContainer
 
         if (versionDifference < 0)
         {
-            EmitSignal(nameof(OnOldSaveLoaded));
+            EmitSignal(isUpgradeable ? nameof(OnUpgradeableSaveLoaded) : nameof(OnOldSaveLoaded));
+
             return;
         }
 

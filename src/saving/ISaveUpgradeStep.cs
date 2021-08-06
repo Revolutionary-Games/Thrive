@@ -51,39 +51,6 @@
         }
     }
 
-    /// <summary>
-    ///   Just updates the save version in a save file. Can be used to bring a file up to date if the actual save data
-    ///   doesn't need any changes
-    /// </summary>
-    public class UpgradeJustVersionNumber : ISaveUpgradeStep
-    {
-        private readonly string versionToSet;
-
-        public UpgradeJustVersionNumber(string versionToSet)
-        {
-            this.versionToSet = versionToSet;
-        }
-
-        public string PerformUpgrade(SaveInformation saveInfo, string inputSave, string outputSave)
-        {
-            // TODO: would be nice to be able to only partially load the object tree here
-            var loadedData = Save.LoadFromFile(inputSave);
-
-            saveInfo.ThriveVersion = versionToSet;
-            loadedData.Info.ThriveVersion = versionToSet;
-
-            loadedData.Name = outputSave;
-            loadedData.SaveToFile();
-
-            return versionToSet;
-        }
-
-        public string VersionAfterUpgrade(SaveInformation saveInfo)
-        {
-            return versionToSet;
-        }
-    }
-
     internal class UpgradeStep054To055 : BaseJSONUpgradeStep
     {
         protected override string VersionAfter => "0.5.5.0-alpha";
@@ -145,6 +112,11 @@
 
             PerformUpgradeOnInfo(saveInfo);
 
+            CopySaveInfoToStructure(saveStructure, saveInfo);
+
+            // TODO: should the "Name" in saveStructure be updated? (there's a bigger need to update it when making the
+            // backup file rather than here...)
+
             Save.WriteSaveJSONToFile(saveInfo, saveStructure, screenshot, outputSave);
 
             return VersionAfter;
@@ -158,8 +130,41 @@
         protected virtual void PerformUpgradeOnInfo(SaveInformation saveInformation)
         {
             saveInformation.ThriveVersion = VersionAfter;
+
+            // Update the ID of the save as it is in practice save with different content
+            saveInformation.ID = Guid.NewGuid();
         }
 
         protected abstract void PerformUpgradeOnJSON(JObject saveData);
+
+        private void CopySaveInfoToStructure(JObject saveData, SaveInformation saveInfo)
+        {
+            var info = saveData[nameof(Save.Info)];
+
+            foreach (var property in BaseThriveConverter.PropertiesOf(saveInfo))
+            {
+                info[property.Name] = JToken.FromObject(property.GetValue(saveInfo));
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Just updates the save version in a save file. Can be used to bring a file up to date if the actual save data
+    ///   doesn't need any changes
+    /// </summary>
+    internal class UpgradeJustVersionNumber : BaseJSONUpgradeStep
+    {
+        public UpgradeJustVersionNumber(string versionToSet)
+        {
+            VersionAfter = versionToSet;
+        }
+
+        protected override string VersionAfter { get; }
+
+        protected override void PerformUpgradeOnJSON(JObject saveData)
+        {
+            // Nothing is actually needed to be done here as the base class wil already update save info to the new
+            // version and copy that to saveData
+        }
     }
 }
