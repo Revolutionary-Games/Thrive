@@ -17,7 +17,7 @@ public enum ToolTipPositioning
 }
 
 /// <summary>
-///   How a tooltip should transition on display and hide.
+///   How a tooltip should transition on becoming visible and on being hidden.
 /// </summary>
 public enum ToolTipTransitioning
 {

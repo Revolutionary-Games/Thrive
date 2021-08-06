@@ -334,22 +334,30 @@ public class ToolTipManager : CanvasLayer
         if (tooltip.ToolTipNode.Visible == visible)
             return;
 
-        // TODO: Fix fade type transition when tooltip display delay is less than the tooltip fade speed,
-        // some kind of flickering happens
-
         switch (tooltip.TransitionType)
         {
             case ToolTipTransitioning.Immediate:
+            {
                 tooltip.ToolTipNode.Visible = visible;
                 break;
-            case ToolTipTransitioning.Fade when visible:
-                GUICommon.Instance.ModulateFadeIn(tooltip.ToolTipNode, Constants.TOOLTIP_FADE_SPEED);
-                break;
+            }
 
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            case ToolTipTransitioning.Fade when !visible:
-                GUICommon.Instance.ModulateFadeOut(tooltip.ToolTipNode, Constants.TOOLTIP_FADE_SPEED);
+            case ToolTipTransitioning.Fade:
+            {
+                // TODO: Fix fading when tooltip display delay is less than the tooltip fade speed, some kind of
+                // flickering happens
+                if (visible)
+                {
+                    GUICommon.Instance.ModulateFadeIn(tooltip.ToolTipNode, Constants.TOOLTIP_FADE_SPEED);
+                }
+                else
+                {
+                    GUICommon.Instance.ModulateFadeOut(tooltip.ToolTipNode, Constants.TOOLTIP_FADE_SPEED);
+                }
+
                 break;
+            }
+
             default:
                 throw new Exception("Invalid tooltip visibility transition type");
         }
