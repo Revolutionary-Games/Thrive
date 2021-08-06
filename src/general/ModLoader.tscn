@@ -883,6 +883,7 @@ __meta__ = {
 
 [node name="ModVersionRequester" type="HTTPRequest" parent="."]
 use_threads = true
+body_size_limit = 131072
 
 [connection signal="item_selected" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/UnloadedItemList" to="." method="OnModSelected" binds= [ 0 ]]
 [connection signal="pressed" from="Main Margin Container/VBoxContainer/InfoBoxSplit/ModContainer/Mod Loader/LoaderContainer/ItemListContainer/Center Bar/MoveLeftButton" to="." method="OnMoveToUnloadPressed"]
