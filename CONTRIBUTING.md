@@ -80,6 +80,11 @@ sporadically fail without you being at fault. If you are unsure if
 that's the case (even after using the code checks locally), you can
 ask someone from the team to look at the situation.
 
+To view CI build logs and other information, press the "details" button on Github in the 
+checks section.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/viewing_ci_results.png" alt="rider godot plugin">
+
 When updating Godot import settings (meaning changing the settings for
 an existing asset, if you just added a new one, you don't need to do
 this), or adding new C# dependencies, you should update the cache
