@@ -10,8 +10,8 @@ public class TweakedColourPicker : ColorPicker
     private readonly ToolButton pickerButton;
     private readonly Button addPresetButton;
 
-    private bool hsvModeDisabled;
-    private bool rawModeDisabled;
+    private bool hsvButtonDisabled;
+    private bool rawButtonDisabled;
 
     public TweakedColourPicker()
     {
@@ -28,35 +28,42 @@ public class TweakedColourPicker : ColorPicker
         addPresetButton.Connect("mouse_entered", this, nameof(OnMouseEnteredAddPresetButton));
     }
 
+    /// <summary>
+    ///   Decide if user can toggle HSV CheckButton to switch HSV mode.
+    /// </summary>
     [Export]
-    public bool HSVModeDisabled
+    public bool HSVButtonDisabled
     {
-        get => hsvModeDisabled;
+        get => hsvButtonDisabled;
         set
         {
-            hsvModeDisabled = value;
-            UpdateControl();
+            hsvButtonDisabled = value;
+            UpdateButtonsState();
         }
     }
 
+    /// <summary>
+    ///   Decide if user can toggle Raw CheckButton to switch Raw mode.
+    /// </summary>
     [Export]
-    public bool RawModeDisabled
+    public bool RawButtonDisabled
     {
-        get => rawCheckButton.Disabled;
+        get => rawButtonDisabled;
         set
         {
-            rawModeDisabled = value;
-            UpdateControl();
+            rawButtonDisabled = value;
+            UpdateButtonsState();
         }
     }
 
+    // To ensure (after Godot made changes)
     public new bool HsvMode
     {
         get => base.HsvMode;
         set
         {
             base.HsvMode = value;
-            UpdateControl();
+            UpdateButtonsState();
         }
     }
 
@@ -66,14 +73,14 @@ public class TweakedColourPicker : ColorPicker
         set
         {
             base.RawMode = value;
-            UpdateControl();
+            UpdateButtonsState();
         }
     }
 
     public override void _Ready()
     {
         base._Ready();
-        UpdateControl();
+        UpdateButtonsState();
     }
 
     public void OnMouseEnteredPickerButton()
@@ -88,19 +95,19 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnHSVButtonToggled(bool isOn)
     {
-        if (!isOn && rawModeDisabled)
+        if (!isOn && rawButtonDisabled)
             rawCheckButton.Disabled = true;
     }
 
     private void OnRawButtonToggled(bool isOn)
     {
-        if (!isOn && hsvModeDisabled)
+        if (!isOn && hsvButtonDisabled)
             hsvCheckButton.Disabled = true;
     }
 
-    private void UpdateControl()
+    private void UpdateButtonsState()
     {
-        hsvCheckButton.Disabled = hsvModeDisabled;
-        rawCheckButton.Disabled = rawModeDisabled;
+        hsvCheckButton.Disabled = hsvButtonDisabled;
+        rawCheckButton.Disabled = rawButtonDisabled;
     }
 }
