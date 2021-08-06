@@ -71,6 +71,7 @@ public class SaveList : ScrollContainer
     private bool suppressSaveUpgradeClose;
 
     private bool wasVisible;
+    private bool incompatibleIfNotUpgraded;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -130,8 +131,9 @@ public class SaveList : ScrollContainer
             item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
             item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
-            item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded),
-                new Array { save });
+
+            // This can't use binds because we need an additional dynamic parameter from the list item here
+            item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded));
             item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
@@ -205,9 +207,10 @@ public class SaveList : ScrollContainer
         loadOlderConfirmDialog.PopupCenteredShrink();
     }
 
-    private void OnUpgradeableSaveLoaded(string saveName)
+    private void OnUpgradeableSaveLoaded(string saveName, bool incompatible)
     {
         saveToBeLoaded = saveName;
+        incompatibleIfNotUpgraded = incompatible;
         upgradeSaveDialog.PopupCenteredShrink();
     }
 
@@ -292,9 +295,20 @@ public class SaveList : ScrollContainer
         Invoke.Instance.Queue(() =>
         {
             if (!suppressSaveUpgradeClose)
-                OnOldSaveLoaded(saveToBeLoaded);
+            {
+                // If it is known incompatible show that dialog instead
+                if (incompatibleIfNotUpgraded)
+                {
+                    OnKnownIncompatibleLoaded();
+                }
+                else
+                {
+                    OnOldSaveLoaded(saveToBeLoaded);
+                }
+            }
 
             suppressSaveUpgradeClose = false;
+            incompatibleIfNotUpgraded = false;
         });
     }
 
