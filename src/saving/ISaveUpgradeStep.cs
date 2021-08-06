@@ -97,7 +97,12 @@
 
         public string PerformUpgrade(SaveInformation saveInfo, string inputSave, string outputSave)
         {
-            if (VersionUtils.Compare(VersionAfter, saveInfo.ThriveVersion) <= 0)
+            var versionDifference = VersionUtils.Compare(VersionAfter, saveInfo.ThriveVersion);
+
+            if (versionDifference == int.MaxValue)
+                throw new Exception("Could not compare version in save to version it would be upgraded to");
+
+            if (versionDifference <= 0)
             {
                 throw new ArgumentException("This converter can't upgrade the provided save");
             }
