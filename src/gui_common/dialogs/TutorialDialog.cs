@@ -25,7 +25,7 @@ public class TutorialDialog : CustomDialog
         RectScale = Vector2.Zero;
 
         tween.InterpolateProperty(
-            this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Back,
+            this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Expo,
             Tween.EaseType.Out, ShowDelay);
         tween.Start();
     }
