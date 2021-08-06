@@ -264,7 +264,7 @@ public class SaveList : ScrollContainer
 
         // Perform save upgrade (the game will lag here, but I'll leave it to someone else to make a progress bar)
         // Instead could show a popup with a spinner on it and run the upgrade with TaskExecutor in the background
-        var task = new Task(() => { SaveUpgrader.PerformSaveUpgrade(saveToUpgrade); });
+        var task = new Task(() => SaveUpgrader.PerformSaveUpgrade(saveToUpgrade));
 
         TaskExecutor.Instance.AddTask(task);
 
