@@ -73,7 +73,7 @@ def ide_file?(path)
 end
 
 def explicitly_ignored?(path)
-  path =~ %r{/ThirdParty/}i || %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
+  path =~ %r{/ThirdParty/}i || path =~ %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
     path =~ %r{/RubySetupSystem/}
 end
 
@@ -466,15 +466,15 @@ def run_files
     begin
       if handle_file path
         OUTPUT_MUTEX.synchronize  do
-          puts 'Problems found in file (see above): ' + path
+          puts "Problems found in file (see above): #{path}"
           puts ''
         end
         issues_found = true
       end
     rescue StandardError => e
       OUTPUT_MUTEX.synchronize do
-        puts 'Failed to handle path: ' + path
-        puts 'Error: ' + e.message
+        puts "Failed to handle path: #{path}"
+        puts "Error: #{e.message}"
       end
       raise e
     end
