@@ -6,13 +6,11 @@
 public class TweakedColourPicker : ColorPicker
 {
     private readonly CheckButton hsvCheckButton;
-
     private readonly CheckButton rawCheckButton;
-
+    private readonly ToolButton pickerButton;
     private readonly Button addPresetButton;
 
     private bool hsvModeDisabled;
-
     private bool rawModeDisabled;
 
     public TweakedColourPicker()
@@ -22,6 +20,9 @@ public class TweakedColourPicker : ColorPicker
         hsvCheckButton.Connect("toggled", this, nameof(OnHSVButtonToggled));
         rawCheckButton = baseNode.GetChild<CheckButton>(1);
         rawCheckButton.Connect("toggled", this, nameof(OnRawButtonToggled));
+
+        pickerButton = GetChild(1).GetChild<ToolButton>(1);
+        pickerButton.Connect("mouse_entered", this, nameof(OnMouseEnteredPickerButton));
 
         addPresetButton = GetChild(7).GetChild<Button>(0);
         addPresetButton.Connect("mouse_entered", this, nameof(OnMouseEnteredAddPresetButton));
@@ -54,10 +55,8 @@ public class TweakedColourPicker : ColorPicker
         get => base.HsvMode;
         set
         {
-            if (hsvModeDisabled)
-                return;
-
             base.HsvMode = value;
+            UpdateControl();
         }
     }
 
@@ -66,10 +65,8 @@ public class TweakedColourPicker : ColorPicker
         get => base.RawMode;
         set
         {
-            if (rawModeDisabled)
-                return;
-
             base.RawMode = value;
+            UpdateControl();
         }
     }
 
@@ -77,6 +74,11 @@ public class TweakedColourPicker : ColorPicker
     {
         base._Ready();
         UpdateControl();
+    }
+
+    public void OnMouseEnteredPickerButton()
+    {
+        pickerButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_PICK_COLOR");
     }
 
     public void OnMouseEnteredAddPresetButton()
