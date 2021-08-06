@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Tweaked color picker defines some custom ColorPicker functions.
