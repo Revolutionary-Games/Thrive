@@ -70,6 +70,28 @@ You can find the necessary informations about how to translate the game [here](d
 The planning board contains all issues and pull requests grouped
 by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
 
+## Continuous integration checks
+
+We use continuous integration (CI) systems to run automatic checks on
+code before accepting it. After making a pull request please make sure
+the CI jobs finish correctly on your code and fix any style
+etc. errors they detect. Note that sometimes the CI jobs can
+sporadically fail without you being at fault. If you are unsure if
+that's the case (even after using the code checks locally), you can
+ask someone from the team to look at the situation.
+
+To view CI build logs and other information, press the "details" button on Github in the 
+checks section.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/viewing_ci_results.png" alt="rider godot plugin">
+
+When updating Godot import settings (meaning changing the settings for
+an existing asset, if you just added a new one, you don't need to do
+this), or adding new C# dependencies, you should update the cache
+versions for CI. To do this you need to increment the relevant numbers
+by 1 in `CIConfiguration.yml`. If you are unsure which cache names to
+increment, please ask.
+
 ## Getting help
 
 If you have a question about an issue on how it should be solved,
