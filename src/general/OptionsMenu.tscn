@@ -66,6 +66,9 @@ SFXVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBo
 SFXMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted")
 GUIVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume")
 GUIMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted")
+AudioOutputDeviceSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/AudioOutputDevicesButton")
+LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
+ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 PerformanceTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance")
 CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval")
 CloudResolutionTitlePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer")
@@ -85,8 +88,6 @@ BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
 TutorialsEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/TutorialsEnabled")
 DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
-LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
-ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 CustomUsernameEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled")
 CustomUsernamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername")
 
@@ -390,10 +391,10 @@ text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 664.0
-margin_bottom = 584.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 679.0
+margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -402,8 +403,8 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Sound"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 633.0
-margin_bottom = 553.0
+margin_right = 663.0
+margin_bottom = 583.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -589,10 +590,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
 margin_top = 348.0
 margin_right = 648.0
 margin_bottom = 370.0
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
+margin_right = 66.0
+margin_bottom = 22.0
+text = "AUDIO_OUTPUT_DEVICE"
+align = 1
+
+[node name="AudioOutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
+anchor_left = -0.00308642
+anchor_right = -0.00308642
+margin_left = 70.0
+margin_right = 648.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+margin_top = 380.0
+margin_right = 648.0
+margin_bottom = 384.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+margin_top = 394.0
+margin_right = 648.0
+margin_bottom = 416.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6"]
 margin_right = 99.0
@@ -618,9 +646,9 @@ __meta__ = {
 }
 
 [node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 380.0
+margin_top = 426.0
 margin_right = 648.0
-margin_bottom = 412.0
+margin_bottom = 458.0
 text = "OPEN_TRANSLATION_SITE"
 
 [node name="Performance" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
@@ -1273,6 +1301,7 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted" to="." method="OnSFXMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume" to="." method="OnGUIVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted" to="." method="OnGUIMutedToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/AudioOutputDevicesButton" to="." method="OnAudioOutputDeviceSettingSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton" to="." method="OnLanguageSettingSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton" to="." method="OnResetLanguagePressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/TranslationSiteButton" to="." method="OnTranslationSitePressed"]
