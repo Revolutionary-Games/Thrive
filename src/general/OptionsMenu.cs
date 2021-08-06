@@ -99,12 +99,24 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath GUIMutedPath;
 
+    [Export]
+    public NodePath AudioOutputDeviceSelectionPath;
+
+    [Export]
+    public NodePath LanguageSelectionPath;
+
+    [Export]
+    public NodePath ResetLanguageButtonPath;
+
     // Performance tab.
     [Export]
     public NodePath PerformanceTabPath;
 
     [Export]
     public NodePath CloudIntervalPath;
+
+    [Export]
+    public NodePath CloudResolutionTitlePath;
 
     [Export]
     public NodePath CloudResolutionPath;
@@ -157,12 +169,6 @@ public class OptionsMenu : ControlWithInput
     public NodePath ErrorAcceptBoxPath;
 
     [Export]
-    public NodePath LanguageSelectionPath;
-
-    [Export]
-    public NodePath ResetLanguageButtonPath;
-
-    [Export]
     public NodePath CustomUsernameEnabledPath;
 
     [Export]
@@ -171,6 +177,10 @@ public class OptionsMenu : ControlWithInput
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
+
+    private static readonly List<string> AudioOutputDevicesCache = AudioServer
+        .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
+        .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
     private Button resetButton;
     private Button saveButton;
@@ -205,12 +215,14 @@ public class OptionsMenu : ControlWithInput
     private CheckBox sfxMuted;
     private Slider guiVolume;
     private CheckBox guiMuted;
+    private OptionButton audioOutputDeviceSelection;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
 
     // Performance tab
     private Control performanceTab;
     private OptionButton cloudInterval;
+    private VBoxContainer cloudResolutionTitle;
     private OptionButton cloudResolution;
     private CheckBox runAutoEvoDuringGameplay;
 
@@ -277,6 +289,7 @@ public class OptionsMenu : ControlWithInput
     }
 
     private static List<string> Languages => LanguagesCache;
+    private static List<string> AudioOutputDevices => AudioOutputDevicesCache;
 
     public override void _Ready()
     {
@@ -314,13 +327,16 @@ public class OptionsMenu : ControlWithInput
         sfxMuted = GetNode<CheckBox>(SFXMutedPath);
         guiVolume = GetNode<Slider>(GUIVolumePath);
         guiMuted = GetNode<CheckBox>(GUIMutedPath);
+        audioOutputDeviceSelection = GetNode<OptionButton>(AudioOutputDeviceSelectionPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
-        LoadLanguages(languageSelection);
+        LoadLanguages();
+        LoadAudioOutputDevices();
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
+        cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
         runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
 
@@ -351,6 +367,9 @@ public class OptionsMenu : ControlWithInput
         // We're only utilizing the AcceptDialog's auto resize functionality,
         // so hide the default Ok button since it's not needed
         backConfirmationBox.GetOk().Hide();
+
+        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
+        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
     }
 
     public override void _Notification(int what)
@@ -358,6 +377,7 @@ public class OptionsMenu : ControlWithInput
         if (what == NotificationTranslationChanged)
         {
             BuildInputRebindControls();
+            UpdateDefaultAudioOutputDeviceText();
         }
     }
 
@@ -440,6 +460,7 @@ public class OptionsMenu : ControlWithInput
         guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
         UpdateSelectedLanguage(settings);
+        UpdateSelectedAudioOutputDevice(settings);
 
         // Hide or show the reset language button based on the selected language
         resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
@@ -732,13 +753,28 @@ public class OptionsMenu : ControlWithInput
         saveButton.Disabled = result;
     }
 
-    private void LoadLanguages(OptionButton optionButton)
+    private void UpdateDefaultAudioOutputDeviceText()
+    {
+        audioOutputDeviceSelection.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
+    }
+
+    private void LoadAudioOutputDevices()
+    {
+        foreach (var audioOutputDevice in AudioOutputDevices)
+        {
+            audioOutputDeviceSelection.AddItem(audioOutputDevice);
+        }
+
+        UpdateDefaultAudioOutputDeviceText();
+    }
+
+    private void LoadLanguages()
     {
         foreach (var locale in Languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
-            optionButton.AddItem(locale + " - " + native);
+            languageSelection.AddItem(locale + " - " + native);
         }
     }
 
@@ -1142,6 +1178,14 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnAudioOutputDeviceSettingSelected(int item)
+    {
+        Settings.Instance.SelectedAudioOutputDevice.Value = AudioOutputDevices[item];
+
+        Settings.Instance.ApplyAudioOutputDeviceSettings();
+        UpdateResetSaveButtonState();
+    }
+
     private void OnLanguageSettingSelected(int item)
     {
         Settings.Instance.SelectedLanguage.Value = Languages[item];
@@ -1165,6 +1209,12 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         OS.ShellOpen("https://translate.revolutionarygamesstudio.com/engage/thrive/");
+    }
+
+    private void UpdateSelectedAudioOutputDevice(Settings settings)
+    {
+        audioOutputDeviceSelection.Selected = AudioOutputDevices.IndexOf(settings.SelectedAudioOutputDevice.Value ??
+            Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
     }
 
     private void UpdateSelectedLanguage(Settings settings)
