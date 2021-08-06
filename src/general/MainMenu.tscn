@@ -342,9 +342,9 @@ __meta__ = {
 anims/MenuSlide = SubResource( 1 )
 
 [node name="GLES2Popup" parent="." instance=ExtResource( 4 )]
-margin_right = 670.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 670, 0 )
+margin_right = 680.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 680, 0 )
 popup_exclusive = false
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true

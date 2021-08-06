@@ -1183,13 +1183,14 @@ rect_min_size = Vector2( 500, 0 )
 WindowTitle = "ERROR"
 
 [node name="ErrorDialog" parent="CenterContainer" instance=ExtResource( 9 )]
+visible = false
 margin_left = 440.0
-margin_top = 320.0
+margin_top = 322.0
 margin_right = 840.0
-margin_bottom = 400.0
+margin_bottom = 397.0
 rect_min_size = Vector2( 400, 0 )
-WindowTitle = "ERROR"
 ErrorMessage = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+WindowTitle = "ERROR"
 Resizable = false
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
