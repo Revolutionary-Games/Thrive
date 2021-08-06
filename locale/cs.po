@@ -1374,7 +1374,7 @@ msgstr "Odejít ze hry"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor mikrobů"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1391,236 +1391,244 @@ msgstr ""
 "aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia "
 "grafiky pro spuštění Thrive."
 
-#: ../src/general/OptionsMenu.tscn:128
+#: ../src/general/OptionsMenu.cs:758
+msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:139
+#: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
 msgstr "Zvuky"
 
-#: ../src/general/OptionsMenu.tscn:150
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "Výkon"
 
-#: ../src/general/OptionsMenu.tscn:161
+#: ../src/general/OptionsMenu.tscn:162
 msgid "INPUTS"
 msgstr "Ovládání"
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:173
 msgid "MISC"
 msgstr "Ostatní"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:206
 msgid "VSYNC"
 msgstr "VSync (pro nové grafiky)"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "FULLSCREEN"
 msgstr "Celá obrazovka"
 
-#: ../src/general/OptionsMenu.tscn:235
+#: ../src/general/OptionsMenu.tscn:236
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Vícevzorové vyhlazování:"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(Vyšší hodnota může zhoršit výkon)"
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:273
 msgid "RESOLUTION"
 msgstr "Rozlišení:"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:286
 msgid "AUTO"
 msgstr "automaticky"
 
-#: ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MAX_FPS"
 msgstr "Maximální FPS:"
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:322
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekce barev:"
 
-#: ../src/general/OptionsMenu.tscn:353
+#: ../src/general/OptionsMenu.tscn:354
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatická aberace:"
 
-#: ../src/general/OptionsMenu.tscn:380
+#: ../src/general/OptionsMenu.tscn:381
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Schopnosti"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Vedlejší účinky:"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
-#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
+#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.tscn:583
 msgid "MUTE"
 msgstr "Ztišit"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:457
 msgid "MUSIC_VOLUME"
 msgstr "Hlasitost hudby"
 
-#: ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:490
 msgid "AMBIANCE_VOLUME"
 msgstr "Hlasitost prostředí"
 
-#: ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:523
 msgid "SFX_VOLUME"
 msgstr "Hlasitost SFX"
 
-#: ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI_VOLUME"
 msgstr "Hlasitost GUI"
 
-#: ../src/general/OptionsMenu.tscn:600
+#: ../src/general/OptionsMenu.tscn:601
+msgid "AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
 msgstr "Jazyk:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
+#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
 msgid "RESET"
 msgstr "Resetovat"
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:652
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Pomoz nám zlepšit překlad"
 
-#: ../src/general/OptionsMenu.tscn:650
+#: ../src/general/OptionsMenu.tscn:678
 msgid "COMPOUND_CLOUDS"
 msgstr "Sloučenina mračen"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:693
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Minimální simulace mračen\n"
 "Interval:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(vyšší hodnoty zvyšují výkon)"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:735
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Oddělovač rozlišení mraků:"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:777
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Spustit automatickou evoluci běhen hry"
 
-#: ../src/general/OptionsMenu.tscn:822
+#: ../src/general/OptionsMenu.tscn:850
 msgid "RESET_INPUTS"
 msgstr "Resetovat ovládání"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:878
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Přehrát úvodní video"
 
-#: ../src/general/OptionsMenu.tscn:859
+#: ../src/general/OptionsMenu.tscn:887
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spustit úvod do mikrobů v nové hře"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:896
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukládání během hry"
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet autosave k zachování:"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:935
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Počet rychlouložení k zachování:"
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:961
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobrazit tutoriál (v nových hrách)"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:969
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobrazit tutoriál (v aktuální hře)"
 
-#: ../src/general/OptionsMenu.tscn:957
+#: ../src/general/OptionsMenu.tscn:985
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Povolit podvádění (cheaty)"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:997
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použij libovolné jméno"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "CUSTOM_USERNAME"
 msgstr "Libovolné uživatelské jméno:"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otevřít screenshoty"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otevřít logy"
 
-#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Uložit"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaultní"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnovit nastavení?"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Opravdu chceš resetovat VŠECHNA nastavení ?"
 
-#: ../src/general/OptionsMenu.tscn:1101
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetovat ovládání ?"
 
-#: ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1138
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Jseš si jistý/á, že chceš resetovat ovládání ?"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1172
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máš neuložené změny, které budou zahozeny.\n"
 "Mám pokračovat?"
 
-#: ../src/general/OptionsMenu.tscn:1166
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložit a pokračovat"
 
-#: ../src/general/OptionsMenu.tscn:1175
+#: ../src/general/OptionsMenu.tscn:1203
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zahodit a pokračovat"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "CANCEL"
 msgstr "Zrušit"
 
-#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "ERROR"
 msgstr "Chyba"
 
-#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
+#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Chyba: Nepodařilo se uložit nové nastavení."
 

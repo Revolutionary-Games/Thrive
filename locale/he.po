@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 "
-"&& n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -25,36 +25,46 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"W,A,S,D והעכבר בשביל לנוע, E בשביל לירות את הרעלן \"אוקסיטוקסי נ\"ט\" אם "
-"יש לך חלולית רעלן. G בשביל מצב בליעה."
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive"
+":input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_ri"
+"ght[/thrive:input] והעכבר בשביל לנוע. "
+"[thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type="
+"\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. "
+"[thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "התא שלך משתמש בATP כמקור אנרגיה. אם זה נגמר, אתה תמות."
+msgstr ""
+"התא שלך משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] כמקור "
+"אנרגיה, כשזה אם אזל אתה תמות."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"בשביל לפתוח את העורך ולהתרבות, אתה צריך לצבור אמוניה (הענן הכתום) ופוספט "
-"(הענן הסגול)."
+"בשביל לפתוח את העורך ולהתרבות, אתה צריך לצבור [thrive:compound type=\"ammonia"
+"\"][/thrive:compound] (הענן הכתום) ו[thrive:compound type=\"phosphates\""
+"][/thrive:compound] (הענן הסגול)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"אתה יכול לבלוע תאים, חיידקים, גושי ברזל וחלקי תא אשר קטנים ממך על ידי "
-"לחיצה על G. מצב זה יעלה ATP נוסף ויאט אותך. אל תשכח ללחוץ שנית על G על מנת "
+"אתה יכול גם לבלוע תאים, חיידקים, גושי ברזל וחלקי תא אשר קטנים ממך על ידי "
+"לחיצה על [thrive:input]g_toggle_engulf[/thrive:input]. מצב זה עולה "
+"additional [thrive:compound type=\"atp\"][/thrive:compound] נוסף ויאט אותך. "
+"אל תשכח ללחוץ שנית על [thrive:input]g_toggle_engulf[/thrive:input] על מנת "
 "להפסיק את מצב הבליעה."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"ויסות אוסמטי עולה ATP, מה שזה אומר שככל שהתא שלך גדול יותר, כך יותר "
-"מיטוכונדריה, מטבולוזומים או רוסטיצינין (או ציטופלזמה, שעושה גליקוליזה) אתה "
-"צריך על מנת למנוע איבוד של ATP בזמן שאתה נח."
+"ויסות אוסמטי עולה [thrive:compound type=\"atp\"][/thrive:compound], מה שזה "
+"אומר שככל שהתא שלך גדול יותר, כך יותר מיטוכונדריה, מטבולוזומים או רוסטיצינין "
+"(או ציטופלזמה, שעושה גליקוליזה) אתה צריך על מנת למנוע איבוד של [thrive:"
+"compound type=\"atp\"][/thrive:compound] בזמן שאתה נח."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -68,20 +78,23 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "העננים המורכבים השונים הם:\n"
 "\n"
-"לבן - גלוקוז\n"
-"צהוב - מימן גופרתי\n"
-"כתום - אמוניה\n"
-"סגול - פוספט\n"
-"חום חלוד - ברזל\n"
+"לבן - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"צהוב - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"כתום - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"סגול - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"חום חלוד - [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"גלוקוז מייצר ATP"
+"[thrive:compound type=\"glucose\"][/thrive:compound] מייצר [thrive:compound "
+"type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"ניתן להמיר מימן גופרתי לגלוקוז באמצעות כימופלסטים וחלבונים כימוסנתזיים. "
-"ניתן להמיר ברזל לגלוקוז באמצעות רוסטיציאנין לATP."
+"ניתן להמיר [thrive:compound type=\"hydrogensulfide\"] ל[thrive:compound type="
+"\"glucose\"][/thrive:compound] באמצעות כימופלסטים וחלבונים כימוסנתזיים. ניתן "
+"להמיר [thrive:compound type=\"iron\"][/thrive:compound] באמצעות רוסטיציאנין "
+"ל[thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
@@ -124,26 +137,35 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "מבנים פרוקריוטיים\n"
 "\n"
-"מטבולוזומים: מייצר ATP מגלוקוז\n"
+"מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:"
+"compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"חלבונים כימוסינתזיים: מפיק מחצית מהכמות הגלוקוז ממימן גופרתי שמיוצר "
-"בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
+"חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\""
+"][/thrive:compound] מ [thrive:compound type=\"hydrogensulfide\""
+"][/thrive:compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה "
+"אחד\n"
 "\n"
-"תילקואיד: מפיק שליש מהכמות הגלוקוז שמיוצר בכלורופלסט, אבל גם מבצע "
-"גליקוליזה ותופס משושה אחד\n"
+"תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\""
+"][/thrive:compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה "
+"אחד\n"
 "\n"
-"רוסטיצינין: ממיר ברזל לATP\n"
+"רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"ניטרוגנאז: ממיר חנקן אטמוספרי ו ATP לאמוניה באופן אנאירובי\n"
+"ניטרוגנאז: ממיר חנקן אטמוספרי ו [thrive:compound type=\"atp\""
+"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound] "
+"באופן אנאירובי\n"
 "\n"
-"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של ATP)"
+"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:"
+"compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "אברונים חיצוניים\n"
 "\n"
-"שוטון: מזיז את התא שלך מהר יותר על ידי צריכת ATP\n"
+"שוטון: מזיז את התא שלך מהר יותר על ידי צריכת [thrive:compound type=\"atp\""
+"][/thrive:compound]\n"
 "\n"
 "פילוס: ניתן להשתמש בו בשביל לדקור תאים אחרים"
 
@@ -157,17 +179,23 @@ msgstr ""
 "\n"
 "מקשר: מאפשר התחברות עם תאים אחרים\n"
 "\n"
-"מיטוכונדריון: מפיק ATP מגלוקוז וחמצן אטמוספרי באופן יותר יעיל מציטופלזמה\n"
+"מיטוכונדריון: מפיק [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:"
+"compound type=\"glucose\"][/thrive:compound] וחמצן אטמוספרי באופן יותר יעיל "
+"מציטופלזמה\n"
 "\n"
-"כלורופלסט: מייצר גלוקוז מאור שמש ופחמן דו חמצני אטמוספרי\n"
+"כלורופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מאור "
+"שמש ופחמן דו חמצני אטמוספרי\n"
 "\n"
-"כימופלסט: מייצר גלוקוז ממימן גופרתי\n"
+"כימופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] "
+"מ[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"פלסטיד מקבע חנקן: מייצר אמוניה מATP ומחמצן וחנקן אטמוספרי\n"
+"פלסטיד מקבע חנקן: מייצר [thrive:compound type=\"ammonia\"][/thrive:compound] "
+"מ[thrive:compound type=\"atp\"][/thrive:compound] ומחמצן וחנקן אטמוספרי\n"
 "\n"
-"חלולית: מאחסן עד 15 תרכובות שנאספו\n"
+"חלולית: מאחסן 15 תרכובות שנאספו\n"
 "\n"
-"חלוליות רעלן: מייצר רעלנים (הנקראים \"אוקסיטוקסי נ\"ט\")"
+"חלוליות רעלן: מייצר רעלנים (המכונים [thrive:compound type=\"oxytoxy\""
+"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -175,9 +203,10 @@ msgstr ""
 "בכל דור, נוצרים 100 נקודות מוטציה (נקמ\"ו) שניתן לבזבז, ועל כל שינוי (או "
 "מוטציה) יעלה סכום מסוים מהנקמ\"ו. הוספה או הוסרה של אברונים עולים נקמ\"ו, "
 "אבל הסרה של אברונים שנוספו בסיבוב המוטציה נוכחית מחזיר את העלות של אותם "
-"אברונים. ניתן להזיז או להסיר לחלוטין אברון על ידי הלחצן הימני עליו ולבחור "
-"את הפעולה הרצויה מהרשימה נפתחת. ניתן לסובב את אברון במקשים A ו D בזמן "
-"שמזיזים אותם."
+"אברונים. ניתן להזיז או להסיר לחלוטין אברון על ידי הלחצן הימני עליו ולבחור את "
+"הפעולה הרצויה מהרשימה נפתחת. ניתן לסובב את אברון במקשים "
+"[thrive:input]e_rotate_left[/thrive:input] "
+"ו[thrive:input]e_rotate_right[/thrive:input] בזמן שמזיזים אותם."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1360,7 +1389,7 @@ msgstr "יציאה"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "עורך ארגז חול המיקרובי"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1377,234 +1406,242 @@ msgstr ""
 "אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או "
 "Nvidia על מנת להפעלת את Thrive."
 
-#: ../src/general/OptionsMenu.tscn:128
+#: ../src/general/OptionsMenu.cs:758
+msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
 msgstr "גרפיקה"
 
-#: ../src/general/OptionsMenu.tscn:139
+#: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
 msgstr "קול"
 
-#: ../src/general/OptionsMenu.tscn:150
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "ביצועים"
 
-#: ../src/general/OptionsMenu.tscn:161
+#: ../src/general/OptionsMenu.tscn:162
 msgid "INPUTS"
 msgstr "קלטים"
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:173
 msgid "MISC"
 msgstr "שונות"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:206
 msgid "VSYNC"
 msgstr "סנכרון אנכי"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "FULLSCREEN"
 msgstr "מסך מלא"
 
-#: ../src/general/OptionsMenu.tscn:235
+#: ../src/general/OptionsMenu.tscn:236
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "החלקת גרפיקה:"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ערכים גבוהים מדרדר ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:273
 msgid "RESOLUTION"
 msgstr "רזולוציה:"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:286
 msgid "AUTO"
 msgstr "אוטו"
 
-#: ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:322
 msgid "COLOURBLIND_CORRECTION"
 msgstr "תיקון לעיוורון צבעים:"
 
-#: ../src/general/OptionsMenu.tscn:353
+#: ../src/general/OptionsMenu.tscn:354
 msgid "CHROMATIC_ABERRATION"
 msgstr "אברציה כרומטית:"
 
-#: ../src/general/OptionsMenu.tscn:380
+#: ../src/general/OptionsMenu.tscn:381
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "הצג רשימת יכולות"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "אפשר תצוגת אור בממשק משתמש"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
-#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
+#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.tscn:583
 msgid "MUTE"
 msgstr "השתק"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:457
 msgid "MUSIC_VOLUME"
 msgstr "עוצמת מוזיקה"
 
-#: ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:490
 msgid "AMBIANCE_VOLUME"
 msgstr "עוצמת אווירה"
 
-#: ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:523
 msgid "SFX_VOLUME"
 msgstr "עוצמת אפקטים"
 
-#: ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI_VOLUME"
 msgstr "עוצמת ממשק עזרים"
 
-#: ../src/general/OptionsMenu.tscn:600
+#: ../src/general/OptionsMenu.tscn:601
+msgid "AUDIO_OUTPUT_DEVICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
 msgstr "שפה:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
+#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
 msgid "RESET"
 msgstr "איפוס"
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:652
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "עזור לתרגם את המשחק"
 
-#: ../src/general/OptionsMenu.tscn:650
+#: ../src/general/OptionsMenu.tscn:678
 msgid "COMPOUND_CLOUDS"
 msgstr "ענני תרכובות"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:693
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "סימולציית ענן מינימלית\n"
 "רווח:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(ערכים גבוהים יותר מגדילים ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:735
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "מחליק רזולוציית ענן:"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:777
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "הפעל התפתחות אוטומטית במהלך המשחק"
 
-#: ../src/general/OptionsMenu.tscn:822
+#: ../src/general/OptionsMenu.tscn:850
 msgid "RESET_INPUTS"
 msgstr "איפוס קלטים"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:878
 msgid "PLAY_INTRO_VIDEO"
 msgstr "הפעל סרטון פתיחה"
 
-#: ../src/general/OptionsMenu.tscn:859
+#: ../src/general/OptionsMenu.tscn:887
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "הפעל פתיח שלב המיקרוב במשחק חדש"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:896
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "שמירה אוטומטית במהלך המשחק"
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "כמות שמירה אוטומטית שניתן לשמור:"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:935
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "כמות שמירה מהירה שניתן לשמור:"
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:961
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "הצג מדריך (בשמירות חדשות)"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:969
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "הצג מדריך (בשמירה נוכחית)"
 
-#: ../src/general/OptionsMenu.tscn:957
+#: ../src/general/OptionsMenu.tscn:985
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "מקשי קודים מופעלים"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:997
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "השתמש בשם משתמש מותאמת אישית"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "CUSTOM_USERNAME"
 msgstr "שם משתמש מותאם אישית:"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "פתח תיקיית צילומי מסך"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "OPEN_LOGS_FOLDER"
 msgstr "פתח תקיית קבצי לוג"
 
-#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "שמור"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ברירת מחדל"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "RESET_TO_DEFAULTS"
 msgstr "איפוס לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1101
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "איפוס קלטים לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1138
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות הקלטים לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "CLOSE_OPTIONS"
 msgstr "לסגור אפשרויות?"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1172
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "ישנם שינויים שלא נשמרו שיימחקו.\n"
 "האם ברצונך להמשיך?"
 
-#: ../src/general/OptionsMenu.tscn:1166
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "SAVE_AND_CONTINUE"
 msgstr "שמור והמשך"
 
-#: ../src/general/OptionsMenu.tscn:1175
+#: ../src/general/OptionsMenu.tscn:1203
 msgid "DISCARD_AND_CONTINUE"
 msgstr "מחק והמשך"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "CANCEL"
 msgstr "ביטול"
 
-#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "ERROR"
 msgstr "שגיאה"
 
-#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
+#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "שגיאה: נכשל הניסיון לשמור ההגדרות החדשות לקובץ התצורה."
 
