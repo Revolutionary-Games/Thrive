@@ -370,7 +370,7 @@ public static class Constants
     /// <summary>
     ///   Threshold to not be stuck in tiny local maxima during gradient ascent algorithms.
     /// </summary>
-    public const float AI_GRADIENT_DETECTION_THRESHOLD = 0.0f;
+    public const float AI_GRADIENT_DETECTION_THRESHOLD = 0.005f;
 
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
