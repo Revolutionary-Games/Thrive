@@ -31,6 +31,16 @@ Code style rules
   math), e used in `catch` blocks as the exception name. Other
   variables in loops and elsewhere need to be named with actually
   descriptive variable names.
+  
+- Similarly, some very common abbreviations are used in the code,
+  and can (and should) thus be used when naming variables. These are
+  however *rare* exceptions, not the rule. The allowed abbreviations 
+  are listed below. No other abbreviation should be used without prior
+  discussion (and good reasons).
+  - `min`
+  - `max`
+  - `pos`
+  - `rect` (when related to class names and variables holding instances of those classes)
 
 - Variables and functions are camelCase or PascalCase depending on
   their visibilty. Classes are PascalCase with leading upper
@@ -140,6 +150,10 @@ Code style rules
   bodies are just a single line. Just a single if (without else) with
   a single line body can be written without braces, and this style
   should be preferred.
+  
+- Ternary operators (`a ? b : c`) can be used instead of `if ... else`
+  statements as long as they are kept readable. Nested ternaries are 
+  always banned and should be systematically replaced by if-blocks.
 
 - Single line variables (and properties) can be next to each other
   without a blank line. Other variables and class elements should have
