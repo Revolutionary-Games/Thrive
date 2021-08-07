@@ -4,13 +4,71 @@
 [ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 28.0
-margin_top = 28.0
-margin_right = 318.0
-margin_bottom = 516.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 16.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "A color picker with a custom theme."
 }
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+margin_top = 494.0
+margin_right = 317.0
+margin_bottom = 536.0
+
+[node name="HSVCheckButton" type="CheckButton" parent="ButtonsContainer"]
+margin_right = 110.0
+margin_bottom = 42.0
+shortcut_in_tooltip = false
+action_mode = 0
+keep_pressed_outside = true
+text = "HSV"
+
+[node name="RawCheckButton" type="CheckButton" parent="ButtonsContainer"]
+margin_left = 114.0
+margin_right = 228.0
+margin_bottom = 42.0
+shortcut_in_tooltip = false
+action_mode = 0
+keep_pressed_outside = true
+text = "RAW"
+
+[node name="Label" type="Label" parent="ButtonsContainer"]
+margin_left = 232.0
+margin_top = 10.0
+margin_right = 244.0
+margin_bottom = 32.0
+text = "#"
+
+[node name="ValueEdit" type="LineEdit" parent="ButtonsContainer"]
+margin_left = 248.0
+margin_right = 304.0
+margin_bottom = 42.0
+align = 1
+max_length = 8
+context_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+margin_top = 536.0
+margin_right = 317.0
+margin_bottom = 540.0
+
+[node name="PresetContainer" type="HBoxContainer" parent="."]
+margin_top = 540.0
+margin_right = 317.0
+margin_bottom = 572.0
+
+[node name="AddPresetButton" type="Button" parent="PresetContainer"]
+margin_right = 20.0
+margin_bottom = 32.0
+text = "+"
+
+[connection signal="toggled" from="ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
+[connection signal="toggled" from="ButtonsContainer/RawCheckButton" to="." method="OnRawButtonToggled"]
+[connection signal="mouse_entered" from="PresetContainer/AddPresetButton" to="." method="OnMounsEnteredAddPresetButton"]
+[connection signal="pressed" from="PresetContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-06 17:58+0800\n"
+"POT-Creation-Date: 2021-08-07 10:56+0800\n"
 "PO-Revision-Date: 2021-07-29 18:05+0700\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1726,13 +1726,25 @@ msgstr ""
 "version.\n"
 "Please load the save manually through the menu."
 
-#: ../src/gui_common/TweakedColourPicker.cs:88
+#: ../src/gui_common/TweakedColourPicker.cs:124
 msgid "COLOR_PICKER_PICK_COLOR"
 msgstr "Pick a color from window."
 
-#: ../src/gui_common/TweakedColourPicker.cs:93
+#: ../src/gui_common/TweakedColourPicker.cs:129
 msgid "COLOR_PICKER_ADD_PRESET"
 msgstr "Add current color as a preset."
+
+#: ../src/gui_common/TweakedColourPicker.tscn:29
+msgid "HSV"
+msgstr "HSV"
+
+#: ../src/gui_common/TweakedColourPicker.tscn:38
+msgid "RAW"
+msgstr "Raw"
+
+#: ../src/gui_common/TweakedColourPicker.tscn:45
+msgid "#"
+msgstr "#"
 
 #: ../src/gui_common/charts/line/LineChart.cs:931
 #: ../src/gui_common/charts/line/LineChart.cs:960
@@ -3150,6 +3162,9 @@ msgstr ""
 "\n"
 "To leave the colony entirely you can click on your own cell or press the "
 "unbind all key."
+
+#~ msgid "Raw"
+#~ msgstr "Raw"
 
 #~ msgid "TURNS"
 #~ msgstr "Turns"

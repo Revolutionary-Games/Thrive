@@ -1670,11 +1670,11 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 326.0
-margin_bottom = 524.0
-RawButtonDisabled = true
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 330.0
+margin_bottom = 528.0
+RawButtonEnabled = false
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false

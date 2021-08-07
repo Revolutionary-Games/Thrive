@@ -5,40 +5,32 @@
 /// </summary>
 public class TweakedColourPicker : ColorPicker
 {
-    private readonly CheckButton hsvCheckButton;
-    private readonly CheckButton rawCheckButton;
-    private readonly ToolButton pickerButton;
-    private readonly Button addPresetButton;
+    private ToolButton pickerButton;
+    private CheckButton hsvCheckButton;
+    private CheckButton rawCheckButton;
+    private Button addPresetButton;
 
-    private bool hsvButtonDisabled;
-    private bool rawButtonDisabled;
-
-    public TweakedColourPicker()
-    {
-        var baseNode = GetChild(4).GetChild(4);
-        hsvCheckButton = baseNode.GetChild<CheckButton>(0);
-        hsvCheckButton.Connect("toggled", this, nameof(OnHSVButtonToggled));
-        rawCheckButton = baseNode.GetChild<CheckButton>(1);
-        rawCheckButton.Connect("toggled", this, nameof(OnRawButtonToggled));
-
-        pickerButton = GetChild(1).GetChild<ToolButton>(1);
-        pickerButton.Connect("mouse_entered", this, nameof(OnMouseEnteredPickerButton));
-
-        addPresetButton = GetChild(7).GetChild<Button>(0);
-        addPresetButton.Connect("mouse_entered", this, nameof(OnMouseEnteredAddPresetButton));
-    }
+    private bool hsvButtonEnabled = true;
+    private bool rawButtonEnabled = true;
 
     /// <summary>
     ///   Decide if user can toggle HSV CheckButton to switch HSV mode.
     /// </summary>
     [Export]
-    public bool HSVButtonDisabled
+    public bool HSVButtonEnabled
     {
-        get => hsvButtonDisabled;
+        get => hsvButtonEnabled;
         set
         {
-            hsvButtonDisabled = value;
-            UpdateButtonsState();
+            hsvButtonEnabled = value;
+
+            if (hsvCheckButton == null)
+                return;
+
+            if (hsvButtonEnabled == false)
+                hsvCheckButton.Disabled = true;
+            else if (RawMode == false)
+                hsvCheckButton.Disabled = false;
         }
     }
 
@@ -46,24 +38,40 @@ public class TweakedColourPicker : ColorPicker
     ///   Decide if user can toggle Raw CheckButton to switch Raw mode.
     /// </summary>
     [Export]
-    public bool RawButtonDisabled
+    public bool RawButtonEnabled
     {
-        get => rawButtonDisabled;
+        get => rawButtonEnabled;
         set
         {
-            rawButtonDisabled = value;
-            UpdateButtonsState();
+            rawButtonEnabled = value;
+
+            if (rawCheckButton == null)
+                return;
+
+            if (rawButtonEnabled == false)
+                rawCheckButton.Disabled = true;
+            else if (HsvMode == false)
+                rawCheckButton.Disabled = false;
         }
     }
 
-    // To ensure (after Godot made changes)
     public new bool HsvMode
     {
         get => base.HsvMode;
         set
         {
+            if (value && RawMode)
+                return;
+
             base.HsvMode = value;
-            UpdateButtonsState();
+            hsvCheckButton.Pressed = value;
+            if (rawCheckButton == null)
+                return;
+
+            if (value)
+                rawCheckButton.Disabled = true;
+            else if (rawButtonEnabled)
+                rawCheckButton.Disabled = false;
         }
     }
 
@@ -72,42 +80,67 @@ public class TweakedColourPicker : ColorPicker
         get => base.RawMode;
         set
         {
+            if (value && HsvMode)
+                return;
+
             base.RawMode = value;
-            UpdateButtonsState();
+            rawCheckButton.Pressed = value;
+
+            if (hsvCheckButton == null)
+                return;
+
+            if (value)
+                hsvCheckButton.Disabled = true;
+            else if (hsvButtonEnabled)
+                hsvCheckButton.Disabled = false;
         }
     }
 
     public override void _Ready()
     {
         base._Ready();
-        UpdateButtonsState();
+
+        GetChild(4).GetChild<Control>(4).Hide();
+        GetChild<Control>(5).Hide();
+        GetChild<Control>(6).Hide();
+        GetChild<Control>(7).Hide();
+        pickerButton = GetChild(1).GetChild<ToolButton>(1);
+        pickerButton.Connect("mouse_entered", this, nameof(OnMouseEnteredPickerButton));
+
+        hsvCheckButton = GetNode<CheckButton>("ButtonsContainer/HSVCheckButton");
+        rawCheckButton = GetNode<CheckButton>("ButtonsContainer/RawCheckButton");
+
+        addPresetButton = GetNode<Button>("PresetContainer/AddPresetButton");
+
+        // Update button state.
+        HSVButtonEnabled = hsvButtonEnabled;
+        RawButtonEnabled = rawButtonEnabled;
+        HsvMode = base.HsvMode;
+        RawMode = base.RawMode;
     }
 
-    public void OnMouseEnteredPickerButton()
+    private void OnMouseEnteredPickerButton()
     {
         pickerButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_PICK_COLOR");
     }
 
-    public void OnMouseEnteredAddPresetButton()
+    private void OnMouseEnteredAddPresetButton()
     {
         addPresetButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_ADD_PRESET");
     }
 
+    private void OnAddPresetButtonPressed()
+    {
+        EmitSignal("preset_added");
+    }
+
     private void OnHSVButtonToggled(bool isOn)
     {
-        if (!isOn && rawButtonDisabled)
-            rawCheckButton.Disabled = true;
+        HsvMode = isOn;
     }
 
     private void OnRawButtonToggled(bool isOn)
     {
-        if (!isOn && hsvButtonDisabled)
-            hsvCheckButton.Disabled = true;
-    }
-
-    private void UpdateButtonsState()
-    {
-        hsvCheckButton.Disabled = hsvButtonDisabled;
-        rawCheckButton.Disabled = rawButtonDisabled;
+        RawMode = isOn;
     }
 }
