@@ -4,10 +4,10 @@
 [ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 16.0
-margin_bottom = 16.0
+margin_left = 28.0
+margin_top = 28.0
+margin_right = 28.0
+margin_bottom = 28.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -44,7 +44,7 @@ margin_right = 244.0
 margin_bottom = 32.0
 text = "#"
 
-[node name="ValueEdit" type="LineEdit" parent="ButtonsContainer"]
+[node name="HexColorEdit" type="LineEdit" parent="ButtonsContainer"]
 margin_left = 248.0
 margin_right = 304.0
 margin_bottom = 42.0
@@ -68,7 +68,9 @@ margin_right = 20.0
 margin_bottom = 32.0
 text = "+"
 
+[connection signal="color_changed" from="." to="." method="OnColorChanged"]
 [connection signal="toggled" from="ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
 [connection signal="toggled" from="ButtonsContainer/RawCheckButton" to="." method="OnRawButtonToggled"]
+[connection signal="text_changed" from="ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
 [connection signal="mouse_entered" from="PresetContainer/AddPresetButton" to="." method="OnMounsEnteredAddPresetButton"]
 [connection signal="pressed" from="PresetContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]

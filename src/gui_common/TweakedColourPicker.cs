@@ -9,6 +9,7 @@ public class TweakedColourPicker : ColorPicker
     private CheckButton hsvCheckButton;
     private CheckButton rawCheckButton;
     private Button addPresetButton;
+    private LineEdit hexColorEdit;
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;
@@ -109,6 +110,8 @@ public class TweakedColourPicker : ColorPicker
 
         hsvCheckButton = GetNode<CheckButton>("ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("ButtonsContainer/RawCheckButton");
+        hexColorEdit = GetNode<LineEdit>("ButtonsContainer/HexColorEdit");
+        hexColorEdit.Text = "ffffff";
 
         addPresetButton = GetNode<Button>("PresetContainer/AddPresetButton");
 
@@ -142,5 +145,29 @@ public class TweakedColourPicker : ColorPicker
     private void OnRawButtonToggled(bool isOn)
     {
         RawMode = isOn;
+    }
+
+    private void OnColorChanged(Color color)
+    {
+        hexColorEdit.Text = color.a8 == 255 ? color.ToHtml(false) : color.ToHtml(true);
+    }
+
+    private void OnHexColorChanged(string color)
+    {
+        for (int i = 0; i < color.Length; i++)
+        {
+            if (!(color[i] >= '0' && color[i] <= '9') && !(color[i] >= 'A' && color[i] <= 'F') &&
+                !(color[i] >= 'a' && color[i] <= 'f'))
+            {
+                color = color.Remove(i, 1);
+                i--;
+            }
+        }
+
+        if (hexColorEdit.Text != color)
+            hexColorEdit.Text = color;
+
+        if (color.Length == 6 || color.Length == 8)
+            Color = new Color(color);
     }
 }
