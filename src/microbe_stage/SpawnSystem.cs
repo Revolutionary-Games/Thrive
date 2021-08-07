@@ -81,7 +81,7 @@ public class SpawnSystem
     public static void AddEntityToTrack(ISpawned entity,
         float radius = Constants.MICROBE_SPAWN_RADIUS)
     {
-        entity.DespawnRadiusSqr = (int)(radius * radius);
+        entity.DespawnRadiusSquared = (int)(radius * radius);
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -94,10 +94,10 @@ public class SpawnSystem
     {
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
-        spawner.SpawnRadiusSqr = spawnRadius * spawnRadius;
+        spawner.SpawnRadiusSquared = spawnRadius * spawnRadius;
 
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
-        spawner.MinSpawnRadiusSqr = minSpawnRadius * minSpawnRadius;
+        spawner.MinSpawnRadiusSquared = minSpawnRadius * minSpawnRadius;
 
         spawner.SetFrequencyFromDensity(spawnDensity);
         spawnTypes.Add(spawner);
@@ -275,8 +275,8 @@ public class SpawnSystem
                     Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
                     float squaredDistance = displacement.LengthSquared();
 
-                    if (squaredDistance <= spawnType.SpawnRadiusSqr &&
-                        squaredDistance >= spawnType.MinSpawnRadiusSqr)
+                    if (squaredDistance <= spawnType.SpawnRadiusSquared &&
+                        squaredDistance >= spawnType.MinSpawnRadiusSquared)
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
@@ -367,7 +367,7 @@ public class SpawnSystem
             var squaredDistance = (playerPosition - entityPosition).LengthSquared();
 
             // If the entity is too far away from the player, despawn it.
-            if (squaredDistance > spawned.DespawnRadiusSqr)
+            if (squaredDistance > spawned.DespawnRadiusSquared)
             {
                 entitiesDeleted++;
                 spawned.OnDestroyed();
@@ -390,7 +390,7 @@ public class SpawnSystem
         // value is used for spawning and
         // despawning, but apparently it works
         // just fine
-        entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
+        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
