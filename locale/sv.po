@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-07 10:56+0800\n"
+"POT-Creation-Date: 2021-08-07 17:45+0800\n"
 "PO-Revision-Date: 2021-05-09 17:45+0000\n"
 "Last-Translator: rob-katt <gabbe.carlin@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/"
@@ -1303,10 +1303,12 @@ msgid "SHIFT"
 msgstr "SHIFT"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
+#: ../src/gui_common/TweakedColorPickerPreset.cs:30
 msgid "LEFT_MOUSE"
 msgstr "Vänster mus"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/gui_common/TweakedColorPickerPreset.cs:32
 msgid "RIGHT_MOUSE"
 msgstr "Höger mus"
 
@@ -1723,11 +1725,24 @@ msgstr ""
 "Versionen of sparningen du försöker ladda matchar inte spelversionen.\n"
 "Vänligen ladda sparningen manuellt genom menyn."
 
-#: ../src/gui_common/TweakedColourPicker.cs:124
+#: ../src/gui_common/TweakedColorPickerPreset.cs:29
+#, fuzzy
+msgid "COLOR"
+msgstr "Färg"
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:31
+msgid "COLOR_PICKER_SELECT_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:33
+msgid "COLOR_PICKER_DELETE_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColourPicker.cs:135
 msgid "COLOR_PICKER_PICK_COLOR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:129
+#: ../src/gui_common/TweakedColourPicker.cs:140
 msgid "COLOR_PICKER_ADD_PRESET"
 msgstr ""
 

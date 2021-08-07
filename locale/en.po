@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-07 10:56+0800\n"
+"POT-Creation-Date: 2021-08-07 17:45+0800\n"
 "PO-Revision-Date: 2021-07-29 18:05+0700\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1312,10 +1312,12 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
+#: ../src/gui_common/TweakedColorPickerPreset.cs:30
 msgid "LEFT_MOUSE"
 msgstr "Left mouse"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/gui_common/TweakedColorPickerPreset.cs:32
 msgid "RIGHT_MOUSE"
 msgstr "Right mouse"
 
@@ -1726,11 +1728,23 @@ msgstr ""
 "version.\n"
 "Please load the save manually through the menu."
 
-#: ../src/gui_common/TweakedColourPicker.cs:124
+#: ../src/gui_common/TweakedColorPickerPreset.cs:29
+msgid "COLOR"
+msgstr "Color"
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:31
+msgid "COLOR_PICKER_SELECT_PRESET"
+msgstr "Use this color"
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:33
+msgid "COLOR_PICKER_DELETE_PRESET"
+msgstr "Delete this preset"
+
+#: ../src/gui_common/TweakedColourPicker.cs:135
 msgid "COLOR_PICKER_PICK_COLOR"
 msgstr "Pick a color from window."
 
-#: ../src/gui_common/TweakedColourPicker.cs:129
+#: ../src/gui_common/TweakedColourPicker.cs:140
 msgid "COLOR_PICKER_ADD_PRESET"
 msgstr "Add current color as a preset."
 

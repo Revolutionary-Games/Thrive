@@ -1,15 +1,20 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Tweaked color picker defines some custom ColorPicker functions.
 /// </summary>
 public class TweakedColourPicker : ColorPicker
 {
+    private readonly List<TweakedColorPickerPreset> presets = new List<TweakedColorPickerPreset>();
+    private PackedScene presetScene;
+
     private ToolButton pickerButton;
     private CheckButton hsvCheckButton;
     private CheckButton rawCheckButton;
-    private Button addPresetButton;
     private LineEdit hexColorEdit;
+    private HBoxContainer presetsContainer;
+    private Button addPresetButton;
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;
@@ -101,6 +106,8 @@ public class TweakedColourPicker : ColorPicker
     {
         base._Ready();
 
+        presetScene = GD.Load<PackedScene>("res://src/gui_common/TweakedColorPickerPreset.tscn");
+
         GetChild(4).GetChild<Control>(4).Hide();
         GetChild<Control>(5).Hide();
         GetChild<Control>(6).Hide();
@@ -113,6 +120,7 @@ public class TweakedColourPicker : ColorPicker
         hexColorEdit = GetNode<LineEdit>("ButtonsContainer/HexColorEdit");
         hexColorEdit.Text = "ffffff";
 
+        presetsContainer = GetNode<HBoxContainer>("PresetContainer");
         addPresetButton = GetNode<Button>("PresetContainer/AddPresetButton");
 
         // Update button state.
@@ -134,7 +142,32 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnAddPresetButtonPressed()
     {
+        foreach (var knownPreset in presets)
+        {
+            if (knownPreset.Color == Color)
+                return;
+        }
+
+        var preset = presetScene.Instance<TweakedColorPickerPreset>();
+        preset.Color = Color;
+        preset.Connect(nameof(TweakedColorPickerPreset.OnPresetSelected), this, nameof(OnPresetSelected));
+        preset.Connect(nameof(TweakedColorPickerPreset.OnPresetDeleted), this, nameof(OnPresetDeleted));
+        presets.Add(preset);
+        presetsContainer.AddChild(preset);
+
         EmitSignal("preset_added");
+    }
+
+    private void OnPresetSelected(Color color)
+    {
+        Color = color;
+    }
+
+    private void OnPresetDeleted(TweakedColorPickerPreset preset)
+    {
+        presets.Remove(preset);
+        presetsContainer.RemoveChild(preset);
+        preset.QueueFree();
     }
 
     private void OnHSVButtonToggled(bool isOn)

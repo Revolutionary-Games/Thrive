@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-07 10:56+0800\n"
+"POT-Creation-Date: 2021-08-07 17:45+0800\n"
 "PO-Revision-Date: 2021-07-03 09:42+0000\n"
 "Last-Translator: Maxonovien <maxime.caute@free.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -1307,10 +1307,12 @@ msgid "SHIFT"
 msgstr "Maj"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
+#: ../src/gui_common/TweakedColorPickerPreset.cs:30
 msgid "LEFT_MOUSE"
 msgstr "Clic gauche"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/gui_common/TweakedColorPickerPreset.cs:32
 msgid "RIGHT_MOUSE"
 msgstr "Clic droit"
 
@@ -1727,11 +1729,24 @@ msgstr ""
 "à la version du jeu.\n"
 "Chargez la sauvegarde manuellement à partir du menu."
 
-#: ../src/gui_common/TweakedColourPicker.cs:124
+#: ../src/gui_common/TweakedColorPickerPreset.cs:29
+#, fuzzy
+msgid "COLOR"
+msgstr "Couleur"
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:31
+msgid "COLOR_PICKER_SELECT_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:33
+msgid "COLOR_PICKER_DELETE_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColourPicker.cs:135
 msgid "COLOR_PICKER_PICK_COLOR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:129
+#: ../src/gui_common/TweakedColourPicker.cs:140
 msgid "COLOR_PICKER_ADD_PRESET"
 msgstr ""
 

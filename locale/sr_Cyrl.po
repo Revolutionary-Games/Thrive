@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-07 10:56+0800\n"
+"POT-Creation-Date: 2021-08-07 17:45+0800\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -1307,10 +1307,12 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
+#: ../src/gui_common/TweakedColorPickerPreset.cs:30
 msgid "LEFT_MOUSE"
 msgstr "Леви миш"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/gui_common/TweakedColorPickerPreset.cs:32
 msgid "RIGHT_MOUSE"
 msgstr "Десни миш"
 
@@ -1729,11 +1731,24 @@ msgstr ""
 "Верзија спремишта које покушавате да учитате не одговара верзији игре.\n"
 "Молимо вас учитајте спремање ручно кроз мени."
 
-#: ../src/gui_common/TweakedColourPicker.cs:124
+#: ../src/gui_common/TweakedColorPickerPreset.cs:29
+#, fuzzy
+msgid "COLOR"
+msgstr "Боја"
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:31
+msgid "COLOR_PICKER_SELECT_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:33
+msgid "COLOR_PICKER_DELETE_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColourPicker.cs:135
 msgid "COLOR_PICKER_PICK_COLOR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:129
+#: ../src/gui_common/TweakedColourPicker.cs:140
 msgid "COLOR_PICKER_ADD_PRESET"
 msgstr ""
 

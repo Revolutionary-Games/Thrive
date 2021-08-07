@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-07 10:56+0800\n"
+"POT-Creation-Date: 2021-08-07 17:45+0800\n"
 "PO-Revision-Date: 2021-07-23 08:24+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1266,10 +1266,12 @@ msgid "SHIFT"
 msgstr "Vaihto"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
+#: ../src/gui_common/TweakedColorPickerPreset.cs:30
 msgid "LEFT_MOUSE"
 msgstr "Hiiren vasen painike"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/gui_common/TweakedColorPickerPreset.cs:32
 msgid "RIGHT_MOUSE"
 msgstr "Hiiren oikea painike"
 
@@ -1678,11 +1680,24 @@ msgstr ""
 "Tallennus, jota yrität ladata, ei vastaa pelin nykyistä versiota.\n"
 "Tämä tallennus pitää ladata manuaalisesti valikon kautta."
 
-#: ../src/gui_common/TweakedColourPicker.cs:124
+#: ../src/gui_common/TweakedColorPickerPreset.cs:29
+#, fuzzy
+msgid "COLOR"
+msgstr "Väri"
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:31
+msgid "COLOR_PICKER_SELECT_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColorPickerPreset.cs:33
+msgid "COLOR_PICKER_DELETE_PRESET"
+msgstr ""
+
+#: ../src/gui_common/TweakedColourPicker.cs:135
 msgid "COLOR_PICKER_PICK_COLOR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:129
+#: ../src/gui_common/TweakedColourPicker.cs:140
 msgid "COLOR_PICKER_ADD_PRESET"
 msgstr ""
 
