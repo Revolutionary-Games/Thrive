@@ -86,7 +86,7 @@ public class SpawnSystem
     }
 
     /// <summary>
-    ///   Adds a new spawner. Sets up the spawn radius, radius sqr,
+    ///   Adds a new spawner. Sets up the spawn radius, this radius squared,
     ///   and frequency fields based on the parameters of this
     ///   function.
     /// </summary>
