@@ -451,10 +451,10 @@ public class MicrobeAI
     /// </summary>
     private void ComputeCompoundsSearchWeights()
     {
-        IEnumerable<Compound> usefulCompounds = microbe.TotalAbsorbedCompounds.Keys;
+        IEnumerable<Compound> usefulCompounds = microbe.Compounds.Compounds.Keys;
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
-        if (microbe.TotalAbsorbedCompounds.Keys.Any(
+        if (usefulCompounds.Any(
             compound => IsVitalCompound(compound) &&
                 microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
         {
