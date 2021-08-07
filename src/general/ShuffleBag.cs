@@ -11,6 +11,8 @@ using System.Collections.Generic;
 public class ShuffleBag<T> : IEnumerable<T>
 {
     private Random random;
+
+    // We use Lists here because the shuffle algorithm rely on access by index, which does not fit LinkedLists.
     private List<T> initialContent;
     private List<T> currentContent;
 
@@ -130,6 +132,7 @@ public class ShuffleBag<T> : IEnumerable<T>
             FillAndShuffle();
         }
 
+        // Removing the last element is due to performance considerations on lists.
         return currentContent[currentContent.Count - 1];
     }
 
