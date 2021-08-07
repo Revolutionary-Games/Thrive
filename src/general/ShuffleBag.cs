@@ -218,7 +218,7 @@ public class ShuffleBag<T> : IEnumerable<T>
         /// <returns> Returns wether the bag still holds items afterwards. </returns>
         public bool MoveNext()
         {
-            return sourceBag.IsEmpty();
+            return !sourceBag.IsEmpty();
         }
 
         /// <summary>
