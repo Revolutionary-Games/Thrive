@@ -84,14 +84,12 @@ public class SpawnSystem
     /// <summary>
     ///   Last recorded position of the player. Positions are recorded upon leaving the immobility zone.
     /// </summary>
-    private Vector3 lastRecordedPlayerPosition;
+    private Vector3 lastRecordedPlayerPosition = Vector3.Zero;
 
     public SpawnSystem(Node root)
     {
         worldRoot = root;
         spawnTypes = new ShuffleBag<Spawner>(random);
-        lastRecordedPlayerPosition = Vector3.Zero;
-        estimateEntityCountInSpawnRadius = 0;
     }
 
     // Needs no params constructor for loading saves?
