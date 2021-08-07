@@ -16,12 +16,20 @@ public class ShuffleBag<T> : IEnumerable<T>
     private List<T> initialContent;
     private List<T> currentContent;
 
-    public ShuffleBag(Random random)
+    /// <summary>
+    ///   This variable encodes if the bag should be automatically refilled by enumerators upon emptying the bag.
+    ///   Manual refilling is always possible.
+    /// </summary>
+    private bool automaticRefill;
+
+    public ShuffleBag(Random random, bool automaticRefill = true)
     {
         this.random = random;
 
         initialContent = new List<T>();
         currentContent = new List<T>();
+
+        this.automaticRefill = automaticRefill;
     }
 
     /// <summary>
@@ -192,7 +200,7 @@ public class ShuffleBag<T> : IEnumerable<T>
             this.sourceBag = sourceBag;
 
             // If the shuffle bag is empty, just fill and shuffle it, else just use whatever is left in it.
-            if (sourceBag.currentContent.Count == 0)
+            if (sourceBag.currentContent.Count == 0 && sourceBag.automaticRefill)
                 sourceBag.FillAndShuffle();
         }
 
