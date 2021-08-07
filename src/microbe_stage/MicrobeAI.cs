@@ -477,11 +477,11 @@ public class MicrobeAI
     ///   Vital compounds are* direct* ATP producers
     ///   TODO: what is used here is a shortcut linked to the current game state:
     ///     such compounds could be used for other processes in future versions
-    ///   TODO: currently, vital compounds are not necessarily useful (e.g. no use of iron)!
     /// </summary>
     private bool IsVitalCompound(Compound compound)
     {
-        return compound == glucose || compound == iron;
+        return microbe.Compounds.IsUseful(compound) &&
+            (compound == glucose || compound == iron);
     }
 
     private void SetEngulfIfClose()
