@@ -168,18 +168,13 @@ public class ShuffleBag<T> : IEnumerable<T>
     ///     the dropped element is the same as the one that would be picked instead of dropping it.
     ///     This makes it possible to pick an element and drop it altogether.
     ///   </para>
-    ///   <para>
-    ///     Pick and drop are kept separate for the enumerator.
-    ///   </para>
     /// </remarks>
-    /// <returns> Returns wether the bag was left empty after drop. </returns>
-    private bool Drop()
+    private void Drop()
     {
         if (currentContent.Count == 0)
             throw new InvalidOperationException("Cannot drop from empty bag!");
 
         currentContent.RemoveAt(currentContent.Count - 1);
-        return currentContent.Count == 0;
     }
 
     /// <summary>
