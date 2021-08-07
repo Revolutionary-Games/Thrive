@@ -35,6 +35,12 @@ public class ShuffleBag<T> : IEnumerable<T>
     /// <summary>
     ///   Adds an element to the bag. This element will be included everytime the bag is refilled.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Adding an element this way is deterministic: this element will always be the one picked first
+    ///     if no other element is added.
+    ///   </para>
+    /// </remarks>
     public void Add(T element)
     {
         initialContent.Add(element);
