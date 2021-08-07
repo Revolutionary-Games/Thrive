@@ -18,9 +18,10 @@ public class ShuffleBag<T> : IEnumerable<T>
 
     public ShuffleBag(Random random)
     {
+        this.random = random;
+
         initialContent = new List<T>();
         currentContent = new List<T>();
-        this.random = random;
     }
 
     /// <summary>
@@ -78,6 +79,14 @@ public class ShuffleBag<T> : IEnumerable<T>
             currentContent.Add(element);
 
         Shuffle();
+    }
+
+    /// <summary>
+    ///   Checks if the bag is currently empty.
+    /// </summary>
+    public bool IsEmpty()
+    {
+        return currentContent.Count == 0;
     }
 
     /// <summary>
@@ -191,7 +200,7 @@ public class ShuffleBag<T> : IEnumerable<T>
         ///   Returns the current element for the enumerator,
         ///   effectively picking the front element of the shuffle bag without dropping it.
         /// </summary>
-        public T1 Current => sourceBag.Pick();
+        public T1 Current => sourceBag.PickAndDrop();
 
         object IEnumerator.Current => Current;
 
@@ -206,8 +215,7 @@ public class ShuffleBag<T> : IEnumerable<T>
         /// <returns> Returns wether the bag still holds items afterwards. </returns>
         public bool MoveNext()
         {
-            var leftItemsInBag = !sourceBag.Drop();
-            return leftItemsInBag;
+            return sourceBag.IsEmpty();
         }
 
         /// <summary>
