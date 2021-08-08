@@ -155,7 +155,7 @@ public class TweakedColourPicker : ColorPicker
         presets.Add(preset);
         presetsContainer.AddChild(preset);
 
-        EmitSignal("preset_added");
+        AddPreset(Color);
     }
 
     private void OnPresetSelected(Color color)
@@ -167,6 +167,7 @@ public class TweakedColourPicker : ColorPicker
     {
         presets.Remove(preset);
         presetsContainer.RemoveChild(preset);
+        ErasePreset(preset.Color);
         preset.QueueFree();
     }
 
@@ -187,6 +188,8 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnHexColorChanged(string color)
     {
+        var caretPosition = hexColorEdit.CaretPosition;
+
         for (int i = 0; i < color.Length; i++)
         {
             if (!(color[i] >= '0' && color[i] <= '9') && !(color[i] >= 'A' && color[i] <= 'F') &&
@@ -198,7 +201,10 @@ public class TweakedColourPicker : ColorPicker
         }
 
         if (hexColorEdit.Text != color)
+        {
             hexColorEdit.Text = color;
+            hexColorEdit.CaretPosition = caretPosition - 1;
+        }
 
         if (color.Length == 6 || color.Length == 8)
             Color = new Color(color);
