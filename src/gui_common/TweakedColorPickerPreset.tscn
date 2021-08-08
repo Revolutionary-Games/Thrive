@@ -16,4 +16,3 @@ __meta__ = {
 }
 
 [connection signal="gui_input" from="." to="." method="OnPresetGUIInput"]
-[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]

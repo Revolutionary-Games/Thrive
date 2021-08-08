@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Globalization;
+using Godot;
 
 public class TweakedColorPickerPreset : ColorRect
 {
@@ -7,6 +8,22 @@ public class TweakedColorPickerPreset : ColorRect
 
     [Signal]
     public delegate void OnPresetDeleted(TweakedColorPickerPreset preset);
+
+    public static string HintTooltipBase { get; set; }
+
+    public override void _Ready()
+    {
+        Translate();
+        base._Ready();
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+            Translate();
+
+        base._Notification(what);
+    }
 
     private void OnPresetGUIInput(InputEvent inputEvent)
     {
@@ -24,12 +41,8 @@ public class TweakedColorPickerPreset : ColorRect
         }
     }
 
-    private void OnMouseEntered()
+    private void Translate()
     {
-        HintTooltip = TranslationServer.Translate("COLOR") + ": #" + Color.ToHtml() + "\n"
-            + TranslationServer.Translate("LEFT_MOUSE") + ": "
-            + TranslationServer.Translate("COLOR_PICKER_SELECT_PRESET") + "\n"
-            + TranslationServer.Translate("RIGHT_MOUSE") + ": "
-            + TranslationServer.Translate("COLOR_PICKER_DELETE_PRESET");
+        HintTooltip = string.Format(CultureInfo.CurrentCulture, HintTooltipBase, Color.ToHtml());
     }
 }

@@ -4,10 +4,10 @@
 [ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 48.0
-margin_top = 48.0
-margin_right = 48.0
-margin_bottom = 48.0
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 52.0
+margin_bottom = 52.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -72,5 +72,4 @@ text = "+"
 [connection signal="toggled" from="ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
 [connection signal="toggled" from="ButtonsContainer/RawCheckButton" to="." method="OnRawButtonToggled"]
 [connection signal="text_changed" from="ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
-[connection signal="mouse_entered" from="PresetContainer/AddPresetButton" to="." method="OnMouseEnteredAddPresetButton"]
 [connection signal="pressed" from="PresetContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]

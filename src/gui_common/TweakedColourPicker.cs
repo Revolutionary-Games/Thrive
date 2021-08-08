@@ -113,7 +113,6 @@ public class TweakedColourPicker : ColorPicker
         GetChild<Control>(6).Hide();
         GetChild<Control>(7).Hide();
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
-        pickerButton.Connect("mouse_entered", this, nameof(OnMouseEnteredPickerButton));
 
         hsvCheckButton = GetNode<CheckButton>("ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("ButtonsContainer/RawCheckButton");
@@ -128,16 +127,27 @@ public class TweakedColourPicker : ColorPicker
         RawButtonEnabled = rawButtonEnabled;
         HsvMode = base.HsvMode;
         RawMode = base.RawMode;
+
+        Translate();
     }
 
-    private void OnMouseEnteredPickerButton()
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+            Translate();
+
+        base._Notification(what);
+    }
+
+    private void Translate()
     {
         pickerButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_PICK_COLOR");
-    }
-
-    private void OnMouseEnteredAddPresetButton()
-    {
         addPresetButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_ADD_PRESET");
+        TweakedColorPickerPreset.HintTooltipBase = TranslationServer.Translate("COLOR") + ": #{0}\n"
+            + TranslationServer.Translate("LEFT_MOUSE") + ": "
+            + TranslationServer.Translate("COLOR_PICKER_SELECT_PRESET") + "\n"
+            + TranslationServer.Translate("RIGHT_MOUSE") + ": "
+            + TranslationServer.Translate("COLOR_PICKER_DELETE_PRESET");
     }
 
     private void OnAddPresetButtonPressed()
