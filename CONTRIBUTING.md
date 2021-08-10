@@ -61,6 +61,11 @@ code to disable your changes. Note: currently we don't have an options
 menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
 
+If your PR breaks save compatibility (older saves no longer being
+loadable) you should include a save upgrader in your PR. Note that you
+may need to introduce a new sub version / bump the version number to
+make it possible to trigger the save upgrader.
+
 ## Translating the game
 
 You can find the necessary informations about how to translate the game [here](doc/working_with_translations.md).

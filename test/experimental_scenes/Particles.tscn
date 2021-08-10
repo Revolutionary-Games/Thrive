@@ -10,11 +10,6 @@
 [ext_resource path="res://src/microbe_stage/particles/Embers.tres" type="Material" id=73]
 [ext_resource path="res://assets/textures/snowflake2.png" type="Texture" id=74]
 
-
-
-
-
-
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
 flags_unshaded = true
@@ -315,7 +310,7 @@ local_coords = false
 process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 7 )
 
-[node name="Toxin cloud" type="Particles" parent="."]
+[node name="ToxinCloud" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.490073, 9.13449, 6.3137 )
 amount = 50
 lifetime = 2.0
