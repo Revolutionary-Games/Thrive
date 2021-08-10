@@ -6,11 +6,11 @@
     private BiomeConditions biomeConditions;
     private float totalEnvironmentalEnergySource;
 
-    public EnvironmentalFoodSource(Patch patch, string compound, float constant)
+    public EnvironmentalFoodSource(Patch patch, string compound, float foodCapacityMultiplier)
     {
         biomeConditions = patch.Biome;
         this.compound = SimulationParameters.Instance.GetCompound(compound);
-        totalEnvironmentalEnergySource = patch.Biome.Compounds[this.compound].Dissolved * constant;
+        totalEnvironmentalEnergySource = patch.Biome.Compounds[this.compound].Dissolved * foodCapacityMultiplier;
     }
 
     public float FitnessScore(Species species)
