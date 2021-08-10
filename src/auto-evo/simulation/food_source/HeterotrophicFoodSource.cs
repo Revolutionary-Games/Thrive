@@ -24,7 +24,7 @@ public class HeterotrophicFoodSource : IFoodSource
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        // No canibalism
+        // No cannibalism
         if (species == prey)
         {
             return 0.0f;
