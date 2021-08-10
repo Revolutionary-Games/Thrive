@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-06 14:17+0300\n"
-"PO-Revision-Date: 2021-07-03 09:42+0000\n"
-"Last-Translator: Maxonovien <maxime.caute@free.fr>\n"
+"POT-Creation-Date: 2021-08-05 12:51+0200\n"
+"PO-Revision-Date: 2021-08-08 14:42+0000\n"
+"Last-Translator: George Fel <george.fel@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -31,8 +31,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Vos cellules utilisent l'ATP comme leur source d'énergie, si elles n'en "
-"ont plus vous mourrez."
+"Vos cellules utilisent l'ATP comme source d'énergie, si elles n'en ont plus "
+"vous mourrez."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
@@ -43,12 +43,13 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Vous pouvez aussi absorber des cellules, des bactéries, des morceaux de "
-"fer et de cellules qui sont plus petit que vous en pressant G. Cela vous "
-"coûtera plus d'ATP et vous ralentira. N'oubliez pas de presser G une "
-"seconde fois arrêter d'absorber."
+"Vous pouvez aussi absorber des cellules, des bactéries, des morceaux de fer "
+"et de cellules qui sont plus petit que vous en pressant G. Cela vous coûtera "
+"plus d'ATP et vous ralentira. N'oubliez pas de presser G une seconde fois "
+"pour arrêter d'absorber."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
@@ -187,15 +188,16 @@ msgstr ""
 "Vacuole : stocke 15 composés collectés"
 
 #: ../simulation_parameters/common/help_texts.json:74
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "À chaque génération, vous avez 100 points de mutation (PM) à dépenser, et "
 "chaque changement (ou mutation) coûtera une certaine quantité de ces PM. "
 "Ajouter ou retirer des organites coûte des PM. Cependant, retirer les "
-"organites placées lors de cette mutation les rembourse. Vous pouvez "
-"déplacer ou retirer une organite en faisant un clic droit dessus et en "
-"sélectionnant l'action voulue. Vous pouvez faire tourner vos organites "
-"lors du placement avec A et D."
+"organites placées lors de cette mutation les rembourse. Vous pouvez déplacer "
+"ou retirer une organite en faisant un clic droit dessus et en sélectionnant "
+"l'action voulue. Vous pouvez faire tourner vos organites lors du placement "
+"avec A et D."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -297,8 +299,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"Voici une astuce, vous pouvez en[g]loutir des morceaux, de fer ou autre."
+msgstr "Voici une astuce, vous pouvez engloutir des morceaux, de fer ou autre."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -1481,14 +1482,12 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Aberration chromatique :"
 
 #: ../src/general/OptionsMenu.tscn:381
-#, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Capacités"
+msgstr "Barre d’affichage des capacités"
 
 #: ../src/general/OptionsMenu.tscn:390
-#, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Effets externes :"
+msgstr "Effets externes"
 
 #: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
@@ -1518,7 +1517,7 @@ msgstr "Volume de l'interface"
 
 #: ../src/general/OptionsMenu.tscn:601
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Périphérique de sortie par défaut:"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
@@ -1714,7 +1713,7 @@ msgstr "/second"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
