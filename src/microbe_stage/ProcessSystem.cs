@@ -49,7 +49,7 @@ public class ProcessSystem
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane)
     {
-        return ComputeEnergyBalance(organelles.Select(i => i.Definition), biome, membrane);
+        return ComputeEnergyBalance(organelles.Select(organelle => organelle.Definition), biome, membrane);
     }
 
     /// <summary>
