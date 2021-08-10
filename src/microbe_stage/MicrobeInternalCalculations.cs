@@ -15,7 +15,7 @@ public static class MicrobeInternalCalculations
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                // only count flagella that face backwards
+                // Only count flagella that face backwards
                 if (organelle.Orientation == 3)
                 {
                     organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
