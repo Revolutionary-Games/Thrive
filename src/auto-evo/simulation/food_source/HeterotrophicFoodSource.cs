@@ -39,10 +39,12 @@ public class HeterotrophicFoodSource : IFoodSource
                 microbeSpecies.MembraneType).FinalBalance;
 
         // It's great if you can engulf this prey, but only if you can catch it
-        var engulfScore = predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ
-            && !microbeSpecies.MembraneType.CellWall ?
-                Constants.AUTO_EVO_ENGULF_PREDATION_SCORE :
-                0.0f;
+        var engulfScore = 0.0f;
+        if (predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
+        {
+            engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+        }
+
         engulfScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
         var pilusScore = 0.0f;
