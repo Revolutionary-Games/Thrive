@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-05 12:51+0200\n"
-"PO-Revision-Date: 2021-07-26 13:26+0000\n"
-"Last-Translator: TomDev03 <chumbosilva200@gmail.com>\n"
+"PO-Revision-Date: 2021-08-10 19:33+0000\n"
+"Last-Translator: Sofia Souza Dias Silva <sofiachocolate100@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -22,11 +22,12 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Use W, A, S, D e o mouse para mover a célula. Pressione E para lançar "
-"Oxitoxina se você tiver um vacúolo de toxinas. Aperte G para ativar ou "
-"desativar o modo de engolir."
+"Use W, A, S, D e o mouse para se mover. Pressione E para lançar oxitoxina se "
+"você tiver um vacúolo de toxinas. Aperte G para ativar ou desativar o modo "
+"de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -44,12 +45,13 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Você também pode engolir células, bactérias, pedaços de ferro e de células "
-"que são menores que você pressionando G. Isso custará ATP adicional e sua "
-"célula irá se mover mais lentamente. Não esqueça de pressionar G uma "
-"segunda vez para parar de engolir."
+"menores que você pressionando G. Isso custará ATP adicional e sua célula irá "
+"se mover mais lentamente. Não esqueça de pressionar G uma segunda vez para "
+"parar de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
@@ -57,7 +59,7 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "A osmorregulação custa ATP, isso significa que quanto maior a sua célula, "
 "mais mitocôndrias, metabolossomos ou rusticianinas (ou citoplasmas, que "
-"produzem glicólise) você precisa para evitar perder ATP quando você está "
+"produzem glicose) você precisa para evitar perder ATP quando você está "
 "parado."
 
 #: ../simulation_parameters/common/help_texts.json:26
@@ -118,13 +120,13 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Se unindo com outras células, você pode construir uma colônia onde as "
 "células compartilham compostos que absorvem e produzem com cada uma. Para "
-"poder unir com outra célula, você deve ter o agente de ligação e se mover "
-"à ela após entrar o modo de ligação. Você só pode se unir com células de "
-"sua própria espécie. Enquanto em uma colônia, você não pode dividir sua "
-"célula e entrar no editor (por enquanto). Para entrar no editor, primeiro "
-"deixe a colônia após coletar compostos suficientes, e então entre no "
-"editor. Colônias grandes de células são o caminho em direção à "
-"multicelularidade (ainda não adicionado)."
+"poder unir com outra célula, você deve ter o Modo de Ligação e se mover à "
+"ela após entrar no Modo de Ligação. Você só pode se unir com células de sua "
+"própria espécie. Enquanto em uma colônia, você não pode dividir sua célula e "
+"entrar no editor (por enquanto). Para entrar no editor, primeiro deixe a "
+"colônia após coletar compostos suficientes, e então entre no editor. "
+"Colônias grandes de células são o caminho em direção à multicelularidade ("
+"ainda não adicionado)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -134,18 +136,18 @@ msgstr ""
 "Metabolossomos: Produz ATP por meio da glicose\n"
 "\n"
 "Proteína Quimiossintetizante: Produz metade da glicose por meio do Sulfeto "
-"de Hidrogênio comparado com o quimioplasto, porém também realizam a "
-"glicólise, ocupa 1 Hexágono \n"
+"de Hidrogênio comparado com o quimioplasto, porém também realizam a  "
+"Glicólise, ocupa 1 Hexágono\n"
 "\n"
 "Tilacóide: Produz um terço da quantidade de glicose comparado a um "
-"cloroplasto , mas também realiza a glicólise, ocupa 1 Hexágono \n"
+"cloroplasto , mas também realiza a glicose, ocupa 1 Hexágono\n"
 "\n"
 "Rusticianina: Converte ferro em ATP\n"
 "\n"
 "Nitrogenase: Converte nitrogênio atmosférico e ATP em amônia "
 "anaerobicamente\n"
 "\n"
-"Citoplasma: Tem espaço de armazenamento e realiza a glicólise (Produz "
+"Citoplasma: Tem espaço de armazenamento e realiza a Glicólise (Produz "
 "pequenas quantidades de ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:66
@@ -160,7 +162,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Organelas com membrana\n"
+"Organelas acopladas a membrana\n"
 "\n"
 "Núcleo: Ocupa 11 espaços e permite a evolução de organelas com membranas. "
 "Também dobra o tamanho de sua célula (Só pode ser evoluído uma vez)\n"
@@ -182,14 +184,15 @@ msgstr ""
 "Vacúolo de Toxinas: Produz toxinas (chamadas oxitoxinas)"
 
 #: ../simulation_parameters/common/help_texts.json:74
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"A cada geração, você tem 100 pontos de mutação (PM) para gastar, e cada "
+"A cada geração, você tem 100 Pontos de Mutação (MP) para gastar, e cada "
 "mudança (ou mutação) vai custar uma certa quantidade desses pontos. "
-"Adicionar ou remover organelas custam PM, porém remover organelas que "
-"foram adicionadas na sessão atual devolvem os PM. Você pode remover ou "
-"mover uma organela clicando nela com o botão direito e selecionando a ação "
-"no menu. É possível girar as organelas com A e D."
+"Adicionar ou remover organelas custam MP. Porém remover organelas que foram "
+"adicionadas na sessão atual devolvem os MP. Você pode remover ou mover uma "
+"organela clicando nela com o botão direito e selecionando a ação no menu pop-"
+"up. É possível girar as organelas com A e D."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -262,7 +265,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "*SE CONTORCENDO*"
+msgstr "COISAS ONDULADAS!!"
 
 #: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_11"
@@ -270,7 +273,7 @@ msgstr "Pela milésima vez, o jogo não vai ter civilizações subaquáticas!"
 
 #: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_12"
-msgstr "E essas células azuis?"
+msgstr "Apesar dessas células azuis."
 
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
@@ -286,8 +289,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"Aqui vai uma dica, você pode en[g]olir pedaços de ferro, entre outros."
+msgstr "Aqui vai uma dica, você pode engolir pedaços de ferro, entre outros."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -410,7 +412,7 @@ msgstr "Desativar modo de ligação"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr "Desconectar todos"
+msgstr "Desvincular todos"
 
 #: ../simulation_parameters/common/input_options.json:58
 msgid "PERFORM_UNBINDING"
@@ -1022,7 +1024,7 @@ msgstr "Favoritos"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr "Print Screen"
+msgstr "Tela de Print"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
@@ -1030,7 +1032,7 @@ msgstr "Espaço"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Barra Invertida"
+msgstr "Barra Invertida/Backslash"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
@@ -1197,6 +1199,7 @@ msgid "LAUNCHA"
 msgstr "Launch A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
+#, fuzzy
 msgid "LAUNCHB"
 msgstr "Launch B"
 
@@ -1408,7 +1411,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:758
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Serviço padrão de saída"
 
 #: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
@@ -1502,7 +1505,7 @@ msgstr "Volume da Interface"
 
 #: ../src/general/OptionsMenu.tscn:601
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Dispositivo de saída de aúdio:"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
@@ -2344,7 +2347,7 @@ msgstr "Luz"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:987
 msgid "PRESSURE_SHORT"
-msgstr "Press."
+msgstr "Pressione."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
@@ -2814,31 +2817,41 @@ msgstr "Salvamento rápido"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
-#: ../src/saving/SaveList.cs:171
+#: ../src/saving/SaveList.cs:185
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
 
-#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.cs:281
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"O vacúolo é uma organela membranosa interna usada para o armazenamento da "
+"célula. Composta de várias vesículas, estruturas membranosas menores "
+"amplamente usadas nas células para o armazenamento que se fundiram. É "
+"preenchida com água usada para conter moléculas, enzimas, sólidos, e "
+"outras substâncias. Sua forma é fluida e pode variar em cada célula."
+
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "Carregando..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "Apagar o Jogo Salvo?"
 
-#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
+#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Carregar jogo incompatível?"
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo salvo é de uma versão mais nova de Thrive e é provavelmente "
 "incompatível.\n"
 "Deseja carregar o jogo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:117
+#: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo salvo é de uma versão mais antiga e pode ser incompatível com a "
@@ -2849,11 +2862,11 @@ msgstr ""
 "priorizados.\n"
 "Deseja tentar carregar o jogo salvo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:132
+#: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
 msgstr "Carregar salvamento inválido?"
 
-#: ../src/saving/SaveList.tscn:141
+#: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "A informação do jogo salvo não pôde ser carregada do arquivo.\n"
@@ -2861,17 +2874,37 @@ msgstr ""
 "entendido por essa versão de Thrive.\n"
 "Deseja carregar o jogo salvo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:156
+#: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "O jogo salvo selecionado é incompatível"
 
-#: ../src/saving/SaveList.tscn:166
+#: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O jogo salvo selecionado não é compatível com esta versão de Thrive.\n"
 "Como Thrive está em desenvolvimento inicial, a compatibilidade entre "
 "salvamentos não é prioridade, já que não há um conversor para atualizar os "
 "arquivos."
+
+#: ../src/saving/SaveList.tscn:183
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "O jogo salvo selecionado é incompatível"
+
+#: ../src/saving/SaveList.tscn:192
+#, fuzzy
+msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+msgstr ""
+"O vacúolo é uma organela membranosa interna usada para o armazenamento da "
+"célula. Composta de várias vesículas, estruturas membranosas menores "
+"amplamente usadas nas células para o armazenamento que se fundiram. É "
+"preenchida com água usada para conter moléculas, enzimas, sólidos, e "
+"outras substâncias. Sua forma é fluida e pode variar em cada célula."
+
+#: ../src/saving/SaveList.tscn:207
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED"
+msgstr "Falha ao Salvar"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"

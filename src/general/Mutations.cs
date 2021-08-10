@@ -367,7 +367,7 @@ public class Mutations
 
         if (random.Next(0, 101) < 50)
         {
-            return simulation.GetMembrane("calcium_carbonate");
+            return simulation.GetMembrane("calciumCarbonate");
         }
 
         return simulation.GetMembrane("silica");
