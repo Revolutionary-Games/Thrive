@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 12:51+0200\n"
+"POT-Creation-Date: 2021-08-06 14:17+0300\n"
 "PO-Revision-Date: 2021-07-26 13:26+0000\n"
 "Last-Translator: TomDev03 <chumbosilva200@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -2814,31 +2814,41 @@ msgstr "Salvamento rápido"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
-#: ../src/saving/SaveList.cs:171
+#: ../src/saving/SaveList.cs:185
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
 
-#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.cs:281
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"O vacúolo é uma organela membranosa interna usada para o armazenamento da "
+"célula. Composta de várias vesículas, estruturas membranosas menores "
+"amplamente usadas nas células para o armazenamento que se fundiram. É "
+"preenchida com água usada para conter moléculas, enzimas, sólidos, e "
+"outras substâncias. Sua forma é fluida e pode variar em cada célula."
+
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "Carregando..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "Apagar o Jogo Salvo?"
 
-#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
+#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Carregar jogo incompatível?"
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo salvo é de uma versão mais nova de Thrive e é provavelmente "
 "incompatível.\n"
 "Deseja carregar o jogo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:117
+#: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo salvo é de uma versão mais antiga e pode ser incompatível com a "
@@ -2849,11 +2859,11 @@ msgstr ""
 "priorizados.\n"
 "Deseja tentar carregar o jogo salvo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:132
+#: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
 msgstr "Carregar salvamento inválido?"
 
-#: ../src/saving/SaveList.tscn:141
+#: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "A informação do jogo salvo não pôde ser carregada do arquivo.\n"
@@ -2861,17 +2871,37 @@ msgstr ""
 "entendido por essa versão de Thrive.\n"
 "Deseja carregar o jogo salvo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:156
+#: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "O jogo salvo selecionado é incompatível"
 
-#: ../src/saving/SaveList.tscn:166
+#: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O jogo salvo selecionado não é compatível com esta versão de Thrive.\n"
 "Como Thrive está em desenvolvimento inicial, a compatibilidade entre "
 "salvamentos não é prioridade, já que não há um conversor para atualizar os "
 "arquivos."
+
+#: ../src/saving/SaveList.tscn:183
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "O jogo salvo selecionado é incompatível"
+
+#: ../src/saving/SaveList.tscn:192
+#, fuzzy
+msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+msgstr ""
+"O vacúolo é uma organela membranosa interna usada para o armazenamento da "
+"célula. Composta de várias vesículas, estruturas membranosas menores "
+"amplamente usadas nas células para o armazenamento que se fundiram. É "
+"preenchida com água usada para conter moléculas, enzimas, sólidos, e "
+"outras substâncias. Sua forma é fluida e pode variar em cada célula."
+
+#: ../src/saving/SaveList.tscn:207
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED"
+msgstr "Falha ao Salvar"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
