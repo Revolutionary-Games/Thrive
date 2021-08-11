@@ -146,7 +146,7 @@ public class ProcessSystem
             }
         }
 
-        foreach (var organelle in organelles.Select(organelle => organelle.Definition))
+        foreach (var organelle in organelles.Select(o => o.Definition))
         {
             foreach (var process in organelle.RunnableProcesses)
             {
