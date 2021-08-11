@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-05 12:51+0200\n"
-"PO-Revision-Date: 2021-08-10 19:33+0000\n"
+"PO-Revision-Date: 2021-08-13 05:59+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -2842,15 +2842,10 @@ msgstr ""
 "да изтриете {0}?"
 
 #: ../src/saving/SaveList.cs:281
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"Вакуолата представлява вътрешен мембранен органел, който се използва като "
-"място за съхранение на хранителните вещества в клетката. Състои се от "
-"няколко секреторни мехурчета – малки мембранни структури, които са слети "
-"заедно. Изпълнена е с вода, която съдържа молекули, ензими и други "
-"вещества. Формата на вакуолата е течна и може да варира между различните "
-"клетки."
+"Надграждането на записа е неуспешно, поради следната грешка:\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -2867,7 +2862,7 @@ msgstr "Заредете несъвместим запис?"
 #: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Този запис е от по-нова версия на „Thrive“ и не е съвместим.\n"
+"Този запис е от по-нова версия на „Thrive“ и е несъвместим.\n"
 "Искате ли да го заредите въпреки това?"
 
 #: ../src/saving/SaveList.tscn:119
@@ -2896,30 +2891,26 @@ msgstr "Избраният запис е несъвместим"
 #: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Избраният запис не е съвместим с тази версия на „Thrive“.\n"
-"Понеже играта е в начален етап на разработка и съвместимостта не е "
-"приоритет, все още не е създаден вграден конвертор за стари записи."
+"Избраният запис е несъвместим с тази версия на „Thrive“.\n"
+"Надграждането не е възможно.\n"
+"Понеже играта е в начален етап на разработка, не всички записи могат да "
+"бъдат надградени."
 
 #: ../src/saving/SaveList.tscn:183
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
-msgstr "Избраният запис е несъвместим"
+msgstr "Избраният запис може да бъде надграден"
 
 #: ../src/saving/SaveList.tscn:192
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"Вакуолата представлява вътрешен мембранен органел, който се използва като "
-"място за съхранение на хранителните вещества в клетката. Състои се от "
-"няколко секреторни мехурчета – малки мембранни структури, които са слети "
-"заедно. Изпълнена е с вода, която съдържа молекули, ензими и други "
-"вещества. Формата на вакуолата е течна и може да варира между различните "
-"клетки."
+"Този запис е от стара версия на „Thrive“, но може да бъде надграден.\n"
+"Преди надграждането ще бъде създадено резервно копие.\n"
+"Ако пропуснете надграждането, зареждането ще продължи.\n"
+"Искате ли да продължите?"
 
 #: ../src/saving/SaveList.tscn:207
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Запазването е неуспешно"
+msgstr "Надграждането на записа е неуспешно"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
@@ -2970,10 +2961,10 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:218
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Изтриването на всички стари автоматични и бързи записи не може да бъде "
-"отменено, сигурни ли сте?\n"
-"- {0} Автоматични запис(а)и\n"
-"- {1} Бързи запис(а)и"
+"Изтриването на старите автоматични и бързи записи не може да бъде отменено, "
+"сигурни ли сте?\n"
+"– автоматични записи: {0}\n"
+"– бързи записи: {1}"
 
 #: ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
@@ -3005,7 +2996,7 @@ msgstr "Избрани:"
 
 #: ../src/saving/SaveManagerGUI.tscn:188
 msgid "DELETE_SELECTED_SAVES"
-msgstr "Изтрийте избраните (записи)?"
+msgstr "Изтрийте избраните записи?"
 
 #: ../src/saving/SaveManagerGUI.tscn:211
 msgid "DELETE_OLD_SAVES"
