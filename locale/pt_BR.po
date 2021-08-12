@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-05 12:51+0200\n"
-"PO-Revision-Date: 2021-08-10 19:33+0000\n"
-"Last-Translator: Sofia Souza Dias Silva <sofiachocolate100@gmail.com>\n"
+"PO-Revision-Date: 2021-08-13 05:59+0000\n"
+"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,16 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Use W, A, S, D e o mouse para se mover. Pressione E para lançar oxitoxina se "
-"você tiver um vacúolo de toxinas. Aperte G para ativar ou desativar o modo "
+"Use [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/th"
+"rive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_mov"
+"e_right[/thrive:input] e o mouse para se mover. Pressione "
+"[thrive:input]g_fire_toxin[/thrive:input] para lançar [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound] se você tiver um vacúolo de toxinas. Aperte "
+"[thrive:input]g_toggle_engulf[/thrive:input] para ativar ou desativar o modo "
 "de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:10
@@ -45,13 +48,13 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Você também pode engolir células, bactérias, pedaços de ferro e de células "
-"menores que você pressionando G. Isso custará ATP adicional e sua célula irá "
-"se mover mais lentamente. Não esqueça de pressionar G uma segunda vez para "
-"parar de engolir."
+"menores que você pressionando [thrive:input]g_toggle_engulf[/thrive:input]. "
+"Isso custará ATP adicional e sua célula irá se mover mais lentamente. Não "
+"esqueça de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma "
+"segunda vez para parar de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
@@ -133,22 +136,27 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estruturas Procarióticas\n"
 "\n"
-"Metabolossomos: Produz ATP por meio da glicose\n"
+"Metabolossomos: Produz [thrive:compound type=\"atp\"][/thrive:compound] por "
+"meio da [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Proteína Quimiossintetizante: Produz metade da glicose por meio do Sulfeto "
-"de Hidrogênio comparado com o quimioplasto, porém também realizam a  "
-"Glicólise, ocupa 1 Hexágono\n"
+"Proteína Quimiossintetizante: Produz metade da [thrive:compound type="
+"\"glucose\"][/thrive:compound] por meio do [thrive:compound type="
+"\"hydrogensulfide\"][/thrive:compound] comparado com o quimioplasto, porém "
+"também realiza a glicólise, e ocupa 1 Hexágono\n"
 "\n"
-"Tilacóide: Produz um terço da quantidade de glicose comparado a um "
-"cloroplasto , mas também realiza a glicose, ocupa 1 Hexágono\n"
+"Tilacoide: Produz um terço da quantidade de [thrive:compound type=\"glucose\""
+"][/thrive:compound] comparado a um cloroplasto, mas também realiza a "
+"glicólise, e ocupa 1 Hexágono\n"
 "\n"
-"Rusticianina: Converte ferro em ATP\n"
+"Rusticianina: Converte [thrive:compound type=\"iron\"][/thrive:compound] em "
+"[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenase: Converte nitrogênio atmosférico e ATP em amônia "
+"Nitrogenase: Converte nitrogênio atmosférico e [thrive:compound type=\"atp\""
+"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound] "
 "anaerobicamente\n"
 "\n"
 "Citoplasma: Tem espaço de armazenamento e realiza a Glicólise (Produz "
-"pequenas quantidades de ATP)"
+"pequenas quantidades de [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -184,15 +192,16 @@ msgstr ""
 "Vacúolo de Toxinas: Produz toxinas (chamadas oxitoxinas)"
 
 #: ../simulation_parameters/common/help_texts.json:74
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"A cada geração, você tem 100 Pontos de Mutação (MP) para gastar, e cada "
+"A cada geração, você tem 100 Pontos de Mutação (PM) para gastar, e cada "
 "mudança (ou mutação) vai custar uma certa quantidade desses pontos. "
-"Adicionar ou remover organelas custam MP. Porém remover organelas que foram "
+"Adicionar ou remover organelas custam PM. Porém, remover organelas que foram "
 "adicionadas na sessão atual devolvem os MP. Você pode remover ou mover uma "
 "organela clicando nela com o botão direito e selecionando a ação no menu pop-"
-"up. É possível girar as organelas com A e D."
+"up. É possível girar as organelas com "
+"[thrive:input]e_rotate_left[/thrive:input] e "
+"[thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -797,7 +806,7 @@ msgstr "Oxitoxissoma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:219
 msgid "THYLAKOIDS"
-msgstr "Tilacóides"
+msgstr "Tilacoides"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:251
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:325
@@ -1863,7 +1872,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
 msgid "THYLAKOID"
-msgstr "Tilacóide"
+msgstr "Tilacoide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
@@ -2823,14 +2832,10 @@ msgstr ""
 "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
 
 #: ../src/saving/SaveList.cs:281
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"O vacúolo é uma organela membranosa interna usada para o armazenamento da "
-"célula. Composta de várias vesículas, estruturas membranosas menores "
-"amplamente usadas nas células para o armazenamento que se fundiram. É "
-"preenchida com água usada para conter moléculas, enzimas, sólidos, e "
-"outras substâncias. Sua forma é fluida e pode variar em cada célula."
+"A atualização do arquivo salvo falhou devido ao seguinte erro:\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -2887,24 +2892,22 @@ msgstr ""
 "arquivos."
 
 #: ../src/saving/SaveList.tscn:183
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
-msgstr "O jogo salvo selecionado é incompatível"
+msgstr "O jogo salvo selecionado pode ser atualizado"
 
 #: ../src/saving/SaveList.tscn:192
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"O vacúolo é uma organela membranosa interna usada para o armazenamento da "
-"célula. Composta de várias vesículas, estruturas membranosas menores "
-"amplamente usadas nas células para o armazenamento que se fundiram. É "
-"preenchida com água usada para conter moléculas, enzimas, sólidos, e "
-"outras substâncias. Sua forma é fluida e pode variar em cada célula."
+"O jogo salvo selecionado é de uma versão antiga de Thrive, mas pode ser "
+"atualizada.\n"
+"Um arquivo de backup será criado antes da atualização, se não já foi criado."
+"\n"
+"Se pular a atualização, o jogo tentará executar o arquivo normalmente.\n"
+"Tentar atualizar esse arquivo salvo?"
 
 #: ../src/saving/SaveList.tscn:207
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Falha ao Salvar"
+msgstr "Falha ao atualizar o arquivo salvo"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
