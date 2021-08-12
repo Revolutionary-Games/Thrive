@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-06 14:17+0300\n"
-"PO-Revision-Date: 2021-08-12 05:32+0000\n"
-"Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
+"PO-Revision-Date: 2021-08-13 05:58+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
+"com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -2336,7 +2337,6 @@ msgid "COMPOUNDS_COLON"
 msgstr "Compounds:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:528
-#, fuzzy
 msgid "SPECIES_COLON"
 msgstr "Species:"
 
@@ -2345,7 +2345,6 @@ msgid "ENVIRONMENT"
 msgstr "Environment"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:876
-#, fuzzy
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
@@ -2897,10 +2896,9 @@ msgstr "Selected save is upgradeable"
 #: ../src/saving/SaveList.tscn:192
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"The selected save is from an older version of Thrive, but can be "
-"upgraded.\n"
+"The selected save is from an older version of Thrive, but can be upgraded.\n"
 "A backup file will be created before the upgrade, if not already created.\n"
-"If you skip upgrading, the save will be attempted to be loaded normally. \n"
+"If you skip upgrading, the save will be attempted to be loaded normally.\n"
 "Attempt to upgrade this save?"
 
 #: ../src/saving/SaveList.tscn:207
