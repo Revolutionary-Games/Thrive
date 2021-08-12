@@ -216,7 +216,7 @@ public class PatchMap
         foreach (var patch in Patches)
         {
             // We remove a species as extinct when its population value is not strictly positive,
-            // unless it the species of the player and the player can't go extinct.
+            // unless it's the player's species and the player can't go extinct.
             var toRemove = patch.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
                 !(playerCantGoExtinct && v.Key.PlayerSpecies)).ToList();
 
