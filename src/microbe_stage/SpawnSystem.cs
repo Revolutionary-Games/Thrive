@@ -22,7 +22,7 @@ public class SpawnSystem
     /// </summary>
     private Node worldRoot;
 
-    private List<Spawner> spawnTypes = new List<Spawner>();
+    private ShuffleBag<Spawner> spawnTypes;
 
     [JsonProperty]
     private Random random = new Random();
@@ -39,6 +39,13 @@ public class SpawnSystem
     /// </summary>
     [JsonProperty]
     private int maxAliveEntities = 1000;
+
+    /// <summary>
+    ///   This limits the number of things that can be spawned in a single spawn radius.
+    ///   Used to limit items spawning in a circle when the player doesn't move.
+    /// </summary>
+    [JsonProperty]
+    private int maxEntitiesInSpawnRadius = 15;
 
     /// <summary>
     ///   Max tries per spawner to avoid very high spawn densities lagging
@@ -68,9 +75,23 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
+    /// <summary>
+    ///   Estimate count of existing spawn entities within the current spawn radius of the player;
+    ///   Used to prevent a "spawn belt" of densely spawned entities when player doesn't move.
+    /// </summary>
+    [JsonProperty]
+    private int estimateEntityCountInSpawnRadius;
+
+    /// <summary>
+    ///   Last recorded position of the player. Positions are recorded upon moving more than the stationary threshold.
+    /// </summary>
+    [JsonProperty]
+    private Vector3 lastRecordedPlayerPosition = Vector3.Zero;
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
+        spawnTypes = new ShuffleBag<Spawner>(random);
     }
 
     // Needs no params constructor for loading saves?
@@ -230,6 +251,27 @@ public class SpawnSystem
         if (existing >= maxAliveEntities)
             return;
 
+        // Here we want to check that the player moved to not basically spawn in circle around the player.
+        // Solution inspired by gwen is to check if the player moves out of a square/cycle around their current
+        // registered position (note that the cloud system also used to work like this -hhyyrylainen).
+        // Not perfect however as going on and off could still break this.
+        float squaredDistanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).LengthSquared();
+        bool immobilePlayer = squaredDistanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED;
+
+        if (immobilePlayer)
+        {
+            // If the player is staying inside a circle around their previous position,
+            // only spawn up to the local spawn cap
+            if (estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius)
+                return;
+        }
+        else
+        {
+            // The player moved, so let's update their position and reset counts in spawn radius
+            lastRecordedPlayerPosition = playerPosition;
+            estimateEntityCountInSpawnRadius = 0;
+        }
+
         int spawned = 0;
 
         foreach (var spawnType in spawnTypes)
@@ -249,8 +291,7 @@ public class SpawnSystem
             numAttempts stores how many times the SpawnSystem attempts
             to spawn the given entity.
             */
-            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
-                maxTriesPerSpawner);
+            int numAttempts = Mathf.Clamp(spawnType.SpawnFrequency * 2, 1, maxTriesPerSpawner);
 
             for (int i = 0; i < numAttempts; i++)
             {
@@ -266,7 +307,10 @@ public class SpawnSystem
                     spawn within the spawning region.
                     */
                     float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
-                    float displacementRotation = WeightedRandomRotation(playerRotation.y);
+
+                    // If the player moves, weight the rotation to be in front of him for encounter.
+                    // Else compute a uniform rotation to avoid clustering
+                    float displacementRotation = ComputeRandomRadianRotation(playerRotation.y, !immobilePlayer);
 
                     float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
                     float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
@@ -282,12 +326,16 @@ public class SpawnSystem
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
                             ref spawnsLeftThisFrame, ref spawned))
                         {
+                            estimateEntityCountInSpawnRadius += spawned;
+
                             return;
                         }
                     }
                 }
             }
         }
+
+        estimateEntityCountInSpawnRadius += spawned;
     }
 
     /// <summary>
@@ -397,21 +445,25 @@ public class SpawnSystem
 
     /// <summary>
     ///   Returns a random rotation (in radians)
-    ///   It is more likely to return a rotation closer to the target rotation than not
+    ///   If weighted, it is more likely to return a rotation closer to the target rotation than not
     /// </summary>
-    private float WeightedRandomRotation(float targetRotation)
+    private float ComputeRandomRadianRotation(float targetRotation, bool weighted)
     {
-        targetRotation = WithNegativesToNormalRadians(targetRotation);
-
         float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
-        float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
 
-        if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
-            return NormalToWithNegativesRadians(rotation1);
+        if (weighted)
+        {
+            targetRotation = WithNegativesToNormalRadians(targetRotation);
+            float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
 
-        return NormalToWithNegativesRadians(rotation2);
+            if (DistanceBetweenRadians(rotation2, targetRotation) < DistanceBetweenRadians(rotation1, targetRotation))
+                return NormalToWithNegativesRadians(rotation2);
+        }
+
+        return NormalToWithNegativesRadians(rotation1);
     }
 
+    // TODO Could use to be moved to mathUtils?
     private float NormalToWithNegativesRadians(float radian)
     {
         return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);

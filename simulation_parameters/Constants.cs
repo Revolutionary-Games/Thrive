@@ -80,6 +80,21 @@ public static class Constants
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
 
     /// <summary>
+    ///   Radius of the zone where the player is considered immobile as he remains inside.
+    ///   Used to not overgenerate when the player doesn't move.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The value is squared for faster computation.
+    ///   </para>
+    ///   <para>
+    ///     The non-squared radius should roughly be (1-MIN_SPAWN_RADIUS_RATIO)*max(spawn_radius), as defined above,
+    ///     to make spawn zone match when moving.
+    ///   </para>
+    /// </remarks>
+    public const int PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED = 100;
+
+    /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
