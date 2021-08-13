@@ -609,9 +609,23 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             Membrane.Type.MovementWigglyness) * 0.2f;
     }
 
-    public Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    /// <summary>
+    ///   Gets the actually hit microbe (potentially in a colony)
+    /// </summary>
+    /// <param name="bodyShape">The shape that was hit</param>
+    /// <returns>The actual microbe that was hit</returns>
+    public Microbe GetActualHitMicrobe(int bodyShape)
     {
-        return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
+        if (Colony == null)
+            return this;
+
+        var touchedOwnerId = ShapeFindOwner(bodyShape);
+
+        // Not found. TODO: should we report an error here?
+        if (touchedOwnerId == 0)
+            return this;
+
+        return GetColonyMemberWithShapeOwner(touchedOwnerId, Colony);
     }
 
     /// <summary>
@@ -1461,6 +1475,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_KILL"));
+    }
+
+    private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    {
+        return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
     }
 
     private void OnIGotAddedToColony()
@@ -2374,13 +2393,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var touchedOwnerId = touchedColonyMaster.ShapeFindOwner(bodyShape);
             var thisOwnerId = ShapeFindOwner(localShape);
 
-            var touchedMicrobe = touchedColonyMaster;
-            if (touchedMicrobe.Colony != null && touchedOwnerId != 0)
-                touchedMicrobe = GetColonyMemberWithShapeOwner(touchedOwnerId, touchedMicrobe.Colony);
+            var touchedMicrobe = touchedColonyMaster.GetActualHitMicrobe(bodyShape);
 
-            var thisMicrobe = this;
-            if (Colony != null && thisOwnerId != 0)
-                thisMicrobe = GetColonyMemberWithShapeOwner(thisOwnerId, Colony);
+            var thisMicrobe = GetActualHitMicrobe(localShape);
 
             // TODO: does this need to check for disposed exception?
             if (touchedMicrobe.Dead || (Colony != null && Colony == touchedMicrobe.Colony))
@@ -2426,10 +2441,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (body is Microbe microbe)
         {
-            var thisOwnerId = ShapeFindOwner(localShape);
-            var thisMicrobe = this;
-            if (Colony != null && thisOwnerId != 0)
-                thisMicrobe = GetColonyMemberWithShapeOwner(thisOwnerId, Colony);
+            var thisMicrobe = GetActualHitMicrobe(localShape);
 
             // TODO: should this also check for pilus before removing the collision?
             thisMicrobe.touchedMicrobes.Remove(microbe);

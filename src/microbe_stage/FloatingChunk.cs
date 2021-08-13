@@ -409,14 +409,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
                 return;
 
-            var touchedMicrobe = microbe;
-            if (microbe.Colony != null)
-            {
-                var touchedOwnerId = microbe.ShapeFindOwner(bodyShape);
-                touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId, microbe.Colony);
-            }
-
-            touchingMicrobes.Add(touchedMicrobe);
+            touchingMicrobes.Add(microbe.GetActualHitMicrobe(bodyShape));
         }
     }
 
@@ -431,15 +424,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
                 return;
 
-            var touchedMicrobe = microbe;
-            if (microbe.Colony != null)
-            {
-                var touchedOwnerId = microbe.ShapeFindOwner(bodyShape);
-                if (touchedOwnerId != 0)
-                    touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId, microbe.Colony);
-            }
-
-            touchingMicrobes.Remove(touchedMicrobe);
+            touchingMicrobes.Remove(microbe.GetActualHitMicrobe(bodyShape));
         }
     }
 

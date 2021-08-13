@@ -29,7 +29,7 @@ public class AgentProjectile : RigidBody, ITimedLife
         particles = GetNode<Particles>("Particles");
 
         AddCollisionExceptionWith(Emitter);
-        Connect("body_entered", this, "OnBodyEntered");
+        Connect("body_shape_entered", this, nameof(OnContactBegin));
     }
 
     public override void _Process(float delta)
@@ -53,14 +53,7 @@ public class AgentProjectile : RigidBody, ITimedLife
             {
                 // If more stuff needs to be damaged we
                 // could make an IAgentDamageable interface.
-                var touchedMicrobe = microbe;
-                if (microbe.Colony != null)
-                {
-                    var touchedOwnerId = microbe.ShapeFindOwner(bodyShape);
-                    touchedMicrobe = microbe.GetColonyMemberWithShapeOwner(touchedOwnerId, microbe.Colony);
-                }
-
-                touchedMicrobe.Damage(Constants.OXYTOXY_DAMAGE, Properties.AgentType);
+                microbe.GetActualHitMicrobe(bodyShape).Damage(Constants.OXYTOXY_DAMAGE, Properties.AgentType);
             }
         }
 
