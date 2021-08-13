@@ -42,7 +42,7 @@ public class SpawnSystem
 
     /// <summary>
     ///   This limits the number of things that can be spawned in a single spawn radius.
-    ///   Used to limit items spawning in one single circle when the player doesn't move.
+    ///   Used to limit items spawning in a circle when the player doesn't move.
     /// </summary>
     [JsonProperty]
     private int maxEntitiesInSpawnRadius = 15;
@@ -77,13 +77,15 @@ public class SpawnSystem
 
     /// <summary>
     ///   Estimate count of existing spawn entities within the current spawn radius of the player;
-    ///   Used to prevent spawn belt when player doesn't move.
+    ///   Used to prevent a "spawn belt" of densely spawned entities when player doesn't move.
     /// </summary>
+    [JsonProperty]
     private int estimateEntityCountInSpawnRadius;
 
     /// <summary>
-    ///   Last recorded position of the player. Positions are recorded upon leaving the immobility zone.
+    ///   Last recorded position of the player. Positions are recorded upon moving more than the stationary threshold.
     /// </summary>
+    [JsonProperty]
     private Vector3 lastRecordedPlayerPosition = Vector3.Zero;
 
     public SpawnSystem(Node root)
@@ -249,23 +251,23 @@ public class SpawnSystem
         if (existing >= maxAliveEntities)
             return;
 
-        // Here we want to check that the player moved to not basically spawn in circle around him.
-        // Solution inspired by gwen is to check if the player
-        // moves out of a square/cycle around his precedent registered position
+        // Here we want to check that the player moved to not basically spawn in circle around the player.
+        // Solution inspired by gwen is to check if the player moves out of a square/cycle around their current
+        // registered position (note that the cloud system also used to work like this -hhyyrylainen).
         // Not perfect however as going on and off could still break this.
         float squaredDistanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).LengthSquared();
         bool immobilePlayer = squaredDistanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED;
 
         if (immobilePlayer)
         {
-            // If the player is staying inside a circle around his previous position,
+            // If the player is staying inside a circle around their previous position,
             // only spawn up to the local spawn cap
             if (estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius)
                 return;
         }
         else
         {
-            // The player moved, so let's update his position and reset counts in spawn radius
+            // The player moved, so let's update their position and reset counts in spawn radius
             lastRecordedPlayerPosition = playerPosition;
             estimateEntityCountInSpawnRadius = 0;
         }

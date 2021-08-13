@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-///     This class implements a shuffle bag, that is, a structure to randomly pick elements from a list,
-///     with the specification of not picking an element twice before having picked every element once.
-///     It works as a real bag you draw content from, before filling it again when empty.
+///   This class implements a shuffle bag, that is, a structure to randomly pick elements from a list,
+///   with the specification of not picking an element twice before having picked every element once.
+///   It works as a real bag you draw content from, before filling it again when empty.
 /// </summary>
-/// <typeparam name="T"> Type of the elements in the bag. </typeparam>
+/// <typeparam name="T"> Type of the elements in the bag.</typeparam>
 public class ShuffleBag<T> : IEnumerable<T>
 {
-    private Random random;
+    private readonly Random random;
 
     // We use Lists here because the shuffle algorithm rely on access by index, which does not fit LinkedLists.
-    private List<T> initialContent;
-    private List<T> currentContent;
+    private List<T> initialContent = new List<T>();
+    private List<T> currentContent = new List<T>();
 
     /// <summary>
     ///   This variable encodes if the bag should be automatically refilled by enumerators upon emptying the bag.
@@ -26,14 +26,16 @@ public class ShuffleBag<T> : IEnumerable<T>
     {
         this.random = random;
 
-        initialContent = new List<T>();
-        currentContent = new List<T>();
-
         this.automaticRefill = automaticRefill;
     }
 
     /// <summary>
-    ///   Clears the bag, including its content on refill.
+    ///   Checks if the bag is currently empty.
+    /// </summary>
+    public bool IsEmpty => currentContent.Count == 0;
+
+    /// <summary>
+    ///   Clears the bag, including its content on refill (so even refilling doesn't add any items back).
     /// </summary>
     public void Clear()
     {
@@ -59,7 +61,7 @@ public class ShuffleBag<T> : IEnumerable<T>
     /// <summary>
     ///   Removes an element from the bag. This element will no longer be put back when the bag is refilled.
     /// </summary>
-    /// <returns> Returns whether the element was indeed in the bag refill content.</returns>
+    /// <returns>Returns whether the element was indeed in the bag refill content.</returns>
     public bool Remove(T element)
     {
         currentContent.Remove(element);
@@ -70,10 +72,10 @@ public class ShuffleBag<T> : IEnumerable<T>
     ///   Removes all elements matching a predicate from the bag.
     ///   These elements will no longer be put back when the bag is refilled.
     /// </summary>
-    public void RemoveAll(Predicate<T> f)
+    public void RemoveAll(Predicate<T> predicate)
     {
-        currentContent.RemoveAll(f);
-        initialContent.RemoveAll(f);
+        currentContent.RemoveAll(predicate);
+        initialContent.RemoveAll(predicate);
     }
 
     /// <summary>
@@ -90,15 +92,7 @@ public class ShuffleBag<T> : IEnumerable<T>
     }
 
     /// <summary>
-    ///   Checks if the bag is currently empty.
-    /// </summary>
-    public bool IsEmpty()
-    {
-        return currentContent.Count == 0;
-    }
-
-    /// <summary>
-    ///   Picks an element from the bag and return it.
+    ///   Picks an element from the bag and returns it.
     ///   The element is dropped from the bag but not removed: it will be put back in it at next refill.
     /// </summary>
     public T PickAndDrop()
@@ -110,11 +104,11 @@ public class ShuffleBag<T> : IEnumerable<T>
     }
 
     /// <summary>
-    /// Returns the enumerator for this ShuffleBag.
+    ///   Returns an enumerator for this ShuffleBag.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This enumerator will loop through the current content of the bag (unless shortcut),
+    ///     This enumerator will loop through the current content of the bag (unless cut short),
     ///     and will fill it again upon reaching the end of it. It will not loop again.
     ///   </para>
     /// </remarks>
@@ -182,15 +176,15 @@ public class ShuffleBag<T> : IEnumerable<T>
     ///   This enumerator will loop through the current content of the bag (unless shortcut),
     ///   and will fill it again upon reaching the end of it. It will not loop again.
     /// </summary>
-    private class ShuffleBagEnumerator<T1> : IEnumerator<T1>
+    private class ShuffleBagEnumerator<T2> : IEnumerator<T2>
     {
-        private ShuffleBag<T1> sourceBag;
+        private ShuffleBag<T2> sourceBag;
 
         /// <summary>
         ///   Instantiate the enumerator to loop through what is left in the bag.
         ///   If the bag was emptied, fills it again.
         /// </summary>
-        public ShuffleBagEnumerator(ShuffleBag<T1> sourceBag)
+        public ShuffleBagEnumerator(ShuffleBag<T2> sourceBag)
         {
             this.sourceBag = sourceBag;
 
@@ -203,7 +197,7 @@ public class ShuffleBag<T> : IEnumerable<T>
         ///   Returns the current element for the enumerator,
         ///   effectively picking the front element of the shuffle bag without dropping it.
         /// </summary>
-        public T1 Current => sourceBag.PickAndDrop();
+        public T2 Current { get; private set; }
 
         object IEnumerator.Current => Current;
 
@@ -215,10 +209,17 @@ public class ShuffleBag<T> : IEnumerable<T>
         /// <summary>
         ///   Moves to the next element in the bag.
         /// </summary>
-        /// <returns> Returns wether the bag still holds items afterwards. </returns>
+        /// <returns>Returns whether the bag still holds items afterwards.</returns>
         public bool MoveNext()
         {
-            return !sourceBag.IsEmpty();
+            if (!sourceBag.IsEmpty)
+            {
+                Current = sourceBag.PickAndDrop();
+                return true;
+            }
+
+            Current = default;
+            return false;
         }
 
         /// <summary>
