@@ -180,6 +180,20 @@ public class Save
         WriteRawSaveDataToFile(Info, ThriveJsonConverter.Instance.SerializeObject(this), Screenshot, Name);
     }
 
+    /// <summary>
+    ///   Destroys the save game states. Use if not attaching the loaded save to the scene tree
+    /// </summary>
+    public void DestroyGameStates()
+    {
+        GameState = MainGameState.Invalid;
+
+        MicrobeStage?.QueueFree();
+        MicrobeStage = null;
+
+        MicrobeEditor?.QueueFree();
+        MicrobeEditor = null;
+    }
+
     private static void WriteRawSaveDataToFile(SaveInformation saveInfo, string saveContent, Image screenshot,
         string saveName)
     {
