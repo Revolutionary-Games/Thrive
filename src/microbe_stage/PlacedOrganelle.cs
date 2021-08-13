@@ -400,7 +400,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         for (int i = 0; i < shapes.Count; i++)
         {
-            Vector3 shapePosition = shapeTruePosition(hexes[i]);
+            Vector3 shapePosition = ShapeTruePosition(hexes[i]);
 
             if (ParentMicrobe.Colony != null)
                 shapePosition = shapePosition.Rotated(Vector3.Up, masterRotation.y);
@@ -468,10 +468,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         growthValueDirty = true;
     }
 
-    private Vector3 shapeTruePosition(Hex parentOffset)
+    private Vector3 ShapeTruePosition(Hex parentOffset)
     {
         return Hex.AxialToCartesian(parentOffset) + Hex.AxialToCartesian(Position);
     }
+
     private void MakeCollisionShapes(Microbe to)
     {
         currentShapesParent = to;
@@ -495,7 +496,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             // The shape is in our parent so the final position is our
             // offset plus the hex offset
-            Vector3 shapePosition = shapeTruePosition(hex);
+            Vector3 shapePosition = ShapeTruePosition(hex);
 
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
