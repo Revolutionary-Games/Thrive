@@ -136,6 +136,7 @@
     <Compile Include="src\microbe_stage\Microbe.cs" />
     <Compile Include="src\microbe_stage\MicrobeCamera.cs" />
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
+    <Compile Include="src\general\SpeciesInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\NucleusMesh.cs" />
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="src\saving\ISaveContext.cs" />
     <Compile Include="src\saving\ISaveLoadable.cs" />
     <Compile Include="src\saving\ISaveLoadedTracked.cs" />
+    <Compile Include="src\saving\ISaveUpgradeStep.cs" />
     <Compile Include="src\saving\NewSaveMenu.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveApplyHelper.cs" />
@@ -249,6 +251,7 @@
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\SaveManagerGUI.cs" />
     <Compile Include="src\saving\SaveStatusOverlay.cs" />
+    <Compile Include="src\saving\SaveUpgrader.cs" />
     <Compile Include="src\saving\serializers\AssignOnlyChildItemsOnDeserializeAttribute.cs" />
     <Compile Include="src\saving\serializers\Base64BinaryConverter.cs" />
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
