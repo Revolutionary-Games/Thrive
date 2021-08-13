@@ -175,7 +175,7 @@ public class Jukebox : Node
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
-        player.Connect("finished", this, "OnSomeTrackEnded");
+        player.Connect("finished", this, nameof(OnSomeTrackEnded));
 
         var created = new AudioPlayer(player);
 
