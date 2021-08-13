@@ -377,7 +377,7 @@ public static class Constants
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
     // Genus splitting and name mutation
-    public nst int MUTATION_WORD_EDIT = 10;
+    public const int MUTATION_WORD_EDIT = 10;
     public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
