@@ -9,33 +9,11 @@ public class DefaultToolTip : Control, ICustomToolTip
     public NodePath DescriptionLabelPath;
 
     /// <summary>
-    ///   If true, the tooltip fades in smoothly on display.
-    /// </summary>
-    public bool UseFadeIn = true;
-
-    /// <summary>
-    ///   If true, the tooltip fades out smoothly on hide.
-    /// </summary>
-    public bool UseFadeOut;
-
-    /// <summary>
     ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
     private Label descriptionLabel;
 
     private string description;
-
-    public Vector2 Position
-    {
-        get => RectPosition;
-        set => RectPosition = value;
-    }
-
-    public Vector2 Size
-    {
-        get => RectSize;
-        set => RectSize = value;
-    }
 
     /// <summary>
     ///   Only gets and sets the Node name since this tooltip only shows a message
@@ -60,19 +38,16 @@ public class DefaultToolTip : Control, ICustomToolTip
     [Export]
     public float DisplayDelay { get; set; } = Constants.TOOLTIP_DEFAULT_DELAY;
 
-    public bool ToolTipVisible
-    {
-        get => Visible;
-        set => Visible = value;
-    }
-
     [Export]
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.LastMousePosition;
 
     [Export]
+    public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
+
+    [Export]
     public bool HideOnMousePress { get; set; } = true;
 
-    public Node ToolTipNode => this;
+    public Control ToolTipNode => this;
 
     public override void _Ready()
     {
@@ -82,30 +57,6 @@ public class DefaultToolTip : Control, ICustomToolTip
         descriptionLabel = GetNode<Label>("MarginContainer/VBoxContainer/Description");
 
         UpdateDescription();
-    }
-
-    public void OnDisplay()
-    {
-        if (UseFadeIn)
-        {
-            GUICommon.Instance.ModulateFadeIn(this, Constants.TOOLTIP_FADE_SPEED);
-        }
-        else
-        {
-            Show();
-        }
-    }
-
-    public void OnHide()
-    {
-        if (UseFadeOut)
-        {
-            GUICommon.Instance.ModulateFadeOut(this, Constants.TOOLTIP_FADE_SPEED);
-        }
-        else
-        {
-            Hide();
-        }
     }
 
     private void UpdateDescription()
