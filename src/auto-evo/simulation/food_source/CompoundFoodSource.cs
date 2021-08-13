@@ -35,13 +35,13 @@
                     if (process.Process.Outputs.ContainsKey(glucose))
                     {
                         compoundUseScore += process.Process.Outputs[glucose]
-                            / process.Process.Inputs[compound] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
+                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
                     }
 
                     if (process.Process.Outputs.ContainsKey(atp))
                     {
                         compoundUseScore += process.Process.Outputs[atp]
-                            / process.Process.Inputs[compound] / Constants.AUTO_EVO_ATP_USE_SCORE_DIVISOR;
+                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
                     }
                 }
             }

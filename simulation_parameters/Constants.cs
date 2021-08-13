@@ -377,7 +377,7 @@ public static class Constants
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
     // Genus splitting and name mutation
-    public const int MUTATION_WORD_EDIT = 10;
+    public nst int MUTATION_WORD_EDIT = 10;
     public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
@@ -395,8 +395,8 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
-    public const float AUTO_EVO_ATP_USE_SCORE_DIVISOR = 300;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR = 1;
+    public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
+    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 1.0f;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;

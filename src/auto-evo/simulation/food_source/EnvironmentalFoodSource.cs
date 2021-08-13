@@ -27,7 +27,7 @@
                     if (process.Process.Outputs.ContainsKey(glucose))
                     {
                         energyCreationScore += process.Process.Outputs[glucose]
-                            / process.Process.Inputs[compound] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
+                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
                     }
                 }
             }
