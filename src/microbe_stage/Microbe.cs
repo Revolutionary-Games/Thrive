@@ -497,7 +497,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 OrganelleParent.AddChild(organelle);
 
             // Colony children shapes need reparenting to their master
-            // The shapes have to be reparented to their original microbe than to the master again 
+            // The shapes have to be reparented to their original microbe than to the master again
             // maybe enigne bug
             if (this != Colony.Master && Colony != null)
             {
@@ -1483,8 +1483,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private Vector3 OffsetRelativeToMaster()
     {
         return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
-                Vector3.Down,
-                Colony.Master.Rotation.y);
+            Vector3.Down,
+            Colony.Master.Rotation.y);
     }
 
     private void OnIGotAddedToColony()
