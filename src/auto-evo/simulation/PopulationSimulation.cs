@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Godot;
 
     /// <summary>
     ///   Main class for the population simulation part.
@@ -153,7 +154,7 @@
             foreach (var niche in niches)
             {
                 // If there isn't a source of energy here, no need for more calculations
-                if (niche.TotalEnergyAvailable() == 0.0f)
+                if (niche.TotalEnergyAvailable() <= MathUtils.EPSILON)
                 {
                     continue;
                 }
@@ -164,13 +165,13 @@
                 {
                     // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
                     // by exaggerating fitness differences
-                    var thisSpeciesFitness = Math.Max((float)Math.Pow(niche.FitnessScore(currentSpecies), 2.5f), 0.0f);
+                    var thisSpeciesFitness = Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies), 2.5f), 0.0f);
                     fitnessBySpecies[currentSpecies] = thisSpeciesFitness;
                     totalNicheFitness += thisSpeciesFitness;
                 }
 
                 // If no species can get energy this way, no need for more calculations
-                if (totalNicheFitness == 0.0f)
+                if (totalNicheFitness <= MathUtils.EPSILON)
                 {
                     continue;
                 }

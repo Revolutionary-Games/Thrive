@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 
 public static class MicrobeInternalCalculations
 {
@@ -9,18 +10,22 @@ public static class MicrobeInternalCalculations
 
         float organelleMovementForce = 0;
 
+        Vector3 forwardsDirection = new Vector3(0, 0, -1);
+
         foreach (var organelle in organelles)
         {
             microbeMass += organelle.Definition.Mass;
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                // Only count flagella that face backwards
-                if (organelle.Orientation == 3)
-                {
-                    organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
-                        * organelle.Definition.Components.Movement.Momentum / 100.0f;
-                }
+                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
+                    - Hex.AxialToCartesian(organelle.Position)).Normalized();
+
+                float directionFactor = organelleDirection.Dot(forwardsDirection);
+
+                organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
+                    * organelle.Definition.Components.Movement.Momentum / 100.0f
+                    * directionFactor;
             }
         }
 
