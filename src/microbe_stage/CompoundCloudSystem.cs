@@ -167,8 +167,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     {
         foreach (var cloud in clouds)
         {
-            int x, y;
-            if (cloud.ContainsPosition(worldPosition, out x, out y))
+            if (cloud.ContainsPosition(worldPosition, out var x, out var y))
             {
                 // Within cloud
 
@@ -187,8 +186,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     {
         foreach (var cloud in clouds)
         {
-            int x, y;
-            if (cloud.ContainsPosition(worldPosition, out x, out y))
+            if (cloud.ContainsPosition(worldPosition, out var x, out var y))
             {
                 // Within cloud
 
@@ -212,8 +210,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
 
         foreach (var cloud in clouds)
         {
-            int x, y;
-            if (cloud.ContainsPosition(worldPosition, out x, out y))
+            if (cloud.ContainsPosition(worldPosition, out var x, out var y))
             {
                 cloud.GetCompoundsAt(x, y, result);
             }
