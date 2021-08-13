@@ -162,6 +162,11 @@ public class Patch
         if (history.Count >= Constants.PATCH_HISTORY_RANGE)
             history.RemoveFromBack();
 
+        foreach (var species in currentSnapshot.SpeciesInPatch.Keys)
+        {
+            currentSnapshot.RecordedSpeciesInfo[species] = species.RecordSpeciesInfo();
+        }
+
         var conditions = (PatchSnapshot)currentSnapshot.Clone();
         history.AddToFront(conditions);
     }
@@ -180,22 +185,20 @@ public class PatchSnapshot : ICloneable
     public double TimePeriod;
 
     public Dictionary<Species, long> SpeciesInPatch = new Dictionary<Species, long>();
+    public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>();
 
     public BiomeConditions Biome;
 
     public object Clone()
     {
+        // We only do a shallow copy of RecordedSpeciesInfo here as SpeciesInfo objects are never modified.
         var result = new PatchSnapshot
         {
             TimePeriod = TimePeriod,
-            SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch.Count),
+            SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
+            RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
             Biome = (BiomeConditions)Biome.Clone(),
         };
-
-        foreach (var entry in SpeciesInPatch)
-        {
-            result.SpeciesInPatch.Add(entry.Key, entry.Value);
-        }
 
         return result;
     }

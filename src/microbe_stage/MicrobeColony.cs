@@ -14,6 +14,8 @@ public class MicrobeColony
         master.ColonyChildren = new List<Microbe>();
         ColonyMembers = new List<Microbe> { master };
         ColonyCompounds = new ColonyCompoundBag(this);
+
+        master.OnColonyMemberAdded(master);
     }
 
     [JsonProperty]
@@ -55,6 +57,9 @@ public class MicrobeColony
         if (!Equals(microbe.Colony, this))
             throw new ArgumentException("Cannot remove a colony member who isn't a member");
 
+        if (State == Microbe.MicrobeState.Unbinding)
+            State = Microbe.MicrobeState.Normal;
+
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
 
@@ -74,9 +79,6 @@ public class MicrobeColony
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
-
-        if (State == Microbe.MicrobeState.Unbinding)
-            State = Microbe.MicrobeState.Normal;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)

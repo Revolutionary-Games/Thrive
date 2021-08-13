@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
-using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A widget containing a list of saves
@@ -42,6 +43,12 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadIncompatibleDialogPath;
 
+    [Export]
+    public NodePath UpgradeSaveDialogPath;
+
+    [Export]
+    public NodePath UpgradeFailedDialogPath;
+
     private Control loadingItem;
     private BoxContainer savesList;
     private ConfirmationDialog deleteConfirmDialog;
@@ -49,6 +56,8 @@ public class SaveList : ScrollContainer
     private ConfirmationDialog loadOlderConfirmDialog;
     private ConfirmationDialog loadInvalidConfirmDialog;
     private AcceptDialog loadIncompatibleDialog;
+    private ConfirmationDialog upgradeSaveDialog;
+    private AcceptDialog upgradeFailedDialog;
 
     private PackedScene listItemScene;
 
@@ -59,8 +68,10 @@ public class SaveList : ScrollContainer
 
     private string saveToBeDeleted;
     private string saveToBeLoaded;
+    private bool suppressSaveUpgradeClose;
 
     private bool wasVisible;
+    private bool incompatibleIfNotUpgraded;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -77,6 +88,8 @@ public class SaveList : ScrollContainer
         loadNewerConfirmDialog = GetNode<ConfirmationDialog>(LoadNewerSaveDialogPath);
         loadInvalidConfirmDialog = GetNode<ConfirmationDialog>(LoadInvalidSaveDialogPath);
         loadIncompatibleDialog = GetNode<AcceptDialog>(LoadIncompatibleDialogPath);
+        upgradeSaveDialog = GetNode<ConfirmationDialog>(UpgradeSaveDialogPath);
+        upgradeFailedDialog = GetNode<AcceptDialog>(UpgradeFailedDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -118,6 +131,9 @@ public class SaveList : ScrollContainer
             item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
             item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
+
+            // This can't use binds because we need an additional dynamic parameter from the list item here
+            item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded));
             item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
@@ -152,6 +168,7 @@ public class SaveList : ScrollContainer
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
+        EmitSignal(nameof(OnItemsChanged));
     }
 
     private void OnSubItemSelectedChanged()
@@ -190,6 +207,13 @@ public class SaveList : ScrollContainer
         loadOlderConfirmDialog.PopupCenteredShrink();
     }
 
+    private void OnUpgradeableSaveLoaded(string saveName, bool incompatible)
+    {
+        saveToBeLoaded = saveName;
+        incompatibleIfNotUpgraded = incompatible;
+        upgradeSaveDialog.PopupCenteredShrink();
+    }
+
     private void OnNewSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
@@ -225,6 +249,69 @@ public class SaveList : ScrollContainer
         OnConfirmSaveLoad();
     }
 
+    private void OnAcceptSaveUpgrade()
+    {
+        suppressSaveUpgradeClose = true;
+        GD.Print("Save upgrade accepted by user on: ", saveToBeLoaded);
+
+        var saveToUpgrade = saveToBeLoaded;
+
+        if (SaveUpgrader.IsSaveABackup(saveToBeLoaded))
+        {
+            saveToBeLoaded = SaveUpgrader.RemoveBackupSuffix(saveToBeLoaded);
+            GD.Print("Selected save is a backup, really going to load after upgrade: ", saveToBeLoaded);
+        }
+
+        // Perform save upgrade (the game will lag here, but I'll leave it to someone else to make a progress bar)
+        // Instead could show a popup with a spinner on it and run the upgrade with TaskExecutor in the background
+        var task = new Task(() => SaveUpgrader.PerformSaveUpgrade(saveToUpgrade));
+
+        TaskExecutor.Instance.AddTask(task);
+
+        try
+        {
+            if (!task.Wait(TimeSpan.FromMinutes(1)))
+            {
+                throw new Exception("Upgrade failed to complete within acceptable time");
+            }
+        }
+        catch (Exception e)
+        {
+            upgradeFailedDialog.GetNode<Label>("Container/Label").Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("SAVE_UPGRADE_FAILED_DESCRIPTION"), e);
+            upgradeFailedDialog.PopupCenteredShrink();
+
+            GD.PrintErr("Save upgrade failed: ", e);
+            return;
+        }
+
+        OnConfirmSaveLoad();
+    }
+
+    private void OnSaveUpgradeClosed()
+    {
+        // It seems this callback gets always called first, even when the accept button is pressed so we need to delay
+        // processing this
+        Invoke.Instance.Queue(() =>
+        {
+            if (!suppressSaveUpgradeClose)
+            {
+                // If it is known incompatible show that dialog instead
+                if (incompatibleIfNotUpgraded)
+                {
+                    OnKnownIncompatibleLoaded();
+                }
+                else
+                {
+                    OnOldSaveLoaded(saveToBeLoaded);
+                }
+            }
+
+            suppressSaveUpgradeClose = false;
+            incompatibleIfNotUpgraded = false;
+        });
+    }
+
     private void OnConfirmSaveLoad()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -236,5 +323,6 @@ public class SaveList : ScrollContainer
     private void LoadSave()
     {
         SaveHelper.LoadSave(saveToBeLoaded);
+        saveToBeLoaded = null;
     }
 }
