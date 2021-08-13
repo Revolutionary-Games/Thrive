@@ -193,7 +193,7 @@ public class MicrobeAI
 
             var rivalThreshold = SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3 ? 1 :
                 SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM * 2 / 3 ? 3 :
-                5;
+            5;
 
             // In rare instances, microbes will choose to be much more ambitious
             if (RollCheck(SpeciesFocus, Constants.MAX_SPECIES_FOCUS, random))
