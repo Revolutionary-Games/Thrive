@@ -156,6 +156,20 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
+    ///   Gets info specific to the species for storing into a new container class.
+    ///   Used for patch snapshots, but could be expanded
+    /// </summary>
+    /// <remarks>TODO: Check overlap with ClonePropertiesTo</remarks>
+    public SpeciesInfo RecordSpeciesInfo()
+    {
+        return new SpeciesInfo
+        {
+            ID = ID,
+            Population = Population,
+        };
+    }
+
+    /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
     ///   referring to the old data. In for example the Mutations
