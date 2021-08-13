@@ -273,7 +273,7 @@ public class InputManager : Node
             PauseMode = PauseModeEnum.Process,
             WaitTime = 1,
         };
-        timer.Connect("timeout", this, "ClearExpiredReferences");
+        timer.Connect("timeout", this, nameof(ClearExpiredReferences));
         AddChild(timer);
     }
 

@@ -265,6 +265,9 @@ Godot usage
 
 - Node names should not contain spaces, instead use PascalCase naming.
 
+- For connecting signals, use `nameof` to refer to methods whenever possible
+  to reduce the chance of mistakes when methods are renamed.
+
 - If you need to keep track of child elements that are added through a
   single place, keep them in a List or Dictionary instead of asking
   Godot for the children and doing a bunch of extra casts.
@@ -341,6 +344,11 @@ Other files
 
 - New JSON files should prefer PascalCase keys. Existing JSON files
   should stick to what other parts of that file use.
+
+- Registry items (for example organelles) should use camelCase for their
+  internal names (IRegistryType.InternalName), and not snake_case.
+  Otherwise other names that follow the internal names will violate other
+  naming conventions.
 
 - Do not use `<br>` in markdown unless it is a table where line breaks
   need to be tightly controlled. Use blank lines instead of

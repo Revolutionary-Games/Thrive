@@ -803,7 +803,7 @@ public class LineChart : VBoxContainer
             var label = new Label
             {
                 SizeFlagsVertical = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Center,
+                Align = Label.AlignEnum.Right,
                 Valign = Label.VAlign.Center,
             };
 
