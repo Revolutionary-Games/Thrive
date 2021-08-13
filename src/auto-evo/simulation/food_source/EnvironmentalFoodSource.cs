@@ -2,6 +2,7 @@
 {
     private readonly Compound compound;
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private BiomeConditions biomeConditions;
     private float totalEnvironmentalEnergySource;
@@ -28,6 +29,12 @@
                     {
                         energyCreationScore += process.Process.Outputs[glucose]
                             / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
+                    }
+
+                    if (process.Process.Outputs.ContainsKey(atp))
+                    {
+                        compoundUseScore += process.Process.Outputs[atp]
+                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
                     }
                 }
             }
