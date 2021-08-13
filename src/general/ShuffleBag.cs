@@ -132,9 +132,9 @@ public class ShuffleBag<T> : IEnumerable<T>
         {
             int j = random.Next(i, currentContent.Count);
 
-            T swapedElement = currentContent[i];
+            T swappedElement = currentContent[i];
             currentContent[i] = currentContent[j];
-            currentContent[j] = swapedElement;
+            currentContent[j] = swappedElement;
         }
     }
 
