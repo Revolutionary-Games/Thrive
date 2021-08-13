@@ -1,9 +1,6 @@
 ﻿public class EnvironmentalFoodSource : IFoodSource
 {
     private readonly Compound compound;
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
     private BiomeConditions biomeConditions;
     private float totalEnvironmentalEnergySource;
 
@@ -18,27 +15,7 @@
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        var energyCreationScore = 0.0f;
-        foreach (var organelle in microbeSpecies.Organelles)
-        {
-            foreach (var process in organelle.Definition.RunnableProcesses)
-            {
-                if (process.Process.Inputs.ContainsKey(compound))
-                {
-                    if (process.Process.Outputs.ContainsKey(glucose))
-                    {
-                        energyCreationScore += process.Process.Outputs[glucose]
-                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
-                    }
-
-                    if (process.Process.Outputs.ContainsKey(atp))
-                    {
-                        energyCreationScore += process.Process.Outputs[atp]
-                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
-                    }
-                }
-            }
-        }
+        var energyCreationScore = MicrobeInternalCalculations.EnergyGenerationScore(microbeSpecies, compound);
 
         var energyCost = ProcessSystem.ComputeEnergyBalance(
             microbeSpecies.Organelles.Organelles,
