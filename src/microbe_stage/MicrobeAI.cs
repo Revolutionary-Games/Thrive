@@ -446,7 +446,7 @@ public class MicrobeAI
     ///   Prioritizing compounds that are stored in lesser quantities.
     ///   If ATP-producing compounds are low (less than half storage capacities),
     ///   non ATP-related compounds are discarded.
-    ///   Updates compoundsSearchWeights class dictionary.
+    ///   Updates compoundsSearchWeights instance dictionary.
     /// </summary>
     private void ComputeCompoundsSearchWeights()
     {
