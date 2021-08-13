@@ -229,7 +229,14 @@ public class Mutations
             {
                 if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
                 {
-                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_NEW_ORGANELLE_CHANCE)
+                    {
+                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                    }
+                    else
+                    {
+                        AddNewOrganelle(mutatedOrganelles, parentOrganelles.Organelles.Random(random).Definition);
+                    }
                 }
             }
 
