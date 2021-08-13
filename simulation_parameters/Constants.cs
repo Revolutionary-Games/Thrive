@@ -352,8 +352,9 @@ public static class Constants
 
     // Mutation Variables
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
-    public const float MUTATION_CREATION_RATE = 0.15f;
-    public const float MUTATION_DELETION_RATE = 0.03f;
+    public const float MUTATION_CREATION_RATE = 0.25f;
+    public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
+    public const float MUTATION_DELETION_RATE = 0.05f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
     // Max fear and aggression and activity
@@ -403,25 +404,26 @@ public static class Constants
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
     ///   etc. for which is the most beneficial
     /// </summary>
-    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 10;
+    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 15;
 
     /// <summary>
     ///   Populations of species that are under this will be killed off by auto-evo
     /// </summary>
     public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
+    // Auto evo population algorithm tweak variables
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
-
-    // Auto evo population algorithm tweak variables
-    public const float AUTO_EVO_ATP_USE_SCORE_DIVISOR = 300;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR = 1;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 1;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 1;
-    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.5f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 6000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
+    public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
+    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 1.0f;
+    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
