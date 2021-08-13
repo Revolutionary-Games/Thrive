@@ -15,7 +15,7 @@
     /// </returns>
     public abstract float FitnessScore(Species microbe);
 
-    public float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
+    protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
     {
         var energyCreationScore = 0.0f;
         foreach (var organelle in species.Organelles)
