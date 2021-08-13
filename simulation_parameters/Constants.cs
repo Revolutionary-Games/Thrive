@@ -374,6 +374,7 @@ public static class Constants
 
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
+    public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
@@ -431,7 +432,7 @@ public static class Constants
 
     public const float TOOLTIP_OFFSET = 20;
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
-    public const float TOOLTIP_FADE_SPEED = 0.02f;
+    public const float TOOLTIP_FADE_SPEED = 0.25f;
 
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
@@ -508,10 +509,17 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
 
+    public const string EXPLICIT_PATH_PREFIX = "file://";
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
+
+    /// <summary>
+    ///   Internal Godot name for the default audio output device
+    /// </summary>
+    public const string DEFAULT_AUDIO_OUTPUT_DEVICE_NAME = "Default";
 
     /// <summary>
     ///   This is just here to make it easier to debug saves
@@ -530,6 +538,7 @@ public static class Constants
 
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
+    public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 

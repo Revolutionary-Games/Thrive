@@ -31,8 +31,6 @@ public class InputActionItem : VBoxContainer
     [Export]
     public NodePath InputEventsContainerPath;
 
-    private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
-
     private Label inputActionHeader;
     private HBoxContainer inputEventsContainer;
     private Button addInputEvent;
@@ -92,8 +90,7 @@ public class InputActionItem : VBoxContainer
         inputEventsContainer = GetNode<HBoxContainer>(InputEventsContainerPath);
         addInputEvent = GetNode<Button>(AddInputEventPath);
 
-        addInputEvent.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("addInputButton", "options"), tooltipCallbacks);
+        addInputEvent.RegisterToolTipForControl("addInputButton", "options");
 
         inputActionHeader.Text = DisplayName;
 
