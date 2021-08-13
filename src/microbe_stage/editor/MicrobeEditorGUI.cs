@@ -793,7 +793,16 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
 
                 var extinctInPatch = entry.Value <= 0;
-                var extinctEverywhere = snapshot.RecordedSpeciesInfo[entry.Key].Population <= 0;
+                var extinctEverywhere = false;
+
+                // We test if the species info was recorded before using it.
+                // This is especially for compatibility with older versions, to avoid crashed due to an invalid key.
+                // TODO: Use a proper save upgrade (e.g. summing population to generate info).
+                SpeciesInfo speciesInfo;
+                if (snapshot.RecordedSpeciesInfo.TryGetValue(entry.Key, out speciesInfo))
+                {
+                    extinctEverywhere = speciesInfo.Population <= 0;
+                }
 
                 // Clamp population number so it doesn't go into the negatives
                 var population = extinctInPatch ? 0 : entry.Value;
