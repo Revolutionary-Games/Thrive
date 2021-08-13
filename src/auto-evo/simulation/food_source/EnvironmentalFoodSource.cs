@@ -33,7 +33,7 @@
 
                     if (process.Process.Outputs.ContainsKey(atp))
                     {
-                        compoundUseScore += process.Process.Outputs[atp]
+                        energyCreationScore += process.Process.Outputs[atp]
                             / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
                     }
                 }
