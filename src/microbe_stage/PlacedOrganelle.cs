@@ -388,7 +388,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
-    public void ReParentShapes(Microbe to, Vector3 offset)
+    /// <summary>
+    ///  reparents the organelle shape to the "to" microbe.
+    /// </summary>
+    public void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation)
     {
         if (to == currentShapesParent)
             return;
@@ -397,10 +400,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         for (int i = 0; i < shapes.Count; i++)
         {
-            Vector3 shapePosition = Hex.AxialToCartesian(hexes[i]) + Hex.AxialToCartesian(Position);
+            Vector3 shapePosition = shapeTruePosition(hexes[i]);
 
             if (ParentMicrobe.Colony != null)
-                shapePosition = shapePosition.Rotated(Vector3.Up, ParentMicrobe.Rotation.y);
+                shapePosition = shapePosition.Rotated(Vector3.Up, masterRotation.y);
 
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
@@ -465,6 +468,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         growthValueDirty = true;
     }
 
+    private Vector3 shapeTruePosition(Hex parentOffset)
+    {
+        return Hex.AxialToCartesian(parentOffset) + Hex.AxialToCartesian(Position);
+    }
     private void MakeCollisionShapes(Microbe to)
     {
         currentShapesParent = to;
@@ -488,7 +495,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             // The shape is in our parent so the final position is our
             // offset plus the hex offset
-            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Hex.AxialToCartesian(Position);
+            Vector3 shapePosition = shapeTruePosition(hex);
 
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)

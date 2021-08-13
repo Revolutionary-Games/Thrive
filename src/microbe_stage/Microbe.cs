@@ -497,12 +497,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 OrganelleParent.AddChild(organelle);
 
             // Colony children shapes need reparenting to their master
-            if (!IsPlayerMicrobe && Colony != null)
+            if (this != Colony.Master && Colony != null)
             {
-                ReParentShapes(this, Vector3.Zero);
+                ReParentShapes(this, Vector3.Zero, Colony.Master.Rotation);
                 ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
                     Vector3.Down,
-                    Colony.Master.Rotation.y));
+                    Colony.Master.Rotation.y), Colony.Master.Rotation);
             }
 
             // And recompute storage
@@ -1437,10 +1437,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RemoveCollisionExceptionWith(microbe);
     }
 
-    internal void ReParentShapes(Microbe to, Vector3 offset)
+    internal void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation)
     {
         foreach (var organelle in organelles)
-            organelle.ReParentShapes(to, offset);
+            organelle.ReParentShapes(to, offset, masterRotation);
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
@@ -1454,7 +1454,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             ReParentShapes(Colony.Master, (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
                 Vector3.Down,
-                Colony.Master.Rotation.y));
+                Colony.Master.Rotation.y), Colony.Master.Rotation);
         }
         else
         {
@@ -2388,12 +2388,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         _ = bodyID;
 
-        if (body is Microbe touchedColonyMaster)
+        if (body is Microbe colonyLeader)
         {
-            var touchedOwnerId = touchedColonyMaster.ShapeFindOwner(bodyShape);
+            var touchedOwnerId = colonyLeader.ShapeFindOwner(bodyShape);
             var thisOwnerId = ShapeFindOwner(localShape);
 
-            var touchedMicrobe = touchedColonyMaster.GetActualHitMicrobe(bodyShape);
+            var touchedMicrobe = colonyLeader.GetActualHitMicrobe(bodyShape);
 
             var thisMicrobe = GetActualHitMicrobe(localShape);
 
@@ -2573,7 +2573,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void StopEngulfingOnTarget(Microbe microbe)
     {
-        if (Colony == null || Colony != microbe.Colony)
+        if ((Colony == null || Colony != microbe.Colony) && IsInstanceValid(microbe))
             RemoveCollisionExceptionWith(microbe);
 
         microbe.hostileEngulfer = null;
