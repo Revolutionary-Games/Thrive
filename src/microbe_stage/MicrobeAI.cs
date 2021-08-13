@@ -405,9 +405,8 @@ public class MicrobeAI
             // Gradient computation is therefore cell-centered, and might be different for different cells.
             float compoundDifference = 0.0f;
 
-            float quantityAbsorbedThisStep, quantityAbsorbedPreviousStep;
-            microbe.TotalAbsorbedCompounds.TryGetValue(compoundWeight.Key, out quantityAbsorbedThisStep);
-            previouslyAbsorbedCompounds.TryGetValue(compoundWeight.Key, out quantityAbsorbedPreviousStep);
+            microbe.TotalAbsorbedCompounds.TryGetValue(compoundWeight.Key, out float quantityAbsorbedThisStep);
+            previouslyAbsorbedCompounds.TryGetValue(compoundWeight.Key, out float quantityAbsorbedPreviousStep);
 
             compoundDifference += quantityAbsorbedThisStep - quantityAbsorbedPreviousStep;
 
