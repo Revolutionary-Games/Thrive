@@ -473,7 +473,7 @@ public class MicrobeAI
 
     /// <summary>
     ///   Tells if a compound is vital to this microbe.
-    ///   Vital compounds are* direct* ATP producers
+    ///   Vital compounds are *direct* ATP producers
     ///   TODO: what is used here is a shortcut linked to the current game state:
     ///     such compounds could be used for other processes in future versions
     /// </summary>
