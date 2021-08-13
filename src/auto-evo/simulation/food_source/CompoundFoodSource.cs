@@ -1,4 +1,4 @@
-﻿public class CompoundFoodSource : IFoodSource
+﻿public class CompoundFoodSource : FoodSource
 {
     private BiomeConditions biomeConditions;
     private Compound compound;
@@ -18,11 +18,11 @@
         }
     }
 
-    public float FitnessScore(Species species)
+    public override float FitnessScore(Species species)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        var compoundUseScore = MicrobeInternalCalculations.EnergyGenerationScore(microbeSpecies, compound);
+        var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound);
 
         var energyCost = ProcessSystem.ComputeEnergyBalance(
             microbeSpecies.Organelles.Organelles,
@@ -31,7 +31,7 @@
         return compoundUseScore / energyCost;
     }
 
-    public float TotalEnergyAvailable()
+    public override float TotalEnergyAvailable()
     {
         return totalCompound * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
     }

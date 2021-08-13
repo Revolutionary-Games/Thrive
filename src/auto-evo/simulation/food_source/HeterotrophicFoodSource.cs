@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-public class HeterotrophicFoodSource : IFoodSource
+public class HeterotrophicFoodSource : FoodSource
 {
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 

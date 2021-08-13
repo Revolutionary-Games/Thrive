@@ -1,4 +1,4 @@
-﻿public class EnvironmentalFoodSource : IFoodSource
+﻿public class EnvironmentalFoodSource : FoodSource
 {
     private readonly Compound compound;
     private BiomeConditions biomeConditions;
@@ -11,11 +11,11 @@
         totalEnvironmentalEnergySource = patch.Biome.Compounds[this.compound].Dissolved * foodCapacityMultiplier;
     }
 
-    public float FitnessScore(Species species)
+    public override float FitnessScore(Species species)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        var energyCreationScore = MicrobeInternalCalculations.EnergyGenerationScore(microbeSpecies, compound);
+        var energyCreationScore = EnergyGenerationScore(microbeSpecies, compound);
 
         var energyCost = ProcessSystem.ComputeEnergyBalance(
             microbeSpecies.Organelles.Organelles,
@@ -24,7 +24,7 @@
         return energyCreationScore / energyCost;
     }
 
-    public float TotalEnergyAvailable()
+    public override float TotalEnergyAvailable()
     {
         return totalEnvironmentalEnergySource;
     }

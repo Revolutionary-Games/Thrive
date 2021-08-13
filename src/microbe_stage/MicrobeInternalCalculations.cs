@@ -36,34 +36,4 @@ public static class MicrobeInternalCalculations
 
         return finalSpeed;
     }
-
-    public static float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
-    {
-        Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-        Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
-        var energyCreationScore = 0.0f;
-        foreach (var organelle in species.Organelles)
-        {
-            foreach (var process in organelle.Definition.RunnableProcesses)
-            {
-                if (process.Process.Inputs.ContainsKey(compound))
-                {
-                    if (process.Process.Outputs.ContainsKey(glucose))
-                    {
-                        energyCreationScore += process.Process.Outputs[glucose]
-                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
-                    }
-
-                    if (process.Process.Outputs.ContainsKey(atp))
-                    {
-                        energyCreationScore += process.Process.Outputs[atp]
-                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
-                    }
-                }
-            }
-        }
-
-        return energyCreationScore;
-    }
 }
