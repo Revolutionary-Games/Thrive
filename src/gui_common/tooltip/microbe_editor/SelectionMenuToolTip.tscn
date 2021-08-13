@@ -115,6 +115,7 @@ size_flags_horizontal = 3
 margin_top = 42.0
 margin_right = 318.0
 margin_bottom = 64.0
+mouse_filter = 2
 
 [node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -122,6 +123,7 @@ anchor_bottom = 0.0
 margin_top = 79.0
 margin_right = 318.0
 margin_bottom = 79.0
+mouse_filter = 2
 
 [node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 94.0

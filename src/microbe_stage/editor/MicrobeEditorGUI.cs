@@ -793,15 +793,41 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
 
                 var extinctInPatch = entry.Value <= 0;
+                var extinctEverywhere = false;
+
+                // We test if the species info was recorded before using it.
+                // This is especially for compatibility with older versions, to avoid crashed due to an invalid key.
+                // TODO: Use a proper save upgrade (e.g. summing population to generate info).
+                if (snapshot.RecordedSpeciesInfo.TryGetValue(entry.Key, out SpeciesInfo speciesInfo))
+                {
+                    extinctEverywhere = speciesInfo.Population <= 0;
+                }
 
                 // Clamp population number so it doesn't go into the negatives
                 var population = extinctInPatch ? 0 : entry.Value;
 
+                var iconType = DataPoint.MarkerIcon.Circle;
+                var iconSize = 7;
+
+                if (extinctInPatch)
+                {
+                    if (extinctEverywhere)
+                    {
+                        iconType = DataPoint.MarkerIcon.Skull;
+                        iconSize = 28;
+                    }
+                    else
+                    {
+                        iconType = DataPoint.MarkerIcon.Cross;
+                        iconSize = 12;
+                    }
+                }
+
                 var dataPoint = new DataPoint
                 {
                     Value = new Vector2((float)snapshot.TimePeriod, population),
-                    Size = extinctInPatch ? 12 : 7,
-                    IconType = extinctInPatch ? DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
+                    Size = iconSize,
+                    IconType = iconType,
                     MarkerColour = dataset.DataColour,
                 };
 
@@ -1754,9 +1780,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
         // ReSharper disable StringLiteralTypo
-        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysConds");
+        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
 
-        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysConds");
+        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
 
         // ReSharper restore StringLiteralTypo
     }

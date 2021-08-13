@@ -367,6 +367,11 @@ public static class Constants
     // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
     public const float AI_COMPOUND_BIAS = -10.0f;
 
+    /// <summary>
+    ///   Threshold to not be stuck in tiny local maxima during gradient ascent algorithms.
+    /// </summary>
+    public const float AI_GRADIENT_DETECTION_THRESHOLD = 0.005f;
+
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
@@ -427,7 +432,7 @@ public static class Constants
 
     public const float TOOLTIP_OFFSET = 20;
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
-    public const float TOOLTIP_FADE_SPEED = 0.02f;
+    public const float TOOLTIP_FADE_SPEED = 0.25f;
 
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
@@ -533,6 +538,7 @@ public static class Constants
 
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
+    public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 

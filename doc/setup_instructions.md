@@ -451,7 +451,7 @@ sudo npm install -g jsonlint
 Download from:
 https://www.jetbrains.com/resharper/download/#section=commandline
 unzip and add to PATH. Currently used version is:
-JetBrains.ReSharper.CommandLineTools.2021.1.3
+JetBrains.ReSharper.CommandLineTools.2021.2
 
 NOTE: there is more documentation on the install process here:
 https://www.jetbrains.com/help/resharper/InspectCode.html

@@ -51,7 +51,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     [JsonProperty]
     private bool isParticles;
 
-    public int DespawnRadiusSqr { get; set; }
+    public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
     public Node SpawnedNode => this;
@@ -393,8 +393,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (Damages > 0 || DeleteOnTouch || Size > 0)
         {
             ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-            Connect("body_shape_entered", this, "OnContactBegin");
-            Connect("body_shape_exited", this, "OnContactEnd");
+            Connect("body_shape_entered", this, nameof(OnContactBegin));
+            Connect("body_shape_exited", this, nameof(OnContactEnd));
         }
     }
 
