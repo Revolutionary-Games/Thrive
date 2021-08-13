@@ -9,6 +9,7 @@ LOCALES = %w[bg ca cs de en eo es_AR es et fi fr he id ko la lb_LU it nl nl_BE
 LINE_WIDTH = 77
 
 require 'optparse'
+require_relative '../bootstrap_rubysetupsystem'
 require_relative '../RubySetupSystem/RubyCommon'
 
 @options = {

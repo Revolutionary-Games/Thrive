@@ -48,18 +48,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     private List<ModifierInfoLabel> modifierInfos = new List<ModifierInfoLabel>();
 
-    public Vector2 Position
-    {
-        get => RectPosition;
-        set => RectPosition = value;
-    }
-
-    public Vector2 Size
-    {
-        get => RectSize;
-        set => RectSize = value;
-    }
-
     [Export]
     public string DisplayName
     {
@@ -116,17 +104,13 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     [Export]
     public float DisplayDelay { get; set; } = 0.0f;
 
-    public bool ToolTipVisible
-    {
-        get => Visible;
-        set => Visible = value;
-    }
-
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.FollowMousePosition;
+
+    public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
 
     public bool HideOnMousePress { get; set; }
 
-    public Node ToolTipNode => this;
+    public Control ToolTipNode => this;
 
     public override void _Ready()
     {
@@ -152,14 +136,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (what == NotificationTranslationChanged)
         {
             UpdateProcessesDescription();
-        }
-
-        if (what == NotificationResized)
-        {
-            // A workaround to get RichTextLabel's height properly update on tooltip size change
-            // See https://github.com/Revolutionary-Games/Thrive/issues/2236
-            if (processesDescriptionLabel != null)
-                processesDescriptionLabel.BbcodeText = processesDescriptionLabel.BbcodeText;
         }
     }
 
@@ -250,8 +226,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             }
             else
             {
-                modifier.ModifierValue = ((deltaValue >= 0) ? "+" : string.Empty)
-                    + (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture) + "%";
+                modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
+                    + string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
+                        (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
             }
 
             if (modifier.Name == "osmoregulation_cost")
@@ -263,16 +240,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 modifier.AdjustValueColor(deltaValue);
             }
         }
-    }
-
-    public void OnDisplay()
-    {
-        Show();
-    }
-
-    public void OnHide()
-    {
-        Hide();
     }
 
     private void UpdateName()

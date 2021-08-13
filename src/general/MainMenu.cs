@@ -36,8 +36,6 @@ public class MainMenu : NodeWithInput
 
     public bool IsReturningToMenu;
 
-    private readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
-
     private TextureRect thriveLogo;
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
@@ -158,8 +156,7 @@ public class MainMenu : NodeWithInput
         SwitchMenu();
 
         // Easter egg message
-        thriveLogo.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"), toolTipCallbacks);
+        thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
@@ -216,7 +213,7 @@ public class MainMenu : NodeWithInput
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
             0.3f :
             0.5f, false);
-        TransitionManager.Instance.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.StartTransitions(null);
 
         // Start music after the video
         StartMusic();
