@@ -342,6 +342,11 @@ Other files
 - New JSON files should prefer PascalCase keys. Existing JSON files
   should stick to what other parts of that file use.
 
+- Registry items (for example organelles) should use camelCase for their
+  internal names (IRegistryType.InternalName), and not snake_case.
+  Otherwise other names that follow the internal names will violate other
+  naming conventions.
+
 - Do not use `<br>` in markdown unless it is a table where line breaks
   need to be tightly controlled. Use blank lines instead of
   `<br>`. Also don't use `<hr>` use `---` instead.
