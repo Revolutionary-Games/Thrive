@@ -372,7 +372,7 @@ public class LineChart : VBoxContainer
 
                 toolTip.DisplayDelay = 0;
                 toolTip.HideOnMousePress = false;
-                toolTip.UseFadeIn = false;
+                toolTip.TransitionType = ToolTipTransitioning.Immediate;
 
                 point.RegisterToolTipForControl(toolTip);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);

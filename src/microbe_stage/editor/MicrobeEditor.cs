@@ -2322,6 +2322,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
 
+        // Update populations before recording conditions - should not affect per-patch population
+        CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
+
         // Needs to be before the remove extinct species call, so that extinct species could still be stored
         // for reference in patch history (e.g. displaying it as zero on the species population chart)
         foreach (var entry in CurrentGame.GameWorld.Map.Patches)
@@ -2337,8 +2340,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
         }
-
-        CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();

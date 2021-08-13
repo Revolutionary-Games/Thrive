@@ -266,7 +266,7 @@ have build errors, check if this is setup properly.
 On Linux dotnet is the recommended build tool.
 
 Even if you do not use the Godot script editor, Godot automatically opens some files and replaces the spaces with tabs.
-To stop Godot from messing with you files, go to Text Editor -> Indent and set Type to spaces
+To stop Godot from messing with your files, go to Text Editor -> Indent and set Type to spaces
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_use_spaces.png" alt="set intend to spaces" width="550px">
 
@@ -451,7 +451,7 @@ sudo npm install -g jsonlint
 Download from:
 https://www.jetbrains.com/resharper/download/#section=commandline
 unzip and add to PATH. Currently used version is:
-JetBrains.ReSharper.CommandLineTools.2021.1.3
+JetBrains.ReSharper.CommandLineTools.2021.2
 
 NOTE: there is more documentation on the install process here:
 https://www.jetbrains.com/help/resharper/InspectCode.html

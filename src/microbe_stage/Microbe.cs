@@ -328,7 +328,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Spatial OrganelleParent { get; private set; }
 
     [JsonProperty]
-    public int DespawnRadiusSqr { get; set; }
+    public int DespawnRadiusSquared { get; set; }
 
     /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only

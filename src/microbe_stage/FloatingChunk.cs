@@ -51,7 +51,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     [JsonProperty]
     private bool isParticles;
 
-    public int DespawnRadiusSqr { get; set; }
+    public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
     public Node SpawnedNode => this;
