@@ -26,6 +26,7 @@
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
+    <Compile Include="src\engine\FileDropHandler.cs" />
     <Compile Include="src\engine\FullScreenToggle.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
     <Compile Include="src\engine\GuidanceLine.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\DataPoint.cs" />
+    <Compile Include="src\gui_common\ActionButton.cs" />
     <Compile Include="src\gui_common\CheatMenu.cs" />
     <Compile Include="src\gui_common\ChemicalEquation.cs" />
     <Compile Include="src\gui_common\CompoundAmount.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="src\saving\ISaveContext.cs" />
     <Compile Include="src\saving\ISaveLoadable.cs" />
     <Compile Include="src\saving\ISaveLoadedTracked.cs" />
+    <Compile Include="src\saving\ISaveUpgradeStep.cs" />
     <Compile Include="src\saving\NewSaveMenu.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveApplyHelper.cs" />
@@ -248,6 +251,7 @@
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\SaveManagerGUI.cs" />
     <Compile Include="src\saving\SaveStatusOverlay.cs" />
+    <Compile Include="src\saving\SaveUpgrader.cs" />
     <Compile Include="src\saving\serializers\AssignOnlyChildItemsOnDeserializeAttribute.cs" />
     <Compile Include="src\saving\serializers\Base64BinaryConverter.cs" />
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />

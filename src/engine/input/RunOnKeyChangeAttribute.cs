@@ -18,7 +18,7 @@ public class RunOnKeyChangeAttribute : RunOnKeyAttribute
         if (!base.OnInput(@event) || HeldDown == before)
             return false;
 
-        return CallMethod();
+        return CallMethod(HeldDown);
     }
 
     public override void OnProcess(float delta)

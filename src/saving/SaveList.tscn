@@ -21,6 +21,8 @@ LoadNewerSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadNewerSaveD
 LoadOlderSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadOlderSaveDialog")
 LoadInvalidSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadInvalidSaveDialog")
 LoadIncompatibleDialogPath = NodePath("MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog")
+UpgradeSaveDialogPath = NodePath("MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog")
+UpgradeFailedDialogPath = NodePath("MarginContainer/VBoxContainer/SaveUpgradeFailedDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1280.0
@@ -146,9 +148,9 @@ __meta__ = {
 }
 
 [node name="LoadKnownIncompatibleDialog" type="AcceptDialog" parent="MarginContainer/VBoxContainer"]
-margin_left = 284.0
+margin_left = 285.0
 margin_top = 4.0
-margin_right = 984.0
+margin_right = 985.0
 margin_bottom = 88.0
 rect_min_size = Vector2( 700, 0 )
 size_flags_horizontal = 4
@@ -169,7 +171,59 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UpgradeSelectedSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 600.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 600, 70 )
+size_flags_horizontal = 0
+size_flags_vertical = 5
+popup_exclusive = true
+window_title = "SELECTED_SAVE_IS_UPGRADEABLE"
+
+[node name="DialogText" type="Label" parent="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 590.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveUpgradeFailedDialog" type="AcceptDialog" parent="MarginContainer/VBoxContainer"]
+margin_left = 280.0
+margin_top = 4.0
+margin_right = 1080.0
+margin_bottom = 466.0
+rect_min_size = Vector2( 800, 300 )
+size_flags_horizontal = 4
+size_flags_vertical = 5
+window_title = "SAVE_UPGRADE_FAILED"
+dialog_autowrap = true
+
+[node name="Container" type="ScrollContainer" parent="MarginContainer/VBoxContainer/SaveUpgradeFailedDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 800.0
+margin_bottom = 410.0
+rect_min_size = Vector2( 790, 400 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SaveUpgradeFailedDialog/Container"]
+margin_bottom = 22.0
+
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmLoadInvalid"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnAcceptSaveUpgrade"]
+[connection signal="popup_hide" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnSaveUpgradeClosed"]

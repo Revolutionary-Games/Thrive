@@ -504,10 +504,17 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
 
+    public const string EXPLICIT_PATH_PREFIX = "file://";
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
+
+    /// <summary>
+    ///   Internal Godot name for the default audio output device
+    /// </summary>
+    public const string DEFAULT_AUDIO_OUTPUT_DEVICE_NAME = "Default";
 
     /// <summary>
     ///   This is just here to make it easier to debug saves
@@ -526,6 +533,7 @@ public static class Constants
 
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
+    public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 

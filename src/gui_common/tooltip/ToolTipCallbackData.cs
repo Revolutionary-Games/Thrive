@@ -1,14 +1,17 @@
 ﻿using Godot;
 
 /// <summary>
-///   Helper class to contain the OnMouseEnter and OnMouseExit callback for the custom tooltips
+///   Helper class to contain callbacks for the custom tooltips to make them react to things.
 /// </summary>
 public class ToolTipCallbackData : Reference
 {
-    public ToolTipCallbackData(ICustomToolTip tooltip)
+    public ToolTipCallbackData(Control toolTipable, ICustomToolTip tooltip)
     {
+        ToolTipable = toolTipable;
         ToolTip = tooltip;
     }
+
+    public Control ToolTipable { get; private set; }
 
     public ICustomToolTip ToolTip { get; private set; }
 
@@ -22,5 +25,11 @@ public class ToolTipCallbackData : Reference
     {
         ToolTipManager.Instance.MainToolTip = null;
         ToolTipManager.Instance.Display = false;
+    }
+
+    public void OnExitingTree()
+    {
+        OnMouseExit();
+        ToolTipable.UnRegisterToolTipForControl(ToolTip);
     }
 }

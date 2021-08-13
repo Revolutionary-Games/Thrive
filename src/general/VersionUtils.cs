@@ -11,7 +11,26 @@ public static class VersionUtils
     {
         "pre-alpha",
         "alpha",
+
+        // These alpha and beta suffixes are provided to make save upgrader operations possible to define without
+        // needing a much more major version bump while the next stable version is being developed
+        "alpha2",
+        "alpha3",
+        "alpha4",
+        "alpha5",
+        "alpha6",
+        "alpha7",
+        "alpha8",
+        "alpha9",
         "beta",
+        "beta2",
+        "beta3",
+        "beta4",
+        "beta5",
+        "beta6",
+        "beta7",
+        "beta8",
+        "beta9",
         "rc1",
         "rc2",
         "rc3",
