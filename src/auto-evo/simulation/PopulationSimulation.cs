@@ -152,7 +152,7 @@
 
             foreach (var niche in niches)
             {
-                // If this isn't a source of energy here, no need for more calculations
+                // If there isn't a source of energy here, no need for more calculations
                 if (niche.TotalEnergyAvailable() == 0.0f)
                 {
                     continue;
