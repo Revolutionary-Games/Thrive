@@ -128,6 +128,12 @@ public class TweakedColourPicker : ColorPicker
         HsvMode = base.HsvMode;
         RawMode = base.RawMode;
 
+        // Load initial presets.
+        foreach (var color in GetPresets())
+        {
+            AddPresetLocal(color);
+        }
+
         Translate();
     }
 
@@ -137,6 +143,31 @@ public class TweakedColourPicker : ColorPicker
             Translate();
 
         base._Notification(what);
+    }
+
+    public new void AddPreset(Color color)
+    {
+        foreach (var knownPreset in presets)
+        {
+            if (knownPreset.Color == color)
+                return;
+        }
+
+        AddPresetLocal(color);
+
+        base.AddPreset(color);
+    }
+
+    public new void ErasePreset(Color color)
+    {
+        foreach (var preset in presets)
+        {
+            if (preset.Color == color)
+            {
+                OnPresetDeleted(preset);
+                break;
+            }
+        }
     }
 
     private void Translate()
@@ -150,21 +181,18 @@ public class TweakedColourPicker : ColorPicker
             + TranslationServer.Translate("COLOR_PICKER_DELETE_PRESET");
     }
 
-    private void OnAddPresetButtonPressed()
+    private void AddPresetLocal(Color color)
     {
-        foreach (var knownPreset in presets)
-        {
-            if (knownPreset.Color == Color)
-                return;
-        }
-
         var preset = presetScene.Instance<TweakedColorPickerPreset>();
-        preset.Color = Color;
+        preset.Color = color;
         preset.Connect(nameof(TweakedColorPickerPreset.OnPresetSelected), this, nameof(OnPresetSelected));
         preset.Connect(nameof(TweakedColorPickerPreset.OnPresetDeleted), this, nameof(OnPresetDeleted));
         presets.Add(preset);
         presetsContainer.AddChild(preset);
+    }
 
+    private void OnAddPresetButtonPressed()
+    {
         AddPreset(Color);
     }
 
@@ -177,7 +205,7 @@ public class TweakedColourPicker : ColorPicker
     {
         presets.Remove(preset);
         presetsContainer.RemoveChild(preset);
-        ErasePreset(preset.Color);
+        base.ErasePreset(preset.Color);
         preset.QueueFree();
     }
 
