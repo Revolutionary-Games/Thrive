@@ -215,6 +215,7 @@ public class PatchMap
 
         foreach (var patch in Patches)
         {
+            // Player species can only go extinct when playerCantGoExtinct is true
             var toRemove = patch.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
                 (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
 

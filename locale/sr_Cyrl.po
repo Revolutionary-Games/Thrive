@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 12:51+0200\n"
+"POT-Creation-Date: 2021-08-06 14:17+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -2892,32 +2892,42 @@ msgstr "Брзог чување"
 msgid "SAVE_INVALID"
 msgstr "Неважеће"
 
-#: ../src/saving/SaveList.cs:171
+#: ../src/saving/SaveList.cs:185
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите "
 "трајно избрисати {0}?"
 
-#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.cs:281
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"Вакуола је унутрашња мембранска органела која се користи за складиштење у "
+"ћелији. Састоје се од неколико везикула, мањих опнастих структура које се "
+"широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је "
+"водом која се користи да садржи молекуле, ензиме, чврсте материје и друге "
+"супстанце. Њихов облик је течан и може се разликовати између ћелија."
+
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "Учитавање..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "Желите ли да избришете овај чување?"
 
-#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
+#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Учитати некомпатибилно чување?"
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Овај сачување је из новије верзије Thrive и врло вероватно "
 "некомпатибилна.\n"
 "Да ли желите да ипак покушате да учитате овај чување?"
 
-#: ../src/saving/SaveList.tscn:117
+#: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Овај сачување је из старе верзије Thrive-а и можда је некомпатибилно.\n"
@@ -2926,11 +2936,11 @@ msgstr ""
 "највиши приоритети.\n"
 "Да ли желите да ипак покушате да прочитате овај чување?"
 
-#: ../src/saving/SaveList.tscn:132
+#: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
 msgstr "Учитати неважеће чување?"
 
-#: ../src/saving/SaveList.tscn:141
+#: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Учитавање података из ове датотеке није успело.\n"
@@ -2938,11 +2948,11 @@ msgstr ""
 "верзија Thrive не разуме.\n"
 "Да ли желите да ипак покушате да учитате чување?"
 
-#: ../src/saving/SaveList.tscn:156
+#: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Изабрано чување је некомпатибилно"
 
-#: ../src/saving/SaveList.tscn:166
+#: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Познато је да је изабрано чување за учитавање некомпатибилно са овом "
@@ -2950,6 +2960,26 @@ msgstr ""
 "Како је Thrive још увек у раној фази развој компатибилност спремања није "
 "висок приоритет, јер као такав не постоји уграђени конвертор за спремање "
 "за надоградњу старих спремања."
+
+#: ../src/saving/SaveList.tscn:183
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "Изабрано чување је некомпатибилно"
+
+#: ../src/saving/SaveList.tscn:192
+#, fuzzy
+msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+msgstr ""
+"Вакуола је унутрашња мембранска органела која се користи за складиштење у "
+"ћелији. Састоје се од неколико везикула, мањих опнастих структура које се "
+"широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је "
+"водом која се користи да садржи молекуле, ензиме, чврсте материје и друге "
+"супстанце. Њихов облик је течан и може се разликовати између ћелија."
+
+#: ../src/saving/SaveList.tscn:207
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED"
+msgstr "Сачување није успело"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"

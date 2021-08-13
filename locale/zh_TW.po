@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 12:51+0200\n"
+"POT-Creation-Date: 2021-08-06 14:17+0300\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -2697,45 +2697,72 @@ msgstr "快速存檔"
 msgid "SAVE_INVALID"
 msgstr "無效"
 
-#: ../src/saving/SaveList.cs:171
+#: ../src/saving/SaveList.cs:185
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.cs:281
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"代謝體是一大堆被蛋白質殼包裹住的蛋白質。通過有氧呼吸它們可以以比細胞質快得"
+"多的速度將葡萄糖轉換成ATP。不管怎樣，它需要氧才能運作，低水平的氧氣環境會導"
+"致ATP產出減速。由於代謝體是直接懸浮在細胞質中的，所以它周圍的細胞質也能進行"
+"一些糖酵解。"
+
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "加載中..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "刪除這個存檔嗎?"
 
-#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
+#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:117
+#: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:132
+#: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:141
+#: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:156
+#: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:166
+#: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
+
+#: ../src/saving/SaveList.tscn:183
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:192
+#, fuzzy
+msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+msgstr ""
+"代謝體是一大堆被蛋白質殼包裹住的蛋白質。通過有氧呼吸它們可以以比細胞質快得"
+"多的速度將葡萄糖轉換成ATP。不管怎樣，它需要氧才能運作，低水平的氧氣環境會導"
+"致ATP產出減速。由於代謝體是直接懸浮在細胞質中的，所以它周圍的細胞質也能進行"
+"一些糖酵解。"
+
+#: ../src/saving/SaveList.tscn:207
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED"
+msgstr "保存失敗"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
