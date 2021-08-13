@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-13 10:07+0300\n"
-"PO-Revision-Date: 2021-08-10 19:33+0000\n"
-"Last-Translator: TomDev03 <chumbosilva200@gmail.com>\n"
+"PO-Revision-Date: 2021-08-13 05:59+0000\n"
+"Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -17,12 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
@@ -34,7 +33,6 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
 "A tua célula usa [thrive:compound type=\"atp\"][/thrive:compound] como "
@@ -42,7 +40,6 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Para desbloqueares o editor e te reproduzires necessitas de recolher "
@@ -51,26 +48,24 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Também podes engolfar células, bactérias, pedaços de ferro e pedaços de "
-"células menores do que tu pressionando [thrive:input]g_toggle_engulf[/"
-"thrive:input]. Isto custará [thrive:compound type=\"atp\"][/thrive:"
-"compound] adicional e abrandar-te-á. Não te esqueças de premir [thrive:"
-"input]g_toggle_engulf[/thrive:input] uma segunda vez para parar de "
-"engolfar."
+"células menores do que tu pressionando "
+"[thrive:input]g_toggle_engulf[/thrive:input]. Isto custará [thrive:compound "
+"type=\"atp\"][/thrive:compound] adicional e abrandar-te-á. Não te esqueças "
+"de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez "
+"para parar de engolfar."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulação custa [thrive:compound type=\"atp\"][/thrive:compound], o "
-"que significa que quanto maior for a tua célula, mais Mitocôndrias, "
+"Osmorregulação custa [thrive:compound type=\"atp\"][/thrive:compound], o que "
+"significa que quanto maior for a tua célula, mais Mitocôndrias, "
 "Metabolossomas ou Rusticianina (ou citoplasma, o qual realiza a Glicólise) "
-"necessitas para evitar perder [thrive:compound type=\"atp\"][/thrive:"
-"compound] quando te encontrares estacionário."
+"necessitas para evitar perder [thrive:compound type=\"atp\""
+"][/thrive:compound] quando te encontrares parado."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -80,7 +75,6 @@ msgstr ""
 "de diferentes estilos de jogo."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "As várias nuvens de compostos são:\n"
@@ -174,10 +168,9 @@ msgstr ""
 "pequenas quatidades de [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Organelos Externo\n"
+"Organelos Externos\n"
 "\n"
 "Flagelo: Move a tua célula mais rapidamente ao consumir [thrive:compound "
 "type=\"atp\"][/thrive:compound]\n"
@@ -191,8 +184,8 @@ msgstr ""
 "Organelos Limitados por Membrana\n"
 "\n"
 "Núcleo: Ocupa 11 hexágonos e permite a evolução de organelos limitados por "
-"membrana. Também duplica o tamanho da tua célula. (apenas pode ser "
-"evoluído uma única vez)\n"
+"membrana. Também duplica o tamanho da tua célula (apenas pode ser evoluído "
+"uma única vez)\n"
 "\n"
 "Agente de Adesão: Permite a ligação com outras células\n"
 "\n"
@@ -206,9 +199,9 @@ msgstr ""
 "Quimioplasto: Produz [thrive:compound type=\"glucose\"][/thrive:compound] "
 "a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Plastídeo Fixador de Nitrogénio: Produz [thrive:compound type=\"ammonia\"]"
-"[/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:"
-"compound] e Nitrogénio e Oxigénio atmosférico\n"
+"Plastídeo Fixador de Nitrogénio: Produz [thrive:compound type=\"ammonia\""
+"][/thrive:compound] a partir de [thrive:compound type=\"atp\""
+"][/thrive:compound], Nitrogénio e Oxigénio atmosférico\n"
 "\n"
 "Vacúolo: Armazena 15 compostos coletados\n"
 "\n"
@@ -266,8 +259,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Curiosidade, na vida real os procariotas possuem algo chamado "
-"Biocompartimentos, que atuam como organelos, e são de facto chamados "
-"organelos poliédricos."
+"Biocompartimentos, que atuam como organelos, sendo até chamados organelos "
+"poliédricos."
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
@@ -434,7 +427,6 @@ msgstr "Disparar toxina"
 
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
-#, fuzzy
 msgid "TOGGLE_ENGULF"
 msgstr "Engolfar"
 
@@ -902,7 +894,6 @@ msgid "FINISHED"
 msgstr "Concluído."
 
 #: ../src/auto-evo/AutoEvoRun.cs:118
-#, fuzzy
 msgid "NOT_RUNNING"
 msgstr "Não está a decorrer."
 
@@ -1049,12 +1040,10 @@ msgid "KEY_STANDBY"
 msgstr "Standby"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
-#, fuzzy
 msgid "KEY_OPENURL"
 msgstr "Abrir URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
-#, fuzzy
 msgid "KEY_HOMEPAGE"
 msgstr "Homepage"
 
@@ -1063,7 +1052,6 @@ msgid "KEY_FAVORITES"
 msgstr "Favoritos"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
-#, fuzzy
 msgid "KEY_PRINT"
 msgstr "Print Screen"
 
@@ -2868,14 +2856,10 @@ msgstr ""
 "desejas apagar permanentemente {0}?"
 
 #: ../src/saving/SaveList.cs:281
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"O vacúolo é um organelo interno membranoso usado para o armazenamento da "
-"célula. Composto de várias vesículas, pequenas estruturas membranosas "
-"amplamente usadas nas células para o armazenamento, que se fundiram. É "
-"preenchida com água que é usada para conter moléculas, enzimas, sólidos, e "
-"outras substâncias. Tem um formato fluído e pode variar em cada célula."
+"Atualizar o jogo guardado selecionado falhou devido ao seguinte erro:\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -2926,14 +2910,15 @@ msgstr "O jogo guardado selecionado é incompatível"
 #: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Foi detetado que o jogo guardado selecionado é incompatível com esta "
+"Foi detetado que o jogo guardado selecionado é incompatível com a atual "
 "versão do Thrive.\n"
-"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade "
-"de jogos guardados não é uma prioridade alta, como tal, não existe um "
-"conversor de jogos guardados para atualizar jogos guardados antigos."
+"Não existe nenhum atualizador de jogos guardados para atualizar este jogo "
+"guardado.\n"
+"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de "
+"jogos guardados não é uma prioridade alta, como tal, não existe um conversor "
+"de jogos guardados para todas as versões."
 
 #: ../src/saving/SaveList.tscn:183
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "O jogo guardado selecionado é incompatível"
 
@@ -2941,16 +2926,17 @@ msgstr "O jogo guardado selecionado é incompatível"
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"O vacúolo é um organelo interno membranoso usado para o armazenamento da "
-"célula. Composto de várias vesículas, pequenas estruturas membranosas "
-"amplamente usadas nas células para o armazenamento, que se fundiram. É "
-"preenchida com água que é usada para conter moléculas, enzimas, sólidos, e "
-"outras substâncias. Tem um formato fluído e pode variar em cada célula."
+"O jogo guardado selecionado é de uma versão anterior do Thrive, mas pode ser "
+"atualizado.\n"
+"Um ficheiro reserva irá ser criado antes da atualização, se ainda não "
+"existir.\n"
+"Se saltar a atualização, o ficheiro guardado irá ser tentado lido "
+"normalmente. \n"
+"Tentar atualizar este ficheiro guardado?"
 
 #: ../src/saving/SaveList.tscn:207
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Falha ao guardar"
+msgstr "Falha ao atualizar o jogo guardado"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
