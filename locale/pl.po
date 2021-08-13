@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-05 12:51+0200\n"
+"POT-Creation-Date: 2021-08-06 14:17+0300\n"
 "PO-Revision-Date: 2021-07-21 12:42+0000\n"
 "Last-Translator: Filip Szot <filip.szot08@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -2875,31 +2875,42 @@ msgstr "Zapisz Grę"
 msgid "SAVE_INVALID"
 msgstr "Nieważny"
 
-#: ../src/saving/SaveList.cs:171
+#: ../src/saving/SaveList.cs:185
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Usunięcie tego zapisu nie może zostać odwrócone, czy jesteś pewien że "
 "chcesz permamentnie usunąć {0}?"
 
-#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.cs:281
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. "
+"Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko "
+"używanych w komórkach do magazynowania, które są ze sobą połączone. "
+"Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i "
+"inne substancje. Ich kształt jest płynny i może się różnić między "
+"komórkami."
+
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "Wczytywanie..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "Usunąć ten zapis?"
 
-#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
+#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Załadować niekompatybilny zapis?"
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ten zapis jest z nowszej wersji Thrive i prawdopodobnie niekompatybilny.\n"
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
-#: ../src/saving/SaveList.tscn:117
+#: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ten zapis jest ze starszej wersji Thrive i może być niekompatybilny.\n"
@@ -2909,11 +2920,11 @@ msgstr ""
 "najwyższego priorytetu.\n"
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
-#: ../src/saving/SaveList.tscn:132
+#: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
 msgstr "Wczytać nieważny zapis?"
 
-#: ../src/saving/SaveList.tscn:141
+#: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Informacje zapisu nie mogły być wczytane z tego pliku.\n"
@@ -2921,13 +2932,34 @@ msgstr ""
 "przez tą wersję Thrive.\n"
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
-#: ../src/saving/SaveList.tscn:156
+#: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Wybrany zapis jest niekompatybilny"
 
-#: ../src/saving/SaveList.tscn:166
+#: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
+
+#: ../src/saving/SaveList.tscn:183
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "Wybrany zapis jest niekompatybilny"
+
+#: ../src/saving/SaveList.tscn:192
+#, fuzzy
+msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+msgstr ""
+"Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. "
+"Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko "
+"używanych w komórkach do magazynowania, które są ze sobą połączone. "
+"Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i "
+"inne substancje. Ich kształt jest płynny i może się różnić między "
+"komórkami."
+
+#: ../src/saving/SaveList.tscn:207
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED"
+msgstr "Zapisywanie się nie udało"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
