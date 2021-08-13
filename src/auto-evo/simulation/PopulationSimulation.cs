@@ -138,7 +138,7 @@
                 energyBySpecies[currentSpecies] = 0.0f;
             }
 
-            var niches = new List<IFoodSource>
+            var niches = new List<FoodSource>
             {
                 new EnvironmentalFoodSource(patch, "sunlight", Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT),
                 new CompoundFoodSource(patch, Glucose),

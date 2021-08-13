@@ -20,7 +20,7 @@ public class HeterotrophicFoodSource : FoodSource
         totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
     }
 
-    public float FitnessScore(Species species)
+    public override float FitnessScore(Species species)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
@@ -73,7 +73,7 @@ public class HeterotrophicFoodSource : FoodSource
         return behaviorScore * (pilusScore + engulfScore + predatorSize + oxytoxyScore);
     }
 
-    public float TotalEnergyAvailable()
+    public override float TotalEnergyAvailable()
     {
         return totalEnergy;
     }
