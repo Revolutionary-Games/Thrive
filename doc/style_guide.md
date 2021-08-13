@@ -265,6 +265,9 @@ Godot usage
 
 - Node names should not contain spaces, instead use PascalCase naming.
 
+- For connecting signals, use `nameof` to refer to methods whenever possible
+  to reduce the chance of mistakes when methods are renamed.
+
 - If you need to keep track of child elements that are added through a
   single place, keep them in a List or Dictionary instead of asking
   Godot for the children and doing a bunch of extra casts.
