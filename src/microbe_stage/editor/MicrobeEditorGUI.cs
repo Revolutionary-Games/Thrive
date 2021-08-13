@@ -798,8 +798,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 // We test if the species info was recorded before using it.
                 // This is especially for compatibility with older versions, to avoid crashed due to an invalid key.
                 // TODO: Use a proper save upgrade (e.g. summing population to generate info).
-                SpeciesInfo speciesInfo;
-                if (snapshot.RecordedSpeciesInfo.TryGetValue(entry.Key, out speciesInfo))
+                if (snapshot.RecordedSpeciesInfo.TryGetValue(entry.Key, out SpeciesInfo speciesInfo))
                 {
                     extinctEverywhere = speciesInfo.Population <= 0;
                 }
