@@ -7,13 +7,13 @@
     /// </summary>
     public class MicrobeStageWelcome : TutorialPhase
     {
+        private Action onHide;
+
         public MicrobeStageWelcome()
         {
             Exclusive = true;
             Pauses = true;
         }
-
-        private Action onHide;
 
         public override string ClosedByName { get; } = "MicrobeStageWelcome";
 
