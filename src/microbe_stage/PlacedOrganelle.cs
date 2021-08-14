@@ -404,7 +404,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             if (ParentMicrobe.Colony != null)
             {
                 shapePosition = shapePosition.Rotated(Vector3.Up, parentRotation.y);
-                shapePosition = shapePosition.Rotated(Vector3.Up, masterRotation.y);
+                if (ParentMicrobe.ColonyParent != ParentMicrobe.Colony.Master)
+                    shapePosition = shapePosition.Rotated(Vector3.Up, masterRotation.y);
             }
 
             // Scale for bacteria physics.
