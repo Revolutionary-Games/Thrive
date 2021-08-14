@@ -1435,11 +1435,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
-    ///   This method calculates the relative rotation and translation this microbe should have to his microbe parent.
+    ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Storing the old global translation and rotation, re-parenting and then reapplying the stored values is not
+    ///     Storing the old global translation and rotation, re-parenting and then reapplying the stored values is
     ///     worse than this code because this code utilizes GetVectorTowardsNearestPointOfMembrane. This reduces the
     ///     visual gap between the microbes in a colony.
     ///   </para>
