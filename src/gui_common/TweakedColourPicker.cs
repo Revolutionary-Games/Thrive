@@ -6,6 +6,9 @@ using Godot;
 /// </summary>
 public class TweakedColourPicker : ColorPicker
 {
+    private static readonly List<KeyValuePair<string, Color[]>> PresetsStorage
+        = new List<KeyValuePair<string, Color[]>>();
+
     private readonly List<TweakedColorPickerPreset> presets = new List<TweakedColorPickerPreset>();
     private PackedScene presetScene;
 
@@ -171,12 +174,27 @@ public class TweakedColourPicker : ColorPicker
         PresetsVisible = presetsVisible;
 
         // Load initial presets.
-        foreach (var color in GetPresets())
+        foreach (var presetsStored in PresetsStorage)
         {
-            AddPresetLocal(color);
+            if (presetsStored.Key == GetPath())
+            {
+                foreach (var color in presetsStored.Value)
+                    AddPreset(color);
+
+                PresetsStorage.Remove(presetsStored);
+                break;
+            }
         }
 
         Translate();
+    }
+
+    public override void _ExitTree()
+    {
+        // Store presets.
+        PresetsStorage.Add(new KeyValuePair<string, Color[]>(GetPath(), GetPresets()));
+
+        base._ExitTree();
     }
 
     public override void _Notification(int what)
