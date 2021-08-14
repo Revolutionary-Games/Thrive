@@ -1449,14 +1449,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             OnIGotAddedToColony();
 
-            var Parent = this;
+            var parent = this;
             if (Colony.Master != this)
             {
                 Mode = ModeEnum.Static;
-                Parent = ColonyParent;
+                parent = ColonyParent;
             }
 
-            ReParentShapes(Colony.Master, OffsetRelativeToMaster(), Parent.Rotation, Rotation);
+            ReParentShapes(Colony.Master, OffsetRelativeToMaster(), parent.Rotation, Rotation);
         }
         else
         {
