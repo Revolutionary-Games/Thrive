@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Autoloads Mods from the Settings and handles the mods that failed to load
