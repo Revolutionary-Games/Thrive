@@ -13,7 +13,7 @@ public class TweakedColourPicker : ColorPicker
     private CheckButton hsvCheckButton;
     private CheckButton rawCheckButton;
     private LineEdit hexColorEdit;
-    private HBoxContainer presetsContainer;
+    private GridContainer presetsContainer;
     private Button addPresetButton;
 
     private bool hsvButtonEnabled = true;
@@ -119,7 +119,7 @@ public class TweakedColourPicker : ColorPicker
         hexColorEdit = GetNode<LineEdit>("ButtonsContainer/HexColorEdit");
         hexColorEdit.Text = "ffffff";
 
-        presetsContainer = GetNode<HBoxContainer>("PresetContainer");
+        presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<Button>("PresetContainer/AddPresetButton");
 
         // Update button state.
