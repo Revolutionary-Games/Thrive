@@ -51,6 +51,9 @@ public class MicrobeHUD : Node
     public NodePath PatchLabelPath;
 
     [Export]
+    public NodePath PatchOverlayAnimatorPath;
+
+    [Export]
     public NodePath EditorButtonPath;
 
     [Export]
@@ -226,6 +229,7 @@ public class MicrobeHUD : Node
     private Label hpLabel;
     private Label populationLabel;
     private Label patchLabel;
+    private AnimationPlayer patchOverlayAnimator;
     private TextureButton editorButton;
     private Node extinctionBox;
     private Node winBox;
@@ -321,6 +325,7 @@ public class MicrobeHUD : Node
         hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
+        patchOverlayAnimator = GetNode<AnimationPlayer>(PatchOverlayAnimatorPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
@@ -507,11 +512,20 @@ public class MicrobeHUD : Node
         stage.Player?.Damage(9999.0f, "suicide");
     }
 
-    public void UpdatePatchInfo(string patchName)
+    public void UpdatePatchInfo(string patchName, bool animateOverlay)
     {
-        // Patch: {0}
-        patchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("MICROBE_PATCH_LABEL"), patchName);
+        if (patchLabel.Text == patchName)
+            return;
+
+        patchLabel.Text = patchName;
+
+        if (animateOverlay)
+            PromptPatchInfo();
+    }
+
+    public void PromptPatchInfo()
+    {
+        patchOverlayAnimator.Play("FadeInOut");
     }
 
     public void EditorButtonPressed()

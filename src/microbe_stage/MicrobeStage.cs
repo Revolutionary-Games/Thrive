@@ -213,7 +213,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         if (what == NotificationTranslationChanged)
         {
-            HUD.UpdatePatchInfo(TranslationServer.Translate(CurrentGame.GameWorld.Map.CurrentPatch.Name));
+            HUD.UpdatePatchInfo(TranslationServer.Translate(CurrentGame.GameWorld.Map.CurrentPatch.Name), false);
         }
     }
 
@@ -282,7 +282,11 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         else
         {
             HUD.OnEnterStageTransition(true);
-            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+
+            // If tutorial is disabled the patch name will not be prompted after the tutorial welcome message
+            // so we need to manually do it here
+            if (!TutorialState.Enabled)
+                HUD.PromptPatchInfo();
         }
     }
 
@@ -505,7 +509,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void OnReturnFromEditor()
     {
-        UpdatePatchSettings(false);
+        UpdatePatchSettings(false, true);
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -546,7 +550,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, new ActionEventArgs(new Action(
+            HUD.PromptPatchInfo)), this);
     }
 
     /// <summary>
@@ -655,11 +660,11 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
     }
 
-    private void UpdatePatchSettings(bool isLoading)
+    private void UpdatePatchSettings(bool isLoading, bool returningFromEditor = false)
     {
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
 
-        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
+        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name), returningFromEditor);
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         UpdateBackground();

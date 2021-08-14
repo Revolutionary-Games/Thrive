@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=2]
+[gd_scene load_steps=122 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -83,11 +83,12 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" type="Texture" id=82]
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=83]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="DynamicFont" id=84]
 
-[sub_resource type="Theme" id=1]
+[sub_resource type="Theme" id=35]
 default_font = ExtResource( 80 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=36]
 bg_color = Color( 0, 0.129412, 0.141176, 0.784314 )
 border_width_left = 1
 border_width_top = 1
@@ -99,7 +100,7 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=37]
 texture = ExtResource( 43 )
 region_rect = Rect2( 0, 0, 20, 20 )
 expand_margin_left = 1.0
@@ -108,87 +109,87 @@ expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 modulate_color = Color( 0, 0.435294, 0.52549, 1 )
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=38]
 texture = ExtResource( 44 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=39]
 texture = ExtResource( 43 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="ButtonGroup" id=6]
+[sub_resource type="ButtonGroup" id=40]
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=41]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 modulate_color = Color( 0, 0.435294, 0.52549, 1 )
 
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=42]
 texture = ExtResource( 45 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=43]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxTexture" id=44]
 texture = ExtResource( 13 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=45]
 bg_color = Color( 0, 0.596078, 0.764706, 1 )
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=46]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=47]
 bg_color = Color( 0.141176, 0.278431, 0.682353, 1 )
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=48]
 bg_color = Color( 0.407843, 0.698039, 0.431373, 1 )
 
-[sub_resource type="ButtonGroup" id=15]
+[sub_resource type="ButtonGroup" id=49]
 
-[sub_resource type="StyleBoxTexture" id=16]
+[sub_resource type="StyleBoxTexture" id=50]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 modulate_color = Color( 0, 0.435294, 0.52549, 1 )
 
-[sub_resource type="StyleBoxTexture" id=17]
+[sub_resource type="StyleBoxTexture" id=51]
 texture = ExtResource( 45 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=18]
+[sub_resource type="StyleBoxTexture" id=52]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxFlat" id=19]
+[sub_resource type="StyleBoxFlat" id=53]
 bg_color = Color( 0.568627, 0.611765, 0.615686, 1 )
 
-[sub_resource type="StyleBoxFlat" id=20]
+[sub_resource type="StyleBoxFlat" id=54]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="StyleBoxFlat" id=21]
+[sub_resource type="StyleBoxFlat" id=55]
 bg_color = Color( 0.631373, 0.396078, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=22]
+[sub_resource type="StyleBoxFlat" id=56]
 bg_color = Color( 0.380392, 0.141176, 0.8, 1 )
 
-[sub_resource type="StyleBoxFlat" id=23]
+[sub_resource type="StyleBoxFlat" id=57]
 bg_color = Color( 0.462745, 0.470588, 0.184314, 1 )
 
-[sub_resource type="StyleBoxFlat" id=24]
+[sub_resource type="StyleBoxFlat" id=58]
 bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=59]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=60]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="StyleBoxEmpty" id=27]
+[sub_resource type="StyleBoxEmpty" id=61]
 
-[sub_resource type="StyleBoxFlat" id=28]
+[sub_resource type="StyleBoxFlat" id=62]
 bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
 border_width_left = 2
 border_width_top = 2
@@ -196,11 +197,11 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.533333, 0.745098, 0.815686, 0.392157 )
 
-[sub_resource type="StyleBoxTexture" id=29]
+[sub_resource type="StyleBoxTexture" id=63]
 texture = ExtResource( 62 )
 region_rect = Rect2( 0, 0, 86, 52 )
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=64]
 length = 5.0
 loop = true
 tracks/0/type = "value"
@@ -228,7 +229,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.8, 0.8, 0.0 ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=65]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("BottomLeft/LeftPanels:modulate")
@@ -267,7 +268,7 @@ tracks/2/keys = {
 "values": [ Vector2( 10, 14 ), Vector2( -350, 14 ) ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=66]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("BottomLeft/LeftPanels:modulate")
@@ -304,6 +305,49 @@ tracks/2/keys = {
 "transitions": PoolRealArray( -2, 1 ),
 "update": 0,
 "values": [ Vector2( -350, 14 ), Vector2( 10, 14 ) ]
+}
+
+[sub_resource type="Gradient" id=33]
+offsets = PoolRealArray( 0, 0.1, 0.5, 0.9, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.627451, 0, 0, 0, 0.588235, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=34]
+gradient = SubResource( 33 )
+
+[sub_resource type="StyleBoxTexture" id=67]
+texture = SubResource( 34 )
+region_rect = Rect2( 0, 0, 2048, 1 )
+
+[sub_resource type="StyleBoxTexture" id=68]
+texture = ExtResource( 13 )
+region_rect = Rect2( 0, 0, 429, 1 )
+
+[sub_resource type="Animation" id=69]
+resource_name = "FadeInOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="MicrobeStage" type="Node"]
@@ -356,7 +400,8 @@ ResumeButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Resume")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
-PatchLabelPath = NodePath("PatchLabel")
+PatchLabelPath = NodePath("../PatchNameOverlay/VBoxContainer/PatchLabel")
+PatchOverlayAnimatorPath = NodePath("../PatchNameOverlay/AnimationPlayer")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
 EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
@@ -498,7 +543,7 @@ margin_top = 24.0
 margin_right = 208.0
 margin_bottom = 24.0
 size_flags_vertical = 3
-theme = SubResource( 1 )
+theme = SubResource( 35 )
 
 [node name="SpeciesSeparator" type="HSeparator" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
@@ -536,7 +581,7 @@ margin_top = 24.0
 margin_right = 208.0
 margin_bottom = 41.0
 size_flags_vertical = 3
-theme = SubResource( 1 )
+theme = SubResource( 35 )
 
 [node name="BottomLeft" type="Control" parent="MicrobeHUD"]
 anchor_top = 1.0
@@ -570,7 +615,7 @@ rect_min_size = Vector2( 197, 234 )
 rect_clip_content = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 36 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel"]
 margin_left = 1.0
@@ -618,13 +663,13 @@ rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 37 )
+custom_styles/pressed = SubResource( 38 )
+custom_styles/normal = SubResource( 39 )
 toggle_mode = true
 pressed = true
 action_mode = 0
-group = SubResource( 6 )
+group = SubResource( 40 )
 
 [node name="EnvironmentCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 156.0
@@ -635,12 +680,12 @@ rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/normal = SubResource( 9 )
+custom_styles/hover = SubResource( 41 )
+custom_styles/pressed = SubResource( 42 )
+custom_styles/normal = SubResource( 43 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 6 )
+group = SubResource( 40 )
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
 margin_top = 39.0
@@ -648,7 +693,7 @@ margin_right = 197.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 197, 0 )
 size_flags_horizontal = 0
-custom_styles/separator = SubResource( 10 )
+custom_styles/separator = SubResource( 44 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
 margin_top = 47.0
@@ -672,8 +717,8 @@ show_behind_parent = true
 margin_right = 162.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 11 )
-custom_styles/bg = SubResource( 12 )
+custom_styles/fg = SubResource( 45 )
+custom_styles/bg = SubResource( 46 )
 step = 0.1
 percent_visible = false
 
@@ -731,8 +776,8 @@ margin_top = 29.0
 margin_right = 162.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 13 )
-custom_styles/bg = SubResource( 12 )
+custom_styles/fg = SubResource( 47 )
+custom_styles/bg = SubResource( 46 )
 step = 0.1
 percent_visible = false
 
@@ -790,8 +835,8 @@ margin_top = 58.0
 margin_right = 162.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 14 )
-custom_styles/bg = SubResource( 12 )
+custom_styles/fg = SubResource( 48 )
+custom_styles/bg = SubResource( 46 )
 step = 0.1
 percent_visible = false
 
@@ -1017,7 +1062,7 @@ margin_bottom = 463.0
 rect_min_size = Vector2( 254, 219 )
 rect_clip_content = true
 size_flags_horizontal = 0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 36 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel"]
 margin_left = 1.0
@@ -1079,13 +1124,13 @@ rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 37 )
+custom_styles/pressed = SubResource( 38 )
+custom_styles/normal = SubResource( 39 )
 toggle_mode = true
 pressed = true
 action_mode = 0
-group = SubResource( 15 )
+group = SubResource( 49 )
 
 [node name="CompoundCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 216.0
@@ -1096,12 +1141,12 @@ rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-custom_styles/hover = SubResource( 16 )
-custom_styles/pressed = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
+custom_styles/hover = SubResource( 50 )
+custom_styles/pressed = SubResource( 51 )
+custom_styles/normal = SubResource( 52 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 15 )
+group = SubResource( 49 )
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer"]
 margin_top = 44.0
@@ -1109,7 +1154,7 @@ margin_right = 254.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 254, 0 )
 size_flags_horizontal = 0
-custom_styles/separator = SubResource( 10 )
+custom_styles/separator = SubResource( 44 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer"]
 margin_top = 52.0
@@ -1142,8 +1187,8 @@ margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 19 )
-custom_styles/bg = SubResource( 20 )
+custom_styles/fg = SubResource( 53 )
+custom_styles/bg = SubResource( 54 )
 step = 0.1
 percent_visible = false
 
@@ -1196,8 +1241,8 @@ margin_right = 220.0
 margin_bottom = 55.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 21 )
-custom_styles/bg = SubResource( 20 )
+custom_styles/fg = SubResource( 55 )
+custom_styles/bg = SubResource( 54 )
 step = 0.1
 percent_visible = false
 
@@ -1250,8 +1295,8 @@ margin_right = 220.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 22 )
-custom_styles/bg = SubResource( 20 )
+custom_styles/fg = SubResource( 56 )
+custom_styles/bg = SubResource( 54 )
 step = 0.1
 percent_visible = false
 
@@ -1304,8 +1349,8 @@ margin_right = 220.0
 margin_bottom = 115.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 23 )
-custom_styles/bg = SubResource( 20 )
+custom_styles/fg = SubResource( 57 )
+custom_styles/bg = SubResource( 54 )
 step = 0.1
 percent_visible = false
 
@@ -1358,8 +1403,8 @@ margin_right = 220.0
 margin_bottom = 145.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 24 )
-custom_styles/bg = SubResource( 20 )
+custom_styles/fg = SubResource( 58 )
+custom_styles/bg = SubResource( 54 )
 step = 0.1
 percent_visible = false
 
@@ -1411,7 +1456,7 @@ rect_min_size = Vector2( 254, 94 )
 rect_clip_content = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 36 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel"]
 margin_left = 1.0
@@ -1460,7 +1505,7 @@ margin_right = 254.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 254, 0 )
 size_flags_horizontal = 0
-custom_styles/separator = SubResource( 10 )
+custom_styles/separator = SubResource( 44 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer"]
 margin_top = 52.0
@@ -1487,8 +1532,8 @@ margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 25 )
-custom_styles/bg = SubResource( 26 )
+custom_styles/fg = SubResource( 59 )
+custom_styles/bg = SubResource( 60 )
 step = 0.1
 percent_visible = false
 
@@ -1664,7 +1709,7 @@ margin_left = 317.0
 margin_right = 332.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 15, 0 )
-custom_styles/separator = SubResource( 27 )
+custom_styles/separator = SubResource( 61 )
 
 [node name="BottomRight" type="Control" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -1701,7 +1746,7 @@ margin_right = 82.0
 margin_bottom = 33.0
 rect_min_size = Vector2( 82, 0 )
 size_flags_horizontal = 3
-custom_styles/normal = SubResource( 28 )
+custom_styles/normal = SubResource( 62 )
 custom_fonts/font = ExtResource( 12 )
 text = "POPULATION_CAPITAL"
 align = 1
@@ -1717,7 +1762,7 @@ margin_right = 125.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 35, 0 )
 size_flags_horizontal = 3
-custom_styles/normal = SubResource( 28 )
+custom_styles/normal = SubResource( 62 )
 custom_fonts/font = ExtResource( 12 )
 text = "100"
 align = 1
@@ -1736,7 +1781,7 @@ margin_right = -10.0
 margin_bottom = -183.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 29 )
+custom_styles/panel = SubResource( 63 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1979,7 +2024,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
-anims/EditorButtonFlash = SubResource( 30 )
+anims/EditorButtonFlash = SubResource( 64 )
 
 [node name="ProcessPanel" parent="MicrobeHUD" instance=ExtResource( 58 )]
 margin_left = 8.0
@@ -1999,8 +2044,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
-anims/HideLeftPanels = SubResource( 31 )
-anims/ShowLeftPanels = SubResource( 32 )
+anims/HideLeftPanels = SubResource( 65 )
+anims/ShowLeftPanels = SubResource( 66 )
 
 [node name="MicrobeCheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
 margin_left = 10.0
@@ -2064,18 +2109,6 @@ toggle_mode = true
 ActionIcon = ExtResource( 82 )
 ActionName = "g_toggle_binding"
 
-[node name="PatchLabel" type="Label" parent="MicrobeHUD"]
-margin_left = 11.1892
-margin_top = 9.0
-margin_right = 265.189
-margin_bottom = 32.0
-custom_fonts/font = ExtResource( 12 )
-text = "Patch:"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
-
 [node name="HintText" type="Label" parent="MicrobeHUD"]
 anchor_right = 1.0
 margin_top = 35.0
@@ -2089,6 +2122,49 @@ __meta__ = {
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false
+
+[node name="PatchNameOverlay" type="PanelContainer" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -65.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 0, 130 )
+mouse_filter = 2
+custom_styles/panel = SubResource( 67 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PatchNameOverlay"]
+margin_right = 1280.0
+margin_bottom = 130.0
+mouse_filter = 2
+alignment = 1
+
+[node name="PatchLabel" type="Label" parent="PatchNameOverlay/VBoxContainer"]
+margin_top = 32.0
+margin_right = 1280.0
+margin_bottom = 90.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 84 )
+text = "Insert Patch Name"
+align = 1
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HSeparator" type="HSeparator" parent="PatchNameOverlay/VBoxContainer"]
+margin_top = 94.0
+margin_right = 1280.0
+margin_bottom = 98.0
+mouse_filter = 2
+custom_styles/separator = SubResource( 68 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PatchNameOverlay"]
+anims/FadeInOut = SubResource( 69 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
 visible = false
