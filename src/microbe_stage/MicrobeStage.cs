@@ -550,8 +550,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, new ActionEventArgs(new Action(
-            HUD.PromptPatchInfo)), this);
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, new ActionEventArgs(HUD.PromptPatchInfo), this);
     }
 
     /// <summary>
