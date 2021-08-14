@@ -1,8 +1,8 @@
 shader_type spatial;
 render_mode depth_draw_alpha_prepass;
 
-uniform sampler2D Texture : hint_albedo;
-uniform sampler2D Normals;
+uniform sampler2D albedo : hint_albedo;
+uniform sampler2D normals;
 
 uniform sampler2D dissolveTexture : hint_albedo;
 uniform float dissolveValue : hint_range(0, 1);
@@ -11,8 +11,8 @@ uniform float outlineWidth;
 uniform vec4 growColor : hint_color;
 
 void fragment() {
-    vec4 mainTex = texture(Texture, UV);
-    vec4 normalmap = texture(Normals, UV);
+    vec4 mainTex = texture(albedo, UV);
+    vec4 normalmap = texture(normals, UV);
     vec4 dissolveTex = texture(dissolveTexture, UV);
 
     float cutoff = dot(dissolveTex.rgb, vec3(0.4, 0.4, 0.4)) -
