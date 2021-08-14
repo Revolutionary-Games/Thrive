@@ -5,13 +5,13 @@ jobs:
     image: thrive/godot-ci:v10
     cache:
       loadFrom:
-        - v1-{Branch}-build
-        - v1-master-build
-      writeTo: v1-{Branch}-build
+        - v2-{Branch}-build
+        - v2-master-build
+      writeTo: v2-{Branch}-build
       shared:
         .git/lfs: v2-lfs
-        .import: v1-import
-        builds: v1-builds
+        .import: v2-import
+        builds: v2-builds
     steps:
       # This is here to reimport assets, but this build would fail due to missing nuget packages
       # if C# was compiled here
