@@ -11,7 +11,7 @@ jobs:
       shared:
         .git/lfs: v2-lfs
         .import: v2-import
-        builds: v2-builds
+        builds: v1-builds
     steps:
       # This is here to reimport assets, but this build would fail due to missing nuget packages
       # if C# was compiled here
