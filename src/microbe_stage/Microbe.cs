@@ -501,8 +501,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // maybe enigne bug
             if (this != Colony.Master && Colony != null)
             {
-                ReParentShapes(this, Vector3.Zero, Colony.Master.Rotation);
-                ReParentShapes(Colony.Master, OffsetRelativeToMaster(), Colony.Master.Rotation);
+                ReParentShapes(this, Vector3.Zero, Colony.Master.Rotation, Rotation);
+                ReParentShapes(Colony.Master, OffsetRelativeToMaster(), Colony.Master.Rotation, Rotation);
             }
 
             // And recompute storage
@@ -1437,10 +1437,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RemoveCollisionExceptionWith(microbe);
     }
 
-    internal void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation)
+    internal void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 microbeRotation)
     {
         foreach (var organelle in organelles)
-            organelle.ReParentShapes(to, offset, masterRotation);
+            organelle.ReParentShapes(to, offset, masterRotation, microbeRotation);
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
@@ -1452,7 +1452,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (Colony.Master != this)
                 Mode = ModeEnum.Static;
 
-            ReParentShapes(Colony.Master, OffsetRelativeToMaster(), Colony.Master.Rotation);
+            ReParentShapes(Colony.Master, OffsetRelativeToMaster(), Colony.Master.Rotation, Rotation);
         }
         else
         {
