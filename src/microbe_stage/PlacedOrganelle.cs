@@ -393,7 +393,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// </summary>
     public void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 parentRotation)
     {
-        _ = masterRotation;
 
         if (to == currentShapesParent)
             return;
@@ -403,10 +402,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         for (int i = 0; i < shapes.Count; i++)
         {
             Vector3 shapePosition = ShapeTruePosition(hexes[i]);
-
-            if (ParentMicrobe.Colony != null)
+            if (ParentMicrobe.Colony != null){
                 shapePosition = shapePosition.Rotated(Vector3.Up, parentRotation.y);
-
+                shapePosition = shapePosition.Rotated(Vector3.Up, masterRotation.y);
+            }
+        
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
                 shapePosition *= 0.5f;
