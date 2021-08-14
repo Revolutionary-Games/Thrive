@@ -501,8 +501,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // maybe enigne bug
             if (this != Colony.Master && Colony != null)
             {
-                ReParentShapes(this, Vector3.Zero, Colony.Master.Rotation, Rotation);
-                ReParentShapes(Colony.Master, OffsetRelativeToMaster(), Colony.Master.Rotation, Rotation);
+                ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
+                ReParentShapes(Colony.Master, OffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
             }
 
             // And recompute storage
@@ -1449,10 +1449,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             OnIGotAddedToColony();
 
+            var Parent = this;
             if (Colony.Master != this)
+            {
                 Mode = ModeEnum.Static;
+                Parent = ColonyParent;
+            }
 
-            ReParentShapes(Colony.Master, OffsetRelativeToMaster(), Colony.Master.Rotation, Rotation);
+            ReParentShapes(Colony.Master, OffsetRelativeToMaster(), Parent.Rotation, Rotation);
         }
         else
         {
