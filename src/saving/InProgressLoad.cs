@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -100,9 +101,11 @@ public class InProgressLoad
                 }
                 catch (Exception e)
                 {
+                    var extraProblem = TryFreeAlreadyLoadedData();
+
                     ReportStatus(false,
                         TranslationServer.Translate("AN_EXCEPTION_HAPPENED_WHILE_LOADING"),
-                        e.ToString());
+                        e + extraProblem);
                     state = State.Finished;
 
                     // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
@@ -125,8 +128,10 @@ public class InProgressLoad
                 }
                 catch (Exception)
                 {
+                    var extraProblem = TryFreeAlreadyLoadedData();
+
                     ReportStatus(false, TranslationServer.Translate("SAVE_IS_INVALID"),
-                        TranslationServer.Translate("SAVE_HAS_INVALID_GAME_STATE"));
+                        TranslationServer.Translate("SAVE_HAS_INVALID_GAME_STATE") + extraProblem);
                     state = State.Finished;
                     break;
                 }
@@ -151,9 +156,11 @@ public class InProgressLoad
                 }
                 catch (Exception e)
                 {
+                    var extraProblem = TryFreeAlreadyLoadedData();
+
                     ReportStatus(false,
                         TranslationServer.Translate("AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"),
-                        e.ToString());
+                        e + extraProblem);
                     state = State.Finished;
                     break;
                 }
@@ -195,5 +202,24 @@ public class InProgressLoad
         }
 
         Invoke.Instance.Queue(Step);
+    }
+
+    private string TryFreeAlreadyLoadedData()
+    {
+        if (save == null)
+            return string.Empty;
+
+        try
+        {
+            // Free up the loaded Godot resources
+            save.DestroyGameStates();
+        }
+        catch (Exception e2)
+        {
+            return string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"), e2);
+        }
+
+        return string.Empty;
     }
 }

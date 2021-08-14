@@ -46,6 +46,15 @@ public class ProcessSystem
     /// <summary>
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
+    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
+        BiomeConditions biome, MembraneType membrane)
+    {
+        return ComputeEnergyBalance(organelles.Select(o => o.Definition), biome, membrane);
+    }
+
+    /// <summary>
+    ///   Computes the energy balance for the given organelles in biome
+    /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleDefinition> organelles,
         BiomeConditions biome, MembraneType membrane)
     {
@@ -158,6 +167,12 @@ public class ProcessSystem
         }
 
         return result;
+    }
+
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
+    {
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
     }
 
     public void Process(float delta)
