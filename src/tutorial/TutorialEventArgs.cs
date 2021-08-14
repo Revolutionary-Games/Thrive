@@ -88,9 +88,9 @@ public class PatchEventArgs : TutorialEventArgs
     public Patch Patch { get; }
 }
 
-public class ActionEventArgs : TutorialEventArgs
+public class CallbackEventArgs : TutorialEventArgs
 {
-    public ActionEventArgs(Action data)
+    public CallbackEventArgs(Action data)
     {
         Data = data;
     }

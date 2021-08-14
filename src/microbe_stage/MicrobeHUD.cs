@@ -512,15 +512,9 @@ public class MicrobeHUD : Node
         stage.Player?.Damage(9999.0f, "suicide");
     }
 
-    public void UpdatePatchInfo(string patchName, bool animateOverlay)
+    public void UpdatePatchInfo(string patchName)
     {
-        if (patchLabel.Text == patchName)
-            return;
-
         patchLabel.Text = patchName;
-
-        if (animateOverlay)
-            PromptPatchInfo();
     }
 
     public void PromptPatchInfo()

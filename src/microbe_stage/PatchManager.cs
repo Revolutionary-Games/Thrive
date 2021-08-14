@@ -39,7 +39,10 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
+    /// <returns>
+    ///   True if the patch is changed from the previous one. False if the patch is not changed.
+    /// </returns>
+    public bool ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
     {
         if (previousPatch != currentPatch && despawnAllowed)
         {
@@ -63,6 +66,9 @@ public class PatchManager
             compoundCloudSystem.EmptyAllClouds();
         }
 
+        // Hacky previous patch storing. Used to return whether patch is changed
+        var storedPreviousPatch = previousPatch;
+
         previousPatch = currentPatch;
 
         GD.Print("Applying patch (", TranslationServer.Translate(currentPatch.Name), ") settings");
@@ -83,6 +89,8 @@ public class PatchManager
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
+
+        return storedPreviousPatch != currentPatch;
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)
